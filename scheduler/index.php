@@ -61,25 +61,29 @@
 					teamIds.unshift(champion);
 					teamIds.unshift('--');
 
+					var output = '';
+					var url = 'http://games.espn.com/ffl/tools/lmeditschedule?leagueId=122885&matchupPeriodId=1';
+
+					var $p = $('<p>');
+					var $textarea = $('<textarea rows="20" cols="120">');
+					var $link = $('<a href="' + url + '">Schedule Editor</a><br />');
+
 					template.forEach(function(games, week) {
 						var params = { incoming: 1 };
 
-						var url = 'http://games.espn.com/ffl/tools/lmeditschedule?leagueId=122885&matchupPeriodId=' + (week + 1);
-
-						var $p = $('<p>');
-						var $link = $('<a href="' + url + '">Week ' + (week + 1) + '</a><br />');
-						var $textarea = $('<textarea>');
-						var output = '';
-
 						games.forEach(function(matchup, game) {
-							output += "jQuery('input[name=home" + game + "]').val(" + teamIds[matchup[1]] + "); ";
-							output += "jQuery('input[name=away" + game + "]').val(" + teamIds[matchup[0]] + "); ";
+							params['home' + game] = teamIds[matchup[1]];
+							params['away' + game] = teamIds[matchup[0]];
 						});
 
-						$textarea.text(output);
-						$p.append($link).append($textarea);
-						$('div.results').append($p);
+						output += 'jQuery.post(\'http://games.espn.com/ffl/tools/lmeditschedule?leagueId=122885&matchupPeriodId=' + (week + 1) + '\', ' + JSON.stringify(params) + ').then(function() {';
 					});
+
+					output += '});});});});});});});});});});});});});});';
+
+					$textarea.text(output);
+					$p.append($link).append($textarea);
+					$('div.results').append($p);
 				});
 			});
 
