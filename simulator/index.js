@@ -138,7 +138,7 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 
 		console.log();
 
-		//console.log(JSON.stringify(schedule, null, "\t"));
+		console.log(JSON.stringify(schedule, null, "\t"));
 
 		db.close();
 	});
