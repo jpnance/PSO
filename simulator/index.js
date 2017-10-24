@@ -16,6 +16,7 @@ var mongoOwners = {
 };
 
 var manualWinners = {};
+var adjustments = {};
 var trials = 100;
 
 process.argv.forEach(function(value, index, array) {
@@ -37,6 +38,20 @@ process.argv.forEach(function(value, index, array) {
 					var winners = weekPair[1].split(/,/);
 
 					manualWinners[week] = winners;
+				}
+
+				break;
+
+			case 'adjustments':
+				var adjustmentPairs = pair[1].split(/;/);
+
+				for (var i in adjustmentPairs) {
+					var adjustmentPair = adjustmentPairs[i].split(/:/);
+
+					var owner = mongoOwners[adjustmentPair[0]];
+					var adjustment = parseInt(adjustmentPair[1]);
+
+					adjustments[owner] = adjustment;
 				}
 
 				break;
@@ -108,7 +123,7 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 		simulate(trials);
 
 		console.log();
-		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick");
+		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish");
 
 		for (ownerId in owners) {
 			var owner = owners[ownerId];
@@ -116,8 +131,9 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 			var inPct = owner.in / trials;
 			var firstPct = owner.decision / trials;
 			var lastPct = owner.topPick / trials;
+			var avgFinish = owner.finish / trials;
 
-			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3));
+			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3));
 		}
 
 		console.log();
@@ -382,8 +398,8 @@ function simulate(trials) {
 				var r = Math.random();
 				*/
 
-				var awayScore = game.away.score ? game.away.score : generateScore(awayOwner);
-				var homeScore = game.home.score ? game.home.score : generateScore(homeOwner);
+				var awayScore = game.away.score ? game.away.score : generateScore(awayOwner) + adjustments[mongoOwners[awayOwner.name]];
+				var homeScore = game.home.score ? game.home.score : generateScore(homeOwner) + adjustments[mongoOwners[homeOwner.name]];
 
 				awayOwner.tiebreaker += awayScore;
 				homeOwner.tiebreaker += homeScore;
@@ -456,6 +472,8 @@ function simulate(trials) {
 			else {
 				owners[standings[j].id].out += 1;
 			}
+
+			owners[standings[j].id].finish += (j + 1);
 		}
 
 		/*
@@ -506,6 +524,11 @@ function initializeOwners() {
 		owner.ties = 0;
 		owner.topPick = 0;
 		owner.wins = 0;
+		owner.finish = 0;
+
+		if (!adjustments[ownerId]) {
+			adjustments[ownerId] = 0;
+		}
 	}
 
 	for (weekId in results) {
