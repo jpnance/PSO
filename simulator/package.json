@@ -1,11 +1,14 @@
 {
-  "name": "simulator",
+  "name": "pso-simulator",
   "version": "1.0.0",
-  "description": "PSO Simulator",
+  "description": "A simulator for the Primetime Soap Operas fantasy football league.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.0.48"
+  }
 }
