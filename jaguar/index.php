@@ -207,7 +207,7 @@ if (count($tiedOwners) > 0) {
 			<tr>
 				<td></td>
 				<?php foreach ($jaguarOwners as $owner): ?>
-					<th><?= $owner; ?></th>
+					<th>vs. <?= $owner; ?></th>
 				<?php endforeach ?>
 				<th>Total</th>
 			</tr>
