@@ -282,6 +282,9 @@ foreach ($seasons as $season => &$seasonData) {
 		$cumulativeAllPlayLosses = 0;
 		$cumulativeAllPlayTies = 0;
 
+		$cumulativeSternWins = 0;
+		$cumulativeSternLosses = 0;
+
 		foreach ($seasonOwnerData['weeks'] as $week => &$gameData) {
 			$seasonType = 'regularSeason';
 
@@ -339,6 +342,8 @@ foreach ($seasons as $season => &$seasonData) {
 			$gameData['cumulativeLosses'] = $cumulativeLosses;
 			$gameData['cumulativeTies'] = $cumulativeTies;
 
+			$aboveMedian = ($allPlay['wins'] > 2 * ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 3);
+
 			if ($gameData['result'] == 'W' && $allPlay['losses'] > 2 * ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 3) {
 				$gameData['fluky'] = true;
 				$records[$franchise][$seasonType]['flukyWins']++;
@@ -348,6 +353,15 @@ foreach ($seasons as $season => &$seasonData) {
 				$gameData['fluky'] = true;
 				$records[$franchise][$seasonType]['flukyLosses']++;
 			}
+
+			$gameData['sternWins'] = ($gameData['result'] == 'W' ? 1 : 0) + ($aboveMedian ? 1 : 0);
+			$gameData['sternLosses'] = ($gameData['result'] == 'L' ? 1 : 0) + ($aboveMedian ? 0 : 1);
+
+			$cumulativeSternWins += $gameData['sternWins'];
+			$cumulativeSternLosses += $gameData['sternLosses'];
+
+			$gameData['cumulativeSternWins'] = $cumulativeSternWins;
+			$gameData['cumulativeSternLosses'] = $cumulativeSternLosses;
 		}
 
 		$ownerAverage = $ownerSum / $ownerScores;
@@ -456,6 +470,10 @@ krsort($seasons);
 			$cumulativeAllPlayRecord = $cumulativeAllPlayWins . '-' . $cumulativeAllPlayLosses . ($cumulativeAllPlayTies > 0 ? '-' . $cumulativeAllPlayTies : '');
 			$cumulativeAllPlayWinPercentage = ($cumulativeAllPlayWins + $cumulativeAllPlayLosses + $cumulativeAllPlayTies > 0) ? ($cumulativeAllPlayWins + (0.5 * $cumulativeAllPlayTies)) / ($cumulativeAllPlayWins + $cumulativeAllPlayLosses + $cumulativeAllPlayTies) : null;
 
+			$cumulativeSternWins = $gameData['cumulativeSternWins'] ?? null;
+			$cumulativeSternLosses = $gameData['cumulativeSternLosses'] ?? null;
+			$cumulativeSternRecord = $cumulativeSternWins . '-' . $cumulativeSternLosses;
+
 			$fluky = 0;
 
 			if (isset($gameData['fluky'])) {
@@ -473,7 +491,7 @@ krsort($seasons);
 					<div class="score <?= $scoreCssClass; ?>"><?= number_format($score, 2); ?></div>
 					<div class="record"><?= $cumulativeRecord; ?></div>
 					<div class="all-play-record"><?= $cumulativeAllPlayRecord; ?></div>
-					<div class="all-play-win-percentage"><?= number_format($cumulativeAllPlayWinPercentage, 3); ?></div>
+					<div class="stern-record"><?= $cumulativeSternRecord; ?></div>
 					<div class="opponent"><?= $opponent; ?></div>
 					<!--
 					<div class="result"><?= $result; ?></div>
@@ -484,6 +502,7 @@ krsort($seasons);
 					<div class="all-play-record"><?= $cumulativeAllPlayRecord; ?></div>
 					<div class="all-play-win-percentage"><?= number_format($cumulativeAllPlayWinPercentage, 3); ?></div>
 					<div class="fluky"><?= $fluky; ?></div>
+					<div class="stern-record"><?= $cumulativeSternRecord; ?></div>
 					-->
 				</td>
 <?php
