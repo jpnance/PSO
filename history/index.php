@@ -342,8 +342,6 @@ foreach ($seasons as $season => &$seasonData) {
 			$gameData['cumulativeLosses'] = $cumulativeLosses;
 			$gameData['cumulativeTies'] = $cumulativeTies;
 
-			$aboveMedian = ($allPlay['wins'] > 2 * ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 3);
-
 			if ($gameData['result'] == 'W' && $allPlay['losses'] > 2 * ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 3) {
 				$gameData['fluky'] = true;
 				$records[$franchise][$seasonType]['flukyWins']++;
@@ -353,6 +351,8 @@ foreach ($seasons as $season => &$seasonData) {
 				$gameData['fluky'] = true;
 				$records[$franchise][$seasonType]['flukyLosses']++;
 			}
+
+			$aboveMedian = ($allPlay['wins'] > ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 2);
 
 			$gameData['sternWins'] = ($gameData['result'] == 'W' ? 1 : 0) + ($aboveMedian ? 1 : 0);
 			$gameData['sternLosses'] = ($gameData['result'] == 'L' ? 1 : 0) + ($aboveMedian ? 0 : 1);
