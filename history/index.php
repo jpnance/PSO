@@ -86,6 +86,7 @@ $franchiseMappings = [
 	'Daniel' => 'Daniel',
 	'Jake/Luke' => 'Brett/Luke',
 	'James' => 'James',
+	'James/Charles' => 'James/Charles',
 	'Jeff' => 'Brett/Luke',
 	'John' => 'John/Zach',
 	'John/Zach' => 'John/Zach',
