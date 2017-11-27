@@ -123,7 +123,10 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 		simulate(trials);
 
 		console.log();
-		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish");
+		console.log(JSON.stringify(schedule, null, "\t"));
+
+		console.log();
+		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
 
 		for (ownerId in owners) {
 			var owner = owners[ownerId];
@@ -132,13 +135,13 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 			var firstPct = owner.decision / trials;
 			var lastPct = owner.topPick / trials;
 			var avgFinish = owner.finish / trials;
+			var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
+			var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
 
-			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3));
+			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
 		}
 
 		console.log();
-
-		console.log(JSON.stringify(schedule, null, "\t"));
 
 		db.close();
 	});
@@ -455,9 +458,16 @@ function simulate(trials) {
 		}
 
 		var standings = computeStandings(ownersCopy).reverse();
-		if (debug) console.log(standings);
+		if (debug) console.log(ownersCopy);
 
 		for (var j = 0; j < standings.length; j++) {
+			if (ownersCopy[standings[j].id].wins >= 10) {
+				owners[standings[j].id].tenWins++;
+			}
+			else if (ownersCopy[standings[j].id].wins == 9) {
+				owners[standings[j].id].nineWins++;
+			}
+
 			if (j == 0) {
 				owners[standings[j].id].decision += 1;
 			}
@@ -470,6 +480,13 @@ function simulate(trials) {
 				owners[standings[j].id].in += 1;
 			}
 			else {
+				if (ownersCopy[standings[j].id].wins >= 10) {
+					owners[standings[j].id].tenWinMisses++;
+				}
+				else if (ownersCopy[standings[j].id].wins == 9) {
+					owners[standings[j].id].nineWinMisses++;
+				}
+
 				owners[standings[j].id].out += 1;
 			}
 
@@ -518,8 +535,12 @@ function initializeOwners() {
 		owner.decision = 0;
 		owner.in = 0;
 		owner.losses = 0;
+		owner.nineWinMisses = 0;
+		owner.nineWins = 0;
 		owner.out = 0;
 		owner.scores = [];
+		owner.tenWinMisses = 0;
+		owner.tenWins = 0;
 		owner.tiebreaker = 0;
 		owner.ties = 0;
 		owner.topPick = 0;
