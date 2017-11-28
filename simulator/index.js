@@ -401,8 +401,21 @@ function simulate(trials) {
 				var r = Math.random();
 				*/
 
+				var wrongTeamWins = false;
 				var awayScore = game.away.score ? game.away.score : generateScore(awayOwner) + adjustments[mongoOwners[awayOwner.name]];
 				var homeScore = game.home.score ? game.home.score : generateScore(homeOwner) + adjustments[mongoOwners[homeOwner.name]];
+
+				do {
+					awayScore = game.away.score ? game.away.score : generateScore(awayOwner) + adjustments[mongoOwners[awayOwner.name]];
+					homeScore = game.home.score ? game.home.score : generateScore(homeOwner) + adjustments[mongoOwners[homeOwner.name]];
+
+					if (game.winner && ((game.winner == game.home.owner && awayScore > homeScore) || (game.winner == game.away.owner && homeScore > awayScore))) {
+						wrongTeamWins = true;
+					}
+					else {
+						wrongTeamWins = false;
+					}
+				} while (wrongTeamWins);
 
 				awayOwner.tiebreaker += awayScore;
 				homeOwner.tiebreaker += homeScore;
