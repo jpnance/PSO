@@ -435,7 +435,7 @@ function simulate(trials) {
 					awayOwner.against[homeOwner.id].losses += 1;
 					homeOwner.against[awayOwner.id].wins += 1;
 
-					game.home.wins +=1;
+					game.home.wins += 1;
 				}
 				else if (game.winner == game.away.owner) {
 					awayOwner.wins += 1;
