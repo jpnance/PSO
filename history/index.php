@@ -10,31 +10,34 @@
 
 			table {
 				border-collapse: collapse;
+			}
+
+			table.results {
 				margin-bottom: 40px;
 			}
 
-			table tr th,
-			table tr td {
+			table.results tr th,
+			table.results tr td {
 				border: 1px solid #cccccc;
 				padding: 2px;
 				width: 65px;
 			}
 
-			table tr th {
+			table.results tr th {
 				text-align: right;
 				vertical-align: bottom;
 				white-space: nowrap;
 			}
 
-			table tr th.champion {
+			table.results tr th.champion {
 				color: rgb(191, 144, 0);
 			}
 
-			table tr th.runner-up {
+			table.results tr th.runner-up {
 				color: rgb(102, 102, 102);
 			}
 
-			table tr th.third-place {
+			table.results tr th.third-place {
 				color: rgb(120, 63, 4);
 			}
 
@@ -42,36 +45,68 @@
 				line-height: 14px;
 			}
 
-			table tr th.average,
-			table tr td.average,
-			table tr th.stdev,
-			table tr td.stdev {
+			table.results tr th.average,
+			table.results tr td.average,
+			table.results tr th.stdev,
+			table.results tr td.stdev {
 				background-color: #fadcb3;
 			}
 
-			table tr td.average,
-			table tr td.stdev {
+			table.results tr td.average,
+			table.results tr td.stdev {
 				font-style: italic;
 			}
 
-			table tr td div {
+			table.results tr td div {
 				text-align: right;
 			}
 
-			table tr td div.opponent {
+			table.results tr td div.opponent {
 				font-family: sans-serif;
 				font-size: 90%;
 			}
 
-			table tr td div.score {
+			table.results tr td div.score {
 			}
 
-			table tr td div.score.high {
+			table.results tr td div.score.high {
 				color: #008000;
 			}
 
-			table tr td div.score.low {
+			table.results tr td div.score.low {
 				color: #ff0000;
+			}
+
+			div.leaders {
+				display: inline-block;
+				margin-bottom: 20px;
+				margin-right: 10px;
+				padding: 4px;
+				width: 150px;
+			}
+
+			div.leaders h3 {
+				font-size: 12px;
+				margin: 0;
+				padding: 6px;
+				text-align: center;
+			}
+
+			div.leaders table {
+				margin: 0 auto;
+			}
+
+			div.leaders table tr td {
+				font-size: 12px;
+			}
+
+			div.leaders table tr th,
+			div.leaders table tr td {
+				padding: 4px 6px;
+			}
+
+			div.leaders table tr td.value {
+				text-align: right;
 			}
 		</style>
 	</head>
@@ -80,29 +115,59 @@
 
 require '../vendor/autoload.php';
 
+$franchises = [
+	1 => 'Patrick',
+	2 => 'Koci/Mueller',
+	3 => 'Syed/Terence',
+	4 => 'John/Zach',
+	5 => 'Trevor',
+	6 => 'Keyon',
+	7 => 'Brett/Luke',
+	8 => 'Daniel',
+	9 => 'James/Charles',
+	10 => 'Schex/Jeff',
+	11 => 'Quinn',
+	12 => 'Mitch'
+
+	/*
+	1 => 'Patrick & Pat/Quinn',
+	2 => 'Koci/Mueller & Koci',
+	3 => 'Syed/Terence & Syed',
+	4 => 'John/Zach & John',
+	5 => 'Trevor',
+	6 => 'Keyon',
+	7 => 'Brett/Luke, Jake/Luke, Luke, & Jeff',
+	8 => 'Daniel',
+	9 => 'James/Charles & James',
+	10 => 'Schex/Jeff, Schex, & Schexes',
+	11 => 'Quinn & Charles',
+	12 => 'Mitch'
+	*/
+];
+
 $franchiseMappings = [
-	'Brett/Luke' => 'Brett/Luke',
-	'Charles' => 'Quinn',
-	'Daniel' => 'Daniel',
-	'Jake/Luke' => 'Brett/Luke',
-	'James' => 'James',
-	'James/Charles' => 'James/Charles',
-	'Jeff' => 'Brett/Luke',
-	'John' => 'John/Zach',
-	'John/Zach' => 'John/Zach',
-	'Keyon' => 'Keyon',
-	'Koci' => 'Koci/Mueller',
-	'Koci/Mueller' => 'Koci/Mueller',
-	'Mitch' => 'Mitch',
-	'Pat/Quinn' => 'Patrick',
-	'Patrick' => 'Patrick',
-	'Quinn' => 'Quinn',
-	'Schex' => 'Schex/Jeff',
-	'Schex/Jeff' => 'Schex/Jeff',
-	'Schexes' => 'Schex/Jeff',
-	'Syed' => 'Syed/Terence',
-	'Syed/Terence' => 'Syed/Terence',
-	'Trevor' => 'Trevor'
+	'Brett/Luke' => 7,
+	'Charles' => 11,
+	'Daniel' => 8,
+	'Jake/Luke' => 7,
+	'James' => 9,
+	'James/Charles' => 9,
+	'Jeff' => 7,
+	'John' => 4,
+	'John/Zach' => 4,
+	'Keyon' => 6,
+	'Koci' => 2,
+	'Koci/Mueller' => 2,
+	'Mitch' => 12,
+	'Pat/Quinn' => 1,
+	'Patrick' => 1,
+	'Quinn' => 11,
+	'Schex' => 10,
+	'Schex/Jeff' => 10,
+	'Schexes' => 10,
+	'Syed' => 3,
+	'Syed/Terence' => 3,
+	'Trevor' => 5
 ];
 
 function allPlay($weekScores, $score) {
@@ -136,7 +201,7 @@ $cursor = $c->find([
 ]);
 
 $seasons = [];
-$records = [];
+$totals = [];
 
 foreach ($cursor as $document) {
 	$season = $document['season'];
@@ -176,6 +241,9 @@ foreach ($cursor as $document) {
 
 	$seasons[$season]['owners'][$homeName]['weeks'][$week]['opponent'] = $awayName;
 	$seasons[$season]['owners'][$awayName]['weeks'][$week]['opponent'] = $homeName;
+
+	$seasons[$season]['owners'][$homeName]['weeks'][$week]['type'] = $type;
+	$seasons[$season]['owners'][$awayName]['weeks'][$week]['type'] = $type;
 
 	if (!isset($seasons[$season]['weeks'][$week])) {
 		$seasons[$season]['weeks'][$week] = ['scores' => []];
@@ -257,16 +325,19 @@ foreach ($seasons as $season => &$seasonData) {
 
 		ksort($seasonOwnerData['weeks']);
 
-		$franchise = $franchiseMappings[$seasonOwner];
+		$franchise = $franchises[$franchiseMappings[$seasonOwner]];
 
-		if (!isset($records[$franchise])) {
-			$records[$franchise] = [
+		if (!isset($totals[$franchise])) {
+			$totals[$franchise] = [
 				'regularSeason' => [
+					'games' => 0,
 					'wins' => 0, 'losses' => 0, 'ties' => 0,
 					'allPlayWins' => 0, 'allPlayLosses' => 0, 'allPlayTies' => 0,
-					'flukyWins' => 0, 'flukyLosses' => 0
+					'flukyWins' => 0, 'flukyLosses' => 0,
+					'weeklyScoringTitles' => 0
 				],
 				'postseason' => [
+					'games' => 0, 'playoffAppearances' => 0, 'championshipGameAppearances' => 0,
 					'wins' => 0, 'losses' => 0, 'ties' => 0,
 					'allPlayWins' => 0, 'allPlayLosses' => 0, 'allPlayTies' => 0,
 					'flukyWins' => 0, 'flukyLosses' => 0
@@ -313,9 +384,9 @@ foreach ($seasons as $season => &$seasonData) {
 			$gameData['allPlayLosses'] = $allPlay['losses'];
 			$gameData['allPlayTies'] = $allPlay['ties'];
 
-			$records[$franchise][$seasonType]['allPlayWins'] += $allPlay['wins'];
-			$records[$franchise][$seasonType]['allPlayLosses'] += $allPlay['losses'];
-			$records[$franchise][$seasonType]['allPlayTies'] += $allPlay['ties'];
+			$totals[$franchise][$seasonType]['allPlayWins'] += $allPlay['wins'];
+			$totals[$franchise][$seasonType]['allPlayLosses'] += $allPlay['losses'];
+			$totals[$franchise][$seasonType]['allPlayTies'] += $allPlay['ties'];
 
 			$cumulativeAllPlayWins += $allPlay['wins'];
 			$cumulativeAllPlayLosses += $allPlay['losses'];
@@ -327,15 +398,15 @@ foreach ($seasons as $season => &$seasonData) {
 
 			if ($gameData['result'] == 'W') {
 				$cumulativeWins++;
-				$records[$franchise][$seasonType]['wins']++;
+				$totals[$franchise][$seasonType]['wins']++;
 			}
 			else if ($gameData['result'] == 'L') {
 				$cumulativeLosses++;
-				$records[$franchise][$seasonType]['losses']++;
+				$totals[$franchise][$seasonType]['losses']++;
 			}
 			else if ($gameData['result'] == 'T') {
 				$cumulativeTies++;
-				$records[$franchise][$seasonType]['ties']++;
+				$totals[$franchise][$seasonType]['ties']++;
 			}
 
 			$gameData['cumulativeWins'] = $cumulativeWins;
@@ -344,12 +415,12 @@ foreach ($seasons as $season => &$seasonData) {
 
 			if ($gameData['result'] == 'W' && $allPlay['losses'] > 2 * ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 3) {
 				$gameData['fluky'] = true;
-				$records[$franchise][$seasonType]['flukyWins']++;
+				$totals[$franchise][$seasonType]['flukyWins']++;
 			}
 
 			if ($gameData['result'] == 'L' && $allPlay['wins'] > 2 * ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 3) {
 				$gameData['fluky'] = true;
-				$records[$franchise][$seasonType]['flukyLosses']++;
+				$totals[$franchise][$seasonType]['flukyLosses']++;
 			}
 
 			$aboveMedian = ($allPlay['wins'] > ($allPlay['wins'] + $allPlay['losses'] + $allPlay['ties']) / 2);
@@ -362,6 +433,21 @@ foreach ($seasons as $season => &$seasonData) {
 
 			$gameData['cumulativeSternWins'] = $cumulativeSternWins;
 			$gameData['cumulativeSternLosses'] = $cumulativeSternLosses;
+
+			if ($seasonType == 'regularSeason' && $allPlay['losses'] == 0) {
+				$totals[$franchise][$seasonType]['weeklyScoringTitles']++;
+			}
+
+			if ($seasonType == 'postseason') {
+				if ($gameData['type'] == 'semifinal') {
+					$totals[$franchise][$seasonType]['playoffAppearances']++;
+				}
+				else if ($gameData['type'] == 'championship') {
+					$totals[$franchise][$seasonType]['championshipGameAppearances']++;
+				}
+			}
+
+			$totals[$franchise][$seasonType]['games']++;
 		}
 
 		$ownerAverage = $ownerSum / $ownerScores;
@@ -389,12 +475,68 @@ foreach ($seasons as $season => &$seasonData) {
 
 unset($seasonData);
 
+$records = [
+	'regularSeasonWins' => [
+		'description' => 'Regular Season Wins',
+		'leaders' => []
+	],
+	'regularSeasonWinPercentage' => [
+		'description' => 'Regular Season Winning Percentage',
+		'leaders' => []
+	],
+	'weeklyScoringTitles' => [
+		'description' => 'Weekly Scoring Titles',
+		'leaders' => []
+	],
+	'playoffAppearances' => [
+		'description' => 'Playoff Appearances',
+		'leaders' => []
+	],
+	'playoffWins' => [
+		'description' => 'Playoff Wins',
+		'leaders' => []
+	],
+	'championshipGameAppearances' => [
+		'description' => 'Championship Game Appearances',
+		'leaders' => []
+	]
+];
+
+foreach ($totals as $franchise => $franchiseTotalData) {
+	$records['regularSeasonWins']['leaders'][$franchise] = $franchiseTotalData['regularSeason']['wins'];
+	$records['regularSeasonWinPercentage']['leaders'][$franchise] = number_format($franchiseTotalData['regularSeason']['wins'] / $franchiseTotalData['regularSeason']['games'], 3);
+	$records['playoffAppearances']['leaders'][$franchise] = $franchiseTotalData['postseason']['playoffAppearances'];
+	$records['playoffWins']['leaders'][$franchise] = $franchiseTotalData['postseason']['wins'];
+	$records['weeklyScoringTitles']['leaders'][$franchise] = $franchiseTotalData['regularSeason']['weeklyScoringTitles'];
+	$records['championshipGameAppearances']['leaders'][$franchise] = $franchiseTotalData['postseason']['championshipGameAppearances'];
+}
+
+foreach ($records as $key => &$record) {
+	arsort($record['leaders']);
+}
+
+unset($record);
+
 krsort($seasons);
 
 ?>
 
+		<?php foreach ($records as $key => $record) { ?>
+		<div class="leaders">
+			<h3><?= $record['description']; ?></h3>
+			<table>
+				<?php foreach ($record['leaders'] as $franchise => $value) { ?>
+					<tr>
+						<td class="franchise"><?= $franchise; ?></td>
+						<td class="value"><?= $value; ?></td>
+					</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<?php } ?>
+
 <?php foreach ($seasons as $season => $seasonData) { ?>
-		<table>
+		<table class="results">
 			<tr>
 				<th><?= $season; ?></th>
 				<th>Week 1</th>
