@@ -18,6 +18,8 @@ var mongoOwners = {
 var manualWinners = {};
 var adjustments = {};
 var trials = 100;
+var debug = false;
+var cutoff = null;
 
 process.argv.forEach(function(value, index, array) {
 	if (index > 1) {
@@ -54,6 +56,14 @@ process.argv.forEach(function(value, index, array) {
 					adjustments[owner] = adjustment;
 				}
 
+				break;
+
+			case 'debug':
+				debug = true;
+				break;
+
+			case 'cutoff':
+				cutoff = parseInt(pair[1]);
 				break;
 		}
 	}
@@ -96,7 +106,7 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 
 				schedule[week].push(game);
 			}
-			else if (doc['winner']) {
+			else if (doc['winner'] && (!cutoff || week <= cutoff)) {
 				var winner = doc['winner'];
 
 				game['away']['score'] = away['score'];
@@ -238,8 +248,6 @@ function extend() {
       }
       return target;
     }
-
-var debug = false;
 
 var owners = {
 	brettLuke: { id: 'brettLuke', name: 'Brett/Luke' },
