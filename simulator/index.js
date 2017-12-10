@@ -462,7 +462,7 @@ function simulate(trials) {
 					awayOwner.against[homeOwner.id].wins += 1;
 					homeOwner.against[awayOwner.id].losses += 1;
 
-					game.away.wins +=1;
+					game.away.wins += 1;
 				}
 
 				ownersCopy[game.away.owner] = awayOwner;
