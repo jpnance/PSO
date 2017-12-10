@@ -284,14 +284,13 @@ function ownerPointsSort(a, b) {
 
 function breakGroupTies(group) {
 	var groupCopy = extend(true, [], group);
-	if (debug) console.log(groupCopy);
 
 	if (groupCopy.length == 1) {
-		if (debug) console.log(1);
+		if (debug) console.log('debug', groupCopy[0].name, groupCopy[0].tiebreaker, groupCopy[0].wins + '-' + groupCopy[0].losses);
+
 		return groupCopy;
 	}
 	else {
-		if (debug) console.log(2);
 		// first, compute the mutual wins/losses within the group
 		for (ownerId in groupCopy) {
 			var owner = groupCopy[ownerId];
@@ -311,7 +310,6 @@ function breakGroupTies(group) {
 			}
 		}
 
-
 		// second, see if the same number of games within the group have been played
 		var groupGames = groupCopy[0].wins + groupCopy[0].losses + groupCopy[0].ties;
 		var equalGames = true;
@@ -324,10 +322,7 @@ function breakGroupTies(group) {
 			}
 		}
 
-
-
 		if (equalGames) {
-			if (debug) console.log(3);
 			var groups = {};
 
 			for (ownerId in groupCopy) {
@@ -342,10 +337,8 @@ function breakGroupTies(group) {
 
 				groups[winPct].push(owner);
 			}
-			if (debug) console.log(groups);
 
 			var returnGroups = [];
-
 			var keys = [];
 
 			for (groupId in groups) {
@@ -354,26 +347,31 @@ function breakGroupTies(group) {
 
 			keys = keys.sort();
 
+			if (keys.length == 1) {
+				var group = groups[keys[0]];
+				group.sort(ownerPointsSort);
+
+				var winner = group.shift();
+				if (debug) console.log('debug', winner.name, winner.tiebreaker, group.length);
+
+				return breakGroupTies(group).concat([winner]);
+			}
+
 			for (keyId in keys) {
-				var groupId = keys[keyId];
-				if (debug) console.log(groupId);
-				if (groups[groupId].length != groupCopy.length) {
-					if (debug) console.log(4);
-					returnGroups = returnGroups.concat(breakGroupTies(groups[groupId]));
-				}
-				else {
-					if (debug) console.log(5);
-					rest = groups[groupId].sort(ownerPointsSort).reverse();
-					return rest;
-				}
+				var group = groups[keys[keyId]];
+
+				returnGroups = returnGroups.concat(breakGroupTies(group));
 			}
 
 			return returnGroups;
 		}
 		else {
-			if (debug) console.log(6);
-			rest = groupCopy.sort(ownerPointsSort).reverse();
-			return rest;
+			groupCopy.sort(ownerPointsSort);
+
+			var winner = groupCopy.shift();
+			if (debug) console.log('debug', winner.name, winner.tiebreaker, groupCopy.length);
+
+			return breakGroupTies(groupCopy).concat([winner]);
 		}
 	}
 }
