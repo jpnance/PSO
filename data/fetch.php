@@ -8,7 +8,7 @@
 ?>
 
 <league>
-	<season>2017</season>
+	<season>2018</season>
 	<drafted>
 <?php
 	/*
