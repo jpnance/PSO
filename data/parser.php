@@ -24,7 +24,8 @@ $names = [
 		2014 => 'Patrick',
 		2015 => 'Patrick',
 		2016 => 'Patrick',
-		2017 => 'Patrick'
+		2017 => 'Patrick',
+		2018 => 'Patrick'
 	],
 	2 => [
 		2008 => 'Koci',
@@ -36,7 +37,8 @@ $names = [
 		2014 => 'Koci/Mueller',
 		2015 => 'Koci/Mueller',
 		2016 => 'Koci/Mueller',
-		2017 => 'Koci/Mueller'
+		2017 => 'Koci/Mueller',
+		2018 => 'Koci/Mueller'
 	],
 	3 => [
 		2008 => 'Syed',
@@ -48,7 +50,8 @@ $names = [
 		2014 => 'Syed',
 		2015 => 'Syed/Terence',
 		2016 => 'Syed/Terence',
-		2017 => 'Syed/Terence'
+		2017 => 'Syed/Terence',
+		2018 => 'Syed/Terence'
 	],
 	4 => [
 		2008 => 'John',
@@ -60,7 +63,8 @@ $names = [
 		2014 => 'John/Zach',
 		2015 => 'John/Zach',
 		2016 => 'John/Zach',
-		2017 => 'John/Zach'
+		2017 => 'John/Zach',
+		2018 => 'John/Zach'
 	],
 	5 => [
 		2008 => 'Trevor',
@@ -72,7 +76,8 @@ $names = [
 		2014 => 'Trevor',
 		2015 => 'Trevor',
 		2016 => 'Trevor',
-		2017 => 'Trevor'
+		2017 => 'Trevor',
+		2018 => 'Trevor'
 	],
 	6 => [
 		2008 => 'Keyon',
@@ -84,7 +89,8 @@ $names = [
 		2014 => 'Keyon',
 		2015 => 'Keyon',
 		2016 => 'Keyon',
-		2017 => 'Keyon'
+		2017 => 'Keyon',
+		2018 => 'Keyon'
 	],
 	7 => [
 		2008 => 'Jeff',
@@ -96,7 +102,8 @@ $names = [
 		2014 => 'Brett/Luke',
 		2015 => 'Brett/Luke',
 		2016 => 'Brett/Luke',
-		2017 => 'Brett/Luke'
+		2017 => 'Brett/Luke',
+		2018 => 'Brett/Luke'
 	],
 	8 => [
 		2008 => 'Daniel',
@@ -108,7 +115,8 @@ $names = [
 		2014 => 'Daniel',
 		2015 => 'Daniel',
 		2016 => 'Daniel',
-		2017 => 'Daniel'
+		2017 => 'Daniel',
+		2018 => 'Daniel'
 	],
 	9 => [
 		2008 => 'James',
@@ -120,7 +128,8 @@ $names = [
 		2014 => 'James',
 		2015 => 'James',
 		2016 => 'James',
-		2017 => 'James/Charles'
+		2017 => 'James/Charles',
+		2018 => 'James/Charles'
 	],
 	10 => [
 		2008 => 'Schexes',
@@ -132,7 +141,8 @@ $names = [
 		2014 => 'Schex',
 		2015 => 'Schex/Jeff',
 		2016 => 'Schex/Jeff',
-		2017 => 'Schex/Jeff'
+		2017 => 'Schex/Jeff',
+		2018 => 'Schex'
 	],
 	11 => [
 		2012 => 'Charles',
@@ -140,7 +150,8 @@ $names = [
 		2014 => 'Quinn',
 		2015 => 'Quinn',
 		2016 => 'Quinn',
-		2017 => 'Quinn'
+		2017 => 'Quinn',
+		2018 => 'Quinn'
 	],
 	12 => [
 		2012 => 'Mitch',
@@ -148,7 +159,8 @@ $names = [
 		2014 => 'Mitch',
 		2015 => 'Mitch',
 		2016 => 'Mitch',
-		2017 => 'Mitch'
+		2017 => 'Mitch',
+		2018 => 'Mitch'
 	]
 ];
 
