@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 
-$season = 2017;
+$season = 2018;
 
 $stats = array(
 	'owners' => array(),
