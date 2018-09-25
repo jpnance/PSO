@@ -125,7 +125,7 @@ $franchises = [
 	7 => 'Brett/Luke',
 	8 => 'Daniel',
 	9 => 'James/Charles',
-	10 => 'Schex/Jeff',
+	10 => 'Schex',
 	11 => 'Quinn',
 	12 => 'Mitch'
 
@@ -139,7 +139,7 @@ $franchises = [
 	7 => 'Brett/Luke, Jake/Luke, Luke, & Jeff',
 	8 => 'Daniel',
 	9 => 'James/Charles & James',
-	10 => 'Schex/Jeff, Schex, & Schexes',
+	10 => 'Schex, Schex/Jeff, Schex, & Schexes',
 	11 => 'Quinn & Charles',
 	12 => 'Mitch'
 	*/
