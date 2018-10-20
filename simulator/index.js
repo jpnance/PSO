@@ -10,7 +10,7 @@ var mongoOwners = {
 	'Daniel': 'daniel',
 	'James': 'jamesCharles',
 	'James/Charles': 'jamesCharles',
-	'Schex/Jeff': 'schexJeff',
+	'Schex': 'schex',
 	'Quinn': 'quinn',
 	'Mitch': 'mitch'
 };
@@ -79,7 +79,7 @@ var mongo = require('mongodb').MongoClient;
 mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 	var games = db.collection('games');
 
-	games.find({ season: 2017 }).toArray(function(err, docs) {
+	games.find({ season: 2018 }).toArray(function(err, docs) {
 		for (var i in docs) {
 			var doc = docs[i];
 
@@ -259,7 +259,7 @@ var owners = {
 	mitch: { id: 'mitch', name: 'Mitch' },
 	patrick: { id: 'patrick', name: 'Patrick' },
 	quinn: { id: 'quinn', name: 'Quinn' },
-	schexJeff: { id: 'schexJeff', name: 'Schex/Jeff' },
+	schex: { id: 'schex', name: 'Schex' },
 	syedTerence: { id: 'syedTerence', name: 'Syed/Terence' },
 	trevor: { id: 'trevor', name: 'Trevor' }
 }
