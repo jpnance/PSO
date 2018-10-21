@@ -165,9 +165,17 @@ $names = [
 ];
 
 $m = new MongoDB\Client('mongodb://localhost:27017');
-$c = $m->pso->games;
+$c = $m->pso_dev->games;
+
+$games = [];
 
 foreach (range(1, $upToWeek) as $matchupPeriodId) {
+	if (!isset($games[$seasonId])) {
+		$games[$seasonId] = [];
+	}
+
+	$games[$seasonId][$matchupPeriodId] = [];
+
 	$scoreboardUrl = 'http://games.espn.go.com/ffl/scoreboard?leagueId=122885&matchupPeriodId=' . $matchupPeriodId . '&seasonId=' . $seasonId;
 	$scoreboardHtml = file_get_contents($scoreboardUrl);
 
@@ -237,12 +245,143 @@ foreach (range(1, $upToWeek) as $matchupPeriodId) {
 			}
 		}
 
+		/*
 		$c->updateOne(
 			['season' => $seasonId, 'week' => $matchupPeriodId, 'away.franchiseId' => $awayFranchiseId, 'home.franchiseId' => $homeFranchiseId],
 			['$set' => $game],
 			['upsert' => true]
 		);
+		*/
 
-		echo json_encode($game) . "\n";
+		$games[$seasonId][$matchupPeriodId][] = $game;
+		//echo json_encode($game) . "\n";
+	}
+}
+
+/*
+	record: {
+		straight: {
+			week: { wins: 0, losses: 1, ties: 0 },
+			overall: { wins: 3, losses: 1, ties: 0 }
+		},
+		allPlay: {
+			week: { wins: 8, losses: 5, ties: 0 },
+			overall: { wins: 28, losses: 16, ties: 0 }
+		},
+		stern: {
+			week: { wins: 1, losses: 1, ties: 0 },
+			overall: { wins: 6, losses: 2, ties: 0 }
+		}
+	}
+*/
+
+
+$overall = [];
+$allPlay = [];
+$stern = [];
+$homeAway = [ 'home', 'away' ];
+
+foreach ($games[$seasonId] as $week => $weekGames) {
+	$weekScores = [];
+	$allPlay[$week] = [];
+	$stern[$week] = [];
+
+	foreach ($weekGames as $game) {
+		if (isset($game['home']['score']) && isset($game['away']['score'])) {
+			if ($game['type'] != 'consolation') {
+				$weekScores[] = $game['home']['score'];
+				$weekScores[] = $game['away']['score'];
+
+				$stern[$week][$game['winner']['score']] = [ 'wins' => 1, 'losses' => 0, 'ties' => 0 ];
+				$stern[$week][$game['loser']['score']] = [ 'wins' => 0, 'losses' => 1, 'ties' => 0 ];
+			}
+		}
+	}
+
+
+	foreach ($weekScores as $i => $weekScore) {
+		$allPlayRecord = [
+			'wins' => $i,
+			'losses' => count($weekScores) - 1 - $i,
+			'ties' => 0
+		];
+
+		if (isset($allPlay[$week][$weekScore])) {
+			$allPlayRecord['wins']--;
+			$allPlayRecord['ties']++;
+		}
+
+		$allPlay[$week][$weekScore] = $allPlayRecord;
+
+		if ($allPlayRecord['wins'] > $allPlayRecord['losses']) {
+			$stern[$week][$weekScore]['wins']++;
+		}
+		else if ($allPlayRecord['wins'] < $allPlayRecord['losses']) {
+			$stern[$week][$weekScore]['losses']++;
+		}
+		else if ($allPlayRecord['wins'] == $allPlayRecord['losses']) {
+			$stern[$week][$weekScore]['ties']++;
+		}
+	}
+
+	foreach ($weekGames as $game) {
+		if (isset($game['home']['score']) && isset($game['away']['score'])) {
+			if ($game['type'] != 'consolation') {
+				foreach ($homeAway as $team) {
+					$game[$team]['record'] = [
+						'straight' => [
+							'week' => [
+								'wins' => (!isset($game['tie']) && $game['winner']['score'] == $game[$team]['score']) ? 1 : 0,
+								'losses' => (!isset($game['tie']) && $game['loser']['score'] == $game[$team]['score']) ? 1 : 0,
+								'ties' => isset($game['tie']) ? 1 : 0
+							]
+						],
+						'allPlay' => [
+							'week' => $allPlay[$week][$game[$team]['score']]
+						],
+						'stern' => [
+							'week' => $stern[$week][$game[$team]['score']]
+						]
+					];
+
+					if (!isset($overall[$seasonId])) {
+						$overall[$seasonId] = [];
+					}
+
+					if (!isset($overall[$seasonId][$game[$team]['franchiseId']])) {
+						$overall[$seasonId][$game[$team]['franchiseId']] = [
+							'straight' => [ 'wins' => 0, 'losses' => 0, 'ties' => 0 ],
+							'allPlay' => [ 'wins' => 0, 'losses' => 0, 'ties' => 0 ],
+							'stern' => [ 'wins' => 0, 'losses' => 0, 'ties' => 0 ]
+						];
+					}
+
+					foreach ($overall[$seasonId][$game[$team]['franchiseId']] as $recordType => &$record) {
+						$record['wins'] += $game[$team]['record'][$recordType]['week']['wins'];
+						$record['losses'] += $game[$team]['record'][$recordType]['week']['losses'];
+						$record['ties'] += $game[$team]['record'][$recordType]['week']['ties'];
+
+						$game[$team]['record'][$recordType]['cumulative']['wins'] = $record['wins'];
+						$game[$team]['record'][$recordType]['cumulative']['losses'] = $record['losses'];
+						$game[$team]['record'][$recordType]['cumulative']['ties'] = $record['ties'];
+					}
+
+					if ($game[$team]['record']['straight']['week']['wins'] == 1) {
+						$game['winner'] = $game[$team];
+					}
+					else if ($game[$team]['record']['straight']['week']['losses'] == 1) {
+						$game['loser'] = $game[$team];
+					}
+				}
+			}
+		}
+
+		$c->updateOne(
+			['season' => $seasonId, 'week' => $matchupPeriodId, 'away.franchiseId' => $game['away']['franchiseId'], 'home.franchiseId' => $game['home']['franchiseId']],
+			['$set' => $game],
+			['upsert' => true]
+		);
+
+		echo print_r($game, true);
 	}
 }
