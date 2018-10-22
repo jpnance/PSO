@@ -325,24 +325,26 @@ Promise.all(weekPromises).then(() => {
 				};
 			}
 
-			['away', 'home'].forEach(teamType => {
-				['straight', 'allPlay', 'stern'].forEach(recordType => {
-					['wins', 'losses', 'ties'].forEach(resultType => {
-						cumulativeRecord[season][game[teamType].franchiseId][recordType][resultType] += weekScores[game.week][recordType][game[teamType].score][resultType];
+			if (game.away.score > 0 || game.home.score > 0) {
+				['away', 'home'].forEach(teamType => {
+					['straight', 'allPlay', 'stern'].forEach(recordType => {
+						['wins', 'losses', 'ties'].forEach(resultType => {
+							cumulativeRecord[season][game[teamType].franchiseId][recordType][resultType] += weekScores[game.week][recordType][game[teamType].score][resultType];
+						});
+
+						if (!game[teamType].record) {
+							game[teamType].record = {};
+						}
+
+						game[teamType].record[recordType] = {
+							week: weekScores[game.week][recordType][game[teamType].score],
+							cumulative: cumulativeRecord[season][game[teamType].franchiseId][recordType]
+						};
 					});
-
-					if (!game[teamType].record) {
-						game[teamType].record = {};
-					}
-
-					game[teamType].record[recordType] = {
-						week: weekScores[game.week][recordType][game[teamType].score],
-						cumulative: cumulativeRecord[season][game[teamType].franchiseId][recordType]
-					};
 				});
-			});
 
-			morePromises.push(game.save());
+				morePromises.push(game.save());
+			}
 		});
 
 		Promise.all(morePromises).then(() => { mongoose.disconnect(); });
