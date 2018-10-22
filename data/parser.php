@@ -292,35 +292,38 @@ foreach ($games[$seasonId] as $week => $weekGames) {
 				$weekScores[] = $game['home']['score'];
 				$weekScores[] = $game['away']['score'];
 
-				$stern[$week][$game['winner']['score']] = [ 'wins' => 1, 'losses' => 0, 'ties' => 0 ];
-				$stern[$week][$game['loser']['score']] = [ 'wins' => 0, 'losses' => 1, 'ties' => 0 ];
+				$stern[$week][(string)$game['winner']['score']] = [ 'wins' => 1, 'losses' => 0, 'ties' => 0 ];
+				$stern[$week][(string)$game['loser']['score']] = [ 'wins' => 0, 'losses' => 1, 'ties' => 0 ];
 			}
 		}
 	}
 
+	sort($weekScores);
 
 	foreach ($weekScores as $i => $weekScore) {
+		$weekScoreString = (string)$weekScore;
+
 		$allPlayRecord = [
 			'wins' => $i,
 			'losses' => count($weekScores) - 1 - $i,
 			'ties' => 0
 		];
 
-		if (isset($allPlay[$week][$weekScore])) {
+		if (isset($allPlay[$week][$weekScoreString])) {
 			$allPlayRecord['wins']--;
 			$allPlayRecord['ties']++;
 		}
 
-		$allPlay[$week][$weekScore] = $allPlayRecord;
+		$allPlay[$week][$weekScoreString] = $allPlayRecord;
 
 		if ($allPlayRecord['wins'] > $allPlayRecord['losses']) {
-			$stern[$week][$weekScore]['wins']++;
+			$stern[$week][$weekScoreString]['wins']++;
 		}
 		else if ($allPlayRecord['wins'] < $allPlayRecord['losses']) {
-			$stern[$week][$weekScore]['losses']++;
+			$stern[$week][$weekScoreString]['losses']++;
 		}
 		else if ($allPlayRecord['wins'] == $allPlayRecord['losses']) {
-			$stern[$week][$weekScore]['ties']++;
+			$stern[$week][$weekScoreString]['ties']++;
 		}
 	}
 
@@ -337,10 +340,10 @@ foreach ($games[$seasonId] as $week => $weekGames) {
 							]
 						],
 						'allPlay' => [
-							'week' => $allPlay[$week][$game[$team]['score']]
+							'week' => $allPlay[$week][(string)$game[$team]['score']]
 						],
 						'stern' => [
-							'week' => $stern[$week][$game[$team]['score']]
+							'week' => $stern[$week][(string)$game[$team]['score']]
 						]
 					];
 
@@ -382,6 +385,8 @@ foreach ($games[$seasonId] as $week => $weekGames) {
 			['upsert' => true]
 		);
 
-		echo print_r($game, true);
+		//echo print_r($game, true);
 	}
+
+	unset($record);
 }
