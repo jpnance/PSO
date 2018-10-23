@@ -78,6 +78,7 @@ var mongo = require('mongodb').MongoClient;
 
 mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 	var games = db.collection('games');
+	var startWithWeek = 0;
 
 	games.find({ season: 2018 }).toArray(function(err, docs) {
 		for (var i in docs) {
@@ -107,6 +108,10 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 				schedule[week].push(game);
 			}
 			else if (doc['winner'] && (!cutoff || week <= cutoff)) {
+				if (week > startWithWeek) {
+					startWithWeek = week;
+				}
+
 				var winner = doc['winner'];
 
 				game['away']['score'] = away['score'];
@@ -138,6 +143,8 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 		console.log();
 		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
 
+		var pugResults = [];
+
 		for (ownerId in owners) {
 			var owner = owners[ownerId];
 
@@ -149,7 +156,14 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 			var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
 
 			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
+
+			pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
 		}
+
+		var fs = require('fs');
+		var pug = require('pug');
+		var compiledPug = pug.compileFile('./sim.pug');
+		fs.writeFileSync('./index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 
 		console.log();
 

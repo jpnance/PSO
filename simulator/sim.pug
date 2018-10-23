@@ -1,0 +1,32 @@
+doctype html
+html
+	head
+		link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous')
+		title Simulator Results for Week #{options.startWithWeek}
+
+	body
+		div.container
+			p.my-2
+				h1.text-center.mb-0 The Simulator
+				h6.text-center Week #{options.startWithWeek} and Onward
+
+			div.row.col-12
+				table.table.table-hover.table-sm
+					tr
+						th Owner
+						th.text-right Playoffs
+						th.text-right The Decision
+						th.text-right First Pick
+						th.text-right Avg. Finish
+						th.text-right 9-5 and Out
+						th.text-right 10-4 and Out
+
+					each result in results
+						tr
+							td #{result.owner.name}
+							td.text-right #{result.playoffs.toFixed(3)}
+							td.text-right #{result.decision.toFixed(3)}
+							td.text-right #{result.firstPick.toFixed(3)}
+							td.text-right #{result.avgFinish.toFixed(3)}
+							td.text-right #{result.nineAndOut}
+							td.text-right #{result.tenAndOut}

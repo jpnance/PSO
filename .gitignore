@@ -1,5 +1,7 @@
 *.swp
-data/colbys.xml
-data/data.xml
 vendor/
 node_modules/
+
+data/colbys.xml
+data/data.xml
+simulator/index.html
