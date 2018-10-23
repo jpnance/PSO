@@ -48,6 +48,7 @@
 
 					var teamIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
+					/*
 					var champion = parseInt($('select[name=champion]').val());
 					var runnerUp = parseInt($('select[name=runner-up]').val());
 
@@ -60,6 +61,15 @@
 					teamIds.unshift(runnerUp);
 					teamIds.unshift(champion);
 					teamIds.unshift('--');
+					*/
+
+					var pods = {
+						red: [1, 3, 8, 7],
+						green: [9, 5, 10, 6],
+						blue: [2, 11, 4, 12]
+					};
+
+					teamIds = ['--', pods.red[0], pods.red[1], pods.red[2], pods.red[3], pods.green[0], pods.blue[0], pods.blue[1], pods.green[1], pods.green[2], pods.blue[2], pods.blue[3], pods.green[3]];
 
 					var output = '';
 					var url = 'http://games.espn.com/ffl/tools/lmeditschedule?leagueId=122885&matchupPeriodId=1';
