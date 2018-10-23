@@ -165,7 +165,7 @@ $names = [
 ];
 
 $m = new MongoDB\Client('mongodb://localhost:27017');
-$c = $m->pso_dev->games;
+$c = $m->pso->games;
 
 $games = [];
 
@@ -203,10 +203,8 @@ foreach (range(1, $upToWeek) as $matchupPeriodId) {
 			'name' => $names[$homeFranchiseId][$seasonId]
 		];
 
-		if ($awayScore > 0) {
+		if ($awayScore > 0 || $homeScore > 0) {
 			$away['score'] = $awayScore;
-		}
-		if ($homeScore > 0) {
 			$home['score'] = $homeScore;
 		}
 
@@ -245,16 +243,14 @@ foreach (range(1, $upToWeek) as $matchupPeriodId) {
 			}
 		}
 
-		/*
 		$c->updateOne(
 			['season' => $seasonId, 'week' => $matchupPeriodId, 'away.franchiseId' => $awayFranchiseId, 'home.franchiseId' => $homeFranchiseId],
 			['$set' => $game],
 			['upsert' => true]
 		);
-		*/
 
 		$games[$seasonId][$matchupPeriodId][] = $game;
-		//echo json_encode($game) . "\n";
+		echo json_encode($game) . "\n";
 	}
 }
 
@@ -275,7 +271,7 @@ foreach (range(1, $upToWeek) as $matchupPeriodId) {
 	}
 */
 
-
+/*
 $overall = [];
 $allPlay = [];
 $stern = [];
@@ -390,3 +386,4 @@ foreach ($games[$seasonId] as $week => $weekGames) {
 
 	unset($record);
 }
+*/
