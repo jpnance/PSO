@@ -18,10 +18,15 @@ var allPlayDistroMap = function() {
 };
 
 var allPlayDistroReduce = function(key, results) {
-	var wins = results.filter(result => result.wins == 1);
-	var losses = results.filter(result => result.losses == 1);
+	var wins = 0;
+	var losses = 0;
 
-	return { wins: wins.length, losses: losses.length, ties: 0 };
+	results.forEach(result => {
+		wins += result.wins;
+		losses += result.losses;
+	});
+
+	return { wins: wins, losses: losses, ties: 0 };
 };
 
 var allPlayDistroQuery = {
@@ -30,18 +35,5 @@ var allPlayDistroQuery = {
 	'away.score': { '$exists': true },
 	'home.score': { '$exists': true }
 };
-
-/*
-var test = [
-	{ wins: 1, losses: 0, ties: 0 },
-	{ wins: 1, losses: 0, ties: 0 },
-	{ wins: 0, losses: 1, ties: 0 },
-	{ wins: 1, losses: 0, ties: 0 },
-	allPlayDistroReduce('10-1', [
-		{ wins: 1, losses: 0, ties: 0 },
-		{ wins: 0, losses: 1, ties: 0 }
-	])
-];
-*/
 
 db.games.mapReduce(allPlayDistroMap, allPlayDistroReduce, { out: 'allPlayDistro', query: allPlayDistroQuery, sort: { season: 1, week: 1 } });
