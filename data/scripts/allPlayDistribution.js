@@ -30,7 +30,6 @@ var allPlayDistroReduce = function(key, results) {
 };
 
 var allPlayDistroQuery = {
-	season: { '$gte': 2012 },
 	type: 'regular',
 	'away.score': { '$exists': true },
 	'home.score': { '$exists': true }
