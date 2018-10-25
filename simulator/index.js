@@ -19,6 +19,7 @@ var manualWinners = {};
 var adjustments = {};
 var trials = 100;
 var debug = false;
+var render = false;
 var cutoff = null;
 
 process.argv.forEach(function(value, index, array) {
@@ -64,6 +65,10 @@ process.argv.forEach(function(value, index, array) {
 
 			case 'cutoff':
 				cutoff = parseInt(pair[1]);
+				break;
+
+			case 'render':
+				render = true;
 				break;
 		}
 	}
@@ -160,10 +165,12 @@ mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
 			pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
 		}
 
-		var fs = require('fs');
-		var pug = require('pug');
-		var compiledPug = pug.compileFile('./sim.pug');
-		fs.writeFileSync('./index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+		if (render) {
+			var fs = require('fs');
+			var pug = require('pug');
+			var compiledPug = pug.compileFile('./sim.pug');
+			fs.writeFileSync('./index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+		}
 
 		console.log();
 
