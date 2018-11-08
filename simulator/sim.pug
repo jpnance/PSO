@@ -23,7 +23,7 @@ html
 
 					each result in results
 						tr
-							td #{result.owner.name}
+							td #{result.owner.name} (#{result.owner.wins}-#{result.owner.losses})
 							td.text-right #{result.playoffs.toFixed(3)}
 							td.text-right #{result.decision.toFixed(3)}
 							td.text-right #{result.firstPick.toFixed(3)}
