@@ -1,6 +1,7 @@
 *.swp
 vendor/
 node_modules/
+.env
 
 data/colbys.xml
 data/data.xml
