@@ -1,3 +1,5 @@
+var dotenv = require('dotenv').config({ path: '../.env' });
+
 var request = require('superagent');
 
 var Game = require('./models/Game');
@@ -8,12 +10,11 @@ mongoose.connect('mongodb://localhost:27017/pso_dev');
 
 if (process.argv.length < 3) {
 	console.log('Invalid season');
-	console.log('Usage: node index.js <season> [week to stop]');
+	console.log('Usage: node index.js <season>');
 	process.exit();
 }
 
 var season = process.argv[2];
-var upToWeek = process.argv[3] || 16;
 
 var franchiseNames = {
 	1: {
@@ -27,7 +28,8 @@ var franchiseNames = {
 		2015: 'Patrick',
 		2016: 'Patrick',
 		2017: 'Patrick',
-		2018: 'Patrick'
+		2018: 'Patrick',
+		2019: 'Patrick'
 	},
 	2: {
 		2008: 'Koci',
@@ -40,7 +42,8 @@ var franchiseNames = {
 		2015: 'Koci/Mueller',
 		2016: 'Koci/Mueller',
 		2017: 'Koci/Mueller',
-		2018: 'Koci/Mueller'
+		2018: 'Koci/Mueller',
+		2019: 'Koci/Mueller'
 	},
 	3: {
 		2008: 'Syed',
@@ -53,7 +56,8 @@ var franchiseNames = {
 		2015: 'Syed/Terence',
 		2016: 'Syed/Terence',
 		2017: 'Syed/Terence',
-		2018: 'Syed/Terence'
+		2018: 'Syed/Terence',
+		2019: 'Syed/Kuan'
 	},
 	4: {
 		2008: 'John',
@@ -66,7 +70,8 @@ var franchiseNames = {
 		2015: 'John/Zach',
 		2016: 'John/Zach',
 		2017: 'John/Zach',
-		2018: 'John/Zach'
+		2018: 'John/Zach',
+		2019: 'John/Zach'
 	},
 	5: {
 		2008: 'Trevor',
@@ -79,7 +84,8 @@ var franchiseNames = {
 		2015: 'Trevor',
 		2016: 'Trevor',
 		2017: 'Trevor',
-		2018: 'Trevor'
+		2018: 'Trevor',
+		2019: 'Trevor'
 	},
 	6: {
 		2008: 'Keyon',
@@ -92,7 +98,8 @@ var franchiseNames = {
 		2015: 'Keyon',
 		2016: 'Keyon',
 		2017: 'Keyon',
-		2018: 'Keyon'
+		2018: 'Keyon',
+		2019: 'Keyon'
 	},
 	7: {
 		2008: 'Jeff',
@@ -105,7 +112,8 @@ var franchiseNames = {
 		2015: 'Brett/Luke',
 		2016: 'Brett/Luke',
 		2017: 'Brett/Luke',
-		2018: 'Brett/Luke'
+		2018: 'Brett/Luke',
+		2019: 'Brett/Luke'
 	},
 	8: {
 		2008: 'Daniel',
@@ -118,7 +126,8 @@ var franchiseNames = {
 		2015: 'Daniel',
 		2016: 'Daniel',
 		2017: 'Daniel',
-		2018: 'Daniel'
+		2018: 'Daniel',
+		2019: 'Terence'
 	},
 	9: {
 		2008: 'James',
@@ -131,7 +140,8 @@ var franchiseNames = {
 		2015: 'James',
 		2016: 'James',
 		2017: 'James/Charles',
-		2018: 'James/Charles'
+		2018: 'James/Charles',
+		2019: 'James/Charles'
 	},
 	10: {
 		2008: 'Schexes',
@@ -144,7 +154,8 @@ var franchiseNames = {
 		2015: 'Schex/Jeff',
 		2016: 'Schex/Jeff',
 		2017: 'Schex/Jeff',
-		2018: 'Schex'
+		2018: 'Schex',
+		2019: 'Schex'
 	},
 	11: {
 		2012: 'Charles',
@@ -153,7 +164,8 @@ var franchiseNames = {
 		2015: 'Quinn',
 		2016: 'Quinn',
 		2017: 'Quinn',
-		2018: 'Quinn'
+		2018: 'Quinn',
+		2019: 'Quinn'
 	},
 	12: {
 		2012: 'Mitch',
@@ -162,30 +174,31 @@ var franchiseNames = {
 		2015: 'Mitch',
 		2016: 'Mitch',
 		2017: 'Mitch',
-		2018: 'Mitch'
+		2018: 'Mitch',
+		2019: 'Mitch'
 	}
 };
 
 var weekPromises = [];
 var weekScores = {};
 
-for (var i = 1; i <= upToWeek; i++) {
-	weekPromises.push(new Promise((resolveWeek, rejectWeek) => {
-		var week = i;
-
-		request.get('http://games.espn.go.com/ffl/scoreboard?leagueId=122885&matchupPeriodId=' + week + '&seasonId=' + season, (error, response) => {
+var bigRequestPromise = new Promise(function(resolve, reject) {
+	request
+		.get('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + season + '/segments/0/leagues/122885?view=mMatchupScore')
+		.set('Content-Type', 'application/json')
+		.set('Cookie', 'espn_s2=' + process.env.ESPN_S2_COOKIE + ';SWID=' + process.env.SWID_COOKIE)
+		.then(response => {
 			var gamePromises = [];
-			var resultPattern = /<table class="ptsBased matchup"><tr id="teamscrg_(\d\d?)_activeteamrow">.*?<td class=".*?score"title="(.*?)".*?>.*?<\/td><\/tr><tr id="teamscrg_(\d\d?)_activeteamrow">.*?<td class=".*?score"title="(.*?)".*?>.*?<\/td><\/tr>.*?<\/td><\/tr><\/table>/g;
 
-			var matchup = 0;
+			response.body.schedule.forEach(game => {
+				var week = game.matchupPeriodId;
 
-			while (match = resultPattern.exec(response.text)) {
 				var away = {
-					franchiseId: match[1]
+					franchiseId: game.away.teamId
 				};
 
 				var home = {
-					franchiseId: match[3]
+					franchiseId: game.home.teamId
 				};
 
 				var type = 'regular';
@@ -194,18 +207,18 @@ for (var i = 1; i <= upToWeek; i++) {
 					type = 'regular';
 				}
 				else if (week == 15) {
-					if (matchup == 0 || matchup == 1) {
-						type = 'semifinal'
+					if (game.playoffTierType == 'WINNERS_BRACKET') {
+						type = 'semifinal';
 					}
 					else {
-						type = 'consolation'
+						type = 'consolation';
 					}
 				}
 				else if (week == 16) {
-					if (matchup == 0) {
+					if (game.playoffTierType == 'WINNERS_BRACKET') {
 						type = 'championship';
 					}
-					else if (matchup == 1) {
+					else if (game.playoffTierType == 'WINNERS_CONSOLATION_LADDER') {
 						type = 'thirdPlace';
 					}
 					else {
@@ -216,12 +229,9 @@ for (var i = 1; i <= upToWeek; i++) {
 				away.name = franchiseNames[away.franchiseId][season];
 				home.name = franchiseNames[home.franchiseId][season];
 
-				var awayScore = match[2];
-				var homeScore = match[4];
-
-				if (awayScore > 0 || homeScore > 0) {
-					away.score = parseFloat(awayScore);
-					home.score = parseFloat(homeScore);
+				if (game.winner != 'UNDECIDED') {
+					away.score = parseFloat(game.away.totalPoints);
+					home.score = parseFloat(game.home.totalPoints);
 
 					if (!weekScores[week]) {
 						weekScores[week] = { scores: [], straight: {}, allPlay: {}, stern: {} };
@@ -269,15 +279,12 @@ for (var i = 1; i <= upToWeek; i++) {
 
 				gamePromises.push(Game.findOneAndUpdate(conditions, game, { upsert: true }));
 
-				matchup++;
-			}
-
-			Promise.all(gamePromises).then(() => { resolveWeek(null); });
+				Promise.all(gamePromises).then(() => { resolve(); });
+			});
 		});
-	}));
-}
+});
 
-Promise.all(weekPromises).then(() => {
+bigRequestPromise.then(() => {
 	Object.keys(weekScores).forEach(week => {
 		weekScores[week].scores.sort((a, b) => a - b);
 
