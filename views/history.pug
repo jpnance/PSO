@@ -6,7 +6,17 @@ html
 		title All-Time Results
 
 		link(type='text/css' rel='stylesheet' href='/history.css')
+
 	body
+		each leader in leaders
+			div.leaders
+				h4 #{leader.description}
+				table
+					each value, franchise in leader.franchises
+						tr
+							td.franchise #{franchise}
+							td.value #{value}
+
 		each season, year in history
 			table.results
 				tr
