@@ -1,0 +1,4 @@
+mixin record(record)
+	| #{record.wins}-#{record.losses}
+	if record.ties
+		| -#{record.ties}

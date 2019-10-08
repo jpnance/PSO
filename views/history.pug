@@ -1,3 +1,5 @@
+include mixins.pug
+
 doctype html
 html
 	head
@@ -19,7 +21,10 @@ html
 						each games, week in season
 							td
 								div.score #{games[franchise].franchise.score}
-								div.record #{games[franchise].franchise.record.straight.cumulative.wins}-#{games[franchise].franchise.record.straight.cumulative.losses}
-								div.all-play-record #{games[franchise].franchise.record.allPlay.cumulative.wins}-#{games[franchise].franchise.record.allPlay.cumulative.losses}
-								div.stern-record #{games[franchise].franchise.record.stern.cumulative.wins}-#{games[franchise].franchise.record.stern.cumulative.losses}
+								div.record
+									+record(games[franchise].franchise.record.straight.cumulative)
+								div.all-play-record
+									+record(games[franchise].franchise.record.allPlay.cumulative)
+								div.stern-record
+									+record(games[franchise].franchise.record.stern.cumulative)
 								div.opponent #{games[franchise].opponent.name}
