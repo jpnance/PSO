@@ -1,0 +1,105 @@
+body {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table.results {
+	margin-bottom: 40px;
+}
+
+table.results tr th,
+table.results tr td {
+	border: 1px solid #cccccc;
+	padding: 2px;
+	width: 65px;
+}
+
+table.results tr th {
+	text-align: right;
+	vertical-align: bottom;
+	white-space: nowrap;
+}
+
+table.results tr th.champion {
+	color: rgb(191, 144, 0);
+}
+
+table.results tr th.runner-up {
+	color: rgb(102, 102, 102);
+}
+
+table.results tr th.third-place {
+	color: rgb(120, 63, 4);
+}
+
+table tr td {
+	line-height: 14px;
+}
+
+table.results tr th.average,
+table.results tr td.average,
+table.results tr th.stdev,
+table.results tr td.stdev {
+	background-color: #fadcb3;
+}
+
+table.results tr td.average,
+table.results tr td.stdev {
+	font-style: italic;
+}
+
+table.results tr td div {
+	text-align: right;
+}
+
+table.results tr td div.opponent {
+	font-family: sans-serif;
+	font-size: 90%;
+}
+
+table.results tr td div.score {
+}
+
+table.results tr td div.score.high {
+	color: #008000;
+}
+
+table.results tr td div.score.low {
+	color: #ff0000;
+}
+
+div.leaders {
+	display: inline-block;
+	margin-bottom: 20px;
+	margin-right: 10px;
+	padding: 4px;
+	width: 150px;
+}
+
+div.leaders h3 {
+	font-size: 12px;
+	margin: 0;
+	padding: 6px;
+	text-align: center;
+}
+
+div.leaders table {
+	margin: 0 auto;
+}
+
+div.leaders table tr td {
+	font-size: 12px;
+}
+
+div.leaders table tr th,
+div.leaders table tr td {
+	padding: 4px 6px;
+}
+
+div.leaders table tr td.value {
+	text-align: right;
+}

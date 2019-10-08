@@ -1,0 +1,25 @@
+doctype html
+html
+	head
+		title All-Time Results
+
+		link(type='text/css' rel='stylesheet' href='/history.css')
+	body
+		each season, year in history
+			table.results
+				tr
+					th #{year}
+					each games, week in season
+						th Week #{week}
+
+				each owner, franchise in owners[year]
+					tr
+						th #{owner}
+
+						each games, week in season
+							td
+								div.score #{games[franchise].franchise.score}
+								div.record #{games[franchise].franchise.record.straight.cumulative.wins}-#{games[franchise].franchise.record.straight.cumulative.losses}
+								div.all-play-record #{games[franchise].franchise.record.allPlay.cumulative.wins}-#{games[franchise].franchise.record.allPlay.cumulative.losses}
+								div.stern-record #{games[franchise].franchise.record.stern.cumulative.wins}-#{games[franchise].franchise.record.stern.cumulative.losses}
+								div.opponent #{games[franchise].opponent.name}
