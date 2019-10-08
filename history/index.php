@@ -118,12 +118,12 @@ require '../vendor/autoload.php';
 $franchises = [
 	1 => 'Patrick',
 	2 => 'Koci/Mueller',
-	3 => 'Syed/Terence',
+	3 => 'Syed/Kuan',
 	4 => 'John/Zach',
 	5 => 'Trevor',
 	6 => 'Keyon',
 	7 => 'Brett/Luke',
-	8 => 'Daniel',
+	8 => 'Terence',
 	9 => 'James/Charles',
 	10 => 'Schex',
 	11 => 'Quinn',
@@ -132,12 +132,12 @@ $franchises = [
 	/*
 	1 => 'Patrick & Pat/Quinn',
 	2 => 'Koci/Mueller & Koci',
-	3 => 'Syed/Terence & Syed',
+	3 => 'Syed/Kuan & Syed/Terence & Syed',
 	4 => 'John/Zach & John',
 	5 => 'Trevor',
 	6 => 'Keyon',
 	7 => 'Brett/Luke, Jake/Luke, Luke, & Jeff',
-	8 => 'Daniel',
+	8 => 'Terence & Daniel',
 	9 => 'James/Charles & James',
 	10 => 'Schex, Schex/Jeff, Schex, & Schexes',
 	11 => 'Quinn & Charles',
@@ -166,7 +166,9 @@ $franchiseMappings = [
 	'Schex/Jeff' => 10,
 	'Schexes' => 10,
 	'Syed' => 3,
+	'Syed/Kuan' => 3,
 	'Syed/Terence' => 3,
+	'Terence' => 8,
 	'Trevor' => 5
 ];
 
