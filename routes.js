@@ -3,7 +3,7 @@ module.exports = function(app) {
 		response.redirect('https://thedynastyleague.wordpress.com/');
 	});
 
-	app.get('/lol', function(request, response) {
+	app.get('/history', function(request, response) {
 		var Game = require('./models/Game');
 
 		var average = (scores) => {
