@@ -22,7 +22,12 @@ html
 				tr
 					th #{year}
 					each games, week in season
-						th Week #{week}
+						if week < 15
+							th Week #{week}
+						else if week == 15
+							th Semifinals
+						else if week == 16
+							th Finals
 
 					th.average Average
 					th.stdev St. Dev.
@@ -33,15 +38,16 @@ html
 
 						each games, week in season
 							td
-								if games[franchise].franchise.score
-									div.score #{games[franchise].franchise.score.toFixed(2)}
-									div.record
-										+record(games[franchise].franchise.record.straight.cumulative)
-									div.all-play-record
-										+record(games[franchise].franchise.record.allPlay.cumulative)
-									div.stern-record
-										+record(games[franchise].franchise.record.stern.cumulative)
-								div.opponent #{games[franchise].opponent.name}
+								if games[franchise].type != 'consolation'
+									if games[franchise].franchise.score
+										div.score(class={ high: games[franchise].franchise.record.allPlay.week.losses == 0, low: games[franchise].franchise.record.allPlay.week.wins == 0 }) #{games[franchise].franchise.score.toFixed(2)}
+										div.record
+											+record(games[franchise].franchise.record.straight.cumulative)
+										div.all-play-record
+											+record(games[franchise].franchise.record.allPlay.cumulative)
+										div.stern-record
+											+record(games[franchise].franchise.record.stern.cumulative)
+									div.opponent #{games[franchise].opponent.name}
 
 						td.average
 							div.score #{stats[year].franchises[franchise].average.toFixed(2)}

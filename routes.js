@@ -53,14 +53,16 @@ module.exports = function(app) {
 				if (!history[game.season][game.week][game.away.franchiseId]) {
 					history[game.season][game.week][game.away.franchiseId] = {
 						franchise: game.away,
-						opponent: game.home
+						opponent: game.home,
+						type: game.type
 					};
 				}
 
 				if (!history[game.season][game.week][game.home.franchiseId]) {
 					history[game.season][game.week][game.home.franchiseId] = {
 						franchise: game.home,
-						opponent: game.away
+						opponent: game.away,
+						type: game.type
 					};
 				}
 
