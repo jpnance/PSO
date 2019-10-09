@@ -27,21 +27,34 @@ module.exports = function(app) {
 		};
 
 		Game.find().then(games => {
+			var franchises = {};
 			var history = {};
 			var owners = {};
 			var leaders = {
 				regularSeasonWins: {
 					description: 'Regular Season Wins',
-					franchises: {}
+					franchiseIds: {}
 				},
 				weeklyScoringTitles: {
 					description: 'Weekly Scoring Titles',
-					franchises: {}
+					franchiseIds: {}
 				}
 			};
 			var stats = [];
 
 			games.forEach(game => {
+				if (!franchises[game.season]) {
+					franchises[game.season] = {};
+				}
+
+				if (!franchises[game.season][game.away.franchiseId]) {
+					franchises[game.season][game.away.franchiseId] = game.away.name;
+				}
+
+				if (!franchises[game.season][game.home.franchiseId]) {
+					franchises[game.season][game.home.franchiseId] = game.home.name;
+				}
+
 				if (!history[game.season]) {
 					history[game.season] = {};
 				}
@@ -78,20 +91,20 @@ module.exports = function(app) {
 					owners[game.season][game.home.franchiseId] = game.home.name;
 				}
 
-				if (!leaders.regularSeasonWins.franchises[game.away.franchiseId]) {
-					leaders.regularSeasonWins.franchises[game.away.franchiseId] = 0;
+				if (!leaders.regularSeasonWins.franchiseIds[game.away.franchiseId]) {
+					leaders.regularSeasonWins.franchiseIds[game.away.franchiseId] = 0;
 				}
 
-				if (!leaders.regularSeasonWins.franchises[game.home.franchiseId]) {
-					leaders.regularSeasonWins.franchises[game.home.franchiseId] = 0;
+				if (!leaders.regularSeasonWins.franchiseIds[game.home.franchiseId]) {
+					leaders.regularSeasonWins.franchiseIds[game.home.franchiseId] = 0;
 				}
 
-				if (!leaders.weeklyScoringTitles.franchises[game.away.franchiseId]) {
-					leaders.weeklyScoringTitles.franchises[game.away.franchiseId] = 0;
+				if (!leaders.weeklyScoringTitles.franchiseIds[game.away.franchiseId]) {
+					leaders.weeklyScoringTitles.franchiseIds[game.away.franchiseId] = 0;
 				}
 
-				if (!leaders.weeklyScoringTitles.franchises[game.home.franchiseId]) {
-					leaders.weeklyScoringTitles.franchises[game.home.franchiseId] = 0;
+				if (!leaders.weeklyScoringTitles.franchiseIds[game.home.franchiseId]) {
+					leaders.weeklyScoringTitles.franchiseIds[game.home.franchiseId] = 0;
 				}
 
 				if (!stats[game.season]) {
@@ -119,15 +132,15 @@ module.exports = function(app) {
 				}
 
 				if (game.type == 'regular' && game.away.score && game.home.score) {
-					leaders.regularSeasonWins.franchises[game.away.franchiseId] += game.away.record.straight.week.wins;
-					leaders.regularSeasonWins.franchises[game.home.franchiseId] += game.home.record.straight.week.wins;
+					leaders.regularSeasonWins.franchiseIds[game.away.franchiseId] += game.away.record.straight.week.wins;
+					leaders.regularSeasonWins.franchiseIds[game.home.franchiseId] += game.home.record.straight.week.wins;
 
 					if (game.away.record.allPlay.week.losses == 0) {
-						leaders.weeklyScoringTitles.franchises[game.away.franchiseId] += 1;
+						leaders.weeklyScoringTitles.franchiseIds[game.away.franchiseId] += 1;
 					}
 
 					if (game.home.record.allPlay.week.losses == 0) {
-						leaders.weeklyScoringTitles.franchises[game.home.franchiseId] += 1;
+						leaders.weeklyScoringTitles.franchiseIds[game.home.franchiseId] += 1;
 					}
 				}
 
@@ -158,7 +171,7 @@ module.exports = function(app) {
 				season.total.stdev = stdev(season.total.scores, season.total.average);
 			});
 
-			response.render('history', { history: history, owners: owners, leaders: leaders, stats: stats });
+			response.render('history', { franchises: franchises, history: history, owners: owners, leaders: leaders, stats: stats });
 		});
 	});
 };
