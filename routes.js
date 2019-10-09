@@ -6,6 +6,26 @@ module.exports = function(app) {
 	app.get('/lol', function(request, response) {
 		var Game = require('./models/Game');
 
+		var average = (scores) => {
+			var sum = 0;
+
+			scores.forEach(score => {
+				sum += score;
+			});
+
+			return sum / scores.length;
+		};
+
+		var stdev = (scores, average) => {
+			var variance = 0;
+
+			scores.forEach(score => {
+				variance += Math.pow(score - average, 2);
+			});
+
+			return Math.sqrt(variance / (scores.length - 1));
+		};
+
 		Game.find().then(games => {
 			var history = {};
 			var owners = {};
@@ -19,6 +39,7 @@ module.exports = function(app) {
 					franchises: {}
 				}
 			};
+			var stats = [];
 
 			games.forEach(game => {
 				if (!history[game.season]) {
@@ -71,6 +92,21 @@ module.exports = function(app) {
 					leaders.weeklyScoringTitles.franchises[game.home.franchiseId] = 0;
 				}
 
+				if (!stats[game.season]) {
+					stats[game.season] = {
+						weeks: [],
+						total: {
+							scores: [],
+							average: null,
+							stdev: null
+						}
+					}
+				}
+
+				if (!stats[game.season].weeks[game.week]) {
+					stats[game.season].weeks[game.week] = { scores: [], average: null, stdev: null };
+				}
+
 				if (game.type == 'regular' && game.away.score && game.home.score) {
 					leaders.regularSeasonWins.franchises[game.away.franchiseId] += game.away.record.straight.week.wins;
 					leaders.regularSeasonWins.franchises[game.home.franchiseId] += game.home.record.straight.week.wins;
@@ -84,9 +120,26 @@ module.exports = function(app) {
 					}
 				}
 
+				if (game.type != 'consolation' && game.away.score && game.home.score) {
+					stats[game.season].total.scores.push(game.away.score);
+					stats[game.season].total.scores.push(game.home.score);
+
+					stats[game.season].weeks[game.week].scores.push(game.away.score);
+					stats[game.season].weeks[game.week].scores.push(game.home.score);
+				}
 			});
 
-			response.render('history', { history: history, owners: owners, leaders: leaders });
+			stats.forEach(season => {
+				season.weeks.forEach(week => {
+					week.average = average(week.scores);
+					week.stdev = stdev(week.scores, week.average);
+				});
+
+				season.total.average = average(season.total.scores);
+				season.total.stdev = stdev(season.total.scores, season.total.average);
+			});
+
+			response.render('history', { history: history, owners: owners, leaders: leaders, stats: stats });
 		});
 	});
 };

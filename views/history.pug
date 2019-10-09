@@ -38,3 +38,21 @@ html
 								div.stern-record
 									+record(games[franchise].franchise.record.stern.cumulative)
 								div.opponent #{games[franchise].opponent.name}
+
+				tr
+					th.average Average
+
+					each week, i in stats[year].weeks
+						if i > 0
+							td.average
+								if week.average
+									div.score #{week.average.toFixed(2)}
+
+				tr
+					th.stdev St. Dev.
+
+					each week, i in stats[year].weeks
+						if i > 0
+							td.stdev
+								if week.stdev
+									div.score #{week.stdev.toFixed(2)}
