@@ -94,6 +94,7 @@ module.exports = function(app) {
 
 				if (!stats[game.season]) {
 					stats[game.season] = {
+						franchises: [],
 						weeks: [],
 						total: {
 							scores: [],
@@ -105,6 +106,14 @@ module.exports = function(app) {
 
 				if (!stats[game.season].weeks[game.week]) {
 					stats[game.season].weeks[game.week] = { scores: [], average: null, stdev: null };
+				}
+
+				if (!stats[game.season].franchises[game.away.franchiseId]) {
+					stats[game.season].franchises[game.away.franchiseId] = { scores: [], average: null, stdev: null };
+				}
+
+				if (!stats[game.season].franchises[game.home.franchiseId]) {
+					stats[game.season].franchises[game.home.franchiseId] = { scores: [], average: null, stdev: null };
 				}
 
 				if (game.type == 'regular' && game.away.score && game.home.score) {
@@ -124,6 +133,9 @@ module.exports = function(app) {
 					stats[game.season].total.scores.push(game.away.score);
 					stats[game.season].total.scores.push(game.home.score);
 
+					stats[game.season].franchises[game.away.franchiseId].scores.push(game.away.score);
+					stats[game.season].franchises[game.home.franchiseId].scores.push(game.home.score);
+
 					stats[game.season].weeks[game.week].scores.push(game.away.score);
 					stats[game.season].weeks[game.week].scores.push(game.home.score);
 				}
@@ -133,6 +145,11 @@ module.exports = function(app) {
 				season.weeks.forEach(week => {
 					week.average = average(week.scores);
 					week.stdev = stdev(week.scores, week.average);
+				});
+
+				season.franchises.forEach(franchise => {
+					franchise.average = average(franchise.scores);
+					franchise.stdev = stdev(franchise.scores, franchise.average);
 				});
 
 				season.total.average = average(season.total.scores);

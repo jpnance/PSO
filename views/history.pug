@@ -24,20 +24,29 @@ html
 					each games, week in season
 						th Week #{week}
 
+					th.average Average
+					th.stdev St. Dev.
+
 				each owner, franchise in owners[year]
 					tr
 						th #{owner}
 
 						each games, week in season
 							td
-								div.score #{games[franchise].franchise.score}
-								div.record
-									+record(games[franchise].franchise.record.straight.cumulative)
-								div.all-play-record
-									+record(games[franchise].franchise.record.allPlay.cumulative)
-								div.stern-record
-									+record(games[franchise].franchise.record.stern.cumulative)
+								if games[franchise].franchise.score
+									div.score #{games[franchise].franchise.score.toFixed(2)}
+									div.record
+										+record(games[franchise].franchise.record.straight.cumulative)
+									div.all-play-record
+										+record(games[franchise].franchise.record.allPlay.cumulative)
+									div.stern-record
+										+record(games[franchise].franchise.record.stern.cumulative)
 								div.opponent #{games[franchise].opponent.name}
+
+						td.average
+							div.score #{stats[year].franchises[franchise].average.toFixed(2)}
+						td.stdev
+							div.score #{stats[year].franchises[franchise].stdev.toFixed(2)}
 
 				tr
 					th.average Average
@@ -48,6 +57,11 @@ html
 								if week.average
 									div.score #{week.average.toFixed(2)}
 
+					td.average
+						div.score #{stats[year].total.average.toFixed(2)}
+
+					td.average
+
 				tr
 					th.stdev St. Dev.
 
@@ -56,3 +70,8 @@ html
 							td.stdev
 								if week.stdev
 									div.score #{week.stdev.toFixed(2)}
+
+					td.stdev
+
+					td.stdev
+						div.score #{stats[year].total.stdev.toFixed(2)}
