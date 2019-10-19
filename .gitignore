@@ -6,3 +6,5 @@ node_modules/
 data/colbys.xml
 data/data.xml
 simulator/index.html
+
+public/history/index.html
