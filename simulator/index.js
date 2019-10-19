@@ -166,8 +166,8 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 		if (render) {
 			var fs = require('fs');
 			var pug = require('pug');
-			var compiledPug = pug.compileFile('./sim.pug');
-			fs.writeFileSync('./index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+			var compiledPug = pug.compileFile('../views/sim.pug');
+			fs.writeFileSync('../public/simulator/index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 		}
 
 		console.log();
