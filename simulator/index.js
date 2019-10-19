@@ -1,14 +1,12 @@
 var mongoOwners = {
 	'Patrick': 'patrick',
 	'Koci/Mueller': 'kociMueller',
-	'Syed/Terence': 'syedTerence',
-	'John': 'johnZach',
+	'Syed/Kuan': 'syedKuan',
 	'John/Zach': 'johnZach',
 	'Trevor': 'trevor',
 	'Keyon': 'keyon',
 	'Brett/Luke': 'brettLuke',
-	'Daniel': 'daniel',
-	'James': 'jamesCharles',
+	'Terence': 'terence',
 	'James/Charles': 'jamesCharles',
 	'Schex': 'schex',
 	'Quinn': 'quinn',
@@ -81,11 +79,11 @@ var results = {};
 
 var mongo = require('mongodb').MongoClient;
 
-mongo.connect('mongodb://localhost:27017/pso', function(err, db) {
+mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 	var games = db.collection('games');
 	var startWithWeek = 0;
 
-	games.find({ season: 2018 }).toArray(function(err, docs) {
+	games.find({ season: 2019 }).toArray(function(err, docs) {
 		for (var i in docs) {
 			var doc = docs[i];
 
@@ -272,7 +270,6 @@ function extend() {
 
 var owners = {
 	brettLuke: { id: 'brettLuke', name: 'Brett/Luke' },
-	daniel: { id: 'daniel', name: 'Daniel' },
 	jamesCharles: { id: 'jamesCharles', name: 'James/Charles' },
 	johnZach: { id: 'johnZach', name: 'John/Zach' },
 	keyon: { id: 'keyon', name: 'Keyon' },
@@ -281,7 +278,8 @@ var owners = {
 	patrick: { id: 'patrick', name: 'Patrick' },
 	quinn: { id: 'quinn', name: 'Quinn' },
 	schex: { id: 'schex', name: 'Schex' },
-	syedTerence: { id: 'syedTerence', name: 'Syed/Terence' },
+	syedKuan: { id: 'syedKuan', name: 'Syed/Kuan' },
+	terence: { id: 'terence', name: 'Terence' },
 	trevor: { id: 'trevor', name: 'Trevor' }
 }
 
