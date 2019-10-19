@@ -201,6 +201,9 @@ var bigRequestPromise = new Promise(function(resolve, reject) {
 					franchiseId: game.home.teamId
 				};
 
+				var winner = null;
+				var loser = null;
+
 				var type = 'regular';
 
 				if (week <= 14) {
@@ -245,6 +248,9 @@ var bigRequestPromise = new Promise(function(resolve, reject) {
 
 						weekScores[week].straight[home.score] = { wins: 0, losses: 1, ties: 0 };
 						weekScores[week].stern[home.score] = { wins: 0, losses: 1, ties: 0 };
+
+						winner = away;
+						loser = home;
 					}
 					else if (home.score > away.score) {
 						weekScores[week].straight[home.score] = { wins: 1, losses: 0, ties: 0 };
@@ -252,6 +258,9 @@ var bigRequestPromise = new Promise(function(resolve, reject) {
 
 						weekScores[week].straight[away.score] = { wins: 0, losses: 1, ties: 0 };
 						weekScores[week].stern[away.score] = { wins: 0, losses: 1, ties: 0 };
+
+						winner = home;
+						loser = away;
 					}
 					else {
 						weekScores[week].straight[home.score] = { wins: 0, losses: 0, ties: 1 };
@@ -276,6 +285,11 @@ var bigRequestPromise = new Promise(function(resolve, reject) {
 					away: away,
 					home: home
 				};
+
+				if (winner && loser) {
+					game.winner = winner;
+					game.loser = loser;
+				}
 
 				gamePromises.push(Game.findOneAndUpdate(conditions, game, { upsert: true }));
 
