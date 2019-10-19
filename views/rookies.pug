@@ -1,0 +1,31 @@
+doctype html
+html
+	head
+		title Rookie Salaries for #{season}
+		link(href='/rookies.css' rel='stylesheet' type='text/css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js' type='text/javascript')
+		script(type='text/javascript')
+			| var currentSeason = #{season}
+		script(src='/rookies.js' type='text/javascript')
+
+	body
+		h1
+			| Rookie Salaries for
+			|
+			select(name='season')
+				each positionSalaries, salarySeason in salaries
+					option(value=salarySeason selected=(season == salarySeason)) #{salarySeason}
+
+		each positionSalaries, salarySeason in salaries
+			table(id='rookies' + salarySeason, class=(season != salarySeason) ? 'hidden' : '')
+				tr
+					th Round
+					each positionSalary, position in positionSalaries
+						th #{position}
+
+				each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+					tr(class='round' + (round % 2))
+						td #{round}
+
+						each positionSalary, position in positionSalaries
+							td $#{Math.ceil(positionSalary / Math.pow(2, round - 1))}
