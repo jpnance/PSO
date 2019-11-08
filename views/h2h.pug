@@ -1,0 +1,29 @@
+doctype html
+html
+	head
+		link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous')
+		link(rel='stylesheet' href='../h2h.css')
+		title Head-to-Head Results
+
+	body
+		div.container
+			p.my-2
+				h1.text-center.mb-0 Head-to-Head Results
+				h6.text-center Regular Season
+
+			div.row.col-12
+				table.table.table-hover.table-sm
+					tr
+						th 
+						each franchiseOwner in franchises
+							th.text-center #{franchiseOwner}
+
+					each franchiseOwner in franchises
+						tr
+							th.text-right #{franchiseOwner}
+
+							each opponentOwner in franchises
+								if opponentOwner == franchiseOwner
+									td.text-center --
+								else
+									td.text-center #{headToHead[franchiseOwner][opponentOwner].wins}-#{headToHead[franchiseOwner][opponentOwner].losses}
