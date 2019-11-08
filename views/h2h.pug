@@ -16,11 +16,11 @@ html
 					tr
 						th 
 						each franchiseOwner in franchises
-							th.text-center #{franchiseOwner}
+							th.text-center.text-danger #{franchiseOwner}
 
 					each franchiseOwner in franchises
 						tr
-							th.text-right #{franchiseOwner}
+							th.text-right.text-success #{franchiseOwner}
 
 							each opponentOwner in franchises
 								if opponentOwner == franchiseOwner
