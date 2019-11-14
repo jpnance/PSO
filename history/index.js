@@ -38,7 +38,7 @@ var stdev = (scores, average) => {
 	return Math.sqrt(variance / (scores.length - 1));
 };
 
-Game.find().then(games => {
+Game.find().sort({ season: 1, week: 1 }).then(games => {
 	var franchises = {};
 	var history = {};
 	var owners = {};
