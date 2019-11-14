@@ -34,7 +34,11 @@ html
 
 				each owner, franchise in owners[year]
 					tr
-						th #{owner}
+						th(class=owner.playoffs)
+							if owner.playoffs
+								| *
+								|
+							| #{owner.name}
 
 						each games, week in season
 							td

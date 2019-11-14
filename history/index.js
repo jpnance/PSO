@@ -96,11 +96,11 @@ Game.find().then(games => {
 		}
 
 		if (!owners[game.season][game.away.franchiseId]) {
-			owners[game.season][game.away.franchiseId] = game.away.name;
+			owners[game.season][game.away.franchiseId] =  { name: game.away.name, playoffs: null };
 		}
 
 		if (!owners[game.season][game.home.franchiseId]) {
-			owners[game.season][game.home.franchiseId] = game.home.name;
+			owners[game.season][game.home.franchiseId] = { name: game.home.name, playoffs: null };
 		}
 
 		if (!leaders.regularSeasonWins.franchiseIds[game.away.franchiseId]) {
@@ -165,6 +165,33 @@ Game.find().then(games => {
 
 			stats[game.season].weeks[game.week].scores.push(game.away.score);
 			stats[game.season].weeks[game.week].scores.push(game.home.score);
+		}
+
+		if (game.type == 'semifinal') {
+			owners[game.season][game.away.franchiseId].playoffs = 'semifinalist';
+			owners[game.season][game.home.franchiseId].playoffs = 'semifinalist';
+		}
+
+		if (game.type == 'thirdPlace' && game.away.score && game.home.score) {
+			if (game.away.score > game.home.score) {
+				owners[game.season][game.away.franchiseId].playoffs = 'third-place';
+				owners[game.season][game.home.franchiseId].playoffs = 'semifinalist';
+			}
+			else if (game.home.score > game.away.score) {
+				owners[game.season][game.away.franchiseId].playoffs = 'semifinalist';
+				owners[game.season][game.home.franchiseId].playoffs = 'third-place';
+			}
+		}
+
+		if (game.type == 'championship' && game.away.score && game.home.score) {
+			if (game.away.score > game.home.score) {
+				owners[game.season][game.away.franchiseId].playoffs = 'champion';
+				owners[game.season][game.home.franchiseId].playoffs = 'runner-up';
+			}
+			else if (game.home.score > game.away.score) {
+				owners[game.season][game.away.franchiseId].playoffs = 'runner-up';
+				owners[game.season][game.home.franchiseId].playoffs = 'champion';
+			}
 		}
 	});
 
