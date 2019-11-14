@@ -183,12 +183,22 @@ var weekPromises = [];
 var weekScores = {};
 
 var bigRequestPromise = new Promise(function(resolve, reject) {
+	var requestUrl = 'https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + season + '/segments/0/leagues/122885?view=mMatchupScore';
+
+	if (season < process.env.SEASON) {
+		requestUrl = 'https://fantasy.espn.com/apis/v3/games/ffl/leagueHistory/122885?view=mMatchupScore&seasonId=' + season;
+	}
+
 	request
-		.get('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + season + '/segments/0/leagues/122885?view=mMatchupScore')
+		.get(requestUrl)
 		.set('Content-Type', 'application/json')
 		.set('Cookie', 'espn_s2=' + process.env.ESPN_S2_COOKIE + ';SWID=' + process.env.SWID_COOKIE)
 		.then(response => {
 			var gamePromises = [];
+
+			if (Array.isArray(response.body)) {
+				response.body = response.body[0];
+			}
 
 			response.body.schedule.forEach(game => {
 				var week = game.matchupPeriodId;
