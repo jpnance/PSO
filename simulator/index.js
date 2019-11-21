@@ -144,7 +144,7 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 		console.log(JSON.stringify(schedule, null, "\t"));
 
 		console.log();
-		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
+		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
 
 		var pugResults = [];
 
@@ -155,12 +155,13 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 			var firstPct = owner.decision / trials;
 			var lastPct = owner.topPick / trials;
 			var avgFinish = owner.finish / trials;
+			var eightWinMissRate = (owner.eightWins > 0) ? (owner.eightWinMisses / owner.eightWins).toFixed(3) : '--';
 			var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
 			var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
 
-			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
+			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
 
-			pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
+			pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
 		}
 
 		if (render) {
@@ -505,6 +506,9 @@ function simulate(trials) {
 			else if (ownersCopy[standings[j].id].wins == 9) {
 				owners[standings[j].id].nineWins++;
 			}
+			else if (ownersCopy[standings[j].id].wins == 8) {
+				owners[standings[j].id].eightWins++;
+			}
 
 			if (j == 0) {
 				owners[standings[j].id].decision += 1;
@@ -523,6 +527,9 @@ function simulate(trials) {
 				}
 				else if (ownersCopy[standings[j].id].wins == 9) {
 					owners[standings[j].id].nineWinMisses++;
+				}
+				else if (ownersCopy[standings[j].id].wins == 8) {
+					owners[standings[j].id].eightWinMisses++;
 				}
 
 				owners[standings[j].id].out += 1;
@@ -573,6 +580,8 @@ function initializeOwners() {
 		owner.decision = 0;
 		owner.in = 0;
 		owner.losses = 0;
+		owner.eightWinMisses = 0;
+		owner.eightWins = 0;
 		owner.nineWinMisses = 0;
 		owner.nineWins = 0;
 		owner.out = 0;
