@@ -14,6 +14,7 @@ var mongoOwners = {
 };
 
 var manualWinners = {};
+var manualLosers = {};
 var adjustments = {};
 var trials = 100;
 var debug = false;
@@ -39,6 +40,20 @@ process.argv.forEach(function(value, index, array) {
 					var winners = weekPair[1].split(/,/);
 
 					manualWinners[week] = winners;
+				}
+
+				break;
+
+			case 'losers':
+				var losersPairs = pair[1].split(/;/);
+
+				for (var i in losersPairs) {
+					var weekPair = losersPairs[i].split(/:/);
+
+					var week = parseInt(weekPair[0]);
+					var losers = weekPair[1].split(/,/);
+
+					manualLosers[week] = losers;
 				}
 
 				break;
@@ -102,6 +117,20 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 				}
 				else if (manualWinners[week].indexOf(home['name']) != -1) {
 					game['winner'] = game['home']['owner'];
+				}
+
+				if (!schedule[week]) {
+					schedule[week] = [];
+				}
+
+				schedule[week].push(game);
+			}
+			else if (manualLosers && manualLosers[week] && (manualLosers[week].indexOf(away['name']) != -1 || manualLosers[week].indexOf(home['name']) != -1)) {
+				if (manualLosers[week].indexOf(away['name']) != -1) {
+					game['winner'] = game['home']['owner'];
+				}
+				else if (manualLosers[week].indexOf(home['name']) != -1) {
+					game['winner'] = game['away']['owner'];
 				}
 
 				if (!schedule[week]) {
