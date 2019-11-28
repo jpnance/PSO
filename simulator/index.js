@@ -16,6 +16,7 @@ var mongoOwners = {
 var manualWinners = {};
 var manualLosers = {};
 var adjustments = {};
+var untilConditions = [];
 var trials = 100;
 var debug = false;
 var render = false;
@@ -68,6 +69,17 @@ process.argv.forEach(function(value, index, array) {
 					var adjustment = parseInt(adjustmentPair[1]);
 
 					adjustments[owner] = adjustment;
+				}
+
+				break;
+
+			case 'until':
+				var untilPairs = pair[1].split(/,/);
+
+				for (var i in untilPairs) {
+					var untilPair = untilPairs[i].split(/:/);
+
+					untilConditions.push({ owner: mongoOwners[untilPair[0]], condition: untilPair[1] });
 				}
 
 				break;
@@ -169,38 +181,41 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 		initializeOwners();
 		simulate(trials);
 
-		console.log();
-		console.log(JSON.stringify(schedule, null, "\t"));
 
-		console.log();
-		console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
+		if (untilConditions.length == 0) {
+			console.log();
+			console.log(JSON.stringify(schedule, null, "\t"));
 
-		var pugResults = [];
+			console.log();
+			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
 
-		for (ownerId in owners) {
-			var owner = owners[ownerId];
+			var pugResults = [];
 
-			var inPct = owner.in / trials;
-			var firstPct = owner.decision / trials;
-			var lastPct = owner.topPick / trials;
-			var avgFinish = owner.finish / trials;
-			var eightWinMissRate = (owner.eightWins > 0) ? (owner.eightWinMisses / owner.eightWins).toFixed(3) : '--';
-			var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
-			var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
+			for (ownerId in owners) {
+				var owner = owners[ownerId];
 
-			console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
+				var inPct = owner.in / trials;
+				var firstPct = owner.decision / trials;
+				var lastPct = owner.topPick / trials;
+				var avgFinish = owner.finish / trials;
+				var eightWinMissRate = (owner.eightWins > 0) ? (owner.eightWinMisses / owner.eightWins).toFixed(3) : '--';
+				var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
+				var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
 
-			pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
+				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
+
+				pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
+			}
+
+			if (render) {
+				var fs = require('fs');
+				var pug = require('pug');
+				var compiledPug = pug.compileFile('../views/sim.pug');
+				fs.writeFileSync('../public/simulator/index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+			}
+
+			console.log();
 		}
-
-		if (render) {
-			var fs = require('fs');
-			var pug = require('pug');
-			var compiledPug = pug.compileFile('../views/sim.pug');
-			fs.writeFileSync('../public/simulator/index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
-		}
-
-		console.log();
 
 		db.close();
 	});
@@ -567,6 +582,28 @@ function simulate(trials) {
 			owners[standings[j].id].finish += (j + 1);
 		}
 
+		if (untilConditions.length) {
+			var conditionsMet = true;
+
+			untilConditions.forEach(untilCondition => {
+				if (untilCondition.condition == 'in') {
+					if (standings[0].id != untilCondition.owner && standings[1].id != untilCondition.owner && standings[2].id != untilCondition.owner && standings[3].id != untilConditions.owner) {
+						conditionsMet = false;
+					}
+				}
+				else if (untilCondition.condition == 'out') {
+					if (standings[0].id == untilCondition.owner || standings[1].id == untilCondition.owner || standings[2].id == untilCondition.owner || standings[3].id == untilConditions.owner) {
+						conditionsMet = false;
+					}
+				}
+			});
+
+			if (conditionsMet) {
+				outputNiceStandings(ownersCopy, standings);
+				break;
+			}
+		}
+
 		/*
 		if (owners['kociMueller'].out > 0) {
 			console.log(standings);
@@ -575,6 +612,12 @@ function simulate(trials) {
 		}
 		*/
 	}
+}
+
+function outputNiceStandings(owners, standings) {
+	standings.forEach(standing => {
+		console.log(standing.name + (standing.name.length > 7 ? "\t" : "\t\t") + owners[standing.id].wins + '-' + owners[standing.id].losses + "\t\t" + owners[standing.id].tiebreaker.toFixed(2));
+	});
 }
 
 function computeStandings(owners) {
