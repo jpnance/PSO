@@ -587,12 +587,32 @@ function simulate(trials) {
 
 			untilConditions.forEach(untilCondition => {
 				if (untilCondition.condition == 'in') {
-					if (standings[0].id != untilCondition.owner && standings[1].id != untilCondition.owner && standings[2].id != untilCondition.owner && standings[3].id != untilConditions.owner) {
+					if (standings[0].id != untilCondition.owner && standings[1].id != untilCondition.owner && standings[2].id != untilCondition.owner && standings[3].id != untilCondition.owner) {
 						conditionsMet = false;
 					}
 				}
 				else if (untilCondition.condition == 'out') {
-					if (standings[0].id == untilCondition.owner || standings[1].id == untilCondition.owner || standings[2].id == untilCondition.owner || standings[3].id == untilConditions.owner) {
+					if (standings[0].id == untilCondition.owner || standings[1].id == untilCondition.owner || standings[2].id == untilCondition.owner || standings[3].id == untilCondition.owner) {
+						conditionsMet = false;
+					}
+				}
+				else if (untilCondition.condition == 'decision') {
+					if (standings[0].id != untilCondition.owner) {
+						conditionsMet = false;
+					}
+				}
+				else if (untilCondition.condition == 'noDecision') {
+					if (standings[0].id == untilCondition.owner) {
+						conditionsMet = false;
+					}
+				}
+				else if (untilCondition.condition == 'firstPick') {
+					if (standings[4].id != untilCondition.owner) {
+						conditionsMet = false;
+					}
+				}
+				else if (untilCondition.condition == 'noFirstPick') {
+					if (standings[4].id == untilCondition.owner) {
 						conditionsMet = false;
 					}
 				}
