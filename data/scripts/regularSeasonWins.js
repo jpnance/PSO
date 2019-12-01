@@ -1,4 +1,16 @@
 var regularSeasonWinsMap = function() {
+	var regimes = {
+		'Charles': 'James/Charles',
+		'Jake/Luke': 'Brett/Luke',
+		'John': 'John/Zach',
+		'Koci': 'Koci/Mueller',
+		'Pat/Quinn': 'Patrick',
+		'Schex/Jeff': 'Schex',
+		'Schexes': 'Schex',
+		'Syed': 'Syed/Kuan',
+		'Syed/Terence': 'Syed/Kuan'
+	};
+
 	var winner, loser;
 
 	if (this.away.score > this.home.score) {
@@ -10,7 +22,9 @@ var regularSeasonWinsMap = function() {
 		loser = this.away;
 	}
 
-	emit(this.winner.franchiseId, 1);
+	var key = regimes[this.winner.name] || this.winner.name;
+
+	emit(key, 1);
 };
 
 var regularSeasonWinsReduce = function(key, results) {
