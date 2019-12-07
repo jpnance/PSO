@@ -654,6 +654,22 @@ function simulate(trials) {
 						conditionsMet = false;
 					}
 				}
+				else {
+					switch (untilCondition.condition) {
+						case '1st': conditionsMet = (standings[0].id == untilCondition.owner); break;
+						case '2nd': conditionsMet = (standings[1].id == untilCondition.owner); break;
+						case '3rd': conditionsMet = (standings[2].id == untilCondition.owner); break;
+						case '4th': conditionsMet = (standings[3].id == untilCondition.owner); break;
+						case '5th': conditionsMet = (standings[4].id == untilCondition.owner); break;
+						case '6th': conditionsMet = (standings[5].id == untilCondition.owner); break;
+						case '7th': conditionsMet = (standings[6].id == untilCondition.owner); break;
+						case '8th': conditionsMet = (standings[7].id == untilCondition.owner); break;
+						case '9th': conditionsMet = (standings[8].id == untilCondition.owner); break;
+						case '10th': conditionsMet = (standings[9].id == untilCondition.owner); break;
+						case '11th': conditionsMet = (standings[10].id == untilCondition.owner); break;
+						case '12th': conditionsMet = (standings[11].id == untilCondition.owner); break;
+					}
+				}
 			});
 
 			if (conditionsMet) {
