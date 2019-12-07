@@ -202,43 +202,49 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 				var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
 				var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
 
-				owner.possibleFinishes.sort((a, b) => a - b);
-				owner.finishes = '';
+				var possibleFinishes = Object.keys(owner.finishes).sort((a, b) => a - b);
+				var finishesString = '';
 
 				var startFinish = null, endFinish = null;
 
-				if (owner.possibleFinishes.length == 1) {
-					owner.finishes = niceFinish(owner.possibleFinishes[0]);
+				if (possibleFinishes.length == 1) {
+					finishesString = niceFinish(possibleFinishes[0]);
 				}
 				else {
-					for (var i = 0; i < owner.possibleFinishes.length; i++) {
+					for (var i = 0; i < possibleFinishes.length; i++) {
 						if (i == 0) {
-							startFinish = owner.possibleFinishes[i];
+							startFinish = possibleFinishes[i];
 						}
-						else if (owner.possibleFinishes[i] - owner.possibleFinishes[i - 1] > 1) {
-							if (owner.finishes.length > 0) {
-								owner.finishes += ', ';
+						else if (possibleFinishes[i] - possibleFinishes[i - 1] > 1) {
+							if (finishesString.length > 0) {
+								finishesString += ', ';
 							}
 
-							owner.finishes += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
-							startFinish = owner.possibleFinishes[i];
+							finishesString += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
+							startFinish = possibleFinishes[i];
 							endFinish = null;
 						}
 						else {
-							endFinish = owner.possibleFinishes[i];
+							endFinish = possibleFinishes[i];
 						}
 					}
 
-					if (owner.finishes.length > 0) {
-						owner.finishes += ', ';
+					if (finishesString.length > 0) {
+						finishesString += ', ';
 					}
 
-					owner.finishes += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
+					finishesString += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
 				}
 
-				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate + "\t\t" + owner.finishes);
+				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate + "\t\t" + finishesString);
 
-				pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, finishes: owner.finishes });
+				for (var n = 1; n <= 12; n++) {
+					if (!owner.finishes[n]) {
+						owner.finishes[n] = 0;
+					}
+				}
+
+				pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, finishesString: finishesString });
 			}
 
 			if (render) {
@@ -615,9 +621,11 @@ function simulate(trials) {
 
 			owners[standings[j].id].finish += (j + 1);
 
-			if (!owners[standings[j].id].possibleFinishes.includes(j + 1)) {
-				owners[standings[j].id].possibleFinishes.push(j + 1);
+			if (!owners[standings[j].id].finishes[j + 1]) {
+				owners[standings[j].id].finishes[j + 1] = 0;
 			}
+
+			owners[standings[j].id].finishes[j + 1]++;
 		}
 
 		if (untilConditions.length) {
@@ -739,7 +747,7 @@ function initializeOwners() {
 		owner.topPick = 0;
 		owner.wins = 0;
 		owner.finish = 0;
-		owner.possibleFinishes = [];
+		owner.finishes = {};
 
 		if (!adjustments[ownerId]) {
 			adjustments[ownerId] = 0;
@@ -854,7 +862,7 @@ function generateScore(owner) {
 }
 
 function niceFinish(finish) {
-	switch (finish) {
+	switch (parseInt(finish)) {
 		case 1: return '1st';
 		case 2: return '2nd';
 		case 3: return '3rd';

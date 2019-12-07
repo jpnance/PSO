@@ -1,0 +1,27 @@
+div.never {
+	color: #222222;
+}
+
+div.rare {
+	color: #555555;
+}
+
+div.unlikely {
+	color: #777777;
+}
+
+div.coinflippy {
+	color: #999999;
+}
+
+div.likely {
+	color: #bbbbbb;
+}
+
+div.common {
+	color: #dddddd;
+}
+
+div.always {
+	color: #ffffff;
+}
