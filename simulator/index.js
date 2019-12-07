@@ -187,7 +187,7 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 			console.log(JSON.stringify(schedule, null, "\t"));
 
 			console.log();
-			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out");
+			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out" + "\t" + "Poss. Finishes");
 
 			var pugResults = [];
 
@@ -202,9 +202,43 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 				var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
 				var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
 
-				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate);
+				owner.possibleFinishes.sort((a, b) => a - b);
+				owner.finishes = '';
 
-				pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate });
+				var startFinish = null, endFinish = null;
+
+				if (owner.possibleFinishes.length == 1) {
+					owner.finishes = niceFinish(owner.possibleFinishes[0]);
+				}
+				else {
+					for (var i = 0; i < owner.possibleFinishes.length; i++) {
+						if (i == 0) {
+							startFinish = owner.possibleFinishes[i];
+						}
+						else if (owner.possibleFinishes[i] - owner.possibleFinishes[i - 1] > 1) {
+							if (owner.finishes.length > 0) {
+								owner.finishes += ', ';
+							}
+
+							owner.finishes += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
+							startFinish = owner.possibleFinishes[i];
+							endFinish = null;
+						}
+						else {
+							endFinish = owner.possibleFinishes[i];
+						}
+					}
+
+					if (owner.finishes.length > 0) {
+						owner.finishes += ', ';
+					}
+
+					owner.finishes += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
+				}
+
+				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate + "\t\t" + owner.finishes);
+
+				pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, finishes: owner.finishes });
 			}
 
 			if (render) {
@@ -580,6 +614,10 @@ function simulate(trials) {
 			}
 
 			owners[standings[j].id].finish += (j + 1);
+
+			if (!owners[standings[j].id].possibleFinishes.includes(j + 1)) {
+				owners[standings[j].id].possibleFinishes.push(j + 1);
+			}
 		}
 
 		if (untilConditions.length) {
@@ -685,6 +723,7 @@ function initializeOwners() {
 		owner.topPick = 0;
 		owner.wins = 0;
 		owner.finish = 0;
+		owner.possibleFinishes = [];
 
 		if (!adjustments[ownerId]) {
 			adjustments[ownerId] = 0;
@@ -796,4 +835,13 @@ function generateScore(owner) {
 	}
 
 	return ((sum - 6) * owner.stdev) + owner.average;
+}
+
+function niceFinish(finish) {
+	switch (finish) {
+		case 1: return '1st';
+		case 2: return '2nd';
+		case 3: return '3rd';
+		default: return finish + 'th';
+	}
 }
