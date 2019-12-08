@@ -78,7 +78,17 @@ html
 											default: finishTable += n + 'th'; break;
 										}
 
-										finishTable += ' (' + Math.round(probability * 100) + '%)</div>';
+										if (result.owner.finishes[n] == 0) {
+											finishTable += ' --';
+										}
+										else if (Math.round(probability * 100) < 1) {
+											finishTable += ' (<1%)';
+										}
+										else {
+											finishTable += ' (' + Math.round(probability * 100) + '%)';
+										}
+
+										finishTable += '</div>';
 
 										if (n == 12) {
 											finishTable += '</div>';
