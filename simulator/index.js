@@ -493,6 +493,10 @@ function simulate(trials) {
 		var ownersCopy = extend(true, {}, owners);
 
 		for (weekId in schedule) {
+			if (weekId > 14) {
+				continue;
+			}
+
 			var week = schedule[weekId];
 
 			for (gameId in week) {
