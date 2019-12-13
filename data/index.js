@@ -6,7 +6,7 @@ var Game = require('./models/Game');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/pso_dev');
+mongoose.connect('mongodb://localhost:27017/pso_dev', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 if (process.argv.length < 3) {
 	console.log('Invalid season');
