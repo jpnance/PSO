@@ -5,14 +5,13 @@ var totalMatchupScoreMap = function() {
 		totalMatchupScore /= 10;
 	}
 
-	emit(this.season + '-' + this.week + '-' + this.away.name + '-' + this.home.name, totalMatchupScore);
+	emit(this.season + '-' + this.week + '-' + this.away.name + '-' + this.home.name, { type: this.type, total: totalMatchupScore });
 };
 
 var totalMatchupScoreReduce = function(key, results) {
 };
 
 var totalMatchupScoreQuery = {
-	type: 'regular',
 	'away.score': { '$exists': true },
 	'home.score': { '$exists': true }
 };
