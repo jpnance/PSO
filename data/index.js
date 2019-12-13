@@ -303,8 +303,9 @@ var bigRequestPromise = new Promise(function(resolve, reject) {
 
 				gamePromises.push(Game.findOneAndUpdate(conditions, game, { upsert: true }));
 
-				Promise.all(gamePromises).then(() => { resolve(); });
 			});
+
+			Promise.all(gamePromises).then(() => { console.log(gamePromises.length); resolve(); });
 		});
 });
 
