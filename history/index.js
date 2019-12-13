@@ -143,7 +143,7 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 			stats[game.season].franchises[game.home.franchiseId] = { scores: [], average: null, stdev: null };
 		}
 
-		if (game.type == 'regular' && game.away.score && game.home.score) {
+		if (game.type == 'regular' && game.away.score != null && game.home.score != null) {
 			leaders.regularSeasonWins.franchiseIds[game.away.franchiseId] += game.away.record.straight.week.wins;
 			leaders.regularSeasonWins.franchiseIds[game.home.franchiseId] += game.home.record.straight.week.wins;
 
@@ -156,7 +156,7 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 			}
 		}
 
-		if (game.type != 'consolation' && game.away.score && game.home.score) {
+		if (game.type != 'consolation' && game.away.score != null && game.home.score != null) {
 			stats[game.season].total.scores.push(game.away.score);
 			stats[game.season].total.scores.push(game.home.score);
 
@@ -172,7 +172,7 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 			owners[game.season][game.home.franchiseId].playoffs = 'semifinalist';
 		}
 
-		if (game.type == 'thirdPlace' && game.away.score && game.home.score) {
+		if (game.type == 'thirdPlace' && game.away.score != null && game.home.score != null) {
 			if (game.away.score > game.home.score) {
 				owners[game.season][game.away.franchiseId].playoffs = 'third-place';
 				owners[game.season][game.home.franchiseId].playoffs = 'semifinalist';
@@ -183,7 +183,7 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 			}
 		}
 
-		if (game.type == 'championship' && game.away.score && game.home.score) {
+		if (game.type == 'championship' && game.away.score != null && game.home.score != null) {
 			if (game.away.score > game.home.score) {
 				owners[game.season][game.away.franchiseId].playoffs = 'champion';
 				owners[game.season][game.home.franchiseId].playoffs = 'runner-up';
