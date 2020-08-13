@@ -1,0 +1,30 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		script(src='/js/jquery.min.js')
+		script(src='/js/umd/popper.min.js')
+		script(src='/js/bootstrap.min.js')
+		script
+			| $(function() { $('[data-toggle="tooltip"]').tooltip(); });
+
+		script(src='../auction.js')
+
+		title Bid Buddy
+
+	body
+		div.container.text-center
+			div#player.col-12
+
+			form#bid-form
+				div.form-row
+					div.input-group
+						div.input-group-prepend
+							span.input-group-text $
+						input#bid-amount.form-control(type='text')
+						input.btn.btn-primary(type='submit' value='Bid')
+
+			ul#bid-history.col-12.list-group
