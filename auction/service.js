@@ -45,6 +45,18 @@ module.exports.makeBid = function(request, response) {
 	response.send(auction);
 };
 
+module.exports.nominatePlayer = function(request, response) {
+	auction.status = 'paused';
+
+	auction.player.name = request.body.name;
+	auction.player.position = request.body.position;
+	auction.player.team = request.body.team;
+
+	auction.bids = [];
+
+	response.send(auction);
+};
+
 module.exports.pauseAuction = function(request, response) {
 	auction.status = 'paused';
 	response.redirect('/auction');

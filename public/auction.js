@@ -1,7 +1,31 @@
 $(document).ready(function() {
+	$('#activate').bind('click', function(e) {
+		e.preventDefault();
+		$.get('/auction/activate', null, redrawAuctionClient);
+	});
+
 	$('#bid-form').bind('submit', function(e) {
 		e.preventDefault();
 		$.post('/auction/bid', { amount: $(this).find('#bid-amount').val() }, redrawAuctionClient);
+	});
+
+	$('#pause').bind('click', function(e) {
+		e.preventDefault();
+		$.get('/auction/pause', null, redrawAuctionClient);
+	});
+
+	$('#nomination-form').bind('submit', function(e) {
+		var newPlayer = { name: $(this).find('#name').val(), position: $(this).find('#position').val(), team: $(this).find('#team').val() };
+
+		console.log(newPlayer);
+
+		e.preventDefault();
+		$.post('/auction/nominate', newPlayer, redrawAuctionClient);
+	});
+
+	$('#pop').bind('click', function(e) {
+		e.preventDefault();
+		$.get('/auction/pop', null, redrawAuctionClient);
 	});
 
 	setInterval(fetchCurrentAuctionData, 3000);

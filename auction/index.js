@@ -23,6 +23,9 @@ if (render) {
 	var pug = require('pug');
 	var compiledPug = pug.compileFile('../views/auction.pug');
 	fs.writeFileSync('../public/auction/index.html', compiledPug());
+
+	var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
+	fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin());
 }
 
 process.exit();

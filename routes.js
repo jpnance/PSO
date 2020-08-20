@@ -11,4 +11,5 @@ module.exports = function(app) {
 	app.get('/auction/pop', auction.popBid);
 
 	app.post('/auction/bid', auction.makeBid);
+	app.post('/auction/nominate', auction.nominatePlayer);
 };
