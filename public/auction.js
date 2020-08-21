@@ -5,8 +5,18 @@ $(document).ready(function() {
 	});
 
 	$('#bid-form').bind('submit', function(e) {
+		var newBid = { amount: $(this).find('#bid-amount').val() };
+
+		if ($(this).find('#force-bid')) {
+			console.log('forcing');
+			newBid.force = true;
+			newBid.owner = $(this).find('#owner').val();
+		}
+
+		console.log(newBid);
+
 		e.preventDefault();
-		$.post('/auction/bid', { amount: $(this).find('#bid-amount').val() }, redrawAuctionClient);
+		$.post('/auction/bid', newBid, redrawAuctionClient);
 	});
 
 	$('#pause').bind('click', function(e) {

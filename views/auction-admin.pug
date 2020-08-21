@@ -114,13 +114,15 @@ html
 			hr
 
 			form#bid-form
+				input#force-bid(type='hidden' name='force-bid' value='true')
+
 				div.form-row.justify-content-center.m-1
 					div.input-group.col-3
 						div.input-group-prepend
 							span.input-group-text $
 						input#bid-amount.form-control(type='text')
 					div.col-3
-						select#situation.form-control(name='situation')
+						select#owner.form-control(name='owner')
 							option(value='Brett/Luke') Brett/Luke
 							option(value='James/Charles') James/Charles
 							option(value='John/Zach') John/Zach
