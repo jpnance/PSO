@@ -61,6 +61,11 @@ module.exports.makeBid = function(request, response) {
 		return;
 	}
 
+	if (auction.player.situation.startsWith('RFA-') && auction.player.situation.includes(owner)) {
+		response.send(auction);
+		return;
+	}
+
 	var newBid = {
 		owner: owner,
 		amount: parseInt(request.body.amount)
