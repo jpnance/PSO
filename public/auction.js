@@ -1,3 +1,6 @@
+var numberOfBids = 0;
+var timer = -1;
+
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
 		e.preventDefault();
@@ -37,6 +40,7 @@ $(document).ready(function() {
 	});
 
 	setInterval(fetchCurrentAuctionData, 3000);
+	setInterval(updateTimer, 1000);
 });
 
 var fetchCurrentAuctionData = function() {
@@ -67,4 +71,14 @@ var redrawAuctionClient = function(auctionData) {
 	});
 
 	$('#bid-history').replaceWith(bidHistory);
+
+	if (auctionData.bids.length != numberOfBids) {
+		numberOfBids = auctionData.bids.length;
+		timer = -1;
+	}
+};
+
+var updateTimer = function() {
+	timer++;
+	$('#timer').text(timer);
 };
