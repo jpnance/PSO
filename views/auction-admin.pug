@@ -18,74 +18,132 @@ html
 		title Bid Buddy Admin
 
 	body
-		div.container.text-center
-			div#controls.col-12
-				button#pause.btn.btn-warning.m-1
-					i.fa.fa-pause
-					|
-					| Pause
-				button#activate.btn.btn-success.m-1
-					i.fa.fa-play
-					|
-					| Activate
-				button#pop.btn.btn-primary.m-1
-					i.fa.fa-eraser
-					|
-					| Pop Top Bid
+		div.container
+			hr
 
-			form#nomination-form
-				div.form-row
-					div.input-group
-						input#name.form-control(type='text' name='name' placeholder='Name')
-						select#position.form-control(name='position')
-							option(value='QB') QB
-							option(value='RB') RB
-							option(value='RB/WR') RB/WR
-							option(value='WR') WR
-							option(value='TE') TE
-							option(value='DL') DL
-							option(value='DL/LB') DL/LB
-							option(value='LB') LB
-							option(value='DB') DB
-							option(value='K') K
-						select#team.form-control(name='team')
-							option(value='ARI') ARI
-							option(value='ATL') ATL
-							option(value='BAL') BAL
-							option(value='BUF') BUF
-							option(value='CAR') CAR
-							option(value='CHI') CHI
-							option(value='CIN') CIN
-							option(value='CLE') CLE
-							option(value='DAL') DAL
-							option(value='DEN') DEN
-							option(value='DET') DET
-							option(value='FA') FA
-							option(value='GB') GB
-							option(value='HOU') HOU
-							option(value='IND') IND
-							option(value='JAX') JAX
-							option(value='KC') KC
-							option(value='LAC') LAC
-							option(value='LAR') LAR
-							option(value='LV') LV
-							option(value='MIA') MIA
-							option(value='MIN') MIN
-							option(value='NE') NE
-							option(value='NO') NO
-							option(value='NYG') NYG
-							option(value='NYJ') NYJ
-							option(value='PHI') PHI
-							option(value='PIT') PIT
-							option(value='SEA') SEA
-							option(value='SF') SF
-							option(value='TB') TB
-							option(value='TEN') TEN
-							option(value='WAS') WAS
-						input.btn.btn-primary(type='submit' value='Submit')
+			div#controls.row.justify-content-center
+				div.col-6.text-center
+					button#pause.btn.btn-warning.m-1
+						i.fa.fa-pause
+						|
+						| Pause
+					button#activate.btn.btn-success.m-1
+						i.fa.fa-play
+						|
+						| Activate
+					button#pop.btn.btn-primary.m-1
+						i.fa.fa-eraser
+						|
+						| Pop Top Bid
 
 			hr
 
-			div#player.col-12
+			form#nomination-form
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input#name.form-control(type='text' name='name' placeholder='Name')
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						div.row
+							div.col-4
+								select#position.form-control(name='position')
+									option(value='QB') QB
+									option(value='RB') RB
+									option(value='RB/WR') RB/WR
+									option(value='WR') WR
+									option(value='TE') TE
+									option(value='DL') DL
+									option(value='DL/LB') DL/LB
+									option(value='LB') LB
+									option(value='DB') DB
+									option(value='K') K
+							div.col-4
+								select#team.form-control(name='team')
+									option(value='ARI') ARI
+									option(value='ATL') ATL
+									option(value='BAL') BAL
+									option(value='BUF') BUF
+									option(value='CAR') CAR
+									option(value='CHI') CHI
+									option(value='CIN') CIN
+									option(value='CLE') CLE
+									option(value='DAL') DAL
+									option(value='DEN') DEN
+									option(value='DET') DET
+									option(value='FA') FA
+									option(value='GB') GB
+									option(value='HOU') HOU
+									option(value='IND') IND
+									option(value='JAX') JAX
+									option(value='KC') KC
+									option(value='LAC') LAC
+									option(value='LAR') LAR
+									option(value='LV') LV
+									option(value='MIA') MIA
+									option(value='MIN') MIN
+									option(value='NE') NE
+									option(value='NO') NO
+									option(value='NYG') NYG
+									option(value='NYJ') NYJ
+									option(value='PHI') PHI
+									option(value='PIT') PIT
+									option(value='SEA') SEA
+									option(value='SF') SF
+									option(value='TB') TB
+									option(value='TEN') TEN
+									option(value='WAS') WAS
+							div.col-4
+								select#situation.form-control(name='situation')
+									option(value='UFA') UFA
+									option(value='RFA-Brett/Luke') RFA-Brett/Luke
+									option(value='RFA-James/Charles') RFA-James/Charles
+									option(value='RFA-John/Zach') RFA-John/Zach
+									option(value='RFA-Keyon') RFA-Keyon
+									option(value='RFA-Koci/Mueller') RFA-Koci/Mueller
+									option(value='RFA-Mitch') RFA-Mitch
+									option(value='RFA-Patrick') RFA-Patrick
+									option(value='RFA-Quinn') RFA-Quinn
+									option(value='RFA-Schex') RFA-Schex
+									option(value='RFA-Syed/Kuan') RFA-Syed/Kuan
+									option(value='RFA-Terence') RFA-Terence
+									option(value='RFA-Trevor') RFA-Trevor
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input.btn.btn-primary(type='submit' value='Nominate')
 
-			ul#bid-history.col-12.list-group
+			hr
+
+			form#bid-form
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-3
+						div.input-group-prepend
+							span.input-group-text $
+						input#bid-amount.form-control(type='text')
+					div.col-3
+						select#situation.form-control(name='situation')
+							option(value='Brett/Luke') Brett/Luke
+							option(value='James/Charles') James/Charles
+							option(value='John/Zach') John/Zach
+							option(value='Keyon') Keyon
+							option(value='Koci/Mueller') Koci/Mueller
+							option(value='Mitch') Mitch
+							option(value='Patrick') Patrick
+							option(value='Quinn') Quinn
+							option(value='Schex') Schex
+							option(value='Syed/Kuan') Syed/Kuan
+							option(value='Terence') Terence
+							option(value='Trevor') Trevor
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input.btn.btn-primary(type='submit' value='Bid')
+
+			hr
+
+			div.row.justify-content-center
+				div.col-4.text-right
+					div#player
+
+				div.col-4.text-center
+					ul#bid-history
+
+			hr

@@ -17,14 +17,22 @@ html
 
 	body
 		div.container.text-center
-			div#player.col-12
+			hr
 
 			form#bid-form
-				div.form-row
-					div.input-group
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-12.col-lg-6
 						div.input-group-prepend
 							span.input-group-text $
 						input#bid-amount.form-control(type='text')
 						input.btn.btn-primary(type='submit' value='Bid')
 
-			ul#bid-history.col-12.list-group
+			hr
+
+			div.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					div#player
+
+			div.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					ul#bid-history

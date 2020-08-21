@@ -15,9 +15,7 @@ $(document).ready(function() {
 	});
 
 	$('#nomination-form').bind('submit', function(e) {
-		var newPlayer = { name: $(this).find('#name').val(), position: $(this).find('#position').val(), team: $(this).find('#team').val() };
-
-		console.log(newPlayer);
+		var newPlayer = { name: $(this).find('#name').val(), position: $(this).find('#position').val(), team: $(this).find('#team').val(), situation: $(this).find('#situation').val() };
 
 		e.preventDefault();
 		$.post('/auction/nominate', newPlayer, redrawAuctionClient);
@@ -36,11 +34,12 @@ var fetchCurrentAuctionData = function() {
 };
 
 var redrawAuctionClient = function(auctionData) {
-	var player = $('<div id="player" class="col-12"><h1 id="player-name"></h1><h4 id="player-position"></h4><h4 id="player-team"></h4></div>');
+	var player = $('<div id="player" class="col-12"><h1 id="player-name"></h1><h4 id="player-position"></h4><h4 id="player-team"></h4><h4 id="player-situation"></h4></div>');
 
 	player.find('#player-name').text(auctionData.player.name);
 	player.find('#player-position').text(auctionData.player.position);
 	player.find('#player-team').text(auctionData.player.team);
+	player.find('#player-situation').text(auctionData.player.situation);
 
 	$('#player').replaceWith(player);
 

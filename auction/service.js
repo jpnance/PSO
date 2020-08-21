@@ -4,7 +4,8 @@ var auction = {
 	player: {
 		name: 'Malcolm Brown',
 		position: 'RB',
-		team: 'LAR'
+		team: 'LAR',
+		situation: 'UFA'
 	},
 	bids: [],
 	status: 'active'
@@ -79,6 +80,7 @@ module.exports.nominatePlayer = function(request, response) {
 	auction.player.name = request.body.name;
 	auction.player.position = request.body.position;
 	auction.player.team = request.body.team;
+	auction.player.situation = request.body.situation;
 
 	auction.bids = [];
 
