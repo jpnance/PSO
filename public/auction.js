@@ -48,9 +48,11 @@ var redrawAuctionClient = function(auctionData) {
 		$('body').removeClass('paused').removeClass('active').addClass(auctionData.status);
 	}
 
-	var player = $('<div id="player" class="col-12"><h1 id="player-name"></h1><h4 id="player-position"></h4><h4 id="player-team"></h4><h4 id="player-situation"></h4></div>');
+	var player = $('<div id="player" class="col-12"><h1 id="player-name"><a href="" target="_blank"></a></h1><h4 id="player-position"></h4><h4 id="player-team"></h4><h4 id="player-situation"></h4></div>');
 
-	player.find('#player-name').text(auctionData.player.name);
+	var urlName = auctionData.player.name.toLowerCase().replace(' ', '+');
+
+	player.find('#player-name a').attr('href', 'https://www.pro-football-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
 	player.find('#player-position').text(auctionData.player.position);
 	player.find('#player-team').text(auctionData.player.team);
 	player.find('#player-situation').text(auctionData.player.situation);
