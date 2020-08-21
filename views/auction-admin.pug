@@ -24,7 +24,7 @@ html
 			hr
 
 			div#controls.row.justify-content-center
-				div.col-6.text-center
+				div.col-12.col-lg-6.text-center
 					button#pause.btn.btn-warning.m-1
 						i.fa.fa-pause
 						|
@@ -42,10 +42,10 @@ html
 
 			form#nomination-form
 				div.form-row.justify-content-center.m-1
-					div.col-6.text-center
+					div.col-12.col-lg-6.text-center
 						input#name.form-control(type='text' name='name' placeholder='Name')
 				div.form-row.justify-content-center.m-1
-					div.col-6.text-center
+					div.col-12.col-lg-6.text-center
 						div.row
 							div.col-4
 								select#position.form-control(name='position')
@@ -119,11 +119,11 @@ html
 				input#force-bid(type='hidden' name='force-bid' value='true')
 
 				div.form-row.justify-content-center.m-1
-					div.input-group.col-3
+					div.input-group.col-6.col-lg-3
 						div.input-group-prepend
 							span.input-group-text $
 						input#bid-amount.form-control(type='text')
-					div.col-3
+					div.col-6.col-lg-3
 						select#owner.form-control(name='owner')
 							option(value='Brett/Luke') Brett/Luke
 							option(value='James/Charles') James/Charles
@@ -144,10 +144,11 @@ html
 			hr
 
 			div.row.justify-content-center
-				div.col-4.text-right
+				div.col-12.col-lg-6.text-center
 					div#player
 
-				div.col-4.text-center
+			div.row.justify-content-center
+				div.col-12.col-lg-6.text-center
 					ul#bid-history
 
 			hr
