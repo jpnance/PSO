@@ -13,10 +13,10 @@ $(document).ready(function() {
 			newBid.owner = $(this).find('#owner').val();
 		}
 
-		console.log(newBid);
-
 		e.preventDefault();
 		$.post('/auction/bid', newBid, redrawAuctionClient);
+
+		$(this).find('#bid-amount').val(null).focus();
 	});
 
 	$('#pause').bind('click', function(e) {
