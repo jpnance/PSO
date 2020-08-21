@@ -44,6 +44,10 @@ var fetchCurrentAuctionData = function() {
 };
 
 var redrawAuctionClient = function(auctionData) {
+	if (auctionData.status) {
+		$('body').removeClass('paused').removeClass('active').addClass(auctionData.status);
+	}
+
 	var player = $('<div id="player" class="col-12"><h1 id="player-name"></h1><h4 id="player-position"></h4><h4 id="player-team"></h4><h4 id="player-situation"></h4></div>');
 
 	player.find('#player-name').text(auctionData.player.name);

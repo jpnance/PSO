@@ -1,0 +1,8 @@
+body.paused {
+	background-color: #dddddd;
+	opacity: 50%;
+}
+
+body.active {
+	background-color: white;
+}

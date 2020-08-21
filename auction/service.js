@@ -15,7 +15,7 @@ var owners = JSON.parse(process.env.AUCTION_USERS);
 
 module.exports.activateAuction = function(request, response) {
 	auction.status = 'active';
-	response.redirect('/auction');
+	response.send(auction);
 };
 
 module.exports.authenticateOwner = function(request, response) {
@@ -103,10 +103,10 @@ module.exports.nominatePlayer = function(request, response) {
 
 module.exports.pauseAuction = function(request, response) {
 	auction.status = 'paused';
-	response.redirect('/auction');
+	response.send(auction);
 };
 
 module.exports.popBid = function(request, response) {
 	auction.bids.shift();
-	response.redirect('/auction');
+	response.send(auction);
 };
