@@ -43,6 +43,12 @@ module.exports.makeBid = function(request, response) {
 
 	if (!owner) {
 		response.send(auction);
+		return;
+	}
+
+	if (auction.bids && auction.bids[0] && owner == auction.bids[0].owner) {
+		response.send(auction);
+		return;
 	}
 
 	var newBid = {
