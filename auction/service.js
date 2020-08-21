@@ -10,23 +10,19 @@ var auction = {
 	status: 'active'
 };
 
+var owners = JSON.parse(process.env.AUCTION_USERS);
+
 module.exports.activateAuction = function(request, response) {
 	auction.status = 'active';
 	response.redirect('/auction');
 };
 
 module.exports.authenticateOwner = function(request, response) {
-	var owners = JSON.parse(process.env.AUCTION_USERS);
-
 	if (owners[request.params.key]) {
 		response.cookie('auctionAuthKey', request.params.key, { expires: new Date('2020-09-01') });
 	}
 
-	if (request.cookies && request.cookies.auctionAuthKey) {
-		console.log(request.cookies.auctionAuthKey);
-	}
-
-	response.send({});
+	response.redirect('/auction');
 };
 
 module.exports.currentAuction = function(request, response) {
@@ -34,13 +30,23 @@ module.exports.currentAuction = function(request, response) {
 };
 
 module.exports.makeBid = function(request, response) {
+	var owner = null;
+
 	if (auction.status != 'active') {
 		response.send(auction);
 		return;
 	}
 
+	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
+		owner = owners[request.cookies.auctionAuthKey];
+	}
+
+	if (!owner) {
+		response.send(auction);
+	}
+
 	var newBid = {
-		owner: (Math.random() > 0.5 ? 'Patrick' : 'Mitch'),
+		owner: owner,
 		amount: parseInt(request.body.amount)
 	};
 
