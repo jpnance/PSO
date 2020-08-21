@@ -1,3 +1,5 @@
+var dotenv = require('dotenv').config({ path: '../.env' });
+
 var auction = {
 	player: {
 		name: 'Malcolm Brown',
@@ -11,6 +13,20 @@ var auction = {
 module.exports.activateAuction = function(request, response) {
 	auction.status = 'active';
 	response.redirect('/auction');
+};
+
+module.exports.authenticateOwner = function(request, response) {
+	var owners = JSON.parse(process.env.AUCTION_USERS);
+
+	if (owners[request.params.key]) {
+		response.cookie('auctionAuthKey', request.params.key, { expires: new Date('2020-09-01') });
+	}
+
+	if (request.cookies && request.cookies.auctionAuthKey) {
+		console.log(request.cookies.auctionAuthKey);
+	}
+
+	response.send({});
 };
 
 module.exports.currentAuction = function(request, response) {

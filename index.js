@@ -2,10 +2,12 @@ var dotenv = require('dotenv').config();
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));

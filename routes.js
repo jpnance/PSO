@@ -7,6 +7,7 @@ module.exports = function(app) {
 
 	app.get('/auction/activate', auction.activateAuction);
 	app.get('/auction/current', auction.currentAuction);
+	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/pause', auction.pauseAuction);
 	app.get('/auction/pop', auction.popBid);
 
