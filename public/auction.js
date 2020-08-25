@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 	$('#pause').bind('click', function(e) {
 		e.preventDefault();
-		$.get('/auction/pause', null, redrawAuctionClient);
+		$.get('/auction/pause', { bidCount: numberOfBids }, redrawAuctionClient);
 	});
 
 	$('#nomination-form').bind('submit', function(e) {
@@ -59,6 +59,8 @@ var addLoggedInAsClass = function(loggedInAsData) {
 };
 
 var redrawAuctionClient = function(auctionData) {
+	numberOfBids = auctionData.bids.length;
+
 	if (auctionData.status) {
 		$('body').removeClass('paused').removeClass('active').addClass(auctionData.status);
 	}

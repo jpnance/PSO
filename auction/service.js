@@ -102,7 +102,10 @@ module.exports.nominatePlayer = function(request, response) {
 };
 
 module.exports.pauseAuction = function(request, response) {
-	auction.status = 'paused';
+	if (request.query.bidCount && request.query.bidCount == auction.bids.length) {
+		auction.status = 'paused';
+	}
+
 	response.send(auction);
 };
 
