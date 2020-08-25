@@ -1,14 +1,8 @@
 var numberOfBids = 0;
-var totalTimer = -1;
-var goingTimer = -1;
-var going = 0;
 var state = 'new-player';
 
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
-		totalTimer = -1;
-		goingTimer = -1;
-
 		e.preventDefault();
 		$.get('/auction/activate', null, redrawAuctionClient);
 	});
@@ -40,8 +34,6 @@ $(document).ready(function() {
 	});
 
 	$('#pop').bind('click', function(e) {
-		totalTimer = -1;
-
 		e.preventDefault();
 		$.get('/auction/pop', null, redrawAuctionClient);
 	});
@@ -50,7 +42,6 @@ $(document).ready(function() {
 	fetchCurrentAuctionData();
 
 	setInterval(fetchCurrentAuctionData, 1000);
-	setInterval(updateTimer, 1000);
 });
 
 var fetchCurrentAuctionData = function() {
@@ -92,39 +83,4 @@ var redrawAuctionClient = function(auctionData) {
 	});
 
 	$('#bid-history').replaceWith(bidHistory);
-
-	if (auctionData.bids.length != numberOfBids) {
-		numberOfBids = auctionData.bids.length;
-		goingTimer = -1;
-		going = 0;
-
-		$('body.admin').removeClass('going-once').removeClass('going-twice').removeClass('sold');
-	}
-};
-
-var updateTimer = function() {
-	totalTimer++;
-	goingTimer++;
-
-	if (totalTimer >= 8 && goingTimer >= 3) {
-		if (going == 2) {
-			going = 3;
-
-			$('body.admin').addClass('sold').removeClass('going-once').removeClass('going-twice');
-		}
-		else if (going == 1) {
-			going = 2;
-			goingTimer = 0;
-
-			$('body.admin').addClass('going-twice').removeClass('going-once').removeClass('sold');
-		}
-		else if (going == 0) {
-			goingTimer = 0;
-			going = 1;
-
-			$('body.admin').addClass('going-once').removeClass('going-twice').removeClass('sold');
-		}
-	}
-
-	$('#timer').text(totalTimer + ' ' + goingTimer);
 };
