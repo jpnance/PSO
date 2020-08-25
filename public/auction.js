@@ -1,8 +1,14 @@
 var numberOfBids = 0;
-var timer = -1;
+var totalTimer = -1;
+var goingTimer = -1;
+var going = 0;
+var state = 'new-player';
 
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
+		totalTimer = -1;
+		goingTimer = -1;
+
 		e.preventDefault();
 		$.get('/auction/activate', null, redrawAuctionClient);
 	});
@@ -11,7 +17,6 @@ $(document).ready(function() {
 		var newBid = { amount: $(this).find('#bid-amount').val() };
 
 		if ($(this).find('#force-bid')) {
-			console.log('forcing');
 			newBid.force = true;
 			newBid.owner = $(this).find('#owner').val();
 		}
@@ -35,6 +40,8 @@ $(document).ready(function() {
 	});
 
 	$('#pop').bind('click', function(e) {
+		totalTimer = -1;
+
 		e.preventDefault();
 		$.get('/auction/pop', null, redrawAuctionClient);
 	});
@@ -42,7 +49,7 @@ $(document).ready(function() {
 	fetchLoggedInAsData();
 	fetchCurrentAuctionData();
 
-	setInterval(fetchCurrentAuctionData, 3000);
+	setInterval(fetchCurrentAuctionData, 1000);
 	setInterval(updateTimer, 1000);
 });
 
@@ -55,7 +62,6 @@ var fetchLoggedInAsData = function() {
 };
 
 var addLoggedInAsClass = function(loggedInAsData) {
-	console.log(loggedInAsData);
 	if (loggedInAsData.loggedInAs) {
 		$('body').addClass(loggedInAsData.loggedInAs.toLowerCase().replace('/', '-'));
 	}
@@ -89,11 +95,36 @@ var redrawAuctionClient = function(auctionData) {
 
 	if (auctionData.bids.length != numberOfBids) {
 		numberOfBids = auctionData.bids.length;
-		timer = -1;
+		goingTimer = -1;
+		going = 0;
+
+		$('body.admin').removeClass('going-once').removeClass('going-twice').removeClass('sold');
 	}
 };
 
 var updateTimer = function() {
-	timer++;
-	$('#timer').text(timer);
+	totalTimer++;
+	goingTimer++;
+
+	if (totalTimer >= 8 && goingTimer >= 3) {
+		if (going == 2) {
+			going = 3;
+
+			$('body.admin').addClass('sold').removeClass('going-once').removeClass('going-twice');
+		}
+		else if (going == 1) {
+			going = 2;
+			goingTimer = 0;
+
+			$('body.admin').addClass('going-twice').removeClass('going-once').removeClass('sold');
+		}
+		else if (going == 0) {
+			goingTimer = 0;
+			going = 1;
+
+			$('body.admin').addClass('going-once').removeClass('going-twice').removeClass('sold');
+		}
+	}
+
+	$('#timer').text(totalTimer + ' ' + goingTimer);
 };

@@ -7,6 +7,18 @@ body.active {
 	background-color: white;
 }
 
+body.going-once {
+	background-color: yellow;
+}
+
+body.going-twice {
+	background-color: orange;
+}
+
+body.sold {
+	background-color: red;
+}
+
 .brett-luke-bid {
 	background-color: #fee5e5;
 }
