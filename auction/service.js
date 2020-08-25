@@ -110,3 +110,9 @@ module.exports.popBid = function(request, response) {
 	auction.bids.shift();
 	response.send(auction);
 };
+
+module.exports.quickAuth = function(request, response) {
+	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
+		response.send({ loggedInAs: owners[request.cookies.auctionAuthKey] });
+	}
+};

@@ -6,3 +6,99 @@ body.paused {
 body.active {
 	background-color: white;
 }
+
+.brett-luke-bid {
+	background-color: #fee5e5;
+}
+
+.brett-luke .brett-luke-bid {
+	background-color: #fe9898;
+}
+
+.james-charles-bid {
+	background-color: #feede5;
+}
+
+.james-charles .james-charles-bid {
+	background-color: #feba98;
+}
+
+.john-zach-bid {
+	background-color: #fef6e5;
+}
+
+.john-zach .john-zach-bid {
+	background-color: #fedc98;
+}
+
+.keyon-bid {
+	background-color: #fefee5;
+}
+
+.keyon .keyon-bid {
+	background-color: #fefe98;
+}
+
+.koci-mueller-bid {
+	background-color: #f6fee5;
+}
+
+.koci-mueller .koci-mueller-bid {
+	background-color: #dcfe98;
+}
+
+.mitch-bid {
+	background-color: #edfee5;
+}
+
+.mitch .mitch-bid {
+	background-color: #bafe98;
+}
+
+.patrick-bid {
+	background-color: #e5fee5;
+}
+
+.patrick .patrick-bid {
+	background-color: #98fe98;
+}
+
+.quinn-bid {
+	background-color: #e5feed;
+}
+
+.quinn .quinn-bid {
+	background-color: #98feba;
+}
+
+.schex-bid {
+	background-color: #e5fef6;
+}
+
+.schex .schex-bid {
+	background-color: #98fedc;
+}
+
+.syed-kuan-bid {
+	background-color: #e5fefe;
+}
+
+.syed-kuan .syed-kuan-bid {
+	background-color: #98fefe;
+}
+
+.terence-bid {
+	background-color: #e5f6fe;
+}
+
+.terence .terence-bid {
+	background-color: #98dcfe;
+}
+
+.trevor-bid {
+	background-color: #e5edfe;
+}
+
+.trevor .trevor-bid {
+	background-color: #98bafe;
+}

@@ -39,12 +39,26 @@ $(document).ready(function() {
 		$.get('/auction/pop', null, redrawAuctionClient);
 	});
 
+	fetchLoggedInAsData();
+	fetchCurrentAuctionData();
+
 	setInterval(fetchCurrentAuctionData, 3000);
 	setInterval(updateTimer, 1000);
 });
 
 var fetchCurrentAuctionData = function() {
 	$.get('/auction/current', null, redrawAuctionClient);
+};
+
+var fetchLoggedInAsData = function() {
+	$.get('/auction/quickauth', null, addLoggedInAsClass);
+};
+
+var addLoggedInAsClass = function(loggedInAsData) {
+	console.log(loggedInAsData);
+	if (loggedInAsData.loggedInAs) {
+		$('body').addClass(loggedInAsData.loggedInAs.toLowerCase().replace('/', '-'));
+	}
 };
 
 var redrawAuctionClient = function(auctionData) {
@@ -66,7 +80,8 @@ var redrawAuctionClient = function(auctionData) {
 	var bidHistory = $('<ul id="bid-history" class="list-group col-12">');
 
 	auctionData.bids.forEach(bid => {
-		var bid = $('<li class="list-group-item"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
+		var ownerClass = bid.owner.toLowerCase().replace('/', '-') + '-bid';
+		var bid = $('<li class="list-group-item ' + ownerClass + '"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
 		bidHistory.append(bid);
 	});
 
