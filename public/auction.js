@@ -45,7 +45,7 @@ $(document).ready(function() {
 });
 
 var fetchCurrentAuctionData = function() {
-	$.get('/auction/current', null, redrawAuctionClient);
+	$.get('/auction/current', { _: Math.random() }, redrawAuctionClient);
 };
 
 var fetchLoggedInAsData = function() {
