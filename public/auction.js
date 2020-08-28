@@ -21,6 +21,11 @@ $(document).ready(function() {
 		$(this).find('#bid-amount').val(null).focus();
 	});
 
+	$('#call-roll').bind('click', function(e) {
+		e.preventDefault();
+		$.get('/auction/callroll', null, redrawAuctionClient);
+	});
+
 	$('#pause').bind('click', function(e) {
 		e.preventDefault();
 		$.get('/auction/pause', { bidCount: numberOfBids }, redrawAuctionClient);
@@ -36,6 +41,11 @@ $(document).ready(function() {
 	$('#pop').bind('click', function(e) {
 		e.preventDefault();
 		$.get('/auction/pop', null, redrawAuctionClient);
+	});
+
+	$('#roll-call').bind('click', function(e) {
+		e.preventDefault();
+		$.get('/auction/rollcall', null, redrawAuctionClient);
 	});
 
 	fetchLoggedInAsData();
@@ -62,7 +72,7 @@ var redrawAuctionClient = function(auctionData) {
 	numberOfBids = auctionData.bids.length;
 
 	if (auctionData.status) {
-		$('body').removeClass('paused').removeClass('active').addClass(auctionData.status);
+		$('body').removeClass('paused').removeClass('active').removeClass('roll-call').addClass(auctionData.status);
 	}
 
 	var player = $('<div id="player" class="col-12"><h1 id="player-name"><a href="" target="_blank"></a></h1><h4 id="player-position"></h4><h4 id="player-team"></h4><h4 id="player-situation"></h4></div>');
@@ -85,4 +95,14 @@ var redrawAuctionClient = function(auctionData) {
 	});
 
 	$('#bid-history').replaceWith(bidHistory);
+
+	var attendance = $('<ul id="attendance" class="list-group col-12">');
+
+	auctionData.rollCall.forEach(owner => {
+		var ownerClass = owner.toLowerCase().replace('/', '-') + '-bid';
+		var present = $('<li class="list-group-item ' + ownerClass + '"><strong>' + owner + '</strong></li>');
+		attendance.append(present);
+	});
+
+	$('#attendance').replaceWith(attendance);
 };

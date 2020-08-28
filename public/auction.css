@@ -1,6 +1,24 @@
-body.paused {
+body.paused, body.roll-call {
 	background-color: #dddddd;
+}
+
+body.paused form#bid-form, body.roll-call form#bid-form,
+body.paused div#player, body.roll-call div#player,
+body.paused ul#bid-history, body.roll-call ul#bid-history
+ {
 	opacity: 50%;
+}
+
+.roll-call-visible {
+	display: none;
+}
+
+body.roll-call .roll-call-visible {
+	display: block;
+}
+
+body.roll-call .roll-call-visible button {
+	opacity: 100%;
 }
 
 body.active {

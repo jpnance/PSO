@@ -119,7 +119,8 @@ var auction = {
 		situation: 'UFA'
 	},
 	bids: [],
-	status: 'active'
+	status: 'active',
+	rollCall: []
 };
 
 var owners = JSON.parse(process.env.AUCTION_USERS);
@@ -137,8 +138,15 @@ module.exports.authenticateOwner = function(request, response) {
 	response.redirect('/auction');
 };
 
+module.exports.callRoll = function(request, response) {
+	auction.status = 'roll-call';
+	auction.rollCall = [];
+
+	response.send(auction);
+};
+
 module.exports.currentAuction = function(request, response) {
-	if (Math.random() < 0.005) {
+	if (false && Math.random() < 0.005) {
 		auction.player.name = random.names[Math.floor(Math.random() * random.names.length)];
 		auction.player.position = random.positions[Math.floor(Math.random() * random.positions.length)];
 		auction.player.team = random.teams[Math.floor(Math.random() * random.teams.length)];
@@ -238,4 +246,17 @@ module.exports.quickAuth = function(request, response) {
 	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
 		response.send({ loggedInAs: owners[request.cookies.auctionAuthKey] });
 	}
+};
+
+module.exports.rollCall = function(request, response) {
+	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
+		var owner = owners[request.cookies.auctionAuthKey];
+
+		if (!auction.rollCall.includes(owner)) {
+			auction.rollCall.push(owner);
+			auction.rollCall.sort();
+		}
+	}
+
+	response.send(auction);
 };
