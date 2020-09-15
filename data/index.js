@@ -14,7 +14,22 @@ if (process.argv.length < 3) {
 	process.exit();
 }
 
-var season = process.argv[2];
+var season = parseInt(process.argv[2]);
+
+var fantraxIds = {
+	'motju5wmk7xr9dlz': 1,
+	'6u9bwy3ik7xrer9z': 2,
+	'hfyfddwck7xrera2': 3,
+	'hgfqy84rk7xrera0': 4,
+	'alzk1h56k7xrer9w': 5,
+	'134ej04vk7xrer9y': 6,
+	'n5ozy8wjk7xrer9m': 7,
+	'fzqz34xuk7xrer9p': 8,
+	'erk30j3lk7xrer9s': 9,
+	'bmj6dbebk7xrer9v': 10,
+	'a1p22t32k7xrer9u': 11,
+	'vt5py28ck7xrer9r': 12
+};
 
 var franchiseNames = {
 	1: {
@@ -29,7 +44,8 @@ var franchiseNames = {
 		2016: 'Patrick',
 		2017: 'Patrick',
 		2018: 'Patrick',
-		2019: 'Patrick'
+		2019: 'Patrick',
+		2020: 'Patrick'
 	},
 	2: {
 		2008: 'Koci',
@@ -43,7 +59,8 @@ var franchiseNames = {
 		2016: 'Koci/Mueller',
 		2017: 'Koci/Mueller',
 		2018: 'Koci/Mueller',
-		2019: 'Koci/Mueller'
+		2019: 'Koci/Mueller',
+		2020: 'Koci/Mueller'
 	},
 	3: {
 		2008: 'Syed',
@@ -57,7 +74,8 @@ var franchiseNames = {
 		2016: 'Syed/Terence',
 		2017: 'Syed/Terence',
 		2018: 'Syed/Terence',
-		2019: 'Syed/Kuan'
+		2019: 'Syed/Kuan',
+		2020: 'Syed/Kuan'
 	},
 	4: {
 		2008: 'John',
@@ -71,7 +89,8 @@ var franchiseNames = {
 		2016: 'John/Zach',
 		2017: 'John/Zach',
 		2018: 'John/Zach',
-		2019: 'John/Zach'
+		2019: 'John/Zach',
+		2020: 'John/Zach'
 	},
 	5: {
 		2008: 'Trevor',
@@ -85,7 +104,8 @@ var franchiseNames = {
 		2016: 'Trevor',
 		2017: 'Trevor',
 		2018: 'Trevor',
-		2019: 'Trevor'
+		2019: 'Trevor',
+		2020: 'Trevor'
 	},
 	6: {
 		2008: 'Keyon',
@@ -99,7 +119,8 @@ var franchiseNames = {
 		2016: 'Keyon',
 		2017: 'Keyon',
 		2018: 'Keyon',
-		2019: 'Keyon'
+		2019: 'Keyon',
+		2020: 'Keyon'
 	},
 	7: {
 		2008: 'Jeff',
@@ -113,7 +134,8 @@ var franchiseNames = {
 		2016: 'Brett/Luke',
 		2017: 'Brett/Luke',
 		2018: 'Brett/Luke',
-		2019: 'Brett/Luke'
+		2019: 'Brett/Luke',
+		2020: 'Brett/Luke'
 	},
 	8: {
 		2008: 'Daniel',
@@ -127,7 +149,8 @@ var franchiseNames = {
 		2016: 'Daniel',
 		2017: 'Daniel',
 		2018: 'Daniel',
-		2019: 'Terence'
+		2019: 'Terence',
+		2020: 'Terence'
 	},
 	9: {
 		2008: 'James',
@@ -141,7 +164,8 @@ var franchiseNames = {
 		2016: 'James',
 		2017: 'James/Charles',
 		2018: 'James/Charles',
-		2019: 'James/Charles'
+		2019: 'James/Charles',
+		2020: 'James/Charles'
 	},
 	10: {
 		2008: 'Schexes',
@@ -155,7 +179,8 @@ var franchiseNames = {
 		2016: 'Schex/Jeff',
 		2017: 'Schex/Jeff',
 		2018: 'Schex',
-		2019: 'Schex'
+		2019: 'Schex',
+		2020: 'Schex'
 	},
 	11: {
 		2012: 'Charles',
@@ -165,7 +190,8 @@ var franchiseNames = {
 		2016: 'Quinn',
 		2017: 'Quinn',
 		2018: 'Quinn',
-		2019: 'Quinn'
+		2019: 'Quinn',
+		2020: 'Quinn'
 	},
 	12: {
 		2012: 'Mitch',
@@ -175,141 +201,135 @@ var franchiseNames = {
 		2016: 'Mitch',
 		2017: 'Mitch',
 		2018: 'Mitch',
-		2019: 'Mitch'
+		2019: 'Mitch',
+		2020: 'Mitch'
 	}
 };
 
-var weekPromises = [];
 var weekScores = {};
 
-var bigRequestPromise = new Promise(function(resolve, reject) {
-	var requestUrl = 'https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + season + '/segments/0/leagues/122885?view=mMatchupScore';
+var newWeekPromise = function(week) {
+	return new Promise(function(resolve, reject) {
+		request
+			.post('https://www.fantrax.com/fxpa/req?leagueId=eju35f9ok7xr9cvt')
+			.set('Content-Type', 'text/plain')
+			.set('Cookie', process.env.FANTRAX_COOKIES)
+			.send(JSON.stringify({ msgs: [ { data: { newView: true, period: week }, method: 'getLiveScoringStats' } ] }))
+			.then(response => {
+				console.log(week);
+				var dataJson = JSON.parse(response.text);
+				var teamStatsMap = dataJson.responses[0].data.statsPerTeam.statsMap;
+				var matchupsRaw = dataJson.responses[0].data.matchups;
+				var matchups = [];
 
-	if (season < process.env.SEASON) {
-		requestUrl = 'https://fantasy.espn.com/apis/v3/games/ffl/leagueHistory/122885?view=mMatchupScore&seasonId=' + season;
-	}
+				var gamePromises = [];
 
-	request
-		.get(requestUrl)
-		.set('Content-Type', 'application/json')
-		.set('Cookie', 'espn_s2=' + process.env.ESPN_S2_COOKIE + ';SWID=' + process.env.SWID_COOKIE)
-		.then(response => {
-			var gamePromises = [];
+				matchupsRaw.forEach(matchupRaw => {
+					var teamIds = matchupRaw.split('_');
+					var matchup = {};
 
-			if (Array.isArray(response.body)) {
-				response.body = response.body[0];
-			}
+					matchup.season = season;
+					matchup.week = week;
 
-			response.body.schedule.forEach(game => {
-				var week = game.matchupPeriodId;
+					matchup.away = { franchiseId: fantraxIds[teamIds[0]] };
+					matchup.home = { franchiseId: fantraxIds[teamIds[1]] };
 
-				var away = {
-					franchiseId: game.away.teamId
-				};
+					matchup.away.name = franchiseNames[matchup.away.franchiseId][season];
+					matchup.home.name = franchiseNames[matchup.home.franchiseId][season];
 
-				var home = {
-					franchiseId: game.home.teamId
-				};
+					matchup.away.score = teamStatsMap[teamIds[0]].ACTIVE.totalFpts;
+					matchup.home.score = teamStatsMap[teamIds[1]].ACTIVE.totalFpts;
 
-				var winner = null;
-				var loser = null;
+					if (week <= 14) {
+						matchup.type = 'regular';
+					}
+					/*
+					else if (week == 15) {
+						if (game.playoffTierType == 'WINNERS_BRACKET') {
+							matchup.type = 'semifinal';
+						}
+						else {
+							matchup.type = 'consolation';
+						}
+					}
+					else if (week == 16) {
+						if (game.playoffTierType == 'WINNERS_BRACKET') {
+							matchup.type = 'championship';
+						}
+						else if (game.playoffTierType == 'WINNERS_CONSOLATION_LADDER') {
+							matchup.type = 'thirdPlace';
+						}
+						else {
+							matchup.type = 'consolation';
+						}
+					}
+					*/
 
-				var type = 'regular';
-
-				if (week <= 14) {
-					type = 'regular';
-				}
-				else if (week == 15) {
-					if (game.playoffTierType == 'WINNERS_BRACKET') {
-						type = 'semifinal';
+					if (matchup.away.score == 0 && matchup.home.score == 0) {
+						delete matchup.away.score;
+						delete matchup.home.score;
 					}
 					else {
-						type = 'consolation';
+						if (!weekScores[week]) {
+							weekScores[week] = { scores: [], straight: {}, allPlay: {}, stern: {} };
+						}
+
+						weekScores[week].scores.push(matchup.away.score, matchup.home.score);
+
+						if (matchup.away.score > matchup.home.score) {
+							weekScores[week].straight[matchup.away.score] = { wins: 1, losses: 0, ties: 0 };
+							weekScores[week].stern[matchup.away.score] = { wins: 1, losses: 0, ties: 0 };
+
+							weekScores[week].straight[matchup.home.score] = { wins: 0, losses: 1, ties: 0 };
+							weekScores[week].stern[matchup.home.score] = { wins: 0, losses: 1, ties: 0 };
+
+							matchup.winner = matchup.away;
+							matchup.loser = matchup.home;
+						}
+						else if (matchup.home.score > matchup.away.score) {
+							weekScores[week].straight[matchup.home.score] = { wins: 1, losses: 0, ties: 0 };
+							weekScores[week].stern[matchup.home.score] = { wins: 1, losses: 0, ties: 0 };
+
+							weekScores[week].straight[matchup.away.score] = { wins: 0, losses: 1, ties: 0 };
+							weekScores[week].stern[matchup.away.score] = { wins: 0, losses: 1, ties: 0 };
+
+							matchup.winner = matchup.home;
+							matchup.loser = matchup.away;
+						}
+						else {
+							weekScores[week].straight[matchup.home.score] = { wins: 0, losses: 0, ties: 1 };
+							weekScores[week].stern[matchup.home.score] = { wins: 0, losses: 0, ties: 1 };
+
+							weekScores[week].straight[matchup.away.score] = { wins: 0, losses: 0, ties: 1 };
+							weekScores[week].stern[matchup.away.score] = { wins: 0, losses: 0, ties: 1 };
+						}
 					}
-				}
-				else if (week == 16) {
-					if (game.playoffTierType == 'WINNERS_BRACKET') {
-						type = 'championship';
-					}
-					else if (game.playoffTierType == 'WINNERS_CONSOLATION_LADDER') {
-						type = 'thirdPlace';
-					}
-					else {
-						type = 'consolation';
-					}
-				}
 
-				away.name = franchiseNames[away.franchiseId][season];
-				home.name = franchiseNames[home.franchiseId][season];
+					var conditions = {
+						season: matchup.season,
+						week: matchup.week,
+						'away.franchiseId': matchup.away.franchiseId,
+						'home.franchiseId': matchup.home.franchiseId
+					};
 
-				if (game.winner != 'UNDECIDED') {
-					away.score = parseFloat(game.away.totalPoints);
-					home.score = parseFloat(game.home.totalPoints);
+					gamePromises.push(Game.findOneAndUpdate(conditions, matchup, { upsert: true }));
 
-					if (!weekScores[week]) {
-						weekScores[week] = { scores: [], straight: {}, allPlay: {}, stern: {} };
-					}
+					//matchups.push(matchup);
+				});
 
-					weekScores[week].scores.push(away.score, home.score);
-
-					if (away.score > home.score) {
-						weekScores[week].straight[away.score] = { wins: 1, losses: 0, ties: 0 };
-						weekScores[week].stern[away.score] = { wins: 1, losses: 0, ties: 0 };
-
-						weekScores[week].straight[home.score] = { wins: 0, losses: 1, ties: 0 };
-						weekScores[week].stern[home.score] = { wins: 0, losses: 1, ties: 0 };
-
-						winner = away;
-						loser = home;
-					}
-					else if (home.score > away.score) {
-						weekScores[week].straight[home.score] = { wins: 1, losses: 0, ties: 0 };
-						weekScores[week].stern[home.score] = { wins: 1, losses: 0, ties: 0 };
-
-						weekScores[week].straight[away.score] = { wins: 0, losses: 1, ties: 0 };
-						weekScores[week].stern[away.score] = { wins: 0, losses: 1, ties: 0 };
-
-						winner = home;
-						loser = away;
-					}
-					else {
-						weekScores[week].straight[home.score] = { wins: 0, losses: 0, ties: 1 };
-						weekScores[week].stern[home.score] = { wins: 0, losses: 0, ties: 1 };
-
-						weekScores[week].straight[away.score] = { wins: 0, losses: 0, ties: 1 };
-						weekScores[week].stern[away.score] = { wins: 0, losses: 0, ties: 1 };
-					}
-				}
-
-				var conditions = {
-					season: season,
-					week: week,
-					'away.franchiseId': away.franchiseId,
-					'home.franchiseId': home.franchiseId
-				};
-
-				var game = {
-					season: season,
-					week: week,
-					type: type,
-					away: away,
-					home: home
-				};
-
-				if (winner && loser) {
-					game.winner = winner;
-					game.loser = loser;
-				}
-
-				gamePromises.push(Game.findOneAndUpdate(conditions, game, { upsert: true }));
-
+				Promise.all(gamePromises).then(() => { resolve(week); });
 			});
+		}
+	)
+};
 
-			Promise.all(gamePromises).then(() => { console.log(gamePromises.length); resolve(); });
-		});
-});
+var weekPromises = [];
 
-bigRequestPromise.then(() => {
+for (var week = 1; week <= 14; week++) {
+	weekPromises.push(newWeekPromise(week));
+}
+
+Promise.all(weekPromises).then((values) => {
 	Object.keys(weekScores).forEach(week => {
 		weekScores[week].scores.sort((a, b) => a - b);
 
