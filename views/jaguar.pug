@@ -1,0 +1,49 @@
+doctype html
+html
+	head
+		title The Jaguar Chart
+		link(href='/jaguar.css' rel='stylesheet' type='text/css')
+		script(type='text/javascript')
+			| var currentSeason = process.env.SEASON
+
+	body
+		h1 The Jaguar Chart
+
+		div.navigation
+			each seasonData, season in seasons
+				if season == process.env.SEASON
+					strong #{season}
+				else
+					a(href='/jaguar/?season=' + season) #{season}
+
+		- var jaguarOwners = ['Keyon', 'Luke', 'Patrick', 'Schex'];
+		each seasonData, season in seasons
+			table(border='1')
+				tr
+					td #{season}
+					each jaguarOwner in jaguarOwners
+						th vs. #{jaguarOwner}
+					th Total
+
+				each jaguarOwner in jaguarOwners
+					tr
+						th #{jaguarOwner}
+						each jaguarOpponent in jaguarOwners
+							- var opponentCssClass = jaguarOpponent.toLowerCase();
+
+							if jaguarOwner == jaguarOpponent
+								td(class=[opponentCssClass, 'self']) --
+							else
+								- var matchup = seasonData.owners[jaguarOwner].opponents[jaguarOpponent];
+								td(class=[opponentCssClass, matchup.summary.jagStatus])
+									if matchup.summary.jagStatus == 'won' || matchup.summary.jagStatus == 'lost' 
+										| #{matchup.summary.differential > 0 ? '+' : ''}#{matchup.summary.differential.toFixed(2)}
+									else
+										each game in matchup.games
+											if game.result == 'scheduled'
+												div.scheduled Week #{game.week}
+											else
+												| #{game.differential > 0 ? '+' : ''}#{game.differential.toFixed(2)}
+
+						- var total = seasons[season].owners[jaguarOwner].total;
+						td(class=total.jagStatus) #{total.wins}-#{total.losses}
