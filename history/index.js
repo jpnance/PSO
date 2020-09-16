@@ -210,6 +210,36 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 		season.total.stdev = stdev(season.total.scores, season.total.average);
 	});
 
+	var sortedLeaders = {};
+
+	Object.keys(leaders).forEach(leadersKey => {
+		var sortedFranchiseIds = [];
+
+		Object.keys(leaders[leadersKey].franchiseIds).forEach(franchiseId => {
+			sortedFranchiseIds.push({ franchiseId: franchiseId, value: leaders[leadersKey].franchiseIds[franchiseId] });
+		});
+
+		sortedFranchiseIds.sort(function(a, b) {
+			if (a.value > b.value) {
+				return -1;
+			}
+			else if (a.value < b.value) {
+				return 1;
+			}
+			else if (a.franchiseId < b.franchiseId) {
+				return -1;
+			}
+			else if (a.franchiseId > b.franchiseId) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		});
+
+		leaders[leadersKey].sortedFranchiseIds = sortedFranchiseIds;
+	});
+
 	if (render) {
 		var fs = require('fs');
 		var pug = require('pug');
