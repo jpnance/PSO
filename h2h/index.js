@@ -39,7 +39,7 @@ process.argv.forEach(function(value, index, array) {
 
 Game.find({ type: 'regular' }).then(games => {
 	games.forEach(game => {
-		if (game.away.score && game.home.score) {
+		if (game.away.score != 0 || game.home.score != 0) {
 			if (!headToHead[franchises[game.away.franchiseId]]) {
 				headToHead[franchises[game.away.franchiseId]] = {};
 			}
