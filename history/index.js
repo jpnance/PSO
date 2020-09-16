@@ -49,6 +49,10 @@ var leaders = [
 	{
 		description: 'Weekly Scoring Titles',
 		promise: Leaders.WeeklyScoringTitles.find().sort({ value: -1 })
+	},
+	{
+		description: 'Playoff Appearances',
+		promise: Leaders.PlayoffAppearances.find().sort({ value: -1 })
 	}
 ];
 
