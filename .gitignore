@@ -6,7 +6,9 @@ node_modules/
 data/colbys.xml
 data/data.xml
 
-public/history/index.html
-public/rookies/index.html
-public/simulator/index.html
-public/h2h/index.html
+public/auction/*
+public/h2h/*
+public/history/*
+public/jaguar/*
+public/rookies/*
+public/simulator/*
