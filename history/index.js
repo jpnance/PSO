@@ -47,6 +47,10 @@ var leaders = [
 		promise: Leaders.RegularSeasonWins.find().sort({ value: -1 })
 	},
 	{
+		description: 'Regular Season Winning Percentage',
+		promise: Leaders.RegularSeasonWinningPercentage.find().sort({ value: -1 })
+	},
+	{
 		description: 'Weekly Scoring Titles',
 		promise: Leaders.WeeklyScoringTitles.find().sort({ value: -1 })
 	},
