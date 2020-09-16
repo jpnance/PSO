@@ -12,9 +12,9 @@ html
 			div.leaders
 				h4 #{leader.description}
 				table
-					each franchiseValue in leader.sortedFranchiseIds
+					each franchiseValue in leader.values
 						tr
-							td.franchise #{franchises[process.env.SEASON][franchiseValue.franchiseId]}
+							td.franchise #{franchiseValue._id}
 							td.value #{franchiseValue.value}
 
 		each season, year in history

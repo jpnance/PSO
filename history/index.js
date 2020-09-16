@@ -5,6 +5,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 var Game = require('../models/Game');
+var Leaders = require('../models/Leaders');
+
+var render = false;
 
 process.argv.forEach(function(value, index, array) {
 	if (index > 1) {
@@ -38,20 +41,21 @@ var stdev = (scores, average) => {
 	return Math.sqrt(variance / (scores.length - 1));
 };
 
+var leaders = [
+	{
+		description: 'Regular Season Wins',
+		promise: Leaders.RegularSeasonWins.find().sort({ value: -1 })
+	},
+	{
+		description: 'Weekly Scoring Titles',
+		promise: Leaders.WeeklyScoringTitles.find().sort({ value: -1 })
+	}
+];
+
 Game.find().sort({ season: 1, week: 1 }).then(games => {
 	var franchises = {};
 	var history = {};
 	var owners = {};
-	var leaders = {
-		regularSeasonWins: {
-			description: 'Regular Season Wins',
-			franchiseIds: {}
-		},
-		weeklyScoringTitles: {
-			description: 'Weekly Scoring Titles',
-			franchiseIds: {}
-		}
-	};
 	var stats = [];
 
 	games.forEach(game => {
@@ -103,22 +107,6 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 			owners[game.season][game.home.franchiseId] = { name: game.home.name, playoffs: null };
 		}
 
-		if (!leaders.regularSeasonWins.franchiseIds[game.away.franchiseId]) {
-			leaders.regularSeasonWins.franchiseIds[game.away.franchiseId] = 0;
-		}
-
-		if (!leaders.regularSeasonWins.franchiseIds[game.home.franchiseId]) {
-			leaders.regularSeasonWins.franchiseIds[game.home.franchiseId] = 0;
-		}
-
-		if (!leaders.weeklyScoringTitles.franchiseIds[game.away.franchiseId]) {
-			leaders.weeklyScoringTitles.franchiseIds[game.away.franchiseId] = 0;
-		}
-
-		if (!leaders.weeklyScoringTitles.franchiseIds[game.home.franchiseId]) {
-			leaders.weeklyScoringTitles.franchiseIds[game.home.franchiseId] = 0;
-		}
-
 		if (!stats[game.season]) {
 			stats[game.season] = {
 				franchises: [],
@@ -141,19 +129,6 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 
 		if (!stats[game.season].franchises[game.home.franchiseId]) {
 			stats[game.season].franchises[game.home.franchiseId] = { scores: [], average: null, stdev: null };
-		}
-
-		if (game.type == 'regular' && game.away.score != null && game.home.score != null) {
-			leaders.regularSeasonWins.franchiseIds[game.away.franchiseId] += game.away.record.straight.week.wins;
-			leaders.regularSeasonWins.franchiseIds[game.home.franchiseId] += game.home.record.straight.week.wins;
-
-			if (game.away.record.allPlay.week.losses == 0) {
-				leaders.weeklyScoringTitles.franchiseIds[game.away.franchiseId] += 1;
-			}
-
-			if (game.home.record.allPlay.week.losses == 0) {
-				leaders.weeklyScoringTitles.franchiseIds[game.home.franchiseId] += 1;
-			}
 		}
 
 		if (game.type != 'consolation' && game.away.score != null && game.home.score != null) {
@@ -210,42 +185,24 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 		season.total.stdev = stdev(season.total.scores, season.total.average);
 	});
 
-	var sortedLeaders = {};
+	var leaderPromises = [];
 
-	Object.keys(leaders).forEach(leadersKey => {
-		var sortedFranchiseIds = [];
-
-		Object.keys(leaders[leadersKey].franchiseIds).forEach(franchiseId => {
-			sortedFranchiseIds.push({ franchiseId: franchiseId, value: leaders[leadersKey].franchiseIds[franchiseId] });
-		});
-
-		sortedFranchiseIds.sort(function(a, b) {
-			if (a.value > b.value) {
-				return -1;
-			}
-			else if (a.value < b.value) {
-				return 1;
-			}
-			else if (a.franchiseId < b.franchiseId) {
-				return -1;
-			}
-			else if (a.franchiseId > b.franchiseId) {
-				return 1;
-			}
-			else {
-				return 0;
-			}
-		});
-
-		leaders[leadersKey].sortedFranchiseIds = sortedFranchiseIds;
+	leaders.forEach(leader => {
+		leaderPromises.push(leader.promise);
 	});
 
-	if (render) {
-		var fs = require('fs');
-		var pug = require('pug');
-		var compiledPug = pug.compileFile('../views/history.pug');
-		fs.writeFileSync('../public/history/index.html', compiledPug({ franchises: franchises, history: history, owners: owners, leaders: leaders, stats: stats }));
-	}
+	Promise.all(leaderPromises).then(function(values) {
+		for (var i = 0; i < values.length; i++) {
+			leaders[i].values = values[i];
+		}
 
-	process.exit();
+		if (render) {
+			var fs = require('fs');
+			var pug = require('pug');
+			var compiledPug = pug.compileFile('../views/history.pug');
+			fs.writeFileSync('../public/history/index.html', compiledPug({ franchises: franchises, history: history, owners: owners, leaders: leaders, stats: stats }));
+		}
+
+		process.exit();
+	});
 });
