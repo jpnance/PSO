@@ -13,6 +13,10 @@ div.navigation {
 	word-spacing: 10px;
 }
 
+select {
+	font-size: 150%;
+}
+
 table {
 	border-collapse: collapse;
 }
@@ -22,6 +26,7 @@ th, td {
 	height: 2em;
 	padding: 0.4em;
 	text-align: right;
+	white-space: nowrap;
 	width: 5em;
 }
 
@@ -55,4 +60,8 @@ th, td {
 
 div.scheduled {
 	font-size: 80%;
+}
+
+.hidden {
+	display: none;
 }
