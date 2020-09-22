@@ -280,8 +280,12 @@ Promise.all(teamPromises).then((values) => {
 		var franchise = teamData[fantraxId];
 
 		if (franchise.fantraxBudget - 1000 != franchise.sheetsBudget) {
-			postPromises.push(newPostPromise(fantraxId, franchise.sheetsBudget + 1000));
-			console.log(fantraxId, franchise);
+			if (process.argv.includes('update')) {
+				postPromises.push(newPostPromise(fantraxId, franchise.sheetsBudget + 1000));
+			}
+			else {
+				console.log(fantraxId, franchise);
+			}
 		}
 	});
 
