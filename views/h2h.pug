@@ -3,6 +3,12 @@ html
 	head
 		link(rel='stylesheet' href='/css/bootstrap.min.css')
 		link(rel='stylesheet' href='../h2h.css')
+		script(src='/js/jquery.min.js')
+		script(src='/js/umd/popper.min.js')
+		script(src='/js/bootstrap.min.js')
+		script
+			| $(function() { $('[data-toggle="tooltip"]').tooltip(); });
+
 		title Head-to-Head Results
 
 	body
@@ -26,4 +32,10 @@ html
 								if opponentOwner == franchiseOwner
 									td.text-center --
 								else
-									td.text-center #{headToHead[franchiseOwner][opponentOwner].wins}-#{headToHead[franchiseOwner][opponentOwner].losses}
+									td.text-center
+										-
+											var gamesTable = '<div class="text-nowrap text-left">';
+											gamesTable += headToHead[franchiseOwner][opponentOwner].games.join('<br />');
+											gamesTable += '</div>';
+
+										a(href='#' data-toggle='tooltip' data-placement='right' data-html='true' title=gamesTable) #{headToHead[franchiseOwner][opponentOwner].wins}-#{headToHead[franchiseOwner][opponentOwner].losses}
