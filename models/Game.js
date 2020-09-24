@@ -90,6 +90,16 @@ var gameSchema = new Schema({
 				}
 			}
 		}
+	},
+	winner: {
+		franchiseId: { type: Number, required: true },
+		name: { type: String, required: true },
+		score: { type: Number },
+	},
+	loser: {
+		franchiseId: { type: Number, required: true },
+		name: { type: String, required: true },
+		score: { type: Number },
 	}
 });
 

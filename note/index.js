@@ -203,6 +203,9 @@ Promise.all(dataPromises).then(function(values) {
 	console.log("\t" + 'HIGH_SCORERS_CORNER_DITTY');
 	console.log();
 
+	console.log('Co-Host\'s Final Thoughts');
+	console.log();
+
 	console.log('Plugs');
 	console.log("\t" + '@PsoScuttlebutt');
 	console.log("\t" + 'Websites');
