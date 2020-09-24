@@ -5,6 +5,7 @@ cd ~/Workspace/PSO
 cd data
 node index.js 2020
 cd scripts
+mongo pso_dev marginOfVictory.js
 mongo pso_dev playoffAppearances.js
 mongo pso_dev recordOccurrences.js
 mongo pso_dev regularSeasonWinningPercentage.js
