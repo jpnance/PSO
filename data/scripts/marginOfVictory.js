@@ -1,5 +1,5 @@
 var marginOfVictoryMap = function() {
-	var key = [this.season, this.week, this.home.name, this.away.name].join('-');
+	var key = [this.season, this.week, this.winner.name, this.loser.name].join('-');
 
 	emit(key, Math.abs(this.home.score - this.away.score) * (this.season < 2012 ? 0.1 : 1));
 };
