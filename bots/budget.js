@@ -268,10 +268,10 @@ Promise.all(teamPromises).then((values) => {
 	var postPromises = [];
 
 	values.forEach(value => {
-		if (value.fantraxBudget) {
+		if (value.fantraxBudget != null) {
 			teamData[value.fantraxId].fantraxBudget = value.fantraxBudget;
 		}
-		else if (value.sheetsBudget) {
+		else if (value.sheetsBudget != null) {
 			teamData[value.fantraxId].sheetsBudget = value.sheetsBudget;
 		}
 	});
