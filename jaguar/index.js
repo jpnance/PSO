@@ -24,6 +24,7 @@ var franchiseMappings = {
 	'Brett/Luke': 'Luke',
 	'Jake/Luke': 'Luke',
 	'Keyon': 'Keyon',
+	'Luke': 'Luke',
 	'Pat/Quinn': 'Patrick',
 	'Patrick': 'Patrick',
 	'Schex': 'Schex',

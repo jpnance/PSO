@@ -1,11 +1,13 @@
+var dotenv = require('dotenv').config({ path: '../.env' });
+
 var mongoOwners = {
 	'Patrick': 'patrick',
 	'Koci/Mueller': 'kociMueller',
-	'Syed/Kuan': 'syedKuan',
+	'Luke': 'luke',
 	'John/Zach': 'johnZach',
 	'Trevor': 'trevor',
 	'Keyon': 'keyon',
-	'Brett/Luke': 'brettLuke',
+	'Brett': 'brett',
 	'Terence': 'terence',
 	'James/Charles': 'jamesCharles',
 	'Schex': 'schex',
@@ -110,7 +112,7 @@ mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
 	var games = db.collection('games');
 	var startWithWeek = 0;
 
-	games.find({ season: 2019 }).toArray(function(err, docs) {
+	games.find({ season: process.env.SEASON }).toArray(function(err, docs) {
 		for (var i in docs) {
 			var doc = docs[i];
 
@@ -354,16 +356,16 @@ function extend() {
     }
 
 var owners = {
-	brettLuke: { id: 'brettLuke', name: 'Brett/Luke' },
+	brett: { id: 'brett', name: 'Brett' },
 	jamesCharles: { id: 'jamesCharles', name: 'James/Charles' },
 	johnZach: { id: 'johnZach', name: 'John/Zach' },
 	keyon: { id: 'keyon', name: 'Keyon' },
 	kociMueller: { id: 'kociMueller', name: 'Koci/Mueller' },
+	luke: { id: 'luke', name: 'Luke' },
 	mitch: { id: 'mitch', name: 'Mitch' },
 	patrick: { id: 'patrick', name: 'Patrick' },
 	quinn: { id: 'quinn', name: 'Quinn' },
 	schex: { id: 'schex', name: 'Schex' },
-	syedKuan: { id: 'syedKuan', name: 'Syed/Kuan' },
 	terence: { id: 'terence', name: 'Terence' },
 	trevor: { id: 'trevor', name: 'Trevor' }
 }

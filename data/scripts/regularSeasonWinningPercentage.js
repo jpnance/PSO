@@ -1,7 +1,8 @@
 var regularSeasonWinningPercentageMap = function() {
 	var regimes = {
 		'Charles': 'James/Charles',
-		'Jake/Luke': 'Brett/Luke',
+		'Brett/Luke': 'Luke',
+		'Jake/Luke': 'Luke',
 		'John': 'John/Zach',
 		'Koci': 'Koci/Mueller',
 		'Pat/Quinn': 'Patrick',
