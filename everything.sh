@@ -11,6 +11,8 @@ mongo pso_dev recordOccurrences.js
 mongo pso_dev regularSeasonWinningPercentage.js
 mongo pso_dev regularSeasonWins.js
 mongo pso_dev weeklyScoringTitles.js
+mongo pso_dev highestScoringLosses.js
+mongo pso_dev lowestScoringWins.js
 cd ..
 cd ..
 
