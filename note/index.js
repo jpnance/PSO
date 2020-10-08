@@ -103,15 +103,15 @@ Promise.all(dataPromises).then(function(values) {
 
 		console.log("\t" + winner.name + ' ' + (winner.name.indexOf('/') != -1 ? 'defeat' : 'defeats') + ' ' + loser.name + ', ' + winner.score.toFixed(2) + ' to ' + loser.score.toFixed(2));
 		console.log("\t\t" + winner.name);
-		console.log("\t\t\t" + 'RPO_HOST_' + n + ' offered PLAYER_1 and PLAYER_2');
-		console.log("\t\t\t" + 'RPO_HOST_' + (n + 1) + ' selected PLAYER_1 (PLAYER_1_SCORE)');
-		console.log("\t\t\t" + 'RPO_HOST_' + n + ' received PLAYER_2 (PLAYER_2_SCORE)');
+		console.log("\t\t\t" + 'RPO_' + (2 * n) + '_HOST offered PLAYER_1 and PLAYER_2');
+		console.log("\t\t\t" + 'RPO_' + ((2 * n) + 1) + '_HOST selected PLAYER_1 (PLAYER_1_SCORE)');
+		console.log("\t\t\t" + 'RPO_' + (2 * n) + '_HOST received PLAYER_2 (PLAYER_2_SCORE)');
 		console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses);
 		console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
 		console.log("\t\t" + loser.name);
-		console.log("\t\t\t" + 'RPO_HOST_' + (n + 1) + ' offered PLAYER_1 and PLAYER_2');
-		console.log("\t\t\t" + 'RPO_HOST_' + n + ' selected PLAYER_1 (PLAYER_1_SCORE)');
-		console.log("\t\t\t" + 'RPO_HOST_' + (n + 1) + ' received PLAYER_2 (PLAYER_2_SCORE)');
+		console.log("\t\t\t" + 'RPO_' + ((2 * n) + 1) + '_HOST offered PLAYER_1 and PLAYER_2');
+		console.log("\t\t\t" + 'RPO_' + (2 * n) + '_HOST selected PLAYER_1 (PLAYER_1_SCORE)');
+		console.log("\t\t\t" + 'RPO_' + ((2 * n) + 1) + '_HOST received PLAYER_2 (PLAYER_2_SCORE)');
 		console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses);
 		console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
 		console.log("\t\t" + 'RPO_MATCHUP_SUMMARY');
