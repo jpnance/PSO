@@ -1,4 +1,4 @@
-var allPlayDistroMap = function() {
+var allPlayDistributionMap = function() {
 	var winner, loser;
 
 	if (this.away.score > this.home.score) {
@@ -17,7 +17,7 @@ var allPlayDistroMap = function() {
 	emit(loserRecord, { wins: 0, losses: 1, ties: 0 });
 };
 
-var allPlayDistroReduce = function(key, results) {
+var allPlayDistributionReduce = function(key, results) {
 	var wins = 0;
 	var losses = 0;
 
@@ -29,10 +29,15 @@ var allPlayDistroReduce = function(key, results) {
 	return { wins: wins, losses: losses, ties: 0 };
 };
 
-var allPlayDistroQuery = {
+var allPlayDistributionFinalize = function(key, reduction) {
+	reduction.wpct = parseFloat((reduction.wins / (reduction.wins + reduction.losses)).toFixed(3));
+	return reduction;
+};
+
+var allPlayDistributionQuery = {
 	type: 'regular',
 	'away.score': { '$exists': true },
 	'home.score': { '$exists': true }
 };
 
-db.games.mapReduce(allPlayDistroMap, allPlayDistroReduce, { out: 'allPlayDistro', query: allPlayDistroQuery, sort: { season: 1, week: 1 } });
+db.games.mapReduce(allPlayDistributionMap, allPlayDistributionReduce, { out: 'allPlayDistribution', query: allPlayDistributionQuery, finalize: allPlayDistributionFinalize, sort: { season: 1, week: 1 } });
