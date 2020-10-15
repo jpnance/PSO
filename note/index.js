@@ -193,6 +193,8 @@ Promise.all(dataPromises).then(function(values) {
 		console.log("\t\t" + 'NOTE_ABOUT_' + home.name.toUpperCase().replace(/\//, ''));
 		console.log("\t\t" + 'HOST_1 takes ' + away.name); 
 		console.log("\t\t" + 'HOST_2 takes ' + home.name);
+		console.log("\t\t" + 'Pat projection: PAT_PROJECTION');
+		console.log("\t\t" + (cohost || 'COHOST') + ' prediction');
 	});
 
 	console.log();
@@ -209,7 +211,7 @@ Promise.all(dataPromises).then(function(values) {
 	console.log('Plugs');
 	console.log("\t" + '@PsoScuttlebutt');
 	console.log("\t" + 'Websites');
-	console.log("\t" + 'Good luck with your fantasy in Week ' + week + ', everybody! We will talk to you next week!');
+	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in Week ' + week + ', everybody! We will talk to you next week!');
 
 	mongoose.disconnect();
 });
