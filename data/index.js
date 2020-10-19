@@ -20,6 +20,21 @@ var PSO = require('../pso.js');
 
 var weekScores = {};
 
+var hackScores = {
+	1: 127.69,
+	2: 141.63,
+	3: 121.50,
+	4: 162.85,
+	5: 153.10,
+	6: 193.07,
+	7: 120.56,
+	8: 133.59,
+	9: 158.22,
+	10: 146.18,
+	11: 143.44,
+	12: 170.38
+};
+
 var newWeekPromise = function(week) {
 	return new Promise(function(resolve, reject) {
 		request
@@ -51,6 +66,13 @@ var newWeekPromise = function(week) {
 
 					matchup.away.score = teamStatsMap[teamIds[0]].ACTIVE.totalFpts;
 					matchup.home.score = teamStatsMap[teamIds[1]].ACTIVE.totalFpts;
+
+					// delete these lines whenever fantrax gets it together
+					if (week == 5) {
+						matchup.away.score = hackScores[matchup.away.franchiseId];
+						matchup.home.score = hackScores[matchup.home.franchiseId];
+					}
+					// those lines up there, none of the next ones
 
 					if (week <= 14) {
 						matchup.type = 'regular';
