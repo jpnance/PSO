@@ -108,11 +108,11 @@ var results = {};
 
 var mongo = require('mongodb').MongoClient;
 
-mongo.connect('mongodb://localhost:27017/pso_dev', function(err, db) {
+mongo.connect(process.env.MONGODB_URI, function(err, db) {
 	var games = db.collection('games');
 	var startWithWeek = 0;
 
-	games.find({ season: process.env.SEASON }).toArray(function(err, docs) {
+	games.find({ season: parseInt(process.env.SEASON) }).toArray(function(err, docs) {
 		for (var i in docs) {
 			var doc = docs[i];
 
@@ -405,7 +405,6 @@ function breakGroupTies(group) {
 		return groupCopy;
 	}
 	else {
-		// first, compute the mutual wins/losses within the group
 		for (ownerId in groupCopy) {
 			var owner = groupCopy[ownerId];
 
@@ -424,69 +423,48 @@ function breakGroupTies(group) {
 			}
 		}
 
-		// second, see if the same number of games within the group have been played
-		var groupGames = groupCopy[0].wins + groupCopy[0].losses + groupCopy[0].ties;
-		var equalGames = true;
+		var groups = {};
 
 		for (ownerId in groupCopy) {
 			var owner = groupCopy[ownerId];
+			var games = owner.wins + owner.losses;
+			var winPct = (games > 0) ? (owner.wins / games) : 0;
+			var winPct = winPct.toFixed(3);
 
-			if (owner.wins + owner.losses + owner.ties != groupGames) {
-				equalGames = false;
+			if (!groups[winPct]) {
+				groups[winPct] = [];
 			}
+
+			groups[winPct].push(owner);
 		}
 
-		if (equalGames) {
-			var groups = {};
+		var returnGroups = [];
+		var keys = [];
 
-			for (ownerId in groupCopy) {
-				var owner = groupCopy[ownerId];
-				var games = owner.wins + owner.losses;
-				var winPct = (games > 0) ? (owner.wins / games) : -1;
-				var winPct = winPct.toFixed(3);
-
-				if (!groups[winPct]) {
-					groups[winPct] = [];
-				}
-
-				groups[winPct].push(owner);
-			}
-
-			var returnGroups = [];
-			var keys = [];
-
-			for (groupId in groups) {
-				keys.push(groupId);
-			}
-
-			keys = keys.sort();
-
-			if (keys.length == 1) {
-				var group = groups[keys[0]];
-				group.sort(ownerPointsSort);
-
-				var winner = group.shift();
-				if (debug) console.log('debug', winner.name, winner.tiebreaker, group.length);
-
-				return breakGroupTies(group).concat([winner]);
-			}
-
-			for (keyId in keys) {
-				var group = groups[keys[keyId]];
-
-				returnGroups = returnGroups.concat(breakGroupTies(group));
-			}
-
-			return returnGroups;
+		for (groupId in groups) {
+			keys.push(groupId);
 		}
-		else {
-			groupCopy.sort(ownerPointsSort);
 
-			var winner = groupCopy.shift();
-			if (debug) console.log('debug', winner.name, winner.tiebreaker, groupCopy.length);
+		keys = keys.sort();
 
-			return breakGroupTies(groupCopy).concat([winner]);
+		if (keys.length == 1) {
+			var group = groups[keys[0]];
+			group.sort(ownerPointsSort);
+
+			return group;
+			var winner = group.shift();
+			if (debug) console.log('debug', winner.name, winner.tiebreaker, group.length);
+
+			return breakGroupTies(group).concat([winner]);
 		}
+
+		for (keyId in keys) {
+			var group = groups[keys[keyId]];
+
+			returnGroups = returnGroups.concat(breakGroupTies(group));
+		}
+
+		return returnGroups;
 	}
 }
 
@@ -858,6 +836,10 @@ function initializeOwners() {
 }
 
 function generateScore(owner) {
+	if (!owner.stdev) {
+		return owner.average;
+	}
+
 	var sum = 0;
 
 	for (var i = 0; i < 12; i++) {
