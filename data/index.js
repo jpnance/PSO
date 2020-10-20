@@ -21,18 +21,34 @@ var PSO = require('../pso.js');
 var weekScores = {};
 
 var hackScores = {
-	1: 127.69,
-	2: 141.63,
-	3: 121.50,
-	4: 162.85,
-	5: 153.10,
-	6: 193.07,
-	7: 120.56,
-	8: 133.59,
-	9: 158.22,
-	10: 146.18,
-	11: 143.44,
-	12: 170.38
+	5: {
+		1: 127.69,
+		2: 141.63,
+		3: 121.50,
+		4: 162.85,
+		5: 153.10,
+		6: 193.07,
+		7: 120.56,
+		8: 133.59,
+		9: 158.22,
+		10: 146.18,
+		11: 143.44,
+		12: 170.38
+	},
+	6: {
+		1: 155.34,
+		2: 110.16,
+		3: 129.70,
+		4: 111.04,
+		5: 102.64,
+		6: 145.64,
+		7: 121.88,
+		8: 186.99,
+		9: 180.10,
+		10: 114.46,
+		11: 106.30,
+		12: 113.04
+	}
 };
 
 var newWeekPromise = function(week) {
@@ -68,9 +84,9 @@ var newWeekPromise = function(week) {
 					matchup.home.score = teamStatsMap[teamIds[1]].ACTIVE.totalFpts;
 
 					// delete these lines whenever fantrax gets it together
-					if (week == 5) {
-						matchup.away.score = hackScores[matchup.away.franchiseId];
-						matchup.home.score = hackScores[matchup.home.franchiseId];
+					if (week == 5 || week == 6) {
+						matchup.away.score = hackScores[week][matchup.away.franchiseId];
+						matchup.home.score = hackScores[week][matchup.home.franchiseId];
 					}
 					// those lines up there, none of the next ones
 
