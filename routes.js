@@ -1,4 +1,5 @@
 var auction = require('./auction/service.js');
+var simulator = require('./simulator/service.js');
 
 module.exports = function(app) {
 	app.get('/', function(request, response) {
@@ -16,4 +17,7 @@ module.exports = function(app) {
 
 	app.post('/auction/bid', auction.makeBid);
 	app.post('/auction/nominate', auction.nominatePlayer);
+
+	app.post('/simulator', simulator.filterByConditions);
+	app.post('/simulator/:conditions', simulator.filterByConditions);
 };

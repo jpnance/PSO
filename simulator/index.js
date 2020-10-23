@@ -1,5 +1,7 @@
 var dotenv = require('dotenv').config({ path: '../.env' });
 
+var PSO = require('../pso');
+
 var mongoOwners = {
 	'Patrick': 'patrick',
 	'Koci/Mueller': 'kociMueller',
@@ -15,6 +17,21 @@ var mongoOwners = {
 	'Mitch': 'mitch'
 };
 
+var ownerFranchiseIds = {
+	'patrick': 1,
+	'kociMueller': 2,
+	'luke': 3,
+	'johnZach': 4,
+	'trevor': 5,
+	'keyon': 6,
+	'brett': 7,
+	'terence': 8,
+	'jamesCharles': 9,
+	'schex': 10,
+	'quinn': 11,
+	'mitch': 12
+};
+
 var manualWinners = {};
 var manualLosers = {};
 var adjustments = {};
@@ -23,6 +40,7 @@ var trials = 100;
 var debug = false;
 var render = false;
 var cutoff = null;
+var simulationData = { owners: {}, simulations: [] };
 
 process.argv.forEach(function(value, index, array) {
 	if (index > 1) {
@@ -123,7 +141,9 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 			var game = { away: {}, home: {} };
 
 			game['away']['owner'] = mongoOwners[away['name']];
+			game['away']['franchiseId'] = away['franchiseId'];
 			game['home']['owner'] = mongoOwners[home['name']];
+			game['home']['franchiseId'] = home['franchiseId'];
 
 			if (manualWinners && manualWinners[week] && (manualWinners[week].indexOf(away['name']) != -1 || manualWinners[week].indexOf(home['name']) != -1)) {
 				if (manualWinners[week].indexOf(away['name']) != -1) {
@@ -191,8 +211,6 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 			console.log();
 			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out" + "\t" + "Poss. Finishes");
 
-			var pugResults = [];
-
 			for (ownerId in owners) {
 				var owner = owners[ownerId];
 
@@ -239,21 +257,13 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 				}
 
 				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate + "\t\t" + finishesString);
-
-				for (var n = 1; n <= 12; n++) {
-					if (!owner.finishes[n]) {
-						owner.finishes[n] = 0;
-					}
-				}
-
-				pugResults.push({ owner: owner, playoffs: inPct, decision: firstPct, firstPick: lastPct, avgFinish: avgFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, finishesString: finishesString });
 			}
 
 			if (render) {
 				var fs = require('fs');
 				var pug = require('pug');
-				var compiledPug = pug.compileFile('../views/sim.pug');
-				fs.writeFileSync('../public/simulator/index.html', compiledPug({ results: pugResults, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+				var compiledPug = pug.compileFile('../views/simulator.pug');
+				fs.writeFileSync('../public/simulator/index.html', compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 			}
 
 			console.log();
@@ -471,10 +481,18 @@ function breakGroupTies(group) {
 function simulate(trials) {
 	for (var i = 0; i < trials; i++) {
 		var ownersCopy = extend(true, {}, owners);
+		var simulation = {
+			w: {},
+			s: []
+		};
 
 		for (weekId in schedule) {
 			if (weekId > 14) {
 				continue;
+			}
+
+			if (!simulation.w[weekId]) {
+				simulation.w[weekId] = [];
 			}
 
 			var week = schedule[weekId];
@@ -530,6 +548,8 @@ function simulate(trials) {
 					homeOwner.against[awayOwner.id].wins += 1;
 
 					game.home.wins += 1;
+
+					simulation.w[weekId].push(ownerFranchiseIds[game.home.owner]);
 				}
 				else if (game.winner == game.away.owner) {
 					awayOwner.wins += 1;
@@ -539,6 +559,8 @@ function simulate(trials) {
 					homeOwner.against[awayOwner.id].losses += 1;
 
 					game.away.wins +=1;
+
+					simulation.w[weekId].push(ownerFranchiseIds[game.away.owner]);
 				}
 				else if (homeScore > awayScore) {
 					awayOwner.losses += 1;
@@ -548,6 +570,8 @@ function simulate(trials) {
 					homeOwner.against[awayOwner.id].wins += 1;
 
 					game.home.wins +=1;
+
+					simulation.w[weekId].push(ownerFranchiseIds[game.home.owner]);
 				}
 				else if (awayScore > homeScore) {
 					awayOwner.wins += 1;
@@ -557,6 +581,8 @@ function simulate(trials) {
 					homeOwner.against[awayOwner.id].losses += 1;
 
 					game.away.wins += 1;
+
+					simulation.w[weekId].push(ownerFranchiseIds[game.away.owner]);
 				}
 
 				ownersCopy[game.away.owner] = awayOwner;
@@ -568,6 +594,8 @@ function simulate(trials) {
 		if (debug) console.log(ownersCopy);
 
 		for (var j = 0; j < standings.length; j++) {
+			simulation.s.push({ id: ownerFranchiseIds[standings[j].id], w: ownersCopy[standings[j].id].wins, l: ownersCopy[standings[j].id].losses });
+
 			if (ownersCopy[standings[j].id].wins >= 10) {
 				owners[standings[j].id].tenWins++;
 			}
@@ -677,6 +705,8 @@ function simulate(trials) {
 			return;
 		}
 		*/
+
+		simulationData.simulations.push(simulation);
 	}
 }
 

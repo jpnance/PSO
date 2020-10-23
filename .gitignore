@@ -12,3 +12,5 @@ public/history/*
 public/jaguar/*
 public/rookies/*
 public/simulator/*
+
+simulator/simulationData.json
