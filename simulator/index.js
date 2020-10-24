@@ -264,6 +264,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 				var pug = require('pug');
 				var compiledPug = pug.compileFile('../views/simulator.pug');
 				fs.writeFileSync('../public/simulator/index.html', compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+				fs.writeFileSync('simulationData.json', JSON.stringify(simulationData));
 			}
 
 			console.log();
