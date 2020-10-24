@@ -203,7 +203,6 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 		initializeOwners();
 		simulate(trials);
 
-
 		if (untilConditions.length == 0) {
 			console.log();
 			console.log(JSON.stringify(schedule, null, "\t"));
@@ -863,6 +862,12 @@ function initializeOwners() {
 		}
 
 		owner.stdev = Math.sqrt(variance / (games - 1));
+	}
+
+	for (ownerId in owners) {
+		var owner = owners[ownerId];
+
+		simulationData.owners[ownerFranchiseIds[ownerId]] = { id: ownerFranchiseIds[ownerId], wins: owner.wins, losses: owner.losses };
 	}
 }
 
