@@ -18,3 +18,25 @@ html
 
 			div.row.col-12
 				table.table.table-hover.table-sm
+
+			each games, week in schedule
+				div.row.col-12
+					h5 Week #{week}
+
+					div.mb-4.col-12
+						each game in games
+							- var buttonName = 'week' + week + '-' + game.away.franchiseId + '-' + game.home.franchiseId;
+
+							div.btn-group.btn-group-toggle.mx-1(data-toggle='buttons')
+								label.btn.btn-outline-primary.btn-sm
+									input(id='week' + week + '-' + game.away.franchiseId type='radio' name=buttonName value=week + ':' + game.away.franchiseId)
+									|
+									| #{franchises[game.away.franchiseId]}
+								label.btn.btn-outline-secondary.btn-sm.active
+									input(id='week' + week + '-0' type='radio' name=buttonName checked=true value='vs')
+									|
+									| vs.
+								label.btn.btn-outline-primary.btn-sm
+									input(id='week' + week + '-' + game.home.franchiseId type='radio' name=buttonName value=week + ':' + game.home.franchiseId)
+									|
+									| #{franchises[game.home.franchiseId]}
