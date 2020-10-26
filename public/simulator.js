@@ -24,6 +24,9 @@ var replaceTable = function() {
 };
 
 $(document).ready(function() {
+	$('label.winner.active').removeClass('active');
+	$('label.no-winner').click();
+
 	replaceTable();
 
 	$('div.btn-group').on('click', 'input', function(e) {
