@@ -42,11 +42,15 @@ let twitterPoll = function() {
 		}
 		else {
 			tweets.reverse();
+			tweets.shift();
 		}
 
 		if (tweets.length > 0) {
 			groupMePost('https://twitter.com/' + tweets[0].user.screen_name + '/status/' + tweets[0].id_str);
-			lastTweet.id = tweets[0].id;
+			lastTweet.id = tweets[0].id_str;
+		}
+		else {
+			console.log('No tweets since', lastTweet.id);
 		}
 	});
 };
