@@ -45,7 +45,6 @@ let twitterPoll = function() {
 		}
 		else {
 			tweets.reverse();
-			tweets.shift();
 		}
 
 		if (tweets.length > 0) {
