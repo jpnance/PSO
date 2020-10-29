@@ -38,7 +38,10 @@ let twitterPoll = function() {
 
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!lastTweet.id) {
-			tweets = [ tweets.shift() ];
+			let mostRecentTweet = tweets[0];
+
+			lastTweet.id = mostRecentTweet.id_str;
+			return;
 		}
 		else {
 			tweets.reverse();
@@ -48,9 +51,6 @@ let twitterPoll = function() {
 		if (tweets.length > 0) {
 			groupMePost('https://twitter.com/' + tweets[0].user.screen_name + '/status/' + tweets[0].id_str);
 			lastTweet.id = tweets[0].id_str;
-		}
-		else {
-			console.log('No tweets since', lastTweet.id);
 		}
 	});
 };
