@@ -1,4 +1,4 @@
-var dotenv = require('dotenv').config({ path: '../.env' });
+var dotenv = require('dotenv').config({ path: __dirname + '/../.env' });
 
 var request = require('superagent');
 
@@ -6,7 +6,7 @@ var Game = require('./models/Game');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/pso_dev', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 if (process.argv.length < 3) {
 	console.log('Invalid season');
