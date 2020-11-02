@@ -1,3 +1,12 @@
+table th {
+	white-space: nowrap;
+}
+
+span.finishes {
+	color: #007bff;
+	cursor: pointer;
+}
+
 div.never {
 	color: #222222;
 }

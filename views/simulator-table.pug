@@ -5,13 +5,16 @@ table.table.table-hover.table-sm
 		th.text-right The Decision
 		th.text-right First Pick
 		th.text-right Finishes
-		th.text-right 8-6 and Out
-		th.text-right 9-5 and Out
-		th.text-right 10-4 and Out
+		th.d-none.d-md-table-cell.text-right 8-6 and Out
+		th.d-none.d-md-table-cell.text-right 9-5 and Out
+		th.d-none.d-md-table-cell.text-right 10-4 and Out
 
 	each result in results
 		tr
-			td #{result.owner.name} (#{result.owner.wins}-#{result.owner.losses})
+			td #{result.owner.name}
+				|
+				|
+				span.d-none.d-md-inline (#{result.owner.wins}-#{result.owner.losses})
 			td.text-right #{result.playoffs.toFixed(3)}
 			td.text-right #{result.decision.toFixed(3)}
 			td.text-right #{result.firstPick.toFixed(3)}
@@ -74,18 +77,18 @@ table.table.table-hover.table-sm
 							finishTable += '</div>';
 						}
 					}
-				a(href='#' data-toggle='tooltip' data-placement='right' data-html='true' title=finishTable) #{result.finishesString}
-			td.text-right
+				span.finishes(data-toggle='tooltip' data-placement='right' data-html='true' title=finishTable) #{result.finishesString}
+			td.d-none.d-md-table-cell.text-right
 				if result.eightAndOut != '--'
 					| #{result.eightAndOut.toFixed(3)}
 				else
 					| --
-			td.text-right
+			td.d-none.d-md-table-cell.text-right
 				if result.nineAndOut != '--'
 					| #{result.nineAndOut.toFixed(3)}
 				else
 					| --
-			td.text-right
+			td.d-none.d-md-table-cell.text-right
 				if result.tenAndOut != '--'
 					| #{result.tenAndOut.toFixed(3)}
 				else
