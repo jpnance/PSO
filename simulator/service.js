@@ -5,6 +5,7 @@ var compiledPug = pug.compileFile('views/simulator-table.pug');
 var PSO = require('../pso');
 
 var data = null;
+var simulationData = null;
 var resultsCache = {};
 
 var niceFinish = function(finish) {
@@ -62,7 +63,8 @@ var parseConditions = function(conditionsString) {
 module.exports.filterByConditions = function(request, response) {
 	if (!data) {
 		try {
-			var data = fs.readFileSync('simulator/simulationData.json', 'utf8');
+			data = fs.readFileSync('simulator/simulationData.json', 'utf8');
+			simulationData = JSON.parse(data);
 		}
 		catch (error) {
 			response.status(500).send({ lol: error });
@@ -70,7 +72,6 @@ module.exports.filterByConditions = function(request, response) {
 		}
 	}
 
-	var simulationData = JSON.parse(data);
 
 	var conditions = parseConditions(request.params.conditions || '');
 	var conditionsCacheKey = JSON.stringify(conditions);
@@ -236,8 +237,7 @@ module.exports.filterByConditions = function(request, response) {
 		}
 	});
 
-	//console.log(pugResults);
-	resultsCache[conditionsCacheKey] = compiledPug({ results: pugResults, options: { startWithWeek: 7, trials: filteredSimulations.length } });
+	resultsCache[conditionsCacheKey] = compiledPug({ results: pugResults, options: { trials: filteredSimulations.length } });
 
 	response.send(resultsCache[conditionsCacheKey]);
 	return;
