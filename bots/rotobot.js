@@ -1,4 +1,5 @@
 let request = require('superagent');
+
 let lastMessage = {
 	id: null
 };
