@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 	replaceTable();
 
-	$('div.btn-group').on('click', 'input', function(e) {
+	$('div.btn-group-vertical').on('click', 'input', function(e) {
 		$('table').animate({ opacity: 0.3 }, 100, 'linear', replaceTable);
 	});
 });
