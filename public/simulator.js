@@ -13,8 +13,8 @@ var gatherConditions = function() {
 	return conditions;
 };
 
-var replaceTable = function() {
-	var conditions = gatherConditions();
+var replaceTable = function(conditions) {
+	var conditions = conditions || gatherConditions();
 	console.log(conditions);
 
 	$.post('/simulator/' + conditions.join(','), function(data) {
@@ -25,9 +25,8 @@ var replaceTable = function() {
 
 $(document).ready(function() {
 	$('label.winner.active').removeClass('active');
-	$('label.no-winner').click();
 
-	replaceTable();
+	replaceTable([]);
 
 	$('div.btn-group-vertical').on('click', 'input', function(e) {
 		$('table').animate({ opacity: 0.3 }, 100, 'linear', replaceTable);
