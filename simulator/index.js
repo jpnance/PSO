@@ -40,6 +40,7 @@ var trials = 100;
 var debug = false;
 var render = false;
 var cutoff = null;
+var viewOnly = false;
 var simulationData = { owners: {}, simulations: [] };
 
 process.argv.forEach(function(value, index, array) {
@@ -114,6 +115,10 @@ process.argv.forEach(function(value, index, array) {
 
 			case 'render':
 				render = true;
+				break;
+
+			case 'viewonly':
+				viewOnly = true;
 				break;
 		}
 	}
@@ -201,6 +206,15 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 		}
 
 		initializeOwners();
+
+		if (viewOnly) {
+			var fs = require('fs');
+			var pug = require('pug');
+			var compiledPug = pug.compileFile('../views/simulator.pug');
+			fs.writeFileSync('../public/simulator/index.html', compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+			process.exit();
+		}
+
 		simulate(trials);
 
 		if (untilConditions.length == 0) {
