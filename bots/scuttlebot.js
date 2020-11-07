@@ -13,7 +13,7 @@ let client = new Twitter({
 let interval = 60000;
 
 let last = {
-	groupMeMessage: {
+	newsItem: {
 		id: null
 	},
 	tweet: {
@@ -51,15 +51,15 @@ let rotoPoll = function() {
 		.then(response => {
 			let newsItemId = JSON.parse(response.text).data[0].attributes.drupal_internal__id;
 
-			if (!last.groupMeMessage.id) {
-				last.groupMeMessage.id = newsItemId;
+			if (!last.newsItem.id) {
+				last.newsItem.id = newsItemId;
 				return;
 			}
 
-			if (newsItemId != last.groupMeMessage.id) {
+			if (newsItemId != last.newsItem.id) {
 				groupMePost('https://www.rotoworld.com/football/nfl/player-news/' + newsItemId);
 
-				last.groupMeMessage.id = newsItemId;
+				last.newsItem.id = newsItemId;
 			}
 		});
 };
