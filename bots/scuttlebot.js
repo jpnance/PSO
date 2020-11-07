@@ -13,6 +13,9 @@ let client = new Twitter({
 let interval = 60000;
 
 let last = {
+	psoBlogPost: {
+		link: null
+	},
 	newsItem: {
 		id: null
 	},
@@ -27,9 +30,39 @@ let groupMePost = function(post) {
 		.send({ bot_id: process.env.GROUPME_BOT_TOKEN, text: post })
 		.then(response => {
 			console.log(post);
+			process.exit();
 		})
 		.catch(error => {
 			console.log(error);
+		});
+};
+
+let psoBlogPoll = function() {
+	request
+		.get('https://thedynastyleague.wordpress.com/feed/')
+		.then(response => {
+			let feedString = response.body.toString();
+
+			feedString = feedString.replace(/\r\n/g, '');
+			feedString = feedString.replace(/\n/g, '');
+
+			let entryRegexp = /<item>(.*?)<\/item>/;
+			let entryMatch = entryRegexp.exec(feedString);
+
+			let linkRegexp = /<link>(.*?)<\/link>/;
+			let linkMatch = linkRegexp.exec(entryMatch[1]);
+
+			let link = linkMatch[1];
+
+			if (!last.psoBlogPost.link) {
+				last.psoBlogPost.link = link;
+			}
+
+			if (link != last.psoBlogPost.link) {
+				groupMePost(link);
+
+				last.psoBlogPost.link = link;
+			}
 		});
 };
 
@@ -94,3 +127,4 @@ let twitterPoll = function() {
 
 setInterval(twitterPoll, interval);
 setInterval(rotoPoll, interval);
+setInterval(psoBlogPoll, interval);
