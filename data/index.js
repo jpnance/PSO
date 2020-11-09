@@ -83,13 +83,6 @@ var newWeekPromise = function(week) {
 					matchup.away.score = teamStatsMap[teamIds[0]].ACTIVE.totalFpts;
 					matchup.home.score = teamStatsMap[teamIds[1]].ACTIVE.totalFpts;
 
-					// delete these lines whenever fantrax gets it together
-					if (week == 5 || week == 6) {
-						matchup.away.score = hackScores[week][matchup.away.franchiseId];
-						matchup.home.score = hackScores[week][matchup.home.franchiseId];
-					}
-					// those lines up there, none of the next ones
-
 					if (week <= 14) {
 						matchup.type = 'regular';
 					}
