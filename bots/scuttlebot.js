@@ -30,7 +30,6 @@ let groupMePost = function(post) {
 		.send({ bot_id: process.env.GROUPME_BOT_TOKEN, text: post })
 		.then(response => {
 			console.log(post);
-			process.exit();
 		})
 		.catch(error => {
 			console.log(error);
