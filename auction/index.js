@@ -2,7 +2,16 @@ var dotenv = require('dotenv').config({ path: '../.env' });
 
 var request = require('superagent');
 
-var render = false;
+var parameters = {
+	render: false,
+	season: parseInt(process.env.SEASON),
+	site: 'pso'
+};
+
+var sheetLinks = {
+	pso: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
+	colbys: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json'
+};
 
 process.argv.forEach(function(value, index, array) {
 	if (index > 1) {
@@ -10,7 +19,15 @@ process.argv.forEach(function(value, index, array) {
 
 		switch (pair[0]) {
 			case 'render':
-				render = true;
+				parameters.render = true;
+				break;
+
+			case 'season':
+				parameters.season = parseInt(pair[1]);
+				break;
+
+			case 'site':
+				parameters.site = pair[1];
 				break;
 		}
 	}
@@ -22,7 +39,7 @@ var positions = [];
 var situations = [];
 
 request
-	.get('https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json')
+	.get(sheetLinks[parameters.site])
 	.then(response => {
 		var dataJson = JSON.parse(response.text);
 
@@ -52,8 +69,8 @@ request
 				salary: row[7]
 			};
 
-			if (player.end == '2020') {
-				if (player.start == '2018' || player.start == '2019') {
+			if (player.end == parameters.season) {
+				if (player.start == parameters.season - 2 || player.start == parameters.season - 1) {
 					player.situation = 'RFA-' + player.owner;
 				}
 				else {
@@ -89,7 +106,7 @@ request
 		positions.sort();
 		situations.sort();
 
-		if (render) {
+		if (parameters.render) {
 			var fs = require('fs');
 			var pug = require('pug');
 			var compiledPug = pug.compileFile('../views/auction.pug');
