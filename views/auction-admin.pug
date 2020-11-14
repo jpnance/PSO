@@ -46,7 +46,7 @@ html
 						select#player-list.form-control
 							option(value='--') --
 							each player in players
-								option(value=player.name + ',' + player.position + ',--,' + player.situation) #{player.name}
+								option(value=player.name + ',' + player.position + ',--,' + player.situation) #{player.name} (#{player.position}, #{player.situation})
 				div.form-row.justify-content-center.m-1
 					div.col-12.col-lg-6.text-center
 						input#name.form-control(type='text' name='name' placeholder='Name')
