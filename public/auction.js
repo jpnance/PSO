@@ -32,10 +32,31 @@ $(document).ready(function() {
 	});
 
 	$('#nomination-form').bind('submit', function(e) {
-		var newPlayer = { name: $(this).find('#name').val(), position: $(this).find('#position').val(), team: $(this).find('#team').val(), situation: $(this).find('#situation').val() };
+		var newPlayer = {
+			name: $(this).find('#name').val(),
+			position: $(this).find('#position').val(),
+			team: $(this).find('#team').val(),
+			situation: $(this).find('#situation').val()
+		};
 
 		e.preventDefault();
 		$.post('/auction/nominate', newPlayer, redrawAuctionClient);
+	});
+
+	$('#nomination-form #player-list').bind('change', function(e) {
+		var $this = $(e.target);
+
+		if ($this.val() != '--') {
+			var playerValues = $this.val().split(/,/);
+
+			$('#nomination-form #name').val(playerValues[0]);
+			$('#nomination-form #position').val(playerValues[1]);
+			$('#nomination-form #team').val(playerValues[2]);
+			$('#nomination-form #situation').val(playerValues[3]);
+		}
+		else {
+			$('#nomination-form #name').val('--');
+		}
 	});
 
 	$('#pop').bind('click', function(e) {

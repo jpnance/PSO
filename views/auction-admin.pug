@@ -42,6 +42,12 @@ html
 
 			form#nomination-form
 				div.form-row.justify-content-center.m-1
+					div.input-group.col-12.col-lg-6.text-center
+						select#player-list.form-control
+							option(value='--') --
+							each player in players
+								option(value=player.name + ',' + player.position + ',--,' + player.situation) #{player.name}
+				div.form-row.justify-content-center.m-1
 					div.col-12.col-lg-6.text-center
 						input#name.form-control(type='text' name='name' placeholder='Name')
 				div.form-row.justify-content-center.m-1
@@ -49,18 +55,12 @@ html
 						div.row
 							div.col-4
 								select#position.form-control(name='position')
-									option(value='QB') QB
-									option(value='RB') RB
-									option(value='RB/WR') RB/WR
-									option(value='WR') WR
-									option(value='TE') TE
-									option(value='DL') DL
-									option(value='DL/LB') DL/LB
-									option(value='LB') LB
-									option(value='DB') DB
-									option(value='K') K
+									option(value='--') --
+									each position in positions
+										option(value=position) #{position}
 							div.col-4
 								select#team.form-control(name='team')
+									option(value='--') --
 									option(value='ARI') ARI
 									option(value='ATL') ATL
 									option(value='BAL') BAL
@@ -96,19 +96,9 @@ html
 									option(value='WAS') WAS
 							div.col-4
 								select#situation.form-control(name='situation')
-									option(value='UFA') UFA
-									option(value='RFA-Brett/Luke') RFA-Brett/Luke
-									option(value='RFA-James/Charles') RFA-James/Charles
-									option(value='RFA-John/Zach') RFA-John/Zach
-									option(value='RFA-Keyon') RFA-Keyon
-									option(value='RFA-Koci/Mueller') RFA-Koci/Mueller
-									option(value='RFA-Mitch') RFA-Mitch
-									option(value='RFA-Patrick') RFA-Patrick
-									option(value='RFA-Quinn') RFA-Quinn
-									option(value='RFA-Schex') RFA-Schex
-									option(value='RFA-Syed/Kuan') RFA-Syed/Kuan
-									option(value='RFA-Terence') RFA-Terence
-									option(value='RFA-Trevor') RFA-Trevor
+									option(value='--') --
+									each situation in situations
+										option(value=situation) #{situation}
 				div.form-row.justify-content-center.m-1
 					div.col-6.text-center
 						input.btn.btn-primary(type='submit' value='Nominate')
