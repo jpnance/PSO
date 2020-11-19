@@ -60,6 +60,11 @@ var parseConditions = function(conditionsString) {
 	return conditions;
 };
 
+module.exports.bustCache = function(request, response) {
+	data = null;
+	response.redirect('/simulator');
+};
+
 module.exports.filterByConditions = function(request, response) {
 	if (!data) {
 		try {
