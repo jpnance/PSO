@@ -99,7 +99,8 @@ let rotoPoll = function() {
 let twitterPoll = function() {
 	let params = {
 		//user_id: '1055099514355437600'
-		screen_name: 'wojespn'
+		screen_name: 'wojespn',
+		include_rts: false
 	};
 
 	if (last.tweet.id) {
