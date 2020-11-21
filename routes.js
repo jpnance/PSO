@@ -19,6 +19,5 @@ module.exports = function(app) {
 	app.post('/auction/nominate', auction.nominatePlayer);
 
 	app.post('/simulator', simulator.filterByConditions);
-	app.get('/simulator/recache', simulator.bustCache);
 	app.post('/simulator/:conditions', simulator.filterByConditions);
 };

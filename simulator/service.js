@@ -4,8 +4,10 @@ var compiledPug = pug.compileFile('views/simulator-table.pug');
 
 var PSO = require('../pso');
 
-var data = null;
+var fileStats = null;
+var fileData = null;
 var simulationData = null;
+var lastModified = null;
 var resultsCache = {};
 
 var niceFinish = function(finish) {
@@ -60,19 +62,25 @@ var parseConditions = function(conditionsString) {
 	return conditions;
 };
 
-module.exports.bustCache = function(request, response) {
-	data = null;
-	response.redirect('/simulator');
-};
-
 module.exports.filterByConditions = function(request, response) {
-	if (!data) {
+	try {
+		fileStats = fs.statSync('simulator/simulationData.json');
+	}
+	catch (error) {
+		response.status(500).send({ error: error, message: 'Unable to get file stats for simulationData.json' });
+		return;
+	}
+
+	if (!lastModified || (fileStats.mtime != lastModified)) {
 		try {
-			data = fs.readFileSync('simulator/simulationData.json', 'utf8');
-			simulationData = JSON.parse(data);
+			fileData = fs.readFileSync('simulator/simulationData.json', 'utf8');
+
+			simulationData = JSON.parse(fileData);
+			lastModified = fileStats.mtime;
+			resultsCache = {};
 		}
 		catch (error) {
-			response.status(500).send({ lol: error });
+			response.status(500).send({ error: error, message: 'Unable to read simulationData.json' });
 			return;
 		}
 	}
