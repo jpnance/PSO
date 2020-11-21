@@ -71,12 +71,12 @@ module.exports.filterByConditions = function(request, response) {
 		return;
 	}
 
-	if (!lastModified || (fileStats.mtime != lastModified)) {
+	if (!lastModified || (fileStats.mtimeMs != lastModified)) {
 		try {
 			fileData = fs.readFileSync('simulator/simulationData.json', 'utf8');
 
 			simulationData = JSON.parse(fileData);
-			lastModified = fileStats.mtime;
+			lastModified = fileStats.mtimeMs;
 			resultsCache = {};
 		}
 		catch (error) {
