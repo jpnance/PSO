@@ -1,5 +1,7 @@
 var dotenv = require('dotenv').config({ path: '../.env' });
 
+var fs = require('fs');
+
 var Game = require('../models/Game');
 var Leaders = require('../models/Leaders');
 
@@ -16,6 +18,15 @@ if (process.argv.length < 3) {
 var week = parseInt(process.argv[2]);
 var cohost = process.argv[3];
 
+function niceRate(rate) {
+	if (rate == 1) {
+		return '1.000';
+	}
+	else {
+		return rate.toFixed(3).substring(1);
+	}
+}
+
 function ordinal(number) {
 	if (number == 1) {
 		return '1st';
@@ -31,16 +42,22 @@ function ordinal(number) {
 	}
 
 	return number;
-};
+}
 
 var dataPromises = [
 	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
-	Leaders.WeeklyScoringTitles.find().sort({ value: -1 })
+	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
 ];
 
 Promise.all(dataPromises).then(function(values) {
 	var games = values[0];
 	var scoringTitles = values[1];
+
+	var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
+
+	Object.keys(percentagesData).forEach(franchiseId => {
+		percentagesData[franchiseId].tripleSlash = niceRate(percentagesData[franchiseId].playoffs.neutral.rate) + '/' + niceRate(percentagesData[franchiseId].playoffs.withWin.rate) + '/' + niceRate(percentagesData[franchiseId].playoffs.withLoss.rate);
+	});
 
 	var lastWeek = games.filter(game => game.week == week - 1);
 	var thisWeek = games.filter(game => game.week == week);
@@ -110,13 +127,13 @@ Promise.all(dataPromises).then(function(values) {
 		console.log("\t\t\t" + 'RPO_' + (2 * n) + '_HOST offered PLAYER_1 and PLAYER_2');
 		console.log("\t\t\t" + 'RPO_' + ((2 * n) + 1) + '_HOST selected PLAYER_1 (PLAYER_1_SCORE)');
 		console.log("\t\t\t" + 'RPO_' + (2 * n) + '_HOST received PLAYER_2 (PLAYER_2_SCORE)');
-		console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses);
+		console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 ? ' (' + percentagesData[winner.franchiseId].tripleSlash + ')' : ''));
 		console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
 		console.log("\t\t" + loser.name);
 		console.log("\t\t\t" + 'RPO_' + ((2 * n) + 1) + '_HOST offered PLAYER_1 and PLAYER_2');
 		console.log("\t\t\t" + 'RPO_' + (2 * n) + '_HOST selected PLAYER_1 (PLAYER_1_SCORE)');
 		console.log("\t\t\t" + 'RPO_' + ((2 * n) + 1) + '_HOST received PLAYER_2 (PLAYER_2_SCORE)');
-		console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses);
+		console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 ? ' (' + percentagesData[loser.franchiseId].tripleSlash + ')' : ''));
 		console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
 		console.log("\t\t" + 'RPO_MATCHUP_SUMMARY');
 		console.log("\t\t" + 'Pat projection: WHICH_TEAM (RIGHTWRONG); ' + (cohost || 'COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
@@ -192,7 +209,12 @@ Promise.all(dataPromises).then(function(values) {
 			}
 		};
 
-		console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ')');
+		console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + (week > 7 ? ', ' + percentagesData[away.franchiseId].tripleSlash : '') + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + (week > 7 ? ', ' + percentagesData[home.franchiseId].tripleSlash : '') + ')');
+
+		if (week > 7) {
+			console.log("\t\t" + 'Interest level: ' + (percentagesData[away.franchiseId].interestLevel + percentagesData[home.franchiseId].interestLevel).toFixed(3));
+		}
+
 		console.log("\t\t" + 'NOTE_ABOUT_' + away.name.toUpperCase().replace(/\//, ''));
 		console.log("\t\t" + 'NOTE_ABOUT_' + home.name.toUpperCase().replace(/\//, ''));
 		console.log("\t\t" + 'HOST_1 takes ' + away.name); 
