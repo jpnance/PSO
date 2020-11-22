@@ -1,6 +1,7 @@
 var dotenv = require('dotenv').config({ path: '../.env' });
 
 var Game = require('../models/Game');
+var Leaders = require('../models/Leaders');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
@@ -33,21 +34,24 @@ function ordinal(number) {
 };
 
 var dataPromises = [
-	Game.find({ season: process.env.SEASON }).sort({ week: 1 })
+	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
+	Leaders.WeeklyScoringTitles.find().sort({ value: -1 })
 ];
 
 Promise.all(dataPromises).then(function(values) {
 	var games = values[0];
+	var scoringTitles = values[1];
 
 	var lastWeek = games.filter(game => game.week == week - 1);
 	var thisWeek = games.filter(game => game.week == week);
 	var nextWeeks = games.filter(game => game.week >= week && game.week <= week + 2);
 	var highScorerLastWeek = games.filter(game => game.week == (week - 1) && ((game.winner.franchiseId == game.home.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == game.away.franchiseId && game.away.record.allPlay.week.wins == 11)))[0];
 	var highScorerSeason = games.filter(game => ((game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.away.record.allPlay.week.wins == 11)));
+	var highScorerAllTime = scoringTitles.filter(leader => leader._id == highScorerLastWeek.winner.name)[0];
 
 	console.log('Intro');
 	console.log("\t" + 'Welcome to the PSO Show for Week ' + week + ' of the ' + process.env.SEASON + ' season!');
-	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOSTING'));
+	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
 	console.log("\t" + 'BANTER_PROMPT');
 	console.log();
 
@@ -202,6 +206,7 @@ Promise.all(dataPromises).then(function(values) {
 	console.log('High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
 	console.log("\t" + highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
 	console.log("\t" + ordinal(highScorerSeason.length) + ' scoring title this season');
+	console.log("\t" + ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
 	console.log("\t" + 'HIGH_SCORERS_CORNER_DITTY');
 	console.log();
 
