@@ -98,8 +98,7 @@ let rotoPoll = function() {
 
 let twitterPoll = function() {
 	let params = {
-		//user_id: '1055099514355437600'
-		screen_name: 'wojespn',
+		screen_name: 'Dynasty2Colbys',
 		include_rts: false
 	};
 
