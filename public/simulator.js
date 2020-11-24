@@ -15,7 +15,6 @@ var gatherConditions = function() {
 
 var replaceTable = function(conditions) {
 	var conditions = conditions || gatherConditions();
-	console.log(conditions);
 
 	$.post('/simulator/' + conditions.join(','), function(data) {
 		$('table').replaceWith(data);

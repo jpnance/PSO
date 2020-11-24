@@ -115,28 +115,28 @@ module.exports.filterByConditions = function(request, response) {
 	var pugResults = [];
 	var ownerSummary = {};
 
+	Object.keys(PSO.franchises).forEach(franchiseId => {
+		ownerSummary[franchiseId] = {
+			decision: 0,
+			firstPick: 0,
+			in: 0,
+			losses: 0,
+			eightWinMisses: 0,
+			eightWins: 0,
+			nineWinMisses: 0,
+			nineWins: 0,
+			out: 0,
+			tenWinMisses: 0,
+			tenWins: 0,
+			topPick: 0,
+			wins: 0,
+			finish: 0,
+			finishes: {}
+		};
+	});
+
 	filteredSimulations.forEach(filteredSimulation => {
 		filteredSimulation.s.forEach((standing, i) => {
-			if (!ownerSummary[standing.id]) {
-				ownerSummary[standing.id] = {
-					decision: 0,
-					firstPick: 0,
-					in: 0,
-					losses: 0,
-					eightWinMisses: 0,
-					eightWins: 0,
-					nineWinMisses: 0,
-					nineWins: 0,
-					out: 0,
-					tenWinMisses: 0,
-					tenWins: 0,
-					topPick: 0,
-					wins: 0,
-					finish: 0,
-					finishes: {}
-				};
-			}
-
 			if (standing.w >= 10) {
 				ownerSummary[standing.id].tenWins++;
 			}

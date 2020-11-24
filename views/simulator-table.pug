@@ -1,5 +1,8 @@
 table.table.table-hover.table-sm
 	tr
+		th.text-center(colspan=8) #{options.trials.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')} Simulations
+
+	tr
 		th Owner
 		th.text-right Playoffs
 		th.text-right The Decision
