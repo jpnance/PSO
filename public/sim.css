@@ -34,3 +34,7 @@ div.common {
 div.always {
 	color: #ffffff;
 }
+
+label.btn.winner {
+	line-height: 16px;
+}

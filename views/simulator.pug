@@ -59,6 +59,8 @@ html
 									input(id='week' + week + '-' + game.away.franchiseId type='radio' name=buttonName value=week + ':' + game.away.franchiseId)
 									|
 									| #{franchises[game.away.franchiseId]}
+									br
+									| #{Math.round(game.away.winRate * 100)}%
 								label.no-winner.btn.btn-outline-secondary.active
 									input(id='week' + week + '-0' type='radio' name=buttonName checked=true value='vs')
 									|
@@ -67,3 +69,5 @@ html
 									input(id='week' + week + '-' + game.home.franchiseId type='radio' name=buttonName value=week + ':' + game.home.franchiseId)
 									|
 									| #{franchises[game.home.franchiseId]}
+									br
+									| #{Math.round(game.home.winRate * 100)}%

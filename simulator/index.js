@@ -211,6 +211,18 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 			var fs = require('fs');
 			var pug = require('pug');
 			var compiledPug = pug.compileFile('../views/simulator.pug');
+
+			var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
+
+			Object.keys(schedule).forEach(weekId => {
+				var week = schedule[weekId];
+
+				week.forEach(game => {
+					game.away.winRate = percentagesData[game.away.franchiseId].results[weekId].rate;
+					game.home.winRate = percentagesData[game.home.franchiseId].results[weekId].rate;
+				});
+			});
+
 			fs.writeFileSync('../public/simulator/index.html', compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 			process.exit();
 		}
@@ -276,6 +288,18 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 				var fs = require('fs');
 				var pug = require('pug');
 				var compiledPug = pug.compileFile('../views/simulator.pug');
+
+				var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
+
+				Object.keys(schedule).forEach(weekId => {
+					var week = schedule[weekId];
+
+					week.forEach(game => {
+						game.away.winRate = percentagesData[game.away.franchiseId].results[weekId].rate;
+						game.home.winRate = percentagesData[game.home.franchiseId].results[weekId].rate;
+					});
+				});
+
 				fs.writeFileSync('../public/simulator/index.html', compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 				fs.writeFileSync('simulationData.json', JSON.stringify(simulationData));
 			}
