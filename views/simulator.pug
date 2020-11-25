@@ -52,9 +52,9 @@ html
 
 			each games, week in schedule
 				div.row
-					h5 Week #{week}
-
 					div.mb-4.col-12
+						h5 Week #{week}
+
 						each game in games
 							- var buttonName = 'week' + week + '-' + game.away.franchiseId + '-' + game.home.franchiseId;
 
