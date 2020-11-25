@@ -10,7 +10,7 @@ table.table.table-hover.table-sm
 		th.text-right Finishes
 		th.d-none.d-md-table-cell.text-right 8-6 and Out
 		th.d-none.d-md-table-cell.text-right 9-5 and Out
-		th.d-none.d-md-table-cell.text-right 10-4 and Out
+		th.d-none.d-lg-table-cell.text-right 10-4 and Out
 
 	each result in results
 		tr
@@ -91,7 +91,7 @@ table.table.table-hover.table-sm
 					| #{result.nineAndOut.toFixed(3)}
 				else
 					| --
-			td.d-none.d-md-table-cell.text-right
+			td.d-none.d-lg-table-cell.text-right
 				if result.tenAndOut != '--'
 					| #{result.tenAndOut.toFixed(3)}
 				else
