@@ -1,33 +1,63 @@
 var dotenv = require('dotenv').config({ path: '../.env' });
 
+var season = parseInt(process.env.SEASON);
+
 var PSO = require('../pso');
 
 var mongoOwners = {
+	'Pat/Quinn': 'patQuinn',
 	'Patrick': 'patrick',
+	'Koci': 'koci',
 	'Koci/Mueller': 'kociMueller',
+	'Syed': 'syed',
+	'Syed/Terence': 'syedTerence',
+	'Syed/Kuan': 'syedKuan',
 	'Luke': 'luke',
+	'John': 'john',
 	'John/Zach': 'johnZach',
 	'Trevor': 'trevor',
 	'Keyon': 'keyon',
+	'Jeff': 'jeff',
+	'Jake/Luke': 'jakeLuke',
+	'Brett/Luke': 'brettLuke',
 	'Brett': 'brett',
+	'Daniel': 'daniel',
 	'Terence': 'terence',
+	'James': 'james',
 	'James/Charles': 'jamesCharles',
+	'Schexes': 'schexes',
+	'Schex/Jeff': 'schexes',
 	'Schex': 'schex',
+	'Charles': 'charles',
 	'Quinn': 'quinn',
 	'Mitch': 'mitch'
 };
 
 var ownerFranchiseIds = {
 	'patrick': 1,
+	'patQuinn': 1,
+	'koci': 2,
 	'kociMueller': 2,
+	'syed': 3,
+	'syedTerence': 3,
+	'syedKuan': 3,
 	'luke': 3,
+	'john': 4,
 	'johnZach': 4,
 	'trevor': 5,
 	'keyon': 6,
+	'jeff': 7,
+	'jakeLuke': 7,
+	'brettLuke': 7,
 	'brett': 7,
+	'daniel': 8,
 	'terence': 8,
+	'james': 9,
 	'jamesCharles': 9,
+	'schexes': 10,
+	'schexJeff': 10,
 	'schex': 10,
+	'charles': 11,
 	'quinn': 11,
 	'mitch': 12
 };
@@ -109,6 +139,10 @@ process.argv.forEach(function(value, index, array) {
 				debug = true;
 				break;
 
+			case 'season':
+				season = parseInt(pair[1]);
+				break;
+
 			case 'cutoff':
 				cutoff = parseInt(pair[1]);
 				break;
@@ -126,6 +160,19 @@ process.argv.forEach(function(value, index, array) {
 
 console.log(manualWinners);
 
+var owners = {};
+
+Object.keys(PSO.franchiseNames).forEach(franchiseId => {
+	if (!PSO.franchiseNames[franchiseId][season]) {
+		return;
+	}
+
+	var ownerName = PSO.franchiseNames[franchiseId][season];
+	var ownerId = mongoOwners[ownerName];
+
+	owners[ownerId] = { id: ownerId, name: ownerName };
+});
+
 var schedule = {};
 var results = {};
 
@@ -135,7 +182,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 	var games = db.collection('games');
 	var startWithWeek = 0;
 
-	games.find({ season: parseInt(process.env.SEASON) }).toArray(function(err, docs) {
+	games.find({ season: season }).toArray(function(err, docs) {
 		for (var i in docs) {
 			var doc = docs[i];
 
@@ -230,9 +277,6 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 		simulate(trials);
 
 		if (untilConditions.length == 0) {
-			console.log();
-			console.log(JSON.stringify(schedule, null, "\t"));
-
 			console.log();
 			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out" + "\t" + "Poss. Finishes");
 
@@ -402,21 +446,6 @@ function extend() {
       }
       return target;
     }
-
-var owners = {
-	brett: { id: 'brett', name: 'Brett' },
-	jamesCharles: { id: 'jamesCharles', name: 'James/Charles' },
-	johnZach: { id: 'johnZach', name: 'John/Zach' },
-	keyon: { id: 'keyon', name: 'Keyon' },
-	kociMueller: { id: 'kociMueller', name: 'Koci/Mueller' },
-	luke: { id: 'luke', name: 'Luke' },
-	mitch: { id: 'mitch', name: 'Mitch' },
-	patrick: { id: 'patrick', name: 'Patrick' },
-	quinn: { id: 'quinn', name: 'Quinn' },
-	schex: { id: 'schex', name: 'Schex' },
-	terence: { id: 'terence', name: 'Terence' },
-	trevor: { id: 'trevor', name: 'Trevor' }
-}
 
 function ownerSort(a, b) {
 	if (a.wins == b.wins) {
