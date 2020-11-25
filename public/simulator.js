@@ -30,4 +30,11 @@ $(document).ready(function() {
 	$('div.btn-group-vertical').on('click', 'input', function(e) {
 		$('table').animate({ opacity: 0.3 }, 100, 'linear', replaceTable);
 	});
+
+	$('button.reset-simulator').on('click', function(e) {
+		$('label.winner').removeClass('active').find('input').prop('checked', false);
+		$('label.no-winner').addClass('active').find('input').prop('checked', true);
+
+		$('table').animate({ opacity: 0.3 }, 100, 'linear', replaceTable);
+	});
 });
