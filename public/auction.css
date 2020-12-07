@@ -37,6 +37,41 @@ body.sold {
 	background-color: red;
 }
 
+.nominating {
+	line-height: 22px;
+}
+
+.nominating .when {
+	font-size: 12px;
+}
+
+.nominating .who {
+	font-size: 24px;
+}
+
+.nominating.now {
+	color: black;
+}
+
+.nominating.now .who {
+	font-weight: bold;
+}
+
+.nominating.next {
+	color: #666;
+}
+
+.nominating.later {
+	color: #aaa;
+}
+
+#nominator {
+}
+
+#nominator-name {
+	font-weight: bold;
+}
+
 .brett-luke-bid {
 	background-color: #fee5e5;
 }
@@ -131,4 +166,8 @@ body.sold {
 
 .trevor .trevor-bid {
 	background-color: #98bafe;
+}
+
+.error {
+	background-color: #ffdddd;
 }

@@ -112,10 +112,16 @@ var random = {
 };
 
 var auction = {
+	nominator: {
+		now: '--',
+		next: '--',
+		later: '--'
+	},
+
 	player: {
-		name: 'Malcolm Brown',
-		position: 'RB',
-		team: 'LAR',
+		name: 'Tim Duncan',
+		position: 'PF/C',
+		team: 'SAS',
 		situation: 'UFA'
 	},
 	bids: [],
@@ -124,6 +130,7 @@ var auction = {
 };
 
 var owners = JSON.parse(process.env.AUCTION_USERS);
+var nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
 
 module.exports.activateAuction = function(request, response) {
 	auction.status = 'active';
@@ -218,6 +225,10 @@ module.exports.makeBid = function(request, response) {
 
 module.exports.nominatePlayer = function(request, response) {
 	auction.status = 'paused';
+
+	auction.nominator.now = request.body.nominator;
+	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
+	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
 
 	auction.player.name = request.body.name;
 	auction.player.position = request.body.position;

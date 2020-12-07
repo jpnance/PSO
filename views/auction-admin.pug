@@ -40,65 +40,56 @@ html
 
 			hr
 
+			div.row.justify-content-center
+				div.col-12.col-md-6
+					div.row
+						div.nominating.next.col-6.text-center
+							span.when Up Next
+							br
+							span.who --
+
+						div.nominating.later.col-6.text-center
+							span.when After That
+							br
+							span.who --
+
+			hr
+
 			form#nomination-form
 				div.form-row.justify-content-center.m-1
 					div.input-group.col-12.col-lg-6.text-center
+						select#nominator.form-control(required)
+							option(value='') --
+							each owner in owners
+								option(value=owner) #{owner}
+
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-12.col-lg-6.text-center
 						select#player-list.form-control
-							option(value='--') --
+							option(value='') --
 							each player in players
 								option(value=player.name + ',' + player.position + ',--,' + player.situation) #{player.name} (#{player.position}, #{player.situation})
+
+				br
+
 				div.form-row.justify-content-center.m-1
 					div.col-12.col-lg-6.text-center
-						input#name.form-control(type='text' name='name' placeholder='Name')
+						input#name.form-control(type='text' name='name' placeholder='Name' required)
+
 				div.form-row.justify-content-center.m-1
 					div.col-12.col-lg-6.text-center
 						div.row
-							div.col-4
-								select#position.form-control(name='position')
-									option(value='--') --
+							div.col-6
+								select#position.form-control(name='position' required)
+									option(value='') --
 									each position in positions
 										option(value=position) #{position}
-							div.col-4
-								select#team.form-control(name='team')
-									option(value='--') --
-									option(value='ARI') ARI
-									option(value='ATL') ATL
-									option(value='BAL') BAL
-									option(value='BUF') BUF
-									option(value='CAR') CAR
-									option(value='CHI') CHI
-									option(value='CIN') CIN
-									option(value='CLE') CLE
-									option(value='DAL') DAL
-									option(value='DEN') DEN
-									option(value='DET') DET
-									option(value='FA') FA
-									option(value='GB') GB
-									option(value='HOU') HOU
-									option(value='IND') IND
-									option(value='JAX') JAX
-									option(value='KC') KC
-									option(value='LAC') LAC
-									option(value='LAR') LAR
-									option(value='LV') LV
-									option(value='MIA') MIA
-									option(value='MIN') MIN
-									option(value='NE') NE
-									option(value='NO') NO
-									option(value='NYG') NYG
-									option(value='NYJ') NYJ
-									option(value='PHI') PHI
-									option(value='PIT') PIT
-									option(value='SEA') SEA
-									option(value='SF') SF
-									option(value='TB') TB
-									option(value='TEN') TEN
-									option(value='WAS') WAS
-							div.col-4
-								select#situation.form-control(name='situation')
-									option(value='--') --
+							div.col-6
+								select#situation.form-control(name='situation' required)
+									option(value='') --
 									each situation in situations
 										option(value=situation) #{situation}
+
 				div.form-row.justify-content-center.m-1
 					div.col-6.text-center
 						input.btn.btn-primary(type='submit' value='Nominate')
@@ -115,18 +106,8 @@ html
 						input#bid-amount.form-control(type='text')
 					div.col-6.col-lg-3
 						select#owner.form-control(name='owner')
-							option(value='Brett/Luke') Brett/Luke
-							option(value='James/Charles') James/Charles
-							option(value='John/Zach') John/Zach
-							option(value='Keyon') Keyon
-							option(value='Koci/Mueller') Koci/Mueller
-							option(value='Mitch') Mitch
-							option(value='Patrick') Patrick
-							option(value='Quinn') Quinn
-							option(value='Schex') Schex
-							option(value='Syed/Kuan') Syed/Kuan
-							option(value='Terence') Terence
-							option(value='Trevor') Trevor
+							each owner in owners
+								option(value=owner) #{owner}
 				div.form-row.justify-content-center.m-1
 					div.col-6.text-center
 						input.btn.btn-primary(type='submit' value='Force Bid')
@@ -136,6 +117,18 @@ html
 			div.row.justify-content-center
 				div.col-12.col-lg-6.text-center
 					div#player
+						h5#nominator
+							span#nominator-name
+							|
+							|
+							span#nominator-text
+						h1#player-name
+							a(target='_blank')
+						h4
+							span#player-position
+							| ,
+							|
+							span#player-situation
 
 			div.row.justify-content-center
 				div.col-12.col-lg-6.text-center

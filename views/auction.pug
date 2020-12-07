@@ -42,8 +42,35 @@ html
 			hr
 
 			div.row.justify-content-center
+				div.col-12.col-md-6
+					div.row
+						div.nominating.next.col-6.text-center
+							span.when Up Next
+							br
+							span.who --
+
+						div.nominating.later.col-6.text-center
+							span.when After That
+							br
+							span.who --
+
+			hr
+
+			div.row.justify-content-center
 				div.col-12.col-lg-6.text-center
 					div#player
+						h5#nominator
+							span#nominator-name
+							|
+							|
+							span#nominator-text
+						h1#player-name
+							a(target='_blank')
+						h4
+							span#player-position
+							| ,
+							|
+							span#player-situation
 
 			div.row.justify-content-center
 				div.col-12.col-lg-6.text-center

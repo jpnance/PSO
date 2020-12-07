@@ -28,18 +28,24 @@ $(document).ready(function() {
 
 	$('#pause').bind('click', function(e) {
 		e.preventDefault();
+
+		$('#nomination-form #nominator').val('');
+		$('#nomination-form #player-list').val('');
+
 		$.get('/auction/pause', { bidCount: numberOfBids }, redrawAuctionClient);
 	});
 
 	$('#nomination-form').bind('submit', function(e) {
 		var newPlayer = {
 			name: $(this).find('#name').val(),
+			nominator: $(this).find('#nominator').val(),
 			position: $(this).find('#position').val(),
 			team: $(this).find('#team').val(),
 			situation: $(this).find('#situation').val()
 		};
 
 		e.preventDefault();
+
 		$.post('/auction/nominate', newPlayer, redrawAuctionClient);
 	});
 
@@ -96,16 +102,21 @@ var redrawAuctionClient = function(auctionData) {
 		$('body').removeClass('paused').removeClass('active').removeClass('roll-call').addClass(auctionData.status);
 	}
 
-	var player = $('<div id="player" class="col-12"><h1 id="player-name"><a href="" target="_blank"></a></h1><h4 id="player-position"></h4><h4 id="player-team"></h4><h4 id="player-situation"></h4></div>');
-
 	var urlName = auctionData.player.name.toLowerCase().replace(' ', '+');
 
-	player.find('#player-name a').attr('href', 'https://www.pro-football-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
-	player.find('#player-position').text(auctionData.player.position);
-	player.find('#player-team').text(auctionData.player.team);
-	player.find('#player-situation').text(auctionData.player.situation);
+	if (auctionData.nominator.now != '--') {
+		$('.nominating.next .who').text(auctionData.nominator.next);
+		$('.nominating.later .who').text(auctionData.nominator.later);
 
-	$('#player').replaceWith(player);
+		$('#nominator-name').text(auctionData.nominator.now);
+		$('#nominator-text').text(auctionData.nominator.now.includes('/') ? 'nominate' : 'nominates');
+	}
+
+	//$('#player-name a').attr('href', 'https://www.pro-football-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
+	$('#player-name a').attr('href', 'https://www.basketball-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
+	$('#player-position').text(auctionData.player.position);
+	$('#player-team').text(auctionData.player.team);
+	$('#player-situation').text(auctionData.player.situation);
 
 	var bidHistory = $('<ul id="bid-history" class="list-group col-12">');
 
