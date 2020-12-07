@@ -49,6 +49,10 @@ body.sold {
 	font-size: 24px;
 }
 
+body.admin .nominating .who {
+	cursor: pointer;
+}
+
 .nominating.now {
 	color: black;
 }
