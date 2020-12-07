@@ -76,6 +76,103 @@ body.admin .nominating .who {
 	font-weight: bold;
 }
 
+.james-bid {
+	background-color: #fee5e5;
+}
+
+.james .james-bid {
+	background-color: #fe9898;
+}
+
+.jason-bid {
+	background-color: #feede5;
+}
+
+.jason .jason-bid {
+	background-color: #feba98;
+}
+
+.joel-bid {
+	background-color: #fef6e5;
+}
+
+.joel .joel-bid {
+	background-color: #fedc98;
+}
+
+.john-bid {
+	background-color: #fefee5;
+}
+
+.john .john-bid {
+	background-color: #fefe98;
+}
+
+.justin-bid {
+	background-color: #f6fee5;
+}
+
+.justin .justin-bid {
+	background-color: #dcfe98;
+}
+
+.mike-bid {
+	background-color: #edfee5;
+}
+
+.mike .mike-bid {
+	background-color: #bafe98;
+}
+
+.mitch-bid {
+	background-color: #e5fee5;
+}
+
+.mitch .mitch-bid {
+	background-color: #98fe98;
+}
+
+.patrick-bid {
+	background-color: #e5feed;
+}
+
+.patrick .patrick-bid {
+	background-color: #98feba;
+}
+
+.paul-bid {
+	background-color: #e5fef6;
+}
+
+.paul .paul-bid {
+	background-color: #98fedc;
+}
+
+.schex-kevin-bid {
+	background-color: #e5fefe;
+}
+
+.schex-kevin .schex-kevin-bid {
+	background-color: #98fefe;
+}
+
+.syed-koci-bid {
+	background-color: #e5f6fe;
+}
+
+.syed-koci .syed-koci-bid {
+	background-color: #98dcfe;
+}
+
+.taylor-bid {
+	background-color: #e5edfe;
+}
+
+.taylor .taylor-bid {
+	background-color: #98bafe;
+}
+
+/*
 .brett-luke-bid {
 	background-color: #fee5e5;
 }
@@ -171,6 +268,7 @@ body.admin .nominating .who {
 .trevor .trevor-bid {
 	background-color: #98bafe;
 }
+*/
 
 .error {
 	background-color: #ffdddd;
