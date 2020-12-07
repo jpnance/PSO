@@ -4,10 +4,6 @@ var state = 'new-player';
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
 		e.preventDefault();
-
-		$('#nomination-form #nominator').val('');
-		$('#nomination-form #player-list').val('');
-
 		$.get('/auction/activate', null, redrawAuctionClient);
 	});
 
@@ -32,6 +28,10 @@ $(document).ready(function() {
 
 	$('#pause').bind('click', function(e) {
 		e.preventDefault();
+
+		$('#nomination-form #nominator').val('');
+		$('#nomination-form #player-list').val('');
+
 		$.get('/auction/pause', { bidCount: numberOfBids }, redrawAuctionClient);
 	});
 
