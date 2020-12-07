@@ -217,4 +217,3 @@ module.exports.franchiseNames = {
 		2020: 'Mitch'
 	}
 };
-
