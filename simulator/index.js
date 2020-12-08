@@ -526,13 +526,16 @@ function breakGroupTies(group) {
 
 		if (keys.length == 1) {
 			var group = groups[keys[0]];
-			group.sort(ownerPointsSort);
+			group.sort(ownerPointsSort).reverse();
 
 			return group;
+
+			/*
 			var winner = group.shift();
 			if (debug) console.log('debug', winner.name, winner.tiebreaker, group.length);
 
 			return breakGroupTies(group).concat([winner]);
+			*/
 		}
 
 		for (keyId in keys) {
