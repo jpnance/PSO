@@ -139,7 +139,7 @@ module.exports.activateAuction = function(request, response) {
 
 module.exports.authenticateOwner = function(request, response) {
 	if (owners[request.params.key]) {
-		response.cookie('auctionAuthKey', request.params.key, { expires: new Date('2020-09-01') });
+		response.cookie('auctionAuthKey', request.params.key, { expires: new Date('2021-01-01') });
 	}
 
 	response.redirect('/auction');
