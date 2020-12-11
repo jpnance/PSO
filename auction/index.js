@@ -8,9 +8,15 @@ var parameters = {
 	site: 'pso'
 };
 
-var sheetLinks = {
-	pso: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
-	colbys: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json'
+var siteData = {
+	pso: {
+		sheetLink: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
+		firstRow: 3
+	},
+	colbys: {
+		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
+		firstRow: 2
+	}
 };
 
 process.argv.forEach(function(value, index, array) {
@@ -71,7 +77,7 @@ var owners = {
 
 
 request
-	.get(sheetLinks[parameters.site])
+	.get(siteData[parameters.site].sheetLink)
 	.then(response => {
 		var dataJson = JSON.parse(response.text);
 
@@ -88,7 +94,7 @@ request
 		});
 
 		rows.forEach((row, i) => {
-			if (i < 3 || i == rows.length - 1) {
+			if (i < siteData[parameters.site].firstRow || i == rows.length - 1) {
 				return;
 			}
 
