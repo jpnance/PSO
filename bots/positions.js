@@ -4,17 +4,48 @@ var request = require('superagent');
 
 var PSO = require('../pso.js');
 
-const staticPositions = ['PG', 'SG', 'SF', 'PF', 'C'];
+const siteData = {
+	pso: {
+		staticPositions: ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'],
+		sheetLink: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&&statusOrTeamFilter=ALL'
+	},
+	colbys: {
+		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
+		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&statusOrTeamFilter=ALL'
+	}
+};
+
+var parameters = {
+	site: 'colbys'
+};
+
+process.argv.forEach(function(value, index, array) {
+	if (index > 1) {
+		var pair = value.split(/=/);
+
+		switch (pair[0]) {
+			case 'site':
+				parameters.site = pair[1];
+				break;
+		}
+	}
+});
 
 var newFantraxPromise = function(players) {
 	return new Promise(function(resolve, reject) {
 		request
-			.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&pageNumber=1&view=STATS&positionOrGroup=BASKETBALL_PLAYER&seasonOrProjection=PROJECTION_0_41b_SEASON&timeframeTypeCode=YEAR_TO_DATE&transactionPeriod=1&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=20&statusOrTeamFilter=ALL&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&datePlaying=ALL&startDate=2020-12-22&endDate=2021-05-17&teamId=dyoukhkjkhl7n5o9')
+			.get(siteData[parameters.site].fantraxLink)
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.then(response => {
 				var csvLines = response.body.toString();
 
-				csvLines.split(/\n/).forEach(csvLine => {
+				csvLines.split(/\n/).forEach((csvLine, i) => {
+					if (i == 0) {
+						return;
+					}
+
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
 					var name = fields[0];
@@ -25,7 +56,7 @@ var newFantraxPromise = function(players) {
 
 					if (player) {
 						player.team = team;
-						player.position = positions.filter(position => staticPositions.includes(position));
+						player.position = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
 					}
 				});
 
@@ -38,7 +69,7 @@ var newFantraxPromise = function(players) {
 var newSheetsPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
-			.get('https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json')
+			.get(siteData[parameters.site].sheetLink)
 			.then(response => {
 				var dataJson = JSON.parse(response.text);
 				var cells = dataJson.feed.entry;
@@ -61,17 +92,17 @@ var nameToId = function(name) {
 };
 
 var positionSort = function(a, b) {
-	return staticPositions.indexOf(a) - staticPositions.indexOf(b);
+	return siteData[parameters.site].staticPositions.indexOf(a) - siteData[parameters.site].staticPositions.indexOf(b);
 };
 
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
 		players.forEach(player => {
 			if (player.position) {
-				console.log(player.position.sort(positionSort).join('/'));
+				console.log(nameToId(player.name), player.position.sort(positionSort).join('/'));
 			}
 			else {
-				console.log('???');
+				console.log(nameToId(player.name), '???');
 			}
 		});
 	});
