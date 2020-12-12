@@ -1,5 +1,6 @@
 var numberOfBids = 0;
 var state = 'new-player';
+var loggedInAs;
 
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
@@ -101,6 +102,7 @@ var fetchLoggedInAsData = function() {
 
 var addLoggedInAsClass = function(loggedInAsData) {
 	if (loggedInAsData.loggedInAs) {
+		loggedInAs = loggedInAsData.loggedInAs;
 		$('body').addClass(loggedInAsData.loggedInAs.toLowerCase().replace('/', '-'));
 	}
 };
@@ -109,7 +111,11 @@ var redrawAuctionClient = function(auctionData) {
 	numberOfBids = auctionData.bids.length;
 
 	if (auctionData.status) {
-		$('body').removeClass('paused').removeClass('active').removeClass('roll-call').addClass(auctionData.status);
+		$('body').removeClass('paused').removeClass('active').removeClass('roll-call').removeClass('checked-in').addClass(auctionData.status);
+
+		if (auctionData.status == 'roll-call' && auctionData.rollCall.includes(loggedInAs)) {
+			$('body').addClass('checked-in');
+		}
 	}
 
 	var urlName = auctionData.player.name.toLowerCase().replace(' ', '+');

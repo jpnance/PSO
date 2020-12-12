@@ -21,6 +21,18 @@ body.roll-call .roll-call-visible button {
 	opacity: 100%;
 }
 
+body.roll-call.checked-in .roll-call-visible button {
+	display: none;
+}
+
+body.roll-call .roll-call-visible h4 {
+	display: none;
+}
+
+body.roll-call.checked-in .roll-call-visible h4 {
+	display: block;
+}
+
 body.active {
 	background-color: white;
 }
