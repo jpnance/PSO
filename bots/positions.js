@@ -78,7 +78,17 @@ var newSheetsPromise = function(fantraxId) {
 
 				cells.forEach(cell => {
 					if (cell.gs$cell.col == '3' && cell.gs$cell.row != '1') {
-						players.push({ name: cell.content.$t });
+						players.push({ row: cell.gs$cell.row, name: cell.content.$t });
+					}
+				});
+
+				cells.forEach(cell => {
+					if (cell.gs$cell.col == '4' && cell.gs$cell.row != '1') {
+						var player = players.find(player => player.row == cell.gs$cell.row);
+
+						if (player) {
+							player.position = cell.content.$t.split('/');
+						}
 					}
 				});
 
@@ -99,10 +109,10 @@ newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
 		players.forEach(player => {
 			if (player.position) {
-				console.log(nameToId(player.name), player.position.sort(positionSort).join('/'));
+				console.log(player.position.sort(positionSort).join('/'));
 			}
 			else {
-				console.log(nameToId(player.name), '???');
+				console.log('???');
 			}
 		});
 	});
