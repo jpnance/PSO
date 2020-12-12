@@ -186,7 +186,7 @@ module.exports.makeBid = function(request, response) {
 		owner = owners[request.cookies.auctionAuthKey];
 	}
 
-	if (!owner) {
+	if (!owner || !nominationOrder.includes(owner)) {
 		response.send(auction);
 		return;
 	}
