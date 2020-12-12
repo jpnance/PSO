@@ -136,6 +136,19 @@ html
 
 			hr
 
+			form#nomination-order-form
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-12.col-lg-6.text-center
+						select#remove-owner.form-control
+							option(value='') --
+							each owner in owners
+								option(value=owner) #{owner}
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input.btn.btn-danger(type='submit' value='Remove Owner')
+
+			hr
+
 			div#more-controls.row.justify-content-center
 				div.col-12.col-lg-6.text-center
 					button#call-roll.btn.btn-info.m-1

@@ -69,6 +69,12 @@ $(document).ready(function() {
 		}
 	});
 
+	$('#nomination-order-form').bind('submit', function(e) {
+		e.preventDefault();
+
+		$.post('/auction/removeowner', { owner: $(this).find('#remove-owner').val() }, redrawAuctionClient);
+	});
+
 	$('#pop').bind('click', function(e) {
 		e.preventDefault();
 		$.get('/auction/pop', null, redrawAuctionClient);

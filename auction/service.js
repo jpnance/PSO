@@ -259,6 +259,29 @@ module.exports.quickAuth = function(request, response) {
 	}
 };
 
+module.exports.resetNominationOrder = function(request, response) {
+	nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
+
+	response.send(auction);
+};
+
+module.exports.removeFromNominationOrder = function(request, response) {
+	var ownerIndex = nominationOrder.indexOf(request.body.owner);
+
+	if (ownerIndex != -1) {
+		nominationOrder.splice(ownerIndex, 1);
+	}
+
+	if (auction.nominator.now == request.body.owner) {
+		auction.nominator.now = nominationOrder[ownerIndex % nominationOrder.length];
+	}
+
+	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
+	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
+
+	response.send(auction);
+};
+
 module.exports.rollCall = function(request, response) {
 	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
 		var owner = owners[request.cookies.auctionAuthKey];
