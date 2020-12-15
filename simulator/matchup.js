@@ -1,18 +1,3 @@
-var mongoOwners = {
-	'Patrick': 'patrick',
-	'Koci/Mueller': 'kociMueller',
-	'Syed/Kuan': 'syedKuan',
-	'John/Zach': 'johnZach',
-	'Trevor': 'trevor',
-	'Keyon': 'keyon',
-	'Brett/Luke': 'brettLuke',
-	'Terence': 'terence',
-	'James/Charles': 'jamesCharles',
-	'Schex': 'schex',
-	'Quinn': 'quinn',
-	'Mitch': 'mitch'
-};
-
 var trials = 100;
 var owners = [];
 
@@ -69,7 +54,7 @@ function simulate(trials, owners) {
 	}
 }
 
-console.log(owners);
+//console.log(owners);
 simulate(trials, owners);
 
 for (i in owners) {
