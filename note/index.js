@@ -21,7 +21,7 @@ var week = parseInt(process.argv[2]);
 var cohost = process.argv[3];
 var lastWeekCohost = process.argv[4] || cohost;
 
-function csvToMap(csv) {
+function csvToRpoMap(csv) {
 	var lines = csv.split(/\n/)
 	var map = {};
 
@@ -78,21 +78,41 @@ var dataPromises = [
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
 	request
 		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&pageNumber=1&statusOrTeamFilter=WATCH_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
+		.set('Cookie', process.env.FANTRAX_COOKIES),
+	request
+		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&pageNumber=1&statusOrTeamFilter=COMPARE_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
 		.set('Cookie', process.env.FANTRAX_COOKIES)
 ];
 
 Promise.all(dataPromises).then(function(values) {
 	var games = values[0];
 	var scoringTitles = values[1];
-	var rpoPlayers = csvToMap(values[2].body.toString());
+	var rpoOptions = csvToRpoMap(values[2].body.toString());
+	var rpoSelections = csvToRpoMap(values[3].body.toString());
 
-	if (Object.keys(rpoPlayers).length != 12) {
-		throw 'We need twelve franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoPlayers).length;
+	var selectedRpos = {};
+	var offeredRpos = {};
+
+	Object.keys(rpoSelections).forEach(rpoKey => {
+		var rpoSelection = rpoSelections[rpoKey][0];
+
+		rpoOptions[rpoKey].forEach(rpoPlayer => {
+			if (rpoPlayer.name == rpoSelection.name) {
+				selectedRpos[rpoKey] = rpoPlayer;
+			}
+			else {
+				offeredRpos[rpoKey] = rpoPlayer;
+			}
+		});
+	});
+
+	if (Object.keys(rpoOptions).length != 12) {
+		throw 'We need twelve franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
 	}
 
-	Object.keys(rpoPlayers).forEach(rpoKey => {
-		if (rpoPlayers[rpoKey].length != 2) {
-			throw 'We need two players on the Fantrax watch list for every franchise and ' + rpoKey + ' only has ' + rpoPlayers[rpoKey].length;
+	Object.keys(rpoOptions).forEach(rpoKey => {
+		if (rpoOptions[rpoKey].length != 2) {
+			throw 'We need two players on the Fantrax watch list for every franchise and ' + rpoKey + ' only has ' + rpoOptions[rpoKey].length;
 		}
 	});
 
@@ -135,7 +155,7 @@ Promise.all(dataPromises).then(function(values) {
 	lastWeek.forEach((game, n) => {
 		var winner;
 		var loser;
-	
+
 		if (game.winner.franchiseId == game.home.franchiseId) {
 			winner = game.home;
 		}
@@ -175,13 +195,9 @@ Promise.all(dataPromises).then(function(values) {
 		console.log("\t\t" + winner.name);
 
 		[['Patrick', lastWeekCohost], [lastWeekCohost, 'Patrick']].forEach(hostPairing => {
-			console.log("\t\t\t" + hostPairing[0] + ' offered ' + rpoPlayers[winner.name][0].name + ' and ' + rpoPlayers[winner.name][1].name);
-			console.log("\t\t\t" + hostPairing[1] + ' selected ' + rpoPlayers[winner.name][0].name + ' (' + rpoPlayers[winner.name][0].points.toFixed(2) + ')');
-			console.log("\t\t\t" + hostPairing[0] + ' received ' + rpoPlayers[winner.name][1].name + ' (' + rpoPlayers[winner.name][1].points.toFixed(2) + ')');
-			console.log();
-			console.log("\t\t\t" + hostPairing[0] + ' offered ' + rpoPlayers[winner.name][1].name + ' and ' + rpoPlayers[winner.name][0].name);
-			console.log("\t\t\t" + hostPairing[1] + ' selected ' + rpoPlayers[winner.name][1].name + ' (' + rpoPlayers[winner.name][1].points.toFixed(2) + ')');
-			console.log("\t\t\t" + hostPairing[0] + ' received ' + rpoPlayers[winner.name][0].name + ' (' + rpoPlayers[winner.name][0].points.toFixed(2) + ')');
+			console.log("\t\t\t" + hostPairing[0] + ' offered ' + selectedRpos[winner.name].name + ' and ' + offeredRpos[winner.name].name);
+			console.log("\t\t\t" + hostPairing[1] + ' selected ' + selectedRpos[winner.name].name + ' (' + selectedRpos[winner.name].points.toFixed(2) + ')');
+			console.log("\t\t\t" + hostPairing[0] + ' received ' + offeredRpos[winner.name].name + ' (' + offeredRpos[winner.name].points.toFixed(2) + ')');
 			console.log();
 		});
 
@@ -193,13 +209,9 @@ Promise.all(dataPromises).then(function(values) {
 		console.log("\t\t" + loser.name);
 
 		[['Patrick', lastWeekCohost], [lastWeekCohost, 'Patrick']].forEach(hostPairing => {
-			console.log("\t\t\t" + hostPairing[0] + ' offered ' + rpoPlayers[loser.name][0].name + ' and ' + rpoPlayers[loser.name][1].name);
-			console.log("\t\t\t" + hostPairing[1] + ' selected ' + rpoPlayers[loser.name][0].name + ' (' + rpoPlayers[loser.name][0].points.toFixed(2) + ')');
-			console.log("\t\t\t" + hostPairing[0] + ' received ' + rpoPlayers[loser.name][1].name + ' (' + rpoPlayers[loser.name][1].points.toFixed(2) + ')');
-			console.log();
-			console.log("\t\t\t" + hostPairing[0] + ' offered ' + rpoPlayers[loser.name][1].name + ' and ' + rpoPlayers[loser.name][0].name);
-			console.log("\t\t\t" + hostPairing[1] + ' selected ' + rpoPlayers[loser.name][1].name + ' (' + rpoPlayers[loser.name][1].points.toFixed(2) + ')');
-			console.log("\t\t\t" + hostPairing[0] + ' received ' + rpoPlayers[loser.name][0].name + ' (' + rpoPlayers[loser.name][0].points.toFixed(2) + ')');
+			console.log("\t\t\t" + hostPairing[0] + ' offered ' + selectedRpos[loser.name].name + ' and ' + offeredRpos[loser.name].name);
+			console.log("\t\t\t" + hostPairing[1] + ' selected ' + selectedRpos[loser.name].name + ' (' + selectedRpos[loser.name].points.toFixed(2) + ')');
+			console.log("\t\t\t" + hostPairing[0] + ' received ' + offeredRpos[loser.name].name + ' (' + offeredRpos[loser.name].points.toFixed(2) + ')');
 			console.log();
 		});
 
