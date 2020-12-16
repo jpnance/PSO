@@ -13,6 +13,21 @@ module.exports.franchises = {
 	12: 'Mitch'
 };
 
+module.exports.fantraxAbbreviations = {
+	'SCHX': 'Schex',
+	'TMAN': 'Terence',
+	'REYN': 'James/Charles',
+	'KOMU': 'Koci/Mueller',
+	'SOMA': 'Keyon',
+	'PP': 'Trevor',
+	'QTM': 'Quinn',
+	'pat': 'Patrick',
+	'ATTY': 'John/Zach',
+	'LUKE': 'Luke',
+	'BLLZ': 'Brett',
+	'MTCH': 'Mitch'
+};
+
 module.exports.fantraxIds = {
 	'motju5wmk7xr9dlz': 1, // Patrick
 	'6u9bwy3ik7xrer9z': 2, // Koci/Mueller
