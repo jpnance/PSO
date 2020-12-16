@@ -86,15 +86,10 @@ var newWeekPromise = function(week) {
 					if (week <= 14) {
 						matchup.type = 'regular';
 					}
-					/*
 					else if (week == 15) {
-						if (game.playoffTierType == 'WINNERS_BRACKET') {
-							matchup.type = 'semifinal';
-						}
-						else {
-							matchup.type = 'consolation';
-						}
+						matchup.type = 'semifinal';
 					}
+					/*
 					else if (week == 16) {
 						if (game.playoffTierType == 'WINNERS_BRACKET') {
 							matchup.type = 'championship';
@@ -168,7 +163,7 @@ var newWeekPromise = function(week) {
 
 var weekPromises = [];
 
-for (var week = 1; week <= 14; week++) {
+for (var week = 1; week <= 15; week++) {
 	weekPromises.push(newWeekPromise(week));
 }
 

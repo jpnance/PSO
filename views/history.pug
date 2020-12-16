@@ -42,7 +42,7 @@ html
 
 						each games, week in season
 							td
-								if games[franchise].type != 'consolation'
+								if games[franchise] && games[franchise].type != 'consolation'
 									if games[franchise].franchise.score
 										div.score(class={ high: games[franchise].franchise.record.allPlay.week.losses == 0, low: games[franchise].franchise.record.allPlay.week.wins == 0 }) #{games[franchise].franchise.score.toFixed(2)}
 										div.record
