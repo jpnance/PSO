@@ -215,8 +215,8 @@ Promise.all(dataPromises).then(function(values) {
 			});
 
 			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 15 ? ' (' + percentagesData[winner.franchiseId].tripleSlash + ')' : ''));
-			if (nextWeeksGamesFor[loser.name]) {
-				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
+			if (nextWeeksGamesFor[winner.name]) {
+				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
 			}
 
 			console.log("\t\t" + loser.name);
