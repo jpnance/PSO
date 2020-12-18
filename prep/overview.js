@@ -13,6 +13,18 @@ const siteData = {
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
 		rosterMakeup: ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'Util', 'Util', 'Util'],
+		ratingThresholds: {
+			fieldGoalPercentage: [ 0.000, 0.400, 0.440, 0.500, 0.575 ],
+			threePointersMade: [ 0.0, 1.0, 1.5, 2.0, 3.0 ],
+			freeThrowsMade: [ 0.0, 1.5, 2.7, 4.0, 6.0 ],
+			freeThrowPercentage: [ 0.000, 0.725, 0.800, 0.840, 0.880 ],
+			points: [ 0, 10, 15, 20, 26 ],
+			rebounds: [ 0.0, 4.8, 6.5, 8.7, 12.0 ],
+			assists: [ 0.0, 2.0, 3.3, 5.0, 8.0 ],
+			steals: [ 0.0, 0.8, 1.0, 1.2, 1.8 ],
+			blocks: [ 0.0, 0.6, 0.9, 1.4, 2.0 ],
+			turnovers: [ 0.0, 0.6, 0.9, 1.1, 1.5 ]
+		},
 		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
 		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
 	}
@@ -63,12 +75,13 @@ var newFantraxPromise = function(players) {
 							console.log('Dirty data with', player.name, '(' + player.team + ')');
 						}
 						else {
-							player.fantraxProjections = { raw: {}, perGame: {} };
+							player.fantraxProjections = { raw: {}, perGame: {}, rating: {} };
 						}
 
 						player.fantraxProjections.gamesPlayed = parseInt(fields[12]);
 
 						player.fantraxProjections.score = parseFloat(fields[9]);
+						player.fantraxProjections.ratingSum = 0;
 
 						player.fantraxProjections.raw.fieldGoalPercentage = parseFloat(fields[13]);
 						player.fantraxProjections.raw.threePointersMade = parseInt(fields[14]);
@@ -88,6 +101,10 @@ var newFantraxPromise = function(players) {
 							else {
 								player.fantraxProjections.perGame[statKey] = player.fantraxProjections.raw[statKey];
 							}
+
+							player.fantraxProjections.rating[statKey] = perGameAverageToRating(statKey, player.fantraxProjections.perGame[statKey]);
+
+							player.fantraxProjections.ratingSum += player.fantraxProjections.rating[statKey];
 						});
 					}
 				});
@@ -158,12 +175,41 @@ var nameToId = function(name) {
 	return name.toLowerCase().replace(/[^a-z]/g, '');
 };
 
+var perGameAverageToRating = function(stat, value) {
+	var thresholds = siteData[parameters.site].ratingThresholds[stat];
+	var rating = 0;
+
+	if (stat == 'turnovers') {
+		rating = 6;
+	}
+
+	thresholds.forEach(threshold => {
+		if (value >= threshold) {
+			if (stat == 'turnovers') {
+				rating -= 1;
+			}
+			else {
+				rating += 1;
+			}
+		}
+	});
+
+	if (rating == 6) {
+		rating = 5;
+	}
+	else if (rating == 0) {
+		rating = 1;
+	}
+
+	return rating;
+};
+
 var positionSort = function(a, b) {
 	return siteData[parameters.site].staticPositions.indexOf(a) - siteData[parameters.site].staticPositions.indexOf(b);
 };
 
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
-		console.log(players);
+		console.log(JSON.stringify(players, null, '  '));
 	});
 });
