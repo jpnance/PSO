@@ -1,5 +1,6 @@
 var dotenv = require('dotenv').config({ path: __dirname + '/../.env' });
 
+var fs = require('fs');
 var request = require('superagent');
 
 var PSO = require('../pso.js');
@@ -14,16 +15,16 @@ const siteData = {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
 		rosterMakeup: ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'Util', 'Util', 'Util'],
 		ratingThresholds: {
-			fieldGoalPercentage: [ 0.000, 0.400, 0.440, 0.500, 0.575 ],
-			threePointersMade: [ 0.0, 1.0, 1.5, 2.0, 3.0 ],
-			freeThrowsMade: [ 0.0, 1.5, 2.7, 4.0, 6.0 ],
-			freeThrowPercentage: [ 0.000, 0.725, 0.800, 0.840, 0.880 ],
-			points: [ 0, 10, 15, 20, 26 ],
-			rebounds: [ 0.0, 4.8, 6.5, 8.7, 12.0 ],
-			assists: [ 0.0, 2.0, 3.3, 5.0, 8.0 ],
-			steals: [ 0.0, 0.8, 1.0, 1.2, 1.8 ],
-			blocks: [ 0.0, 0.6, 0.9, 1.4, 2.0 ],
-			turnovers: [ 0.0, 0.6, 0.9, 1.1, 1.5 ]
+			'fg%': [ 0.000, 0.400, 0.440, 0.500, 0.575 ],
+			'3pm': [ 0.0, 1.0, 1.5, 2.0, 3.0 ],
+			ftm: [ 0.0, 1.5, 2.7, 4.0, 6.0 ],
+			'ft%': [ 0.000, 0.725, 0.800, 0.840, 0.880 ],
+			pts: [ 0, 10, 15, 20, 26 ],
+			reb: [ 0.0, 4.8, 6.5, 8.7, 12.0 ],
+			ast: [ 0.0, 2.0, 3.3, 5.0, 8.0 ],
+			stl: [ 0.0, 0.8, 1.0, 1.2, 1.8 ],
+			blk: [ 0.0, 0.6, 0.9, 1.4, 2.0 ],
+			to: [ 0.0, 0.6, 0.9, 1.1, 1.5 ]
 		},
 		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
 		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
@@ -48,11 +49,16 @@ process.argv.forEach(function(value, index, array) {
 
 var newFantraxPromise = function(players) {
 	return new Promise(function(resolve, reject) {
+		/*
 		request
 			.get(siteData[parameters.site].fantraxLink)
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.then(response => {
 				var csvLines = response.body.toString();
+		*/
+
+		fs.readFile('./colbys.csv', function(error, data) {
+				var csvLines = data.toString();
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
 					if (i == 0) {
@@ -83,16 +89,16 @@ var newFantraxPromise = function(players) {
 						player.fantraxProjections.score = parseFloat(fields[9]);
 						player.fantraxProjections.ratingSum = 0;
 
-						player.fantraxProjections.raw.fieldGoalPercentage = parseFloat(fields[13]);
-						player.fantraxProjections.raw.threePointersMade = parseInt(fields[14]);
-						player.fantraxProjections.raw.freeThrowsMade = parseInt(fields[15]);
-						player.fantraxProjections.raw.freeThrowPercentage = parseFloat(fields[16]);
-						player.fantraxProjections.raw.points = parseInt(fields[17]);
-						player.fantraxProjections.raw.rebounds = parseInt(fields[18]);
-						player.fantraxProjections.raw.assists = parseInt(fields[19]);
-						player.fantraxProjections.raw.steals = parseInt(fields[20]);
-						player.fantraxProjections.raw.blocks = parseInt(fields[21]);
-						player.fantraxProjections.raw.turnovers = parseInt(fields[22]);
+						player.fantraxProjections.raw['fg%'] = parseFloat(fields[13]);
+						player.fantraxProjections.raw['3pm'] = parseInt(fields[14]);
+						player.fantraxProjections.raw.ftm = parseInt(fields[15]);
+						player.fantraxProjections.raw['ft%'] = parseFloat(fields[16]);
+						player.fantraxProjections.raw.pts = parseInt(fields[17]);
+						player.fantraxProjections.raw.reb = parseInt(fields[18]);
+						player.fantraxProjections.raw.ast = parseInt(fields[19]);
+						player.fantraxProjections.raw.stl = parseInt(fields[20]);
+						player.fantraxProjections.raw.blk = parseInt(fields[21]);
+						player.fantraxProjections.raw.to = parseInt(fields[22]);
 
 						Object.keys(player.fantraxProjections.raw).forEach(statKey => {
 							if (!statKey.includes('Percentage')) {
@@ -163,6 +169,10 @@ var newSheetsPromise = function(fantraxId) {
 						}
 					}
 
+					if (!player.start) {
+						player.start = 'unsigned';
+					}
+
 					players.push(player);
 				});
 
@@ -179,13 +189,13 @@ var perGameAverageToRating = function(stat, value) {
 	var thresholds = siteData[parameters.site].ratingThresholds[stat];
 	var rating = 0;
 
-	if (stat == 'turnovers') {
+	if (stat == 'to') {
 		rating = 6;
 	}
 
 	thresholds.forEach(threshold => {
 		if (value >= threshold) {
-			if (stat == 'turnovers') {
+			if (stat == 'to') {
 				rating -= 1;
 			}
 			else {
@@ -210,6 +220,14 @@ var positionSort = function(a, b) {
 
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
+		/*
+		var patSigned = players.filter(player => !player.rfa && player.owner == 'Patrick');
+
+		patSigned.forEach(player => {
+			console.log(player.name, player.positions.join('/'), player.start + '/' + player.end, player.salary);
+		});
+		*/
+
 		console.log(JSON.stringify(players, null, '  '));
 	});
 });
