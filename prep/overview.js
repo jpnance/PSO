@@ -99,97 +99,97 @@ var displayPlayers = function(players) {
 	var columnPadding = 2;
 	var headings = [
 		{
-			field: 'owner',
+			path: 'owner',
 			label: 'Owner',
 			padLength: 12
 		},
 		{
-			field: 'name',
+			path: 'name',
 			label: 'Name',
 			padLength: 24
 		},
 		{
-			field: 'positions',
+			path: 'positions',
 			label: 'Positions',
 			padLength: 11
 		},
 		{
-			field: 'contract',
+			path: 'contract',
 			label: 'Contract',
 			padLength: 8
 		},
 		{
-			field: 'salary',
+			path: 'salary',
 			label: 'Salary',
 			padLength: 6
 		},
 		{
-			field: 'fantraxProjections.rating.fg%',
+			path: 'fantraxProjections.rating.fg%',
 			label: 'FG%',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.3pm',
+			path: 'fantraxProjections.rating.3pm',
 			label: '3PM',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.ftm',
+			path: 'fantraxProjections.rating.ftm',
 			label: 'FTM',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.ft%',
+			path: 'fantraxProjections.rating.ft%',
 			label: 'FT%',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.pts',
+			path: 'fantraxProjections.rating.pts',
 			label: 'PTS',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.reb',
+			path: 'fantraxProjections.rating.reb',
 			label: 'REB',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.ast',
+			path: 'fantraxProjections.rating.ast',
 			label: 'AST',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.stl',
+			path: 'fantraxProjections.rating.stl',
 			label: 'STL',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.blk',
+			path: 'fantraxProjections.rating.blk',
 			label: 'BLK',
 			styler: ratingStyler,
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.rating.to',
+			path: 'fantraxProjections.rating.to',
 			label: 'TO',
 			styler: ratingStyler,
 			padLength: 2
 		},
 		{
-			field: 'fantraxProjections.ratingSum',
+			path: 'fantraxProjections.ratingSum',
 			label: 'OVR',
 			padLength: 3
 		},
 		{
-			field: 'fantraxProjections.score',
+			path: 'fantraxProjections.score',
 			label: 'Score',
 			padLength: 5
 		}
@@ -217,13 +217,8 @@ var displayPlayers = function(players) {
 		}
 
 		headings.forEach(heading => {
-			var hierarchy = heading.field.split('.');
-			var value = player;
+			var value = drillDown(player, heading.path);
 			var preStyleLength = 0;
-
-			hierarchy.forEach(tier => {
-				value = value[tier];
-			});
 
 			value = (value || '').toString();
 			preStyleLength = value.length;
@@ -241,6 +236,17 @@ var displayPlayers = function(players) {
 
 		console.log(outputString);
 	});
+};
+
+var drillDown = function(player, path) {
+	var value = player;
+	var hierarchy = path.split('.');
+
+	hierarchy.forEach(tier => {
+		value = value[tier];
+	});
+
+	return value;
 };
 
 var filterUsingQuery = function(player) {
