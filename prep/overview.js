@@ -116,6 +116,9 @@ process.argv.forEach(function(value, index, array) {
 					else if (sortParameter == 'salary') {
 						parameters.sortPaths.unshift('-salary');
 					}
+					else if (sortParameter == 'gp') {
+						parameters.sortPaths.unshift('-fantraxProjections.gamesPlayed');
+					}
 					else {
 						parameters.sortPaths.unshift('-fantraxProjections.rating.' + sortParameter);
 					}
