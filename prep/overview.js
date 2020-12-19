@@ -83,6 +83,117 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
+var displayPlayers = function(players) {
+	var columnPadding = 2;
+	var headings = [
+		{
+			field: 'owner',
+			label: 'Owner',
+			padLength: 12
+		},
+		{
+			field: 'name',
+			label: 'Name',
+			padLength: 24
+		},
+		{
+			field: 'contract',
+			label: 'Contract',
+			padLength: 8
+		},
+		{
+			field: 'salary',
+			label: 'Salary',
+			padLength: 6
+		},
+		{
+			field: 'fantraxProjections.rating.fg%',
+			label: 'FG%',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.3pm',
+			label: '3PM',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.ftm',
+			label: 'FTM',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.ft%',
+			label: 'FT%',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.pts',
+			label: 'PTS',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.reb',
+			label: 'REB',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.ast',
+			label: 'AST',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.stl',
+			label: 'STL',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.blk',
+			label: 'BLK',
+			padLength: 3
+		},
+		{
+			field: 'fantraxProjections.rating.to',
+			label: 'TO',
+			padLength: 3
+		},
+	];
+
+	players.forEach((player, i) => {
+		var outputString = '';
+
+		if (i == 0) {
+			headings.forEach(heading => {
+				outputString += heading.label.padEnd(heading.padLength + columnPadding);
+			});
+
+			console.log(outputString);
+
+			outputString = '';
+
+			headings.forEach(heading => {
+				outputString += ''.padEnd(heading.label.length, '-').padEnd(heading.padLength + columnPadding);
+			});
+
+			console.log(outputString);
+
+			outputString = '';
+		}
+
+		headings.forEach(heading => {
+			var hierarchy = heading.field.split('.');
+			var value = player;
+
+			hierarchy.forEach(tier => {
+				value = value[tier];
+			});
+
+			outputString += (value || '').toString().padEnd(heading.padLength + columnPadding);
+		});
+
+		console.log(outputString);
+	});
+};
+
 var filterUsingQuery = function(player) {
 	if (!player.fantraxProjections) {
 		return false;
@@ -237,19 +348,27 @@ var newSheetsPromise = function(fantraxId) {
 					};
 
 					if (player.end == '2019') {
-						delete player.salary;
+						player.salary = undefined;
 
 						if (player.start == '2018' || player.start == '2017') {
 							player.rfa = true;
+							player.contract = 'RFA';
 						}
 						else if (player.start != '2020') {
 							player.ufa = true;
-							delete player.owner;
+							player.contract = 'UFA';
+
+							player.owner = undefined;
 						}
 					}
 
-					if (!player.start) {
-						player.start = 'unsigned';
+					if (!player.end) {
+						player.end = undefined;
+						player.contract = '20/?';
+					}
+
+					if (!player.contract && player.start && player.end) {
+						player.contract = player.start.substring(2) + '/' + player.end.substring(2);
 					}
 
 					players.push(player);
@@ -300,10 +419,7 @@ var positionSort = function(a, b) {
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
 		var filteredPlayers = players.filter(filterUsingQuery);
-
-		filteredPlayers.forEach(player => {
-			console.log(player.name, player.positions.join('/'), player.start + '/' + player.end, player.salary);
-		});
+		displayPlayers(filteredPlayers);
 
 		//console.log(JSON.stringify(players, null, '  '));
 	});
