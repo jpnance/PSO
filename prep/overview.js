@@ -48,6 +48,10 @@ process.argv.forEach(function(value, index, array) {
 				parameters.site = pair[1];
 				break;
 
+			case 'gp':
+				parameters.query.gp = parseInt(pair[1]);
+				break;
+
 			case 'name':
 				parameters.query.name = pair[1];
 				break;
