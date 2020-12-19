@@ -148,13 +148,13 @@ var displayPlayers = function(players) {
 			path: 'contract',
 			label: '',
 			styler: contractStyler,
-			padLength: 5
+			padLength: 6
 		},
 		{
 			path: 'salary',
 			label: '',
 			styler: salaryStyler,
-			padLength: 3
+			padLength: 4
 		},
 		{
 			path: 'fantraxProjections.rating.fg%',
@@ -218,12 +218,12 @@ var displayPlayers = function(players) {
 		},
 		{
 			path: 'fantraxProjections.ratingSum',
-			label: 'OVR',
+			label: '',
 			padLength: 3
 		},
 		{
 			path: 'fantraxProjections.score',
-			label: 'Score',
+			label: '',
 			padLength: 5
 		}
 	];
