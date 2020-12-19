@@ -531,7 +531,6 @@ var sortPlayers = function(a, b) {
 
 		var aValue = drillDown(a, sortPath);
 		var bValue = drillDown(b, sortPath);
-		console.log(sortPath, aValue, bValue);
 
 		if (aValue > bValue) {
 			if (order == '-') {
