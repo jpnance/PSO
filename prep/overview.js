@@ -123,6 +123,8 @@ process.argv.forEach(function(value, index, array) {
 						parameters.sortPaths.unshift('-fantraxProjections.rating.' + sortParameter);
 					}
 				});
+
+				break;
 		}
 	}
 });
