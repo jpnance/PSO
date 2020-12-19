@@ -131,30 +131,30 @@ var displayPlayers = function(players) {
 	var headings = [
 		{
 			path: 'owner',
-			label: 'Owner',
+			label: '',
 			padLength: 12
 		},
 		{
 			path: 'name',
-			label: 'Name',
+			label: '',
 			padLength: 24
 		},
 		{
 			path: 'positions',
-			label: 'Positions',
+			label: '',
 			padLength: 11
 		},
 		{
 			path: 'contract',
-			label: 'Contract',
+			label: '',
 			styler: contractStyler,
-			padLength: 8
+			padLength: 5
 		},
 		{
 			path: 'salary',
-			label: 'Salary',
+			label: '',
 			styler: salaryStyler,
-			padLength: 6
+			padLength: 3
 		},
 		{
 			path: 'fantraxProjections.rating.fg%',
@@ -234,14 +234,6 @@ var displayPlayers = function(players) {
 		if (i == 0) {
 			headings.forEach(heading => {
 				outputString += heading.label.padEnd(heading.padLength + columnPadding);
-			});
-
-			console.log(outputString);
-
-			outputString = '';
-
-			headings.forEach(heading => {
-				outputString += ''.padEnd(heading.label.length, '-').padEnd(heading.padLength + columnPadding);
 			});
 
 			console.log(outputString);
