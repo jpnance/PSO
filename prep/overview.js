@@ -251,6 +251,7 @@ var displayPlayers = function(players) {
 		{
 			path: 'fantraxProjections.score',
 			label: '',
+			styler: scoreStyler,
 			padLength: 5
 		}
 	];
@@ -560,6 +561,31 @@ var ratingStyler = function(rating) {
 
 var salaryStyler = function(salary) {
 	return salary || '';
+};
+
+var scoreStyler = function(score) {
+	if (!score) {
+		return score;
+	}
+
+	var color = '';
+
+	if (score >= 90) {
+		color = '\x1b[1m\x1b[38;5;10m';
+	}
+	else if (score >= 80) {
+		color = '\x1b[38;5;2m';
+	}
+	else if (score >= 70) {
+		color = '\x1b[38;5;3m';
+	}
+	else {
+		color = '\x1b[38;5;1m';
+	}
+
+	var reset = '\x1b[0m';
+
+	return color + score + reset;
 };
 
 var sortPlayers = function(a, b) {
