@@ -109,6 +109,11 @@ var displayPlayers = function(players) {
 			padLength: 24
 		},
 		{
+			field: 'positions',
+			label: 'Positions',
+			padLength: 11
+		},
+		{
 			field: 'contract',
 			label: 'Contract',
 			padLength: 8
