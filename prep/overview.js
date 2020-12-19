@@ -119,6 +119,9 @@ process.argv.forEach(function(value, index, array) {
 					else if (sortParameter == 'gp') {
 						parameters.sortPaths.unshift('-fantraxProjections.gamesPlayed');
 					}
+					else if (sortParameter == 'contract') {
+						parameters.sortPaths.unshift('+contract');
+					}
 					else {
 						parameters.sortPaths.unshift('-fantraxProjections.rating.' + sortParameter);
 					}
