@@ -161,6 +161,11 @@ var displayPlayers = function(players) {
 			padLength: 4
 		},
 		{
+			path: 'fantraxProjections.gamesPlayed',
+			label: 'GP',
+			padLength: 3
+		},
+		{
 			path: 'fantraxProjections.rating.fg%',
 			label: 'FG%',
 			styler: ratingStyler,
