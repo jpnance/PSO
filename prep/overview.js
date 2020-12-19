@@ -111,6 +111,17 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
+var contractStyler = function(contract) {
+	var colors = {
+		UFA: '\x1b[1m\x1b[38;5;10m',
+		RFA: '\x1b[1m\x1b[38;5;3m',
+		signed: '\x1b[38;5;15m',
+		reset: '\x1b[0m'
+	};
+
+	return (colors[contract] || colors.signed) + contract + colors.reset;
+};
+
 var displayPlayers = function(players) {
 	var columnPadding = 1;
 	var headings = [
@@ -132,6 +143,7 @@ var displayPlayers = function(players) {
 		{
 			path: 'contract',
 			label: 'Contract',
+			styler: contractStyler,
 			padLength: 8
 		},
 		{
