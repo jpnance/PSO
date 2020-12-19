@@ -112,7 +112,7 @@ process.argv.forEach(function(value, index, array) {
 });
 
 var displayPlayers = function(players) {
-	var columnPadding = 2;
+	var columnPadding = 1;
 	var headings = [
 		{
 			path: 'owner',
