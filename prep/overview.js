@@ -48,6 +48,10 @@ process.argv.forEach(function(value, index, array) {
 				parameters.site = pair[1];
 				break;
 
+			case 'name':
+				parameters.query.name = pair[1];
+				break;
+
 			case 'owners':
 				parameters.query.owners = pair[1].split(',');
 				break;
@@ -294,6 +298,9 @@ var filterUsingQuery = function(player) {
 		var queryKey = queryKeys[i];
 
 		if (queryKey == 'gp' && player.fantraxProjections.gamesPlayed < query.gp) {
+			return false;
+		}
+		else if (queryKey == 'name' && !player.name.toLowerCase().includes(query.name.toLowerCase())) {
 			return false;
 		}
 		else if (queryKey == 'owners' && !query.owners.includes(player.owner)) {
