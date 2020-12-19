@@ -33,6 +33,7 @@ const siteData = {
 
 var parameters = {
 	site: 'colbys',
+	limit: null,
 	query: {
 		gp: 40
 	},
@@ -46,6 +47,10 @@ process.argv.forEach(function(value, index, array) {
 		switch (pair[0]) {
 			case 'site':
 				parameters.site = pair[1];
+				break;
+
+			case 'limit':
+				parameters.limit = parseInt(pair[1]);
 				break;
 
 			case 'gp':
@@ -578,6 +583,11 @@ newSheetsPromise().then(players => {
 		var filteredPlayers = players.filter(filterUsingQuery);
 
 		filteredPlayers.sort(sortPlayers);
+
+		if (parameters.limit) {
+			filteredPlayers = filteredPlayers.slice(0, parameters.limit);
+		}
+
 		displayPlayers(filteredPlayers);
 
 		//console.log(JSON.stringify(players, null, '  '));
