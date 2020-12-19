@@ -157,6 +157,11 @@ var displayPlayers = function(players) {
 			padLength: 24
 		},
 		{
+			path: 'team',
+			label: '',
+			padLength: 4
+		},
+		{
 			path: 'positions',
 			label: '',
 			padLength: 11
