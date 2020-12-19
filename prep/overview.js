@@ -18,7 +18,7 @@ const siteData = {
 			'fg%': [ 0.000, 0.400, 0.440, 0.500, 0.575 ],
 			'3pm': [ 0.0, 1.0, 1.5, 2.0, 3.0 ],
 			ftm: [ 0.0, 1.5, 2.7, 4.0, 6.0 ],
-			'ft%': [ 0.000, 0.725, 0.800, 0.840, 0.880 ],
+			'ft%': [ 0.000, 0.725, 0.775, 0.800, 0.830 ],
 			pts: [ 0, 10, 15, 20, 26 ],
 			reb: [ 0.0, 4.8, 6.5, 8.7, 12.0 ],
 			ast: [ 0.0, 2.0, 3.3, 5.0, 8.0 ],
@@ -32,7 +32,10 @@ const siteData = {
 };
 
 var parameters = {
-	site: 'colbys'
+	site: 'colbys',
+	query: {
+		gp: 40
+	}
 };
 
 process.argv.forEach(function(value, index, array) {
@@ -43,9 +46,85 @@ process.argv.forEach(function(value, index, array) {
 			case 'site':
 				parameters.site = pair[1];
 				break;
+
+			case 'owners':
+				parameters.query.owners = pair[1].split(',');
+				break;
+
+			case 'fg%':
+			case '3pm':
+			case 'ftm':
+			case 'ft%':
+			case 'pts':
+			case 'reb':
+			case 'ast':
+			case 'stl':
+			case 'blk':
+			case 'to':
+				parameters.query[pair[0]] = parseFloat(pair[1]);
+				break;
+
+			case 'ufa':
+				parameters.query.ufa = (pair[1] == 'true');
+				break;
+
+			case 'rfa':
+				parameters.query.rfa = (pair[1] == 'true');
+				break;
+
+			case 'unsigned':
+				parameters.query.unsigned = true;
+				break;
+
+			case 'signed':
+				parameters.query.unsigned = false;
+				break;
 		}
 	}
 });
+
+var filterUsingQuery = function(player) {
+	if (!player.fantraxProjections) {
+		return false;
+	}
+
+	var query = parameters.query;
+	var queryKeys = Object.keys(query);
+
+	if (queryKeys.length == 0) {
+		return false;
+	}
+
+	for (var i = 0; i < queryKeys.length; i++) {
+		var queryKey = queryKeys[i];
+
+		if (queryKey == 'gp' && player.fantraxProjections.gamesPlayed < query.gp) {
+			return false;
+		}
+		else if (queryKey == 'owners' && !query.owners.includes(player.owner)) {
+			return false;
+		}
+		else if (Object.keys(siteData[parameters.site].ratingThresholds).includes(queryKey) && player.fantraxProjections.rating[queryKey] < query[queryKey]) {
+			return false;
+		}
+		else if (queryKey == 'rfa' && player.rfa != query.rfa) {
+			return false;
+		}
+		else if (queryKey == 'ufa' && player.ufa != query.ufa) {
+			return false;
+		}
+		else if (queryKey == 'unsigned') {
+			if (query.unsigned == true && !player.rfa && !player.ufa) {
+				return false;
+			}
+			else if (query.unsigned == false && (player.rfa || player.ufa)) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+};
 
 var newFantraxPromise = function(players) {
 	return new Promise(function(resolve, reject) {
@@ -101,7 +180,7 @@ var newFantraxPromise = function(players) {
 						player.fantraxProjections.raw.to = parseInt(fields[22]);
 
 						Object.keys(player.fantraxProjections.raw).forEach(statKey => {
-							if (!statKey.includes('Percentage')) {
+							if (!statKey.includes('%')) {
 								player.fantraxProjections.perGame[statKey] = parseFloat((player.fantraxProjections.raw[statKey] / player.fantraxProjections.gamesPlayed).toFixed(3));
 							}
 							else {
@@ -220,14 +299,12 @@ var positionSort = function(a, b) {
 
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
-		/*
-		var patSigned = players.filter(player => !player.rfa && player.owner == 'Patrick');
+		var filteredPlayers = players.filter(filterUsingQuery);
 
-		patSigned.forEach(player => {
+		filteredPlayers.forEach(player => {
 			console.log(player.name, player.positions.join('/'), player.start + '/' + player.end, player.salary);
 		});
-		*/
 
-		console.log(JSON.stringify(players, null, '  '));
+		//console.log(JSON.stringify(players, null, '  '));
 	});
 });
