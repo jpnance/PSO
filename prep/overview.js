@@ -51,6 +51,10 @@ process.argv.forEach(function(value, index, array) {
 				parameters.query.owners = pair[1].split(',');
 				break;
 
+			case 'positions':
+				parameters.query.positions = pair[1].split(',');
+				break;
+
 			case 'fg%':
 			case '3pm':
 			case 'ftm':
@@ -65,11 +69,11 @@ process.argv.forEach(function(value, index, array) {
 				break;
 
 			case 'ufa':
-				parameters.query.ufa = (pair[1] == 'true');
+				parameters.query.ufa = (pair[1] != 'false');
 				break;
 
 			case 'rfa':
-				parameters.query.rfa = (pair[1] == 'true');
+				parameters.query.rfa = (pair[1] != 'false');
 				break;
 
 			case 'unsigned':
@@ -78,6 +82,14 @@ process.argv.forEach(function(value, index, array) {
 
 			case 'signed':
 				parameters.query.unsigned = false;
+				break;
+
+			case 'ovr':
+				parameters.query.ovr = parseFloat(pair[1]);
+				break;
+
+			case 'score':
+				parameters.query.score = parseFloat(pair[1]);
 				break;
 		}
 	}
@@ -109,53 +121,73 @@ var displayPlayers = function(players) {
 		{
 			field: 'fantraxProjections.rating.fg%',
 			label: 'FG%',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.3pm',
 			label: '3PM',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.ftm',
 			label: 'FTM',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.ft%',
 			label: 'FT%',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.pts',
 			label: 'PTS',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.reb',
 			label: 'REB',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.ast',
 			label: 'AST',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.stl',
 			label: 'STL',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.blk',
 			label: 'BLK',
+			styler: ratingStyler,
 			padLength: 3
 		},
 		{
 			field: 'fantraxProjections.rating.to',
 			label: 'TO',
+			styler: ratingStyler,
+			padLength: 2
+		},
+		{
+			field: 'fantraxProjections.ratingSum',
+			label: 'OVR',
 			padLength: 3
 		},
+		{
+			field: 'fantraxProjections.score',
+			label: 'Score',
+			padLength: 5
+		}
 	];
 
 	players.forEach((player, i) => {
@@ -182,12 +214,24 @@ var displayPlayers = function(players) {
 		headings.forEach(heading => {
 			var hierarchy = heading.field.split('.');
 			var value = player;
+			var preStyleLength = 0;
 
 			hierarchy.forEach(tier => {
 				value = value[tier];
 			});
 
-			outputString += (value || '').toString().padEnd(heading.padLength + columnPadding);
+			value = (value || '').toString();
+			preStyleLength = value.length;
+
+			if (heading.styler) {
+				value = heading.styler(value);
+			}
+
+			outputString += value;
+
+			for (var i = 0; i < (heading.padLength + columnPadding) - preStyleLength; i++) {
+				outputString += ' ';
+			}
 		});
 
 		console.log(outputString);
@@ -215,6 +259,19 @@ var filterUsingQuery = function(player) {
 		else if (queryKey == 'owners' && !query.owners.includes(player.owner)) {
 			return false;
 		}
+		else if (queryKey == 'positions') {
+			var positionMatch = false;
+
+			player.positions.forEach(position => {
+				if (query.positions.includes(position)) {
+					positionMatch = true;
+				}
+			});
+
+			if (!positionMatch) {
+				return false;
+			}
+		}
 		else if (Object.keys(siteData[parameters.site].ratingThresholds).includes(queryKey) && player.fantraxProjections.rating[queryKey] < query[queryKey]) {
 			return false;
 		}
@@ -231,6 +288,12 @@ var filterUsingQuery = function(player) {
 			else if (query.unsigned == false && (player.rfa || player.ufa)) {
 				return false;
 			}
+		}
+		else if (queryKey == 'ovr' && player.fantraxProjections.ratingSum < query.ovr) {
+			return false;
+		}
+		else if (queryKey == 'score' && player.fantraxProjections.score < query.score) {
+			return false;
 		}
 	}
 
@@ -416,9 +479,23 @@ var positionSort = function(a, b) {
 	return siteData[parameters.site].staticPositions.indexOf(a) - siteData[parameters.site].staticPositions.indexOf(b);
 };
 
+var ratingStyler = function(rating) {
+	var colors = {
+		5: '\x1b[1m\x1b[38;5;10m',
+		4: '\x1b[38;5;2m',
+		3: '\x1b[38;5;3m',
+		2: '\x1b[38;5;1m',
+		1: '\x1b[38;5;1m',
+		reset: '\x1b[0m'
+	};
+
+	return colors[rating] + rating + colors.reset;
+};
+
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
 		var filteredPlayers = players.filter(filterUsingQuery);
+
 		displayPlayers(filteredPlayers);
 
 		//console.log(JSON.stringify(players, null, '  '));
