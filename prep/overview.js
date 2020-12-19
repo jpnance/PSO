@@ -35,7 +35,8 @@ var parameters = {
 	site: 'colbys',
 	query: {
 		gp: 40
-	}
+	},
+	sortPaths: [ '-fantraxProjections.score', '-fantraxProjections.ratingSum' ]
 };
 
 process.argv.forEach(function(value, index, array) {
@@ -91,6 +92,21 @@ process.argv.forEach(function(value, index, array) {
 			case 'score':
 				parameters.query.score = parseFloat(pair[1]);
 				break;
+
+			case 'sort':
+				var sortParameters = pair[1].split(',').reverse();
+
+				sortParameters.forEach(sortParameter => {
+					if (sortParameter == 'name') {
+						parameters.sortPaths.unshift('+name');
+					}
+					else if (sortParameter == 'salary') {
+						parameters.sortPaths.unshift('-salary');
+					}
+					else {
+						parameters.sortPaths.unshift('-fantraxProjections.rating.' + sortParameter);
+					}
+				});
 		}
 	}
 });
@@ -121,6 +137,7 @@ var displayPlayers = function(players) {
 		{
 			path: 'salary',
 			label: 'Salary',
+			styler: salaryStyler,
 			padLength: 6
 		},
 		{
@@ -422,7 +439,7 @@ var newSheetsPromise = function(fantraxId) {
 					};
 
 					if (player.end == '2019') {
-						player.salary = undefined;
+						player.salary = 0;
 
 						if (player.start == '2018' || player.start == '2017') {
 							player.rfa = true;
@@ -503,10 +520,45 @@ var ratingStyler = function(rating) {
 	return colors[rating] + rating + colors.reset;
 };
 
+var salaryStyler = function(salary) {
+	return salary || '';
+};
+
+var sortPlayers = function(a, b) {
+	for (var i = 0; i < parameters.sortPaths.length; i++) {
+		var sortPath = parameters.sortPaths[i].substring(1);
+		var order = parameters.sortPaths[i][0];
+
+		var aValue = drillDown(a, sortPath);
+		var bValue = drillDown(b, sortPath);
+		console.log(sortPath, aValue, bValue);
+
+		if (aValue > bValue) {
+			if (order == '-') {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		}
+		else if (aValue < bValue) {
+			if (order == '-') {
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		}
+	}
+
+	return 0;
+};
+
 newSheetsPromise().then(players => {
 	newFantraxPromise(players).then(players => {
 		var filteredPlayers = players.filter(filterUsingQuery);
 
+		filteredPlayers.sort(sortPlayers);
 		displayPlayers(filteredPlayers);
 
 		//console.log(JSON.stringify(players, null, '  '));
