@@ -154,8 +154,12 @@ module.exports.callRoll = function(request, response) {
 
 module.exports.currentAuction = function(request, response) {
 	if (false && Math.random() < 0.005) {
+		auction.nominator.now = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
+		auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
+		auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 3) % nominationOrder.length];
+
 		auction.player.name = random.names[Math.floor(Math.random() * random.names.length)];
-		auction.player.position = random.positions[Math.floor(Math.random() * random.positions.length)];
+		auction.player.position = random.positions.filter(position => Math.random() > 0.67).join('/');
 		auction.player.team = random.teams[Math.floor(Math.random() * random.teams.length)];
 		auction.player.situation = random.situations[Math.floor(Math.random() * random.situations.length)];
 
