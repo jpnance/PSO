@@ -67,7 +67,7 @@ var newWeekPromise = function(week) {
 
 				var gamePromises = [];
 
-				matchupsRaw.forEach(matchupRaw => {
+				matchupsRaw.forEach((matchupRaw, i) => {
 					var teamIds = matchupRaw.split('_');
 					var matchup = {};
 
@@ -89,19 +89,15 @@ var newWeekPromise = function(week) {
 					else if (week == 15) {
 						matchup.type = 'semifinal';
 					}
-					/*
 					else if (week == 16) {
-						if (game.playoffTierType == 'WINNERS_BRACKET') {
+						// i have no clue if 1 is always the championship or what
+						if (i == 1) {
 							matchup.type = 'championship';
 						}
-						else if (game.playoffTierType == 'WINNERS_CONSOLATION_LADDER') {
+						else if (i == 0) {
 							matchup.type = 'thirdPlace';
 						}
-						else {
-							matchup.type = 'consolation';
-						}
 					}
-					*/
 
 					if (matchup.away.score == 0 && matchup.home.score == 0) {
 						delete matchup.away.score;
@@ -163,7 +159,7 @@ var newWeekPromise = function(week) {
 
 var weekPromises = [];
 
-for (var week = 1; week <= 15; week++) {
+for (var week = 1; week <= 16; week++) {
 	weekPromises.push(newWeekPromise(week));
 }
 
