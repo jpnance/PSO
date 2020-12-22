@@ -106,8 +106,11 @@ Promise.all(dataPromises).then(function(values) {
 		});
 	});
 
-	if (Object.keys(rpoOptions).length != 12) {
+	if (week < 15 && Object.keys(rpoOptions).length != 12) {
 		throw 'We need twelve franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
+	}
+	else if (week < 17 && Object.keys(rpoOptions).length != 4) {
+		throw 'We need four franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
 	}
 
 	Object.keys(rpoOptions).forEach(rpoKey => {
@@ -125,7 +128,8 @@ Promise.all(dataPromises).then(function(values) {
 	var lastWeek = games.filter(game => game.week == week - 1);
 	var thisWeek = games.filter(game => game.week == week);
 	var nextWeeks = games.filter(game => game.week >= week && game.week <= week + 2);
-	var highScorerLastWeek = games.filter(game => game.week == (week - 1) && ((game.winner.franchiseId == game.home.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == game.away.franchiseId && game.away.record.allPlay.week.wins == 11)))[0];
+	var highScorerAllPlayWins = (week < 15) ? 11 : 3;
+	var highScorerLastWeek = games.filter(game => game.week == (week - 1) && ((game.winner.franchiseId == game.home.franchiseId && game.home.record.allPlay.week.wins == highScorerAllPlayWins) || (game.winner.franchiseId == game.away.franchiseId && game.away.record.allPlay.week.wins == highScorerAllPlayWins)))[0];
 	var highScorerSeason = games.filter(game => ((game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.away.record.allPlay.week.wins == 11)));
 	var highScorerAllTime = scoringTitles.filter(leader => leader._id == highScorerLastWeek.winner.name)[0];
 
