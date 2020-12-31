@@ -42,16 +42,3 @@ template.forEach(function(games, week) {
 });
 
 console.log(params);
-
-request
-	.post('https://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/122885/schedule')
-	.set('Content-Type', 'application/json')
-	.set('Cookie', 'espn_s2=' + process.env.ESPN_S2_COOKIE + ';SWID=' + process.env.SWID_COOKIE)
-	.send(JSON.stringify(params))
-	.then(res => {
-		console.log('good');
-	})
-	.catch(error => {
-		console.log(error);
-	});
-
