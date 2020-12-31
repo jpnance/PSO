@@ -24,25 +24,20 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
+Object.values(PSO.franchises).forEach(firstFranchise => {
+	headToHead[firstFranchise] = {};
+
+	Object.values(PSO.franchises).forEach(secondFranchise => {
+		if (firstFranchise != secondFranchise) {
+			headToHead[firstFranchise][secondFranchise] = { wins: 0, losses: 0, ties: 0, games: [] };
+		}
+	});
+});
+
+//Game.find({ type: { '$in': ['semifinal', 'thirdPlace', 'championship' ] } }).sort({ season: 1, week: 1 }).then(games => {
 Game.find({ type: 'regular' }).sort({ season: 1, week: 1 }).then(games => {
 	games.forEach(game => {
 		if (game.away.score != 0 || game.home.score != 0) {
-			if (!headToHead[PSO.franchises[game.away.franchiseId]]) {
-				headToHead[PSO.franchises[game.away.franchiseId]] = {};
-			}
-
-			if (!headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]]) {
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]] = { wins: 0, losses: 0, ties: 0, games: [] };
-			}
-
-			if (!headToHead[PSO.franchises[game.home.franchiseId]]) {
-				headToHead[PSO.franchises[game.home.franchiseId]] = {};
-			}
-
-			if (!headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]]) {
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]] = { wins: 0, losses: 0, ties: 0, games: [] };
-			}
-
 			if (game.away.score > game.home.score) {
 				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].wins++;
 				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].losses++;
