@@ -1,0 +1,2256 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<league>
+	<season>2017</season>
+	<drafted>
+		<player>
+			<id>1269</id>
+			<name>Aaron Gordon</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>57</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>419</id>
+			<name>Al Horford</name>
+			<position>C</position>
+			<contract>
+				<salary>75</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>730</id>
+			<name>Al-Farouq Aminu</name>
+			<position>SF</position>
+			<contract>
+				<salary>4</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1133</id>
+			<name>Alex Abrines</name>
+			<position>SG</position>
+			<contract>
+				<salary>0</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1119</id>
+			<name>Alex Len</name>
+			<position>C</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1109</id>
+			<name>Allen Crabbe</name>
+			<position>SG</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>970</id>
+			<name>Andre Drummond</name>
+			<position>C</position>
+			<contract>
+				<salary>67</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>265</id>
+			<name>Andre Iguodala</name>
+			<position>SF</position>
+			<contract>
+				<salary>0</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1107</id>
+			<name>Andre Roberson</name>
+			<position>SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1268</id>
+			<name>Andrew Wiggins</name>
+			<position>SG</position>
+			<contract>
+				<salary>44</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>968</id>
+			<name>Anthony Davis</name>
+			<position>PF</position>
+			<contract>
+				<salary>305</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1002</id>
+			<name>Austin Rivers</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>7</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>722</id>
+			<name>Avery Bradley</name>
+			<position>SG</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1112</id>
+			<name>Ben McLemore</name>
+			<position>SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1553</id>
+			<name>Ben Simmons</name>
+			<position>PF</position>
+			<contract>
+				<salary>42</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>837</id>
+			<name>Bismack Biyombo</name>
+			<position>C</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>630</id>
+			<name>Blake Griffin</name>
+			<position>PF</position>
+			<contract>
+				<salary>138</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1263</id>
+			<name>Bogdan Bogdanovic</name>
+			<position>SG</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>832</id>
+			<name>Bojan Bogdanovic</name>
+			<position>SG</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>965</id>
+			<name>Bradley Beal</name>
+			<position>SG</position>
+			<contract>
+				<salary>126</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>438</id>
+			<name>Brandan Wright</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1557</id>
+			<name>Brandon Ingram</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>30</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>507</id>
+			<name>Brook Lopez</name>
+			<position>C</position>
+			<contract>
+				<salary>85</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1527</id>
+			<name>Buddy Hield</name>
+			<position>SG</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1682</id>
+			<name>Caleb Swanigan</name>
+			<position>PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1528</id>
+			<name>Caris LeVert</name>
+			<position>PF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>219</id>
+			<name>Carmelo Anthony</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>51</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>876</id>
+			<name>Chandler Parsons</name>
+			<position>SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>322</id>
+			<name>Chris Paul</name>
+			<position>PG</position>
+			<contract>
+				<salary>156</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1095</id>
+			<name>CJ McCollum</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>157</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>321</id>
+			<name>CJ Miles</name>
+			<position>SF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1275</id>
+			<name>Clint Capela</name>
+			<position>C</position>
+			<contract>
+				<salary>48</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1113</id>
+			<name>Cody Zeller</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>856</id>
+			<name>Cory Joseph</name>
+			<position>PG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>504</id>
+			<name>Courtney Lee</name>
+			<position>SG</position>
+			<contract>
+				<salary>11</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1406</id>
+			<name>D'Angelo Russell</name>
+			<position>PG</position>
+			<contract>
+				<salary>67</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>991</id>
+			<name>Damian Lillard</name>
+			<position>PG</position>
+			<contract>
+				<salary>210</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>488</id>
+			<name>Danilo Gallinari</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>54</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>652</id>
+			<name>Danny Green</name>
+			<position>SG</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>656</id>
+			<name>Dante Cunningham</name>
+			<position>PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1261</id>
+			<name>Dario Saric</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>29</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>621</id>
+			<name>Darren Collison</name>
+			<position>PG</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1703</id>
+			<name>De'Aaron Fox</name>
+			<position>SG</position>
+			<contract>
+				<salary>22</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>502</id>
+			<name>DeAndre Jordan</name>
+			<position>C</position>
+			<contract>
+				<salary>59</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1555</id>
+			<name>Dejounte Murray</name>
+			<position>SG</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>624</id>
+			<name>DeMar DeRozan</name>
+			<position>SG</position>
+			<contract>
+				<salary>106</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>740</id>
+			<name>DeMarcus Cousins</name>
+			<position>C</position>
+			<contract>
+				<salary>200</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>619</id>
+			<name>DeMarre Carroll</name>
+			<position>SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1137</id>
+			<name>Dennis Schroder</name>
+			<position>PG</position>
+			<contract>
+				<salary>82</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1702</id>
+			<name>Dennis Smith Jr.</name>
+			<position>PG</position>
+			<contract>
+				<salary>29</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1531</id>
+			<name>Denzel Valentine</name>
+			<position>SG</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>332</id>
+			<name>Deron Williams</name>
+			<position>PG</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>739</id>
+			<name>Derrick Favors</name>
+			<position>PF</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>515</id>
+			<name>Derrick Rose</name>
+			<position>PF</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1403</id>
+			<name>Devin Booker</name>
+			<position>SG</position>
+			<contract>
+				<salary>91</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1163</id>
+			<name>Dewayne Dedmon</name>
+			<position>C</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1013</id>
+			<name>Dion Waiters</name>
+			<position>SG</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>109</id>
+			<name>Dirk Nowitzki</name>
+			<position>PF</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1684</id>
+			<name>Donovan Mitchell</name>
+			<position>SG</position>
+			<contract>
+				<salary>4</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>974</id>
+			<name>Draymond Green</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>130</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>264</id>
+			<name>Dwight Howard</name>
+			<position>C</position>
+			<contract>
+				<salary>23</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>227</id>
+			<name>Dwyane Wade</name>
+			<position>SG</position>
+			<contract>
+				<salary>14</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1246</id>
+			<name>Elfrid Payton</name>
+			<position>PG</position>
+			<contract>
+				<salary>55</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1410</id>
+			<name>Emmanuel Mudiay</name>
+			<position>PG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>857</id>
+			<name>Enes Kanter</name>
+			<position>C</position>
+			<contract>
+				<salary>7</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>720</id>
+			<name>Eric Bledsoe</name>
+			<position>PG</position>
+			<contract>
+				<salary>86</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>491</id>
+			<name>Eric Gordon</name>
+			<position>SG</position>
+			<contract>
+				<salary>21</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>651</id>
+			<name>Ersan Ilyasova</name>
+			<position>PF</position>
+			<contract>
+				<salary>7</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>973</id>
+			<name>Evan Fournier</name>
+			<position>SG</position>
+			<contract>
+				<salary>36</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>721</id>
+			<name>Evan Turner</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1366</id>
+			<name>Frank Kaminsky</name>
+			<position>C</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1716</id>
+			<name>Frank Ntilikina</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1260</id>
+			<name>Gary Harris</name>
+			<position>SG</position>
+			<contract>
+				<salary>61</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>498</id>
+			<name>George Hill</name>
+			<position>PG</position>
+			<contract>
+				<salary>25</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1136</id>
+			<name>Giannis Antetokounmpo</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>328</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>483</id>
+			<name>Goran Dragic</name>
+			<position>PG</position>
+			<contract>
+				<salary>75</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>731</id>
+			<name>Gordon Hayward</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>120</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1110</id>
+			<name>Gorgui Dieng</name>
+			<position>C</position>
+			<contract>
+				<salary>0</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>742</id>
+			<name>Greg Monroe</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>963</id>
+			<name>Harrison Barnes</name>
+			<position>SF</position>
+			<contract>
+				<salary>28</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>744</id>
+			<name>Hassan Whiteside</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>130</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>882</id>
+			<name>Isaiah Thomas</name>
+			<position>PG</position>
+			<contract>
+				<salary>45</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>791</id>
+			<name>Ish Smith</name>
+			<position>PG</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1568</id>
+			<name>Ivica Zubac</name>
+			<position>C</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1265</id>
+			<name>Jabari Parker</name>
+			<position>SF</position>
+			<contract>
+				<salary>30</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>966</id>
+			<name>Jae Crowder</name>
+			<position>SF</position>
+			<contract>
+				<salary>20</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1402</id>
+			<name>Jahlil Okafor</name>
+			<position>C</position>
+			<contract>
+				<salary>0</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>19</id>
+			<name>Jake Wiley (Elton Brand)</name>
+			<position>SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1565</id>
+			<name>Jamal Murray</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>30</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>633</id>
+			<name>James Harden</name>
+			<position>SG</position>
+			<contract>
+				<salary>316</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>639</id>
+			<name>James Johnson</name>
+			<position>SF</position>
+			<contract>
+				<salary>13</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1197</id>
+			<name>JaMychal Green</name>
+			<position>PF</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1558</id>
+			<name>Jaylen Brown</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>12</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1697</id>
+			<name>Jayson Tatum</name>
+			<position>SF</position>
+			<contract>
+				<salary>25</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>646</id>
+			<name>Jeff Teague</name>
+			<position>PG</position>
+			<contract>
+				<salary>83</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>783</id>
+			<name>Jeremy Lin</name>
+			<position>PG</position>
+			<contract>
+				<salary>34</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1361</id>
+			<name>Jerian Grant</name>
+			<position>PG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>840</id>
+			<name>Jimmy Butler</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>155</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>375</id>
+			<name>JJ Redick</name>
+			<position>SG</position>
+			<contract>
+				<salary>24</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1312</id>
+			<name>Joe Ingles</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1267</id>
+			<name>Joel Embiid</name>
+			<position>C</position>
+			<contract>
+				<salary>120</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1685</id>
+			<name>John Collins</name>
+			<position>PF</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>977</id>
+			<name>John Henson</name>
+			<position>PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>719</id>
+			<name>John Wall</name>
+			<position>PG</position>
+			<contract>
+				<salary>172</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>862</id>
+			<name>Jon Leuer</name>
+			<position>PF</position>
+			<contract>
+				<salary>4</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>887</id>
+			<name>Jonas Valanciunas</name>
+			<position>C</position>
+			<contract>
+				<salary>28</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1700</id>
+			<name>Jonathan Isaac</name>
+			<position>SF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1425</id>
+			<name>Jonathon Simmons</name>
+			<position>SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1667</id>
+			<name>Jordan Bell</name>
+			<position>PF</position>
+			<contract>
+				<salary>0</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1229</id>
+			<name>Jordan Clarkson</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1706</id>
+			<name>Josh Jackson</name>
+			<position>SF</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1369</id>
+			<name>Josh Richardson</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>636</id>
+			<name>Jrue Holiday</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>44</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1570</id>
+			<name>Juan Hernangomez</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1272</id>
+			<name>Julius Randle</name>
+			<position>PF</position>
+			<contract>
+				<salary>26</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1078</id>
+			<name>Justin Holiday</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1401</id>
+			<name>Justise Winslow</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>4</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1276</id>
+			<name>Jusuf Nurkic</name>
+			<position>C</position>
+			<contract>
+				<salary>69</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1404</id>
+			<name>Karl-Anthony Towns</name>
+			<position>C</position>
+			<contract>
+				<salary>290</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>860</id>
+			<name>Kawhi Leonard</name>
+			<position>SF</position>
+			<contract>
+				<salary>260</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1093</id>
+			<name>Kelly Olynyk</name>
+			<position>C</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>889</id>
+			<name>Kemba Walker</name>
+			<position>PG</position>
+			<contract>
+				<salary>86</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1025</id>
+			<name>Kent Bazemore</name>
+			<position>SG</position>
+			<contract>
+				<salary>19</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1116</id>
+			<name>Kentavious Caldwell-Pope</name>
+			<position>SG</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>412</id>
+			<name>Kevin Durant</name>
+			<position>SF</position>
+			<contract>
+				<salary>330</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>508</id>
+			<name>Kevin Love</name>
+			<position>PF</position>
+			<contract>
+				<salary>86</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>994</id>
+			<name>Khris Middleton</name>
+			<position>SG</position>
+			<contract>
+				<salary>100</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>885</id>
+			<name>Klay Thompson</name>
+			<position>SG</position>
+			<contract>
+				<salary>120</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1529</id>
+			<name>Kris Dunn</name>
+			<position>PG</position>
+			<contract>
+				<salary>3</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1396</id>
+			<name>Kristaps Porzingis</name>
+			<position>PF</position>
+			<contract>
+				<salary>154</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1673</id>
+			<name>Kyle Kuzma</name>
+			<position>PF</position>
+			<contract>
+				<salary>20</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>368</id>
+			<name>Kyle Lowry</name>
+			<position>PG</position>
+			<contract>
+				<salary>120</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>852</id>
+			<name>Kyrie Irving</name>
+			<position>PG</position>
+			<contract>
+				<salary>150</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>346</id>
+			<name>LaMarcus Aldridge</name>
+			<position>PF</position>
+			<contract>
+				<salary>45</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>726</id>
+			<name>Lance Stephenson</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>895</id>
+			<name>Lance Thomas</name>
+			<position>SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1368</id>
+			<name>Larry Nance Jr.</name>
+			<position>PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1708</id>
+			<name>Lauri Markkanen</name>
+			<position>PF</position>
+			<contract>
+				<salary>8</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>218</id>
+			<name>LeBron James</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>242</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1709</id>
+			<name>Lonzo Ball</name>
+			<position>PG</position>
+			<contract>
+				<salary>45</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>333</id>
+			<name>Lou Williams</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>44</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1518</id>
+			<name>Malcolm Brogdon</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>21</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1705</id>
+			<name>Malik Monk</name>
+			<position>SG</position>
+			<contract>
+				<salary>13</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>466</id>
+			<name>Marc Gasol</name>
+			<position>C</position>
+			<contract>
+				<salary>100</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>308</id>
+			<name>Marcin Gortat</name>
+			<position>C</position>
+			<contract>
+				<salary>16</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>872</id>
+			<name>Marcus Morris</name>
+			<position>PF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1251</id>
+			<name>Marcus Smart</name>
+			<position>PG</position>
+			<contract>
+				<salary>16</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1384</id>
+			<name>Mario Hezonja</name>
+			<position>SF</position>
+			<contract>
+				<salary>0</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1712</id>
+			<name>Markelle Fultz</name>
+			<position>PF</position>
+			<contract>
+				<salary>51</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>871</id>
+			<name>Markieff Morris</name>
+			<position>PF</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1554</id>
+			<name>Marquese Chriss</name>
+			<position>PF</position>
+			<contract>
+				<salary>25</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>331</id>
+			<name>Marvin Williams</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1085</id>
+			<name>Mason Plumlee</name>
+			<position>PF</position>
+			<contract>
+				<salary>4</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>976</id>
+			<name>Maurice Harkless</name>
+			<position>SF</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>478</id>
+			<name>Michael Beasley</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>986</id>
+			<name>Michael Kidd-Gilchrist</name>
+			<position>SF</position>
+			<contract>
+				<salary>7</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>406</id>
+			<name>Mike Conley</name>
+			<position>PG</position>
+			<contract>
+				<salary>147</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1721</id>
+			<name>Milos Teodosic</name>
+			<position>PG/PG</position>
+			<contract>
+				<salary>18</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1380</id>
+			<name>Montrezl Harrell</name>
+			<position>PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1398</id>
+			<name>Myles Turner</name>
+			<position>PF</position>
+			<contract>
+				<salary>152</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1129</id>
+			<name>Nerlens Noel</name>
+			<position>C</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>476</id>
+			<name>Nicolas Batum</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>42</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1280</id>
+			<name>Nikola Jokic</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>247</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>869</id>
+			<name>Nikola Mirotic</name>
+			<position>PF</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>888</id>
+			<name>Nikola Vucevic</name>
+			<position>C</position>
+			<contract>
+				<salary>50</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1372</id>
+			<name>Norman Powell</name>
+			<position>PG</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1118</id>
+			<name>Otto Porter Jr.</name>
+			<position>SF</position>
+			<contract>
+				<salary>77</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>702</id>
+			<name>Patrick Beverley</name>
+			<position>PG</position>
+			<contract>
+				<salary>24</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>706</id>
+			<name>Patty Mills</name>
+			<position>PG</position>
+			<contract>
+				<salary>9</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>162</id>
+			<name>Pau Gasol</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>14</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>733</id>
+			<name>Paul George</name>
+			<position>SF</position>
+			<contract>
+				<salary>150</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>369</id>
+			<name>Paul Millsap</name>
+			<position>PF</position>
+			<contract>
+				<salary>91</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1549</id>
+			<name>Paul Zipser</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1028</id>
+			<name>PJ Tucker</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>377</id>
+			<name>Rajon Rondo</name>
+			<position>PG</position>
+			<contract>
+				<salary>12</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>853</id>
+			<name>Reggie Jackson</name>
+			<position>PG</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>705</id>
+			<name>Ricky Rubio</name>
+			<position>PG</position>
+			<contract>
+				<salary>86</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1097</id>
+			<name>Robert Covington</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>27</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>506</id>
+			<name>Robin Lopez</name>
+			<position>C</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1245</id>
+			<name>Rodney Hood</name>
+			<position>SG</position>
+			<contract>
+				<salary>25</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1388</id>
+			<name>Rondae Hollis-Jefferson</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>362</id>
+			<name>Rudy Gay</name>
+			<position>SF</position>
+			<contract>
+				<salary>14</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1135</id>
+			<name>Rudy Gobert</name>
+			<position>C</position>
+			<contract>
+				<salary>165</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>527</id>
+			<name>Russell Westbrook</name>
+			<position>PG</position>
+			<contract>
+				<salary>299</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>472</id>
+			<name>Ryan Anderson</name>
+			<position>PF</position>
+			<contract>
+				<salary>14</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1343</id>
+			<name>Sean Kilpatrick</name>
+			<position>SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>499</id>
+			<name>Serge Ibaka</name>
+			<position>PF</position>
+			<contract>
+				<salary>41</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1154</id>
+			<name>Seth Curry</name>
+			<position>SG</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1669</id>
+			<name>Sindarius Thornwell</name>
+			<position>SG</position>
+			<contract>
+				<salary>0</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1564</id>
+			<name>Skal Labissiere</name>
+			<position>PF</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1399</id>
+			<name>Stanley Johnson</name>
+			<position>SF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>622</id>
+			<name>Stephen Curry</name>
+			<position>PG</position>
+			<contract>
+				<salary>300</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1128</id>
+			<name>Steven Adams</name>
+			<position>C</position>
+			<contract>
+				<salary>14</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>629</id>
+			<name>Taj Gibson</name>
+			<position>PF</position>
+			<contract>
+				<salary>4</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1524</id>
+			<name>Taurean Prince</name>
+			<position>SF</position>
+			<contract>
+				<salary>7</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1004</id>
+			<name>Terrence Ross</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>2</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>440</id>
+			<name>Thaddeus Young</name>
+			<position>SF/PF</position>
+			<contract>
+				<salary>9</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1571</id>
+			<name>Thon Maker</name>
+			<position>PF</position>
+			<contract>
+				<salary>15</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>1100</id>
+			<name>Tim Hardaway Jr.</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>18</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1249</id>
+			<name>TJ Warren</name>
+			<position>SF</position>
+			<contract>
+				<salary>8</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>850</id>
+			<name>Tobias Harris</name>
+			<position>PF</position>
+			<contract>
+				<salary>25</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>278</id>
+			<name>Trevor Ariza</name>
+			<position>SF</position>
+			<contract>
+				<salary>30</salary>
+				<start>2017</start>
+				<end>2018</end>
+			</contract>
+		</player>
+		<player>
+			<id>752</id>
+			<name>Trevor Booker</name>
+			<position>PF</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>884</id>
+			<name>Tristan Thompson</name>
+			<position>PF/C</position>
+			<contract>
+				<salary>13</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1291</id>
+			<name>Tyler Johnson</name>
+			<position>SG</position>
+			<contract>
+				<salary>10</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1538</id>
+			<name>Tyler Ulis</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>6</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>627</id>
+			<name>Tyreke Evans</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>156</id>
+			<name>Tyson Chandler</name>
+			<position>C</position>
+			<contract>
+				<salary>12</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1099</id>
+			<name>Victor Oladipo</name>
+			<position>SG</position>
+			<contract>
+				<salary>46</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>676</id>
+			<name>Wesley Matthews</name>
+			<position>SG</position>
+			<contract>
+				<salary>12</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>964</id>
+			<name>Will Barton</name>
+			<position>SG/SF</position>
+			<contract>
+				<salary>7</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1382</id>
+			<name>Willie Cauley-Stein</name>
+			<position>C</position>
+			<contract>
+				<salary>8</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>1385</id>
+			<name>Willy Hernangomez</name>
+			<position>C</position>
+			<contract>
+				<salary>22</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>405</id>
+			<name>Wilson Chandler</name>
+			<position>SF</position>
+			<contract>
+				<salary>11</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1638</id>
+			<name>Yogi Ferrell</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1270</id>
+			<name>Zach LaVine</name>
+			<position>PG/SG</position>
+			<contract>
+				<salary>30</salary>
+				<start>2017</start>
+				<end>2019</end>
+			</contract>
+		</player>
+		<player>
+			<id>172</id>
+			<name>Zach Randolph</name>
+			<position>PF</position>
+			<contract>
+				<salary>5</salary>
+				<start>2017</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>477</id>
+			<name>Jerryd Bayless</name>
+			<position>PG</position>
+			<contract>
+				<salary>4</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1546</id>
+			<name>Domantas Sabonis</name>
+			<position>PF</position>
+			<contract>
+				<salary>3</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1395</id>
+			<name>Terry Rozier</name>
+			<position>PG</position>
+			<contract>
+				<salary>3</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1397</id>
+			<name>Kelley Oubre Jr.</name>
+			<position>SF</position>
+			<contract>
+				<salary>2</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>988</id>
+			<name>Jeremy Lamb</name>
+			<position>SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1243</id>
+			<name>Spencer Dinwiddie</name>
+			<position>PG</position>
+			<contract>
+				<salary>1</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>1389</id>
+			<name>Delon Wright</name>
+			<position>PG</position>
+			<contract>
+				<salary>1</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+		<player>
+			<id>402</id>
+			<name>Marco Belinelli</name>
+			<position>SG</position>
+			<contract>
+				<salary>1</salary>
+				<start>FA</start>
+				<end>2017</end>
+			</contract>
+		</player>
+	</drafted>
+</league>
