@@ -2,17 +2,20 @@
 
 cd ~/Workspace/PSO
 
+MONGODB_URI=$(grep MONGODB_URI .env | sed -E "s/MONGODB_URI=//")
+SEASON=$(grep SEASON .env | sed -E "s/SEASON=//")
+
 cd data
-node index.js 2020
+node index.js $SEASON
 cd scripts
-mongo pso_dev marginOfVictory.js
-mongo pso_dev playoffAppearances.js
-mongo pso_dev recordOccurrences.js
-mongo pso_dev regularSeasonWinningPercentage.js
-mongo pso_dev regularSeasonWins.js
-mongo pso_dev weeklyScoringTitles.js
-mongo pso_dev highestScoringLosses.js
-mongo pso_dev lowestScoringWins.js
+mongo $MONGODB_URI marginOfVictory.js
+mongo $MONGODB_URI playoffAppearances.js
+mongo $MONGODB_URI recordOccurrences.js
+mongo $MONGODB_URI regularSeasonWinningPercentage.js
+mongo $MONGODB_URI regularSeasonWins.js
+mongo $MONGODB_URI weeklyScoringTitles.js
+mongo $MONGODB_URI highestScoringLosses.js
+mongo $MONGODB_URI lowestScoringWins.js
 cd ..
 cd ..
 
