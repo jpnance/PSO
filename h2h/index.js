@@ -24,10 +24,10 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
-Object.values(PSO.franchises).forEach(firstFranchise => {
+Object.values(PSO.regimes).forEach(firstFranchise => {
 	headToHead[firstFranchise] = {};
 
-	Object.values(PSO.franchises).forEach(secondFranchise => {
+	Object.values(PSO.regimes).forEach(secondFranchise => {
 		if (firstFranchise != secondFranchise) {
 			headToHead[firstFranchise][secondFranchise] = { wins: 0, losses: 0, ties: 0, games: [] };
 		}
@@ -39,25 +39,25 @@ Game.find({ type: 'regular' }).sort({ season: 1, week: 1 }).then(games => {
 	games.forEach(game => {
 		if (game.away.score != 0 || game.home.score != 0) {
 			if (game.away.score > game.home.score) {
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].wins++;
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].losses++;
+				headToHead[PSO.regimes[game.away.name]][PSO.regimes[game.home.name]].wins++;
+				headToHead[PSO.regimes[game.home.name]][PSO.regimes[game.away.name]].losses++;
 
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].games.push(game.season + '-' + game.week + ': W');
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].games.push(game.season + '-' + game.week + ': L');
+				headToHead[PSO.regimes[game.away.name]][PSO.regimes[game.home.name]].games.push(game.season + '-' + game.week + ': W');
+				headToHead[PSO.regimes[game.home.name]][PSO.regimes[game.away.name]].games.push(game.season + '-' + game.week + ': L');
 			}
 			else if (game.home.score > game.away.score) {
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].wins++;
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].losses++;
+				headToHead[PSO.regimes[game.home.name]][PSO.regimes[game.away.name]].wins++;
+				headToHead[PSO.regimes[game.away.name]][PSO.regimes[game.home.name]].losses++;
 
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].games.push(game.season + '-' + game.week + ': W');
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].games.push(game.season + '-' + game.week + ': L');
+				headToHead[PSO.regimes[game.home.name]][PSO.regimes[game.away.name]].games.push(game.season + '-' + game.week + ': W');
+				headToHead[PSO.regimes[game.away.name]][PSO.regimes[game.home.name]].games.push(game.season + '-' + game.week + ': L');
 			}
 			else if (game.away.score > 0 || game.home.score > 0) {
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].ties++;
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].ties++;
+				headToHead[PSO.regimes[game.away.name]][PSO.regimes[game.home.name]].ties++;
+				headToHead[PSO.regimes[game.home.name]][PSO.regimes[game.away.name]].ties++;
 
-				headToHead[PSO.franchises[game.away.franchiseId]][PSO.franchises[game.home.franchiseId]].games.push(game.season + '-' + game.week + ': T');
-				headToHead[PSO.franchises[game.home.franchiseId]][PSO.franchises[game.away.franchiseId]].games.push(game.season + '-' + game.week + ': T');
+				headToHead[PSO.regimes[game.away.name]][PSO.regimes[game.home.name]].games.push(game.season + '-' + game.week + ': T');
+				headToHead[PSO.regimes[game.home.name]][PSO.regimes[game.away.name]].games.push(game.season + '-' + game.week + ': T');
 			}
 		}
 	});

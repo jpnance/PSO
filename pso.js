@@ -13,6 +13,37 @@ module.exports.franchises = {
 	12: 'Mitch'
 };
 
+module.exports.regimes = {
+	'Patrick': 'Patrick',
+	'Koci/Mueller': 'Koci/Mueller',
+	'Luke': 'Luke',
+	'John/Zach': 'John/Zach',
+	'Trevor': 'Trevor',
+	'Keyon': 'Keyon',
+	'Brett': 'Brett',
+	'Terence': 'Terence',
+	'James/Charles': 'James/Charles',
+	'Schex': 'Schex',
+	'Quinn': 'Quinn',
+	'Mitch': 'Mitch',
+
+	'Daniel': 'Daniel',
+	'James': 'James',
+	'Jeff': 'Jeff',
+	'Syed': 'Syed',
+
+	'Charles': 'James/Charles',
+	'Brett/Luke': 'Luke',
+	'Jake/Luke': 'Luke',
+	'John': 'John/Zach',
+	'Koci': 'Koci/Mueller',
+	'Pat/Quinn': 'Patrick',
+	'Schex/Jeff': 'Schex',
+	'Schexes': 'Schex',
+	'Syed/Kuan': 'Syed',
+	'Syed/Terence': 'Syed'
+};
+
 module.exports.fantraxAbbreviations = {
 	'SCHX': 'Schex',
 	'TMAN': 'Terence',
