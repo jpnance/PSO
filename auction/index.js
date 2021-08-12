@@ -47,6 +47,7 @@ var owners = {
 	pso: [
 		'Brett',
 		'James/Charles',
+		'Jason',
 		'John/Zach',
 		'Keyon',
 		'Koci/Mueller',
@@ -55,7 +56,6 @@ var owners = {
 		'Patrick',
 		'Quinn',
 		'Schex',
-		'Terence',
 		'Trevor'
 	],
 
