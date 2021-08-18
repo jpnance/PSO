@@ -1,116 +1,5 @@
 var dotenv = require('dotenv').config({ path: '../.env' });
 
-var random = {
-	names: [
-		'C.J. Spiller',
-		'Akiem Hicks',
-		'Mike Gillislee',
-		'Brian Poole',
-		'Victor Cruz',
-		'Bennie Fowler III',
-		'Roger Lewis',
-		'Ronnie Hillman',
-		'Doug Baldwin',
-		'Kurt Coleman',
-		'Josh Malone',
-		'Nick O\'Leary',
-		'Boston Scott',
-		'Tom Savage',
-		'Malik Jefferson',
-		'Trumaine Johnson',
-		'Braxton Berrios',
-		'Johnathan Cyprien',
-		'Eli Harold',
-		'Sebastian Janikowski',
-		'Malik Hooker',
-		'Devin McCourty',
-		'Mike Mitchell',
-		'Fletcher Cox',
-		'DeShawn Shead',
-		'DeMarco Murray',
-		'Pierre Garcon',
-		'Brandon Marshall (SEA)',
-		'Jahleel Addae',
-		'Michael Floyd',
-		'Karl Joseph',
-		'Rod Smith',
-		'DeAndre Levy',
-		'Adam Shaheen',
-		'Chris Warren',
-		'Eddie Lacy',
-		'Drew Stanton',
-		'Jason McCourty',
-		'Julius Peppers',
-		'Keelan Cole',
-		'Byron Marshall',
-		'Jatavis Brown',
-		'Rob Kelley',
-		'Andrew Sendejo',
-		'Linval Joseph',
-		'Stephen Anderson',
-		'Connor Cook',
-		'Denzel Perryman',
-		'Marcus Murphy',
-		'Marquess Wilson',
-		'Sam Bradford',
-		'Josh Bynes',
-		'Richard Rodgers',
-		'Thomas Rawls',
-		'Ladarius Green',
-		'Paul Perkins',
-		'Malcolm Jenkins',
-		'Sean Davis',
-		'Braxton Miller',
-		'Jace Amaro',
-		'Trent Taylor',
-		'Dan Carpenter',
-		'Javorius Allen',
-		'Andre Williams',
-		'A.J. Klein',
-		'Kai Forbath',
-		'Dwayne Allen',
-		'Chad Hansen',
-		'Maxx Williams'
-	],
-	positions: [ 'QB', 'RB', 'RB/WR', 'WR', 'TE', 'DL', 'DL/LB', 'LB', 'DB', 'K' ],
-	teams: [
-		'ARI',
-		'ATL',
-		'BAL',
-		'BUF',
-		'CAR',
-		'CHI',
-		'CIN',
-		'CLE',
-		'DAL',
-		'DEN',
-		'DET',
-		'FA',
-		'GB',
-		'HOU',
-		'IND',
-		'JAX',
-		'KC',
-		'LAC',
-		'LAR',
-		'LV',
-		'MIA',
-		'MIN',
-		'NE',
-		'NO',
-		'NYG',
-		'NYJ',
-		'PHI',
-		'PIT',
-		'SEA',
-		'SF',
-		'TB',
-		'TEN',
-		'WAS'
-	],
-	situations: [ 'UFA', 'RFA-Brett/Luke', 'RFA-James/Charles', 'RFA-John/Zach', 'RFA-Keyon', 'RFA-Koci/Mueller', 'RFA-Mitch', 'RFA-Patrick', 'RFA-Quinn', 'RFA-Schex', 'RFA-Syed/Kuan', 'RFA-Terence', 'RFA-Trevor' ]
-};
-
 var auction = {
 	nominator: {
 		now: '--',
@@ -153,19 +42,6 @@ module.exports.callRoll = function(request, response) {
 };
 
 module.exports.currentAuction = function(request, response) {
-	if (false && Math.random() < 0.005) {
-		auction.nominator.now = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
-		auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
-		auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 3) % nominationOrder.length];
-
-		auction.player.name = random.names[Math.floor(Math.random() * random.names.length)];
-		auction.player.position = random.positions.filter(position => Math.random() > 0.67).join('/');
-		auction.player.team = random.teams[Math.floor(Math.random() * random.teams.length)];
-		auction.player.situation = random.situations[Math.floor(Math.random() * random.situations.length)];
-
-		auction.bids = [];
-	}
-
 	response.send(auction);
 };
 
@@ -228,7 +104,12 @@ module.exports.makeBid = function(request, response) {
 };
 
 module.exports.nominatePlayer = function(request, response) {
-	auction.status = 'paused';
+	if (request.body.status) {
+		auction.status = request.body.status;
+	}
+	else {
+		auction.status = 'paused';
+	}
 
 	auction.nominator.now = request.body.nominator;
 	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];

@@ -10,11 +10,11 @@ var parameters = {
 
 var siteData = {
 	pso: {
-		sheetLink: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
+		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
 		firstRow: 3
 	},
 	colbys: {
-		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
+		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
 		firstRow: 2
 	}
 };
@@ -24,6 +24,10 @@ process.argv.forEach(function(value, index, array) {
 		var pair = value.split(/=/);
 
 		switch (pair[0]) {
+			case 'demo':
+				parameters.demo = true;
+				break;
+
 			case 'render':
 				parameters.render = true;
 				break;
@@ -78,33 +82,22 @@ var owners = {
 
 request
 	.get(siteData[parameters.site].sheetLink)
+	.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
 	.then(response => {
 		var dataJson = JSON.parse(response.text);
 
-		dataJson.feed.entry.forEach(cell => {
-			var row = parseInt(cell.gs$cell.row);
-			var column = parseInt(cell.gs$cell.col);
-			var value = cell.gs$cell.$t;
-
-			if (!rows[row]) {
-				rows[row] = [];
-			}
-
-			rows[row][column] = value;
-		});
-
-		rows.forEach((row, i) => {
+		dataJson.values.forEach((row, i) => {
 			if (i < siteData[parameters.site].firstRow || i == rows.length - 1) {
 				return;
 			}
 
 			var player = {
-				owner: row[2],
-				name: row[3],
-				position: row[4],
-				start: row[5],
-				end: row[6],
-				salary: row[7]
+				owner: row[0],
+				name: row[1],
+				position: row[2],
+				start: row[3],
+				end: row[4],
+				salary: row[5]
 			};
 
 			if (player.end == parameters.season) {
@@ -152,6 +145,10 @@ request
 
 			var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
 			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({ players: players, positions: positions, situations: situations, owners: owners[parameters.site] }));
+		}
+
+		if (parameters.demo) {
+			console.log(JSON.stringify(players));
 		}
 
 		process.exit();
