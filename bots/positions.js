@@ -52,11 +52,24 @@ var newFantraxPromise = function(players) {
 					var team = fields[2];
 					var positions = fields[3].split(/,/);
 
-					var player = players.find(player => nameToId(player.name) == nameToId(name));
+					var playersWithName = players.filter(player => nameToId(player.name) == nameToId(name));
+
+					if (playersWithName.length > 1) {
+						return;
+					}
+
+					var player = playersWithName[0];
 
 					if (player) {
-						player.team = team;
-						player.position = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
+						if (player.dirty) {
+							player.position = player.originalPosition;
+						}
+						else {
+							player.team = team;
+							player.originalPosition = player.position;
+							player.position = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
+							player.dirty = true;
+						}
 					}
 				});
 
