@@ -7,18 +7,18 @@ var PSO = require('../pso.js');
 const siteData = {
 	pso: {
 		staticPositions: ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'],
-		sheetLink: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
+		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
 		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&&statusOrTeamFilter=ALL'
 	},
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
-		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
+		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
 		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&statusOrTeamFilter=ALL'
 	}
 };
 
 var parameters = {
-	site: 'colbys'
+	site: 'pso'
 };
 
 process.argv.forEach(function(value, index, array) {
@@ -48,9 +48,9 @@ var newFantraxPromise = function(players) {
 
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
-					var name = fields[0];
-					var team = fields[1];
-					var positions = fields[2].split(/,/);
+					var name = fields[1];
+					var team = fields[2];
+					var positions = fields[3].split(/,/);
 
 					var player = players.find(player => nameToId(player.name) == nameToId(name));
 
@@ -70,26 +70,23 @@ var newSheetsPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
 			.get(siteData[parameters.site].sheetLink)
+			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
 			.then(response => {
 				var dataJson = JSON.parse(response.text);
-				var cells = dataJson.feed.entry;
 
+				var rows = [];
 				var players = [];
 
-				cells.forEach(cell => {
-					if (cell.gs$cell.col == '3' && cell.gs$cell.row != '1') {
-						players.push({ row: cell.gs$cell.row, name: cell.content.$t });
-					}
+				dataJson.values.forEach((row, i) => {
+					rows.push(row);
 				});
 
-				cells.forEach(cell => {
-					if (cell.gs$cell.col == '4' && cell.gs$cell.row != '1') {
-						var player = players.find(player => player.row == cell.gs$cell.row);
+				rows.shift();
+				rows.shift();
+				rows.pop();
 
-						if (player) {
-							player.position = cell.content.$t.split('/');
-						}
-					}
+				rows.forEach((row, i) => {
+					players.push({ row: i, name: row[1], position: row[2].split('/') });
 				});
 
 				resolve(players);
