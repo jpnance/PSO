@@ -8,7 +8,10 @@ var PSO = require('../pso.js');
 const siteData = {
 	pso: {
 		staticPositions: ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'],
-		sheetLink: 'https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/2/public/full?alt=json',
+		ratingThresholds: {
+			fpts: [ 0, 6, 9, 12, 15 ]
+		},
+		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
 		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&&statusOrTeamFilter=ALL'
 	},
 	colbys: {
@@ -26,18 +29,18 @@ const siteData = {
 			blk: [ 0.0, 0.6, 0.9, 1.4, 2.0 ],
 			to: [ 0.0, 0.6, 0.9, 1.1, 1.5 ]
 		},
-		sheetLink: 'https://spreadsheets.google.com/feeds/cells/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/2/public/full?alt=json',
+		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
 		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
 	}
 };
 
 var parameters = {
-	site: 'colbys',
+	site: 'pso',
 	limit: null,
 	query: {
 		gp: 40
 	},
-	sortPaths: [ '-fantraxProjections.score', '-fantraxProjections.ratingSum' ]
+	sortPaths: [ '-fantraxProjections.raw.fpts' ]
 };
 
 process.argv.forEach(function(value, index, array) {
@@ -122,6 +125,9 @@ process.argv.forEach(function(value, index, array) {
 					else if (sortParameter == 'contract') {
 						parameters.sortPaths.unshift('+contract');
 					}
+					else if (sortParameter == 'positions') {
+						parameters.sortPaths.unshift('+positions');
+					}
 					else {
 						parameters.sortPaths.unshift('-fantraxProjections.rating.' + sortParameter);
 					}
@@ -145,6 +151,61 @@ var contractStyler = function(contract) {
 
 var displayPlayers = function(players) {
 	var columnPadding = 1;
+
+	// pso
+	var headings = [
+		{
+			path: 'owner',
+			label: '',
+			padLength: 12
+		},
+		{
+			path: 'name',
+			label: '',
+			padLength: 24
+		},
+		{
+			path: 'team',
+			label: '',
+			padLength: 8
+		},
+		{
+			path: 'positions',
+			label: '',
+			padLength: 11
+		},
+		{
+			path: 'contract',
+			label: '',
+			styler: contractStyler,
+			padLength: 6
+		},
+		{
+			path: 'salary',
+			label: '',
+			styler: salaryStyler,
+			padLength: 4
+		},
+		{
+			path: 'fantraxProjections.raw.fpts',
+			label: 'FPts',
+			padLength: 8
+		},
+		{
+			path: 'fantraxProjections.ratingSum',
+			label: '',
+			padLength: 3
+		},
+		{
+			path: 'fantraxProjections.score',
+			label: '',
+			styler: scoreStyler,
+			padLength: 5
+		}
+	];
+
+	/*
+	// colbys
 	var headings = [
 		{
 			path: 'owner',
@@ -255,6 +316,7 @@ var displayPlayers = function(players) {
 			padLength: 5
 		}
 	];
+	*/
 
 	players.forEach((player, i) => {
 		var outputString = '';
@@ -377,7 +439,7 @@ var newFantraxPromise = function(players) {
 				var csvLines = response.body.toString();
 		*/
 
-		fs.readFile('./colbys.csv', function(error, data) {
+		fs.readFile('./pso.csv', function(error, data) {
 				var csvLines = data.toString();
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
@@ -388,13 +450,13 @@ var newFantraxPromise = function(players) {
 					// "Player","Team","Position","Rk","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
-					var id = nameToId(fields[0]);
-					var positions = fields[2].split(/,/);
+					var id = nameToId(fields[1]);
+					var positions = fields[3].split(/,/);
 
 					var player = players.find(player => player.id == id);
 
-					if (player) {
-						player.team = fields[1];
+					if (player && positions.some((position) => player.positions.indexOf(position) > -1)) {
+						player.team = fields[2];
 						player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
 
 						if (player.fantraxProjections) {
@@ -404,6 +466,15 @@ var newFantraxPromise = function(players) {
 							player.fantraxProjections = { raw: {}, perGame: {}, rating: {} };
 						}
 
+						// pso
+						player.fantraxProjections.ratingSum = 0;
+						player.fantraxProjections.raw.fpts = parseFloat(fields[9]);
+						player.fantraxProjections.perGame.fpts = parseFloat(fields[10]);
+						player.fantraxProjections.rating.fpts = perGameAverageToRating('fpts', player.fantraxProjections.perGame.fpts);
+						player.fantraxProjections.ratingSum += player.fantraxProjections.rating.fpts;
+
+						/*
+						// colbys
 						player.fantraxProjections.gamesPlayed = parseInt(fields[12]);
 
 						player.fantraxProjections.score = parseFloat(fields[9]);
@@ -432,6 +503,7 @@ var newFantraxPromise = function(players) {
 
 							player.fantraxProjections.ratingSum += player.fantraxProjections.rating[statKey];
 						});
+						*/
 					}
 				});
 
@@ -445,46 +517,41 @@ var newSheetsPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
 			.get(siteData[parameters.site].sheetLink)
+			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
 			.then(response => {
 				var dataJson = JSON.parse(response.text);
-				var cells = dataJson.feed.entry;
 
 				var rows = [];
 				var players = [];
 				var league = {};
 
-				cells.forEach(cell => {
-					var row = parseInt(cell.gs$cell.row);
-					var column = parseInt(cell.gs$cell.col);
-
-					if (!rows[row]) {
-						rows[row] = [];
-					}
-
-					rows[row][column] = cell.content.$t;
+				dataJson.values.forEach((row, i) => {
+					rows.push(row);
 				});
 
 				rows.shift();
 				rows.shift();
+				rows.pop();
 
 				rows.forEach(row => {
 					var player = {
-						id: nameToId(row[3]),
-						owner: row[2],
-						name: row[3],
-						start: row[5],
-						end: row[6],
-						salary: row[7] ? parseInt(row[7].substring(1)) : null
+						id: nameToId(row[1]),
+						owner: row[0],
+						name: row[1],
+						positions: row[2].split('/'),
+						start: row[3],
+						end: row[4],
+						salary: row[5] ? parseInt(row[5].substring(1)) : null
 					};
 
-					if (player.end == '2019') {
+					if (player.end == '2020') {
 						player.salary = 0;
 
-						if (player.start == '2018' || player.start == '2017') {
+						if (player.start == '2019' || player.start == '2018') {
 							player.rfa = true;
 							player.contract = 'RFA';
 						}
-						else if (player.start != '2020') {
+						else if (player.start != '2021') {
 							player.ufa = true;
 							player.contract = 'UFA';
 
@@ -494,7 +561,7 @@ var newSheetsPromise = function(fantraxId) {
 
 					if (!player.end) {
 						player.end = undefined;
-						player.contract = '20/?';
+						player.contract = '21/?';
 					}
 
 					if (!player.contract && player.start && player.end) {
