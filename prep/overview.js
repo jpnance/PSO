@@ -157,7 +157,7 @@ var displayPlayers = function(players) {
 		{
 			path: 'owner',
 			label: '',
-			padLength: 12
+			padLength: 14
 		},
 		{
 			path: 'name',
