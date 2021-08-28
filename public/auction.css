@@ -88,6 +88,7 @@ body.admin .nominating .who {
 	font-weight: bold;
 }
 
+/*
 .james-bid {
 	background-color: #fee5e5;
 }
@@ -183,14 +184,22 @@ body.admin .nominating .who {
 .taylor .taylor-bid {
 	background-color: #98bafe;
 }
+*/
 
-/*
-.brett-luke-bid {
+.brett-bid {
 	background-color: #fee5e5;
 }
 
-.brett-luke .brett-luke-bid {
+.brett .brett-bid {
 	background-color: #fe9898;
+}
+
+.jason-bid {
+	background-color: #e5f6fe;
+}
+
+.jason .jason-bid {
+	background-color: #98dcfe;
 }
 
 .james-charles-bid {
@@ -257,20 +266,12 @@ body.admin .nominating .who {
 	background-color: #98fedc;
 }
 
-.syed-kuan-bid {
+.luke-bid {
 	background-color: #e5fefe;
 }
 
-.syed-kuan .syed-kuan-bid {
+.luke .luke-bid {
 	background-color: #98fefe;
-}
-
-.terence-bid {
-	background-color: #e5f6fe;
-}
-
-.terence .terence-bid {
-	background-color: #98dcfe;
 }
 
 .trevor-bid {
@@ -280,7 +281,6 @@ body.admin .nominating .who {
 .trevor .trevor-bid {
 	background-color: #98bafe;
 }
-*/
 
 .error {
 	background-color: #ffdddd;
