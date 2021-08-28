@@ -192,16 +192,16 @@ var displayPlayers = function(players) {
 			padLength: 8
 		},
 		{
-			path: 'fantraxProjections.ratingSum',
+			path: 'bye',
 			label: '',
 			padLength: 3
 		},
 		{
-			path: 'fantraxProjections.score',
+			path: 'fantraxProjections.ratingSum',
 			label: '',
-			styler: scoreStyler,
-			padLength: 5
-		}
+			styler: ratingStyler,
+			padLength: 3
+		},
 	];
 
 	/*
@@ -458,6 +458,7 @@ var newFantraxPromise = function(players) {
 					if (player && positions.some((position) => player.positions.indexOf(position) > -1)) {
 						player.team = fields[2];
 						player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
+						player.bye = parseInt(fields[13]);
 
 						if (player.fantraxProjections) {
 							console.log('Dirty data with', player.name, '(' + player.team + ')');
