@@ -6,7 +6,7 @@ module.exports.franchises = {
 	5: 'Trevor',
 	6: 'Keyon',
 	7: 'Brett',
-	8: 'Terence',
+	8: 'Jason',
 	9: 'James/Charles',
 	10: 'Schex',
 	11: 'Quinn',
