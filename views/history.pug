@@ -21,13 +21,22 @@ html
 			table.results
 				tr
 					th #{year}
-					each games, week in season
-						if week < 15
-							th Week #{week}
-						else if week == 15
-							th Semifinals
-						else if week == 16
-							th Finals
+					if year <= 2020
+						each games, week in season
+							if week < 15
+								th Week #{week}
+							else if week == 15
+								th Semifinals
+							else if week == 16
+								th Finals
+					else if year >= 2021
+						each games, week in season
+							if week < 16
+								th Week #{week}
+							else if week == 16
+								th Semifinals
+							else if week == 17
+								th Finals
 
 					th.average Average
 					th.stdev St. Dev.

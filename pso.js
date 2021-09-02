@@ -21,7 +21,7 @@ module.exports.regimes = {
 	'Trevor': 'Trevor',
 	'Keyon': 'Keyon',
 	'Brett': 'Brett',
-	'Terence': 'Terence',
+	'Jason': 'Jason',
 	'James/Charles': 'James/Charles',
 	'Schex': 'Schex',
 	'Quinn': 'Quinn',
@@ -31,6 +31,7 @@ module.exports.regimes = {
 	'James': 'James',
 	'Jeff': 'Jeff',
 	'Syed': 'Syed',
+	'Terence': 'Terence',
 
 	'Charles': 'James/Charles',
 	'Brett/Luke': 'Luke',
@@ -46,7 +47,7 @@ module.exports.regimes = {
 
 module.exports.fantraxAbbreviations = {
 	'SCHX': 'Schex',
-	'TMAN': 'Terence',
+	'RIDD': 'Jason',
 	'REYN': 'James/Charles',
 	'KOMU': 'Koci/Mueller',
 	'SOMA': 'Keyon',
@@ -60,33 +61,33 @@ module.exports.fantraxAbbreviations = {
 };
 
 module.exports.fantraxIds = {
-	'motju5wmk7xr9dlz': 1, // Patrick
-	'6u9bwy3ik7xrer9z': 2, // Koci/Mueller
-	'hfyfddwck7xrera2': 3, // Luke
-	'hgfqy84rk7xrera0': 4, // John/Zach
-	'alzk1h56k7xrer9w': 5, // Trevor
-	'134ej04vk7xrer9y': 6, // Keyon
-	'n5ozy8wjk7xrer9m': 7, // Brett
-	'fzqz34xuk7xrer9p': 8, // Terence
-	'erk30j3lk7xrer9s': 9, // James/Charles
-	'bmj6dbebk7xrer9v': 10, // Schex
-	'a1p22t32k7xrer9u': 11, // Quinn
-	'vt5py28ck7xrer9r': 12 // Mitch
+	'mkljbisnkkyr33yl': 1, // Patrick
+	'urd756b0kkyr33yw': 2, // Koci/Mueller
+	'dqvvynv8kkyr33yo': 3, // Luke
+	'8cdt5li1kkyr33z7': 4, // John/Zach
+	'ygmwf6pvkkyr33yu': 5, // Trevor
+	'u6hbpnznkkyr33z5': 6, // Keyon
+	'xc5epmazkkyr33z2': 7, // Brett
+	'qsikxu5lkkyr33yq': 8, // Jason
+	'mr9o4eonkkyr33yy': 9, // James/Charles
+	'ps1ipdlgkkyr33ys': 10, // Schex
+	'hsdnqwgykkyr33yj': 11, // Quinn
+	'218fvvbwkkyr33z0': 12 // Mitch
 };
 
 module.exports.sheetsBudgetCells = {
-	'n5ozy8wjk7xrer9m': 'R7C3', // Brett
-	'erk30j3lk7xrer9s': 'R7C4', // James/Charles
-	'hgfqy84rk7xrera0': 'R7C5', // John/Zach
-	'134ej04vk7xrer9y': 'R7C6', // Keyon
-	'6u9bwy3ik7xrer9z': 'R7C7', // Koci/Mueller
-	'hfyfddwck7xrera2': 'R7C8', // Luke
-	'vt5py28ck7xrer9r': 'R7C9', // Mitch
-	'motju5wmk7xr9dlz': 'R7C10', // Patrick
-	'a1p22t32k7xrer9u': 'R7C11', // Quinn
-	'bmj6dbebk7xrer9v': 'R7C12', // Schex
-	'fzqz34xuk7xrer9p': 'R7C13', // Terence
-	'alzk1h56k7xrer9w': 'R7C14' // Trevor
+	'xc5epmazkkyr33z2': 'R7C3', // Brett
+	'mr9o4eonkkyr33yy': 'R7C4', // James/Charles
+	'qsikxu5lkkyr33yq': 'R7C5', // Jason
+	'8cdt5li1kkyr33z7': 'R7C6', // John/Zach
+	'u6hbpnznkkyr33z5': 'R7C7', // Keyon
+	'urd756b0kkyr33yw': 'R7C8', // Koci/Mueller
+	'dqvvynv8kkyr33yo': 'R7C9', // Luke
+	'218fvvbwkkyr33z0': 'R7C10', // Mitch
+	'mkljbisnkkyr33yl': 'R7C11', // Patrick
+	'hsdnqwgykkyr33yj': 'R7C12', // Quinn
+	'ps1ipdlgkkyr33ys': 'R7C13', // Schex
+	'ygmwf6pvkkyr33yu': 'R7C14' // Trevor
 };
 
 module.exports.franchiseNames = {
@@ -103,7 +104,8 @@ module.exports.franchiseNames = {
 		2017: 'Patrick',
 		2018: 'Patrick',
 		2019: 'Patrick',
-		2020: 'Patrick'
+		2020: 'Patrick',
+		2021: 'Patrick'
 	},
 	2: {
 		2008: 'Koci',
@@ -118,7 +120,8 @@ module.exports.franchiseNames = {
 		2017: 'Koci/Mueller',
 		2018: 'Koci/Mueller',
 		2019: 'Koci/Mueller',
-		2020: 'Koci/Mueller'
+		2020: 'Koci/Mueller',
+		2021: 'Koci/Mueller'
 	},
 	3: {
 		2008: 'Syed',
@@ -133,7 +136,8 @@ module.exports.franchiseNames = {
 		2017: 'Syed/Terence',
 		2018: 'Syed/Terence',
 		2019: 'Syed/Kuan',
-		2020: 'Luke'
+		2020: 'Luke',
+		2021: 'Luke'
 	},
 	4: {
 		2008: 'John',
@@ -148,7 +152,8 @@ module.exports.franchiseNames = {
 		2017: 'John/Zach',
 		2018: 'John/Zach',
 		2019: 'John/Zach',
-		2020: 'John/Zach'
+		2020: 'John/Zach',
+		2021: 'John/Zach'
 	},
 	5: {
 		2008: 'Trevor',
@@ -163,7 +168,8 @@ module.exports.franchiseNames = {
 		2017: 'Trevor',
 		2018: 'Trevor',
 		2019: 'Trevor',
-		2020: 'Trevor'
+		2020: 'Trevor',
+		2021: 'Trevor'
 	},
 	6: {
 		2008: 'Keyon',
@@ -178,7 +184,8 @@ module.exports.franchiseNames = {
 		2017: 'Keyon',
 		2018: 'Keyon',
 		2019: 'Keyon',
-		2020: 'Keyon'
+		2020: 'Keyon',
+		2021: 'Keyon'
 	},
 	7: {
 		2008: 'Jeff',
@@ -193,7 +200,8 @@ module.exports.franchiseNames = {
 		2017: 'Brett/Luke',
 		2018: 'Brett/Luke',
 		2019: 'Brett/Luke',
-		2020: 'Brett'
+		2020: 'Brett',
+		2021: 'Brett'
 	},
 	8: {
 		2008: 'Daniel',
@@ -208,7 +216,8 @@ module.exports.franchiseNames = {
 		2017: 'Daniel',
 		2018: 'Daniel',
 		2019: 'Terence',
-		2020: 'Terence'
+		2020: 'Terence',
+		2021: 'Jason'
 	},
 	9: {
 		2008: 'James',
@@ -223,7 +232,8 @@ module.exports.franchiseNames = {
 		2017: 'James/Charles',
 		2018: 'James/Charles',
 		2019: 'James/Charles',
-		2020: 'James/Charles'
+		2020: 'James/Charles',
+		2021: 'James/Charles'
 	},
 	10: {
 		2008: 'Schexes',
@@ -238,7 +248,8 @@ module.exports.franchiseNames = {
 		2017: 'Schex/Jeff',
 		2018: 'Schex',
 		2019: 'Schex',
-		2020: 'Schex'
+		2020: 'Schex',
+		2021: 'Schex'
 	},
 	11: {
 		2012: 'Charles',
@@ -249,7 +260,8 @@ module.exports.franchiseNames = {
 		2017: 'Quinn',
 		2018: 'Quinn',
 		2019: 'Quinn',
-		2020: 'Quinn'
+		2020: 'Quinn',
+		2021: 'Quinn'
 	},
 	12: {
 		2012: 'Mitch',
@@ -260,6 +272,7 @@ module.exports.franchiseNames = {
 		2017: 'Mitch',
 		2018: 'Mitch',
 		2019: 'Mitch',
-		2020: 'Mitch'
+		2020: 'Mitch',
+		2021: 'Mitch'
 	}
 };

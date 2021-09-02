@@ -30,7 +30,6 @@ var playoffAppearancesReduce = function(key, results) {
 };
 
 var playoffAppearancesQuery = {
-	'week': { '$gt': 14 },
 	'type': 'semifinal'
 };
 

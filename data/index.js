@@ -54,7 +54,7 @@ var hackScores = {
 var newWeekPromise = function(week) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/fxpa/req?leagueId=eju35f9ok7xr9cvt')
+			.post('https://www.fantrax.com/fxpa/req?leagueId=4bveni4tkkyr33y2')
 			.set('Content-Type', 'text/plain')
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.send(JSON.stringify({ msgs: [ { data: { newView: true, period: week }, method: 'getLiveScoringStats' } ] }))
@@ -83,19 +83,38 @@ var newWeekPromise = function(week) {
 					matchup.away.score = teamStatsMap[teamIds[0]].ACTIVE.totalFpts;
 					matchup.home.score = teamStatsMap[teamIds[1]].ACTIVE.totalFpts;
 
-					if (week <= 14) {
-						matchup.type = 'regular';
-					}
-					else if (week == 15) {
-						matchup.type = 'semifinal';
-					}
-					else if (week == 16) {
-						// i have no clue if 1 is always the championship or what
-						if (i == 1) {
-							matchup.type = 'championship';
+					if (season <= 2020) {
+						if (week <= 14) {
+							matchup.type = 'regular';
 						}
-						else if (i == 0) {
-							matchup.type = 'thirdPlace';
+						else if (week == 15) {
+							matchup.type = 'semifinal';
+						}
+						else if (week == 16) {
+							// i have no clue if 1 is always the championship or what
+							if (i == 1) {
+								matchup.type = 'championship';
+							}
+							else if (i == 0) {
+								matchup.type = 'thirdPlace';
+							}
+						}
+					}
+					else if (season >= 2021) {
+						if (week <= 15) {
+							matchup.type = 'regular';
+						}
+						else if (week == 16) {
+							matchup.type = 'semifinal';
+						}
+						else if (week == 17) {
+							// i have no clue if 1 is always the championship or what
+							if (i == 1) {
+								matchup.type = 'championship';
+							}
+							else if (i == 0) {
+								matchup.type = 'thirdPlace';
+							}
 						}
 					}
 
@@ -159,7 +178,7 @@ var newWeekPromise = function(week) {
 
 var weekPromises = [];
 
-for (var week = 1; week <= 16; week++) {
+for (var week = 1; week <= 15; week++) {
 	weekPromises.push(newWeekPromise(week));
 }
 
