@@ -38,4 +38,7 @@ html
 											gamesTable += headToHead[franchiseOwner][opponentOwner].games.join('<br />');
 											gamesTable += '</div>';
 
-										a(href='#' data-toggle='tooltip' data-placement='right' data-html='true' title=gamesTable) #{headToHead[franchiseOwner][opponentOwner].wins}-#{headToHead[franchiseOwner][opponentOwner].losses}
+										if headToHead[franchiseOwner][opponentOwner].games.length == 0
+											| 0-0
+										else
+											a(href='#' data-toggle='tooltip' data-placement='right' data-html='true' title=gamesTable) #{headToHead[franchiseOwner][opponentOwner].wins}-#{headToHead[franchiseOwner][opponentOwner].losses}
