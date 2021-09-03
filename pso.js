@@ -46,7 +46,7 @@ module.exports.regimes = {
 
 module.exports.fantraxAbbreviations = {
 	'SCHX': 'Schex',
-	'TMAN': 'Terence',
+	'RIDD': 'Jason',
 	'REYN': 'James/Charles',
 	'KOMU': 'Koci/Mueller',
 	'SOMA': 'Keyon',
