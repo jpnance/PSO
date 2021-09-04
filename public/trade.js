@@ -12,16 +12,30 @@ var tradeMachine = {
 		}
 
 		tradeMachine.rebuildPlayerLists();
+		tradeMachine.rebuildFranchiseLists();
 	},
 
 	rebuildPlayerLists: () => {
-		$('select.franchise-player-list').each((i, list) => {
+		$('select.player-list').each((i, list) => {
 			var $this = $(list);
 			$this.empty();
 
 			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
 				if (!list.id.endsWith(franchiseId)) {
 					$this.append($('select.master-player-list optgroup[id=players-' + franchiseId + ']').clone());
+				}
+			});
+		});
+	},
+
+	rebuildFranchiseLists: () => {
+		$('select.franchise-list').each((i, list) => {
+			var $this = $(list);
+			$this.empty();
+
+			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+				if (!list.id.endsWith(franchiseId)) {
+					$this.append($('select.master-franchise-list option[id=franchise-' + franchiseId + ']').clone());
 				}
 			});
 		});
