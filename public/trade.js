@@ -12,7 +12,21 @@ var tradeMachine = {
 		}
 
 		tradeMachine.rebuildPlayerLists();
+		tradeMachine.rebuildPickLists();
 		tradeMachine.rebuildFranchiseLists();
+	},
+
+	rebuildPickLists: () => {
+		$('select.picks-list').each((i, list) => {
+			var $this = $(list);
+			$this.empty();
+
+			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+				if (!list.id.endsWith(franchiseId)) {
+					$this.append($('select.master-picks-list optgroup[id=picks-' + franchiseId + ']').clone());
+				}
+			});
+		});
 	},
 
 	rebuildPlayerLists: () => {

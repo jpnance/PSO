@@ -6,6 +6,16 @@ mixin displayContract(contract, season)
 	else
 		| #{contract}
 
+mixin pickRound(round)
+	if round == 1
+		| 1st
+	else if round == 2
+		| 2nd
+	else if round == 3
+		| 3rd
+	else
+		| #{round}th
+
 doctype html
 html
 	head
@@ -22,7 +32,7 @@ html
 
 	body
 		div.container
-			select.custom-select.master-player-list.d-none
+			select.master-player-list.d-none
 				each franchise, i in franchises
 					optgroup(id="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
@@ -35,6 +45,18 @@ html
 								|
 								+displayContract(player.contract, season)
 								| )
+
+			select.master-picks-list.d-none
+				each franchise, i in franchises
+					optgroup(id="picks-franchise-" + i label="From " + franchise)
+						each pick in picks
+							if pick.owner == franchise
+								option
+									+pickRound(pick.round)
+									|
+									|
+									| round draft pick from #{pick.origin}
+
 			select.master-franchise-list.d-none
 				each franchise, i in franchises
 					option(id="franchise-franchise-" + i value=franchise) #{franchise}
@@ -54,9 +76,15 @@ html
 			each franchise, i in franchises
 				div.gets.col-12.d-none(id="gets-franchise-" + i)
 					h4 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
+
 					div.input-group.input-group-sm
 						select.form-control.player-list(id="player-list-franchise-" + i)
 						button.add-player.btn.btn-sm.btn-primary(id="add-player-franchise-" + i) Add Player
+
+					div.input-group.input-group-sm
+						select.form-control.picks-list(id="picks-list-franchise-" + i)
+						button.add-player.btn.btn-sm.btn-primary(id="add-pick-franchise-" + i) Add Pick
+
 					div.input-group.input-group-sm
 						div.input-group-prepend
 							span.input-group-text $

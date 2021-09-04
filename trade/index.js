@@ -23,7 +23,38 @@ process.argv.forEach((value, index, array) => {
 	}
 });
 
-var newFantraxPromise = () => {
+var newPicksPromise = () => {
+	return new Promise((resolve, reject) => {
+		fs.readFile('./picks.csv', (error, data) => {
+			var csvLines = data.toString();
+
+			var picks = [];
+
+			csvLines.split(/\n/).forEach((csvLine, i) => {
+				if (i == 0) {
+					return;
+				}
+
+				var fields = csvLine.replace(/^\"/, '').replace(/\"$/, '').split(/","/);
+
+				if (fields.length == 1) {
+					return;
+				}
+
+				picks.push({
+					number: parseInt(fields[0]),
+					round: parseInt(fields[1]),
+					owner: fields[2],
+					origin: fields[4] ? fields[4] : 'From ' + fields[2]
+				});
+			});
+
+			resolve(picks);
+		});
+	});
+};
+
+var newPlayersPromise = () => {
 	return new Promise((resolve, reject) => {
 		/*
 		request
@@ -33,7 +64,7 @@ var newFantraxPromise = () => {
 				var csvLines = response.body.toString();
 		*/
 
-		fs.readFile('./pso.csv', function(error, data) {
+		fs.readFile('./players.csv', (error, data) => {
 				var csvLines = data.toString();
 
 				var players = [];
@@ -44,7 +75,7 @@ var newFantraxPromise = () => {
 					}
 
 					// "ID","Player","Team","Position","Rk","Status","Roster Status","Age","Opponent","Contract","FPts","%D","ADP","Bye","Ros%"
-					var fields = csvLine.replace(/^\"/, '').split(/","/);
+					var fields = csvLine.replace(/^\"/, '').replace(/\"$/, '').split(/","/);
 
 					players.push({
 						id: fields[0],
@@ -62,10 +93,9 @@ var newFantraxPromise = () => {
 	)
 };
 
-var players = [];
 var teams = {};
 
-newFantraxPromise().then((players) => {
+newPlayersPromise().then((players) => {
 	players.sort((a, b) => {
 		if (a.name < b.name) {
 			return -1;
@@ -86,16 +116,23 @@ newFantraxPromise().then((players) => {
 		teams[PSO.fantraxAbbreviations[player.owner]].push(player);
 	});
 
-	if (render) {
-		var pug = require('pug');
-		var compiledPug = pug.compileFile('../views/trade.pug');
+	newPicksPromise().then((picks) => {
+		picks.forEach((pick) => {
+			pick.origin = pick.origin.substring(5);
+		});
 
-		fs.writeFileSync('../public/trade/index.html', compiledPug({
-			franchises: Object.values(PSO.franchises).sort(),
-			teams: teams,
-			season: process.env.SEASON
-		}));
+		if (render) {
+			var pug = require('pug');
+			var compiledPug = pug.compileFile('../views/trade.pug');
 
-		process.exit();
-	}
+			fs.writeFileSync('../public/trade/index.html', compiledPug({
+				franchises: Object.values(PSO.franchises).sort(),
+				teams: teams,
+				picks: picks,
+				season: process.env.SEASON
+			}));
+
+			process.exit();
+		}
+	});
 });
