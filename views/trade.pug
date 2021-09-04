@@ -13,8 +13,8 @@ html
 		title Trade Machine
 
 	body
-		div.container.d-none
-			select.master-player-list
+		div.container
+			select.custom-select.master-player-list.d-none
 				each franchise, i in franchises
 					optgroup(id="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
