@@ -20,6 +20,11 @@ html
 			h4 Who's Involved?
 
 			each franchise, i in franchises
-				div.form-check.form-check-inline.col-3
-					input.form-check-input(type="checkbox" id="franchise-" + i value=franchise)
+				div.form-check.form-check-inline.col-4
+					input.form-check-input(type="checkbox" id="franchise-" + i value="franchise-" + i)
 					label.form-check-label(for="franchise-" + i) #{franchise}
+
+		div.container
+			each franchise, i in franchises
+				div.gets.col-12.d-none(id="gets-franchise-" + i)
+					h4 #{franchise} gets:
