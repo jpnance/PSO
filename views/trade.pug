@@ -1,3 +1,11 @@
+mixin displayContract(contract, season)
+	if contract == 'TBA'
+		| unsigned
+	else if new Date().getFullYear() != season && contract.split('/')[1] == season.toString().substring(2)
+		| RFA rights
+	else
+		| #{contract}
+
 doctype html
 html
 	head
@@ -18,7 +26,15 @@ html
 				each franchise, i in franchises
 					optgroup(id="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
-							option(value=player.name data-player-id=player.id) #{player.name} ($#{player.salary}, #{player.contract})
+							option(value=player.name data-player-id=player.id)
+								| #{player.name}
+								|
+								|
+								| ($#{player.salary},
+								|
+								|
+								+displayContract(player.contract, season)
+								| )
 
 		div.container
 			h1.text-center Trade Machine
