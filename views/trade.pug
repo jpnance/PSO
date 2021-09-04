@@ -13,6 +13,13 @@ html
 		title Trade Machine
 
 	body
+		div.container.d-none
+			select.master-player-list
+				each franchise, i in franchises
+					optgroup(id="players-franchise-" + i label="From " + franchise)
+						each player in teams[franchise]
+							option(value=player.name data-player-id=player.id) #{player.name} ($#{player.salary}, #{player.contract})
+
 		div.container
 			h1.text-center Trade Machine
 
@@ -28,3 +35,4 @@ html
 			each franchise, i in franchises
 				div.gets.col-12.d-none(id="gets-franchise-" + i)
 					h4 #{franchise} gets:
+					select.franchise-player-list(id="select-franchise-" + i)

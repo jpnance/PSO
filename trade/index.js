@@ -47,6 +47,7 @@ var newFantraxPromise = () => {
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
 					players.push({
+						id: fields[0],
 						name: fields[1],
 						owner: fields[5],
 						positions: fields[3].split(/,/),

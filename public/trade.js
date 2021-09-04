@@ -1,11 +1,53 @@
+var tradeMachine = {
+	franchisesInvolved: [],
+
+	toggleFranchiseInvolvement: (franchiseId) => {
+		var index = tradeMachine.franchisesInvolved.indexOf(franchiseId);
+
+		if (index == -1) {
+			tradeMachine.franchisesInvolved.push(franchiseId);
+		}
+		else {
+			tradeMachine.franchisesInvolved.splice(index, 1);
+		}
+
+		tradeMachine.rebuildPlayerLists();
+	},
+
+	rebuildPlayerLists: () => {
+		$('select.franchise-player-list').each((i, list) => {
+			var $this = $(list);
+			$this.empty();
+
+			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+				if (!list.id.endsWith(franchiseId)) {
+					$this.append($('select.master-player-list optgroup[id=players-' + franchiseId + ']').clone());
+				}
+			});
+		});
+	},
+
+	redrawTradeMachine: () => {
+		$('.gets').addClass('d-none');
+
+		tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+			$('.gets[id=gets-' + franchiseId).removeClass('d-none');
+		});
+	},
+};
+
 $(document).ready(function() {
 	$('.form-check-input:checked').each((i, input) => {
 		var franchiseId = input.id;
-		$('div[id=gets-' + franchiseId).removeClass('d-none');
+
+		tradeMachine.toggleFranchiseInvolvement(franchiseId);
+		tradeMachine.redrawTradeMachine();
 	});
 
 	$('.form-check').on('click', '.form-check-input', (e) => {
 		var franchiseId = e.currentTarget.id;
-		$('div[id=gets-' + franchiseId).toggleClass('d-none');
+
+		tradeMachine.toggleFranchiseInvolvement(franchiseId);
+		tradeMachine.redrawTradeMachine();
 	});
 });
