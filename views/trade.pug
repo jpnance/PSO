@@ -34,5 +34,5 @@ html
 		div.container
 			each franchise, i in franchises
 				div.gets.col-12.d-none(id="gets-franchise-" + i)
-					h4 #{franchise} gets:
-					select.franchise-player-list(id="select-franchise-" + i)
+					h4 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
+					select.custom-select.franchise-player-list(id="select-franchise-" + i)
