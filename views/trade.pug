@@ -23,13 +23,13 @@ html
 		div.container
 			select.master-player-list.d-none
 				each franchise, i in franchises
-					optgroup(id="players-franchise-" + i label="From " + franchise)
+					optgroup(class="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
 							option(value=player.id data-name=player.name data-salary=player.salary data-contract=player.contract) #{player.name} ($#{player.salary}, #{player.contract})
 
-			select.master-picks-list.d-none
+			select.master-pick-list.d-none
 				each franchise, i in franchises
-					optgroup(id="picks-franchise-" + i label="From " + franchise)
+					optgroup(class="picks-franchise-" + i label="From " + franchise)
 						each pick in picks
 							if pick.owner == franchise
 								option
@@ -40,7 +40,7 @@ html
 
 			select.master-franchise-list.d-none
 				each franchise, i in franchises
-					option(id="franchises-franchise-" + i value="franchise-" + i data-name=franchise) #{franchise}
+					option(class="franchises-franchise-" + i value="franchise-" + i data-name=franchise) #{franchise}
 
 		div.container
 			h1.text-center Trade Machine
@@ -59,25 +59,25 @@ html
 					h5 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
 
 					div.input-group.input-group-sm
-						select.form-control.player-list(id="player-list-franchise-" + i)
-						button.add-player.btn.btn-sm.btn-primary(id="add-player-franchise-" + i) Add Player
+						select.player-list.form-control
+						button.add-player.btn.btn-sm.btn-primary Add Player
 
 					div.input-group.input-group-sm
-						select.form-control.picks-list(id="picks-list-franchise-" + i)
-						button.add-pick.btn.btn-sm.btn-primary(id="add-pick-franchise-" + i) Add Pick
+						select.pick-list.form-control
+						button.add-pick.btn.btn-sm.btn-primary Add Pick
 
 					div.input-group.input-group-sm
 						div.input-group-prepend
 							span.input-group-text $
-						input.form-control(id="cash-franchise-" + i type="text" size="4")
+						input.amount.form-control(type="text" size="4")
 						| from
-						select.form-control.franchise-list(id="franchise-list-franchise-" + i)
+						select.franchise-list.form-control
 						| in
-						select.form-control(id="season-list-franchise-" + i)
+						select.season-list.form-control
 							option #{parseInt(season)}
 							option #{parseInt(season) + 1}
 							option #{parseInt(season) + 2}
-						button.add-cash.btn.btn-sm.btn-primary(id="add-cash-franchise-" + i) Add Cash
+						button.add-cash.btn.btn-sm.btn-primary Add Cash
 
 					ul
 						li Nothing

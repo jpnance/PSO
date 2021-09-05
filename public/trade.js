@@ -103,7 +103,7 @@ var tradeMachine = {
 	},
 
 	franchiseName: (franchiseId) => {
-		var $franchise = $('select.master-franchise-list option[id=franchises-' + franchiseId + ']');
+		var $franchise = $('select.master-franchise-list option[class=franchises-' + franchiseId + ']');
 		return $franchise.data('name');
 	},
 
@@ -124,39 +124,39 @@ var tradeMachine = {
 	},
 
 	rebuildPickLists: () => {
-		$('select.picks-list').each((i, list) => {
-			var $this = $(list);
-			$this.empty();
+		$('.gets').each((i, gets) => {
+			var $pickList = $(gets).find('.pick-list');
+			$pickList.empty();
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (!list.id.endsWith(franchiseId)) {
-					$this.append($('select.master-picks-list optgroup[id=picks-' + franchiseId + ']').clone());
+				if (!gets.id.endsWith(franchiseId)) {
+					$pickList.append($('select.master-pick-list optgroup[class=picks-' + franchiseId + ']').clone());
 				}
 			});
 		});
 	},
 
 	rebuildPlayerLists: () => {
-		$('select.player-list').each((i, list) => {
-			var $this = $(list);
-			$this.empty();
+		$('.gets').each((i, gets) => {
+			var $playerList = $(gets).find('.player-list');
+			$playerList.empty();
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (!list.id.endsWith(franchiseId)) {
-					$this.append($('select.master-player-list optgroup[id=players-' + franchiseId + ']').clone());
+				if (!gets.id.endsWith(franchiseId)) {
+					$playerList.append($('select.master-player-list optgroup[class=players-' + franchiseId + ']').clone());
 				}
 			});
 		});
 	},
 
 	rebuildFranchiseLists: () => {
-		$('select.franchise-list').each((i, list) => {
-			var $this = $(list);
-			$this.empty();
+		$('.gets').each((i, gets) => {
+			var $franchiseList = $(gets).find('.franchise-list');
+			$franchiseList.empty();
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (!list.id.endsWith(franchiseId)) {
-					$this.append($('select.master-franchise-list option[id=franchises-' + franchiseId + ']').clone());
+				if (!gets.id.endsWith(franchiseId)) {
+					$franchiseList.append($('select.master-franchise-list option[class=franchises-' + franchiseId + ']').clone());
 				}
 			});
 		});
@@ -222,19 +222,21 @@ $(document).ready(function() {
 		tradeMachine.redrawTradeMachine();
 	});
 
-	$('.input-group').on('click', '.add-player', (e) => {
-		var franchiseId = tradeMachine.extractFranchiseId(e.currentTarget.id);
-		var playerId = $('select[id=player-list-' + franchiseId + ']').val();
+	$('.gets').on('click', '.add-player', (e) => {
+		var franchiseId = tradeMachine.extractFranchiseId(e.delegateTarget.id);
+		var playerId = $('#gets-' + franchiseId + ' select.player-list').val();
 
 		tradeMachine.addPlayerToDeal(playerId, franchiseId);
 		tradeMachine.redrawTradeMachine();
 	});
 
-	$('.input-group').on('click', '.add-cash', (e) => {
-		var toFranchiseId = tradeMachine.extractFranchiseId(e.currentTarget.id);
-		var amount = parseInt($('input[id=cash-' + toFranchiseId + ']').val());
-		var fromFranchiseId = $('select[id=franchise-list-' + toFranchiseId + ']').val();
-		var season = parseInt($('select[id=season-list-' + toFranchiseId + ']').val());
+	$('.gets').on('click', '.add-cash', (e) => {
+		var $gets = $(e.delegateTarget);
+
+		var toFranchiseId = tradeMachine.extractFranchiseId(e.delegateTarget.id);
+		var amount = parseInt($gets.find('input.amount').val());
+		var fromFranchiseId = $gets.find('select.franchise-list').val();
+		var season = parseInt($gets.find('select.season-list').val());
 
 		tradeMachine.addCashToDeal(amount, fromFranchiseId, season, toFranchiseId);
 		tradeMachine.redrawTradeMachine();
