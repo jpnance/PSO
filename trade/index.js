@@ -42,7 +42,7 @@ var newPicksPromise = () => {
 				}
 
 				picks.push({
-					season: process.env.SEASON + Math.floor(Math.random() * 2),
+					season: parseInt(process.env.SEASON) + Math.floor(Math.random() * 3),
 					number: parseInt(fields[0]),
 					round: parseInt(fields[1]),
 					owner: fields[2],
