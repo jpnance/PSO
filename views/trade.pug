@@ -74,8 +74,8 @@ html
 
 		div.container
 			each franchise, i in franchises
-				div.gets.col-12.d-none(id="gets-franchise-" + i)
-					h4 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
+				div.gets.col-12.my-4.d-none(id="gets-franchise-" + i)
+					h5 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
 
 					div.input-group.input-group-sm
 						select.form-control.player-list(id="player-list-franchise-" + i)
