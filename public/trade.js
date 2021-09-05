@@ -1,14 +1,16 @@
 var tradeMachine = {
-	franchisesInvolved: [],
+	deal: {},
 
 	toggleFranchiseInvolvement: (franchiseId) => {
-		var index = tradeMachine.franchisesInvolved.indexOf(franchiseId);
-
-		if (index == -1) {
-			tradeMachine.franchisesInvolved.push(franchiseId);
+		if (!tradeMachine.deal[franchiseId]) {
+			tradeMachine.deal[franchiseId] = {
+				players: [],
+				picks: [],
+				cash: []
+			};
 		}
 		else {
-			tradeMachine.franchisesInvolved.splice(index, 1);
+			delete tradeMachine.deal[franchiseId];
 		}
 
 		tradeMachine.rebuildPlayerLists();
@@ -20,12 +22,16 @@ var tradeMachine = {
 		return elementId.substring(elementId.indexOf('franchise-'));
 	},
 
+	franchisesInvolved: () => {
+		return Object.keys(tradeMachine.deal);
+	},
+
 	rebuildPickLists: () => {
 		$('select.picks-list').each((i, list) => {
 			var $this = $(list);
 			$this.empty();
 
-			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (!list.id.endsWith(franchiseId)) {
 					$this.append($('select.master-picks-list optgroup[id=picks-' + franchiseId + ']').clone());
 				}
@@ -38,7 +44,7 @@ var tradeMachine = {
 			var $this = $(list);
 			$this.empty();
 
-			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (!list.id.endsWith(franchiseId)) {
 					$this.append($('select.master-player-list optgroup[id=players-' + franchiseId + ']').clone());
 				}
@@ -51,7 +57,7 @@ var tradeMachine = {
 			var $this = $(list);
 			$this.empty();
 
-			tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (!list.id.endsWith(franchiseId)) {
 					$this.append($('select.master-franchise-list option[id=franchise-' + franchiseId + ']').clone());
 				}
@@ -62,7 +68,7 @@ var tradeMachine = {
 	redrawTradeMachine: () => {
 		$('.gets').addClass('d-none');
 
-		tradeMachine.franchisesInvolved.forEach((franchiseId) => {
+		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 			$('.gets[id=gets-' + franchiseId).removeClass('d-none');
 		});
 	},
