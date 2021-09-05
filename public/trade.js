@@ -16,6 +16,10 @@ var tradeMachine = {
 		tradeMachine.rebuildFranchiseLists();
 	},
 
+	extractFranchiseId: (elementId) => {
+		return elementId.substring(elementId.indexOf('franchise-'));
+	},
+
 	rebuildPickLists: () => {
 		$('select.picks-list').each((i, list) => {
 			var $this = $(list);
@@ -66,14 +70,14 @@ var tradeMachine = {
 
 $(document).ready(function() {
 	$('.form-check-input:checked').each((i, input) => {
-		var franchiseId = input.id;
+		var franchiseId = tradeMachine.extractFranchiseId(input.id);
 
 		tradeMachine.toggleFranchiseInvolvement(franchiseId);
 		tradeMachine.redrawTradeMachine();
 	});
 
 	$('.form-check').on('click', '.form-check-input', (e) => {
-		var franchiseId = e.currentTarget.id;
+		var franchiseId = tradeMachine.extractFranchiseId(e.currentTarget.id);
 
 		tradeMachine.toggleFranchiseInvolvement(franchiseId);
 		tradeMachine.redrawTradeMachine();
