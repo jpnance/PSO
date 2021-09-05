@@ -26,6 +26,14 @@ var tradeMachine = {
 		}
 	},
 
+	addPickToDeal: (pickId, franchiseId) => {
+		var pickData = tradeMachine.pickData(pickId);
+
+		if (!tradeMachine.deal[franchiseId].picks.find((pick) => pick.id == pickData.id)) {
+			tradeMachine.deal[franchiseId].picks.push(pickData);
+		}
+	},
+
 	addCashToDeal: (amount, fromFranchiseId, season, toFranchiseId) => {
 		var existingCashFromFranchise = tradeMachine.deal[toFranchiseId].cash.find((asset) => asset.from == fromFranchiseId && asset.season == season);
 
@@ -109,6 +117,18 @@ var tradeMachine = {
 
 	franchisesInvolved: () => {
 		return Object.keys(tradeMachine.deal);
+	},
+
+	pickData: (pickId) => {
+		var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
+
+		return {
+			type: 'pick',
+			id: pickId,
+			season: parseInt($pick.data('season')),
+			round: parseInt($pick.data('round')),
+			origin: $pick.data('origin'),
+		};
 	},
 
 	playerData: (playerId) => {
@@ -198,6 +218,9 @@ var tradeMachine = {
 					if (asset.type == 'player') {
 						$franchiseAssetList.append($('<li>' + asset.name + ' ($' + asset.salary + ', ' + asset.contract + ')</li>'));
 					}
+					else if (asset.type == 'pick') {
+						$franchiseAssetList.append($('<li>' + tradeMachine.roundOrdinal(asset.round) + ' round draft pick from ' + asset.origin + ' in ' + asset.season + '</li>'));
+					}
 					else if (asset.type == 'cash') {
 						$franchiseAssetList.append($('<li>$' + asset.amount + ' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season + '</li>'));
 					}
@@ -205,6 +228,15 @@ var tradeMachine = {
 			}
 		});
 	},
+
+	roundOrdinal: (round) => {
+		switch (round) {
+			case 1: return '1st';
+			case 2: return '2nd';
+			case 3: return '3rd';
+			default: return round + 'th';
+		}
+	}
 };
 
 $(document).ready(function() {
@@ -227,6 +259,16 @@ $(document).ready(function() {
 		var playerId = $('#gets-' + franchiseId + ' select.player-list').val();
 
 		tradeMachine.addPlayerToDeal(playerId, franchiseId);
+		tradeMachine.redrawTradeMachine();
+	});
+
+	$('.gets').on('click', '.add-pick', (e) => {
+		var $gets = $(e.delegateTarget);
+
+		var franchiseId = tradeMachine.extractFranchiseId(e.delegateTarget.id);
+		var pickId = $gets.find('.pick-list').val();
+
+		tradeMachine.addPickToDeal(pickId, franchiseId);
 		tradeMachine.redrawTradeMachine();
 	});
 

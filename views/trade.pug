@@ -20,25 +20,25 @@ html
 		title Trade Machine
 
 	body
-		div.container
-			select.master-player-list.d-none
+		div.container.d-none
+			select.master-player-list
 				each franchise, i in franchises
 					optgroup(class="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
 							option(value=player.id data-name=player.name data-salary=player.salary data-contract=player.contract) #{player.name} ($#{player.salary}, #{player.contract})
 
-			select.master-pick-list.d-none
+			select.master-pick-list
 				each franchise, i in franchises
 					optgroup(class="picks-franchise-" + i label="From " + franchise)
 						each pick in picks
 							if pick.owner == franchise
-								option
+								option(value=pick.season + '-' + pick.round + '-' + pick.origin.split(' ')[0].toLowerCase() data-season=pick.season data-round=pick.round data-origin=pick.origin)
 									+pickRound(pick.round)
 									|
 									|
 									| round draft pick from #{pick.origin} in #{pick.season}
 
-			select.master-franchise-list.d-none
+			select.master-franchise-list
 				each franchise, i in franchises
 					option(class="franchises-franchise-" + i value="franchise-" + i data-name=franchise) #{franchise}
 
