@@ -5,3 +5,8 @@ label {
 .gets {
 	border: 1px solid #ccc;
 }
+
+textarea {
+	font-family: monospace;
+	font-size: 12px;
+}

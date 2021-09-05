@@ -125,7 +125,19 @@ var tradeMachine = {
 	},
 
 	franchisesInvolved: () => {
-		return Object.keys(tradeMachine.deal);
+		var sortedFranchises = Object.keys(tradeMachine.deal).sort((a, b) => {
+			var aId = parseInt(a.split('-')[1]);
+			var bId = parseInt(b.split('-')[1]);
+
+			if (aId < bId) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		});
+
+		return sortedFranchises;
 	},
 
 	pickData: (pickId) => {
@@ -196,47 +208,54 @@ var tradeMachine = {
 		$('.gets').addClass('d-none');
 
 		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-			var goingToDeal = tradeMachine.deal[franchiseId];
-
 			var $franchiseSection = $('.gets[id=gets-' + franchiseId)
 			var $franchiseAssetList = $franchiseSection.find('ul');
 
 			$franchiseSection.removeClass('d-none');
 			$franchiseAssetList.empty();
 
-			if (goingToDeal.players.length == 0 && goingToDeal.picks.length == 0 && goingToDeal.cash.length == 0) {
+			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
+
+			if (sortedAssets.length == 0) {
 				$franchiseAssetList.append($('<li>Nothing</li>'));
 			}
 			else {
-				var sortedAssets = [];
-
-				goingToDeal.players.forEach((player) => {
-					sortedAssets.push(player);
-				});
-
-				goingToDeal.picks.forEach((pick) => {
-					sortedAssets.push(pick);
-				});
-
-				goingToDeal.cash.forEach((cash) => {
-					sortedAssets.push(cash);
-				});
-
-				sortedAssets.sort(tradeMachine.assetSortFunction);
-
 				sortedAssets.forEach((asset) => {
-					if (asset.type == 'player') {
-						$franchiseAssetList.append($('<li>' + asset.name + ' ($' + asset.salary + ', ' + asset.contract + ')</li>'));
-					}
-					else if (asset.type == 'pick') {
-						$franchiseAssetList.append($('<li>' + tradeMachine.roundOrdinal(asset.round) + ' round draft pick from ' + asset.origin + ' in ' + asset.season + '</li>'));
-					}
-					else if (asset.type == 'cash') {
-						$franchiseAssetList.append($('<li>$' + asset.amount + ' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season + '</li>'));
-					}
+					$franchiseAssetList.append($('<li>' + tradeMachine.textForAsset(asset) + '</li>'));
 				});
 			}
 		});
+	},
+
+	renderWordpressCode: () => {
+		var $textarea = $('textarea');
+
+		var blob = '<img class="alignnone size-full wp-image-138" title="Handshake Deal" src="http://thedynastyleague.files.wordpress.com/2010/11/handshake.jpg" alt="Handshake Deal" width="520" height="346">';
+
+		blob += '\n';
+		blob += '\n';
+
+		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
+			var franchiseName = tradeMachine.franchiseName(franchiseId);
+
+			blob += '<strong>' + franchiseName + '</strong> get' + (franchiseName.includes('/') ? '' : 's') + ':\n';
+			blob += '<ul>\n';
+
+			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
+
+			if (sortedAssets.length == 0) {
+				blob += '<li>Nothing</li>\n';
+			}
+			else {
+				sortedAssets.forEach((asset) => {
+					blob += '<li>' + tradeMachine.textForAsset(asset) + '</li>\n';
+				});
+			}
+
+			blob += '</ul>\n\n';
+		});
+
+		$textarea.val(blob);
 	},
 
 	roundOrdinal: (round) => {
@@ -245,6 +264,39 @@ var tradeMachine = {
 			case 2: return '2nd';
 			case 3: return '3rd';
 			default: return round + 'th';
+		}
+	},
+
+	sortedAssetsForFranchise: (franchiseId) => {
+		var goingToDeal = tradeMachine.deal[franchiseId];
+		var sortedAssets = [];
+
+		goingToDeal.players.forEach((player) => {
+			sortedAssets.push(player);
+		});
+
+		goingToDeal.picks.forEach((pick) => {
+			sortedAssets.push(pick);
+		});
+
+		goingToDeal.cash.forEach((cash) => {
+			sortedAssets.push(cash);
+		});
+
+		sortedAssets.sort(tradeMachine.assetSortFunction);
+
+		return sortedAssets;
+	},
+
+	textForAsset: (asset) => {
+		if (asset.type == 'player') {
+			return asset.name + ' ($' + asset.salary + ', ' + asset.contract + ')';
+		}
+		else if (asset.type == 'pick') {
+			return tradeMachine.roundOrdinal(asset.round) + ' round draft pick from ' + asset.origin + ' in ' + asset.season;
+		}
+		else if (asset.type == 'cash') {
+			return '$' + asset.amount + ' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season;
 		}
 	}
 };
@@ -292,5 +344,9 @@ $(document).ready(function() {
 
 		tradeMachine.addCashToDeal(amount, fromFranchiseId, season, toFranchiseId);
 		tradeMachine.redrawTradeMachine();
+	});
+
+	$('.wordpress').on('click', '.render-wordpress', (e) => {
+		tradeMachine.renderWordpressCode();
 	});
 });

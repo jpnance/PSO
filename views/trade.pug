@@ -56,7 +56,11 @@ html
 		div.container
 			each franchise, i in franchises
 				div.gets.col-12.p-4.my-4.d-none(id="gets-franchise-" + i)
-					h5 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
+					h5
+						strong #{franchise}
+						|
+						|
+						| get#{franchise.includes('/') ? '' : 's'}:
 
 					div.input-group.input-group-sm
 						select.player-list.form-control
@@ -81,3 +85,8 @@ html
 
 					ul.assets.mt-4
 						li Nothing
+
+		div.container
+			div.wordpress
+				textarea.col-12(rows="20")
+				button.render-wordpress.btn.btn-primary Render Wordpress Code
