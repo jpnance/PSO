@@ -21,7 +21,7 @@ var tradeMachine = {
 	addPlayerToDeal: (playerId, franchiseId) => {
 		var playerData = tradeMachine.playerData(playerId);
 
-		if (!tradeMachine.deal[franchiseId].players.includes(playerData)) {
+		if (!tradeMachine.deal[franchiseId].players.find((player) => player.id == playerData.id)) {
 			tradeMachine.deal[franchiseId].players.push(playerData);
 		}
 	},
