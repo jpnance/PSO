@@ -29,6 +29,15 @@ var tradeMachine = {
 	addPickToDeal: (pickId, franchiseId) => {
 		var pickData = tradeMachine.pickData(pickId);
 
+		if (!pickData.origin.startsWith(pickData.owner)) {
+			if (pickData.origin.includes(')')) {
+				pickData.origin = pickData.origin.replace(')', ', via ' + pickData.owner + ')');
+			}
+			else {
+				pickData.origin += ' (via ' + pickData.owner + ')';
+			}
+		}
+
 		if (!tradeMachine.deal[franchiseId].picks.find((pick) => pick.id == pickData.id)) {
 			tradeMachine.deal[franchiseId].picks.push(pickData);
 		}
@@ -127,7 +136,8 @@ var tradeMachine = {
 			id: pickId,
 			season: parseInt($pick.data('season')),
 			round: parseInt($pick.data('round')),
-			origin: $pick.data('origin'),
+			owner: $pick.data('owner'),
+			origin: $pick.data('origin')
 		};
 	},
 

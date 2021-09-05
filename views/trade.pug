@@ -32,7 +32,7 @@ html
 					optgroup(class="picks-franchise-" + i label="From " + franchise)
 						each pick in picks
 							if pick.owner == franchise
-								option(value=pick.season + '-' + pick.round + '-' + pick.origin.split(' ')[0].toLowerCase() data-season=pick.season data-round=pick.round data-origin=pick.origin)
+								option(value=pick.season + '-' + pick.round + '-' + pick.origin.split(' ')[0].toLowerCase() data-season=pick.season data-round=pick.round data-owner=pick.owner data-origin=pick.origin)
 									+pickRound(pick.round)
 									|
 									|
