@@ -36,11 +36,11 @@ html
 									+pickRound(pick.round)
 									|
 									|
-									| round draft pick from #{pick.origin}
+									| round draft pick from #{pick.origin} in #{pick.season}
 
 			select.master-franchise-list.d-none
 				each franchise, i in franchises
-					option(id="franchises-franchise-" + i value=franchise) #{franchise}
+					option(id="franchises-franchise-" + i value="franchise-" + i data-name=franchise) #{franchise}
 
 		div.container
 			h1.text-center Trade Machine
@@ -69,11 +69,11 @@ html
 					div.input-group.input-group-sm
 						div.input-group-prepend
 							span.input-group-text $
-						input.form-control(type="text" size="4")
+						input.form-control(id="cash-franchise-" + i type="text" size="4")
 						| from
 						select.form-control.franchise-list(id="franchise-list-franchise-" + i)
 						| in
-						select.form-control
+						select.form-control(id="season-list-franchise-" + i)
 							option #{parseInt(season)}
 							option #{parseInt(season) + 1}
 							option #{parseInt(season) + 2}
