@@ -18,12 +18,36 @@ var tradeMachine = {
 		tradeMachine.rebuildFranchiseLists();
 	},
 
+	addPlayerToFranchise: (playerId, franchiseId) => {
+		var playerData = tradeMachine.playerData(playerId);
+
+		if (!tradeMachine.deal[franchiseId].players.includes(playerData)) {
+			tradeMachine.deal[franchiseId].players.push(playerData);
+		}
+
+		tradeMachine.deal[franchiseId].players.sort((a, b) => {
+			return b.salary - a.salary;
+		});
+	},
+
 	extractFranchiseId: (elementId) => {
 		return elementId.substring(elementId.indexOf('franchise-'));
 	},
 
 	franchisesInvolved: () => {
 		return Object.keys(tradeMachine.deal);
+	},
+
+	playerData: (playerId) => {
+		var $player = $('select.master-player-list option[value="' + playerId + '"]');
+		console.log($player);
+
+		return {
+			id: playerId,
+			name: $player.data('name'),
+			salary: parseInt($player.data('salary')),
+			contract: $player.data('contract')
+		};
 	},
 
 	rebuildPickLists: () => {
@@ -69,7 +93,22 @@ var tradeMachine = {
 		$('.gets').addClass('d-none');
 
 		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-			$('.gets[id=gets-' + franchiseId).removeClass('d-none');
+			var goingToFranchise = tradeMachine.deal[franchiseId];
+
+			var $franchiseSection = $('.gets[id=gets-' + franchiseId)
+			var $franchiseAssetList = $franchiseSection.find('ul');
+
+			$franchiseSection.removeClass('d-none');
+			$franchiseAssetList.empty();
+
+			if (goingToFranchise.players.length == 0 && goingToFranchise.picks.length == 0 && goingToFranchise.cash.length == 0) {
+				$franchiseAssetList.append($('<li>Nothing</li>'));
+			}
+			else {
+				goingToFranchise.players.forEach((player) => {
+					$franchiseAssetList.append($('<li>' + player.name + ' ($' + player.salary + ', ' + player.contract + ')</li>'));
+				});
+			}
 		});
 	},
 };
@@ -86,6 +125,14 @@ $(document).ready(function() {
 		var franchiseId = tradeMachine.extractFranchiseId(e.currentTarget.id);
 
 		tradeMachine.toggleFranchiseInvolvement(franchiseId);
+		tradeMachine.redrawTradeMachine();
+	});
+
+	$('.input-group').on('click', '.add-player', (e) => {
+		var franchiseId = tradeMachine.extractFranchiseId(e.currentTarget.id);
+		var playerId = $('select[id=player-list-' + franchiseId + ']').val();
+
+		tradeMachine.addPlayerToFranchise(playerId, franchiseId);
 		tradeMachine.redrawTradeMachine();
 	});
 });

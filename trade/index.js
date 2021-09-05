@@ -77,14 +77,23 @@ var newPlayersPromise = () => {
 					// "ID","Player","Team","Position","Rk","Status","Roster Status","Age","Opponent","Contract","FPts","%D","ADP","Bye","Ros%"
 					var fields = csvLine.replace(/^\"/, '').replace(/\"$/, '').split(/","/);
 
-					players.push({
+					var player = {
 						id: fields[0],
 						name: fields[1],
 						owner: fields[5],
 						positions: fields[3].split(/,/),
 						salary: parseInt(fields[9]),
 						contract: fields[10]
-					})
+					};
+
+					if (player.contract == 'TBA') {
+						player.contract = 'unsigned';
+					}
+					else if (new Date().getFullYear() != process.env.SEASON && player.contract.split('/')[1] == season.toString().substring(2)) {
+						player.contract = 'RFA rights';
+					}
+
+					players.push(player);
 				});
 
 				resolve(players);

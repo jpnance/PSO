@@ -1,11 +1,3 @@
-mixin displayContract(contract, season)
-	if contract == 'TBA'
-		| unsigned
-	else if new Date().getFullYear() != season && contract.split('/')[1] == season.toString().substring(2)
-		| RFA rights
-	else
-		| #{contract}
-
 mixin pickRound(round)
 	if round == 1
 		| 1st
@@ -33,15 +25,7 @@ html
 				each franchise, i in franchises
 					optgroup(id="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
-							option(value=player.name data-player-id=player.id)
-								| #{player.name}
-								|
-								|
-								| ($#{player.salary},
-								|
-								|
-								+displayContract(player.contract, season)
-								| )
+							option(value=player.id data-name=player.name data-salary=player.salary data-contract=player.contract) #{player.name} ($#{player.salary}, #{player.contract})
 
 			select.master-picks-list.d-none
 				each franchise, i in franchises
@@ -94,3 +78,6 @@ html
 							option #{parseInt(season) + 1}
 							option #{parseInt(season) + 2}
 						button.add-cash.btn.btn-sm.btn-primary(id="add-cash-franchise-" + i) Add Cash
+
+					ul
+						li Nothing
