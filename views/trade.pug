@@ -43,10 +43,10 @@ html
 					option(class="franchises-franchise-" + i value="franchise-" + i data-name=franchise) #{franchise}
 
 		div.container
-			h1.text-center Trade Machine
+			h1.text-center.my-2 Trade Machine
 
 		div.container
-			h4 Who's Involved?
+			h5 Who's Involved?
 
 			each franchise, i in franchises
 				div.form-check.form-check-inline.col-4
@@ -55,7 +55,7 @@ html
 
 		div.container
 			each franchise, i in franchises
-				div.gets.col-12.my-4.d-none(id="gets-franchise-" + i)
+				div.gets.col-12.p-4.my-4.d-none(id="gets-franchise-" + i)
 					h5 #{franchise} get#{franchise.includes('/') ? '' : 's'}:
 
 					div.input-group.input-group-sm
@@ -79,5 +79,5 @@ html
 							option #{parseInt(season) + 2}
 						button.add-cash.btn.btn-sm.btn-primary Add Cash
 
-					ul
+					ul.assets.mt-4
 						li Nothing
