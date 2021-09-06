@@ -79,7 +79,7 @@ var newPlayersPromise = () => {
 					var fields = csvLine.replace(/^\"/, '').replace(/\"$/, '').split(/","/);
 
 					var player = {
-						id: fields[0],
+						id: fields[0].replace(/\*/g, ''),
 						name: fields[1],
 						owner: fields[5],
 						positions: fields[3].split(/,/),

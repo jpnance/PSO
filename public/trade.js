@@ -248,7 +248,7 @@ var tradeMachine = {
 			}
 			else {
 				sortedAssets.forEach((asset) => {
-					blob += '<li>' + tradeMachine.textForAsset(asset) + '</li>\n';
+					blob += '<li>' + tradeMachine.textForAsset(asset, true) + '</li>\n';
 				});
 			}
 
@@ -288,9 +288,14 @@ var tradeMachine = {
 		return sortedAssets;
 	},
 
-	textForAsset: (asset) => {
+	textForAsset: (asset, withLink) => {
 		if (asset.type == 'player') {
-			return asset.name + ' ($' + asset.salary + ', ' + asset.contract + ')';
+			if (withLink) {
+				return '<a href="https://www.fantrax.com/player/' + asset.id + '/4bveni4tkkyr33y2/">' + asset.name + '</a> ($' + asset.salary + ', ' + asset.contract + ')';
+			}
+			else {
+				return asset.name + ' ($' + asset.salary + ', ' + asset.contract + ')';
+			}
 		}
 		else if (asset.type == 'pick') {
 			return tradeMachine.roundOrdinal(asset.round) + ' round draft pick from ' + asset.origin + ' in ' + asset.season;
