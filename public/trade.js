@@ -1,5 +1,6 @@
 var tradeMachine = {
 	deal: {},
+	wordpressToken: null,
 
 	toggleFranchiseInvolvement: (franchiseId) => {
 		if (!tradeMachine.deal[franchiseId]) {
@@ -140,6 +141,35 @@ var tradeMachine = {
 		return sortedFranchises;
 	},
 
+	generateWordpressCode: () => {
+		var blob = '<img class="alignnone size-full wp-image-138" title="Handshake Deal" src="http://thedynastyleague.files.wordpress.com/2010/11/handshake.jpg" alt="Handshake Deal" width="520" height="346">';
+
+		blob += '\n';
+		blob += '\n';
+
+		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
+			var franchiseName = tradeMachine.franchiseName(franchiseId);
+
+			blob += '<strong>' + franchiseName + '</strong> get' + (franchiseName.includes('/') ? '' : 's') + ':\n';
+			blob += '<ul>\n';
+
+			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
+
+			if (sortedAssets.length == 0) {
+				blob += '<li>Nothing</li>\n';
+			}
+			else {
+				sortedAssets.forEach((asset) => {
+					blob += '<li>' + tradeMachine.textForAsset(asset, true) + '</li>\n';
+				});
+			}
+
+			blob += '</ul>\n\n';
+		});
+
+		return blob;
+	},
+
 	pickData: (pickId) => {
 		var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
 
@@ -163,6 +193,54 @@ var tradeMachine = {
 			salary: parseInt($player.data('salary')),
 			contract: $player.data('contract')
 		};
+	},
+
+	postToWordpress: () => {
+		if (!tradeMachine.wordpressToken) {
+			tradeMachine.wordpressToken = window.prompt('Enter WordPress token')
+
+			$.ajaxSetup({
+				headers: {
+					'Authorization': 'Bearer ' + tradeMachine.wordpressToken
+				}
+			});
+		}
+
+		var defaultTime = new Date();
+		defaultTime.setSeconds(0);
+
+		var publishDateTime = new Date(window.prompt('Enter publish date and time', defaultTime.toLocaleString()));
+		$.get('https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts?categories=9943&per_page=1&status=publish&order=desc', (response) => {
+			var nextTradeNumber = parseInt(response[0].slug.split('-')[1]) + 1;
+
+			var postData = {
+				status: 'publish',
+				title: 'Trade #' + nextTradeNumber,
+				slug: 'trade-' + nextTradeNumber,
+				date_gmt: publishDateTime.toISOString(),
+				content: tradeMachine.generateWordpressCode(),
+				categories: [ 9943 ]
+			};
+
+			var franchiseNames = [];
+
+			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
+				franchiseNames.push(tradeMachine.franchiseName(franchiseId));
+			});
+
+
+			$.get('https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/categories?per_page=50', (response) => {
+				response.forEach((category) => {
+					if (franchiseNames.includes(category.name)) {
+						postData.categories.push(category.id);
+					}
+				});
+
+				$.post('https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts', postData, (response) => {
+					console.log(response);
+				});
+			});
+		});
 	},
 
 	rebuildPickLists: () => {
@@ -225,37 +303,6 @@ var tradeMachine = {
 				});
 			}
 		});
-	},
-
-	renderWordpressCode: () => {
-		var $textarea = $('textarea');
-
-		var blob = '<img class="alignnone size-full wp-image-138" title="Handshake Deal" src="http://thedynastyleague.files.wordpress.com/2010/11/handshake.jpg" alt="Handshake Deal" width="520" height="346">';
-
-		blob += '\n';
-		blob += '\n';
-
-		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-			var franchiseName = tradeMachine.franchiseName(franchiseId);
-
-			blob += '<strong>' + franchiseName + '</strong> get' + (franchiseName.includes('/') ? '' : 's') + ':\n';
-			blob += '<ul>\n';
-
-			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
-
-			if (sortedAssets.length == 0) {
-				blob += '<li>Nothing</li>\n';
-			}
-			else {
-				sortedAssets.forEach((asset) => {
-					blob += '<li>' + tradeMachine.textForAsset(asset, true) + '</li>\n';
-				});
-			}
-
-			blob += '</ul>\n\n';
-		});
-
-		$textarea.val(blob);
 	},
 
 	roundOrdinal: (round) => {
@@ -352,6 +399,10 @@ $(document).ready(function() {
 	});
 
 	$('.wordpress').on('click', '.render-wordpress', (e) => {
-		tradeMachine.renderWordpressCode();
+		$('textarea').val(tradeMachine.generateWordpressCode());
+	});
+
+	$('.wordpress').on('click', '.post-wordpress', (e) => {
+		tradeMachine.postToWordpress();
 	});
 });
