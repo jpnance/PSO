@@ -29,7 +29,7 @@ html
 
 			select.master-pick-list
 				each franchise, i in franchises
-					optgroup(class="picks-franchise-" + i label="From " + franchise)
+					optgroup(class="picks-franchise-" + i label=franchise + "'s Picks")
 						each pick in picks
 							if pick.owner == franchise
 								option(value=pick.season + '-' + pick.round + '-' + pick.origin.split(' ')[0].toLowerCase() data-season=pick.season data-round=pick.round data-owner=pick.owner data-origin=pick.origin)
@@ -62,21 +62,21 @@ html
 						|
 						| get#{franchise.includes('/') ? '' : 's'}:
 
-					div.input-group.input-group-sm
+					div.input-group.input-group-sm.my-1
 						select.player-list.form-control
 						button.add-player.btn.btn-sm.btn-primary Add Player
 
-					div.input-group.input-group-sm
+					div.input-group.input-group-sm.my-1
 						select.pick-list.form-control
 						button.add-pick.btn.btn-sm.btn-primary Add Pick
 
-					div.input-group.input-group-sm
+					div.input-group.input-group-sm.my-1
 						div.input-group-prepend
 							span.input-group-text $
 						input.amount.form-control(type="text" size="4")
-						| from
+						span.mx-1 from
 						select.franchise-list.form-control
-						| in
+						span.mx-1 in
 						select.season-list.form-control
 							option #{parseInt(season)}
 							option #{parseInt(season) + 1}
@@ -89,4 +89,4 @@ html
 		div.container
 			div.wordpress
 				textarea.col-12(rows="20")
-				button.render-wordpress.btn.btn-primary Render Wordpress Code
+				button.render-wordpress.btn.btn-sm.btn-primary Render Wordpress Code
