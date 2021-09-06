@@ -81,6 +81,18 @@ var newFantraxPromise = function(players) {
 					})
 				});
 
+				players.sort((a, b) => {
+					if (a.ppg > b.ppg) {
+						return -1;
+					}
+					else if (a.ppg < b.ppg) {
+						return 1;
+					}
+					else {
+						return 0;
+					}
+				});
+
 				resolve(players);
 			});
 		}
