@@ -23,6 +23,8 @@ var lastWeekCohost = process.argv[4] || cohost;
 
 function csvToRpoMap(csv) {
 	var lines = csv.split(/\n/)
+	lines.shift();
+
 	var map = {};
 
 	lines.forEach(line => {
@@ -32,15 +34,15 @@ function csvToRpoMap(csv) {
 			return;
 		}
 
-		var owner = PSO.fantraxAbbreviations[fields[4]];
+		var owner = PSO.fantraxAbbreviations[fields[5]];
 
 		if (!map[owner]) {
 			map[owner] = [];
 		}
 
 		map[owner].push({
-			name: fields[0],
-			points: parseFloat(fields[8])
+			name: fields[1],
+			points: parseFloat(fields[10])
 		});
 	});
 
@@ -77,10 +79,10 @@ var dataPromises = [
 	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
 	request
-		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&pageNumber=1&statusOrTeamFilter=WATCH_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
+		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=4bveni4tkkyr33y2&pageNumber=1&statusOrTeamFilter=WATCH_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
 		.set('Cookie', process.env.FANTRAX_COOKIES),
 	request
-		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&pageNumber=1&statusOrTeamFilter=COMPARE_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
+		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=4bveni4tkkyr33y2&pageNumber=1&statusOrTeamFilter=COMPARE_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
 		.set('Cookie', process.env.FANTRAX_COOKIES)
 ];
 
@@ -106,10 +108,10 @@ Promise.all(dataPromises).then(function(values) {
 		});
 	});
 
-	if (week < 15 && Object.keys(rpoOptions).length != 12) {
+	if (week < 16 && Object.keys(rpoOptions).length != 12) {
 		throw 'We need twelve franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
 	}
-	else if (week < 17 && Object.keys(rpoOptions).length != 4) {
+	else if (week >= 16 && week < 18 && Object.keys(rpoOptions).length != 4) {
 		throw 'We need four franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
 	}
 
@@ -128,20 +130,23 @@ Promise.all(dataPromises).then(function(values) {
 	var lastWeek = games.filter(game => game.week == week - 1);
 	var thisWeek = games.filter(game => game.week == week);
 	var nextWeeks = games.filter(game => game.week >= week && game.week <= week + 2);
-	var highScorerAllPlayWins = (week < 15) ? 11 : 3;
-	var highScorerLastWeek = games.filter(game => game.week == (week - 1) && ((game.winner.franchiseId == game.home.franchiseId && game.home.record.allPlay.week.wins == highScorerAllPlayWins) || (game.winner.franchiseId == game.away.franchiseId && game.away.record.allPlay.week.wins == highScorerAllPlayWins)))[0];
-	var highScorerSeason = games.filter(game => ((game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.away.record.allPlay.week.wins == 11)));
-	var highScorerAllTime = scoringTitles.filter(leader => leader._id == highScorerLastWeek.winner.name)[0];
+
+	if (week > 1) {
+		var highScorerAllPlayWins = (week < 16) ? 11 : 3;
+		var highScorerLastWeek = games.filter(game => game.week == (week - 1) && ((game.winner.franchiseId == game.home.franchiseId && game.home.record.allPlay.week.wins == highScorerAllPlayWins) || (game.winner.franchiseId == game.away.franchiseId && game.away.record.allPlay.week.wins == highScorerAllPlayWins)))[0];
+		var highScorerSeason = games.filter(game => ((game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.away.record.allPlay.week.wins == 11)));
+		var highScorerAllTime = scoringTitles.filter(leader => leader._id == highScorerLastWeek.winner.name)[0];
+	}
 
 	var introWeek = 'Week ' + week;
 
-	if (week == 15) {
+	if (week == 16) {
 		introWeek = 'the semifinals';
 	}
-	else if (week == 16) {
+	else if (week == 17) {
 		introWeek = 'the championship round';
 	}
-	else if (week == 17) {
+	else if (week == 18) {
 		introWeek = 'the offseason';
 	}
 
@@ -189,22 +194,22 @@ Promise.all(dataPromises).then(function(values) {
 
 			var nextGamesString;
 
-			if (week == 16) {
+			if (week == 17) {
 				nextGamesString = 'CHAMPIONSHIP_OR_THIRD_PLACE_GAME opponent';
 			}
-			else if (week == 15) {
+			else if (week == 16) {
 				nextGamesString = 'Semifinal opponent';
 			}
-			else if (week == 14) {
+			else if (week == 15) {
 				nextGamesString = 'Last game';
 			}
-			else if (week == 13) {
+			else if (week == 14) {
 				nextGamesString = 'Last two';
 			}
-			else if (week == 12) {
+			else if (week == 13) {
 				nextGamesString = 'Last three';
 			}
-			else if (week <= 11) {
+			else if (week <= 12) {
 				nextGamesString = 'Next three';
 			}
 
@@ -218,7 +223,7 @@ Promise.all(dataPromises).then(function(values) {
 				console.log();
 			});
 
-			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 15 ? ' (' + percentagesData[winner.franchiseId].tripleSlash + ')' : ''));
+			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].tripleSlash + ')' : ''));
 			if (nextWeeksGamesFor[winner.name]) {
 				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
 			}
@@ -232,7 +237,7 @@ Promise.all(dataPromises).then(function(values) {
 				console.log();
 			});
 
-			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 15 ? ' (' + percentagesData[loser.franchiseId].tripleSlash + ')' : ''));
+			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].tripleSlash + ')' : ''));
 
 			if (nextWeeksGamesFor[loser.name]) {
 				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
@@ -261,71 +266,76 @@ Promise.all(dataPromises).then(function(values) {
 		console.log("\t\t\t" + 'This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK');
 		console.log("\t\t\t" + 'Overall: WORLD_PREDICTIONS_OVERALL_RECORD');
 		console.log();
-
-		console.log('Transactions');
-		console.log();
 	}
+
+	console.log('Transactions');
+	console.log();
 
 	console.log('Discussion Topic: IS_THERE_ONE');
 	console.log();
 
 	var previewWeek = 'Week ' + week;
 
-	if (week == 15) {
+	if (week == 16) {
 		previewWeek = 'the Semifinals';
 	}
-	else if (week == 16) {
+	else if (week == 17) {
 		previewWeek = 'the Championship Round';
 	}
 
-	if (week < 17) {
+	if (week < 18) {
 		console.log('Game Previews and Risky Player Options for ' + previewWeek);
 
 		thisWeek.forEach(game => {
 			var away = game.away;
 			var home = game.home;
 
-			var lastWeekAway = lastWeek.filter(lastWeekGame => away.franchiseId == lastWeekGame.away.franchiseId || away.franchiseId == lastWeekGame.home.franchiseId)[0];
-			var lastWeekHome = lastWeek.filter(lastWeekGame => home.franchiseId == lastWeekGame.away.franchiseId || home.franchiseId == lastWeekGame.home.franchiseId)[0];
+			if (week == 1) {
+				console.log("\t" + away.name + ' vs. ' + home.name);
+			}
+			else {
+				var lastWeekAway = lastWeek.filter(lastWeekGame => away.franchiseId == lastWeekGame.away.franchiseId || away.franchiseId == lastWeekGame.home.franchiseId)[0];
+				var lastWeekHome = lastWeek.filter(lastWeekGame => home.franchiseId == lastWeekGame.away.franchiseId || home.franchiseId == lastWeekGame.home.franchiseId)[0];
 
-			var awayRecordId;
-			var homeRecordId;
+				var awayRecordId;
+				var homeRecordId;
 
-			if (away.franchiseId == lastWeekAway.away.franchiseId) {
-				awayRecordId = 'away';
-			}
-			else if (away.franchiseId == lastWeekAway.home.franchiseId) {
-				awayRecordId = 'home';
-			}
-		
-			if (home.franchiseId == lastWeekHome.away.franchiseId) {
-				homeRecordId = 'away';
-			}
-			else if (home.franchiseId == lastWeekHome.home.franchiseId) {
-				homeRecordId = 'home';
-			}
-		
-			away.record = {
-				straight: {
-					cumulative: {
-						wins: lastWeekAway[awayRecordId].record.straight.cumulative.wins,
-						losses: lastWeekAway[awayRecordId].record.straight.cumulative.losses
-					}
+				if (away.franchiseId == lastWeekAway.away.franchiseId) {
+					awayRecordId = 'away';
 				}
-			};
-
-			home.record = {
-				straight: {
-					cumulative: {
-						wins: lastWeekHome[homeRecordId].record.straight.cumulative.wins,
-						losses: lastWeekHome[homeRecordId].record.straight.cumulative.losses
-					}
+				else if (away.franchiseId == lastWeekAway.home.franchiseId) {
+					awayRecordId = 'home';
 				}
-			};
+			
+				if (home.franchiseId == lastWeekHome.away.franchiseId) {
+					homeRecordId = 'away';
+				}
+				else if (home.franchiseId == lastWeekHome.home.franchiseId) {
+					homeRecordId = 'home';
+				}
+			
+				away.record = {
+					straight: {
+						cumulative: {
+							wins: lastWeekAway[awayRecordId].record.straight.cumulative.wins,
+							losses: lastWeekAway[awayRecordId].record.straight.cumulative.losses
+						}
+					}
+				};
 
-			console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + (week > 7 && week < 15 ? ', ' + percentagesData[away.franchiseId].tripleSlash : '') + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + (week > 7 && week < 15 ? ', ' + percentagesData[home.franchiseId].tripleSlash : '') + ')');
+				home.record = {
+					straight: {
+						cumulative: {
+							wins: lastWeekHome[homeRecordId].record.straight.cumulative.wins,
+							losses: lastWeekHome[homeRecordId].record.straight.cumulative.losses
+						}
+					}
+				};
 
-			if (week > 7 && week < 15) {
+				console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[away.franchiseId].tripleSlash : '') + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[home.franchiseId].tripleSlash : '') + ')');
+			}
+
+			if (week > 7 && week < 16) {
 				console.log("\t\t" + 'Interest level: ' + (percentagesData[away.franchiseId].interestLevel + percentagesData[home.franchiseId].interestLevel).toFixed(3));
 			}
 
@@ -340,34 +350,36 @@ Promise.all(dataPromises).then(function(values) {
 		console.log();
 	}
 
-	console.log('High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
-	console.log("\t" + highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
-	console.log("\t" + ordinal(highScorerSeason.length) + ' scoring title this season');
-	console.log("\t" + ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
-	console.log("\t" + 'HIGH_SCORERS_CORNER_DITTY');
-	console.log();
+	if (week > 1) {
+		console.log('High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
+		console.log("\t" + highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
+		console.log("\t" + ordinal(highScorerSeason.length) + ' scoring title this season');
+		console.log("\t" + ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
+		console.log("\t" + 'HIGH_SCORERS_CORNER_DITTY');
+		console.log();
+	}
 
 	console.log('Co-Host\'s Final Thoughts');
 	console.log();
 
 	var outroWeek = 'Week ' + week;
 
-	if (week == 15) {
+	if (week == 16) {
 		outroWeek = 'the semifinals';
 	}
-	else if (week == 16) {
+	else if (week == 17) {
 		outroWeek = 'the championship round';
 	}
-	else if (week == 17) {
+	else if (week == 18) {
 		outroWeek = 'the offseason';
 	}
 
-	var outroNextWeek = (week != 17) ? 'next week' : 'very soon';
+	var outroNextWeek = (week != 18) ? 'next week' : 'very soon';
 
 	console.log('Plugs');
 	console.log("\t" + '@PsoScuttlebutt');
 	console.log("\t" + 'Websites');
-	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + ', everybody! We will talk to you ' + outroNextWeek + '!');
+	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + '! We will talk to you ' + outroNextWeek + '!');
 
 	mongoose.disconnect();
 }).catch(error => {
