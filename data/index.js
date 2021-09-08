@@ -54,7 +54,7 @@ var hackScores = {
 var newWeekPromise = function(week) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/fxpa/req?leagueId=4bveni4tkkyr33y2')
+			.post('https://www.fantrax.com/fxpa/req?leagueId=' + PSO.fantraxLeagueId)
 			.set('Content-Type', 'text/plain')
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.send(JSON.stringify({ msgs: [ { data: { newView: true, period: week }, method: 'getLiveScoringStats' } ] }))

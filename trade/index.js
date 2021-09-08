@@ -6,7 +6,7 @@ var request = require('superagent');
 var PSO = require('../pso.js');
 
 const siteData = {
-	fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=4bveni4tkkyr33y2&pageNumber=1&reload=1&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_23b_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=1&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=20&statusOrTeamFilter=ALL_TAKEN&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&startDate=2021-09-09&endDate=2022-01-09&teamId=mkljbisnkkyr33yl'
+	fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&reload=1&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_23b_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=1&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=20&statusOrTeamFilter=ALL_TAKEN&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&startDate=2021-09-09&endDate=2022-01-09&teamId=mkljbisnkkyr33yl'
 };
 
 var render = false;

@@ -12,7 +12,7 @@ const siteData = {
 			fpts: [ 0, 6, 9, 12, 15 ]
 		},
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=eju35f9ok7xr9cvt&&statusOrTeamFilter=ALL'
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&&statusOrTeamFilter=ALL'
 	},
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
