@@ -7,9 +7,9 @@ var PSO = require('../pso.js');
 var newFantraxPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/fxpa/req?leagueId=' + process.env.FANTRAX_LEAGUE_ID)
+			.post('https://www.fantrax.com/fxpa/req?leagueId=' + PSO.fantraxLeagueId)
 			.set('Content-Type', 'text/plain')
-			.send(JSON.stringify({ msgs: [ { data: { leagueId: process.env.FANTRAX_LEAGUE_ID, teamId: fantraxId, view: 'STATS' }, method: 'getTeamRosterInfo' } ] }))
+			.send(JSON.stringify({ msgs: [ { data: { leagueId: PSO.fantraxLeagueId, teamId: fantraxId, view: 'STATS' }, method: 'getTeamRosterInfo' } ] }))
 			.then(response => {
 				//console.log(response.text);
 				var dataJson = JSON.parse(response.text);
@@ -39,7 +39,7 @@ var newSheetsPromise = function(fantraxId) {
 var newPostPromise = function(fantraxId, budget) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/newui/fantasy/teamAdjustment.go?leagueId=' + process.env.FANTRAX_LEAGUE_ID)
+			.post('https://www.fantrax.com/newui/fantasy/teamAdjustment.go?leagueId=' + PSO.fantraxLeagueId)
 			.set('Content-Type', 'application/x-www-form-urlencoded')
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.send({ teamId: fantraxId })
