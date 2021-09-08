@@ -12,6 +12,7 @@ public/history/*
 public/jaguar/*
 public/rookies/*
 public/simulator/*
+public/trade/*
 
 simulator/simulationData.json
 simulator/percentagesData.json

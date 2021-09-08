@@ -1,0 +1,97 @@
+mixin pickRound(round)
+	if round == 1
+		| 1st
+	else if round == 2
+		| 2nd
+	else if round == 3
+		| 3rd
+	else
+		| #{round}th
+
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		meta(name='google' content='notranslate')
+
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='../trade.css')
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+		script(src='../trade.js')
+
+		title Trade Machine
+
+	body
+		div.container.d-none
+			select.master-player-list
+				each franchise, i in franchises
+					optgroup(class="players-franchise-" + i label="From " + franchise)
+						each player in teams[franchise]
+							option(value=player.id data-name=player.name data-salary=player.salary data-contract=player.contract) #{player.name} ($#{player.salary}, #{player.contract})
+
+			select.master-pick-list
+				each franchise, i in franchises
+					optgroup(class="picks-franchise-" + i label=franchise + "'s Picks")
+						each pick in picks
+							if pick.owner == franchise
+								option(value=pick.season + '-' + pick.round + '-' + pick.origin.split(' ')[0].toLowerCase() data-season=pick.season data-round=pick.round data-owner=pick.owner data-origin=pick.origin)
+									+pickRound(pick.round)
+									|
+									|
+									| round draft pick from #{pick.origin} in #{pick.season}
+
+			select.master-franchise-list
+				each franchise, i in franchises
+					option(class="franchises-franchise-" + i value="franchise-" + i data-name=franchise) #{franchise}
+
+		div.container
+			h1.text-center.my-2 Trade Machine
+
+		div.container
+			h5 Who's Involved?
+
+			each franchise, i in franchises
+				div.form-check.form-check-inline.col-4
+					input.form-check-input(type="checkbox" id="check-franchise-" + i value="franchise-" + i)
+					label.form-check-label(for="check-franchise-" + i) #{franchise}
+
+		div.container
+			each franchise, i in franchises
+				div.gets.col-12.p-4.my-4.d-none(id="gets-franchise-" + i)
+					h5
+						strong #{franchise}
+						|
+						|
+						| get#{franchise.includes('/') ? '' : 's'}:
+
+					div.input-group.input-group-sm.my-1
+						select.player-list.form-control
+						button.add-player.btn.btn-sm.btn-primary.ml-1 +
+
+					div.input-group.input-group-sm.my-1
+						select.pick-list.form-control
+						button.add-pick.btn.btn-sm.btn-primary.ml-1 +
+
+					div.input-group.input-group-sm.my-1
+						div.input-group-prepend
+							span.input-group-text $
+						input.amount.form-control(type="text" size="4")
+						span.mx-1 from
+						select.franchise-list.form-control
+						span.mx-1 in
+						select.season-list.form-control
+							option #{parseInt(season)}
+							option #{parseInt(season) + 1}
+							option #{parseInt(season) + 2}
+						button.add-cash.btn.btn-sm.btn-primary.ml-1 +
+
+					ul.assets.mt-4
+						li Nothing
+
+		div.container
+			div.wordpress
+				textarea.col-12(rows="20")
+				button.render-wordpress.btn.btn-sm.btn-primary Render Wordpress Code
+				button.post-wordpress.btn.btn-sm.btn-primary.ml-1 Post to Wordpress
