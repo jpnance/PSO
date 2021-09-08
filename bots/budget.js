@@ -7,9 +7,9 @@ var PSO = require('../pso.js');
 var newFantraxPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/fxpa/req?leagueId=eju35f9ok7xr9cvt')
+			.post('https://www.fantrax.com/fxpa/req?leagueId=' + process.env.FANTRAX_LEAGUE_ID)
 			.set('Content-Type', 'text/plain')
-			.send(JSON.stringify({ msgs: [ { data: { leagueId: 'eju35f9ok7xr9cvt', teamId: fantraxId, view: 'STATS' }, method: 'getTeamRosterInfo' } ] }))
+			.send(JSON.stringify({ msgs: [ { data: { leagueId: process.env.FANTRAX_LEAGUE_ID, teamId: fantraxId, view: 'STATS' }, method: 'getTeamRosterInfo' } ] }))
 			.then(response => {
 				//console.log(response.text);
 				var dataJson = JSON.parse(response.text);
@@ -25,11 +25,11 @@ var newFantraxPromise = function(fantraxId) {
 var newSheetsPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
-			.get('https://spreadsheets.google.com/feeds/cells/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/1/public/full/' + PSO.sheetsBudgetCells[fantraxId] + '?alt=json')
+			.get('https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Cash')
+			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
 			.then(response => {
 				var dataJson = JSON.parse(response.text);
-				var rawBudget = dataJson.entry.content['$t'];
-				var cleanBudget = parseFloat(rawBudget.replace(/\$/, ''));
+				var cleanBudget = parseFloat(dataJson.values[6][PSO.sheetsBudgetCells[fantraxId]].replace(/\$/, ''));
 
 				resolve({ fantraxId: fantraxId, sheetsBudget: cleanBudget });
 			});
@@ -39,7 +39,7 @@ var newSheetsPromise = function(fantraxId) {
 var newPostPromise = function(fantraxId, budget) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/newui/fantasy/teamAdjustment.go?leagueId=eju35f9ok7xr9cvt')
+			.post('https://www.fantrax.com/newui/fantasy/teamAdjustment.go?leagueId=' + process.env.FANTRAX_LEAGUE_ID)
 			.set('Content-Type', 'application/x-www-form-urlencoded')
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.send({ teamId: fantraxId })

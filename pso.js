@@ -76,18 +76,18 @@ module.exports.fantraxIds = {
 };
 
 module.exports.sheetsBudgetCells = {
-	'xc5epmazkkyr33z2': 'R7C3', // Brett
-	'mr9o4eonkkyr33yy': 'R7C4', // James/Charles
-	'qsikxu5lkkyr33yq': 'R7C5', // Jason
-	'8cdt5li1kkyr33z7': 'R7C6', // John/Zach
-	'u6hbpnznkkyr33z5': 'R7C7', // Keyon
-	'urd756b0kkyr33yw': 'R7C8', // Koci/Mueller
-	'dqvvynv8kkyr33yo': 'R7C9', // Luke
-	'218fvvbwkkyr33z0': 'R7C10', // Mitch
-	'mkljbisnkkyr33yl': 'R7C11', // Patrick
-	'hsdnqwgykkyr33yj': 'R7C12', // Quinn
-	'ps1ipdlgkkyr33ys': 'R7C13', // Schex
-	'ygmwf6pvkkyr33yu': 'R7C14' // Trevor
+	'xc5epmazkkyr33z2': 2, // Brett
+	'mr9o4eonkkyr33yy': 3, // James/Charles
+	'qsikxu5lkkyr33yq': 4, // Jason
+	'8cdt5li1kkyr33z7': 5, // John/Zach
+	'u6hbpnznkkyr33z5': 6, // Keyon
+	'urd756b0kkyr33yw': 7, // Koci/Mueller
+	'dqvvynv8kkyr33yo': 8, // Luke
+	'218fvvbwkkyr33z0': 9, // Mitch
+	'mkljbisnkkyr33yl': 10, // Patrick
+	'hsdnqwgykkyr33yj': 11, // Quinn
+	'ps1ipdlgkkyr33ys': 12, // Schex
+	'ygmwf6pvkkyr33yu': 13 // Trevor
 };
 
 module.exports.franchiseNames = {
