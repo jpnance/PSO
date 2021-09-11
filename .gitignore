@@ -7,6 +7,7 @@ data/colbys.xml
 data/data.xml
 
 public/auction/*
+public/data/*
 public/h2h/*
 public/history/*
 public/jaguar/*
