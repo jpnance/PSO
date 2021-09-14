@@ -58,7 +58,7 @@ module.exports.fantraxAbbreviations = {
 	'pat': 'Patrick',
 	'ATTY': 'John/Zach',
 	'LUKE': 'Luke',
-	'BLLZ': 'Brett',
+	'BLEEZ': 'Brett',
 	'MTCH': 'Mitch'
 };
 

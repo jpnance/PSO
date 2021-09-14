@@ -59,30 +59,41 @@ function niceRate(rate) {
 }
 
 function ordinal(number) {
-	if (number == 1) {
-		return '1st';
-	}
-	else if (number == 2) {
-		return '2nd';
-	}
-	else if (number == 3) {
-		return '3rd';
-	}
-	else if (number <= 14) {
+	if (number % 100 == 11) {
 		return number + 'th';
 	}
 
-	return number;
+	if (number % 100 == 12) {
+		return number + 'th';
+	}
+
+	if (number % 100 == 13) {
+		return number + 'th';
+	}
+
+	if (number % 10 == 1) {
+		return number + 'st';
+	}
+
+	if (number % 10 == 2) {
+		return number + 'nd';
+	}
+
+	if (number % 10 == 3) {
+		return number + 'rd';
+	}
+
+	return number + 'th';
 }
 
 var dataPromises = [
 	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
 	request
-		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&statusOrTeamFilter=WATCH_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
+		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&statusOrTeamFilter=WATCH_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=SEASON_23b_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=')
 		.set('Cookie', process.env.FANTRAX_COOKIES),
 	request
-		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&statusOrTeamFilter=COMPARE_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_239_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&teamId=motju5wmk7xr9dlz&')
+		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&statusOrTeamFilter=COMPARE_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=SEASON_23b_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=')
 		.set('Cookie', process.env.FANTRAX_COOKIES)
 ];
 
