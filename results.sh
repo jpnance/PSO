@@ -16,6 +16,7 @@ mongo $MONGODB_URI regularSeasonWins.js
 mongo $MONGODB_URI weeklyScoringTitles.js
 mongo $MONGODB_URI highestScoringLosses.js
 mongo $MONGODB_URI lowestScoringWins.js
+mongo $MONGODB_URI seasonSummaries.js
 cd ..
 cd ..
 
