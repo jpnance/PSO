@@ -8,15 +8,16 @@ SEASON=$(grep SEASON .env | sed -E "s/SEASON=//")
 cd data
 node index.js $SEASON
 cd scripts
+mongo $MONGODB_URI championships.js
+mongo $MONGODB_URI highestScoringLosses.js
+mongo $MONGODB_URI lowestScoringWins.js
 mongo $MONGODB_URI marginOfVictory.js
 mongo $MONGODB_URI playoffAppearances.js
 mongo $MONGODB_URI recordOccurrences.js
 mongo $MONGODB_URI regularSeasonWinningPercentage.js
 mongo $MONGODB_URI regularSeasonWins.js
-mongo $MONGODB_URI weeklyScoringTitles.js
-mongo $MONGODB_URI highestScoringLosses.js
-mongo $MONGODB_URI lowestScoringWins.js
 mongo $MONGODB_URI seasonSummaries.js
+mongo $MONGODB_URI weeklyScoringTitles.js
 cd ..
 cd ..
 

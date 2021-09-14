@@ -7,6 +7,7 @@ var leadersSchema = new Schema({
 });
 
 module.exports = {
+	Championships: mongoose.model('Championships', leadersSchema, 'championships'),
 	PlayoffAppearances: mongoose.model('PlayoffAppearances', leadersSchema, 'playoffAppearances'),
 	RegularSeasonWinningPercentage: mongoose.model('RegularSeasonWinningPercentage', leadersSchema, 'regularSeasonWinningPercentage'),
 	RegularSeasonWins: mongoose.model('RegularSeasonWins', leadersSchema, 'regularSeasonWins'),
