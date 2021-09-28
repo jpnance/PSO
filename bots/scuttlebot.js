@@ -67,7 +67,7 @@ let psoBlogPoll = function() {
 
 let rotoPoll = function() {
 	request
-		.get('https://www.rotoworld.com/api/player_news')
+		.get('https://www.nbcsportsedge.com/api/player_news')
 		.query({ sort: '-created' })
 		.query({ 'page[limit]': 1 })
 		.query({ 'page[offset]': 0 })
@@ -89,7 +89,7 @@ let rotoPoll = function() {
 			}
 
 			if (newsItemId != last.newsItem.id) {
-				groupMePost('https://www.rotoworld.com/football/nfl/player-news/' + newsItemId);
+				groupMePost('https://www.nbcsportsedge.com/football/nfl/player-news/' + newsItemId);
 
 				last.newsItem.id = newsItemId;
 			}
