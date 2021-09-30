@@ -198,12 +198,6 @@ var tradeMachine = {
 	postToWordpress: () => {
 		if (!tradeMachine.wordpressToken) {
 			tradeMachine.wordpressToken = window.prompt('Enter WordPress token')
-
-			$.ajaxSetup({
-				headers: {
-					'Authorization': 'Bearer ' + tradeMachine.wordpressToken
-				}
-			});
 		}
 
 		var defaultTime = new Date();
@@ -233,6 +227,12 @@ var tradeMachine = {
 				response.forEach((category) => {
 					if (franchiseNames.includes(category.name)) {
 						postData.categories.push(category.id);
+					}
+				});
+
+				$.ajaxSetup({
+					headers: {
+						'Authorization': 'Bearer ' + tradeMachine.wordpressToken
 					}
 				});
 
