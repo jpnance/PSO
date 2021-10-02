@@ -230,14 +230,19 @@ var tradeMachine = {
 					}
 				});
 
-				$.ajaxSetup({
+				$.ajax({
+					method: 'POST',
 					headers: {
 						'Authorization': 'Bearer ' + tradeMachine.wordpressToken
+					},
+					url: 'https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts',
+					data: postData,
+					success: (response) => {
+						console.log(response);
+					},
+					error: (error) => {
+						console.log(error);
 					}
-				});
-
-				$.post('https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts', postData, (response) => {
-					console.log(response);
 				});
 			});
 		});
