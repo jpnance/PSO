@@ -88,12 +88,11 @@ body.admin .nominating .who {
 	font-weight: bold;
 }
 
-/*
-.james-bid {
+.james-scott-bid {
 	background-color: #fee5e5;
 }
 
-.james .james-bid {
+.james-scott .james-scott-bid {
 	background-color: #fe9898;
 }
 
@@ -113,11 +112,11 @@ body.admin .nominating .who {
 	background-color: #fedc98;
 }
 
-.john-charles-bid {
+.charles-luke-bid {
 	background-color: #fefee5;
 }
 
-.john-charles .john-charles-bid {
+.charles-luke .charles-luke-bid {
 	background-color: #fefe98;
 }
 
@@ -184,8 +183,8 @@ body.admin .nominating .who {
 .taylor .taylor-bid {
 	background-color: #98bafe;
 }
-*/
 
+/*
 .brett-bid {
 	background-color: #fee5e5;
 }
@@ -281,6 +280,7 @@ body.admin .nominating .who {
 .trevor .trevor-bid {
 	background-color: #98bafe;
 }
+*/
 
 .error {
 	background-color: #ffdddd;
