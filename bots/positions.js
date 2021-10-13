@@ -13,7 +13,7 @@ const siteData = {
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&statusOrTeamFilter=ALL'
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=ijj4f9ekku2mrnul&statusOrTeamFilter=ALL'
 	}
 };
 
@@ -94,7 +94,10 @@ var newSheetsPromise = function(fantraxId) {
 					rows.push(row);
 				});
 
-				rows.shift();
+				if (parameters.site == 'pso') {
+					rows.shift();
+				}
+
 				rows.shift();
 				rows.pop();
 
