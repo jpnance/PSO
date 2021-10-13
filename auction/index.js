@@ -64,10 +64,10 @@ var owners = {
 	],
 
 	colbys: [
-		'James',
+		'Charles/Luke',
+		'James/Scott',
 		'Jason',
 		'Joel',
-		'John/Charles',
 		'Justin',
 		'Mike',
 		'Mitch/Keyon',
