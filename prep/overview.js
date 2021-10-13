@@ -30,7 +30,7 @@ const siteData = {
 			to: [ 0.0, 0.6, 0.9, 1.1, 1.5 ]
 		},
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=ijj4f9ekku2mrnul&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
 	}
 };
 
@@ -111,6 +111,7 @@ process.argv.forEach(function(value, index, array) {
 
 			case 'sort':
 				var sortParameters = pair[1].split(',').reverse();
+				parameters.sortPaths = [];
 
 				sortParameters.forEach(sortParameter => {
 					if (sortParameter == 'name') {
@@ -127,6 +128,9 @@ process.argv.forEach(function(value, index, array) {
 					}
 					else if (sortParameter == 'positions') {
 						parameters.sortPaths.unshift('+positions');
+					}
+					else if (sortParameters == 'score') {
+						parameters.sortPaths.unshift('-fantraxProjections.score');
 					}
 					else {
 						parameters.sortPaths.unshift('-fantraxProjections.rating.' + sortParameter);
@@ -153,6 +157,7 @@ var displayPlayers = function(players) {
 	var columnPadding = 1;
 
 	// pso
+	/*
 	var headings = [
 		{
 			path: 'owner',
@@ -203,8 +208,8 @@ var displayPlayers = function(players) {
 			padLength: 3
 		},
 	];
+	*/
 
-	/*
 	// colbys
 	var headings = [
 		{
@@ -316,7 +321,6 @@ var displayPlayers = function(players) {
 			padLength: 5
 		}
 	];
-	*/
 
 	players.forEach((player, i) => {
 		var outputString = '';
@@ -437,9 +441,12 @@ var newFantraxPromise = function(players) {
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.then(response => {
 				var csvLines = response.body.toString();
-		*/
 
 		fs.readFile('./pso.csv', function(error, data) {
+				var csvLines = data.toString();
+		*/
+
+		fs.readFile('./colbys.csv', function(error, data) {
 				var csvLines = data.toString();
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
@@ -450,6 +457,10 @@ var newFantraxPromise = function(players) {
 					// "Player","Team","Position","Rk","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
+					if (fields.length == 1) {
+						return;
+					}
+
 					var id = nameToId(fields[1]);
 					var positions = fields[3].split(/,/);
 
@@ -458,7 +469,6 @@ var newFantraxPromise = function(players) {
 					if (player && positions.some((position) => player.positions.indexOf(position) > -1)) {
 						player.team = fields[2];
 						player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
-						player.bye = parseInt(fields[13]);
 
 						if (player.fantraxProjections) {
 							console.log('Dirty data with', player.name, '(' + player.team + ')');
@@ -467,30 +477,32 @@ var newFantraxPromise = function(players) {
 							player.fantraxProjections = { raw: {}, perGame: {}, rating: {} };
 						}
 
+						/*
 						// pso
+						player.bye = parseInt(fields[13]);
 						player.fantraxProjections.ratingSum = 0;
 						player.fantraxProjections.raw.fpts = parseFloat(fields[9]);
 						player.fantraxProjections.perGame.fpts = parseFloat(fields[10]);
 						player.fantraxProjections.rating.fpts = perGameAverageToRating('fpts', player.fantraxProjections.perGame.fpts);
 						player.fantraxProjections.ratingSum += player.fantraxProjections.rating.fpts;
+						*/
 
-						/*
 						// colbys
-						player.fantraxProjections.gamesPlayed = parseInt(fields[12]);
+						player.fantraxProjections.gamesPlayed = parseInt(fields[13]);
 
-						player.fantraxProjections.score = parseFloat(fields[9]);
+						player.fantraxProjections.score = parseFloat(fields[10]);
 						player.fantraxProjections.ratingSum = 0;
 
-						player.fantraxProjections.raw['fg%'] = parseFloat(fields[13]);
-						player.fantraxProjections.raw['3pm'] = parseInt(fields[14]);
-						player.fantraxProjections.raw.ftm = parseInt(fields[15]);
-						player.fantraxProjections.raw['ft%'] = parseFloat(fields[16]);
-						player.fantraxProjections.raw.pts = parseInt(fields[17]);
-						player.fantraxProjections.raw.reb = parseInt(fields[18]);
-						player.fantraxProjections.raw.ast = parseInt(fields[19]);
-						player.fantraxProjections.raw.stl = parseInt(fields[20]);
-						player.fantraxProjections.raw.blk = parseInt(fields[21]);
-						player.fantraxProjections.raw.to = parseInt(fields[22]);
+						player.fantraxProjections.raw['fg%'] = parseFloat(fields[14]);
+						player.fantraxProjections.raw['3pm'] = parseInt(fields[15]);
+						player.fantraxProjections.raw.ftm = parseInt(fields[16]);
+						player.fantraxProjections.raw['ft%'] = parseFloat(fields[17]);
+						player.fantraxProjections.raw.pts = parseInt(fields[18]);
+						player.fantraxProjections.raw.reb = parseInt(fields[19]);
+						player.fantraxProjections.raw.ast = parseInt(fields[20]);
+						player.fantraxProjections.raw.stl = parseInt(fields[21]);
+						player.fantraxProjections.raw.blk = parseInt(fields[22]);
+						player.fantraxProjections.raw.to = parseInt(fields[23]);
 
 						Object.keys(player.fantraxProjections.raw).forEach(statKey => {
 							if (!statKey.includes('%')) {
@@ -504,7 +516,6 @@ var newFantraxPromise = function(players) {
 
 							player.fantraxProjections.ratingSum += player.fantraxProjections.rating[statKey];
 						});
-						*/
 					}
 				});
 
