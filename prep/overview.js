@@ -541,7 +541,10 @@ var newSheetsPromise = function(fantraxId) {
 					rows.push(row);
 				});
 
-				rows.shift();
+				if (parameters.site == 'pso') {
+					rows.shift();
+				}
+
 				rows.shift();
 				rows.pop();
 
