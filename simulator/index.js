@@ -178,8 +178,8 @@ var results = {};
 
 var mongo = require('mongodb').MongoClient;
 
-mongo.connect(process.env.MONGODB_URI, function(err, db) {
-	var games = db.collection('games');
+mongo.connect(process.env.MONGODB_URI, function(err, client) {
+	var games = client.db('pso').collection('games');
 	var startWithWeek = 0;
 
 	games.find({ season: season }).toArray(function(err, docs) {
@@ -351,7 +351,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, db) {
 			console.log();
 		}
 
-		db.close();
+		client.close();
 	});
 });
 
