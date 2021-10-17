@@ -8,9 +8,9 @@ table.table.table-hover.table-sm
 		th.text-right The Decision
 		th.d-none.d-sm-table-cell.text-right First Pick
 		th.text-right Finishes
-		th.d-none.d-md-table-cell.text-right 8-6 and Out
-		th.d-none.d-md-table-cell.text-right 9-5 and Out
-		th.d-none.d-lg-table-cell.text-right 10-4 and Out
+		th.d-none.d-md-table-cell.text-right 9-6 and Out
+		th.d-none.d-md-table-cell.text-right 10-5 and Out
+		th.d-none.d-lg-table-cell.text-right 11-4 and Out
 
 	each result in results
 		tr
@@ -82,17 +82,17 @@ table.table.table-hover.table-sm
 					}
 				span.finishes(data-toggle='tooltip' data-placement='right' data-html='true' title=finishTable) #{result.finishesString}
 			td.d-none.d-md-table-cell.text-right
-				if result.eightAndOut != '--'
-					| #{result.eightAndOut.toFixed(3)}
-				else
-					| --
-			td.d-none.d-md-table-cell.text-right
 				if result.nineAndOut != '--'
 					| #{result.nineAndOut.toFixed(3)}
 				else
 					| --
-			td.d-none.d-lg-table-cell.text-right
+			td.d-none.d-md-table-cell.text-right
 				if result.tenAndOut != '--'
 					| #{result.tenAndOut.toFixed(3)}
+				else
+					| --
+			td.d-none.d-lg-table-cell.text-right
+				if result.elevenAndOut != '--'
+					| #{result.elevenAndOut.toFixed(3)}
 				else
 					| --
