@@ -62,6 +62,11 @@ var parseConditions = function(conditionsString) {
 	return conditions;
 };
 
+module.exports.clearCache = function(request, response) {
+	resultsCache = {};
+	response.redirect('/simulator');
+};
+
 module.exports.filterByConditions = function(request, response) {
 	try {
 		fileStats = fs.statSync('simulator/simulationData.json');

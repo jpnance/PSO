@@ -22,4 +22,5 @@ module.exports = function(app) {
 
 	app.post('/simulator', simulator.filterByConditions);
 	app.post('/simulator/:conditions', simulator.filterByConditions);
+	app.get('/simulator/clear', simulator.clearCache);
 };
