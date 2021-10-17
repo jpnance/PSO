@@ -1,5 +1,9 @@
 var dotenv = require('dotenv').config({ path: '../.env' });
 
+var fs = require('fs');
+var pug = require('pug');
+var compiledPug = pug.compileFile('../views/simulator.pug');
+
 var season = parseInt(process.env.SEASON);
 
 var PSO = require('../pso');
@@ -7,58 +11,82 @@ var PSO = require('../pso');
 var mongoOwners = {
 	'Pat/Quinn': 'patQuinn',
 	'Patrick': 'patrick',
+
 	'Koci': 'koci',
 	'Koci/Mueller': 'kociMueller',
+
 	'Syed': 'syed',
 	'Syed/Terence': 'syedTerence',
 	'Syed/Kuan': 'syedKuan',
 	'Luke': 'luke',
+
 	'John': 'john',
 	'John/Zach': 'johnZach',
+
 	'Trevor': 'trevor',
+
 	'Keyon': 'keyon',
+
 	'Jeff': 'jeff',
 	'Jake/Luke': 'jakeLuke',
 	'Brett/Luke': 'brettLuke',
 	'Brett': 'brett',
+
 	'Daniel': 'daniel',
 	'Terence': 'terence',
+	'Jason': 'jason',
+
 	'James': 'james',
 	'James/Charles': 'jamesCharles',
+
 	'Schexes': 'schexes',
 	'Schex/Jeff': 'schexes',
 	'Schex': 'schex',
+
 	'Charles': 'charles',
 	'Quinn': 'quinn',
+
 	'Mitch': 'mitch'
 };
 
 var ownerFranchiseIds = {
 	'patrick': 1,
 	'patQuinn': 1,
+
 	'koci': 2,
 	'kociMueller': 2,
+
 	'syed': 3,
 	'syedTerence': 3,
 	'syedKuan': 3,
 	'luke': 3,
+
 	'john': 4,
 	'johnZach': 4,
+
 	'trevor': 5,
+
 	'keyon': 6,
+
 	'jeff': 7,
 	'jakeLuke': 7,
 	'brettLuke': 7,
 	'brett': 7,
+
 	'daniel': 8,
 	'terence': 8,
+	'jason': 8,
+
 	'james': 9,
 	'jamesCharles': 9,
+
 	'schexes': 10,
 	'schexJeff': 10,
 	'schex': 10,
+
 	'charles': 11,
 	'quinn': 11,
+
 	'mitch': 12
 };
 
@@ -71,6 +99,7 @@ var debug = false;
 var render = false;
 var cutoff = null;
 var viewOnly = false;
+var dataOnly = false;
 var simulationData = { owners: {}, simulations: [] };
 
 process.argv.forEach(function(value, index, array) {
@@ -153,6 +182,10 @@ process.argv.forEach(function(value, index, array) {
 
 			case 'viewonly':
 				viewOnly = true;
+				break;
+
+			case 'dataonly':
+				dataOnly = true;
 				break;
 		}
 	}
@@ -255,10 +288,6 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 		initializeOwners();
 
 		if (viewOnly) {
-			var fs = require('fs');
-			var pug = require('pug');
-			var compiledPug = pug.compileFile('../views/simulator.pug');
-
 			var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
 
 			Object.keys(schedule).forEach(weekId => {
@@ -329,10 +358,6 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 			}
 
 			if (render) {
-				var fs = require('fs');
-				var pug = require('pug');
-				var compiledPug = pug.compileFile('../views/simulator.pug');
-
 				var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
 
 				Object.keys(schedule).forEach(weekId => {
@@ -345,6 +370,10 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 				});
 
 				fs.writeFileSync('../public/simulator/index.html', compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+				fs.writeFileSync('simulationData.json', JSON.stringify(simulationData));
+			}
+
+			if (dataOnly) {
 				fs.writeFileSync('simulationData.json', JSON.stringify(simulationData));
 			}
 
@@ -557,7 +586,7 @@ function simulate(trials) {
 		};
 
 		for (weekId in schedule) {
-			if (weekId > 14) {
+			if (weekId > 15) {
 				continue;
 			}
 
