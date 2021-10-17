@@ -69,23 +69,25 @@ module.exports.clearCache = function(request, response) {
 
 module.exports.filterByConditions = function(request, response) {
 	try {
-		fileStats = fs.statSync('simulator/simulationData.json');
+		fileStats = fs.statSync('public/data/simulations.json');
 	}
 	catch (error) {
-		response.status(500).send({ error: error, message: 'Unable to get file stats for simulationData.json' });
+		console.log('no');
+		response.status(500).send({ error: error, message: 'Unable to get file stats for simulations.json' });
 		return;
 	}
 
 	if (!lastModified || (fileStats.mtimeMs != lastModified)) {
 		try {
-			fileData = fs.readFileSync('simulator/simulationData.json', 'utf8');
+			fileData = fs.readFileSync('public/data/simulations.json', 'utf8');
 
 			simulationData = JSON.parse(fileData);
 			lastModified = fileStats.mtimeMs;
 			resultsCache = {};
 		}
 		catch (error) {
-			response.status(500).send({ error: error, message: 'Unable to read simulationData.json' });
+			console.log('wos');
+			response.status(500).send({ error: error, message: 'Unable to read simulations.json' });
 			return;
 		}
 	}

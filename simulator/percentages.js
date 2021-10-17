@@ -15,11 +15,11 @@ var simulationData = null;
 var franchiseData = {};
 
 try {
-	fileData = fs.readFileSync('../simulator/simulationData.json', 'utf8');
+	fileData = fs.readFileSync('../public/data/simulations.json', 'utf8');
 	simulationData = JSON.parse(fileData);
 }
 catch (error) {
-	response.status(500).send({ error: error, message: 'Unable to read simulationData.json' });
+	response.status(500).send({ error: error, message: 'Unable to read simulations.json' });
 	return;
 }
 
@@ -180,5 +180,5 @@ Object.keys(franchiseData).forEach(franchiseId => {
 	owner.interestLevel = (0.5 - Math.abs(owner.results[thisWeek].rate - 0.5)) * owner.volatation;
 });
 
-fs.writeFileSync('percentagesData.json', JSON.stringify(franchiseData));
+fs.writeFileSync('../public/data/percentages.json', JSON.stringify(franchiseData));
 //console.log(JSON.stringify(franchiseData, null, '    '));

@@ -288,7 +288,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 		initializeOwners();
 
 		if (viewOnly) {
-			var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
+			var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 
 			Object.keys(schedule).forEach(weekId => {
 				var week = schedule[weekId];
@@ -358,7 +358,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 			}
 
 			if (render) {
-				var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
+				var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 
 				Object.keys(schedule).forEach(weekId => {
 					var week = schedule[weekId];
@@ -373,7 +373,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 			}
 
 			if (dataOnly) {
-				fs.writeFileSync('simulationData.json', JSON.stringify(simulationData));
+				fs.writeFileSync('../public/data/simulations.json', JSON.stringify(simulationData));
 			}
 
 			console.log();

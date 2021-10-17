@@ -132,7 +132,7 @@ Promise.all(dataPromises).then(function(values) {
 		}
 	});
 
-	var percentagesData = JSON.parse(fs.readFileSync('../simulator/percentagesData.json', 'utf8'));
+	var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 
 	Object.keys(percentagesData).forEach(franchiseId => {
 		percentagesData[franchiseId].tripleSlash = niceRate(percentagesData[franchiseId].playoffs.neutral.rate) + '/' + niceRate(percentagesData[franchiseId].playoffs.withWin.rate) + '/' + niceRate(percentagesData[franchiseId].playoffs.withLoss.rate);
