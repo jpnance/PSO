@@ -307,7 +307,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 
 		if (untilConditions.length == 0) {
 			console.log();
-			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "8-6 and Out" + "\t" + "9-5 and Out" + "\t" + "10-4 and Out" + "\t" + "Poss. Finishes");
+			console.log("\t\t" + "Playoffs" + "\t" + "The Decision" + "\t" + "First Pick" + "\t" + "Avg. Finish" + "\t" + "9-6 and Out" + "\t" + "10-5 and Out" + "\t" + "11-4 and Out" + "\t" + "Poss. Finishes");
 
 			for (ownerId in owners) {
 				var owner = owners[ownerId];
@@ -316,9 +316,9 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 				var firstPct = owner.decision / trials;
 				var lastPct = owner.topPick / trials;
 				var avgFinish = owner.finish / trials;
-				var eightWinMissRate = (owner.eightWins > 0) ? (owner.eightWinMisses / owner.eightWins).toFixed(3) : '--';
 				var nineWinMissRate = (owner.nineWins > 0) ? (owner.nineWinMisses / owner.nineWins).toFixed(3) : '--';
 				var tenWinMissRate = (owner.tenWins > 0) ? (owner.tenWinMisses / owner.tenWins).toFixed(3) : '--';
+				var elevenWinMissRate = (owner.elevenWins > 0) ? (owner.elevenWinMisses / owner.elevenWins).toFixed(3) : '--';
 
 				var possibleFinishes = Object.keys(owner.finishes).sort((a, b) => a - b);
 				var finishesString = '';
@@ -354,7 +354,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 					finishesString += niceFinish(startFinish) + (endFinish ? '-' + niceFinish(endFinish) : '');
 				}
 
-				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + eightWinMissRate + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate + "\t\t" + finishesString);
+				console.log(owner.name + (owner.name.length > 7 ? "\t" : "\t\t") + inPct.toFixed(3) + "\t\t" + firstPct.toFixed(3) + "\t\t" + lastPct.toFixed(3) + "\t\t" + avgFinish.toFixed(3) + "\t\t" + nineWinMissRate + "\t\t" + tenWinMissRate + "\t\t" + elevenWinMissRate + "\t\t" + finishesString);
 			}
 
 			if (render) {
@@ -370,7 +370,6 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 				});
 
 				fs.writeFileSync('../public/simulator/index.html', compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
-				fs.writeFileSync('simulationData.json', JSON.stringify(simulationData));
 			}
 
 			if (dataOnly) {
@@ -695,14 +694,14 @@ function simulate(trials) {
 		for (var j = 0; j < standings.length; j++) {
 			simulation.s.push({ id: ownerFranchiseIds[standings[j].id], w: ownersCopy[standings[j].id].wins, l: ownersCopy[standings[j].id].losses });
 
-			if (ownersCopy[standings[j].id].wins >= 10) {
+			if (ownersCopy[standings[j].id].wins >= 11) {
+				owners[standings[j].id].elevenWins++;
+			}
+			else if (ownersCopy[standings[j].id].wins == 10) {
 				owners[standings[j].id].tenWins++;
 			}
 			else if (ownersCopy[standings[j].id].wins == 9) {
 				owners[standings[j].id].nineWins++;
-			}
-			else if (ownersCopy[standings[j].id].wins == 8) {
-				owners[standings[j].id].eightWins++;
 			}
 
 			if (j == 0) {
@@ -717,14 +716,14 @@ function simulate(trials) {
 				owners[standings[j].id].in += 1;
 			}
 			else {
-				if (ownersCopy[standings[j].id].wins >= 10) {
+				if (ownersCopy[standings[j].id].wins >= 11) {
+					owners[standings[j].id].elevenWinMisses++;
+				}
+				else if (ownersCopy[standings[j].id].wins == 10) {
 					owners[standings[j].id].tenWinMisses++;
 				}
 				else if (ownersCopy[standings[j].id].wins == 9) {
 					owners[standings[j].id].nineWinMisses++;
-				}
-				else if (ownersCopy[standings[j].id].wins == 8) {
-					owners[standings[j].id].eightWinMisses++;
 				}
 
 				owners[standings[j].id].out += 1;
@@ -847,14 +846,14 @@ function initializeOwners() {
 		owner.decision = 0;
 		owner.in = 0;
 		owner.losses = 0;
-		owner.eightWinMisses = 0;
-		owner.eightWins = 0;
 		owner.nineWinMisses = 0;
 		owner.nineWins = 0;
-		owner.out = 0;
-		owner.scores = [];
 		owner.tenWinMisses = 0;
 		owner.tenWins = 0;
+		owner.out = 0;
+		owner.scores = [];
+		owner.elevenWinMisses = 0;
+		owner.elevenWins = 0;
 		owner.tiebreaker = 0;
 		owner.ties = 0;
 		owner.topPick = 0;

@@ -121,13 +121,13 @@ module.exports.filterByConditions = function(request, response) {
 			firstPick: 0,
 			in: 0,
 			losses: 0,
-			eightWinMisses: 0,
-			eightWins: 0,
 			nineWinMisses: 0,
 			nineWins: 0,
-			out: 0,
 			tenWinMisses: 0,
 			tenWins: 0,
+			out: 0,
+			elevenWinMisses: 0,
+			elevenWins: 0,
 			topPick: 0,
 			wins: 0,
 			finish: 0,
@@ -137,14 +137,14 @@ module.exports.filterByConditions = function(request, response) {
 
 	filteredSimulations.forEach(filteredSimulation => {
 		filteredSimulation.s.forEach((standing, i) => {
-			if (standing.w >= 10) {
+			if (standing.w >= 11) {
+				ownerSummary[standing.id].elevenWins++;
+			}
+			else if (standing.w == 10) {
 				ownerSummary[standing.id].tenWins++;
 			}
 			else if (standing.w == 9) {
 				ownerSummary[standing.id].nineWins++;
-			}
-			else if (standing.w == 8) {
-				ownerSummary[standing.id].eightWins++;
 			}
 
 			if (i == 0) {
@@ -155,14 +155,14 @@ module.exports.filterByConditions = function(request, response) {
 				ownerSummary[standing.id].in++;
 			}
 			else if (i >= 4) {
-				if (standing.w >= 10) {
+				if (standing.w >= 11) {
+					ownerSummary[standing.id].elevenWinMisses++;
+				}
+				else if (standing.w == 10) {
 					ownerSummary[standing.id].tenWinMisses++;
 				}
 				else if (standing.w == 9) {
 					ownerSummary[standing.id].nineWinMisses++;
-				}
-				else if (standing.w == 8) {
-					ownerSummary[standing.id].eightWinMisses++;
 				}
 
 				ownerSummary[standing.id].out++;
@@ -191,9 +191,9 @@ module.exports.filterByConditions = function(request, response) {
 		var decisionPct = summary.decision / filteredSimulations.length;
 		var firstPickPct = summary.firstPick / filteredSimulations.length;
 		var averageFinish = summary.finish / filteredSimulations.length;
-		var eightWinMissRate = (summary.eightWinMisses > 0) ? (summary.eightWinMisses / summary.eightWins) : '--';
 		var nineWinMissRate = (summary.nineWinMisses > 0) ? (summary.nineWinMisses / summary.nineWins) : '--';
 		var tenWinMissRate = (summary.tenWinMisses > 0) ? (summary.tenWinMisses / summary.tenWins) : '--';
+		var elevenWinMissRate = (summary.elevenWinMisses > 0) ? (summary.elevenWinMisses / summary.elevenWins) : '--';
 
 		var possibleFinishes = Object.keys(summary.finishes).sort((a, b) => a - b);
 		var finishesString = '';
@@ -235,7 +235,7 @@ module.exports.filterByConditions = function(request, response) {
 			}
 		}
 
-		pugResults.push({ owner: { name: name, wins: simulationData.owners[franchiseId].wins, losses: simulationData.owners[franchiseId].losses, finishes: summary.finishes }, playoffs: inPct, decision: decisionPct, firstPick: firstPickPct, avgFinish: averageFinish, eightAndOut: eightWinMissRate, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, finishesString: finishesString });
+		pugResults.push({ owner: { name: name, wins: simulationData.owners[franchiseId].wins, losses: simulationData.owners[franchiseId].losses, finishes: summary.finishes }, playoffs: inPct, decision: decisionPct, firstPick: firstPickPct, avgFinish: averageFinish, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, elevenAndOut: elevenWinMissRate, finishesString: finishesString });
 	});
 
 	pugResults.sort(function(a, b) {
