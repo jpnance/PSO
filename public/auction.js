@@ -128,8 +128,8 @@ var redrawAuctionClient = function(auctionData) {
 		$('#nominator-text').text(auctionData.nominator.now.includes('/') ? 'nominate' : 'nominates');
 	}
 
-	$('#player-name a').attr('href', 'https://www.pro-football-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
-	//$('#player-name a').attr('href', 'https://www.basketball-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
+	//$('#player-name a').attr('href', 'https://www.pro-football-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
+	$('#player-name a').attr('href', 'https://www.basketball-reference.com/search/search.fcgi?search=' + urlName).text(auctionData.player.name);
 	$('#player-position').text(auctionData.player.position);
 	$('#player-team').text(auctionData.player.team);
 	$('#player-situation').text(auctionData.player.situation);
