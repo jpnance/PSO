@@ -169,6 +169,8 @@ Promise.all(dataPromises).then(function(values) {
 		introWeek = 'the offseason';
 	}
 
+	console.log('SOUND EFFECTS');
+	console.log();
 	console.log('Intro');
 	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + process.env.SEASON + ' season!');
 	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
@@ -381,6 +383,7 @@ Promise.all(dataPromises).then(function(values) {
 
 	if (week > 1) {
 		console.log('High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
+		console.log("\tAPPLAUSE")
 		console.log("\t" + highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
 		console.log("\t" + ordinal(highScorerSeason.length) + ' scoring title this season');
 		console.log("\t" + ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
