@@ -93,6 +93,23 @@ Object.keys(PSO.franchises).forEach(franchiseId => {
 				total: 0
 			}
 		},
+		decision: {
+			neutral: {
+				in: 0,
+				out: 0,
+				total: 0
+			},
+			withWin: {
+				in: 0,
+				out: 0,
+				total: 0
+			},
+			withLoss: {
+				in: 0,
+				out: 0,
+				total: 0
+			}
+		},
 		results: {}
 	};
 });
@@ -130,6 +147,33 @@ simulationData.simulations.forEach(simulation => {
 				franchiseData[franchiseId].playoffs.withLoss.total += 1;
 			}
 		}
+
+		if (standingsData.findIndex(standing => parseInt(standing.id) == parseInt(franchiseId)) == 0) {
+			franchiseData[franchiseId].decision.neutral.in += 1;
+			franchiseData[franchiseId].decision.neutral.total += 1;
+
+			if (thisWeekWin) {
+				franchiseData[franchiseId].decision.withWin.in += 1;
+				franchiseData[franchiseId].decision.withWin.total += 1;
+			}
+			else {
+				franchiseData[franchiseId].decision.withLoss.in += 1;
+				franchiseData[franchiseId].decision.withLoss.total += 1;
+			}
+		}
+		else {
+			franchiseData[franchiseId].decision.neutral.out += 1;
+			franchiseData[franchiseId].decision.neutral.total += 1;
+
+			if (thisWeekWin) {
+				franchiseData[franchiseId].decision.withWin.out += 1;
+				franchiseData[franchiseId].decision.withWin.total += 1;
+			}
+			else {
+				franchiseData[franchiseId].decision.withLoss.out += 1;
+				franchiseData[franchiseId].decision.withLoss.total += 1;
+			}
+		}
 	});
 
 	Object.keys(weekData).forEach(week => {
@@ -153,31 +197,33 @@ simulationData.simulations.forEach(simulation => {
 Object.keys(franchiseData).forEach(franchiseId => {
 	var owner = franchiseData[franchiseId];
 
-	owner.playoffs.neutral.rate = owner.playoffs.neutral.in / owner.playoffs.neutral.total;
-	owner.playoffs.withWin.rate = owner.playoffs.withWin.in / owner.playoffs.withWin.total;
-	owner.playoffs.withLoss.rate = owner.playoffs.withLoss.in / owner.playoffs.withLoss.total;
+	['playoffs', 'decision'].forEach((outcome) => {
+		owner[outcome].neutral.rate = owner[outcome].neutral.in / owner[outcome].neutral.total;
+		owner[outcome].withWin.rate = owner[outcome].withWin.in / owner[outcome].withWin.total;
+		owner[outcome].withLoss.rate = owner[outcome].withLoss.in / owner[outcome].withLoss.total;
 
-	Object.keys(owner.results).forEach(week => {
-		owner.results[week].rate = owner.results[week].wins / owner.results[week].total;
+		Object.keys(owner.results).forEach(week => {
+			owner.results[week].rate = owner.results[week].wins / owner.results[week].total;
+		});
+
+		owner[outcome].winLeverage = owner[outcome].withWin.rate - owner[outcome].neutral.rate;
+		owner[outcome].lossLeverage = owner[outcome].withLoss.rate - owner[outcome].neutral.rate;
+		owner[outcome].volatility = Math.abs(owner[outcome].winLeverage - owner[outcome].lossLeverage);
+
+		if (owner[outcome].neutral.rate > 0) {
+			owner[outcome].winLeverageVersusNeutral = owner[outcome].winLeverage / owner[outcome].neutral.rate;
+			owner[outcome].lossLeverageVersusNeutral = owner[outcome].lossLeverage / owner[outcome].neutral.rate;
+		}
+		else {
+			owner[outcome].winLeverageVersusNeutral = 0;
+			owner[outcome].lossLeverageVersusNeutral = 0;
+		}
+
+		owner[outcome].desperation = owner[outcome].winLeverageVersusNeutral - owner[outcome].lossLeverageVersusNeutral;
+		owner[outcome].volatation = 0.75 * owner[outcome].volatility + 0.25 * owner[outcome].desperation;
+
+		owner[outcome].interestLevel = (0.5 - Math.abs(owner.results[thisWeek].rate - 0.5)) * owner[outcome].volatation;
 	});
-
-	owner.winLeverage = owner.playoffs.withWin.rate - owner.playoffs.neutral.rate;
-	owner.lossLeverage = owner.playoffs.withLoss.rate - owner.playoffs.neutral.rate;
-	owner.volatility = Math.abs(owner.winLeverage - owner.lossLeverage);
-
-	if (owner.playoffs.neutral.rate > 0) {
-		owner.winLeverageVersusNeutral = owner.winLeverage / owner.playoffs.neutral.rate;
-		owner.lossLeverageVersusNeutral = owner.lossLeverage / owner.playoffs.neutral.rate;
-	}
-	else {
-		owner.winLeverageVersusNeutral = 0;
-		owner.lossLeverageVersusNeutral = 0;
-	}
-
-	owner.desperation = owner.winLeverageVersusNeutral - owner.lossLeverageVersusNeutral;
-	owner.volatation = 0.75 * owner.volatility + 0.25 * owner.desperation;
-
-	owner.interestLevel = (0.5 - Math.abs(owner.results[thisWeek].rate - 0.5)) * owner.volatation;
 });
 
 fs.writeFileSync('../public/data/percentages.json', JSON.stringify(franchiseData));
