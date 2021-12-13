@@ -3,6 +3,7 @@ var seasonSummariesMap = function() {
 		//var seasonOwner = { season: this.season, this[ownerType].name };
 		var seasonOwner = this.season + ' ' + this[ownerType].name;
 		var data = {
+			scores: [ this[ownerType].score ],
 			records: [ this[ownerType].record.straight.cumulative.wins + '-' + this[ownerType].record.straight.cumulative.losses + '-' + this[ownerType].record.straight.cumulative.ties ],
 			playoffs: this.type == 'semifinal',
 			titleGame: this.type == 'championship',
@@ -16,9 +17,13 @@ var seasonSummariesMap = function() {
 var seasonSummariesReduce = function(key, results) {
 	var sumReducer = (a, b) => parseInt(a) + parseInt(b);
 
-	var seasonSummary = { records: [], playoffs: false, titleGame: false, champion: false };
+	var seasonSummary = { scores: [], records: [], playoffs: false, titleGame: false, champion: false };
 
 	results.forEach((result) => {
+		result.scores.forEach((score) => {
+			seasonSummary.scores.push(score);
+		});
+
 		result.records.forEach((record) => {
 			seasonSummary.records.push(record);
 		});
@@ -48,7 +53,8 @@ var seasonSummariesReduce = function(key, results) {
 
 var seasonSummariesQuery = {
 	'away.score': { '$exists': true },
-	'home.score': { '$exists': true }
+	'home.score': { '$exists': true },
+	'type': { '$ne': 'consolation' }
 };
 
 db.games.mapReduce(seasonSummariesMap, seasonSummariesReduce, { out: 'seasonSummaries', query: seasonSummariesQuery, sort: { season: 1, week: 1 } });

@@ -28,7 +28,7 @@ var parseConditions = function(conditionsString) {
 		var week = parseInt(conditionPair[0]);
 		var franchiseId = parseInt(conditionPair[1]);
 
-		if (!week || week < 1 || week > 14) {
+		if (!week || week < 1 || week > 15) {
 			return;
 		}
 

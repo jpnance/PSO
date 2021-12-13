@@ -4,6 +4,7 @@ var fs = require('fs');
 var request = require('superagent');
 
 var nominators = [
+	/*
 	'Brett',
 	'James/Charles',
 	'Jason',
@@ -16,6 +17,20 @@ var nominators = [
 	'Quinn',
 	'Schex',
 	'Trevor'
+	*/
+
+	'Charles/Luke',
+	'James/Scott',
+	'Jason',
+	'Joel',
+	'Justin',
+	'Mike',
+	'Mitch/Keyon',
+	'Patrick',
+	'Paul',
+	'Schex/Kevin',
+	'Syed/Koci',
+	'Taylor'
 ];
 
 var players = JSON.parse(fs.readFileSync('./demo.json', 'utf8'));

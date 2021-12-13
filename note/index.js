@@ -86,6 +86,12 @@ function ordinal(number) {
 	return number + 'th';
 }
 
+function isJaguarGame(franchiseOne, franchiseTwo) {
+	var jaguarOwners = ['Keyon', 'Luke', 'Patrick', 'Schex'];
+
+	return jaguarOwners.includes(franchiseOne) && jaguarOwners.includes(franchiseTwo);
+}
+
 var dataPromises = [
 	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
@@ -135,7 +141,9 @@ Promise.all(dataPromises).then(function(values) {
 	var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 
 	Object.keys(percentagesData).forEach(franchiseId => {
-		percentagesData[franchiseId].tripleSlash = niceRate(percentagesData[franchiseId].playoffs.neutral.rate) + '/' + niceRate(percentagesData[franchiseId].playoffs.withWin.rate) + '/' + niceRate(percentagesData[franchiseId].playoffs.withLoss.rate);
+		['playoffs', 'decision'].forEach((outcome) => {
+			percentagesData[franchiseId][outcome].tripleSlash = niceRate(percentagesData[franchiseId][outcome].neutral.rate) + '/' + niceRate(percentagesData[franchiseId][outcome].withWin.rate) + '/' + niceRate(percentagesData[franchiseId][outcome].withLoss.rate);
+		});
 	});
 
 	var lastWeek = games.filter(game => game.week == week - 1);
@@ -161,6 +169,8 @@ Promise.all(dataPromises).then(function(values) {
 		introWeek = 'the offseason';
 	}
 
+	console.log('SOUND EFFECTS');
+	console.log();
 	console.log('Intro');
 	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + process.env.SEASON + ' season!');
 	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
@@ -225,6 +235,11 @@ Promise.all(dataPromises).then(function(values) {
 			}
 
 			console.log("\t" + winner.name + ' ' + (winner.name.indexOf('/') != -1 ? 'defeat' : 'defeats') + ' ' + loser.name + ', ' + winner.score.toFixed(2) + ' to ' + loser.score.toFixed(2));
+
+			if (isJaguarGame(winner.name, loser.name)) {
+				console.log("\t\tJAGUAR GAME");
+			}
+
 			console.log("\t\t" + winner.name);
 
 			[['Patrick', lastWeekCohost], [lastWeekCohost, 'Patrick']].forEach(hostPairing => {
@@ -234,7 +249,7 @@ Promise.all(dataPromises).then(function(values) {
 				console.log();
 			});
 
-			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].tripleSlash + ')' : ''));
+			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].playoffs.tripleSlash + ')' : ''));
 			if (nextWeeksGamesFor[winner.name]) {
 				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
 			}
@@ -248,7 +263,7 @@ Promise.all(dataPromises).then(function(values) {
 				console.log();
 			});
 
-			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].tripleSlash + ')' : ''));
+			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].playoffs.tripleSlash + ')' : ''));
 
 			if (nextWeeksGamesFor[loser.name]) {
 				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
@@ -343,11 +358,16 @@ Promise.all(dataPromises).then(function(values) {
 					}
 				};
 
-				console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[away.franchiseId].tripleSlash : '') + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[home.franchiseId].tripleSlash : '') + ')');
+				console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[away.franchiseId].playoffs.tripleSlash : '') + ', ' + Math.round(percentagesData[away.franchiseId].results[week].rate * 100) + '%) vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[home.franchiseId].playoffs.tripleSlash : '') + ', ' + Math.round(percentagesData[home.franchiseId].results[week].rate * 100) + '%)');
+			}
+
+			if (isJaguarGame(away.name, home.name)) {
+				console.log("\t\tJAGUAR GAME");
 			}
 
 			if (week > 7 && week < 16) {
-				console.log("\t\t" + 'Interest level: ' + (percentagesData[away.franchiseId].interestLevel + percentagesData[home.franchiseId].interestLevel).toFixed(3));
+				console.log("\t\t" + 'Playoff interest level: ' + (percentagesData[away.franchiseId].playoffs.interestLevel + percentagesData[home.franchiseId].playoffs.interestLevel).toFixed(3));
+				console.log("\t\t" + 'Decision interest level: ' + (percentagesData[away.franchiseId].decision.interestLevel + percentagesData[home.franchiseId].decision.interestLevel).toFixed(3));
 			}
 
 			console.log("\t\t" + 'NOTE_ABOUT_' + away.name.toUpperCase().replace(/\//, ''));
@@ -363,6 +383,7 @@ Promise.all(dataPromises).then(function(values) {
 
 	if (week > 1) {
 		console.log('High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
+		console.log("\tAPPLAUSE")
 		console.log("\t" + highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
 		console.log("\t" + ordinal(highScorerSeason.length) + ' scoring title this season');
 		console.log("\t" + ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
@@ -388,6 +409,7 @@ Promise.all(dataPromises).then(function(values) {
 	var outroNextWeek = (week != 18) ? 'next week' : 'very soon';
 
 	console.log('Plugs');
+	console.log("\t" + 'Thanks for sending in RPOs');
 	console.log("\t" + '@PsoScuttlebutt');
 	console.log("\t" + 'Websites');
 	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + '! We will talk to you ' + outroNextWeek + '!');
