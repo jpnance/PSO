@@ -1,3 +1,7 @@
+/*
+	Manually (yes, one-by-one) export each separate PSO Show Notes doc to a file called weekN.txt.
+*/
+
 const fs = require('fs');
 
 const offeredRegexp = /^\s+\* (.*?) offered (.*?) (and) (.*?)$/;
@@ -67,6 +71,7 @@ rawRpos.forEach((rawRpo) => {
 				rejected: 0,
 				won: 0,
 				lost: 0,
+				tied: 0,
 				pushed: 0
 			};
 		}
@@ -90,8 +95,12 @@ rawRpos.forEach((rawRpo) => {
 		rpoXi[rawRpo.received.name].won += 1;
 		rpoXi[rawRpo.selected.name].lost += 1;
 	}
+	else if (rawRpo.selected.score == rawRpo.received.score) {
+		rpoXi[rawRpo.received.name].tied += 1;
+		rpoXi[rawRpo.selected.name].tied += 1;
+	}
 });
 
 Object.keys(rpoXi).forEach((rpoXiKey) => {
-	console.log([ rpoXiKey, rpoXi[rpoXiKey].offered, rpoXi[rpoXiKey].selected, rpoXi[rpoXiKey].rejected, rpoXi[rpoXiKey].won, rpoXi[rpoXiKey].lost, rpoXi[rpoXiKey].pushed ].join(','));
+	console.log([ rpoXiKey, rpoXi[rpoXiKey].offered, rpoXi[rpoXiKey].selected, rpoXi[rpoXiKey].rejected, rpoXi[rpoXiKey].won, rpoXi[rpoXiKey].lost, rpoXi[rpoXiKey].tied, rpoXi[rpoXiKey].pushed ].join(','));
 });
