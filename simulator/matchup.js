@@ -1,6 +1,15 @@
 var trials = 100;
 var owners = [];
 
+if (process.argv.length < 3) {
+	console.log('You should probably be running this via matchup.sh.');
+	console.log();
+	console.log('Usage example: node matchup.js n=10000 owners="Keyon:162.60,26.53;Jason:154.95,28.83")');
+	console.log('Use n=10000 for 10,000 trials.');
+	console.log('Use owners="Keyon:162.60,26.53,Jason:154.95,28.83" for Keyon (averaging 162.60 points at a 26.53 standard deviation) against Jason (154.95 and 28.83).');
+	process.exit()
+}
+
 process.argv.forEach(function(value, index, array) {
 	if (index > 1) {
 		var pair = value.split(/=/);
