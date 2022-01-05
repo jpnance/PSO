@@ -108,11 +108,10 @@ var newWeekPromise = function(week) {
 							matchup.type = 'semifinal';
 						}
 						else if (week == 17) {
-							// i have no clue if 1 is always the championship or what
-							if (i == 1) {
+							if (i == 0) {
 								matchup.type = 'championship';
 							}
-							else if (i == 0) {
+							else if (i == 1) {
 								matchup.type = 'thirdPlace';
 							}
 						}
