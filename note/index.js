@@ -178,7 +178,8 @@ Promise.all(dataPromises).then(function(values) {
 	console.log();
 
 	if (week > 1) {
-		console.log('Week ' + (week - 1) + ' Recaps')
+		console.log('Week ' + (week - 1) + ' Recaps');
+		console.log("\t" + 'MAKE SURE THESE ARE SORTED CORRECTLY');
 
 		var nextWeeksGamesFor = {};
 
