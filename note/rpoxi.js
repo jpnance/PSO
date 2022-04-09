@@ -1,5 +1,5 @@
 /*
-	Manually (yes, one-by-one) export each separate PSO Show Notes doc to a file called weekN.txt.
+	Manually (yes, one-by-one) export each separate PSO Show Notes doc into a file called weekN.txt starting with Week 2.
 */
 
 const fs = require('fs');
