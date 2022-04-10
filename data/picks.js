@@ -37,7 +37,7 @@ var newSheetsPromise = function(season) {
 	});
 };
 
-var season = parseInt(process.env.SEASON);
+var season = new Date().getFullYear();
 var sheetsPromises = [];
 
 [ season, season + 1, season + 2 ].forEach((year) => {
