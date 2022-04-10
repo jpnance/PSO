@@ -5,10 +5,6 @@ var request = require('superagent');
 
 var PSO = require('../pso.js');
 
-const siteData = {
-	fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&reload=1&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_23b_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=1&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=20&statusOrTeamFilter=ALL_TAKEN&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&startDate=2021-09-09&endDate=2022-01-09&teamId=mkljbisnkkyr33yl'
-};
-
 var render = false;
 
 process.argv.forEach((value, index, array) => {
@@ -25,73 +21,47 @@ process.argv.forEach((value, index, array) => {
 
 var newPicksPromise = () => {
 	return new Promise((resolve, reject) => {
-		fs.readFile('./picks.csv', (error, data) => {
-			var csvLines = data.toString();
+		var picks = [];
 
-			var picks = [];
-
-			csvLines.split(/\n/).forEach((csvLine, i) => {
-				if (i == 0) {
-					return;
-				}
-
-				var fields = csvLine.replace(/^\"/, '').replace(/\"$/, '').split(/","/);
-
-				if (fields.length == 1) {
-					return;
-				}
-
-				picks.push({
-					season: parseInt(process.env.SEASON) + Math.floor(Math.random() * 3),
-					number: parseInt(fields[0]),
-					round: parseInt(fields[1]),
-					owner: fields[2],
-					origin: fields[4] ? fields[4] : 'From ' + fields[2]
+		request
+			.get('http://localhost:' + process.env.PORT + '/data/picks.json')
+			.then((response) => {
+				response.body.forEach((pick) => {
+					picks.push({
+						season: pick.season,
+						number: pick.number,
+						round: pick.round,
+						owner: pick.owner,
+						origin: pick.origin || 'From ' + pick.owner
+					});
 				});
-			});
 
-			resolve(picks);
-		});
+				resolve(picks);
+			})
 	});
 };
 
 var newPlayersPromise = () => {
 	return new Promise((resolve, reject) => {
-		/*
+		var players = [];
+
 		request
-			.get(siteData.fantraxLink)
-			.set('Cookie', process.env.FANTRAX_COOKIES)
-			.then(response => {
-				var csvLines = response.body.toString();
-		*/
-
-		fs.readFile('./players.csv', (error, data) => {
-				var csvLines = data.toString();
-
-				var players = [];
-
-				csvLines.split(/\n/).forEach((csvLine, i) => {
-					if (i == 0) {
+			.get('http://localhost:' + process.env.PORT + '/data/players.json')
+			.then((response) => {
+				response.body.forEach((player) => {
+					if (!player.owner || player.owner == '') {
 						return;
 					}
 
-					// "ID","Player","Team","Position","Rk","Status","Roster Status","Age","Opponent","Contract","FPts","%D","ADP","Bye","Ros%"
-					var fields = csvLine.replace(/^\"/, '').replace(/\"$/, '').split(/","/);
-
-					var player = {
-						id: fields[0].replace(/\*/g, ''),
-						name: fields[1],
-						owner: fields[5],
-						positions: fields[3].split(/,/),
-						salary: parseInt(fields[9]),
-						contract: fields[10]
-					};
-
-					if (player.contract == 'TBA') {
-						player.contract = 'unsigned';
+					if (!player.end) {
+						player.terms = 'unsigned';
 					}
-					else if (new Date().getFullYear() != process.env.SEASON && player.contract.split('/')[1] == season.toString().substring(2)) {
-						player.contract = 'RFA rights';
+					else if (new Date().getFullYear() != process.env.SEASON && player.end == process.env.SEASON) {
+						player.terms = 'rfa-rights';
+					}
+					else {
+						player.contract = player.start.toString().substring(2) + '/' + player.end.toString().substring(2);
+						player.terms = 'signed';
 					}
 
 					players.push(player);
@@ -99,8 +69,7 @@ var newPlayersPromise = () => {
 
 				resolve(players);
 			});
-		}
-	)
+	});
 };
 
 var teams = {};
@@ -119,11 +88,11 @@ newPlayersPromise().then((players) => {
 	});
 
 	players.forEach((player) => {
-		if (!teams[PSO.fantraxAbbreviations[player.owner]]) {
-			teams[PSO.fantraxAbbreviations[player.owner]] = [];
+		if (!teams[player.owner]) {
+			teams[player.owner] = [];
 		}
 
-		teams[PSO.fantraxAbbreviations[player.owner]].push(player);
+		teams[player.owner].push(player);
 	});
 
 	newPicksPromise().then((picks) => {

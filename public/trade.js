@@ -191,7 +191,8 @@ var tradeMachine = {
 			id: playerId,
 			name: $player.data('name'),
 			salary: parseInt($player.data('salary')),
-			contract: $player.data('contract')
+			contract: $player.data('contract'),
+			terms: $player.data('terms')
 		};
 	},
 
@@ -310,6 +311,11 @@ var tradeMachine = {
 		});
 	},
 
+	reset: () => {
+		tradeMachine.deal = {};
+		tradeMachine.redrawTradeMachine();
+	},
+
 	roundOrdinal: (round) => {
 		switch (round) {
 			case 1: return '1st';
@@ -340,13 +346,25 @@ var tradeMachine = {
 		return sortedAssets;
 	},
 
+	terms: (player) => {
+		if (player.terms == 'unsigned') {
+			return 'unsigned';
+		}
+		else if (player.terms == 'rfa-rights') {
+			return 'RFA rights';
+		}
+		else {
+			return '$' + player.salary + ', ' + player.contract;
+		}
+	},
+
 	textForAsset: (asset, withLink) => {
 		if (asset.type == 'player') {
 			if (withLink) {
-				return '<a href="https://www.fantrax.com/player/' + asset.id + '/4bveni4tkkyr33y2/">' + asset.name + '</a> ($' + asset.salary + ', ' + asset.contract + ')';
+				return '<a href="https://www.espn.com/nfl/player/_/id/' + asset.id + '">' + asset.name + '</a> (' + tradeMachine.terms(asset) + ')';
 			}
 			else {
-				return asset.name + ' ($' + asset.salary + ', ' + asset.contract + ')';
+				return asset.name + ' (' + tradeMachine.terms(asset) + ')';
 			}
 		}
 		else if (asset.type == 'pick') {
@@ -409,5 +427,9 @@ $(document).ready(function() {
 
 	$('.wordpress').on('click', '.post-wordpress', (e) => {
 		tradeMachine.postToWordpress();
+	});
+
+	$('.reset-trade-machine').on('click', (e) => {
+		tradeMachine.reset();
 	});
 });

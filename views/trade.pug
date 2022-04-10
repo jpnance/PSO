@@ -29,7 +29,16 @@ html
 				each franchise, i in franchises
 					optgroup(class="players-franchise-" + i label="From " + franchise)
 						each player in teams[franchise]
-							option(value=player.id data-name=player.name data-salary=player.salary data-contract=player.contract) #{player.name} ($#{player.salary}, #{player.contract})
+							option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract)
+								| #{player.name}
+								|
+								|
+								if player.terms == 'unsigned'
+									| (unsigned)
+								else if player.terms == 'rfa-rights'
+									| (RFA rights)
+								else
+									| ($#{player.salary}, #{player.contract})
 
 			select.master-pick-list
 				each franchise, i in franchises
@@ -56,6 +65,10 @@ html
 				div.form-check.form-check-inline.col-4
 					input.form-check-input(type="checkbox" id="check-franchise-" + i value="franchise-" + i)
 					label.form-check-label(for="check-franchise-" + i) #{franchise}
+
+		div.container
+			div.text-center.col-12.py-2
+				button.reset-trade-machine.btn.btn-warning Reset Trade Machine
 
 		div.container
 			each franchise, i in franchises
