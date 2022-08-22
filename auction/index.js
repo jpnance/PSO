@@ -47,38 +47,6 @@ var rows = [];
 var players = [];
 var positions = [];
 var situations = [];
-var owners = {
-	pso: [
-		'Brett',
-		'James/Charles',
-		'Jason',
-		'John/Zach',
-		'Keyon',
-		'Koci/Mueller',
-		'Luke',
-		'Mitch',
-		'Patrick',
-		'Quinn',
-		'Schex',
-		'Trevor'
-	],
-
-	colbys: [
-		'Charles/Luke',
-		'James/Scott',
-		'Jason',
-		'Joel',
-		'Justin',
-		'Mike',
-		'Mitch/Keyon',
-		'Patrick',
-		'Paul',
-		'Schex/Kevin',
-		'Syed/Koci',
-		'Taylor'
-	]
-};
-
 
 request
 	.get(siteData[parameters.site].sheetLink)
@@ -144,7 +112,7 @@ request
 			fs.writeFileSync('../public/auction/index.html', compiledPug());
 
 			var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
-			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({ players: players, positions: positions, situations: situations, owners: owners[parameters.site] }));
+			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({ players: players, positions: positions, situations: situations, owners: JSON.parse(process.env.NOMINATION_ORDER) }));
 		}
 
 		if (parameters.demo) {
