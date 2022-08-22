@@ -50,11 +50,13 @@ function csvToRpoMap(csv) {
 }
 
 function niceRate(rate) {
-	if (rate == 1) {
+	var roundedRate = rate.toFixed(3);
+
+	if (roundedRate[0] == '1') {
 		return '1.000';
 	}
 	else {
-		return rate.toFixed(3).substring(1);
+		return roundedRate.substring(1);
 	}
 }
 
