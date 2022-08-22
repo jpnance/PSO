@@ -108,7 +108,7 @@ newPlayersPromise().then((players) => {
 				franchises: Object.values(PSO.franchises).sort(),
 				teams: teams,
 				picks: picks,
-				season: process.env.SEASON
+				season: new Date().getFullYear()
 			}));
 
 			process.exit();

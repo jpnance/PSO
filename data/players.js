@@ -39,7 +39,7 @@ var newSheetsPromise = function() {
 					});
 
 					if (sleeperPlayer.length == 1) {
-						player.id = sleeperPlayer[0].espn_id;
+						player.id = sleeperPlayer[0].player_id;
 					}
 					else {
 						console.error(player);

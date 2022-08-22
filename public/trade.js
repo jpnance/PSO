@@ -361,7 +361,7 @@ var tradeMachine = {
 	textForAsset: (asset, withLink) => {
 		if (asset.type == 'player') {
 			if (withLink) {
-				return '<a href="https://www.espn.com/nfl/player/_/id/' + asset.id + '">' + asset.name + '</a> (' + tradeMachine.terms(asset) + ')';
+				return '<a href="https://www.pro-football-reference.com/search/search.fcgi?search=' + asset.name + '">' + asset.name + '</a> (' + tradeMachine.terms(asset) + ')';
 			}
 			else {
 				return asset.name + ' (' + tradeMachine.terms(asset) + ')';
