@@ -3,36 +3,7 @@ var fs = require('fs');
 
 var request = require('superagent');
 
-var nominators = [
-	/*
-	'Brett',
-	'James/Charles',
-	'Jason',
-	'John/Zach',
-	'Keyon',
-	'Koci/Mueller',
-	'Luke',
-	'Mitch',
-	'Patrick',
-	'Quinn',
-	'Schex',
-	'Trevor'
-	*/
-
-	'Charles/Luke',
-	'James/Scott',
-	'Jason',
-	'Joel',
-	'Justin',
-	'Mike',
-	'Mitch/Keyon',
-	'Patrick',
-	'Paul',
-	'Schex/Kevin',
-	'Syed/Koci',
-	'Taylor'
-];
-
+var nominators = JSON.parse(process.env.NOMINATION_ORDER);
 var players = JSON.parse(fs.readFileSync('./demo.json', 'utf8'));
 
 setInterval(function() {
