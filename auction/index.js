@@ -11,11 +11,13 @@ var parameters = {
 var siteData = {
 	pso: {
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
-		firstRow: 3
+		firstRow: 3,
+		referenceSite: 'https://www.pro-football-reference.com/search/search.fcgi?search='
 	},
 	colbys: {
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		firstRow: 2
+		firstRow: 2,
+		referenceSite: 'https://www.basketball-reference.com/search/search.fcgi?search='
 	}
 };
 
@@ -109,10 +111,10 @@ request
 			var fs = require('fs');
 			var pug = require('pug');
 			var compiledPug = pug.compileFile('../views/auction.pug');
-			fs.writeFileSync('../public/auction/index.html', compiledPug());
+			fs.writeFileSync('../public/auction/index.html', compiledPug({ referenceSite: siteData[parameters.site].referenceSite }));
 
 			var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
-			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({ players: players, positions: positions, situations: situations, owners: JSON.parse(process.env.NOMINATION_ORDER) }));
+			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({ players: players, positions: positions, situations: situations, owners: JSON.parse(process.env.NOMINATION_ORDER), referenceSite: siteData[parameters.site].referenceSite }));
 		}
 
 		if (parameters.demo) {

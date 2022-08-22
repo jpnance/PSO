@@ -15,6 +15,9 @@ html
 		script
 			| $(function() { $('[data-toggle="tooltip"]').tooltip(); });
 
+		script.
+			const referenceSite = !{JSON.stringify(referenceSite)};
+
 		script(src='/auction.js')
 
 		title Bid Buddy Admin
