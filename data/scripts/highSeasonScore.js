@@ -2,7 +2,7 @@
 	This was a quick way to find the high score of each regular season.
 */
 
-var dotenv = require('dotenv').config({ path: '../.env' });
+var dotenv = require('dotenv').config({ path: '../../.env' });
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
