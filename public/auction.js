@@ -54,6 +54,14 @@ $(document).ready(function() {
 		$.post('/auction/nominate', newPlayer, redrawAuctionClient);
 	});
 
+	$('#nomination-form #nominator').bind('change', function(e) {
+		var $this = $(e.target);
+
+		if ($this.val() != '--') {
+			$('#bid-form #owner').val($this.val());
+		}
+	});
+
 	$('#nomination-form #player-list').bind('change', function(e) {
 		var $this = $(e.target);
 
