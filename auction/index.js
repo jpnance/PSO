@@ -111,7 +111,7 @@ request
 			var fs = require('fs');
 			var pug = require('pug');
 			var compiledPug = pug.compileFile('../views/auction.pug');
-			fs.writeFileSync('../public/auction/index.html', compiledPug({ referenceSite: siteData[parameters.site].referenceSite }));
+			fs.writeFileSync('../public/auction/index.html', compiledPug({ owners: JSON.parse(process.env.NOMINATION_ORDER), referenceSite: siteData[parameters.site].referenceSite }));
 
 			var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
 			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({ players: players, positions: positions, situations: situations, owners: JSON.parse(process.env.NOMINATION_ORDER), referenceSite: siteData[parameters.site].referenceSite }));

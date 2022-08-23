@@ -110,8 +110,8 @@ var fetchLoggedInAsData = function() {
 
 var addLoggedInAsClass = function(loggedInAsData) {
 	if (loggedInAsData.loggedInAs) {
-		loggedInAs = loggedInAsData.loggedInAs;
-		$('body').addClass(loggedInAsData.loggedInAs.toLowerCase().replace('/', '-'));
+		var ownerIndex = owners.indexOf(loggedInAsData.loggedInAs);
+		$('body').addClass('owner-' + ownerIndex);
 	}
 };
 
@@ -144,8 +144,10 @@ var redrawAuctionClient = function(auctionData) {
 	var bidHistory = $('<ul id="bid-history" class="list-group col-12">');
 
 	auctionData.bids.forEach(bid => {
-		var ownerClass = bid.owner.toLowerCase().replace('/', '-') + '-bid';
+		var ownerIndex = owners.indexOf(bid.owner);
+		var ownerClass = 'owner-' + ownerIndex + '-bid';
 		var bid = $('<li class="list-group-item ' + ownerClass + '"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
+
 		bidHistory.append(bid);
 	});
 
@@ -154,8 +156,10 @@ var redrawAuctionClient = function(auctionData) {
 	var attendance = $('<ul id="attendance" class="list-group col-12">');
 
 	auctionData.rollCall.forEach(owner => {
-		var ownerClass = owner.toLowerCase().replace('/', '-') + '-bid';
+		var ownerIndex = owners.indexOf(bid.owner);
+		var ownerClass = 'owner-' + ownerIndex + '-bid';
 		var present = $('<li class="list-group-item ' + ownerClass + '"><strong>' + owner + '</strong></li>');
+
 		attendance.append(present);
 	});
 
