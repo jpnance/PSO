@@ -86,7 +86,7 @@ module.exports.makeBid = function(request, response) {
 		amount: parseInt(request.body.amount)
 	};
 
-	if (newBid.amount) {
+	if (newBid.amount > 0) {
 		var highBid = true;
 
 		auction.bids.forEach(existingBid => {
