@@ -12,31 +12,86 @@ const drillDown = function(player, path) {
 };
 
 const fields = {
-	player_id: 'player_id',
-	first_name: 'player.first_name',
-	last_name: 'player.last_name',
-	team: 'player.team',
-	position: 'player.position',
-	years_exp: 'player.years_exp',
-	adp_dynasty_2qb: 'stats.adp_dynasty_2qb',
-	adp_idp: 'stats.adp_idp',
-	pass_yd: 'stats.pass_yd',
-	pass_td: 'stats.pass_td',
-	pass_int: 'stats.pass_int',
-	pass_2pt: 'stats.pass_2pt',
-	rush_yd: 'stats.rush_yd',
-	rush_td: 'stats.rush_td',
-	rec_yd: 'stats.rec_yd',
-	rec_td: 'stats.rec_td',
-	fum_lost: 'stats.fum_lost',
-	idp_tkl_solo: 'stats.idp_tkl_solo',
-	idp_tkl_ast: 'stats.idp_tkl_ast',
-	idp_sack: 'stats.idp_sack',
-	idp_int: 'stats.idp_int',
-	idp_ff: 'stats.idp_ff',
-	idp_fum_rec: 'stats.idp_fum_rec',
-	pass_int_td: 'stats.pass_int_td',
-	pso_pts: 'stats.pso_pts',
+	player_id: {
+		fieldName: 'player_id'
+	},
+	first_name: {
+		fieldName: 'player.first_name'
+	},
+	last_name: {
+		fieldName: 'player.last_name'
+	},
+	team: {
+		fieldName: 'player.team'
+	},
+	position: {
+		fieldName: 'player.position',
+		sanitize: (value) => {
+			const uppercaseValue = value.toUpperCase();
+
+			return positionMap[uppercaseValue] || uppercaseValue;
+		}
+	},
+	years_exp: {
+		fieldName: 'player.years_exp'
+	},
+	adp_dynasty_2qb: {
+		fieldName: 'stats.adp_dynasty_2qb'
+	},
+	adp_idp: {
+		fieldName: 'stats.adp_idp'
+	},
+	pass_yd: {
+		fieldName: 'stats.pass_yd'
+	},
+	pass_td: {
+		fieldName: 'stats.pass_td'
+	},
+	pass_int: {
+		fieldName: 'stats.pass_int'
+	},
+	pass_2pt: {
+		fieldName: 'stats.pass_2pt'
+	},
+	rush_yd: {
+		fieldName: 'stats.rush_yd'
+	},
+	rush_td: {
+		fieldName: 'stats.rush_td'
+	},
+	rec_yd: {
+		fieldName: 'stats.rec_yd'
+	},
+	rec_td: {
+		fieldName: 'stats.rec_td'
+	},
+	fum_lost: {
+		fieldName: 'stats.fum_lost'
+	},
+	idp_tkl_solo: {
+		fieldName: 'stats.idp_tkl_solo'
+	},
+	idp_tkl_ast: {
+		fieldName: 'stats.idp_tkl_ast'
+	},
+	idp_sack: {
+		fieldName: 'stats.idp_sack'
+	},
+	idp_int: {
+		fieldName: 'stats.idp_int'
+	},
+	idp_ff: {
+		fieldName: 'stats.idp_ff'
+	},
+	idp_fum_rec: {
+		fieldName: 'stats.idp_fum_rec'
+	},
+	pass_int_td: {
+		fieldName: 'stats.pass_int_td'
+	},
+	pso_pts: {
+		fieldName: 'stats.pso_pts'
+	}
 };
 
 const scoringSystem = {
@@ -56,6 +111,19 @@ const scoringSystem = {
 	idp_ff: 3.0,
 	idp_fum_rec: 1.0,
 	pass_int_td: 6.0
+};
+
+const positionMap = {
+	CB: 'DB',
+	DE: 'DL',
+	DT: 'DL',
+	FB: 'RB',
+	FS: 'DB',
+	ILB: 'LB',
+	OLB: 'LB',
+	NT: 'DL',
+	S: 'DB',
+	SS: 'DB',
 };
 
 let data = [];
@@ -78,7 +146,13 @@ projections.forEach((player) => {
 	let playerData = [];
 
 	Object.keys(fields).forEach((key) => {
-		const jsonValue = drillDown(player, fields[key]);
+		const columnData = fields[key];
+		let jsonValue = drillDown(player, columnData.fieldName);
+
+		if (columnData.sanitize) {
+			jsonValue = columnData.sanitize(jsonValue);
+		}
+
 		playerData.push(jsonValue);
 	});
 
