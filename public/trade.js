@@ -348,7 +348,7 @@ var tradeMachine = {
 
 	terms: (player) => {
 		if (player.terms == 'unsigned') {
-			return 'unsigned';
+			return '$' + player.salary + ', unsigned';
 		}
 		else if (player.terms == 'rfa-rights') {
 			return 'RFA rights';
