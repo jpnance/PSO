@@ -30,13 +30,11 @@ var tradeMachine = {
 	addPickToDeal: (pickId, franchiseId) => {
 		var pickData = tradeMachine.pickData(pickId);
 
-		if (!pickData.origin.startsWith(pickData.owner)) {
-			if (pickData.origin.includes(')')) {
-				pickData.origin = pickData.origin.replace(')', ', via ' + pickData.owner + ')');
-			}
-			else {
-				pickData.origin += ' (via ' + pickData.owner + ')';
-			}
+		if (pickData.origin.includes(')')) {
+			pickData.origin = pickData.origin.replace(')', ', via ' + pickData.owner + ')');
+		}
+		else if (!pickData.origin.startsWith(pickData.owner)) {
+			pickData.origin += ' (via ' + pickData.owner + ')';
 		}
 
 		if (!tradeMachine.deal[franchiseId].picks.find((pick) => pick.id == pickData.id)) {
