@@ -23,9 +23,9 @@ var template = [
 ];
 
 var pods = {
-	red: [4, 6, 12, 3],
-	green: [8, 7, 5, 11],
-	blue: [2, 1, 9, 10]
+	red: [10, 6, 1, 11],
+	green: [4, 12, 8, 9],
+	blue: [7, 5, 2, 3]
 };
 
 var teamIds = ['--', pods.red[0], pods.red[1], pods.red[2], pods.red[3], pods.green[0], pods.blue[0], pods.blue[1], pods.green[1], pods.green[2], pods.blue[2], pods.blue[3], pods.green[3]];
