@@ -23,66 +23,63 @@ var weekScores = {};
 var newWeekPromise = function(week) {
 	return new Promise(function(resolve, reject) {
 		request
-			.post('https://www.fantrax.com/fxpa/req?leagueId=' + PSO.fantraxLeagueId)
-			.set('Content-Type', 'text/plain')
-			.set('Cookie', process.env.FANTRAX_COOKIES)
-			.send(JSON.stringify({ msgs: [ { data: { newView: true, period: week }, method: 'getLiveScoringStats' } ] }))
-			.then(response => {
-				console.log(week);
-				var dataJson = JSON.parse(response.text);
-				var teamStatsMap = dataJson.responses[0].data.statsPerTeam.statsMap;
-				var matchupsRaw = dataJson.responses[0].data.matchups;
-				var matchups = [];
-
+			.get('https://api.sleeper.app/v1/league/' + PSO.sleeperLeagueIds[season] + '/matchups/' + week)
+			.then((response) => {
 				var gamePromises = [];
 
-				matchupsRaw.forEach((matchupRaw, i) => {
-					var teamIds = matchupRaw.split('_');
+				var sleeperMatchups = [];
+				var matchups = [];
+
+				response.body.forEach((team) => {
+					if (team.matchup_id === null) {
+						return;
+					}
+
+					if (!sleeperMatchups[team.matchup_id || 99]) {
+						sleeperMatchups[team.matchup_id || 99] = [];
+					}
+
+					var psoTeam = {}
+
+					psoTeam.franchiseId = team.roster_id;
+					psoTeam.name = PSO.franchises[team.roster_id];
+					psoTeam.score = team.points || parseFloat(team.custom_points);
+					psoTeam.score = parseFloat(team.points.toFixed(2));
+
+					sleeperMatchups[team.matchup_id].push(psoTeam);
+				});
+
+				sleeperMatchups.forEach((sleeperMatchup, i) => {
 					var matchup = {};
 
 					matchup.season = season;
 					matchup.week = week;
 
-					matchup.away = { franchiseId: PSO.fantraxIds[teamIds[0]] };
-					matchup.home = { franchiseId: PSO.fantraxIds[teamIds[1]] };
+					matchup.away = sleeperMatchup[0];
+					matchup.home = sleeperMatchup[1];
 
-					matchup.away.name = PSO.franchiseNames[matchup.away.franchiseId][season];
-					matchup.home.name = PSO.franchiseNames[matchup.home.franchiseId][season];
-
-					matchup.away.score = teamStatsMap[teamIds[0]].ACTIVE.totalFpts;
-					matchup.home.score = teamStatsMap[teamIds[1]].ACTIVE.totalFpts;
-
-					if (season <= 2020) {
-						if (week <= 14) {
-							matchup.type = 'regular';
-						}
-						else if (week == 15) {
+					if (week <= 15) {
+						matchup.type = 'regular';
+					}
+					else if (week == 16) {
+						if (i == 1 || i == 2) {
 							matchup.type = 'semifinal';
 						}
-						else if (week == 16) {
-							// i have no clue if 1 is always the championship or what
-							if (i == 1) {
-								matchup.type = 'championship';
-							}
-							else if (i == 0) {
-								matchup.type = 'thirdPlace';
-							}
+						else {
+							return;
 						}
 					}
-					else if (season >= 2021) {
-						if (week <= 15) {
-							matchup.type = 'regular';
+					else if (week == 17) {
+						// seems like matchup_id == 1 is the championship game;
+						// etc. for matchup_id == 2 for the third-place game
+						if (i == 1) {
+							matchup.type = 'championship';
 						}
-						else if (week == 16) {
-							matchup.type = 'semifinal';
+						else if (i == 2) {
+							matchup.type = 'thirdPlace';
 						}
-						else if (week == 17) {
-							if (i == 0) {
-								matchup.type = 'championship';
-							}
-							else if (i == 1) {
-								matchup.type = 'thirdPlace';
-							}
+						else {
+							return;
 						}
 					}
 

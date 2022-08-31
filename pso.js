@@ -46,6 +46,11 @@ module.exports.regimes = {
 	'Syed/Terence': 'Syed'
 };
 
+module.exports.sleeperLeagueIds = {
+	2022: '817129464579350528',
+	2021: '746826510043856896'
+};
+
 module.exports.fantraxLeagueId = '4bveni4tkkyr33y2';
 
 module.exports.fantraxAbbreviations = {
