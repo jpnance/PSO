@@ -1,3 +1,4 @@
+// get sleeper-projections.json from https://api.sleeper.com/projections/nfl/2022/?season_type=regular&position[]=DB&position[]=DL&position[]=K&position[]=LB&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=LB&position[]=DB&position[]=DL&order_by=pts_dynasty_2qb
 const projections = require('../public/data/sleeper-projections.json');
 
 const drillDown = function(player, path) {
