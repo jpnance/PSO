@@ -5,39 +5,6 @@ var request = require('superagent');
 
 var PSO = require('../pso.js');
 
-const siteData = {
-	pso: {
-		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&view=STATS&positionOrGroup=ALL&seasonOrProjection=PROJECTION_0_23b_EVENT_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=1&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=20&statusOrTeamFilter=ALL_TAKEN&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=&startDate=2021-09-09&endDate=2022-01-09&teamId=mkljbisnkkyr33yl'
-	},
-	colbys: {
-		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=gxejd020khl7ipoo&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
-	}
-};
-
-var parameters = {
-	site: 'pso'
-};
-
-var owners = {
-	'BLLZ': 'Brett',
-	'REYN': 'James/Charles',
-	'RIDD': 'Jason',
-	'ATTY': 'John/Zach',
-	'SOMA': 'Keyon',
-	'KOMU': 'Koci/Mueller',
-	'LUKE': 'Luke',
-	'MTCH': 'Mitch',
-	'pat': 'Patrick',
-	'QTM': 'Quinn',
-	'SCHX': 'Schex',
-	'PP': 'Trevor'
-};
-
-var rosterTemplate = {
-};
-
 process.argv.forEach(function(value, index, array) {
 	if (index > 1) {
 		var pair = value.split(/=/);
@@ -50,54 +17,98 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
-var newFantraxPromise = function(players) {
+var newByeWeeksPromise = function() {
 	return new Promise(function(resolve, reject) {
 		request
-			.get(siteData[parameters.site].fantraxLink)
-			.set('Cookie', process.env.FANTRAX_COOKIES)
-			.then(response => {
-				var csvLines = response.body.toString();
-				var players = [];
+			.get('https://api.sleeper.com/schedule/nfl/regular/' + process.env.SEASON)
+			.then((response) => {
+				var nflGames = response.body;
+				var teams = [];
+				var teamWeeks = [];
+				var byeWeeks = {};
 
-		/*
-		fs.readFile('./pso.csv', function(error, data) {
+				nflGames.forEach((nflGame) => {
+					// don't bother with home teams
+					if (!teams.includes(nflGame.away)) {
+						teams.push(nflGame.away);
+					}
+
+					if (!teamWeeks.find((teamWeek) => teamWeek.week == nflGame.week)) {
+						teamWeeks.push({ week: nflGame.week, teams: [] });
+					}
+
+					var teamWeek = teamWeeks.find((teamWeek) => teamWeek.week == nflGame.week);
+
+					teamWeek.teams.push(nflGame.away);
+					teamWeek.teams.push(nflGame.home);
+				});
+
+				teams.forEach((team) => {
+					var teamByeWeek = teamWeeks.find((teamWeek) => !teamWeek.teams.includes(team));
+
+					byeWeeks[team] = teamByeWeek.week;
+				});
+
+				resolve(byeWeeks);
+			});
+	});
+};
+
+var newSleeperPlayersPromise = function(byeWeeks) {
+	return new Promise(function(resolve, reject) {
+		var sleeperPlayers = require('../public/data/sleeper-data.json');
+
+		Object.keys(sleeperPlayers).forEach((sleeperPlayerId) => {
+			var sleeperPlayer = sleeperPlayers[sleeperPlayerId];
+
+			sleeperPlayer.bye_week = byeWeeks[sleeperPlayer.team] || null;
+		});
+
+		resolve(sleeperPlayers);
+	});
+};
+
+var newProjectionsPromise = function(sleeperPlayers) {
+	return new Promise(function(resolve, reject) {
+		fs.readFile('../public/data/sleeper-projections.csv', function(error, data) {
 				var csvLines = data.toString();
-		*/
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
 					if (i == 0) {
 						return;
 					}
 
-					// "ID","Player","Team","Position","Rk","Status","Roster Status","Age","Opponent","Contract","FPts","%D","ADP","Bye","Ros%"
-					var fields = csvLine.replace(/^\"/, '').split(/","/);
+					// player_id, first_name, last_name, team, position, years_exp, adp_dynasty_2qb, adp_idp, pass_yd, pass_td, pass_int, pass_2pt, rush_yd, rush_td, rec_yd, rec_td, fum_lost, idp_tkl_solo, idp_tkl_ast, idp_sack, idp_int, idp_ff, idp_fum_rec, pass_int_td, pso_pts
+					var fields = csvLine.split(/,/);
 
-					players.push({
-						name: fields[1],
-						owner: fields[5],
-						positions: fields[3].split(/,/),
-						ppg: parseFloat(fields[10]),
-						bye: parseInt(fields[13])
-					})
-				});
-
-				players.sort((a, b) => {
-					if (a.ppg > b.ppg) {
-						return -1;
-					}
-					else if (a.ppg < b.ppg) {
-						return 1;
-					}
-					else {
-						return 0;
+					if (sleeperPlayers[fields[0]]) {
+						sleeperPlayers[fields[0]].fpts = parseFloat(fields[24]) || 0;
 					}
 				});
 
-				resolve(players);
+				resolve(sleeperPlayers);
 			});
 		}
 	)
 };
+
+var newPsoPlayersPromise = function(sleeperPlayers) {
+	return new Promise(function(resolve, reject) {
+		var psoPlayers = require('../public/data/players.json');
+
+		psoPlayers.forEach((psoPlayer) => {
+			psoPlayer.fpts = 0;
+
+			if (psoPlayer.id) {
+				psoPlayer.fpts = sleeperPlayers[psoPlayer.id].fpts;
+				psoPlayer.bye_week = sleeperPlayers[psoPlayer.id].bye_week;
+			}
+		});
+
+		resolve(psoPlayers);
+	});
+};
+
 
 var pointsForOwnerWeek = function(players, owner, week) {
 	var rosterSpots = [
@@ -118,14 +129,14 @@ var pointsForOwnerWeek = function(players, owner, week) {
 		{ fillWith: ['K'], default: 7 }
 	];
 
-	var ownerPlayers = players.filter(player => player.owner == owner && player.bye != week);
+	var ownerPlayers = players.filter((player) => player.owner == owner && player.bye_week != week);
 	var weekTotal = 0;
 
-	ownerPlayers.forEach(player => {
-		rosterSpots.every(rosterSpot => {
-			if (!rosterSpot.filled && player.positions.some(position => rosterSpot.fillWith.includes(position))) {
+	ownerPlayers.forEach((player) => {
+		rosterSpots.every((rosterSpot) => {
+			if (!rosterSpot.filled && player.positions.some((position) => rosterSpot.fillWith.includes(position))) {
 				rosterSpot.filled = true;
-				weekTotal += player.ppg;
+				weekTotal += (player.fpts / 17) || rosterSpot.default;
 				return false;
 			}
 
@@ -142,9 +153,41 @@ var pointsForOwnerWeek = function(players, owner, week) {
 	return weekTotal;
 };
 
-newFantraxPromise().then(players => {
+newByeWeeksPromise()
+	.then(newSleeperPlayersPromise)
+	.then(newProjectionsPromise)
+	.then(newPsoPlayersPromise)
+	.then((players) => {
+		players.sort((a, b) => {
+			if (a.fpts > b.fpts) {
+				return -1;
+			}
+			else if (a.fpts < b.fpts) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		});
+
+		var weeks = {};
+
+		for (var week = 1; week <= 15; week++) {
+			weeks[week] = [];
+
+			Object.values(PSO.franchises).forEach((owner) => {
+				weeks[week].push({ owner: owner, points: Math.round(pointsForOwnerWeek(players, owner, week)) });
+			});
+
+			weeks[week].sort((a, b) => b.points - a.points);
+		}
+
+		console.log(weeks);
+	});
+
+/*
+newPlayersPromise().then(players => {
 	for (var week = 1; week <= 15; week++) {
-		console.log('Week', week);
 
 		Object.keys(owners).forEach(owner => {
 			console.log(owners[owner], Math.round(pointsForOwnerWeek(players, owner, week)));
@@ -153,3 +196,4 @@ newFantraxPromise().then(players => {
 		console.log();
 	}
 });
+*/
