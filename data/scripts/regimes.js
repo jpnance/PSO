@@ -7,6 +7,6 @@ var regimes = {
 	'Pat/Quinn': 'Patrick',
 	'Schex/Jeff': 'Schex',
 	'Schexes': 'Schex',
-	'Syed': 'Syed/Kuan',
-	'Syed/Terence': 'Syed/Kuan'
+	'Syed/Kuan': 'Syed',
+	'Syed/Terence': 'Syed'
 };
