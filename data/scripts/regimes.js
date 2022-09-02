@@ -2,7 +2,7 @@ var regimes = {
 	'Charles': 'James/Charles',
 	'Brett/Luke': 'Luke',
 	'Jake/Luke': 'Luke',
-	'John': 'John/Zach',
+	'John/Zach': 'John',
 	'Koci': 'Koci/Mueller',
 	'Pat/Quinn': 'Patrick',
 	'Schex/Jeff': 'Schex',

@@ -1,17 +1,6 @@
-var regularSeasonWinsMap = function() {
-	var regimes = {
-		'Charles': 'James/Charles',
-		'Brett/Luke': 'Luke',
-		'Jake/Luke': 'Luke',
-		'John': 'John/Zach',
-		'Koci': 'Koci/Mueller',
-		'Pat/Quinn': 'Patrick',
-		'Schex/Jeff': 'Schex',
-		'Schexes': 'Schex',
-		'Syed': 'Syed/Kuan',
-		'Syed/Terence': 'Syed/Kuan'
-	};
+load('./regimes.js');
 
+var regularSeasonWinsMap = function() {
 	var winner, loser;
 
 	if (this.away.score > this.home.score) {
@@ -44,4 +33,18 @@ var regularSeasonWinsQuery = {
 	'home.score': { '$exists': true }
 };
 
-db.games.mapReduce(regularSeasonWinsMap, regularSeasonWinsReduce, { out: 'regularSeasonWins', query: regularSeasonWinsQuery, sort: { season: 1, week: 1 } });
+db.games.mapReduce(
+	regularSeasonWinsMap,
+	regularSeasonWinsReduce,
+	{
+		out: 'regularSeasonWins',
+		query: regularSeasonWinsQuery,
+		sort: {
+			season: 1,
+			week: 1
+		},
+		scope: {
+			regimes: regimes
+		}
+	}
+);

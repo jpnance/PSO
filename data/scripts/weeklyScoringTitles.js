@@ -1,17 +1,6 @@
-var weeklyScoringTitlesMap = function() {
-	var regimes = {
-		'Charles': 'James/Charles',
-		'Brett/Luke': 'Luke',
-		'Jake/Luke': 'Luke',
-		'John': 'John/Zach',
-		'Koci': 'Koci/Mueller',
-		'Pat/Quinn': 'Patrick',
-		'Schex/Jeff': 'Schex',
-		'Schexes': 'Schex',
-		'Syed': 'Syed/Kuan',
-		'Syed/Terence': 'Syed/Kuan'
-	};
+load('./regimes.js');
 
+var weeklyScoringTitlesMap = function() {
 	var winner, loser;
 
 	if (this.away.score > this.home.score) {
@@ -46,4 +35,18 @@ var weeklyScoringTitlesQuery = {
 	'home.score': { '$exists': true }
 };
 
-db.games.mapReduce(weeklyScoringTitlesMap, weeklyScoringTitlesReduce, { out: 'weeklyScoringTitles', query: weeklyScoringTitlesQuery, sort: { season: 1, week: 1 } });
+db.games.mapReduce(
+	weeklyScoringTitlesMap,
+	weeklyScoringTitlesReduce,
+	{
+		out: 'weeklyScoringTitles',
+		query: weeklyScoringTitlesQuery,
+		sort: {
+			season: 1,
+			week: 1
+		},
+		scope: {
+			regimes: regimes
+		}
+	}
+);

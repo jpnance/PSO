@@ -1,17 +1,6 @@
-var playoffAppearancesMap = function() {
-	var regimes = {
-		'Charles': 'James/Charles',
-		'Brett/Luke': 'Luke',
-		'Jake/Luke': 'Luke',
-		'John': 'John/Zach',
-		'Koci': 'Koci/Mueller',
-		'Pat/Quinn': 'Patrick',
-		'Schex/Jeff': 'Schex',
-		'Schexes': 'Schex',
-		'Syed': 'Syed/Kuan',
-		'Syed/Terence': 'Syed/Kuan'
-	};
+load('./regimes.js');
 
+var playoffAppearancesMap = function() {
 	var awayKey = regimes[this.away.name] || this.away.name;
 	var homeKey = regimes[this.home.name] || this.home.name;
 
@@ -33,4 +22,18 @@ var playoffAppearancesQuery = {
 	'type': 'semifinal'
 };
 
-db.games.mapReduce(playoffAppearancesMap, playoffAppearancesReduce, { out: 'playoffAppearances', query: playoffAppearancesQuery, sort: { season: 1, week: 1 } });
+db.games.mapReduce(
+	playoffAppearancesMap,
+	playoffAppearancesReduce,
+	{
+		out: 'playoffAppearances',
+		query: playoffAppearancesQuery,
+		sort: {
+			season: 1,
+			week: 1
+		},
+		scope: {
+			regimes: regimes
+		},
+	}
+);
