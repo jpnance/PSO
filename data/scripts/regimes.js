@@ -1,9 +1,10 @@
 var regimes = {
-	'Charles': 'James/Charles',
 	'Brett/Luke': 'Luke',
+	'Charles': 'James/Charles',
 	'Jake/Luke': 'Luke',
 	'John/Zach': 'John',
 	'Koci': 'Koci/Mueller',
+	'Mitch/Mike': 'Mitch',
 	'Pat/Quinn': 'Patrick',
 	'Schex/Jeff': 'Schex',
 	'Schexes': 'Schex',
