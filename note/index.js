@@ -97,56 +97,67 @@ function isJaguarGame(franchiseOne, franchiseTwo) {
 var dataPromises = [
 	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
-	request
-		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&statusOrTeamFilter=WATCH_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=SEASON_23b_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=')
-		.set('Cookie', process.env.FANTRAX_COOKIES),
-	request
-		.get('https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&pageNumber=1&statusOrTeamFilter=COMPARE_LIST&view=STATS&positionOrGroup=ALL&seasonOrProjection=SEASON_23b_BY_PERIOD&timeframeTypeCode=BY_PERIOD&transactionPeriod=' + (week - 1) + '&miscDisplayType=1&sortType=SCORE&maxResultsPerPage=50&scoringCategoryType=5&timeStartType=PERIOD_ONLY&schedulePageAdj=0&searchName=')
-		.set('Cookie', process.env.FANTRAX_COOKIES)
+	require('./rpo-data.json').filter((rpo) => rpo.week == week - 1),
+	request.get('https://api.sleeper.app/v1/league/817129464579350528/matchups/' + (week - 1))
 ];
 
 Promise.all(dataPromises).then(function(values) {
 	var games = values[0];
 	var scoringTitles = values[1];
-	var rpoOptions = csvToRpoMap(values[2].body.toString());
-	var rpoSelections = csvToRpoMap(values[3].body.toString());
+	var weekRpos = values[2];
+	var weekResults = values[3].body;
 
+	var rpoOptions = {};
 	var selectedRpos = {};
 	var offeredRpos = {};
+	var playerPoints = {};
 
-	Object.keys(rpoSelections).forEach(rpoKey => {
-		var rpoSelection = rpoSelections[rpoKey][0];
-
-		rpoOptions[rpoKey].forEach(rpoPlayer => {
-			if (rpoPlayer.name == rpoSelection.name) {
-				selectedRpos[rpoKey] = rpoPlayer;
-			}
-			else {
-				offeredRpos[rpoKey] = rpoPlayer;
-			}
+	weekResults.forEach((weekResult) => {
+		Object.keys(weekResult.players_points).forEach((playerId) => {
+			playerPoints[playerId] = weekResult.players_points[playerId] || 0;
 		});
 	});
 
+	weekRpos.forEach((rpo) => {
+		if (!rpoOptions[rpo.owner]) {
+			rpoOptions[rpo.owner] = [];
+		}
+
+		rpoOptions[rpo.owner].push(rpo);
+
+		if (rpo.selected) {
+			selectedRpos[rpo.owner] = rpo;
+		}
+
+		if (!rpo.selected) {
+			offeredRpos[rpo.owner] = rpo;
+		}
+
+		rpo.player.points = playerPoints[rpo.player.id];
+	});
+
 	if (week > 1 && week < 16 && Object.keys(rpoOptions).length != 12) {
-		throw 'We need twelve franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
+		throw 'We need twelve franchises represented in the RPO data for this week and we only have ' + Object.keys(rpoOptions).length;
 	}
 	else if (week > 1 && week >= 16 && week < 18 && Object.keys(rpoOptions).length != 4) {
-		throw 'We need four franchises represented on the Fantrax watch list and we only have ' + Object.keys(rpoOptions).length;
+		throw 'We need four franchises represented in the RPO data for this week and we only have ' + Object.keys(rpoOptions).length;
 	}
 
 	Object.keys(rpoOptions).forEach(rpoKey => {
 		if (rpoOptions[rpoKey].length != 2) {
-			throw 'We need two players on the Fantrax watch list for every franchise and ' + rpoKey + ' only has ' + rpoOptions[rpoKey].length;
+			throw 'We need two players offered for every franchise and ' + rpoKey + ' only has ' + rpoOptions[rpoKey].length;
 		}
 	});
 
-	var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
+	if (week > 7) {
+		var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 
-	Object.keys(percentagesData).forEach(franchiseId => {
-		['playoffs', 'decision'].forEach((outcome) => {
-			percentagesData[franchiseId][outcome].tripleSlash = niceRate(percentagesData[franchiseId][outcome].neutral.rate) + '/' + niceRate(percentagesData[franchiseId][outcome].withWin.rate) + '/' + niceRate(percentagesData[franchiseId][outcome].withLoss.rate);
+		Object.keys(percentagesData).forEach(franchiseId => {
+			['playoffs', 'decision'].forEach((outcome) => {
+				percentagesData[franchiseId][outcome].tripleSlash = niceRate(percentagesData[franchiseId][outcome].neutral.rate) + '/' + niceRate(percentagesData[franchiseId][outcome].withWin.rate) + '/' + niceRate(percentagesData[franchiseId][outcome].withLoss.rate);
+			});
 		});
-	});
+	}
 
 	var lastWeek = games.filter(game => game.week == week - 1);
 	var thisWeek = games.filter(game => game.week == week);
@@ -245,12 +256,10 @@ Promise.all(dataPromises).then(function(values) {
 
 			console.log("\t\t" + winner.name);
 
-			[['Patrick', lastWeekCohost], [lastWeekCohost, 'Patrick']].forEach(hostPairing => {
-				console.log("\t\t\t" + hostPairing[0] + ' offered ' + selectedRpos[winner.name].name + ' and ' + offeredRpos[winner.name].name);
-				console.log("\t\t\t" + hostPairing[1] + ' selected ' + selectedRpos[winner.name].name + ' (' + selectedRpos[winner.name].points.toFixed(2) + ')');
-				console.log("\t\t\t" + hostPairing[0] + ' received ' + offeredRpos[winner.name].name + ' (' + offeredRpos[winner.name].points.toFixed(2) + ')');
-				console.log();
-			});
+			console.log("\t\t\t" + selectedRpos[winner.name].offerer + ' offered ' + selectedRpos[winner.name].player.name + ' and ' + offeredRpos[winner.name].player.name);
+			console.log("\t\t\t" + selectedRpos[winner.name].selector + ' selected ' + selectedRpos[winner.name].player.name + ' (' + selectedRpos[winner.name].player.points.toFixed(2) + ')');
+			console.log("\t\t\t" + selectedRpos[winner.name].offerer + ' received ' + offeredRpos[winner.name].player.name + ' (' + offeredRpos[winner.name].player.points.toFixed(2) + ')');
+			console.log();
 
 			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].playoffs.tripleSlash + ')' : ''));
 			if (nextWeeksGamesFor[winner.name]) {
@@ -259,12 +268,10 @@ Promise.all(dataPromises).then(function(values) {
 
 			console.log("\t\t" + loser.name);
 
-			[['Patrick', lastWeekCohost], [lastWeekCohost, 'Patrick']].forEach(hostPairing => {
-				console.log("\t\t\t" + hostPairing[0] + ' offered ' + selectedRpos[loser.name].name + ' and ' + offeredRpos[loser.name].name);
-				console.log("\t\t\t" + hostPairing[1] + ' selected ' + selectedRpos[loser.name].name + ' (' + selectedRpos[loser.name].points.toFixed(2) + ')');
-				console.log("\t\t\t" + hostPairing[0] + ' received ' + offeredRpos[loser.name].name + ' (' + offeredRpos[loser.name].points.toFixed(2) + ')');
-				console.log();
-			});
+			console.log("\t\t\t" + selectedRpos[loser.name].offerer + ' offered ' + selectedRpos[loser.name].player.name + ' and ' + offeredRpos[loser.name].player.name);
+			console.log("\t\t\t" + selectedRpos[loser.name].selector + ' selected ' + selectedRpos[loser.name].player.name + ' (' + selectedRpos[loser.name].player.points.toFixed(2) + ')');
+			console.log("\t\t\t" + selectedRpos[loser.name].offerer + ' received ' + offeredRpos[loser.name].player.name + ' (' + offeredRpos[loser.name].player.points.toFixed(2) + ')');
+			console.log();
 
 			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].playoffs.tripleSlash + ')' : ''));
 
@@ -361,7 +368,12 @@ Promise.all(dataPromises).then(function(values) {
 					}
 				};
 
-				console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[away.franchiseId].playoffs.tripleSlash : '') + ', ' + Math.round(percentagesData[away.franchiseId].results[week].rate * 100) + '%) vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + (week > 7 && week < 16 ? ', ' + percentagesData[home.franchiseId].playoffs.tripleSlash : '') + ', ' + Math.round(percentagesData[home.franchiseId].results[week].rate * 100) + '%)');
+				if (week > 7 && week < 16) {
+					console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ', ' + percentagesData[away.franchiseId].playoffs.tripleSlash + ', ' + Math.round(percentagesData[away.franchiseId].results[week].rate * 100) + '%) vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ', ' + percentagesData[home.franchiseId].playoffs.tripleSlash + ', ' + Math.round(percentagesData[home.franchiseId].results[week].rate * 100) + '%)');
+				}
+				else {
+					console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ')');
+				}
 			}
 
 			if (isJaguarGame(away.name, home.name)) {
