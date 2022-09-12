@@ -1,0 +1,8 @@
+September 2021
+* Doesn't support H2H as a tiebreaker but it will let me put whoever I want into the playoffs.
+* "Switch Players With Another Roster" is just the way for the commish to execute a trade between two teams. It's strange that they phrase it like that.
+* Sleeper is always willing to allow teams to either draft or trade for a roster that exceeds the limit but it won't let you do anything until you cut someone to get back under it. This probably doesn't affect anything I do in-season but it may be useful for RFAs in the offseason. https://support.sleeper.app/en/articles/3956140-can-a-team-go-over-the-roster-limit.
+* There doesn't seem to be a way to add/drop players on desktop right now. Also, you can't execute an add/drop as one transaction: you must break it into X transactions, one for each player involved.
+
+August 2022
+* Just set the league type to "Redraft" and then you can use the draft board feature freely to input rosters. You'll have to re-input the players who survive Cut Day but it's really not a big deal.
