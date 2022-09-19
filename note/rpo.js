@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config({ path: '../.env' });
 const PSO = require('../pso');
 
 const completer = (line) => {
-	const completions = 'add context find offerer owner pick rpos save selector switch week'.split(' ');
+	const completions = 'add context exit find offerer owner pick rpos save selector switch week'.split(' ');
 	const hits = completions.filter((c) => c.startsWith(line));
 
 	return [ hits.length ? hits : completions, line ];
@@ -47,6 +47,10 @@ rl.on('line', (line) => {
 
 		case 'context':
 			console.log(context);
+			break;
+
+		case 'exit':
+			process.exit();
 			break;
 
 		case 'find':
@@ -101,7 +105,7 @@ rl.on('line', (line) => {
 			break;
 
 		case 'save':
-			fs.writeFileSync('./rpo-data.json', JSON.stringify(rpos));
+			fs.writeFileSync('./rpo-data.json', JSON.stringify(rpos, null, '\t'));
 			break;
 
 		case 'selector':
@@ -179,6 +183,8 @@ const addPlayerToContext = (context, id) => {
 			name: player.full_name
 		}
 	});
+
+	console.log(player.player_id, player.full_name);
 };
 
 const findPlayerById = (id) => {
@@ -216,6 +222,7 @@ const pickPlayerInContext = (context, id) => {
 	contextRpos.forEach((contextRpo) => {
 		if (contextRpo.player.id == id) {
 			contextRpo.selected = true;
+			console.log(context.selector, 'selects', contextRpo.player.name);
 		}
 		else {
 			contextRpo.selected = false;
