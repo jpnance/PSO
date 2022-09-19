@@ -259,7 +259,6 @@ Promise.all(dataPromises).then(function(values) {
 			console.log("\t\t\t" + selectedRpos[winner.name].offerer + ' offered ' + selectedRpos[winner.name].player.name + ' and ' + offeredRpos[winner.name].player.name);
 			console.log("\t\t\t" + selectedRpos[winner.name].selector + ' selected ' + selectedRpos[winner.name].player.name + ' (' + selectedRpos[winner.name].player.points.toFixed(2) + ')');
 			console.log("\t\t\t" + selectedRpos[winner.name].offerer + ' received ' + offeredRpos[winner.name].player.name + ' (' + offeredRpos[winner.name].player.points.toFixed(2) + ')');
-			console.log();
 
 			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].playoffs.tripleSlash + ')' : ''));
 			if (nextWeeksGamesFor[winner.name]) {
@@ -271,7 +270,6 @@ Promise.all(dataPromises).then(function(values) {
 			console.log("\t\t\t" + selectedRpos[loser.name].offerer + ' offered ' + selectedRpos[loser.name].player.name + ' and ' + offeredRpos[loser.name].player.name);
 			console.log("\t\t\t" + selectedRpos[loser.name].selector + ' selected ' + selectedRpos[loser.name].player.name + ' (' + selectedRpos[loser.name].player.points.toFixed(2) + ')');
 			console.log("\t\t\t" + selectedRpos[loser.name].offerer + ' received ' + offeredRpos[loser.name].player.name + ' (' + offeredRpos[loser.name].player.points.toFixed(2) + ')');
-			console.log();
 
 			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].playoffs.tripleSlash + ')' : ''));
 
