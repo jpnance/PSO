@@ -1,58 +1,64 @@
-load('./regimes.js');
+const dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 
-var regularSeasonWinningPercentageMap = function() {
-	var winner, loser;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-	if (this.away.score > this.home.score) {
-		winner = this.away;
-		loser = this.home;
-	}
-	else if (this.home.score > this.away.score) {
-		winner = this.home;
-		loser = this.away;
-	}
+const Game = require('../models/Game');
+const regimes = require('./regimes');
 
-	var winnerKey = regimes[this.winner.name] || this.winner.name;
-	var loserKey = regimes[this.loser.name] || this.loser.name;
+Game.mapReduce({
+	map: function() {
+		let winner, loser;
 
-	emit(winnerKey, { wins: 1, losses: 0 });
-	emit(loserKey, { wins: 0, losses: 1 });
-};
-
-var regularSeasonWinningPercentageReduce = function(key, results) {
-	var record = { wins: 0, losses: 0 };
-
-	results.forEach(result => {
-		record.wins += result.wins;
-		record.losses += result.losses;
-	});
-
-	return record;
-};
-
-var regularSeasonWinningPercentageFinalize = function(key, reduction) {
-	return (reduction.wins / (reduction.wins + reduction.losses)).toFixed(3);
-};
-
-var regularSeasonWinningPercentageQuery = {
-	type: 'regular',
-	'away.score': { '$exists': true },
-	'home.score': { '$exists': true }
-};
-
-db.games.mapReduce(
-	regularSeasonWinningPercentageMap,
-	regularSeasonWinningPercentageReduce,
-	{
-		out: 'regularSeasonWinningPercentage',
-		query: regularSeasonWinningPercentageQuery,
-		finalize: regularSeasonWinningPercentageFinalize,
-		sort: {
-			season: 1,
-			week: 1
-		},
-		scope: {
-			regimes: regimes
+		if (this.away.score > this.home.score) {
+			winner = this.away;
+			loser = this.home;
 		}
+		else if (this.home.score > this.away.score) {
+			winner = this.home;
+			loser = this.away;
+		}
+
+		const winnerKey = regimes[this.winner.name] || this.winner.name;
+		const loserKey = regimes[this.loser.name] || this.loser.name;
+
+		emit(winnerKey, { wins: 1, losses: 0 });
+		emit(loserKey, { wins: 0, losses: 1 });
+	},
+
+	reduce: function(key, results) {
+		const record = { wins: 0, losses: 0 };
+
+		results.forEach(result => {
+			record.wins += result.wins;
+			record.losses += result.losses;
+		});
+
+		return record;
+	},
+
+	finalize: function(key, reduction) {
+		return (reduction.wins / (reduction.wins + reduction.losses)).toFixed(3);
+	},
+
+	out: 'regularSeasonWinningPercentage',
+
+	query: {
+		type: 'regular',
+		'away.score': { '$exists': true },
+		'home.score': { '$exists': true }
+	},
+
+	sort: {
+		season: 1,
+		week: 1
+	},
+
+	scope: {
+		regimes: regimes
 	}
-);
+}).then((data) => {
+	mongoose.disconnect();
+	process.exit();
+});
