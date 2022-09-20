@@ -25,12 +25,12 @@ var newSheetsPromise = function() {
 					}
 
 					var player = {
-						owner: row[0],
+						owner: (row[0] != '') ? row[0] : undefined,
 						name: row[1],
 						positions: row[2].split('/'),
 						start: parseInt(row[3]) || 'FA',
-						end: parseInt(row[4]),
-						salary: row[5] ? parseInt(row[5].replace('$', '')) : null
+						end: parseInt(row[4]) || undefined,
+						salary: row[5] ? parseInt(row[5].replace('$', '')) : undefined
 					};
 
 					var sleeperPlayer = sleeperData.filter((sleeperPlayerData) => {
@@ -41,7 +41,15 @@ var newSheetsPromise = function() {
 						player.id = sleeperPlayer[0].player_id;
 					}
 					else {
-						console.error(player);
+						if (player.name == 'Mike Williams' && player.positions.includes('WR')) {
+							player.id = '4068';
+						}
+						else if (player.name == 'Marcus Williams' && player.positions.includes('DB')) {
+							player.id = '4091';
+						}
+						else {
+							console.error(player);
+						}
 					}
 
 					players.push(player);
