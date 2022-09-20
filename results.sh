@@ -1,23 +1,22 @@
 #!/bin/sh
 
-cd ~/Workspace/PSO
+cd /app
 
-MONGODB_URI=$(grep MONGODB_URI .env | sed -E "s/MONGODB_URI=//")
 SEASON=$(grep SEASON .env | sed -E "s/SEASON=//")
 
 cd data
 node index.js $SEASON
 cd scripts
-mongo $MONGODB_URI championships.js
-mongo $MONGODB_URI highestScoringLosses.js
-mongo $MONGODB_URI lowestScoringWins.js
-mongo $MONGODB_URI marginOfVictory.js
-mongo $MONGODB_URI playoffAppearances.js
-mongo $MONGODB_URI recordOccurrences.js
-mongo $MONGODB_URI regularSeasonWinningPercentage.js
-mongo $MONGODB_URI regularSeasonWins.js
-mongo $MONGODB_URI seasonSummaries.js
-mongo $MONGODB_URI weeklyScoringTitles.js
+node championships.js
+node highestScoringLosses.js
+node lowestScoringWins.js
+node marginOfVictory.js
+node playoffAppearances.js
+node recordOccurrences.js
+node regularSeasonWinningPercentage.js
+node regularSeasonWins.js
+node seasonSummaries.js
+node weeklyScoringTitles.js
 cd ..
 cd ..
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~/Workspace/PSO
+cd /app
 
 cd data
 mkdir -p ../public/data
