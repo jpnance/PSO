@@ -14,7 +14,7 @@ var newSheetsPromise = function() {
 		request
 			.get(siteData.sheetLink)
 			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
-			.then(response => {
+			.then((response) => {
 				var dataJson = JSON.parse(response.text);
 
 				var players = [];
