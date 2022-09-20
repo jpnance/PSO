@@ -1,25 +1,43 @@
-var recordOccurrencesMap = function() {
-	var homeRecord = this.home.record.straight.cumulative.wins + '-' + this.home.record.straight.cumulative.losses + '-' + this.home.record.straight.cumulative.ties;
-	var awayRecord = this.away.record.straight.cumulative.wins + '-' + this.away.record.straight.cumulative.losses + '-' + this.away.record.straight.cumulative.ties;
+const dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 
-	emit(homeRecord, { owners: [ this.season + ' ' + this.home.name ] });
-	emit(awayRecord, { owners: [ this.season + ' ' + this.away.name ] });
-};
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-var recordOccurrencesReduce = function(key, results) {
-	var owners = [];
+const Game = require('../models/Game');
 
-	results.forEach(owner => {
-		owners = owners.concat(owner.owners);
-	});
+Game.mapReduce({
+	map: function() {
+		const homeRecord = this.home.record.straight.cumulative.wins + '-' + this.home.record.straight.cumulative.losses + '-' + this.home.record.straight.cumulative.ties;
+		const awayRecord = this.away.record.straight.cumulative.wins + '-' + this.away.record.straight.cumulative.losses + '-' + this.away.record.straight.cumulative.ties;
 
-	return { owners: owners };
-};
+		emit(homeRecord, { owners: [ this.season + ' ' + this.home.name ] });
+		emit(awayRecord, { owners: [ this.season + ' ' + this.away.name ] });
+	},
 
-var recordOccurrencesQuery = {
-	type: 'regular',
-	'away.record': { '$exists': true },
-	'home.record': { '$exists': true }
-};
+	reduce: function(key, results) {
+		let owners = [];
 
-db.games.mapReduce(recordOccurrencesMap, recordOccurrencesReduce, { out: 'recordOccurrences', query: recordOccurrencesQuery, sort: { season: 1, week: 1 } });
+		results.forEach(owner => {
+			owners = owners.concat(owner.owners);
+		});
+
+		return { owners: owners };
+	},
+
+	out: 'recordOccurrences',
+
+	query: {
+		type: 'regular',
+		'away.score': { '$exists': true },
+		'home.score': { '$exists': true }
+	},
+
+	sort: {
+		season: 1,
+		week: 1
+	}
+}).then((data) => {
+	mongoose.disconnect();
+	process.exit();
+});
