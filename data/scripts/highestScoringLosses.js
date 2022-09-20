@@ -5,7 +5,6 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Game = require('../models/Game');
-const regimes = require('./regimes');
 
 Game.mapReduce({
 	map: function() {
@@ -29,11 +28,7 @@ Game.mapReduce({
 	sort: {
 		season: 1,
 		week: 1
-	},
-
-	scope: {
-		regimes: regimes
-	},
+	}
 }).then((data) => {
 	mongoose.disconnect();
 	process.exit();
