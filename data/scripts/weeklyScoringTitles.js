@@ -1,52 +1,59 @@
-load('./regimes.js');
+const dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 
-var weeklyScoringTitlesMap = function() {
-	var winner, loser;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-	if (this.away.score > this.home.score) {
-		winner = this.away;
-		loser = this.home;
-	}
-	else if (this.home.score > this.away.score) {
-		winner = this.home;
-		loser = this.away;
-	}
+const Game = require('../models/Game');
+const regimes = require('./regimes');
 
-	if (winner.record.allPlay.week.losses == 0) {
-		var key = regimes[winner.name] || winner.name;
+Game.mapReduce({
+	map: function() {
+		let winner, loser;
 
-		emit(key, 1);
-	}
-};
-
-var weeklyScoringTitlesReduce = function(key, results) {
-	var scoringTitles = 0;
-
-	results.forEach(result => {
-		scoringTitles += result;
-	});
-
-	return scoringTitles;
-};
-
-var weeklyScoringTitlesQuery = {
-	type: 'regular',
-	'away.score': { '$exists': true },
-	'home.score': { '$exists': true }
-};
-
-db.games.mapReduce(
-	weeklyScoringTitlesMap,
-	weeklyScoringTitlesReduce,
-	{
-		out: 'weeklyScoringTitles',
-		query: weeklyScoringTitlesQuery,
-		sort: {
-			season: 1,
-			week: 1
-		},
-		scope: {
-			regimes: regimes
+		if (this.away.score > this.home.score) {
+			winner = this.away;
+			loser = this.home;
 		}
+		else if (this.home.score > this.away.score) {
+			winner = this.home;
+			loser = this.away;
+		}
+
+		if (winner.record.allPlay.week.losses == 0) {
+			const key = regimes[winner.name] || winner.name;
+
+			emit(key, 1);
+		}
+	},
+
+	reduce: function(key, results) {
+		let scoringTitles = 0;
+
+		results.forEach(result => {
+			scoringTitles += result;
+		});
+
+		return scoringTitles;
+	},
+
+	out: 'weeklyScoringTitles',
+
+	query: {
+		type: 'regular',
+		'away.score': { '$exists': true },
+		'home.score': { '$exists': true }
+	},
+
+	sort: {
+		season: 1,
+		week: 1
+	},
+
+	scope: {
+		regimes: regimes
 	}
-);
+}).then((data) => {
+	mongoose.disconnect();
+	process.exit();
+});
