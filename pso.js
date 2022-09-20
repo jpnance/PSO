@@ -268,7 +268,7 @@ module.exports.franchiseNames = {
 		2011: 'Schexes',
 		2010: 'Schexes',
 		2009: 'Schexes',
-		2008: 'Schexe',
+		2008: 'Schexes',
 	},
 	11: {
 		2022: 'Quinn',
