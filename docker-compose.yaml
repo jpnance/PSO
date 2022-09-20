@@ -19,7 +19,7 @@ services:
         image: node:14-alpine
         volumes:
             - .:/app
-        command: sh -c "crontab /app/data/crontab && crond -f"
+        command: sh -c "crontab /app/etc/crontab && crond -f"
 
 volumes:
     pso-data:

@@ -1,0 +1,2 @@
+*/5 * * * *		/bin/sh /app/data.sh
+8 6-18 * * 2,3	/bin/sh /app/results.sh
