@@ -1,17 +1,35 @@
-var lowestScoringWinsMap = function() {
-	var key = [this.season, this.week, this.winner.name, this.loser.name].join('-');
+const dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 
-	emit(key, this.winner.score * (this.season < 2012 ? 0.1 : 1));
-};
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-var lowestScoringWinsReduce = function(key, results) {
-	return results;
-};
+const Game = require('../models/Game');
 
-var lowestScoringWinsQuery = {
-	type: 'regular',
-	'away.score': { '$exists': true },
-	'home.score': { '$exists': true }
-};
+Game.mapReduce({
+	map: function() {
+		const key = [this.season, this.week, this.winner.name, this.loser.name].join('-');
 
-db.games.mapReduce(lowestScoringWinsMap, lowestScoringWinsReduce, { out: 'lowestScoringWins', query: lowestScoringWinsQuery, sort: { season: 1, week: 1 } });
+		emit(key, this.winner.score * (this.season < 2012 ? 0.1 : 1));
+	},
+
+	reduce: function(key, results) {
+		return results;
+	},
+
+	out: 'lowestScoringWins',
+
+	query: {
+		type: 'regular',
+		'away.score': { '$exists': true },
+		'home.score': { '$exists': true }
+	},
+
+	sort: {
+		season: 1,
+		week: 1
+	}
+}).then((data) => {
+	mongoose.disconnect();
+	process.exit();
+});
