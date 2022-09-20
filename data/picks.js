@@ -8,7 +8,6 @@ const siteData = {
 	sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/',
 };
 
-
 var newSheetsPromise = function(season) {
 	return new Promise(function(resolve, reject) {
 		request
