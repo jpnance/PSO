@@ -37,7 +37,7 @@ Game.mapReduce({
 
 	scope: {
 		regimes: regimes
-	},
+	}
 }).then((data) => {
 	mongoose.disconnect();
 	process.exit();
