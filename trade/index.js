@@ -24,7 +24,7 @@ var newPicksPromise = () => {
 		var picks = [];
 
 		request
-			.get('http://localhost:' + process.env.PORT + '/data/picks.json')
+			.get('http://' + process.env.PSO_WEB_CONTAINER_NAME + ':' + process.env.PORT + '/data/picks.json')
 			.then((response) => {
 				response.body.forEach((pick) => {
 					picks.push({
@@ -37,7 +37,7 @@ var newPicksPromise = () => {
 				});
 
 				resolve(picks);
-			})
+			});
 	});
 };
 
@@ -46,7 +46,7 @@ var newPlayersPromise = () => {
 		var players = [];
 
 		request
-			.get('http://localhost:' + process.env.PORT + '/data/players.json')
+			.get('http://' + process.env.PSO_WEB_CONTAINER_NAME + ':' + process.env.PORT + '/data/players.json')
 			.then((response) => {
 				response.body.forEach((player) => {
 					if (!player.owner || player.owner == '') {
