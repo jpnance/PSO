@@ -2,7 +2,7 @@
 	This shows how many sweeps and splits there have been per season. It was a quick way to investigate how rematch games tend to go.
 */
 
-var dotenv = require('dotenv').config({ path: '../../.env' });
+var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;

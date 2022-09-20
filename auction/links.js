@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config({ path: __dirname + '/../.env' });
+const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const auctionKeys = {};
 const auctionUsers = JSON.parse(process.env.AUCTION_USERS);

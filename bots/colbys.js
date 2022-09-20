@@ -1,4 +1,4 @@
-let dotenv = require('dotenv').config({ path: __dirname + '/../.env' });
+var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 let request = require('superagent');
 let Twitter = require('twitter');

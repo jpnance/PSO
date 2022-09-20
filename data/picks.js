@@ -1,4 +1,4 @@
-var dotenv = require('dotenv').config({ path: __dirname + '/../.env' });
+var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var request = require('superagent');
 
