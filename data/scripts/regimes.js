@@ -11,3 +11,5 @@ var regimes = {
 	'Syed/Kuan': 'Syed',
 	'Syed/Terence': 'Syed'
 };
+
+module.exports = regimes;

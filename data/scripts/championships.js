@@ -1,37 +1,44 @@
-load('./regimes.js');
+const dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 
-var championshipsMap = function() {
-	var winnerKey = regimes[this.winner.name] || this.winner.name;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-	emit(winnerKey, 1);
-};
+const Game = require('../models/Game');
+const regimes = require('./regimes');
 
-var championshipsReduce = function(key, results) {
-	var championships = 0;
+Game.mapReduce({
+	map: function() {
+		let winnerKey = regimes[this.winner.name] || this.winner.name;
 
-	results.forEach(result => {
-		championships += result;
-	});
+		emit(winnerKey, 1);
+	},
 
-	return championships;
-};
+	reduce: function(key, results) {
+		let championships = 0;
 
-var championshipsQuery = {
-	'type': 'championship'
-};
+		results.forEach((result) => {
+			championships += result;
+		});
 
-db.games.mapReduce(
-	championshipsMap,
-	championshipsReduce,
-	{
-		out: 'championships',
-		query: championshipsQuery,
-		sort: {
-			season: 1,
-			week: 1
-		},
-		scope: {
-			regimes: regimes
-		}
-	}
-);
+		return championships;
+	},
+
+	out: 'championships',
+
+	query: {
+		type: 'championship'
+	},
+
+	sort: {
+		season: 1,
+		week: 1
+	},
+
+	scope: {
+		regimes: regimes
+	},
+}).then((data) => {
+	mongoose.disconnect();
+	process.exit();
+});
