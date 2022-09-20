@@ -1,39 +1,46 @@
-load('./regimes.js');
+const dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 
-var playoffAppearancesMap = function() {
-	var awayKey = regimes[this.away.name] || this.away.name;
-	var homeKey = regimes[this.home.name] || this.home.name;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-	emit(awayKey, 1);
-	emit(homeKey, 1);
-};
+const Game = require('../models/Game');
+const regimes = require('./regimes');
 
-var playoffAppearancesReduce = function(key, results) {
-	var appearances = 0;
+Game.mapReduce({
+	map: function() {
+		const awayKey = regimes[this.away.name] || this.away.name;
+		const homeKey = regimes[this.home.name] || this.home.name;
 
-	results.forEach(result => {
-		appearances += result;
-	});
+		emit(awayKey, 1);
+		emit(homeKey, 1);
+	},
 
-	return appearances;
-};
+	reduce: function(key, results) {
+		let appearances = 0;
 
-var playoffAppearancesQuery = {
-	'type': 'semifinal'
-};
+		results.forEach(result => {
+			appearances += result;
+		});
 
-db.games.mapReduce(
-	playoffAppearancesMap,
-	playoffAppearancesReduce,
-	{
-		out: 'playoffAppearances',
-		query: playoffAppearancesQuery,
-		sort: {
-			season: 1,
-			week: 1
-		},
-		scope: {
-			regimes: regimes
-		},
+		return appearances;
+	},
+
+	out: 'playoffAppearances',
+
+	query: {
+		type: 'semifinal'
+	},
+
+	sort: {
+		season: 1,
+		week: 1
+	},
+
+	scope: {
+		regimes: regimes
 	}
-);
+}).then((data) => {
+	mongoose.disconnect();
+	process.exit();
+});
