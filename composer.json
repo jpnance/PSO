@@ -1,6 +1,0 @@
-{
-    "require": {
-        "mongodb/mongodb": "^1.1",
-        "components/jquery": "^3.2"
-    }
-}
