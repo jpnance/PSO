@@ -2,6 +2,7 @@ version: '3.6'
 
 services:
     web:
+        container_name: pso-web
         image: node:14-alpine
         volumes:
             - .:/app
@@ -11,11 +12,13 @@ services:
         command: node index.js
 
     mongo:
+        container_name: pso-mongo
         image: mongo:3.6.8
         volumes:
             - pso-data:/data/db
 
     cron:
+        container_name: pso-cron
         image: node:14-alpine
         volumes:
             - .:/app
