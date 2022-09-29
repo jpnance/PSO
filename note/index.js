@@ -13,13 +13,15 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 if (process.argv.length < 3) {
 	console.log('Invalid week');
-	console.log('Usage: node index.js <week> [co-host name] [last week co-host name]');
+	console.log('Usage: node index.js <week> [co-host name] [last week co-host name] <last week\'s games order> <this week\'s games order>');
 	process.exit();
 }
 
 var week = parseInt(process.argv[2]);
 var cohost = process.argv[3];
 var lastWeekCohost = process.argv[4] || cohost;
+var lastWeekGamesOrder = process.argv[5]?.split(',').map((index) => parseInt(index));
+var thisWeekGamesOrder = process.argv[6]?.split(',').map((index) => parseInt(index));
 
 function csvToRpoMap(csv) {
 	var lines = csv.split(/\n/)
@@ -111,6 +113,10 @@ Promise.all(dataPromises).then(function(values) {
 	var selectedRpos = {};
 	var offeredRpos = {};
 	var playerPoints = {};
+	var rpoSummary = {};
+
+	rpoSummary['Patrick'] = 0;
+	rpoSummary[lastWeekCohost] = 0;
 
 	weekResults.forEach((weekResult) => {
 		Object.keys(weekResult.players_points).forEach((playerId) => {
@@ -162,6 +168,42 @@ Promise.all(dataPromises).then(function(values) {
 	var lastWeek = games.filter(game => game.week == week - 1);
 	var thisWeek = games.filter(game => game.week == week);
 	var nextWeeks = games.filter(game => game.week >= week && game.week <= week + 2);
+
+	if (!lastWeekGamesOrder) {
+		console.log('Specify the order in which to include the games last week as a CSV string (e.g. 1,3,5,2,4,6).');
+
+		lastWeek.forEach((lastWeekGame, i) => {
+			console.log(i + 1, lastWeekGame.away.name, 'vs.', lastWeekGame.home.name);
+		});
+
+		process.exit();
+	}
+
+	if (!thisWeekGamesOrder) {
+		console.log('Specify the order in which to include the games this week as a CSV string (e.g. 1,3,5,2,4,6).');
+
+		thisWeek.forEach((thisWeekGame, i) => {
+			console.log(i + 1, thisWeekGame.away.name, 'vs.', thisWeekGame.home.name);
+		});
+
+		process.exit();
+	}
+
+	var orderedLastWeek = [];
+
+	lastWeek.forEach((lastWeekGame, i) => {
+		orderedLastWeek[lastWeekGamesOrder[i] - 1] = lastWeekGame;
+	});
+
+	lastWeek = orderedLastWeek;
+
+	var orderedThisWeek = [];
+
+	thisWeek.forEach((thisWeekGame, i) => {
+		orderedThisWeek[thisWeekGamesOrder[i] - 1] = thisWeekGame;
+	});
+
+	thisWeek = orderedThisWeek;
 
 	if (week > 1) {
 		var highScorerAllPlayWins = (week < 16) ? 11 : 3;
@@ -277,7 +319,31 @@ Promise.all(dataPromises).then(function(values) {
 				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
 			}
 
-			console.log("\t\t" + 'RPO_MATCHUP_SUMMARY');
+			[winner.name, loser.name].forEach((owner) => {
+				var optionOne = rpoOptions[owner][0];
+				var optionTwo = rpoOptions[owner][1];
+
+				if (optionOne.player.points > optionTwo.player.points) {
+					if (optionOne.selected) {
+						rpoSummary[optionOne.selector] += 1;
+					}
+					else {
+						rpoSummary[optionOne.offerer] += 1;
+					}
+				}
+				else if (optionTwo.player.points > optionOne.player.points) {
+					if (optionTwo.selected) {
+						rpoSummary[optionTwo.selector] += 1;
+					}
+					else {
+						rpoSummary[optionTwo.offerer] += 1;
+					}
+				}
+			});
+
+			console.log(rpoSummary);
+
+			console.log("\t\t" + 'RPO_MATCHUP_SUMMARY: Pat ' + rpoSummary['Patrick'] + ', ' + lastWeekCohost + ' ' + rpoSummary[lastWeekCohost]);
 			console.log("\t\t" + 'Pat projection: WHICH_TEAM (RIGHTWRONG); ' + (lastWeekCohost || 'LAST_WEEK_COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
 		});
 
