@@ -341,8 +341,6 @@ Promise.all(dataPromises).then(function(values) {
 				}
 			});
 
-			console.log(rpoSummary);
-
 			console.log("\t\t" + 'RPO_MATCHUP_SUMMARY: Pat ' + rpoSummary['Patrick'] + ', ' + lastWeekCohost + ' ' + rpoSummary[lastWeekCohost]);
 			console.log("\t\t" + 'Pat projection: WHICH_TEAM (RIGHTWRONG); ' + (lastWeekCohost || 'LAST_WEEK_COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
 		});
