@@ -6,3 +6,7 @@ September 2021
 
 August 2022
 * Just set the league type to "Redraft" and then you can use the draft board feature freely to input rosters. You'll have to re-input the players who survive Cut Day but it's really not a big deal.
+
+October 2022
+* If it becomes useful, it seems pretty easy to write some GraphQL queries to use the watchlist feature
+* I'm kind of imagining that all the other cool stuff I want access to is also a GraphQL query but it currently requires too much effort to fire up the Android emulator setup to scrape again.
