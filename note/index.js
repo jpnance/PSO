@@ -191,16 +191,16 @@ Promise.all(dataPromises).then(function(values) {
 
 	var orderedLastWeek = [];
 
-	lastWeek.forEach((lastWeekGame, i) => {
-		orderedLastWeek[lastWeekGamesOrder[i] - 1] = lastWeekGame;
+	lastWeekGamesOrder.forEach((gameId) => {
+		orderedLastWeek.push(lastWeek[gameId - 1]);
 	});
 
 	lastWeek = orderedLastWeek;
 
 	var orderedThisWeek = [];
 
-	thisWeek.forEach((thisWeekGame, i) => {
-		orderedThisWeek[thisWeekGamesOrder[i] - 1] = thisWeekGame;
+	thisWeekGamesOrder.forEach((gameId) => {
+		orderedThisWeek.push(thisWeek[gameId - 1]);
 	});
 
 	thisWeek = orderedThisWeek;
