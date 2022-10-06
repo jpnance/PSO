@@ -7,3 +7,9 @@ seed:
 
 sleeper:
 	docker run --rm -v $(PWD):/app node:14-alpine sh -c "wget -O /app/public/data/sleeper-data.json https://api.sleeper.app/v1/players/nfl"
+
+data:
+	docker exec pso-cron sh -c "cd /app && sh data.sh"
+
+results:
+	docker exec pso-cron sh -c "cd /app && sh results.sh"
