@@ -60,7 +60,7 @@ var newPlayersPromise = () => {
 						player.terms = 'rfa-rights';
 					}
 					else {
-						player.contract = player.start.toString().substring(2) + '/' + player.end.toString().substring(2);
+						player.contract = (player.start.toString().substring(2) || 'FA') + '/' + player.end.toString().substring(2);
 						player.terms = 'signed';
 					}
 
