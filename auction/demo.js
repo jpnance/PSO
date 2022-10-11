@@ -10,7 +10,7 @@ setInterval(function() {
 	var player = players[Math.floor(Math.random() * players.length)];
 
 	request
-		.post('http://localhost:9528/auction/nominate')
+		.post('http://' + process.env.PSO_WEB_CONTAINER_NAME + ':' + process.env.PORT + '/auction/nominate')
 		.send({ name: player.name, nominator: nominators[Math.floor(Math.random() * nominators.length)], position: player.position, situation: player.situation, status: 'active' })
 		.catch(function(error) {
 			console.log(error);
