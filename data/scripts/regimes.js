@@ -4,7 +4,7 @@ var regimes = {
 	'Jake/Luke': 'Luke',
 	'John/Zach': 'John',
 	'Koci': 'Koci/Mueller',
-	'Mitch/Mike': 'Mitch',
+	'Mitch': 'Mitch/Mike',
 	'Pat/Quinn': 'Patrick',
 	'Schex/Jeff': 'Schex',
 	'Schexes': 'Schex',
