@@ -73,7 +73,7 @@ let rotoPoll = function() {
 		.query({ 'page[offset]': 0 })
 		.query({ 'filter[player-group][group][conjunction]': 'OR' })
 		.query({ 'filter[primary-player-filter][condition][path]': 'player.meta.drupal_internal__id' })
-		.query({ 'filter[primary-player-filter][condition][value]': 302586 })
+		.query({ 'filter[primary-player-filter][condition][value]': 58336 })
 		.query({ 'filter[primary-player-filter][condition][operator]': '=' })
 		.query({ 'filter[primary-player-filter][condition][memberOf]': 'player-group' })
 		/*
