@@ -100,7 +100,7 @@ let rotoPoll = function() {
 
 let twitterPoll = function() {
 	let params = {
-		screen_name: botConfig['twitterUsername']
+		screen_name: botConfig['twitterUsername'],
 		include_rts: false
 	};
 
