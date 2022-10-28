@@ -10,6 +10,8 @@ let client = new Twitter({
 	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
+let botConfig = JSON.parse(process.env.BOMBBOT);
+
 let interval = 60000;
 
 let last = {
@@ -27,7 +29,7 @@ let last = {
 let groupMePost = function(post) {
 	request
 		.post('https://api.groupme.com/v3/bots/post')
-		.send({ bot_id: process.env.GROUPME_BOT_COLBYS_TOKEN, text: post })
+		.send({ bot_id: botConfig['groupmeToken'], text: post })
 		.then(response => {
 			console.log(post);
 		})
@@ -98,7 +100,7 @@ let rotoPoll = function() {
 
 let twitterPoll = function() {
 	let params = {
-		screen_name: 'Dynasty2Colbys',
+		screen_name: botConfig['twitterUsername']
 		include_rts: false
 	};
 

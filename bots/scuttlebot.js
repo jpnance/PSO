@@ -10,6 +10,8 @@ let client = new Twitter({
 	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
+let botConfig = JSON.parse(process.env.SCUTTLEBOT);
+
 let interval = 60000;
 
 let last = {
@@ -27,7 +29,7 @@ let last = {
 let groupMePost = function(post) {
 	request
 		.post('https://api.groupme.com/v3/bots/post')
-		.send({ bot_id: process.env.GROUPME_BOT_TOKEN, text: post })
+		.send({ bot_id: botConfig['groupmeToken'], text: post })
 		.then(response => {
 			console.log(post);
 		})
@@ -73,7 +75,7 @@ let rotoPoll = function() {
 		.query({ 'page[offset]': 0 })
 		.query({ 'filter[player-group][group][conjunction]': 'OR' })
 		.query({ 'filter[primary-player-filter][condition][path]': 'player.meta.drupal_internal__id' })
-		.query({ 'filter[primary-player-filter][condition][value]': 58336 })
+		.query({ 'filter[primary-player-filter][condition][value]': botConfig['rotowirePlayerId'] })
 		.query({ 'filter[primary-player-filter][condition][operator]': '=' })
 		.query({ 'filter[primary-player-filter][condition][memberOf]': 'player-group' })
 		/*
@@ -101,7 +103,7 @@ let rotoPoll = function() {
 let twitterPoll = function() {
 	let params = {
 		//user_id: '1055099514355437600'
-		screen_name: 'PsoScuttlebutt'
+		screen_name: botConfig['twitterUsername']
 	};
 
 	if (last.tweet.id) {
