@@ -69,19 +69,21 @@ let psoBlogPoll = function() {
 
 let rotoPoll = function() {
 	request
-		.get('https://www.rotoworld.com/api/player_news')
+		.get('https://www.nbcsportsedge.com/api/player_news')
 		.query({ sort: '-created' })
 		.query({ 'page[limit]': 1 })
 		.query({ 'page[offset]': 0 })
 		.query({ 'filter[player-group][group][conjunction]': 'OR' })
 		.query({ 'filter[primary-player-filter][condition][path]': 'player.meta.drupal_internal__id' })
-		.query({ 'filter[primary-player-filter][condition][value]': 251226 })
+		.query({ 'filter[primary-player-filter][condition][value]': botConfig['rotowirePlayerId'] })
 		.query({ 'filter[primary-player-filter][condition][operator]': '=' })
 		.query({ 'filter[primary-player-filter][condition][memberOf]': 'player-group' })
+		/*
 		.query({ 'filter[related-player-filter][condition][path]': 'related_players.meta.drupal_internal__id' })
 		.query({ 'filter[related-player-filter][condition][value]': 251226 })
 		.query({ 'filter[related-player-filter][condition][operator]': 'IN' })
 		.query({ 'filter[related-player-filter][condition][memberOf]': 'player-group' })
+		*/
 		.then(response => {
 			let newsItemId = JSON.parse(response.text).data[0].attributes.drupal_internal__id;
 
@@ -91,7 +93,7 @@ let rotoPoll = function() {
 			}
 
 			if (newsItemId != last.newsItem.id) {
-				groupMePost('https://www.rotoworld.com/football/nfl/player-news/' + newsItemId);
+				groupMePost('https://www.nbcsportsedge.com/basketball/nba/player-news/' + newsItemId);
 
 				last.newsItem.id = newsItemId;
 			}
@@ -127,5 +129,5 @@ let twitterPoll = function() {
 };
 
 setInterval(twitterPoll, interval);
-//setInterval(rotoPoll, interval);
+setInterval(rotoPoll, interval);
 //setInterval(psoBlogPoll, interval);
