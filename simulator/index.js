@@ -104,6 +104,7 @@ var render = false;
 var cutoff = null;
 var viewOnly = false;
 var dataOnly = false;
+var standingsOnly = false;
 var simulationData = { owners: {}, simulations: [] };
 
 process.argv.forEach(function(value, index, array) {
@@ -190,6 +191,10 @@ process.argv.forEach(function(value, index, array) {
 
 			case 'dataonly':
 				dataOnly = true;
+				break;
+
+			case 'standingsonly':
+				standingsOnly = true;
 				break;
 		}
 	}
@@ -304,6 +309,17 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 			});
 
 			fs.writeFileSync('../public/simulator/index.html', compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+			process.exit();
+		}
+
+		if (standingsOnly) {
+			var ownersCopy = extend(true, {}, owners);
+			var standings = computeStandings(ownersCopy).reverse();
+
+			standings.forEach((standing, i) => {
+				console.log(`${i + 1}. ${standing.name} (${owners[standing.id].wins}-${owners[standing.id].losses})`);
+			});
+
 			process.exit();
 		}
 
