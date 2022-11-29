@@ -24,12 +24,13 @@ html
 				div.col-12
 					table.table.table-hover.table-sm
 						tr
-							th.text-center(colspan=8) -- Simulations
+							th.text-center(colspan=9) -- Simulations
 
 						tr
+							th
 							th Owner
 							th.text-right Playoffs
-							th.text-right The Decision
+							th.d-none.d-sm-table-cell.text-right The Decision
 							th.d-none.d-sm-table-cell.text-right First Pick
 							th.text-right Finishes
 							th.d-none.d-md-table-cell.text-right 9-6 and Out
@@ -38,9 +39,10 @@ html
 
 						each n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 							tr
+								td
 								td --
 								td.text-right --
-								td.text-right --
+								td.d-none.d-sm-table-cell.text-right --
 								td.d-none.d-sm-table-cell.text-right --
 								td.text-right --
 								td.d-none.d-md-table-cell.text-right --

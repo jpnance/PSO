@@ -982,10 +982,14 @@ function initializeOwners() {
 		owner.stdev = Math.sqrt(variance / (games - 1));
 	}
 
+	var ownersCopy = extend(true, {}, owners);
+	var currentStandings = computeStandings(ownersCopy).reverse();
+
 	for (ownerId in owners) {
 		var owner = owners[ownerId];
+		var currentStanding = currentStandings.findIndex((owner) => owner.id == ownerId);
 
-		simulationData.owners[ownerFranchiseIds[ownerId]] = { id: ownerFranchiseIds[ownerId], wins: owner.wins, losses: owner.losses };
+		simulationData.owners[ownerFranchiseIds[ownerId]] = { id: ownerFranchiseIds[ownerId], wins: owner.wins, losses: owner.losses, currentStanding: currentStanding + 1 };
 	}
 }
 

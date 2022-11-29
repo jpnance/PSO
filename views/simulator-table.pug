@@ -1,11 +1,12 @@
 table.table.table-hover.table-sm
 	tr
-		th.text-center(colspan=8) #{options.trials.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')} Simulations
+		th.text-center(colspan=9) #{options.trials.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')} Simulations
 
 	tr
+		th
 		th Owner
 		th.text-right Playoffs
-		th.text-right The Decision
+		th.d-none.d-sm-table-cell.text-right The Decision
 		th.d-none.d-sm-table-cell.text-right First Pick
 		th.text-right Finishes
 		th.d-none.d-md-table-cell.text-right 9-6 and Out
@@ -14,12 +15,13 @@ table.table.table-hover.table-sm
 
 	each result in results
 		tr
+			td.text-center #{result.owner.currentStanding}
 			td #{result.owner.name}
 				|
 				|
 				span.d-none.d-md-inline (#{result.owner.wins}-#{result.owner.losses})
 			td.text-right #{result.playoffs.toFixed(3)}
-			td.text-right #{result.decision.toFixed(3)}
+			td.d-none.d-sm-table-cell.text-right #{result.decision.toFixed(3)}
 			td.d-none.d-sm-table-cell.text-right #{result.firstPick.toFixed(3)}
 			td.text-right
 				-
