@@ -44,7 +44,7 @@ var newSheetsPromise = function() {
 							else {
 								cash.push({
 									season: season,
-									owner: owners[i],
+									owner: owners[i - 2],
 									remaining: parseInt(row[i].replace('$', ''))
 								});
 							}
