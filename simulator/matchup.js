@@ -67,5 +67,5 @@ function simulate(trials, owners) {
 simulate(trials, owners);
 
 for (i in owners) {
-	console.log(owners[i].name + ': ' + owners[i].wins + '-' + owners[i].losses + ' (' + (owners[i].wins / (owners[i].wins + owners[i].losses)) + ')');
+	console.log(owners[i].name + ': ' + owners[i].wins + '-' + owners[i].losses + ' (' + (owners[i].wins / (owners[i].wins + owners[i].losses)).toFixed(3) + ')');
 }
