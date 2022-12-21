@@ -145,7 +145,7 @@ Promise.all(dataPromises).then(function(values) {
 	if (week > 1 && week < 16 && Object.keys(rpoOptions).length != 12) {
 		throw 'We need twelve franchises represented in the RPO data for this week and we only have ' + Object.keys(rpoOptions).length;
 	}
-	else if (week > 1 && week >= 16 && week < 18 && Object.keys(rpoOptions).length != 4) {
+	else if (week > 1 && week >= 17 && week < 18 && Object.keys(rpoOptions).length != 4) {
 		throw 'We need four franchises represented in the RPO data for this week and we only have ' + Object.keys(rpoOptions).length;
 	}
 
