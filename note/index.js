@@ -206,7 +206,7 @@ Promise.all(dataPromises).then(function(values) {
 	thisWeek = orderedThisWeek;
 
 	if (week > 1) {
-		var highScorerAllPlayWins = (week < 16) ? 11 : 3;
+		var highScorerAllPlayWins = (week <= 16) ? 11 : 3;
 		var highScorerLastWeek = games.filter(game => game.week == (week - 1) && ((game.winner.franchiseId == game.home.franchiseId && game.home.record.allPlay.week.wins == highScorerAllPlayWins) || (game.winner.franchiseId == game.away.franchiseId && game.away.record.allPlay.week.wins == highScorerAllPlayWins)))[0];
 		var highScorerSeason = games.filter(game => ((game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.home.record.allPlay.week.wins == 11) || (game.winner.franchiseId == highScorerLastWeek.winner.franchiseId && game.away.record.allPlay.week.wins == 11)));
 		var highScorerAllTime = scoringTitles.filter(leader => leader._id == highScorerLastWeek.winner.name)[0];
