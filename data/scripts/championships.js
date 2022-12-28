@@ -27,7 +27,9 @@ Game.mapReduce({
 	out: 'championships',
 
 	query: {
-		type: 'championship'
+		type: 'championship',
+		'away.score': { '$exists': true },
+		'home.score': { '$exists': true }
 	},
 
 	sort: {
