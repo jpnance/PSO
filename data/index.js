@@ -43,8 +43,7 @@ var newWeekPromise = function(week) {
 
 					psoTeam.franchiseId = team.roster_id;
 					psoTeam.name = PSO.franchises[team.roster_id];
-					psoTeam.score = team.points || parseFloat(team.custom_points);
-					psoTeam.score = parseFloat(team.points.toFixed(2));
+					psoTeam.score = team.custom_points ? parseFloat(team.custom_points.toFixed(2)) : parseFloat(team.points.toFixed(2));
 
 					sleeperMatchups[team.matchup_id].push(psoTeam);
 				});
