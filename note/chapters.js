@@ -46,7 +46,7 @@ fs.readFile('./tracks.txt', 'utf8' , (error, data) => {
 		return
 	}
 
-	var chapterStrings = data.split("\r\n");
+	var chapterStrings = data.split("\n");
 
 	chapterStrings.forEach(chapterString => {
 		var chapterData = chapterString.split("\t");
