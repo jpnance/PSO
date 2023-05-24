@@ -25,6 +25,7 @@ var mongoOwners = {
 	'Justin': 'justin',
 
 	'Trevor': 'trevor',
+	'Mike': 'mike',
 
 	'Keyon': 'keyon',
 
@@ -47,8 +48,8 @@ var mongoOwners = {
 	'Charles': 'charles',
 	'Quinn': 'quinn',
 
-	'Mitch': 'mitch',
-	'Mitch/Mike': 'mitchMike'
+	'Mitch/Mike': 'mitchMike',
+	'Mitch': 'mitch'
 };
 
 var ownerFranchiseIds = {
@@ -68,6 +69,7 @@ var ownerFranchiseIds = {
 	'justin': 4,
 
 	'trevor': 5,
+	'mike': 5,
 
 	'keyon': 6,
 
@@ -90,8 +92,8 @@ var ownerFranchiseIds = {
 	'charles': 11,
 	'quinn': 11,
 
-	'mitch': 12,
-	'mitchMike': 12
+	'mitchMike': 12,
+	'mitch': 12
 };
 
 var manualWinners = {};
