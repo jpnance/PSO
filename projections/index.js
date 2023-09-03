@@ -170,20 +170,65 @@ newByeWeeksPromise()
 			}
 		});
 
-		var weeks = {};
+		var schedule = require('../public/data/schedule.json');
 
 		for (var week = 1; week <= 15; week++) {
-			weeks[week] = [];
-
-			Object.values(PSO.franchises).forEach((owner) => {
-				weeks[week].push({ owner: owner, points: Math.round(pointsForOwnerWeek(players, owner, week)) });
-			});
-
-			weeks[week].sort((a, b) => b.points - a.points);
+			schedule[week] = schedule[week].map((matchup) => matchup.map((franchise) => ({
+				...franchise,
+				points: Math.round(pointsForOwnerWeek(players, franchise.name, week))
+			})));
 		}
 
-		console.log(weeks);
+		var franchiseResults = {};
+
+		Object.values(PSO.franchises).forEach((name) => {
+			Object.values(schedule)
+				.flat()
+				.filter((matchup) => matchup.find((franchise) => franchise.name === name))
+				.forEach((game, i) => {
+					var franchise = game.find((franchise) => franchise.name === name);
+					var opponent = game.find((franchise) => franchise.name !== name);
+
+					if (!franchiseResults[franchise.name]) {
+						franchiseResults[franchise.name] = {};
+					}
+
+					if (!franchiseResults[opponent.name]) {
+						franchiseResults[opponent.name] = {};
+					}
+
+					if (franchiseResults[franchise.name][i] && franchiseResults[opponent.name][i]) {
+						return;
+					}
+
+					if (franchise.points > opponent.points + 5) {
+						franchiseResults[franchise.name][i] = 'W';
+						franchiseResults[opponent.name][i] = 'L';
+					}
+					else if (franchise.points + 5 < opponent.points) {
+						franchiseResults[franchise.name][i] = 'L';
+						franchiseResults[opponent.name][i] = 'W';
+					}
+					else {
+						if (Math.random() > 0.5) {
+							franchiseResults[franchise.name][i] = 'W*';
+							franchiseResults[opponent.name][i] = 'L*';
+						}
+						else {
+							franchiseResults[franchise.name][i] = 'L*';
+							franchiseResults[opponent.name][i] = 'W*';
+						}
+					}
+				});
+		});
+
+		Object.keys(franchiseResults).forEach((name) => {
+			var results = Object.values(franchiseResults[name]);
+
+			console.log([ name, ...results ].join(','));
+		});
 	});
+
 
 /*
 newPlayersPromise().then(players => {
