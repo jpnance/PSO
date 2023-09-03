@@ -49,6 +49,7 @@ module.exports.regimes = {
 };
 
 module.exports.sleeperLeagueIds = {
+	2023: '992120664913969152',
 	2022: '817129464579350528',
 	2021: '746826510043856896'
 };
