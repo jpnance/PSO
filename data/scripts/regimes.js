@@ -1,3 +1,6 @@
+/* STOP USING THIS FILE */
+/* LOAD IN THE REGIMES FROM PSO.JS INSTEAD */
+
 var regimes = {
 	'Brett/Luke': 'Luke',
 	'Charles': 'James/Charles',
