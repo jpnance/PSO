@@ -142,7 +142,7 @@ var newWeekPromise = function(week) {
 
 var weekPromises = [];
 
-for (var week = 1; week <= 17; week++) {
+for (var week = 1; week <= 15; week++) {
 	weekPromises.push(newWeekPromise(week));
 }
 
