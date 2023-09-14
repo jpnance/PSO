@@ -17,6 +17,9 @@ if (process.argv.length < 3) {
 	process.exit();
 }
 
+var season = process.env.SEASON;
+var sleeperLeagueId = PSO.sleeperLeagueIds[season];
+
 var week = parseInt(process.argv[2]);
 var cohost = process.argv[3];
 var lastWeekCohost = process.argv[4] || cohost;
@@ -97,10 +100,10 @@ function isJaguarGame(franchiseOne, franchiseTwo) {
 }
 
 var dataPromises = [
-	Game.find({ season: process.env.SEASON }).sort({ week: 1 }),
+	Game.find({ season: season }).sort({ week: 1 }),
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
-	require('./rpo-data.json').filter((rpo) => rpo.week == week - 1),
-	request.get('https://api.sleeper.app/v1/league/817129464579350528/matchups/' + (week - 1))
+	require('./rpo-data.json').filter((rpo) => rpo.season == season && rpo.week == week - 1),
+	request.get(`https://api.sleeper.app/v1/league/${sleeperLeagueId}/matchups/${week - 1}`)
 ];
 
 Promise.all(dataPromises).then(function(values) {

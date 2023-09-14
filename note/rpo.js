@@ -95,7 +95,7 @@ rl.on('line', (line) => {
 			break;
 
 		case 'rpos':
-			let filteredRpos = rpos.filter((rpo) => rpo.week == context.week).sort((a, b) => a.owner < b.owner ? 1 : -1 );
+			let filteredRpos = rpos.filter((rpo) => rpo.season == context.season && rpo.week == context.week).sort((a, b) => a.owner < b.owner ? 1 : -1 );
 
 			console.log('Week', context.week, '-', context.season);
 			filteredRpos.forEach((rpo) => {
