@@ -1,6 +1,6 @@
 var request = require('superagent');
 
-var players = require('../public/data/merged.json');
+var players = require('../public/data/players.json');
 
 var positionCount = {
 	QB: 0,
