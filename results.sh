@@ -34,3 +34,8 @@ cd jaguar
 mkdir -p ../public/jaguar
 node index.js render
 cd ..
+
+cd rookies
+mkdir -p ../public/rookies
+node index.js render
+cd ..
