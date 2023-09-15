@@ -128,6 +128,6 @@ let twitterPoll = function() {
 	});
 };
 
-setInterval(twitterPoll, interval);
-setInterval(rotoPoll, interval);
+//setInterval(twitterPoll, interval);
+//setInterval(rotoPoll, interval);
 setInterval(psoBlogPoll, interval);
