@@ -1,6 +1,13 @@
+var dotenv = require('dotenv').config({ path: '/app/.env' });
+
 var request = require('superagent');
 
 var players = require('../public/data/players.json');
+
+var PSO = require('../pso.js');
+
+var season = process.env.SEASON;
+var sleeperLeagueId = PSO.sleeperLeagueIds[season];
 
 var positionCount = {
 	QB: 0,
@@ -14,7 +21,7 @@ var positionCount = {
 };
 
 request
-	.get('https://api.sleeper.app/v1/league/817129464579350528/matchups/1')
+	.get(`https://api.sleeper.app/v1/league/${sleeperLeagueId}/matchups/1`)
 	.then((response) => {
 		var teams = response.body;
 
