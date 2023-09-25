@@ -1,5 +1,6 @@
 var auction = require('./auction/service.js');
 var simulator = require('./simulator/service.js');
+var scuttlebot = require('./scuttlebot/service.js');
 
 module.exports = function(app) {
 	app.get('/', function(request, response) {
@@ -23,4 +24,7 @@ module.exports = function(app) {
 	app.post('/simulator', simulator.filterByConditions);
 	app.post('/simulator/:conditions', simulator.filterByConditions);
 	app.get('/simulator/clear', simulator.clearCache);
+
+	app.get('/scuttlebot', scuttlebot.prompt);
+	app.post('/scuttlebot/message', scuttlebot.postMessage);
 };

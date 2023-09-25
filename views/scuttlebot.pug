@@ -1,0 +1,40 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+
+		script(src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js" defer)
+
+		title PSO SCUTTLEBOT
+
+	body
+		section.container
+			div.row.justify-content-center.py-5
+				div.col-10.col-md-6
+					h1 PSO Scuttlebot
+					form(
+						action="/scuttlebot/message"
+						method="POST"
+					)
+						div.form-group
+							div(
+								x-data=`{
+									message: '',
+									characterLimit: ${characterLimit}
+								}`
+							)
+								textarea.form-control(
+									name="message"
+									placeholder=prompt
+									rows="5"
+									required
+									x-model="message"
+									maxlength=characterLimit
+								)
+								p.text-right: small(x-text="[message.length, characterLimit].join(' / ')")
+
+						div.field
+							button.btn.btn-primary(type="submit") Post Message
