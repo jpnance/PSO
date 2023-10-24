@@ -30,7 +30,7 @@ const siteData = {
 			to: [ 0.0, 0.6, 0.9, 1.1, 1.5 ]
 		},
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=ijj4f9ekku2mrnul&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=g7xcurksln93iz5v&seasonOrProjection=PROJECTION_0_41b_SEASON&statusOrTeamFilter=ALL'
 	}
 };
 
