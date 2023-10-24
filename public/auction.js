@@ -156,7 +156,7 @@ var redrawAuctionClient = function(auctionData) {
 	var attendance = $('<ul id="attendance" class="list-group col-12">');
 
 	auctionData.rollCall.forEach(owner => {
-		var ownerIndex = owners.indexOf(bid.owner);
+		var ownerIndex = owners.indexOf(owner);
 		var ownerClass = 'owner-' + ownerIndex + '-bid';
 		var present = $('<li class="list-group-item ' + ownerClass + '"><strong>' + owner + '</strong></li>');
 
