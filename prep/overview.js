@@ -454,21 +454,62 @@ var newFantraxPromise = function(players) {
 						return;
 					}
 
-					// "Player","Team","Position","Rk","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
+					// "ID","Player","Team","Position","Rk","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
+					//
+					// 0 => "ID"
+					// 1 => "Player"
+					// 2 => "Team"
+					// 3 => "Position"
+					// 4 => "RkOv"
+					// 5 => "Status"
+					// 6 => "Age"
+					// 7 => "Opponent"
+					// 8 => "Salary"
+					// 9 => "Contract"
+					// 10 => "Score"
+					// 11 => "GP"
+					// 12 => "FG%"
+					// 13 => "3PTM"
+					// 14 => "FTM"
+					// 15 => "FT%"
+					// 16 => "PTS"
+					// 17 => "REB"
+					// 18 => "AST"
+					// 19 => "ST"
+					// 20 => "BLK"
+					// 21 => "TO"
+
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
 					if (fields.length == 1) {
 						return;
 					}
 
-					var id = nameToId(fields[1]);
-					var positions = fields[3].split(/,/);
+					var row = {
+						name: fields[1],
+						team: fields[2],
+						positions: fields[3].split(/,/),
+						score: parseFloat(fields[10]),
+						gamesPlayed: parseInt(fields[11]),
+						'fg%': parseFloat(fields[12]),
+						'3pm': parseInt(fields[13]),
+						ftm: parseInt(fields[14]),
+						'ft%': parseFloat(fields[15]),
+						pts: parseInt(fields[16]),
+						reb: parseInt(fields[17]),
+						ast: parseInt(fields[18]),
+						stl: parseInt(fields[19]),
+						blk: parseInt(fields[20]),
+						to: parseInt(fields[21])
+					};
+
+					var id = nameToId(row.name);
 
 					var player = players.find(player => player.id == id);
 
-					if (player && positions.some((position) => player.positions.indexOf(position) > -1)) {
-						player.team = fields[2];
-						player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
+					if (player && row.positions.some((position) => player.positions.indexOf(position) > -1)) {
+						player.team = row.team;
+						player.positions = row.positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
 
 						if (player.fantraxProjections) {
 							console.log('Dirty data with', player.name, '(' + player.team + ')');
@@ -488,21 +529,21 @@ var newFantraxPromise = function(players) {
 						*/
 
 						// colbys
-						player.fantraxProjections.gamesPlayed = parseInt(fields[13]);
+						player.fantraxProjections.gamesPlayed = row.gamesPlayed;
 
-						player.fantraxProjections.score = parseFloat(fields[10]);
+						player.fantraxProjections.score = row.score;
 						player.fantraxProjections.ratingSum = 0;
 
-						player.fantraxProjections.raw['fg%'] = parseFloat(fields[14]);
-						player.fantraxProjections.raw['3pm'] = parseInt(fields[15]);
-						player.fantraxProjections.raw.ftm = parseInt(fields[16]);
-						player.fantraxProjections.raw['ft%'] = parseFloat(fields[17]);
-						player.fantraxProjections.raw.pts = parseInt(fields[18]);
-						player.fantraxProjections.raw.reb = parseInt(fields[19]);
-						player.fantraxProjections.raw.ast = parseInt(fields[20]);
-						player.fantraxProjections.raw.stl = parseInt(fields[21]);
-						player.fantraxProjections.raw.blk = parseInt(fields[22]);
-						player.fantraxProjections.raw.to = parseInt(fields[23]);
+						player.fantraxProjections.raw['fg%'] = row['fg%'];
+						player.fantraxProjections.raw['3pm'] = row['3pm'];
+						player.fantraxProjections.raw.ftm = row.ftm;
+						player.fantraxProjections.raw['ft%'] = row['ft%'];
+						player.fantraxProjections.raw.pts = row.pts;
+						player.fantraxProjections.raw.reb = row.reb;
+						player.fantraxProjections.raw.ast = row.ast;
+						player.fantraxProjections.raw.stl = row.stl;
+						player.fantraxProjections.raw.blk = row.blk;
+						player.fantraxProjections.raw.to = row.to;
 
 						Object.keys(player.fantraxProjections.raw).forEach(statKey => {
 							if (!statKey.includes('%')) {
@@ -559,14 +600,14 @@ var newSheetsPromise = function(fantraxId) {
 						salary: row[5] ? parseInt(row[5].substring(1)) : null
 					};
 
-					if (player.end == '2020') {
+					if (player.end == '2022') {
 						player.salary = 0;
 
-						if (player.start == '2019' || player.start == '2018') {
+						if (player.start == '2021' || player.start == '2020') {
 							player.rfa = true;
 							player.contract = 'RFA';
 						}
-						else if (player.start != '2021') {
+						else if (player.start != '2022') {
 							player.ufa = true;
 							player.contract = 'UFA';
 
@@ -576,7 +617,7 @@ var newSheetsPromise = function(fantraxId) {
 
 					if (!player.end) {
 						player.end = undefined;
-						player.contract = '21/?';
+						player.contract = '23/?';
 					}
 
 					if (!player.contract && player.start && player.end) {
@@ -711,6 +752,6 @@ newSheetsPromise().then(players => {
 
 		displayPlayers(filteredPlayers);
 
-		//console.log(JSON.stringify(players, null, '  '));
+		//console.log(JSON.stringify(filteredPlayers, null, '  '));
 	});
 });
