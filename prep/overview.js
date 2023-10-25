@@ -607,7 +607,7 @@ var newSheetsPromise = function(fantraxId) {
 							player.rfa = true;
 							player.contract = 'RFA';
 						}
-						else if (player.start != '2022') {
+						else if (player.start != '2023') {
 							player.ufa = true;
 							player.contract = 'UFA';
 
