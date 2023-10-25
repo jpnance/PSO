@@ -708,7 +708,7 @@ var scoreStyler = function(score) {
 
 	var reset = '\x1b[0m';
 
-	return color + score + reset;
+	return color + parseFloat(score).toFixed(2) + reset;
 };
 
 var sortPlayers = function(a, b) {
