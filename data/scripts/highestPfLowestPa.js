@@ -1,3 +1,7 @@
+/*
+	This outputs any time it sees that a team has the highest PF and lowest PA starting in Week 7 or later each season.
+*/
+
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var mongoose = require('mongoose');
