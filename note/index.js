@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 if (process.argv.length < 3) {
 	console.log('Invalid week');
-	console.log('Usage: node index.js <week> [co-host name] [last week co-host name] <last week\'s games order> <this week\'s games order>');
+	console.log('Usage: node index.js <week> <co-host name> <last week co-host name> <last week\'s games order> <this week\'s games order> <RPO score overrides>');
 	process.exit();
 }
 
@@ -25,6 +25,10 @@ var cohost = process.argv[3];
 var lastWeekCohost = process.argv[4] || cohost;
 var lastWeekGamesOrder = process.argv[5]?.split(',').map((index) => parseInt(index));
 var thisWeekGamesOrder = process.argv[6]?.split(',').map((index) => parseInt(index));
+var rpoPointsOverrides = process.argv[7]?.split(',').map(pair => pair.split('=')).reduce((rpoPointsOverrideMap, pair) => {
+	rpoPointsOverrideMap[pair[0]] = parseFloat(pair[1]);
+	return rpoPointsOverrideMap;
+}, {}) || {};
 
 function csvToRpoMap(csv) {
 	var lines = csv.split(/\n/)
@@ -123,7 +127,7 @@ Promise.all(dataPromises).then(function(values) {
 
 	weekResults.forEach((weekResult) => {
 		Object.keys(weekResult.players_points).forEach((playerId) => {
-			playerPoints[playerId] = weekResult.players_points[playerId] || 0;
+			playerPoints[playerId] = weekResult.players_points[playerId] ?? 0.0;
 		});
 	});
 
@@ -142,7 +146,7 @@ Promise.all(dataPromises).then(function(values) {
 			offeredRpos[rpo.owner] = rpo;
 		}
 
-		rpo.player.points = playerPoints[rpo.player.id];
+		rpo.player.points = playerPoints[rpo.player.id] ?? rpoPointsOverrides[rpo.player.id];
 	});
 
 	if (week > 1 && week < 16 && Object.keys(rpoOptions).length != 12) {
@@ -156,6 +160,12 @@ Promise.all(dataPromises).then(function(values) {
 		if (rpoOptions[rpoKey].length != 2) {
 			throw 'We need two players offered for every franchise and ' + rpoKey + ' only has ' + rpoOptions[rpoKey].length;
 		}
+
+		rpoOptions[rpoKey].forEach(rpo => {
+			if (rpo.player.points === undefined) {
+				throw `We weren't able to get points data for ${rpo.player.name} (${rpo.player.id}). Please use the override parameter like: ${rpo.player.id}=3.45`;
+			}
+		});
 	});
 
 	if (week > 7) {
