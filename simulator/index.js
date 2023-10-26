@@ -279,7 +279,8 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 				game['away']['score'] = away['score'];
 				game['home']['score'] = home['score'];
 
-				game['winner'] = mongoOwners[winner['name']];
+				game['winner'] = doc['winner'];
+				game['loser'] = doc['loser'];
 
 				if (!results[week]) {
 					results[week] = [];
@@ -310,7 +311,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 				});
 			});
 
-			fs.writeFileSync('../public/simulator/index.html', compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+			fs.writeFileSync('../public/simulator/index.html', compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, results: results, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 			process.exit();
 		}
 

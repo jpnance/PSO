@@ -242,7 +242,23 @@ module.exports.filterByConditions = function(request, response) {
 			}
 		}
 
-		pugResults.push({ owner: { name: name, wins: simulationData.owners[franchiseId].wins, losses: simulationData.owners[franchiseId].losses, currentStanding: simulationData.owners[franchiseId].currentStanding, finishes: summary.finishes }, playoffs: inPct, decision: decisionPct, firstPick: firstPickPct, avgFinish: averageFinish, nineAndOut: nineWinMissRate, tenAndOut: tenWinMissRate, elevenAndOut: elevenWinMissRate, finishesString: finishesString });
+		pugResults.push({
+			owner: {
+				name: name,
+				wins: simulationData.owners[franchiseId].wins,
+				losses: simulationData.owners[franchiseId].losses,
+				currentStanding: simulationData.owners[franchiseId].currentStanding,
+				finishes: summary.finishes
+			},
+			playoffs: inPct,
+			decision: decisionPct,
+			firstPick: firstPickPct,
+			avgFinish: averageFinish,
+			nineAndOut: nineWinMissRate,
+			tenAndOut: tenWinMissRate,
+			elevenAndOut: elevenWinMissRate,
+			finishesString: finishesString
+		});
 	});
 
 	pugResults.sort(function(a, b) {

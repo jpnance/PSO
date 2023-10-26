@@ -53,6 +53,23 @@ html
 				div.text-center.col-12.py-2
 					button.reset-simulator.btn.btn-warning Reset Simulator
 
+			details.mb-4
+				summary.mb-4 Past Results
+				each games, week in results
+					div.row
+						div.mb-4.col-12
+							h5 Week #{week}
+
+							each game in games
+								- var buttonName = 'week' + week + '-' + game.away.franchiseId + '-' + game.home.franchiseId;
+
+								ul.col-6.col-sm-4.col-lg-2.d-inline-flex.list-group.list-group-sm.text-center.my-2.px-2
+									li.list-group-item.list-group-item-primary #{franchises[game.winner.franchiseId]}
+									li.list-group-item vs.
+									li.list-group-item #{franchises[game.loser.franchiseId]}
+
+			hr
+
 			each games, week in schedule
 				div.row
 					div.mb-4.col-12
