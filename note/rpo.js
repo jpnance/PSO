@@ -193,7 +193,7 @@ const findPlayerById = (id) => {
 
 const findPlayersByName = (name) => {
 	return Object.values(sleeperPlayers).filter((sleeperPlayer) => {
-		return sleeperPlayer.full_name?.toLowerCase().includes(name.toLowerCase());
+		return sleeperPlayer.full_name?.toLowerCase().replace(/[ \.']/g, '').includes(name.toLowerCase());
 	});
 };
 
