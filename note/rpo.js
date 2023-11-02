@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config({ path: '/app/.env' });
 const PSO = require('../pso');
 
 const completer = (line) => {
-	const completions = 'add context exit find offerer owner pick rpos save selector switch week'.split(' ');
+	const completions = 'add context exit find offerer owner pick remove rpos save selector switch week'.split(' ');
 	const hits = completions.filter((c) => c.startsWith(line));
 
 	return [ hits.length ? hits : completions, line ];
