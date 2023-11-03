@@ -25,6 +25,9 @@ module.exports = function(app) {
 	app.post('/simulator/:conditions', simulator.filterByConditions);
 	app.get('/simulator/clear', simulator.clearCache);
 
+	app.get('/scuttlebutt', (request, response) => {
+		response.redirect('/scuttlebot');
+	});
 	app.get('/scuttlebot', scuttlebot.prompt);
 	app.post('/scuttlebot/message', scuttlebot.postMessage);
 };
