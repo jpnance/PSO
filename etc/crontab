@@ -1,2 +1,3 @@
-*/5 * * * *	/bin/sh /app/data.sh
-8 6-16 * * 2,3,4	/bin/sh /app/results.sh
+*/5 * * * * /bin/sh /app/data.sh
+8 6-16 * * 2,3,4 /bin/sh /app/results.sh
+33 3 */2 * * wget -O /app/public/data/sleeper-data.json https://api.sleeper.app/v1/players/nfl
