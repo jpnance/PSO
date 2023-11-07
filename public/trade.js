@@ -1,6 +1,5 @@
 var tradeMachine = {
 	deal: {},
-	wordpressToken: null,
 
 	toggleFranchiseInvolvement: (franchiseId) => {
 		if (!tradeMachine.deal[franchiseId]) {
@@ -195,8 +194,8 @@ var tradeMachine = {
 	},
 
 	postToWordpress: () => {
-		if (!tradeMachine.wordpressToken) {
-			tradeMachine.wordpressToken = window.prompt('Enter WordPress token')
+		if (!getCookie('wordpressToken')) {
+			setCookie('wordpressToken', window.prompt('Enter WordPress token'));
 		}
 
 		var defaultTime = new Date();
@@ -232,7 +231,7 @@ var tradeMachine = {
 				$.ajax({
 					method: 'POST',
 					headers: {
-						'Authorization': 'Bearer ' + tradeMachine.wordpressToken
+						'Authorization': 'Bearer ' + getCookie('wordpressToken')
 					},
 					url: 'https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts',
 					data: postData,
@@ -431,3 +430,15 @@ $(document).ready(function() {
 		tradeMachine.reset();
 	});
 });
+
+function deleteCookie(name) {
+	document.cookie = `${name}=; expires=${(new Date(0)).toUTCString()}; samesite=lax`;
+}
+
+function getCookie(name) {
+	return document.cookie.split(/; /).find((row) => row.startsWith(`${name}=`))?.split(/=/)[1];
+}
+
+function setCookie(name, value) {
+	document.cookie = `${name}=${value}; samesite=lax`;
+}
