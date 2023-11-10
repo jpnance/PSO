@@ -54,7 +54,7 @@ fs.readFile('./tracks.txt', 'utf8' , (error, data) => {
 		var chapterName = chapterData[2];
 
 		if (timestamp != NaN && chapterName) {
-			console.log(formatTimestamp(timestamp), chapterName + '<br />');
+			console.log(formatTimestamp(timestamp), chapterName + '<br>');
 		}
 	});
 });
