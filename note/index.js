@@ -31,17 +31,16 @@ var rpoPointsOverrides = process.argv[7]?.split(',').map(pair => pair.split('=')
 	return rpoPointsOverrideMap;
 }, {}) || {};
 
-var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', { encoding: 'utf8' }));
-
 var dataPromises = [
 	Game.find({ season: season }).sort({ week: 1 }),
 	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
 	require('./rpo-data.json').filter((rpo) => rpo.season == season && rpo.week == week - 1),
-	request.get(`https://api.sleeper.app/v1/league/${sleeperLeagueId}/matchups/${week - 1}`)
+	request.get(`https://api.sleeper.app/v1/league/${sleeperLeagueId}/matchups/${week - 1}`),
+	require('../public/data/percentages.json')
 ];
 
 Promise.all(dataPromises).then(function(values) {
-	console.log(note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values));
+	console.log(note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, values));
 	mongoose.disconnect();
 }).catch(error => {
 	console.log(error);
