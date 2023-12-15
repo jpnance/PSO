@@ -1,4 +1,3 @@
-superagent: Enable experimental feature http2
 SOUND EFFECTS
 
 Intro
