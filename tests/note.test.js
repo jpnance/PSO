@@ -58,7 +58,7 @@ it('should work', () => {
 	const lastWeekGamesOrder = [1, 3, 4, 6, 5, 2];
 	const thisWeekGamesOrder = [4, 1, 5, 6, 2, 3];
 	const rpoPointsOverrides = {};
-	const percentagesData = JSON.parse(fs.readFileSync('./tests/percentages.json', { encoding: 'utf8' }));
+	const percentagesData = readAsJson('./tests/percentages.json');
 
 	const output = fs.readFileSync('./tests/note.txt', { encoding: 'utf8' });
 
