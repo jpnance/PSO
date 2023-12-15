@@ -75,13 +75,14 @@ function printLine(...args) {
 	return args.join(' ') + '\r\n';
 }
 
-function execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values) {
+function execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, values) {
 	var returnNote = '';
 
 	var games = values[0];
 	var scoringTitles = values[1];
 	var weekRpos = values[2];
 	var weekResults = values[3].body;
+	var percentagesData = values[4];
 
 	var rpoOptions = {};
 	var selectedRpos = {};

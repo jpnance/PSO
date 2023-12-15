@@ -60,12 +60,13 @@ it('should work', () => {
 		games,
 		scoringTitles,
 		weekRpos,
-		weekResults
+		weekResults,
+		percentagesData
 	];
 
 	const expected = fs.readFileSync('./tests/note.txt', { encoding: 'utf8' });
 
-	const result = note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values);
+	const result = note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, values);
 
 	expect(result).toBe(expected);
 });
