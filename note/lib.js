@@ -72,7 +72,7 @@ function isJaguarGame(franchiseOne, franchiseTwo) {
 }
 
 function printLine(...args) {
-	return args.join(' ') + '\n';
+	return args.join(' ') + '\r\n';
 }
 
 function execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values) {

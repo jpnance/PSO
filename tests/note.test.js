@@ -64,10 +64,5 @@ it('should work', () => {
 
 	const result = note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values);
 
-	const n = 15;
-	for (let what = 0; what < n; what++) {
-		console.log(result.charCodeAt(what), expected.charCodeAt(what));
-		expect(result.substring(0, what)).toBe(expected.substring(0, what));
-	}
-	//expect(result).toBe(expected);
+	expect(result).toBe(expected);
 });
