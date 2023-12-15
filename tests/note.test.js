@@ -1,38 +1,13 @@
 const fs = require('fs');
 const note = require('../note/lib.js');
 
+function readAsJson(filename) {
+	return JSON.parse(fs.readFileSync(filename, { encoding: 'utf8' }));
+}
+
 it('should work', () => {
 	// node index.js 15 Jason Charles 1,3,4,6,5,2 4,1,5,6,2,3
-	const games = [
-		{
-			week: 14,
-			away: {
-				franchiseId: 10,
-				record: {
-					allPlay: {
-						week: {
-							wins: 11
-						}
-					}
-				},
-			},
-			home: {
-				franchiseId: 1,
-				record: {
-					allPlay: {
-						week: {
-							wins: 10
-						}
-					}
-				},
-			},
-			winner: {
-				franchiseId: 10,
-				name: 'Schex',
-				score: 179.76
-			}
-		}
-	];
+	const games = readAsJson('./tests/games.json');
 
 	const scoringTitles = [
 		{
