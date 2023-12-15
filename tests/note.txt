@@ -1,0 +1,194 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 15 of the 2023 season!
+	I am Patrick, joined, as always, by Jason
+	BANTER_PROMPT
+
+Week 14 Recaps
+	Koci/Mueller defeat Mitch, 120.08 to 119.18
+		Koci/Mueller
+			Jason offered Rashee Rice and Zay Flowers
+			Patrick selected Rashee Rice (11.20)
+			Jason received Zay Flowers (14.00)
+			Koci/Mueller to 10-4 (1.000/1.000/1.000)
+			Last game: Quinn
+		Mitch
+			Patrick offered Cooper Kupp and Tee Higgins
+			Jason selected Cooper Kupp (17.50)
+			Patrick received Tee Higgins (7.20)
+			Mitch to 10-4 (1.000/1.000/1.000)
+			Last game: Keyon
+		RPO_MATCHUP_SUMMARY: Pat 0, Charles 0
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Keyon defeats Jason, 139.36 to 111.50
+		Keyon
+			Patrick offered Drake London and Gabe Davis
+			Jason selected Drake London (19.20)
+			Patrick received Gabe Davis (0.00)
+			Keyon to 8-6 (.000/.000/.000)
+			Last game: Mitch
+		Jason
+			Jason offered Marquez Valdes-Scantling and Allen Lazard
+			Patrick selected Marquez Valdes-Scantling (2.20)
+			Jason received Allen Lazard (0.00)
+			Jason to 4-10 (.000/.000/.000)
+			Last game: James/Charles
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 0
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Schex defeats Patrick, 181.76 to 141.27
+		JAGUAR GAME
+		Schex
+			Jason offered Gardner Minshew and Jared Goff
+			Patrick selected Gardner Minshew (11.10)
+			Jason received Jared Goff (0.44)
+			Schex to 8-6 (.000/.000/.000)
+			Last game: Brett
+		Patrick
+			Patrick offered Adam Thielen and Jonathan Mingo
+			Jason selected Adam Thielen (7.40)
+			Patrick received Jonathan Mingo (2.20)
+			Patrick to 6-8 (.000/.000/.000)
+			Last game: Luke
+		RPO_MATCHUP_SUMMARY: Pat 2, Charles 0
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mike defeats Quinn, 136.02 to 116.33
+		Mike
+			Jason offered George Kittle and Jerry Jeudy
+			Patrick selected George Kittle (13.60)
+			Jason received Jerry Jeudy (1.60)
+			Mike to 10-4 (1.000/1.000/1.000)
+			Last game: Justin
+		Quinn
+			Patrick offered Zay Jones and K.J. Osborn
+			Jason selected Zay Jones (3.90)
+			Patrick received K.J. Osborn (1.50)
+			Quinn to 3-11 (.000/.000/.000)
+			Last game: Koci/Mueller
+		RPO_MATCHUP_SUMMARY: Pat 3, Charles 0
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	James/Charles defeat Justin, 139.85 to 121.98
+		James/Charles
+			Jason offered Will Levis and Tommy DeVito
+			Patrick selected Will Levis (15.58)
+			Jason received Tommy DeVito (17.42)
+			James/Charles to 4-10 (.000/.000/.000)
+			Last game: Jason
+		Justin
+			Patrick offered Zach Charbonnet and Jaylen Waddle
+			Jason selected Zach Charbonnet (4.80)
+			Patrick received Jaylen Waddle (7.90)
+			Justin to 9-5 (1.000/1.000/1.000)
+			Last game: Mike
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 0
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Brett, 135.88 to 93.20
+		Luke
+			Patrick offered Josh Downs and Justin Watson
+			Jason selected Josh Downs (3.20)
+			Patrick received Justin Watson (1.80)
+			Luke to 6-8 (.000/.000/.000)
+			Last game: Patrick
+		Brett
+			Jason offered Khalil Shakir and Ty Chandler
+			Patrick selected Khalil Shakir (1.20)
+			Jason received Ty Chandler (4.20)
+			Brett to 6-8 (.000/.000/.000)
+			Last game: Schex
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 0
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 15
+	Justin (9-5, 1.000/1.000/1.000, 46%) vs. Mike (10-4, 1.000/1.000/1.000, 54%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.825
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_MIKE
+		HOST_1 takes Justin
+		HOST_2 takes Mike
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Keyon (8-6, .000/.000/.000, 37%) vs. Mitch (10-4, 1.000/1.000/1.000, 63%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.170
+		NOTE_ABOUT_KEYON
+		NOTE_ABOUT_MITCH
+		HOST_1 takes Keyon
+		HOST_2 takes Mitch
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Brett (6-8, .000/.000/.000, 41%) vs. Schex (8-6, .000/.000/.000, 59%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_BRETT
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Brett
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Koci/Mueller (10-4, 1.000/1.000/1.000, 84%) vs. Quinn (3-11, .000/.000/.000, 16%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.104
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Patrick (6-8, .000/.000/.000, 54%) vs. Luke (6-8, .000/.000/.000, 46%)
+		JAGUAR GAME
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_LUKE
+		HOST_1 takes Patrick
+		HOST_2 takes Luke
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Jason (4-10, .000/.000/.000, 63%) vs. James/Charles (4-10, .000/.000/.000, 37%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_JASON
+		NOTE_ABOUT_JAMESCHARLES
+		HOST_1 takes Jason
+		HOST_2 takes James/Charles
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+
+High Scorer's Corner: Schex
+	APPLAUSE
+	Schex scored 181.76
+	1st scoring title this season
+	45th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	Slash Scuttlebot
+	Websites
+	For Jason, I am Patrick. Good luck with your fantasy in Week 15! We will talk to you next week!
