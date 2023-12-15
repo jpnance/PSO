@@ -55,8 +55,8 @@ it('should work', () => {
 	const week = 15;
 	const cohost = 'Charles';
 	const lastWeekCohost = null
-	const lastWeekGamesOrder = [];
-	const thisWeekGamesOrder = [];
+	const lastWeekGamesOrder = [1, 3, 4, 6, 5, 2];
+	const thisWeekGamesOrder = [4, 1, 5, 6, 2, 3];
 	const rpoPointsOverrides = {};
 	const percentagesData = JSON.parse(fs.readFileSync('./tests/percentages.json', { encoding: 'utf8' }));
 
