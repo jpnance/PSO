@@ -372,6 +372,7 @@ it('should work', () => {
 		weekResults
 	];
 
+	const season = 2023;
 	const week = 15;
 	const cohost = 'Charles';
 	const lastWeekCohost = null
@@ -382,7 +383,7 @@ it('should work', () => {
 
 	const output = fs.readFileSync('./tests/note.txt', { encoding: 'utf8' });
 
-	const result = note.execute(week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values);
+	const result = note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values);
 
 	expect(output).toEqual(result);
 });

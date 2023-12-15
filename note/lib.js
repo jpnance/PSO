@@ -75,7 +75,7 @@ function printLine(...args) {
 	return args.join(' ') + '\n';
 }
 
-function execute(week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values) {
+function execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, percentagesData, values) {
 	var returnNote = '';
 
 	var games = values[0];
@@ -205,7 +205,7 @@ function execute(week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGames
 	returnNote += printLine('SOUND EFFECTS');
 	returnNote += printLine();
 	returnNote += printLine('Intro');
-	returnNote += printLine("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + process.env.SEASON + ' season!');
+	returnNote += printLine("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + season + ' season!');
 	returnNote += printLine("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
 	returnNote += printLine("\t" + 'BANTER_PROMPT');
 	returnNote += printLine();
