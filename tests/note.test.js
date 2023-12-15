@@ -373,7 +373,7 @@ it('should work', () => {
 	];
 
 	const week = 15;
-	const cohost = null;
+	const cohost = 'Jason';
 	const lastWeekCohost = null
 	const lastWeekGamesOrder = [];
 	const thisWeekGamesOrder = [];
