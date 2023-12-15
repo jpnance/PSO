@@ -6,7 +6,7 @@ function readAsJson(filename) {
 }
 
 it('should work', () => {
-	// node index.js 15 Jason Charles 1,3,4,6,5,2 4,1,5,6,2,3
+	// node index.js 15 Charles Jason 1,3,4,6,5,2 4,1,5,6,2,3
 	const games = readAsJson('./tests/games.json');
 	const scoringTitles = readAsJson('./tests/scoring-titles.json');
 	const weekRpos = readAsJson('./tests/week-rpos.json');
