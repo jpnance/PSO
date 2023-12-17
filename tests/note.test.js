@@ -168,4 +168,14 @@ describe('Show notes generator', () => {
 
 		expect(() => note.execute(inputs)).toThrow(expected);
 	})
+
+	it('throws an error if we don\'t have any points data (automatic or overridden) for a player', () => {
+		const inputs = defaultInputs();
+
+		delete inputs.values[3].body[0].players_points['4039'];
+
+		const expected = /We weren't able to get points data for .*? \(4039\)\. Please use the override parameter/
+
+		expect(() => note.execute(inputs)).toThrow(expected);
+	});
 });
