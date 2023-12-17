@@ -2,18 +2,6 @@
 	{
 		"season": "2023",
 		"week": 14,
-		"owner": "Mitch",
-		"offerer": "Patrick",
-		"selector": "Jason",
-		"player": {
-			"id": "4039",
-			"name": "Cooper Kupp"
-		},
-		"selected": true
-	},
-	{
-		"season": "2023",
-		"week": 14,
 		"owner": "Keyon",
 		"offerer": "Patrick",
 		"selector": "Jason",
@@ -142,6 +130,18 @@
 			"name": "Tee Higgins"
 		},
 		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4039",
+			"name": "Cooper Kupp"
+		},
+		"selected": true
 	},
 	{
 		"season": "2023",

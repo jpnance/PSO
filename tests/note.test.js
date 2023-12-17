@@ -137,4 +137,15 @@ describe('Show notes generator', () => {
 
 		expect(result).toBe(expected);
 	});
+
+	it('throws an error if we have fewer than twelve franchises represented in RPOs before Week 16', () => {
+		const inputs = defaultInputs();
+		let weekRpos = inputs.values[2];
+
+		inputs.values[2] = weekRpos.slice(0, weekRpos.length - 2);
+
+		const expected = /We need twelve franchises represented.*we only have 11/;
+
+		expect(() => note.execute(inputs)).toThrow(expected);
+	});
 });
