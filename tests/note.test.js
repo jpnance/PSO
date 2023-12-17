@@ -97,4 +97,14 @@ describe('Show notes generator', () => {
 
 		expect(result).toBe(expected);
 	});
+
+	it('shows which players were selected in RPOs from last week', () => {
+		const inputs = defaultInputs();
+
+		const expected = true;
+
+		const result = note.execute(inputs).includes('Patrick selected Marquez Valdes-Scantling');
+
+		expect(result).toBe(expected);
+	});
 });
