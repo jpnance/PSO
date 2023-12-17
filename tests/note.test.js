@@ -79,20 +79,11 @@ describe('Show notes generator', () => {
 	it('should work', () => {
 		// node index.js 15 Charles Jason 1,3,4,6,5,2 4,1,5,6,2,3
 
-		const {
-			season,
-			week,
-			cohost,
-			lastWeekCohost,
-			lastWeekGamesOrder,
-			thisWeekGamesOrder,
-			rpoPointsOverrides,
-			values
-		} = defaultInputs();
+		const inputs = defaultInputs();
 
 		const expected = fs.readFileSync('./tests/note.txt', { encoding: 'utf8' });
 
-		const result = note.execute(season, week, cohost, lastWeekCohost, lastWeekGamesOrder, thisWeekGamesOrder, rpoPointsOverrides, values);
+		const result = note.execute(inputs);
 
 		expect(result).toBe(expected);
 	});
