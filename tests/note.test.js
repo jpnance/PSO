@@ -117,4 +117,24 @@ describe('Show notes generator', () => {
 
 		expect(result).toBe(expected);
 	});
+
+	it('shows the number of points (retrieved from Sleeper) each RPO option scored', () => {
+		const inputs = defaultInputs();
+
+		const expected = '2.20';
+
+		const result = note.execute(inputs).match(/Marquez Valdes-Scantling \((\d+\.\d\d)\)/)[1];
+
+		expect(result).toBe(expected);
+	});
+
+	it('shows the number of points (overridden manually) each RPO option scored', () => {
+		const inputs = defaultInputs();
+
+		const expected = '7.90';
+
+		const result = note.execute(inputs).match(/Jaylen Waddle \((\d+\.\d\d)\)/)[1];
+
+		expect(result).toBe(expected);
+	});
 });
