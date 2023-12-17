@@ -138,14 +138,34 @@ describe('Show notes generator', () => {
 		expect(result).toBe(expected);
 	});
 
-	it('throws an error if we have fewer than twelve franchises represented in RPOs before Week 16', () => {
+	it('throws an error if we have fewer than twelve franchises represented in RPOs in the regular season', () => {
 		const inputs = defaultInputs();
-		let weekRpos = inputs.values[2];
 
-		inputs.values[2] = weekRpos.slice(0, weekRpos.length - 2);
+		inputs.values[2] = inputs.values[2].slice(0, inputs.values[2].length - 2);
 
 		const expected = /We need twelve franchises represented.*we only have 11/;
 
 		expect(() => note.execute(inputs)).toThrow(expected);
 	});
+
+	it('throws an error if we have fewer than four franchises represented in RPOs in the playoffs', () => {
+		const inputs = defaultInputs();
+
+		inputs.week = 17;
+		inputs.values[2] = inputs.values[2].slice(0, 6);
+
+		const expected = /We need four franchises represented.*we only have 3/;
+
+		expect(() => note.execute(inputs)).toThrow(expected);
+	});
+
+	it('throws an error if a franchise has any number of RPO options besides two', () => {
+		const inputs = defaultInputs();
+
+		inputs.values[2].pop();
+
+		const expected = /We need two players offered for every franchise and .*? only has 1/;
+
+		expect(() => note.execute(inputs)).toThrow(expected);
+	})
 });
