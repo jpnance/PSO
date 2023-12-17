@@ -87,4 +87,14 @@ describe('Show notes generator', () => {
 
 		expect(result).toBe(expected);
 	});
+
+	it('shows which players were offered in RPOs from last week', () => {
+		const inputs = defaultInputs();
+
+		const expected = true;
+
+		const result = note.execute(inputs).includes('Jason offered Marquez Valdes-Scantling and Allen Lazard');
+
+		expect(result).toBe(expected);
+	});
 });
