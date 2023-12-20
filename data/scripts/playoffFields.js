@@ -10,14 +10,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 var Game = require('../models/Game');
 
-var data = {};
-var totals = {
-	total: {
-		sweeps: 0,
-		splits: 0
-	}
-};
-
 Game.find({}).then(games => {
 	const seasons = games.reduce(extractUniqueSeasons, []);
 
