@@ -19,136 +19,136 @@ var totals = {
 };
 
 Game.find({}).then(games => {
-  const seasons = games.reduce(extractUniqueSeasons, []);
+	const seasons = games.reduce(extractUniqueSeasons, []);
 
-  seasons.forEach((season) => {
-    const prePlayoffTeams =
-      games
-        .filter(forSeason(season))
-        .filter(forWeek(lastRegularSeasonWeekFor(season)))
-        .reduce(extractTeams, []);
+	seasons.forEach((season) => {
+		const prePlayoffTeams =
+			games
+				.filter(forSeason(season))
+				.filter(forWeek(lastRegularSeasonWeekFor(season)))
+				.reduce(extractTeams, []);
 
-    const playoffTeams =
-      games
-        .filter(forSeason(season))
-        .filter(forType('semifinal'))
-        .reduce(extractTeams, [])
-        .map(hydrateWithRecords(prePlayoffTeams));
+		const playoffTeams =
+			games
+				.filter(forSeason(season))
+				.filter(forType('semifinal'))
+				.reduce(extractTeams, [])
+				.map(hydrateWithRecords(prePlayoffTeams));
 
-    const reportableTeams =
-      playoffTeams
-        .map(toReportableTeam)
-        .sort(byAllPlay);
+		const reportableTeams =
+			playoffTeams
+				.map(toReportableTeam)
+				.sort(byAllPlay);
 
-    reportableTeams.push(reportableTeams.reduce(aggregateForSeason, { name: 'Total' }));
+		reportableTeams.push(reportableTeams.reduce(aggregateForSeason, { name: 'Total' }));
 
-    console.log(season);
-    console.group();
-    console.log(reportableTeams.map(formatReportableTeam).join('\n'));
-    console.groupEnd();
-    console.log();
-  });
+		console.log(season);
+		console.group();
+		console.log(reportableTeams.map(formatReportableTeam).join('\n'));
+		console.groupEnd();
+		console.log();
+	});
 
 	mongoose.disconnect();
 });
 
 function extractUniqueSeasons(seasons, game) {
-  if (!seasons.includes(game.season)) {
-    seasons.push(game.season);
-  }
+	if (!seasons.includes(game.season)) {
+		seasons.push(game.season);
+	}
 
-  return seasons;
+	return seasons;
 }
 
 function forSeason(season) {
-  return (game) => game.season === season;
+	return (game) => game.season === season;
 }
 
 function forType(type) {
-  return (game) => game.type === type;
+	return (game) => game.type === type;
 }
 
 function lastRegularSeasonWeekFor(season) {
-  return season < 2021 ? 14 : 15;
+	return season < 2021 ? 14 : 15;
 }
 function forWeek(week) {
-  return (game) => game.week === week;
+	return (game) => game.week === week;
 }
 
 function extractTeams(teams, game) {
-  teams.push(game.away);
-  teams.push(game.home);
+	teams.push(game.away);
+	teams.push(game.home);
 
-  return teams;
+	return teams;
 }
 
 function toReportableTeam(team) {
-  return {
-    name: team.name,
-    straight: team.record.straight.cumulative,
-    allPlay: team.record.allPlay.cumulative,
-  };
+	return {
+		name: team.name,
+		straight: team.record.straight.cumulative,
+		allPlay: team.record.allPlay.cumulative,
+	};
 }
 
 function recordBeforeThisWeek(record) {
-  return {
-    wins: record.cumulative.wins - (record.week.wins ?? 0),
-    losses: record.cumulative.losses - (record.week.losses ?? 0),
-    ties: record.cumulative.ties - (record.week.ties ?? 0),
-  };
+	return {
+		wins: record.cumulative.wins - (record.week.wins ?? 0),
+		losses: record.cumulative.losses - (record.week.losses ?? 0),
+		ties: record.cumulative.ties - (record.week.ties ?? 0),
+	};
 }
 
 function formatRecord(record) {
-  const { wins, losses, ties } = record;
-  const winningPercentage = winningPercentageForRecord(record);
+	const { wins, losses, ties } = record;
+	const winningPercentage = winningPercentageForRecord(record);
 
-  return `${wins}-${losses}-${ties} (${winningPercentage.toFixed(3)})`;
+	return `${wins}-${losses}-${ties} (${winningPercentage.toFixed(3)})`;
 }
 
 function formatReportableTeam(reportableTeam) {
-  const { name, straight, allPlay } = reportableTeam;
+	const { name, straight, allPlay } = reportableTeam;
 
-  return `${name}: ${formatRecord(straight)}, ${formatRecord(allPlay)}`;
+	return `${name}: ${formatRecord(straight)}, ${formatRecord(allPlay)}`;
 }
 
 function aggregateForSeason(seasonTotal, current) {
-  return {
-    name: seasonTotal.name,
-    straight: addRecords(seasonTotal.straight, current.straight),
-    allPlay: addRecords(seasonTotal.allPlay, current.allPlay),
-  };
+	return {
+		name: seasonTotal.name,
+		straight: addRecords(seasonTotal.straight, current.straight),
+		allPlay: addRecords(seasonTotal.allPlay, current.allPlay),
+	};
 }
 
 function addRecords(recordOne = { wins: 0, losses: 0, ties: 0 }, recordTwo = { wins: 0, losses: 0, ties: 0 }) {
-  const result = {};
+	const result = {};
 
-  ['wins', 'losses', 'ties'].forEach((stat) => {
-    result[stat] = recordOne[stat] + recordTwo[stat];
-  });
+	['wins', 'losses', 'ties'].forEach((stat) => {
+		result[stat] = recordOne[stat] + recordTwo[stat];
+	});
 
-  return result;
+	return result;
 }
 
 function byAllPlay(teamOne, teamTwo) {
-  return winningPercentageForRecord(teamTwo.allPlay) - winningPercentageForRecord(teamOne.allPlay);
+	return winningPercentageForRecord(teamTwo.allPlay) - winningPercentageForRecord(teamOne.allPlay);
 }
 
 function winningPercentageForRecord(record) {
-  const { wins, losses } = record;
+	const { wins, losses } = record;
 
-  return wins / (wins + losses);
+	return wins / (wins + losses);
 }
 
 function hydrateWithRecords(preTeams) {
-  return (team) => {
-    const preTeam = preTeams.find(byFranchiseId(team.franchiseId));
+	return (team) => {
+		const preTeam = preTeams.find(byFranchiseId(team.franchiseId));
 
-    Object.assign(team.record, preTeam.record);
+		Object.assign(team.record, preTeam.record);
 
-    return team;
-  };
+		return team;
+	};
 }
 
 function byFranchiseId(franchiseId) {
-  return (team) => team.franchiseId === franchiseId;
+	return (team) => team.franchiseId === franchiseId;
 }
