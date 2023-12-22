@@ -88,6 +88,20 @@ describe('Show notes generator', () => {
 		expect(result).toBe(expected);
 	});
 
+	describe('Intro section', () => {
+		it('refers to this week\'s co-host', () => {
+			const inputs = defaultInputs();
+
+			inputs.cohost = 'Keyon';
+
+			const expected = true;
+
+			const result = note.execute(inputs).includes('I am Patrick, joined, as always, by Keyon');
+
+			expect(result).toBe(expected);
+		});
+	});
+
 	it('shows which players were offered in RPOs from last week', () => {
 		const inputs = defaultInputs();
 
