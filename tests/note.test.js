@@ -101,14 +101,12 @@ describe('Show notes generator', () => {
 
 		it('refers to this week\'s co-host', () => {
 			const inputs = defaultInputs();
-
 			inputs.cohost = 'Keyon';
 
-			const expected = true;
+			const result = note.execute(inputs)
 
-			const result = note.execute(inputs).includes('I am Patrick, joined, as always, by Keyon');
-
-			expect(result).toBe(expected);
+			const expected = `I am Patrick, joined, as always, by ${inputs.cohost}`;
+			expect(result).toMatch(expected)
 		});
 	});
 
