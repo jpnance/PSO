@@ -135,10 +135,22 @@ describe('Show notes generator', () => {
 			const inputs = defaultInputs();
 			inputs.cohost = 'Keyon';
 
-			const result = note.execute(inputs)
+			const result = note.execute(inputs);
 
 			const expected = `I am Patrick, joined, as always, by ${inputs.cohost}`;
 			expect(result).toMatch(expected)
+		});
+	});
+
+	describe('Recaps', () => {
+		it('shows an entry for each game last week', () => {
+			const inputs = defaultInputs();
+
+			const result = note.execute(inputs);
+
+			const expected = 6;
+			const gameHeading = /.* defeats? .*, \d?\d\d\.\d\d to \d?\d\d\.\d\d/g;
+			expect(result.match(gameHeading).length).toBe(expected);
 		});
 	});
 
