@@ -95,7 +95,7 @@ describe('Show notes generator', () => {
 			const inputs = defaultInputs();
 			inputs.week = 15;
 
-			const result = note.execute(inputs)
+			const result = note.execute(inputs);
 
 			const expected = `Welcome to the PSO Show for Week ${inputs.week} of the 2023 season`;
 			expect(result).toMatch(expected)
@@ -105,7 +105,7 @@ describe('Show notes generator', () => {
 			const inputs = defaultInputs();
 			inputs.week = 16;
 
-			const result = note.execute(inputs)
+			const result = note.execute(inputs);
 
 			const expected = `Welcome to the PSO Show for the semifinals of the 2023 season`;
 			expect(result).toMatch(expected)
@@ -115,7 +115,7 @@ describe('Show notes generator', () => {
 			const inputs = defaultInputs();
 			inputs.week = 18;
 
-			const result = note.execute(inputs)
+			const result = note.execute(inputs);
 
 			const expected = `Welcome to the PSO Show for the offseason of the 2023 season`;
 			expect(result).toMatch(expected)
@@ -125,7 +125,7 @@ describe('Show notes generator', () => {
 			const inputs = defaultInputs();
 			inputs.week = 17;
 
-			const result = note.execute(inputs)
+			const result = note.execute(inputs);
 
 			const expected = `Welcome to the PSO Show for the championship round of the 2023 season`;
 			expect(result).toMatch(expected)
