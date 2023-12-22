@@ -101,6 +101,36 @@ describe('Show notes generator', () => {
 			expect(result).toMatch(expected)
 		});
 
+		it.skip('refers more colloquially to semifinals week', () => {
+			const inputs = defaultInputs();
+			inputs.week = 16;
+
+			const result = note.execute(inputs)
+
+			const expected = `Welcome to the PSO Show for the semifinals of the 2023 season`;
+			expect(result).toMatch(expected)
+		});
+
+		it.skip('refers more colloquially to the offseason', () => {
+			const inputs = defaultInputs();
+			inputs.week = 18;
+
+			const result = note.execute(inputs)
+
+			const expected = `Welcome to the PSO Show for the offseason of the 2023 season`;
+			expect(result).toMatch(expected)
+		});
+
+		it.skip('refers more colloquially to championship week', () => {
+			const inputs = defaultInputs();
+			inputs.week = 17;
+
+			const result = note.execute(inputs)
+
+			const expected = `Welcome to the PSO Show for the championship round of the 2023 season`;
+			expect(result).toMatch(expected)
+		});
+
 		it('refers to this week\'s co-host', () => {
 			const inputs = defaultInputs();
 			inputs.cohost = 'Keyon';
