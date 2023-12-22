@@ -90,16 +90,13 @@ describe('Show notes generator', () => {
 
 	describe('Intro section', () => {
 		it('refers to this week by its number before the playoffs', () => {
-			const week = 15;
 			const inputs = defaultInputs();
-
 			inputs.week = 15;
 
-			const expected = true;
+			const result = note.execute(inputs)
 
-			const result = note.execute(inputs).includes(`Welcome to the PSO Show for Week ${week} of the 2023 season`);
-
-			expect(result).toBe(expected);
+			const expected = `Welcome to the PSO Show for Week ${inputs.week} of the 2023 season`;
+			expect(result).toMatch(expected)
 		});
 
 		it('refers to this week\'s co-host', () => {
