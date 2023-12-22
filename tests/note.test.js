@@ -89,6 +89,8 @@ describe('Show notes generator', () => {
 	});
 
 	describe('Intro section', () => {
+		it.skip('doesn\'t crash when giving it a week with mismatched percentages.json data', () => {});
+
 		it('refers to this week by its number before the playoffs', () => {
 			const inputs = defaultInputs();
 			inputs.week = 15;
