@@ -1,4 +1,4 @@
-owners=("Koci/Mueller:151.25,26.38" "Justin:143.47,16.34" "Mike:143.18,21.79" "Mitch:144.23,23.54")
+owners=("Koci/Mueller:152.12,25.72" "Justin:142.62,16.15" "Mike:143.73,21.16" "Mitch:144.03,22.76")
 
 for i in $(seq 0 $((${#owners[@]} - 1))); do
 	for j in $(seq $i $((${#owners[@]} - 1))); do
