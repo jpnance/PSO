@@ -14,7 +14,7 @@ let rawRpos = [];
 let rpoXi = {};
 
 for (let week = 1; week < 16; week++) {
-	var rpoData = fs.readFileSync('week' + (week + 1) + '.txt');
+	var rpoData = fs.readFileSync('./2023/week' + (week + 1) + '.txt');
 
 	let lines = rpoData.toString().split('\r\n');
 
