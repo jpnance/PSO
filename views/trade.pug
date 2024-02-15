@@ -77,7 +77,7 @@ html
 						strong #{franchise}
 						|
 						|
-						| get#{franchise.includes('/') ? '' : 's'}:
+						| get#{franchise === 'Schexes' || franchise.includes('/') ? '' : 's'}:
 
 					div.input-group.input-group-sm.my-1
 						select.player-list.form-control
