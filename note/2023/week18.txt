@@ -1,0 +1,72 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for the offseason of the 2023 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 17 Recaps
+	Mike defeats Justin, 153.12 to 117.75
+		Mike
+			Patrick offered Tyler Allgeier and Jerry Jeudy
+			Charles selected Tyler Allgeier (14.80)
+			Patrick received Jerry Jeudy (5.40)
+			Mike to 11-6
+		Justin
+			Charles offered Trevor Siemian and C.J. Beathard
+			Patrick selected Trevor Siemian (11.74)
+			Charles received C.J. Beathard (6.52)
+			Justin to 10-7
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Koci/Mueller defeat Mitch, 164.66 to 135.16
+		Koci/Mueller
+			Patrick offered Isaiah Likely and Dallas Goedert
+			Charles selected Isaiah Likely (16.20)
+			Patrick received Dallas Goedert (10.70)
+			Koci/Mueller to 13-4
+		Mitch
+			Charles offered Mason Rudolph and Nick Mullens
+			Patrick selected Mason Rudolph (10.46)
+			Charles received Nick Mullens (8.12)
+			Mitch to 11-6
+		RPO_MATCHUP_SUMMARY: Pat 2, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+High Scorer's Corner: Koci/Mueller
+	APPLAUSE
+	Koci/Mueller scored 164.66
+	4th scoring title this season
+	21st scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	Slash Scuttlebot
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in the offseason! We will talk to you very soon!

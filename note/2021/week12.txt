@@ -1,0 +1,302 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 12 of the 2021 season!
+   * I am Patrick, joined, as always, by Charles
+   * BANTER_PROMPT
+
+
+* Week 11 Recaps
+   * James/Charles defeat John/Zach, 186.16 to 172.33
+      * James/Charles
+         * Charles offered Michael Pittman and Alex Collins
+         * Patrick selected Michael Pittman (2.30)
+         * Charles received Alex Collins (3.60)
+         * James/Charles to 8-3 (.948/.973/.843)
+         * Next three: Patrick, Brett, Keyon
+      * John/Zach
+         * Patrick offered Latavius Murray and Dallas Goedert
+         * Charles selected Latavius Murray (3.30)
+         * Patrick received Dallas Goedert (6.20)
+         * John/Zach to 7-4 (.494/.620/.278)
+         * Next three: Luke, Quinn, Jason
+      * Split: Charles 1, Pat 1
+      * Pat projection: James/Charles (right); Charles prediction: James/Charles (right)
+   * Keyon defeats Jason, 160.85 to 129.34
+      * Keyon
+         * Patrick offered Tyler Lockett and DeAndre Carter
+         * Charles selected Tyler Lockett (11.50)
+         * Patrick received DeAndre Carter (10.55)
+         * Keyon to 8-3 (.786/.836/.525)
+         * Next three: Mitch, Trevor, James/Charles
+      * Jason
+         * Charles offered Amari Cooper and Tee Higgins
+         * Patrick selected Amari Cooper, but he didn't end up playing (COVID), so this doesn't count
+         * Charles received Tee Higgins (2.50)
+         * Jason to 8-3 (.850/.868/.673)
+         * Next three: Quinn, Patrick, John/Zach
+      * Charles "sweep": Charles 2, Pat 1
+      * Pat projection: Jason (wrong); Charles prediction: Jason (wrong)
+   * Luke defeats Patrick, 110.23 to 94.20
+      * JAGUAR GAME
+      * Luke
+         * Charles offered Kalif Raymond and Brandon Aiyuk
+         * Patrick selected Kalif Raymond (1.70)
+         * Charles received Brandon Aiyuk (14.60)
+         * Luke to 5-6 (.006/.015/.000)
+         * Next three: John/Zach, Schex, Koci/Mueller
+      * Patrick
+         * Patrick offered Dan Arnold and Randall Cobb
+         * Charles selected Dan Arnold (0.00), a healthy zero with no targets
+         * Patrick received Randall Cobb (1.50)
+         * Patrick to 4-7 (.000/.000/.000)
+         * Next three: James/Charles, Jason, Quinn
+      * Split: Charles 3, Pat 2
+      * Pat projection: Patrick (wrong); Charles prediction: Luke (right)
+   * Schex defeats Brett, 201.24 to 145.08
+      * Schex
+         * Charles offered James Conner and David Montgomery
+         * Patrick selected James Conner (15.90)
+         * Charles received David Montgomery (6.70)
+         * Schex to 8-3 (.915/.928/.679)
+         * Next three: Koci/Mueller, Luke, Trevor
+      * Brett
+         * Patrick offered Devin Duvernay and Rondale Moore
+         * Charles selected Devin Duvernay (8.10)
+         * Patrick received Rondale Moore (8.45)
+         * Brett to 5-6 (.000/.000/.000)
+         * Next three: Trevor, James/Charles, Mitch
+      * Pat sweep: Pat 4, Charles 3
+      * Pat projection: Schex (right); Charles prediction: Schex (right)
+   * Mitch defeats Quinn, 127.32 to 124.84
+      * Mitch
+         * Patrick offered Jordan Howard and Devin Singletary
+         * Charles selected Jordan Howard (6.30)
+         * Patrick received Devin Singletary (4.30)
+         * Mitch to 5-6 (.001/.003/.000)
+         * Next three: Keyon, Koci/Mueller, Brett
+      * Quinn
+         * Charles offered Amon-Ra St. Brown and Marvin Jones
+         * Patrick selected Amon-Ra St. Brown (1.80)
+         * Charles received Marvin Jones (5.20)
+         * Quinn to 2-9 (eliminated, APPLAUSE)
+         * Next three: Jason, John/Zach, Patrick
+      * Charles sweep: Charles 5, Pat 4
+      * Pat projection: Quinn (wrong); Charles prediction: Mitch (right)
+   * Trevor defeats Koci/Mueller, 124.24 to 62.03
+      * Trevor
+         * Charles offered Rashod Bateman and Robby Anderson
+         * Patrick selected Rashod Bateman (2.90)
+         * Charles received Robby Anderson (3.00)
+         * Trevor to 5-6 (.001/.001/.000)
+         * Next three: Brett, Keyon, Schex
+      * Koci/Mueller
+         * Patrick offered Nico Collins and Ronald Jones
+         * Charles selected Nico Collins (0.90)
+         * Patrick received Ronald Jones (9.30)
+         * Koci/Mueller to 1-10 (eliminated)
+         * Third-lowest score in the OPen Era (822 games); twentieth-lowest all-time (1,102 games)
+         * Next three: Schex, Mitch, Luke
+      * Split: Charles 6, Pat 5
+      * Pat projection: Koci/Mueller (wrong); Charles prediction: Trevor (right)
+   * RPO Stats
+      * Pat 62, Charles 58
+      * Selector
+         * This week
+            * Pat: 1-4
+            * Charles: 2-4
+            * Total: 3-8
+         * Overall
+            * Pat: 34-26
+            * The World: 31-29
+            * Total: 65-55
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 2-4
+         * Overall: 37-29
+      * The World's predictions
+         * This week: 5-1
+         * Overall: 43-23
+
+
+* Transactions: Nope!
+
+
+* Discussion Topic: The 200 Club
+   * 41 total 200-point games in competitive matches (regular season and playoffs)
+      * 34 in the regular season
+      * 4 in the semifinals
+      * 0 in the third-place game
+      * 3 in the championship game
+         * Syed/Terence scored 210.76 over John/Zach in 2016
+         * Koci/Mueller scored 209.44 over Syed/Terence in 2018
+         * John/Zach scored 200.90 against Keyon in 2020
+   * OPen Era: 37
+   * Pre-OPen Era: 4
+      * Schexes scored 2,007.5 in Week 6 of 2009
+      * Schexes scored 2,147.3 in Week 8 of 2011
+      * Trevor scored 2,001.6 in Week 13 of 2011
+      * Trevor scored 2,100.4 in Week 14 of 2011
+   * By franchise
+      * Schex: 13
+      * Koci/Mueller: 7
+      * Keyon: 4
+      * Mitch & Trevor: 3
+      * John/Zach, Patrick: 2
+      * James/Charles, Jason, Luke, Quinn: 1
+      * Brett: 0
+   * Recipients by franchise
+      * Patrick: 6
+      * James and Koci/Mueller: 5
+      * James/Charles & John/Zach: 4
+      * Mitch: 3
+      * Brett & Trevor: 2
+      * Schex & Quinn: 1
+      * Jason & Luke: 0
+   * 200-point performances have gone 40-1 in our history
+      * The one loss: Koci/Mueller score 202.60 but lose to Keyon (218.66) in Week 3 of 2015
+
+
+* Game Previews and Risky Player Options for Week 12
+   * Rematch week #3!
+   * All of these matchups occurred earlier this season in Week 4
+   * John/Zach (7-4, .494/.620/.278, 63%) vs. Luke (5-6, .006/.015/.000, 37%)
+      * Playoff interest level: 0.413
+      * Decision interest level: 0.160
+      * The all-time series is tied at 8-8; entering this season, John/Zach had won three in a row against Luke but Luke won in Week 4
+      * Patrick takes John/Zach
+         * Mike Evans is questionable with a back injury so, if he can't go, this is a decision John/Zach will need to make
+         * Courtland Sutton or Dallas Goedert
+            * Sutton
+               * Really slowed down lately
+               * Over the last three games: 5 catches for 78 yards and no touchdowns for 8.8 total fantasy points
+               * He's not too far removed from a couple of consecutive double-digit games, though
+               * Hosting the Chargers (3rd)
+            * Goedert
+               * Hasn't scored since Week 4 but...
+               * 60 or more yards receiving in three of his last five games
+               * At least two receptions in every single game this season
+               * At the Giants (14th)
+      * Charles takes Luke
+      * Pat projection: Luke
+      * Charles prediction
+   * Brett (5-6, .000/.000/.000, 45%) vs. Trevor (5-6, .001/.001/.000, 55%)
+      * Playoff interest level: 0.451
+      * Decision interest level: 0.000
+      * Brett leads the all-time series 2-0, including a win back in Week 4
+      * Charles takes Brett
+      * Patrick takes Trevor
+         * Emmanuel Sanders or Robby Anderson
+            * Sanders
+               * Hasn't been too good lately: over the last four weeks, he's topped out at 6.5 points and even had a no-catches-on-four-targets zero in there
+               * He hasn't gotten in the end zone since Week 5 although he did score twice that day
+               * The Bills offense has had some strange games in the past few weeks
+               * At the Saints (26th)
+            * Anderson
+               * What is there to say about Robby Anderson at this point?
+               * With Cam Newton behind center, Anderson tied his season high for receptions (5)
+               * Unfortunately, those five catches came with just 30 yards and no touchdowns
+               * His most yardage in a game is still that Week 1 one-catch-for-57-yards performance
+               * At the Dolphins (30th)
+      * Pat projection: Trevor
+      * Charles prediction
+   * Keyon (8-3, .786/.836/.525, 84%) vs. Mitch (5-6, .001/.003/.000, 16%)
+      * Playoff interest level: 0.304
+      * Decision interest level: 0.051
+      * Keyon leads this all-time series 9-3 and has won three in a row (and seven of the last eight)
+      * Charles takes Keyon
+      * Patrick takes Mitch
+         * Mitch has a ton of byes and injuries in just the right spots that it's hard to imagine him having any real calls on offense
+         * Cory Littleton or Patrick Queen
+            * Littleton
+               * At least six tackles in four of the last five games
+               * The other game was kind of a stinker but, overall, he's putting up acceptable LB numbers
+               * At Dak Prescott and the Cowboys
+            * Queen
+               * Had a tough time getting it going this year but over the last two games has made twelve tackles, one sack, and forced one fumble
+               * Hosting Baker Mayfield and the Browns
+      * Pat projection: Keyon
+      * Charles prediction
+   * Patrick (4-7, .000/.000/.000, 19%) vs. James/Charles (8-3, .948/.973/.843, 81%)
+      * Playoff interest level: 0.025
+      * Decision interest level: 0.082
+      * James/Charles lead this all-time series 4-3 and have won two in a row and three of the last four
+      * Patrick takes Patrick
+         * Mike Davis or David Johnson
+            * Davis
+               * After starting the season scoring at least 6 points in each of the first five games, he's scored 2 or fewer in four of the last five
+               * He used to be the "not-a-disaster" guy; who knows what he is now
+               * He couldn't even get most of the work last Thursday when Cordarrelle Patterson was held out of the game, instead ceding all the carries to Qadree Ollison
+               * He's bad
+               * At the Jaguars (16th)
+            * Johnson
+               * Of the ten fantasy scores David Johnson has posted this year, eight of them start with a 0, 1, 4 or 5 (and, to be clear, none of them are double-digit games)
+               * Believe it or not, he's coming off a game in which he received the most carries he has all season: 13!
+               * He amassed only 18 yards rushing with them but hey! Double-digit carries!
+               * He's still involved in the passing game at least, whatever, who cares
+               * Hosting the Jets (32nd)
+      * Charles takes James/Charles
+      * Pat projection: James/Charles
+      * Charles prediction
+   * Jason (8-3, .850/.868/.673, 91%) vs. Quinn (2-9, .000/.000/.000, 9%)
+      * Playoff interest level: 0.019
+      * Decision interest level: 0.037
+      * Jason won the only matchup in this series back in Week 4
+      * Charles takes Jason
+      * Patrick takes Quinn
+         * Trevor Lawrence or Tyrod Taylor
+            * Lawrence
+               * Hasn't cracked double-digits in his three November games; hasn't even scored 7 points in that span
+               * Over those three games, he's thrown zero touchdowns but also zero interceptions
+               * A couple of those games (49ers, Bills) have been against tough defenses although one of them (Colts) wasn't
+               * Maybe you think he rebounds this week, though
+               * Hosting the Falcons (31st)
+            * Taylor
+               * In his four games this season (two pre-injury, two post-injury), Tyrod Taylor has played four games: three of them scoring 16.5 or more
+               * Over that span, he's only thrown three touchdowns against three interceptions, so what's going on?
+               * Well, he's been getting rushing touchdowns! Two last week and three on the season
+               * His first game back from injury was a total disaster against the Dolphins but he followed that up with a 19-point day on the road against the Titans last week
+               * Hosting the Jets (25th)
+      * Pat projection: Jason
+      * Charles prediction
+   * Koci/Mueller (1-10, .000/.000/.000, 5%) vs. Schex (8-3, .915/.928/.679, 95%)
+      * Playoff interest level: 0.013
+      * Decision interest level: 0.024
+      * Koci/Mueller lead this all-time series 9-8 but Schex won in Week 4
+      * Patrick takes Koci/Mueller
+         * Sammy Watkins or Nico Collins
+            * Watkins
+               * Generally, he's been, you know, scoring points this season
+               * Usually to the tune of 3, 4, or 5 points, but those are points
+               * A couple of weeks ago he had a terrible game in which he mainly just lost a fumble but he followed that up with a 4.8-point fantasy game, which is pretty good for Sammy these days
+               * Hosting the Browns (14th)
+            * Collins
+               * He couldn't get anything going against the Titans last week, making only one catch on two targets for nine yards
+               * That distribution has not been the norm of late, though, and he'll have a reasonable matchup this week
+               * Hosting the Jets (22nd)
+      * Charles takes Schex
+      * Pat projection: Schex
+      * Charles prediction
+
+
+* Let's Remember Some Guys?
+
+
+* High Scorer's Corner: Schex
+   * APPLAUSE
+   * Schex scored 201.24
+   * 4th scoring title this season
+   * 42nd scoring title all-time (1st overall)
+   * HIGH_SCORERS_CORNER_DITTY
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Happy Thanksgiving!
+   * Thanks for sending in RPOs
+   * @PsoScuttlebutt
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 12! We will talk to you next week!

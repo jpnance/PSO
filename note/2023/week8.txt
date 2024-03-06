@@ -1,0 +1,268 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 8 of the 2023 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Week 7 Recaps
+   * Justin defeats Mike, 125.86 to 116.06
+      * Justin
+         * Charles offered Joey Bosa and DeForest Buckner
+         * Patrick selected Joey Bosa (1.00)
+         * Charles received DeForest Buckner (5.50)
+         * Justin to 5-2 (.826/.876/.709)
+         * Next three: Jason, Schex, Keyon
+      * Mike
+         * Patrick offered Aidan Hutchinson and Chris Jones
+         * Charles selected Aidan Hutchinson (4.00)
+         * Patrick received Chris Jones (0.00)
+         * Mike to 5-2 (.685/.794/.548)
+         * Next three: Luke, Brett, Koci/Mueller
+      * Charles sweep: Charles 2, Pat 0
+      * Pat projection: Justin (right); Charles prediction: Mike (wrong)
+   * Mitch defeats Keyon, 192.82 to 134.56
+      * Mitch
+         * Patrick offered DeVonta Smith and Tutu Atwell
+         * Charles selected DeVonta Smith (4.90)
+         * Patrick received Tutu Atwell (9.10)
+         * Mitch to 5-2 (.811/.845/.676)
+         * Next three: Quinn, Luke, Schex
+      * Keyon
+         * Charles offered Rashan Gary and Aaron Donald
+         * Patrick selected Rashan Gary (2.50)
+         * Charles received Aaron Donald (2.00)
+         * Keyon to 4-3 (.238/.301/.129)
+         * Next three: Brett, Patrick, Justin
+      * Pat sweep: Charles 2, Pat 2
+      * Pat projection: Mitch (right); Charles prediction: Mitch (right)
+   * Brett defeats Schex, 110.06 to 101.56
+      * Brett
+         * Charles offered Khalil Mack and Jordan Davis
+         * Patrick selected Khalil Mack (0.50)
+         * Charles received Jordan Davis (2.75)
+         * Brett to 3-4 (.020/.043/.007)
+         * Next three: Keyon, Mike, James/Charles
+      * Schex
+         * Patrick offered Roschon Johnson and Zack Moss
+         * Charles selected Roschon Johnson (0.00), but he didn't play so this won't count
+         * Patrick received Zack Moss (6.20)
+         * Schex to 5-2 (.622/.687/.470)
+         * Next three: James/Charles, Justin, Mitch
+      * Charles "sweep": Charles 3, Pat 2
+      * Pat projection: Schex (wrong); Charles prediction: Schex (wrong)
+   * Luke defeats Patrick, 145.32 to 117.44
+      * JAGUAR GAME
+      * Luke
+         * Charles offered Jaxon Smith-Njigba and Michael Mayer
+         * Patrick selected Jaxon Smith-Njigba (12.30)
+         * Charles received Michael Mayer (1.30)
+         * Luke to 3-4 (.092/.169/.031)
+         * Next three: Mike, Mitch, Jason
+      * Patrick
+         * Patrick offered Baker Mayfield and Daniel Jones
+         * Charles selected Baker Mayfield (13.20)
+         * Patrick received Daniel Jones (0.00), but he didn't play so this won't count
+         * Patrick to 3-4 (.013/.041/.006)
+         * Next three: Koci/Mueller, Keyon, Quinn
+      * Pat "sweep": Charles 3, Pat 3
+      * Pat projection: Patrick (wrong); Charles prediction: Patrick (wrong)
+   * Koci/Mueller defeat Quinn, 201.66 to 95.64
+      * Koci/Mueller
+         * Charles offered Zay Flowers and Curtis Samuel
+         * Patrick selected Zay Flowers (7.50)
+         * Charles received Curtis Samuel (2.50)
+         * Koci/Mueller to 4-3 (.682/.731/.499)
+         * Next three: Patrick, Jason, Mike
+      * Quinn
+         * Patrick offered Desmond Ridder and Tyson Bagent
+         * Charles selected Desmond Ridder (12.80)
+         * Patrick received Tyson Bagent (11.88)
+         * Quinn to 1-6 (.000/.000/.000)
+         * Next three: Mitch, James/Charles, Patrick
+      * Split: Charles 4, Pat 4
+      * Pat projection: Koci/Mueller (right); Charles prediction: Koci/Mueller (right)
+   * Jason defeats James/Charles, 181.54 to 104.61
+      * Jason
+         * Patrick offered Minkah Fitzpatrick and Jevon Holland
+         * Charles selected Minkah Fitzpatrick (8.50)
+         * Patrick received Jevon Holland (5.50)
+         * Jason to 2-5 (.010/.026/.003)
+         * Next three: Justin, Koci/Mueller, Luke
+      * James/Charles
+         * Charles offered Kayvon Thibodeaux and Nick Bosa
+         * Patrick selected Kayvon Thibodeaux (8.25)
+         * Charles received Nick Bosa (5.50)
+         * James/Charles to 2-5 (.001/.003/.000)
+         * Next three: Schex, Quinn, Brett
+      * Split: Charles 5, Pat 5
+      * Pat projection: James/Charles (wrong); Charles prediction: James/Charles (wrong)
+   * RPO Stats
+      * Pat 41, Charles 39
+      * Selector
+         * This week
+            * Pat: 4-2
+            * Charles: 3-1
+            * Total: 7-3
+         * Overall
+            * Pat: 20-21
+            * The World: 18-21
+            * Total: 38-42
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 3-3
+         * Overall: 31-11
+      * The World's predictions
+         * This week: 2-4
+         * Overall: 26-16
+
+
+* Transactions
+   * Free Agency
+
+
+* Game Previews and Risky Player Options for Week 8
+   * Reset what the Simulator is and isn't
+   * The top six teams in the standings (and, for what it's worth, in simulator points) each face one of the bottom six teams this week, making the stakes a little higher if any of those top six slip up
+   * Playoff appearances per record
+      * 8-0-0: 3/3 (1.000)
+      * 7-1-0: 6/6 (1.000)
+      * 6-2-0: 21/25 (0.840)
+      * 5-3-0: 23/45 (0.511)
+      * 4-4-0: 7/26 (0.269)
+      * 3-5-0: 0/27 (0.000)
+      * 2-6-0: 0/24 (0.000)
+      * 1-7-0: 0/14 (0.000)
+      * 0-8-0: 0/2 (0.000)
+   * Luke (3-4, .092/.169/.031, 44%) vs. Mike (5-2, .685/.794/.548, 56%)
+      * Playoff interest level: 0.332
+      * Decision interest level: 0.376
+      * New H2H series
+      * Charles takes Luke
+      * Patrick takes Mike
+         * I'm not done with this just yet! I know who you're gonna pick and I know who Mike's gonna start but I've got RPO points on the line
+         * Sam Howell or Joe Burrow
+            * Howell
+               * I won't waste your time; we've already talked a lot about Sam Howell this year, especially as he compares to Joe Burrow
+               * He takes a ton of sacks but has been basically okay
+               * He finds himself with a good matchup
+               * Hosting the Eagles (24th)
+            * Burrow
+               * You're well aware of the mediocrity we've seen so far
+               * The main reason I'm asking this is the matchup
+               * At the 49ers (3rd)
+      * Pat projection: Mike
+      * Charles prediction
+   * James/Charles (2-5, .001/.003/.000, 30%) vs. Schex (5-2, .622/.687/.470, 70%)
+      * Playoff interest level: 0.290
+      * Decision interest level: 0.328
+      * Schex leads the all-time series 10-3 but James/Charles won the most recent meeting
+      * Charles takes James/Charles
+      * Patrick takes Schex
+         * Roschon Johnson or Zack Moss
+            * Johnson
+               * Seems like Johnson's gonna get in there this week because he's practicing in full
+               * Last week, though, D'Onta Foreman might've earned himself some extra carries with a great 89 yard and two-touchdown performance
+               * At the Chargers (20th)
+            * Moss
+               * Moss and Taylor exactly split 36 carries in their game last week
+               * Taylor was a little more efficient and did score a touchdown but Moss wasn't a total disaster or anything
+               * Hosting the Saints (2nd)
+      * Pat projection: Schex
+      * Charles prediction
+   * Keyon (4-3, .238/.301/.129, 63%) vs. Brett (3-4, .020/.043/.007, 37%)
+      * Playoff interest level: 0.293
+      * Decision interest level: 0.286
+      * Keyon leads the all-time series 2-1 and has won the two in a row
+      * Charles takes Keyon
+      * Patrick takes Brett
+         * Rudy Ford or Sauce Gardner
+            * Ford
+               * Safety for the Packers is having a solid season so far
+               * Only managed 5.5 points last week but hit double digits and then 9.5 in the past three weeks
+               * Hasn't made fewer than seven tackles since Week 1
+               * Hosting the Vikings (Kirk Cousins)
+            * Gardner
+               * Practicing fully but still in the concussion protocol
+               * Injury protection because he and Ford play at the same time
+               * Hasn't been quite as good as Ford this season but is getting his fair share of passes defensed
+               * At the Giants (Tyrod Taylor and/or Daniel Jones)
+      * Pat projection: Keyon
+      * Charles prediction
+   * Justin (5-2, .826/.876/.709, 70%) vs. Jason (2-5, .010/.026/.003, 30%)
+      * Playoff interest level: 0.230
+      * Decision interest level: 0.337
+      * Jason leads the all-time series 2-0
+      * Patrick takes Justin
+         * Kirk Cousins or Trevor Lawrence
+            * Cousins
+               * He's had a couple bad games this season but has had five good to very good ones
+               * Coming off a 21-point performance in a game that Justin Jefferson played 0% of, which is nice to see
+               * At the Packers (8th)
+            * Lawrence
+               * Coming off his best game of the season (18 points)
+               * Still only threw one touchdown, though
+               * As we talked about, though, his rushing upside gives him a nice floor
+               * At the Steelers (16th)
+      * Charles takes Jason
+      * Pat projection: Justin
+      * Charles prediction
+   * Patrick (3-4, .013/.041/.006, 21%) vs. Koci/Mueller (4-3, .682/.731/.499, 79%)
+      * Playoff interest level: 0.196
+      * Decision interest level: 0.235
+      * Patrick leads the all-time series 10-9 and has won five in a row
+      * Patrick takes Patrick
+         * These guys are somehow both pretty playable but I've gotta draw the line at two Raiders in my lineup
+         * Davante Adams or Jakobi Meyers
+            * Adams
+               * Hasn't scored a touchdown since Week 3
+               * The targets haven't necessarily slowed down but he's averaging under six yards per target in three of his last four games
+               * Still, you know, he's Davante Adams
+               * At the Lions (20th)
+            * Meyers
+               * Scored a touchdown in three consecutive games
+               * Doesn't really get the yardage that Adams does but gets every bit of the target share, not to mention, I suppose, the end zone looks
+               * At the Lions (20th)
+      * Charles takes Koci/Mueller
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+   * Quinn (1-6, .000/.000/.000, 20%) vs. Mitch (5-2, .811/.845/.676, 80%)
+      * Playoff interest level: 0.251
+      * Decision interest level: 0.059
+      * Mitch leads the all-time series 9-2 and has won seven in a row
+      * Charles takes Quinn
+      * Patrick takes Mitch
+         * I don't think Mitch should be starting Tee Higgins anymore
+         * Rhamondre Stevenson or Miles Sanders
+            * Stevenson
+               * Carries have declined lately: topped out at ten carries over the last three weeks after being in the teens at the beginning of the season
+               * On the whole, he's really not been very good on the ground: averaging just over three yards per carry
+               * He does get decent run in the passing game, though, and, frankly, it helps prop up his value
+               * At the Dolphins (19th)
+            * Sanders
+               * Honestly, my pitch for Sanders is exactly the same as my pitch for Stevenson because their numbers are eerily similar
+               * Sanders missed the last game with injury but he's practicing in full now
+               * Both these guys are definitely better than Tee Higgins right now
+               * Hosting the Texans (23rd)
+      * Pat projection: Mitch
+      * Charles prediction
+
+
+* High Scorer's Corner: Koci/Mueller
+   * APPLAUSE
+   * Koci/Mueller scored 201.66
+   * 2nd scoring title this season
+   * 19th scoring title all-time (3rd overall)
+   * EMAIL
+   * https://pastebin.com/raw/U3qsQzQU
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * Slash Scuttlebot
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 8! We will talk to you next week!

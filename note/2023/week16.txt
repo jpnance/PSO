@@ -1,0 +1,311 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for the semifinals of the 2023 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Week 15 Recaps
+   * Justin defeats Mike, 158.62 to 115.19
+      * Justin
+         * Patrick offered Jaylen Waddle and Kenneth Walker
+         * Charles selected Jaylen Waddle (20.20)
+         * Patrick received Kenneth Walker (17.20)
+         * Justin to 10-5 (finishes with the #2 seed)
+         * Semifinal opponent: Mitch
+      * Mike
+         * Charles offered Rashod Bateman and Jerry Jeudy
+         * Patrick selected Rashod Bateman (3.90)
+         * Charles received Jerry Jeudy (7.40)
+         * Mike to 10-5 (finishes with the #3 seed)
+         * Semifinal opponent: Koci/Mueller
+      * Charles sweep: Charles 2, Pat 0
+      * Pat projection: Justin (right); Charles prediction: Mike (wrong)
+   * Keyon defeats Mitch, 151.20 to 142.57
+      * Keyon
+         * Charles offered Odell Beckham and Jaylen Warren
+         * Patrick selected Odell Beckham (1.40)
+         * Charles received Jaylen Warren (6.80)
+         * Keyon to 9-6 (finishes in 5th, APPLAUSE)
+      * Mitch
+         * Patrick offered Bailey Zappe and Nick Mullens
+         * Charles selected Bailey Zappe (5.40)
+         * Patrick received Nick Mullens (14.12)
+         * Mitch to 10-5 (finishes with the #4 seed)
+         * Semifinal opponent: Justin
+      * Split: Charles 3, Pat 1
+      * Pat projection: Mitch (wrong); Charles prediction: Mitch (wrong)
+   * Brett defeats Schex, 139.02 to 120.76
+      * Brett
+         * Charles offered Jason Sanders and Younghoe Koo
+         * Patrick selected Jason Sanders (12.00)
+         * Charles received Younghoe Koo (1.00)
+         * Brett to 7-8 (finishes in 8th)
+      * Schex
+         * Patrick offered James Conner and Marquise Brown
+         * Charles selected James Conner (14.90)
+         * Patrick received Marquise Brown (0.00)
+         * Schex to 8-7 (finishes in 6th, APPLAUSE)
+      * Split: Charles 4, Pat 2
+      * Pat projection: Schex (wrong); Charles prediction: Schex (wrong)
+   * Koci/Mueller defeat Quinn, 148.93 to 107.28
+      * Koci/Mueller
+         * Patrick offered Isaiah Likely and Dallas Goedert
+         * Charles selected Isaiah Likely (13.00)
+         * Patrick received Dallas Goedert (3.10)
+         * Koci/Mueller to 11-4 (finishes with the #1 seed)
+         * Semifinal opponent: Mike
+      * Quinn
+         * Charles offered Cole Kmet and Dalton Schultz
+         * Patrick selected Cole Kmet (8.30)
+         * Charles received Dalton Schultz (5.80)
+         * Quinn to 3-12 (finishes in 12th)
+      * Split: Pat 3, Charles 5
+      * Pat projection: Koci/Mueller (right); Charles prediction: Koci/Mueller (right)
+   * Patrick defeats Luke, 177.21 to 110.78
+      * JAGUAR GAME
+      * Patrick
+         * Patrick offered Ja'Whaun Bentley and Alex Anzalone
+         * Charles selected Ja'Whaun Bentley (3.00)
+         * Patrick received Alex Anzalone (11.50)
+         * Patrick to 7-8 (finishes in 7th)
+      * Luke
+         * Charles offered Joe Flacco and Kyler Murray
+         * Patrick selected Joe Flacco (12.86)
+         * Charles received Kyler Murray (10.34)
+         * Luke to 6-9 (finishes in 9th)
+      * Pat sweep: Charles 5, Pat 5
+      * Pat projection: Patrick (right); Charles prediction: Patrick (right)
+   * Jason defeats James/Charles, 142.73 to 129.32
+      * Jason
+         * Patrick offered Ezekiel Elliott and Chuba Hubbard
+         * Charles selected Ezekiel Elliott (4.60)
+         * Patrick received Chuba Hubbard (10.30)
+         * Jason to 5-10 (finishes in 10th)
+      * James/Charles
+         * Charles offered Haason Reddick and Kayvon Thibodeaux
+         * Patrick selected Haason Reddick (2.00)
+         * Charles received Kayvon Thibodeaux (1.00)
+         * James/Charles to 4-11 (finishes in 11th)
+      * Pat sweep: Pat 7, Charles 5
+      * Pat projection: Jason (right); Charles prediction: James/Charles (wrong)
+   * RPO Stats
+      * The World 89, Pat 82
+      * Selector
+         * This week
+            * Pat: 4-2
+            * Charles: 3-3
+            * Total: 7-5
+         * Overall
+            * Pat: 45-44
+            * The World: 49-37
+            * Total: 94-81
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 4-2
+         * Overall: 64-26 (eight wins better than last season)
+      * The World's predictions
+         * This week: 2-4
+         * Overall: 56-34 (seven wins worse than last season)
+
+
+* Transactions
+   * Free Agency
+
+
+* Discussion Topic: 2023 Retrospective: 12th through 9th
+   * Patrick takes Quinn
+      * 12th place, 3-12, 46-119
+      * What worked out
+         * His own players
+            * Bijan Robinson ($25, 23/25) delivers as much as Arthur Smith let him
+               * #12 RB
+               * Hopefully Arthur Smith either goes away or decides to stop giving the #8 overall pick in the NFL Draft this arbitrary rookie treatment
+            * CeeDee Lamb ($195, 23/25) was a contract that a bunch of us weren't too sure about but he's really delivered
+               * #2 WR
+               * Just three games in single digits all season
+            * Courtland Sutton ($15, 23/25) is the most boring ten touchdown scorer of all-time, right?
+               * But he worked out! It works out when you spend fifteen bucks and get the #17 WR
+         * Trades
+            * Kyren Williams ($6, 23/25) nets a first round pick and $50 next year
+               * #4 RB at time of writing, though it's not clear to me if that includes or excludes his time missed in the middle of the season
+            * Saquon Barkley ($245, 21/23) was good enough in the first couple of weeks to net Quinn a couple of second rounders next year
+            * Stefon Diggs ($180, 23/24) was good enough to net quinn a first rounder next year and $110 spread across the next couple of years
+      * What didn't
+         * Geno Smith ($160, 23/25) just didn't do it
+            * $160 is too much to pay for the #18 QB
+            * The Seahawks don't necessarily have a serious replacement already on the roster but guys like Kirk Cousins, Baker Mayfield, Ryan Tannehill, and even Gardner Minshew are gonna be free agents
+            * Certainly going to be a cut candidate in August
+         * Desmond Ridder ($19, 22/24) was acquired in a preseason trade
+            * Only ends up as the #22 QB
+            * Even gets benched for a period midseason
+         * Dollar-wise, Geno Smith is really the only contract that didn't work out because almost every other guy we haven't already mentioned makes $10 or less
+         * Maybe the bigger way to look at this is that Quinn's low-dollar gambles just didn't really hit: Hunter Renfrow ($2), Zay Jones ($4), Michael Carter ($3), Nyheim Hines ($1), Darius Slayton ($3)
+      * What Quinn has to look forward to in 2024
+         * One first-rounder: #8 overall
+         * Three second-rounders: #17, #20, and wherever Mike ends up
+         * $598 available now, add another $100 or so if he ends up cutting Geno
+         * It's a decent amount of money to work with but this team has a lot of needs, predominantly starting with quarterback
+   * Patrick takes James/Charles
+      * 11th place, 4-11, 53-112
+      * What worked out
+         * Jordan Love ($130, 23/24) ends our regular season only hitting single digits twice
+            * #8 QB, which is a pretty solid value for $130
+         * Deebo Samuel ($63, 23/25) has gotta be one of the best contracts
+            * Again, I'm not certain how we're counting his missed games here but Sleeper has him as the #6 WR
+            * Been on an absolute tear to close the season
+         * Will Levis ($15, 23/25) doesn't exactly have great numbers but you do love that you converted a rookie project into what appears to be a starting quarterback going forward in year one
+         * Keenan Allen ($65, 23/23) got converted into a couple of bit players, a second rounder, and $100 next year
+         * You were able to turn two free agent defenders into a third rounder and $45 next year
+      * What didn't
+         * Aaron Jones ($100, 23/23) just didn't play enough this year
+            * Opened the season with 24.70 points but got hurt and would go on to miss six games scattered across the season
+            * Besides that, only one decent game besides the opener
+         * Alexander Mattison ($40, 22/24) isn't like a huge bust, necessarily, but we certainly had higher hopes than the #33 RB coming into the season
+         * Jimmy Garoppolo ($50, 23/23) was a combination of bad and hurt but you turned the absolute nothing contract into $5 next year, at least
+      * What James/Charles have to look forward to in 2024
+         * Four first-rounders: #2, #7, and two bottom-four picks
+         * One second-rounder: #19 overall
+         * $652 available going into next season with a few decent cut candidates who would return some cash
+         * Running back would appear to be the biggest hole so I'd certainly expect that to be your focus in the draft
+   * Charles takes Jason
+      * 10th place, 5-10, 69-96
+   * Charles takes Luke
+      * 9th place, 6-9, 59-106
+
+
+* The Decision
+   * Koci/Mueller Decide that Mike is their best matchup for the semifinal
+   * Koci/Mueller all season vs.
+      * Justin: 8-7
+      * Mike: 7-8
+      * Mitch: 9-6
+   * Koci/Mueller last four weeks vs.
+      * Justin: 2-2
+      * Mike: 2-2
+      * Mitch: 3-1
+   * So, Charles, help me and everyone else understand what Koci/Mueller are looking at here.
+   * Note from the League Historian
+      * KoMu are making their second Decision. Two of the previous four teams making their second Decision have won the title
+
+
+      * After the first nine Deciders went 3-6 in the semis with an unbelievable 6-21 all-play, the last four Deciders have won their semis and gone 10-2 in AP.
+
+
+      * Despite that recent success, the last three Deciders have fallen in the title game.
+
+
+      * Luke's loss last year was the first time in league history that a Decider had a possible title path but Decided incorrectly. I really can't believe Keyon wasn't the one to break that streak
+
+
+* Game Previews and Risky Player Options for the Semifinals
+   * Here are some facts
+      * The four playoff teams have the four best all-play records in the league
+      * The playoff field collectively have the lowest all-play percentage since 2012 (although only slightly lower than 2016 and 2019, so it's not like we've never seen fields like this)
+      * Koci/Mueller have the best all-play record at 114-51 (.691)
+         * That's the third-worst best all-play record in our history:
+            * 2008 Schexes: 85-41 (.675)
+            * 2009 Schexes at 87-39 (.690)
+         * Those are the only best all-play teams who have failed to win 70% of their all-play games
+      * Ultimately, I guess I'm suggesting that this is a pretty flat field this year and truly any of these four teams could win it all
+   * #1 Koci/Mueller (11-4, 114-51) vs. #3 Mike (10-5, 103-62)
+      * Koci/Mueller playoff context
+         * This is Koci/Mueller's eighth playoff appearance and first since 2019
+         * That three-year gap is the longest playoff drought in their history
+         * Koci/Mueller are 9-5 in the playoffs all-time: 1st place finishes in 2009, 2010, and 2018, 2nd place finishes in 2012, 2014, and 2019, and one 4th place finish in 2015
+         * If you were listening closely, you'll have noticed that Koci/Mueller have only lost in the semifinals once in their seven trips to the playoffs
+      * Mike playoff context
+         * This is, of course, Mike's first playoff appearance as a solo owner
+         * Mike joins Jason as the only post-2008 new owners to make the playoffs
+         * Obviously, we have no real stats on Mike, other than his co-ownership season with Mitch last year
+         * This franchise, though, split between Mike and Trevor, is making its seventh playoff appearance and is 4-8 in the playoffs all-time: one 1st place finish in 2012, two 3rd place finishes in 2013 and 2020, and three 4th place finishes in 2008, 2011, and 2016
+         * If you were listening closely, you'll have noticed that Mike's franchise has only ever won in the semifinals once in its six trips to the playoffs
+      * Charles takes Koci/Mueller: Hall
+      * Patrick takes Mike
+         * Mike sent in a three-fer but we're really only set up for two options here in the RPO universe (we're not *that* multi of a multiverse)
+         * The three-fer was Saquon Barkley, Josh Jacobs, and Isaiah Pacheco
+         * I took a look at ESPN's composite rankings and, apparently, they like Barkley the most of those three, so we're gonna make the RPO the other two
+         * Josh Jacobs or Isaiah Pacheco
+            * Mike kinda lucks out here because both of these guys have injury concerns but they're playing each and, critically, they're both playing before Saquon Barkley does
+            * Jacobs
+               * Only had two rushing performances over 100 yards this year although they've both come recently and there was a 98-yard day in there as well
+               * He's coming off a quad injury that kept him out of the game in Week 15 but the coach said he's figuring on playing him
+               * He certainly hasn't been at the level he was last year but he still gets a ton of work in this offense and has been totally viable
+               * At the Chiefs (14th)
+            * Pacheco
+               * Two most recent games have been monsters: 20.9 and 18.3 points
+               * 15 or more carries in both, one or more touchdowns in both; it's been great
+               * One caveat: those two most recent games were in Weeks 12 and 13; he's missed two games with a shoulder injury since then
+               * His coach says he's good to go as well, though, and you like that matchup just fine
+               * Hosting the Raiders (22nd)
+      * The Decider is 7-6 in the semifinals
+      * The Simulator has Koci/Mueller winning this one 59% of the time
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+   * #2 Justin (10-5, 107-58) vs. #4 Mitch (10-5, 103-62)
+      * Justin playoff context
+         * This is Justin's first playoff appearance
+         * Needing at least a year or two to make the playoffs for the first time is certainly a much more common route in this league
+         * We have no playoffs stats whatsoever on Justin himself
+         * This franchise, though, split between Justin and John, is making its fourth playoff appearances and is 4-2 in the playoffs: one 1st place finish in 2020, one 2nd place finish in 2016, and one 3rd place finish in 2010
+      * Mitch playoff context
+         * This is Mitch's sixth playoff appearance and, of course, he's the defending champion
+         * Mitch is 7-3 in the playoffs all-time: three 1st place finishes in 2013, 2014, and 2022, one 2nd place finish in 2015, and one 4th place finish in 2018
+         * Just like Koci/Mueller, that means that Mitch has only ever lost one semifinal game in his five previous trips to the playoffs
+      * Patrick takes Justin
+         * Flip a couple things around and this is possible
+         * Austin Ekeler or Jaylen Waddle
+            * Ekeler
+               * Four out of his last five games have been bad, like 5-points-or-less bad
+               * 64 yards is his best rushing total in that span and, in fact, his third best on the season
+               * With the exception of Week 1, when you dive into Ekeler's numbers, he sure looks like a touchdown-dependent guy
+               * The work he gets in the passing game is truly the only thing he has going for him because his rushing numbers are lousy
+               * Hosting the Bills (17th)
+            * Waddle
+               * Been decent this year but exploded with Tyreek Hill out of the lineup last week: 8 catches on 9 targets for 142 yards and a touchdown
+               * Lest we think Hill's absence is entirely why that happened, I will note that Waddle's been north of 100 yards on two other occasions this year
+               * It is, however, a tough matchup
+               * Hosting the Cowboys (6th)
+      * Charles takes Mitch: Mullens
+      * The Simulator has Mitch winning this one 51% of the time
+      * Pat projection: Mitch
+      * Charles prediction
+
+
+* High Scorer's Corner: Patrick
+   * APPLAUSE
+   * Patrick scored 177.21
+   * 2nd scoring title this season
+   * 20th scoring title all-time (4th overall)
+   * Thank You Notes
+      * Kadarius Toney
+         * Thank you, Kadarius Toney, for only scoring one touchdown this entire season
+         * I was really starting to get worried that I'd re-sign you next August.
+         * (I still might, to be honest.)
+      * Fantrax jersey promotion emails
+         * Thank you, Fantrax jersey promotion emails, for offering me a free chance to win the jersey my favorite player wore…
+         * …for the team he was on three seasons ago.
+         * (Need an Amari Cooper Cowboys jersey.)
+      * Sleeper app snow animation
+         * Thank you, Sleeper app snow animation, for reminding me that it's cold outside.
+         * Now I can delete my weather app.
+         * (I'll probably reinstall it when it gets warmer.)
+      * 7-8 record in the regular season
+         * Thank you, 7-8 record in the regular season, for making me think that all I need to make a playoff run next year…
+         * …is for George Pickens to be a top-15 wide receiver.
+         * (I think he could be!)
+      * High Scorer's Corner
+         * Thank you, High Scorer's Corner, for letting me pretend like I write for a late-night comedy show…
+         * …once every two or three years, give or take.
+         * (It's not often, let's be real.)
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * Slash Scuttlebot
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in the semifinals! We will talk to you next week!

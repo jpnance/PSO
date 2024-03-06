@@ -1,0 +1,299 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 13 of the 2023 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Week 12 Recaps
+   * Mike defeats Schex, 174.31 to 128.76
+      * Mike
+         * Charles offered Isiah Pacheco and Raheem Mostert
+         * Patrick selected Isiah Pacheco (20.90)
+         * Charles received Raheem Mostert (21.40)
+         * Mike to 9-3 (.998/1.000/.989)
+         * Last three: Patrick, Quinn, Justin
+      * Schex
+         * Patrick offered Javonte Williams and James Conner
+         * Charles selected Javonte Williams (7.10)
+         * Patrick received James Conner (3.20)
+         * Schex to 7-5 (.179/.265/.063)
+         * Last three: Keyon, Patrick, Brett
+      * Charles sweep: Charles 2, Pat 0
+      * Pat projection: Schex (wrong); Charles prediction: Schex (wrong)
+   * Luke defeats Keyon, 111.22 to 79.52
+      * We're gonna come back to that score a little later
+      * JAGUAR GAME
+      * Luke
+         * Charles offered Quentin Johnston and Latavius Murray
+         * Patrick selected Quentin Johnston (0.70)
+         * Charles received Latavius Murray (4.80)
+         * Luke to 5-7 (.000/.000/.000)
+         * Last three: Quinn, Brett, Patrick
+      * Keyon
+         * Patrick offered Romeo Doubs and Odell Beckham
+         * Charles selected Romeo Doubs (3.70)
+         * Patrick received Odell Beckham (3.40)
+         * Keyon to 6-6 (.019/.043/.000)
+         * Last three: Schex, Jason, Mitch
+      * Charles sweep: Charles 4, Pat 0
+      * Pat projection: Keyon (wrong); Charles prediction: Luke (right)
+   * Brett defeats Justin, 169.22 to 130.17
+      * Brett
+         * Patrick offered DeAndre Hopkins and Terry McLaurin
+         * Charles selected DeAndre Hopkins (4.90)
+         * Patrick received Terry McLaurin (5.00)
+         * Brett to 6-6 (.027/.046/.002)
+         * Last three: Jason, Luke, Schex
+      * Justin
+         * Charles offered Tua Tagovailoa and Trevor Lawrence
+         * Patrick selected Tua Tagovailoa (5.82)
+         * Charles received Trevor Lawrence (24.56)
+         * Justin to 9-3 (.983/1.000/.972)
+         * Last three: Koci/Mueller, James/Charles, Mike
+      * Split: Charles 5, Pat 1
+      * Pat projection: Justin (wrong); Charles prediction: Justin (wrong)
+   * Patrick defeats Mitch, 145.02 to 142.20
+      * Patrick
+         * Patrick offered Tyler Higbee and Mike Gesicki
+         * Charles selected Tyler Higbee (15.90)
+         * Patrick received Mike Gesicki (0.00), and he did play
+         * Patrick to 5-7 (.000/.000/.000)
+         * Last three: Mike, Schex, Luke
+      * Mitch
+         * Charles offered Rhamondre Stevenson and Jerome Ford
+         * Patrick selected Rhamondre Stevenson (16.70)
+         * Charles received Jerome Ford (7.90)
+         * Mitch to 9-3 (.992/.997/.963)
+         * Last three: James/Charles, Koci/Mueller, Keyon
+      * Split: Charles 6, Pat 2
+      * Pat projection: Mitch (wrong); Charles prediction: Mitch (wrong)
+   * Koci/Mueller defeat James/Charles, 142.18 to 131.21
+      * Koci/Mueller
+         * Patrick offered Zay Flowers and Kenny Pickett
+         * Charles selected Zay Flowers (18.20)
+         * Patrick received Kenny Pickett (9.62)
+         * Koci/Mueller to 8-4 (.804/.931/.602)
+         * Last three: Justin, Mitch, Quinn
+      * James/Charles
+         * Charles offered Diontae Johnson and Tutu Atwell
+         * Patrick selected Diontae Johnson (5.00)
+         * Charles received Tutu Atwell (7.60)
+         * James/Charles to 3-9 (ELIMINATED)
+         * Last three: Mitch, Justin, Jason
+      * Charles sweep: Charles 8, Pat 2
+      * Pat projection: Koci/Mueller (right); Charles prediction: Koci/Mueller (right)
+   * Jason defeats Quinn, 191.85 to 105.92
+      * Jason
+         * Charles offered Ezekiel Elliott and Chuba Hubbard
+         * Patrick selected Ezekiel Elliott (5.20)
+         * Charles received Chuba Hubbard (15.20)
+         * Jason to 3-9 (.000/.000/.000)
+         * Last three: Brett, Keyon, James/Charles
+      * Quinn
+         * Patrick offered Desmond Ridder and Courtland Sutton
+         * Charles selected Desmond Ridder (9.72)
+         * Patrick received Courtland Sutton (6.10)
+         * Quinn to 2-10 (.000/.000/.000)
+         * Last three: Luke, Mike, Koci/Mueller
+      * Charles sweep: Charles 10, Pat 2
+      * Pat projection: Quinn (wrong); Charles prediction: Jason (right)
+   * RPO Stats
+      * The World 77, Pat 63
+      * Selector
+         * This week
+            * Pat: 1-5
+            * Charles: 5-1
+            * Total: 6-6
+         * Overall
+            * Pat: 33-38
+            * The World: 39-30
+            * Total: 72-68
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 1-5
+         * Overall: 52-20
+      * The World's predictions
+         * This week: 3-3
+         * Overall: 46-26
+
+
+* Transactions
+   * Free Agency
+
+
+* CHECK FOR JASON'S HSC
+
+
+* Discussion Topic: Sub-100s
+   * ARBITRARY CUTOFF ALERT: 100 points is a totally arbitrary number that has no real meaning other than that we all know the average score in this league is always well above 100
+   * Keyon
+      * 79.52 is his lowest score in the OPen Era and only his second time going below 100
+      * Worst score since 2013-03; just over a decade!
+         * There are only two streaks that are close to half that long
+            * Schex's 89.40 in Week 9 this year snapped a six-year streak dating back to 2017-01
+            * Patrick's 75.52 in 2018-09 snapped a five-year streak dating back to 2013-07
+            * Koci/Mueller had one almost four years long; Quinn had one almost three years long
+   * I had to dive deeper on this
+   * Current owners' sub-100 scores
+      * Brett: 6
+      * James/Charles: 17
+      * Jason: 1
+      * Justin: 1
+      * Keyon: 2
+      * Koci/Mueller: 13
+      * Luke: 21
+      * Mike: 0
+      * Mitch: 7
+      * Patrick: 13
+      * Quinn: 18
+      * Schex: 6
+   * The data: https://dpaste.com/AEKGBYGPN.txt
+
+
+* CHECK FOR JASON'S HSC
+
+
+* Game Previews and Risky Player Options for Week 13
+   * Koci/Mueller (8-4, .804/.931/.602, 61%) vs. Justin (9-3, .983/1.000/.972, 39%) 455
+      * Playoff interest level: 0.146
+      * Decision interest level: 0.309
+      * Justin won the only regular season meeting between these two teams last year
+      * Charles takes Koci/Mueller: Browning
+      * Patrick takes Justin
+         * Cade Otton or Elijah Moore
+            * Otton
+               * I'm amazed he's only the #15 TE because, for the most part, he puts up multiple (!) points each week
+               * Scored at least four points in five of his last six games
+               * Even scored two touchdowns in one of the games in that stretch
+               * Hosting the Panthers (11th)
+            * Moore
+               * Just hasn't remotely delivered on the promise he showed a couple years ago
+               * Only scored one touchdown all season; 60 yards receiving is his best yardage game
+               * He's on the field a bunch, though: 62% is his worst snap percentage and there are lots of 70s and 80s
+               * At the Rams (14th)
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+   * Keyon (6-6, .019/.043/.000, 42%) vs. Schex (7-5, .179/.265/.063, 58%) 444
+      * JAGUAR GAME
+      * Playoff interest level: 0.444
+      * Decision interest level: 0.000
+      * Keyon leads the all-time series 14-8 and has won four in a row and seven of the last eight
+      * Patrick takes Keyon
+         * Romeo Doubs or Drake London
+            * Doubs
+               * Talked about Doubs a bit last week
+               * Seven touchdowns on the season, though he didn't find one last week
+               * On the field a lot and Jordan Love sends about half a dozen passes his way each week
+               * Hosting the Chiefs (8th)
+            * London
+               * More of an offensive focal point than Doubs, even if he doesn't get the end zone looks the way Doubs does
+               * Seven or more targets in seven of his ten games this season
+               * Tons of snap percentage points, too
+               * At the Jets (1st)
+      * Charles takes Schex: Engram
+      * Pat projection: Keyon
+      * Charles prediction
+   * Brett (6-6, .027/.046/.002, 56%) vs. Jason (3-9, .000/.000/.000, 44%) 199
+      * Playoff interest level: 0.199
+      * Decision interest level: 0.000
+      * Jason leads this all-time series 3-1 and swept both of their matchups last year
+      * Charles takes Brett: Hopkins
+      * Patrick takes Jason
+         * Allen Lazard or Josh Reynolds
+            * Lazard
+               * Been banged up the last couple of weeks but he'll be in there this week
+               * Look, there are a lot of issues with the idea of starting Lazard here but Jason doesn't really have much of a choice
+               * Lazard is at least on the field a lot so Tim Boyle can look his way before checking down to Breece Hall or getting sacked
+               * Hosting the Falcons (9th)
+            * Reynolds
+               * Snaps and targets have been seemingly declining lately but he still sees a decent amount of work
+               * It's not great but he is coming off a game in which he scored a touchdown
+               * You certainly like Jared Goff more than Tim Boyle
+               * At the Saints (6th)
+      * Pat projection: Jason
+      * Charles prediction
+   * James/Charles (3-9, .000/.000/.000, 17%) vs. Mitch (9-3, .992/.997/.963, 83%) 072
+      * Playoff interest level: 0.006
+      * Decision interest level: 0.066
+      * Mitch leads the all-time series 8-3 and has won the last two in a row
+      * Charles takes James/Charles: Woods
+      * Patrick takes Mitch
+         * Rhamondre Stevenson or D'Andre Swift
+            * Stevenson
+               * Been coming on lately
+               * Three straight games in double digits, two of them had him scoring touchdowns
+               * Over that same span, he's been averaging well over 4 YPC, which was not really his thing at the beginning of the season
+               * No clue who'll be playing quarterback but it doesn't seem to affect Stevenson
+               * Hosting the Chargers (23rd)
+            * Swift
+               * Just a solid running back, probably the safer option
+               * He hasn't done anything especially flashy this season but his only total let-down game of the year was back in Week 1
+               * He's gotten at least seven points in every game since and six of those games have been double-digits
+               * Hosting the 49ers (2nd)
+      * Pat projection: Mitch
+      * Charles prediction
+   * Patrick (5-7, .000/.000/.000, 24%) vs. Mike (9-3, .998/1.000/.989, 76%) 064
+      * Playoff interest level: 0.003
+      * Decision interest level: 0.061
+      * New H2H series
+      * Patrick takes Patrick
+         * This one's for my buddy Mitch
+         * Kadarius Toney or George Pickens
+            * Toney
+               * Welp
+               * No sugar-coating this: he's been horrible this year and I really wish I would've taken any one of the many, many offers Mitch made me for him these last three years
+               * He's not on the field much and he doesn't really get thrown to but once or twice a game
+               * So why is this a question?
+               * Well, Mecole Hardman left their game with injury a couple of weeks ago and is out for the rest of the season
+               * For that game, at least, Toney took over the punt return duties, which could actually carve out a place for him on the team and in my lineup if that keeps up
+               * Toney missed last week's game with injury but practiced in full today and seems good to go
+               * At the Packers (24th)
+            * Pickens
+               * I dunno, he's been really boring this year; couple of great games, couple of fine games, lots of mediocre to poor games
+               * He'll score like 3-5 points and that'll presume to be competitive with whatever Toney does
+               * Hosting the Cardinals (30th)
+      * Charles takes Mike: Hill
+      * Pat projection: Mike
+      * Charles prediction
+   * Luke (5-7, .000/.000/.000, 58%) vs. Quinn (2-10, .000/.000/.000, 42%) 000
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Quinn leads the all-time series 6-4; the outcome has alternated each of the last six meetings and Luke won most recently
+      * Charles takes Luke: James
+      * Patrick takes Quinn
+         * I think this roster will shake out to this decision
+         * Michael Carter or Dalvin Cook
+            * Carter
+               * The good news: coming off his best game of the season!
+               * The bad news: four carries for 19 yards; four receptions for 15 yards
+               * The ugly news: those eight touches are two more than he's seen in any other game this year
+               * At the Steelers (20th)
+            * Cook
+               * The bad news: Coming off a one carry for two yards rushing performance
+               * The okay news: He saw three targets and made two catches for 19 yards
+               * The nevermind, it's bad news: those 2.1 fantasy points are an above-median performance for him this season
+               * Hosting the Falcons (3rd)
+      * Pat projection: Quinn
+      * Charles prediction
+
+
+* CHECK FOR JASON'S HSC
+
+
+* High Scorer's Corner: Jason
+   * APPLAUSE
+   * Jason scored 191.85
+   * 1st scoring title this season
+   * 5th scoring title all-time (T-11th overall)
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * Slash Scuttlebot
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 13! We will talk to you next week!

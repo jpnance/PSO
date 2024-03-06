@@ -1,0 +1,73 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for the offseason of the 2022 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 17 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Jason defeats Keyon, 134.89 to 132.98
+		Jason
+			Patrick offered Kalif Raymond and Allen Lazard
+			Charles selected Kalif Raymond (6.00)
+			Patrick received Allen Lazard (5.90)
+			Jason to 12-5
+		Keyon
+			Charles offered Davante Adams and DK Metcalf
+			Patrick selected Davante Adams (27.30)
+			Charles received DK Metcalf (0.30)
+			Keyon to 12-5
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat Luke, 153.98 to 143.20
+		Mitch/Mike
+			Patrick offered Mike Williams and Christian Kirk
+			Charles selected Mike Williams (9.40)
+			Patrick received Christian Kirk (2.10)
+			Mitch/Mike to 13-4
+		Luke
+			Charles offered Pat Freiermuth and Darren Waller
+			Patrick selected Pat Freiermuth (3.60)
+			Charles received Darren Waller (13.20)
+			Luke to 15-2
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+High Scorer's Corner: Mitch/Mike
+	APPLAUSE
+	Mitch/Mike scored 153.98
+	3rd scoring title this season
+	18th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in the offseason! We will talk to you very soon!

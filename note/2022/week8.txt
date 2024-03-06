@@ -1,0 +1,195 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 8 of the 2022 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 7 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Keyon defeats Quinn, 144.88 to 142.67
+		Keyon
+			Jason offered Mac Jones and Zach Wilson
+			Patrick selected Mac Jones (0.92)
+			Jason received Zach Wilson (4.24)
+			Keyon to 6-1 (.480/.663/.363)
+			Next three: Luke, Schex, Mitch/Mike
+		Quinn
+			Patrick offered Antonio Gibson and DJ Moore
+			Jason selected Antonio Gibson (17.60)
+			Patrick received DJ Moore (12.60)
+			Quinn to 4-3 (.676/.792/.493)
+			Next three: Justin, Patrick, Jason
+		RPO_MATCHUP_SUMMARY: Pat 0, Jason 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Jason prediction: WHICH_TEAM (RIGHTWRONG)
+	Jason defeats Justin, 131.95 to 128.54
+		Jason
+			Jason offered Parris Campbell and Mike Boone
+			Patrick selected Parris Campbell (13.00)
+			Jason received Mike Boone (2.30)
+			Jason to 6-1 (.886/.931/.801)
+			Next three: Schex, James/Charles, Quinn
+		Justin
+			Patrick offered Hayden Hurst and Cade Otton
+			Jason selected Hayden Hurst (4.80)
+			Patrick received Cade Otton (6.40)
+			Justin to 3-4 (.106/.187/.063)
+			Next three: Quinn, Mitch/Mike, Luke
+		RPO_MATCHUP_SUMMARY: Pat 2, Jason 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Jason prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Trevor, 163.24 to 106.66
+		Luke
+			Jason offered Pat Freiermuth and Cole Kmet
+			Patrick selected Pat Freiermuth (7.50)
+			Jason received Cole Kmet (3.20)
+			Luke to 6-1 (.791/.846/.658)
+			Next three: Keyon, Koci/Mueller, Justin
+		Trevor
+			Patrick offered Drake London and Noah Fant
+			Jason selected Drake London (0.90)
+			Patrick received Noah Fant (0.70)
+			Trevor to 3-4 (.068/.148/.035)
+			Next three: Mitch/Mike, Brett, Patrick
+		RPO_MATCHUP_SUMMARY: Pat 3, Jason 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Jason prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat James/Charles, 180.00 to 104.92
+		Mitch/Mike
+			Jason offered George Pickens and Alec Pierce
+			Patrick selected George Pickens (12.10)
+			Jason received Alec Pierce (3.70)
+			Mitch/Mike to 5-2 (.889/.928/.777)
+			Next three: Trevor, Justin, Keyon
+		James/Charles
+			Patrick offered Gerald Everett and Zay Jones
+			Jason selected Gerald Everett (6.30)
+			Patrick received Zay Jones (6.80)
+			James/Charles to 3-4 (.053/.128/.027)
+			Next three: Brett, Jason, Koci/Mueller
+		RPO_MATCHUP_SUMMARY: Pat 5, Jason 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Jason prediction: WHICH_TEAM (RIGHTWRONG)
+	Koci/Mueller defeat Brett, 128.06 to 97.76
+		Koci/Mueller
+			Patrick offered Nico Collins and Braxton Berrios
+			Jason selected Nico Collins (3.30)
+			Patrick received Braxton Berrios (4.20)
+			Koci/Mueller to 2-5 (.001/.002/.000)
+			Next three: Patrick, Luke, James/Charles
+		Brett
+			Jason offered Donovan Peoples-Jones and Tyquan Thornton
+			Patrick selected Donovan Peoples-Jones (6.50)
+			Jason received Tyquan Thornton (2.90)
+			Brett to 1-6 (.002/.003/.000)
+			Next three: James/Charles, Trevor, Schex
+		RPO_MATCHUP_SUMMARY: Pat 7, Jason 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Jason prediction: WHICH_TEAM (RIGHTWRONG)
+	Schex defeats Patrick, 128.96 to 105.70
+		JAGUAR GAME
+		Schex
+			Jason offered Joshua Palmer and Diontae Johnson
+			Patrick selected Joshua Palmer (0.00)
+			Jason received Diontae Johnson (4.50)
+			Schex to 3-4 (.048/.059/.015)
+			Next three: Jason, Keyon, Brett
+		Patrick
+			Patrick offered DeAndre Carter and DeVante Parker
+			Jason selected DeAndre Carter (6.35)
+			Patrick received DeVante Parker (6.80)
+			Patrick to 0-7 (.000/.000/.000)
+			Next three: Koci/Mueller, Quinn, Trevor
+		RPO_MATCHUP_SUMMARY: Pat 8, Jason 4
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Jason prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Jason: JASON_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 8
+	Jason (6-1, .886/.931/.801, 73%) vs. Schex (3-4, .048/.059/.015, 27%)
+		Playoff interest level: 0.107
+		Decision interest level: 0.153
+		NOTE_ABOUT_JASON
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Jason
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Justin (3-4, .106/.187/.063, 42%) vs. Quinn (4-3, .676/.792/.493, 58%)
+		Playoff interest level: 0.264
+		Decision interest level: 0.328
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Justin
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Trevor (3-4, .068/.148/.035, 22%) vs. Mitch/Mike (5-2, .889/.928/.777, 78%)
+		Playoff interest level: 0.186
+		Decision interest level: 0.270
+		NOTE_ABOUT_TREVOR
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Trevor
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Patrick (0-7, .000/.000/.000, 32%) vs. Koci/Mueller (2-5, .001/.002/.000, 68%)
+		Playoff interest level: 0.459
+		Decision interest level: 0.000
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_KOCIMUELLER
+		HOST_1 takes Patrick
+		HOST_2 takes Koci/Mueller
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Brett (1-6, .002/.003/.000, 45%) vs. James/Charles (3-4, .053/.128/.027, 55%)
+		Playoff interest level: 0.329
+		Decision interest level: 0.199
+		NOTE_ABOUT_BRETT
+		NOTE_ABOUT_JAMESCHARLES
+		HOST_1 takes Brett
+		HOST_2 takes James/Charles
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Luke (6-1, .791/.846/.658, 61%) vs. Keyon (6-1, .480/.663/.363, 39%)
+		JAGUAR GAME
+		Playoff interest level: 0.207
+		Decision interest level: 0.211
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_KEYON
+		HOST_1 takes Luke
+		HOST_2 takes Keyon
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+
+High Scorer's Corner: Mitch/Mike
+	APPLAUSE
+	Mitch/Mike scored 180.00
+	2nd scoring title this season
+	17th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in Week 8! We will talk to you next week!

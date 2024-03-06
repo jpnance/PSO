@@ -1,0 +1,182 @@
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 2 of the 2022 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 1 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Quinn defeats Patrick, 183.92 to 108.02
+		Quinn
+			Charles offered Amon-Ra St. Brown and Antonio Gibson
+			Patrick selected Amon-Ra St. Brown (12.40)
+			Charles received Antonio Gibson (13.00)
+			Quinn to 1-0
+			Next three: James/Charles, Koci/Mueller, Schex
+		Patrick
+			Patrick offered Daniel Jones and Jacoby Brissett
+			Charles selected Daniel Jones (11.02)
+			Patrick received Jacoby Brissett (9.88)
+			Patrick to 0-1
+			Next three: Luke, Justin, Keyon
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	James/Charles defeat Jason, 151.54 to 150.38
+		James/Charles
+			Charles offered Robert Woods and Brandin Cooks
+			Patrick selected Robert Woods (1.30)
+			Charles received Brandin Cooks (8.20)
+			James/Charles to 1-0
+			Next three: Quinn, Keyon, Justin
+		Jason
+			Patrick offered Allen Lazard and Tyler Lockett
+			Charles selected Allen Lazard (0.00)
+			Patrick received Tyler Lockett (2.80)
+			Jason to 0-1
+			Next three: Koci/Mueller, Trevor, Mitch/Mike
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Brett defeats Trevor, 148.18 to 137.25
+		Brett
+			Patrick offered Matt Ryan and Jared Goff
+			Charles selected Matt Ryan (14.28)
+			Patrick received Jared Goff (14.50)
+			Brett to 1-0
+			Next three: Justin, Mitch/Mike, Luke
+		Trevor
+			Charles offered Robbie Anderson and KJ Hamler
+			Patrick selected Robbie Anderson (16.20)
+			Charles received KJ Hamler (0.00)
+			Trevor to 0-1
+			Next three: Keyon, Jason, Koci/Mueller
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Keyon defeats Schex, 144.74 to 141.62
+		JAGUAR GAME
+		Keyon
+			Patrick offered Marquise Brown and Nyheim Hines
+			Charles selected Marquise Brown (10.30)
+			Patrick received Nyheim Hines (8.80)
+			Keyon to 1-0
+			Next three: Trevor, James/Charles, Patrick
+		Schex
+			Charles offered A.J. Green and Russell Gage
+			Patrick selected A.J. Green (1.30)
+			Charles received Russell Gage (1.30)
+			Schex to 0-1
+			Next three: Mitch/Mike, Luke, Quinn
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Koci/Mueller, 145.28 to 112.37
+		Luke
+			Patrick offered Brandon Aiyuk and Melvin Gordon
+			Charles selected Brandon Aiyuk (4.70)
+			Patrick received Melvin Gordon (5.20)
+			Luke to 1-0
+			Next three: Patrick, Schex, Brett
+		Koci/Mueller
+			Charles offered Tyler Boyd and Braxton Berrios
+			Patrick selected Tyler Boyd (9.30)
+			Charles received Braxton Berrios (9.10)
+			Koci/Mueller to 0-1
+			Next three: Jason, Quinn, Trevor
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat Justin, 154.23 to 149.70
+		Mitch/Mike
+			Charles offered Christian Kirk and Miles Sanders
+			Patrick selected Christian Kirk (11.70)
+			Charles received Miles Sanders (16.50)
+			Mitch/Mike to 1-0
+			Next three: Schex, Brett, Jason
+		Justin
+			Patrick offered Trevor Lawrence and Marcus Mariota
+			Charles selected Trevor Lawrence (11.40)
+			Patrick received Marcus Mariota (19.80)
+			Justin to 0-1
+			Next three: Brett, Patrick, James/Charles
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 2
+	Schex (0-1) vs. Mitch/Mike (1-0)
+		NOTE_ABOUT_SCHEX
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Schex
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Patrick (0-1) vs. Luke (1-0)
+		JAGUAR GAME
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_LUKE
+		HOST_1 takes Patrick
+		HOST_2 takes Luke
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	James/Charles (1-0) vs. Quinn (1-0)
+		NOTE_ABOUT_JAMESCHARLES
+		NOTE_ABOUT_QUINN
+		HOST_1 takes James/Charles
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Justin (0-1) vs. Brett (1-0)
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_BRETT
+		HOST_1 takes Justin
+		HOST_2 takes Brett
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Koci/Mueller (0-1) vs. Jason (0-1)
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_JASON
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Trevor (0-1) vs. Keyon (1-0)
+		NOTE_ABOUT_TREVOR
+		NOTE_ABOUT_KEYON
+		HOST_1 takes Trevor
+		HOST_2 takes Keyon
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+
+High Scorer's Corner: Quinn
+	APPLAUSE
+	Quinn scored 183.92
+	1st scoring title this season
+	2nd scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in Week 2! We will talk to you next week!

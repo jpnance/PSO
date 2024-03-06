@@ -1,0 +1,195 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 9 of the 2022 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 8 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Quinn defeats Justin, 166.62 to 135.21
+		Quinn
+			Charles offered Sam Ehlinger and Taylor Heinicke
+			Patrick selected Sam Ehlinger (5.54)
+			Charles received Taylor Heinicke (20.06)
+			Quinn to 5-3 (.688/.723/.532)
+			Next three: Patrick, Jason, Trevor
+		Justin
+			Patrick offered Amon-Ra St. Brown and Chris Olave
+			Charles selected Amon-Ra St. Brown (6.90)
+			Patrick received Chris Olave (5.20)
+			Justin to 3-5 (.016/.040/.007)
+			Next three: Mitch/Mike, Luke, Keyon
+		RPO_MATCHUP_SUMMARY: Pat 0, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Brett defeats James/Charles, 180.02 to 139.35
+		Brett
+			Patrick offered Rondale Moore and Garrett Wilson
+			Charles selected Rondale Moore (16.40)
+			Patrick received Garrett Wilson (11.50)
+			Brett to 2-6 (.001/.003/.000)
+			Next three: Trevor, Schex, Jason
+		James/Charles
+			Charles offered Brandin Cooks and Zay Jones
+			Patrick selected Brandin Cooks (7.30)
+			Charles received Zay Jones (3.50)
+			James/Charles to 3-5 (.008/.026/.000)
+			Next three: Jason, Koci/Mueller, Patrick
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Patrick defeats Koci/Mueller, 167.57 to 153.24
+		Patrick
+			Patrick offered James Robinson and Jamaal Williams
+			Charles selected James Robinson (1.70)
+			Patrick received Jamaal Williams (19.60)
+			Patrick to 1-7 (.000/.000/.000)
+			Next three: Quinn, Trevor, James/Charles
+		Koci/Mueller
+			Charles offered Fred Warner and Zaire Franklin
+			Patrick selected Fred Warner (11.25)
+			Charles received Zaire Franklin (9.00)
+			Koci/Mueller to 2-6 (.000/.002/.000)
+			Next three: Luke, James/Charles, Schex
+		RPO_MATCHUP_SUMMARY: Pat 3, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat Trevor, 153.02 to 103.40
+		Mitch/Mike
+			Charles offered George Pickens and Allen Robinson
+			Patrick selected George Pickens (0.00)
+			Charles received Allen Robinson (5.40)
+			Mitch/Mike to 6-2 (.965/.980/.924)
+			Next three: Justin, Keyon, Luke
+		Trevor
+			Patrick offered Drake London and KJ Hamler
+			Charles selected Drake London (3.10)
+			Patrick received KJ Hamler (6.10)
+			Trevor to 3-5 (.005/.009/.001)
+			Next three: Brett, Patrick, Quinn
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 4
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Keyon, 155.26 to 121.60
+		JAGUAR GAME
+		Luke
+			Patrick offered Courtland Sutton and Chase Claypool
+			Charles selected Courtland Sutton (2.30)
+			Patrick received Chase Claypool (8.54)
+			Luke to 7-1 (.965/.975/.907)
+			Next three: Koci/Mueller, Justin, Mitch/Mike
+		Keyon
+			Charles offered Mac Jones and Zach Wilson
+			Patrick selected Mac Jones (5.66)
+			Charles received Zach Wilson (15.40)
+			Keyon to 6-2 (.515/.641/.380)
+			Next three: Schex, Mitch/Mike, Justin
+		RPO_MATCHUP_SUMMARY: Pat 5, Charles 5
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Schex defeats Jason, 138.86 to 125.09
+		Schex
+			Patrick offered Greg Dulcich and Diontae Johnson
+			Charles selected Greg Dulcich (8.70)
+			Patrick received Diontae Johnson (3.50)
+			Schex to 4-4 (.116/.207/.031)
+			Next three: Keyon, Brett, Koci/Mueller
+		Jason
+			Charles offered Parris Campbell and Tyler Lockett
+			Patrick selected Parris Campbell (7.10)
+			Charles received Tyler Lockett (11.30)
+			Jason to 6-2 (.720/.783/.570)
+			Next three: James/Charles, Quinn, Brett
+		RPO_MATCHUP_SUMMARY: Pat 5, Charles 7
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 9
+	Justin (3-5, .016/.040/.007, 26%) vs. Mitch/Mike (6-2, .965/.980/.924, 74%)
+		Playoff interest level: 0.155
+		Decision interest level: 0.327
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Justin
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Patrick (1-7, .000/.000/.000, 18%) vs. Quinn (5-3, .688/.723/.532, 82%)
+		Playoff interest level: 0.289
+		Decision interest level: 0.050
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Patrick
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Keyon (6-2, .515/.641/.380, 52%) vs. Schex (4-4, .116/.207/.031, 48%)
+		JAGUAR GAME
+		Playoff interest level: 0.402
+		Decision interest level: 0.389
+		NOTE_ABOUT_KEYON
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Keyon
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Koci/Mueller (2-6, .000/.002/.000, 15%) vs. Luke (7-1, .965/.975/.907, 85%)
+		Playoff interest level: 0.195
+		Decision interest level: 0.042
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_LUKE
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Luke
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Jason (6-2, .720/.783/.570, 71%) vs. James/Charles (3-5, .008/.026/.000, 29%)
+		Playoff interest level: 0.308
+		Decision interest level: 0.070
+		NOTE_ABOUT_JASON
+		NOTE_ABOUT_JAMESCHARLES
+		HOST_1 takes Jason
+		HOST_2 takes James/Charles
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Trevor (3-5, .005/.009/.001, 45%) vs. Brett (2-6, .001/.003/.000, 55%)
+		Playoff interest level: 0.371
+		Decision interest level: 0.000
+		NOTE_ABOUT_TREVOR
+		NOTE_ABOUT_BRETT
+		HOST_1 takes Trevor
+		HOST_2 takes Brett
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+
+High Scorer's Corner: Brett
+	APPLAUSE
+	Brett scored 180.02
+	1st scoring title this season
+	2nd scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in Week 9! We will talk to you next week!

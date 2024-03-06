@@ -1,0 +1,193 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 14 of the 2022 season!
+	I am Patrick, joined, as always, by Brett
+	BANTER_PROMPT
+
+Week 13 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Keyon defeats Jason, 175.62 to 170.80
+		Keyon
+			Patrick offered A.J. Brown and Isiah Pacheco
+			Charles selected A.J. Brown (23.90)
+			Patrick received Isiah Pacheco (21.00)
+			Keyon to 10-3 (1.000/1.000/1.000)
+			Last two: Koci/Mueller, Quinn
+		Jason
+			Charles offered Allen Lazard and Julio Jones
+			Patrick selected Allen Lazard (6.70)
+			Charles received Julio Jones (2.80)
+			Jason to 10-3 (1.000/1.000/1.000)
+			Last two: Luke, Justin
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Quinn, 149.68 to 117.33
+		Luke
+			Patrick offered Amari Cooper and Deebo Samuel
+			Charles selected Amari Cooper (4.00)
+			Patrick received Deebo Samuel (6.30)
+			Luke to 12-1 (1.000/1.000/1.000)
+			Last two: Jason, Trevor
+		Quinn
+			Charles offered Antonio Gibson and D'Andre Swift
+			Patrick selected Antonio Gibson (7.25)
+			Charles received D'Andre Swift (17.10)
+			Quinn to 7-6 (.000/.000/.000)
+			Last two: Brett, Keyon
+		RPO_MATCHUP_SUMMARY: Pat 2, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	James/Charles defeat Schex, 126.43 to 121.62
+		James/Charles
+			Charles offered Justin Jackson and Travis Homer
+			Patrick selected Justin Jackson (6.85)
+			Charles received Travis Homer (0.00)
+			James/Charles to 5-8 (.000/.000/.000)
+			Last two: Trevor, Mitch/Mike
+		Schex
+			Patrick offered Michael Gallup and Devin Duvernay
+			Charles selected Michael Gallup (14.30)
+			Patrick received Devin Duvernay (7.70)
+			Schex to 6-7 (.000/.000/.000)
+			Last two: Justin, Patrick
+		RPO_MATCHUP_SUMMARY: Pat 3, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat Koci/Mueller, 132.14 to 127.48
+		Mitch/Mike
+			Patrick offered JuJu Smith-Schuster and DeVonta Smith
+			Charles selected JuJu Smith-Schuster (3.50)
+			Patrick received DeVonta Smith (16.20)
+			Mitch/Mike to 9-4 (1.000/1.000/1.000)
+			Last two: Patrick, James/Charles
+		Koci/Mueller
+			Charles offered Nico Collins and Tyler Boyd
+			Patrick selected Nico Collins (9.50)
+			Charles received Tyler Boyd (6.00)
+			Koci/Mueller to 2-11 (.000/.000/.000)
+			Last two: Keyon, Brett
+		RPO_MATCHUP_SUMMARY: Pat 5, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Justin defeats Trevor, 120.06 to 119.29
+		Justin
+			Charles offered Michael Badgley and Brandon McManus
+			Patrick selected Michael Badgley (19.00)
+			Charles received Brandon McManus (14.00)
+			Justin to 5-8 (.000/.000/.000)
+			Last two: Schex, Jason
+		Trevor
+			Patrick offered Austin Hooper and Noah Fant
+			Charles selected Austin Hooper (2.20)
+			Patrick received Noah Fant (10.20)
+			Trevor to 5-8 (.000/.000/.000)
+			Last two: James/Charles, Luke
+		RPO_MATCHUP_SUMMARY: Pat 7, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Brett defeats Patrick, 150.10 to 98.10
+		Brett
+			Charles offered Foster Moreau and Mike Gesicki
+			Patrick selected Foster Moreau (3.20)
+			Charles received Mike Gesicki (0.00)
+			Brett to 4-9 (.000/.000/.000)
+			Last two: Quinn, Koci/Mueller
+		Patrick
+			Patrick offered Randall Cobb and Parris Campbell
+			Charles selected Randall Cobb (1.50)
+			Patrick received Parris Campbell (5.50)
+			Patrick to 3-10 (.000/.000/.000)
+			Last two: Mitch/Mike, Schex
+		RPO_MATCHUP_SUMMARY: Pat 9, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 14
+	Justin (5-8, .000/.000/.000, 36%) vs. Schex (6-7, .000/.000/.000, 64%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Justin
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Brett prediction
+	Koci/Mueller (2-11, .000/.000/.000, 19%) vs. Keyon (10-3, 1.000/1.000/1.000, 81%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.059
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_KEYON
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Keyon
+		Pat projection: PAT_PROJECTION
+		Brett prediction
+	Patrick (3-10, .000/.000/.000, 11%) vs. Mitch/Mike (9-4, 1.000/1.000/1.000, 89%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Patrick
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Brett prediction
+	Luke (12-1, 1.000/1.000/1.000, 47%) vs. Jason (10-3, 1.000/1.000/1.000, 53%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.295
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_JASON
+		HOST_1 takes Luke
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Brett prediction
+	Trevor (5-8, .000/.000/.000, 51%) vs. James/Charles (5-8, .000/.000/.000, 49%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_TREVOR
+		NOTE_ABOUT_JAMESCHARLES
+		HOST_1 takes Trevor
+		HOST_2 takes James/Charles
+		Pat projection: PAT_PROJECTION
+		Brett prediction
+	Brett (4-9, .000/.000/.000, 35%) vs. Quinn (7-6, .000/.000/.000, 65%)
+		Playoff interest level: 0.000
+		Decision interest level: 0.000
+		NOTE_ABOUT_BRETT
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Brett
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Brett prediction
+
+High Scorer's Corner: Keyon
+	APPLAUSE
+	Keyon scored 175.62
+	2nd scoring title this season
+	30th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Brett, I am Patrick. Good luck with your fantasy in Week 14! We will talk to you next week!

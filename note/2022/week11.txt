@@ -1,0 +1,193 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 11 of the 2022 season!
+	I am Patrick, joined, as always, by Justin
+	BANTER_PROMPT
+
+Week 10 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Jason defeats Quinn, 147.49 to 118.37
+		Jason
+			Charles offered Allen Lazard and Dallas Goedert
+			Patrick selected Allen Lazard (4.50)
+			Charles received Dallas Goedert (7.30)
+			Jason to 8-2 (.908/.947/.800)
+			Next three: Brett, Mitch/Mike, Keyon
+		Quinn
+			Patrick offered David Montgomery and D'Andre Swift
+			Charles selected David Montgomery (4.40)
+			Patrick received D'Andre Swift (7.20)
+			Quinn to 6-4 (.315/.357/.179)
+			Next three: Trevor, Schex, Luke
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	James/Charles defeat Koci/Mueller, 100.07 to 91.56
+		James/Charles
+			Charles offered Isaiah McKenzie and Brandin Cooks
+			Patrick selected Isaiah McKenzie (5.50)
+			Charles received Brandin Cooks (4.20)
+			James/Charles to 4-6 (.000/.001/.000)
+			Next three: Patrick, Justin, Schex
+		Koci/Mueller
+			Patrick offered Kamren Curl and Justin Simmons
+			Charles selected Kamren Curl (4.00)
+			Patrick received Justin Simmons (0.00)
+			Koci/Mueller to 2-8 (.000/.000/.000)
+			Next three: Schex, Trevor, Mitch/Mike
+		RPO_MATCHUP_SUMMARY: Pat 2, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat Keyon, 179.44 to 145.28
+		Mitch/Mike
+			Charles offered Jeff Wilson and DeVonta Smith
+			Patrick selected Jeff Wilson (20.30)
+			Charles received DeVonta Smith (7.90)
+			Mitch/Mike to 8-2 (.996/.999/.989)
+			Next three: Luke, Jason, Koci/Mueller
+		Keyon
+			Patrick offered Kareem Hunt and Chris Godwin
+			Charles selected Kareem Hunt (1.90)
+			Patrick received Chris Godwin (13.10)
+			Keyon to 7-3 (.693/.772/.582)
+			Next three: Justin, Patrick, Jason
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Schex defeats Brett, 190.19 to 118.94
+		Schex
+			Patrick offered Joshua Palmer and Michael Pittman
+			Charles selected Joshua Palmer (4.40)
+			Patrick received Michael Pittman (5.30)
+			Schex to 5-5 (.096/.122/.023)
+			Next three: Koci/Mueller, Quinn, James/Charles
+		Brett
+			Charles offered Donovan Peoples-Jones and Rondale Moore
+			Patrick selected Donovan Peoples-Jones (9.90)
+			Charles received Rondale Moore (9.40)
+			Brett to 3-7 (.000/.000/.000)
+			Next three: Jason, Luke, Patrick
+		RPO_MATCHUP_SUMMARY: Pat 6, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Justin, 134.58 to 112.26
+		Luke
+			Patrick offered Deebo Samuel and Chase Claypool
+			Charles selected Deebo Samuel (5.10)
+			Patrick received Chase Claypool (0.80)
+			Luke to 9-1 (.992/.999/.988)
+			Next three: Mitch/Mike, Brett, Quinn
+		Justin
+			Charles offered Brandon McManus and Michael Badgley
+			Patrick selected Brandon McManus (4.00)
+			Charles received Michael Badgley (7.00)
+			Justin to 3-7 (.000/.000/.000)
+			Next three: Keyon, James/Charles, Trevor
+		RPO_MATCHUP_SUMMARY: Pat 6, Charles 4
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Patrick defeats Trevor, 156.71 to 116.36
+		Patrick
+			Patrick offered Darius Slayton and James Cook
+			Charles selected Darius Slayton (15.50)
+			Patrick received James Cook (2.20)
+			Patrick to 2-8 (.000/.000/.000)
+			Next three: James/Charles, Keyon, Brett
+		Trevor
+			Charles offered Aaron Rodgers and Russell Wilson
+			Patrick selected Aaron Rodgers (17.36)
+			Charles received Russell Wilson (8.24)
+			Trevor to 3-7 (.000/.000/.000)
+			Next three: Quinn, Koci/Mueller, Justin
+		RPO_MATCHUP_SUMMARY: Pat 7, Charles 5
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 11
+	Justin (3-7, .000/.000/.000, 42%) vs. Keyon (7-3, .693/.772/.582, 58%)
+		Playoff interest level: 0.339
+		Decision interest level: 0.179
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_KEYON
+		HOST_1 takes Justin
+		HOST_2 takes Keyon
+		Pat projection: PAT_PROJECTION
+		Justin prediction
+	Patrick (2-8, .000/.000/.000, 50%) vs. James/Charles (4-6, .000/.001/.000, 50%)
+		Playoff interest level: 0.250
+		Decision interest level: 0.000
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_JAMESCHARLES
+		HOST_1 takes Patrick
+		HOST_2 takes James/Charles
+		Pat projection: PAT_PROJECTION
+		Justin prediction
+	Trevor (3-7, .000/.000/.000, 23%) vs. Quinn (6-4, .315/.357/.179, 77%)
+		Playoff interest level: 0.314
+		Decision interest level: 0.076
+		NOTE_ABOUT_TREVOR
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Trevor
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Justin prediction
+	Koci/Mueller (2-8, .000/.000/.000, 26%) vs. Schex (5-5, .096/.122/.023, 74%)
+		Playoff interest level: 0.087
+		Decision interest level: 0.000
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Justin prediction
+	Brett (3-7, .000/.000/.000, 27%) vs. Jason (8-2, .908/.947/.800, 73%)
+		Playoff interest level: 0.040
+		Decision interest level: 0.070
+		NOTE_ABOUT_BRETT
+		NOTE_ABOUT_JASON
+		HOST_1 takes Brett
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Justin prediction
+	Luke (9-1, .992/.999/.988, 35%) vs. Mitch/Mike (8-2, .996/.999/.989, 65%)
+		Playoff interest level: 0.007
+		Decision interest level: 0.520
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Luke
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Justin prediction
+
+High Scorer's Corner: Schex
+	APPLAUSE
+	Schex scored 190.19
+	1st scoring title this season
+	44th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Justin, I am Patrick. Good luck with your fantasy in Week 11! We will talk to you next week!

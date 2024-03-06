@@ -1,0 +1,93 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for the championship round of the 2022 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 16 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Luke defeats Jason, 172.20 to 136.00
+		Luke
+			Patrick offered Keenan Allen and Amari Cooper
+			Charles selected Keenan Allen (11.40)
+			Patrick received Amari Cooper (7.20)
+			Luke to 15-1
+			CHAMPIONSHIP_OR_THIRD_PLACE_GAME opponent: Mitch/Mike
+		Jason
+			Charles offered Gardner Minshew and Davis Mills
+			Patrick selected Gardner Minshew (23.70)
+			Charles received Davis Mills (8.92)
+			Jason to 11-5
+			CHAMPIONSHIP_OR_THIRD_PLACE_GAME opponent: Keyon
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat Keyon, 156.39 to 146.54
+		Mitch/Mike
+			Patrick offered DeVonta Smith and Mike Williams
+			Charles selected DeVonta Smith (23.30)
+			Patrick received Mike Williams (7.60)
+			Mitch/Mike to 12-4
+			CHAMPIONSHIP_OR_THIRD_PLACE_GAME opponent: Luke
+		Keyon
+			Charles offered Chris Godwin and Alvin Kamara
+			Patrick selected Chris Godwin (6.30)
+			Charles received Alvin Kamara (17.00)
+			Keyon to 12-4
+			CHAMPIONSHIP_OR_THIRD_PLACE_GAME opponent: Jason
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for the Championship Round
+	Keyon (12-4) vs. Jason (11-5)
+		NOTE_ABOUT_KEYON
+		NOTE_ABOUT_JASON
+		HOST_1 takes Keyon
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Luke (15-1) vs. Mitch/Mike (12-4)
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Luke
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+
+High Scorer's Corner: Luke
+	APPLAUSE
+	Luke scored 172.20
+	3rd scoring title this season
+	10th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in the championship round! We will talk to you next week!

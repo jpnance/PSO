@@ -1,0 +1,9025 @@
+[
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5347",
+			"name": "Nyheim Hines"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7523",
+			"name": "Trevor Lawrence"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2307",
+			"name": "Marcus Mariota"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3163",
+			"name": "Jared Goff"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "24",
+			"name": "Matt Ryan"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3257",
+			"name": "Jacoby Brissett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5870",
+			"name": "Daniel Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6803",
+			"name": "Brandon Aiyuk"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2320",
+			"name": "Melvin Gordon"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "830",
+			"name": "A.J. Green"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5110",
+			"name": "Russell Gage"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2197",
+			"name": "Brandin Cooks"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1352",
+			"name": "Robert Woods"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6151",
+			"name": "Miles Sanders"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4950",
+			"name": "Christian Kirk"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3423",
+			"name": "Robbie Anderson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6805",
+			"name": "KJ Hamler"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6945",
+			"name": "Antonio Gibson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7547",
+			"name": "Amon-Ra St. Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3225",
+			"name": "Tyler Boyd"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 1,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7547",
+			"name": "Amon-Ra St. Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4983",
+			"name": "DJ Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8167",
+			"name": "Christian Watson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4131",
+			"name": "Kenny Golladay"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4036",
+			"name": "Corey Davis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5937",
+			"name": "Diontae Johnson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5846",
+			"name": "DK Metcalf"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7607",
+			"name": "Michael Carter"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5947",
+			"name": "Jakobi Meyers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4149",
+			"name": "Jamaal Williams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "947",
+			"name": "Julio Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4197",
+			"name": "Isaiah McKenzie"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1352",
+			"name": "Robert Woods"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4098",
+			"name": "Kareem Hunt"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5000",
+			"name": "Chase Edmonds"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7543",
+			"name": "Travis Etienne"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1992",
+			"name": "Allen Robinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2320",
+			"name": "Melvin Gordon"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5967",
+			"name": "Tony Pollard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4082",
+			"name": "Curtis Samuel"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8119",
+			"name": "Jahan Dotson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5916",
+			"name": "Darrell Henderson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 2,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Luke",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "6803",
+			"name": "Brandon Aiyuk"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Luke",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "2320",
+			"name": "Melvin Gordon"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Brett",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "4993",
+			"name": "Mike Gesicki"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Brett",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "2251",
+			"name": "Logan Thomas"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Trevor",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "5857",
+			"name": "Noah Fant"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Trevor",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "5844",
+			"name": "T.J. Hockenson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Koci/Mueller",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "6938",
+			"name": "Cam Akers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Koci/Mueller",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "8155",
+			"name": "Breece Hall"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "James/Charles",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "7647",
+			"name": "Pete Werner"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "James/Charles",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "2393",
+			"name": "Danielle Hunter"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Justin",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Justin",
+		"offerer": "Luke",
+		"selector": "Patrick",
+		"player": {
+			"id": "8144",
+			"name": "Chris Olave"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "4036",
+			"name": "Corey Davis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "5110",
+			"name": "Russell Gage"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "1992",
+			"name": "Allen Robinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "4040",
+			"name": "JuJu Smith-Schuster"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "1535",
+			"name": "Cordarrelle Patterson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "3161",
+			"name": "Carson Wentz"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "1049",
+			"name": "Ryan Tannehill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "19",
+			"name": "Joe Flacco"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "7527",
+			"name": "Mac Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "4951",
+			"name": "D.J. Chark"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 3,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Luke",
+		"player": {
+			"id": "1825",
+			"name": "Jarvis Landry"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2320",
+			"name": "Melvin Gordon"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5970",
+			"name": "Greg Dortch"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5110",
+			"name": "Russell Gage"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7670",
+			"name": "Joshua Palmer"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "421",
+			"name": "Matthew Stafford"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2307",
+			"name": "Marcus Mariota"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5916",
+			"name": "Darrell Henderson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3423",
+			"name": "Robbie Anderson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5870",
+			"name": "Daniel Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3257",
+			"name": "Jacoby Brissett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6806",
+			"name": "J.K. Dobbins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6828",
+			"name": "AJ Dillon"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5846",
+			"name": "DK Metcalf"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6820",
+			"name": "Clyde Edwards-Helaire"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4080",
+			"name": "Zay Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4040",
+			"name": "JuJu Smith-Schuster"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7543",
+			"name": "Travis Etienne"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1689",
+			"name": "Adam Thielen"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4983",
+			"name": "DJ Moore"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4082",
+			"name": "Curtis Samuel"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 4,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8121",
+			"name": "Romeo Doubs"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7553",
+			"name": "Kyle Pitts"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4381",
+			"name": "Taysom Hill"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5916",
+			"name": "Darrell Henderson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8132",
+			"name": "Tyler Allgeier"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5086",
+			"name": "Marquez Valdes-Scantling"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6943",
+			"name": "Gabe Davis"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2309",
+			"name": "Amari Cooper"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7670",
+			"name": "Joshua Palmer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5937",
+			"name": "Diontae Johnson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5906",
+			"name": "Dawson Knox"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8225",
+			"name": "Daniel Bellinger"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "421",
+			"name": "Matthew Stafford"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2152",
+			"name": "Teddy Bridgewater"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3161",
+			"name": "Carson Wentz"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1049",
+			"name": "Ryan Tannehill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7601",
+			"name": "Rondale Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4177",
+			"name": "Mack Hollins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6938",
+			"name": "Cam Akers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8121",
+			"name": "Romeo Doubs"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5967",
+			"name": "Tony Pollard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5970",
+			"name": "Greg Dortch"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4217",
+			"name": "George Kittle"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 5,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4089",
+			"name": "Gerald Everett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4036",
+			"name": "Corey Davis"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5917",
+			"name": "Mecole Hardman"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2320",
+			"name": "Melvin Gordon"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5967",
+			"name": "Tony Pollard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8146",
+			"name": "Garrett Wilson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3271",
+			"name": "Tyler Higbee"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5022",
+			"name": "Dallas Goedert"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2319",
+			"name": "DeVante Parker"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5947",
+			"name": "Jakobi Meyers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8121",
+			"name": "Romeo Doubs"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3225",
+			"name": "Tyler Boyd"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2749",
+			"name": "Raheem Mostert"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4098",
+			"name": "Kareem Hunt"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6931",
+			"name": "DeeJay Dallas"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4217",
+			"name": "George Kittle"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7543",
+			"name": "Travis Etienne"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4033",
+			"name": "David Njoku"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4066",
+			"name": "Evan Engram"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3214",
+			"name": "Hunter Henry"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5880",
+			"name": "Parris Campbell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3423",
+			"name": "Robbie Anderson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 6,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5916",
+			"name": "Darrell Henderson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "6945",
+			"name": "Antonio Gibson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4983",
+			"name": "DJ Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "8111",
+			"name": "Cade Otton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4973",
+			"name": "Hayden Hurst"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "5857",
+			"name": "Noah Fant"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "James/Charles",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4089",
+			"name": "Gerald Everett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "James/Charles",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4080",
+			"name": "Zay Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "7569",
+			"name": "Nico Collins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "2750",
+			"name": "DeAndre Carter"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "2319",
+			"name": "DeVante Parker"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Keyon",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "7527",
+			"name": "Mac Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Keyon",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "7538",
+			"name": "Zach Wilson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Schex",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "5937",
+			"name": "Diontae Johnson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Schex",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "7670",
+			"name": "Joshua Palmer"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Brett",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Brett",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "8188",
+			"name": "Tyquan Thornton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Mitch/Mike",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Mitch/Mike",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "8142",
+			"name": "Alec Pierce"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Jason",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "5880",
+			"name": "Parris Campbell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Jason",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "5209",
+			"name": "Mike Boone"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Luke",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 7,
+		"owner": "Luke",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "7600",
+			"name": "Pat Freiermuth"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7547",
+			"name": "Amon-Ra St. Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8144",
+			"name": "Chris Olave"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8146",
+			"name": "Garrett Wilson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7601",
+			"name": "Rondale Moore"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6955",
+			"name": "James Robinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4149",
+			"name": "Jamaal Williams"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6805",
+			"name": "KJ Hamler"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5045",
+			"name": "Courtland Sutton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6886",
+			"name": "Chase Claypool"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5937",
+			"name": "Diontae Johnson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8172",
+			"name": "Greg Dulcich"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2711",
+			"name": "Taylor Heinicke"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7583",
+			"name": "Sam Ehlinger"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4080",
+			"name": "Zay Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2197",
+			"name": "Brandin Cooks"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5346",
+			"name": "Zaire Franklin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5041",
+			"name": "Fred Warner"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1992",
+			"name": "Allen Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7527",
+			"name": "Mac Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7538",
+			"name": "Zach Wilson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 8,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5880",
+			"name": "Parris Campbell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "829",
+			"name": "Andy Dalton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7591",
+			"name": "Justin Fields"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8111",
+			"name": "Cade Otton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7594",
+			"name": "Chuba Hubbard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6996",
+			"name": "JaMycal Hasty"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3423",
+			"name": "Robbie Anderson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5857",
+			"name": "Noah Fant"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8138",
+			"name": "James Cook"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7606",
+			"name": "Kadarius Toney"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1817",
+			"name": "Sammy Watkins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4037",
+			"name": "Chris Godwin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5846",
+			"name": "DK Metcalf"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7553",
+			"name": "Kyle Pitts"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4381",
+			"name": "Taysom Hill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5110",
+			"name": "Russell Gage"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7565",
+			"name": "Terrace Marshall"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7601",
+			"name": "Rondale Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5890",
+			"name": "Damien Harris"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5892",
+			"name": "David Montgomery"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1689",
+			"name": "Adam Thielen"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6781",
+			"name": "Isaiah Simmons"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 9,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7012",
+			"name": "Mykal Walker"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5892",
+			"name": "David Montgomery"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6790",
+			"name": "D'Andre Swift"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3262",
+			"name": "Justin Simmons"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7136",
+			"name": "Kamren Curl"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4098",
+			"name": "Kareem Hunt"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4037",
+			"name": "Chris Godwin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6819",
+			"name": "Michael Pittman"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7670",
+			"name": "Joshua Palmer"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5872",
+			"name": "Deebo Samuel"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6886",
+			"name": "Chase Claypool"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6149",
+			"name": "Darius Slayton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8138",
+			"name": "James Cook"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "96",
+			"name": "Aaron Rodgers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1234",
+			"name": "Russell Wilson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4197",
+			"name": "Isaiah McKenzie"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2197",
+			"name": "Brandin Cooks"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7601",
+			"name": "Rondale Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5284",
+			"name": "Jeff Wilson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1433",
+			"name": "Brandon McManus"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5230",
+			"name": "Michael Badgley"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 10,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5022",
+			"name": "Dallas Goedert"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "7600",
+			"name": "Pat Freiermuth"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "6943",
+			"name": "Gabe Davis"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "5086",
+			"name": "Marquez Valdes-Scantling"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "3423",
+			"name": "Robbie Anderson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "7533",
+			"name": "Anthony Schwartz"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "3257",
+			"name": "Jacoby Brissett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "4892",
+			"name": "Baker Mayfield"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "7601",
+			"name": "Rondale Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "8119",
+			"name": "Jahan Dotson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Justin",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Quinn",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "6945",
+			"name": "Antonio Gibson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Quinn",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "6790",
+			"name": "D'Andre Swift"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Mitch/Mike",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "4068",
+			"name": "Mike Williams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Mitch/Mike",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Schex",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "6819",
+			"name": "Michael Pittman"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Schex",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "James/Charles",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "7809",
+			"name": "Avery Williams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "James/Charles",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "6820",
+			"name": "Clyde Edwards-Helaire"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Jason",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "8130",
+			"name": "Trey McBride"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Jason",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "3634",
+			"name": "Kalif Raymond"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Justin",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "8189",
+			"name": "Trestan Ebner"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 11,
+		"owner": "Justin",
+		"offerer": "Justin",
+		"selector": "Patrick",
+		"player": {
+			"id": "5000",
+			"name": "Chase Edmonds"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3271",
+			"name": "Tyler Higbee"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8172",
+			"name": "Greg Dulcich"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4111",
+			"name": "D'Onta Foreman"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8111",
+			"name": "Cade Otton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4973",
+			"name": "Hayden Hurst"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4147",
+			"name": "Samaje Perine"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6955",
+			"name": "James Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8136",
+			"name": "Rachaad White"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7600",
+			"name": "Pat Freiermuth"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1049",
+			"name": "Ryan Tannehill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2028",
+			"name": "Derek Carr"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4040",
+			"name": "JuJu Smith-Schuster"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Mitch/Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6853",
+			"name": "Van Jefferson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1352",
+			"name": "Robert Woods"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8259",
+			"name": "Cameron Dicker"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4227",
+			"name": "Harrison Butker"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8205",
+			"name": "Isiah Pacheco"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4035",
+			"name": "Alvin Kamara"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 12,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8167",
+			"name": "Christian Watson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5859",
+			"name": "A.J. Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8205",
+			"name": "Isiah Pacheco"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5872",
+			"name": "Deebo Samuel"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2309",
+			"name": "Amari Cooper"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6847",
+			"name": "Devin Duvernay"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5038",
+			"name": "Michael Gallup"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4040",
+			"name": "JuJu Smith-Schuster"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3202",
+			"name": "Austin Hooper"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Trevor",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5857",
+			"name": "Noah Fant"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5880",
+			"name": "Parris Campbell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "928",
+			"name": "Randall Cobb"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "947",
+			"name": "Julio Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6945",
+			"name": "Antonio Gibson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6790",
+			"name": "D'Andre Swift"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6012",
+			"name": "Travis Homer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5131",
+			"name": "Justin Jackson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5230",
+			"name": "Michael Badgley"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1433",
+			"name": "Brandon McManus"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7569",
+			"name": "Nico Collins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3225",
+			"name": "Tyler Boyd"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5985",
+			"name": "Foster Moreau"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 13,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4993",
+			"name": "Mike Gesicki"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "1049",
+			"name": "Ryan Tannehill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "5089",
+			"name": "Mike White"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "4198",
+			"name": "Jamal Agnew"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "5906",
+			"name": "Dawson Knox"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "8225",
+			"name": "Daniel Bellinger"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "8172",
+			"name": "Greg Dulcich"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "4066",
+			"name": "Evan Engram"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "4036",
+			"name": "Corey Davis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "2161",
+			"name": "Jerick McKinnon"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "James/Charles",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "4197",
+			"name": "Isaiah McKenzie"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "James/Charles",
+		"offerer": "Patrick",
+		"selector": "Brett",
+		"player": {
+			"id": "3286",
+			"name": "Demarcus Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Keyon",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "3294",
+			"name": "Dak Prescott"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Keyon",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "5849",
+			"name": "Kyler Murray"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Trevor",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "8259",
+			"name": "Cameron Dicker"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Trevor",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "4195",
+			"name": "Jake Elliott"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Mitch/Mike",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Mitch/Mike",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "5284",
+			"name": "Jeff Wilson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Jason",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "7210",
+			"name": "Kendall Hinton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Jason",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "947",
+			"name": "Julio Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Brett",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Brett",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "7601",
+			"name": "Rondale Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Justin",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "8111",
+			"name": "Cade Otton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 14,
+		"owner": "Justin",
+		"offerer": "Brett",
+		"selector": "Patrick",
+		"player": {
+			"id": "4234",
+			"name": "Noah Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4018",
+			"name": "Joe Mixon"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4866",
+			"name": "Saquon Barkley"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4035",
+			"name": "Alvin Kamara"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6130",
+			"name": "Devin Singletary"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6806",
+			"name": "J.K. Dobbins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4892",
+			"name": "Baker Mayfield"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4943",
+			"name": "Sam Darnold"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4111",
+			"name": "D'Onta Foreman"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7594",
+			"name": "Chuba Hubbard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7543",
+			"name": "Travis Etienne"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8132",
+			"name": "Tyler Allgeier"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Trevor",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2161",
+			"name": "Jerick McKinnon"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6790",
+			"name": "D'Andre Swift"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6819",
+			"name": "Michael Pittman"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6847",
+			"name": "Devin Duvernay"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3286",
+			"name": "Demarcus Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6853",
+			"name": "Van Jefferson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4082",
+			"name": "Curtis Samuel"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8119",
+			"name": "Jahan Dotson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8111",
+			"name": "Cade Otton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 15,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4234",
+			"name": "Noah Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2309",
+			"name": "Amari Cooper"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1479",
+			"name": "Keenan Allen"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7585",
+			"name": "Davis Mills"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6011",
+			"name": "Gardner Minshew"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4068",
+			"name": "Mike Williams"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4035",
+			"name": "Alvin Kamara"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 16,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4037",
+			"name": "Chris Godwin"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3634",
+			"name": "Kalif Raymond"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4950",
+			"name": "Christian Kirk"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Mitch/Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4068",
+			"name": "Mike Williams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2133",
+			"name": "Davante Adams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5846",
+			"name": "DK Metcalf"
+		},
+		"selected": false
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7600",
+			"name": "Pat Freiermuth"
+		},
+		"selected": true
+	},
+	{
+		"season": "2022",
+		"week": 17,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2505",
+			"name": "Darren Waller"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9754",
+			"name": "Quentin Johnston"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8126",
+			"name": "Wan'Dale Robinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3199",
+			"name": "Michael Thomas"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1689",
+			"name": "Adam Thielen"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5001",
+			"name": "Dalton Schultz"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8151",
+			"name": "Kenneth Walker"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7588",
+			"name": "Javonte Williams"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4147",
+			"name": "Samaje Perine"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8155",
+			"name": "Breece Hall"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6783",
+			"name": "Jerry Jeudy"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7571",
+			"name": "Rashod Bateman"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4950",
+			"name": "Christian Kirk"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8183",
+			"name": "Brock Purdy"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9228",
+			"name": "Bryce Young"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4029",
+			"name": "Dalvin Cook"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6938",
+			"name": "Cam Akers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4149",
+			"name": "Jamaal Williams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8167",
+			"name": "Christian Watson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5927",
+			"name": "Terry McLaurin"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 1,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6886",
+			"name": "Chase Claypool"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6853",
+			"name": "Van Jefferson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7571",
+			"name": "Rashod Bateman"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7526",
+			"name": "Jaylen Waddle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8136",
+			"name": "Rachaad White"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8138",
+			"name": "James Cook"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6845",
+			"name": "Zack Moss"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4983",
+			"name": "DJ Moore"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9758",
+			"name": "C.J. Stroud"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1049",
+			"name": "Ryan Tannehill"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7562",
+			"name": "Tutu Atwell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8119",
+			"name": "Jahan Dotson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4080",
+			"name": "Zay Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5045",
+			"name": "Courtland Sutton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8228",
+			"name": "Jaylen Warren"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2161",
+			"name": "Jerick McKinnon"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9488",
+			"name": "Jaxon Smith-Njigba"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5374",
+			"name": "Justin Watson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10236",
+			"name": "Dalton Kincaid"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 2,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8110",
+			"name": "Jake Ferguson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6783",
+			"name": "Jerry Jeudy"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8132",
+			"name": "Tyler Allgeier"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5374",
+			"name": "Justin Watson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9488",
+			"name": "Jaxon Smith-Njigba"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7528",
+			"name": "Najee Harris"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8138",
+			"name": "James Cook"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6886",
+			"name": "Chase Claypool"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8125",
+			"name": "Calvin Austin"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6768",
+			"name": "Tua Tagovailoa"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3163",
+			"name": "Jared Goff"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5248",
+			"name": "Gus Edwards"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8129",
+			"name": "Dameon Pierce"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7562",
+			"name": "Tutu Atwell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4983",
+			"name": "DJ Moore"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1352",
+			"name": "Robert Woods"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4454",
+			"name": "Kendrick Bourne"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6945",
+			"name": "Antonio Gibson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7021",
+			"name": "Rico Dowdle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5001",
+			"name": "Dalton Schultz"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5890",
+			"name": "Damien Harris"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 3,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6984",
+			"name": "Tony Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5857",
+			"name": "Noah Fant"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4217",
+			"name": "George Kittle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7528",
+			"name": "Najee Harris"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8136",
+			"name": "Rachaad White"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7526",
+			"name": "Jaylen Waddle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7553",
+			"name": "Kyle Pitts"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4033",
+			"name": "David Njoku"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7569",
+			"name": "Nico Collins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4037",
+			"name": "Chris Godwin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5038",
+			"name": "Michael Gallup"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10235",
+			"name": "Roschon Johnson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4983",
+			"name": "DJ Moore"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4950",
+			"name": "Christian Kirk"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6801",
+			"name": "Tee Higgins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1426",
+			"name": "DeAndre Hopkins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9502",
+			"name": "Tank Dell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6824",
+			"name": "Donovan Peoples-Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4029",
+			"name": "Dalvin Cook"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4454",
+			"name": "Kendrick Bourne"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9754",
+			"name": "Quentin Johnston"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 4,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9488",
+			"name": "Jaxon Smith-Njigba"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1426",
+			"name": "DeAndre Hopkins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8167",
+			"name": "Christian Watson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9229",
+			"name": "Anthony Richardson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7523",
+			"name": "Trevor Lawrence"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4993",
+			"name": "Mike Gesicki"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4973",
+			"name": "Hayden Hurst"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1339",
+			"name": "Zach Ertz"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7527",
+			"name": "Mac Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9228",
+			"name": "Bryce Young"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7538",
+			"name": "Zach Wilson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8160",
+			"name": "Kenny Pickett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1166",
+			"name": "Kirk Cousins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3163",
+			"name": "Jared Goff"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6151",
+			"name": "Miles Sanders"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9500",
+			"name": "Josh Downs"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8126",
+			"name": "Wan'Dale Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1352",
+			"name": "Robert Woods"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10236",
+			"name": "Dalton Kincaid"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5038",
+			"name": "Michael Gallup"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 5,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6149",
+			"name": "Darius Slayton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7562",
+			"name": "Tutu Atwell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8676",
+			"name": "Rashid Shaheed"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6813",
+			"name": "Jonathan Taylor"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6770",
+			"name": "Joe Burrow"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8162",
+			"name": "Sam Howell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5927",
+			"name": "Terry McLaurin"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9502",
+			"name": "Tank Dell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7527",
+			"name": "Mac Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9228",
+			"name": "Bryce Young"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4993",
+			"name": "Mike Gesicki"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4973",
+			"name": "Hayden Hurst"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7523",
+			"name": "Trevor Lawrence"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1166",
+			"name": "Kirk Cousins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2028",
+			"name": "Derek Carr"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6011",
+			"name": "Gardner Minshew"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7569",
+			"name": "Nico Collins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9492",
+			"name": "Trey Palmer"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4089",
+			"name": "Gerald Everett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5001",
+			"name": "Dalton Schultz"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9482",
+			"name": "Michael Mayer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 6,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3214",
+			"name": "Hunter Henry"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8289",
+			"name": "Aidan Hutchinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3558",
+			"name": "Chris Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7562",
+			"name": "Tutu Atwell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10235",
+			"name": "Roschon Johnson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6845",
+			"name": "Zack Moss"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5870",
+			"name": "Daniel Jones"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4892",
+			"name": "Baker Mayfield"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "11256",
+			"name": "Tyson Bagent"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8159",
+			"name": "Desmond Ridder"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4963",
+			"name": "Minkah Fitzpatrick"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7666",
+			"name": "Jevon Holland"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4082",
+			"name": "Curtis Samuel"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5816",
+			"name": "Nick Bosa"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8355",
+			"name": "Kayvon Thibodeaux"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2036",
+			"name": "Khalil Mack"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8269",
+			"name": "Jordan Davis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9488",
+			"name": "Jaxon Smith-Njigba"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9482",
+			"name": "Michael Mayer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5839",
+			"name": "Rashan Gary"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2227",
+			"name": "Aaron Donald"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3156",
+			"name": "Joey Bosa"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 7,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3172",
+			"name": "DeForest Buckner"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8162",
+			"name": "Sam Howell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6770",
+			"name": "Joe Burrow"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10235",
+			"name": "Roschon Johnson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6845",
+			"name": "Zack Moss"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4223",
+			"name": "Rudy Ford"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8290",
+			"name": "Sauce Gardner"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1166",
+			"name": "Kirk Cousins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7523",
+			"name": "Trevor Lawrence"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2133",
+			"name": "Davante Adams"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5947",
+			"name": "Jakobi Meyers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6151",
+			"name": "Miles Sanders"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2028",
+			"name": "Derek Carr"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6011",
+			"name": "Gardner Minshew"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5248",
+			"name": "Gus Edwards"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5916",
+			"name": "Darrell Henderson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8228",
+			"name": "Jaylen Warren"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5995",
+			"name": "Justice Hill"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6938",
+			"name": "Cam Akers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "11256",
+			"name": "Tyson Bagent"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8159",
+			"name": "Desmond Ridder"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3214",
+			"name": "Hunter Henry"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 8,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9482",
+			"name": "Michael Mayer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "3214",
+			"name": "Hunter Henry"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "9482",
+			"name": "Michael Mayer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "8154",
+			"name": "Brian Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "9231",
+			"name": "Jaren Hall"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "9502",
+			"name": "Tank Dell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "8167",
+			"name": "Christian Watson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "4144",
+			"name": "Jonnu Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "4973",
+			"name": "Hayden Hurst"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "7594",
+			"name": "Chuba Hubbard"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "2711",
+			"name": "Taylor Heinicke"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "11256",
+			"name": "Tyson Bagent"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Keyon",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "9228",
+			"name": "Bryce Young"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Keyon",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "7527",
+			"name": "Mac Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Mitch",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Mitch",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "6801",
+			"name": "Tee Higgins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Schex",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "4081",
+			"name": "Budda Baker"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Schex",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "8286",
+			"name": "Dax Hill"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Koci/Mueller",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Koci/Mueller",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "10229",
+			"name": "Rashee Rice"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "James/Charles",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "8110",
+			"name": "Jake Ferguson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "James/Charles",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "7562",
+			"name": "Tutu Atwell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Mike",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "7571",
+			"name": "Rashod Bateman"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 9,
+		"owner": "Mike",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "5121",
+			"name": "Braxton Berrios"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6783",
+			"name": "Jerry Jeudy"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8676",
+			"name": "Rashid Shaheed"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5944",
+			"name": "Bobby Okereke"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6056",
+			"name": "Dre Greenlaw"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8146",
+			"name": "Garrett Wilson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9502",
+			"name": "Tank Dell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9754",
+			"name": "Quentin Johnston"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8126",
+			"name": "Wan'Dale Robinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2133",
+			"name": "Davante Adams"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5947",
+			"name": "Jakobi Meyers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5334",
+			"name": "Josey Jewell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2350",
+			"name": "Eric Kendricks"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6943",
+			"name": "Gabe Davis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4234",
+			"name": "Noah Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5995",
+			"name": "Justice Hill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3634",
+			"name": "Kalif Raymond"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10232",
+			"name": "Michael Wilson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9481",
+			"name": "Luke Musgrave"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8210",
+			"name": "Chigoziem Okonkwo"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4455",
+			"name": "Matt Breida"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 10,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7607",
+			"name": "Michael Carter"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9754",
+			"name": "Quentin Johnston"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8126",
+			"name": "Wan'Dale Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1426",
+			"name": "DeAndre Hopkins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9502",
+			"name": "Tank Dell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7066",
+			"name": "K.J. Osborn"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5038",
+			"name": "Michael Gallup"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "650",
+			"name": "Nick Folk"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5095",
+			"name": "Daniel Carlson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10222",
+			"name": "Jayden Reed"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4098",
+			"name": "Kareem Hunt"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10866",
+			"name": "Aidan O'Connell"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4984",
+			"name": "Josh Allen"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8162",
+			"name": "Sam Howell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5967",
+			"name": "Tony Pollard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8151",
+			"name": "Kenneth Walker"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9493",
+			"name": "Puka Nacua"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10229",
+			"name": "Rashee Rice"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4950",
+			"name": "Christian Kirk"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9999",
+			"name": "Will Levis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "11292",
+			"name": "Tommy DeVito"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 11,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4981",
+			"name": "Calvin Ridley"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4137",
+			"name": "James Conner"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7588",
+			"name": "Javonte Williams"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "2078",
+			"name": "Odell Beckham"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8121",
+			"name": "Romeo Doubs"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1426",
+			"name": "DeAndre Hopkins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5927",
+			"name": "Terry McLaurin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4993",
+			"name": "Mike Gesicki"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3271",
+			"name": "Tyler Higbee"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8160",
+			"name": "Kenny Pickett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8159",
+			"name": "Desmond Ridder"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5045",
+			"name": "Courtland Sutton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6768",
+			"name": "Tua Tagovailoa"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7523",
+			"name": "Trevor Lawrence"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8143",
+			"name": "Jerome Ford"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8205",
+			"name": "Isiah Pacheco"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2749",
+			"name": "Raheem Mostert"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7562",
+			"name": "Tutu Atwell"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5937",
+			"name": "Diontae Johnson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7594",
+			"name": "Chuba Hubbard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Jason",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9754",
+			"name": "Quentin Johnston"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 12,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1476",
+			"name": "Latavius Murray"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8111",
+			"name": "Cade Otton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8121",
+			"name": "Romeo Doubs"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4171",
+			"name": "Josh Reynolds"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6790",
+			"name": "D'Andre Swift"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7611",
+			"name": "Rhamondre Stevenson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7606",
+			"name": "Kadarius Toney"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7607",
+			"name": "Michael Carter"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4029",
+			"name": "Dalvin Cook"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4971",
+			"name": "Derwin James"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10905",
+			"name": "Brian Branch"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6111",
+			"name": "Jake Browning"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8160",
+			"name": "Kenny Pickett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4381",
+			"name": "Taysom Hill"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5257",
+			"name": "Tim Boyle"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1426",
+			"name": "DeAndre Hopkins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5927",
+			"name": "Terry McLaurin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9492",
+			"name": "Trey Palmer"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "1352",
+			"name": "Robert Woods"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4066",
+			"name": "Evan Engram"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 13,
+		"owner": "Schex",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2251",
+			"name": "Logan Thomas"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4039",
+			"name": "Cooper Kupp"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "6943",
+			"name": "Gabe Davis"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "8112",
+			"name": "Drake London"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "1689",
+			"name": "Adam Thielen"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "10225",
+			"name": "Jonathan Mingo"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "4080",
+			"name": "Zay Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "7066",
+			"name": "K.J. Osborn"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "9753",
+			"name": "Zach Charbonnet"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "7526",
+			"name": "Jaylen Waddle"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "9500",
+			"name": "Josh Downs"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "5374",
+			"name": "Justin Watson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Jason",
+		"player": {
+			"id": "6801",
+			"name": "Tee Higgins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Schex",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "3163",
+			"name": "Jared Goff"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Schex",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "6011",
+			"name": "Gardner Minshew"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Koci/Mueller",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "10229",
+			"name": "Rashee Rice"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Koci/Mueller",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "9997",
+			"name": "Zay Flowers"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "James/Charles",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "9999",
+			"name": "Will Levis"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "James/Charles",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "11292",
+			"name": "Tommy DeVito"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Mike",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "4217",
+			"name": "George Kittle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Mike",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "6783",
+			"name": "Jerry Jeudy"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Brett",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "8230",
+			"name": "Ty Chandler"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Brett",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "8134",
+			"name": "Khalil Shakir"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Jason",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "5086",
+			"name": "Marquez Valdes-Scantling"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 14,
+		"owner": "Jason",
+		"offerer": "Jason",
+		"selector": "Patrick",
+		"player": {
+			"id": "5185",
+			"name": "Allen Lazard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8151",
+			"name": "Kenneth Walker"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7526",
+			"name": "Jaylen Waddle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4464",
+			"name": "Nick Mullens"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Mitch",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8157",
+			"name": "Bailey Zappe"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4137",
+			"name": "James Conner"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Schex",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5848",
+			"name": "Marquise Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5022",
+			"name": "Dallas Goedert"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8131",
+			"name": "Isaiah Likely"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5318",
+			"name": "Ja'Whaun Bentley"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4118",
+			"name": "Alex Anzalone"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3164",
+			"name": "Ezekiel Elliott"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7594",
+			"name": "Chuba Hubbard"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "19",
+			"name": "Joe Flacco"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5849",
+			"name": "Kyler Murray"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5119",
+			"name": "Jason Sanders"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Brett",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4666",
+			"name": "Younghoe Koo"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8228",
+			"name": "Jaylen Warren"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2078",
+			"name": "Odell Beckham"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4063",
+			"name": "Haason Reddick"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6783",
+			"name": "Jerry Jeudy"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7571",
+			"name": "Rashod Bateman"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5001",
+			"name": "Dalton Schultz"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 15,
+		"owner": "James/Charles",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8355",
+			"name": "Kayvon Thibodeaux"
+		}
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5850",
+			"name": "Josh Jacobs"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8205",
+			"name": "Isiah Pacheco"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4663",
+			"name": "Austin Ekeler"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7526",
+			"name": "Jaylen Waddle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4464",
+			"name": "Nick Mullens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2711",
+			"name": "Taylor Heinicke"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8155",
+			"name": "Breece Hall"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 16,
+		"owner": "Koci/Mueller",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5248",
+			"name": "Gus Edwards"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8132",
+			"name": "Tyler Allgeier"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6783",
+			"name": "Jerry Jeudy"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5022",
+			"name": "Dallas Goedert"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8131",
+			"name": "Isaiah Likely"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4464",
+			"name": "Nick Mullens"
+		},
+		"selected": false
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4972",
+			"name": "Mason Rudolph"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2549",
+			"name": "Trevor Siemian"
+		},
+		"selected": true
+	},
+	{
+		"season": "2023",
+		"week": 17,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4127",
+			"name": "C.J. Beathard"
+		},
+		"selected": false
+	}
+]

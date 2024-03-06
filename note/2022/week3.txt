@@ -1,0 +1,182 @@
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 3 of the 2022 season!
+	I am Patrick, joined, as always, by Luke
+	BANTER_PROMPT
+
+Week 2 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Schex defeats Mitch/Mike, 159.15 to 153.68
+		Schex
+			Patrick offered Diontae Johnson and Corey Davis
+			Charles selected Diontae Johnson (7.70)
+			Patrick received Corey Davis (14.30)
+			Schex to 1-1
+			Next three: Luke, Quinn, Koci/Mueller
+		Mitch/Mike
+			Charles offered Allen Robinson and Travis Etienne
+			Patrick selected Allen Robinson (11.30)
+			Charles received Travis Etienne (5.30)
+			Mitch/Mike to 1-1
+			Next three: Brett, Jason, Luke
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats Patrick, 128.60 to 96.89
+		JAGUAR GAME
+		Luke
+			Charles offered Melvin Gordon and Tony Pollard
+			Patrick selected Melvin Gordon (5.30)
+			Charles received Tony Pollard (15.80)
+			Luke to 2-0
+			Next three: Schex, Brett, Mitch/Mike
+		Patrick
+			Patrick offered Jamaal Williams and Jakobi Meyers
+			Charles selected Jamaal Williams (6.00)
+			Patrick received Jakobi Meyers (9.50)
+			Patrick to 0-2
+			Next three: Justin, Keyon, James/Charles
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Quinn defeats James/Charles, 157.57 to 107.30
+		Quinn
+			Patrick offered DJ Moore and Amon-Ra St. Brown
+			Charles selected DJ Moore (10.30)
+			Patrick received Amon-Ra St. Brown (30.40)
+			Quinn to 2-0
+			Next three: Koci/Mueller, Schex, Trevor
+		James/Charles
+			Charles offered Robert Woods and Isaiah McKenzie
+			Patrick selected Robert Woods (3.90)
+			Charles received Isaiah McKenzie (3.70)
+			James/Charles to 1-1
+			Next three: Keyon, Justin, Patrick
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Justin defeats Brett, 191.48 to 169.69
+		Justin
+			Charles offered Kareem Hunt and Chase Edmonds
+			Patrick selected Kareem Hunt (7.40)
+			Charles received Chase Edmonds (4.10)
+			Justin to 1-1
+			Next three: Patrick, James/Charles, Keyon
+		Brett
+			Patrick offered Christian Watson and Kenny Golladay
+			Charles selected Christian Watson (0.90)
+			Patrick received Kenny Golladay (0.00)
+			Brett to 1-1
+			Next three: Mitch/Mike, Luke, Jason
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Jason defeats Koci/Mueller, 164.13 to 126.62
+		Jason
+			Patrick offered Julio Jones and Tyler Lockett
+			Charles selected Julio Jones (0.00)
+			Patrick received Tyler Lockett (10.70)
+			Jason to 1-1
+			Next three: Trevor, Mitch/Mike, Brett
+		Koci/Mueller
+			Charles offered Curtis Samuel and Jahan Dotson
+			Patrick selected Curtis Samuel (15.90)
+			Charles received Jahan Dotson (13.90)
+			Koci/Mueller to 0-2
+			Next three: Quinn, Trevor, Schex
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Trevor defeats Keyon, 134.52 to 106.76
+		Trevor
+			Charles offered Darrell Henderson and Drake London
+			Patrick selected Darrell Henderson (10.70)
+			Charles received Drake London (16.60)
+			Trevor to 1-1
+			Next three: Jason, Koci/Mueller, Quinn
+		Keyon
+			Patrick offered Michael Carter and DK Metcalf
+			Charles selected Michael Carter (5.00)
+			Patrick received DK Metcalf (3.50)
+			Keyon to 1-1
+			Next three: James/Charles, Patrick, Justin
+		RPO_MATCHUP_SUMMARY
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 3
+	Luke (2-0) vs. Schex (1-1)
+		JAGUAR GAME
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Luke
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Luke prediction
+	Keyon (1-1) vs. James/Charles (1-1)
+		NOTE_ABOUT_KEYON
+		NOTE_ABOUT_JAMESCHARLES
+		HOST_1 takes Keyon
+		HOST_2 takes James/Charles
+		Pat projection: PAT_PROJECTION
+		Luke prediction
+	Patrick (0-2) vs. Justin (1-1)
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_JUSTIN
+		HOST_1 takes Patrick
+		HOST_2 takes Justin
+		Pat projection: PAT_PROJECTION
+		Luke prediction
+	Koci/Mueller (0-2) vs. Quinn (2-0)
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Luke prediction
+	Brett (1-1) vs. Mitch/Mike (1-1)
+		NOTE_ABOUT_BRETT
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Brett
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Luke prediction
+	Trevor (1-1) vs. Jason (1-1)
+		NOTE_ABOUT_TREVOR
+		NOTE_ABOUT_JASON
+		HOST_1 takes Trevor
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Luke prediction
+
+High Scorer's Corner: Justin
+	APPLAUSE
+	Justin scored 191.48
+	1st scoring title this season
+	1st scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Luke, I am Patrick. Good luck with your fantasy in Week 3! We will talk to you next week!

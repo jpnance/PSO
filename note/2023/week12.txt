@@ -1,0 +1,256 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 12 of the 2023 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Week 11 Recaps
+   * Koci/Mueller defeat Luke, 141.35 to 108.42
+      * Koci/Mueller
+         * Charles offered Rashee Rice and Puka Nacua
+         * Patrick selected Rashee Rice (4.20)
+         * Charles received Puka Nacua (13.70)
+         * Koci/Mueller to 7-4 (.612/.659/.306)
+         * Next three: James/Charles, Justin, Mitch
+      * Luke
+         * Patrick offered Quentin Johnston and Wan'Dale Robinson
+         * Charles selected Quentin Johnston (2.10)
+         * Patrick received Wan'Dale Robinson (3.70)
+         * Luke to 4-7 (.000/.000/.000)
+         * Next three: Keyon, Quinn, Brett
+      * Split: Pat 1, Charles 1
+      * Pat projection: Koci/Mueller (right); Charles prediction: Koci/Mueller (right)
+   * Mitch defeats Brett, 172.48 to 155.50
+      * Mitch
+         * Charles offered DeVonta Smith and Christian Kirk
+         * Patrick selected DeVonta Smith (9.90)
+         * Charles received Christian Kirk (4.80)
+         * Mitch to 9-2 (.980/.993/.945)
+         * Next three: Patrick, James/Charles, Koci/Mueller
+      * Brett
+         * Patrick offered Tank Dell and DeAndre Hopkins
+         * Charles selected Tank Dell (19.90)
+         * Patrick received DeAndre Hopkins (11.90)
+         * Brett to 5-6 (.010/.024/.001)
+         * Next three: Justin, Jason, Luke
+      * Split: Pat 2, Charles 2
+      * Pat projection: Mitch (right); Charles prediction: Mitch (right)
+   * Schex defeats Quinn, 160.25 to 91.52
+      * Schex
+         * Charles offered Marquise Brown and Calvin Ridley
+         * Patrick selected Marquise Brown (2.20)
+         * Charles received Calvin Ridley (24.10)
+         * Schex to 7-4 (.392/.638/.227)
+         * Next three: Mike, Keyon, Patrick
+      * Quinn
+         * Patrick offered K.J. Osborn and Michael Gallup
+         * Charles selected K.J. Osborn (1.70)
+         * Patrick received Michael Gallup (3.10)
+         * Quinn to 2-9 (ELIMINATED)
+         * Next three: Jason, Luke, Mike
+      * Split: Pat 3, Charles 3
+      * Pat projection: Schex (right); Charles prediction: Schex (right)
+   * Mike defeats Jason, 164.14 to 101.76
+      * Mike
+         * Charles offered Josh Allen and Sam Howell
+         * Patrick selected Josh Allen (21.50)
+         * Charles received Sam Howell (13.70)
+         * Mike to 8-3 (.914/.996/.792)
+         * Next three: Schex, Patrick, Quinn
+      * Jason
+         * Patrick offered Daniel Carlson and Nick Folk
+         * Charles selected Daniel Carlson (8.00)
+         * Patrick received Nick Folk (2.00)
+         * Jason to 2-9 (ELIMINATED)
+         * Next three: Quinn, Brett, Keyon
+      * Split: Pat 4, Charles 4
+      * Pat projection: Mike (right); Charles prediction: Mike (right)
+   * Justin defeats Patrick, 136.19 to 118.64
+      * Justin
+         * Charles offered Kenneth Walker and Tony Pollard
+         * Patrick selected Kenneth Walker (1.60)
+         * Charles received Tony Pollard (14.00)
+         * Justin to 9-2 (.986/.998/.965)
+         * Next three: Brett, Koci/Mueller, James/Charles
+      * Patrick
+         * Patrick offered Jayden Reed and George Pickens
+         * Charles selected Jayden Reed (15.90)
+         * Patrick received George Pickens (3.70)
+         * Patrick to 4-7 (.000/.000/.000)
+         * Next three: Mitch, Mike, Schex
+      * Charles sweep: Charles 6, Pat 4
+      * Pat projection: Justin (right); Charles prediction: Justin (right)
+   * Keyon defeats James/Charles, 142.66 to 92.32
+      * Keyon
+         * Patrick offered Aidan O'Connell and Kareem Hunt
+         * Charles selected Aidan O'Connell (7.14)
+         * Patrick received Kareem Hunt (3.70)
+         * Keyon to 6-5 (.106/.156/.034)
+         * Next three: Luke, Schex, Jason
+      * James/Charles
+         * Charles offered Tommy DeVito and Will Levis
+         * Patrick selected Tommy DeVito (13.54)
+         * Charles received Will Levis (10.52)
+         * James/Charles to 3-8 (.000/.000/.000)
+         * Next three: Koci/Mueller, Mitch, Justin
+      * Split: Charles 7, Pat 5
+      * Pat projection: James/Charles (wrong); Charles prediction: Keyon (right)
+   * RPO Stats
+      * The World 67, Pat 61
+      * Selector
+         * This week
+            * Pat: 3-3
+            * Charles: 4-2
+            * Total: 7-5
+         * Overall
+            * Pat: 32-33
+            * The World: 34-29
+            * Total: 66-62
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 5-1
+         * Overall: 51-15
+      * The World's predictions
+         * This week: 6-0
+         * Overall: 43-23
+
+
+* Transactions
+   * Free Agency: NOPE!!
+
+
+* Game Previews and Risky Player Options for Week 12
+   * Rematch Week #3!
+      * So far: 9 sweeps and 3 splits
+   * Mike (8-3, .914/.996/.792, 60%) vs. Schex (7-4, .392/.638/.227, 40%) 746
+      * Playoff interest level: 0.314
+      * Decision interest level: 0.432
+      * Schex leads the all-time series 1-0 and, of course, won earlier this year in Week 4
+      * Charles takes Mike: Pacheco
+      * Patrick takes Schex
+         * James Conner or Javonte Williams
+            * Conner
+               * Missed a big chunk of time this season but has played in two straight games, getting 30 carries across both
+               * YPC numbers look pretty good, he just hasn't gotten in the end zone since he's been back
+               * Hosting the Rams (10th)
+            * Williams
+               * Not really sure how much work he's gonna get: three games ago, he got 27 carries; two games again, he got 21; last week, just 11 carries
+               * His YPC has been really lousy this season
+               * Hasn't scored a rushing touchdown but has scored two receiving touchdowns, both coming fairly recently
+               * Hosting the Browns (11th)
+      * Pat projection: Schex
+      * Charles prediction
+   * Luke (4-7, .000/.000/.000, 41%) vs. Keyon (6-5, .106/.156/.034, 59%) 407
+      * JAGUAR GAME
+      * Playoff interest level: 0.407
+      * Decision interest level: 0.000
+      * Keyon leads this all-time series 10-9 but Luke has won the two most recent meetings, including in Week 4
+      * Charles takes Luke: Johnston
+      * Patrick takes Keyon
+         * Odell Beckham or Romeo Doubs
+            * Beckham
+               * Hadn't done hardly anything this season until the most recent three games: 9.60, 10.00, and, most recently, 11.60, scoring touchdowns in two of those games
+               * No clue how many targets he's gonna get: might be 7, might be 2.
+               * At the Chargers (31st)
+            * Doubs
+               * Workload is a bit more consistent
+               * Scored a touchdown in each of the last two games and he's scored seven on the season
+               * He doesn't get much yardage but he's obviously a significant threat to finish off drives for the Packers
+               * At the Lions (23rd)
+      * Pat projection: Keyon
+      * Charles prediction
+   * Justin (9-2, .986/.998/.965, 62%) vs. Brett (5-6, .010/.024/.001, 38%) 392
+      * Playoff interest level: 0.246
+      * Decision interest level: 0.146
+      * The all-time series is tied 1-1 and Brett won in Week 4
+      * Charles takes Justin: Tagovailoa
+      * Patrick takes Brett
+         * DeAndre Hopkins or Terry McLaurin
+            * Hopkins
+               * Coming off 4 catches on 5 targets for 59 yards and a touchdown
+               * Five targets was his lowest since Week 6, so Will Levis is definitely looking for him
+               * Hosting the Panthers (5th)
+            * McLaurin
+               * Despite a ton of targets, it's just not there for Terry McLaurin this year
+               * He's only scored two touchdowns all season, the most recent coming in Week 8
+               * He hasn't gotten fewer than seven targets since Week 5 but, right now, he just sorta looks like a guy who'll score a few points and not much more
+               * At the Cowboys (3rd)
+      * Pat projection: Justin
+      * Charles prediction
+   * Patrick (4-7, .000/.000/.000, 27%) vs. Mitch (9-2, .980/.993/.945, 73%) 391
+      * Playoff interest level: 0.263
+      * Decision interest level: 0.128
+      * Mitch leads the all-time series 8-5 and has won three in a row, including in Week 4
+      * Patrick takes Patrick
+         * Mike Gesicki or Tyler Higbee
+            * Gesicki
+               * Most recent game: two catches on three targets for 22 yards
+               * At the Giants (8th)
+            * Higbee
+               * Most recent game: one catch on three targets for 17 yards
+               * At the Cardinals (9th)
+      * Charles takes Mitch: Stevenson
+      * Pat projection: Mitch
+      * Charles prediction
+   * Koci/Mueller (7-4, .612/.659/.306, 87%) vs. James/Charles (3-8, .000/.000/.000, 13%) 096
+      * Playoff interest level: 0.054
+      * Decision interest level: 0.041
+      * Koci/Mueller lead this all-time series 6-5 and won back in Week 4
+      * Patrick takes Koci/Mueller
+         * This one's probably a gift but it's the only thing I can squint and think is questionable on their offense this week
+         * Kenny Pickett or Zay Flowers
+            * Pickett
+               * Steelers offense has been such a joke this season, especially the last several games
+               * I can't even be bothered to read Pickett's stats to you but they're like the worst stats you can imagine for someone who hasn't actually had a negative game
+               * Matt Canada got fired, so I'm sure you like that
+               * Confirmed to be the starter!
+               * Matchup's also pretty good
+               * At the Bengals (24th)
+            * Flowers
+               * Keeps getting catches that aren't touchdowns and scoring a few but not a lot of points
+               * Nothing more to say, really, but the matchup is tasty
+               * At the Chargers (31st)
+      * Charles takes James/Charles: Johnson
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+   * Jason (2-9, .000/.000/.000, 57%) vs. Quinn (2-9, .000/.000/.000, 43%) 000
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * The all-time series is tied 2-2 and Quinn won earlier this year in Week 4
+      * Charles takes Jason: Elliott
+      * Patrick takes Quinn
+         * Desmond Ridder or Courtland Sutton
+            * Ridder
+               * He's back! Arthur Smith swears he's gonna be the guy for the rest of the season; truly baffling stuff
+               * Really variable year: a couple of 20s and a bunch of single-digits
+               * Hosting the Saints (16th)
+            * Sutton
+               * You know how all Jakobi Meyers does is catch touchdowns?
+               * All Courtland Sutton does is catch touchdowns
+               * Five straight games with a touchdown and seven of the last eight
+               * Eight touchdowns on the season, all of them in different games
+               * Only four double-digit games is hilarious, given the end zone looks
+               * His floor, however, seems to be six points, you know?
+               * Hosting the Browns (2nd)
+      * Pat projection: Quinn
+      * Charles prediction
+
+
+* High Scorer's Corner: Mitch
+   * APPLAUSE
+   * Mitch scored 172.48
+   * 1st scoring title this season
+   * 19th scoring title all-time (T-4th overall)
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Happy Thanksgiving!
+   * Thanks for sending in RPOs
+   * Thursday and Friday games so set your lineups!
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 12! We will talk to you next week!

@@ -1,0 +1,271 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 11 of the 2021 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Week 10 Recaps
+   * Jason defeats Schex, 166.30 to 153.36
+      * Jason
+         * Patrick offered Justin Herbert and Jalen Hurts
+         * Charles selected Justin Herbert (10.00)
+         * Patrick received Jalen Hurts (17.42)
+         * Jason to 8-2 (.965/.998/.911)
+         * Next three: Keyon, Quinn, Patrick
+      * Schex
+         * Charles offered A.J. Green and Corey Davis
+         * Patrick selected A.J. Green (0.40)
+         * Charles received Corey Davis (7.30)
+         * Schex to 7-3 (.911/.935/.731)
+         * Next three: Brett, Koci/Mueller, Luke
+      * Split: Charles 1, Pat 1
+      * Pat projection: Jason (right); Charles prediction: Schex (wrong)
+   * Keyon defeats Brett, 153.74 to 97.42
+      * Keyon
+         * Patrick offered Tyler Lockett and Nyheim Hines
+         * Charles selected Tyler Lockett (2.30)
+         * Patrick received Nyheim Hines (4.00)
+         * Keyon to 7-3 (.605/.776/.502)
+         * Next three: Jason, Mitch, Trevor
+      * Brett
+         * Charles offered Noah Fant and David Njoku
+         * Patrick selected Noah Fant (5.90)
+         * Charles received David Njoku (1.10)
+         * Brett to 5-5 (.001/.006/.000)
+         * Next three: Schex, Trevor, James/Charles
+      * Pat sweep: Pat 3, Charles 1
+      * Pat projection: Keyon (right); Charles prediction: Keyon (right)
+   * Luke defeats Trevor, 130.85 to 121.28
+      * Luke
+         * Patrick offered Laviska Shenault and Jalen Reagor
+         * Charles selected Laviska Shenault (2.10)
+         * Patrick received Jalen Reagor (2.30)
+         * Luke to 4-6 (.013/.019/.001)
+         * Next three: Patrick, John/Zach, Schex
+      * Trevor
+         * Charles offered Emmanuel Sanders and Jerry Jeudy
+         * Patrick selected Emmanuel Sanders (5.10)
+         * Charles received Jerry Jeudy (5.10)
+         * Trevor to 4-6 (.001/.002/.000)
+         * Next three: Koci/Mueller, Brett, Keyon
+      * Pat "sweep": Pat 4, Charles 1
+      * Pat projection: Trevor (wrong); Charles prediction: Trevor (wrong)
+   * Mitch defeats Patrick, 159.88 to 94.29
+      * Mitch
+         * Charles offered Patrick Mahomes and Kyler Murray
+         * Patrick selected Patrick Mahomes (36.24)
+         * Charles received Kyler Murray, but he didn't play, so this doesn't count
+         * Mitch to 4-6 (.001/.002/.000)
+         * Next three: Quinn, Keyon, Koci/Mueller
+      * Patrick
+         * Patrick offered Dan Arnold and Randall Cobb
+         * Charles selected Dan Arnold (8.70)
+         * Patrick received Randall Cobb (2.10)
+         * Patrick to 4-6 (.000/.001/.000)
+         * Next three: Luke, James/Charles, Jason
+      * Charles "sweep": Pat 4, Charles 2
+      * Pat projection: Patrick (wrong); Charles prediction: Mitch (right)
+   * James/Charles defeat Quinn, 141.04 to 67.89
+      * James/Charles
+         * Charles offered D'Ernest Johnson and Chris Carson
+         * Patrick selected D'Ernest Johnson (15.70)
+         * Charles received Chris Carson, but he didn't play, so this doesn't count
+         * James/Charles to 7-3 (.788/.938/.612)
+         * Next three: John/Zach, Patrick, Brett
+      * Quinn
+         * Patrick offered Christian Kirk and Jamison Crowder
+         * Charles selected Christian Kirk (5.80)
+         * Patrick received Jamison Crowder (2.00)
+         * Quinn to 2-8 (.000/.000/.000)
+         * Next three: Mitch, Jason, John/Zach
+      * Charles "sweep": Pat 4, Charles 3
+      * Pat projection: James/Charles (right); Charles prediction: James/Charles (right)
+   * John/Zach defeat Koci/Mueller, 134.40 to 84.09
+      * John/Zach
+         * Patrick offered Teddy Bridgewater and Taylor Heinicke
+         * Charles selected Teddy Bridgewater (8.04)
+         * Patrick received Taylor Heinicke (10.74)
+         * John/Zach to 7-3 (.715/.912/.547)
+         * Next three: James/Charles, Luke, Quinn
+      * Koci/Mueller
+         * Charles offered Byron Pringle and Jaret Patterson
+         * Patrick selected Byron Pringle (12.30)
+         * Charles received Jaret Patterson (0.70)
+         * Koci/Mueller to 1-9 (APPLAUSE)
+         * Next three: Trevor, Schex, Mitch
+      * Pat sweep: Pat 6, Charles 3
+      * Pat projection: Koci/Mueller (wrong); Charles prediction: John/Zach (right)
+   * RPO Stats
+      * Pat 57, Charles 52
+      * Selector
+         * This week
+            * Pat: 2-1
+            * Charles: 2-4
+            * Total: 4-5
+         * Overall
+            * Pat: 33-22
+            * The World: 29-25
+            * Total: 62-47
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 2-4
+         * Overall: 35-25
+      * The World's predictions
+         * This week: 4-2
+         * Overall: 38-22
+
+
+* Transactions
+   * Free Agency
+
+
+* Game Previews and Risky Player Options for Week 11
+   * Rematch week #2!
+   * All games are rematches from Week 5
+   * John/Zach (7-3, .715/.912/.547, 46%) vs. James/Charles (7-3, .788/.938/.612, 54%)
+      * Playoff interest level: 0.345
+      * Decision interest level: 0.535
+      * Huge leverage game for both teams
+      * John leads the all-time series 5-4 and has won two straight meetings, including back in Week 5
+      * Patrick takes John/Zach
+         * Sorta feels like neither of these guys is gonna play
+         * Submitted: Dallas Goedert or Lativius Murray
+            * Goedert
+               * Got concussed in the previous game but was limited at practice today
+               * Been quiet the last two weeks: 5 catches for 71 yards (no touchdowns)
+               * Was great the two weeks before that, though: 9 catches for 142 yards (no touchdowns)
+               * It's been a little while since he scored a touchdown but you know he'll get back into the end zone soon enough
+               * Hosting the Saints (3rd)
+            * Murray
+               * Has an ankle injury but was limited in practice today
+               * Hasn't played since Week 6
+               * When he's been in there, he's been pretty touchdown-dependent
+               * He doesn't usually get a ton of carries and he's only averaged 3.6ypc but he has scored four touchdowns in the six games he's played
+               * At the Bears (20th)
+      * Charles takes James/Charles
+      * Pat projection: James/Charles
+      * Charles prediction
+   * Keyon (7-3, .605/.776/.502, 38%) vs. Jason (8-2, .965/.998/.911, 63%)
+      * Playoff interest level: 0.152
+      * Decision interest level: 0.434
+      * Jason's Decision odds: .566/.697/.348
+      * Jason won the first-ever meeting between these two franchise back in Week 5
+      * Patrick takes Keyon
+         * Submitted: Tyler Lockett or DeAndre Carter
+            * Lockett
+               * We know Tyler Lockett
+               * Great start, sucked for a couple months, then had a good game against the Jags
+               * Well the Seahawks were dreadful all around against the Packers but Lockett only made two catches on eight targets for 23 yards
+               * He's had another game like that this season but, overall, when he's gotten targets, he's produced, so it's a matter of if you think he'll rebound this week or not
+               * Hosting the Cardinals (11th)
+            * Carter
+               * Over the last two weeks, Carter has made six catches on twelve targets for 107 yards and two touchdowns
+               * Pretty good numbers on their own
+               * He also returns kicks and punts, though, giving him a few bonus points every week
+               * In fact, he's played in all nine games this season and has four double-digit performances
+               * At the Panthers (2nd)
+      * Charles takes Jason
+      * Pat projection: Jason
+      * Charles prediction
+   * Luke (4-6, .013/.019/.001, 67%) vs. Patrick (4-6, .000/.001/.000, 33%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.369
+      * Decision interest level: 0.000
+      * Patrick must win by more than 15.37 to keep his Jaguar hopes alive
+      * The all-time series is tied 9-9 but Luke has won five of the last six meetings, including back in Week 5
+      * Charles takes Luke
+      * Patrick takes Patrick
+         * Dan Arnold or Randall Cobb
+            * Arnold
+               * Really gotten it going lately
+               * Despite scoring no touchdowns, over the last five games, he's made 25 catches on 37 targets for 212 yards
+               * Pretty evenly distributed, too: four of those five games were 60+ yards receiving
+               * Hosting the 49ers (10th)
+            * Cobb
+               * Nothing's changed, really
+               * He gets four or five looks every game, makes three catches every game, and scores either zero or two touchdowns
+               * The only thing that's maybe a little different this week is the matchup
+               * At the Vikings (25th)
+      * Pat projection: Patrick
+      * Charles prediction
+   * Brett (5-5, .001/.006/.000, 12%) vs. Schex (7-3, .911/.935/.731, 88%)
+      * Playoff interest level: 0.204
+      * Decision interest level: 0.042
+      * Schex leads the short all-time series 3-0
+      * Patrick takes Brett
+         * Submitted: Rondale Moore or Devin Duvernay
+            * Moore
+               * He's had three games in double-digits this year but none since Week 5
+               * It's been grim since then: 15 catches on 21 targets for just 92 yards and no touchdowns
+               * It's not all Colt, either; he was plenty bad with Kyler Murray throwing but, for what it's worth, it looks like Kyler will be back in there this week
+               * He does do returns, so that helps
+               * At the Seahawks (20th)
+            * Duvernay
+               * He just keeps doing his thing where he gets 3 or 4 points in the return game and also gets a couple of receptions on top
+               * He scored a touchdown two weeks ago and even got a carry last week
+               * He's only been below 6.5 points once this season, all the way back in Week 2
+               * At the Bears (30th)
+      * Charles takes Schex
+      * Pat projection: Schex
+      * Charles prediction
+   * Mitch (4-6, .001/.002/.000, 66%) vs. Quinn (2-8, .000/.000/.000, 34%)
+      * Playoff interest level: 0.099
+      * Decision interest level: 0.000
+      * Mitch leads the all-time 7-2 and is riding a five-game winning streak dating back to Week 7 of 2018
+      * Patrick takes Mitch
+         * Jordan Howard or Devin Singletary
+            * Howard
+               * The numbers over the past few weeks have been great but they've been earned in the absence of Miles Sanders, who seems like he'll be back this week
+               * It's tough to know how limited Sanders will be coming back from injury but we know the matchup will be tough
+               * Hosting the Saints (2nd)
+            * Singletary
+               * Meanwhile, Devin Singletary's rushing usage has kinda settled at 6-ish carries a game and he's done okay but not great with it
+               * He does have these occasional games where he'll get a bunch of receptions, though, which help his fantasy totals out a bit
+               * Hosting the Colts (3rd)
+      * Charles takes Quinn
+      * Pat projection: Quinn
+      * Charles prediction
+   * Koci/Mueller (1-9, .000/.000/.000, 26%) vs. Trevor (4-6, .001/.002/.000, 74%)
+      * Playoff interest level: 0.086
+      * Decision interest level: 0.000
+      * Trevor leads this all-time series 14-7 and has won seven of the last eight meetings, including back in Week 5
+      * Patrick takes Koci/Mueller
+         * Nico Collins or Ronald Jones
+            * Collins
+               * Collins is looking relatively integrated into the offense at this point
+               * Over the last four games, he's made 13 catches from 18 targets for 152 yards
+               * Still looking for his first touchdown but there's a reasonable chance he finds it this week, I'd say
+               * At the Titans (32nd)
+            * Jones
+               * Man, who knows
+               * It seems like his mostly game ends up being five carries for like twenty yards and there's a chance he scores a touchdown
+               * He is very boring but, honestly, a boring but roughly assured two points kinda plays in this lineup
+               * Hosting the Giants (26th)
+      * Charles takes Trevor
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+
+
+* Let's Remember Some Guys?
+
+
+* High Scorer's Corner: Jason
+   * APPLAUSE
+   * Jason scored 166.30
+   * 2nd scoring title this season
+   * 2nd scoring title all-time (T-13th overall)
+      * Believe it or not, that's more scoring titles than Quinn has in his 7.5 seasons of ownership
+   * IF JASON HASN'T SENT IN ANYTHING:
+People usually send these into me but Charles told me before the show that Jason sent this one to him instead
+
+
+   * Co-Host's Final Thoughts
+
+
+   * Plugs
+   * Thanks for sending in RPOs
+   * @PsoScuttlebutt
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 11! We will talk to you next week!

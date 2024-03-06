@@ -1,0 +1,290 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 8 of the 2021 season!
+   * I am Patrick, joined, as always, by Charles
+   * BANTER_PROMPT
+
+
+* Week 7 Recaps
+   * Schex defeats Patrick, 156.80 to 129.60
+      * JAGUAR GAME
+      * Schex
+         * Charles offered A.J. Green and Corey Davis
+         * Patrick selected A.J. Green (6.60)
+         * Charles received Corey Davis (10.70)
+         * Schex to 6-1 (.872/.962/.723)
+         * Next three: Keyon, James/Charles, Jason
+      * Patrick
+         * Patrick offered Salvon Ahmed and David Johnson
+         * Charles selected Salvon Ahmed (5.20)
+         * Patrick received David Johnson (5.20)
+         * Patrick to 3-4 (.033/.040/.008)
+         * Next three: Brett, Koci/Mueller, Mitch
+      * Charles "sweep": Charles 1, Pat 0
+      * Pat projection: Patrick (wrong); Charles prediction: Schex (right)
+   * Jason defeats Trevor, 147.74 to 134.56
+      * Jason
+         * Charles offered J.D. McKissic and Mark Ingram
+         * Patrick selected J.D. McKissic (5.60)
+         * Charles received Mark Ingram (2.70)
+         * Jason to 6-1 (.939/.969/.874)
+         * Next three: Luke, Brett, Schex
+      * Trevor
+         * Patrick offered Jayson Oweh and Carlos Dunlap
+         * Charles selected Jayson Oweh (1.00)
+         * Patrick received Carlos Dunlap (5.25)
+         * Trevor to 3-4 (.007/.026/.002)
+         * Next three: John/Zach, Quinn, Luke
+      * Pat sweep: Pat 2, Charles 1
+      * Pat projection: Trevor (wrong); Charles prediction: Jason (right)
+   * Keyon defeats Luke, 165.97 to 157.39
+      * JAGUAR GAME
+      * Keyon
+         * Charles offered Michael Carter and Devontae Booker
+         * Patrick selected Michael Carter (8.40)
+         * Charles received Devontae Booker (12.60)
+         * Keyon to 5-2 (.288/.469/.178)
+         * Next three: Schex, John/Zach, Brett
+      * Luke
+         * Patrick offered Jameis Winston and Justin Fields
+         * Charles selected Jameis Winston (14.88)
+         * Patrick received Justin Fields (-2.84)
+         * Luke to 3-4 (.065/.136/.031)
+         * Next three: Jason, Mitch, Trevor
+      * Charles sweep: Charles 3, Pat 2
+      * Pat projection: Keyon (right); Charles prediction: Luke (wrong)
+   * John/Zach defeat Mitch, 163.30 to 112.14
+      * John/Zach
+         * Patrick offered Dallas Goedert and Kenny Golladay
+         * Charles selected Dallas Goedert (9.00)
+         * Patrick received Kenny Golladay, but he didn't play so this doesn't count
+         * John/Zach to 5-2 (.880/.908/.770)
+         * Next three: Trevor, Keyon, Koci/Mueller
+      * Mitch
+         * Charles offered Zach Ertz and Rhamondre Stevenson
+         * Patrick selected Zach Ertz (13.00)
+         * Charles received Rhamondre Stevenson, but he was declared inactive before the game, so this doesn't count
+         * Mitch to 2-5 (.000/.000/.000)
+         * Next three: James/Charles, Luke, Patrick
+      * Nothing counts: Charles 3, Pat 2
+      * Pat projection: Mitch (wrong); Charles prediction: John/Zach (right)
+   * James/Charles defeat Koci/Mueller, 159.34 to 113.10
+      * James/Charles
+         * Charles offered Michael Pittman and Darnell Mooney
+         * Patrick selected Michael Pittman (16.50)
+         * Charles received Darnell Mooney (4.90)
+         * James/Charles to 5-2 (.916/.920/.811)
+         * Next three: Mitch, Schex, Quinn
+      * Koci/Mueller
+         * Patrick offered Byron Pringle and Sammy Watkins
+         * Charles selected Byron Pringle (7.30)
+         * Patrick received Sammy Watkins, but he didn't play so this doesn't count
+         * Koci/Mueller to 0-7 (.000/.000/.000)
+         * Next three: Quinn, Patrick, John/Zach
+      * Pat "sweep": Charles 3, Pat 3
+      * Pat projection: James/Charles (right); Charles prediction: James/Charles (right)
+   * Brett defeats Quinn, 135.68 to 111.27
+      * Brett
+         * Charles offered Devin Duvernay and Hunter Henry
+         * Patrick selected Devin Duvernay (6.85)
+         * Charles received Hunter Henry (8.30)
+         * Brett to 3-4 (.000/.001/.000)
+         * Next three: Patrick, Jason, Keyon
+      * Quinn
+         * Patrick offered Christian Kirk and Jamison Crowder
+         * Charles selected Christian Kirk (11.00)
+         * Patrick received Jamison Crowder (3.40)
+         * Quinn to 1-6 (.000/.000/.000)
+         * Next three: Koci/Mueller, Trevor, James/Charles
+      * Charles sweep: Charles 5, Pat 3
+      * Pat projection: Brett (right); Charles prediction: Brett (right)
+   * RPO Stats
+      * Charles 39, Pat 37
+      * Selector
+         * This week
+            * Pat: 2-3
+            * Charles: 2-1 (2-1-1)
+            * Total: 4-4
+         * Overall
+            * Pat: 23-17
+            * The World: 21-15
+            * Total: 44-32
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 3-3
+         * Overall: 26-16
+      * The World's predictions
+         * This week: 5-1
+         * Overall: 30-12
+
+
+* Transactions
+   * Trade #428
+   * Free Agency
+
+
+* Discussion Topic: Simulator Junk
+   * All of the simulator's numbers are based only on actual recorded scores; the simulator does not know about bye weeks or trades or injuries or anything like that. In addition, it treats every score equally and doesn't weigh more recent results more heavily.
+   * Given a scoring average and standard deviation for each team, the simulator generates a normally distributed score for each of that team's remaining games in the season.
+   * It goes through each game, figures out who won, and executes tiebreakers in the Fantrax H2H style.
+   * It does all of that 100,000 times and makes those results available so that y'all can filter them for certain outcomes (e.g. "What if Trevor beats John/Zach in Week 8?")
+   * There's definitely reason to think that more recent outcomes should be weighted more heavily; there's definitely reason to think that fantasy football scores aren't normally distributed
+   * These approximations have always felt "close enough", though, that it's just never been worth digging in and optimizing the simulator to be better than it currently is.
+   * And also, take all of that with a grain of salt because, after all, it's a UT math degree we're talking about.
+
+
+* Game Previews and Risky Player Options for Week 8
+   * For every game, the simulator generates a number that I call "interest level". It takes into account how volatile both playoff situations and also how close of a matchup it is.
+   * For the first time ever, I'm also generating that number in terms of The Decision.
+   * I add both of those numbers up for the total interest level of a game and I sort the biggest ones to the top. I'll be doing this for the rest of the season.
+   * Keyon (5-2, .288/.469/.178, 38%) vs. Schex (6-1, .872/.962/.723, 62%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.271
+      * Decision interest level: 0.330
+      * We've awarded the Jaguar nine times: Schex 4, Keyon 3
+      * Schex has only two losing records against all active franchises: Koci/Mueller (8-9) and Keyon (8-11)
+      * Patrick takes Keyon
+         * Allen Robinson or Tyler Lockett
+            * Robinson
+               * It's so bad
+               * It's feels like all we've done this year is talk about Allen Robinson's lousy numbers and they just keep getting lousier
+               * Fresh off a two-catch, four-target, 16-yard game in which the Bears got absolutely destroyed
+               * He hasn't had a single double-digit week this year and honestly isn't even really getting targeted as much as you'd think Allen Robinson should be (average just under six targets per game).
+               * Hosting the 49ers (9th)
+            * Lockett
+               * Got off to a blistering start, scoring 22 or more in his first two games
+               * Hasn't been even close to double-digits since, though, and that includes a bunch of Russell Wilson games
+               * This week, of course, will once again not be a Russell Wilson game so you'll have to decide how comfortable you are with Geno Smith throwing him the ball
+               * Hosting the Jaguars (18th)
+      * Charles takes Schex
+      * Pat projection: Keyon
+      * Charles prediction
+   * Luke (3-4, .065/.136/.031, 32%) vs. Jason (6-1, .939/.969/.874, 68%)
+      * Playoff interest level: 0.185
+      * Decision interest level: 0.353
+      * Luke can double his playoff odds with a win here
+      * Jason can add a pretty good chunk of Decision odds with a win here
+      * This is, of course, the first all-time meeting between these regimes
+      * Patrick takes Luke
+         * Now that Aaron Jones and Chris Godwin are on Luke's team and Saquon Barkley, for the moment, is ded, there just really aren't any offensive decisions to make except maybe this one
+         * Antonio Gibson or Kalif Raymond
+            * Gibson
+               * He's questionable but plays after Kalif Raymond so you'll only be injury protected if we know he's out early on Sunday
+               * He got off to a great start this year with a three-week run of double-digit fantasy points from Weeks 3 through 5
+               * He's cooled down a lot, though, especially as J.D. McKissic has gotten more involved
+               * Over the last two weeks, he's only gotten 24 carries, albeit for 95 yards and no touchdowns
+               * At the Broncos (12th)
+            * Raymond
+               * Raymond is coming off his best receiving week of the season by far: 6 catches for 115 yards, no touchdowns.
+               * It's the second straight week he's had six receptions and he's seen at least six targets four out of the last five games.
+               * He even caught a couple of touchdowns back in Week 5
+               * Hosting the Eagles (5th)
+      * Charles takes Jason
+      * Pat projection: Jason
+      * Charles prediction
+   * John/Zach (5-2, .880/.908/.770, 79%) vs. Trevor (3-4, .007/.026/.002, 21%)
+      * Playoff interest level: 0.201
+      * Decision interest level: 0.309
+      * Trevor leads the all-time series 11-3 and has won the last two in a now
+      * Charles takes John/Zach
+      * Patrick takes Trevor
+         * There's just nothing interesting here right now; T.J. Hockensen is questionable so let's give Trevor a backup plan
+         * Austin Hooper or Kyle Rudolph
+            * Hooper
+               * He only has one game this year where he's gotten less than three targets so he does get his looks
+               * He doesn't do much with them, though: 14 catches for 143 yards and a touchdown on the season
+               * He most recently caught two passes for 42 yards
+               * Hosting the Steelers (12th)
+            * Rudolph
+               * Trevor legend
+               * He gets fewer targets than Hooper and also doesn't do much with them
+               * I won't even bore you with his numbers but they're bad enough to make you wonder if Trevor is aware that he'd net $1 by dropping Rudolph
+               * At the Chiefs (28th)
+      * Pat projection: Trevor
+      * Charles prediction
+   * Patrick (3-4, .033/.040/.008, 77%) vs. Brett (3-4, .000/.001/.000, 23%)
+      * Playoff interest level: 0.221
+      * Decision interest level: 0.076
+      * Patrick and Brett have only met once but Patrick did win last year
+      * Patrick takes Patrick
+         * I dunno, maybe David Johnson is the better start here but whatever
+         * Mike Davis or Russell Gage
+            * Davis
+               * For as bad as it seems like Mike Davis has been this year, last week was really his only total disaster: 4 carries for 10 yards and that's it.
+               * He's surpassed 6 points in every other one of his games
+               * In fact, in all but two of his games, he's gotten 12 or more carries
+               * He's boring
+               * Hosting the Panthers (1st)
+            * Gage
+               * He's back! Maybe y'all forgot about him!
+               * He had a good rookie season last year but got hurt in Week 2 this year, didn't suit up again until last week
+               * Well, he made four catches on six targets for 67 yards and a touchdown, so are we back in?
+               * Hosting the Panthers (10th)
+      * Charles takes Brett
+      * Pat projection: Patrick
+      * Charles prediction
+   * Mitch (2-5, .000/.000/.000, 3%) vs. James/Charles (5-2, .916/.920/.811, 97%)
+      * Playoff interest level: 0.004
+      * Decision interest level: 0.009
+      * Mitch leads the all-time series 6-2 but lost the most recent meeting
+      * Patrick takes Mitch
+         * Mike White or Tim Patrick
+            * White
+               * He's the uh… Jets quarterback now; I guess Zach Wilson got hurt
+               * Cool
+               * In relief last week, he was actually pretty reasonable: 20/32 for 202 yards, 1 touchdown, 2 interceptions, and 2 sacks. You know, not good but not a total disaster
+               * That's all anybody knows about this guy
+               * Hosting the Bengals (8th)
+            * Patrick
+               * Coming off his worst game of the season: two catches on five targets for just 16 yards.
+               * It's only the second game all year that he's failed to either get in the end zone or surpass 80 yards receiving
+               * So, maybe you think the matchup is just what the doctor ordered
+               * Hosting the Football Team (31st)
+      * Charles takes James/Charles
+      * Pat projection: James/Charles
+      * Charles prediction
+   * Koci/Mueller (0-7, .000/.000/.000, 27%) vs. Quinn (1-6, .000/.000/.000, 73%)
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Koci/Mueller lead the all-time series 8-1 and have won the last seven in a row, dating back to Week 13 in 2015
+      * Patrick takes Koci/Mueller
+         * I'm making quite a few guesses as to what I think I would do with this lineup but maybe it's gonna come down to this?
+         * Odell Beckham or Byron Pringle
+            * Beckham
+               * It's been pretty bad this year, as we've talked about
+               * He's coming off a lousy two-catch six-target 23-yard game
+               * He does get a pretty good amount of targets: at least six in all but one of his five games this season
+               * The yards per reception are really pretty good, too (14.1)
+               * He just needs to, you know, catch the ball
+               * Hosting the Steelers (27th)
+            * Pringle
+               * He's having a pretty solid season, really: only two games scoring less than 6.5 points and both of those happened in the first three weeks
+               * He doesn't usually get many targets but he's catching the ball when it's thrown his way: 17 receptions on 23 targets so far
+               * Hosting the Giants (19th)
+      * Charles takes Quinn
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+
+
+* Let's Remember Some Guys?
+
+
+* High Scorer's Corner: Keyon
+   * APPLAUSE
+   * Keyon scored 164.47
+   * 1st scoring title this season
+   * 26th scoring title all-time (WHAT_RANK overall)
+   * HIGH_SCORERS_CORNER_DITTY
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * The trade deadline is on November 10th
+   * @PsoScuttlebutt
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 8! We will talk to you next week!

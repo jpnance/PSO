@@ -1,0 +1,146 @@
+superagent: Enable experimental feature http2
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for the semifinals of the 2022 season!
+	I am Patrick, joined, as always, by Charles
+	BANTER_PROMPT
+
+Week 15 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Luke defeats Trevor, 124.94 to 113.46
+		Luke
+			Patrick offered Joe Mixon and Saquon Barkley
+			Charles selected Joe Mixon (5.40)
+			Patrick received Saquon Barkley (18.00)
+			Luke to 14-1
+			Semifinal opponent: Jason
+		Trevor
+			Charles offered Drake London and Tyler Allgeier
+			Patrick selected Drake London (6.00)
+			Charles received Tyler Allgeier (21.60)
+			Trevor to 5-10
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Keyon defeats Quinn, 179.34 to 131.56
+		Keyon
+			Patrick offered Rhamondre Stevenson and Alvin Kamara
+			Charles selected Rhamondre Stevenson (22.80)
+			Patrick received Alvin Kamara (10.40)
+			Keyon to 12-3
+			Semifinal opponent: Mitch/Mike
+		Quinn
+			Charles offered Jerick McKinnon and D'Andre Swift
+			Patrick selected Jerick McKinnon (26.20)
+			Charles received D'Andre Swift (7.50)
+			Quinn to 8-7
+		RPO_MATCHUP_SUMMARY: Pat 2, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Brett defeats Koci/Mueller, 122.34 to 115.86
+		Brett
+			Patrick offered J.K. Dobbins and Devin Singletary
+			Charles selected J.K. Dobbins (12.80)
+			Patrick received Devin Singletary (7.00)
+			Brett to 5-10
+		Koci/Mueller
+			Charles offered Jahan Dotson and Curtis Samuel
+			Patrick selected Jahan Dotson (16.50)
+			Charles received Curtis Samuel (4.50)
+			Koci/Mueller to 2-13
+		RPO_MATCHUP_SUMMARY: Pat 3, Charles 3
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Schex defeats Patrick, 140.30 to 100.35
+		JAGUAR GAME
+		Schex
+			Charles offered Michael Pittman and Devin Duvernay
+			Patrick selected Michael Pittman (9.00)
+			Charles received Devin Duvernay (5.65)
+			Schex to 8-7
+		Patrick
+			Patrick offered Sam Darnold and Baker Mayfield
+			Charles selected Sam Darnold (9.20)
+			Patrick received Baker Mayfield (1.54)
+			Patrick to 3-12
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 4
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Jason defeats Justin, 149.77 to 136.52
+		Jason
+			Patrick offered Chuba Hubbard and D'Onta Foreman
+			Charles selected Chuba Hubbard (6.70)
+			Patrick received D'Onta Foreman (0.90)
+			Jason to 11-4
+			Semifinal opponent: Luke
+		Justin
+			Charles offered Cade Otton and Noah Brown
+			Patrick selected Cade Otton (2.00)
+			Charles received Noah Brown (16.90)
+			Justin to 5-10
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 6
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Mitch/Mike defeat James/Charles, 194.00 to 129.66
+		Mitch/Mike
+			Patrick offered DeVonta Smith and Travis Etienne
+			Charles selected DeVonta Smith (12.60)
+			Patrick received Travis Etienne (10.70)
+			Mitch/Mike to 11-4
+			Semifinal opponent: Keyon
+		James/Charles
+			Charles offered Van Jefferson and Demarcus Robinson
+			Patrick selected Van Jefferson (3.20)
+			Charles received Demarcus Robinson (1.90)
+			James/Charles to 6-9
+		RPO_MATCHUP_SUMMARY: Pat 5, Charles 7
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for the Semifinals
+	Luke (14-1) vs. Jason (11-4)
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_JASON
+		HOST_1 takes Luke
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+	Keyon (12-3) vs. Mitch/Mike (11-4)
+		NOTE_ABOUT_KEYON
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes Keyon
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Charles prediction
+
+High Scorer's Corner: Mitch/Mike
+	APPLAUSE
+	Mitch/Mike scored 194.00
+	3rd scoring title this season
+	18th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Charles, I am Patrick. Good luck with your fantasy in the semifinals! We will talk to you next week!

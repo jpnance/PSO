@@ -1,0 +1,181 @@
+SOUND EFFECTS
+
+Intro
+	Welcome to the PSO Show for Week 7 of the 2022 season!
+	I am Patrick, joined, as always, by Jason
+	BANTER_PROMPT
+
+Week 6 Recaps
+	MAKE SURE THESE ARE SORTED CORRECTLY
+	Mitch/Mike defeat Quinn, 140.42 to 114.46
+		Mitch/Mike
+			Charles offered George Pickens and Travis Etienne
+			Patrick selected George Pickens (2.80)
+			Charles received Travis Etienne (10.80)
+			Mitch/Mike to 4-2
+			Next three: James/Charles, Trevor, Justin
+		Quinn
+			Patrick offered Corey Davis and Mecole Hardman
+			Charles selected Corey Davis (5.20)
+			Patrick received Mecole Hardman (11.20)
+			Quinn to 4-2
+			Next three: Keyon, Justin, Patrick
+		RPO_MATCHUP_SUMMARY: Pat 1, Charles 1
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Luke defeats James/Charles, 152.58 to 135.26
+		Luke
+			Patrick offered Melvin Gordon and Tony Pollard
+			Charles selected Melvin Gordon (0.80)
+			Patrick received Tony Pollard (5.20)
+			Luke to 5-1
+			Next three: Trevor, Keyon, Koci/Mueller
+		James/Charles
+			Charles offered DeeJay Dallas and George Kittle
+			Patrick selected DeeJay Dallas (0.90)
+			Charles received George Kittle (12.30)
+			James/Charles to 3-3
+			Next three: Mitch/Mike, Brett, Jason
+		RPO_MATCHUP_SUMMARY: Pat 2, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Keyon defeats Brett, 153.38 to 110.46
+		Keyon
+			Charles offered David Njoku and Evan Engram
+			Patrick selected David Njoku (5.80)
+			Charles received Evan Engram (4.00)
+			Keyon to 5-1
+			Next three: Quinn, Luke, Schex
+		Brett
+			Patrick offered Garrett Wilson and Donovan Peoples-Jones
+			Charles selected Garrett Wilson (0.80)
+			Patrick received Donovan Peoples-Jones (7.60)
+			Brett to 1-5
+			Next three: Koci/Mueller, James/Charles, Trevor
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 2
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Trevor defeats Schex, 121.76 to 100.46
+		Trevor
+			Charles offered Robbie Anderson and Darrell Henderson
+			Patrick selected Robbie Anderson (0.00)
+			Charles received Darrell Henderson (11.20)
+			Trevor to 3-3
+			Next three: Luke, Mitch/Mike, Brett
+		Schex
+			Patrick offered Dallas Goedert and Tyler Higbee
+			Charles selected Dallas Goedert (2.20)
+			Patrick received Tyler Higbee (0.70)
+			Schex to 2-4
+			Next three: Patrick, Jason, Keyon
+		RPO_MATCHUP_SUMMARY: Pat 4, Charles 4
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Jason defeats Patrick, 127.72 to 111.61
+		Jason
+			Charles offered Hunter Henry and Parris Campbell
+			Patrick selected Hunter Henry (12.10)
+			Charles received Parris Campbell (11.70)
+			Jason to 5-1
+			Next three: Justin, Schex, James/Charles
+		Patrick
+			Patrick offered Jakobi Meyers and DeVante Parker
+			Charles selected Jakobi Meyers (6.00)
+			Patrick received DeVante Parker (6.40)
+			Patrick to 0-6
+			Next three: Schex, Koci/Mueller, Quinn
+		RPO_MATCHUP_SUMMARY: Pat 6, Charles 4
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	Justin defeats Koci/Mueller, 138.27 to 115.82
+		Justin
+			Charles offered Raheem Mostert and Kareem Hunt
+			Patrick selected Raheem Mostert (6.05)
+			Charles received Kareem Hunt (1.20)
+			Justin to 3-3
+			Next three: Jason, Quinn, Mitch/Mike
+		Koci/Mueller
+			Patrick offered Tyler Boyd and Romeo Doubs
+			Charles selected Tyler Boyd (6.60)
+			Patrick received Romeo Doubs (2.10)
+			Koci/Mueller to 1-5
+			Next three: Brett, Patrick, Luke
+		RPO_MATCHUP_SUMMARY: Pat 7, Charles 5
+		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
+	RPO Stats
+		OVERALL_SCORE
+		Selector
+			This week
+				Pat: MY_RPO_RECORD_THIS_WEEK
+				Charles: CHARLES_RPO_RECORD_THIS_WEEK
+				Total: TOTAL_RPO_RECORD_THIS_WEEK
+			Overall
+				Pat: MY_OVERALL_RPO_RECORD
+				The World: THE_WORLD_OVERALL_RPO_RECORD
+				Total: TOTAL_OVERALL_RPO_RECORD
+	Prognostication Stats
+		Pat's projections
+			This week: PATS_PROJECTIONS_RECORD_THIS_WEEK
+			Overall: PATS_PROJECTIONS_OVERALL_RECORD
+		The World's predictions
+			This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK
+			Overall: WORLD_PREDICTIONS_OVERALL_RECORD
+
+Transactions
+
+Discussion Topic: IS_THERE_ONE
+
+Game Previews and Risky Player Options for Week 7
+	Keyon (5-1) vs. Quinn (4-2)
+		NOTE_ABOUT_KEYON
+		NOTE_ABOUT_QUINN
+		HOST_1 takes Keyon
+		HOST_2 takes Quinn
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Justin (3-3) vs. Jason (5-1)
+		NOTE_ABOUT_JUSTIN
+		NOTE_ABOUT_JASON
+		HOST_1 takes Justin
+		HOST_2 takes Jason
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Luke (5-1) vs. Trevor (3-3)
+		NOTE_ABOUT_LUKE
+		NOTE_ABOUT_TREVOR
+		HOST_1 takes Luke
+		HOST_2 takes Trevor
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	James/Charles (3-3) vs. Mitch/Mike (4-2)
+		NOTE_ABOUT_JAMESCHARLES
+		NOTE_ABOUT_MITCHMIKE
+		HOST_1 takes James/Charles
+		HOST_2 takes Mitch/Mike
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Koci/Mueller (1-5) vs. Brett (1-5)
+		NOTE_ABOUT_KOCIMUELLER
+		NOTE_ABOUT_BRETT
+		HOST_1 takes Koci/Mueller
+		HOST_2 takes Brett
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+	Patrick (0-6) vs. Schex (2-4)
+		JAGUAR GAME
+		NOTE_ABOUT_PATRICK
+		NOTE_ABOUT_SCHEX
+		HOST_1 takes Patrick
+		HOST_2 takes Schex
+		Pat projection: PAT_PROJECTION
+		Jason prediction
+
+High Scorer's Corner: Keyon
+	APPLAUSE
+	Keyon scored 153.38
+	1st scoring title this season
+	29th scoring title all-time (WHAT_RANK overall)
+	HIGH_SCORERS_CORNER_DITTY
+
+Co-Host's Final Thoughts
+
+Plugs
+	Thanks for sending in RPOs
+	@PsoScuttlebutt
+	Websites
+	For Jason, I am Patrick. Good luck with your fantasy in Week 7! We will talk to you next week!

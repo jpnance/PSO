@@ -1,0 +1,261 @@
+﻿* SOUND EFFECTS
+* DOUBLE-CHECK HIGH SCORER'S CORNER STUFF
+
+
+* Intro
+   * Welcome to the PSO Show for the semifinals of the 2021 season!
+   * I am Patrick, joined, as always, by Charles
+   * BANTER_PROMPT
+
+
+* Week 15 Recaps
+   * Schex defeats Patrick, 152.58 to 107.84
+      * JAGUAR GAME
+      * Schex
+         * Charles offered Van Jefferson and A.J. Green
+         * Patrick selected Van Jefferson (3.30)
+         * Charles received A.J. Green (6.40)
+         * Schex to 11-4 (2-seed)
+      * Patrick
+         * Patrick offered Mike Davis and Nick Westbrook-Ikhine
+         * Charles selected Mike Davis (2.10)
+         * Patrick received Nick Westbrook-Ikhine (3.20)
+         * Patrick to 5-10
+      * Split: Charles 1, Pat 1
+      * Pat projection: Patrick (wrong); Charles prediction: Schex (right)
+   * Jason defeats Trevor, 135.34 to 100.70
+      * Jason
+         * Charles offered Ezekiel Elliott and Rashaad Penny
+         * Patrick selected Ezekiel Elliott (13.20)
+         * Charles received Rashaad Penny (4.40)
+         * Jason to 11-4 (3-seed)
+      * Trevor
+         * Patrick offered Rashod Bateman and Emmanuel Sanders
+         * Charles selected Rashod Bateman (0.50)
+         * Patrick received Emmanuel Sanders, who didn't play so this doesn't count
+         * Trevor to 7-8
+      * Pat "sweep": Pat 2, Charles 1
+      * Pat projection: Jason (right); Charles prediction: Jason (right)
+   * John/Zach defeat Mitch, 134.15 to 112.98
+      * John/Zach
+         * Charles offered Taylor Heinicke and Teddy Bridgewater
+         * Patrick selected Taylor Heinicke (0.00), who didn't play but, in keeping with the spirit of the RPOs, John/Zach wouldn't have known that he was definitely out until Tuesday, so this is a risk they would've had to take
+         * Charles received Teddy Bridgewater (2.92)
+         * John/Zach to 10-5 (eliminated, APPLAUSE)
+      * Mitch
+         * Patrick offered DeVonta Smith and Sterling Shepard
+         * Charles selected DeVonta Smith (4.00)
+         * Patrick received Sterling Shepard (2.50)
+         * Mitch to 6-9
+      * Charles sweep: Charles 3, Pat 2
+      * Pat projection: John/Zach (right); Charles prediction: John/Zach (right)
+   * James/Charles defeat Koci/Mueller, 124.50 to 97.76
+      * James/Charles
+         * Charles offered Darnell Mooney and Michael Pittman
+         * Patrick selected Darnell Mooney (7.60)
+         * Charles received Michael Pittman (0.70)
+         * James/Charles to 11-4 (4-seed)
+      * Koci/Mueller
+         * Patrick offered Nico Collins and Sammy Watkins
+         * Charles selected Nico Collins (1.40)
+         * Patrick received Sammy Watkins, who didn't play so this doesn't count
+         * Koci/Mueller to 1-14
+      * Pat "sweep": Charles 3, Pat 3
+      * Pat projection: James/Charles (right); Charles prediction: James/Charles (right)
+   * Keyon defeats Luke, 152.54 to 95.57
+      * JAGUAR GAME
+      * Keyon
+         * Charles offered Gabriel Davis and DeVante Parker
+         * Patrick selected Gabriel Davis (20.50)
+         * Charles received DeVante Parker (13.80)
+         * Keyon to 12-3 (1-seed, retains The Jaguar for a second consecutive year (playoffs do not count))
+      * Luke
+         * Patrick offered Pat Freiermuth and Mike Gesicki
+         * Charles selected Pat Freiermuth (3.70)
+         * Patrick received Mike Gesicki (4.30)
+         * Luke to 6-9
+      * Pat sweep: Pat 5, Charles 3
+      * Pat projection: Keyon (right); Charles prediction: Keyon (right)
+   * Brett defeats Quinn, 128.68 to 120.83
+      * Brett
+         * Patrick offered Matt Ryan and Cam Newton
+         * Charles selected Matt Ryan (10.44)
+         * Patrick received Cam Newton (19.34)
+         * Brett to 7-8
+      * Quinn
+         * Charles offered Amon-Ra St. Brown and Marvin Jones
+         * Patrick selected Amon-Ra St. Brown (15.50)
+         * Charles received Marvin Jones (1.40)
+         * Quinn to 3-12
+      * Pat sweep: Pat 7, Charles 3
+      * Pat projection: Quinn (wrong); Charles prediction: Brett (right)
+   * RPO Stats
+      * Pat 85, Charles 80
+      * Selector
+         * This week
+            * Pat: 4-2
+            * Charles: 1-3
+            * Total: 5-5
+         * Overall
+            * Pat: 46-38
+            * The World: 41-40
+            * Total: 87-78
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 4-2
+         * Overall: 54-36
+      * The World's predictions
+         * This week: 6-0
+         * Overall: 62-28
+
+
+* Transactions: Nope!
+
+
+* Discussion Topic: 2021 Retrospective: 12th through 9th
+   * Charles takes Koci/Mueller
+      * 12th place, 1-14, 31-134
+   * Patrick takes Quinn
+      * 11th place, 3-12, 45-120
+      * What worked out
+         * Josh Allen ($288, 21/21) and Ezekiel Elliott ($180, 21/23) played to their potential in the early goings, which allowed Quinn to move them for some premium pieces in Trevor Lawrence and J.K. Dobbins along with a couple of first round draft picks over the next two years
+         * Javonte Williams ($25, 21/23) looks like the real deal in Denver, which is excellent news for Quinn going forward because Melvin Gordon will be a real-life unrestricted free agent this offseason
+         * Amon-Ra St. Brown ($8, 21/23) has started coming on lately, so you're excited to see what he can do in the next couple of years
+         * T.J. Watt ($3, 20/22) is the #6 linebacker and is signed for another year at just $3
+         * Finally, Brandin Cooks ($50, 20/22) has had a sneaky good season, I think: he ends the regular season as the #20 WR!
+      * What didn't
+         * We knew the early-season schedule was gonna be tough and Quinn emerged from it with a 1-3 record, an 11-33 all-play, and a high score of just 135, so the season surely felt over almost immediately after it started
+         * I liked Marvin Jones ($15, 21/21) at the beginning of the season but the Jaguars were just such a disaster this year that he never really got it going
+         * Myles Gaskin ($95, 21/22) was paid to be a roughly dependable running back but ended up being a whack-a-mole guy; double digits one week and a total stinker the next
+         * It's kinda hard to say whether Ben Roethlisberger ($67, 21/21) and Jared Goff ($64, 21/23) were busts or not; they're the #21 and #24 quarterbacks; I guess you figured that was the floor for both of them so you were really hoping one would end up being a top-12 guy; in that sense, I guess they didn't work out
+         * Maybe Quinn should've just kept Tom Brady ($165) at auction?
+      * What Quinn has to look forward to in 2022
+         * The core of a solid team is there: two (maybe three) starting quarterbacks already signed, J.K. Dobbins and Javonte Williams for a combined $50, and a couple of interesting WRs
+         * He's got $653 to spend, which is fourth highest in the league right now
+         * The picks aren't gonna be great: he has Jason's first rounder, which is a bottom-four pick, and his slot in the draft order is gonna be 7th every round
+         * If Trevor Lawrence can take a step forward next year, that's gonna be huge for Quinn
+         * Quinn does a great job of finding good values and being willing to move them at a moment's notice if the winds aren't blowing his direction, so I have confidence that Quinn will continue to improve one way or another
+   * Charles takes Patrick
+      * 10th place, 5-10, 53-112
+   * Patrick takes Luke
+      * 9th place, 6-9, 68-97
+      * What worked out
+         * Antonio Gibson ($13, 20/22) kept it going and is currently the #13 running back
+         * JaMarr Chase ($16, 21/23) sure looks like he's gonna be an excellent asset to have for the next two years
+         * Pat Freiermuth ($2, 21/23) took a while to get it going but he currently has seven touchdowns on the season, making him a player to watch for two more years
+         * Justin Fields ($29, 21/23) eventually became the starter and, though he struggled really significantly in the early goings, he's looked really significantly better over the last four or five weeks
+         * He was also able to turn undrafted free agent Cordarrelle Patterson into Marquise Brown's RFA rights and a little cash next year
+         * He did eventually end up dealing his quarterback surplus as well, maybe even selling Russell Wilson at his peak
+         * He was also able to get Aaron Jones ($200, 21/22) for next year (and most of this year) for a first-round pick
+      * What didn't
+         * Schedule luck was tough for Luke: 158, 157, and 171 were all losing scores for him, although he did have a couple of sub-130 wins to offset a little
+         * It's hard to say right now that Saquon Barkley ($245, 21/23) worked out; he did get back on the field but was just very up and down in a really lousy and injured Giants offense; it's not crazy to think he's a cut candidate this offseason
+         * Laviska Shenault ($8, 20/22) just absolutely couldn't do anything in Urban Meyer's offense; the numbers are just so boring: 3 catches for 30 yards seemingly every game; hopefully a new coach can put him to better use for Luke next year
+      * What Luke has to look forward to in 2022
+         * Between Justin Fields, Aaron Jones, Antonio Gibson, JaMarr Chase, and Pat Freiermuth, the core of this team is very good
+         * The flip-side is that Luke has only $316 available right now ($487 if he cuts Barkley)
+         * He also won't be picking before the fourth round unless he trades back in, so he's gonna have to put that money to good use
+         * That said, if just a guy or two takes a step forward and Luke is able to figure out a good quarterback situation, this team is looking very promising for next season
+
+
+* The Decision
+   * Keyon makes a decision to actually make The Decision this time around and goes with Jason
+   * What do you think, Charles?
+   * Of the four playoff teams, Jason does have the lowest scoring average (155) and the worst all-play record (118-47)
+   * Keyon all season vs.
+      * Schex: 8-7
+      * Jason: 10-5
+      * James/Charles: 8-7
+   * Keyon last four weeks vs.
+      * Schex: 3-1
+      * Jason: 4-0
+      * James/Charles: 3-1
+   * League Historian sez: "Deciders still have yet to cost themselves a championship although they've got a 10-23 semifinal all-play record."
+
+
+* Game Previews and Risky Player Options for the Semifinals
+   * Any way you slice it, these are the four best teams
+   * Four best records, four best all-play records, four best scoring averages, they're just the four best teams
+   * #1 Keyon (12-3, 125-40) vs. #3 Jason (11-4, 118-47)
+      * Keyon playoff context
+         * This is Keyon's sixth-ever playoff appearance and second in a row
+         * He's 5-5 in the playoffs all-time but, unfortunately, that's only amounted to three second-place finishes (2008, 2009, 2020), and two third-place finishes (2015, 2017)
+         * This is his third time with The Decision in the last five years
+         * He's easily the most decorated owner in this league who has yet to win a championship
+      * Jason playoff context
+         * This is Jason's first-ever playoff appearance (of course) but it's also the very first appearance for the franchise that originally bore Daniel's name and then Terence's
+         * Jason jokes aside, it's been a very long time coming for this franchise, the only one that had never made the playoffs
+      * Keyon and Jason squared off twice this season, Jason winning the first game in Week 5 but Keyon winning the second in Week 11, so the tiebreaker for be for a championship game appearance
+      * The Decider is 5-6 in the semifinals
+      * The Simulator has Keyon winning this one 58% of the time
+      * Patrick takes Keyon
+         * Clyde Edwards-Helaire or Miles Sanders
+            * Edwards-Helaire
+               * He missed five games in the middle of the season but in his four games back, his lowest fantasy total has been 7.0 points
+               * In that span, he's surpassed double digits twice to go along with two more double digit performances before he got hurt
+               * He pretty reliably gets between ten and fifteen touches, the bulk of them being carries
+               * You're not too worried about the usage–or, at least, you know what you're getting–you're just worried about what Edwards-Helaire does with it
+               * Hosting the Steelers (26th)
+            * Sanders
+               * Dealing with a quad injury; he didn't practice today but he has an early game Sunday so he'll come with injury protection
+               * Check this out: Miles Sanders rushed for 131 yards against the Football Team this past Tuesday and, in the game before that, he rushed for 120 yards against the Jets
+               * He only has five total 100-yard rushing games in his career and two of them have come in the past two weeks
+               * 42 carries over that span and a 5.9 ypc
+               * He also even gets a couple of catches every game
+               * All that said, he still hasn't scored a single touchdown on the year! You don't really care much if he's going for 100 yards, though, right?
+               * Hosting the Giants (25th)
+      * Charles takes Jason
+      * Pat projection: Keyon
+      * Charles prediction
+   * #2 Schex (11-4, 125-40) vs. #4 James/Charles (11-4, 124-41)
+      * Schex playoff context
+         * This is Schex's tenth-ever playoff appearance
+         * He's 11-7 in the playoffs all-time, which has resulted in one fourth-place finish (2012), three third-place finishes (2009, 2014, 2016), two second-place finishes (2010, 2013), and three championships (2008, 2011, 2019)
+         * If you make a list of something good in this league, Schex's name invariably appears at the top of it
+      * James/Charles playoff context
+         * This is the Charles regime's first-ever playoff appearance; it's the James franchise's second-ever playoff appearance (2008)
+         * The franchise has a 1-1 playoff record culminating in a third-place finish (2008)
+         * That said, Charles was Schex's co-owner for the first four years of PSO play, so he certainly lays some claim to the success of that period as well, not to mention, his name is on the Ball of Soaps twice
+      * Schex and James/Charles met twice this season, Schex taking both meetings in Week 1 and Week 9; although this will be the first time Schex meets Charles in the playoffs, Schex's very first playoff win back in 2008 was over James
+      * Patrick takes Schex
+         * Man, this team is banged up all of a sudden
+         * Austin Ekeler, Lamar Jackson, James Conner, Darren Waller, A.J. Brown, and Chris Godwin are all questionable at best this week
+         * I think this is potentially the most helpful thing for Schex, even though it might not come to fruition; it just seems like this is the only way we can really help
+         * Tyler Huntley or Derek Carr
+            * I'd like to condition this on "if Tyler Huntley is the starter" because I assume Schex is gonna just roll with Lamar Jackson if the Ravens do
+            * Huntley
+               * Looked great against the Packers on Sunday to the tune of almost 35 points
+               * 215 passing yards and two passing touchdowns combine with 73 rushing yards and two rushing touchdowns and, man, you wouldn't even know it's not Lamar Jackson back there
+               * He's been a pretty high accuracy quarterback otherwise this year, which is promising
+               * Still, though, you may just be worried about starting a backup guy in the playoffs, especially because this week's matchup isn't nearly as good as last week's was
+               * At the Bengals (9th)
+            * Carr
+               * The Raiders offense has really slowed down lately and it's probably not much just a coincidence that Darren Waller has missed three straight games
+               * Over the last five games, Carr has only touched double digits twice and only one of those was anything you'd call a "good" game (18 points the last time Waller played)
+               * At a basic level, the numbers really don't look too much different, it's just that Carr is only throwing one touchdown in his games lately instead of two; he's not taking unusually many sacks or throwing unusually many interceptions, he's just not quite as prolific as he was earlier in the year
+               * That said, he's the actual starting quarterback and I don't think it's crazy to just sorta feel a little safer going with him, even though it'll be a tough matchup for Carr as well
+               * Hosting the Broncos (3rd)
+      * Charles takes James/Charles
+      * Pat projection: James/Charles
+      * Charles prediction
+
+
+* Let's Remember Some Guys?
+
+
+* High Scorer's Corner: Schex
+   * IS THIS STILL TRUE?
+   * APPLAUSE
+   * Schex scored 152.58
+   * 5th scoring title this season
+   * 43rd scoring title all-time (1st overall)
+   * HIGH_SCORERS_CORNER_DITTY
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * @PsoScuttlebutt
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in the semifinals! We will talk to you next week!

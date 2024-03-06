@@ -1,0 +1,273 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 15 of the 2021 season!
+   * I am Patrick, joined, as always, by Charles
+   * BANTER_PROMPT
+
+
+* Week 14 Recaps
+   * Jason defeats John/Zach, 191.02 to 131.72
+      * Jason
+         * Charles offered DK Metcalf and Amari Cooper
+         * Patrick selected DK Metcalf (4.30)
+         * Charles received Amari Cooper (11.10)
+         * Jason to 10-4 (1.000/1.000/1.000, clinched, I think?)
+         * Last game: Trevor
+      * John/Zach
+         * Patrick offered Taylor Heinicke and Teddy Bridgewater
+         * Charles selected Taylor Heinicke (3.68)
+         * Patrick received Teddy Bridgewater (14.16)
+         * John/Zach to 9-5 (.144/.178/.000)
+         * Last game: Mitch
+      * Split: Charles 1, Pat 1
+      * Pat projection: Jason (right); Charles prediction: Jason (right)
+   * Keyon defeats James/Charles, 228.90 to 176.02
+      * Keyon
+         * Patrick offered Joe Burrow and Zach Wilson
+         * Charles selected Joe Burrow (17.22)
+         * Patrick received Zach Wilson (8.38)
+         * Keyon to 11-3 (clinched)
+         * Last game: Luke
+      * James/Charles
+         * Charles offered Rob Gronkowski and Darnell Mooney
+         * Patrick selected Rob Gronkowski (6.20)
+         * Charles received Darnell Mooney (2.90)
+         * James/Charles to 10-4 (.996/1.000/.853)
+         * Last game: Koci/Mueller
+      * Split: Charles 2, Pat 2
+      * Pat projection: James/Charles (wrong); Charles prediction: Keyon (right)
+   * Trevor defeats Schex, 140.14 to 130.07
+      * Trevor
+         * Charles offered Robby Anderson and Austin Hooper
+         * Patrick selected Robby Anderson (15.40)
+         * Charles received Austin Hooper (10.00)
+         * Trevor to 7-7 (eliminated)
+         * Last game: Jason
+      * Schex
+         * Patrick offered DeAndre Hopkins and Van Jefferson
+         * Charles selected DeAndre Hopkins (5.40)
+         * Patrick received Van Jefferson (12.80)
+         * Schex to 10-4 (.860/1.000/.206)
+         * Last game: Patrick
+      * Pat sweep: Pat 4, Charles 2
+      * Pat projection: Trevor (right); Charles prediction: Schex (wrong)
+   * Brett defeats Mitch, 141.37 to 117.14
+      * Brett
+         * Patrick offered Cole Kmet and Noah Fant
+         * Charles selected Cole Kmet (1.70)
+         * Patrick received Noah Fant (5.10)
+         * Brett to 6-8 (eliminated)
+         * Last game: Quinn
+      * Mitch
+         * Charles offered Evan McPherson and Dustin Hopkins
+         * Patrick selected Evan McPherson (12.00)
+         * Charles received Dustin Hopkins (13.00)
+         * Mitch to 6-8 (eliminated)
+         * Last game: John/Zach
+      * Split: Pat 5, Charles 3
+      * Pat projection: Brett (right); Charles prediction: Mitch (wrong)
+   * Patrick defeats Quinn, 109.14 to 84.94
+      * Patrick
+         * Patrick offered Mike Davis and D'Wayne Eskridge
+         * Charles selected Mike Davis (8.60)
+         * Patrick received D'Wayne Eskridge (0.00), who did play, so this counts
+         * Patrick to 5-9 (eliminated)
+         * Last game: Schex
+      * Quinn
+         * Charles offered Jamison Crowder and Josh Reynolds
+         * Patrick selected Jamison Crowder (1.90)
+         * Charles received Josh Reynolds (5.20)
+         * Quinn to 3-11 (eliminated)
+         * Last game: Brett
+      * Charles sweep: Pat 5, Charles 5
+      * Pat projection: Patrick (right); Charles prediction: Patrick (right)
+   * Luke defeats Koci/Mueller, 135.00 to 104.40
+      * Luke
+         * Patrick offered Chase Claypool and Jarvis Landry
+         * Charles selected Chase Claypool (9.50)
+         * Patrick received Jarvis Landry (10.10)
+         * Luke to 6-8 (eliminated)
+         * Last game: Keyon
+      * Koci/Mueller
+         * Charles offered Carlos Hyde and Sammy Watkins
+         * Patrick selected Carlos Hyde (0.80)
+         * Charles received Sammy Watkins (0.00), who did play, so this counts
+         * Koci/Mueller to 1-13 (eliminated)
+         * Last game: James/Charles
+      * Pat sweep: Pat 7, Charles 5
+      * Pat projection: Luke (right); Charles prediction: Luke (right)
+   * RPO Stats
+      * Pat 78, Charles 77
+      * Selector
+         * This week
+            * Pat: 3-3
+            * Charles: 2-4
+            * Total: 5-7
+         * Overall
+            * Pat: 42-36
+            * The World: 40-37
+            * Total: 82-73
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 5-1
+         * Overall: 50-34
+      * The World's predictions
+         * This week: 4-2
+         * Overall: 56-28
+
+
+* Transactions
+   * Free Agency
+
+
+* Discussion Topic: IS_THERE_ONE
+
+
+* Game Previews and Risky Player Options for Week 15
+   * All games are rematches from Week 7
+   * Patrick (5-9, eliminated, 18%) vs. Schex (10-4, .860/1.000/.206, 82%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.146
+      * Decision interest level: 0.000
+      * Schex clinches a playoff spot with a win and watches the scoreboard with a loss
+      * Patrick must win by 28 to stay alive in the hunt for The Jaguar
+      * If Schex misses the playoffs, Patrick would have the #1 overall pick in next year's draft
+      * Schex leads the all-time series 13-6 and won earlier this season in Week 7
+      * Patrick takes Patrick
+         * Nick Westbrook-Ikhine or Mike Davis
+            * Westbrook-Ikhine
+               * Over the last three games: 12 catches for 163 yards and a touchdown
+               * He's getting looks in the offense for sure although he probably pretty touchdown-dependent
+               * At the Steelers (26th)
+            * Davis
+               * I guess I'm just cementing his RPO XI spot here but he's actually been pretty good the last two games!
+               * 16 touches last week became 82 all-purpose yards and he had a touchdown the week before that
+               * Very boring but he's been getting job done lately
+               * At the 49ers (25th)
+      * Charles takes Schex
+      * Pat projection: Patrick
+      * Charles prediction
+   * Jason (10-4, clinched?, 70%) vs. Trevor (7-7, eliminated, 30%)
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.107
+      * If Jason wins, Keyon loses, and Jason is able to outscore Keyon by 99, Jason wins The Decision
+      * Jason beat Trevor earlier this season
+      * Charles takes Jason
+      * Patrick takes Trevor
+         * Emmanuel Sanders or Rashod Bateman
+            * Sanders
+               * Just to get this out of the way, Sanders is unlikely to play
+               * He's just been nothing lately: he makes 1, 2, or 3 catches and just always ends up with like 25 yards and that's it. That's Emmanuel Sanders now.
+               * Hosting the Panthers (2nd)
+            * Bateman
+               * At least you know you're getting a couple points from Sanders, I guess?
+               * Bateman had a 7 catch 103 yard receiving day last week but put up 0, 3, and 3 in the three games before that
+               * You also don't know who's gonna be throwing this week with Lamar Jackson questionable with an ankle injury
+               * Hosting the Packers (22nd)
+      * Pat projection: Jason
+      * Charles prediction
+   * John/Zach (9-5, .144/.178/.000, 81%) vs. Mitch (6-8, eliminated, 19%)
+      * Playoff interest level: 0.084
+      * Decision interest level: 0.000
+      * John/Zach must win this game and have Schex lose in order to make the playoffs; no other scenario works
+      * Mitch is still trying to move up to 6th place at season's end
+      * Mitch leads the all-time series 8-6 but John/Zach have won four meetings in a row
+      * Charles takes John/Zach
+      * Patrick takes Mitch
+         * DeVonta Smith or Sterling Shepard
+            * Smith
+               * Slowed down very significantly in the last three games: 8 catches for 104 yards and no touchdowns, including just 2 catches in each of the past two games
+               * For being a top ten pick, I'd say he's been pretty promising and had a totally fine rookie season but his numbers certainly don't pop out at you
+               * Hosting the Football Team (25th)
+            * Shepard
+               * Finally got back into action after a six-week absence but only to the tune of two catches and 27 yards (no touchdown)
+               * We're not totally sure who's gonna play quarterback this week; it's a toss-up between Daniel Jones and another week of Mike Glennon
+               * We do know that Kardarius Toney will be sitting out
+               * Hosting the Cowboys (27th)
+      * Pat projection: John/Zach
+      * Charles prediction
+   * Koci/Mueller (1-13, eliminated, 3%) vs. James/Charles (10-4, .996/1.000/.853, 97%)
+      * Playoff interest level: 0.004
+      * Decision interest level: 0.000
+      * James/Charles only seem to miss the playoffs if: they lose to Koci/Mueller, Patrick beats Schex, and John/Zach beat Mitch (i.e. they lose a three-way tie with Schex, and John/Zach)
+      * Koci/Mueller lead the all-time series 5-3 but James/Charles won in Week 7
+      * Patrick takes Koci/Mueller
+         * Nico Collins or Sammy Watkins
+            * Collins
+               * Davis Mills took over for Tyrod Taylor and Nico Collins benefited a little: 5 catches for 69 yards. No touchdown but pretty nice regardless
+               * 6.9 points is his best performance of the season but maybe the matchup can help out a little
+               * At the Jaguars (18th)
+            * Watkins
+               * Here are his last five scores, starting five games ago: -1.3, 4.8, 0.8, 9.9, 0.0
+               * He's due for more than 1 point, I guess?
+               * I dunno, you play with fire when you play Sammy Watkins
+               * Oh, he's also a little banged up and something called Tyler Huntley might be throwing to him
+               * Hosting the Packers (22nd)
+      * Charles takes James/Charles
+      * Pat projection: James/Charles
+      * Charles prediction
+   * Keyon (11-3, clinched, 75%) vs. Luke (6-8, eliminated, 25%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Keyon definitely clinches The Decision with a win and clinches The Jaguar if Schex also wins
+      * Luke is still trying for 6th place
+      * Keyon leads the all-time series 9-7 and has won five straight meetings
+      * Charles takes Keyon
+      * Patrick takes Luke
+         * Mike Gesicki or Pat Freiermuth
+            * Gesicki
+               * The touchdown drought continues: he still hasn't gotten into the end zone since Week 7 and that's also his most recent game in double digits
+               * He does still get a ton of catches and targets, though, most recently 7 catches on 11 targets for 46 yards against the Giants
+               * Hosting the Jets (27th)
+            * Freiermuth
+               * Outscored Gesicki several weeks in a row and has scored touchdowns in three of his last four games
+               * He actually don't get a ton of volume, his highest number of catches in the last four games being 4, but he sure makes them count
+               * Tough matchup, though!
+               * Hosting the Titans (5th)
+      * Pat projection: Keyon
+      * Charles prediction
+   * Brett (6-8, eliminated, 62%) vs. Quinn (3-11, eliminated, 38%)
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Brett is still trying to finish 7th (maybe even 6th) this season
+      * Quinn isn't playing for anything, having already clinched 11th
+      * Brett leads the all-time series 2-0
+      * Patrick takes Brett
+         * Matt Ryan or Cam Newton
+            * Ryan
+               * Been all over the place in his last five games: two went for negative points, two were single digits, and his most recent and best game was just 11.9.
+               * He's taken a huge number since the beginning of November, a time when we could've said that Matty Ice had only really let you down once
+               * At the 49ers (21st)
+            * Newton
+               * Talk about all over the map
+               * Cam is a couple of weeks removed from a 25-point performance but has only scored 18 points total in the two games since
+               * He actually didn't throw a touchdown in either of those last two games but he has scored a rushing touchdown in all four games he's played this season
+               * At the Bills (1st)
+      * Charles takes Quinn
+      * Pat projection: Quinn
+      * Charles prediction
+
+
+* High Scorer's Corner: Keyon
+   * APPLAUSE
+   * Keyon scored 228.90
+   * 2nd highest score all-time
+   * 3rd scoring title this season
+   * 28th scoring title all-time (2nd overall)
+   * "My team is rolling, and it's as healthy as it's been all year. I am the favorite now. I have The Decision too. This is a very strange feeling. Good things aren't supposed to happen to me in PSO. I believe that's one of the unwritten rules. Things like Dalvin and Deebo returning after just a one-game absence just aren't supposed to happen for me. That's Schex-level luckboxery. I mean, I gave up on the season, but the season wouldn't let me. I'm trying to figure out why this year is different, cosmically. Why has my luck changed this year? I keep waiting for the other shoe to drop. That shoe may very well be Omicron. We'll see. George Costanza once said, "I don't want hope. Hope is killing me. My dream is to become hopeless. When you're hopeless, you don't care." I wish I didn't have hope, honestly. But I do. I have a lot of hope. I want this so badly."
+
+
+* Let's Remember Some Guys?
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs this season! We'll still ask all the playoff teams to do so but for the eight franchises that don't make it, we do appreciate the participation.
+   * @PsoScuttlebutt
+   * Websites
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 15! We will talk to you next week!
