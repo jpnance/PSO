@@ -19,6 +19,13 @@ var fantraxFranchises = {
   '007t5510ln93iz65': 'James',
 };
 
+var remainingTeams = {
+  'dzh56gy0ln93iz65': 'Joel',
+  'r89rvfs3ln93iz65': 'Patrick',
+  'rvds592lln93iz65': 'Paul',
+  'pufmdy4oln93iz65': 'Schex/Kevin',
+};
+
 var groupMePost = function(post) {
 	request
 		.post('https://api.groupme.com/v3/bots/post')
@@ -35,7 +42,7 @@ var newFantraxPromise = function(fantraxId) {
   var msgs = [
     {
       data: {
-        period: 19
+        period: 20
       },
       method: 'getLiveScoringStats'
     },
@@ -57,13 +64,15 @@ var newFantraxPromise = function(fantraxId) {
         Object.entries(dataJson.responses[0].data.statsPerTeam.allTeamsStats).forEach(([teamId, stats]) => {
           var [played, inProgress, scheduled, minutes, unknown] = stats.ACTIVE.playerGameInfo;
 
-          startsData.push({
-            teamId,
-            franchise: fantraxFranchises[teamId],
-            played,
-            inProgress,
-            scheduled
-          });
+          if (remainingTeams[teamId]) {
+            startsData.push({
+              teamId,
+              franchise: fantraxFranchises[teamId],
+              played,
+              inProgress,
+              scheduled
+            });
+          }
         });
 
 				resolve({ startsData });
