@@ -42,7 +42,7 @@ var newFantraxPromise = function(fantraxId) {
   var msgs = [
     {
       data: {
-        period: 20
+        period: 21
       },
       method: 'getLiveScoringStats'
     },
