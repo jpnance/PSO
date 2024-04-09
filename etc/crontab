@@ -2,4 +2,4 @@
 8 6-16 * * 2,3,4 /bin/sh /app/results.sh
 33 3 */2 * * wget -O /app/public/data/sleeper-data.json https://api.sleeper.app/v1/players/nfl
 
-0 17 * * * /usr/local/bin/node /app/bots/starts.js
+#0 17 * * * /usr/local/bin/node /app/bots/starts.js
