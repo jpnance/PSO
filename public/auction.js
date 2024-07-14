@@ -15,13 +15,17 @@ $(document).ready(function() {
 	$('#bid-form').bind('submit', function(e) {
 		var newBid = { amount: $(this).find('#bid-amount').val() };
 
-		if ($(this).find('#force-bid')) {
+		if ($(this).find('#force-bid').length > 0) {
 			newBid.force = true;
 			newBid.owner = $(this).find('#owner').val();
 		}
 
 		e.preventDefault();
-		$.post('/auction/bid', newBid, redrawAuctionClient);
+
+		socket.send(JSON.stringify({
+			type: 'makeBid',
+			value: newBid
+		}));
 
 		$(this).find('#bid-amount').val(null).focus();
 	});

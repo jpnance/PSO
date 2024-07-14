@@ -45,45 +45,38 @@ module.exports.currentAuction = function(request, response) {
 	response.send(auction);
 };
 
-module.exports.makeBid = function(request, response) {
-	if (request.body.force && request.body.owner && request.body.amount) {
-		auction.bids.unshift({ owner: request.body.owner, amount: parseInt(request.body.amount) });
-		response.send(auction);
+module.exports.makeBid = function(bid) {
+	if (bid.force && bid.owner && bid.amount) {
+		auction.bids.unshift({
+			owner: bid.owner,
+			amount: parseInt(bid.amount)
+		});
+
+		broadcastAuctionData();
 		return;
 	}
 
-	var owner = null;
+	var owner = bid.owner;
 
 	if (auction.status != 'active') {
-		response.send(auction);
 		return;
-	}
-
-	if (request.body.owner) {
-		owner = request.body.owner;
-	}
-	else if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
-		owner = owners[request.cookies.auctionAuthKey];
 	}
 
 	if (!owner || !nominationOrder.includes(owner)) {
-		response.send(auction);
 		return;
 	}
 
 	if (auction.bids && auction.bids[0] && owner == auction.bids[0].owner) {
-		response.send(auction);
 		return;
 	}
 
 	if (auction.player.situation.startsWith('RFA-') && auction.player.situation.includes(owner)) {
-		response.send(auction);
 		return;
 	}
 
 	var newBid = {
 		owner: owner,
-		amount: parseInt(request.body.amount)
+		amount: parseInt(bid.amount)
 	};
 
 	if (newBid.amount > 0) {
@@ -100,8 +93,6 @@ module.exports.makeBid = function(request, response) {
 			broadcastAuctionData();
 		}
 	}
-
-	response.send(auction);
 };
 
 module.exports.nominatePlayer = function(request, response) {
@@ -188,17 +179,32 @@ module.exports.handleConnection = function(socket, request) {
 
 	sockets.push(socket);
 
-	socket.send(JSON.stringify({
-		type: 'auth',
-		value: {
-			loggedInAs: owners[authKey] || null
-		}
-	}));
+	if (owners[authKey]) {
+		socket.owner = owners[authKey];
+
+		socket.send(JSON.stringify({
+			type: 'auth',
+			value: {
+				loggedInAs: owners[authKey]
+			}
+		}));
+	}
 
 	broadcastAuctionData();
 
-	socket.on('message', handleMessage);
+	socket.on('message', handleMessage.bind(null, socket));
 };
+
+function handleMessage(socket, rawMessage) {
+	var { type, value } = JSON.parse(rawMessage.toString());
+
+	if (type == 'makeBid') {
+		module.exports.makeBid({
+			owner: socket.owner,
+			...value
+		});
+	}
+}
 
 setInterval(function() {
 	sockets.forEach(function(socket) {
