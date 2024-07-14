@@ -98,18 +98,13 @@ $(document).ready(function() {
 		$.get('/auction/rollcall', null, redrawAuctionClient);
 	});
 
-	fetchLoggedInAsData();
 	fetchCurrentAuctionData();
 
-	setInterval(fetchCurrentAuctionData, 1000);
+	//setInterval(fetchCurrentAuctionData, 1000);
 });
 
 var fetchCurrentAuctionData = function() {
 	$.get('/auction/current', { _: Math.random() }, redrawAuctionClient);
-};
-
-var fetchLoggedInAsData = function() {
-	$.get('/auction/quickauth', null, addLoggedInAsClass);
 };
 
 var addLoggedInAsClass = function(loggedInAsData) {
@@ -172,6 +167,10 @@ var redrawAuctionClient = function(auctionData) {
 
 function handleMessage(rawMessage) {
 	var { type, value } = JSON.parse(rawMessage.data);
+
+	if (type == 'auth') {
+		addLoggedInAsClass(value);
+	}
 
 	console.log(type, value);
 }

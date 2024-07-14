@@ -182,9 +182,19 @@ module.exports.rollCall = function(request, response) {
 
 var sockets = [];
 
-module.exports.handleConnection = function(socket) {
-	console.log('got one');
+module.exports.handleConnection = function(socket, request) {
+	var authKey = extractAuthKeyFromCookie(request.headers.cookie);
+
 	sockets.push(socket);
+
+	socket.send(JSON.stringify({
+		type: 'auth',
+		value: {
+			loggedInAs: owners[authKey] || null
+		}
+	}));
+
+	socket.on('message', handleMessage);
 };
 
 setInterval(function() {
@@ -195,3 +205,20 @@ setInterval(function() {
 		}));
 	});
 }, 10000);
+
+function extractAuthKeyFromCookie(rawCookie) {
+	var pairs = rawCookie.split(';');
+	var authKey;
+
+	pairs
+		.map(function(pair) {
+			return pair.split('=');
+		})
+		.forEach(function(pairArray) {
+			if (pairArray[0] == 'auctionAuthKey') {
+				authKey = pairArray[1];
+			}
+		});
+
+	return authKey;
+}
