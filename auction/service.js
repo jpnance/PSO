@@ -97,6 +97,7 @@ module.exports.makeBid = function(request, response) {
 
 		if (highBid) {
 			auction.bids.unshift(newBid);
+			broadcastAuctionData();
 		}
 	}
 
