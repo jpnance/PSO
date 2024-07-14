@@ -94,7 +94,10 @@ $(document).ready(function() {
 
 	$('#pop').bind('click', function(e) {
 		e.preventDefault();
-		$.get('/auction/pop', null, redrawAuctionClient);
+
+		socket.send(JSON.stringify({
+			type: 'pop'
+		}));
 	});
 
 	$('#roll-call').bind('click', function(e) {

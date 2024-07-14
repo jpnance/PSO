@@ -125,9 +125,9 @@ module.exports.pauseAuction = function(request, response) {
 	response.send(auction);
 };
 
-module.exports.popBid = function(request, response) {
+module.exports.popBid = function() {
 	auction.bids.shift();
-	response.send(auction);
+	broadcastAuctionData();
 };
 
 module.exports.quickAuth = function(request, response) {
@@ -203,6 +203,9 @@ function handleMessage(socket, rawMessage) {
 			owner: socket.owner,
 			...value
 		});
+	}
+	else if (type == 'pop') {
+		module.exports.popBid();
 	}
 }
 
