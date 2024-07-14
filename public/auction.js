@@ -97,15 +97,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		$.get('/auction/rollcall', null, redrawAuctionClient);
 	});
-
-	fetchCurrentAuctionData();
-
-	//setInterval(fetchCurrentAuctionData, 1000);
 });
-
-var fetchCurrentAuctionData = function() {
-	$.get('/auction/current', { _: Math.random() }, redrawAuctionClient);
-};
 
 var addLoggedInAsClass = function(loggedInAsData) {
 	if (loggedInAsData.loggedInAs) {
@@ -170,6 +162,9 @@ function handleMessage(rawMessage) {
 
 	if (type == 'auth') {
 		addLoggedInAsClass(value);
+	}
+	else if (type == 'auctionData') {
+		redrawAuctionClient(value);
 	}
 
 	console.log(type, value);

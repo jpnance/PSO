@@ -194,6 +194,8 @@ module.exports.handleConnection = function(socket, request) {
 		}
 	}));
 
+	broadcastAuctionData();
+
 	socket.on('message', handleMessage);
 };
 
@@ -221,4 +223,13 @@ function extractAuthKeyFromCookie(rawCookie) {
 		});
 
 	return authKey;
+}
+
+function broadcastAuctionData() {
+	sockets.forEach(function(socket) {
+		socket.send(JSON.stringify({
+			type: 'auctionData',
+			value: auction
+		}));
+	});
 }
