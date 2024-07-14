@@ -21,4 +21,28 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 process.env.PORT = process.env.PORT || 3333;
-app.listen(process.env.PORT, function() { console.log('yes okay ' + process.env.PORT); });
+
+var server;
+
+if (process.env.NODE_ENV == 'dev') {
+	var fs = require('fs');
+	var https = require('https');
+
+	var options = {
+		key: fs.readFileSync('../ssl/server.key'),
+		cert: fs.readFileSync('../ssl/server.crt'),
+		requestCert: false,
+		rejectUnauthorized: false
+	};
+
+	server = https.createServer(options, app);
+
+	server.listen(process.env.PORT, () => {
+		console.log('Listening on port', process.env.PORT);
+	});
+}
+else {
+	server = app.listen(process.env.PORT, function() {
+		console.log('yes okay ' + process.env.PORT);
+	});
+}
