@@ -46,3 +46,9 @@ else {
 		console.log('yes okay ' + process.env.PORT);
 	});
 }
+
+var ws = require('ws');
+var wss = new ws.WebSocketServer({ server: server });
+
+var auction = require('./auction/service');
+wss.on('connection', auction.handleConnection);

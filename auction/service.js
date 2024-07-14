@@ -179,3 +179,19 @@ module.exports.rollCall = function(request, response) {
 
 	response.send(auction);
 };
+
+var sockets = [];
+
+module.exports.handleConnection = function(socket) {
+	console.log('got one');
+	sockets.push(socket);
+};
+
+setInterval(function() {
+	sockets.forEach(function(socket) {
+		socket.send(JSON.stringify({
+			type: 'ping',
+			value: 'just saying hi'
+		}));
+	});
+}, 10000);

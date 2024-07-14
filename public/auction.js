@@ -2,6 +2,10 @@ var numberOfBids = 0;
 var state = 'new-player';
 var loggedInAs;
 
+var socket = new WebSocket('wss://thedynastyleague.local:9528');
+
+socket.onmessage = handleMessage;
+
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
 		e.preventDefault();
@@ -165,3 +169,9 @@ var redrawAuctionClient = function(auctionData) {
 
 	$('#attendance').replaceWith(attendance);
 };
+
+function handleMessage(rawMessage) {
+	var { type, value } = JSON.parse(rawMessage.data);
+
+	console.log(type, value);
+}
