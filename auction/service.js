@@ -117,12 +117,9 @@ module.exports.nominatePlayer = function(request, response) {
 	response.send(auction);
 };
 
-module.exports.pauseAuction = function(request, response) {
-	if (request.query.bidCount && request.query.bidCount == auction.bids.length) {
-		auction.status = 'paused';
-	}
-
-	response.send(auction);
+module.exports.pauseAuction = function() {
+	auction.status = 'paused';
+	broadcastAuctionData();
 };
 
 module.exports.popBid = function() {
@@ -203,6 +200,9 @@ function handleMessage(socket, rawMessage) {
 			owner: socket.owner,
 			...value
 		});
+	}
+	else if (type == 'pause') {
+		module.exports.pauseAuction();
 	}
 	else if (type == 'pop') {
 		module.exports.popBid();

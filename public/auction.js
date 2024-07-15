@@ -1,4 +1,3 @@
-var numberOfBids = 0;
 var state = 'new-player';
 var loggedInAs;
 
@@ -41,7 +40,9 @@ $(document).ready(function() {
 		$('#nomination-form #nominator').val('');
 		$('#nomination-form #player-list').val('');
 
-		$.get('/auction/pause', { bidCount: numberOfBids }, redrawAuctionClient);
+		socket.send(JSON.stringify({
+			type: 'pause'
+		}));
 	});
 
 	$('body.admin .nominating .who').bind('click', function(e) {
@@ -114,8 +115,6 @@ var addLoggedInAsClass = function(loggedInAsData) {
 };
 
 var redrawAuctionClient = function(auctionData) {
-	numberOfBids = auctionData.bids.length;
-
 	if (auctionData.status) {
 		$('body').removeClass('paused').removeClass('active').removeClass('roll-call').removeClass('checked-in').addClass(auctionData.status);
 
