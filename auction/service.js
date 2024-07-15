@@ -21,7 +21,7 @@ var auction = {
 var owners = JSON.parse(process.env.AUCTION_USERS);
 var nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
 
-module.exports.activateAuction = function() {
+function activateAuction() {
 	auction.status = 'active';
 	broadcastAuctionData();
 };
@@ -34,18 +34,14 @@ module.exports.authenticateOwner = function(request, response) {
 	response.redirect('/auction');
 };
 
-module.exports.callRoll = function() {
+function callRoll() {
 	auction.status = 'roll-call';
 	auction.rollCall = [];
 
 	broadcastAuctionData();
 };
 
-module.exports.currentAuction = function(request, response) {
-	response.send(auction);
-};
-
-module.exports.makeBid = function(bid) {
+function makeBid(bid) {
 	if (bid.force && bid.owner && bid.amount) {
 		auction.bids.unshift({
 			owner: bid.owner,
@@ -95,7 +91,7 @@ module.exports.makeBid = function(bid) {
 	}
 };
 
-module.exports.nominatePlayer = function(player) {
+function nominatePlayer(player) {
 	auction.status = 'paused';
 
 	auction.nominator.now = player.nominator;
@@ -112,20 +108,14 @@ module.exports.nominatePlayer = function(player) {
 	broadcastAuctionData();
 };
 
-module.exports.pauseAuction = function() {
+function pauseAuction() {
 	auction.status = 'paused';
 	broadcastAuctionData();
 };
 
-module.exports.popBid = function() {
+function popBid() {
 	auction.bids.shift();
 	broadcastAuctionData();
-};
-
-module.exports.quickAuth = function(request, response) {
-	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
-		response.send({ loggedInAs: owners[request.cookies.auctionAuthKey] });
-	}
 };
 
 module.exports.resetNominationOrder = function(request, response) {
@@ -134,7 +124,7 @@ module.exports.resetNominationOrder = function(request, response) {
 	response.send(auction);
 };
 
-module.exports.removeFromNominationOrder = function(removeOwnerData) {
+function removeFromNominationOrder(removeOwnerData) {
 	var ownerIndex = nominationOrder.indexOf(removeOwnerData.owner);
 
 	if (ownerIndex != -1) {
@@ -151,7 +141,7 @@ module.exports.removeFromNominationOrder = function(removeOwnerData) {
 	broadcastAuctionData();
 };
 
-module.exports.rollCall = function(rollCallData) {
+function rollCall(rollCallData) {
 	if (rollCallData.owner) {
 		if (!auction.rollCall.includes(rollCallData.owner)) {
 			auction.rollCall.push(rollCallData.owner);
@@ -189,31 +179,31 @@ function handleMessage(socket, rawMessage) {
 	var { type, value } = JSON.parse(rawMessage.toString());
 
 	if (type == 'activate') {
-		module.exports.activateAuction();
+		activateAuction();
 	}
 	else if (type == 'callRoll') {
-		module.exports.callRoll();
+		callRoll();
 	}
 	else if (type == 'makeBid') {
-		module.exports.makeBid({
+		makeBid({
 			owner: socket.owner,
 			...value
 		});
 	}
 	else if (type == 'nominate') {
-		module.exports.nominatePlayer(value);
+		nominatePlayer(value);
 	}
 	else if (type == 'pause') {
-		module.exports.pauseAuction();
+		pauseAuction();
 	}
 	else if (type == 'pop') {
-		module.exports.popBid();
+		popBid();
 	}
 	else if (type == 'removeOwner') {
-		module.exports.removeFromNominationOrder(value);
+		removeFromNominationOrder(value);
 	}
 	else if (type == 'rollCall') {
-		module.exports.rollCall({
+		rollCall({
 			owner: socket.owner
 		});
 	}
