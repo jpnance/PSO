@@ -95,26 +95,21 @@ module.exports.makeBid = function(bid) {
 	}
 };
 
-module.exports.nominatePlayer = function(request, response) {
-	if (request.body.status) {
-		auction.status = request.body.status;
-	}
-	else {
-		auction.status = 'paused';
-	}
+module.exports.nominatePlayer = function(player) {
+	auction.status = 'paused';
 
-	auction.nominator.now = request.body.nominator;
+	auction.nominator.now = player.nominator;
 	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
 	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
 
-	auction.player.name = request.body.name;
-	auction.player.position = request.body.position;
-	auction.player.team = request.body.team;
-	auction.player.situation = request.body.situation;
+	auction.player.name = player.name;
+	auction.player.position = player.position;
+	auction.player.team = player.team;
+	auction.player.situation = player.situation;
 
 	auction.bids = [];
 
-	response.send(auction);
+	broadcastAuctionData();
 };
 
 module.exports.pauseAuction = function() {
@@ -203,6 +198,9 @@ function handleMessage(socket, rawMessage) {
 			owner: socket.owner,
 			...value
 		});
+	}
+	else if (type == 'nominate') {
+		module.exports.nominatePlayer(value);
 	}
 	else if (type == 'pause') {
 		module.exports.pauseAuction();

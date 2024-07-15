@@ -63,7 +63,10 @@ $(document).ready(function() {
 
 		e.preventDefault();
 
-		$.post('/auction/nominate', newPlayer, redrawAuctionClient);
+		socket.send(JSON.stringify({
+			type: 'nominate',
+			value: newPlayer
+		}));
 	});
 
 	$('#nomination-form #nominator').bind('change', function(e) {
