@@ -113,7 +113,8 @@ request
 			var compiledPug = pug.compileFile('../views/auction.pug');
 			fs.writeFileSync('../public/auction/index.html', compiledPug({
 				owners: JSON.parse(process.env.NOMINATION_ORDER),
-				referenceSite: siteData[parameters.site].referenceSite
+				referenceSite: siteData[parameters.site].referenceSite,
+				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
 
 			var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
@@ -122,7 +123,8 @@ request
 				positions: positions,
 				situations: situations,
 				owners: JSON.parse(process.env.NOMINATION_ORDER),
-				referenceSite: siteData[parameters.site].referenceSite
+				referenceSite: siteData[parameters.site].referenceSite,
+				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
 		}
 

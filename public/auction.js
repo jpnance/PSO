@@ -1,7 +1,7 @@
 var state = 'new-player';
 var loggedInAs;
 
-var socket = new WebSocket('wss://thedynastyleague.local:9528');
+var socket = new WebSocket(webSocketUrl);
 
 socket.onmessage = handleMessage;
 
