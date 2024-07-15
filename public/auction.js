@@ -96,7 +96,12 @@ $(document).ready(function() {
 	$('#nomination-order-form').bind('submit', function(e) {
 		e.preventDefault();
 
-		$.post('/auction/removeowner', { owner: $(this).find('#remove-owner').val() }, redrawAuctionClient);
+		socket.send(JSON.stringify({
+			type: 'removeOwner',
+			value: {
+				owner: $(this).find('#remove-owner').val()
+			}
+		}));
 	});
 
 	$('#pop').bind('click', function(e) {

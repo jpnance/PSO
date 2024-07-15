@@ -134,21 +134,21 @@ module.exports.resetNominationOrder = function(request, response) {
 	response.send(auction);
 };
 
-module.exports.removeFromNominationOrder = function(request, response) {
-	var ownerIndex = nominationOrder.indexOf(request.body.owner);
+module.exports.removeFromNominationOrder = function(removeOwnerData) {
+	var ownerIndex = nominationOrder.indexOf(removeOwnerData.owner);
 
 	if (ownerIndex != -1) {
 		nominationOrder.splice(ownerIndex, 1);
 	}
 
-	if (auction.nominator.now == request.body.owner) {
+	if (auction.nominator.now == removeOwnerData.owner) {
 		auction.nominator.now = nominationOrder[ownerIndex % nominationOrder.length];
 	}
 
 	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
 	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
 
-	response.send(auction);
+	broadcastAuctionData();
 };
 
 module.exports.rollCall = function(request, response) {
@@ -207,6 +207,9 @@ function handleMessage(socket, rawMessage) {
 	}
 	else if (type == 'pop') {
 		module.exports.popBid();
+	}
+	else if (type == 'removeOwner') {
+		module.exports.removeFromNominationOrder(value);
 	}
 }
 
