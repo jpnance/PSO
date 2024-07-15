@@ -15,4 +15,4 @@ results:
 	docker exec -it -w /app pso-cron sh results.sh
 
 auction:
-	docker exec -it -w /app pso-cron sh -c "cd auction && node auction render"
+	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js render"
