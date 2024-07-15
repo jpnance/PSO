@@ -196,19 +196,20 @@ function connectToWebSocket() {
 	socket.onmessage = handleMessage;
 
 	socket.onopen = function() {
+		socketHeartbeatInterval = setInterval(function() {
+			socket.send(JSON.stringify({
+				type: 'heartbeat'
+			}));
+		}, 5000);
+
 		dialog.close();
 	}
 
 	socket.onclose = function() {
 		clearInterval(socketHeartbeatInterval);
+
 		dialog.showModal();
 	}
-
-	socketHeartbeatInterval = setInterval(function() {
-		socket.send(JSON.stringify({
-			type: 'heartbeat'
-		}));
-	}, 5000);
 }
 
 function handleMessage(rawMessage) {
