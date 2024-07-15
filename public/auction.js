@@ -60,6 +60,7 @@ $(document).ready(function() {
 
 	$('body.admin .nominating .who').bind('click', function(e) {
 		$('#nominator').val($(this).text());
+		$('#owner').val($(this).text());
 	});
 
 	$('#nomination-form').bind('submit', function(e) {
