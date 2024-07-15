@@ -8,7 +8,10 @@ socket.onmessage = handleMessage;
 $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
 		e.preventDefault();
-		$.get('/auction/activate', null, redrawAuctionClient);
+
+		socket.send(JSON.stringify({
+			type: 'activate'
+		}));
 	});
 
 	$('#bid-form').bind('submit', function(e) {

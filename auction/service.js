@@ -21,9 +21,9 @@ var auction = {
 var owners = JSON.parse(process.env.AUCTION_USERS);
 var nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
 
-module.exports.activateAuction = function(request, response) {
+module.exports.activateAuction = function() {
 	auction.status = 'active';
-	response.send(auction);
+	broadcastAuctionData();
 };
 
 module.exports.authenticateOwner = function(request, response) {
@@ -195,7 +195,10 @@ module.exports.handleConnection = function(socket, request) {
 function handleMessage(socket, rawMessage) {
 	var { type, value } = JSON.parse(rawMessage.toString());
 
-	if (type == 'makeBid') {
+	if (type == 'activate') {
+		module.exports.activateAuction();
+	}
+	else if (type == 'makeBid') {
 		module.exports.makeBid({
 			owner: socket.owner,
 			...value
