@@ -1,11 +1,18 @@
 var state = 'new-player';
 var loggedInAs;
 
-var socket = new WebSocket(webSocketUrl);
-
-socket.onmessage = handleMessage;
+var socket;
+var socketHeartbeatInterval;
 
 $(document).ready(function() {
+	connectToWebSocket();
+
+	$('#reconnect').bind('click', function(e) {
+		e.preventDefault();
+
+		connectToWebSocket();
+	});
+
 	$('#activate').bind('click', function(e) {
 		e.preventDefault();
 
@@ -182,6 +189,28 @@ var redrawAuctionClient = function(auctionData) {
 	$('#attendance').replaceWith(attendance);
 };
 
+function connectToWebSocket() {
+	var dialog = $('dialog')[0];
+
+	socket = new WebSocket(webSocketUrl);
+	socket.onmessage = handleMessage;
+
+	socket.onopen = function() {
+		dialog.close();
+	}
+
+	socket.onclose = function() {
+		clearInterval(socketHeartbeatInterval);
+		dialog.showModal();
+	}
+
+	socketHeartbeatInterval = setInterval(function() {
+		socket.send(JSON.stringify({
+			type: 'heartbeat'
+		}));
+	}, 5000);
+}
+
 function handleMessage(rawMessage) {
 	var { type, value } = JSON.parse(rawMessage.data);
 
@@ -192,9 +221,3 @@ function handleMessage(rawMessage) {
 		redrawAuctionClient(value);
 	}
 }
-
-setInterval(function() {
-	socket.send(JSON.stringify({
-		type: 'heartbeat'
-	}));
-}, 5000);
