@@ -194,3 +194,9 @@ function handleMessage(rawMessage) {
 
 	console.log(type, value);
 }
+
+setInterval(function() {
+	socket.send(JSON.stringify({
+		type: 'heartbeat'
+	}));
+}, 5000);

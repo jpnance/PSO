@@ -157,7 +157,7 @@ function rollCall(rollCallData) {
 module.exports.handleConnection = function(socket, request) {
 	var authKey = extractAuthKeyFromCookie(request.headers.cookie);
 
-	sockets.push(socket);
+	socket.heartbeat = true;
 
 	if (owners[authKey]) {
 		socket.owner = owners[authKey];
@@ -169,6 +169,8 @@ module.exports.handleConnection = function(socket, request) {
 			}
 		}));
 	}
+
+	sockets.push(socket);
 
 	broadcastAuctionData();
 
@@ -183,6 +185,9 @@ function handleMessage(socket, rawMessage) {
 	}
 	else if (type == 'callRoll') {
 		callRoll();
+	}
+	else if (type == 'heartbeat') {
+		heartbeat(socket);
 	}
 	else if (type == 'makeBid') {
 		makeBid({
@@ -210,11 +215,21 @@ function handleMessage(socket, rawMessage) {
 }
 
 setInterval(function() {
+	console.log(`${sockets.length} sockets`);
+
 	sockets.forEach(function(socket) {
-		socket.send(JSON.stringify({
-			type: 'ping',
-			value: 'just saying hi'
-		}));
+		if (!socket.heartbeat) {
+			console.log('terminating socket');
+			socket.terminate();
+		}
+	});
+
+	sockets = sockets.filter(function(socket) {
+		return socket.heartbeat;
+	});
+
+	sockets.forEach(function(socket) {
+		socket.heartbeat = false;
 	});
 }, 10000);
 
@@ -242,4 +257,8 @@ function broadcastAuctionData() {
 			value: auction
 		}));
 	});
+}
+
+function heartbeat(socket) {
+	socket.heartbeat = true;
 }
