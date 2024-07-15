@@ -218,7 +218,7 @@ setInterval(function() {
 	});
 }, 10000);
 
-function extractAuthKeyFromCookie(rawCookie) {
+function extractAuthKeyFromCookie(rawCookie = '') {
 	var pairs = rawCookie.split(';');
 	var authKey;
 

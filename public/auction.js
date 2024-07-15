@@ -127,6 +127,8 @@ $(document).ready(function() {
 var addLoggedInAsClass = function(loggedInAsData) {
 	if (loggedInAsData.loggedInAs) {
 		var ownerIndex = owners.indexOf(loggedInAsData.loggedInAs);
+		loggedInAs = loggedInAsData.loggedInAs;
+
 		$('body').addClass('owner-' + ownerIndex);
 	}
 };
