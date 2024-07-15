@@ -21,6 +21,8 @@ var auction = {
 var owners = JSON.parse(process.env.AUCTION_USERS);
 var nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
 
+var sockets = [];
+
 function activateAuction() {
 	auction.status = 'active';
 	broadcastAuctionData();
@@ -151,8 +153,6 @@ function rollCall(rollCallData) {
 
 	broadcastAuctionData();
 };
-
-var sockets = [];
 
 module.exports.handleConnection = function(socket, request) {
 	var authKey = extractAuthKeyFromCookie(request.headers.cookie);
