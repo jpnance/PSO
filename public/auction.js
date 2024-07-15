@@ -191,8 +191,6 @@ function handleMessage(rawMessage) {
 	else if (type == 'auctionData') {
 		redrawAuctionClient(value);
 	}
-
-	console.log(type, value);
 }
 
 setInterval(function() {
