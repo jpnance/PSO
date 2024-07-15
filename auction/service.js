@@ -34,11 +34,11 @@ module.exports.authenticateOwner = function(request, response) {
 	response.redirect('/auction');
 };
 
-module.exports.callRoll = function(request, response) {
+module.exports.callRoll = function() {
 	auction.status = 'roll-call';
 	auction.rollCall = [];
 
-	response.send(auction);
+	broadcastAuctionData();
 };
 
 module.exports.currentAuction = function(request, response) {
@@ -151,17 +151,15 @@ module.exports.removeFromNominationOrder = function(removeOwnerData) {
 	broadcastAuctionData();
 };
 
-module.exports.rollCall = function(request, response) {
-	if (request.cookies && request.cookies.auctionAuthKey && owners[request.cookies.auctionAuthKey]) {
-		var owner = owners[request.cookies.auctionAuthKey];
-
-		if (!auction.rollCall.includes(owner)) {
-			auction.rollCall.push(owner);
+module.exports.rollCall = function(rollCallData) {
+	if (rollCallData.owner) {
+		if (!auction.rollCall.includes(rollCallData.owner)) {
+			auction.rollCall.push(rollCallData.owner);
 			auction.rollCall.sort();
 		}
 	}
 
-	response.send(auction);
+	broadcastAuctionData();
 };
 
 var sockets = [];
@@ -193,6 +191,9 @@ function handleMessage(socket, rawMessage) {
 	if (type == 'activate') {
 		module.exports.activateAuction();
 	}
+	else if (type == 'callRoll') {
+		module.exports.callRoll();
+	}
 	else if (type == 'makeBid') {
 		module.exports.makeBid({
 			owner: socket.owner,
@@ -210,6 +211,11 @@ function handleMessage(socket, rawMessage) {
 	}
 	else if (type == 'removeOwner') {
 		module.exports.removeFromNominationOrder(value);
+	}
+	else if (type == 'rollCall') {
+		module.exports.rollCall({
+			owner: socket.owner
+		});
 	}
 }
 

@@ -34,7 +34,10 @@ $(document).ready(function() {
 
 	$('#call-roll').bind('click', function(e) {
 		e.preventDefault();
-		$.get('/auction/callroll', null, redrawAuctionClient);
+
+		socket.send(JSON.stringify({
+			type: 'callRoll'
+		}));
 	});
 
 	$('#pause').bind('click', function(e) {
@@ -114,7 +117,10 @@ $(document).ready(function() {
 
 	$('#roll-call').bind('click', function(e) {
 		e.preventDefault();
-		$.get('/auction/rollcall', null, redrawAuctionClient);
+
+		socket.send(JSON.stringify({
+			type: 'rollCall'
+		}));
 	});
 });
 
