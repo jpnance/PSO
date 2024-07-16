@@ -165,7 +165,7 @@ var redrawAuctionClient = function(auctionData) {
 	$('#player-team').text(auctionData.player.team);
 	$('#player-situation').text(auctionData.player.situation);
 
-	var bidHistory = $('<ul id="bid-history" class="list-group col-12">');
+	var bidHistory = $('<ul id="bid-history" class="list-group">');
 
 	auctionData.bids.forEach(bid => {
 		var ownerIndex = owners.indexOf(bid.owner);
