@@ -187,3 +187,8 @@ body.admin .nominating .who {
 .error {
 	background-color: #ffdddd;
 }
+
+dialog::backdrop {
+	background-color: #333333;
+	opacity: 0.75;
+}
