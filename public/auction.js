@@ -16,6 +16,9 @@ $(document).ready(function() {
 	$('#activate').bind('click', function(e) {
 		e.preventDefault();
 
+		$('#nomination-form #nominator').val('');
+		$('#nomination-form #player-list').val('');
+
 		socket.send(JSON.stringify({
 			type: 'activate'
 		}));
@@ -60,6 +63,7 @@ $(document).ready(function() {
 
 	$('body.admin .nominating .who').bind('click', function(e) {
 		$('#nominator').val($(this).text());
+		$('#player-list').val('');
 		$('#owner').val($(this).text());
 	});
 
