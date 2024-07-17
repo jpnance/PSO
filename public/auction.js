@@ -260,8 +260,9 @@ function updateTimerDuration(timer) {
 
 	var guaranteed = timer.guaranteed;
 	var remaining = timer.endingAt - Date.now();
+	var percentage = Math.min(1, (guaranteed - remaining) / guaranteed) * 100;
 
-	root.style.setProperty('--duration', `${(guaranteed - remaining) / guaranteed * 100}%`);
+	root.style.setProperty('--duration', `${percentage}%`);
 
 	if (remaining > 0) {
 		requestAnimationFrame(updateTimerDuration.bind(null, timer));
