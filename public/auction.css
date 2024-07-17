@@ -92,7 +92,7 @@ body.admin .nominating .who {
 	background-color: #fee5e5;
 }
 
-.owner-0 .owner-0-bid {
+.owner-0 .owner-0-bid:first-child {
 	background-color: #fe9898;
 }
 
@@ -100,7 +100,7 @@ body.admin .nominating .who {
 	background-color: #feede5;
 }
 
-.owner-1 .owner-1-bid {
+.owner-1 .owner-1-bid:first-child {
 	background-color: #feba98;
 }
 
@@ -108,7 +108,7 @@ body.admin .nominating .who {
 	background-color: #fef6e5;
 }
 
-.owner-2 .owner-2-bid {
+.owner-2 .owner-2-bid:first-child {
 	background-color: #fedc98;
 }
 
@@ -116,7 +116,7 @@ body.admin .nominating .who {
 	background-color: #fefee5;
 }
 
-.owner-3 .owner-3-bid {
+.owner-3 .owner-3-bid:first-child {
 	background-color: #fefe98;
 }
 
@@ -124,7 +124,7 @@ body.admin .nominating .who {
 	background-color: #f6fee5;
 }
 
-.owner-4 .owner-4-bid {
+.owner-4 .owner-4-bid:first-child {
 	background-color: #dcfe98;
 }
 
@@ -132,7 +132,7 @@ body.admin .nominating .who {
 	background-color: #edfee5;
 }
 
-.owner-5 .owner-5-bid {
+.owner-5 .owner-5-bid:first-child {
 	background-color: #bafe98;
 }
 
@@ -140,7 +140,7 @@ body.admin .nominating .who {
 	background-color: #e5fee5;
 }
 
-.owner-6 .owner-6-bid {
+.owner-6 .owner-6-bid:first-child {
 	background-color: #98fe98;
 }
 
@@ -148,7 +148,7 @@ body.admin .nominating .who {
 	background-color: #e5feed;
 }
 
-.owner-7 .owner-7-bid {
+.owner-7 .owner-7-bid:first-child {
 	background-color: #98feba;
 }
 
@@ -156,7 +156,7 @@ body.admin .nominating .who {
 	background-color: #e5fef6;
 }
 
-.owner-8 .owner-8-bid {
+.owner-8 .owner-8-bid:first-child {
 	background-color: #98fedc;
 }
 
@@ -164,7 +164,7 @@ body.admin .nominating .who {
 	background-color: #e5fefe;
 }
 
-.owner-9 .owner-9-bid {
+.owner-9 .owner-9-bid:first-child {
 	background-color: #98fefe;
 }
 
@@ -172,7 +172,7 @@ body.admin .nominating .who {
 	background-color: #e5f6fe;
 }
 
-.owner-10 .owner-10-bid {
+.owner-10 .owner-10-bid:first-child {
 	background-color: #98dcfe;
 }
 
@@ -180,7 +180,7 @@ body.admin .nominating .who {
 	background-color: #e5edfe;
 }
 
-.owner-11 .owner-11-bid {
+.owner-11 .owner-11-bid:first-child {
 	background-color: #98bafe;
 }
 
@@ -191,4 +191,8 @@ body.admin .nominating .who {
 dialog::backdrop {
 	background-color: #333333;
 	opacity: 0.75;
+}
+
+ul#bid-history li:first-child {
+	background-image: linear-gradient(to right, #0000 var(--duration), #fffc var(--duration) 100%);
 }

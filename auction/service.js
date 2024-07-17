@@ -15,7 +15,13 @@ var auction = {
 	},
 	bids: [],
 	status: 'active',
-	rollCall: []
+	rollCall: [],
+	timer: {
+		startedAt: null,
+		guaranteed: 30000,
+		resetTo: 10000,
+		endingAt: null
+	}
 };
 
 var owners = JSON.parse(process.env.AUCTION_USERS);
@@ -23,8 +29,20 @@ var nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
 
 var sockets = [];
 
+var auctionOverTimeout;
+
 function activateAuction() {
 	auction.status = 'active';
+
+	clearTimeout(auctionOverTimeout);
+
+	auction.timer.startedAt = Date.now();
+	auction.timer.guaranteed = 30000;
+	auction.timer.resetTo = 10000;
+	auction.timer.endingAt = auction.timer.startedAt + auction.timer.guaranteed;
+
+	auctionOverTimeout = setTimeout(pauseAuction, auction.timer.endingAt - auction.timer.startedAt);
+
 	broadcastAuctionData();
 };
 
@@ -88,6 +106,15 @@ function makeBid(bid) {
 
 		if (highBid) {
 			auction.bids.unshift(newBid);
+
+			if (auction.timer.endingAt - Date.now() < auction.timer.resetTo) {
+				clearTimeout(auctionOverTimeout);
+
+				auction.timer.endingAt = Date.now() + auction.timer.resetTo;
+
+				auctionOverTimeout = setTimeout(pauseAuction, auction.timer.endingAt - Date.now());
+			}
+
 			broadcastAuctionData();
 		}
 	}
