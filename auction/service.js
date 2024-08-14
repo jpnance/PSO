@@ -31,6 +31,8 @@ var sockets = [];
 
 var auctionOverTimeout;
 
+var demoMode = false;
+
 function activateAuction() {
 	auction.status = 'active';
 
@@ -118,17 +120,17 @@ function makeBid(bid) {
 	}
 };
 
-function nominatePlayer(player) {
+function nominatePlayer(nomination) {
 	auction.status = 'paused';
 
-	auction.nominator.now = player.nominator;
+	auction.nominator.now = nomination.nominator;
 	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
 	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
 
-	auction.player.name = player.name;
-	auction.player.position = player.position;
-	auction.player.team = player.team;
-	auction.player.situation = player.situation;
+	auction.player.name = nomination.name;
+	auction.player.position = nomination.position;
+	auction.player.team = nomination.team;
+	auction.player.situation = nomination.situation;
 
 	auction.bids = [];
 
@@ -137,7 +139,12 @@ function nominatePlayer(player) {
 
 function pauseAuction() {
 	auction.status = 'paused';
+
 	broadcastAuctionData();
+
+	if (demoMode) {
+		setTimeout(startDemo, 5000);
+	}
 };
 
 function popBid() {
@@ -184,6 +191,33 @@ function setTimer(timer) {
 	auction.timer.resetTo = timer.resetTo;
 
 	broadcastAuctionData();
+}
+
+function startDemo() {
+	demoMode = true;
+
+	var players = require('./demo-data.json');
+	var player = players[Math.floor(Math.random() * players.length)];
+	var nominator = nominationOrder[Math.floor(Math.random() * nominationOrder.length)];
+
+	nominatePlayer({
+		nominator: nominator,
+		...player
+	});
+
+	makeBid({
+		owner: nominator,
+		force: true,
+		amount: 1
+	});
+
+	activateAuction();
+}
+
+function stopDemo() {
+	demoMode = false;
+
+	pauseAuction();
 }
 
 module.exports.handleConnection = function(socket, request) {
@@ -246,6 +280,12 @@ function handleMessage(socket, rawMessage) {
 	}
 	else if (type == 'setTimer') {
 		setTimer(value);
+	}
+	else if (type == 'startDemo') {
+		startDemo();
+	}
+	else if (type == 'stopDemo') {
+		stopDemo();
 	}
 }
 

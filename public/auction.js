@@ -148,6 +148,22 @@ $(document).ready(function() {
 			value: timer
 		}));
 	});
+
+	$('#start-demo').bind('click', function(e) {
+		e.preventDefault();
+
+		socket.send(JSON.stringify({
+			type: 'startDemo'
+		}));
+	});
+
+	$('#stop-demo').bind('click', function(e) {
+		e.preventDefault();
+
+		socket.send(JSON.stringify({
+			type: 'stopDemo'
+		}));
+	});
 });
 
 var addLoggedInAsClass = function(loggedInAsData) {
