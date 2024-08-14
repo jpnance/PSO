@@ -281,7 +281,8 @@ function broadcastAuctionData() {
 	sockets.forEach(function(socket) {
 		socket.send(JSON.stringify({
 			type: 'auctionData',
-			value: auction
+			value: auction,
+			sentAt: Date.now()
 		}));
 	});
 }

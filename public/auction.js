@@ -143,7 +143,7 @@ var addLoggedInAsClass = function(loggedInAsData) {
 	}
 };
 
-var redrawAuctionClient = function(auctionData) {
+var redrawAuctionClient = function(auctionData, lag) {
 	if (auctionData.status) {
 		$('body')
 			.removeClass('paused')
@@ -202,7 +202,7 @@ var redrawAuctionClient = function(auctionData) {
 
 	$('#bid-history').replaceWith(bidHistory);
 
-	resetTimer(auctionData.timer);
+	resetTimer(auctionData.timer, lag);
 
 	var attendance = $('<ul id="attendance" class="list-group col-12">');
 
@@ -240,31 +240,35 @@ function connectToWebSocket() {
 	}
 }
 
+function handleMessageLaggy(rawMessage) {
+	setTimeout(handleMessage.bind(null, rawMessage), 1000);
+}
+
 function handleMessage(rawMessage) {
-	var { type, value } = JSON.parse(rawMessage.data);
+	var { type, value, sentAt } = JSON.parse(rawMessage.data);
 
 	if (type == 'auth') {
 		addLoggedInAsClass(value);
 	}
 	else if (type == 'auctionData') {
-		redrawAuctionClient(value);
+		redrawAuctionClient(value, Date.now() - sentAt);
 	}
 }
 
-function resetTimer(timer) {
-	requestAnimationFrame(updateTimerDuration.bind(null, timer));
+function resetTimer(timer, lag) {
+	requestAnimationFrame(updateTimerDuration.bind(null, timer, lag));
 }
 
-function updateTimerDuration(timer) {
+function updateTimerDuration(timer, lag) {
 	var root = document.querySelector(':root');
 
 	var guaranteed = timer.guaranteed;
 	var remaining = timer.endingAt - Date.now();
-	var percentage = Math.min(1, (guaranteed - remaining) / guaranteed) * 100;
+	var percentage = Math.min(1, (guaranteed - remaining + lag) / guaranteed) * 100;
 
 	root.style.setProperty('--duration', `${percentage}%`);
 
 	if (remaining > 0) {
-		requestAnimationFrame(updateTimerDuration.bind(null, timer));
+		requestAnimationFrame(updateTimerDuration.bind(null, timer, lag));
 	}
 }
