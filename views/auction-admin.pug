@@ -48,6 +48,28 @@ html
 
 			hr
 
+			form#set-timer-form
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-6.col-lg-3
+						div.input-group-prepend
+							span.input-group-text Guaranteed
+						input#set-timer-guaranteed.form-control(type='number' value='30')
+
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-6.col-lg-3
+						div.input-group-prepend
+							span.input-group-text Reset To
+						input#set-timer-reset-to.form-control(type='number' value='10')
+
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						button#set-timer.btn.btn-primary
+							i.fa.fa-clock-o
+							|
+							| Set Timer
+
+			hr
+
 			div.row.justify-content-center
 				div.col-12.col-md-6
 					div.row

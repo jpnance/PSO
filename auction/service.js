@@ -37,8 +37,6 @@ function activateAuction() {
 	clearTimeout(auctionOverTimeout);
 
 	auction.timer.startedAt = Date.now();
-	auction.timer.guaranteed = 30000;
-	auction.timer.resetTo = 10000;
 	auction.timer.endingAt = auction.timer.startedAt + auction.timer.guaranteed;
 
 	auctionOverTimeout = setTimeout(pauseAuction, auction.timer.endingAt - auction.timer.startedAt);
@@ -181,6 +179,13 @@ function rollCall(rollCallData) {
 	broadcastAuctionData();
 };
 
+function setTimer(timer) {
+	auction.timer.guaranteed = timer.guaranteed;
+	auction.timer.resetTo = timer.resetTo;
+
+	broadcastAuctionData();
+}
+
 module.exports.handleConnection = function(socket, request) {
 	var authKey = extractAuthKeyFromCookie(request.headers.cookie);
 
@@ -238,6 +243,9 @@ function handleMessage(socket, rawMessage) {
 		rollCall({
 			owner: socket.owner
 		});
+	}
+	else if (type == 'setTimer') {
+		setTimer(value);
 	}
 }
 

@@ -134,6 +134,20 @@ $(document).ready(function() {
 			type: 'rollCall'
 		}));
 	});
+
+	$('#set-timer-form').bind('submit', function(e) {
+		var timer = {
+			guaranteed: parseInt($(this).find('#set-timer-guaranteed').val()) * 1000,
+			resetTo: parseInt($(this).find('#set-timer-reset-to').val()) * 1000
+		};
+
+		e.preventDefault();
+
+		socket.send(JSON.stringify({
+			type: 'setTimer',
+			value: timer
+		}));
+	});
 });
 
 var addLoggedInAsClass = function(loggedInAsData) {
@@ -201,6 +215,9 @@ var redrawAuctionClient = function(auctionData, lag) {
 	});
 
 	$('#bid-history').replaceWith(bidHistory);
+
+	$('#set-timer-guaranteed').val(auctionData.timer.guaranteed / 1000);
+	$('#set-timer-reset-to').val(auctionData.timer.resetTo / 1000);
 
 	resetTimer(auctionData.timer, lag);
 
