@@ -280,8 +280,8 @@ function updateTimerDuration(timer, lag) {
 	var root = document.querySelector(':root');
 
 	var guaranteed = timer.guaranteed;
-	var remaining = timer.endingAt - Date.now();
-	var percentage = Math.min(1, (guaranteed - remaining + lag) / guaranteed) * 100;
+	var remaining = timer.endingAt - Date.now() + lag;
+	var percentage = Math.min(1, (guaranteed - remaining) / guaranteed) * 100;
 
 	root.style.setProperty('--duration', `${percentage}%`);
 
