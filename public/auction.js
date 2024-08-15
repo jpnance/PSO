@@ -56,7 +56,7 @@ $(document).ready(function() {
 			value: newBid
 		}));
 
-		$(this).find('#bid-amount').focus();
+		$(this).find('#bid-amount').val(null).focus();
 	});
 
 	$('#call-roll').bind('click', function(e) {
