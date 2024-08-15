@@ -26,6 +26,7 @@ $(document).ready(function() {
 		}));
 	});
 
+	/*
 	$('body:not(.admin) #bid-amount').bind('change keyup', function(e) {
 		e.preventDefault();
 
@@ -38,6 +39,7 @@ $(document).ready(function() {
 			$('#bid-form input.btn').val(`Bid`);
 		}
 	});
+	*/
 
 	$('#bid-form').bind('submit', function(e) {
 		var newBid = { amount: $(this).find('#bid-amount').val() };
@@ -54,7 +56,7 @@ $(document).ready(function() {
 			value: newBid
 		}));
 
-		$(this).find('#bid-amount').blur();
+		$(this).find('#bid-amount').focus();
 	});
 
 	$('#call-roll').bind('click', function(e) {
@@ -239,6 +241,7 @@ var redrawAuctionClient = function(auctionData, lag) {
 		if (i == 0) {
 			$('body').addClass(ownerClass);
 
+			/*
 			clearTimeout(bidButtonTimeout)
 
 			if (auctionData.status != 'paused') {
@@ -256,6 +259,9 @@ var redrawAuctionClient = function(auctionData, lag) {
 			else {
 				$('#bid-amount').val(null);
 			}
+			*/
+
+			$('#bid-amount').val(null);
 		}
 
 		var bid = $('<li class="list-group-item ' + ownerBidClass + '"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
