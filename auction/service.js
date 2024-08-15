@@ -32,6 +32,7 @@ var sockets = [];
 var auctionOverTimeout;
 
 var demoMode = false;
+var demoBidInterval;
 
 function activateAuction() {
 	auction.status = 'active';
@@ -212,10 +213,32 @@ function startDemo() {
 	});
 
 	activateAuction();
+
+	clearInterval(demoBidInterval);
+
+	demoBidInterval = setInterval(function() {
+		var highBid = auction.bids[0];
+		var targetBid = Math.floor(Math.random() * 100) + 20;
+
+		var bidProbability = Math.max(1 - highBid.amount / targetBid, 0);
+
+		if (Math.random() < bidProbability) {
+			var newNominator = nominationOrder[Math.floor(Math.random() * nominationOrder.length)];
+
+			if (newNominator != highBid.owner) {
+				makeBid({
+					owner: newNominator,
+					amount: highBid.amount + Math.floor(Math.random() * 5)
+				});
+			}
+		}
+	}, 2000);
 }
 
 function stopDemo() {
 	demoMode = false;
+
+	clearInterval(demoBidInterval);
 
 	pauseAuction();
 }
