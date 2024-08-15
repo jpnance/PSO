@@ -4,6 +4,8 @@ var loggedInAs;
 var socket;
 var socketHeartbeatInterval;
 
+var bidButtonTimeout;
+
 $(document).ready(function() {
 	connectToWebSocket();
 
@@ -39,7 +41,7 @@ $(document).ready(function() {
 			value: newBid
 		}));
 
-		$(this).find('#bid-amount').val(null).focus();
+		$(this).find('#bid-amount').blur();
 	});
 
 	$('#call-roll').bind('click', function(e) {
@@ -223,6 +225,25 @@ var redrawAuctionClient = function(auctionData, lag) {
 
 		if (i == 0) {
 			$('body').addClass(ownerClass);
+
+			clearTimeout(bidButtonTimeout)
+
+			if (auctionData.status != 'paused') {
+				var bidAmountInput = $('#bid-amount');
+				var currentBidAmount = parseInt($('#bid-amount').val()) || 1;
+
+				if (currentBidAmount <= bid.amount + 1 && !bidAmountInput.is(':focus')) {
+					$('#bid-amount').val(bid.amount + 1).attr('min', bid.amount + 1);
+					$('#bid-form input.btn').prop('disabled', true);
+
+					bidButtonTimeout = setTimeout(function() {
+						$('#bid-form input.btn').prop('disabled', false);
+					}, 1000);
+				}
+			}
+			else {
+				$('#bid-amount').val(null);
+			}
 		}
 
 		var bid = $('<li class="list-group-item ' + ownerBidClass + '"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
