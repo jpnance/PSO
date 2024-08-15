@@ -40,13 +40,17 @@ html
 
 			hr
 
-			form#bid-form
-				div.form-row.justify-content-center.m-1
-					div.input-group.col-12.col-lg-6
-						div.input-group-prepend
-							span.input-group-text $
-						input#bid-amount.form-control(type='number')
-						input.btn.btn-primary(type='submit' value='Bid')
+			div.d-flex.flex-row.align-items-center.justify-content-center
+				form#bid-form.flex-grow-1
+					div.form-row.justify-content-center.m-1
+						div.input-group.col-12.col-lg-6
+							div.input-group-prepend
+								span.input-group-text $
+							input#bid-amount.form-control(type='number')
+							input.btn.btn-primary(type='submit' value='Bid')
+
+				h4#clock.mb-0.mr-1
+
 
 			hr
 

@@ -196,3 +196,7 @@ dialog::backdrop {
 ul#bid-history li:first-child {
 	background-image: linear-gradient(to right, #0000 var(--duration), #fffc var(--duration) 100%);
 }
+
+#clock {
+	font-family: monospace;
+}

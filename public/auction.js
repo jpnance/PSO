@@ -229,8 +229,8 @@ var redrawAuctionClient = function(auctionData, lag) {
 			clearTimeout(bidButtonTimeout)
 
 			if (auctionData.status != 'paused') {
-				var bidAmountInput = $('#bid-amount');
-				var currentBidAmount = parseInt($('#bid-amount').val()) || 1;
+				var bidAmountInput = $('body:not(.admin) #bid-amount');
+				var currentBidAmount = parseInt(bidAmountInput.val()) || 1;
 
 				if (currentBidAmount <= bid.amount + 1 && !bidAmountInput.is(':focus')) {
 					$('#bid-amount').val(bid.amount + 1).attr('min', bid.amount + 1);
@@ -321,6 +321,10 @@ function updateTimerDuration(timer, lag) {
 	var percentage = Math.min(1, (guaranteed - remaining) / guaranteed) * 100;
 
 	root.style.setProperty('--duration', `${percentage}%`);
+
+	var remainingWholeSeconds = Math.ceil((Math.max(remaining, 0)) / 1000);
+
+	$('#clock').text(`:${remainingWholeSeconds.toString().padStart(2, '0')}`);
 
 	if (remaining > 0) {
 		requestAnimationFrame(updateTimerDuration.bind(null, timer, lag));
