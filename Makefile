@@ -14,5 +14,8 @@ data:
 results:
 	docker exec -it -w /app pso-cron sh results.sh
 
-auction:
+auction-links:
+	docker exec -it -w /app pso-cron sh -c "cd auction && node links.js"
+
+auction-render:
 	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js render"
