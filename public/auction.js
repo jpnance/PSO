@@ -26,6 +26,19 @@ $(document).ready(function() {
 		}));
 	});
 
+	$('#bid-amount').bind('change keyup', function(e) {
+		e.preventDefault();
+
+		var bidAmount = parseInt($('#bid-amount').val()) || 0;
+
+		if (bidAmount > 0) {
+			$('#bid-form input.btn').val(`Bid $${bidAmount}`);
+		}
+		else {
+			$('#bid-form input.btn').val(`Bid`);
+		}
+	});
+
 	$('#bid-form').bind('submit', function(e) {
 		var newBid = { amount: $(this).find('#bid-amount').val() };
 
@@ -233,12 +246,11 @@ var redrawAuctionClient = function(auctionData, lag) {
 				var currentBidAmount = parseInt(bidAmountInput.val()) || 1;
 
 				if (currentBidAmount <= bid.amount + 1 && !bidAmountInput.is(':focus')) {
-					$('#bid-amount').val(bid.amount + 1).attr('min', bid.amount + 1);
-					$('#bid-form input.btn').prop('disabled', true);
+					setMinimumBidAmount(bid.amount + 1);
 
-					bidButtonTimeout = setTimeout(function() {
-						$('#bid-form input.btn').prop('disabled', false);
-					}, 1000);
+					disableBidButton();
+
+					bidButtonTimeout = setTimeout(enableBidButton, 500);
 				}
 			}
 			else {
@@ -294,6 +306,14 @@ function connectToWebSocket() {
 	}
 }
 
+function disableBidButton() {
+	$('#bid-form input.btn').prop('disabled', true);
+}
+
+function enableBidButton() {
+	$('#bid-form input.btn').prop('disabled', false);
+}
+
 function handleMessageLaggy(rawMessage) {
 	setTimeout(handleMessage.bind(null, rawMessage), 1000);
 }
@@ -311,6 +331,10 @@ function handleMessage(rawMessage) {
 
 function resetTimer(timer, lag) {
 	requestAnimationFrame(updateTimerDuration.bind(null, timer, lag));
+}
+
+function setMinimumBidAmount(minimumBidAmount) {
+	$('#bid-amount').val(minimumBidAmount).attr('min', minimumBidAmount).trigger('change');
 }
 
 function updateTimerDuration(timer, lag) {
