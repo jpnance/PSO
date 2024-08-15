@@ -26,7 +26,7 @@ $(document).ready(function() {
 		}));
 	});
 
-	$('#bid-amount').bind('change keyup', function(e) {
+	$('body:not(.admin) #bid-amount').bind('change keyup', function(e) {
 		e.preventDefault();
 
 		var bidAmount = parseInt($('#bid-amount').val()) || 0;
@@ -242,10 +242,10 @@ var redrawAuctionClient = function(auctionData, lag) {
 			clearTimeout(bidButtonTimeout)
 
 			if (auctionData.status != 'paused') {
-				var bidAmountInput = $('body:not(.admin) #bid-amount');
+				var bidAmountInput = $('#bid-amount');
 				var currentBidAmount = parseInt(bidAmountInput.val()) || 1;
 
-				if (currentBidAmount <= bid.amount + 1 && !bidAmountInput.is(':focus')) {
+				if (!$('body').hasClass('admin') && currentBidAmount <= bid.amount + 1 && !bidAmountInput.is(':focus')) {
 					setMinimumBidAmount(bid.amount + 1);
 
 					disableBidButton();
