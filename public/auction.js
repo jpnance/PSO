@@ -260,8 +260,6 @@ var redrawAuctionClient = function(auctionData, lag) {
 				$('#bid-amount').val(null);
 			}
 			*/
-
-			$('#bid-amount').val(null);
 		}
 
 		var bid = $('<li class="list-group-item ' + ownerBidClass + '"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
