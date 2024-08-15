@@ -193,8 +193,14 @@ dialog::backdrop {
 	opacity: 0.75;
 }
 
+ul#bid-history li {
+	color: #666;
+}
+
 ul#bid-history li:first-child {
 	background-image: linear-gradient(to right, #0000 var(--duration), #fffc var(--duration) 100%);
+	color: #000;
+	font-size: 150%;
 }
 
 #clock {
