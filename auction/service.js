@@ -218,7 +218,7 @@ function startDemo() {
 
 	demoBidInterval = setInterval(function() {
 		var highBid = auction.bids[0];
-		var targetBid = Math.floor(Math.random() * 100) + 20;
+		var targetBid = Math.floor(Math.random() * 200) + 20;
 
 		var bidProbability = Math.max(1 - highBid.amount / targetBid, 0);
 
@@ -228,11 +228,11 @@ function startDemo() {
 			if (newNominator != highBid.owner) {
 				makeBid({
 					owner: newNominator,
-					amount: highBid.amount + Math.floor(Math.random() * 5)
+					amount: highBid.amount + Math.floor(Math.random() * 10)
 				});
 			}
 		}
-	}, 2000);
+	}, Math.floor(Math.random() * 2000) + 500);
 }
 
 function stopDemo() {
