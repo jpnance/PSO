@@ -8,12 +8,13 @@ const siteData = {
 	pso: {
 		staticPositions: ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'],
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId
+		dataRetrievalFunction: newSleeperJsonPromise,
 	},
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=g7xcurksln93iz5v&statusOrTeamFilter=ALL'
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=g7xcurksln93iz5v&statusOrTeamFilter=ALL',
+		dataRetrievalFunction: newFantraxPromise,
 	}
 };
 
@@ -33,7 +34,37 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
-var newFantraxPromise = function(players) {
+function newSleeperJsonPromise(players) {
+	return new Promise(function(resolve, reject) {
+		var sleeperData = Object.values(require('../public/data/sleeper-data.json')).filter((sleeperPlayerData) => sleeperPlayerData.active);
+
+		var mergedPlayers = [];
+
+		players.forEach((player) => {
+			var sleeperPlayer = sleeperData.filter((sleeperPlayerData) => {
+				return sleeperPlayerData.search_full_name == player.name.replace(/[\. '-]/g, '').toLowerCase() && sleeperPlayerData.fantasy_positions.includes(player.positions[0]);
+			});
+
+			if (sleeperPlayer.length == 1) {
+				mergedPlayers.push({
+					name: player.name,
+					positions: sleeperPlayer[0].fantasy_positions,
+				});
+			}
+			else {
+				console.error(player);
+				console.error(player.name.replace(/[\. '-]/g, '').toLowerCase());
+				console.error(sleeperPlayer.filter((sp) => sp.search_full_name == 'chrisjones'));
+
+				process.exit();
+			}
+		});
+
+		resolve(mergedPlayers);
+	});
+}
+
+function newFantraxPromise(players) {
 	return new Promise(function(resolve, reject) {
 		request
 			.get(siteData[parameters.site].fantraxLink)
@@ -77,9 +108,9 @@ var newFantraxPromise = function(players) {
 			});
 		}
 	)
-};
+}
 
-var newSheetsPromise = function(fantraxId) {
+function newSheetsPromise(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
 			.get(siteData[parameters.site].sheetLink)
@@ -102,27 +133,27 @@ var newSheetsPromise = function(fantraxId) {
 				rows.pop();
 
 				rows.forEach((row, i) => {
-					players.push({ row: i, name: row[1], position: row[2].split('/') });
+					players.push({ row: i, name: row[1], positions: row[2].split('/') });
 				});
 
 				resolve(players);
 			});
 	});
-};
+}
 
-var nameToId = function(name) {
+function nameToId(name) {
 	return name.toLowerCase().replace(/[^a-z]/g, '');
-};
+}
 
-var positionSort = function(a, b) {
+function positionSort(a, b) {
 	return siteData[parameters.site].staticPositions.indexOf(a) - siteData[parameters.site].staticPositions.indexOf(b);
-};
+}
 
 newSheetsPromise().then(players => {
-	newFantraxPromise(players).then(players => {
+	siteData[parameters.site].dataRetrievalFunction(players).then(players => {
 		players.forEach(player => {
-			if (player.position) {
-				console.log(player.position.sort(positionSort).join('/'));
+			if (player.positions) {
+				console.log(player.positions.sort(positionSort).join('/'));
 			}
 			else {
 				console.log('???');
