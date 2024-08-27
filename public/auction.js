@@ -1,6 +1,8 @@
 var state = 'new-player';
 var loggedInAs;
 
+var pluralFranchises = ['Koci/Mueller', 'Schexes'];
+
 var socket;
 var socketHeartbeatInterval;
 
@@ -208,7 +210,7 @@ var redrawAuctionClient = function(auctionData, lag) {
 		$('.nominating.later .who').text(auctionData.nominator.later);
 
 		$('#nominator-name').text(auctionData.nominator.now);
-		$('#nominator-text').text(auctionData.nominator.now.includes('/') ? 'nominate' : 'nominates');
+		$('#nominator-text').text(pluralFranchises.includes(auctionData.nominator.now) ? 'nominate' : 'nominates');
 	}
 
 	$('#player-name a').attr('href', referenceSite + urlName).text(auctionData.player.name);

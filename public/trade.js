@@ -1,3 +1,5 @@
+var pluralFranchises = ['Koci/Mueller', 'Schexes'];
+
 var tradeMachine = {
 	deal: {},
 
@@ -147,7 +149,7 @@ var tradeMachine = {
 		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 			var franchiseName = tradeMachine.franchiseName(franchiseId);
 
-			blob += '<strong>' + franchiseName + '</strong> get' + (franchiseName.includes('/') ? '' : 's') + ':\n';
+			blob += '<strong>' + franchiseName + '</strong> get' + (pluralFranchises.includes(franchiseName) ? '' : 's') + ':\n';
 			blob += '<ul>\n';
 
 			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
