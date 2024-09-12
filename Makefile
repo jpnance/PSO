@@ -8,10 +8,10 @@ seed:
 sleeper:
 	docker run --rm -it -v $(PWD):/app node:14-alpine sh -c "wget -O /app/public/data/sleeper-data.json https://api.sleeper.app/v1/players/nfl"
 
-data:
+pso-data:
 	docker exec -it -w /app pso-cron sh data.sh
 
-results:
+pso-results:
 	docker exec -it -w /app pso-cron sh results.sh
 
 auction-links:
@@ -22,3 +22,9 @@ auction-render:
 
 pso-positions:
 	docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=pso"
+
+projections:
+	docker exec -it -w /app pso-cron sh -c "cd projections && node index.js"
+
+projections-csv:
+	docker exec -it -w /app pso-cron sh -c "cd prep && node csv.js"
