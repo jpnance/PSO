@@ -242,7 +242,6 @@ Promise.all(dataPromises).then(function(values) {
 	console.log('Intro');
 	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + process.env.SEASON + ' season!');
 	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
-	console.log("\t" + 'BANTER_PROMPT');
 	console.log();
 
 	if (week > 1) {
