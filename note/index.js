@@ -98,7 +98,7 @@ function ordinal(number) {
 }
 
 function isJaguarGame(franchiseOne, franchiseTwo) {
-	var jaguarOwners = ['Keyon', 'Luke', 'Patrick', 'Schex'];
+	var jaguarOwners = ['Keyon', 'Luke', 'Patrick', 'Schexes'];
 
 	return jaguarOwners.includes(franchiseOne) && jaguarOwners.includes(franchiseTwo);
 }
