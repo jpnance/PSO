@@ -500,6 +500,7 @@ Promise.all(dataPromises).then(function(values) {
 	console.log("\t" + 'Thanks for sending in RPOs');
 	console.log("\t" + 'Slash Scuttlebot');
 	console.log("\t" + 'Websites');
+	console.log("\t" + 'And that is it');
 	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + '! We will talk to you ' + outroNextWeek + '!');
 
 	mongoose.disconnect();
