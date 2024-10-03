@@ -28,3 +28,6 @@ projections:
 
 projections-csv:
 	docker exec -it -w /app pso-cron sh -c "cd prep && node csv.js"
+
+rpo:
+	docker exec -it -w /app pso-cron sh -c "cd note && node rpo.js"
