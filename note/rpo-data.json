@@ -9885,5 +9885,291 @@
 			"name": "Trevor Lawrence"
 		},
 		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8210",
+			"name": "Chig Okonkwo"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7553",
+			"name": "Kyle Pitts"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8136",
+			"name": "Rachaad White"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8137",
+			"name": "George Pickens"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6801",
+			"name": "Tee Higgins"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Mike",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10226",
+			"name": "Andrei Iosivas"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "11626",
+			"name": "Xavier Legette"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Justin",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6943",
+			"name": "Gabe Davis"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5045",
+			"name": "Courtland Sutton"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10232",
+			"name": "Michael Wilson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9754",
+			"name": "Quentin Johnston"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5927",
+			"name": "Terry McLaurin"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3214",
+			"name": "Hunter Henry"
+		}
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6865",
+			"name": "Colby Parkinson"
+		}
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10236",
+			"name": "Dalton Kincaid"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "11604",
+			"name": "Brock Bowers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "11620",
+			"name": "Rome Odunze"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3321",
+			"name": "Tyreek Hill"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Anthony",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5001",
+			"name": "Dalton Schultz"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Anthony",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "9480",
+			"name": "Brenton Strange"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5022",
+			"name": "Dallas Goedert"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6826",
+			"name": "Cole Kmet"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6151",
+			"name": "Miles Sanders"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 4,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6938",
+			"name": "Cam Akers"
+		},
+		"selected": true
 	}
 ]
