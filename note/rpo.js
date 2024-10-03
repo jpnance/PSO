@@ -1,11 +1,16 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 const PSO = require('../pso');
 
-const completer = (line) => {
-	const completions = 'add context exit find offerer owner pick remove rpos save selector switch week'.split(' ');
-	const hits = completions.filter((c) => c.startsWith(line));
+let extraCompletions = [];
 
-	return [ hits.length ? hits : completions, line ];
+const completer = (line) => {
+	const completions = 'add context exit find offerer owner pick remove rpos save selector switch week'.split(' ').concat(extraCompletions);
+
+	const lineTokens = line.split(' ');
+	const lastLineToken = lineTokens[lineTokens.length - 1];
+	const hits = completions.filter((c) => c.startsWith(lastLineToken));
+
+	return [ hits.length ? hits : completions, lastLineToken ];
 };
 
 const fs = require('fs');
@@ -64,6 +69,8 @@ rl.on('line', (line) => {
 			results.forEach((player) => {
 				console.log(player.player_id, player.full_name, player.team || 'FA', player.fantasy_positions.join('/'));
 			});
+
+			extraCompletions = results.map((player) => player.player_id);
 
 			break;
 
