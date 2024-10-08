@@ -70,7 +70,7 @@ function newFantraxPromise(players) {
 			.get(siteData[parameters.site].fantraxLink)
 			.set('Cookie', process.env.FANTRAX_COOKIES)
 			.then(response => {
-				var csvLines = response.body.toString();
+				var csvLines = response.body.toString().trim();
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
 					if (i == 0) {
