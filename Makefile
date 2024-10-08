@@ -22,3 +22,6 @@ auction-render:
 
 pso-positions:
 	docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=pso"
+
+colbys-positions:
+	docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=colbys"
