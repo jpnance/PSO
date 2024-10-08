@@ -98,7 +98,7 @@ function ordinal(number) {
 }
 
 function isJaguarGame(franchiseOne, franchiseTwo) {
-	var jaguarOwners = ['Keyon', 'Luke', 'Patrick', 'Schex'];
+	var jaguarOwners = ['Keyon', 'Luke', 'Patrick', 'Schexes'];
 
 	return jaguarOwners.includes(franchiseOne) && jaguarOwners.includes(franchiseTwo);
 }
@@ -242,7 +242,6 @@ Promise.all(dataPromises).then(function(values) {
 	console.log('Intro');
 	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + process.env.SEASON + ' season!');
 	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
-	console.log("\t" + 'BANTER_PROMPT');
 	console.log();
 
 	if (week > 1) {
@@ -501,6 +500,7 @@ Promise.all(dataPromises).then(function(values) {
 	console.log("\t" + 'Thanks for sending in RPOs');
 	console.log("\t" + 'Slash Scuttlebot');
 	console.log("\t" + 'Websites');
+	console.log("\t" + 'And that is it');
 	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + '! We will talk to you ' + outroNextWeek + '!');
 
 	mongoose.disconnect();
