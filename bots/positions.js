@@ -92,15 +92,7 @@ function newFantraxPromise(players) {
 					var player = playersWithName[0];
 
 					if (player) {
-						if (player.dirty) {
-							player.position = player.originalPosition;
-						}
-						else {
-							player.team = team;
-							player.originalPosition = player.position;
-							player.position = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
-							player.dirty = true;
-						}
+						player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
 					}
 				});
 
