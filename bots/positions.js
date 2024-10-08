@@ -122,7 +122,10 @@ function newSheetsPromise(fantraxId) {
 				}
 
 				rows.shift();
-				rows.pop();
+
+				if (parameters.site == 'pso') {
+					rows.pop();
+				}
 
 				rows.forEach((row, i) => {
 					players.push({ row: i, name: row[1], positions: row[2].split('/') });
