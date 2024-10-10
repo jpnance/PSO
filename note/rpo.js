@@ -4,7 +4,9 @@ const PSO = require('../pso');
 let extraCompletions = [];
 
 const completer = (line) => {
-	const completions = 'add context exit find offerer owner pick remove rpos save selector switch week'.split(' ').concat(extraCompletions);
+  const rpoPlayerIdsInContext = findRposInContext(context).map(rpo => rpo.player.id);
+
+	const completions = 'add context exit find offerer owner pick remove rpos save selector switch week'.split(' ').concat(extraCompletions).concat(rpoPlayerIdsInContext);
 
 	const lineTokens = line.split(' ');
 	const lastLineToken = lineTokens[lineTokens.length - 1];
