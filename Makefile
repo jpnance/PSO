@@ -20,8 +20,14 @@ auction-links:
 pso-auction-render:
 	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=pso render"
 
+pso-auction-demo-data:
+	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=pso demo"
+
 colbys-auction-render:
 	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys render"
+
+colbys-auction-demo-data:
+	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys demo"
 
 pso-positions:
 	docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=pso"
