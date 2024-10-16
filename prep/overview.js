@@ -627,7 +627,7 @@ var newSheetsPromise = function(fantraxId) {
 
 					if (!player.end) {
 						player.end = undefined;
-						player.contract = '23/?';
+						player.contract = '24/?';
 					}
 
 					if (!player.contract && player.start && player.end) {
