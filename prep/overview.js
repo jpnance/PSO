@@ -16,7 +16,7 @@ const siteData = {
 	},
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
-		rosterMakeup: ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'Util', 'Util', 'Util'],
+		rosterMakeup: ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F/C', 'Util', 'Util', 'Util'],
 		ratingThresholds: {
 			'fg%': [ 0.000, 0.400, 0.440, 0.500, 0.575 ],
 			'3pm': [ 0.0, 1.0, 1.5, 2.0, 3.0 ],
