@@ -465,8 +465,8 @@ var newFantraxPromise = function(players) {
 						return;
 					}
 
-					// "ID","Player","Team","Position","Rk","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
-					//
+					// "ID","Player","Team","Position","RkOv","Status","Age","Opponent","Salary","Contract","Score","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
+
 					// 0 => "ID"
 					// 1 => "Player"
 					// 2 => "Team"
