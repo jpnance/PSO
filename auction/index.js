@@ -57,7 +57,7 @@ request
 		var dataJson = JSON.parse(response.text);
 
 		dataJson.values.forEach((row, i) => {
-			if (i < siteData[parameters.site].firstRow || i == rows.length - 1) {
+			if (i < siteData[parameters.site].firstRow - 1 || i == rows.length - 1) {
 				return;
 			}
 
