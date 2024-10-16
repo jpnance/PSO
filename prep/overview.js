@@ -1,3 +1,14 @@
+/*
+ * For Colbys, you first need to download a CSV with projction data.
+ *
+ * 1. Go to Fantrax
+ * 2. Click on "Players"
+ * 3. Select the "Tracked" scoring category (not "Tracked (Per-Game)")
+ * 4. Select "All" players (not just "All Available Players")
+ * 5. Download the CSV and overwrite colbys.csv in this directory
+ * 6. Then this stuff should work.
+ */
+
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var fs = require('fs');
