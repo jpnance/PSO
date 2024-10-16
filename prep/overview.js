@@ -523,7 +523,7 @@ var newFantraxPromise = function(players) {
 						player.positions = row.positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
 
 						if (player.fantraxProjections) {
-							console.log('Dirty data with', player.name, '(' + player.team + ')');
+							//console.log('Dirty data with', player.name, '(' + player.team + ')');
 						}
 						else {
 							player.fantraxProjections = { raw: {}, perGame: {}, rating: {} };
