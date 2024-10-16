@@ -598,7 +598,6 @@ var newSheetsPromise = function(fantraxId) {
 				}
 
 				rows.shift();
-				rows.pop();
 
 				rows.forEach(row => {
 					var player = {
