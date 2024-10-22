@@ -40,10 +40,12 @@ var mongoOwners = {
 
 	'James': 'james',
 	'James/Charles': 'jamesCharles',
+	'Schexes': 'schexes',
 
 	'Schexes': 'schexes',
 	'Schex/Jeff': 'schexes',
 	'Schex': 'schex',
+	'Anthony': 'anthony',
 
 	'Charles': 'charles',
 	'Quinn': 'quinn',
