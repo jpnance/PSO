@@ -9,7 +9,7 @@
  * 6. Then this stuff should work.
  */
 
-var dotenv = require('dotenv').config({ path: '/app/.env' });
+var dotenv = require('dotenv').config({ path: '../.env' });
 
 var fs = require('fs');
 var request = require('superagent');
