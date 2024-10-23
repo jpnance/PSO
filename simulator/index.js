@@ -86,10 +86,12 @@ var ownerFranchiseIds = {
 
 	'james': 9,
 	'jamesCharles': 9,
+	'schexes': 9,
 
-	'schexes': 10,
+	//'schexes': 10,
 	'schexJeff': 10,
 	'schex': 10,
+	'anthony': 10,
 
 	'charles': 11,
 	'quinn': 11,
