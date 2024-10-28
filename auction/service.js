@@ -313,11 +313,8 @@ function handleMessage(socket, rawMessage) {
 }
 
 setInterval(function() {
-	console.log(`${sockets.length} sockets`);
-
 	sockets.forEach(function(socket) {
 		if (!socket.heartbeat) {
-			console.log('terminating socket');
 			socket.terminate();
 		}
 	});
