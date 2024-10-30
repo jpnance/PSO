@@ -10039,7 +10039,8 @@
 		"player": {
 			"id": "3214",
 			"name": "Hunter Henry"
-		}
+		},
+		"selected": true
 	},
 	{
 		"season": "2024",
@@ -10050,7 +10051,8 @@
 		"player": {
 			"id": "6865",
 			"name": "Colby Parkinson"
-		}
+		},
+		"selected": false
 	},
 	{
 		"season": "2024",
