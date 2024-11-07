@@ -11037,5 +11037,293 @@
 			"name": "Allen Lazard"
 		},
 		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Anthony",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Anthony",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "4234",
+			"name": "Noah Brown"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "5970",
+			"name": "Greg Dortch"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Quinn",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "6149",
+			"name": "Darius Slayton"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "5987",
+			"name": "Alexander Mattison"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "8139",
+			"name": "Zamir White"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "5892",
+			"name": "David Montgomery"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "4199",
+			"name": "Aaron Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "9488",
+			"name": "Jaxon Smith-Njigba"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "8126",
+			"name": "Wan'Dale Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "8406",
+			"name": "Reed Blankenship"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Mitch",
+		"player": {
+			"id": "11052",
+			"name": "Jaylon Jones"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Mitch",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "9486",
+			"name": "Dontayvion Wicks"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Mitch",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "10213",
+			"name": "Tre Tucker"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Brett",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "9758",
+			"name": "C.J. Stroud"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Brett",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "96",
+			"name": "Aaron Rodgers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Justin",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "8154",
+			"name": "Brian Robinson"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Justin",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "9225",
+			"name": "Tank Bigsby"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Jason",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "4046",
+			"name": "Patrick Mahomes"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Jason",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "2306",
+			"name": "Jameis Winston"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Schexes",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "11584",
+			"name": "Bucky Irving"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Schexes",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "8134",
+			"name": "Khalil Shakir"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Mike",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "9228",
+			"name": "Bryce Young"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 9,
+		"owner": "Mike",
+		"offerer": "Mitch",
+		"selector": "Patrick",
+		"player": {
+			"id": "4381",
+			"name": "Taysom Hill"
+		},
+		"selected": false
 	}
 ]
