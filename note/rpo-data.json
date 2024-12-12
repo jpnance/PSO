@@ -12477,5 +12477,293 @@
 			"name": "Jason Sanders"
 		},
 		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9488",
+			"name": "Jaxon Smith-Njigba"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Luke",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9756",
+			"name": "Jordan Addison"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6786",
+			"name": "CeeDee Lamb"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4177",
+			"name": "Mack Hollins"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Patrick",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "1689",
+			"name": "Adam Thielen"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Anthony",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7596",
+			"name": "Elijah Moore"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Anthony",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4981",
+			"name": "Calvin Ridley"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "5133",
+			"name": "Tyler Conklin"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Jason",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8143",
+			"name": "Jerome Ford"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "10913",
+			"name": "Joey Porter"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Brett",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "11675",
+			"name": "Kool-Aid McKinstry"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4217",
+			"name": "George Kittle"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Keyon",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4033",
+			"name": "David Njoku"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "11624",
+			"name": "Xavier Worthy"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5872",
+			"name": "Deebo Samuel"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4046",
+			"name": "Patrick Mahomes"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Justin",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2028",
+			"name": "Derek Carr"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "2374",
+			"name": "Tyler Lockett"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Mitch",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "7670",
+			"name": "Joshua Palmer"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3286",
+			"name": "Demarcus Robinson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Mike",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "10226",
+			"name": "Andrei Iosivas"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5917",
+			"name": "Mecole Hardman"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 14,
+		"owner": "Quinn",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "3200",
+			"name": "Sterling Shepard"
+		},
+		"selected": true
 	}
 ]
