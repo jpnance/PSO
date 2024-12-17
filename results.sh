@@ -15,6 +15,7 @@ node playoffAppearances.js
 node recordOccurrences.js
 node regularSeasonWinningPercentage.js
 node regularSeasonWins.js
+node regularSeasonAllPlay.js
 node seasonSummaries.js
 node weeklyScoringTitles.js
 cd ..
