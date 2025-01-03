@@ -13053,5 +13053,197 @@
 			"name": "DK Metcalf"
 		},
 		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "11631",
+			"name": "Brian Thomas"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "3321",
+			"name": "Tyreek Hill"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "8210",
+			"name": "Chig Okonkwo"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7553",
+			"name": "Kyle Pitts"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8130",
+			"name": "Trey McBride"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5012",
+			"name": "Mark Andrews"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "6790",
+			"name": "D'Andre Swift"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 16,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "8134",
+			"name": "Khalil Shakir"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "4943",
+			"name": "Sam Darnold"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Keyon",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "9229",
+			"name": "Anthony Richardson"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "6786",
+			"name": "CeeDee Lamb"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Koci/Mueller",
+		"offerer": "Patrick",
+		"selector": "Charles",
+		"player": {
+			"id": "7525",
+			"name": "DeVonta Smith"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5849",
+			"name": "Kyler Murray"
+		},
+		"selected": false
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Luke",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "4892",
+			"name": "Baker Mayfield"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "11632",
+			"name": "Malik Nabers"
+		},
+		"selected": true
+	},
+	{
+		"season": "2024",
+		"week": 17,
+		"owner": "Schexes",
+		"offerer": "Charles",
+		"selector": "Patrick",
+		"player": {
+			"id": "5872",
+			"name": "Deebo Samuel"
+		},
+		"selected": false
 	}
 ]
