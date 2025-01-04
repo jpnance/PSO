@@ -35,10 +35,10 @@ module.exports.regimes = {
 	'Terence': 'Terence',
 	'Trevor': 'Trevor',
 
-	'Charles': 'James/Charles',
+	'Charles': 'Charles',
 	'Brett/Luke': 'Luke',
 	'Jake/Luke': 'Luke',
-	'James/Charles': 'James/Charles',
+	'James/Charles': 'Charles',
 	'John/Zach': 'John',
 	'Koci': 'Koci/Mueller',
 	'Mitch/Mike': 'Mitch',
