@@ -3,6 +3,9 @@ version: '3.6'
 services:
     web:
         container_name: pso-web
+        profiles:
+            - main
+            - postseason
         image: node:14-alpine
         volumes:
             - .:/app
@@ -14,12 +17,17 @@ services:
 
     mongo:
         container_name: pso-mongo
+        profiles:
+            - main
+            - postseason
         image: mongo:3.6.8
         volumes:
             - pso-data:/data/db
 
     cron:
         container_name: pso-cron
+        profiles:
+            - main
         image: node:14-alpine
         volumes:
             - .:/app
