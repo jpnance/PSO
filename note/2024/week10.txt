@@ -1,0 +1,270 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 10 of the 2024 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Trade #683
+
+
+* Week 9 Recaps
+   * Anthony defeats Mike, 151.58 to 121.56
+      * Anthony
+         * Patrick offered Elijah Moore and Noah Brown
+         * Mitch selected Elijah Moore (3.80)
+         * Patrick received Noah Brown (6.00)
+         * Anthony to 5-4 (.185/.266/.102)
+         * Next three: Patrick, Koci/Mueller, Justin
+      * Mike
+         * Mitch offered Bryce Young and Taysom Hill
+         * Patrick selected Bryce Young (8.74)
+         * Mitch received Taysom Hill (12.00)
+         * Mike to 4-5 (.004/.013/.001)
+         * Next three: Schexes, Quinn, Keyon
+      * Split: Pat 1, Mitch 1
+      * Pat projection: Anthony (right); Mitch prediction: Anthony (right)
+   * Schexes defeats Quinn, 148.74 to 123.72
+      * Schexes
+         * Mitch offered Khalil Shakir and Bucky Irving
+         * Patrick selected Khalil Shakir (5.00)
+         * Mitch received Bucky Irving (5.70)
+         * Schexes to 7-2 (.989/.995/.964)
+         * Next three: Mike, Mitch, Patrick
+      * Quinn
+         * Patrick offered Darius Slayton and Greg Dortch
+         * Mitch selected Darius Slayton (6.00)
+         * Patrick received Greg Dortch (6.50)
+         * Quinn to 4-5 (.236/.251/.079)
+         * Next three: Mitch, Mike, Jason
+      * Split: Pat 2, Mitch 2
+      * Pat projection: Quinn (wrong); Mitch prediction: Quinn (wrong)
+   * Jason defeats Patrick, 124.95 to 113.02
+      * Jason
+         * Mitch offered Patrick Mahomes and Jameis Winston
+         * Patrick selected Patrick Mahomes (20.54)
+         * Mitch received Jameis Winston (4.10)
+         * Jason to 3-6 (.002/.007/.000)
+         * Next three: Luke, Keyon, Quinn
+      * Patrick
+         * Patrick offered Alexander Mattison and Zamir White
+         * Mitch selected Alexander Mattison (3.60)
+         * Patrick received Zamir White (7.00)
+         * Patrick to 4-5 (.033/.060/.005)
+         * Next three: Anthony, Brett, Schexes
+      * Pat sweep: Pat 4, Mitch 2
+      * Pat projection: Patrick (wrong); Mitch prediction: Patrick (wrong)
+   * Keyon defeats Justin, 162.56 to 152.89
+      * Keyon
+         * Patrick offered Aaron Jones and David Montgomery
+         * Mitch selected Aaron Jones (8.20)
+         * Patrick received David Montgomery (9.60)
+         * Keyon to 7-2 (.981/.998/.954)
+         * Next three: Koci/Mueller, Jason, Mike
+      * Justin
+         * Mitch offered Brian Robinson and Tank Bigsby
+         * Patrick selected Brian Robinson (didn't play)
+         * Mitch received Tank Bigsby (5.65)
+         * Justin to 4-5 (.071/.102/.019)
+         * Next three: Brett, Luke, Anthony
+      * Pat "sweep": Pat 5, Mitch 2
+      * Pat projection: Keyon (right); Mitch prediction: Keyon (right)
+   * Brett defeats Luke, 163.26 to 142.86
+      * Brett
+         * Mitch offered Aaron Rodgers and C.J. Stroud
+         * Patrick selected Aaron Rodgers (18.34)
+         * Mitch received C.J. Stroud (3.54)
+         * Brett to 4-5 (.020/.045/.005)
+         * Next three: Justin, Patrick, Mitch
+      * Luke
+         * Patrick offered Jaxon Smith-Njigba and Wan'Dale Robinson
+         * Mitch selected Jaxon Smith-Njigba (31.00)
+         * Patrick received Wan'Dale Robinson (1.00)
+         * Luke to 6-3 (.872/.912/.737)
+         * Next three: Jason, Justin, Koci/Mueller
+      * Split: Pat 6, Mitch 3
+      * Pat projection: Luke (wrong); Mitch prediction: Luke (wrong)
+   * Koci/Mueller defeat Mitch, 148.05 to 140.64
+      * Koci/Mueller
+         * Patrick offered Jaylon Jones and Reed Blankenship
+         * Mitch selected Jaylon Jones (5.00)
+         * Patrick received Reed Blankenship (3.50)
+         * Koci/Mueller to 6-3 (.607/.760/.515)
+         * Next three: Keyon, Anthony, Luke
+      * Mitch
+         * Mitch offered Tre Tucker and Dontayvion Wicks
+         * Patrick selected Tre Tucker (0.50)
+         * Mitch received Dontayvion Wicks (0.00), and he did play
+         * Mitch to 0-9 (.000/.000/.000)
+         * Next three: Quinn, Schexes, Brett
+      * Split: Pat 7, Mitch 4
+      * Pat projection: Koci/Mueller (right); Mitch prediction: Koci/Mueller (right)
+   * RPO Stats
+      * Pat 47, The World 43
+      * Selector
+         * This week
+            * Pat: 3-2
+            * Mitch: 2-4
+            * Total: 5-6
+         * Overall
+            * Pat: 24-20
+            * The World: 23-23
+            * Total: 47-43
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 3-3
+         * Overall: 37-17
+      * The World's predictions
+         * This week: 3-3
+         * Overall: 35-19
+
+
+* Transactions
+   * Trade #684
+   * Trade #685
+   * Trade #686
+   * Trade #687
+   * Trade #688
+   * Trade #689
+   * Trade #690
+   * Trade #691
+   * Trade #692
+   * Trade #693
+   * Trade #694
+   * Free Agency
+
+
+* Game Previews and Risky Player Options for Week 10
+   * Patrick (4-5, .033/.060/.005, 50%) vs. Anthony (5-4, .185/.266/.102, 50%)
+      * Playoff interest level: 0.400
+      * Decision interest level: 0.450
+      * New H2H series
+      * Patrick takes Patrick
+         * It got bleak very quickly
+         * Miles Sanders or Jeremy McNichols
+            * Sanders
+               * Gets a few carries and a few targets every game, so he's out there, I guess
+               * That said, our guy Jonathan Brooks seems ready to make his season debut this season, so that may complicate things
+               * In Munich to play the Giants (15th)
+            * McNichols
+               * No clue who this is but he got eight carries last week and, in fact, he's had four games this season getting at least seven carries!
+               * Brian Robinson is limited in practice; you may care about that or not at your leisure
+               * Hosting the Steelers (9th)
+      * Charles takes Anthony
+         * Calvin Ridley or Nick Westbrook-Ikhine
+      * Pat projection: Patrick
+      * Charles prediction
+   * Justin (4-5, .071/.102/.019, 63%) vs. Brett (4-5, .020/.045/.005, 37%)
+      * Playoff interest level: 0.331
+      * Decision interest level: 0.398
+      * Brett leads the all-time series 2-1 and won the last two in a row
+      * Charles takes Justin
+         * Jaylen Waddle or Xavier Legette
+      * Patrick takes Brett
+         * Bo Nix should still just be in there!
+         * C.J. Stroud or Aaron Rodgers
+            * Stroud
+               * Rough stretch over the last three weeks: 1 points, 10 points, and most recently 3 points
+               * He's had decent games but he's really only had one great game all season
+               * Hosting the Lions (13th)
+            * Rodgers
+               * Decent-to-good for the last four weeks
+               * Jets are still hilarious but Rodgers seems decent
+               * At the Cardinals (21st)
+      * Pat projection: Brett
+      * Charles prediction
+   * Koci/Mueller (6-3, .607/.760/.515, 38%) vs. Keyon (7-2, .981/.998/.954, 62%)
+      * Playoff interest level: 0.124
+      * Decision interest level: 0.428
+      * Keyon leads the all-time series 14-5 and has won the last five meetings in a row
+      * Charles takes Koci/Mueller
+         * DeVonta Smith or CeeDee Lamb
+      * Patrick takes Keyon
+         * Tyrone Tracy or Aaron Jones
+            * Tracy
+               * Devin Singletary's been back for a couple of weeks but Tracy has maintained the bulk of the carries
+               * 36 carries over the last two weeks, so you certainly like that
+               * At the Panthers (32nd)
+            * Jones
+               * Only two rushing touchdowns all season but 40 carries over the past two weeks
+               * Hasn't been especially efficient with the work lately: basically 3 YPC
+               * At the Jaguars (27th)
+      * Pat projection: Koci/Mueller
+      * Charles prediction
+   * Mike (4-5, .004/.013/.001, 20%) vs. Schexes (7-2, .989/.995/.964, 80%)
+      * Playoff interest level: 0.158
+      * Decision interest level: 0.323
+      * New H2H series
+      * Patrick takes Mike
+         * Roster sucks and also has a ton of Bengals, who are playing tonight, so this is all there is
+         * Kyle Dugger or Jessie Bates
+            * Dugger
+               * Didn't practice Wednesday
+               * Hasn't played since Week 7
+               * Been pretty good, though!
+               * At Caleb Williams and the Bears
+            * Bates
+               * Best fantasy DB
+               * Just pick him
+               * I'll hope that Dugger misses the game and this will be a push
+               * At Derek Carr and the Saints
+      * Charles takes Schexes
+         * Malik Nabers or DeAndre Hopkins
+      * Pat projection: Schexes
+      * Charles prediction
+   * Luke (6-3, .872/.912/.737, 77%) vs. Jason (3-6, .002/.007/.000, 23%)
+      * Playoff interest level: 0.274
+      * Decision interest level: 0.069
+      * Luke leads the all-time series 2-1 and has won the last two in a row
+      * Charles takes Luke
+         * Kyler Murray or Baker Mayfield
+      * Patrick takes Jason
+         * Kalif Raymond or Michael Wilson
+            * Raymond
+               * 12 points in Week 8, 32 points in Week 9, 0 points in Week 10
+               * He's sort of in the offense but he also still gets all the return duties, so that certainly helps his points out
+               * At the Texans (28th)
+            * Wilson
+               * A steadier player who's in the offense far more consistently
+               * He's also coming off a 0-point dude of a game but, even though he has yet to break into double digits, he's got a bunch of 6, 7, 8, and 9-point games
+               * Seems impossible but he has touchdowns in three different games this year and, yet, has not broken double digits
+               * Hosting the Jets (5th)
+      * Pat projection: Jason
+      * Charles prediction
+   * Quinn (4-5, .236/.251/.079, 92%) vs. Mitch (0-9, .000/.000/.000, 9%)
+      * Playoff interest level: 0.026
+      * Decision interest level: 0.023
+      * Mitch leads the all-time series 10-2 and has won the last eight in a row
+      * Charles takes Quinn
+         * Jalen Tolbert or Sterling Shepard
+      * Patrick takes Mitch
+         * Tutu Atwell or Ty Johnson
+            * Atwell
+               * Just two catches on five targets for 34 yards over his last two games
+               * Kupp and Nacua are both back so there's only so much to go around, I guess
+               * Hosting the Dolphins (3rd)
+            * Johnson
+               * Not Atwell's teammate Tyler Johnson but rather Ty Johnson, the Bills running back
+               * He's no good but he got a few carries last week
+               * He has scored three touchdowns on the season, so there you have it
+               * At the Colts (17th)
+      * Pat projection: Quinn
+      * Charles prediction
+
+
+* High Scorer's Corner: Brett
+   * APPLAUSE
+   * Brett scored 163.26
+   * 1st scoring title this season
+   * 4th scoring title all-time
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * Websites
+   * And that is it
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 10! We will talk to you next week!

@@ -1,0 +1,265 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 12 of the 2024 season!
+   * I am Patrick, joined, as always, by Charles
+
+
+* Week 11 Recaps
+   * Koci/Mueller defeat Anthony, 187.42 to 124.82
+      * Koci/Mueller
+         * Patrick offered Nick Bolton and Eric Kendricks
+         * Charles selected Nick Bolton (6.00)
+         * Patrick received Eric Kendricks (7.00)
+         * Koci/Mueller to 7-4 (.600/.829/.389)
+         * Next three: Luke, Patrick, Schexes
+      * Anthony
+         * Charles offered Dalton Schultz and Evan Engram
+         * Patrick selected Dalton Schultz (3.30)
+         * Charles received Evan Engram (2.80)
+         * Anthony to 6-5 (.086/.181/.013)
+         * Next three: Justin, Quinn, Mitch
+      * Pat sweep: Pat 2, Charles 0
+      * Pat projection: Koci/Mueller (right); Charles prediction: Anthony (wrong)
+   * Brett defeats Patrick, 103.16 to 89.23
+      * Brett
+         * Charles offered Quentin Johnston and T.J. Hockenson
+         * Patrick selected Quentin Johnston (10.80)
+         * Charles received T.J. Hockenson (1.30)
+         * Brett to 5-6 (.005/.007/.000)
+         * Next three: Mitch, Keyon, Quinn
+      * Patrick
+         * Patrick offered Zamir White and Dameon Pierce
+         * Charles selected Zamir White (0.90)
+         * Patrick received Dameon Pierce (0.45)
+         * Patrick to 4-7 (.001/.003/.000)
+         * Next three: Schexes, Koci/Mueller, Justin
+      * Split: Pat 3, Charles 1
+      * Pat projection: Patrick (wrong); Charles prediction: Brett (right)
+   * Quinn defeats Mike, 163.47 to 147.46
+      * Quinn
+         * Patrick offered Micah Parsons and Henry To'oTo'o
+         * Charles selected Micah Parsons (0.50)
+         * Patrick received Henry To'oTo'o (7.00)
+         * Quinn to 6-5 (.365/.449/.166)
+         * Next three: Jason, Anthony, Brett
+      * Mike
+         * Charles offered KaVontae Turpin and Devaughn Vele
+         * Patrick selected KaVontae Turpin (17.40)
+         * Charles received Devaughn Vele (6.60)
+         * Mike to 4-7 (.000/.000/.000)
+         * Next three: Keyon, Luke, Jason
+      * Pat sweep: Pat 5, Charles 1
+      * Pat projection: Quinn (right); Charles prediction: Quinn (right)
+   * Keyon defeats Jason, 186.10 to 125.78
+      * Keyon
+         * Charles offered Courtland Sutton and Tyreek Hill
+         * Patrick selected Courtland Sutton (7.80)
+         * Charles received Tyreek Hill (12.10)
+         * Keyon to 9-2 (.999/1.000/.992)
+         * Next three: Mike, Brett, Luke
+      * Jason
+         * Patrick offered Gardner Minshew and Cooper Rush
+         * Charles selected Gardner Minshew (14.98)
+         * Patrick received Cooper Rush (11.36)
+         * Jason to 3-8 (.000/.000/.000)
+         * Next three: Quinn, Mitch, Mike
+      * Charles sweep: Pat 5, Charles 3
+      * Pat projection: Keyon (right); Charles prediction: Keyon (right)
+   * Justin defeats Luke, 206.57 to 109.00
+      * Justin
+         * Patrick offered Christian Watson and Jaylen Waddle
+         * Charles selected Christian Watson (16.00)
+         * Patrick received Jaylen Waddle (3.70)
+         * Justin to 6-5 (.232/.362/.063)
+         * Next three: Anthony, Schexes, Patrick
+      * Luke
+         * Charles offered Ladd McConkey and Travis Etienne
+         * Patrick selected Ladd McConkey (13.30)
+         * Charles received Travis Etienne (3.30)
+         * Luke to 7-4 (.719/.954/.463)
+         * Next three: Koci/Mueller, Mike, Keyon
+      * Split: Pat 6, Charles 4
+      * Pat projection: Justin (right); Charles prediction: Justin (right)
+   * Schexes defeats Mitch, 172.33 to 103.03
+      * Schexes
+         * Charles offered Nick Bosa and Khalil Mack
+         * Patrick selected Nick Bosa (9.25)
+         * Charles received Khalil Mack (0.00) but I couldn't find any evidence that you knew that before Bosa's game had already started, so this will count
+         * Schexes to 9-2 (.994/.998/.975)
+         * Next three: Patrick, Justin, Koci/Mueller
+      * Mitch
+         * Patrick offered Joshua Palmer and Samaje Perine
+         * Charles selected Joshua Palmer (2.30)
+         * Patrick received Samaje Perine (0.80)
+         * Mitch to 0-11 (.000/.000/.000)
+         * Next three: Brett, Jason, Anthony
+      * Split: Pat 7, Charles 5
+      * Pat projection: Schexes (right); Charles prediction: Schexes (right)
+   * RPO Stats
+      * Pat 59, The World 54
+      * Selector
+         * This week
+            * Pat: 5-1
+            * Charles: 4-2
+            * Total: 9-3
+         * Overall
+            * Pat: 31-25
+            * The World: 29-28
+            * Total: 60-53
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 5-1
+         * Overall: 44-22
+      * The World's predictions
+         * This week: 5-1
+         * Overall: 45-21
+
+
+* Transactions
+   * Free Agency
+
+
+* Game Previews and Risky Player Options for Week 12
+   * Rematch Week #3!
+      * Every game is a rematch from Week 4
+      * Last week, there were four splits and just two sweeps bringing the totals to seven sweeps and five splits
+   * Koci/Mueller (7-4, .600/.829/.389, 48%) vs. Luke (7-4, .719/.954/.463, 52%)
+      * Playoff interest level: 0.504
+      * Decision interest level: 0.489
+      * Luke leads the all-time series 13-11 and won back in Week 4
+      * Patrick takes Koci/Mueller
+         * DeVonta Smith isn't practicing so this might be something the Surnamers have to do
+         * Gus Edwards or Marvin Mims
+            * Edwards
+               * Been back for a couple weeks after missing a huge chunk of the season to injury
+               * Six carries last week, ten carries the week before that
+               * Averages are good but he doesn't factor into the passing game at all
+               * Hosting the Ravens (7th)
+            * Mims
+               * Scored his first touchdown last week!
+               * Gets a couple targets every game but also returns kicks
+               * At the Raiders (5th)
+      * Charles takes Luke
+         * Jaxon Smith-Njigba or DK Metcalf
+      * Pat projection: Luke
+      * Charles prediction
+   * Justin (6-5, .232/.362/.063, 57%) vs. Anthony (6-5, .086/.181/.013, 43%)
+      * Playoff interest level: 0.503
+      * Decision interest level: 0.000
+      * Justin won the only game in the all-time series back in Week 4
+      * Patrick takes Justin
+         * Austin Ekeler or Tony Pollard
+            * Ekeler
+               * Kind of contributes in three different ways: on the ground, through the air, and on special teams
+               * His worst game on the season is 3.70 but his second-worst game is 7-flat, so it's really been pretty good
+               * Hosting the Cowboys (31st)
+            * Pollard
+               * Carries have taken a hit in the most recent two weeks: 9 carries in each
+               * That's way down from his more usual number that's closer to 20
+               * Tyjae Spears was sort of kind of eating into his numbers but Spears didn't practice today and is at significant risk of not playing this week
+               * At the Texans (6th)
+      * Charles takes Anthony
+         * Xavier McKinney or Brandon Jones
+      * Pat projection: Justin
+      * Charles prediction
+   * Patrick (4-7, .001/.003/.000, 18%) vs. Schexes (9-2, .994/.998/.975, 82%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.255
+      * Decision interest level: 0.070
+      * Schexes lead the all-time series 6-3 and won back in Week 4
+      * Patrick takes Patrick
+         * Adam Thielen or DeMario Douglas
+            * Thielen
+               * Shockingly good last year but was derailed in Week 3 by an injury that's lingered until now
+               * It's not totally clear that he's gonna play this week but he was limited in practice today
+               * Hosting the Chiefs (12th)
+            * Douglas
+               * Been seeing consistent targets from Drake Maye this year
+               * At least five targets in each of the last three games
+               * Hasn't scored a touchdown since Week 6 but he's definitely getting looks
+               * At the Dolphins (2nd)
+      * Charles takes Schexes
+         * Xavier Worthy or Deebo Samuel
+      * Pat projection: Schexes
+      * Charles prediction
+   * Mike (4-7, .000/.000/.000, 10%) vs. Keyon (9-2, .999/1.000/.992, 90%)
+      * Playoff interest level: 0.251
+      * Decision interest level: 0.038
+      * The all-time series is tied 1-1 but Keyon won back in Week 4
+      * Patrick takes Mike
+         * Demarcus Robinson or Devaughn Vele
+            * Robinson
+               * He had two consecutive two-touchdown games a few weeks ago
+               * He gets targets, usually four or five, which means he's still only the third option at best on the Rams
+               * Hosting the Eagles (6th)
+            * Vele
+               * Also gets targets! (That's where we're at now, where we mainly just offer guys who get targets and that's all we can say)
+               * Four catches for 66 yards last week, so that's pretty decent
+               * At the Raiders (5th)
+      * Charles takes Keyon
+         * Chuba Hubbard or David Montgomery
+      * Pat projection: Keyon
+      * Charles prediction
+   * Jason (3-8, .000/.000/.000, 30%) vs. Quinn (6-5, .365/.449/.166, 70%)
+      * Playoff interest level: 0.122
+      * Decision interest level: 0.107
+      * Jason leads the all-time series 4-2 and won back in Week 4
+      * Patrick takes Jason
+         * Cooper Rush or Gardner Minshew
+            * Rush
+               * Jerry Jones insists that he's the starter this week
+               * Actually pretty decent last week, for him
+               * 32 for 55 passing, one touchdown, one interception, five sacks
+               * Whatever, it added up to double digits, so you'll take it from him
+               * At the Commanders (18th)
+            * Minshew
+               * Antonio Pierce insists that he's the starter this week
+               * Also actually pretty decent last week!
+               * 30 for 43 passing, two touchdowns, one interception, three sacks
+               * Scored dang near fifteen points, Charles!
+               * Hosting the Broncos (4th)
+      * Charles takes Quinn
+         * Jalen Tolbert or Mecole Hardman
+      * Pat projection: Quinn
+      * Charles prediction
+   * Brett (5-6, .005/.007/.000, 70%) vs. Mitch (0-11, .000/.000/.000, 30%)
+      * Playoff interest level: 0.106
+      * Decision interest level: 0.000
+      * Mitch leads the all-time series 4-2 but Brett won back in Week 4
+      * Charles takes Brett
+         * Joshua Metellus or Cooper DeJean
+      * Patrick takes Mitch
+         * Joshua Palmer or Tre Tucker
+            * Palmer
+               * Not great, been bad for two weeks
+               * Whatever, we know who Joshua Palmer is
+               * Hosting the Ravens (32nd)
+            * Tucker
+               * We've had him in the RPOs a good amount this season
+               * His numbers are absolutely wild to me
+               * He's on the field a ton: 89, 92, 91, 95, 95, it goes on
+               * For as much as he's on the field, you would think he would be better than the #72 wide receiver, which is just a touch better than Joshua Palmer, who's on the field significantly less often
+               * Anyway, he outscored Joshua Palmer last week
+               * Hosting the Broncos (4th)
+      * Pat projection: Mitch
+      * Charles prediction
+
+
+* High Scorer's Corner: Justin
+   * APPLAUSE
+   * Justin scored 206.57
+   * 1st scoring title this season
+   * 5th scoring title all-time
+   * GOOGLE DRIVE FOR THE DITTY
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * Websites
+   * And that is it
+   * For Charles, I am Patrick. Good luck with your fantasy in Week 12! We will talk to you next week!

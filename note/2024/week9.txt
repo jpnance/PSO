@@ -1,0 +1,227 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 9 of the 2024 season!
+   * I am Patrick, joined, as always, by Mitch
+
+
+* Trade #682
+
+
+* Week 8 Recaps
+   * Quinn defeats Justin, 150.40 to 130.55
+      * Quinn
+         * Quinn to 4-4 (.377/.556/.257)
+         * Next three: Schexes, Mitch, Mike
+      * Justin
+         * Justin to 4-4 (.063/.151/.042)
+         * Next three: Keyon, Brett, Luke
+      * Pat projection: Quinn (right); Mitch prediction: Quinn (right)
+   * Luke defeats Schexes, 172.34 to 157.98
+      * JAGUAR GAME
+      * Luke
+         * Luke to 6-2 (.943/.962/.864)
+         * Next three: Brett, Jason, Justin
+      * Schexes
+         * Schexes to 6-2 (.936/.985/.863)
+         * Next three: Quinn, Mike, Mitch
+      * Pat projection: Luke (right); Mitch prediction: Luke (right)
+   * Koci/Mueller defeat Jason, 202.96 to 149.95
+      * Koci/Mueller
+         * Koci/Mueller to 5-3 (.526/.559/.313)
+         * Next three: Mitch, Keyon, Anthony
+      * Jason
+         * Jason to 2-6 (.001/.001/.000)
+         * Next three: Patrick, Luke, Keyon
+      * Pat projection: Koci/Mueller (right); Mitch prediction: Jason (wrong)
+   * Patrick defeats Keyon, 133.14 to 132.10
+      * JAGUAR GAME
+      * Patrick
+         * Patrick to 4-4 (.085/.117/.042)
+         * Next three: Jason, Anthony, Brett
+      * Keyon
+         * Keyon to 6-2 (.954/.972/.881)
+         * Next three: Justin, Koci/Mueller, Jason
+      * Pat projection: Keyon (wrong); Mitch prediction: Keyon (wrong)
+   * Anthony defeats Brett, 158.18 to 153.12
+      * Anthony
+         * Anthony to 4-4 (.099/.139/.052)
+         * Next three: Mike, Patrick, Koci/Mueller
+      * Brett
+         * Brett to 3-5 (.003/.009/.001)
+         * Next three: Luke, Justin, Patrick
+      * Pat projection: Anthony (right); Mitch prediction: Brett (wrong)
+   * Mike defeats Mitch, 130.89 to 111.63
+      * Mike
+         * Mike to 4-4 (.014/.026/.003)
+         * Next three: Anthony, Schexes, Quinn
+      * Mitch
+         * Mitch to 0-8 (.000/.000/.000)
+         * Next three: Koci/Mueller, Quinn, Schexes
+      * Pat projection: Mike (right); Mitch prediction: Mitch (wrong)
+   * RPO Stats
+      * Pat 40, Charles 39
+      * Selector
+         * This week
+            * Pat: 3-3
+            * Charles: 5-1
+            * Total: 8-4
+         * Overall
+            * Pat: 21-18
+            * Charles: 21-19
+            * Total: 42-37
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 5-1
+         * Overall: 34-14
+      * The World's predictions
+         * This week: 2-4
+         * Overall: 32-16
+
+
+* Transactions
+   * Stefon Diggs
+
+
+* Game Previews and Risky Player Options for Week 9
+   * Reset what the simulator is and isn't
+   * Rematch Week #1!
+      * All games this week are rematches from Week 1
+      * Never been a season in which we've had more splits than sweeps
+      * 211 sweeps in history, 123 splits
+      * 2019 is the only year that splits and sweeps were even tied
+   * Mike (4-4, .014/.026/.003, 46%) vs. Anthony (4-4, .099/.139/.052, 54%)
+      * Playoff interest level: 0.334
+      * Decision interest level: 0.328
+      * Anthony won the only matchup in this series back in Week 1
+      * Mitch takes Mike
+         * Bryce Young or Taysom Hill
+      * Patrick takes Anthony
+         * Elijah Moore or Noah Brown
+            * Moore
+               * Maybe benefiting from the Jameis Winston era?
+               * 14 catches on 18 targets for 126 yards over the last two weeks; no touchdowns but you like the usage
+               * Hosting the Chargers (4th)
+            * Brown
+               * Wildly funny Hail Mary touchdown reception in Week 8
+               * That play alone represents like half of the points he's scored on the season
+               * Things have been looking up lately, though, as he's been on the field for at least 60% of the snaps in four consecutive games
+               * At the Giants (16th)
+      * Pat projection: Anthony
+      * Mitch prediction
+   * Schexes (6-2, .936/.985/.863, 60%) vs. Quinn (4-4, .377/.556/.257, 40%)
+      * Playoff interest level: 0.220
+      * Decision interest level: 0.419
+      * Schexes won the only matchup in this series back in Week 1
+      * Mitch takes Schexes
+         * Khalil Shakir or Bucky Irving
+      * Patrick takes Quinn
+         * Greg Dortch or Darius Slayton
+            * Dortch
+               * Not very good! Not very involved in the offense!
+               * But he does get like two targets a game!
+               * He also returns kicks and punts, which is where a decent amount of his points come from
+               * Hosting the Bears (9th)
+            * Slayton
+               * Coming off a good game: four catches on seven targets for 108 yards, although no touchdown in there
+               * Hasn't scored a touchdown since Week 5 but he has scored at least 5 points in his last five games
+               * Hosting the Commanders (23rd)
+      * Pat projection: Quinn
+      * Mitch prediction
+   * Patrick (4-4, .085/.117/.042, 58%) vs. Jason (2-6, .001/.001/.000, 42%)
+      * Playoff interest level: 0.353
+      * Decision interest level: 0.165
+      * The all-time series is tied 2-2 but Patrick won back in Week 1
+      * Patrick takes Patrick
+         * Alexander Mattison or Zamir White
+            * Mattison
+               * Since Zamir White started missing games back in Week 5, Mattison has been pretty good in his stead!
+               * 38 fantasy points in that span, including two double-digit games
+               * The team says Zamir White is set to get more carries soon, though; not sure how much we're buying into that
+               * At the Bengals (14th)
+            * White
+               * Has not remotely produced like he did at the end of last season but I guess you have to care if the team says he's the nominal starter? Up to you
+               * At the Bengals (14th)
+      * Mitch takes Jason
+         * Patrick Mahomes or Jameis Winston
+      * Pat projection: Patrick
+      * Mitch prediction
+   * Justin (4-4, .063/.151/.042, 19%) vs. Keyon (6-2, .954/.972/.881, 81%)
+      * Playoff interest level: 0.117
+      * Decision interest level: 0.296
+      * Keyon leads the all-time series 3-1 and won the Week 1 matchup
+      * Mitch takes Justin
+         * Brian Robinson or Tank Bigsby
+      * Patrick takes Keyon
+         * David Montgomery or Aaron Jones
+            * Montgomery
+               * Been really good! A touchdown machine!
+               * Played in all the games and scored a touchdown in all but one of them
+               * That said, his carries have gone down the last couple weeks: just 9 carries in each of the last two games
+               * At the Packers (15th)
+            * Jones
+               * Been pretty good this year but is coming off a lousy day: 19 carries for just 58 yards and no touchdown
+               * That said, he's on the field a lot and they clearly want him to be a workhorse
+               * Hosting the Colts (18th)
+      * Pat projection: Keyon
+      * Mitch prediction
+   * Luke (6-2, .943/.962/.864, 80%) vs. Brett (3-5, .003/.009/.001, 20%)
+      * Playoff interest level: 0.189
+      * Decision interest level: 0.055
+      * Luke leads the all-time series 4-2 but Brett won the matchup back in Week 1
+      * Patrick takes Luke
+         * Jaxon Smith-Njigba or Wan'Dale Robinson
+            * Smith-Njigba
+               * Coming off six catches on seven targets for 69 yards day
+               * It kinda just hasn't been there this year
+               * He only has one touchdown and only one double-digit game (not the same game!)
+               * He's gotten at least six targets in five consecutive games but he's having trouble turning them in to anything
+               * Hosting the Rams (17th)
+            * Robinson
+               * Basically the same story with Robinson but I think you maybe feel better about his targets
+               * Only five targets last week but that was just the second time this season that he's seen fewer than 8 targets
+               * Only two touchdowns on the year
+               * Hosting the Commanders (23rd)
+      * Mitch takes Brett
+         * C.J. Stroud or Aaron Rodgers
+      * Pat projection: Luke
+      * Mitch prediction
+   * Koci/Mueller (5-3, .526/.559/.313, 87%) vs. Mitch (0-8, .000/.000/.000, 13%)
+      * Playoff interest level: 0.041
+      * Decision interest level: 0.030
+      * Koci/Mueller lead the all-time series 9-8 and won the Week 1 matchup
+      * Patrick takes Koci/Mueller
+         * Nothing particularly interesting this week and the team isn't that deep to begin with
+         * Reed Blankenship or Jaylon Jones
+            * Blankenship
+               * Plays for the Eagles
+               * Made eight tackles last week against the Browns
+               * Two interceptions on the season, although none since Week 3
+               * Hosting Trevor Lawrence and the Jaguars
+            * Jones
+               * Plays for the Colts
+               * At least five tackles in every game this season
+               * Has two interceptions himself and even forced a fumble
+               * At Sam Darnold and the Vikings
+      * Mitch takes Mitch
+         * Dontayvion Wicks or Tre Tucker
+      * Pat projection: Koci/Mueller
+      * Mitch prediction
+
+
+* High Scorer's Corner: Koci/Mueller
+   * APPLAUSE
+   * Koci/Mueller scored 202.96
+   * 2nd scoring title this season
+   * 23rd scoring title all-time
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * Websites
+   * And that is it
+   * For Mitch, I am Patrick. Good luck with your fantasy in Week 9! We will talk to you next week!

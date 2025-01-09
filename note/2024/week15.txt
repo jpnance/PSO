@@ -1,0 +1,292 @@
+﻿* SOUND EFFECTS
+
+
+* Intro
+   * Welcome to the PSO Show for Week 15 of the 2024 season!
+   * I am Patrick, joined, as always, by Jason
+
+
+* Week 14 Recaps
+   * Keyon defeats Luke, 184.64 to 106.36
+      * JAGUAR GAME
+      * Keyon
+         * Charles offered George Kittle and David Njoku
+         * Patrick selected George Kittle (15.10)
+         * Charles received David Njoku (10.20)
+         * Keyon to 12-2 (clinched)
+         * Also clinched The Decision with the Schexes loss
+         * Last game: Anthony
+      * Luke
+         * Patrick offered Jordan Addison and Jaxon Smith-Njigba
+         * Charles selected Jordan Addison (31.30)
+         * Patrick received Jaxon Smith-Njigba (14.60)
+         * Luke to 9-5 (.985/1.000/.816)
+         * Last game: Mitch
+      * Split: Pat 1, Charles 1
+      * Pat projection: Keyon (right); Charles prediction: Keyon (right)
+   * Koci/Mueller defeat Schexes, 222.80 to 153.35
+      * Koci/Mueller
+         * Patrick offered DeVonta Smith and CeeDee Lamb
+         * Charles selected DeVonta Smith (9.70)
+         * Patrick received CeeDee Lamb (16.40)
+         * Koci/Mueller to 9-5 (.767/.787/.701)
+         * Last game: Brett
+      * Schexes
+         * Charles offered Xavier Worthy and Deebo Samuel
+         * Patrick selected Xavier Worthy (4.60)
+         * Charles received Deebo Samuel (3.50)
+         * Schexes to 11-3 (clinched)
+         * Last game: Jason
+      * Pat sweep: Pat 3, Charles 1
+      * Pat projection: Koci/Mueller (right); Charles prediction: Koci/Mueller (right)
+   * Justin defeats Patrick, 163.02 to 119.02
+      * Justin
+         * Charles offered Derek Carr and Patrick Mahomes
+         * Patrick selected Derek Carr (10.96)
+         * Charles received Patrick Mahomes (11.10)
+         * Justin to 7-7 (eliminated)
+         * APPLAUSE
+         * Last game: Mike
+      * Patrick
+         * Patrick offered Adam Thielen and Mack Hollins
+         * Charles selected Adam Thielen (10.20)
+         * Patrick received Mack Hollins (11.70)
+         * Patrick to 4-10 (eliminated)
+         * Last game: Quinn
+      * Split: Pat 4, Charles 2
+      * Pat projection: Patrick (wrong); Charles prediction: Justin (right)
+   * Anthony defeats Mitch, 127.36 to 95.07
+      * Anthony
+         * Patrick offered Calvin Ridley and Elijah Moore
+         * Charles selected Calvin Ridley (5.90)
+         * Patrick received Elijah Moore (3.40)
+         * Anthony to 9-5 (.248/1.000/.019)
+         * Last game: Keyon
+      * Mitch
+         * Charles offered Joshua Palmer and Tyler Lockett
+         * Patrick selected Joshua Palmer (7.80)
+         * Charles received Tyler Lockett (0.00)
+         * Mitch to 0-14 (eliminated)
+         * Last game: Luke
+      * Split: Pat 5, Charles 3
+      * Pat projection: Mitch (wrong); Charles prediction: Anthony (right)
+   * Jason defeats Mike, 133.30 to 117.36
+      * Jason
+         * Patrick offered Jerome Ford and Tyler Conklin
+         * Charles selected Jerome Ford (7.50)
+         * Patrick received Tyler Conklin (3.30)
+         * Jason to 6-8 (eliminated)
+         * Last game: Schexes
+      * Mike
+         * Charles offered Andrei Iosivas and Demarcus Robinson
+         * Patrick selected Andrei Iosivas (4.10)
+         * Charles received Demarcus Robinson (0.00)
+         * Mike to 4-10 (eliminated)
+         * Last game: Justin
+      * Split: Pat 6, Charles 4
+      * Pat projection: Jason (right); Charles prediction: Jason (right)
+   * Quinn defeats Brett, 133.16 to 100.06
+      * Quinn
+         * Charles offered Sterling Shepard and Mecole Hardman
+         * Patrick selected Sterling Shepard (6.30)
+         * Charles received Mecole Hardman (didn't play)
+         * Quinn to 7-7 (eliminated)
+         * APPLAUSE
+         * Last game: Patrick
+      * Brett
+         * Patrick offered Joey Porter and Kool-Aid McKinstry
+         * Charles selected Joey Porter (5.50)
+         * Patrick received Kool-Aid McKinstry (7.00)
+         * Brett to 6-8 (eliminated)
+         * APPLAUSE
+         * Last game: Koci/Mueller
+      * Pat "split": Pat 7, Charles 4
+      * Pat projection: Quinn (right); Charles prediction: Quinn (right)
+   * RPO Stats
+      * Pat 76, The World 71
+      * Selector
+         * This week
+            * Pat: 4-1
+            * Charles: 3-3
+            * Total: 7-4
+         * Overall
+            * Pat: 42-31
+            * The World: 40-34
+            * Total: 82-65
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 4-2
+         * Overall: 56-28
+      * The World's predictions
+         * This week: 6-0
+         * Overall: 61-23
+
+
+* Transactions
+   * Free Agency
+
+
+* Discussion Topic: Tiebreakers
+   * Be quick about resetting the tiebreakers
+   * Throw it to Jason after the reset
+
+
+* Game Previews and Risky Player Options for Week 15
+   * Rematch Week #4!
+      * Every game this week is a rematch of a game that happened in Week 7
+      * 12 sweeps, 6 splits
+      * Unless every single game this week results in a split, once again, splits will outnumber sweeps the way they have in fifteen of the other sixteen seasons we've been doing this thing
+   * Keyon (12-2, clinched, 77%) vs. Anthony (9-5, .248/1.000/.019, 23%)
+      * Playoff interest level: 0.402
+      * Decision interest level: 0.000
+      * This is essentially a playoff game for Anthony
+         * If he loses, he'd need Brett to upset Koci/Mueller and Mitch to upset Luke in order to advance to the playoffs
+         * He can't win a two-way tie with Koci/Mueller because they split the season series and the Surnamers have a massive PF advantage
+         * So he needs it to be a three-way tie that includes Luke; then he advances on his 1-2 record against the group versus the Surnamers' 1-3 record against it
+      * Keyon leads the all-time series 1-0 and, of course, won in Week 7
+      * Jason takes Keyon
+         * Rico Dowdle or David Montgomery
+      * Patrick takes Anthony
+         * Nick Westbrook-Ikhine or Calvin Ridley
+            * Westbrook-Ikhine
+               * Impossibly did not score a touchdown last week!
+               * One catch on two targets for 19 yards
+               * Still has eight touchdowns in his last nine games, though!
+               * Hosting the Bengals (23rd)
+            * Ridley
+               * Also wasn't very good last week but got way more looks than did his teammate
+               * Seven catches on twelve targets for 59 yards
+               * Broadly speaking, you should feel better about Ridley's workload but it's up to you to decide how you feel about their fantasy scores
+               * Also hosting the Bengals (23rd)
+      * Pat projection: Keyon
+      * Jason prediction
+   * Koci/Mueller (9-5, .767/.787/.701, 76%) vs. Brett (6-8, eliminated, 24%)
+      * Playoff interest level: 0.022
+      * Decision interest level: 0.000
+      * This game doesn't matter for Koci/Mueller unless Mitch upsets Luke; if that happens, then this is a playoff game for the champs
+      * Brett would likely secure the #4 pick in the rookie draft next year with a win
+      * Koci/Mueller lead the all-time series 4-3 and have won the last two in a row, including in Week 7
+      * Patrick takes Koci/Mueller
+         * Kyle Pitts or Chig Okonkwo
+            * Pitts
+               * Was doing fine when Kurt was doing fine but Kurt is not doing fine anymore so Kyle is also not doing fine
+               * One catch on six targets for 14 yards this past week
+               * Hasn't scored a touchdown since Week 8 and, since then, has been very often scoring less than two points
+               * At the Raiders (30th)
+            * Okonkwo
+               * He's been bad this year!
+               * He's also been bad lately!
+               * Three catches on four targets for just eight yards last week
+               * I dunno!
+               * Hosting the Bengals (31st)
+      * Jason takes Brett
+         * T.J. Hockenson or Keon Coleman
+      * Pat projection: Koci/Mueller
+      * Jason prediction
+   * Luke (9-5, .985/1.000/.816, 92%) vs. Mitch (0-14, eliminated, 8%)
+      * Playoff interest level: 0.015
+      * Decision interest level: 0.000
+      * Luke looking to officially punch his ticket into the playoffs
+      * Mitch trying to avoid becoming PSO's first-ever winless team
+      * Mitch leads the all-time series 10-7 but, of course, lost in Week 7
+      * Jason takes Luke
+         * Josh Downs or DK Metcalf
+      * Patrick takes Mitch
+         * Cam Akers or Samaje Perine
+            * Akers
+               * Doesn't get much work (five carries last week is a three-week high for him) but he's actually been quite effective with his touches
+               * Averaging 4.9 yards per carry over his last three games
+               * Nevertheless, they just give it to Aaron Jones over and over again
+               * Hosting the Bears (26th)
+            * Perine
+               * Might or might not get a carry but he's gonna get at least a target or two and he does do kickoff returns as well
+               * He and Cam Akers pretty much split their head-to-head performances over the last couple of months
+               * I'm so glad to be done with Mitch's team this year
+               * At the Browns (9th)
+      * Pat projection: Luke
+      * Jason prediction
+   * Patrick (4-10, eliminated, 35%) vs. Quinn (7-7, eliminated, 65%)
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Both teams trying to improve draft positioning
+      * Patrick leads the all-time series 8-7 but Quinn has won the last four in a row, including in Week 7
+      * Patrick takes Patrick
+         * It's pretty hard to argue with my starting offensive lineup this week so, sorry, I'm sending myself off into the sunset with an IDP
+         * Brandon Stephens or Xavier Woods
+            * Stephens
+               * Plays for the Ravens
+               * Pretty steady over the last couple of months: no fewer than 5.5 points since Week 7
+               * At Drew Lock (I guess?) and the Giants
+            * Woods
+               * Plays for the Panthers
+               * On the field a lot
+               * Interceptions in two of his last four games
+               * Hosting Cooper Rush (I guess?) and the Cowboys
+      * Jason takes Quinn
+         * Kirk Cousins or Tommy DeVito
+      * Pat projection: Quinn
+      * Jason prediction
+   * Justin (7-7, eliminated, 75%) vs. Mike (4-10, eliminated, 25%)
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Justin would guarantee either the #2 or #3 pick with a win
+      * Justin leads the all-time series 3-0 and, of course, won in Week 7
+      * Patrick takes Justin
+         * Tee Higgins or Christian Watson
+            * Higgins
+               * I guess Higgins has been fine when he's been in there!
+               * #35 WR despite having missed five games
+               * Caught five touchdowns including two in his last three games
+               * I dunno, it just sorta feels like he's not that great? Prove me wrong!
+               * At the Titans (2nd)
+            * Watson
+               * Very inconsistent this year but he still gets looks from Jordan Love
+               * Had a solid game last week: four catches on seven targets for 114 yards
+               * Just a few weeks ago, he went for 150 yards
+               * Hasn't scored a touchdown since Week 6
+               * At the Seahawks (18th)
+      * Jason takes Mike
+         * KaVontae Turpin or Andrei Iosivas
+      * Pat projection: Mike
+      * Jason prediction
+   * Jason (6-8, eliminated, 15%) vs. Schexes (11-3, clinched, 85%)
+      * Playoff interest level: 0.000
+      * Decision interest level: 0.000
+      * Jason has to win to have a shot to pick in the top 4 next year
+      * There's absolutely nothing on the line for Schexes this week
+      * Schexes lead the all-time series 1-0 and, of course, won in Week 7
+      * Jason takes Jason
+         * Rashod Bateman or Michael Wilson
+      * Patrick takes Schexes
+         * Kinda rough over here with injuries, lots of dudes not practicing; they're glad this game matters zero for them!
+         * I was getting confused looking at all the possibilities so I'll just give you what's probably a softball
+         * Caleb Williams or Jordan Love
+            * Williams
+               * Super inconsistent this year but certainly capable of going big
+               * Four 20-point games on the season including in Weeks 12 and 13
+               * Coming off a little bit of a stinker: 17 for 23 for 134 yards and two touchdowns; sounds great but he also took seven sacks
+               * Hasn't thrown an interception since Week 6, though maybe that's related to all the sacks he takes (56 on the season)
+               * At the Vikings (8th)
+            * Love
+               * More consistent, for sure; he's almost the opposite player: really doesn't do anything with his feet but very rarely takes sacks (11 on the season; only missed a couple games)
+               * He hasn't thrown an interception since Week 11 and he's been in the teens four straight weeks
+               * At the Seahawks (14th)
+      * Pat projection: Schexes
+      * Jason prediction
+
+
+* High Scorer's Corner: Koci/Mueller
+   * APPLAUSE
+   * Koci/Mueller scored 222.80
+   * 3rd scoring title this season
+   * 24th scoring title all-time
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs this season!
+   * Websites
+   * And that is it
+   * For Jason, I am Patrick. Good luck with your fantasy in Week 15! We will talk to you next week!

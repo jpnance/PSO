@@ -1,0 +1,196 @@
+﻿* Intro
+   * Welcome to the PSO Show for Week 8 of the 2024 season!
+   * I am Mitch, joined, as always, by Schex
+
+
+* Week 7 Recaps
+   * Keyon defeats Anthony, 172.14 to 87.44
+      * Keyon
+         * Charles offered Jameson Williams and Brian Thomas
+         * Patrick selected Jameson Williams (-0.40)
+         * Charles received Brian Thomas (17.10)
+         * Keyon to 6-1 (.998/.999/.989)
+         * Next three: Patrick, Justin, Koci/Mueller
+      * Anthony
+         * Patrick offered Tyler Huntley and Russell Wilson
+         * Charles selected Tyler Huntley (7.48)
+         * Patrick received Russell Wilson (23.86)
+         * Anthony to 3-4 (.075/.104/.036)
+         * Next three: Brett, Mike, Patrick
+      * Split: Pat 1, Charles 1
+      * Pat projection: Keyon (right); Charles prediction: Keyon (right)
+   * Schexes defeats Jason, 119.44 to 111.94
+      * Schexes
+         * Charles offered Xavier Worthy and Raheem Mostert
+         * Patrick selected Xavier Worthy (2.40)
+         * Charles received Raheem Mostert (3.00)
+         * Schexes to 6-1 (.973/.993/.950)
+         * Next three: Luke, Quinn, Mike
+      * Jason
+         * Patrick offered Romeo Doubs and Ray-Ray McCloud
+         * Charles selected Romeo Doubs (9.40)
+         * Patrick received Ray-Ray McCloud (2.00)
+         * Jason to 2-5 (.007/.016/.001)
+         * Next three: Koci/Mueller, Patrick, Luke
+      * Charles sweep: Charles 3, Pat 1
+      * Pat projection: Schexes (right); Charles prediction: Schexes (right)
+   * Justin defeats Mike, 139.43 to 94.12
+      * Justin
+         * Patrick offered Xavier Legette and Christian Watson
+         * Charles selected Xavier Legette (1.85)
+         * Patrick received Christian Watson (1.50)
+         * Justin to 4-3 (.241/.437/.104)
+         * Next three: Quinn, Keyon, Brett
+      * Mike
+         * Charles offered Evan McPherson and Harrison Butker
+         * Patrick selected Evan McPherson (3.00)
+         * Charles received Harrison Butker (4.00)
+         * Mike to 3-4 (.026/.030/.007)
+         * Next three: Mitch, Anthony, Schexes
+      * Charles sweep: Charles 5, Pat 1
+      * Pat projection: Mike (wrong); Charles prediction: Mike (wrong)
+   * Koci/Mueller defeat Brett, 153.28 to 100.58
+      * Koci/Mueller
+         * Charles offered Tim Patrick and Kimani Vidal
+         * Patrick selected Tim Patrick (2.50)
+         * Charles received Kimani Vidal (1.90)
+         * Koci/Mueller to 4-3 (.321/.410/.194)
+         * Next three: Jason, Mitch, Keyon
+      * Brett
+         * Patrick offered Antonio Gibson and Devin Singletary
+         * Charles selected Antonio Gibson (2.75)
+         * Patrick received Devin Singletary (2.10)
+         * Brett to 3-4 (.009/.018/.003)
+         * Next three: Anthony, Luke, Justin
+      * Split: Charles 6, Pat 2
+      * Pat projection: Koci/Mueller (right); Charles prediction: Koci/Mueller (right)
+   * Quinn defeats Patrick, 158.24 to 145.00
+      * Quinn
+         * Charles offered Christian Kirk and Darius Slayton
+         * Patrick selected Christian Kirk (2.40)
+         * Charles received Darius Slayton (1.10)
+         * Quinn to 3-4 (.376/.521/.167)
+         * Next three: Justin, Schexes, Mitch
+      * Patrick
+         * Patrick offered Jordan Love and Patrick Mahomes
+         * Charles selected Jordan Love (13.80)
+         * Patrick received Patrick Mahomes (10.06)
+         * Patrick to 3-4 (.075/.153/.062)
+         * Next three: Keyon, Jason, Anthony
+      * Split: Charles 7, Pat 3
+      * Pat projection: Quinn (right); Charles prediction: Quinn (right)
+   * Luke defeats Mitch, 165.89 to 109.38
+      * Luke
+         * Charles offered Allen Lazard and Jaxon Smith-Njigba
+         * Patrick selected Allen Lazard (5.80)
+         * Charles received Jaxon Smith-Njigba (2.30)
+         * Luke to 5-2 (.900/.957/.848)
+         * Next three: Schexes, Brett, Jason
+      * Mitch
+         * Patrick offered Joshua Palmer and Tre Tucker
+         * Charles selected Joshua Palmer (6.30)
+         * Patrick received Tre Tucker (4.70)
+         * Mitch to 0-7 (.000/.000/.000)
+         * Next three: Mike, Koci/Mueller, Quinn
+      * Split: Charles 8, Pat 4
+      * Pat projection: Luke (right); Charles prediction: Luke (right)
+   * RPO Stats
+      * Pat 40, Charles 39
+      * As the selector
+         * This week
+            * Pat: 3-3
+            * Charles: 5-1
+            * Total: 8-4
+         * Overall
+            * Pat: 21-18
+            * Charles: 21-19
+            * Total: 42-37
+   * Prognostication Stats
+      * Pat's projections
+         * This week: 5-1
+         * Overall: 29-13
+      * Charles's predictions
+         * This week: 5-1
+         * Overall: 30-12
+
+
+* Transactions
+   * Trade #676
+   * Trade #677
+   * Trade #678
+   * Trade #679
+   * Trade #680
+   * Free Agency
+
+
+* Game Previews and Risky Player Options for Week 8
+   * Justin (4-3, .241/.437/.104, 41%) vs. Quinn (3-4, .376/.521/.167, 59%)
+      * Playoff interest level: 0.451
+      * Decision interest level: 0.322
+      * All-time series is tied 1-1; Justin won the most recent meeting
+      * HOST_1 takes Justin
+      * HOST_2 takes Quinn
+      * Pat projection: Quinn
+      * Mitch prediction
+      * Schex prediction
+   * Luke (5-2, .900/.957/.848, 47%) vs. Schexes (6-1, .973/.993/.950, 53%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.073
+      * Decision interest level: 0.451
+      * Schexes lead the all-time series 3-2 and have won the last two in a row
+      * HOST_1 takes Luke
+      * HOST_2 takes Schexes
+      * Pat projection: Luke
+      * Mitch prediction
+      * Schex prediction
+   * Koci/Mueller (4-3, .321/.410/.194, 59%) vs. Jason (2-5, .007/.016/.001, 41%)
+      * Playoff interest level: 0.362
+      * Decision interest level: 0.143
+      * Jason leads the all-time series 3-1 but Koci/Mueller won the most recent meeting
+      * HOST_1 takes Koci/Mueller
+      * HOST_2 takes Jason
+      * Pat projection: Koci/Mueller
+      * Mitch prediction
+      * Schex prediction
+   * Patrick (3-4, .075/.153/.062, 14%) vs. Keyon (6-1, .998/.999/.989, 86%)
+      * JAGUAR GAME
+      * Playoff interest level: 0.054
+      * Decision interest level: 0.282
+      * Keyon leads the all-time series 13-12 but Patrick won the most recent meeting
+      * HOST_1 takes Patrick
+      * HOST_2 takes Keyon
+      * Pat projection: Keyon
+      * Mitch prediction
+      * Schex prediction
+   * Brett (3-4, .009/.018/.003, 43%) vs. Anthony (3-4, .075/.104/.036, 57%)
+      * Playoff interest level: 0.304
+      * Decision interest level: 0.000
+      * New head-to-head series
+      * HOST_1 takes Brett
+      * HOST_2 takes Anthony
+      * Pat projection: Anthony
+      * Mitch prediction
+      * Schex prediction
+   * Mike (3-4, .026/.030/.007, 84%) vs. Mitch (0-7, .000/.000/.000, 16%)
+      * Playoff interest level: 0.037
+      * Decision interest level: 0.046
+      * Mike won the only game between these two former co-owners
+      * HOST_1 takes Mike
+      * HOST_2 takes Mitch
+      * Pat projection: Mike
+      * Mitch prediction
+      * Schex prediction
+
+
+* High Scorer's Corner: Keyon
+   * Keyon scored 172.14
+   * 2nd scoring title this season
+   * 32nd scoring title all-time
+
+
+* Co-Host's Final Thoughts
+
+
+* Plugs
+   * Thanks for sending in RPOs
+   * theworldwideleaderinsports.com or thedynastyleague.com
