@@ -1,5 +1,11 @@
+const season = 2024;
+
 /*
 	Manually (yes, one-by-one) export each separate PSO Show Notes doc into a file called weekN.txt starting with Week 2.
+
+	Regular season only!
+
+	Pushes need to be of the form "* Patrick received Jordan Love (didn't play)", that is that the parenthetical needs to be in there and not a number.
 */
 
 const fs = require('fs');
@@ -13,8 +19,8 @@ const ordinals = / (Jr\.?)|(Sr\.?)|(II)|(III)|(IV)|(V)$/;
 let rawRpos = [];
 let rpoXi = {};
 
-for (let week = 1; week < 16; week++) {
-	var rpoData = fs.readFileSync('./2023/week' + (week + 1) + '.txt');
+for (let week = 1; week < 15; week++) {
+	var rpoData = fs.readFileSync(`./${season}/week${week + 1}.txt`);
 
 	let lines = rpoData.toString().split('\r\n');
 
