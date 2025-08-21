@@ -216,9 +216,9 @@ var displayPlayers = function(players) {
 				padLength: 8
 			},
 			{
-				path: 'experience',
+				path: 'fantraxProjections.perGame.fpts',
 				label: '',
-				padLength: 3
+				padLength: 7
 			},
 			{
 				path: 'fantraxProjections.ratingSum',
@@ -503,7 +503,7 @@ var newCsvPromise = function(players) {
 						team: fields[3],
 						experience: parseInt(fields[5]),
 						positions: fields[4].split(/\//),
-						score: parseFloat(fields[24]),
+						score: parseFloat(fields[24])
 					};
 
 					var id = nameToId(row.name);
@@ -539,8 +539,8 @@ var newCsvPromise = function(players) {
 						}
 
 						player.fantraxProjections.ratingSum = 0;
-						player.fantraxProjections.raw.fpts = row.score;
-						player.fantraxProjections.perGame.fpts = row.score / 17;
+						player.fantraxProjections.raw.fpts = row.score.toFixed(2).padStart(6, ' ');
+						player.fantraxProjections.perGame.fpts = (row.score / 17).toFixed(2).padStart(5, ' ');
 						player.fantraxProjections.rating.fpts = perGameAverageToRating('fpts', player.fantraxProjections.perGame.fpts);
 						player.fantraxProjections.ratingSum += player.fantraxProjections.rating.fpts;
 					}
