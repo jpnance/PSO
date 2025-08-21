@@ -508,7 +508,9 @@ var newCsvPromise = function(players) {
 
 					var id = nameToId(row.name);
 
-					if (row.experience == 0) {
+					var player = players.find(player => player.id == id);
+
+					if (!player && row.experience == 0) {
 						player = {
 							id: id,
 							owner: undefined,
@@ -523,8 +525,6 @@ var newCsvPromise = function(players) {
 
 						players.push(player);
 					}
-
-					var player = players.find(player => player.id == id);
 
 					if (player && row.positions.some((position) => player.positions.indexOf(position) > -1)) {
 						player.team = row.team;
@@ -660,7 +660,7 @@ var newCsvPromise = function(players) {
 	});
 };
 
-// worth noting that rookies don't appear on the sheet
+// worth noting that rookies don't appear on the sheet so we need to manually put them in
 var newSheetsPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
