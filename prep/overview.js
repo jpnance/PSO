@@ -1,4 +1,8 @@
 /*
+ * For PSO, you first need to download a huge JSON file with Sleeper projections and then convert it into a CSV file. Follow the directions in csv.js and then do `node csv > pso.csv`.
+ */
+
+/*
  * For Colbys, you first need to download a CSV with projction data.
  *
  * 1. Go to Fantrax
@@ -116,6 +120,10 @@ process.argv.forEach(function(value, index, array) {
 				parameters.query.ovr = parseFloat(pair[1]);
 				break;
 
+			case 'rookies':
+				parameters.query.rookies = true;
+				break;
+
 			case 'score':
 				parameters.query.score = parseFloat(pair[1]);
 				break;
@@ -168,170 +176,170 @@ var displayPlayers = function(players) {
 	var columnPadding = 1;
 
 	// pso
-	/*
-	var headings = [
-		{
-			path: 'owner',
-			label: '',
-			padLength: 14
-		},
-		{
-			path: 'name',
-			label: '',
-			padLength: 24
-		},
-		{
-			path: 'team',
-			label: '',
-			padLength: 8
-		},
-		{
-			path: 'positions',
-			label: '',
-			padLength: 11
-		},
-		{
-			path: 'contract',
-			label: '',
-			styler: contractStyler,
-			padLength: 6
-		},
-		{
-			path: 'salary',
-			label: '',
-			styler: salaryStyler,
-			padLength: 4
-		},
-		{
-			path: 'fantraxProjections.raw.fpts',
-			label: 'FPts',
-			padLength: 8
-		},
-		{
-			path: 'bye',
-			label: '',
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.ratingSum',
-			label: '',
-			styler: ratingStyler,
-			padLength: 3
-		},
-	];
-	*/
-
-	// colbys
-	var headings = [
-		{
-			path: 'owner',
-			label: '',
-			padLength: 12
-		},
-		{
-			path: 'name',
-			label: '',
-			padLength: 24
-		},
-		{
-			path: 'team',
-			label: '',
-			padLength: 4
-		},
-		{
-			path: 'positions',
-			label: '',
-			padLength: 11
-		},
-		{
-			path: 'contract',
-			label: '',
-			styler: contractStyler,
-			padLength: 6
-		},
-		{
-			path: 'salary',
-			label: '',
-			styler: salaryStyler,
-			padLength: 4
-		},
-		{
-			path: 'fantraxProjections.gamesPlayed',
-			label: 'GP',
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.fg%',
-			label: 'FG%',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.3pm',
-			label: '3PM',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.ftm',
-			label: 'FTM',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.ft%',
-			label: 'FT%',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.pts',
-			label: 'PTS',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.reb',
-			label: 'REB',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.ast',
-			label: 'AST',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.stl',
-			label: 'STL',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.blk',
-			label: 'BLK',
-			styler: ratingStyler,
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.rating.to',
-			label: 'TO',
-			styler: ratingStyler,
-			padLength: 2
-		},
-		{
-			path: 'fantraxProjections.ratingSum',
-			label: '',
-			padLength: 3
-		},
-		{
-			path: 'fantraxProjections.score',
-			label: '',
-			styler: scoreStyler,
-			padLength: 5
-		}
-	];
+	if (parameters.site == 'pso') {
+		var headings = [
+			{
+				path: 'owner',
+				label: '',
+				padLength: 14
+			},
+			{
+				path: 'name',
+				label: '',
+				padLength: 24
+			},
+			{
+				path: 'team',
+				label: '',
+				padLength: 8
+			},
+			{
+				path: 'positions',
+				label: '',
+				padLength: 11
+			},
+			{
+				path: 'contract',
+				label: '',
+				styler: contractStyler,
+				padLength: 6
+			},
+			{
+				path: 'salary',
+				label: '',
+				styler: salaryStyler,
+				padLength: 4
+			},
+			{
+				path: 'fantraxProjections.raw.fpts',
+				label: '',
+				padLength: 8
+			},
+			{
+				path: 'experience',
+				label: '',
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.ratingSum',
+				label: '',
+				styler: ratingStyler,
+				padLength: 3
+			},
+		];
+	}
+	else if (parameters.site == 'colbys') {
+		var headings = [
+			{
+				path: 'owner',
+				label: '',
+				padLength: 12
+			},
+			{
+				path: 'name',
+				label: '',
+				padLength: 24
+			},
+			{
+				path: 'team',
+				label: '',
+				padLength: 4
+			},
+			{
+				path: 'positions',
+				label: '',
+				padLength: 11
+			},
+			{
+				path: 'contract',
+				label: '',
+				styler: contractStyler,
+				padLength: 6
+			},
+			{
+				path: 'salary',
+				label: '',
+				styler: salaryStyler,
+				padLength: 4
+			},
+			{
+				path: 'fantraxProjections.gamesPlayed',
+				label: 'GP',
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.fg%',
+				label: 'FG%',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.3pm',
+				label: '3PM',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.ftm',
+				label: 'FTM',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.ft%',
+				label: 'FT%',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.pts',
+				label: 'PTS',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.reb',
+				label: 'REB',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.ast',
+				label: 'AST',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.stl',
+				label: 'STL',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.blk',
+				label: 'BLK',
+				styler: ratingStyler,
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.rating.to',
+				label: 'TO',
+				styler: ratingStyler,
+				padLength: 2
+			},
+			{
+				path: 'fantraxProjections.ratingSum',
+				label: '',
+				padLength: 3
+			},
+			{
+				path: 'fantraxProjections.score',
+				label: '',
+				styler: scoreStyler,
+				padLength: 5
+			}
+		];
+	}
 
 	players.forEach((player, i) => {
 		var outputString = '';
@@ -439,25 +447,110 @@ var filterUsingQuery = function(player) {
 		else if (queryKey == 'score' && player.fantraxProjections.score < query.score) {
 			return false;
 		}
+		else if (queryKey == 'rookies' && player.experience > 0) {
+			return false;
+		}
 	}
 
 	return true;
 };
 
-var newFantraxPromise = function(players) {
+var newCsvPromise = function(players) {
 	return new Promise(function(resolve, reject) {
-		/*
-		request
-			.get(siteData[parameters.site].fantraxLink)
-			.set('Cookie', process.env.FANTRAX_COOKIES)
-			.then(response => {
-				var csvLines = response.body.toString();
-
-		fs.readFile('./pso.csv', function(error, data) {
+		if (parameters.site == 'pso') {
+			fs.readFile('./pso.csv', function(error, data) {
 				var csvLines = data.toString();
-		*/
 
-		fs.readFile('./colbys.csv', function(error, data) {
+				csvLines.split(/\n/).forEach((csvLine, i) => {
+					if (i == 0) {
+						return;
+					}
+
+					// 0 => "Sleeper ID"
+					// 1 => "First Name"
+					// 2 => "Last Name"
+					// 3 => "Team"
+					// 4 => "Position"
+					// 5 => "Experience"
+					// 6 => "2QB Dynasty ADP"
+					// 7 => "IDP ADP"
+					// 8 => "Pass Yards"
+					// 9 => "Pass TDs"
+					// 10 => "Pass INTs"
+					// 11 => "Pass 2PCs"
+					// 12 => "Rush Yards"
+					// 13 => "Rush TDs"
+					// 14 => "Receiving Yards"
+					// 15 => "Receiving TDs"
+					// 16 => "Fumbles Lost"
+					// 17 => "Solo Tackles"
+					// 18 => "Assisted Tackles"
+					// 19 => "Sacks"
+					// 20 => "INTs"
+					// 21 => "Fumbles Forced"
+					// 22 => "Fumbles Recovered"
+					// 23 => "INT TDs"
+					// 24 => "PSO Points"
+
+					var fields = csvLine.split(/,/);
+
+					if (fields.length == 1) {
+						return;
+					}
+
+					var row = {
+						name: `${fields[1]} ${fields[2]}`,
+						team: fields[3],
+						experience: parseInt(fields[5]),
+						positions: fields[4].split(/\//),
+						score: parseFloat(fields[24]),
+					};
+
+					var id = nameToId(row.name);
+
+					if (row.experience == 0) {
+						player = {
+							id: id,
+							owner: undefined,
+							name: row.name,
+							positions: row.positions,
+							start: 'FA',
+							end: 2024,
+							salary: 0,
+							ufa: true,
+							contract: 'UFA'
+						};
+
+						players.push(player);
+					}
+
+					var player = players.find(player => player.id == id);
+
+					if (player && row.positions.some((position) => player.positions.indexOf(position) > -1)) {
+						player.team = row.team;
+						player.experience = row.experience;
+						player.positions = row.positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
+
+						if (player.fantraxProjections) {
+							//console.log('Dirty data with', player.name, '(' + player.team + ')');
+						}
+						else {
+							player.fantraxProjections = { raw: {}, perGame: {}, rating: {} };
+						}
+
+						player.fantraxProjections.ratingSum = 0;
+						player.fantraxProjections.raw.fpts = row.score;
+						player.fantraxProjections.perGame.fpts = row.score / 17;
+						player.fantraxProjections.rating.fpts = perGameAverageToRating('fpts', player.fantraxProjections.perGame.fpts);
+						player.fantraxProjections.ratingSum += player.fantraxProjections.rating.fpts;
+					}
+				});
+
+				resolve(players);
+			});
+		}
+		else if (parameters.site == 'colbys') {
+			fs.readFile('./colbys.csv', function(error, data) {
 				var csvLines = data.toString();
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
@@ -529,16 +622,6 @@ var newFantraxPromise = function(players) {
 							player.fantraxProjections = { raw: {}, perGame: {}, rating: {} };
 						}
 
-						/*
-						// pso
-						player.bye = parseInt(fields[13]);
-						player.fantraxProjections.ratingSum = 0;
-						player.fantraxProjections.raw.fpts = parseFloat(fields[9]);
-						player.fantraxProjections.perGame.fpts = parseFloat(fields[10]);
-						player.fantraxProjections.rating.fpts = perGameAverageToRating('fpts', player.fantraxProjections.perGame.fpts);
-						player.fantraxProjections.ratingSum += player.fantraxProjections.rating.fpts;
-						*/
-
 						// colbys
 						player.fantraxProjections.gamesPlayed = row.gamesPlayed;
 
@@ -574,9 +657,10 @@ var newFantraxPromise = function(players) {
 				resolve(players);
 			});
 		}
-	)
+	});
 };
 
+// worth noting that rookies don't appear on the sheet
 var newSheetsPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {
 		request
@@ -595,6 +679,7 @@ var newSheetsPromise = function(fantraxId) {
 
 				if (parameters.site == 'pso') {
 					rows.shift();
+					rows.pop();
 				}
 
 				rows.shift();
@@ -610,14 +695,14 @@ var newSheetsPromise = function(fantraxId) {
 						salary: row[5] ? parseInt(row[5].substring(1)) : null
 					};
 
-					if (player.end == '2023') {
+					if (player.end == '2024') {
 						player.salary = 0;
 
-						if (player.start == '2022' || player.start == '2021') {
+						if (player.start == '2023' || player.start == '2022') {
 							player.rfa = true;
 							player.contract = 'RFA';
 						}
-						else if (player.start != '2024') {
+						else if (player.start != '2025') {
 							player.ufa = true;
 							player.contract = 'UFA';
 
@@ -627,7 +712,7 @@ var newSheetsPromise = function(fantraxId) {
 
 					if (!player.end) {
 						player.end = undefined;
-						player.contract = '24/?';
+						player.contract = '25/?';
 					}
 
 					if (!player.contract && player.start && player.end) {
@@ -751,7 +836,7 @@ var sortPlayers = function(a, b) {
 };
 
 newSheetsPromise().then(players => {
-	newFantraxPromise(players).then(players => {
+	newCsvPromise(players).then(players => {
 		var filteredPlayers = players.filter(filterUsingQuery);
 
 		filteredPlayers.sort(sortPlayers);

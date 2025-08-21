@@ -1,4 +1,8 @@
-// get sleeper-projections.json from https://api.sleeper.com/projections/nfl/2022/?season_type=regular&position[]=DB&position[]=DL&position[]=K&position[]=LB&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=LB&position[]=DB&position[]=DL&order_by=pts_dynasty_2qb
+// change {SEASON} to the current season in the command below
+//
+// from the current directory:
+// curl "https://api.sleeper.com/projections/nfl/{SEASON}/?season_type=regular&position[]=DB&position[]=DL&position[]=K&position[]=LB&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=LB&position[]=DB&position[]=DL&order_by=pts_dynasty_2qb" > ../public/data/sleeper-projections.json
+
 const projections = require('../public/data/sleeper-projections.json');
 
 const drillDown = function(player, path) {
@@ -25,6 +29,13 @@ const fields = {
 	team: {
 		fieldName: 'player.team'
 	},
+	fantasy_positions: {
+		fieldName: 'player.fantasy_positions',
+		sanitize: (value) => {
+			return value.map((position) => positionMap[position] || position).join('/');
+		}
+	},
+	/*
 	position: {
 		fieldName: 'player.position',
 		sanitize: (value) => {
@@ -33,6 +44,7 @@ const fields = {
 			return positionMap[uppercaseValue] || uppercaseValue;
 		}
 	},
+	*/
 	years_exp: {
 		fieldName: 'player.years_exp'
 	},
