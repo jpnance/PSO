@@ -23,9 +23,24 @@ var template = [
 ];
 
 var pods = {
-	red: [PSO.franchiseIds['Schexes'], PSO.franchiseIds['Keyon'], PSO.franchiseIds['Quinn'], PSO.franchiseIds['Patrick']],
-	green: [PSO.franchiseIds['Mitch'], PSO.franchiseIds['Koci/Mueller'], PSO.franchiseIds['Anthony'], PSO.franchiseIds['Luke']],
-	blue: [PSO.franchiseIds['Brett'], PSO.franchiseIds['Jason'], PSO.franchiseIds['Mike'], PSO.franchiseIds['Justin']]
+	red: [
+		PSO.franchiseIds['Schexes'],
+		PSO.franchiseIds['Keyon'],
+		PSO.franchiseIds['Quinn'],
+		PSO.franchiseIds['Patrick']
+	],
+	green: [
+		PSO.franchiseIds['Mitch'],
+		PSO.franchiseIds['Koci/Mueller'],
+		PSO.franchiseIds['Anthony'],
+		PSO.franchiseIds['Luke']
+	],
+	blue: [
+		PSO.franchiseIds['Brett'],
+		PSO.franchiseIds['Jason'],
+		PSO.franchiseIds['Mike'],
+		PSO.franchiseIds['Justin']
+	]
 };
 
 var teamIds = ['--', pods.red[0], pods.red[1], pods.red[2], pods.red[3], pods.green[0], pods.blue[0], pods.blue[1], pods.green[1], pods.green[2], pods.blue[2], pods.blue[3], pods.green[3]];
