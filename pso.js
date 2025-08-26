@@ -13,6 +13,21 @@ module.exports.franchises = {
 	12: 'Mitch'
 };
 
+module.exports.franchiseIds = {
+	'Patrick': 1,
+	'Koci/Mueller': 2,
+	'Luke': 3,
+	'Justin': 4,
+	'Mike': 5,
+	'Keyon': 6,
+	'Brett': 7,
+	'Jason': 8,
+	'Schexes': 9,
+	'Anthony': 10,
+	'Quinn': 11,
+	'Mitch': 12
+};
+
 module.exports.regimes = {
 	'Patrick': 'Patrick',
 	'Koci/Mueller': 'Koci/Mueller',
@@ -50,6 +65,7 @@ module.exports.regimes = {
 };
 
 module.exports.sleeperLeagueIds = {
+	2025: '1260741738369130496',
 	2024: '1127724654778601472',
 	2023: '992120664913969152',
 	2022: '817129464579350528',
@@ -105,6 +121,7 @@ module.exports.sheetsBudgetCells = {
 
 module.exports.franchiseNames = {
 	1: {
+		2025: 'Patrick',
 		2024: 'Patrick',
 		2023: 'Patrick',
 		2022: 'Patrick',
@@ -124,6 +141,7 @@ module.exports.franchiseNames = {
 		2008: 'Patrick'
 	},
 	2: {
+		2025: 'Koci/Mueller',
 		2024: 'Koci/Mueller',
 		2023: 'Koci/Mueller',
 		2022: 'Koci/Mueller',
@@ -143,6 +161,7 @@ module.exports.franchiseNames = {
 		2008: 'Koci'
 	},
 	3: {
+		2025: 'Luke',
 		2024: 'Luke',
 		2023: 'Luke',
 		2022: 'Luke',
@@ -162,6 +181,7 @@ module.exports.franchiseNames = {
 		2008: 'Syed'
 	},
 	4: {
+		2025: 'Justin',
 		2024: 'Justin',
 		2023: 'Justin',
 		2022: 'Justin',
@@ -181,6 +201,7 @@ module.exports.franchiseNames = {
 		2008: 'John'
 	},
 	5: {
+		2025: 'Mike',
 		2024: 'Mike',
 		2023: 'Mike',
 		2022: 'Trevor',
@@ -200,6 +221,7 @@ module.exports.franchiseNames = {
 		2008: 'Trevor'
 	},
 	6: {
+		2025: 'Keyon',
 		2024: 'Keyon',
 		2023: 'Keyon',
 		2022: 'Keyon',
@@ -219,6 +241,7 @@ module.exports.franchiseNames = {
 		2008: 'Keyon'
 	},
 	7: {
+		2025: 'Brett',
 		2024: 'Brett',
 		2023: 'Brett',
 		2022: 'Brett',
@@ -238,6 +261,7 @@ module.exports.franchiseNames = {
 		2008: 'Jeff'
 	},
 	8: {
+		2025: 'Jason',
 		2024: 'Jason',
 		2023: 'Jason',
 		2022: 'Jason',
@@ -257,6 +281,7 @@ module.exports.franchiseNames = {
 		2008: 'Daniel'
 	},
 	9: {
+		2025: 'Schexes',
 		2024: 'Schexes',
 		2023: 'James/Charles',
 		2022: 'James/Charles',
@@ -276,6 +301,7 @@ module.exports.franchiseNames = {
 		2008: 'James'
 	},
 	10: {
+		2025: 'Anthony',
 		2024: 'Anthony',
 		2023: 'Schex',
 		2022: 'Schex',
@@ -295,6 +321,7 @@ module.exports.franchiseNames = {
 		2008: 'Schexes',
 	},
 	11: {
+		2025: 'Quinn',
 		2024: 'Quinn',
 		2023: 'Quinn',
 		2022: 'Quinn',
@@ -310,6 +337,7 @@ module.exports.franchiseNames = {
 		2012: 'Charles'
 	},
 	12: {
+		2025: 'Mitch',
 		2024: 'Mitch',
 		2023: 'Mitch',
 		2022: 'Mitch/Mike',
