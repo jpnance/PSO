@@ -14,6 +14,9 @@ pso-data:
 pso-results:
 	docker exec -it -w /app pso-cron sh results.sh
 
+pso-schedule:
+	docker exec -it -w /app pso-cron sh -c "cd scheduler && node index.js"
+
 auction-links:
 	docker exec -it -w /app pso-cron sh -c "cd auction && node links.js"
 
