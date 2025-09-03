@@ -211,12 +211,12 @@ newByeWeeksPromise()
 					}
 					else {
 						if (Math.random() > 0.5) {
-							franchiseResults[franchise.name][i] = 'W*';
-							franchiseResults[opponent.name][i] = 'L*';
+							franchiseResults[franchise.name][i] = 'Wc';
+							franchiseResults[opponent.name][i] = 'Lc';
 						}
 						else {
-							franchiseResults[franchise.name][i] = 'L*';
-							franchiseResults[opponent.name][i] = 'W*';
+							franchiseResults[franchise.name][i] = 'Lc';
+							franchiseResults[opponent.name][i] = 'Wc';
 						}
 					}
 				});
