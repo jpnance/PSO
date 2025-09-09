@@ -14,6 +14,9 @@ pso-data:
 pso-results:
 	docker exec -it -w /app pso-cron sh results.sh
 
+pso-rookies-compute:
+	docker exec -it -w /app pso-cron sh -c "cd rookies && node compute.js"
+
 pso-schedule:
 	docker exec -it -w /app pso-cron sh -c "cd scheduler && node index.js"
 
