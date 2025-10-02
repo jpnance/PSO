@@ -30,10 +30,10 @@ pso-auction-demo-data:
 	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=pso demo"
 
 colbys-auction-render:
-	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys season=2023 render"
+	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys season=2024 render"
 
 colbys-auction-demo-data:
-	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys season=2023 demo"
+	docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys season=2024 demo"
 
 pso-positions:
 	docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=pso"
