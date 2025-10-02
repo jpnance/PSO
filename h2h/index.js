@@ -34,8 +34,8 @@ Object.values(PSO.regimes).forEach(firstFranchise => {
 	});
 });
 
-Game.find({ type: { '$in': ['semifinal', 'thirdPlace', 'championship' ] } }).sort({ season: 1, week: 1 }).then(games => {
-//Game.find({ type: 'regular' }).sort({ season: 1, week: 1 }).then(games => {
+//Game.find({ type: { '$in': ['semifinal', 'thirdPlace', 'championship' ] } }).sort({ season: 1, week: 1 }).then(games => {
+Game.find({ type: 'regular' }).sort({ season: 1, week: 1 }).then(games => {
 	games.forEach(game => {
 		if (game.away.score != 0 || game.home.score != 0) {
 			if (game.away.score > game.home.score) {
