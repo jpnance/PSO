@@ -558,7 +558,7 @@ var newCsvPromise = function(players) {
 						return;
 					}
 
-					// "ID","Player","Team","Position","RkOv","Status","Age","Opponent","Salary","Contract","Score","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
+					// "ID","Player","Team","Position","RkOv","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
 
 					// 0 => "ID"
 					// 1 => "Player"
@@ -571,17 +571,19 @@ var newCsvPromise = function(players) {
 					// 8 => "Salary"
 					// 9 => "Contract"
 					// 10 => "Score"
-					// 11 => "GP"
-					// 12 => "FG%"
-					// 13 => "3PTM"
-					// 14 => "FTM"
-					// 15 => "FT%"
-					// 16 => "PTS"
-					// 17 => "REB"
-					// 18 => "AST"
-					// 19 => "ST"
-					// 20 => "BLK"
-					// 21 => "TO"
+					// 11 => "%D"
+					// 12 => "ADP"
+					// 13 => "GP"
+					// 14 => "FG%"
+					// 15 => "3PTM"
+					// 16 => "FTM"
+					// 17 => "FT%"
+					// 18 => "PTS"
+					// 19 => "REB"
+					// 20 => "AST"
+					// 21 => "ST"
+					// 22 => "BLK"
+					// 23 => "TO"
 
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
@@ -594,17 +596,17 @@ var newCsvPromise = function(players) {
 						team: fields[2],
 						positions: fields[3].split(/,/),
 						score: parseFloat(fields[10]),
-						gamesPlayed: parseInt(fields[11]),
-						'fg%': parseFloat(fields[12]),
-						'3pm': parseInt(fields[13]),
-						ftm: parseInt(fields[14]),
-						'ft%': parseFloat(fields[15]),
-						pts: parseInt(fields[16]),
-						reb: parseInt(fields[17]),
-						ast: parseInt(fields[18]),
-						stl: parseInt(fields[19]),
-						blk: parseInt(fields[20]),
-						to: parseInt(fields[21])
+						gamesPlayed: parseInt(fields[13]),
+						'fg%': parseFloat(fields[14]),
+						'3pm': parseInt(fields[15]),
+						ftm: parseInt(fields[16]),
+						'ft%': parseFloat(fields[17]),
+						pts: parseInt(fields[18]),
+						reb: parseInt(fields[19]),
+						ast: parseInt(fields[20]),
+						stl: parseInt(fields[21]),
+						blk: parseInt(fields[22]),
+						to: parseInt(fields[23])
 					};
 
 					var id = nameToId(row.name);
