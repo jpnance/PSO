@@ -125,7 +125,7 @@ module.exports.filterByConditions = function(request, response) {
 	Object.keys(PSO.franchises).forEach(franchiseId => {
 		ownerSummary[franchiseId] = {
 			decision: 0,
-			firstPick: 0,
+			fifthPlace: 0,
 			in: 0,
 			losses: 0,
 			nineWinMisses: 0,
@@ -176,7 +176,7 @@ module.exports.filterByConditions = function(request, response) {
 			}
 
 			if (i == 4) {
-				ownerSummary[standing.id].firstPick++;
+				ownerSummary[standing.id].fifthPlace++;
 			}
 
 			ownerSummary[standing.id].finish += (i + 1);
@@ -196,7 +196,7 @@ module.exports.filterByConditions = function(request, response) {
 		var inPct = summary.in / filteredSimulations.length;
 		var outPct = summary.out / filteredSimulations.length;
 		var decisionPct = summary.decision / filteredSimulations.length;
-		var firstPickPct = summary.firstPick / filteredSimulations.length;
+		var fifthPlacePct = summary.fifthPlace / filteredSimulations.length;
 		var averageFinish = summary.finish / filteredSimulations.length;
 		var nineWinMissRate = (summary.nineWinMisses > 0) ? (summary.nineWinMisses / summary.nineWins) : '--';
 		var tenWinMissRate = (summary.tenWinMisses > 0) ? (summary.tenWinMisses / summary.tenWins) : '--';
@@ -252,7 +252,7 @@ module.exports.filterByConditions = function(request, response) {
 			},
 			playoffs: inPct,
 			decision: decisionPct,
-			firstPick: firstPickPct,
+			fifthPlace: fifthPlacePct,
 			avgFinish: averageFinish,
 			nineAndOut: nineWinMissRate,
 			tenAndOut: tenWinMissRate,

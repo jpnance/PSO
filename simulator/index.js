@@ -789,7 +789,7 @@ function simulate(trials) {
 						conditionsMet = false;
 					}
 				}
-				else if (untilCondition.condition == 'firstPick') {
+				else if (untilCondition.condition == 'fifthPlace') {
 					if (standings[4].id != untilCondition.owner) {
 						conditionsMet = false;
 					}
