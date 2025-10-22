@@ -11,8 +11,10 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 
+var week = parseInt(process.argv[2]);
+
 Game.find({ season: process.env.SEASON }).sort({ week: 1 }).then(games => {
-	var thisWeeksGames = games.filter(game => game.week == 8);
+	var thisWeeksGames = games.filter(game => game.week == week);
 
 	thisWeeksGames.forEach(game => {
 		var opponents = ['away', 'home'].map(key => {
