@@ -19,9 +19,11 @@ Game.find({ season: process.env.SEASON }).sort({ week: 1 }).then(games => {
 	thisWeeksGames.forEach(game => {
 		var opponents = ['away', 'home'].map(key => {
 			var playoffsData = percentagesData[game[key].franchiseId]['playoffs'];
+			var decisionData = percentagesData[game[key].franchiseId]['decision'];
+
 			var tripleSlash = niceRate(playoffsData.neutral.rate) + '/' + niceRate(playoffsData.withWin.rate) + '/' + niceRate(playoffsData.withLoss.rate);
 
-			var interestLevel = playoffsData.interestLevel;
+			var interestLevel = playoffsData.interestLevel + decisionData.interestLevel;
 
 			return {
 				name: game[key].name,
