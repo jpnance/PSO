@@ -1,6 +1,6 @@
 #!/bin/bash
 
-owners=("Keyon:165.61,22.48" "Schexes:157.33,17.69" "Luke:148.32,23.75" "Koci/Mueller:157.12,39.10")
+owners=("Quinn:160.77,25.84" "Schexes:155.61,21.07" "Koci/Mueller:156.05,22.33" "Jason:144.13,28.22")
 
 for i in $(seq 0 $((${#owners[@]} - 1))); do
 	for j in $(seq $i $((${#owners[@]} - 1))); do
