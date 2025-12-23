@@ -356,3 +356,33 @@ module.exports.franchiseNames = {
 		2012: 'Mitch'
 	}
 };
+
+module.exports.getWeek = function(now = new Date(), seasonYear = Number(process.env.SEASON)) {
+	var laborDay = new Date(seasonYear, 8, 1);
+
+	while (laborDay.getDay() !== 1) {
+		laborDay.setDate(laborDay.getDate() + 1);
+	}
+
+	var firstWednesday = new Date(laborDay);
+
+	while (firstWednesday.getDay() !== 3) {
+		firstWednesday.setDate(firstWednesday.getDate() + 1);
+	}
+
+	var days = Math.floor((now - firstWednesday) / 86400000);
+
+	var week;
+
+	if (days < 0) {
+		week = 1;
+	} else if (days < 7) {
+		week = 1;
+	} else {
+		week = Math.floor(days / 7) + 1;
+	}
+
+	week = Math.min(week, 17);
+
+	return week;
+}
