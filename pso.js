@@ -29,6 +29,7 @@ module.exports.franchiseIds = {
 };
 
 module.exports.regimes = {
+	// current franchises and which regimes they map to
 	'Patrick': 'Patrick',
 	'Koci/Mueller': 'Koci/Mueller',
 	'Luke': 'Luke',
@@ -42,15 +43,18 @@ module.exports.regimes = {
 	'Quinn': 'Quinn',
 	'Mitch': 'Mitch',
 
+	// defunct franchise names that map to their own regimes
+	'Charles': 'Charles',
 	'Daniel': 'Daniel',
 	'James': 'James',
 	'Jeff': 'Jeff',
 	'John': 'John',
+	'Schex': 'Schex',
 	'Syed': 'Syed',
 	'Terence': 'Terence',
 	'Trevor': 'Trevor',
 
-	'Charles': 'Charles',
+	// defunct franchise names that map to something besides their own regime
 	'Brett/Luke': 'Luke',
 	'Jake/Luke': 'Luke',
 	'James/Charles': 'Charles',
@@ -58,7 +62,6 @@ module.exports.regimes = {
 	'Koci': 'Koci/Mueller',
 	'Mitch/Mike': 'Mitch',
 	'Pat/Quinn': 'Patrick',
-	'Schex': 'Schex',
 	'Schex/Jeff': 'Schex',
 	'Syed/Kuan': 'Syed',
 	'Syed/Terence': 'Syed'
