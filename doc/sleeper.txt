@@ -10,3 +10,41 @@ August 2022
 October 2022
 * If it becomes useful, it seems pretty easy to write some GraphQL queries to use the watchlist feature
 * I'm kind of imagining that all the other cool stuff I want access to is also a GraphQL query but it currently requires too much effort to fire up the Android emulator setup to scrape again.
+
+December 2025
+* Cracked the GraphQL automation nut. No Android emulator needed; everything works from the web.
+* Authentication: JWT token in Authorization header (no "Bearer" prefix). Find it in request headers when logged into sleeper.com. Lasts about a year.
+* GraphQL introspection seems to be disabled, so mutations must be discovered by observing network traffic.
+* The magic mutation is league_create_transaction with type: "commissioner". It handles all roster changes: FA pickups, drops, trades, multi-team trades, everything. POST to https://sleeper.com/graphql with Content-Type: application/json and the Authorization header.
+* The mutation takes four arrays that work together:
+    k_adds: player IDs being added to rosters (strings)
+    v_adds: which roster IDs receive those players (ints)
+    k_drops: player IDs being removed from rosters (strings)
+    v_drops: which roster IDs lose those players (ints)
+* Examples:
+    FA pickup (add 6744, drop 956, both roster 1): k_adds:["6744"], v_adds:[1], k_drops:["956"], v_drops:[1]
+    Drop only (drop 89 from roster 6): k_adds:[], v_adds:[], k_drops:["89"], v_drops:[6]
+    Add only (add 956 to roster 2): k_adds:["956"], v_adds:[2], k_drops:[], v_drops:[]
+    Trade (956 from roster 2 to 3): k_adds:["956"], v_adds:[3], k_drops:["956"], v_drops:[2]
+    Multi-player (956 and 8577 from 3 to 2): k_adds:["956","8577"], v_adds:[2,2], k_drops:["956","8577"], v_drops:[3,3]
+    Three-team (956 from 2 to 3, 899 from 4 to 2): k_adds:["956","899"], v_adds:[3,2], k_drops:["956","899"], v_drops:[2,4]
+* Full example (move player 956 from roster 2 to roster 3):
+    fetch('https://sleeper.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': '<jwt_token>'
+      },
+      body: JSON.stringify({
+        operationName: 'league_create_transaction',
+        variables: {
+          k_adds: ['956'],
+          k_drops: ['956'],
+          v_adds: [3],
+          v_drops: [2]
+        },
+        query: 'mutation league_create_transaction($k_adds: [String], $v_adds: [Int], $k_drops: [String], $v_drops: [Int]) { league_create_transaction(league_id: "<league_id>", type: "commissioner", k_adds: $k_adds, v_adds: $v_adds, k_drops: $k_drops, v_drops: $v_drops) { status transaction_id adds drops } }'
+      })
+    })
+* There's also a create_message mutation for posting to league chat. Takes parent_id (league ID), parent_type ("league"), client_id (any UUID), and text.
+* Other mutations exist (propose_trade, accept_trade, reject_trade, process_transaction, league_create_transaction with type "free_agent") but they require the caller to be part of the transaction, so they're not useful for commissioner automation. The type: "commissioner" approach handles everything.
