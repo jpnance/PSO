@@ -5,6 +5,7 @@ node_modules/
 
 data/colbys.xml
 data/data.xml
+data/scripts/trade-history.json
 
 public/auction/*
 public/data/*
