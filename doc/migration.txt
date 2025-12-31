@@ -42,4 +42,11 @@ Future Work
   spreadsheet ("2012 Expansion" tab) but isn't imported by seedPicks.js since
   it's not a standard rookie draft. Consider preserving as static history.
 
+- Cuts history: The "Cuts" tab has 3,500+ historical player cuts with buyout
+  amounts. Would require fuzzy player matching similar to draft selections.
+  Creates fa-cut transactions for complete transaction history.
+
+- Historical spreadsheet snapshots: Google Sheets revision history could be
+  downloaded via Drive API and parsed to reconstruct historical state at
+  specific points in time. Complex and may not be worth the effort.
 
