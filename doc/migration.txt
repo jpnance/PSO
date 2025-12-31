@@ -13,6 +13,17 @@ Spreadsheet Migration Steps
 4. Seed budgets from spreadsheet:
    docker compose run --rm web node data/scripts/seedBudgets.js --clear
 
-5. TODO: Seed picks from spreadsheet
+5. Seed picks from spreadsheet:
+   docker compose run --rm web node data/scripts/seedPicks.js --clear
 
 6. TODO: Import trade history from trade-history.json
+
+
+Future Work
+-----------
+- 2012 Expansion Draft: The league expanded from 10 to 12 franchises in 2012.
+  Quinn and Mitch joined via an expansion draft where they selected existing
+  players under contract and RFA rights. This data exists in the "Past Drafts"
+  spreadsheet ("2012 Expansion" tab) but isn't imported by seedPicks.js since
+  it's not a standard rookie draft. Consider preserving as static history.
+
