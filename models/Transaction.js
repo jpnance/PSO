@@ -69,6 +69,9 @@ var transactionSchema = new Schema({
 		required: true
 	},
 
+	// Optional notes for special circumstances (conditional picks, corrections, etc.)
+	notes: { type: String },
+
 	// Trade fields
 	wordpressTradeId: { type: Number },
 	parties: [tradePartySchema],

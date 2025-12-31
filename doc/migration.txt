@@ -50,3 +50,7 @@ Future Work
   downloaded via Drive API and parsed to reconstruct historical state at
   specific points in time. Complex and may not be worth the effort.
 
+
+- Fix trades #600 and #688: Cash was entered into the wrong year in the
+  spreadsheet. Need to update these trades in the database to match the
+  spreadsheet (which is canonical), and add notes explaining the discrepancy.
