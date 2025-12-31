@@ -24,6 +24,15 @@ Spreadsheet Migration Steps
 7. Import trade history (interactive - prompts for ambiguous player matches):
    docker compose run --rm -it web node data/scripts/seedTrades.js --clear
 
+8. Parse draft selections (generates draft-selections.json for review):
+   node data/scripts/parseDraftSelections.js
+   
+   Review draft-selections.json and fill in sleeperId for unmatched players.
+   Set sleeperId to "historical" for players not in Sleeper data.
+
+9. Import draft selections:
+   docker compose run --rm web node data/scripts/seedDraftSelections.js --clear
+
 
 Future Work
 -----------
@@ -32,4 +41,5 @@ Future Work
   players under contract and RFA rights. This data exists in the "Past Drafts"
   spreadsheet ("2012 Expansion" tab) but isn't imported by seedPicks.js since
   it's not a standard rookie draft. Consider preserving as static history.
+
 

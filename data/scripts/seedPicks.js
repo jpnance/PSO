@@ -236,13 +236,18 @@ async function seed() {
 
 		// Create pick
 		try {
-			await Pick.create({
+			var pickDoc = {
 				round: p.round,
 				season: p.season,
 				originalFranchiseId: originalFranchiseId,
 				currentFranchiseId: currentFranchiseId,
 				status: p.status
-			});
+			};
+			// Only set pickNumber for past drafts where it's known
+			if (!isNaN(p.pickNumber)) {
+				pickDoc.pickNumber = p.pickNumber;
+			}
+			await Pick.create(pickDoc);
 			created++;
 		}
 		catch (err) {
