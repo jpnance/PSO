@@ -16,7 +16,13 @@ Spreadsheet Migration Steps
 5. Seed picks from spreadsheet:
    docker compose run --rm web node data/scripts/seedPicks.js --clear
 
-6. TODO: Import trade history from trade-history.json
+6. Parse trade history from WordPress (regenerates trade-history.json):
+   node data/scripts/parseTradeHistory.js
+   
+   (Can also run in docker if needed, but requires network access)
+
+7. Import trade history (interactive - prompts for ambiguous player matches):
+   docker compose run --rm -it web node data/scripts/seedTrades.js --clear
 
 
 Future Work
