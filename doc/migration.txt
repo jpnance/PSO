@@ -1,0 +1,15 @@
+Spreadsheet Migration Steps
+===========================
+
+1. Seed franchises, people, regimes:
+   docker compose run --rm web node data/scripts/seedEntities.js --clear
+
+2. TODO: Seed players from Sleeper
+
+3. TODO: Seed current rosters/contracts from spreadsheet
+
+4. TODO: Seed current budgets from spreadsheet
+
+5. TODO: Seed picks from spreadsheet
+
+6. TODO: Import trade history from trade-history.json
