@@ -1,0 +1,232 @@
+var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
+var mongoose = require('mongoose');
+var request = require('superagent');
+var readline = require('readline');
+
+var Contract = require('../../models/Contract');
+var Franchise = require('../../models/Franchise');
+var Player = require('../../models/Player');
+var PSO = require('../../pso.js');
+
+var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
+
+var sheetLink = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered';
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+function prompt(question) {
+	return new Promise(function(resolve) {
+		rl.question(question, resolve);
+	});
+}
+
+// Map owner display names to sleeperRosterId (1-12)
+function getSleeperRosterId(ownerName) {
+	return PSO.franchiseIds[ownerName];
+}
+
+// Match player name to Sleeper ID, with interactive disambiguation
+// rosterInfo contains context from the spreadsheet (owner, salary, etc.)
+async function findSleeperPlayerId(name, positions, rosterInfo) {
+	var searchName = name.replace(/[\. '-]/g, '').toLowerCase();
+
+	var matches = sleeperData.filter(function(p) {
+		return p.search_full_name === searchName &&
+			p.fantasy_positions &&
+			p.fantasy_positions.includes(positions[0]);
+	});
+
+	if (matches.length === 1) {
+		return matches[0].player_id;
+	}
+
+	if (matches.length === 0) {
+		// Try broader search without position filter
+		matches = sleeperData.filter(function(p) {
+			return p.search_full_name === searchName;
+		});
+	}
+
+	// Show context from spreadsheet
+	var sheetContext = [
+		'Owner: ' + rosterInfo.owner,
+		rosterInfo.salary ? '$' + rosterInfo.salary : null,
+		rosterInfo.start && rosterInfo.end ? rosterInfo.start + '-' + rosterInfo.end : null
+	].filter(Boolean).join(', ');
+
+	if (matches.length === 0) {
+		console.log('\n⚠️  No matches found for: ' + name + ' (' + positions.join('/') + ')');
+		console.log('   Spreadsheet: ' + sheetContext);
+		var manual = await prompt('Enter Sleeper ID manually (or press Enter to skip): ');
+		return manual.trim() || null;
+	}
+
+	if (matches.length > 1) {
+		console.log('\n⚠️  Multiple matches for: ' + name + ' (' + positions.join('/') + ')');
+		console.log('   Spreadsheet: ' + sheetContext);
+		matches.forEach(function(m, i) {
+			var details = [
+				m.full_name,
+				m.team || 'FA',
+				(m.fantasy_positions || []).join('/'),
+				m.status || 'Unknown',
+				m.years_exp != null ? m.years_exp + ' yrs exp' : '',
+				m.age ? 'age ' + m.age : '',
+				'ID: ' + m.player_id
+			].filter(Boolean).join(' | ');
+			console.log('  ' + (i + 1) + ') ' + details);
+		});
+		console.log('  0) Skip this player');
+
+		var choice = await prompt('Select option: ');
+		var idx = parseInt(choice);
+
+		if (idx === 0 || isNaN(idx) || idx > matches.length) {
+			return null;
+		}
+		return matches[idx - 1].player_id;
+	}
+
+	return matches[0].player_id;
+}
+
+async function fetchRosteredPlayers() {
+	var response = await request
+		.get(sheetLink)
+		.query({ alt: 'json', key: process.env.GOOGLE_API_KEY });
+
+	var dataJson = JSON.parse(response.text);
+	var players = [];
+
+	dataJson.values.forEach(function(row, i) {
+		// Skip header rows and footer
+		if (i < 2 || i === dataJson.values.length - 1) {
+			return;
+		}
+
+		var owner = row[0] !== '' ? row[0] : undefined;
+		if (!owner) {
+			return; // Skip free agents
+		}
+
+		players.push({
+			owner: owner,
+			name: row[1],
+			positions: row[2].split('/'),
+			start: parseInt(row[3]) || null,
+			end: parseInt(row[4]) || null,
+			salary: row[5] ? parseInt(row[5].replace('$', '')) : null
+		});
+	});
+
+	return players;
+}
+
+async function seed() {
+	console.log('Seeding contracts from spreadsheet...\n');
+
+	var clearExisting = process.argv.includes('--clear');
+	if (clearExisting) {
+		console.log('Clearing existing contracts...');
+		await Contract.deleteMany({});
+	}
+
+	// Load franchises (to map sleeperRosterId -> _id)
+	var franchises = await Franchise.find({});
+	var franchiseByRosterId = {};
+	franchises.forEach(function(f) {
+		franchiseByRosterId[f.sleeperRosterId] = f._id;
+	});
+
+	console.log('Loaded', franchises.length, 'franchises');
+
+	// Fetch rostered players from spreadsheet
+	var rosteredPlayers = await fetchRosteredPlayers();
+	console.log('Found', rosteredPlayers.length, 'rostered players in spreadsheet\n');
+
+	var created = 0;
+	var skipped = 0;
+	var errors = [];
+
+	for (var i = 0; i < rosteredPlayers.length; i++) {
+		var rp = rosteredPlayers[i];
+
+		// Find franchise
+		var sleeperRosterId = getSleeperRosterId(rp.owner);
+		if (!sleeperRosterId) {
+			errors.push({ player: rp.name, reason: 'Unknown owner: ' + rp.owner });
+			skipped++;
+			continue;
+		}
+
+		var franchiseId = franchiseByRosterId[sleeperRosterId];
+		if (!franchiseId) {
+			errors.push({ player: rp.name, reason: 'No franchise for rosterId: ' + sleeperRosterId });
+			skipped++;
+			continue;
+		}
+
+		// Find player by Sleeper ID (may prompt interactively)
+		var sleeperId = await findSleeperPlayerId(rp.name, rp.positions, rp);
+		if (!sleeperId) {
+			errors.push({ player: rp.name, reason: 'Could not match to Sleeper player' });
+			skipped++;
+			continue;
+		}
+
+		var player = await Player.findOne({ sleeperId: sleeperId });
+		if (!player) {
+			errors.push({ player: rp.name, reason: 'Sleeper ID ' + sleeperId + ' not in Player collection' });
+			skipped++;
+			continue;
+		}
+
+		// Create contract
+		try {
+			await Contract.create({
+				playerId: player._id,
+				franchiseId: franchiseId,
+				salary: rp.salary,
+				startYear: rp.start,
+				endYear: rp.end
+			});
+			created++;
+		}
+		catch (err) {
+			if (err.code === 11000) {
+				errors.push({ player: rp.name, reason: 'Duplicate contract' });
+				skipped++;
+			}
+			else {
+				throw err;
+			}
+		}
+	}
+
+	rl.close();
+
+	console.log('\nDone!');
+	console.log('  Created:', created);
+	console.log('  Skipped:', skipped);
+
+	if (errors.length > 0) {
+		console.log('\nErrors:');
+		errors.forEach(function(e) {
+			console.log('  -', e.player + ':', e.reason);
+		});
+	}
+
+	process.exit(0);
+}
+
+seed().catch(function(err) {
+	rl.close();
+	console.error('Error:', err);
+	process.exit(1);
+});
+

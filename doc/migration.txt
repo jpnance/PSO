@@ -7,9 +7,11 @@ Spreadsheet Migration Steps
 2. Seed players from Sleeper:
    docker compose run --rm web node data/scripts/seedPlayers.js --clear
 
-3. TODO: Seed current rosters/contracts from spreadsheet
+3. Seed contracts from spreadsheet (interactive - prompts for ambiguous player matches):
+   docker compose run --rm -it web node data/scripts/seedContracts.js --clear
 
-4. TODO: Seed current budgets from spreadsheet
+4. Seed budgets from spreadsheet:
+   docker compose run --rm web node data/scripts/seedBudgets.js --clear
 
 5. TODO: Seed picks from spreadsheet
 
