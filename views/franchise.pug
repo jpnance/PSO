@@ -99,7 +99,7 @@ html
 								tbody
 									each posKey in positionKeys
 										tr.position-header
-											th.pl-3(colspan=desktopColSpan)= posKey
+											th(colspan=desktopColSpan)= posKey
 										each player in rosterByPosition[posKey]
 											tr
 												td= player.name
@@ -119,7 +119,7 @@ html
 						div.card-header
 							strong Budget
 						- var b = franchise.budgets
-						table.table.table-sm.mb-0
+						table.table.table-sm.mb-0.budget-table
 								thead.table-secondary
 									tr
 										th
@@ -177,13 +177,13 @@ html
 								table.table.table-sm.mb-0.picks-table
 									thead
 										tr.table-secondary
-											th.pl-3(colspan='2')= season
+											th(colspan='2')= season
 									tbody
 										each pick, idx in seasonPicks
 											- var nextPick = seasonPicks[idx + 1]
 											- var isLastInRound = nextPick && nextPick.round !== pick.round
 											tr(class=isLastInRound ? 'round-separator' : '')
-												td.pl-3= ordinal(pick.round) + ' round'
+												td= ordinal(pick.round) + ' round'
 												td.text-right.pr-3.text-muted
 													if pick.originalOwner
 														| from #{pick.originalOwner}
