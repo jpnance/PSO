@@ -240,7 +240,33 @@ async function getFranchise(franchiseId) {
 	};
 }
 
+// Route handlers
+async function overview(request, response) {
+	try {
+		var franchises = await getLeagueOverview();
+		response.render('league', { franchises: franchises, currentSeason: currentSeason });
+	} catch (err) {
+		console.error(err);
+		response.status(500).send('Error loading league data');
+	}
+}
+
+async function franchise(request, response) {
+	try {
+		var data = await getFranchise(request.params.id);
+		if (!data) {
+			return response.status(404).send('Franchise not found');
+		}
+		response.render('franchise', { franchise: data, currentSeason: currentSeason });
+	} catch (err) {
+		console.error(err);
+		response.status(500).send('Error loading franchise data');
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
-	getFranchise: getFranchise
+	getFranchise: getFranchise,
+	overview: overview,
+	franchise: franchise
 };

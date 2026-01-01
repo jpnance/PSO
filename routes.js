@@ -8,31 +8,8 @@ module.exports = function(app) {
 		response.redirect('https://thedynastyleague.wordpress.com/');
 	});
 
-	// League views
-	app.get('/league', async function(request, response) {
-		try {
-			var franchises = await league.getLeagueOverview();
-			var currentSeason = parseInt(process.env.SEASON, 10);
-			response.render('league', { franchises: franchises, currentSeason: currentSeason });
-		} catch (err) {
-			console.error(err);
-			response.status(500).send('Error loading league data');
-		}
-	});
-
-	app.get('/league/franchise/:id', async function(request, response) {
-		try {
-			var franchise = await league.getFranchise(request.params.id);
-			if (!franchise) {
-				return response.status(404).send('Franchise not found');
-			}
-			var currentSeason = parseInt(process.env.SEASON, 10);
-			response.render('franchise', { franchise: franchise, currentSeason: currentSeason });
-		} catch (err) {
-			console.error(err);
-			response.status(500).send('Error loading franchise data');
-		}
-	});
+	app.get('/league', league.overview);
+	app.get('/league/franchise/:id', league.franchise);
 
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
