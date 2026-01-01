@@ -1,0 +1,33 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/league.css')
+
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+
+		title PSO League Overview
+
+	body
+		-
+			function formatMoney(n) {
+				return n.toLocaleString();
+			}
+		div.container-fluid.py-4
+			h1.text-center.mb-4 PSO League Overview
+			
+			div.row
+				each franchise in franchises
+					div.col-md-6.col-lg-4.col-xl-3.mb-4
+						div.card.h-100
+							div.card-header.d-flex.justify-content-between.align-items-center
+								a.franchise-name(href='/league/franchise/' + franchise._id)= franchise.displayName
+								span.badge.badge-secondary= franchise.rosterCount + ' players'
+							
+							div.card-footer.small.d-flex.justify-content-between
+								span Payroll: $#{formatMoney(franchise.payroll)}
+								span Available: $#{formatMoney(franchise.available)}

@@ -1,0 +1,191 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/league.css')
+
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+
+		title= franchise.displayName + ' - PSO'
+
+	body
+		-
+			function formatMoney(n) {
+				return n.toLocaleString();
+			}
+		div.container.py-4
+			nav.mb-3
+				a(href='/league') ← Back to League Overview
+			
+			h1.mb-1= franchise.displayName
+			p.text-muted
+				| Owners: #{franchise.owners.join(', ')}
+			
+			div.row
+				div.col-lg-8
+					div.card.mb-4
+						div.card-header
+							strong Roster
+							span.badge.badge-secondary.ml-2= franchise.rosterCount + ' players'
+						-
+							var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
+							
+							function formatContract(start, end) {
+								if (start && end) {
+									return (start % 100) + '/' + (end % 100);
+								} else if (end) {
+									return 'FA/' + (end % 100);
+								} else if (start) {
+									return (start % 100) + '/?';
+								}
+								return '-';
+							}
+							function salaryForYear(player, year) {
+								if (!player.salary) return null;
+								if (!player.endYear) return null;
+								if (player.endYear >= year) return player.salary;
+								return null;
+							}
+							function sortedPositions(positions) {
+								return positions.slice().sort(function(a, b) {
+									var idxA = positionOrder.indexOf(a);
+									var idxB = positionOrder.indexOf(b);
+									return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+								});
+							}
+							function getPositionKey(player) {
+								return sortedPositions(player.positions).join('/');
+							}
+							
+							// Pre-group roster by position
+							var rosterByPosition = {};
+							var positionKeys = [];
+							franchise.roster.forEach(function(player) {
+								var key = getPositionKey(player);
+								if (!rosterByPosition[key]) {
+									rosterByPosition[key] = [];
+									positionKeys.push(key);
+								}
+								rosterByPosition[key].push(player);
+							});
+							// Sort position keys: primary position first, then single before dual
+							positionKeys.sort(function(a, b) {
+								var partsA = a.split('/');
+								var partsB = b.split('/');
+								var primaryIdxA = positionOrder.indexOf(partsA[0]);
+								var primaryIdxB = positionOrder.indexOf(partsB[0]);
+								if (primaryIdxA === -1) primaryIdxA = 999;
+								if (primaryIdxB === -1) primaryIdxB = 999;
+								if (primaryIdxA !== primaryIdxB) return primaryIdxA - primaryIdxB;
+								// Same primary - single position comes before dual
+								var secondaryIdxA = partsA[1] ? positionOrder.indexOf(partsA[1]) : -1;
+								var secondaryIdxB = partsB[1] ? positionOrder.indexOf(partsB[1]) : -1;
+								return secondaryIdxA - secondaryIdxB;
+							});
+							
+						- var desktopColSpan = 5
+						table.table.table-sm.mb-0.roster-table
+								thead.table-secondary
+									tr
+										th Player
+										th.text-center.d-none.d-md-table-cell Contract
+										th.text-right= currentSeason
+										th.text-right.d-none.d-md-table-cell= currentSeason + 1
+										th.text-right.d-none.d-md-table-cell= currentSeason + 2
+								tbody
+									each posKey in positionKeys
+										tr.position-header
+											th.pl-3(colspan=desktopColSpan)= posKey
+										each player in rosterByPosition[posKey]
+											tr
+												td= player.name
+												td.text-center.d-none.d-md-table-cell= formatContract(player.startYear, player.endYear)
+												td.text-right
+													if salaryForYear(player, currentSeason)
+														| $#{formatMoney(player.salary)}
+												td.text-right.d-none.d-md-table-cell
+													if salaryForYear(player, currentSeason + 1)
+														| $#{formatMoney(player.salary)}
+												td.text-right.d-none.d-md-table-cell
+													if salaryForYear(player, currentSeason + 2)
+														| $#{formatMoney(player.salary)}
+				
+				div.col-lg-4
+					div.card.mb-4
+						div.card-header
+							strong Budget
+						- var b = franchise.budgets
+						table.table.table-sm.mb-0
+								thead.table-secondary
+									tr
+										th
+										th.text-right= currentSeason
+										th.text-right= currentSeason + 1
+										th.text-right= currentSeason + 2
+								tbody
+									tr
+										td Base
+										td.text-right $#{formatMoney(b[0].baseAmount)}
+										td.text-right $#{formatMoney(b[1].baseAmount)}
+										td.text-right $#{formatMoney(b[2].baseAmount)}
+									tr
+										td Payroll
+										td.text-right -$#{formatMoney(b[0].payroll)}
+										td.text-right -$#{formatMoney(b[1].payroll)}
+										td.text-right -$#{formatMoney(b[2].payroll)}
+									tr
+										td Dead Money
+										td.text-right -$#{formatMoney(b[0].deadMoney)}
+										td.text-right -$#{formatMoney(b[1].deadMoney)}
+										td.text-right -$#{formatMoney(b[2].deadMoney)}
+									tr
+										td Cash In
+										td.text-right +$#{formatMoney(b[0].cashIn)}
+										td.text-right +$#{formatMoney(b[1].cashIn)}
+										td.text-right +$#{formatMoney(b[2].cashIn)}
+									tr
+										td Cash Out
+										td.text-right -$#{formatMoney(b[0].cashOut)}
+										td.text-right -$#{formatMoney(b[1].cashOut)}
+										td.text-right -$#{formatMoney(b[2].cashOut)}
+									tr.available-row
+										td: strong Available
+										td.text-right: strong $#{formatMoney(b[0].available)}
+										td.text-right: strong $#{formatMoney(b[1].available)}
+										td.text-right: strong $#{formatMoney(b[2].available)}
+					
+					div.card.mb-4
+						div.card-header
+							strong Draft Picks
+						- var availablePicks = franchise.picks.filter(p => p.status === 'available')
+						- var picksBySeason = {}
+						- availablePicks.forEach(p => { if (!picksBySeason[p.season]) picksBySeason[p.season] = []; picksBySeason[p.season].push(p); })
+						- var seasons = Object.keys(picksBySeason).sort()
+						-
+							function ordinal(n) {
+								var s = ['th', 'st', 'nd', 'rd'];
+								var v = n % 100;
+								return n + (s[(v - 20) % 10] || s[v] || s[0]);
+							}
+						if seasons.length
+							each season in seasons
+								- var seasonPicks = picksBySeason[season]
+								table.table.table-sm.mb-0.picks-table
+									thead
+										tr.table-secondary
+											th.pl-3(colspan='2')= season
+									tbody
+										each pick, idx in seasonPicks
+											- var nextPick = seasonPicks[idx + 1]
+											- var isLastInRound = nextPick && nextPick.round !== pick.round
+											tr(class=isLastInRound ? 'round-separator' : '')
+												td.pl-3= ordinal(pick.round) + ' round'
+												td.text-right.pr-3.text-muted
+													if pick.originalOwner
+														| from #{pick.originalOwner}
+						else
+							p.text-muted.mb-3.ml-3 No picks data
