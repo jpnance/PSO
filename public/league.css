@@ -81,18 +81,13 @@ nav a:hover {
 	border-top: 1px solid #dee2e6;
 }
 
-
-/* Budget table first column padding */
-.budget-table th:first-child,
-.budget-table td:first-child {
-	padding-left: 0.75rem;
-}
-
 /* Consistent left padding for all franchise page tables */
 .roster-table th:first-child,
 .roster-table td:first-child,
 .picks-table th:first-child,
-.picks-table td:first-child {
+.picks-table td:first-child,
+.budget-table th:first-child,
+.budget-table td:first-child {
 	padding-left: 0.75rem;
 }
 
