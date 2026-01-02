@@ -25,13 +25,13 @@ var dirty = false;
  */
 function loadResolutions() {
 	if (resolutions !== null) return resolutions;
-	
+
 	try {
 		resolutions = require('./player-resolutions.json');
 	} catch (e) {
 		resolutions = {};
 	}
-	
+
 	return resolutions;
 }
 
@@ -40,7 +40,7 @@ function loadResolutions() {
  */
 function saveResolutions() {
 	if (!dirty) return;
-	
+
 	// Sort by key (but keep _ambiguous at top)
 	var sorted = {};
 	var keys = Object.keys(resolutions).sort(function(a, b) {
@@ -51,7 +51,7 @@ function saveResolutions() {
 	keys.forEach(function(key) {
 		sorted[key] = resolutions[key];
 	});
-	
+
 	fs.writeFileSync(resolutionsPath, JSON.stringify(sorted, null, 2));
 	dirty = false;
 }
@@ -85,15 +85,15 @@ function isAmbiguous(normalizedName) {
  */
 function buildContextKey(normalizedName, context) {
 	if (!context) return null;
-	
+
 	var parts = [normalizedName];
-	
+
 	// Add context in consistent order
 	if (context.year) parts.push(context.year);
 	if (context.position) parts.push(context.position.toLowerCase());
 	if (context.franchise) parts.push(context.franchise.toLowerCase());
 	if (context.pick) parts.push('pick:' + context.pick);
-	
+
 	return parts.length > 1 ? parts.join('|') : null;
 }
 
@@ -103,12 +103,12 @@ function buildContextKey(normalizedName, context) {
  * @param {string} name - Player name (will be normalized)
  * @param {Object} [context] - Optional context { year, position, franchise, pick }
  * @returns {Object|null} - { sleeperId: string|null, name?: string } or null if not found
- *                          Returns { ambiguous: true } if name is in ambiguous list without context match
+ *                          Returns { ambiguous: true } if name is in ambiguous list without any cached resolution
  */
 function lookup(name, context) {
 	var normalized = normalizePlayerName(name);
 	var res = loadResolutions();
-	
+
 	// Try context-specific key first (if context provided)
 	if (context) {
 		var contextKey = buildContextKey(normalized, context);
@@ -116,14 +116,20 @@ function lookup(name, context) {
 			return res[contextKey];
 		}
 	}
-	
-	// Check if this name is known to be ambiguous
+
+	// Check for name-only resolution (takes priority over ambiguous flag)
+	// This handles cases like historical players who appear multiple times
+	if (res[normalized]) {
+		return res[normalized];
+	}
+
+	// No cached resolution - check if this name is known to be ambiguous
 	if (isAmbiguous(normalized)) {
 		return { ambiguous: true };
 	}
-	
-	// Fall back to name-only lookup
-	return res[normalized] || null;
+
+	// Not found and not ambiguous
+	return null;
 }
 
 /**
@@ -137,20 +143,20 @@ function lookup(name, context) {
 function addResolution(name, sleeperId, displayName, context) {
 	var normalized = normalizePlayerName(name);
 	loadResolutions();
-	
+
 	// Use context key if provided, otherwise just the name
 	var key = normalized;
 	if (context) {
 		var contextKey = buildContextKey(normalized, context);
 		if (contextKey) key = contextKey;
 	}
-	
+
 	if (sleeperId) {
 		resolutions[key] = { sleeperId: sleeperId };
 	} else {
 		resolutions[key] = { sleeperId: null, name: displayName || name };
 	}
-	
+
 	dirty = true;
 }
 
@@ -162,11 +168,11 @@ function addResolution(name, sleeperId, displayName, context) {
 function markAmbiguous(name) {
 	var normalized = normalizePlayerName(name);
 	loadResolutions();
-	
+
 	if (!resolutions._ambiguous) {
 		resolutions._ambiguous = [];
 	}
-	
+
 	if (!resolutions._ambiguous.includes(normalized)) {
 		resolutions._ambiguous.push(normalized);
 		resolutions._ambiguous.sort();
@@ -185,7 +191,7 @@ function addAlias(alias, existingName) {
 	if (!existing) {
 		throw new Error('No resolution found for: ' + existingName);
 	}
-	
+
 	var normalizedAlias = normalizePlayerName(alias);
 	loadResolutions();
 	resolutions[normalizedAlias] = existing;
