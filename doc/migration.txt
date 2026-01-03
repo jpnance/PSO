@@ -3,7 +3,7 @@ Spreadsheet Migration Steps
 
 Player Resolution
 -----------------
-Steps 3, 6, and 7 use data/scripts/player-resolutions.json to map player names
+Steps 3, 6, 7, and 8 use data/scripts/player-resolutions.json to map player names
 to Sleeper IDs (or mark them as historical players). This file is tracked in
 git and contains cached resolutions from previous runs. Interactive prompts
 only appear for names not already resolved.
@@ -46,6 +46,12 @@ Migration Steps
    docker compose run --rm -it web node data/scripts/seedDraftSelections.js --clear
    
    (Interactive - requires network for Google Sheets API, prompts for unresolved players)
+
+8. Seed cuts from spreadsheet:
+   docker compose run --rm -it web node data/scripts/seedCuts.js --clear --auto-historical-before=2016
+   
+   (Interactive - requires network for Google Sheets API, prompts for 2016+ unresolved players,
+   auto-creates historical players for pre-2016 cuts. Creates fa-cut transactions with dead money.)
 
 After running interactive scripts, commit any changes to player-resolutions.json
 so future runs don't re-prompt for the same players.
