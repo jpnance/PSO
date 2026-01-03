@@ -10,7 +10,7 @@ var Transaction = require('../models/Transaction');
 var currentSeason = parseInt(process.env.SEASON, 10);
 
 // Compute budget breakdown for a franchise for a specific season
-function computeBudgetForSeason(franchiseId, contracts, trades, season) {
+function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
 	// Payroll = sum of salaries where contract extends through this season
 	var payroll = contracts
 		.filter(function(c) { 
@@ -52,8 +52,18 @@ function computeBudgetForSeason(franchiseId, contracts, trades, season) {
 	// Base amount is always 1000
 	var baseAmount = 1000;
 	
-	// Dead money we don't have yet (deferred Cuts parsing)
+	// Dead money from cuts for this season
 	var deadMoney = 0;
+	cuts.forEach(function(cut) {
+		if (!cut.franchiseId.equals(franchiseId)) return;
+		if (!cut.deadMoney) return;
+		
+		cut.deadMoney.forEach(function(dm) {
+			if (dm.season === season) {
+				deadMoney += dm.amount || 0;
+			}
+		});
+	});
 	
 	var available = baseAmount - payroll - deadMoney + cashIn - cashOut;
 	
@@ -69,11 +79,11 @@ function computeBudgetForSeason(franchiseId, contracts, trades, season) {
 }
 
 // Compute budgets for current and next two seasons
-function computeBudgets(franchiseId, contracts, trades) {
+function computeBudgets(franchiseId, contracts, trades, cuts) {
 	return [
-		computeBudgetForSeason(franchiseId, contracts, trades, currentSeason),
-		computeBudgetForSeason(franchiseId, contracts, trades, currentSeason + 1),
-		computeBudgetForSeason(franchiseId, contracts, trades, currentSeason + 2)
+		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason),
+		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason + 1),
+		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason + 2)
 	];
 }
 
@@ -100,6 +110,7 @@ async function getLeagueOverview() {
 	
 	var contracts = await Contract.find({}).populate('playerId').lean();
 	var trades = await Transaction.find({ type: 'trade' }).lean();
+	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
 	
 	// Build franchise data
 	var result = [];
@@ -133,7 +144,7 @@ async function getLeagueOverview() {
 			});
 		
 		// Compute budget from contracts and trades (current season only for overview)
-		var budget = computeBudgetForSeason(franchise._id, contracts, trades, currentSeason);
+		var budget = computeBudgetForSeason(franchise._id, contracts, trades, cuts, currentSeason);
 		
 		result.push({
 			_id: franchise._id,
@@ -172,6 +183,7 @@ async function getFranchise(franchiseId) {
 		.lean();
 	
 	var trades = await Transaction.find({ type: 'trade' }).lean();
+	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
 	
 	var picks = await Pick.find({ currentFranchiseId: franchiseId })
 		.sort({ season: 1, round: 1 })
@@ -225,7 +237,7 @@ async function getFranchise(franchiseId) {
 	});
 	
 	// Compute budgets for current and next two seasons
-	var budgets = computeBudgets(franchise._id, allContracts, trades);
+	var budgets = computeBudgets(franchise._id, allContracts, trades, cuts);
 	
 	return {
 		_id: franchise._id,
