@@ -1,14 +1,35 @@
 Spreadsheet Migration Steps
 ===========================
 
+Player Resolution
+-----------------
+Steps 3, 6, and 7 use data/scripts/player-resolutions.json to map player names
+to Sleeper IDs (or mark them as historical players). This file is tracked in
+git and contains cached resolutions from previous runs. Interactive prompts
+only appear for names not already resolved.
+
+If you need to rebuild the resolutions file from scratch:
+   docker compose run --rm web node data/scripts/extractPlayerResolutions.js
+
+This extracts existing Player documents and auto-detects ambiguous names from
+Sleeper data (e.g., "Mike Williams", "Chris Johnson").
+
+
+Migration Steps
+---------------
+0. Fetch fresh Sleeper data (step 2 reads from the cached file):
+   make sleeper
+
 1. Seed franchises, people, regimes:
    docker compose run --rm web node data/scripts/seedEntities.js --clear
 
 2. Seed players from Sleeper:
    docker compose run --rm web node data/scripts/seedPlayers.js --clear
 
-3. Seed contracts from spreadsheet (interactive - prompts for ambiguous player matches):
+3. Seed contracts from spreadsheet:
    docker compose run --rm -it web node data/scripts/seedContracts.js --clear
+   
+   (Interactive - prompts for ambiguous player names not in player-resolutions.json)
 
 4. Seed budgets from spreadsheet:
    docker compose run --rm web node data/scripts/seedBudgets.js --clear
@@ -16,22 +37,18 @@ Spreadsheet Migration Steps
 5. Seed picks from spreadsheet:
    docker compose run --rm web node data/scripts/seedPicks.js --clear
 
-6. Parse trade history from WordPress (regenerates trade-history.json):
-   node data/scripts/parseTradeHistory.js
-   
-   (Can also run in docker if needed, but requires network access)
-
-7. Import trade history (interactive - prompts for ambiguous player matches):
+6. Seed trades from WordPress:
    docker compose run --rm -it web node data/scripts/seedTrades.js --clear
-
-8. Parse draft selections (generates draft-selections.json for review):
-   node data/scripts/parseDraftSelections.js
    
-   Review draft-selections.json and fill in sleeperId for unmatched players.
-   Set sleeperId to "historical" for players not in Sleeper data.
+   (Interactive - requires network for WordPress API, prompts for unresolved players)
 
-9. Import draft selections:
-   docker compose run --rm web node data/scripts/seedDraftSelections.js --clear
+7. Seed draft selections from Google Sheets:
+   docker compose run --rm -it web node data/scripts/seedDraftSelections.js --clear
+   
+   (Interactive - requires network for Google Sheets API, prompts for unresolved players)
+
+After running interactive scripts, commit any changes to player-resolutions.json
+so future runs don't re-prompt for the same players.
 
 
 Future Work
@@ -49,7 +66,6 @@ Future Work
 - Historical spreadsheet snapshots: Google Sheets revision history could be
   downloaded via Drive API and parsed to reconstruct historical state at
   specific points in time. Complex and may not be worth the effort.
-
 
 - Fix trades #600 and #688: Cash was entered into the wrong year in the
   spreadsheet. Need to update these trades in the database to match the
