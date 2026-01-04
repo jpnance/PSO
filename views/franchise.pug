@@ -92,7 +92,7 @@ html
 								thead.table-secondary
 									tr
 										th Player
-										th.text-center.d-none.d-md-table-cell Contract
+										th.text-center Contract
 										th.text-right= currentSeason
 										th.text-right.d-none.d-md-table-cell= currentSeason + 1
 										th.text-right.d-none.d-md-table-cell= currentSeason + 2
@@ -103,7 +103,7 @@ html
 										each player in rosterByPosition[posKey]
 											tr
 												td= player.name
-												td.text-center.d-none.d-md-table-cell= formatContract(player.startYear, player.endYear)
+												td.text-center= formatContract(player.startYear, player.endYear)
 												td.text-right
 													if salaryForYear(player, currentSeason)
 														| $#{formatMoney(player.salary)}
