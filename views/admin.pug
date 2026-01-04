@@ -63,7 +63,8 @@ html
 											else
 												span.badge.badge-secondary Disabled
 				
-				if phase === 'dead-period'
+				//- Only show advance button after championship day (post-season dead period, not pre-season)
+				if phase === 'dead-period' && config.championshipDay && new Date() >= config.championshipDay
 					div.col-lg-6
 						div.card.mb-4
 							div.card-header
