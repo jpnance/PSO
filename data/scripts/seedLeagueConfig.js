@@ -24,32 +24,53 @@ async function seed() {
 		process.exit(0);
 	}
 	
-	// Create config for current season
-	// Dates are left null - set via admin UI once known
+	// Compute default dates based on Labor Day
+	var defaults = LeagueConfig.computeDefaultDates(currentSeason);
+	
+	// Create config for current season with computed defaults
 	var config = await LeagueConfig.create({
 		_id: 'pso',
 		season: currentSeason,
 		
-		// All dates start as null/tentative
-		tradeWindowOpens: null,
-		cutDay: null,
+		// Offseason
+		tradeWindowOpens: defaults.tradeWindowOpens,
+		
+		// Pre-season (tentative until confirmed)
+		cutDay: defaults.cutDay,
 		cutDayTentative: true,
-		auctionDay: null,
+		auctionDay: defaults.auctionDay,
 		auctionDayTentative: true,
-		contractsDue: null,
+		contractsDue: defaults.contractsDue,
 		contractsDueTentative: true,
-		regularSeasonStarts: null,
-		tradeDeadline: null,
-		playoffFAStarts: null,
-		championshipDay: null
+		
+		// Regular season
+		regularSeasonStarts: defaults.regularSeasonStarts,
+		tradeDeadline: defaults.tradeDeadline,
+		playoffFAStarts: defaults.playoffFAStarts,
+		
+		// End of season
+		championshipDay: defaults.championshipDay
 	});
+	
+	function formatDate(d) {
+		return d ? d.toISOString().split('T')[0] : 'null';
+	}
 	
 	console.log('Created config:');
 	console.log('  Season:', config.season);
 	console.log('  Phase:', config.getPhase());
 	console.log('  Hard Cap Active:', config.isHardCapActive());
 	console.log('  Trades Enabled:', config.areTradesEnabled());
-	console.log('\nSet dates via /admin or update the config directly.');
+	console.log('\nSchedule:');
+	console.log('  Trade Window Opens:', formatDate(config.tradeWindowOpens));
+	console.log('  Cut Day:', formatDate(config.cutDay), config.cutDayTentative ? '(tentative)' : '');
+	console.log('  Auction Day:', formatDate(config.auctionDay), config.auctionDayTentative ? '(tentative)' : '');
+	console.log('  Contracts Due:', formatDate(config.contractsDue), config.contractsDueTentative ? '(tentative)' : '');
+	console.log('  Regular Season Starts:', formatDate(config.regularSeasonStarts));
+	console.log('  Trade Deadline:', formatDate(config.tradeDeadline));
+	console.log('  Playoff FA Starts:', formatDate(config.playoffFAStarts));
+	console.log('  Championship Day:', formatDate(config.championshipDay));
+	console.log('\nAdjust dates via /admin if needed.');
 	
 	process.exit(0);
 }

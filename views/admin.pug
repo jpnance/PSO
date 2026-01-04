@@ -1,0 +1,139 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/league.css')
+		
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+		
+		title Admin - PSO
+	
+	body
+		-
+			function formatDate(d) {
+				if (!d) return '';
+				var date = new Date(d);
+				return date.toISOString().split('T')[0];
+			}
+		
+		div.container.py-4
+			h1.mb-4 League Admin
+			
+			div.row
+				div.col-lg-6
+					div.card.mb-4
+						div.card-header
+							strong Current Status
+						div.card-body
+							table.table.table-sm.mb-0
+								tbody
+									tr
+										td Season
+										td.text-right: strong= config.season
+									tr
+										td Phase
+										td.text-right
+											span.badge.badge-info= phase
+									tr
+										td Hard Cap
+										td.text-right
+											if hardCapActive
+												span.badge.badge-danger Active
+											else
+												span.badge.badge-success Soft
+									tr
+										td Trades
+										td.text-right
+											if tradesEnabled
+												span.badge.badge-success Enabled
+											else
+												span.badge.badge-secondary Disabled
+									tr
+										td Free Agency
+										td.text-right
+											if faEnabled
+												if faPlayoffOnly
+													span.badge.badge-warning Playoff Teams Only
+												else
+													span.badge.badge-success Enabled
+											else
+												span.badge.badge-secondary Disabled
+				
+				if phase === 'dead-period'
+					div.col-lg-6
+						div.card.mb-4
+							div.card-header
+								strong Season Rollover
+							div.card-body
+								p.text-muted Advance to the next season. This will increment the season number and compute default dates based on Labor Day.
+								form(method='POST' action='/admin/config/advance-season')
+									button.btn.btn-warning(type='submit' onclick="return confirm('Are you sure you want to advance to season ' + (config.season + 1) + '?')") Advance to #{config.season + 1}
+			
+			div.card.mb-4
+				div.card-header
+					strong League Schedule
+				div.card-body
+					form(method='POST' action='/admin/config')
+						h5 Offseason
+						div.row
+							div.col-md-6
+								div.form-group
+									label(for='tradeWindowOpens') Trade Window Opens
+									input#tradeWindowOpens.form-control(type='date' name='tradeWindowOpens' value=formatDate(config.tradeWindowOpens))
+									small.form-text.text-muted Saturday before Super Bowl
+						
+						h5.mt-4 Pre-Season
+						div.row
+							div.col-md-4
+								div.form-group
+									label(for='cutDay') Cut Day
+									input#cutDay.form-control(type='date' name='cutDay' value=formatDate(config.cutDay))
+									div.form-check.mt-1
+										input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
+										label.form-check-label(for='cutDayTentative') Tentative
+							div.col-md-4
+								div.form-group
+									label(for='auctionDay') Auction Day
+									input#auctionDay.form-control(type='date' name='auctionDay' value=formatDate(config.auctionDay))
+									div.form-check.mt-1
+										input#auctionDayTentative.form-check-input(type='checkbox' name='auctionDayTentative' value='true' checked=config.auctionDayTentative)
+										label.form-check-label(for='auctionDayTentative') Tentative
+							div.col-md-4
+								div.form-group
+									label(for='contractsDue') Contracts Due
+									input#contractsDue.form-control(type='date' name='contractsDue' value=formatDate(config.contractsDue))
+									div.form-check.mt-1
+										input#contractsDueTentative.form-check-input(type='checkbox' name='contractsDueTentative' value='true' checked=config.contractsDueTentative)
+										label.form-check-label(for='contractsDueTentative') Tentative
+						
+						h5.mt-4 Regular Season
+						div.row
+							div.col-md-4
+								div.form-group
+									label(for='regularSeasonStarts') Regular Season Starts
+									input#regularSeasonStarts.form-control(type='date' name='regularSeasonStarts' value=formatDate(config.regularSeasonStarts))
+									small.form-text.text-muted Wednesday before NFL Week 1
+							div.col-md-4
+								div.form-group
+									label(for='tradeDeadline') Trade Deadline
+									input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(config.tradeDeadline))
+									small.form-text.text-muted Wednesday after NFL Week 9
+							div.col-md-4
+								div.form-group
+									label(for='playoffFAStarts') Playoff FA Starts
+									input#playoffFAStarts.form-control(type='date' name='playoffFAStarts' value=formatDate(config.playoffFAStarts))
+									small.form-text.text-muted After NFL Week 15
+						
+						h5.mt-4 End of Season
+						div.row
+							div.col-md-4
+								div.form-group
+									label(for='championshipDay') Championship Day
+									input#championshipDay.form-control(type='date' name='championshipDay' value=formatDate(config.championshipDay))
+									small.form-text.text-muted Tuesday after NFL Week 17
+						
+						button.btn.btn-primary(type='submit') Save Configuration

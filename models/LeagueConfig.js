@@ -1,6 +1,57 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// ========== Date Computation Helpers ==========
+
+// Compute Labor Day (first Monday in September) for a given year
+function getLaborDay(year) {
+	var sept1 = new Date(year, 8, 1); // September 1
+	var dayOfWeek = sept1.getDay();
+	// Days until Monday (1)
+	var daysUntilMonday = (1 - dayOfWeek + 7) % 7;
+	return new Date(year, 8, 1 + daysUntilMonday);
+}
+
+// Get the Nth day-of-week after a date (0 = first occurrence after)
+// targetDay: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+function getDayAfter(baseDate, targetDay, weeksAfter) {
+	var date = new Date(baseDate);
+	var dayOfWeek = date.getDay();
+	var daysUntil = (targetDay - dayOfWeek + 7) % 7;
+	if (daysUntil === 0) daysUntil = 7; // Next week if already on that day
+	date.setDate(date.getDate() + daysUntil + (weeksAfter * 7));
+	return date;
+}
+
+// Get the Nth day-of-week before a date (0 = first occurrence before)
+function getDayBefore(baseDate, targetDay, weeksBefore) {
+	var date = new Date(baseDate);
+	var dayOfWeek = date.getDay();
+	var daysSince = (dayOfWeek - targetDay + 7) % 7;
+	if (daysSince === 0) daysSince = 7; // Previous week if already on that day
+	date.setDate(date.getDate() - daysSince - (weeksBefore * 7));
+	return date;
+}
+
+// Compute all default dates for a given season based on Labor Day
+function computeDefaultDates(season) {
+	var laborDay = getLaborDay(season);
+	var prevLaborDay = getLaborDay(season - 1);
+	
+	return {
+		tradeWindowOpens: getDayAfter(prevLaborDay, 6, 22),    // 23rd Saturday after prev Labor Day
+		cutDay: getDayBefore(laborDay, 0, 2),                   // 3rd Sunday before Labor Day
+		auctionDay: getDayBefore(laborDay, 6, 1),               // 2nd Saturday before Labor Day
+		contractsDue: laborDay,                                  // Labor Day
+		regularSeasonStarts: getDayAfter(laborDay, 3, 0),       // 1st Wed after Labor Day
+		tradeDeadline: getDayAfter(laborDay, 3, 9),             // 10th Wed after Labor Day
+		playoffFAStarts: getDayAfter(laborDay, 3, 15),          // 16th Wed after Labor Day
+		championshipDay: getDayAfter(laborDay, 3, 17)           // 18th Wed after Labor Day
+	};
+}
+
+// ========== Schema ==========
+
 var leagueConfigSchema = new Schema({
 	// Singleton document - only one config per league
 	_id: { type: String, default: 'pso' },
@@ -91,4 +142,9 @@ leagueConfigSchema.methods.isFAPlayoffOnly = function() {
 	return this.getPhase() === 'playoff-fa';
 };
 
-module.exports = mongoose.model('LeagueConfig', leagueConfigSchema);
+var LeagueConfig = mongoose.model('LeagueConfig', leagueConfigSchema);
+
+// Expose the date computation helper as a static method
+LeagueConfig.computeDefaultDates = computeDefaultDates;
+
+module.exports = LeagueConfig;
