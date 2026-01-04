@@ -3,7 +3,7 @@ Spreadsheet Migration Steps
 
 Player Resolution
 -----------------
-Steps 3, 6, 7, and 8 use data/scripts/player-resolutions.json to map player names
+Steps 4, 7, 8, and 9 use data/scripts/player-resolutions.json to map player names
 to Sleeper IDs (or mark them as historical players). This file is tracked in
 git and contains cached resolutions from previous runs. Interactive prompts
 only appear for names not already resolved.
@@ -17,37 +17,42 @@ Sleeper data (e.g., "Mike Williams", "Chris Johnson").
 
 Migration Steps
 ---------------
-0. Fetch fresh Sleeper data (step 2 reads from the cached file):
+0. Fetch fresh Sleeper data (step 3 reads from the cached file):
    make sleeper
 
-1. Seed franchises, people, regimes:
+1. Seed league config
+   docker compose run --rm web node data/scripts/seedLeagueConfig.js
+   
+   (Creates the LeagueConfig document for the current season. Set dates via /admin.)
+
+2. Seed franchises, people, regimes:
    docker compose run --rm web node data/scripts/seedEntities.js --clear
 
-2. Seed players from Sleeper:
+3. Seed players from Sleeper:
    docker compose run --rm web node data/scripts/seedPlayers.js --clear
 
-3. Seed contracts from spreadsheet:
+4. Seed contracts from spreadsheet:
    docker compose run --rm -it web node data/scripts/seedContracts.js --clear
    
    (Interactive - prompts for ambiguous player names not in player-resolutions.json)
 
-4. Seed budgets from spreadsheet:
+5. Seed budgets from spreadsheet:
    docker compose run --rm web node data/scripts/seedBudgets.js --clear
 
-5. Seed picks from spreadsheet:
+6. Seed picks from spreadsheet:
    docker compose run --rm web node data/scripts/seedPicks.js --clear
 
-6. Seed trades from WordPress:
+7. Seed trades from WordPress:
    docker compose run --rm -it web node data/scripts/seedTrades.js --clear
    
    (Interactive - requires network for WordPress API, prompts for unresolved players)
 
-7. Seed draft selections from Google Sheets:
+8. Seed draft selections from Google Sheets:
    docker compose run --rm -it web node data/scripts/seedDraftSelections.js --clear
    
    (Interactive - requires network for Google Sheets API, prompts for unresolved players)
 
-8. Seed cuts from spreadsheet:
+9. Seed cuts from spreadsheet:
    docker compose run --rm -it web node data/scripts/seedCuts.js --clear --auto-historical-before=2016
    
    (Interactive - requires network for Google Sheets API, prompts for 2016+ unresolved players,
@@ -59,6 +64,9 @@ so future runs don't re-prompt for the same players.
 
 Future Work
 -----------
+- Schedule page: Public-facing page showing key league dates (cut day, auction,
+  trade deadline, etc.) with indicators for tentative dates.
+
 - 2012 Expansion Draft: The league expanded from 10 to 12 franchises in 2012.
   Quinn and Mitch joined via an expansion draft where they selected existing
   players under contract and RFA rights. This data exists in the "Past Drafts"
