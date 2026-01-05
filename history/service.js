@@ -1,9 +1,9 @@
 var Transaction = require('../models/Transaction');
 var Player = require('../models/Player');
+var Pick = require('../models/Pick');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 
-var FOOTNOTE_SYMBOLS = ['*', '†', '‡', '§', '¶', '#', '**', '††', '‡‡'];
 
 async function getRegime(franchiseId, season) {
 	if (!franchiseId) return null;
@@ -42,6 +42,14 @@ function formatRound(round) {
 	return round + 'th';
 }
 
+function formatPickNumber(pickNumber, teamsPerRound) {
+	// Convert overall pick number to round.pick format (e.g., 2.04)
+	teamsPerRound = teamsPerRound || 12;
+	var round = Math.ceil(pickNumber / teamsPerRound);
+	var pickInRound = ((pickNumber - 1) % teamsPerRound) + 1;
+	return round + '.' + pickInRound.toString().padStart(2, '0');
+}
+
 async function tradeHistory(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
@@ -51,16 +59,27 @@ async function tradeHistory(request, response) {
 		.sort({ timestamp: 1 })
 		.lean();
 	
-	// Create trade number lookup
-	var tradeNumberMap = {};
-	for (var i = 0; i < trades.length; i++) {
-		tradeNumberMap[trades[i]._id.toString()] = i + 1;
-	}
-	
 	// Get all players for lookups
 	var players = await Player.find({}).lean();
 	var playerMap = {};
 	players.forEach(function(p) { playerMap[p._id.toString()] = p; });
+	
+	// Get all picks for lookups (keyed by season:round:originalFranchiseId)
+	var picks = await Pick.find({}).lean();
+	var pickLookup = {};
+	picks.forEach(function(p) {
+		var key = p.season + ':' + p.round + ':' + p.originalFranchiseId.toString();
+		pickLookup[key] = p;
+	});
+	
+	// Get all draft-select transactions to find which player each pick became
+	var draftSelections = await Transaction.find({ type: 'draft-select' }).lean();
+	var pickToPlayer = {}; // pickId -> playerId
+	draftSelections.forEach(function(t) {
+		if (t.pickId && t.playerId) {
+			pickToPlayer[t.pickId.toString()] = t.playerId.toString();
+		}
+	});
 	
 	// Build pick trade history using composite key (season:round:originalFranchiseId)
 	// This lets us track pick ownership across all trades, even without pickId
@@ -121,7 +140,6 @@ async function tradeHistory(request, response) {
 		var tradeYear = trade.timestamp.getFullYear();
 		
 		var parties = [];
-		var allFootnotes = []; // Collect footnotes for the whole trade
 		
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
@@ -144,22 +162,30 @@ async function tradeHistory(request, response) {
 				var contract = formatContract(p.contractStart || p.startYear, p.contractEnd || p.endYear);
 				
 				var display = playerName + ' ($' + (p.salary || 0) + ', ' + contract + ')';
+				var notes = [];
 				
-				// Check if this player was traded before on the same contract
+				// Build chain of all trades for this player on the same contract
 				var history = playerTradeHistory[p.playerId.toString()] || [];
-				var prevTrades = history.filter(function(h) {
-					return h.tradeNumber < tradeNumber &&
-					       h.contractStart === (p.contractStart || p.startYear) &&
+				var sameContractTrades = history.filter(function(h) {
+					return h.contractStart === (p.contractStart || p.startYear) &&
 					       h.contractEnd === (p.contractEnd || p.endYear);
 				});
-				if (prevTrades.length > 0) {
-					var lastTrade = prevTrades[prevTrades.length - 1];
-					var symbol = FOOTNOTE_SYMBOLS[allFootnotes.length % FOOTNOTE_SYMBOLS.length];
-					display = playerName + symbol + ' ($' + (p.salary || 0) + ', ' + contract + ')';
-					allFootnotes.push({ symbol: symbol, tradeNumber: lastTrade.tradeNumber });
+				sameContractTrades.sort(function(a, b) { return a.tradeNumber - b.tradeNumber; });
+				
+				// Only show chain if there's more than just this trade
+				if (sameContractTrades.length > 1) {
+					var chain = [];
+					for (var t = 0; t < sameContractTrades.length; t++) {
+						var trade = sameContractTrades[t];
+						chain.push({
+							tradeNumber: trade.tradeNumber,
+							isCurrent: trade.tradeNumber === tradeNumber
+						});
+					}
+					notes.push({ type: 'chain', items: chain });
 				}
 				
-				playerAssets.push({ type: 'player', display: display });
+				playerAssets.push({ type: 'player', display: display, notes: notes });
 			}
 			
 			// RFA rights
@@ -169,7 +195,8 @@ async function tradeHistory(request, response) {
 				var playerName = player ? player.name : 'Unknown';
 				playerAssets.push({
 					type: 'rfa',
-					display: playerName + ' (RFA rights)'
+					display: playerName + ' (RFA rights)',
+					notes: []
 				});
 			}
 			
@@ -182,10 +209,31 @@ async function tradeHistory(request, response) {
 				var originalFranchiseId = pickInfo.fromFranchiseId;
 				var originalOwner = originalFranchiseId ? await getDisplayName(originalFranchiseId, tradeYear) : 'Unknown';
 				
+				// Look up the actual Pick document for additional info
+				var pickKey = originalFranchiseId ? getPickKey(season, round, originalFranchiseId) : null;
+				var pickDoc = pickKey ? pickLookup[pickKey] : null;
+				
+				// Get pick number if it exists (works for both 'used' and 'passed' picks)
+				var pickHasNumber = pickDoc && pickDoc.pickNumber && (pickDoc.status === 'used' || pickDoc.status === 'passed');
+				var pickNumber = pickHasNumber ? pickDoc.pickNumber : null;
+				
+				// Determine if pick number was known at trade time
+				// (trade happened in same year as the draft AND pick number is set)
+				var knewPickNumber = (tradeYear === season) && pickNumber;
+				
+				// Determine the outcome of the pick
+				var outcome = null;
+				if (pickDoc && pickDoc.status === 'passed') {
+					outcome = 'Passed';
+				} else if (pickDoc && pickDoc.status === 'used' && pickDoc._id && pickToPlayer[pickDoc._id.toString()]) {
+					var becamePlayerId = pickToPlayer[pickDoc._id.toString()];
+					var becamePlayerDoc = playerMap[becamePlayerId];
+					outcome = becamePlayerDoc ? becamePlayerDoc.name : null;
+				}
+				
 				// Build "via" chain by looking at all previous trades for this pick
 				var viaChain = [];
 				if (originalFranchiseId) {
-					var pickKey = getPickKey(season, round, originalFranchiseId);
 					var history = pickTradeHistory[pickKey] || [];
 					
 					for (var h = 0; h < history.length; h++) {
@@ -201,27 +249,68 @@ async function tradeHistory(request, response) {
 					}
 				}
 				
-				var display = formatRound(round) + ' round pick from ' + originalOwner;
+				// Build display string - main line only
+				var display = formatRound(round) + ' round pick';
+				
+				// Show pick number inline if known at trade time
+				if (knewPickNumber) {
+					display += ' (#' + formatPickNumber(pickNumber) + ')';
+				}
+				
+				display += ' from ' + originalOwner;
+				
 				if (viaChain.length > 0) {
 					display += ' (' + viaChain.map(function(v) { return 'via ' + v; }).join(', ') + ')';
 				}
+				
 				display += ' in ' + season;
 				
-				// Check if pick was traded before for footnote reference
-				if (originalFranchiseId) {
-					var pickKey = getPickKey(season, round, originalFranchiseId);
-					var history = pickTradeHistory[pickKey] || [];
-					var prevTrades = history.filter(function(h) { return h.tradeNumber < tradeNumber; });
-					if (prevTrades.length > 0) {
-						var lastTrade = prevTrades[prevTrades.length - 1];
-						var symbol = FOOTNOTE_SYMBOLS[allFootnotes.length % FOOTNOTE_SYMBOLS.length];
-						display = display.replace(' in ' + season, symbol + ' in ' + season);
-						allFootnotes.push({ symbol: symbol, tradeNumber: lastTrade.tradeNumber });
+				// Build fine print notes
+				var notes = [];
+				
+				// Build chain of all trades for this pick, plus outcome
+				var history = originalFranchiseId ? (pickTradeHistory[pickKey] || []) : [];
+				var allTrades = history.slice().sort(function(a, b) { return a.tradeNumber - b.tradeNumber; });
+				
+				// Determine if we have an outcome to show
+				var hasOutcome = pickNumber || outcome;
+				
+				// Only show chain if there's more than just this trade, OR if there's an outcome
+				if (allTrades.length > 1 || (allTrades.length === 1 && hasOutcome)) {
+					var chain = [];
+					
+					// Add all trades
+					for (var t = 0; t < allTrades.length; t++) {
+						var trade = allTrades[t];
+						chain.push({
+							type: 'trade',
+							tradeNumber: trade.tradeNumber,
+							isCurrent: trade.tradeNumber === tradeNumber
+						});
 					}
+					
+					// Add outcome at the end if this is the final trade and there's an outcome
+					var isLastTrade = allTrades.length === 0 || allTrades[allTrades.length - 1].tradeNumber === tradeNumber;
+					if (isLastTrade && hasOutcome) {
+						var outcomeText = '';
+						if (!knewPickNumber && pickNumber) {
+							outcomeText = '#' + formatPickNumber(pickNumber);
+							if (outcome) outcomeText += ' ' + outcome;
+						} else if (outcome) {
+							outcomeText = outcome;
+						}
+						if (outcomeText) {
+							chain.push({ type: 'outcome', text: outcomeText });
+						}
+					}
+					
+					notes.push({ type: 'chain', items: chain });
 				}
 				
 				if (!seasonAssets[season]) seasonAssets[season] = [];
-				seasonAssets[season].push({ type: 'pick', display: display, sortOrder: 0 });
+				// Use pickNumber for sorting (lower is better), or Infinity for unknown picks
+				var sortKey = pickNumber || Infinity;
+				seasonAssets[season].push({ type: 'pick', display: display, notes: notes, sortOrder: 0, sortKey: sortKey });
 			}
 			
 			// Cash - grouped by season
@@ -231,7 +320,7 @@ async function tradeHistory(request, response) {
 				var display = '$' + c.amount + ' from ' + fromOwner + ' in ' + c.season;
 				
 				if (!seasonAssets[c.season]) seasonAssets[c.season] = [];
-				seasonAssets[c.season].push({ type: 'cash', display: display, sortOrder: 1 });
+				seasonAssets[c.season].push({ type: 'cash', display: display, notes: [], sortOrder: 1 });
 			}
 			
 			// Build final asset list
@@ -241,14 +330,18 @@ async function tradeHistory(request, response) {
 			for (var s = 0; s < seasons.length; s++) {
 				var seasonNum = seasons[s];
 				var assets = seasonAssets[seasonNum];
-				assets.sort(function(a, b) { return a.sortOrder - b.sortOrder; });
+				// Sort by type (picks before cash), then by pick number (better picks first)
+				assets.sort(function(a, b) {
+					if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
+					return (a.sortKey || Infinity) - (b.sortKey || Infinity);
+				});
 				for (var a = 0; a < assets.length; a++) {
 					allAssets.push(assets[a]);
 				}
 			}
 			
 			if (allAssets.length === 0) {
-				allAssets.push({ type: 'nothing', display: 'Nothing' });
+				allAssets.push({ type: 'nothing', display: 'Nothing', notes: [] });
 			}
 			
 			parties.push({
@@ -260,10 +353,9 @@ async function tradeHistory(request, response) {
 		
 		tradeData.push({
 			number: tradeNumber,
-			timestamp: trade.timestamp,
+			timestamp: trade.timestamp || new Date(),
 			notes: trade.notes,
-			parties: parties,
-			footnotes: allFootnotes
+			parties: parties
 		});
 	}
 	

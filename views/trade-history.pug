@@ -35,18 +35,16 @@ html
 				padding: 0;
 				list-style: disc;
 			}
+			.asset-note {
+				font-size: 0.75rem;
+				color: #888;
+				font-style: italic;
+			}
 			.trade-notes {
 				font-style: italic;
 				color: #666;
 				font-size: 0.85rem;
 				margin-top: 0.5rem;
-			}
-			.trade-footnotes {
-				font-size: 0.8rem;
-				color: #888;
-				margin-top: 0.5rem;
-				padding-top: 0.5rem;
-				border-top: 1px dotted #ccc;
 			}
 		title Trade History
 
@@ -69,14 +67,21 @@ html
 								|  receives:
 							ul.asset-list
 								each asset in party.assets
-									li #{asset.display}
+									li
+										div #{asset.display}
+										if asset.notes && asset.notes.length > 0
+											each note in asset.notes
+												if note.type === 'chain'
+													div.asset-note
+														each item, idx in note.items
+															if idx > 0
+																|  → 
+															if item.type === 'outcome'
+																| #{item.text}
+															else if item.isCurrent
+																strong ##{item.tradeNumber}
+															else
+																a(href="#trade-" + item.tradeNumber) ##{item.tradeNumber}
 					
 					if trade.notes
 						div.trade-notes #{trade.notes}
-					
-					if trade.footnotes && trade.footnotes.length > 0
-						div.trade-footnotes
-							each fn in trade.footnotes
-								div
-									| #{fn.symbol} See 
-									a(href="#trade-" + fn.tradeNumber) Trade ##{fn.tradeNumber}
