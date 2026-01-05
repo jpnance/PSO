@@ -176,10 +176,10 @@ async function tradeHistory(request, response) {
 				if (sameContractTrades.length > 1) {
 					var chain = [];
 					for (var t = 0; t < sameContractTrades.length; t++) {
-						var trade = sameContractTrades[t];
+						var chainItem = sameContractTrades[t];
 						chain.push({
-							tradeNumber: trade.tradeNumber,
-							isCurrent: trade.tradeNumber === tradeNumber
+							tradeNumber: chainItem.tradeNumber,
+							isCurrent: chainItem.tradeNumber === tradeNumber
 						});
 					}
 					notes.push({ type: 'chain', items: chain });
@@ -281,11 +281,11 @@ async function tradeHistory(request, response) {
 					
 					// Add all trades
 					for (var t = 0; t < allTrades.length; t++) {
-						var trade = allTrades[t];
+						var chainItem = allTrades[t];
 						chain.push({
 							type: 'trade',
-							tradeNumber: trade.tradeNumber,
-							isCurrent: trade.tradeNumber === tradeNumber
+							tradeNumber: chainItem.tradeNumber,
+							isCurrent: chainItem.tradeNumber === tradeNumber
 						});
 					}
 					
