@@ -275,12 +275,9 @@ async function tradeHistory(request, response) {
 				// Determine if we have an outcome to show
 				var hasOutcome = pickNumber || outcome;
 				
-				// Determine if this is the final trade in the chain
-				var isLastTrade = allTrades.length === 0 || allTrades[allTrades.length - 1].tradeNumber === tradeNumber;
-				
-				// Build outcome text if applicable
+				// Build outcome text if applicable (always show if we have outcome data)
 				var outcomeText = '';
-				if (isLastTrade && hasOutcome) {
+				if (hasOutcome) {
 					if (!knewPickNumber && pickNumber) {
 						outcomeText = '#' + formatPickNumber(pickNumber);
 						if (outcome) outcomeText += ' ' + outcome;
