@@ -182,7 +182,7 @@ async function tradeHistory(request, response) {
 							isCurrent: chainItem.tradeNumber === tradeNumber
 						});
 					}
-					notes.push({ type: 'chain', items: chain });
+					notes.push({ type: 'chain', items: chain, separator: '·' });
 				}
 				
 				playerAssets.push({ type: 'player', display: display, notes: notes });
@@ -231,26 +231,8 @@ async function tradeHistory(request, response) {
 					outcome = becamePlayerDoc ? becamePlayerDoc.name : null;
 				}
 				
-				// Build "via" chain by looking at all previous trades for this pick
-				var viaChain = [];
-				if (originalFranchiseId) {
-					var history = pickTradeHistory[pickKey] || [];
-					
-					for (var h = 0; h < history.length; h++) {
-						// Stop when we reach the current trade
-						if (history[h].tradeNumber >= tradeNumber) break;
-						
-						// Add the receiving franchise from each prior trade
-						var viaName = await getDisplayName(history[h].receivingFranchiseId, tradeYear);
-						// Don't include the original owner in via chain (redundant)
-						if (viaName !== originalOwner) {
-							viaChain.push(viaName);
-						}
-					}
-				}
-				
 				// Build display string - main line only
-				var display = formatRound(round) + ' round pick';
+				var display = formatRound(round) + ' round draft pick';
 				
 				// Show pick number inline if known at trade time
 				if (knewPickNumber) {
