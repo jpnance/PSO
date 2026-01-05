@@ -64,6 +64,12 @@ so future runs don't re-prompt for the same players.
 
 Future Work
 -----------
+- Transaction approval workflow: Add `pending` flag to transactions. Trades and
+  cuts can be proposed (pending: true) and require commissioner approval before
+  changes are applied. Commissioner screen shows all pending transactions,
+  grouped by facilitatedTradeId when a cut is part of a trade. Approve triggers
+  the actual Contract/Budget updates; reject discards or marks rejected.
+
 - Schedule page: Public-facing page showing key league dates (cut day, auction,
   trade deadline, etc.) with indicators for tentative dates.
 
