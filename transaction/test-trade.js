@@ -150,6 +150,7 @@ async function setupMockWorld() {
 	var playerB1 = await createMockPlayer('Player B1', 'QB');
 	var playerB2 = await createMockPlayer('Player B2', 'TE');
 	var playerC1 = await createMockPlayer('Player C1', 'WR');
+	var playerC2 = await createMockPlayer('Player C2', 'LB');
 	
 	// Create contracts
 	await createMockContract(franchiseA._id, playerA1._id, 100, TEST_SEASON, TEST_SEASON + 2);
@@ -157,6 +158,7 @@ async function setupMockWorld() {
 	await createMockContract(franchiseB._id, playerB1._id, 150, TEST_SEASON, TEST_SEASON + 2);
 	await createMockContract(franchiseB._id, playerB2._id, 75, TEST_SEASON, TEST_SEASON);
 	await createMockContract(franchiseC._id, playerC1._id, 80, TEST_SEASON, TEST_SEASON + 1);
+	await createMockContract(franchiseC._id, playerC2._id, 2, TEST_SEASON, TEST_SEASON + 2);
 	
 	// Create budgets - each starts with 1000, subtract payroll
 	// Need budgets for current season and next 2 years (validation checks all)
@@ -176,7 +178,7 @@ async function setupMockWorld() {
 	
 	return {
 		franchiseA, franchiseB, franchiseC,
-		playerA1, playerA2, playerB1, playerB2, playerC1
+		playerA1, playerA2, playerB1, playerB2, playerC1, playerC2
 	};
 }
 
@@ -656,6 +658,50 @@ async function test8_CutInvalidPlayer(world) {
 	return pass;
 }
 
+
+// ============ TEST 9: Cut Dead Money Calculation 2 ============
+async function test9_CutDeadMoney2(world) {
+	console.log('\n=== TEST 9: Cut Dead Money Calculation 2 ===\n');
+	
+	// Player C2 has contract 2099-2101 (3 years), $2 salary
+	var contractC2 = await Contract.findOne({ playerId: world.playerC2._id });
+	
+	console.log('Cutting', world.playerC2.name, '($' + contractC2.salary + ')');
+	console.log('Contract:', contractC2.startYear, '-', contractC2.endYear);
+	
+	var result = await transactionService.processCut({
+		franchiseId: world.franchiseC._id,
+		playerId: world.playerC2._id,
+		source: 'manual'
+	});
+	
+	if (!result.success) {
+		console.log('FAIL: Cut rejected -', result.errors.join(', '));
+		return false;
+	}
+	
+	// Expected dead money for $2 contract, 3 years, cut in year 1:
+	// Year 1 (2099): 60% = $2
+	// Year 2 (2100): 30% = $1
+	// Year 3 (2101): 15% = $1
+	var dm = result.deadMoney;
+	console.log('Dead money entries:', JSON.stringify(dm));
+	
+	var year1 = dm.find(function(d) { return d.season === TEST_SEASON; });
+	var year2 = dm.find(function(d) { return d.season === TEST_SEASON + 1; });
+	var year3 = dm.find(function(d) { return d.season === TEST_SEASON + 2; });
+	
+	var y1Correct = year1 && year1.amount === 2;
+	var y2Correct = year2 && year2.amount === 1;
+	var y3Correct = year3 && year3.amount === 1;
+	
+	console.log('Year 1 ($60):', y1Correct ? 'PASS ✓' : 'FAIL ✗', year1 ? '(got $' + year1.amount + ')' : '(missing)');
+	console.log('Year 2 ($30):', y2Correct ? 'PASS ✓' : 'FAIL ✗', year2 ? '(got $' + year2.amount + ')' : '(missing)');
+	console.log('Year 3 ($15):', y3Correct ? 'PASS ✓' : 'FAIL ✗', year3 ? '(got $' + year3.amount + ')' : '(missing)');
+	
+	return y1Correct && y2Correct && y3Correct;
+}
+
 // ============ Test Registry ============
 var tests = [
 	{ name: 'Basic 2-Party Swap', fn: test1_BasicPlayerSwap },
@@ -665,7 +711,8 @@ var tests = [
 	{ name: 'Soft Cap Warning', fn: test5_SoftCapWarning },
 	{ name: 'Basic Cut', fn: test6_BasicCut },
 	{ name: 'Cut Dead Money Calculation', fn: test7_CutDeadMoney },
-	{ name: 'Cut Invalid Player', fn: test8_CutInvalidPlayer }
+	{ name: 'Cut Invalid Player', fn: test8_CutInvalidPlayer },
+	{ name: 'Cut Dead Money Calculation 2', fn: test9_CutDeadMoney2 },
 ];
 
 // ============ Main Runner ============
