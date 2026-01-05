@@ -3,6 +3,7 @@ var simulator = require('./simulator/service.js');
 var scuttlebot = require('./scuttlebot/service.js');
 var league = require('./league/service.js');
 var admin = require('./admin/service.js');
+var history = require('./history/service.js');
 
 module.exports = function(app) {
 	app.get('/', function(request, response) {
@@ -11,6 +12,8 @@ module.exports = function(app) {
 
 	app.get('/league', league.overview);
 	app.get('/league/franchise/:id', league.franchise);
+	
+	app.get('/history/trades', history.tradeHistory);
 
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
