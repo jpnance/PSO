@@ -540,6 +540,122 @@ async function test5_SoftCapWarning(world) {
 	return pass;
 }
 
+// ============ TEST 6: Basic Cut ============
+async function test6_BasicCut(world) {
+	console.log('\n=== TEST 6: Basic Cut ===\n');
+	
+	var contractA2 = await Contract.findOne({ playerId: world.playerA2._id });
+	
+	console.log('Cutting', world.playerA2.name, '($' + contractA2.salary + ')');
+	console.log('Contract:', contractA2.startYear, '-', contractA2.endYear);
+	
+	var budgetBefore = await Budget.findOne({ franchiseId: world.franchiseA._id, season: TEST_SEASON });
+	console.log('Budget before: payroll=' + budgetBefore.payroll + ', available=' + budgetBefore.available);
+	
+	var result = await transactionService.processCut({
+		franchiseId: world.franchiseA._id,
+		playerId: world.playerA2._id,
+		source: 'manual',
+		notes: 'Test 6: Basic cut'
+	});
+	
+	if (!result.success) {
+		console.log('FAIL: Cut rejected -', result.errors.join(', '));
+		return false;
+	}
+	
+	// Verify contract deleted
+	var contractAfter = await Contract.findOne({ playerId: world.playerA2._id });
+	var contractDeleted = !contractAfter;
+	console.log('Contract deleted:', contractDeleted ? 'PASS ✓' : 'FAIL ✗');
+	
+	// Verify transaction created
+	var txExists = !!result.transaction;
+	console.log('Transaction created:', txExists ? 'PASS ✓' : 'FAIL ✗');
+	console.log('Dead money:', JSON.stringify(result.deadMoney));
+	
+	// Verify budget updated
+	var budgetAfter = await Budget.findOne({ franchiseId: world.franchiseA._id, season: TEST_SEASON });
+	console.log('Budget after: payroll=' + budgetAfter.payroll + ', deadMoney=' + budgetAfter.deadMoney + ', available=' + budgetAfter.available);
+	
+	// Player A2 was $50, contract 2099-2100
+	// Cut in 2099 = year 1, so 60% dead money = $30
+	// Payroll should drop by $50, dead money should increase by $30
+	// Available should increase by $50 - $30 = $20
+	var payrollCorrect = budgetAfter.payroll === budgetBefore.payroll - 50;
+	var availableIncreased = budgetAfter.available > budgetBefore.available;
+	
+	console.log('Payroll decreased:', payrollCorrect ? 'PASS ✓' : 'FAIL ✗');
+	console.log('Available increased:', availableIncreased ? 'PASS ✓' : 'FAIL ✗');
+	
+	return contractDeleted && txExists && payrollCorrect && availableIncreased;
+}
+
+// ============ TEST 7: Cut Dead Money Calculation ============
+async function test7_CutDeadMoney(world) {
+	console.log('\n=== TEST 7: Cut Dead Money Calculation ===\n');
+	
+	// Player A1 has contract 2099-2101 (3 years), $100 salary
+	var contractA1 = await Contract.findOne({ playerId: world.playerA1._id });
+	
+	console.log('Cutting', world.playerA1.name, '($' + contractA1.salary + ')');
+	console.log('Contract:', contractA1.startYear, '-', contractA1.endYear);
+	
+	var result = await transactionService.processCut({
+		franchiseId: world.franchiseA._id,
+		playerId: world.playerA1._id,
+		source: 'manual'
+	});
+	
+	if (!result.success) {
+		console.log('FAIL: Cut rejected -', result.errors.join(', '));
+		return false;
+	}
+	
+	// Expected dead money for $100 contract, 3 years, cut in year 1:
+	// Year 1 (2099): 60% = $60
+	// Year 2 (2100): 30% = $30
+	// Year 3 (2101): 15% = $15
+	var dm = result.deadMoney;
+	console.log('Dead money entries:', JSON.stringify(dm));
+	
+	var year1 = dm.find(function(d) { return d.season === TEST_SEASON; });
+	var year2 = dm.find(function(d) { return d.season === TEST_SEASON + 1; });
+	var year3 = dm.find(function(d) { return d.season === TEST_SEASON + 2; });
+	
+	var y1Correct = year1 && year1.amount === 60;
+	var y2Correct = year2 && year2.amount === 30;
+	var y3Correct = year3 && year3.amount === 15;
+	
+	console.log('Year 1 ($60):', y1Correct ? 'PASS ✓' : 'FAIL ✗', year1 ? '(got $' + year1.amount + ')' : '(missing)');
+	console.log('Year 2 ($30):', y2Correct ? 'PASS ✓' : 'FAIL ✗', year2 ? '(got $' + year2.amount + ')' : '(missing)');
+	console.log('Year 3 ($15):', y3Correct ? 'PASS ✓' : 'FAIL ✗', year3 ? '(got $' + year3.amount + ')' : '(missing)');
+	
+	return y1Correct && y2Correct && y3Correct;
+}
+
+// ============ TEST 8: Cut Invalid Player ============
+async function test8_CutInvalidPlayer(world) {
+	console.log('\n=== TEST 8: Cut Invalid Player (should reject) ===\n');
+	
+	// Try to cut a player from the wrong franchise
+	console.log('Trying to cut', world.playerB1.name, 'from Franchise A (wrong franchise)');
+	
+	var result = await transactionService.processCut({
+		franchiseId: world.franchiseA._id,
+		playerId: world.playerB1._id,
+		source: 'manual'
+	});
+	
+	var pass = !result.success;
+	console.log('Cut rejected:', pass ? 'PASS ✓' : 'FAIL ✗');
+	if (result.errors) {
+		console.log('Errors:', result.errors);
+	}
+	
+	return pass;
+}
+
 // ============ Main Runner ============
 async function runTests() {
 	console.log('=== Trade Processing Test Suite (Mock Data) ===\n');
@@ -579,6 +695,24 @@ async function runTests() {
 		world = await setupMockWorld();
 		
 		results.push({ name: 'Soft Cap Warning', pass: await test5_SoftCapWarning(world) });
+		
+		await teardownMockWorld();
+		await createMockConfig({ season: TEST_SEASON });
+		world = await setupMockWorld();
+		
+		results.push({ name: 'Basic Cut', pass: await test6_BasicCut(world) });
+		
+		await teardownMockWorld();
+		await createMockConfig({ season: TEST_SEASON });
+		world = await setupMockWorld();
+		
+		results.push({ name: 'Cut Dead Money Calculation', pass: await test7_CutDeadMoney(world) });
+		
+		await teardownMockWorld();
+		await createMockConfig({ season: TEST_SEASON });
+		world = await setupMockWorld();
+		
+		results.push({ name: 'Cut Invalid Player', pass: await test8_CutInvalidPlayer(world) });
 		
 	} catch (err) {
 		console.error('\nTest error:', err);

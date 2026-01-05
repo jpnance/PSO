@@ -614,9 +614,124 @@ async function validateTrade(tradeDetails) {
 	return result;
 }
 
+/**
+ * Process a player cut.
+ * 
+ * @param {Object} cutDetails
+ * @param {ObjectId} cutDetails.franchiseId - Franchise cutting the player
+ * @param {ObjectId} cutDetails.playerId - Player being cut
+ * @param {Date} [cutDetails.timestamp] - When the cut occurred (defaults to now)
+ * @param {string} [cutDetails.source] - 'manual', 'sleeper', etc. (defaults to 'manual')
+ * @param {string} [cutDetails.notes] - Optional notes
+ * @param {ObjectId} [cutDetails.facilitatedTradeId] - If this cut is part of a trade
+ * 
+ * @returns {Object} { success: boolean, transaction?: Transaction, errors?: string[] }
+ */
+async function processCut(cutDetails) {
+	var errors = [];
+	
+	// Validate franchise exists
+	var franchise = await Franchise.findById(cutDetails.franchiseId);
+	if (!franchise) {
+		errors.push('Franchise not found: ' + cutDetails.franchiseId);
+		return { success: false, errors: errors };
+	}
+	
+	// Find the player's active contract on this franchise
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	var contract = await Contract.findOne({
+		playerId: cutDetails.playerId,
+		franchiseId: cutDetails.franchiseId,
+		endYear: { $gte: currentSeason }
+	});
+	
+	if (!contract) {
+		var player = await Player.findById(cutDetails.playerId);
+		var playerName = player ? player.name : cutDetails.playerId;
+		errors.push('No active contract found for ' + playerName + ' on this franchise');
+		return { success: false, errors: errors };
+	}
+	
+	// Compute dead money for each remaining season
+	var deadMoneyEntries = [];
+	var salary = contract.salary || 0;
+	var startYear = contract.startYear;
+	var endYear = contract.endYear;
+	
+	for (var season = currentSeason; season <= endYear; season++) {
+		var amount = computeDeadMoneyForSeason(salary, startYear, endYear, currentSeason, season);
+		if (amount > 0) {
+			deadMoneyEntries.push({ season: season, amount: amount });
+		}
+	}
+	
+	// Update Budget for each affected season
+	for (var i = 0; i < deadMoneyEntries.length; i++) {
+		var dm = deadMoneyEntries[i];
+		
+		await Budget.updateOne(
+			{ franchiseId: cutDetails.franchiseId, season: dm.season },
+			{
+				$inc: {
+					payroll: -salary,
+					deadMoney: dm.amount,
+					available: salary - dm.amount
+				}
+			}
+		);
+	}
+	
+	// Also update future seasons where contract would have been active but no dead money
+	// (salary is freed up entirely)
+	for (var season = currentSeason; season <= endYear; season++) {
+		var hasDM = deadMoneyEntries.some(function(dm) { return dm.season === season; });
+		if (!hasDM) {
+			await Budget.updateOne(
+				{ franchiseId: cutDetails.franchiseId, season: season },
+				{
+					$inc: {
+						payroll: -salary,
+						available: salary
+					}
+				}
+			);
+		}
+	}
+	
+	// Delete the Contract
+	await Contract.deleteOne({ _id: contract._id });
+	
+	// Delete Roster entry if exists
+	await Roster.deleteOne({ playerId: cutDetails.playerId, franchiseId: cutDetails.franchiseId });
+	
+	// Create the Transaction
+	var transaction = await Transaction.create({
+		type: 'fa-cut',
+		timestamp: cutDetails.timestamp || new Date(),
+		source: cutDetails.source || 'manual',
+		notes: cutDetails.notes,
+		franchiseId: cutDetails.franchiseId,
+		playerId: cutDetails.playerId,
+		salary: salary,
+		startYear: startYear,
+		endYear: endYear,
+		deadMoney: deadMoneyEntries,
+		facilitatedTradeId: cutDetails.facilitatedTradeId
+	});
+	
+	return {
+		success: true,
+		transaction: transaction,
+		deadMoney: deadMoneyEntries
+	};
+}
+
 module.exports = {
 	processTrade: processTrade,
 	validateTrade: validateTrade,
+	processCut: processCut,
 	validateBudgetImpact: validateBudgetImpact,
 	computeDeadMoneyForSeason: computeDeadMoneyForSeason,
 	computeReclaimable: computeReclaimable

@@ -84,6 +84,7 @@ var transactionSchema = new Schema({
 
 	// FA cut fields (uses franchiseId, playerId from above)
 	deadMoney: [deadMoneySchema],
+	facilitatedTradeId: { type: Schema.Types.ObjectId, ref: 'Transaction' },
 
 	// Draft fields (uses franchiseId, playerId, salary from above)
 	pickId: { type: Schema.Types.ObjectId, ref: 'Pick' },
