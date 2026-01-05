@@ -275,8 +275,22 @@ async function tradeHistory(request, response) {
 				// Determine if we have an outcome to show
 				var hasOutcome = pickNumber || outcome;
 				
-				// Only show chain if there's more than just this trade, OR if there's an outcome
-				if (allTrades.length > 1 || (allTrades.length === 1 && hasOutcome)) {
+				// Determine if this is the final trade in the chain
+				var isLastTrade = allTrades.length === 0 || allTrades[allTrades.length - 1].tradeNumber === tradeNumber;
+				
+				// Build outcome text if applicable
+				var outcomeText = '';
+				if (isLastTrade && hasOutcome) {
+					if (!knewPickNumber && pickNumber) {
+						outcomeText = '#' + formatPickNumber(pickNumber);
+						if (outcome) outcomeText += ' ' + outcome;
+					} else if (outcome) {
+						outcomeText = outcome;
+					}
+				}
+				
+				// Show chain only if there's more than one trade
+				if (allTrades.length > 1) {
 					var chain = [];
 					
 					// Add all trades
@@ -289,22 +303,15 @@ async function tradeHistory(request, response) {
 						});
 					}
 					
-					// Add outcome at the end if this is the final trade and there's an outcome
-					var isLastTrade = allTrades.length === 0 || allTrades[allTrades.length - 1].tradeNumber === tradeNumber;
-					if (isLastTrade && hasOutcome) {
-						var outcomeText = '';
-						if (!knewPickNumber && pickNumber) {
-							outcomeText = '#' + formatPickNumber(pickNumber);
-							if (outcome) outcomeText += ' ' + outcome;
-						} else if (outcome) {
-							outcomeText = outcome;
-						}
-						if (outcomeText) {
-							chain.push({ type: 'outcome', text: outcomeText });
-						}
+					// Add outcome at the end
+					if (outcomeText) {
+						chain.push({ type: 'outcome', text: outcomeText });
 					}
 					
-					notes.push({ type: 'chain', items: chain });
+					notes.push({ type: 'chain', items: chain, separator: '·' });
+				} else if (outcomeText) {
+					// Single trade with outcome - just show the outcome
+					notes.push({ type: 'outcome', text: outcomeText });
 				}
 				
 				if (!seasonAssets[season]) seasonAssets[season] = [];

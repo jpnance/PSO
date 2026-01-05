@@ -75,13 +75,18 @@ html
 													div.asset-note
 														each item, idx in note.items
 															if idx > 0
-																|  → 
+																if item.type === 'outcome'
+																	|  → 
+																else
+																	|  #{note.separator} 
 															if item.type === 'outcome'
 																| #{item.text}
 															else if item.isCurrent
 																strong ##{item.tradeNumber}
 															else
 																a(href="#trade-" + item.tradeNumber) ##{item.tradeNumber}
+												else if note.type === 'outcome'
+													div.asset-note → #{note.text}
 					
 					if trade.notes
 						div.trade-notes #{trade.notes}
