@@ -656,68 +656,40 @@ async function test8_CutInvalidPlayer(world) {
 	return pass;
 }
 
+// ============ Test Registry ============
+var tests = [
+	{ name: 'Basic 2-Party Swap', fn: test1_BasicPlayerSwap },
+	{ name: '3-Party Trade', fn: test2_ThreePartyTrade },
+	{ name: 'Cash Transfer', fn: test3_CashTransfer },
+	{ name: 'Hard Cap Violation', fn: test4_HardCapViolation },
+	{ name: 'Soft Cap Warning', fn: test5_SoftCapWarning },
+	{ name: 'Basic Cut', fn: test6_BasicCut },
+	{ name: 'Cut Dead Money Calculation', fn: test7_CutDeadMoney },
+	{ name: 'Cut Invalid Player', fn: test8_CutInvalidPlayer }
+];
+
 // ============ Main Runner ============
 async function runTests() {
-	console.log('=== Trade Processing Test Suite (Mock Data) ===\n');
+	console.log('=== Transaction Test Suite ===\n');
 	
-	var world;
 	var results = [];
 	
-	try {
-		// Setup
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
+	for (var i = 0; i < tests.length; i++) {
+		var test = tests[i];
 		
-		// Run tests
-		results.push({ name: 'Basic 2-Party Swap', pass: await test1_BasicPlayerSwap(world) });
-		
-		// Reset for next test
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: '3-Party Trade', pass: await test2_ThreePartyTrade(world) });
-		
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: 'Cash Transfer', pass: await test3_CashTransfer(world) });
-		
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: 'Hard Cap Violation', pass: await test4_HardCapViolation(world) });
-		
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: 'Soft Cap Warning', pass: await test5_SoftCapWarning(world) });
-		
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: 'Basic Cut', pass: await test6_BasicCut(world) });
-		
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: 'Cut Dead Money Calculation', pass: await test7_CutDeadMoney(world) });
-		
-		await teardownMockWorld();
-		await createMockConfig({ season: TEST_SEASON });
-		world = await setupMockWorld();
-		
-		results.push({ name: 'Cut Invalid Player', pass: await test8_CutInvalidPlayer(world) });
-		
-	} catch (err) {
-		console.error('\nTest error:', err);
-	} finally {
-		await teardownMockWorld();
+		try {
+			await createMockConfig({ season: TEST_SEASON });
+			var world = await setupMockWorld();
+			
+			var pass = await test.fn(world);
+			results.push({ name: test.name, pass: pass });
+			
+		} catch (err) {
+			console.error('\nTest error:', err);
+			results.push({ name: test.name, pass: false });
+		} finally {
+			await teardownMockWorld();
+		}
 	}
 	
 	// Summary
