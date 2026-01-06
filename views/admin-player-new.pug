@@ -1,0 +1,63 @@
+extends layout.pug
+
+block styles
+	link(rel='stylesheet' href='/league.css')
+	style.
+		.position-check {
+			display: inline-block;
+			margin-right: 1rem;
+			margin-bottom: 0.5rem;
+		}
+		.position-check input {
+			margin-right: 0.25rem;
+		}
+
+block content
+	div.container.py-4
+		nav.mb-3
+			a(href='/admin/players') ← Back to Players
+		
+		h1.mb-4 New Player
+		
+		div.row
+			div.col-lg-8
+				div.card.mb-4
+					div.card-header
+						strong Player Details
+					div.card-body
+						form(method='POST' action='/admin/players/new')
+							div.form-group
+								label(for='name') Name
+								input#name.form-control(
+									type='text'
+									name='name'
+									placeholder='Full name (e.g., "Patrick Mahomes")'
+									required
+									autofocus
+								)
+							
+							div.form-group
+								label Positions
+								div
+									each pos in positionOrder
+										label.position-check
+											input(
+												type='checkbox'
+												name='pos_' + pos
+											)
+											= pos
+								small.form-text.text-muted Select all applicable fantasy positions
+							
+							div.form-group
+								label(for='sleeperId') Sleeper ID
+								input#sleeperId.form-control(
+									type='text'
+									name='sleeperId'
+									placeholder='Optional - links to Sleeper data'
+								)
+								small.form-text.text-muted
+									| The player's ID in the Sleeper API. Leave blank for historical players not in Sleeper.
+							
+							div.d-flex.justify-content-between
+								button.btn.btn-primary(type='submit') Create Player
+								a.btn.btn-secondary(href='/admin/players') Cancel

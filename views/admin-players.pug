@@ -1,0 +1,94 @@
+extends layout.pug
+
+block styles
+	link(rel='stylesheet' href='/league.css')
+	style.
+		.player-row:hover {
+			background-color: #f8f9fa;
+		}
+		.player-link {
+			text-decoration: none;
+			color: inherit;
+		}
+		.player-link:hover {
+			text-decoration: underline;
+		}
+		.search-form {
+			max-width: 400px;
+		}
+		.position-badge {
+			font-size: 0.75rem;
+			padding: 0.2rem 0.4rem;
+		}
+		.result-count {
+			font-size: 0.875rem;
+			color: #6c757d;
+		}
+
+block content
+	div.container.py-4
+		div.d-flex.justify-content-between.align-items-center.mb-4
+			h1.mb-0 Players
+			a.btn.btn-primary(href='/admin/players/new') Add New Player
+		
+		form.search-form.mb-4(method='GET' action='/admin/players')
+			div.input-group
+				input.form-control(
+					type='text'
+					name='q'
+					placeholder='Search by name...'
+					value=query
+					autofocus
+				)
+				div.input-group-append
+					button.btn.btn-outline-secondary(type='submit')
+						i.fa.fa-search
+					if query || filter
+						a.btn.btn-outline-secondary(href='/admin/players')
+							i.fa.fa-times
+			div.mt-2
+				a.btn.btn-sm(href='/admin/players?filter=historical' class=(filter === 'historical' ? 'btn-success' : 'btn-outline-secondary')) Historical Only
+				a.btn.btn-sm.ml-1(href='/admin/players?filter=no-position' class=(filter === 'no-position' ? 'btn-warning' : 'btn-outline-secondary')) Missing Positions
+		
+		if !hasSearch
+			p.text-muted Search for a player by name or use a filter above.
+		else if players.length === 0
+			div.alert.alert-info
+				if query
+					| No players found matching "#{query}"
+				else if filter === 'historical'
+					| No historical players found
+				else if filter === 'no-position'
+					| No players missing positions
+				else
+					| No results
+		else
+			if totalCount > players.length
+				p.result-count Showing #{players.length} of #{totalCount} results
+			else
+				p.result-count #{totalCount} result#{totalCount === 1 ? '' : 's'}
+			
+			table.table.table-sm
+				thead.thead-light
+					tr
+						th Name
+						th Position
+						th Source
+				tbody
+					each player in players
+						tr.player-row
+							td
+								a.player-link(href='/admin/players/' + player._id)= player.name
+							td
+								if player.positions && player.positions.length
+									span.badge.badge-secondary.position-badge= player.positionDisplay
+								else
+									span.text-muted —
+							td
+								if player.sleeperId
+									i.fa.fa-cloud.text-info(title='Sleeper-linked')
+								else
+									i.fa.fa-history.text-success(title='Historical')
+		
+		div.mt-4
+			a.btn.btn-secondary(href='/admin') ← Back to Admin

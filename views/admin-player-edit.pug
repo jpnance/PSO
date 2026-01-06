@@ -1,0 +1,180 @@
+extends layout.pug
+
+block styles
+	link(rel='stylesheet' href='/league.css')
+	style.
+		.position-check {
+			display: inline-block;
+			margin-right: 1rem;
+			margin-bottom: 0.5rem;
+		}
+		.position-check input {
+			margin-right: 0.25rem;
+		}
+		.duplicate-card {
+			border-left: 3px solid #ffc107;
+		}
+		.contract-row {
+			font-size: 0.9rem;
+		}
+
+block content
+	div.container.py-4
+		nav.mb-3
+			a(href='/admin/players') ← Back to Players
+		
+		if query.saved
+			div.alert.alert-success.alert-dismissible.fade.show
+				strong Saved!
+				|  Player updated successfully.
+				button.close(type='button' data-dismiss='alert') &times;
+		
+		if query.merged
+			div.alert.alert-success.alert-dismissible.fade.show
+				strong Merged!
+				|  #{query.contracts || 0} contract(s) were transferred to this player.
+				button.close(type='button' data-dismiss='alert') &times;
+		
+		if query.created
+			div.alert.alert-success.alert-dismissible.fade.show
+				strong Created!
+				|  Player was created successfully.
+				button.close(type='button' data-dismiss='alert') &times;
+		
+		h1.mb-4= player.name
+		
+		div.row
+			div.col-lg-8
+				div.card.mb-4
+					div.card-header
+						strong Edit Player
+					div.card-body
+						form(method='POST' action='/admin/players/' + player._id)
+							div.form-group
+								label(for='name') Name
+								input#name.form-control(
+									type='text'
+									name='name'
+									value=player.name
+									required
+								)
+							
+							div.form-group
+								label Positions
+								div
+									each pos in positionOrder
+										label.position-check
+											input(
+												type='checkbox'
+												name='pos_' + pos
+												checked=player.positions && player.positions.includes(pos)
+											)
+											= pos
+							
+							div.form-group
+								label(for='sleeperId') Sleeper ID
+								input#sleeperId.form-control(
+									type='text'
+									name='sleeperId'
+									value=player.sleeperId || ''
+									placeholder='Optional - links to Sleeper data'
+								)
+								small.form-text.text-muted
+									| The player's ID in the Sleeper API (e.g., "4046")
+							
+							div.d-flex.justify-content-between
+								button.btn.btn-primary(type='submit') Save Changes
+								a.btn.btn-secondary(href='/admin/players') Cancel
+				
+				if contracts && contracts.length
+					div.card.mb-4
+						div.card-header
+							strong Contracts
+							span.badge.badge-secondary.ml-2= contracts.length
+						table.table.table-sm.mb-0
+							thead.thead-light
+								tr
+									th Franchise
+									th Contract
+									th Salary
+							tbody
+								each c in contracts
+									tr.contract-row
+										td
+											if c.franchiseId
+												= c.franchiseId.sleeperRosterId || 'Unknown'
+											else
+												span.text-muted Unknown
+										td
+											if c.startYear && c.endYear
+												| #{c.startYear % 100}/#{c.endYear % 100}
+											else if c.endYear
+												| FA/#{c.endYear % 100}
+											else if c.salary === null
+												span.text-muted RFA Rights
+											else
+												| —
+										td
+											if c.salary !== null
+												| $#{c.salary}
+											else
+												span.text-muted —
+			
+			div.col-lg-4
+				if player.sleeperId
+					div.card.mb-4.border-info
+						div.card-header.bg-info.text-white
+							i.fa.fa-cloud.mr-1
+							| Sleeper-Linked Player
+						div.card-body
+							p.small.text-muted
+								| This player is linked to Sleeper data. Edits to name and positions may be overwritten when syncing with Sleeper.
+							dl.mb-3
+								dt Sleeper ID
+								dd: code= player.sleeperId
+							form(method='POST' action='/admin/players/' + player._id onsubmit='return confirm("Unlink this player from Sleeper? They will become a historical player and will no longer sync with Sleeper data.")')
+								input(type='hidden' name='name' value=player.name)
+								each pos in player.positions
+									input(type='hidden' name='pos_' + pos value='on')
+								input(type='hidden' name='sleeperId' value='')
+								button.btn.btn-sm.btn-outline-warning(type='submit') Unlink from Sleeper
+				else
+					div.card.mb-4.border-success
+						div.card-header.bg-success.text-white
+							i.fa.fa-history.mr-1
+							| Historical Player
+						div.card-body
+							p.small.text-muted
+								| This player is not linked to Sleeper. Edits are safe and will not be overwritten.
+				
+				div.card.mb-4
+					div.card-header
+						strong Player Info
+					div.card-body
+						dl.mb-0
+							dt ID
+							dd: code= player._id
+							dt Positions
+							dd
+								if positions && positions.length
+									= positions.join(', ')
+								else
+									span.text-muted None set
+				
+				if potentialDuplicates && potentialDuplicates.length
+					div.card.mb-4.duplicate-card
+						div.card-header
+							strong Potential Duplicates
+							span.badge.badge-warning.ml-2= potentialDuplicates.length
+						div.card-body
+							p.small.text-muted These players have the same name. You can merge them into this player.
+							each dup in potentialDuplicates
+								div.d-flex.justify-content-between.align-items-center.mb-2
+									div
+										strong= dup.name
+										if dup.sleeperId
+											br
+											code.small= dup.sleeperId
+									form.d-inline(method='POST' action='/admin/players/' + player._id + '/merge' onsubmit='return confirm("Merge " + this.dataset.name + " into ' + player.name + '? This will transfer all contracts and delete the duplicate.")')
+										input(type='hidden' name='sourceId' value=dup._id)
+										button.btn.btn-sm.btn-outline-warning(type='submit' data-name=dup.name) Merge
