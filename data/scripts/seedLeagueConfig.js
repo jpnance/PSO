@@ -33,27 +33,27 @@ async function seed() {
 		season: currentSeason,
 		
 		// Offseason
-		tradeWindowOpens: defaults.tradeWindowOpens,
+		tradeWindow: defaults.tradeWindow,
 		
 		// NFL dates
 		nflDraft: defaults.nflDraft,
-		nflSeasonKickoff: defaults.nflSeasonKickoff,
+		nflSeason: defaults.nflSeason,
 		
 		// Pre-season (tentative until confirmed)
 		cutDay: defaults.cutDay,
 		cutDayTentative: true,
-		auctionDay: defaults.auctionDay,
-		auctionDayTentative: true,
+		draftDay: defaults.draftDay,
+		draftDayTentative: true,
 		contractsDue: defaults.contractsDue,
 		contractsDueTentative: true,
 		
 		// Regular season
-		regularSeasonStarts: defaults.regularSeasonStarts,
+		faab: defaults.faab,
 		tradeDeadline: defaults.tradeDeadline,
-		playoffFAStarts: defaults.playoffFAStarts,
+		playoffs: defaults.playoffs,
 		
 		// End of season
-		championshipDay: defaults.championshipDay
+		deadPeriod: defaults.deadPeriod
 	});
 	
 	function formatDate(d) {
@@ -66,16 +66,16 @@ async function seed() {
 	console.log('  Hard Cap Active:', config.isHardCapActive());
 	console.log('  Trades Enabled:', config.areTradesEnabled());
 	console.log('\nSchedule:');
-	console.log('  Trade Window Opens:', formatDate(config.tradeWindowOpens));
+	console.log('  Trade Window:', formatDate(config.tradeWindow));
 	console.log('  NFL Draft:', formatDate(config.nflDraft));
 	console.log('  Cut Day:', formatDate(config.cutDay), config.cutDayTentative ? '(tentative)' : '');
-	console.log('  Auction Day:', formatDate(config.auctionDay), config.auctionDayTentative ? '(tentative)' : '');
+	console.log('  Draft Day:', formatDate(config.draftDay), config.draftDayTentative ? '(tentative)' : '');
 	console.log('  Contracts Due:', formatDate(config.contractsDue), config.contractsDueTentative ? '(tentative)' : '');
-	console.log('  NFL Season Kickoff:', formatDate(config.nflSeasonKickoff));
-	console.log('  Regular Season Starts:', formatDate(config.regularSeasonStarts));
+	console.log('  NFL Season:', formatDate(config.nflSeason));
+	console.log('  FAAB:', formatDate(config.faab));
 	console.log('  Trade Deadline:', formatDate(config.tradeDeadline));
-	console.log('  Playoff FA Starts:', formatDate(config.playoffFAStarts));
-	console.log('  Championship Day:', formatDate(config.championshipDay));
+	console.log('  Playoffs:', formatDate(config.playoffs));
+	console.log('  Dead Period:', formatDate(config.deadPeriod));
 	console.log('\nAdjust dates via /admin if needed.');
 	
 	process.exit(0);

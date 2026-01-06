@@ -64,7 +64,7 @@ html
 												span.badge.badge-secondary Disabled
 				
 				//- Only show advance button after championship day (post-season dead period, not pre-season)
-				if phase === 'dead-period' && config.championshipDay && new Date() >= config.championshipDay
+				if phase === 'dead-period' && config.deadPeriod && new Date() >= config.deadPeriod
 					div.col-lg-6
 						div.card.mb-4
 							div.card-header
@@ -90,8 +90,8 @@ html
 						div.row
 							div.col-md-4
 								div.form-group
-									label(for='tradeWindowOpens') Trade Window Opens
-									input#tradeWindowOpens.form-control(type='date' name='tradeWindowOpens' value=formatDate(config.tradeWindowOpens))
+									label(for='tradeWindow') Trade Window
+									input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(config.tradeWindow))
 									small.form-text.text-muted Saturday before Super Bowl
 							div.col-md-4
 								div.form-group
@@ -110,11 +110,11 @@ html
 										label.form-check-label(for='cutDayTentative') Tentative
 							div.col-md-4
 								div.form-group
-									label(for='auctionDay') Auction Day
-									input#auctionDay.form-control(type='date' name='auctionDay' value=formatDate(config.auctionDay))
+									label(for='draftDay') Draft Day
+									input#draftDay.form-control(type='date' name='draftDay' value=formatDate(config.draftDay))
 									div.form-check.mt-1
-										input#auctionDayTentative.form-check-input(type='checkbox' name='auctionDayTentative' value='true' checked=config.auctionDayTentative)
-										label.form-check-label(for='auctionDayTentative') Tentative
+										input#draftDayTentative.form-check-input(type='checkbox' name='draftDayTentative' value='true' checked=config.draftDayTentative)
+										label.form-check-label(for='draftDayTentative') Tentative
 							div.col-md-4
 								div.form-group
 									label(for='contractsDue') Contracts Due
@@ -127,14 +127,14 @@ html
 						div.row
 							div.col-md-4
 								div.form-group
-									label(for='nflSeasonKickoff') NFL Season Kickoff
-									input#nflSeasonKickoff.form-control(type='date' name='nflSeasonKickoff' value=formatDate(config.nflSeasonKickoff))
-									small.form-text.text-muted Thursday after Labor Day
+									label(for='faab') FAAB
+									input#faab.form-control(type='date' name='faab' value=formatDate(config.faab))
+									small.form-text.text-muted Wednesday before NFL Week 1
 							div.col-md-4
 								div.form-group
-									label(for='regularSeasonStarts') Regular Season Starts
-									input#regularSeasonStarts.form-control(type='date' name='regularSeasonStarts' value=formatDate(config.regularSeasonStarts))
-									small.form-text.text-muted Wednesday before NFL Week 1
+									label(for='nflSeason') NFL Season
+									input#nflSeason.form-control(type='date' name='nflSeason' value=formatDate(config.nflSeason))
+									small.form-text.text-muted Thursday after Labor Day
 							div.col-md-4
 								div.form-group
 									label(for='tradeDeadline') Trade Deadline
@@ -143,16 +143,16 @@ html
 						div.row
 							div.col-md-4
 								div.form-group
-									label(for='playoffFAStarts') Playoff FA Starts
-									input#playoffFAStarts.form-control(type='date' name='playoffFAStarts' value=formatDate(config.playoffFAStarts))
+									label(for='playoffs') Playoffs
+									input#playoffs.form-control(type='date' name='playoffs' value=formatDate(config.playoffs))
 									small.form-text.text-muted After NFL Week 15
 						
 						h5.mt-4 End of Season
 						div.row
 							div.col-md-4
 								div.form-group
-									label(for='championshipDay') Championship Day
-									input#championshipDay.form-control(type='date' name='championshipDay' value=formatDate(config.championshipDay))
+									label(for='deadPeriod') Dead Period
+									input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(config.deadPeriod))
 									small.form-text.text-muted Tuesday after NFL Week 17
 						
 						button.btn.btn-primary(type='submit') Save Configuration

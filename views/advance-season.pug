@@ -78,8 +78,8 @@ html
 						div.row
 							div.col-md-6
 								div.form-group
-									label(for='tradeWindowOpens') Trade Window Opens
-									input#tradeWindowOpens.form-control(type='date' name='tradeWindowOpens' value=formatDate(defaults.tradeWindowOpens))
+									label(for='tradeWindow') Trade Window
+									input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(defaults.tradeWindow))
 									small.form-text.text-muted Saturday before Super Bowl
 						
 						h5.mt-4 Pre-Season
@@ -90,8 +90,8 @@ html
 									input#cutDay.form-control(type='date' name='cutDay' value=formatDate(defaults.cutDay))
 							div.col-md-4
 								div.form-group
-									label(for='auctionDay') Auction Day
-									input#auctionDay.form-control(type='date' name='auctionDay' value=formatDate(defaults.auctionDay))
+									label(for='draftDay') Draft Day
+									input#draftDay.form-control(type='date' name='draftDay' value=formatDate(defaults.draftDay))
 							div.col-md-4
 								div.form-group
 									label(for='contractsDue') Contracts Due
@@ -101,23 +101,23 @@ html
 						div.row
 							div.col-md-4
 								div.form-group
-									label(for='regularSeasonStarts') Regular Season Starts
-									input#regularSeasonStarts.form-control(type='date' name='regularSeasonStarts' value=formatDate(defaults.regularSeasonStarts))
+									label(for='faab') FAAB
+									input#faab.form-control(type='date' name='faab' value=formatDate(defaults.faab))
 							div.col-md-4
 								div.form-group
 									label(for='tradeDeadline') Trade Deadline
 									input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(defaults.tradeDeadline))
 							div.col-md-4
 								div.form-group
-									label(for='playoffFAStarts') Playoff FA Starts
-									input#playoffFAStarts.form-control(type='date' name='playoffFAStarts' value=formatDate(defaults.playoffFAStarts))
+									label(for='playoffs') Playoffs
+									input#playoffs.form-control(type='date' name='playoffs' value=formatDate(defaults.playoffs))
 						
 						h5.mt-4 End of Season
 						div.row
 							div.col-md-4
 								div.form-group
-									label(for='championshipDay') Championship Day
-									input#championshipDay.form-control(type='date' name='championshipDay' value=formatDate(defaults.championshipDay))
+									label(for='deadPeriod') Dead Period
+									input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(defaults.deadPeriod))
 				
 				//- Submit
 				div.d-flex.justify-content-between

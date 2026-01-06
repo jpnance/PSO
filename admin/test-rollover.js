@@ -33,14 +33,14 @@ async function setupMockWorld() {
 	await LeagueConfig.create({
 		_id: 'pso',
 		season: TEST_SEASON,
-		tradeWindowOpens: new Date(TEST_SEASON, 0, 25),
+		tradeWindow: new Date(TEST_SEASON, 0, 25),
 		cutDay: new Date(TEST_SEASON, 7, 20),
-		auctionDay: new Date(TEST_SEASON, 7, 27),
+		draftDay: new Date(TEST_SEASON, 7, 27),
 		contractsDue: new Date(TEST_SEASON, 8, 1),
-		regularSeasonStarts: new Date(TEST_SEASON, 8, 4),
+		faab: new Date(TEST_SEASON, 8, 4),
 		tradeDeadline: new Date(TEST_SEASON, 10, 5),
-		playoffFAStarts: new Date(TEST_SEASON, 11, 10),
-		championshipDay: new Date(TEST_SEASON, 11, 24)
+		playoffs: new Date(TEST_SEASON, 11, 10),
+		deadPeriod: new Date(TEST_SEASON, 11, 24)
 	});
 	
 	// Create franchises

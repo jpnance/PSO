@@ -54,8 +54,8 @@ async function updateConfig(request, response) {
 	
 	// Update dates (convert empty strings to null)
 	var dateFields = [
-		'tradeWindowOpens', 'nflDraft', 'cutDay', 'auctionDay', 'contractsDue',
-		'nflSeasonKickoff', 'regularSeasonStarts', 'tradeDeadline', 'playoffFAStarts', 'championshipDay'
+		'tradeWindow', 'nflDraft', 'cutDay', 'draftDay', 'contractsDue',
+		'nflSeason', 'faab', 'tradeDeadline', 'playoffs', 'deadPeriod'
 	];
 	
 	dateFields.forEach(function(field) {
@@ -66,7 +66,7 @@ async function updateConfig(request, response) {
 	
 	// Update tentative flags
 	config.cutDayTentative = body.cutDayTentative === 'true' || body.cutDayTentative === true;
-	config.auctionDayTentative = body.auctionDayTentative === 'true' || body.auctionDayTentative === true;
+	config.draftDayTentative = body.draftDayTentative === 'true' || body.draftDayTentative === true;
 	config.contractsDueTentative = body.contractsDueTentative === 'true' || body.contractsDueTentative === true;
 	
 	await config.save();
@@ -266,19 +266,19 @@ async function advanceSeason(request, response) {
 	var defaults = LeagueConfig.computeDefaultDates(newSeason);
 	
 	config.season = newSeason;
-	config.tradeWindowOpens = body.tradeWindowOpens ? new Date(body.tradeWindowOpens) : defaults.tradeWindowOpens;
+	config.tradeWindow = body.tradeWindow ? new Date(body.tradeWindow) : defaults.tradeWindow;
 	config.nflDraft = body.nflDraft ? new Date(body.nflDraft) : defaults.nflDraft;
 	config.cutDay = body.cutDay ? new Date(body.cutDay) : defaults.cutDay;
 	config.cutDayTentative = true;
-	config.auctionDay = body.auctionDay ? new Date(body.auctionDay) : defaults.auctionDay;
-	config.auctionDayTentative = true;
+	config.draftDay = body.draftDay ? new Date(body.draftDay) : defaults.draftDay;
+	config.draftDayTentative = true;
 	config.contractsDue = body.contractsDue ? new Date(body.contractsDue) : defaults.contractsDue;
 	config.contractsDueTentative = true;
-	config.nflSeasonKickoff = body.nflSeasonKickoff ? new Date(body.nflSeasonKickoff) : defaults.nflSeasonKickoff;
-	config.regularSeasonStarts = body.regularSeasonStarts ? new Date(body.regularSeasonStarts) : defaults.regularSeasonStarts;
+	config.nflSeason = body.nflSeason ? new Date(body.nflSeason) : defaults.nflSeason;
+	config.faab = body.faab ? new Date(body.faab) : defaults.faab;
 	config.tradeDeadline = body.tradeDeadline ? new Date(body.tradeDeadline) : defaults.tradeDeadline;
-	config.playoffFAStarts = body.playoffFAStarts ? new Date(body.playoffFAStarts) : defaults.playoffFAStarts;
-	config.championshipDay = body.championshipDay ? new Date(body.championshipDay) : defaults.championshipDay;
+	config.playoffs = body.playoffs ? new Date(body.playoffs) : defaults.playoffs;
+	config.deadPeriod = body.deadPeriod ? new Date(body.deadPeriod) : defaults.deadPeriod;
 	
 	await config.save();
 	

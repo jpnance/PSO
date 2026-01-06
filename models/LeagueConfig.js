@@ -49,16 +49,16 @@ function computeDefaultDates(season) {
 	var prevLaborDay = getLaborDay(season - 1);
 	
 	return {
-		tradeWindowOpens: getDayAfter(prevLaborDay, 6, 22),    // 23rd Saturday after prev Labor Day
+		tradeWindow: getDayAfter(prevLaborDay, 6, 22),          // 23rd Saturday after prev Labor Day
 		nflDraft: getLastDayOfMonth(season, 3, 4),              // Last Thursday of April
 		cutDay: getDayBefore(laborDay, 0, 2),                   // 3rd Sunday before Labor Day
-		auctionDay: getDayBefore(laborDay, 6, 1),               // 2nd Saturday before Labor Day
+		draftDay: getDayBefore(laborDay, 6, 1),                 // 2nd Saturday before Labor Day
 		contractsDue: laborDay,                                  // Labor Day
-		nflSeasonKickoff: getDayAfter(laborDay, 4, 0),          // Thursday after Labor Day
-		regularSeasonStarts: getDayAfter(laborDay, 3, 0),       // 1st Wed after Labor Day
+		faab: getDayAfter(laborDay, 3, 0),                      // 1st Wed after Labor Day
+		nflSeason: getDayAfter(laborDay, 4, 0),                 // Thursday after Labor Day
 		tradeDeadline: getDayAfter(laborDay, 3, 9),             // 10th Wed after Labor Day
-		playoffFAStarts: getDayAfter(laborDay, 3, 15),          // 16th Wed after Labor Day
-		championshipDay: getDayAfter(laborDay, 3, 17)           // 18th Wed after Labor Day
+		playoffs: getDayAfter(laborDay, 3, 15),                 // 16th Wed after Labor Day
+		deadPeriod: getDayAfter(laborDay, 3, 17)                // 18th Wed after Labor Day
 	};
 }
 
@@ -73,42 +73,42 @@ var leagueConfigSchema = new Schema({
 	
 	// Key dates for the season
 	// Offseason
-	tradeWindowOpens: { type: Date },           // ~late Jan (Saturday before Super Bowl)
+	tradeWindow: { type: Date },                // ~late Jan (Saturday before Super Bowl)
 	
 	// NFL dates
 	nflDraft: { type: Date },                   // Last Thursday of April
-	nflSeasonKickoff: { type: Date },           // Thursday after Labor Day
 	
 	// Pre-season crunch
 	cutDay: { type: Date },                     // ~late Aug (1 week before auction)
 	cutDayTentative: { type: Boolean, default: true },
 	
-	auctionDay: { type: Date },                 // ~late Aug (2 weeks before NFL Week 1)
-	auctionDayTentative: { type: Boolean, default: true },
+	draftDay: { type: Date },                   // ~late Aug (2 weeks before NFL Week 1)
+	draftDayTentative: { type: Boolean, default: true },
 	
 	contractsDue: { type: Date },               // 8 days after auction (Sunday)
 	contractsDueTentative: { type: Boolean, default: true },
 	
 	// Regular season
-	regularSeasonStarts: { type: Date },        // Wednesday before NFL Week 1
+	faab: { type: Date },                       // Wednesday before NFL Week 1
+	nflSeason: { type: Date },                  // Thursday after Labor Day
 	tradeDeadline: { type: Date },              // Wednesday between NFL Weeks 9-10
-	playoffFAStarts: { type: Date },            // After NFL Week 15
+	playoffs: { type: Date },                   // After NFL Week 15
 	
 	// End of season
-	championshipDay: { type: Date }             // Tuesday after NFL Week 17
+	deadPeriod: { type: Date }                  // Tuesday after NFL Week 17
 });
 
 // Compute current phase based on dates
 leagueConfigSchema.methods.getPhase = function() {
 	var today = new Date();
 	
-	if (this.championshipDay && today >= this.championshipDay) {
-		if (!this.tradeWindowOpens || today < this.tradeWindowOpens) {
+	if (this.deadPeriod && today >= this.deadPeriod) {
+		if (!this.tradeWindow || today < this.tradeWindow) {
 			return 'dead-period';
 		}
 	}
 	
-	if (this.tradeWindowOpens && today < this.tradeWindowOpens) {
+	if (this.tradeWindow && today < this.tradeWindow) {
 		return 'dead-period';
 	}
 	
@@ -116,7 +116,7 @@ leagueConfigSchema.methods.getPhase = function() {
 		return 'early-offseason';
 	}
 	
-	if (!this.regularSeasonStarts || today < this.regularSeasonStarts) {
+	if (!this.faab || today < this.faab) {
 		return 'pre-season';
 	}
 	
@@ -124,11 +124,11 @@ leagueConfigSchema.methods.getPhase = function() {
 		return 'regular-season';
 	}
 	
-	if (!this.playoffFAStarts || today < this.playoffFAStarts) {
+	if (!this.playoffs || today < this.playoffs) {
 		return 'post-deadline';
 	}
 	
-	if (!this.championshipDay || today < this.championshipDay) {
+	if (!this.deadPeriod || today < this.deadPeriod) {
 		return 'playoff-fa';
 	}
 	

@@ -63,9 +63,9 @@ function getPhaseName(phase) {
 function buildCalendarData(config) {
 	var events = [
 		{
-			key: 'tradeWindowOpens',
-			name: 'Trade Window Opens',
-			date: config.tradeWindowOpens,
+			key: 'tradeWindow',
+			name: 'Trade Window',
+			date: config.tradeWindow,
 			description: 'Trades resume for the new season',
 			tentative: false
 		},
@@ -81,15 +81,15 @@ function buildCalendarData(config) {
 			key: 'cutDay',
 			name: 'Cut Day',
 			date: config.cutDay,
-			description: 'Deadline to get under the salary cap',
+			description: 'Last day to cut players until after contracts are due; hard cap goes into effect',
 			tentative: config.cutDayTentative
 		},
 		{
-			key: 'auctionDay',
-			name: 'Rookie Draft and Auction',
-			date: config.auctionDay,
+			key: 'draftDay',
+			name: 'Draft Day',
+			date: config.draftDay,
 			description: 'Annual rookie draft and free agent auction',
-			tentative: config.auctionDayTentative
+			tentative: config.draftDayTentative
 		},
 		{
 			key: 'contractsDue',
@@ -99,19 +99,19 @@ function buildCalendarData(config) {
 			tentative: config.contractsDueTentative
 		},
 		{
-			key: 'nflSeasonKickoff',
-			name: 'NFL Season Kickoff',
-			date: config.nflSeasonKickoff,
-			description: 'NFL regular season begins',
-			tentative: false,
-			isNfl: true
+			key: 'faab',
+			name: 'In-Season Free Agency Begins',
+			date: config.faab,
+			description: 'FAAB begins running on this Wednesday and will continue every Thursday, Friday, Saturday, Sunday, and Monday at 12pm ET',
+			tentative: false
 		},
 		{
-			key: 'regularSeasonStarts',
-			name: 'Regular Season Starts',
-			date: config.regularSeasonStarts,
-			description: 'Fantasy matchups begin',
-			tentative: false
+			key: 'nflSeason',
+			name: 'NFL Season Kicks Off',
+			date: config.nflSeason,
+			description: 'First game of the NFL regular season',
+			tentative: false,
+			isNfl: true
 		},
 		{
 			key: 'tradeDeadline',
@@ -121,31 +121,39 @@ function buildCalendarData(config) {
 			tentative: false
 		},
 		{
-			key: 'playoffFAStarts',
-			name: 'Playoff Free Agency Starts',
-			date: config.playoffFAStarts,
-			description: 'Free agency transactions lock for non-playoff teams',
+			key: 'playoffs',
+			name: 'Playoffs',
+			date: config.playoffs,
+			description: 'All non-playoff teams are locked out of free agency',
 			tentative: false
 		},
 		{
-			key: 'championshipDay',
-			name: 'End of the Season',
-			date: config.championshipDay,
-			description: 'Championship round matchups finalize and season concludes',
+			key: 'deadPeriod',
+			name: 'Dead Period',
+			date: config.deadPeriod,
+			description: 'Season concludes; no transactions until trade window reopens',
 			tentative: false
 		}
 	];
 	
-	// Add status to each event
-	return events.map(function(event) {
-		return Object.assign({}, event, {
-			formattedDate: formatDate(event.date),
-			shortDate: formatShortDate(event.date),
-			isPast: isPast(event.date),
-			isToday: isToday(event.date),
-			isUpcoming: isUpcoming(event.date)
+	// Add status to each event and sort by date
+	return events
+		.map(function(event) {
+			return Object.assign({}, event, {
+				formattedDate: formatDate(event.date),
+				shortDate: formatShortDate(event.date),
+				isPast: isPast(event.date),
+				isToday: isToday(event.date),
+				isUpcoming: isUpcoming(event.date)
+			});
+		})
+		.sort(function(a, b) {
+			// Events without dates go to the end
+			if (!a.date && !b.date) return 0;
+			if (!a.date) return 1;
+			if (!b.date) return -1;
+			return new Date(a.date) - new Date(b.date);
 		});
-	});
 }
 
 // Route handler
