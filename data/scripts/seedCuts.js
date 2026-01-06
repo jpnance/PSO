@@ -140,11 +140,11 @@ async function fetchCutsData() {
 	return dataJson.values;
 }
 
-// Compute dead money for a cut
+// Compute buy-outs for a cut
 // Contract years get 60%/30%/15% for year 1/2/3 of contract
-// Only years >= cutYear incur dead money (prior years were paid as salary)
-function computeDeadMoney(salary, startYear, endYear, cutYear) {
-	var deadMoney = [];
+// Only years >= cutYear incur buy-outs (prior years were paid as salary)
+function computeBuyOuts(salary, startYear, endYear, cutYear) {
+	var buyOuts = [];
 	var percentages = [0.60, 0.30, 0.15];
 	
 	// For FA contracts (single year), startYear === endYear
@@ -159,12 +159,12 @@ function computeDeadMoney(salary, startYear, endYear, cutYear) {
 		if (year >= cutYear) {
 			var amount = Math.ceil(salary * percentages[contractYearIndex]);
 			if (amount > 0) {
-				deadMoney.push({ season: year, amount: amount });
+				buyOuts.push({ season: year, amount: amount });
 			}
 		}
 	}
 	
-	return deadMoney;
+	return buyOuts;
 }
 
 // Find player in Sleeper data (returns match info, doesn't create anything)
@@ -268,8 +268,8 @@ async function analyzeCuts(rows) {
 		var salary = parseInt((row[5] || '').replace(/[$,]/g, '')) || 0;
 		var cutYear = parseInt(row[6]);
 		
-		// Compute dead money
-		var deadMoney = computeDeadMoney(salary, startYear, endYear, cutYear);
+		// Compute buy-outs
+		var buyOuts = computeBuyOuts(salary, startYear, endYear, cutYear);
 		
 		cuts.push({
 			owner: owner,
@@ -281,7 +281,7 @@ async function analyzeCuts(rows) {
 			endYear: endYear,
 			salary: salary,
 			cutYear: cutYear,
-			deadMoney: deadMoney
+			buyOuts: buyOuts
 		});
 	}
 	
@@ -628,7 +628,7 @@ async function run() {
 				source: 'snapshot',
 				franchiseId: franchiseId,
 				playerId: playerId,
-				deadMoney: cut.deadMoney
+				buyOuts: cut.buyOuts
 			});
 			created++;
 		} catch (err) {

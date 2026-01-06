@@ -100,7 +100,7 @@ async function createMockBudget(franchiseId, season, options) {
 		season: season,
 		baseAmount: options.baseAmount || 1000,
 		payroll: options.payroll || 0,
-		deadMoney: options.deadMoney || 0,
+		buyOuts: options.buyOuts || 0,
 		cashIn: options.cashIn || 0,
 		cashOut: options.cashOut || 0,
 		available: options.available !== undefined ? options.available : 1000
@@ -574,11 +574,11 @@ async function test6_BasicCut(world) {
 	// Verify transaction created
 	var txExists = !!result.transaction;
 	console.log('Transaction created:', txExists ? 'PASS ✓' : 'FAIL ✗');
-	console.log('Dead money:', JSON.stringify(result.deadMoney));
+	console.log('Buy-outs:', JSON.stringify(result.buyOuts));
 	
 	// Verify budget updated
 	var budgetAfter = await Budget.findOne({ franchiseId: world.franchiseA._id, season: TEST_SEASON });
-	console.log('Budget after: payroll=' + budgetAfter.payroll + ', deadMoney=' + budgetAfter.deadMoney + ', available=' + budgetAfter.available);
+	console.log('Budget after: payroll=' + budgetAfter.payroll + ', buyOuts=' + budgetAfter.buyOuts + ', available=' + budgetAfter.available);
 	
 	// Player A2 was $50, contract 2099-2100
 	// Cut in 2099 = year 1, so 60% dead money = $30
@@ -593,9 +593,9 @@ async function test6_BasicCut(world) {
 	return contractDeleted && txExists && payrollCorrect && availableIncreased;
 }
 
-// ============ TEST 7: Cut Dead Money Calculation ============
-async function test7_CutDeadMoney(world) {
-	console.log('\n=== TEST 7: Cut Dead Money Calculation ===\n');
+// ============ TEST 7: Cut Buy-out Calculation ============
+async function test7_CutBuyOut(world) {
+	console.log('\n=== TEST 7: Cut Buy-out Calculation ===\n');
 	
 	// Player A1 has contract 2099-2101 (3 years), $100 salary
 	var contractA1 = await Contract.findOne({ playerId: world.playerA1._id });
@@ -614,16 +614,16 @@ async function test7_CutDeadMoney(world) {
 		return false;
 	}
 	
-	// Expected dead money for $100 contract, 3 years, cut in year 1:
+	// Expected buy-out for $100 contract, 3 years, cut in year 1:
 	// Year 1 (2099): 60% = $60
 	// Year 2 (2100): 30% = $30
 	// Year 3 (2101): 15% = $15
-	var dm = result.deadMoney;
-	console.log('Dead money entries:', JSON.stringify(dm));
+	var bo = result.buyOuts;
+	console.log('Buy-out entries:', JSON.stringify(bo));
 	
-	var year1 = dm.find(function(d) { return d.season === TEST_SEASON; });
-	var year2 = dm.find(function(d) { return d.season === TEST_SEASON + 1; });
-	var year3 = dm.find(function(d) { return d.season === TEST_SEASON + 2; });
+	var year1 = bo.find(function(d) { return d.season === TEST_SEASON; });
+	var year2 = bo.find(function(d) { return d.season === TEST_SEASON + 1; });
+	var year3 = bo.find(function(d) { return d.season === TEST_SEASON + 2; });
 	
 	var y1Correct = year1 && year1.amount === 60;
 	var y2Correct = year2 && year2.amount === 30;
@@ -659,9 +659,9 @@ async function test8_CutInvalidPlayer(world) {
 }
 
 
-// ============ TEST 9: Cut Dead Money Calculation 2 ============
-async function test9_CutDeadMoney2(world) {
-	console.log('\n=== TEST 9: Cut Dead Money Calculation 2 ===\n');
+// ============ TEST 9: Cut Buy-out Calculation 2 ============
+async function test9_CutBuyOut2(world) {
+	console.log('\n=== TEST 9: Cut Buy-out Calculation 2 ===\n');
 	
 	// Player C2 has contract 2099-2101 (3 years), $2 salary
 	var contractC2 = await Contract.findOne({ playerId: world.playerC2._id });
@@ -680,16 +680,16 @@ async function test9_CutDeadMoney2(world) {
 		return false;
 	}
 	
-	// Expected dead money for $2 contract, 3 years, cut in year 1:
+	// Expected buy-out for $2 contract, 3 years, cut in year 1:
 	// Year 1 (2099): 60% = $2
 	// Year 2 (2100): 30% = $1
 	// Year 3 (2101): 15% = $1
-	var dm = result.deadMoney;
-	console.log('Dead money entries:', JSON.stringify(dm));
+	var bo = result.buyOuts;
+	console.log('Buy-out entries:', JSON.stringify(bo));
 	
-	var year1 = dm.find(function(d) { return d.season === TEST_SEASON; });
-	var year2 = dm.find(function(d) { return d.season === TEST_SEASON + 1; });
-	var year3 = dm.find(function(d) { return d.season === TEST_SEASON + 2; });
+	var year1 = bo.find(function(d) { return d.season === TEST_SEASON; });
+	var year2 = bo.find(function(d) { return d.season === TEST_SEASON + 1; });
+	var year3 = bo.find(function(d) { return d.season === TEST_SEASON + 2; });
 	
 	var y1Correct = year1 && year1.amount === 2;
 	var y2Correct = year2 && year2.amount === 1;
@@ -710,9 +710,9 @@ var tests = [
 	{ name: 'Hard Cap Violation', fn: test4_HardCapViolation },
 	{ name: 'Soft Cap Warning', fn: test5_SoftCapWarning },
 	{ name: 'Basic Cut', fn: test6_BasicCut },
-	{ name: 'Cut Dead Money Calculation', fn: test7_CutDeadMoney },
+	{ name: 'Cut Buy-out Calculation', fn: test7_CutBuyOut },
 	{ name: 'Cut Invalid Player', fn: test8_CutInvalidPlayer },
-	{ name: 'Cut Dead Money Calculation 2', fn: test9_CutDeadMoney2 },
+	{ name: 'Cut Buy-out Calculation 2', fn: test9_CutBuyOut2 },
 ];
 
 // ============ Main Runner ============

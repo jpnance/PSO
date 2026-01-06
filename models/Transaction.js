@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var deadMoneySchema = new Schema({
+var buyOutSchema = new Schema({
 	season: { type: Number, required: true },
 	amount: { type: Number, required: true }
 }, { _id: false });
 
 var droppedPlayerSchema = new Schema({
 	playerId: { type: Schema.Types.ObjectId, ref: 'Player', required: true },
-	deadMoney: [deadMoneySchema]
+	buyOuts: [buyOutSchema]
 }, { _id: false });
 
 var tradePlayerSchema = new Schema({
@@ -83,7 +83,7 @@ var transactionSchema = new Schema({
 	dropped: droppedPlayerSchema,
 
 	// FA cut fields (uses franchiseId, playerId from above)
-	deadMoney: [deadMoneySchema],
+	buyOuts: [buyOutSchema],
 	facilitatedTradeId: { type: Schema.Types.ObjectId, ref: 'Transaction' },
 
 	// Draft fields (uses franchiseId, playerId, salary from above)

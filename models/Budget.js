@@ -6,7 +6,7 @@ var budgetSchema = new Schema({
 	season: { type: Number, required: true },
 	baseAmount: { type: Number, default: 1000 },
 	payroll: { type: Number, default: 0 },
-	deadMoney: { type: Number, default: 0 },
+	buyOuts: { type: Number, default: 0 },
 	cashIn: { type: Number, default: 0 },
 	cashOut: { type: Number, default: 0 },
 	available: { type: Number, default: 1000 }

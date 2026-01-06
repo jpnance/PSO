@@ -109,7 +109,7 @@ async function seed() {
 				franchiseId: franchiseId,
 				season: entry.season,
 				available: entry.available
-				// baseAmount, payroll, deadMoney, cashIn, cashOut will use defaults
+				// baseAmount, payroll, buyOuts, cashIn, cashOut will use defaults
 			});
 			created++;
 		}

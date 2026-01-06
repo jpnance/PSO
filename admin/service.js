@@ -217,7 +217,7 @@ async function advanceSeason(request, response) {
 				season: pickSeason,
 				baseAmount: 1000,
 				payroll: 0,
-				deadMoney: 0,
+				buyOuts: 0,
 				cashIn: 0,
 				cashOut: 0,
 				available: 1000

@@ -10,17 +10,17 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
 
 /**
- * Compute dead money for a single season if a contract is cut.
+ * Compute buy-out for a single season if a contract is cut.
  * Contract years get 60%/30%/15% for year 1/2/3 of contract.
  * 
  * @param {number} salary - Contract salary
  * @param {number} startYear - Contract start year (null for FA = single-year)
  * @param {number} endYear - Contract end year
  * @param {number} cutYear - Season when the cut occurs
- * @param {number} targetSeason - Season to calculate dead money for
- * @returns {number} Dead money amount for targetSeason (0 if not applicable)
+ * @param {number} targetSeason - Season to calculate buy-out for
+ * @returns {number} Buy-out amount for targetSeason (0 if not applicable)
  */
-function computeDeadMoneyForSeason(salary, startYear, endYear, cutYear, targetSeason) {
+function computeBuyOutForSeason(salary, startYear, endYear, cutYear, targetSeason) {
 	var percentages = [0.60, 0.30, 0.15];
 	
 	// For FA contracts (single year), startYear === endYear
@@ -43,7 +43,7 @@ function computeDeadMoneyForSeason(salary, startYear, endYear, cutYear, targetSe
 
 /**
  * Compute total recoverable budget if a franchise cut all their players.
- * Recoverable = salary saved - dead money incurred (for a single season).
+ * Recoverable = salary saved - buy-out incurred (for a single season).
  * 
  * @param {ObjectId} franchiseId - Franchise to calculate for
  * @param {number} season - Season to calculate for
@@ -64,11 +64,11 @@ async function computeRecoverable(franchiseId, season) {
 		var startYear = contract.startYear;
 		var endYear = contract.endYear;
 		
-		// If cut this season, what dead money would we incur for THIS season?
-		var deadMoney = computeDeadMoneyForSeason(salary, startYear, endYear, season, season);
+		// If cut this season, what buy-out would we incur for THIS season?
+		var buyOut = computeBuyOutForSeason(salary, startYear, endYear, season, season);
 		
-		// Recoverable = salary we stop paying - dead money we incur
-		var recoverable = salary - deadMoney;
+		// Recoverable = salary we stop paying - buy-out we incur
+		var recoverable = salary - buyOut;
 		totalRecoverable += recoverable;
 	}
 	
@@ -654,40 +654,40 @@ async function processCut(cutDetails) {
 		return { success: false, errors: errors };
 	}
 	
-	// Compute dead money for each remaining season
-	var deadMoneyEntries = [];
+	// Compute buy-outs for each remaining season
+	var buyOutEntries = [];
 	var salary = contract.salary || 0;
 	var startYear = contract.startYear;
 	var endYear = contract.endYear;
 	
 	for (var season = currentSeason; season <= endYear; season++) {
-		var amount = computeDeadMoneyForSeason(salary, startYear, endYear, currentSeason, season);
+		var amount = computeBuyOutForSeason(salary, startYear, endYear, currentSeason, season);
 		if (amount > 0) {
-			deadMoneyEntries.push({ season: season, amount: amount });
+			buyOutEntries.push({ season: season, amount: amount });
 		}
 	}
 	
 	// Update Budget for each affected season
-	for (var i = 0; i < deadMoneyEntries.length; i++) {
-		var dm = deadMoneyEntries[i];
+	for (var i = 0; i < buyOutEntries.length; i++) {
+		var bo = buyOutEntries[i];
 		
 		await Budget.updateOne(
-			{ franchiseId: cutDetails.franchiseId, season: dm.season },
+			{ franchiseId: cutDetails.franchiseId, season: bo.season },
 			{
 				$inc: {
 					payroll: -salary,
-					deadMoney: dm.amount,
-					available: salary - dm.amount
+					buyOuts: bo.amount,
+					available: salary - bo.amount
 				}
 			}
 		);
 	}
 	
-	// Also update future seasons where contract would have been active but no dead money
+	// Also update future seasons where contract would have been active but no buy-out
 	// (salary is freed up entirely)
 	for (var season = currentSeason; season <= endYear; season++) {
-		var hasDM = deadMoneyEntries.some(function(dm) { return dm.season === season; });
-		if (!hasDM) {
+		var hasBO = buyOutEntries.some(function(bo) { return bo.season === season; });
+		if (!hasBO) {
 			await Budget.updateOne(
 				{ franchiseId: cutDetails.franchiseId, season: season },
 				{
@@ -717,14 +717,14 @@ async function processCut(cutDetails) {
 		salary: salary,
 		startYear: startYear,
 		endYear: endYear,
-		deadMoney: deadMoneyEntries,
+		buyOuts: buyOutEntries,
 		facilitatedTradeId: cutDetails.facilitatedTradeId
 	});
 	
 	return {
 		success: true,
 		transaction: transaction,
-		deadMoney: deadMoneyEntries
+		buyOuts: buyOutEntries
 	};
 }
 
@@ -733,6 +733,6 @@ module.exports = {
 	validateTrade: validateTrade,
 	processCut: processCut,
 	validateBudgetImpact: validateBudgetImpact,
-	computeDeadMoneyForSeason: computeDeadMoneyForSeason,
+	computeBuyOutForSeason: computeBuyOutForSeason,
 	computeRecoverable: computeRecoverable
 };

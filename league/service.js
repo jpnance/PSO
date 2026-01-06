@@ -8,8 +8,8 @@ var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 
-// Dead money calculation based on contract year
-function computeDeadMoneyIfCut(salary, startYear, endYear, season) {
+// Buy-out calculation based on contract year
+function computeBuyOutIfCut(salary, startYear, endYear, season) {
 	var percentages = [0.60, 0.30, 0.15];
 	
 	// For FA contracts (single year), startYear === endYear
@@ -38,11 +38,11 @@ function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
 	// Payroll = sum of salaries where contract extends through this season
 	var payroll = activeContracts.reduce(function(sum, c) { return sum + (c.salary || 0); }, 0);
 	
-	// Recoverable = sum of (salary - dead money if cut) for all contracts
+	// Recoverable = sum of (salary - buy-out if cut) for all contracts
 	var recoverable = activeContracts.reduce(function(sum, c) {
 		var salary = c.salary || 0;
-		var deadMoney = computeDeadMoneyIfCut(salary, c.startYear, c.endYear, season);
-		return sum + (salary - deadMoney);
+		var buyOut = computeBuyOutIfCut(salary, c.startYear, c.endYear, season);
+		return sum + (salary - buyOut);
 	}, 0);
 	
 	// Cash in/out from trades for this season
@@ -79,26 +79,26 @@ function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
 	// Base amount is always 1000
 	var baseAmount = 1000;
 	
-	// Dead money from cuts for this season
-	var deadMoney = 0;
+	// Buy-outs from cuts for this season
+	var buyOuts = 0;
 	cuts.forEach(function(cut) {
 		if (!cut.franchiseId.equals(franchiseId)) return;
-		if (!cut.deadMoney) return;
+		if (!cut.buyOuts) return;
 		
-		cut.deadMoney.forEach(function(dm) {
-			if (dm.season === season) {
-				deadMoney += dm.amount || 0;
+		cut.buyOuts.forEach(function(bo) {
+			if (bo.season === season) {
+				buyOuts += bo.amount || 0;
 			}
 		});
 	});
 	
-	var available = baseAmount - payroll - deadMoney + cashIn - cashOut;
+	var available = baseAmount - payroll - buyOuts + cashIn - cashOut;
 	
 	return {
 		season: season,
 		baseAmount: baseAmount,
 		payroll: payroll,
-		deadMoney: deadMoney,
+		buyOuts: buyOuts,
 		cashIn: cashIn,
 		cashOut: cashOut,
 		available: available,
@@ -183,7 +183,7 @@ async function getLeagueOverview(currentSeason) {
 			rosterCount: roster.length,
 			payroll: budget.payroll,
 			available: budget.available,
-			deadMoney: budget.deadMoney
+			buyOuts: budget.buyOuts
 		});
 	}
 	
