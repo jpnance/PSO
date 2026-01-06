@@ -49,3 +49,9 @@ projections-csv:
 
 rpo:
 	docker exec -it -w /app pso-cron sh -c "cd note && node rpo.js"
+
+reset-migration:
+	./data/scripts/resetMigration.sh
+
+reset-migration-dry-run:
+	./data/scripts/resetMigration.sh --dry-run

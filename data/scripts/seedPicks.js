@@ -72,92 +72,125 @@ function getSleeperRosterId(ownerName, season) {
 	return ownerAliases[name] || null;
 }
 
-async function fetchPicksForSeason(season, isFutureDraft) {
-	// Future drafts: main spreadsheet, "{Year} Draft" tabs
-	// Past drafts: separate spreadsheet, tabs named just "{Year}"
-	var sheetName = isFutureDraft ? (season + ' Draft') : String(season);
-	var baseUrl = isFutureDraft ? mainSheetBaseUrl : pastDraftsSheetBaseUrl;
+// Retry configuration
+var MAX_RETRIES = 3;
+var INITIAL_BACKOFF_MS = 1000;
 
-	try {
-		var response = await request
-			.get(baseUrl + encodeURIComponent(sheetName))
-			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY });
+async function sleep(ms) {
+	return new Promise(function(resolve) { setTimeout(resolve, ms); });
+}
 
-		var dataJson = JSON.parse(response.text);
-		var picks = [];
+async function fetchPicksForSeason(season, options) {
+	// options.useMainSheet: if true, use main spreadsheet with "YYYY Draft" tabs
+	//                       if false, use Past Drafts spreadsheet with "YYYY" tabs
+	// options.isFutureDraft: if true, picks without players are "available"
+	//                        if false, picks without players are "passed" and get pickNumbers
+	var useMainSheet = options.useMainSheet !== undefined ? options.useMainSheet : options.isFutureDraft;
+	var isFutureDraft = options.isFutureDraft;
+	
+	var sheetName = useMainSheet ? (season + ' Draft') : String(season);
+	var baseUrl = useMainSheet ? mainSheetBaseUrl : pastDraftsSheetBaseUrl;
 
-		dataJson.values.forEach(function(row, i) {
-			// Skip header row(s) - assume first row is header
-			if (i === 0) return;
+	var lastError = null;
+	
+	for (var attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+		try {
+			var response = await request
+				.get(baseUrl + encodeURIComponent(sheetName))
+				.query({ alt: 'json', key: process.env.GOOGLE_API_KEY });
 
-			// 2020 has an extra column at the start, shifting everything right by 1
-			var offset = (season === 2020) ? 1 : 0;
+			var dataJson = JSON.parse(response.text);
+			var picks = [];
 
-			var pickNumber = parseInt(row[0 + offset]);
-			var round = parseInt(row[1 + offset]);
-			var currentOwner = row[2 + offset];
-			var player = row[3 + offset]; // Player name, "Pass", or empty
-			var originRaw = row[4 + offset]; // "From X" or "From X (via Y)" or empty
+			dataJson.values.forEach(function(row, i) {
+				// Skip header row(s) - assume first row is header
+				if (i === 0) return;
 
-			if (isNaN(round)) return; // Skip non-data rows
+				// 2020 has an extra column at the start, shifting everything right by 1
+				var offset = (season === 2020) ? 1 : 0;
 
-			// Parse origin to extract original owner
-			// Formats seen:
-			//   "From X" -> X
-			//   "From X (via Y, via Z)" -> X
-			//   "X" (just owner name) -> X
-			//   "X (from Y)" -> X (strip parenthetical)
-			var originalOwner = currentOwner;
-			if (originRaw) {
-				var cleaned = originRaw.trim();
-				
-				// Try "From X" format first
-				var fromMatch = cleaned.match(/^From\s+(.+?)(?:\s+\(via|$)/i);
-				if (fromMatch) {
-					originalOwner = fromMatch[1].trim();
-				} else {
-					// Strip any parenthetical like "(from X)" or "(via X)"
-					// Handle both regular parens and any unicode variants
-					var stripped = cleaned.split(/\s*[\(\[]/).shift().trim();
-					originalOwner = stripped || cleaned;
+				var pickNumber = parseInt(row[0 + offset]);
+				var round = parseInt(row[1 + offset]);
+				var currentOwner = row[2 + offset];
+				var player = row[3 + offset]; // Player name, "Pass", or empty
+				var originRaw = row[4 + offset]; // "From X" or "From X (via Y)" or empty
+
+				if (isNaN(round)) return; // Skip non-data rows
+
+				// Parse origin to extract original owner
+				// Formats seen:
+				//   "From X" -> X
+				//   "From X (via Y, via Z)" -> X
+				//   "X" (just owner name) -> X
+				//   "X (from Y)" -> X (strip parenthetical)
+				var originalOwner = currentOwner;
+				if (originRaw) {
+					var cleaned = originRaw.trim();
+					
+					// Try "From X" format first
+					var fromMatch = cleaned.match(/^From\s+(.+?)(?:\s+\(via|$)/i);
+					if (fromMatch) {
+						originalOwner = fromMatch[1].trim();
+					} else {
+						// Strip any parenthetical like "(from X)" or "(via X)"
+						// Handle both regular parens and any unicode variants
+						var stripped = cleaned.split(/\s*[\(\[]/).shift().trim();
+						originalOwner = stripped || cleaned;
+					}
 				}
-			}
 
-			// Determine status:
-			// - "Pass" = passed
-			// - Has player name = used
-			// - Empty and future draft = available
-			// - Empty and past draft = passed (shouldn't happen but fallback)
-			var status;
-			if (player && player.toLowerCase() === 'pass') {
-				status = 'passed';
-				player = null; // Clear the "Pass" text
-			} else if (player) {
-				status = 'used';
-			} else if (isFutureDraft) {
-				status = 'available';
-			} else {
-				status = 'passed';
-			}
+				// Determine status:
+				// - "Pass" = passed
+				// - Has player name = used
+				// - Empty and future draft = available
+				// - Empty and past draft = passed (shouldn't happen but fallback)
+				var status;
+				if (player && player.toLowerCase() === 'pass') {
+					status = 'passed';
+					player = null; // Clear the "Pass" text
+				} else if (player) {
+					status = 'used';
+				} else if (isFutureDraft) {
+					status = 'available';
+				} else {
+					status = 'passed';
+				}
 
-			picks.push({
-				season: season,
-				pickNumber: pickNumber,
-				round: round,
-				currentOwner: currentOwner,
-				originalOwner: originalOwner,
-				player: player || null,
-				status: status,
-				isFutureDraft: isFutureDraft
+				picks.push({
+					season: season,
+					pickNumber: pickNumber,
+					round: round,
+					currentOwner: currentOwner,
+					originalOwner: originalOwner,
+					player: player || null,
+					status: status,
+					isFutureDraft: isFutureDraft
+				});
 			});
-		});
 
-		return picks;
+			return { success: true, picks: picks };
+		}
+		catch (err) {
+			lastError = err;
+			var status = err.status || (err.response && err.response.status);
+			
+			// 400 Bad Request typically means the sheet tab doesn't exist
+			if (status === 400) {
+				return { success: true, picks: [], notFound: true };
+			}
+			
+			// For other errors, retry with exponential backoff
+			if (attempt < MAX_RETRIES) {
+				var backoff = INITIAL_BACKOFF_MS * Math.pow(2, attempt - 1);
+				console.log('  Attempt ' + attempt + ' failed for ' + sheetName + ': ' + err.message + '. Retrying in ' + backoff + 'ms...');
+				await sleep(backoff);
+			}
+		}
 	}
-	catch (err) {
-		console.log('Could not fetch ' + sheetName + ':', err.message);
-		return [];
-	}
+	
+	// All retries exhausted
+	console.log('  ERROR: Failed to fetch ' + sheetName + ' after ' + MAX_RETRIES + ' attempts: ' + lastError.message);
+	return { success: false, error: lastError.message };
 }
 
 async function seed() {
@@ -178,7 +211,10 @@ async function seed() {
 
 	console.log('Loaded', franchises.length, 'franchises');
 
-	var currentYear = new Date().getFullYear();
+	// SEASON represents the current NFL season. The rookie draft happens before
+	// the season starts, so by the time we're in-season, that draft is complete.
+	// Treat SEASON as a past draft, and SEASON+1 onward as future drafts.
+	var currentYear = (parseInt(process.env.SEASON, 10) || 2025) + 1;
 	var allPicks = [];
 
 	// Fetch past drafts (from "Past Drafts" sheet tabs named just by year)
@@ -186,25 +222,55 @@ async function seed() {
 	// expansion draft when the league went from 10 to 12 franchises. Those were
 	// acquisitions of existing players/RFA rights, not rookie picks. May want to
 	// preserve that data separately as static history.
+	//
+	// Recent drafts may still be in the main spreadsheet (as "YYYY Draft") if they
+	// haven't been archived to Past Drafts yet. We try Past Drafts first, then
+	// fall back to the main sheet.
 	var startYear = 2010; // First year tracked in the spreadsheet
 	console.log('Fetching past drafts (' + startYear + '-' + (currentYear - 1) + ')...');
 	for (var year = startYear; year < currentYear; year++) {
-		var picks = await fetchPicksForSeason(year, false);
-		if (picks.length > 0) {
-			console.log('  ' + year + ': ' + picks.length + ' picks');
-			allPicks = allPicks.concat(picks);
+		// Try Past Drafts spreadsheet first
+		var result = await fetchPicksForSeason(year, { isFutureDraft: false });
+		
+		// If not found in Past Drafts, try main spreadsheet (not yet archived)
+		if (result.notFound) {
+			// Use main sheet format but treat as past draft (assigns pickNumbers)
+			result = await fetchPicksForSeason(year, { useMainSheet: true, isFutureDraft: false });
+		}
+		
+		if (!result.success) {
+			console.error('\nFATAL: Could not fetch draft data for ' + year);
+			console.error('Error: ' + result.error);
+			console.error('\nDraft data is required. Please check the spreadsheets and try again.');
+			process.exit(1);
+		}
+		if (result.notFound) {
+			console.error('\nFATAL: Could not find draft data for ' + year + ' in either spreadsheet');
+			process.exit(1);
+		}
+		if (result.picks.length > 0) {
+			console.log('  ' + year + ': ' + result.picks.length + ' picks');
+			allPicks = allPicks.concat(result.picks);
 		}
 	}
 
 	// Fetch future drafts (tabs named "{Year} Draft")
+	// These tabs may not exist yet, which is okay - we just skip them
 	var futureSeasons = [currentYear, currentYear + 1, currentYear + 2];
 	console.log('\nFetching future drafts...');
 	for (var i = 0; i < futureSeasons.length; i++) {
 		var season = futureSeasons[i];
-		var picks = await fetchPicksForSeason(season, true);
-		if (picks.length > 0) {
-			console.log('  ' + season + ' Draft: ' + picks.length + ' picks');
-			allPicks = allPicks.concat(picks);
+		var result = await fetchPicksForSeason(season, { isFutureDraft: true });
+		if (!result.success) {
+			console.error('\nFATAL: Could not fetch future draft data for ' + season);
+			console.error('Error: ' + result.error);
+			process.exit(1);
+		}
+		if (result.notFound) {
+			console.log('  ' + season + ' Draft: (tab not found, skipping)');
+		} else if (result.picks.length > 0) {
+			console.log('  ' + season + ' Draft: ' + result.picks.length + ' picks');
+			allPicks = allPicks.concat(result.picks);
 		}
 	}
 
