@@ -1,6 +1,7 @@
 var LeagueConfig = require('../models/LeagueConfig');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
+var Person = require('../models/Person');
 var Contract = require('../models/Contract');
 var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
@@ -282,9 +283,108 @@ async function advanceSeason(request, response) {
 	response.redirect('/admin');
 }
 
+// GET /admin/transfer-franchise - show transfer form
+async function transferFranchiseForm(request, response) {
+	if (!isAuthorized(request)) {
+		return response.status(401).send('Unauthorized');
+	}
+	
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// Get all franchises with their current regimes
+	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({
+		endSeason: null
+	}).populate('ownerIds').lean();
+	
+	var franchiseList = franchises.map(function(f) {
+		var regime = regimes.find(function(r) {
+			return r.franchiseId.equals(f._id);
+		});
+		var ownerNames = regime && regime.ownerIds 
+			? regime.ownerIds.map(function(p) { return p.name; }).join(', ')
+			: 'Unknown';
+		return {
+			id: f._id.toString(),
+			displayName: regime ? regime.displayName : 'Unknown',
+			owners: ownerNames,
+			sleeperRosterId: f.sleeperRosterId
+		};
+	}).sort(function(a, b) {
+		return a.displayName.localeCompare(b.displayName);
+	});
+	
+	// Get all people for autocomplete
+	var people = await Person.find({}).sort({ name: 1 }).lean();
+	
+	response.render('transfer-franchise', {
+		franchises: franchiseList,
+		people: people,
+		currentSeason: currentSeason
+	});
+}
+
+// POST /admin/transfer-franchise - execute transfer
+async function transferFranchise(request, response) {
+	if (!isAuthorized(request)) {
+		return response.status(401).json({ error: 'Unauthorized' });
+	}
+	
+	var body = request.body;
+	var franchiseId = body.franchiseId;
+	var newOwnerName = (body.newOwnerName || '').trim();
+	var newDisplayName = (body.newDisplayName || '').trim();
+	var effectiveSeason = parseInt(body.effectiveSeason, 10);
+	
+	// Validation
+	if (!franchiseId) {
+		return response.status(400).json({ error: 'Franchise is required' });
+	}
+	if (!newOwnerName) {
+		return response.status(400).json({ error: 'New owner name is required' });
+	}
+	if (!newDisplayName) {
+		return response.status(400).json({ error: 'New display name is required' });
+	}
+	if (isNaN(effectiveSeason)) {
+		return response.status(400).json({ error: 'Effective season is required' });
+	}
+	
+	// Find or create the person
+	var person = await Person.findOne({ name: newOwnerName });
+	if (!person) {
+		person = await Person.create({ name: newOwnerName });
+	}
+	
+	// End the current regime
+	var currentRegime = await Regime.findOne({ 
+		franchiseId: franchiseId, 
+		endSeason: null 
+	});
+	
+	if (currentRegime) {
+		currentRegime.endSeason = effectiveSeason - 1;
+		await currentRegime.save();
+	}
+	
+	// Create the new regime
+	await Regime.create({
+		franchiseId: franchiseId,
+		displayName: newDisplayName,
+		ownerIds: [person._id],
+		startSeason: effectiveSeason,
+		endSeason: null
+	});
+	
+	response.redirect('/admin');
+}
+
 module.exports = {
 	configPage: configPage,
 	updateConfig: updateConfig,
 	advanceSeasonForm: advanceSeasonForm,
-	advanceSeason: advanceSeason
+	advanceSeason: advanceSeason,
+	transferFranchiseForm: transferFranchiseForm,
+	transferFranchise: transferFranchise
 };

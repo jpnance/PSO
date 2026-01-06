@@ -1,0 +1,152 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/league.css')
+		
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+		
+		title Transfer Franchise - PSO Admin
+		
+		style.
+			.people-list {
+				max-height: 150px;
+				overflow-y: auto;
+				border: 1px solid #ced4da;
+				border-radius: 0.25rem;
+				display: none;
+			}
+			.people-list.show {
+				display: block;
+			}
+			.people-list-item {
+				padding: 0.5rem 0.75rem;
+				cursor: pointer;
+			}
+			.people-list-item:hover {
+				background: #f8f9fa;
+			}
+	
+	body
+		div.container.py-4
+			h1.mb-4 Transfer Franchise
+			
+			p.lead.text-muted
+				| Transfer ownership of a franchise to a new person. This will end the current regime and create a new one.
+			
+			form(method='POST' action='/admin/transfer-franchise')
+				div.card.mb-4
+					div.card-header
+						strong Select Franchise
+					div.card-body
+						div.form-group
+							label(for='franchiseId') Franchise
+							select#franchiseId.form-control(name='franchiseId' required)
+								option(value='') Select a franchise...
+								each f in franchises
+									option(value=f.id) #{f.displayName} (#{f.owners})
+				
+				div.card.mb-4
+					div.card-header
+						strong New Ownership
+					div.card-body
+						div.row
+							div.col-md-6
+								div.form-group
+									label(for='newOwnerName') New Owner Name
+									input#newOwnerName.form-control(
+										type='text'
+										name='newOwnerName'
+										placeholder='Enter name...'
+										required
+										autocomplete='off'
+									)
+									div#peopleList.people-list
+										each person in people
+											div.people-list-item(data-name=person.name)= person.name
+									small.form-text.text-muted
+										| Start typing to see existing people, or enter a new name to create a new person.
+							
+							div.col-md-6
+								div.form-group
+									label(for='newDisplayName') New Display Name
+									input#newDisplayName.form-control(
+										type='text'
+										name='newDisplayName'
+										placeholder='e.g., "The Smiths" or "Smith/Jones"'
+										required
+									)
+									small.form-text.text-muted
+										| How this franchise will be displayed (can include co-owners).
+						
+						div.row
+							div.col-md-4
+								div.form-group
+									label(for='effectiveSeason') Effective Season
+									input#effectiveSeason.form-control(
+										type='number'
+										name='effectiveSeason'
+										value=currentSeason
+										required
+									)
+									small.form-text.text-muted
+										| The season when the new ownership begins.
+				
+				div.d-flex.justify-content-between
+					a.btn.btn-secondary(href='/admin') Cancel
+					button.btn.btn-primary(type='submit') Transfer Franchise
+		
+		script.
+			// Simple autocomplete for owner name
+			var input = document.getElementById('newOwnerName');
+			var list = document.getElementById('peopleList');
+			var items = list.querySelectorAll('.people-list-item');
+			
+			input.addEventListener('focus', function() {
+				filterList();
+				list.classList.add('show');
+			});
+			
+			input.addEventListener('blur', function() {
+				// Delay to allow click on list item
+				setTimeout(function() {
+					list.classList.remove('show');
+				}, 200);
+			});
+			
+			input.addEventListener('input', function() {
+				filterList();
+			});
+			
+			function filterList() {
+				var val = input.value.toLowerCase();
+				var hasVisible = false;
+				items.forEach(function(item) {
+					var name = item.getAttribute('data-name').toLowerCase();
+					if (name.includes(val)) {
+						item.style.display = '';
+						hasVisible = true;
+					} else {
+						item.style.display = 'none';
+					}
+				});
+				if (hasVisible && val.length > 0) {
+					list.classList.add('show');
+				}
+			}
+			
+			items.forEach(function(item) {
+				item.addEventListener('click', function() {
+					input.value = item.getAttribute('data-name');
+					list.classList.remove('show');
+					// Auto-fill display name if empty
+					var displayInput = document.getElementById('newDisplayName');
+					if (!displayInput.value) {
+						displayInput.value = item.getAttribute('data-name');
+					}
+				});
+			});

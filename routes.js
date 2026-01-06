@@ -36,4 +36,6 @@ module.exports = function(app) {
 	app.post('/admin/config', admin.updateConfig);
 	app.get('/admin/advance-season', admin.advanceSeasonForm);
 	app.post('/admin/advance-season', admin.advanceSeason);
+	app.get('/admin/transfer-franchise', admin.transferFranchiseForm);
+	app.post('/admin/transfer-franchise', admin.transferFranchise);
 };

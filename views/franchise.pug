@@ -189,3 +189,22 @@ html
 														| from #{pick.originalOwner}
 						else
 							p.text-muted.mb-3.ml-3 No picks data
+					
+					div.card.mb-4
+						div.card-header
+							strong Franchise History
+						if franchise.regimes && franchise.regimes.length > 0
+							ul.list-group.list-group-flush
+								each regime in franchise.regimes
+									li.list-group-item.d-flex.justify-content-between.align-items-center
+										div
+											strong= regime.displayName
+											div.text-muted.small
+												| #{regime.ownerIds.map(o => o.name).join(', ')}
+										div.text-muted
+											if regime.endSeason
+												| #{regime.startSeason}–#{regime.endSeason}
+											else
+												| #{regime.startSeason}–present
+						else
+							p.text-muted.mb-3.ml-3 No history available
