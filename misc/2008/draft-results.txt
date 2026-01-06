@@ -1,0 +1,224 @@
+PSO INAUGURAL AUCTION DRAFT - 2008
+==================================
+
+  1. Adrian Peterson           RB   MIN   Trevor   $401
+  2. Steve Smith               WR   CAR   Keyon    $120
+  3. Joseph Addai              RB   IND   Syed     $360
+  4. Nick Folk                 K    DAL   Keyon    $7
+  5. Tom Brady                 QB   NWE   John     $255
+  6. Dwayne Bowe               WR   KAN   James    $102
+  7. LaDainian Tomlinson       RB   SDG   Patrick  $370
+  8. Tony Romo                 QB   DAL   Keyon    $220
+  9. JaMarcus Russell          QB   OAK   Daniel   $60
+ 10. Jamal Lewis               RB   CLE   Syed     $173
+ 11. Jared Allen               DL   KAN   Patrick  $21
+ 12. Laveranues Coles          WR   NYJ   Syed     $75
+ 13. Brian Westbrook           RB   PHI   Jeff     $320
+ 14. Nate Kaeding              K    SDG   Koci     $1
+ 15. Jay Cutler                QB   DEN   James    $100
+ 16. Michael Turner            RB   ATL   Keyon    $115
+ 17. Ryan Grant                RB   GNB   Daniel   $201
+ 18. Peyton Manning            QB   IND   Syed     $161
+ 19. Ben Roethlisberger        QB   PIT   Daniel   $120
+ 20. Darren McFadden           RB   OAK   James    $178
+ 21. James Hardy               WR   BUF   Trevor   $11
+ 22. Marques Colston           WR   NWO   David    $117
+ 23. Steven Jackson            RB   STL   Koci     $331
+ 24. Rashard Mendenhall        RB   PIT   Syed     $55
+ 25. Felix Jones               RB   DAL   James    $44
+ 26. Tony Scheffler            TE   DEN   John     $26
+ 27. Randy Moss                WR   NWE   Jeff     $211
+ 28. Drew Brees                QB   NWO   John     $100
+ 29. Brett Favre               QB   NYJ   Daniel   $30
+ 30. Terrell Owens             WR   DAL   Keyon    $156
+ 31. Anthony Alridge           RB   DEN   Trevor   $7
+ 32. Clinton Portis            RB   WAS   Keyon    $180
+ 33. Marion Barber             RB   DAL   Daniel   $185
+ 34. Oshiomogho Atogwe         DB   STL   Koci     $1
+ 35. Laurence Maroney          RB   NWE   Trevor   $105
+ 36. Todd Heap                 TE   BAL   Daniel   $20
+ 37. Wes Welker                WR   NWE   Syed     $100
+ 38. Matt Hasselbeck           QB   SEA   Trevor   $58
+ 39. Antonio Gates             TE   SDG   Daniel   $130
+ 40. Jason Witten              TE   DAL   James    $127
+ 41. Roy Williams              WR   DET   Trevor   $100
+ 42. Carson Palmer             QB   CIN   Patrick  $100
+ 43. Marshawn Lynch            RB   BUF   David    $176
+ 44. Chad Pennington           QB   MIA   John     $25
+ 45. Stephen Gostkowski        K    NWE   Trevor   $3
+ 46. Heath Miller              TE   PIT   Jeff     $45
+ 47. Larry Johnson             RB   KAN   John     $125
+ 48. Derek Anderson            QB   CLE   David    $71
+ 49. Lee Evans                 WR   BUF   Trevor   $59
+ 50. DeMarcus Ware             LB   DAL   James    $35
+ 51. Matt Schaub               QB   HOU   Daniel   $35
+ 52. Braylon Edwards           WR   CLE   Koci     $161
+ 53. Jeremy Shockey            TE   NWO   Keyon    $43
+ 54. DeMeco Ryans              LB   HOU   Keyon    $30
+ 55. Jason Taylor              DL   WAS   Daniel   $15
+ 56. Plaxico Burress           WR   NYG   John     $62
+ 57. Torry Holt                WR   STL   Daniel   $92
+ 58. Willie Parker             RB   PIT   Jeff     $120
+ 59. Mason Crosby              K    GNB   Jeff     $4
+ 60. Alge Crumpler             TE   TEN   John     $15
+ 61. Maurice Jones-Drew        RB   JAX   David    $135
+ 62. Frank Gore                RB   SFO   Patrick  $175
+ 63. Ronnie Brown              RB   MIA   Jeff     $87
+ 64. Matt Leinart              QB   ARI   Koci     $18
+ 65. Lofa Tatupu               LB   SEA   Trevor   $12
+ 66. Dallas Clark              TE   IND   David    $43
+ 67. T.J. Houshmandzadeh       WR   CIN   Jeff     $99
+ 68. Philip Rivers             QB   SDG   Jeff     $38
+ 69. Ted Ginn Jr.              WR   MIA   Koci     $70
+ 70. Andre Johnson             WR   HOU   James    $148
+ 71. Kellen Winslow            TE   CLE   Patrick  $60
+ 72. Larry Fitzgerald          WR   ARI   James    $138
+ 73. Sean Jones                DB   CLE   Keyon    $2
+ 74. DeSean Jackson            WR   PHI   David    $15
+ 75. Lance Briggs              LB   CHI   Trevor   $3
+ 76. Tony Gonzalez             TE   KAN   Trevor   $42
+ 77. Steve Smith               WR   NYG   John     $20
+ 78. Roddy White               WR   ATL   Daniel   $50
+ 79. Joey Galloway             WR   TAM   John     $45
+ 80. Terence McGee             DB   BUF   Jeff     $76
+ 81. Mario Williams            DL   HOU   Trevor   $31
+ 82. Chad Johnson              WR   CIN   David    $97
+ 83. Bobby Engram              WR   SEA   Trevor   $13
+ 84. Santana Moss              WR   WAS   Patrick  $41
+ 85. Nate Burleson             WR   SEA   Koci     $105
+ 86. James Jones               WR   GNB   Daniel   $18
+ 87. Brian Urlacher            LB   CHI   David    $15
+ 88. Adam Vinatieri            K    IND   Patrick  $2
+ 89. Greg Ellis                DL   DAL   James    $3
+ 90. Julius Jones              RB   SEA   David    $22
+ 91. Reggie Wayne              WR   IND   Patrick  $115
+ 92. Shayne Graham             K    CIN   Koci     $1
+ 93. Donovan McNabb            QB   PHI   Trevor   $21
+ 94. Eli Manning               QB   NYG   Koci     $22
+ 95. Earnest Graham            RB   TAM   Keyon    $25
+ 96. Antoine Winfield          DB   MIN   Jeff     $3
+ 97. David Garrard             QB   JAX   Syed     $15
+ 98. Jerricho Cotchery         WR   NYJ   Keyon    $32
+ 99. Brandon Jacobs            RB   NYG   Trevor   $44
+100. Willis McGahee            RB   BAL   Syed     $41
+101. Chris Long                DL   STL   Koci     $4
+102. Chris Cooley              TE   WAS   David    $22
+103. Greg Jennings             WR   GNB   Keyon    $32
+104. Nick Barnett              LB   GNB   Daniel   $3
+105. Adewale Ogunleye          DL   CHI   Jeff     $3
+106. Vincent Young Jr.         QB   TEXAS David    $10
+107. Antrel Rolle              DB   ARI   James    $2
+108. Santonio Holmes           WR   PIT   Trevor   $47
+109. Thomas Jones              RB   NYJ   James    $22
+110. Patrick Willis            LB   SFO   Koci     $17
+111. Mike Vrabel               LB   NWE   Syed     $2
+112. Kerry Rhodes              DB   NYJ   Koci     $7
+113. Patrick Kerney            DL   SEA   Jeff     $3
+114. David Harris              LB   NYJ   Koci     $13
+115. Brandon Marshall          WR   DEN   Koci     $21
+116. Sidney Rice               WR   MIN   James    $9
+117. Champ Bailey              DB   DEN   Jeff     $4
+118. Andre Davis               WR   HOU   David    $5
+119. Edgerrin James            RB   ARI   James    $24
+120. LenDale White             RB   TEN   Daniel   $15
+121. Osi Umeniyora             DL   NYG   Koci     $8
+122. Andre Carter              DL   WAS   David    $2
+123. Keith Bulluck             LB   TEN   Jeff     $2
+124. Rudi Johnson              RB   CIN   Patrick  $16
+125. DJ Hackett                WR   CAR   James    $8
+126. Deuce McAllister          RB   NO    Daniel   $6
+127. Jonathan Stewart          RB   CAR   David    $24
+128. Kevin Curtis              WR   PHI   David    $10
+129. Marc Bulger               QB   STL   David    $15
+130. Aaron Schoebel            DE   BUF   Keyon    $2
+131. Darelle Revis             CB   NYJ   Koci     $2
+132. Hines Ward                WR   PIT   Jeff     $9
+133. Jason Campbell            QB   WAS   Patrick  $8
+134. Reggie Bush               RB   NO    Koci     $22
+135. Devin Hester              WR   CHI   Koci     $60
+136. Chris Johnson             RB   TEN   Keyon    $5
+137. Donald Driver             WR   GB    Jeff     $7
+138. Julius Peppers            DE   CAR   Patrick  $4
+139. Antonio Cromartie         CB   SD    Patrick  $5
+140. Anthony Gonzalez          WR   IND   James    $20
+141. Jerious Norwood           RB   ATL   David    $7
+142. Leon Washington           RB   NYJ   David    $35
+143. Nate Clements             CB   SF    Trevor   $3
+144. Robert Meachem            WR   NO    Daniel   $4
+145. Greg Olsen                TE   CHI   Jeff     $4
+146. Patrick Crayton           WR   DAL   Patrick  $7
+147. Troy Polamalu             S    PIT   Daniel   $1
+148. Donte Stallworth          WR   CLE   Jeff     $6
+149. Marvin Harrison           WR   IND   David    $8
+150. Matt Forte                RB   CHI   James    $12
+151. Eddie Royal               WR   DEN   David    $12
+152. Kevin Smith               RB   DET   Koci     $6
+153. Vernon Davis              TE   SF    Koci     $5
+154. Ellis Hobbs               CB   NE    Patrick  $15
+155. Josh Brown                K    STL   Daniel   $1
+156. Jake Delhomme             QB   CAR   Jeff     $7
+157. Early Doucet              WR   ARI   David    $4
+158. Selvin Young              RB   DEN   David    $7
+159. Steve Breaston            WR   ARI   David    $9
+160. Aaron Rodgers             QB   GB    Koci     $6
+161. James Harrison            LB   PIT   Patrick  $1
+162. Chris Taylor              RB   HOU   Daniel   $1
+163. Phil Dawson               K    CLE   David    $1
+164. Steve Slaton              RB   HOU   Trevor   $6
+165. Chris Perry               RB   CIN   Keyon    $1
+166. Ben Utecht                TE   CIN   Koci     $3
+167. Robbie Gould              K    CHI   Patrick  $1
+168. Ahman Green               RB   HOU   Daniel   $1
+169. Anquan Boldin             WR   ARI   David    $10
+170. Marcus Trufant            CB   SEA   Trevor   $1
+171. L.J. Smith                TE   PHI   Keyon    $1
+172. Calvin Johnson            WR   DET   David    $30
+173. Chris Carr                CB   TEN   David    $7
+174. Darius Walker             RB   HOU   Daniel   $1
+175. Josh Cribbs               WR   CLE   David    $5
+176. Benjamin Watson           TE   NE    Trevor   $5
+177. Yamon Figurs              WR   BAL   Keyon    $1
+178. Joe Flacco                QB   BAL   David    $4
+179. Owen Daniels              TE   HOU   Patrick  $3
+180. Brandon Jackson           RB   GB    Daniel   $1
+181. Reggie Brown              WR   PHI   David    $4
+182. Justin Tuck               DE   NYG   Patrick  $3
+183. Chester Taylor            RB   MIN   Keyon    $3
+184. Chad Henne                QB   MIA   Koci     $5
+185. Adrian Wilson             S    ARI   Keyon    $2
+186. Vernand Morency           RB   GB    Daniel   $1
+187. Aaron Kampman             DE   GB    Trevor   $1
+188. DeAngelo Williams         RB   CAR   Patrick  $3
+189. Ben Obomanu               WR   SEA   Koci     $3
+190. Will Witherspoon          LB   STL   Patrick  $1
+191. Drew Bennett              WR   STL   Daniel   $1
+192. Matt Ryan                 QB   ATL   Trevor   $9
+193. Ronald Curry              WR   OAK   Patrick  $2
+194. Ricky Williams            RB   MIA   Koci     $1
+195. T.J. Rushing              S    IND   Patrick  $1
+196. Limas Sweed               WR   PIT   Daniel   $3
+197. Jamaal Charles            RB   KC    Trevor   $3
+198. Devin Thomas              WR   WAS   Koci     $3
+199. Bernard Berrian           WR   MIN   Koci     $3
+200. Fred Taylor               RB   JAX   Patrick  $2
+201. Vincent Jackson           WR   SD    Keyon    $2
+202. Chris Chambers            WR   SD    Trevor   $3
+203. Trent Edwards             QB   BUF   Patrick  $3
+204. Ray Rice                  RB   BAL   Koci     $1
+205. Justin Fargas             RB   OAK   Patrick  $1
+206. Ernest Wilford            WR   MIA   Daniel   $1
+207. Shawne Merriman           LB   SD    Trevor   $2
+208. Brady Quinn               QB   CLE   Keyon    $1
+209. Pierre Thomas             RB   NO    Koci     $1
+210. Kenny Watson              RB   CIN   Patrick  $1
+211. Brad Smith                WR   NYJ   Daniel   $1
+212. Donnie Avery              WR   STL   Keyon    $1
+213. Reggie Williams           WR   JAX   Patrick  $1
+214. Bryant Johnson            WR   SF    Daniel   $1
+215. Jon Beason                LB   CAR   Keyon    $1
+216. Derrick Mason             WR   BAL   Patrick  $1
+217. Tim Hightower             RB   ARI   Daniel   $1
+218. Garrett Wolfe             RB   CHI   Daniel   $1
+
+==================================
+Total players drafted: 218
