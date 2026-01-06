@@ -88,11 +88,16 @@ html
 					form(method='POST' action='/admin/config')
 						h5 Offseason
 						div.row
-							div.col-md-6
+							div.col-md-4
 								div.form-group
 									label(for='tradeWindowOpens') Trade Window Opens
 									input#tradeWindowOpens.form-control(type='date' name='tradeWindowOpens' value=formatDate(config.tradeWindowOpens))
 									small.form-text.text-muted Saturday before Super Bowl
+							div.col-md-4
+								div.form-group
+									label(for='nflDraft') NFL Draft
+									input#nflDraft.form-control(type='date' name='nflDraft' value=formatDate(config.nflDraft))
+									small.form-text.text-muted Last Thursday of April
 						
 						h5.mt-4 Pre-Season
 						div.row
@@ -122,6 +127,11 @@ html
 						div.row
 							div.col-md-4
 								div.form-group
+									label(for='nflSeasonKickoff') NFL Season Kickoff
+									input#nflSeasonKickoff.form-control(type='date' name='nflSeasonKickoff' value=formatDate(config.nflSeasonKickoff))
+									small.form-text.text-muted Thursday after Labor Day
+							div.col-md-4
+								div.form-group
 									label(for='regularSeasonStarts') Regular Season Starts
 									input#regularSeasonStarts.form-control(type='date' name='regularSeasonStarts' value=formatDate(config.regularSeasonStarts))
 									small.form-text.text-muted Wednesday before NFL Week 1
@@ -130,6 +140,7 @@ html
 									label(for='tradeDeadline') Trade Deadline
 									input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(config.tradeDeadline))
 									small.form-text.text-muted Wednesday after NFL Week 9
+						div.row
 							div.col-md-4
 								div.form-group
 									label(for='playoffFAStarts') Playoff FA Starts

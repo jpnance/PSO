@@ -33,6 +33,16 @@ function getDayBefore(baseDate, targetDay, weeksBefore) {
 	return date;
 }
 
+// Get the last occurrence of a day-of-week in a given month
+// targetDay: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+function getLastDayOfMonth(year, month, targetDay) {
+	// Start from the last day of the month
+	var lastDay = new Date(year, month + 1, 0);
+	var dayOfWeek = lastDay.getDay();
+	var daysBack = (dayOfWeek - targetDay + 7) % 7;
+	return new Date(year, month + 1, -daysBack);
+}
+
 // Compute all default dates for a given season based on Labor Day
 function computeDefaultDates(season) {
 	var laborDay = getLaborDay(season);
@@ -40,9 +50,11 @@ function computeDefaultDates(season) {
 	
 	return {
 		tradeWindowOpens: getDayAfter(prevLaborDay, 6, 22),    // 23rd Saturday after prev Labor Day
+		nflDraft: getLastDayOfMonth(season, 3, 4),              // Last Thursday of April
 		cutDay: getDayBefore(laborDay, 0, 2),                   // 3rd Sunday before Labor Day
 		auctionDay: getDayBefore(laborDay, 6, 1),               // 2nd Saturday before Labor Day
 		contractsDue: laborDay,                                  // Labor Day
+		nflSeasonKickoff: getDayAfter(laborDay, 4, 0),          // Thursday after Labor Day
 		regularSeasonStarts: getDayAfter(laborDay, 3, 0),       // 1st Wed after Labor Day
 		tradeDeadline: getDayAfter(laborDay, 3, 9),             // 10th Wed after Labor Day
 		playoffFAStarts: getDayAfter(laborDay, 3, 15),          // 16th Wed after Labor Day
@@ -62,6 +74,10 @@ var leagueConfigSchema = new Schema({
 	// Key dates for the season
 	// Offseason
 	tradeWindowOpens: { type: Date },           // ~late Jan (Saturday before Super Bowl)
+	
+	// NFL dates
+	nflDraft: { type: Date },                   // Last Thursday of April
+	nflSeasonKickoff: { type: Date },           // Thursday after Labor Day
 	
 	// Pre-season crunch
 	cutDay: { type: Date },                     // ~late Aug (1 week before auction)

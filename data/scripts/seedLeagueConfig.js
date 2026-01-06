@@ -35,6 +35,10 @@ async function seed() {
 		// Offseason
 		tradeWindowOpens: defaults.tradeWindowOpens,
 		
+		// NFL dates
+		nflDraft: defaults.nflDraft,
+		nflSeasonKickoff: defaults.nflSeasonKickoff,
+		
 		// Pre-season (tentative until confirmed)
 		cutDay: defaults.cutDay,
 		cutDayTentative: true,
@@ -63,9 +67,11 @@ async function seed() {
 	console.log('  Trades Enabled:', config.areTradesEnabled());
 	console.log('\nSchedule:');
 	console.log('  Trade Window Opens:', formatDate(config.tradeWindowOpens));
+	console.log('  NFL Draft:', formatDate(config.nflDraft));
 	console.log('  Cut Day:', formatDate(config.cutDay), config.cutDayTentative ? '(tentative)' : '');
 	console.log('  Auction Day:', formatDate(config.auctionDay), config.auctionDayTentative ? '(tentative)' : '');
 	console.log('  Contracts Due:', formatDate(config.contractsDue), config.contractsDueTentative ? '(tentative)' : '');
+	console.log('  NFL Season Kickoff:', formatDate(config.nflSeasonKickoff));
 	console.log('  Regular Season Starts:', formatDate(config.regularSeasonStarts));
 	console.log('  Trade Deadline:', formatDate(config.tradeDeadline));
 	console.log('  Playoff FA Starts:', formatDate(config.playoffFAStarts));

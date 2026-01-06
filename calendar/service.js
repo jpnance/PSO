@@ -70,6 +70,14 @@ function buildCalendarData(config) {
 			tentative: false
 		},
 		{
+			key: 'nflDraft',
+			name: 'NFL Draft',
+			date: config.nflDraft,
+			description: 'Rookie landing spots revealed',
+			tentative: false,
+			isNfl: true
+		},
+		{
 			key: 'cutDay',
 			name: 'Cut Day',
 			date: config.cutDay,
@@ -89,6 +97,14 @@ function buildCalendarData(config) {
 			date: config.contractsDue,
 			description: 'Contract terms submitted for new acquisitions',
 			tentative: config.contractsDueTentative
+		},
+		{
+			key: 'nflSeasonKickoff',
+			name: 'NFL Season Kickoff',
+			date: config.nflSeasonKickoff,
+			description: 'NFL regular season begins',
+			tentative: false,
+			isNfl: true
 		},
 		{
 			key: 'regularSeasonStarts',

@@ -54,8 +54,8 @@ async function updateConfig(request, response) {
 	
 	// Update dates (convert empty strings to null)
 	var dateFields = [
-		'tradeWindowOpens', 'cutDay', 'auctionDay', 'contractsDue',
-		'regularSeasonStarts', 'tradeDeadline', 'playoffFAStarts', 'championshipDay'
+		'tradeWindowOpens', 'nflDraft', 'cutDay', 'auctionDay', 'contractsDue',
+		'nflSeasonKickoff', 'regularSeasonStarts', 'tradeDeadline', 'playoffFAStarts', 'championshipDay'
 	];
 	
 	dateFields.forEach(function(field) {
@@ -267,12 +267,14 @@ async function advanceSeason(request, response) {
 	
 	config.season = newSeason;
 	config.tradeWindowOpens = body.tradeWindowOpens ? new Date(body.tradeWindowOpens) : defaults.tradeWindowOpens;
+	config.nflDraft = body.nflDraft ? new Date(body.nflDraft) : defaults.nflDraft;
 	config.cutDay = body.cutDay ? new Date(body.cutDay) : defaults.cutDay;
 	config.cutDayTentative = true;
 	config.auctionDay = body.auctionDay ? new Date(body.auctionDay) : defaults.auctionDay;
 	config.auctionDayTentative = true;
 	config.contractsDue = body.contractsDue ? new Date(body.contractsDue) : defaults.contractsDue;
 	config.contractsDueTentative = true;
+	config.nflSeasonKickoff = body.nflSeasonKickoff ? new Date(body.nflSeasonKickoff) : defaults.nflSeasonKickoff;
 	config.regularSeasonStarts = body.regularSeasonStarts ? new Date(body.regularSeasonStarts) : defaults.regularSeasonStarts;
 	config.tradeDeadline = body.tradeDeadline ? new Date(body.tradeDeadline) : defaults.tradeDeadline;
 	config.playoffFAStarts = body.playoffFAStarts ? new Date(body.playoffFAStarts) : defaults.playoffFAStarts;
