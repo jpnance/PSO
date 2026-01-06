@@ -6,7 +6,7 @@ var admin = require('./admin/service.js');
 var adminPlayers = require('./admin/players.js');
 var adminTrades = require('./admin/trades.js');
 var draft = require('./draft/service.js');
-var history = require('./history/service.js');
+var trades = require('./trades/service.js');
 var calendar = require('./calendar/service.js');
 var rookies = require('./rookies/service.js');
 
@@ -18,7 +18,8 @@ module.exports = function(app) {
 	app.get('/league', league.overview);
 	app.get('/league/franchise/:id', league.franchise);
 	
-	app.get('/history/trades', history.tradeHistory);
+	app.get('/trades', trades.tradeHistory);
+	app.get('/trades/:id', trades.singleTrade);
 
 	app.get('/draft', draft.draftBoard);
 	

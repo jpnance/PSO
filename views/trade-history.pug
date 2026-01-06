@@ -56,12 +56,20 @@ html
 
 	body
 		div.container.py-4
-			h1.mb-4 Trade History
+			if singleTrade
+				p.mb-2
+					a(href="/trades") ← All Trades
+				h1.mb-4 Trade ##{tradeNumber}
+			else
+				h1.mb-4 Trade History
 
 			each trade in trades
 				div.trade-card(id="trade-" + trade.number)
 					div.trade-header
-						a(href="#trade-" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
+						if singleTrade
+							| Trade ##{trade.number}
+						else
+							a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
 						span.trade-date.ml-3 #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
 					
 					each party in trade.parties
@@ -90,7 +98,7 @@ html
 															else if item.isCurrent
 																strong ##{item.tradeNumber}
 															else
-																a(href="#trade-" + item.tradeNumber) ##{item.tradeNumber}
+																a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
 												else if note.type === 'outcome'
 													div.asset-note → #{note.text}
 					

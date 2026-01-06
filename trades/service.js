@@ -50,14 +50,10 @@ function formatPickNumber(pickNumber, teamsPerRound) {
 	return round + '.' + pickInRound.toString().padStart(2, '0');
 }
 
-async function tradeHistory(request, response) {
-	var config = await LeagueConfig.findById('pso');
-	var currentSeason = config ? config.season : new Date().getFullYear();
-	
-	// Fetch all trades, oldest first (so we can number them)
-	var trades = await Transaction.find({ type: 'trade' })
-		.sort({ timestamp: 1 })
-		.lean();
+// Shared logic to build trade display data
+async function buildTradeDisplayData(trades, options) {
+	options = options || {};
+	var currentSeason = options.currentSeason || new Date().getFullYear();
 	
 	// Get all players for lookups
 	var players = await Player.find({}).lean();
@@ -91,7 +87,7 @@ async function tradeHistory(request, response) {
 	
 	for (var i = 0; i < trades.length; i++) {
 		var trade = trades[i];
-		var tradeNumber = i + 1;
+		var tradeNumber = trade.wordpressTradeId || (i + 1);
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
 			for (var k = 0; k < (party.receives.picks || []).length; k++) {
@@ -114,7 +110,7 @@ async function tradeHistory(request, response) {
 	var playerTradeHistory = {};
 	for (var i = 0; i < trades.length; i++) {
 		var trade = trades[i];
-		var tradeNumber = i + 1;
+		var tradeNumber = trade.wordpressTradeId || (i + 1);
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
 			for (var k = 0; k < (party.receives.players || []).length; k++) {
@@ -136,7 +132,7 @@ async function tradeHistory(request, response) {
 	
 	for (var i = 0; i < trades.length; i++) {
 		var trade = trades[i];
-		var tradeNumber = i + 1;
+		var tradeNumber = trade.wordpressTradeId || (i + 1);
 		var tradeYear = trade.timestamp.getFullYear();
 		
 		var parties = [];
@@ -340,6 +336,20 @@ async function tradeHistory(request, response) {
 		});
 	}
 	
+	return tradeData;
+}
+
+async function tradeHistory(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// Fetch all trades, oldest first (so we can number them)
+	var trades = await Transaction.find({ type: 'trade' })
+		.sort({ timestamp: 1 })
+		.lean();
+	
+	var tradeData = await buildTradeDisplayData(trades, { currentSeason: currentSeason });
+	
 	// Reverse for display (most recent first)
 	tradeData.reverse();
 	
@@ -349,6 +359,46 @@ async function tradeHistory(request, response) {
 	});
 }
 
+async function singleTrade(request, response) {
+	var tradeId = parseInt(request.params.id, 10);
+	
+	if (isNaN(tradeId)) {
+		return response.status(404).send('Trade not found');
+	}
+	
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// We need all trades to build the chain links properly
+	var allTrades = await Transaction.find({ type: 'trade' })
+		.sort({ timestamp: 1 })
+		.lean();
+	
+	// Find the specific trade
+	var trade = allTrades.find(function(t) {
+		return t.wordpressTradeId === tradeId;
+	});
+	
+	if (!trade) {
+		return response.status(404).send('Trade not found');
+	}
+	
+	var tradeData = await buildTradeDisplayData(allTrades, { currentSeason: currentSeason });
+	
+	// Find our specific trade in the display data
+	var singleTradeData = tradeData.find(function(t) {
+		return t.number === tradeId;
+	});
+	
+	response.render('trade-history', {
+		trades: [singleTradeData],
+		totalTrades: allTrades.length,
+		singleTrade: true,
+		tradeNumber: tradeId
+	});
+}
+
 module.exports = {
-	tradeHistory: tradeHistory
+	tradeHistory: tradeHistory,
+	singleTrade: singleTrade
 };
