@@ -3,6 +3,7 @@ var simulator = require('./simulator/service.js');
 var scuttlebot = require('./scuttlebot/service.js');
 var league = require('./league/service.js');
 var admin = require('./admin/service.js');
+var draft = require('./draft/service.js');
 var history = require('./history/service.js');
 
 module.exports = function(app) {
@@ -14,6 +15,8 @@ module.exports = function(app) {
 	app.get('/league/franchise/:id', league.franchise);
 	
 	app.get('/history/trades', history.tradeHistory);
+
+	app.get('/draft', draft.draftBoard);
 
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
@@ -31,5 +34,6 @@ module.exports = function(app) {
 	// Admin routes
 	app.get('/admin', admin.configPage);
 	app.post('/admin/config', admin.updateConfig);
-	app.post('/admin/config/advance-season', admin.advanceSeason);
+	app.get('/admin/advance-season', admin.advanceSeasonForm);
+	app.post('/admin/advance-season', admin.advanceSeason);
 };
