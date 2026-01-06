@@ -1,20 +1,5 @@
-var dotenv = require('dotenv').config({ path: '/app/.env' });
+var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 
-var render = false;
-
-process.argv.forEach(function(value, index, array) {
-	if (index > 1) {
-		var pair = value.split(/=/);
-
-		switch (pair[0]) {
-			case 'render':
-				render = true;
-				break;
-		}
-	}
-});
-
-var defaultSeason = parseInt(process.env.SEASON) + 1;
 var salaries = {
 	'2026': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 40, 'RB': 20, 'TE': 11, 'WR': 17 },
 	'2025': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 44, 'RB': 21, 'TE': 9, 'WR': 16 },
@@ -36,7 +21,6 @@ var salaries = {
 	'2009': { 'DB': 13, 'DL': 14, 'K': 3, 'LB': 14, 'QB': 125, 'RB': 271, 'TE': 53, 'WR': 138 }
 };
 
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 var seasons = Object.keys(salaries).sort((a, b) => b - a);
 
 function computeSalary(season, firstRoundValue, round) {
@@ -49,16 +33,22 @@ function computeSalary(season, firstRoundValue, round) {
 	}
 }
 
-if (render) {
-	var fs = require('fs');
-	var pug = require('pug');
-	var compiledPug = pug.compileFile('../views/rookies.pug');
-	fs.writeFileSync('../public/rookies/index.html', compiledPug({ 
-	pageTitle: 'Rookie Salaries', 
-	season: defaultSeason, 
-	salaries: salaries, 
-	seasons: seasons, 
-	positionOrder: positionOrder, 
-	computeSalary: computeSalary 
-}));
-}
+exports.rookieSalaries = function(request, response) {
+	var defaultSeason = seasons[0];
+	var requestedSeason = request.query.season || defaultSeason;
+	
+	// Validate requested season exists
+	if (!salaries[requestedSeason]) {
+		requestedSeason = defaultSeason;
+	}
+	
+	response.render('rookies', {
+		pageTitle: 'Rookie Salaries',
+		activePage: 'rookies',
+		season: requestedSeason,
+		salaries: salaries,
+		seasons: seasons,
+		positionOrder: positionOrder,
+		computeSalary: computeSalary
+	});
+};
