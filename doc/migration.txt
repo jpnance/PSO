@@ -78,13 +78,11 @@ Future Work
   downloaded via Drive API and parsed to reconstruct historical state at
   specific points in time. Complex and may not be worth the effort.
 
-- Fix trades #600 and #688: Cash was entered into the wrong year in the
-  spreadsheet. Need to update these trades in the database to match the
-  spreadsheet (which is canonical), and add notes explaining the discrepancy.
-
-- Conditional draft picks: A few historical trades involved conditional picks.
-  These need notes added to the trade records explaining the conditions and
-  outcomes. Review old WordPress posts to identify which trades these were.
+- Trade notes to add (via /admin/trades/:id):
+  - #34, #36: Conditional draft picks. Add notes explaining conditions/outcomes.
+  - #331: Historical exception — pick traded before Pick document existed.
+  - #600, #688: Cash entered into wrong year in spreadsheet. Correct the season
+    and add notes explaining the discrepancy.
 
 - Historical contract cleanup: Trades before #361 now have contract start/end
   years inferred by addLegacyTradeNotes.js where possible, with notes added for
@@ -96,7 +94,3 @@ Future Work
   pickId reference. For trades where the corresponding Pick document exists,
   we could backfill the pickId. This would simplify ownership tracking and
   make processTrade automatically update Pick.currentFranchiseId.
-
-- Trade #331 note: This trade involved a pick that technically shouldn't have
-  been allowed because the Pick document didn't exist yet. Add a note to the
-  trade record documenting this as a historical exception.
