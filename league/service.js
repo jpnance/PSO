@@ -1,3 +1,4 @@
+var LeagueConfig = require('../models/LeagueConfig');
 var Franchise = require('../models/Franchise');
 var Person = require('../models/Person');
 var Regime = require('../models/Regime');
@@ -6,8 +7,6 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
-
-var currentSeason = parseInt(process.env.SEASON, 10);
 
 // Compute budget breakdown for a franchise for a specific season
 function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
@@ -79,7 +78,7 @@ function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
 }
 
 // Compute budgets for current and next two seasons
-function computeBudgets(franchiseId, contracts, trades, cuts) {
+function computeBudgets(franchiseId, contracts, trades, cuts, currentSeason) {
 	return [
 		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason),
 		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason + 1),
@@ -99,7 +98,7 @@ function getPositionIndex(positions) {
 }
 
 // Get all franchises with current regimes, rosters, budgets
-async function getLeagueOverview() {
+async function getLeagueOverview(currentSeason) {
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({ 
 		$or: [
@@ -168,7 +167,7 @@ async function getLeagueOverview() {
 }
 
 // Get single franchise detail
-async function getFranchise(franchiseId) {
+async function getFranchise(franchiseId, currentSeason) {
 	var franchise = await Franchise.findById(franchiseId).lean();
 	if (!franchise) return null;
 	
@@ -237,7 +236,7 @@ async function getFranchise(franchiseId) {
 	});
 	
 	// Compute budgets for current and next two seasons
-	var budgets = computeBudgets(franchise._id, allContracts, trades, cuts);
+	var budgets = computeBudgets(franchise._id, allContracts, trades, cuts, currentSeason);
 	
 	// Add sorted owner names to each regime
 	var regimesWithSortedOwners = regimes.map(function(r) {
@@ -262,7 +261,10 @@ async function getFranchise(franchiseId) {
 // Route handlers
 async function overview(request, response) {
 	try {
-		var franchises = await getLeagueOverview();
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		var franchises = await getLeagueOverview(currentSeason);
 		response.render('league', { franchises: franchises, currentSeason: currentSeason });
 	} catch (err) {
 		console.error(err);
@@ -272,7 +274,10 @@ async function overview(request, response) {
 
 async function franchise(request, response) {
 	try {
-		var data = await getFranchise(request.params.id);
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		var data = await getFranchise(request.params.id, currentSeason);
 		if (!data) {
 			return response.status(404).send('Franchise not found');
 		}
