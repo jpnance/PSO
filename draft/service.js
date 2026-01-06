@@ -140,9 +140,10 @@ async function draftBoard(request, response) {
 		var playerId = selectionMap[pick._id.toString()];
 		var playerInfo = playerId ? playerMap[playerId.toString()] : null;
 		
+		var originalOwner = getDisplayName(pick.originalFranchiseId);
 		var fromOwner = null;
 		if (!pick.originalFranchiseId.equals(pick.currentFranchiseId)) {
-			fromOwner = getDisplayName(pick.originalFranchiseId);
+			fromOwner = originalOwner;
 		}
 		
 		// Calculate salary based on player positions and round
@@ -155,6 +156,7 @@ async function draftBoard(request, response) {
 			pickNumber: pick.pickNumber,
 			pickDisplay: formatPickNumber(pick.pickNumber, pick.round, picksPerRound),
 			round: pick.round,
+			originalOwner: originalOwner,
 			currentOwner: getDisplayName(pick.currentFranchiseId),
 			fromOwner: fromOwner,
 			status: pick.status,
@@ -165,11 +167,19 @@ async function draftBoard(request, response) {
 		});
 	});
 	
-	// Sort each round by pick number
+	// Sort each round by pick number, or alphabetically by original owner if no pick numbers
 	Object.keys(rounds).forEach(function(round) {
 		rounds[round].sort(function(a, b) {
+			// If both have pick numbers, sort by pick number
 			if (a.pickNumber && b.pickNumber) return a.pickNumber - b.pickNumber;
-			return 0;
+			// If neither has pick number, sort alphabetically by original owner
+			if (!a.pickNumber && !b.pickNumber) {
+				var ownerA = a.originalOwner || '';
+				var ownerB = b.originalOwner || '';
+				return ownerA.localeCompare(ownerB);
+			}
+			// If only one has pick number, put numbered picks first
+			return a.pickNumber ? -1 : 1;
 		});
 	});
 	
