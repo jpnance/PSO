@@ -57,12 +57,39 @@ if [ "$DRY_RUN" = false ]; then
     echo ""
 fi
 
-# Step 0a: Fetch fresh Sleeper data
-echo "=== Step 0a: Fetching fresh Sleeper data ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] make sleeper"
+# Step 0a: Fetch Sleeper data (if stale or missing)
+SLEEPER_FILE="public/data/sleeper-data.json"
+MAX_AGE_DAYS=7
+
+echo "=== Step 0a: Checking Sleeper data ==="
+if [ -f "$SLEEPER_FILE" ]; then
+    # Check file age (in days)
+    if [ "$(uname)" = "Darwin" ]; then
+        # macOS
+        FILE_AGE_SECONDS=$(( $(date +%s) - $(stat -f %m "$SLEEPER_FILE") ))
+    else
+        # Linux
+        FILE_AGE_SECONDS=$(( $(date +%s) - $(stat -c %Y "$SLEEPER_FILE") ))
+    fi
+    FILE_AGE_DAYS=$(( FILE_AGE_SECONDS / 86400 ))
+    
+    if [ "$FILE_AGE_DAYS" -lt "$MAX_AGE_DAYS" ]; then
+        echo "Sleeper data is ${FILE_AGE_DAYS} day(s) old (max: ${MAX_AGE_DAYS}). Skipping fetch."
+    else
+        echo "Sleeper data is ${FILE_AGE_DAYS} day(s) old. Refreshing..."
+        if [ "$DRY_RUN" = true ]; then
+            echo "[dry-run] make sleeper"
+        else
+            make sleeper
+        fi
+    fi
 else
-    make sleeper
+    echo "Sleeper data not found. Fetching..."
+    if [ "$DRY_RUN" = true ]; then
+        echo "[dry-run] make sleeper"
+    else
+        make sleeper
+    fi
 fi
 echo ""
 
