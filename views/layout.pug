@@ -37,6 +37,10 @@ html
 							a.nav-link(href='/rookies')
 								i.fa.fa-graduation-cap.mr-1
 								| Rookies
+						li.nav-item(class=(activePage === 'trades' ? 'active' : ''))
+							a.nav-link(href='/trades')
+								i.fa.fa-exchange.mr-1
+								| Trades
 					ul.navbar-nav
 						li.nav-item(class=(activePage === 'admin' ? 'active' : ''))
 							a.nav-link(href='/admin')

@@ -355,7 +355,9 @@ async function tradeHistory(request, response) {
 	
 	response.render('trade-history', {
 		trades: tradeData,
-		totalTrades: tradeData.length
+		totalTrades: tradeData.length,
+		pageTitle: 'Trade History - PSO',
+		activePage: 'trades'
 	});
 }
 
@@ -394,7 +396,9 @@ async function singleTrade(request, response) {
 		trades: [singleTradeData],
 		totalTrades: allTrades.length,
 		singleTrade: true,
-		tradeNumber: tradeId
+		tradeNumber: tradeId,
+		pageTitle: 'Trade #' + tradeId + ' - PSO',
+		activePage: 'trades'
 	});
 }
 
