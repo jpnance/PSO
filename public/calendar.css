@@ -4,6 +4,12 @@ body {
 	background-color: #f8f9fa;
 }
 
+/* Lighter placeholder text */
+::placeholder {
+	color: #c0c0c0 !important;
+	opacity: 1;
+}
+
 .container {
 	max-width: 700px;
 }

@@ -2,6 +2,12 @@ body {
 	background-color: #f8f9fa;
 }
 
+/* Lighter placeholder text */
+::placeholder {
+	color: #c0c0c0 !important;
+	opacity: 1;
+}
+
 .card-header {
 	padding-left: 0.75rem;
 	background-color: #343a40;
