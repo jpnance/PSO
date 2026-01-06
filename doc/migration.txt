@@ -1,9 +1,34 @@
-Spreadsheet Migration Steps
-===========================
+Spreadsheet Migration
+=====================
+
+Quick Start
+-----------
+To reset and reseed all migration data from scratch:
+
+   make reset-migration
+
+Or preview what will happen without making changes:
+
+   make reset-migration-dry-run
+
+The script performs preflight checks (SEASON env var, API keys, network
+connectivity, Docker containers) before proceeding.
+
+
+What Gets Reset
+---------------
+The following collections are DROPPED and reseeded:
+   franchises, people, regimes, players, contracts, budgets, picks,
+   transactions, leagueconfigs, rosters
+
+The following collections are PRESERVED (pre-existing data):
+   games, championships, playoffAppearances, regularSeasonWinningPercentage,
+   regularSeasonWins, weeklyScoringTitles
+
 
 Player Resolution
 -----------------
-Steps 4, 7, 8, and 9 use data/scripts/player-resolutions.json to map player names
+Several steps use data/scripts/player-resolutions.json to map player names
 to Sleeper IDs (or mark them as historical players). This file is tracked in
 git and contains cached resolutions from previous runs. Interactive prompts
 only appear for names not already resolved.
@@ -11,67 +36,28 @@ only appear for names not already resolved.
 If you need to rebuild the resolutions file from scratch:
    docker compose run --rm web node data/scripts/extractPlayerResolutions.js
 
-This extracts existing Player documents and auto-detects ambiguous names from
-Sleeper data (e.g., "Mike Williams", "Chris Johnson").
-
-
-Migration Steps
----------------
-0. Fetch fresh Sleeper data (step 3 reads from the cached file):
-   make sleeper
-
-1. Seed league config
-   docker compose run --rm web node data/scripts/seedLeagueConfig.js
-   
-   (Creates the LeagueConfig document for the current season. Set dates via /admin.)
-
-2. Seed franchises, people, regimes:
-   docker compose run --rm web node data/scripts/seedEntities.js --clear
-
-3. Sync players from Sleeper:
-   docker compose run --rm web node data/scripts/syncPlayers.js --clear
-   
-   (This script can be re-run to update existing players with fresh Sleeper data.
-   The --clear flag is only needed for initial setup; scheduled runs omit it.
-   After migration, uncomment the syncPlayers.js line in etc/crontab to enable
-   automatic syncing after Sleeper data is refreshed.)
-
-4. Seed contracts from spreadsheet:
-   docker compose run --rm -it web node data/scripts/seedContracts.js --clear
-   
-   (Interactive - prompts for ambiguous player names not in player-resolutions.json)
-
-5. Seed budgets from spreadsheet:
-   docker compose run --rm web node data/scripts/seedBudgets.js --clear
-
-6. Seed picks from spreadsheet:
-   docker compose run --rm web node data/scripts/seedPicks.js --clear
-
-7. Seed trades from WordPress:
-   docker compose run --rm -it web node data/scripts/seedTrades.js --clear
-   
-   (Interactive - requires network for WordPress API, prompts for unresolved players)
-
-8. Seed draft selections from Google Sheets:
-   docker compose run --rm -it web node data/scripts/seedDraftSelections.js --clear
-   
-   (Interactive - requires network for Google Sheets API, prompts for unresolved players)
-
-9. Seed cuts from spreadsheet:
-   docker compose run --rm -it web node data/scripts/seedCuts.js --clear --auto-historical-before=2016
-   
-   (Interactive - requires network for Google Sheets API, prompts for 2016+ unresolved players,
-   auto-creates historical players for pre-2016 cuts. Creates fa-cut transactions with dead money.)
-
-10. Fix legacy trade contract data:
-    docker compose run --rm web node data/scripts/addLegacyTradeNotes.js
-    
-    (Requires network for WordPress API. For trades #1-360, older contract formats like
-    "2010" or "2018-R" didn't include start year. This script infers 3-year contracts
-    where possible and adds notes for ambiguous cases. Can be re-run safely.)
-
-After running interactive scripts, commit any changes to player-resolutions.json
+After running the migration, commit any changes to player-resolutions.json
 so future runs don't re-prompt for the same players.
+
+
+Manual Steps (for reference)
+----------------------------
+The resetMigration.sh script runs these steps in order:
+
+  Step -1: Drop migration collections
+  Step  0: Fetch Sleeper data (skipped if < 7 days old)
+  Step  1: seedLeagueConfig.js
+  Step  2: seedEntities.js (franchises, people, regimes)
+  Step  3: syncPlayers.js
+  Step  4: seedContracts.js (interactive)
+  Step  5: seedBudgets.js
+  Step  6: seedPicks.js
+  Step  7: seedTrades.js (interactive, needs network)
+  Step  8: seedDraftSelections.js (interactive, needs network)
+  Step  9: seedCuts.js (interactive, needs network)
+  Step 10: addLegacyTradeNotes.js (needs network)
+
+See the script itself for full details on each step.
 
 
 Future Work
