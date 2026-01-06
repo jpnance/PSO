@@ -1,5 +1,3 @@
-var pluralFranchises = ['Koci/Mueller', 'Schexes'];
-
 var tradeMachine = {
 	deal: {},
 
@@ -116,8 +114,7 @@ var tradeMachine = {
 	},
 
 	extractFranchiseId: (elementId) => {
-		// Element IDs are now like "check-{objectId}" or "gets-{objectId}"
-		// Extract everything after the first hyphen
+		// Element IDs are like "check-{objectId}" or "gets-{objectId}"
 		var hyphenIndex = elementId.indexOf('-');
 		return hyphenIndex !== -1 ? elementId.substring(hyphenIndex + 1) : elementId;
 	},
@@ -135,35 +132,6 @@ var tradeMachine = {
 		});
 
 		return sortedFranchises;
-	},
-
-	generateWordpressCode: () => {
-		var blob = '<img class="alignnone size-full wp-image-138" title="Handshake Deal" src="http://thedynastyleague.files.wordpress.com/2010/11/handshake.jpg" alt="Handshake Deal" width="520" height="346">';
-
-		blob += '\n';
-		blob += '\n';
-
-		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-			var franchiseName = tradeMachine.franchiseName(franchiseId);
-
-			blob += '<strong>' + franchiseName + '</strong> get' + (pluralFranchises.includes(franchiseName) ? '' : 's') + ':\n';
-			blob += '<ul>\n';
-
-			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
-
-			if (sortedAssets.length == 0) {
-				blob += '<li>Nothing</li>\n';
-			}
-			else {
-				sortedAssets.forEach((asset) => {
-					blob += '<li>' + tradeMachine.textForAsset(asset, true) + '</li>\n';
-				});
-			}
-
-			blob += '</ul>\n\n';
-		});
-
-		return blob;
 	},
 
 	pickData: (pickId) => {
@@ -190,59 +158,6 @@ var tradeMachine = {
 			contract: $player.data('contract'),
 			terms: $player.data('terms')
 		};
-	},
-
-	postToWordpress: () => {
-		if (!getCookie('wordpressToken')) {
-			setCookie('wordpressToken', window.prompt('Enter WordPress token'));
-		}
-
-		var defaultTime = new Date();
-		defaultTime.setSeconds(0);
-
-		var publishDateTime = new Date(window.prompt('Enter publish date and time', defaultTime.toLocaleString()));
-		$.get('https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts?categories=9943&per_page=1&status=publish&order=desc', (response) => {
-			var nextTradeNumber = parseInt(response[0].slug.split('-')[1]) + 1;
-
-			var postData = {
-				status: 'publish',
-				title: 'Trade #' + nextTradeNumber,
-				slug: 'trade-' + nextTradeNumber,
-				date_gmt: publishDateTime.toISOString(),
-				content: tradeMachine.generateWordpressCode(),
-				categories: [ 9943 ]
-			};
-
-			var franchiseNames = [];
-
-			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				franchiseNames.push(tradeMachine.franchiseName(franchiseId));
-			});
-
-
-			$.get('https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/categories?per_page=50', (response) => {
-				response.forEach((category) => {
-					if (franchiseNames.includes(category.name)) {
-						postData.categories.push(category.id);
-					}
-				});
-
-				$.ajax({
-					method: 'POST',
-					headers: {
-						'Authorization': 'Bearer ' + getCookie('wordpressToken')
-					},
-					url: 'https://public-api.wordpress.com/wp/v2/sites/thedynastyleague.wordpress.com/posts',
-					data: postData,
-					success: (response) => {
-						console.log(response);
-					},
-					error: (error) => {
-						console.log(error);
-					}
-				});
-			});
-		});
 	},
 
 	rebuildPickLists: () => {
@@ -300,7 +215,7 @@ var tradeMachine = {
 			$franchiseSection.removeClass('d-none');
 			$franchiseAssetList.empty();
 
-			var sortedAssets = this.tradeMachine.sortedAssetsForFranchise(franchiseId);
+			var sortedAssets = tradeMachine.sortedAssetsForFranchise(franchiseId);
 
 			if (sortedAssets.length == 0) {
 				$franchiseAssetList.append($('<li>Nothing</li>'));
@@ -361,14 +276,9 @@ var tradeMachine = {
 		}
 	},
 
-	textForAsset: (asset, withLink) => {
+	textForAsset: (asset) => {
 		if (asset.type == 'player') {
-			if (withLink) {
-				return '<a href="https://www.pro-football-reference.com/search/search.fcgi?search=' + asset.name + '">' + asset.name + '</a> (' + tradeMachine.terms(asset) + ')';
-			}
-			else {
-				return asset.name + ' (' + tradeMachine.terms(asset) + ')';
-			}
+			return asset.name + ' (' + tradeMachine.terms(asset) + ')';
 		}
 		else if (asset.type == 'pick') {
 			return tradeMachine.roundOrdinal(asset.round) + ' round draft pick from ' + asset.origin + ' in ' + asset.season;
@@ -424,27 +334,7 @@ $(document).ready(function() {
 		tradeMachine.redrawTradeMachine();
 	});
 
-	$('.wordpress').on('click', '.render-wordpress', (e) => {
-		$('textarea').val(tradeMachine.generateWordpressCode());
-	});
-
-	$('.wordpress').on('click', '.post-wordpress', (e) => {
-		tradeMachine.postToWordpress();
-	});
-
 	$('.reset-trade-machine').on('click', (e) => {
 		tradeMachine.reset();
 	});
 });
-
-function deleteCookie(name) {
-	document.cookie = `${name}=; expires=${(new Date(0)).toUTCString()}; samesite=lax`;
-}
-
-function getCookie(name) {
-	return document.cookie.split(/; /).find((row) => row.startsWith(`${name}=`))?.split(/=/)[1];
-}
-
-function setCookie(name, value) {
-	document.cookie = `${name}=${value}; samesite=lax`;
-}
