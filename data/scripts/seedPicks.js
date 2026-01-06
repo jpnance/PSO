@@ -147,7 +147,8 @@ async function fetchPicksForSeason(season, isFutureDraft) {
 				currentOwner: currentOwner,
 				originalOwner: originalOwner,
 				player: player || null,
-				status: status
+				status: status,
+				isFutureDraft: isFutureDraft
 			});
 		});
 
@@ -244,7 +245,8 @@ async function seed() {
 				status: p.status
 			};
 			// Only set pickNumber for past drafts where it's known
-			if (!isNaN(p.pickNumber)) {
+			// Future drafts shouldn't have pick numbers until draft order is set
+			if (!p.isFutureDraft && !isNaN(p.pickNumber)) {
 				pickDoc.pickNumber = p.pickNumber;
 			}
 			await Pick.create(pickDoc);
