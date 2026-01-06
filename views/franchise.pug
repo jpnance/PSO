@@ -184,9 +184,16 @@ html
 								var v = n % 100;
 								return n + (s[(v - 20) % 10] || s[v] || s[0]);
 							}
+							function formatPickNumber(round, pickNumber, picksPerRound) {
+								if (!pickNumber) return null;
+								var slotInRound = ((pickNumber - 1) % picksPerRound) + 1;
+								var slot = slotInRound < 10 ? '0' + slotInRound : '' + slotInRound;
+								return '#' + round + '.' + slot;
+							}
 						if seasons.length
 							each season in seasons
-								- var seasonPicks = picksBySeason[season]
+								- var seasonPicks = picksBySeason[season].slice().sort(function(a, b) { return (a.pickNumber || 999) - (b.pickNumber || 999); })
+								- var picksPerRound = (parseInt(season) <= 2011) ? 10 : 12
 								table.table.table-sm.mb-0.picks-table
 									thead
 										tr.table-secondary
@@ -195,8 +202,12 @@ html
 										each pick, idx in seasonPicks
 											- var nextPick = seasonPicks[idx + 1]
 											- var isLastInRound = nextPick && nextPick.round !== pick.round
+											- var pickNumStr = formatPickNumber(pick.round, pick.pickNumber, picksPerRound)
 											tr(class=isLastInRound ? 'round-separator' : '')
-												td= ordinal(pick.round) + ' round'
+												td
+													| #{ordinal(pick.round)} Round
+													if pickNumStr
+														|  (#{pickNumStr})
 												td.text-right.text-muted
 													if pick.originalOwner
 														| from #{pick.originalOwner}
