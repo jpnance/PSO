@@ -33,6 +33,10 @@ html
 							a.nav-link(href='/calendar')
 								i.fa.fa-calendar.mr-1
 								| Calendar
+						li.nav-item(class=(activePage === 'rookies' ? 'active' : ''))
+							a.nav-link(href='/rookies')
+								i.fa.fa-graduation-cap.mr-1
+								| Rookies
 					ul.navbar-nav
 						li.nav-item(class=(activePage === 'admin' ? 'active' : ''))
 							a.nav-link(href='/admin')

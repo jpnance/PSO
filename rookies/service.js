@@ -42,12 +42,18 @@ exports.rookieSalaries = function(request, response) {
 		requestedSeason = defaultSeason;
 	}
 	
+	// Current year as quick pill, rest in "Older" dropdown
+	var quickSeasons = [seasons[0]];
+	var olderSeasons = seasons.slice(1);
+	
 	response.render('rookies', {
 		pageTitle: 'Rookie Salaries',
 		activePage: 'rookies',
 		season: requestedSeason,
 		salaries: salaries,
 		seasons: seasons,
+		quickSeasons: quickSeasons,
+		olderSeasons: olderSeasons,
 		positionOrder: positionOrder,
 		computeSalary: computeSalary
 	});

@@ -15,7 +15,7 @@ block styles
 			gap: 0.25rem;
 			align-items: center;
 		}
-		.season-select {
+		.older-select {
 			padding: 0.25rem 0.5rem;
 			font-size: 0.875rem;
 			border: 1px solid #6c757d;
@@ -25,9 +25,14 @@ block styles
 			cursor: pointer;
 			height: 31px;
 		}
-		.season-select:focus {
+		.older-select:focus {
 			outline: none;
 			border-color: #007bff;
+		}
+		.older-select.active {
+			background: #007bff;
+			border-color: #007bff;
+			color: white;
 		}
 		.salary-table {
 			font-size: 0.9rem;
@@ -52,9 +57,6 @@ block styles
 		.salary-table tbody tr:hover td:not(.round-col) {
 			background-color: #e9ecef;
 		}
-		.hidden {
-			display: none;
-		}
 		@media (max-width: 576px) {
 			.salary-table {
 				font-size: 0.8rem;
@@ -69,56 +71,28 @@ block content
 		div.header-row
 			h1 Rookie Salaries
 			div.season-nav
-				select.season-select(name='season')
-					each salarySeason in seasons
-						option(value=salarySeason selected=(season == salarySeason)) #{salarySeason}
+				- var isOlderSeason = olderSeasons.indexOf(season) !== -1
+				select.older-select(class=(isOlderSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
+					option(value='' selected=!isOlderSeason) Older
+					each s in olderSeasons
+						option(value=s selected=(s === season))= s
+				each s in quickSeasons
+					a.btn.btn-sm(href='?season=' + s class=(s === season ? 'btn-primary' : 'btn-outline-secondary'))= s
 
-		each salarySeason in seasons
-			- var positionSalaries = salaries[salarySeason]
-			div(id='rookies' + salarySeason class=(season != salarySeason ? 'hidden' : ''))
-				table.table.table-bordered.salary-table
-					thead
-						tr
-							th.round-col Round
-							each position in positionOrder
-								th(class='pos-' + position) #{position}
-					tbody
-						each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-							tr
-								td.round-col #{round}
-								each position in positionOrder
-									td $#{computeSalary(parseInt(salarySeason), positionSalaries[position], round)}
+		- var positionSalaries = salaries[season]
+		table.table.table-bordered.salary-table
+			thead
+				tr
+					th.round-col Round
+					each position in positionOrder
+						th(class='pos-' + position) #{position}
+			tbody
+				each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+					tr
+						td.round-col #{round}
+						each position in positionOrder
+							td $#{computeSalary(parseInt(season), positionSalaries[position], round)}
 
 block scripts
 	script.
-		var currentSeason = !{season};
-		
-		$(document).ready(function() {
-			var query = location.search.substring(1).split(/=/);
-
-			if (query.length > 1 && query[1].match(/^20\d\d/)) {
-				window.history.replaceState({ season: query[1] }, 'Rookie Salaries for ' + query[1], '?season=' + query[1]);
-				displaySeason(query[1]);
-			}
-
-			$('select').on('change', function(e) {
-				var $this = $(this);
-				window.history.pushState({ season: $this.val() }, 'Rookie Salaries for ' + $this.val(), '?season=' + $this.val());
-				displaySeason($this.val());
-			});
-
-			window.onpopstate = function(e) {
-				if (e.state) {
-					displaySeason(e.state.season);
-				} else {
-					displaySeason(currentSeason);
-				}
-			};
-		});
-
-		function displaySeason(season) {
-			$('title').text('Rookie Salaries for ' + season);
-			$('div[id^="rookies"]').addClass('hidden');
-			$('div#rookies' + season).removeClass('hidden');
-			$('select').val(season);
-		}
+		// Navigation is handled via URL - no client-side switching needed
