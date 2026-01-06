@@ -87,8 +87,22 @@ nav a:hover {
 .picks-table th:first-child,
 .picks-table td:first-child,
 .budget-table th:first-child,
-.budget-table td:first-child {
+.budget-table td:first-child,
+.rfa-table td:first-child,
+.history-table td:first-child {
 	padding-left: 0.75rem;
+}
+
+/* Consistent right padding for last cells */
+.roster-table th:last-child,
+.roster-table td:last-child,
+.picks-table th:last-child,
+.picks-table td:last-child,
+.budget-table th:last-child,
+.budget-table td:last-child,
+.rfa-table td:last-child,
+.history-table td:last-child {
+	padding-right: 0.75rem;
 }
 
 /* Include thead headers too */
