@@ -240,11 +240,6 @@ async function tradeHistory(request, response) {
 				}
 				
 				display += ' from ' + originalOwner;
-				
-				if (viaChain.length > 0) {
-					display += ' (' + viaChain.map(function(v) { return 'via ' + v; }).join(', ') + ')';
-				}
-				
 				display += ' in ' + season;
 				
 				// Build fine print notes

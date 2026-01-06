@@ -58,6 +58,13 @@ Migration Steps
    (Interactive - requires network for Google Sheets API, prompts for 2016+ unresolved players,
    auto-creates historical players for pre-2016 cuts. Creates fa-cut transactions with dead money.)
 
+10. Fix legacy trade contract data:
+    docker compose run --rm web node data/scripts/addLegacyTradeNotes.js
+    
+    (Requires network for WordPress API. For trades #1-360, older contract formats like
+    "2010" or "2018-R" didn't include start year. This script infers 3-year contracts
+    where possible and adds notes for ambiguous cases. Can be re-run safely.)
+
 After running interactive scripts, commit any changes to player-resolutions.json
 so future runs don't re-prompt for the same players.
 
@@ -91,9 +98,10 @@ Future Work
   These need notes added to the trade records explaining the conditions and
   outcomes. Review old WordPress posts to identify which trades these were.
 
-- Historical contract cleanup: Trades before #361 used older contract formats
-  like "2019-U" or "2018-R" instead of the modern "X/Y" format. Consider adding
-  notes to these trades or batch-updating the contract data to normalize it.
+- Historical contract cleanup: Trades before #361 now have contract start/end
+  years inferred by addLegacyTradeNotes.js where possible, with notes added for
+  remaining ambiguous cases. It's possible that more resolutions are possible,
+  especially if we're willing to make some simple assumptions.
 
 - Backfill pickId on trade transactions: The tradePickSchema currently stores
   denormalized pick metadata (round, season, fromFranchiseId) instead of a
@@ -104,3 +112,9 @@ Future Work
 - Trade #331 note: This trade involved a pick that technically shouldn't have
   been allowed because the Pick document didn't exist yet. Add a note to the
   trade record documenting this as a historical exception.
+
+- Player edit admin tool: Create an admin interface for editing player records.
+  Key uses: adding positions to historical players (who were created without
+  position data), fixing name typos, merging duplicate players. The Player
+  schema already supports positions as an array; historical players just need
+  their positions populated for proper color-coding in the draft board.
