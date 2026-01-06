@@ -42,21 +42,21 @@ function computeDeadMoneyForSeason(salary, startYear, endYear, cutYear, targetSe
 }
 
 /**
- * Compute total reclaimable budget if a franchise cut all their players.
- * Reclaimable = salary saved - dead money incurred (for a single season).
+ * Compute total recoverable budget if a franchise cut all their players.
+ * Recoverable = salary saved - dead money incurred (for a single season).
  * 
  * @param {ObjectId} franchiseId - Franchise to calculate for
  * @param {number} season - Season to calculate for
- * @returns {Promise<number>} Total reclaimable amount
+ * @returns {Promise<number>} Total recoverable amount
  */
-async function computeReclaimable(franchiseId, season) {
+async function computeRecoverable(franchiseId, season) {
 	var contracts = await Contract.find({
 		franchiseId: franchiseId,
 		endYear: { $gte: season },
 		startYear: { $lte: season }
 	}).lean();
 	
-	var totalReclaimable = 0;
+	var totalRecoverable = 0;
 	
 	for (var i = 0; i < contracts.length; i++) {
 		var contract = contracts[i];
@@ -67,12 +67,12 @@ async function computeReclaimable(franchiseId, season) {
 		// If cut this season, what dead money would we incur for THIS season?
 		var deadMoney = computeDeadMoneyForSeason(salary, startYear, endYear, season, season);
 		
-		// Reclaimable = salary we stop paying - dead money we incur
-		var reclaimable = salary - deadMoney;
-		totalReclaimable += reclaimable;
+		// Recoverable = salary we stop paying - dead money we incur
+		var recoverable = salary - deadMoney;
+		totalRecoverable += recoverable;
 	}
 	
-	return totalReclaimable;
+	return totalRecoverable;
 }
 
 /**
@@ -107,16 +107,16 @@ async function validateBudgetImpact(franchiseId, season, salaryImpact, config) {
 	}
 	
 	// Soft cap - can they cut their way out?
-	var reclaimable = await computeReclaimable(franchiseId, season);
+	var recoverable = await computeRecoverable(franchiseId, season);
 	
-	if (resultingBudget + reclaimable >= 0) {
+	if (resultingBudget + recoverable >= 0) {
 		return { 
 			valid: true, 
 			warning: 'Soft cap: $' + resultingBudget + ' available (could recover by cutting $' + (-resultingBudget) + ' in salary)'
 		};
 	}
 	
-	var shortfall = -(resultingBudget + reclaimable);
+	var shortfall = -(resultingBudget + recoverable);
 	return { 
 		valid: false, 
 		error: 'Cannot recover: would be $' + shortfall + ' short even after cutting all players'
@@ -251,14 +251,14 @@ async function validateTradeCash(tradeDetails, config) {
 					errors.push(message + ' (hard cap violation)');
 				} else {
 					// Soft cap - check if they could cut their way out
-					var reclaimable = await computeReclaimable(mongoose.Types.ObjectId(franchiseId), season);
+					var recoverable = await computeRecoverable(mongoose.Types.ObjectId(franchiseId), season);
 					
-					if (resultingBudget + reclaimable >= 0) {
+					if (resultingBudget + recoverable >= 0) {
 						// They could cut their way back to $0 or better
 						warnings.push(message + ' (soft cap - could recover by cutting $' + (-resultingBudget) + ' in salary)');
 					} else {
 						// Even cutting everyone wouldn't save them
-						var shortfall = -(resultingBudget + reclaimable);
+						var shortfall = -(resultingBudget + recoverable);
 						errors.push(message + ' (would be $' + shortfall + ' short even after cutting all players)');
 					}
 				}
@@ -734,5 +734,5 @@ module.exports = {
 	processCut: processCut,
 	validateBudgetImpact: validateBudgetImpact,
 	computeDeadMoneyForSeason: computeDeadMoneyForSeason,
-	computeReclaimable: computeReclaimable
+	computeRecoverable: computeRecoverable
 };

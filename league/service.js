@@ -8,14 +8,42 @@ var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 
+// Dead money calculation based on contract year
+function computeDeadMoneyIfCut(salary, startYear, endYear, season) {
+	var percentages = [0.60, 0.30, 0.15];
+	
+	// For FA contracts (single year), startYear === endYear
+	if (startYear === null) {
+		startYear = endYear;
+	}
+	
+	var contractYearIndex = season - startYear; // 0, 1, or 2
+	if (contractYearIndex >= percentages.length) {
+		return 0;
+	}
+	
+	return Math.ceil(salary * percentages[contractYearIndex]);
+}
+
 // Compute budget breakdown for a franchise for a specific season
 function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
+	// Get contracts active for this franchise in this season
+	var activeContracts = contracts.filter(function(c) { 
+		return c.franchiseId.equals(franchiseId) && 
+			c.startYear <= season && 
+			c.endYear && c.endYear >= season &&
+			c.salary !== null; // Exclude RFA rights
+	});
+	
 	// Payroll = sum of salaries where contract extends through this season
-	var payroll = contracts
-		.filter(function(c) { 
-			return c.franchiseId.equals(franchiseId) && c.endYear && c.endYear >= season; 
-		})
-		.reduce(function(sum, c) { return sum + (c.salary || 0); }, 0);
+	var payroll = activeContracts.reduce(function(sum, c) { return sum + (c.salary || 0); }, 0);
+	
+	// Recoverable = sum of (salary - dead money if cut) for all contracts
+	var recoverable = activeContracts.reduce(function(sum, c) {
+		var salary = c.salary || 0;
+		var deadMoney = computeDeadMoneyIfCut(salary, c.startYear, c.endYear, season);
+		return sum + (salary - deadMoney);
+	}, 0);
 	
 	// Cash in/out from trades for this season
 	var cashIn = 0;
@@ -73,7 +101,8 @@ function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
 		deadMoney: deadMoney,
 		cashIn: cashIn,
 		cashOut: cashOut,
-		available: available
+		available: available,
+		recoverable: recoverable
 	};
 }
 

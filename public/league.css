@@ -87,6 +87,12 @@ nav a:hover {
 	border-top: 1px solid #dee2e6;
 }
 
+.recoverable-row td {
+	color: #6c757d;
+	font-size: 0.875rem;
+	font-style: italic;
+}
+
 /* Consistent left padding for all franchise page tables */
 .roster-table th:first-child,
 .roster-table td:first-child,

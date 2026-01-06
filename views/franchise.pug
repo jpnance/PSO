@@ -152,11 +152,16 @@ html
 										td.text-right -$#{formatMoney(b[0].cashOut)}
 										td.text-right -$#{formatMoney(b[1].cashOut)}
 										td.text-right -$#{formatMoney(b[2].cashOut)}
-									tr.available-row
-										td: strong Available
-										td.text-right: strong $#{formatMoney(b[0].available)}
-										td.text-right: strong $#{formatMoney(b[1].available)}
-										td.text-right: strong $#{formatMoney(b[2].available)}
+								tr.available-row
+									td: strong Available
+									td.text-right: strong $#{formatMoney(b[0].available)}
+									td.text-right: strong $#{formatMoney(b[1].available)}
+									td.text-right: strong $#{formatMoney(b[2].available)}
+								tr.recoverable-row
+									td Recoverable
+									td.text-right +$#{formatMoney(b[0].recoverable)}
+									td.text-right +$#{formatMoney(b[1].recoverable)}
+									td.text-right +$#{formatMoney(b[2].recoverable)}
 					
 					- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
 					if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
