@@ -25,6 +25,75 @@ if [ "$1" = "--dry-run" ]; then
     echo ""
 fi
 
+# =============================================================================
+# Preflight checks
+# =============================================================================
+
+echo "=== Preflight Checks ==="
+PREFLIGHT_FAILED=false
+
+# Check SEASON env var
+if [ -z "$SEASON" ]; then
+    echo "ERROR: SEASON environment variable is not set"
+    echo "  Set it in your .env file or export it: export SEASON=2025"
+    PREFLIGHT_FAILED=true
+else
+    echo "✓ SEASON is set to $SEASON"
+fi
+
+# Check GOOGLE_API_KEY env var
+if [ -z "$GOOGLE_API_KEY" ]; then
+    echo "ERROR: GOOGLE_API_KEY environment variable is not set"
+    echo "  Required for Google Sheets API access"
+    PREFLIGHT_FAILED=true
+else
+    echo "✓ GOOGLE_API_KEY is set"
+fi
+
+# Check network connectivity
+echo -n "Checking network connectivity... "
+if curl -s --max-time 5 "https://sheets.googleapis.com" > /dev/null 2>&1; then
+    echo "✓ Google Sheets API reachable"
+else
+    echo ""
+    echo "ERROR: Cannot reach Google Sheets API"
+    echo "  Check your network connection"
+    PREFLIGHT_FAILED=true
+fi
+
+echo -n "Checking WordPress API... "
+if curl -s --max-time 5 "https://www.psofantasyfootball.com" > /dev/null 2>&1; then
+    echo "✓ WordPress API reachable"
+else
+    echo ""
+    echo "ERROR: Cannot reach WordPress API (psofantasyfootball.com)"
+    echo "  Check your network connection"
+    PREFLIGHT_FAILED=true
+fi
+
+# Check Docker containers
+echo -n "Checking Docker containers... "
+if docker ps --format '{{.Names}}' | grep -q "pso-mongo"; then
+    echo "✓ pso-mongo is running"
+else
+    echo ""
+    echo "ERROR: pso-mongo container is not running"
+    echo "  Start it with: docker compose up -d"
+    PREFLIGHT_FAILED=true
+fi
+
+if [ "$PREFLIGHT_FAILED" = true ]; then
+    echo ""
+    echo "Preflight checks failed. Please fix the issues above and try again."
+    exit 1
+fi
+
+echo ""
+
+# =============================================================================
+# Migration
+# =============================================================================
+
 # Collections created by the migration (safe to drop)
 MIGRATION_COLLECTIONS="franchises people regimes players contracts budgets picks transactions leagueconfigs rosters"
 
