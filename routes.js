@@ -4,6 +4,7 @@ var scuttlebot = require('./scuttlebot/service.js');
 var league = require('./league/service.js');
 var admin = require('./admin/service.js');
 var adminPlayers = require('./admin/players.js');
+var adminTrades = require('./admin/trades.js');
 var draft = require('./draft/service.js');
 var history = require('./history/service.js');
 var calendar = require('./calendar/service.js');
@@ -53,4 +54,9 @@ module.exports = function(app) {
 	app.get('/admin/players/:id', adminPlayers.editPlayerForm);
 	app.post('/admin/players/:id', adminPlayers.editPlayer);
 	app.post('/admin/players/:id/merge', adminPlayers.mergePlayer);
+	
+	// Trade management
+	app.get('/admin/trades', adminTrades.listTrades);
+	app.get('/admin/trades/:id', adminTrades.editTradeForm);
+	app.post('/admin/trades/:id', adminTrades.editTrade);
 };
