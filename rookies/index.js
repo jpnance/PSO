@@ -53,5 +53,12 @@ if (render) {
 	var fs = require('fs');
 	var pug = require('pug');
 	var compiledPug = pug.compileFile('../views/rookies.pug');
-	fs.writeFileSync('../public/rookies/index.html', compiledPug({ season: defaultSeason, salaries: salaries, seasons: seasons, positionOrder: positionOrder, computeSalary: computeSalary }));
+	fs.writeFileSync('../public/rookies/index.html', compiledPug({ 
+	pageTitle: 'Rookie Salaries', 
+	season: defaultSeason, 
+	salaries: salaries, 
+	seasons: seasons, 
+	positionOrder: positionOrder, 
+	computeSalary: computeSalary 
+}));
 }

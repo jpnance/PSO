@@ -1,6 +1,7 @@
 extends layout.pug
 
 block styles
+	link(rel='stylesheet' href='/css/positions.css')
 	style.
 		.header-row {
 			margin-bottom: 1rem;
@@ -108,26 +109,7 @@ block styles
 		.pick-from {
 			color: #999;
 		}
-		/* Position group colors
-		   QB: rgb(215, 235, 255) = #D7EBFF
-		   RB: Azure = #F0FFFF
-		   WR: LightGoldenRodYellow = #FAFAD2
-		   TE: rgb(220, 255, 220) = #DCFFDC
-		   IDP: SeaShell = #FFF5EE
-		   K: rgb(245, 245, 245) = #F5F5F5
-		*/
-		.pick-row.pos-QB { background-color: #D7EBFF; }
-		.pick-row.pos-QB .pick-position { color: #1a5276; }
-		.pick-row.pos-RB { background-color: #F0FFFF; }
-		.pick-row.pos-RB .pick-position { color: #117a65; }
-		.pick-row.pos-WR { background-color: #FAFAD2; }
-		.pick-row.pos-WR .pick-position { color: #9a7b0a; }
-		.pick-row.pos-TE { background-color: #DCFFDC; }
-		.pick-row.pos-TE .pick-position { color: #1e8449; }
-		.pick-row.pos-IDP { background-color: #FFF5EE; }
-		.pick-row.pos-IDP .pick-position { color: #a04000; }
-		.pick-row.pos-K { background-color: #F5F5F5; }
-		.pick-row.pos-K .pick-position { color: #5d6d7e; }
+		/* Position colors now in /css/positions.css */
 		/* Passed pick - same as K for muted look */
 		.pick-row.pick-passed { background-color: #F5F5F5; }
 		.pick-row.pick-passed .pick-player-name {

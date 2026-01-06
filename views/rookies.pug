@@ -1,32 +1,124 @@
-doctype html
-html
-	head
-		title Rookie Salaries for #{season}
-		link(href='/rookies.css' rel='stylesheet' type='text/css')
-		script(src='/js/jquery.min.js' type='text/javascript')
-		script(type='text/javascript')
-			| var currentSeason = #{season}
-		script(src='/rookies.js' type='text/javascript')
+extends layout.pug
 
-	body
-		h1
-			| Rookie Salaries for
-			|
-			select(name='season')
-				each salarySeason in seasons
-					option(value=salarySeason selected=(season == salarySeason)) #{salarySeason}
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	style.
+		.header-row {
+			margin-bottom: 1rem;
+		}
+		.header-row h1 {
+			margin: 0 0 0.5rem 0;
+		}
+		.season-nav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.25rem;
+			align-items: center;
+		}
+		.season-select {
+			padding: 0.25rem 0.5rem;
+			font-size: 0.875rem;
+			border: 1px solid #6c757d;
+			border-radius: 0.2rem;
+			background: white;
+			color: #6c757d;
+			cursor: pointer;
+			height: 31px;
+		}
+		.season-select:focus {
+			outline: none;
+			border-color: #007bff;
+		}
+		.salary-table {
+			font-size: 0.9rem;
+			width: auto;
+			margin: 0;
+		}
+		.salary-table th,
+		.salary-table td {
+			text-align: center;
+			padding: 0.5rem 1rem;
+			width: 70px;
+		}
+		.salary-table th.round-col,
+		.salary-table td.round-col {
+			background: #343a40;
+			color: white;
+			font-weight: 600;
+		}
+		.salary-table tbody tr:nth-child(odd) td:not(.round-col) {
+			background-color: rgba(0,0,0,0.02);
+		}
+		.salary-table tbody tr:hover td:not(.round-col) {
+			background-color: #e9ecef;
+		}
+		.hidden {
+			display: none;
+		}
+		@media (max-width: 576px) {
+			.salary-table {
+				font-size: 0.8rem;
+			}
+			.salary-table th, .salary-table td {
+				padding: 0.3rem 0.25rem;
+			}
+		}
+
+block content
+	div.container-fluid.py-3
+		div.header-row
+			h1 Rookie Salaries
+			div.season-nav
+				select.season-select(name='season')
+					each salarySeason in seasons
+						option(value=salarySeason selected=(season == salarySeason)) #{salarySeason}
 
 		each salarySeason in seasons
 			- var positionSalaries = salaries[salarySeason]
-			table(id='rookies' + salarySeason, class=(season != salarySeason) ? 'hidden' : '')
-				tr
-					th Round
-					each position in positionOrder
-						th #{position}
+			div(id='rookies' + salarySeason class=(season != salarySeason ? 'hidden' : ''))
+				table.table.table-bordered.salary-table
+					thead
+						tr
+							th.round-col Round
+							each position in positionOrder
+								th(class='pos-' + position) #{position}
+					tbody
+						each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+							tr
+								td.round-col #{round}
+								each position in positionOrder
+									td $#{computeSalary(parseInt(salarySeason), positionSalaries[position], round)}
 
-				each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-					tr(class='round' + (round % 2))
-						td #{round}
+block scripts
+	script.
+		var currentSeason = !{season};
+		
+		$(document).ready(function() {
+			var query = location.search.substring(1).split(/=/);
 
-						each position in positionOrder
-							td $#{computeSalary(parseInt(salarySeason), positionSalaries[position], round)}
+			if (query.length > 1 && query[1].match(/^20\d\d/)) {
+				window.history.replaceState({ season: query[1] }, 'Rookie Salaries for ' + query[1], '?season=' + query[1]);
+				displaySeason(query[1]);
+			}
+
+			$('select').on('change', function(e) {
+				var $this = $(this);
+				window.history.pushState({ season: $this.val() }, 'Rookie Salaries for ' + $this.val(), '?season=' + $this.val());
+				displaySeason($this.val());
+			});
+
+			window.onpopstate = function(e) {
+				if (e.state) {
+					displaySeason(e.state.season);
+				} else {
+					displaySeason(currentSeason);
+				}
+			};
+		});
+
+		function displaySeason(season) {
+			$('title').text('Rookie Salaries for ' + season);
+			$('div[id^="rookies"]').addClass('hidden');
+			$('div#rookies' + season).removeClass('hidden');
+			$('select').val(season);
+		}
