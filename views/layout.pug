@@ -37,14 +37,17 @@ html
 							a.nav-link(href='/rookies')
 								i.fa.fa-graduation-cap.mr-1
 								| Rookies
-						li.nav-item(class=(activePage === 'trades' ? 'active' : ''))
-							a.nav-link(href='/trades')
+						li.nav-item.dropdown(class=(activePage === 'trades' || activePage === 'propose' ? 'active' : ''))
+							a.nav-link.dropdown-toggle(href='#' id='tradesDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
 								i.fa.fa-exchange.mr-1
 								| Trades
-						li.nav-item(class=(activePage === 'propose' ? 'active' : ''))
-							a.nav-link(href='/propose')
-								i.fa.fa-handshake-o.mr-1
-								| Propose
+							div.dropdown-menu(aria-labelledby='tradesDropdown')
+								a.dropdown-item(href='/trades')
+									i.fa.fa-history.mr-2
+									| Trade History
+								a.dropdown-item(href='/propose')
+									i.fa.fa-plus.mr-2
+									| Trade Machine
 					ul.navbar-nav
 						li.nav-item(class=(activePage === 'admin' ? 'active' : ''))
 							a.nav-link(href='/admin')
