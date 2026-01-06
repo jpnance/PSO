@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var contractSchema = new Schema({
 	playerId: { type: Schema.Types.ObjectId, ref: 'Player', required: true },
 	franchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise', required: true },
-	salary: { type: Number, required: true },
+	// salary is null for RFA rights (player not under contract, just rights held)
+	salary: { type: Number, default: null },
 	startYear: { type: Number },
 	endYear: { type: Number }
 });

@@ -1,4 +1,9 @@
 var LeagueConfig = require('../models/LeagueConfig');
+var Franchise = require('../models/Franchise');
+var Regime = require('../models/Regime');
+var Contract = require('../models/Contract');
+var Budget = require('../models/Budget');
+var Pick = require('../models/Pick');
 
 var currentSeason = parseInt(process.env.SEASON, 10);
 
@@ -68,7 +73,69 @@ async function updateConfig(request, response) {
 	response.redirect('/admin');
 }
 
-// POST /admin/config/advance-season - rollover to next season
+// GET /admin/advance-season - show rollover form
+async function advanceSeasonForm(request, response) {
+	if (!isAuthorized(request)) {
+		return response.status(401).send('Unauthorized');
+	}
+	
+	var config = await LeagueConfig.findById('pso');
+	if (!config) {
+		return response.status(404).send('Config not found');
+	}
+	
+	var newSeason = config.season + 1;
+	var defaults = LeagueConfig.computeDefaultDates(newSeason);
+	
+	// Get all franchises with their display names
+	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({
+		startSeason: { $lte: newSeason },
+		$or: [{ endSeason: null }, { endSeason: { $gte: newSeason } }]
+	}).lean();
+	
+	var franchiseList = franchises.map(function(f) {
+		var regime = regimes.find(function(r) {
+			return r.franchiseId.equals(f._id);
+		});
+		return {
+			id: f._id.toString(),
+			name: regime ? regime.displayName : 'Unknown'
+		};
+	}).sort(function(a, b) {
+		return a.name.localeCompare(b.name);
+	});
+	
+	// Count expiring contracts
+	var expiringContracts = await Contract.find({ endYear: config.season }).populate('playerId').lean();
+	var rfaCount = 0;
+	var ufaCount = 0;
+	
+	expiringContracts.forEach(function(c) {
+		if (!c.startYear || !c.endYear) {
+			ufaCount++; // FA contract
+		} else {
+			var contractLength = c.endYear - c.startYear + 1;
+			if (contractLength >= 2 && contractLength <= 3) {
+				rfaCount++;
+			} else {
+				ufaCount++;
+			}
+		}
+	});
+	
+	response.render('advance-season', {
+		config: config,
+		newSeason: newSeason,
+		defaults: defaults,
+		franchises: franchiseList,
+		pickCount: franchiseList.length * 10, // 10 rounds
+		rfaCount: rfaCount,
+		ufaCount: ufaCount
+	});
+}
+
+// POST /admin/advance-season - execute rollover
 async function advanceSeason(request, response) {
 	if (!isAuthorized(request)) {
 		return response.status(401).json({ error: 'Unauthorized' });
@@ -79,30 +146,136 @@ async function advanceSeason(request, response) {
 		return response.status(404).json({ error: 'Config not found' });
 	}
 	
-	// Increment season and compute new defaults
+	var body = request.body;
 	var newSeason = config.season + 1;
+	var pickSeason = newSeason + 2; // Create picks for season+2
+	
+	// Get franchises
+	var franchises = await Franchise.find({}).lean();
+	
+	// Validate draft order: each slot 1-12 must appear exactly once
+	var slots = [];
+	for (var i = 0; i < franchises.length; i++) {
+		var franchise = franchises[i];
+		var slot = parseInt(body['draftOrder_' + franchise._id.toString()], 10);
+		if (isNaN(slot) || slot < 1 || slot > 12) {
+			return response.status(400).json({ error: 'Invalid draft slot for franchise ' + franchise._id });
+		}
+		if (slots.includes(slot)) {
+			return response.status(400).json({ error: 'Draft slot ' + slot + ' is assigned to multiple franchises' });
+		}
+		slots.push(slot);
+	}
+	if (slots.length !== 12) {
+		return response.status(400).json({ error: 'Expected 12 draft slots, got ' + slots.length });
+	}
+	
+	// 1. Create 120 picks for season+2 (10 rounds × 12 franchises)
+	var picksCreated = 0;
+	for (var round = 1; round <= 10; round++) {
+		for (var i = 0; i < franchises.length; i++) {
+			var franchise = franchises[i];
+			
+			// Check if pick already exists
+			var existing = await Pick.findOne({
+				season: pickSeason,
+				round: round,
+				originalFranchiseId: franchise._id
+			});
+			
+			if (!existing) {
+				await Pick.create({
+					season: pickSeason,
+					round: round,
+					originalFranchiseId: franchise._id,
+					currentFranchiseId: franchise._id,
+					status: 'available'
+				});
+				picksCreated++;
+			}
+		}
+	}
+	
+	// 2. Create Budget for season+2
+	var budgetsCreated = 0;
+	for (var i = 0; i < franchises.length; i++) {
+		var franchise = franchises[i];
+		
+		var existing = await Budget.findOne({
+			franchiseId: franchise._id,
+			season: pickSeason
+		});
+		
+		if (!existing) {
+			await Budget.create({
+				franchiseId: franchise._id,
+				season: pickSeason,
+				baseAmount: 1000,
+				payroll: 0,
+				deadMoney: 0,
+				cashIn: 0,
+				cashOut: 0,
+				available: 1000
+			});
+			budgetsCreated++;
+		}
+	}
+	
+	// 3. Process expiring contracts
+	var expiringContracts = await Contract.find({ endYear: config.season });
+	var rfaConverted = 0;
+	var ufaDeleted = 0;
+	
+	for (var i = 0; i < expiringContracts.length; i++) {
+		var contract = expiringContracts[i];
+		
+		var contractLength = (contract.startYear && contract.endYear) 
+			? (contract.endYear - contract.startYear + 1) 
+			: 1;
+		
+		if (contractLength >= 2 && contractLength <= 3) {
+			// Convert to RFA rights
+			contract.salary = null;
+			contract.startYear = null;
+			contract.endYear = null;
+			await contract.save();
+			rfaConverted++;
+		} else {
+			// Delete contract (player becomes UFA)
+			await Contract.deleteOne({ _id: contract._id });
+			ufaDeleted++;
+		}
+	}
+	
+	// 4. Set draft order for newSeason picks
+	var draftOrderPicks = await Pick.find({ season: newSeason });
+	for (var i = 0; i < draftOrderPicks.length; i++) {
+		var pick = draftOrderPicks[i];
+		var franchiseId = pick.originalFranchiseId.toString();
+		var slot = parseInt(body['draftOrder_' + franchiseId], 10);
+		
+		if (slot >= 1 && slot <= 12) {
+			// pickNumber = (round - 1) * 12 + slot
+			pick.pickNumber = (pick.round - 1) * 12 + slot;
+			await pick.save();
+		}
+	}
+	
+	// 5. Update LeagueConfig
 	var defaults = LeagueConfig.computeDefaultDates(newSeason);
 	
 	config.season = newSeason;
-	
-	// Offseason
-	config.tradeWindowOpens = defaults.tradeWindowOpens;
-	
-	// Pre-season (tentative until confirmed)
-	config.cutDay = defaults.cutDay;
+	config.tradeWindowOpens = body.tradeWindowOpens ? new Date(body.tradeWindowOpens) : defaults.tradeWindowOpens;
+	config.cutDay = body.cutDay ? new Date(body.cutDay) : defaults.cutDay;
 	config.cutDayTentative = true;
-	config.auctionDay = defaults.auctionDay;
+	config.auctionDay = body.auctionDay ? new Date(body.auctionDay) : defaults.auctionDay;
 	config.auctionDayTentative = true;
-	config.contractsDue = defaults.contractsDue;
+	config.contractsDue = body.contractsDue ? new Date(body.contractsDue) : defaults.contractsDue;
 	config.contractsDueTentative = true;
-	
-	// Regular season
-	config.regularSeasonStarts = defaults.regularSeasonStarts;
-	config.tradeDeadline = defaults.tradeDeadline;
-	config.playoffFAStarts = defaults.playoffFAStarts;
-	
-	// End of season
-	config.championshipDay = defaults.championshipDay;
+	config.regularSeasonStarts = body.regularSeasonStarts ? new Date(body.regularSeasonStarts) : defaults.regularSeasonStarts;
+	config.tradeDeadline = body.tradeDeadline ? new Date(body.tradeDeadline) : defaults.tradeDeadline;
+	config.playoffFAStarts = body.playoffFAStarts ? new Date(body.playoffFAStarts) : defaults.playoffFAStarts;
+	config.championshipDay = body.championshipDay ? new Date(body.championshipDay) : defaults.championshipDay;
 	
 	await config.save();
 	
@@ -112,5 +285,6 @@ async function advanceSeason(request, response) {
 module.exports = {
 	configPage: configPage,
 	updateConfig: updateConfig,
+	advanceSeasonForm: advanceSeasonForm,
 	advanceSeason: advanceSeason
 };

@@ -70,9 +70,8 @@ html
 							div.card-header
 								strong Season Rollover
 							div.card-body
-								p.text-muted Advance to the next season. This will increment the season number and compute default dates based on Labor Day.
-								form(method='POST' action='/admin/config/advance-season')
-									button.btn.btn-warning(type='submit' onclick="return confirm('Are you sure you want to advance to season ' + (config.season + 1) + '?')") Advance to #{config.season + 1}
+								p.text-muted Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
+								a.btn.btn-warning(href='/admin/advance-season') Advance to #{config.season + 1}...
 			
 			div.card.mb-4
 				div.card-header
