@@ -150,7 +150,7 @@ async function getLeagueOverview() {
 			_id: franchise._id,
 			sleeperRosterId: franchise.sleeperRosterId,
 			displayName: regime ? regime.displayName : 'Unknown',
-			owners: regime ? regime.ownerIds.map(function(o) { return o.name; }) : [],
+			owners: regime ? Regime.sortOwnerNames(regime.ownerIds) : [],
 			roster: roster,
 			rosterCount: roster.length,
 			payroll: budget.payroll,
@@ -239,12 +239,19 @@ async function getFranchise(franchiseId) {
 	// Compute budgets for current and next two seasons
 	var budgets = computeBudgets(franchise._id, allContracts, trades, cuts);
 	
+	// Add sorted owner names to each regime
+	var regimesWithSortedOwners = regimes.map(function(r) {
+		return Object.assign({}, r, {
+			sortedOwnerNames: Regime.sortOwnerNames(r.ownerIds)
+		});
+	});
+	
 	return {
 		_id: franchise._id,
 		sleeperRosterId: franchise.sleeperRosterId,
 		displayName: currentRegime ? currentRegime.displayName : 'Unknown',
-		owners: currentRegime ? currentRegime.ownerIds.map(function(o) { return o.name; }) : [],
-		regimes: regimes,
+		owners: currentRegime ? Regime.sortOwnerNames(currentRegime.ownerIds) : [],
+		regimes: regimesWithSortedOwners,
 		roster: roster,
 		rosterCount: roster.length,
 		budgets: budgets,

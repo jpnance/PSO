@@ -303,7 +303,7 @@ async function transferFranchiseForm(request, response) {
 			return r.franchiseId.equals(f._id);
 		});
 		var ownerNames = regime && regime.ownerIds 
-			? regime.ownerIds.map(function(p) { return p.name; }).join(', ')
+			? Regime.sortOwnerNames(regime.ownerIds).join(', ')
 			: 'Unknown';
 		return {
 			id: f._id.toString(),

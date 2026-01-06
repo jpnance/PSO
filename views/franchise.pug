@@ -200,7 +200,7 @@ html
 										div
 											strong= regime.displayName
 											div.text-muted.small
-												| #{regime.ownerIds.map(o => o.name).join(', ')}
+												| #{regime.sortedOwnerNames.join(', ')}
 										div.text-muted
 											if regime.endSeason
 												| #{regime.startSeason}–#{regime.endSeason}
