@@ -57,11 +57,31 @@ if [ "$DRY_RUN" = false ]; then
     echo ""
 fi
 
-# Step 0a: Fetch Sleeper data (if stale or missing)
+# Step -1: Drop migration collections
+echo "=== Step -1: Dropping migration collections ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] Would drop: $MIGRATION_COLLECTIONS"
+else
+    docker exec -i pso-mongo mongosh pso --quiet --eval "
+        var collections = '$MIGRATION_COLLECTIONS'.split(' ');
+        collections.forEach(function(c) {
+            var count = db.getCollection(c).countDocuments({});
+            if (count > 0) {
+                print('  Dropping ' + c + ' (' + count + ' docs)');
+                db[c].drop();
+            } else {
+                print('  Skipping ' + c + ' (empty or does not exist)');
+            }
+        });
+    "
+fi
+echo ""
+
+# Step 0: Fetch Sleeper data (if stale or missing)
 SLEEPER_FILE="public/data/sleeper-data.json"
 MAX_AGE_DAYS=7
 
-echo "=== Step 0a: Checking Sleeper data ==="
+echo "=== Step 0: Checking Sleeper data ==="
 if [ -f "$SLEEPER_FILE" ]; then
     # Check file age (in days)
     if [ "$(uname)" = "Darwin" ]; then
@@ -90,26 +110,6 @@ else
     else
         make sleeper
     fi
-fi
-echo ""
-
-# Step 0b: Drop migration collections
-echo "=== Step 0b: Dropping migration collections ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] Would drop: $MIGRATION_COLLECTIONS"
-else
-    docker exec -i pso-mongo mongosh pso --quiet --eval "
-        var collections = '$MIGRATION_COLLECTIONS'.split(' ');
-        collections.forEach(function(c) {
-            var count = db.getCollection(c).countDocuments({});
-            if (count > 0) {
-                print('  Dropping ' + c + ' (' + count + ' docs)');
-                db[c].drop();
-            } else {
-                print('  Skipping ' + c + ' (empty or does not exist)');
-            }
-        });
-    "
 fi
 echo ""
 
