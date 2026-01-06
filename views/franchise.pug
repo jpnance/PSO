@@ -158,6 +158,18 @@ html
 										td.text-right: strong $#{formatMoney(b[1].available)}
 										td.text-right: strong $#{formatMoney(b[2].available)}
 					
+					- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
+					if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
+						div.card.mb-4
+							div.card-header
+								strong RFA Rights
+								span.badge.badge-secondary.ml-2= franchise.rfaRights.length
+							ul.list-group.list-group-flush
+								each player in franchise.rfaRights
+									li.list-group-item.d-flex.justify-content-between.align-items-center.py-2
+										span= player.name
+										span.text-muted.small= sortedPositions(player.positions).join('/')
+					
 					div.card.mb-4
 						div.card-header
 							strong Draft Picks

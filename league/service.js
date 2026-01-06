@@ -201,7 +201,11 @@ async function getFranchise(franchiseId, currentSeason) {
 		return regime ? regime.displayName : 'Unknown';
 	}
 	
-	var roster = contracts
+	// Separate actual contracts from RFA rights (salary is null for RFA rights)
+	var actualContracts = contracts.filter(function(c) { return c.salary !== null; });
+	var rfaContracts = contracts.filter(function(c) { return c.salary === null; });
+	
+	var roster = actualContracts
 		.map(function(c) {
 			return {
 				name: c.playerId ? c.playerId.name : 'Unknown',
@@ -216,6 +220,20 @@ async function getFranchise(franchiseId, currentSeason) {
 			var posB = getPositionIndex(b.positions);
 			if (posA !== posB) return posA - posB;
 			return (b.salary || 0) - (a.salary || 0);
+		});
+	
+	var rfaRights = rfaContracts
+		.map(function(c) {
+			return {
+				name: c.playerId ? c.playerId.name : 'Unknown',
+				positions: c.playerId ? c.playerId.positions : []
+			};
+		})
+		.sort(function(a, b) {
+			var posA = getPositionIndex(a.positions);
+			var posB = getPositionIndex(b.positions);
+			if (posA !== posB) return posA - posB;
+			return a.name.localeCompare(b.name);
 		});
 	
 	var pickData = picks.map(function(p) {
@@ -253,6 +271,7 @@ async function getFranchise(franchiseId, currentSeason) {
 		regimes: regimesWithSortedOwners,
 		roster: roster,
 		rosterCount: roster.length,
+		rfaRights: rfaRights,
 		budgets: budgets,
 		picks: pickData
 	};
@@ -276,12 +295,13 @@ async function franchise(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
+		var phase = config ? config.getPhase() : 'unknown';
 		
 		var data = await getFranchise(request.params.id, currentSeason);
 		if (!data) {
 			return response.status(404).send('Franchise not found');
 		}
-		response.render('franchise', { franchise: data, currentSeason: currentSeason });
+		response.render('franchise', { franchise: data, currentSeason: currentSeason, phase: phase });
 	} catch (err) {
 		console.error(err);
 		response.status(500).send('Error loading franchise data');
