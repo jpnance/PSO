@@ -1,158 +1,150 @@
-doctype html
-html
-	head
-		meta(charset='utf-8')
-		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-		
-		link(rel='stylesheet' href='/css/bootstrap.min.css')
-		link(rel='stylesheet' href='/league.css')
-		
-		script(src='/js/jquery.min.js')
-		script(src='/js/bootstrap.min.js')
-		
-		title Advance to #{newSeason} - PSO
+extends layout.pug
+
+block styles
+	link(rel='stylesheet' href='/league.css')
+
+block content
+	-
+		function formatDate(d) {
+			if (!d) return '';
+			var date = new Date(d);
+			return date.toISOString().split('T')[0];
+		}
 	
-	body
-		-
-			function formatDate(d) {
-				if (!d) return '';
-				var date = new Date(d);
-				return date.toISOString().split('T')[0];
-			}
+	div.container.py-4
+		h1.mb-4 Advance to Season #{newSeason}
 		
-		div.container.py-4
-			h1.mb-4 Advance to Season #{newSeason}
+		p.lead.text-muted
+			| Advancing from #{config.season} to #{newSeason}. Review the settings below and click "Execute Rollover" when ready.
+		
+		form(method='POST' action='/admin/advance-season')
+			//- Preview section
+			div.card.mb-4
+				div.card-header
+					strong What Will Happen
+				div.card-body
+					ul.mb-0
+						li
+							strong #{pickCount} draft picks
+							|  will be created for #{newSeason + 2}
+						li
+							strong #{franchises.length} budgets
+							|  will be initialized for #{newSeason + 2}
+						li
+							strong #{rfaCount} contracts
+							|  will become RFA rights (2-3 year contracts)
+						li
+							strong #{ufaCount} contracts
+							|  will be deleted (players become UFAs)
 			
-			p.lead.text-muted
-				| Advancing from #{config.season} to #{newSeason}. Review the settings below and click "Execute Rollover" when ready.
+			//- Draft Order section
+			div.card.mb-4
+				div.card-header
+					strong #{newSeason} Draft Order
+				div.card-body
+					p.text-muted Assign each franchise a draft slot (1-12). This determines pick order for all 10 rounds.
+					div.row
+						each franchise in franchises
+							div.col-md-4.col-lg-3.mb-3
+								div.form-group.mb-0
+									label(for='draftOrder_' + franchise.id)= franchise.name
+									input.form-control(
+										type='number'
+										id='draftOrder_' + franchise.id
+										name='draftOrder_' + franchise.id
+										min='1'
+										max='12'
+										placeholder='1-12'
+										required
+									)
 			
-			form(method='POST' action='/admin/advance-season')
-				//- Preview section
-				div.card.mb-4
-					div.card-header
-						strong What Will Happen
-					div.card-body
-						ul.mb-0
-							li
-								strong #{pickCount} draft picks
-								|  will be created for #{newSeason + 2}
-							li
-								strong #{franchises.length} budgets
-								|  will be initialized for #{newSeason + 2}
-							li
-								strong #{rfaCount} contracts
-								|  will become RFA rights (2-3 year contracts)
-							li
-								strong #{ufaCount} contracts
-								|  will be deleted (players become UFAs)
-				
-				//- Draft Order section
-				div.card.mb-4
-					div.card-header
-						strong #{newSeason} Draft Order
-					div.card-body
-						p.text-muted Assign each franchise a draft slot (1-12). This determines pick order for all 10 rounds.
-						div.row
-							each franchise in franchises
-								div.col-md-4.col-lg-3.mb-3
-									div.form-group.mb-0
-										label(for='draftOrder_' + franchise.id)= franchise.name
-										input.form-control(
-											type='number'
-											id='draftOrder_' + franchise.id
-											name='draftOrder_' + franchise.id
-											min='1'
-											max='12'
-											placeholder='1-12'
-											required
-										)
-				
-				//- Dates section
-				div.card.mb-4
-					div.card-header
-						strong #{newSeason} Schedule
-					div.card-body
-						p.text-muted Default dates are computed based on Labor Day. Adjust if needed.
-						
-						h5 Offseason
-						div.row
-							div.col-md-6
-								div.form-group
-									label(for='tradeWindow') Trade Window
-									input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(defaults.tradeWindow))
-									small.form-text.text-muted Saturday before Super Bowl
-						
-						h5.mt-4 Pre-Season
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='cutDay') Cut Day
-									input#cutDay.form-control(type='date' name='cutDay' value=formatDate(defaults.cutDay))
-							div.col-md-4
-								div.form-group
-									label(for='draftDay') Draft Day
-									input#draftDay.form-control(type='date' name='draftDay' value=formatDate(defaults.draftDay))
-							div.col-md-4
-								div.form-group
-									label(for='contractsDue') Contracts Due
-									input#contractsDue.form-control(type='date' name='contractsDue' value=formatDate(defaults.contractsDue))
-						
-						h5.mt-4 Regular Season
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='faab') FAAB
-									input#faab.form-control(type='date' name='faab' value=formatDate(defaults.faab))
-							div.col-md-4
-								div.form-group
-									label(for='tradeDeadline') Trade Deadline
-									input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(defaults.tradeDeadline))
-							div.col-md-4
-								div.form-group
-									label(for='playoffs') Playoffs
-									input#playoffs.form-control(type='date' name='playoffs' value=formatDate(defaults.playoffs))
-						
-						h5.mt-4 End of Season
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='deadPeriod') Dead Period
-									input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(defaults.deadPeriod))
-				
-				//- Submit
-				div.d-flex.justify-content-between
-					a.btn.btn-secondary(href='/admin') Cancel
-					button.btn.btn-warning(type='submit') Execute Rollover
+			//- Dates section
+			div.card.mb-4
+				div.card-header
+					strong #{newSeason} Schedule
+				div.card-body
+					p.text-muted Default dates are computed based on Labor Day. Adjust if needed.
+					
+					h5 Offseason
+					div.row
+						div.col-md-6
+							div.form-group
+								label(for='tradeWindow') Trade Window
+								input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(defaults.tradeWindow))
+								small.form-text.text-muted Saturday before Super Bowl
+					
+					h5.mt-4 Pre-Season
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='cutDay') Cut Day
+								input#cutDay.form-control(type='date' name='cutDay' value=formatDate(defaults.cutDay))
+						div.col-md-4
+							div.form-group
+								label(for='draftDay') Draft Day
+								input#draftDay.form-control(type='date' name='draftDay' value=formatDate(defaults.draftDay))
+						div.col-md-4
+							div.form-group
+								label(for='contractsDue') Contracts Due
+								input#contractsDue.form-control(type='date' name='contractsDue' value=formatDate(defaults.contractsDue))
+					
+					h5.mt-4 Regular Season
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='faab') FAAB
+								input#faab.form-control(type='date' name='faab' value=formatDate(defaults.faab))
+						div.col-md-4
+							div.form-group
+								label(for='tradeDeadline') Trade Deadline
+								input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(defaults.tradeDeadline))
+						div.col-md-4
+							div.form-group
+								label(for='playoffs') Playoffs
+								input#playoffs.form-control(type='date' name='playoffs' value=formatDate(defaults.playoffs))
+					
+					h5.mt-4 End of Season
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='deadPeriod') Dead Period
+								input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(defaults.deadPeriod))
 			
-			script.
-				document.querySelector('form').addEventListener('submit', function(e) {
-					var inputs = document.querySelectorAll('input[name^="draftOrder_"]');
-					var slots = [];
-					var errors = [];
-					
-					inputs.forEach(function(input) {
-						var val = parseInt(input.value, 10);
-						if (isNaN(val) || val < 1 || val > 12) {
-							errors.push('Invalid slot value: ' + input.value);
-						} else if (slots.includes(val)) {
-							errors.push('Slot ' + val + ' is assigned to multiple franchises');
-						} else {
-							slots.push(val);
-						}
-					});
-					
-					// Check all 12 slots are used
-					for (var i = 1; i <= 12; i++) {
-						if (!slots.includes(i)) {
-							errors.push('Slot ' + i + ' is not assigned');
-						}
-					}
-					
-					if (errors.length > 0) {
-						alert('Draft order errors:\n\n' + errors.join('\n'));
-						e.preventDefault();
-						return false;
-					}
-					
-					return confirm('Execute rollover to season #{newSeason}?');
-				});
+			//- Submit
+			div.d-flex.justify-content-between
+				a.btn.btn-secondary(href='/admin') Cancel
+				button.btn.btn-warning(type='submit') Execute Rollover
+
+block scripts
+	script.
+		document.querySelector('form').addEventListener('submit', function(e) {
+			var inputs = document.querySelectorAll('input[name^="draftOrder_"]');
+			var slots = [];
+			var errors = [];
+			
+			inputs.forEach(function(input) {
+				var val = parseInt(input.value, 10);
+				if (isNaN(val) || val < 1 || val > 12) {
+					errors.push('Invalid slot value: ' + input.value);
+				} else if (slots.includes(val)) {
+					errors.push('Slot ' + val + ' is assigned to multiple franchises');
+				} else {
+					slots.push(val);
+				}
+			});
+			
+			// Check all 12 slots are used
+			for (var i = 1; i <= 12; i++) {
+				if (!slots.includes(i)) {
+					errors.push('Slot ' + i + ' is not assigned');
+				}
+			}
+			
+			if (errors.length > 0) {
+				alert('Draft order errors:\n\n' + errors.join('\n'));
+				e.preventDefault();
+				return false;
+			}
+			
+			return confirm('Execute rollover to season #{newSeason}?');
+		});

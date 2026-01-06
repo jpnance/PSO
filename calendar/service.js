@@ -178,7 +178,9 @@ async function calendar(request, response) {
 			phase: phase,
 			phaseName: getPhaseName(phase),
 			events: events,
-			nextEvent: nextEvent
+			nextEvent: nextEvent,
+			pageTitle: config.season + ' Calendar - PSO',
+			activePage: 'calendar'
 		});
 	} catch (err) {
 		console.error(err);

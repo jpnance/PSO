@@ -1,203 +1,199 @@
-doctype html
-html
-	head
-		meta(charset='utf-8')
-		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-		link(rel='stylesheet' href='/css/bootstrap.min.css')
-		style.
-			.header-row {
-				margin-bottom: 1rem;
-			}
-			.header-row h1 {
-				margin: 0 0 0.5rem 0;
-			}
-			.season-nav {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.25rem;
-				align-items: center;
-			}
-			.past-drafts-select {
-				padding: 0.25rem 0.5rem;
-				font-size: 0.875rem;
-				border: 1px solid #6c757d;
-				border-radius: 0.2rem;
-				background: white;
-				color: #6c757d;
-				cursor: pointer;
-				height: 31px;
-			}
-			.past-drafts-select:focus {
-				outline: none;
-				border-color: #007bff;
-			}
-			.past-drafts-select.active {
-				background: #007bff;
-				border-color: #007bff;
-				color: white;
-			}
-			.rounds-container {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 1rem;
-			}
+extends layout.pug
+
+block styles
+	style.
+		.header-row {
+			margin-bottom: 1rem;
+		}
+		.header-row h1 {
+			margin: 0 0 0.5rem 0;
+		}
+		.season-nav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.25rem;
+			align-items: center;
+		}
+		.past-drafts-select {
+			padding: 0.25rem 0.5rem;
+			font-size: 0.875rem;
+			border: 1px solid #6c757d;
+			border-radius: 0.2rem;
+			background: white;
+			color: #6c757d;
+			cursor: pointer;
+			height: 31px;
+		}
+		.past-drafts-select:focus {
+			outline: none;
+			border-color: #007bff;
+		}
+		.past-drafts-select.active {
+			background: #007bff;
+			border-color: #007bff;
+			color: white;
+		}
+		.rounds-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+		}
+		.round-card {
+			flex: 0 0 auto;
+			width: 320px;
+			border: 1px solid #dee2e6;
+			border-radius: 4px;
+			overflow: hidden;
+		}
+		.round-header {
+			background: #343a40;
+			color: white;
+			padding: 0.5rem 0.75rem;
+			font-weight: 600;
+			font-size: 1rem;
+		}
+		.pick-row {
+			display: flex;
+			padding: 0.4rem 0.6rem;
+			border-bottom: 1px solid #eee;
+			font-size: 0.9rem;
+			align-items: baseline;
+		}
+		/* Mobile: full-width cards */
+		@media (max-width: 576px) {
 			.round-card {
-				flex: 0 0 auto;
-				width: 320px;
-				border: 1px solid #dee2e6;
-				border-radius: 4px;
-				overflow: hidden;
-			}
-			.round-header {
-				background: #343a40;
-				color: white;
-				padding: 0.5rem 0.75rem;
-				font-weight: 600;
-				font-size: 1rem;
+				width: 100%;
 			}
 			.pick-row {
-				display: flex;
-				padding: 0.4rem 0.6rem;
-				border-bottom: 1px solid #eee;
-				font-size: 0.9rem;
-				align-items: baseline;
+				font-size: 0.95rem;
 			}
-			/* Mobile: full-width cards */
-			@media (max-width: 576px) {
-				.round-card {
-					width: 100%;
-				}
-				.pick-row {
-					font-size: 0.95rem;
-				}
-			}
-			.pick-row:last-child {
-				border-bottom: none;
-			}
-			.pick-num {
-				flex: 0 0 50px;
-				font-weight: bold;
-				color: #6c757d;
-				font-size: 0.75rem;
-			}
-			.pick-num-raw {
-				font-size: 0.65rem;
-				font-weight: normal;
-				color: #999;
-			}
-			.pick-details {
-				flex: 1;
-				min-width: 0;
-			}
-			.pick-player {
-				font-weight: 500;
-			}
-			.pick-player-name {
-			}
-			.pick-position {
-				font-size: 0.65rem;
-				font-weight: 600;
-				margin-left: 0.25rem;
-			}
-			.pick-salary {
-				font-size: 0.7rem;
-				color: #555;
-				margin-left: 0.25rem;
-			}
-			.pick-owner {
-				font-size: 0.7rem;
-				color: #6c757d;
-			}
-			.pick-from {
-				color: #999;
-			}
-			/* Position group colors
-			   QB: rgb(215, 235, 255) = #D7EBFF
-			   RB: Azure = #F0FFFF
-			   WR: LightGoldenRodYellow = #FAFAD2
-			   TE: rgb(220, 255, 220) = #DCFFDC
-			   IDP: SeaShell = #FFF5EE
-			   K: rgb(245, 245, 245) = #F5F5F5
-			*/
-			.pick-row.pos-QB { background-color: #D7EBFF; }
-			.pick-row.pos-QB .pick-position { color: #1a5276; }
-			.pick-row.pos-RB { background-color: #F0FFFF; }
-			.pick-row.pos-RB .pick-position { color: #117a65; }
-			.pick-row.pos-WR { background-color: #FAFAD2; }
-			.pick-row.pos-WR .pick-position { color: #9a7b0a; }
-			.pick-row.pos-TE { background-color: #DCFFDC; }
-			.pick-row.pos-TE .pick-position { color: #1e8449; }
-			.pick-row.pos-IDP { background-color: #FFF5EE; }
-			.pick-row.pos-IDP .pick-position { color: #a04000; }
-			.pick-row.pos-K { background-color: #F5F5F5; }
-			.pick-row.pos-K .pick-position { color: #5d6d7e; }
-			/* Passed pick - same as K for muted look */
-			.pick-row.pick-passed { background-color: #F5F5F5; }
-			.pick-row.pick-passed .pick-player-name {
-				color: #7f8c8d;
-				font-style: italic;
-			}
-			/* Available pick */
-			.pick-row.pick-available { background-color: #f8f9fa; }
-		title #{season} Draft Board - PSO
+		}
+		.pick-row:last-child {
+			border-bottom: none;
+		}
+		.pick-num {
+			flex: 0 0 50px;
+			font-weight: bold;
+			color: #6c757d;
+			font-size: 0.75rem;
+		}
+		.pick-num-raw {
+			font-size: 0.65rem;
+			font-weight: normal;
+			color: #999;
+		}
+		.pick-details {
+			flex: 1;
+			min-width: 0;
+		}
+		.pick-player {
+			font-weight: 500;
+		}
+		.pick-player-name {
+		}
+		.pick-position {
+			font-size: 0.65rem;
+			font-weight: 600;
+			margin-left: 0.25rem;
+		}
+		.pick-salary {
+			font-size: 0.7rem;
+			color: #555;
+			margin-left: 0.25rem;
+		}
+		.pick-owner {
+			font-size: 0.7rem;
+			color: #6c757d;
+		}
+		.pick-from {
+			color: #999;
+		}
+		/* Position group colors
+		   QB: rgb(215, 235, 255) = #D7EBFF
+		   RB: Azure = #F0FFFF
+		   WR: LightGoldenRodYellow = #FAFAD2
+		   TE: rgb(220, 255, 220) = #DCFFDC
+		   IDP: SeaShell = #FFF5EE
+		   K: rgb(245, 245, 245) = #F5F5F5
+		*/
+		.pick-row.pos-QB { background-color: #D7EBFF; }
+		.pick-row.pos-QB .pick-position { color: #1a5276; }
+		.pick-row.pos-RB { background-color: #F0FFFF; }
+		.pick-row.pos-RB .pick-position { color: #117a65; }
+		.pick-row.pos-WR { background-color: #FAFAD2; }
+		.pick-row.pos-WR .pick-position { color: #9a7b0a; }
+		.pick-row.pos-TE { background-color: #DCFFDC; }
+		.pick-row.pos-TE .pick-position { color: #1e8449; }
+		.pick-row.pos-IDP { background-color: #FFF5EE; }
+		.pick-row.pos-IDP .pick-position { color: #a04000; }
+		.pick-row.pos-K { background-color: #F5F5F5; }
+		.pick-row.pos-K .pick-position { color: #5d6d7e; }
+		/* Passed pick - same as K for muted look */
+		.pick-row.pick-passed { background-color: #F5F5F5; }
+		.pick-row.pick-passed .pick-player-name {
+			color: #7f8c8d;
+			font-style: italic;
+		}
+		/* Available pick */
+		.pick-row.pick-available { background-color: #f8f9fa; }
 
-	body
-		div.container-fluid.py-3
-			div.header-row
-				h1 #{season} Draft Board
-				div.season-nav
-					if pastSeasons.length > 0
-						- var isPastSeason = pastSeasons.indexOf(season) !== -1
-						select.past-drafts-select(class=(isPastSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
-							option(value='' selected=!isPastSeason) Past Drafts
-							each s in pastSeasons
-								option(value=s selected=(s === season))= s
-					each s in quickSeasons
-						a.btn.btn-sm(href='?season=' + s class=(s === season ? 'btn-primary' : 'btn-outline-secondary'))= s
+block content
+	div.container-fluid.py-3
+		div.header-row
+			h1 #{season} Draft Board
+			div.season-nav
+				if pastSeasons.length > 0
+					- var isPastSeason = pastSeasons.indexOf(season) !== -1
+					select.past-drafts-select(class=(isPastSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
+						option(value='' selected=!isPastSeason) Past Drafts
+						each s in pastSeasons
+							option(value=s selected=(s === season))= s
+				each s in quickSeasons
+					a.btn.btn-sm(href='?season=' + s class=(s === season ? 'btn-primary' : 'btn-outline-secondary'))= s
 
-			if Object.keys(rounds).length === 0
-				div.alert.alert-info No picks found for #{season}
-			else
-				div.rounds-container
-					each pickList, round in rounds
-						div.round-card
-							div.round-header Round #{round}
-							each pick in pickList
-								- var rowClass = pick.positionGroup ? ('pos-' + pick.positionGroup) : (pick.status === 'passed' ? 'pick-passed' : 'pick-available')
-								div.pick-row(class=rowClass)
-									div.pick-num
-										if pick.pickDisplay
-											div ##{pick.pickDisplay}
-											div.pick-num-raw ##{pick.pickNumber}
+		if Object.keys(rounds).length === 0
+			div.alert.alert-info No picks found for #{season}
+		else
+			div.rounds-container
+				each pickList, round in rounds
+					div.round-card
+						div.round-header Round #{round}
+						each pick in pickList
+							- var rowClass = pick.positionGroup ? ('pos-' + pick.positionGroup) : (pick.status === 'passed' ? 'pick-passed' : 'pick-available')
+							div.pick-row(class=rowClass)
+								div.pick-num
+									if pick.pickDisplay
+										div ##{pick.pickDisplay}
+										div.pick-num-raw ##{pick.pickNumber}
+									else
+										| —
+								div.pick-details
+									div.pick-player
+										if pick.playerName
+											span.pick-player-name #{pick.playerName}
+											if pick.positionDisplay
+												span.pick-position  #{pick.positionDisplay}
+											if pick.salary
+												span.pick-salary  $#{pick.salary}
+										else if pick.status === 'passed'
+											span.pick-player-name Passed
+										else if pick.status === 'used'
+											span.pick-player-name.text-muted (unknown player)
 										else
-											| —
-									div.pick-details
-										div.pick-player
-											if pick.playerName
-												span.pick-player-name #{pick.playerName}
-												if pick.positionDisplay
-													span.pick-position  #{pick.positionDisplay}
-												if pick.salary
-													span.pick-salary  $#{pick.salary}
-											else if pick.status === 'passed'
-												span.pick-player-name Passed
-											else if pick.status === 'used'
-												span.pick-player-name.text-muted (unknown player)
-											else
-												span.pick-player-name —
-										div.pick-owner
-											span #{pick.currentOwner}
-											if pick.fromOwner
-												span.pick-from  (from #{pick.fromOwner})
-			
-			hr.mt-4
-			div.mt-3
-				h6 Position Legend
-				small
-					span.mr-3.px-2.py-1(style='background-color: #D7EBFF; color: #1a5276;') QB
-					span.mr-3.px-2.py-1(style='background-color: #F0FFFF; color: #117a65;') RB
-					span.mr-3.px-2.py-1(style='background-color: #FAFAD2; color: #9a7b0a;') WR
-					span.mr-3.px-2.py-1(style='background-color: #DCFFDC; color: #1e8449;') TE
-					span.mr-3.px-2.py-1(style='background-color: #FFF5EE; color: #a04000;') IDP
-					span.mr-3.px-2.py-1(style='background-color: #F5F5F5; color: #5d6d7e;') K
-					span.mr-3.px-2.py-1(style='background-color: #F5F5F5; color: #7f8c8d; font-style: italic;') Passed
+											span.pick-player-name —
+									div.pick-owner
+										span #{pick.currentOwner}
+										if pick.fromOwner
+											span.pick-from  (from #{pick.fromOwner})
+		
+		hr.mt-4
+		div.mt-3
+			h6 Position Legend
+			small
+				span.mr-3.px-2.py-1(style='background-color: #D7EBFF; color: #1a5276;') QB
+				span.mr-3.px-2.py-1(style='background-color: #F0FFFF; color: #117a65;') RB
+				span.mr-3.px-2.py-1(style='background-color: #FAFAD2; color: #9a7b0a;') WR
+				span.mr-3.px-2.py-1(style='background-color: #DCFFDC; color: #1e8449;') TE
+				span.mr-3.px-2.py-1(style='background-color: #FFF5EE; color: #a04000;') IDP
+				span.mr-3.px-2.py-1(style='background-color: #F5F5F5; color: #5d6d7e;') K
+				span.mr-3.px-2.py-1(style='background-color: #F5F5F5; color: #7f8c8d; font-style: italic;') Passed

@@ -1,60 +1,54 @@
-doctype html
-html
-	head
-		meta(charset='utf-8')
-		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+extends layout.pug
 
-		link(rel='stylesheet' href='/css/bootstrap.min.css')
-		link(rel='stylesheet' href='/calendar.css')
+block styles
+	link(rel='stylesheet' href='/calendar.css')
 
-		title #{season} Calendar - PSO
+block content
+	div.container.py-4
+		div.header-section
+			div.season-badge= season
+			h1.mb-2 League Calendar
 
-	body
-		div.container.py-4
-			div.header-section
-				div.season-badge= season
-				h1.mb-2 League Calendar
+		if nextEvent && !nextEvent.isToday
+			div.next-event-banner
+				div.next-label Coming Up
+				div.next-content
+					span.next-name= nextEvent.name
+					span.next-date= nextEvent.shortDate
 
-			if nextEvent && !nextEvent.isToday
-				div.next-event-banner
-					div.next-label Coming Up
-					div.next-content
-						span.next-name= nextEvent.name
-						span.next-date= nextEvent.shortDate
-
-			div.timeline
-				each event, idx in events
-					if event.date
-						div.event(class={
-							'past': event.isPast,
-							'today': event.isToday,
-							'upcoming': event.isUpcoming && !event.isToday,
-							'tentative': event.tentative
-						})
-							div.event-marker
-								if event.isPast
-									span.past-dot
-								else if event.isToday
-									span.today-dot
-								else
-									span.future-dot
-							div.event-content
-								div.event-header
-									h3.event-name= event.name
-								div.event-date
-									= event.formattedDate
-									if event.tentative
-										span.tentative-text  (tentative)
-								div.event-description= event.description
-					else
-						div.event.no-date
-							div.event-marker
+		div.timeline
+			each event, idx in events
+				if event.date
+					div.event(class={
+						'past': event.isPast,
+						'today': event.isToday,
+						'upcoming': event.isUpcoming && !event.isToday,
+						'tentative': event.tentative
+					})
+						div.event-marker
+							if event.isPast
+								span.past-dot
+							else if event.isToday
+								span.today-dot
+							else
 								span.future-dot
-							div.event-content
-								div.event-header
-									h3.event-name= event.name
-								div.event-date.text-muted Date not set
-								div.event-description= event.description
+						div.event-content
+							div.event-header
+								h3.event-name= event.name
+							div.event-date
+								= event.formattedDate
+								if event.tentative
+									span.tentative-text  (tentative)
+							div.event-description= event.description
+				else
+					div.event.no-date
+						div.event-marker
+							span.future-dot
+						div.event-content
+							div.event-header
+								h3.event-name= event.name
+							div.event-date.text-muted Date not set
+							div.event-description= event.description
 
-			footer.mt-5.text-center.text-muted
-				| Dates subject to change. Check with the commissioner for confirmation.
+		footer.mt-5.text-center.text-muted
+			| Dates subject to change. Check with the commissioner for confirmation.

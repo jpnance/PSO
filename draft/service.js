@@ -198,7 +198,9 @@ async function draftBoard(request, response) {
 		rounds: rounds,
 		totalPicks: picks.length,
 		quickSeasons: quickSeasons,
-		pastSeasons: pastSeasons
+		pastSeasons: pastSeasons,
+		pageTitle: season + ' Draft Board - PSO',
+		activePage: 'draft'
 	});
 }
 

@@ -313,7 +313,12 @@ async function overview(request, response) {
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		
 		var franchises = await getLeagueOverview(currentSeason);
-		response.render('league', { franchises: franchises, currentSeason: currentSeason });
+		response.render('league', { 
+			franchises: franchises, 
+			currentSeason: currentSeason,
+			pageTitle: 'League Overview - PSO',
+			activePage: 'league'
+		});
 	} catch (err) {
 		console.error(err);
 		response.status(500).send('Error loading league data');
@@ -330,7 +335,13 @@ async function franchise(request, response) {
 		if (!data) {
 			return response.status(404).send('Franchise not found');
 		}
-		response.render('franchise', { franchise: data, currentSeason: currentSeason, phase: phase });
+		response.render('franchise', { 
+			franchise: data, 
+			currentSeason: currentSeason, 
+			phase: phase,
+			pageTitle: data.displayName + ' - PSO',
+			activePage: 'league'
+		});
 	} catch (err) {
 		console.error(err);
 		response.status(500).send('Error loading franchise data');

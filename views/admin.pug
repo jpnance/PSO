@@ -1,158 +1,149 @@
-doctype html
-html
-	head
-		meta(charset='utf-8')
-		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-		
-		link(rel='stylesheet' href='/css/bootstrap.min.css')
-		link(rel='stylesheet' href='/league.css')
-		
-		script(src='/js/jquery.min.js')
-		script(src='/js/bootstrap.min.js')
-		
-		title Admin - PSO
+extends layout.pug
+
+block styles
+	link(rel='stylesheet' href='/league.css')
+
+block content
+	-
+		function formatDate(d) {
+			if (!d) return '';
+			var date = new Date(d);
+			return date.toISOString().split('T')[0];
+		}
 	
-	body
-		-
-			function formatDate(d) {
-				if (!d) return '';
-				var date = new Date(d);
-				return date.toISOString().split('T')[0];
-			}
+	div.container.py-4
+		h1.mb-4 League Admin
 		
-		div.container.py-4
-			h1.mb-4 League Admin
-			
-			div.row
-				div.col-lg-6
-					div.card.mb-4
-						div.card-header
-							strong Current Status
-						div.card-body
-							table.table.table-sm.mb-0
-								tbody
-									tr
-										td Season
-										td.text-right: strong= config.season
-									tr
-										td Phase
-										td.text-right
-											span.badge.badge-info= phase
-									tr
-										td Hard Cap
-										td.text-right
-											if hardCapActive
-												span.badge.badge-danger Active
+		div.row
+			div.col-lg-6
+				div.card.mb-4
+					div.card-header
+						strong Current Status
+					div.card-body
+						table.table.table-sm.mb-0
+							tbody
+								tr
+									td Season
+									td.text-right: strong= config.season
+								tr
+									td Phase
+									td.text-right
+										span.badge.badge-info= phase
+								tr
+									td Hard Cap
+									td.text-right
+										if hardCapActive
+											span.badge.badge-danger Active
+										else
+											span.badge.badge-success Soft
+								tr
+									td Trades
+									td.text-right
+										if tradesEnabled
+											span.badge.badge-success Enabled
+										else
+											span.badge.badge-secondary Disabled
+								tr
+									td Free Agency
+									td.text-right
+										if faEnabled
+											if faPlayoffOnly
+												span.badge.badge-warning Playoff Teams Only
 											else
-												span.badge.badge-success Soft
-									tr
-										td Trades
-										td.text-right
-											if tradesEnabled
 												span.badge.badge-success Enabled
-											else
-												span.badge.badge-secondary Disabled
-									tr
-										td Free Agency
-										td.text-right
-											if faEnabled
-												if faPlayoffOnly
-													span.badge.badge-warning Playoff Teams Only
-												else
-													span.badge.badge-success Enabled
-											else
-												span.badge.badge-secondary Disabled
-				
-				//- Only show advance button after championship day (post-season dead period, not pre-season)
-				if phase === 'dead-period' && config.deadPeriod && new Date() >= config.deadPeriod
-					div.col-lg-6
-						div.card.mb-4
-							div.card-header
-								strong Season Rollover
-							div.card-body
-								p.text-muted Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
-								a.btn.btn-warning(href='/admin/advance-season') Advance to #{config.season + 1}...
-				
+										else
+											span.badge.badge-secondary Disabled
+			
+			//- Only show advance button after championship day (post-season dead period, not pre-season)
+			if phase === 'dead-period' && config.deadPeriod && new Date() >= config.deadPeriod
 				div.col-lg-6
 					div.card.mb-4
 						div.card-header
-							strong Franchise Management
+							strong Season Rollover
 						div.card-body
-							p.text-muted Transfer ownership of a franchise to a new person.
-							a.btn.btn-outline-primary(href='/admin/transfer-franchise') Transfer Franchise...
+							p.text-muted Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
+							a.btn.btn-warning(href='/admin/advance-season') Advance to #{config.season + 1}...
 			
-			div.card.mb-4
-				div.card-header
-					strong League Schedule
-				div.card-body
-					form(method='POST' action='/admin/config')
-						h5 Offseason
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='tradeWindow') Trade Window
-									input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(config.tradeWindow))
-									small.form-text.text-muted Saturday before Super Bowl
-							div.col-md-4
-								div.form-group
-									label(for='nflDraft') NFL Draft
-									input#nflDraft.form-control(type='date' name='nflDraft' value=formatDate(config.nflDraft))
-									small.form-text.text-muted Last Thursday of April
-						
-						h5.mt-4 Pre-Season
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='cutDay') Cut Day
-									input#cutDay.form-control(type='date' name='cutDay' value=formatDate(config.cutDay))
-									div.form-check.mt-1
-										input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
-										label.form-check-label(for='cutDayTentative') Tentative
-							div.col-md-4
-								div.form-group
-									label(for='draftDay') Draft Day
-									input#draftDay.form-control(type='date' name='draftDay' value=formatDate(config.draftDay))
-									div.form-check.mt-1
-										input#draftDayTentative.form-check-input(type='checkbox' name='draftDayTentative' value='true' checked=config.draftDayTentative)
-										label.form-check-label(for='draftDayTentative') Tentative
-							div.col-md-4
-								div.form-group
-									label(for='contractsDue') Contracts Due
-									input#contractsDue.form-control(type='date' name='contractsDue' value=formatDate(config.contractsDue))
-									div.form-check.mt-1
-										input#contractsDueTentative.form-check-input(type='checkbox' name='contractsDueTentative' value='true' checked=config.contractsDueTentative)
-										label.form-check-label(for='contractsDueTentative') Tentative
-						
-						h5.mt-4 Regular Season
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='faab') FAAB
-									input#faab.form-control(type='date' name='faab' value=formatDate(config.faab))
-									small.form-text.text-muted Wednesday before NFL Week 1
-							div.col-md-4
-								div.form-group
-									label(for='nflSeason') NFL Season
-									input#nflSeason.form-control(type='date' name='nflSeason' value=formatDate(config.nflSeason))
-									small.form-text.text-muted Thursday after Labor Day
-							div.col-md-4
-								div.form-group
-									label(for='tradeDeadline') Trade Deadline
-									input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(config.tradeDeadline))
-									small.form-text.text-muted Wednesday after NFL Week 9
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='playoffs') Playoffs
-									input#playoffs.form-control(type='date' name='playoffs' value=formatDate(config.playoffs))
-									small.form-text.text-muted After NFL Week 15
-						
-						h5.mt-4 End of Season
-						div.row
-							div.col-md-4
-								div.form-group
-									label(for='deadPeriod') Dead Period
-									input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(config.deadPeriod))
-									small.form-text.text-muted Tuesday after NFL Week 17
-						
-						button.btn.btn-primary(type='submit') Save Configuration
+			div.col-lg-6
+				div.card.mb-4
+					div.card-header
+						strong Franchise Management
+					div.card-body
+						p.text-muted Transfer ownership of a franchise to a new person.
+						a.btn.btn-outline-primary(href='/admin/transfer-franchise') Transfer Franchise...
+		
+		div.card.mb-4
+			div.card-header
+				strong League Schedule
+			div.card-body
+				form(method='POST' action='/admin/config')
+					h5 Offseason
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='tradeWindow') Trade Window
+								input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(config.tradeWindow))
+								small.form-text.text-muted Saturday before Super Bowl
+						div.col-md-4
+							div.form-group
+								label(for='nflDraft') NFL Draft
+								input#nflDraft.form-control(type='date' name='nflDraft' value=formatDate(config.nflDraft))
+								small.form-text.text-muted Last Thursday of April
+					
+					h5.mt-4 Pre-Season
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='cutDay') Cut Day
+								input#cutDay.form-control(type='date' name='cutDay' value=formatDate(config.cutDay))
+								div.form-check.mt-1
+									input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
+									label.form-check-label(for='cutDayTentative') Tentative
+						div.col-md-4
+							div.form-group
+								label(for='draftDay') Draft Day
+								input#draftDay.form-control(type='date' name='draftDay' value=formatDate(config.draftDay))
+								div.form-check.mt-1
+									input#draftDayTentative.form-check-input(type='checkbox' name='draftDayTentative' value='true' checked=config.draftDayTentative)
+									label.form-check-label(for='draftDayTentative') Tentative
+						div.col-md-4
+							div.form-group
+								label(for='contractsDue') Contracts Due
+								input#contractsDue.form-control(type='date' name='contractsDue' value=formatDate(config.contractsDue))
+								div.form-check.mt-1
+									input#contractsDueTentative.form-check-input(type='checkbox' name='contractsDueTentative' value='true' checked=config.contractsDueTentative)
+									label.form-check-label(for='contractsDueTentative') Tentative
+					
+					h5.mt-4 Regular Season
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='faab') FAAB
+								input#faab.form-control(type='date' name='faab' value=formatDate(config.faab))
+								small.form-text.text-muted Wednesday before NFL Week 1
+						div.col-md-4
+							div.form-group
+								label(for='nflSeason') NFL Season
+								input#nflSeason.form-control(type='date' name='nflSeason' value=formatDate(config.nflSeason))
+								small.form-text.text-muted Thursday after Labor Day
+						div.col-md-4
+							div.form-group
+								label(for='tradeDeadline') Trade Deadline
+								input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(config.tradeDeadline))
+								small.form-text.text-muted Wednesday after NFL Week 9
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='playoffs') Playoffs
+								input#playoffs.form-control(type='date' name='playoffs' value=formatDate(config.playoffs))
+								small.form-text.text-muted After NFL Week 15
+					
+					h5.mt-4 End of Season
+					div.row
+						div.col-md-4
+							div.form-group
+								label(for='deadPeriod') Dead Period
+								input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(config.deadPeriod))
+								small.form-text.text-muted Tuesday after NFL Week 17
+					
+					button.btn.btn-primary(type='submit') Save Configuration
