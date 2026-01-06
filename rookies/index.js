@@ -32,12 +32,26 @@ var salaries = {
 	'2013': { 'DB': 2, 'DL': 3, 'K': 1, 'LB': 2, 'QB': 17, 'RB': 26, 'TE': 18, 'WR': 18 },
 	'2012': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 1, 'QB': 25, 'RB': 25, 'TE': 7, 'WR': 16 },
 	'2011': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 2, 'QB': 25, 'RB': 25, 'TE': 3, 'WR': 26 },
-	'2010': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 2, 'QB': 24, 'RB': 28, 'TE': 4, 'WR': 15 }
+	'2010': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 2, 'QB': 24, 'RB': 28, 'TE': 4, 'WR': 15 },
+	'2009': { 'DB': 13, 'DL': 14, 'K': 3, 'LB': 14, 'QB': 125, 'RB': 271, 'TE': 53, 'WR': 138 }
 };
+
+var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
+var seasons = Object.keys(salaries).sort((a, b) => b - a);
+
+function computeSalary(season, firstRoundValue, round) {
+	if (season <= 2009) {
+		// Linear decay: 100% in round 1 down to 10% in round 10
+		return Math.ceil(firstRoundValue * (11 - round) / 10);
+	} else {
+		// Exponential halving: value / 2^(round-1)
+		return Math.ceil(firstRoundValue / Math.pow(2, round - 1));
+	}
+}
 
 if (render) {
 	var fs = require('fs');
 	var pug = require('pug');
 	var compiledPug = pug.compileFile('../views/rookies.pug');
-	fs.writeFileSync('../public/rookies/index.html', compiledPug({ season: defaultSeason, salaries: salaries }));
+	fs.writeFileSync('../public/rookies/index.html', compiledPug({ season: defaultSeason, salaries: salaries, seasons: seasons, positionOrder: positionOrder, computeSalary: computeSalary }));
 }

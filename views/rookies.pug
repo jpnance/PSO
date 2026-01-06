@@ -13,19 +13,20 @@ html
 			| Rookie Salaries for
 			|
 			select(name='season')
-				each positionSalaries, salarySeason in salaries
+				each salarySeason in seasons
 					option(value=salarySeason selected=(season == salarySeason)) #{salarySeason}
 
-		each positionSalaries, salarySeason in salaries
+		each salarySeason in seasons
+			- var positionSalaries = salaries[salarySeason]
 			table(id='rookies' + salarySeason, class=(season != salarySeason) ? 'hidden' : '')
 				tr
 					th Round
-					each positionSalary, position in positionSalaries
+					each position in positionOrder
 						th #{position}
 
 				each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 					tr(class='round' + (round % 2))
 						td #{round}
 
-						each positionSalary, position in positionSalaries
-							td $#{Math.ceil(positionSalary / Math.pow(2, round - 1))}
+						each position in positionOrder
+							td $#{computeSalary(parseInt(salarySeason), positionSalaries[position], round)}
