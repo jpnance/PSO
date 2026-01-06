@@ -41,6 +41,10 @@ html
 							a.nav-link(href='/trades')
 								i.fa.fa-exchange.mr-1
 								| Trades
+						li.nav-item(class=(activePage === 'propose' ? 'active' : ''))
+							a.nav-link(href='/propose')
+								i.fa.fa-handshake-o.mr-1
+								| Propose
 					ul.navbar-nav
 						li.nav-item(class=(activePage === 'admin' ? 'active' : ''))
 							a.nav-link(href='/admin')

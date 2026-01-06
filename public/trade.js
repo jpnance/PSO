@@ -116,7 +116,10 @@ var tradeMachine = {
 	},
 
 	extractFranchiseId: (elementId) => {
-		return elementId.substring(elementId.indexOf('franchise-'));
+		// Element IDs are now like "check-{objectId}" or "gets-{objectId}"
+		// Extract everything after the first hyphen
+		var hyphenIndex = elementId.indexOf('-');
+		return hyphenIndex !== -1 ? elementId.substring(hyphenIndex + 1) : elementId;
 	},
 
 	franchiseName: (franchiseId) => {
@@ -126,15 +129,9 @@ var tradeMachine = {
 
 	franchisesInvolved: () => {
 		var sortedFranchises = Object.keys(tradeMachine.deal).sort((a, b) => {
-			var aId = parseInt(a.split('-')[1]);
-			var bId = parseInt(b.split('-')[1]);
-
-			if (aId < bId) {
-				return -1;
-			}
-			else {
-				return 1;
-			}
+			var aName = tradeMachine.franchiseName(a);
+			var bName = tradeMachine.franchiseName(b);
+			return aName.localeCompare(bName);
 		});
 
 		return sortedFranchises;
@@ -253,8 +250,10 @@ var tradeMachine = {
 			var $pickList = $(gets).find('.pick-list');
 			$pickList.empty();
 
+			var getsId = tradeMachine.extractFranchiseId(gets.id);
+
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (!gets.id.endsWith(franchiseId)) {
+				if (franchiseId !== getsId) {
 					$pickList.append($('select.master-pick-list optgroup[class=picks-' + franchiseId + ']').clone());
 				}
 			});
@@ -266,8 +265,10 @@ var tradeMachine = {
 			var $playerList = $(gets).find('.player-list');
 			$playerList.empty();
 
+			var getsId = tradeMachine.extractFranchiseId(gets.id);
+
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (!gets.id.endsWith(franchiseId)) {
+				if (franchiseId !== getsId) {
 					$playerList.append($('select.master-player-list optgroup[class=players-' + franchiseId + ']').clone());
 				}
 			});
@@ -279,8 +280,10 @@ var tradeMachine = {
 			var $franchiseList = $(gets).find('.franchise-list');
 			$franchiseList.empty();
 
+			var getsId = tradeMachine.extractFranchiseId(gets.id);
+
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (!gets.id.endsWith(franchiseId)) {
+				if (franchiseId !== getsId) {
 					$franchiseList.append($('select.master-franchise-list option[class=franchises-' + franchiseId + ']').clone());
 				}
 			});
@@ -291,7 +294,7 @@ var tradeMachine = {
 		$('.gets').addClass('d-none');
 
 		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-			var $franchiseSection = $('.gets[id=gets-' + franchiseId)
+			var $franchiseSection = $('.gets[id=gets-' + franchiseId + ']');
 			var $franchiseAssetList = $franchiseSection.find('ul');
 
 			$franchiseSection.removeClass('d-none');
@@ -312,6 +315,7 @@ var tradeMachine = {
 
 	reset: () => {
 		tradeMachine.deal = {};
+		$('.form-check-input').prop('checked', false);
 		tradeMachine.redrawTradeMachine();
 	},
 

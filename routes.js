@@ -7,6 +7,7 @@ var adminPlayers = require('./admin/players.js');
 var adminTrades = require('./admin/trades.js');
 var draft = require('./draft/service.js');
 var trades = require('./trades/service.js');
+var propose = require('./propose/service.js');
 var calendar = require('./calendar/service.js');
 var rookies = require('./rookies/service.js');
 
@@ -20,6 +21,8 @@ module.exports = function(app) {
 	
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);
+	
+	app.get('/propose', propose.proposePage);
 
 	app.get('/draft', draft.draftBoard);
 	
