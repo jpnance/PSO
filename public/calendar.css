@@ -1,0 +1,252 @@
+/* Calendar Page Styles */
+
+body {
+	background-color: #f8f9fa;
+}
+
+.container {
+	max-width: 700px;
+}
+
+/* Header Section */
+.header-section {
+	text-align: center;
+	margin-bottom: 2.5rem;
+	padding-top: 1rem;
+}
+
+.season-badge {
+	display: inline-block;
+	background: #343a40;
+	color: white;
+	font-size: 1.1rem;
+	font-weight: 700;
+	padding: 0.4rem 1.2rem;
+	border-radius: 2rem;
+	margin-bottom: 0.75rem;
+	letter-spacing: 0.05em;
+}
+
+h1 {
+	color: #343a40;
+	font-weight: 300;
+	font-size: 2.2rem;
+	letter-spacing: -0.02em;
+}
+
+
+/* Next Event Banner */
+.next-event-banner {
+	background: #fff;
+	border: 1px solid #dee2e6;
+	border-left: 4px solid #007bff;
+	border-radius: 0.25rem;
+	padding: 1rem 1.25rem;
+	margin-bottom: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.next-label {
+	background: #007bff;
+	color: white;
+	font-size: 0.7rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	padding: 0.3rem 0.6rem;
+	border-radius: 0.25rem;
+}
+
+.next-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex: 1;
+}
+
+.next-name {
+	font-weight: 600;
+	color: #343a40;
+}
+
+.next-date {
+	color: #007bff;
+	font-weight: 500;
+}
+
+/* Timeline */
+.timeline {
+	position: relative;
+	padding-left: 2rem;
+}
+
+.timeline::before {
+	content: '';
+	position: absolute;
+	left: 0.45rem;
+	top: 0.5rem;
+	bottom: 0.5rem;
+	width: 2px;
+	background: linear-gradient(to bottom, #007bff, #dee2e6);
+}
+
+/* Event */
+.event {
+	position: relative;
+	padding: 1.25rem 0;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.event:last-child {
+	border-bottom: none;
+}
+
+.event-marker {
+	position: absolute;
+	left: -2rem;
+	top: 1.5rem;
+	width: 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+.past-dot {
+	width: 10px;
+	height: 10px;
+	background: #007bff;
+	border-radius: 50%;
+}
+
+.today-dot {
+	width: 12px;
+	height: 12px;
+	background: #007bff;
+	border-radius: 50%;
+	box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+	animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+	0%, 100% { transform: scale(1); opacity: 1; }
+	50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.future-dot {
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	border: 2px solid #adb5bd;
+	border-radius: 50%;
+}
+
+/* Event Content */
+.event-content {
+	padding-left: 0.5rem;
+}
+
+.event-header {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 0.25rem;
+}
+
+.event-name {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #343a40;
+	margin: 0;
+}
+
+.tentative-text {
+	color: #6c757d;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.event-date {
+	color: #007bff;
+	font-size: 0.95rem;
+	font-weight: 500;
+	margin-bottom: 0.35rem;
+}
+
+.event-description {
+	color: #6c757d;
+	font-size: 0.85rem;
+	line-height: 1.4;
+}
+
+/* Past Events */
+.event.past .event-name {
+	color: #adb5bd;
+}
+
+.event.past .event-date {
+	color: #ced4da;
+}
+
+.event.past .event-description {
+	color: #ced4da;
+}
+
+/* Today */
+.event.today {
+	background: #e7f1ff;
+	margin-left: -1rem;
+	margin-right: -1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid #b8daff;
+	border-bottom: 1px solid #b8daff;
+}
+
+.event.today .event-marker {
+	left: -1rem;
+}
+
+/* Upcoming */
+.event.upcoming .event-name {
+	color: #343a40;
+}
+
+.event.upcoming .future-dot {
+	background: #e7f1ff;
+	border-color: #007bff;
+}
+
+/* No Date */
+.event.no-date .event-name {
+	color: #adb5bd;
+}
+
+/* Footer */
+footer {
+	font-size: 0.8rem;
+	padding-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+	h1 {
+		font-size: 1.8rem;
+	}
+	
+	.next-event-banner {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+	
+	.next-content {
+		width: 100%;
+	}
+	
+	.event-name {
+		font-size: 1rem;
+	}
+}

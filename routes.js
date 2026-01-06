@@ -5,6 +5,7 @@ var league = require('./league/service.js');
 var admin = require('./admin/service.js');
 var draft = require('./draft/service.js');
 var history = require('./history/service.js');
+var calendar = require('./calendar/service.js');
 
 module.exports = function(app) {
 	app.get('/', function(request, response) {
@@ -17,6 +18,8 @@ module.exports = function(app) {
 	app.get('/history/trades', history.tradeHistory);
 
 	app.get('/draft', draft.draftBoard);
+	
+	app.get('/calendar', calendar.calendar);
 
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
