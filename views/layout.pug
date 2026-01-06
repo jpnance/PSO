@@ -5,6 +5,7 @@ html
 		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
 
 		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 		block styles
 
 		script(src='/js/jquery.min.js')
@@ -21,14 +22,22 @@ html
 				div#navbarNav.collapse.navbar-collapse
 					ul.navbar-nav.mr-auto
 						li.nav-item(class=(activePage === 'league' ? 'active' : ''))
-							a.nav-link(href='/league') League
+							a.nav-link(href='/league')
+								i.fa.fa-trophy.mr-1
+								| League
 						li.nav-item(class=(activePage === 'draft' ? 'active' : ''))
-							a.nav-link(href='/draft') Draft
+							a.nav-link(href='/draft')
+								i.fa.fa-list-ol.mr-1
+								| Draft
 						li.nav-item(class=(activePage === 'calendar' ? 'active' : ''))
-							a.nav-link(href='/calendar') Calendar
+							a.nav-link(href='/calendar')
+								i.fa.fa-calendar.mr-1
+								| Calendar
 					ul.navbar-nav
 						li.nav-item(class=(activePage === 'admin' ? 'active' : ''))
-							a.nav-link(href='/admin') Admin
+							a.nav-link(href='/admin')
+								i.fa.fa-cog.mr-1
+								| Admin
 
 		block content
 
