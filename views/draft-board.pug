@@ -17,7 +17,7 @@ html
 				gap: 0.25rem;
 				align-items: center;
 			}
-			.archive-select {
+			.past-drafts-select {
 				padding: 0.25rem 0.5rem;
 				font-size: 0.875rem;
 				border: 1px solid #6c757d;
@@ -27,11 +27,11 @@ html
 				cursor: pointer;
 				height: 31px;
 			}
-			.archive-select:focus {
+			.past-drafts-select:focus {
 				outline: none;
 				border-color: #007bff;
 			}
-			.archive-select.active {
+			.past-drafts-select.active {
 				background: #007bff;
 				border-color: #007bff;
 				color: white;
@@ -146,11 +146,11 @@ html
 			div.header-row
 				h1 #{season} Draft Board
 				div.season-nav
-					if archiveSeasons.length > 0
-						- var isArchiveSeason = archiveSeasons.indexOf(season) !== -1
-						select.archive-select(class=(isArchiveSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
-							option(value='' selected=!isArchiveSeason) Archive...
-							each s in archiveSeasons
+					if pastSeasons.length > 0
+						- var isPastSeason = pastSeasons.indexOf(season) !== -1
+						select.past-drafts-select(class=(isPastSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
+							option(value='' selected=!isPastSeason) Past Drafts
+							each s in pastSeasons
 								option(value=s selected=(s === season))= s
 					each s in quickSeasons
 						a.btn.btn-sm(href='?season=' + s class=(s === season ? 'btn-primary' : 'btn-outline-secondary'))= s

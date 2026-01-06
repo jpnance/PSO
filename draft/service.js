@@ -173,13 +173,13 @@ async function draftBoard(request, response) {
 		});
 	});
 	
-	// Quick access pills: last season, current, and next 2
-	var quickSeasons = [currentSeason - 1, currentSeason, currentSeason + 1, currentSeason + 2];
+	// Quick access pills: current season and next 2
+	var quickSeasons = [currentSeason, currentSeason + 1, currentSeason + 2];
 	
-	// Archive dropdown: all past drafts from 2010 to currentSeason - 2
-	var archiveSeasons = [];
-	for (var y = currentSeason - 2; y >= 2010; y--) {
-		archiveSeasons.push(y);
+	// Past drafts dropdown: all drafts from 2010 to currentSeason - 1
+	var pastSeasons = [];
+	for (var y = currentSeason - 1; y >= 2010; y--) {
+		pastSeasons.push(y);
 	}
 	
 	response.render('draft-board', {
@@ -188,7 +188,7 @@ async function draftBoard(request, response) {
 		rounds: rounds,
 		totalPicks: picks.length,
 		quickSeasons: quickSeasons,
-		archiveSeasons: archiveSeasons
+		pastSeasons: pastSeasons
 	});
 }
 
