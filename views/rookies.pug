@@ -51,11 +51,28 @@ block styles
 			color: white;
 			font-weight: 600;
 		}
-		.salary-table tbody tr:nth-child(odd) td:not(.round-col) {
-			background-color: rgba(0,0,0,0.02);
-		}
+		/* Position-colored cells with striping */
+		.salary-table td.pos-QB { background-color: #D7EBFF; }
+		.salary-table td.pos-RB { background-color: #F0FFFF; }
+		.salary-table td.pos-WR { background-color: #FAFAD2; }
+		.salary-table td.pos-TE { background-color: #DCFFDC; }
+		.salary-table td.pos-DL,
+		.salary-table td.pos-LB,
+		.salary-table td.pos-DB { background-color: #FFF5EE; }
+		.salary-table td.pos-K { background-color: #F5F5F5; }
+		
+		/* Darken odd rows slightly for stripe effect */
+		.salary-table tr.odd-row td.pos-QB { background-color: #c5dffa; }
+		.salary-table tr.odd-row td.pos-RB { background-color: #ddf5f5; }
+		.salary-table tr.odd-row td.pos-WR { background-color: #f0eabc; }
+		.salary-table tr.odd-row td.pos-TE { background-color: #c8f5c8; }
+		.salary-table tr.odd-row td.pos-DL,
+		.salary-table tr.odd-row td.pos-LB,
+		.salary-table tr.odd-row td.pos-DB { background-color: #f5e6dc; }
+		.salary-table tr.odd-row td.pos-K { background-color: #e8e8e8; }
+		
 		.salary-table tbody tr:hover td:not(.round-col) {
-			background-color: #e9ecef;
+			filter: brightness(0.92);
 		}
 		@media (max-width: 576px) {
 			.salary-table {
@@ -88,10 +105,10 @@ block content
 						th(class='pos-' + position) #{position}
 			tbody
 				each round in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-					tr
+					tr(class=(round % 2 === 0 ? 'even-row' : 'odd-row'))
 						td.round-col #{round}
 						each position in positionOrder
-							td $#{computeSalary(parseInt(season), positionSalaries[position], round)}
+							td(class='pos-' + position) $#{computeSalary(parseInt(season), positionSalaries[position], round)}
 
 block scripts
 	script.
