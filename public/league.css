@@ -81,16 +81,27 @@ nav a:hover {
 	border-bottom: none;
 }
 
-/* Budget available row */
+/* Budget sections */
 .available-row td {
 	background-color: #f8f9fa;
 	border-top: 1px solid #dee2e6;
 }
 
-.recoverable-row td {
+.available-row td:first-child {
+	border-left: 3px solid #28a745;
+	padding-left: calc(0.75rem - 3px);
+}
+
+.recoverable-row td,
+.effective-cap-row td {
 	color: #6c757d;
 	font-size: 0.875rem;
 	font-style: italic;
+	background-color: #fafafa;
+}
+
+.recoverable-row td {
+	border-top: 1px solid #e9ecef;
 }
 
 /* Consistent left padding for all franchise page tables */

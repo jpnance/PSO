@@ -126,7 +126,7 @@ block content
 									td.text-right -$#{formatMoney(b[1].payroll)}
 									td.text-right -$#{formatMoney(b[2].payroll)}
 								tr
-									td Dead Money
+									td Buy-outs
 									td.text-right -$#{formatMoney(b[0].deadMoney)}
 									td.text-right -$#{formatMoney(b[1].deadMoney)}
 									td.text-right -$#{formatMoney(b[2].deadMoney)}
@@ -150,6 +150,11 @@ block content
 								td.text-right +$#{formatMoney(b[0].recoverable)}
 								td.text-right +$#{formatMoney(b[1].recoverable)}
 								td.text-right +$#{formatMoney(b[2].recoverable)}
+							tr.effective-cap-row
+								td Effective Cap
+								td.text-right $#{formatMoney(b[0].baseAmount - b[0].deadMoney - b[0].cashOut + b[0].cashIn)}
+								td.text-right $#{formatMoney(b[1].baseAmount - b[1].deadMoney - b[1].cashOut + b[1].cashIn)}
+								td.text-right $#{formatMoney(b[2].baseAmount - b[2].deadMoney - b[2].cashOut + b[2].cashIn)}
 				
 				- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
 				if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
