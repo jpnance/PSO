@@ -131,6 +131,10 @@ async function editPlayer(request, response) {
 		player.sleeperId = newSleeperId || null;
 	}
 	
+	// Update notes
+	var newNotes = (body.notes || '').trim();
+	player.notes = newNotes || null;
+	
 	await player.save();
 	
 	response.redirect('/admin/players/' + playerId + '?saved=1');

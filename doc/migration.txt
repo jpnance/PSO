@@ -28,8 +28,13 @@ Migration Steps
 2. Seed franchises, people, regimes:
    docker compose run --rm web node data/scripts/seedEntities.js --clear
 
-3. Seed players from Sleeper:
-   docker compose run --rm web node data/scripts/seedPlayers.js --clear
+3. Sync players from Sleeper:
+   docker compose run --rm web node data/scripts/syncPlayers.js --clear
+   
+   (This script can be re-run to update existing players with fresh Sleeper data.
+   The --clear flag is only needed for initial setup; scheduled runs omit it.
+   After migration, uncomment the syncPlayers.js line in etc/crontab to enable
+   automatic syncing after Sleeper data is refreshed.)
 
 4. Seed contracts from spreadsheet:
    docker compose run --rm -it web node data/scripts/seedContracts.js --clear
@@ -77,9 +82,6 @@ Future Work
   grouped by facilitatedTradeId when a cut is part of a trade. Approve triggers
   the actual Contract/Budget updates; reject discards or marks rejected.
 
-- Schedule page: Public-facing page showing key league dates (cut day, auction,
-  trade deadline, etc.) with indicators for tentative dates.
-
 - 2012 Expansion Draft: The league expanded from 10 to 12 franchises in 2012.
   Quinn and Mitch joined via an expansion draft where they selected existing
   players under contract and RFA rights. This data exists in the "Past Drafts"
@@ -112,9 +114,3 @@ Future Work
 - Trade #331 note: This trade involved a pick that technically shouldn't have
   been allowed because the Pick document didn't exist yet. Add a note to the
   trade record documenting this as a historical exception.
-
-- Player edit admin tool: Create an admin interface for editing player records.
-  Key uses: adding positions to historical players (who were created without
-  position data), fixing name typos, merging duplicate players. The Player
-  schema already supports positions as an array; historical players just need
-  their positions populated for proper color-coding in the draft board.

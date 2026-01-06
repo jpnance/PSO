@@ -71,20 +71,31 @@ block content
 											)
 											= pos
 							
-							div.form-group
-								label(for='sleeperId') Sleeper ID
-								input#sleeperId.form-control(
-									type='text'
-									name='sleeperId'
-									value=player.sleeperId || ''
-									placeholder='Optional - links to Sleeper data'
-								)
-								small.form-text.text-muted
-									| The player's ID in the Sleeper API (e.g., "4046")
-							
-							div.d-flex.justify-content-between
-								button.btn.btn-primary(type='submit') Save Changes
-								a.btn.btn-secondary(href='/admin/players') Cancel
+						div.form-group
+							label(for='sleeperId') Sleeper ID
+							input#sleeperId.form-control(
+								type='text'
+								name='sleeperId'
+								value=player.sleeperId || ''
+								placeholder='Optional - links to Sleeper data'
+							)
+							small.form-text.text-muted
+								| The player's ID in the Sleeper API (e.g., "4046")
+						
+						div.form-group
+							label(for='notes') Notes
+							input#notes.form-control(
+								type='text'
+								name='notes'
+								value=player.notes || ''
+								placeholder='Optional - disambiguation notes (e.g., "Ohio State, 2016")'
+							)
+							small.form-text.text-muted
+								| Manual notes for disambiguation. Never overwritten by Sleeper sync.
+						
+						div.d-flex.justify-content-between
+							button.btn.btn-primary(type='submit') Save Changes
+							a.btn.btn-secondary(href='/admin/players') Cancel
 				
 				if contracts && contracts.length
 					div.card.mb-4
@@ -121,31 +132,41 @@ block content
 												span.text-muted —
 			
 			div.col-lg-4
-				if player.sleeperId
-					div.card.mb-4.border-info
-						div.card-header.bg-info.text-white
-							i.fa.fa-cloud.mr-1
-							| Sleeper-Linked Player
-						div.card-body
-							p.small.text-muted
-								| This player is linked to Sleeper data. Edits to name and positions may be overwritten when syncing with Sleeper.
-							dl.mb-3
-								dt Sleeper ID
-								dd: code= player.sleeperId
-							form(method='POST' action='/admin/players/' + player._id onsubmit='return confirm("Unlink this player from Sleeper? They will become a historical player and will no longer sync with Sleeper data.")')
-								input(type='hidden' name='name' value=player.name)
-								each pos in player.positions
-									input(type='hidden' name='pos_' + pos value='on')
-								input(type='hidden' name='sleeperId' value='')
-								button.btn.btn-sm.btn-outline-warning(type='submit') Unlink from Sleeper
-				else
-					div.card.mb-4.border-success
-						div.card-header.bg-success.text-white
-							i.fa.fa-history.mr-1
-							| Historical Player
-						div.card-body
-							p.small.text-muted
-								| This player is not linked to Sleeper. Edits are safe and will not be overwritten.
+			if player.sleeperId
+				div.card.mb-4.border-info
+					div.card-header.bg-info.text-white
+						i.fa.fa-cloud.mr-1
+						| Sleeper-Linked Player
+					div.card-body
+						p.small.text-muted
+							| This player is linked to Sleeper data. Edits to name and positions may be overwritten when syncing with Sleeper.
+						dl.mb-3
+							dt Sleeper ID
+							dd: code= player.sleeperId
+							if player.college
+								dt College
+								dd= player.college
+							if player.rookieYear
+								dt Rookie Year
+								dd= player.rookieYear
+						form(method='POST' action='/admin/players/' + player._id onsubmit='return confirm("Unlink this player from Sleeper? They will become a historical player and will no longer sync with Sleeper data.")')
+							input(type='hidden' name='name' value=player.name)
+							each pos in player.positions
+								input(type='hidden' name='pos_' + pos value='on')
+							input(type='hidden' name='sleeperId' value='')
+							button.btn.btn-sm.btn-outline-warning(type='submit') Unlink from Sleeper
+			else
+				div.card.mb-4.border-success
+					div.card-header.bg-success.text-white
+						i.fa.fa-history.mr-1
+						| Historical Player
+					div.card-body
+						p.small.text-muted
+							| This player is not linked to Sleeper. Edits are safe and will not be overwritten.
+						if player.notes
+							dl.mb-0
+								dt Notes
+								dd= player.notes
 				
 				div.card.mb-4
 					div.card-header
