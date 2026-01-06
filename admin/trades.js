@@ -25,7 +25,7 @@ async function listTrades(request, response) {
 		if (!isNaN(tradeNumber)) {
 			var trade = await Transaction.findOne({ 
 				type: 'trade', 
-				wordpressTradeId: tradeNumber 
+				tradeId: tradeNumber 
 			});
 			
 			if (trade) {
@@ -145,7 +145,7 @@ async function editTradeForm(request, response) {
 		parties: parties,
 		tradeYear: tradeYear,
 		query: request.query,
-		pageTitle: 'Trade #' + (trade.wordpressTradeId || trade._id) + ' - PSO Admin',
+		pageTitle: 'Trade #' + (trade.tradeId || trade._id) + ' - PSO Admin',
 		activePage: 'admin'
 	});
 }

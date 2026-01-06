@@ -677,7 +677,7 @@ async function seed() {
 		var parsed = parseTradeContent(post.content);
 		parsed.tradeNumber = tradeNumber;
 		parsed.timestamp = new Date(post.date);
-		parsed.wordpressId = post.ID;
+		parsed.tradeId = trade.tradeNumber;
 		parsed.url = post.URL;
 
 		tradeHistory.push(parsed);
@@ -806,7 +806,7 @@ async function seed() {
 				type: 'trade',
 				timestamp: new Date(trade.timestamp),
 				source: 'wordpress',
-				wordpressTradeId: trade.tradeNumber,
+				tradeId: trade.tradeNumber,
 				parties: parties
 			});
 			created++;

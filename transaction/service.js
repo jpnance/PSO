@@ -279,7 +279,7 @@ async function validateTradeCash(tradeDetails, config) {
  * @param {Object} tradeDetails
  * @param {Date} tradeDetails.timestamp - When the trade occurred
  * @param {string} tradeDetails.source - 'manual', 'sleeper', 'wordpress'
- * @param {number} [tradeDetails.wordpressTradeId] - WordPress post ID if imported
+ * @param {number} [tradeDetails.tradeId] - Trade ID (auto-assigned if not provided)
  * @param {string} [tradeDetails.notes] - Optional notes
  * @param {Array} tradeDetails.parties - Array of party objects:
  *   {
@@ -442,12 +442,22 @@ async function processTrade(tradeDetails) {
 		transactionParties.push(txParty);
 	}
 	
+	// Determine the trade ID
+	var tradeId = tradeDetails.tradeId;
+	if (!tradeId) {
+		// Auto-increment: find the highest existing tradeId and add 1
+		var lastTrade = await Transaction.findOne({ type: 'trade', tradeId: { $ne: null } })
+			.sort({ tradeId: -1 })
+			.lean();
+		tradeId = lastTrade && lastTrade.tradeId ? lastTrade.tradeId + 1 : 1;
+	}
+	
 	// Create the transaction
 	var transaction = await Transaction.create({
 		type: 'trade',
 		timestamp: tradeDetails.timestamp || new Date(),
 		source: tradeDetails.source || 'manual',
-		wordpressTradeId: tradeDetails.wordpressTradeId,
+		tradeId: tradeId,
 		notes: tradeDetails.notes,
 		parties: transactionParties
 	});

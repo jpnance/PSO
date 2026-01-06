@@ -73,7 +73,7 @@ var transactionSchema = new Schema({
 	notes: { type: String },
 
 	// Trade fields
-	wordpressTradeId: { type: Number },
+	tradeId: { type: Number },
 	parties: [tradePartySchema],
 
 	// FA pickup fields
@@ -103,7 +103,7 @@ transactionSchema.index({ type: 1 });
 transactionSchema.index({ timestamp: 1 });
 transactionSchema.index({ franchiseId: 1 });
 transactionSchema.index({ playerId: 1 });
-transactionSchema.index({ wordpressTradeId: 1 }, { sparse: true });
+transactionSchema.index({ tradeId: 1 }, { sparse: true });
 transactionSchema.index({ 'parties.franchiseId': 1 });
 
 module.exports = mongoose.model('Transaction', transactionSchema);

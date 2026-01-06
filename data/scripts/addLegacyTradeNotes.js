@@ -1,7 +1,7 @@
 /**
  * Fix legacy trade contract data and add notes for ambiguous cases.
  * 
- * For trades with wordpressTradeId <= 360, contract data may be incomplete.
+ * For trades with tradeId <= 360, contract data may be incomplete.
  * This script:
  *   1. Parses the original WordPress post data
  *   2. Applies rules to unambiguously determine contracts where possible
@@ -307,7 +307,7 @@ async function findPlayerByName(name, contextInfo) {
 async function run() {
 	var dryRun = process.argv.includes('--dry-run');
 
-	console.log('Processing legacy trades (wordpressTradeId <= ' + LEGACY_CUTOFF + ')...\n');
+	console.log('Processing legacy trades (tradeId <= ' + LEGACY_CUTOFF + ')...\n');
 	console.log('Loaded', resolver.count(), 'cached player resolutions\n');
 	if (dryRun) {
 		console.log('DRY RUN - no changes will be made\n');
@@ -338,8 +338,8 @@ async function run() {
 	// Find all legacy trades in the database, sorted by trade number (chronological)
 	var legacyTrades = await Transaction.find({
 		type: 'trade',
-		wordpressTradeId: { $lte: LEGACY_CUTOFF }
-	}).sort({ wordpressTradeId: 1 });
+		tradeId: { $lte: LEGACY_CUTOFF }
+	}).sort({ tradeId: 1 });
 
 	console.log('Found', legacyTrades.length, 'legacy trades in database\n');
 
@@ -356,7 +356,7 @@ async function run() {
 
 	for (var i = 0; i < legacyTrades.length; i++) {
 		var trade = legacyTrades[i];
-		var tradeNumber = trade.wordpressTradeId;
+		var tradeNumber = trade.tradeId;
 		var wpPost = postsByTradeNumber[tradeNumber];
 
 		if (!wpPost) {

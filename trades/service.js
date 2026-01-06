@@ -87,7 +87,7 @@ async function buildTradeDisplayData(trades, options) {
 	
 	for (var i = 0; i < trades.length; i++) {
 		var trade = trades[i];
-		var tradeNumber = trade.wordpressTradeId || (i + 1);
+		var tradeNumber = trade.tradeId || (i + 1);
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
 			for (var k = 0; k < (party.receives.picks || []).length; k++) {
@@ -110,7 +110,7 @@ async function buildTradeDisplayData(trades, options) {
 	var playerTradeHistory = {};
 	for (var i = 0; i < trades.length; i++) {
 		var trade = trades[i];
-		var tradeNumber = trade.wordpressTradeId || (i + 1);
+		var tradeNumber = trade.tradeId || (i + 1);
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
 			for (var k = 0; k < (party.receives.players || []).length; k++) {
@@ -132,7 +132,7 @@ async function buildTradeDisplayData(trades, options) {
 	
 	for (var i = 0; i < trades.length; i++) {
 		var trade = trades[i];
-		var tradeNumber = trade.wordpressTradeId || (i + 1);
+		var tradeNumber = trade.tradeId || (i + 1);
 		var tradeYear = trade.timestamp.getFullYear();
 		
 		var parties = [];
@@ -378,7 +378,7 @@ async function singleTrade(request, response) {
 	
 	// Find the specific trade
 	var trade = allTrades.find(function(t) {
-		return t.wordpressTradeId === tradeId;
+		return t.tradeId === tradeId;
 	});
 	
 	if (!trade) {

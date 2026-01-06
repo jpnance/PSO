@@ -156,12 +156,12 @@ block content
 				button.close(type='button' data-dismiss='alert') &times;
 		
 		h1.mb-2
-			| Trade ##{trade.wordpressTradeId || '(no ID)'}
+			| Trade ##{trade.tradeId || '(no ID)'}
 		p.trade-meta
 			= formatTimestampDisplay(trade.timestamp)
-			if trade.wordpressTradeId
+			if trade.tradeId
 				|  · 
-				a(href='https://thedynastyleague.wordpress.com/trade-' + trade.wordpressTradeId + '/' target='_blank') View on WordPress
+				a(href='/trades/' + trade.tradeId) View Trade
 		
 		form(method='POST' action='/admin/trades/' + trade._id)
 			div.row
@@ -220,9 +220,9 @@ block content
 							dl.mb-0
 								dt ID
 								dd: code= trade._id
-								if trade.wordpressTradeId
-									dt WordPress ID
-									dd= trade.wordpressTradeId
+								if trade.tradeId
+									dt Trade ID
+									dd= trade.tradeId
 								dt Source
 								dd= trade.source
 								dt Timestamp (ET)
