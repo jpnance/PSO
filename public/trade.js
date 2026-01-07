@@ -10,7 +10,22 @@ var tradeMachine = {
 			};
 		}
 		else {
+			// Remove the franchise's bucket
 			delete tradeMachine.deal[franchiseId];
+			
+			// Clean up assets in other buckets that came from this franchise
+			Object.keys(tradeMachine.deal).forEach((otherFranchiseId) => {
+				var bucket = tradeMachine.deal[otherFranchiseId];
+				
+				// Remove cash that was coming from the removed franchise
+				bucket.cash = bucket.cash.filter((c) => c.from !== franchiseId);
+				
+				// Remove players that belonged to the removed franchise
+				bucket.players = bucket.players.filter((p) => p.fromFranchiseId !== franchiseId);
+				
+				// Remove picks that belonged to the removed franchise
+				bucket.picks = bucket.picks.filter((p) => p.fromFranchiseId !== franchiseId);
+			});
 		}
 
 		tradeMachine.rebuildPlayerLists();
@@ -143,10 +158,14 @@ var tradeMachine = {
 		var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
 		var pickNumberAttr = $pick.attr('data-picknumber');
 		var pickNumber = pickNumberAttr ? parseInt(pickNumberAttr, 10) : null;
+		// Get the franchise ID from the optgroup's class (e.g., "picks-abc123")
+		var optgroupClass = $pick.closest('optgroup').attr('class') || '';
+		var fromFranchiseId = optgroupClass.replace('picks-', '');
 
 		return {
 			type: 'pick',
 			id: pickId,
+			fromFranchiseId: fromFranchiseId,
 			season: parseInt($pick.data('season')),
 			round: parseInt($pick.data('round')),
 			pickNumber: pickNumber,
@@ -157,10 +176,14 @@ var tradeMachine = {
 
 	playerData: (playerId) => {
 		var $player = $('select.master-player-list option[value="' + playerId + '"]');
+		// Get the franchise ID from the optgroup's class (e.g., "players-abc123")
+		var optgroupClass = $player.closest('optgroup').attr('class') || '';
+		var fromFranchiseId = optgroupClass.replace('players-', '');
 
 		return {
 			type: 'player',
 			id: playerId,
+			fromFranchiseId: fromFranchiseId,
 			name: $player.data('name'),
 			salary: parseInt($player.data('salary')),
 			contract: $player.data('contract'),
