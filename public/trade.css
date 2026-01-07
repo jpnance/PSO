@@ -48,8 +48,46 @@ h1 {
 	justify-content: center;
 }
 
-.input-group-text i {
-	color: #6c757d;
+/* Color-coded input backgrounds to match asset types */
+.input-group-text.player-icon,
+.asset-icon.player-icon {
+	background-color: rgba(40, 167, 69, 0.15);
+	border-color: rgba(40, 167, 69, 0.3);
+}
+
+.input-group-text.pick-icon,
+.asset-icon.pick-icon {
+	background-color: rgba(23, 162, 184, 0.15);
+	border-color: rgba(23, 162, 184, 0.3);
+}
+
+.input-group-text.cash-icon,
+.asset-icon.cash-icon {
+	background-color: rgba(255, 193, 7, 0.2);
+	border-color: rgba(255, 193, 7, 0.4);
+}
+
+/* Asset icons - embedded prepend style */
+.asset-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	align-self: stretch;
+	font-size: 0.75rem;
+	border-right: 1px solid;
+}
+
+.asset-icon.player-icon {
+	border-right-color: rgba(40, 167, 69, 0.3);
+}
+
+.asset-icon.pick-icon {
+	border-right-color: rgba(23, 162, 184, 0.3);
+}
+
+.asset-icon.cash-icon {
+	border-right-color: rgba(255, 193, 7, 0.4);
 }
 
 /* Amount input */
@@ -65,12 +103,14 @@ input.amount {
 
 /* Assets list */
 .assets li {
-	padding: 0.5rem 0.75rem;
-	background-color: #f8f9fa;
+	display: flex;
+	align-items: center;
+	background-color: #fff;
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
 	border: 1px solid #e9ecef;
 	font-size: 0.9rem;
+	overflow: hidden;
 }
 
 .assets li:last-child {
@@ -82,21 +122,31 @@ input.amount {
 	border: none;
 	text-align: center;
 	padding: 1rem;
+	justify-content: center;
+}
+
+/* Asset content area */
+.assets li .asset-content {
+	flex: 1;
+	padding: 0.5rem 0.75rem;
 }
 
 /* Player assets */
 .assets li.asset-player {
-	border-left: 3px solid #28a745;
+	background-color: rgba(40, 167, 69, 0.1);
+	border-color: rgba(40, 167, 69, 0.3);
 }
 
 /* Pick assets */
 .assets li.asset-pick {
-	border-left: 3px solid #17a2b8;
+	background-color: rgba(23, 162, 184, 0.1);
+	border-color: rgba(23, 162, 184, 0.3);
 }
 
 /* Cash assets */
 .assets li.asset-cash {
-	border-left: 3px solid #ffc107;
+	background-color: rgba(255, 193, 7, 0.15);
+	border-color: rgba(255, 193, 7, 0.4);
 }
 
 /* Remove asset button */

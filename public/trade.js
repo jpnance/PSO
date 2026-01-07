@@ -259,8 +259,9 @@ var tradeMachine = {
 			else {
 				sortedAssets.forEach((asset) => {
 					var cssClass = 'asset-' + asset.type;
-					var removeBtn = '<button class="remove-asset btn btn-link btn-sm p-0 ml-2" data-type="' + asset.type + '" data-id="' + asset.id + '"><i class="fa fa-times"></i></button>';
-					$franchiseAssetList.append($('<li class="' + cssClass + ' d-flex justify-content-between align-items-center"><span>' + tradeMachine.textForAsset(asset) + '</span>' + removeBtn + '</li>'));
+					var icon = tradeMachine.iconForAsset(asset);
+					var removeBtn = '<button class="remove-asset btn btn-link btn-sm p-0" data-type="' + asset.type + '" data-id="' + asset.id + '"><i class="fa fa-times"></i></button>';
+					$franchiseAssetList.append($('<li class="' + cssClass + '">' + icon + '<span class="asset-content d-flex justify-content-between align-items-center">' + tradeMachine.textForAsset(asset) + removeBtn + '</span></li>'));
 				});
 			}
 		});
@@ -320,6 +321,19 @@ var tradeMachine = {
 		var round = Math.ceil(pickNumber / teamsPerRound);
 		var pickInRound = ((pickNumber - 1) % teamsPerRound) + 1;
 		return round + '.' + pickInRound.toString().padStart(2, '0');
+	},
+
+	iconForAsset: (asset) => {
+		if (asset.type == 'player') {
+			return '<span class="asset-icon player-icon"><i class="fa fa-user"></i></span>';
+		}
+		else if (asset.type == 'pick') {
+			return '<span class="asset-icon pick-icon"><i class="fa fa-ticket"></i></span>';
+		}
+		else if (asset.type == 'cash') {
+			return '<span class="asset-icon cash-icon">$</span>';
+		}
+		return '';
 	},
 
 	textForAsset: (asset) => {
