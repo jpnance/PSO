@@ -20,7 +20,7 @@ block content
 			each franchise in franchises
 				optgroup(class="players-" + franchise._id label="From " + franchise.displayName)
 					each player in teams[franchise._id.toString()]
-						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract)
+						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract data-recoverable=player.recoverable)
 							| #{player.name}
 							|  
 							if player.terms == 'unsigned'
@@ -86,11 +86,13 @@ block content
 				each franchise in franchises
 					div.gets.d-none.mb-4(id="gets-" + franchise._id)
 							div.card.h-100
-								div.card-header.d-flex.justify-content-between.align-items-center
-									span
-										strong= franchise.displayName
-										|  receive#{isPlural(franchise.displayName) ? '' : 's'}
-									span.badge.badge-light.asset-count 0 assets
+								div.card-header
+									div.d-flex.justify-content-between.align-items-center
+										span
+											strong= franchise.displayName
+											|  receive#{isPlural(franchise.displayName) ? '' : 's'}
+										span.badge.badge-light.asset-count 0 assets
+									div.party-warnings.mt-2
 
 								div.card-body
 									//- Add Player
@@ -139,4 +141,7 @@ block content
 block scripts
 	script.
 		var currentSeason = #{season};
+		var isBeforeCutDay = #{isBeforeCutDay ? 'true' : 'false'};
+		var franchiseData = {};
+		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
 	script(src='/trade.js')

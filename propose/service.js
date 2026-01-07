@@ -3,6 +3,16 @@ var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var Contract = require('../models/Contract');
 var Pick = require('../models/Pick');
+var Transaction = require('../models/Transaction');
+
+// Buy-out calculation based on contract year
+function computeBuyOutIfCut(salary, startYear, endYear, season) {
+	var percentages = [0.60, 0.30, 0.15];
+	if (startYear === null) startYear = endYear;
+	var contractYearIndex = season - startYear;
+	if (contractYearIndex >= percentages.length) return 0;
+	return Math.ceil(salary * percentages[contractYearIndex]);
+}
 
 // Position sort order for roster display
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -41,7 +51,11 @@ async function getTradeData(currentSeason) {
 		.sort({ season: 1, round: 1 })
 		.lean();
 	
-	// Build franchise list with display names
+	// Get trades and cuts for budget calculations
+	var trades = await Transaction.find({ type: 'trade' }).lean();
+	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
+	
+	// Build franchise list with display names and budget info
 	var franchiseList = franchises.map(function(f) {
 		var regime = regimes.find(function(r) {
 			return r.franchiseId.equals(f._id) &&
@@ -49,9 +63,63 @@ async function getTradeData(currentSeason) {
 				(r.endSeason === null || r.endSeason >= currentSeason);
 		});
 		
+		// Get active contracts (with salary, for current season)
+		var activeContracts = contracts.filter(function(c) {
+			return c.franchiseId.equals(f._id) && 
+				c.salary !== null &&
+				c.endYear && c.endYear >= currentSeason;
+		});
+		
+		// Calculate payroll
+		var payroll = activeContracts.reduce(function(sum, c) {
+			return sum + (c.salary || 0);
+		}, 0);
+		
+		// Calculate recoverable (salary - buyout for each contract)
+		var recoverable = activeContracts.reduce(function(sum, c) {
+			var salary = c.salary || 0;
+			var buyOut = computeBuyOutIfCut(salary, c.startYear, c.endYear, currentSeason);
+			return sum + (salary - buyOut);
+		}, 0);
+		
+		// Calculate cash in/out for current season
+		var cashIn = 0;
+		var cashOut = 0;
+		trades.forEach(function(trade) {
+			if (!trade.parties) return;
+			trade.parties.forEach(function(party) {
+				if (!party.receives || !party.receives.cash) return;
+				party.receives.cash.forEach(function(c) {
+					if (c.season !== currentSeason) return;
+					if (party.franchiseId.equals(f._id)) {
+						cashIn += c.amount || 0;
+					} else if (c.fromFranchiseId && c.fromFranchiseId.equals(f._id)) {
+						cashOut += c.amount || 0;
+					}
+				});
+			});
+		});
+		
+		// Calculate buyouts from cuts
+		var buyOuts = 0;
+		cuts.forEach(function(cut) {
+			if (!cut.franchiseId || !cut.franchiseId.equals(f._id)) return;
+			if (!cut.buyOuts) return;
+			cut.buyOuts.forEach(function(bo) {
+				if (bo.season === currentSeason) {
+					buyOuts += bo.amount || 0;
+				}
+			});
+		});
+		
+		var baseAmount = 1000;
+		var available = baseAmount - payroll - buyOuts + cashIn - cashOut;
+		
 		return {
 			_id: f._id,
-			displayName: regime ? regime.displayName : 'Unknown'
+			displayName: regime ? regime.displayName : 'Unknown',
+			available: available,
+			recoverable: recoverable
 		};
 	}).sort(function(a, b) {
 		return a.displayName.localeCompare(b.displayName);
@@ -96,13 +164,21 @@ async function getTradeData(currentSeason) {
 			contract = startStr + '/' + endStr;
 		}
 		
+		// Calculate this player's recoverable (salary - buyout)
+		var playerRecoverable = 0;
+		if (c.salary !== null && c.endYear && c.endYear >= currentSeason) {
+			var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, currentSeason);
+			playerRecoverable = c.salary - buyOut;
+		}
+		
 		teams[franchiseId].push({
 			id: c.playerId._id.toString(),
 			name: c.playerId.name,
 			positions: c.playerId.positions || [],
 			salary: c.salary,
 			terms: terms,
-			contract: contract
+			contract: contract,
+			recoverable: playerRecoverable
 		});
 	});
 	
@@ -164,12 +240,18 @@ async function proposePage(request, response) {
 		
 		var data = await getTradeData(currentSeason);
 		
+		// Determine if we're before cut day
+		var today = new Date();
+		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
+		var isBeforeCutDay = !cutDay || today < cutDay;
+		
 		response.render('trade', {
 			franchises: data.franchises,
 			teams: data.teams,
 			picks: data.picks,
 			season: currentSeason,
 			isPlural: isPlural,
+			isBeforeCutDay: isBeforeCutDay,
 			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});

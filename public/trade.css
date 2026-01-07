@@ -185,6 +185,18 @@ select.form-control {
 	break-inside: avoid;
 }
 
+/* Party warnings in card headers */
+.party-warnings {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+}
+
+.party-warnings .badge {
+	font-size: 0.75rem;
+	font-weight: 500;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991px) {
 	.gets {

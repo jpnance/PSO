@@ -185,9 +185,10 @@ var tradeMachine = {
 			id: playerId,
 			fromFranchiseId: fromFranchiseId,
 			name: $player.data('name'),
-			salary: parseInt($player.data('salary')),
+			salary: parseInt($player.data('salary')) || 0,
 			contract: $player.data('contract'),
-			terms: $player.data('terms')
+			terms: $player.data('terms'),
+			recoverable: parseInt($player.data('recoverable')) || 0
 		};
 	},
 
@@ -236,10 +237,117 @@ var tradeMachine = {
 		});
 	},
 
+	// Calculate trade impact for each franchise
+	calculateTradeImpact: () => {
+		var impact = {};
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		franchises.forEach((fId) => {
+			impact[fId] = {
+				playersIn: 0,
+				playersOut: 0,
+				salaryIn: 0,
+				salaryOut: 0,
+				recoverableIn: 0,
+				recoverableOut: 0
+			};
+		});
+		
+		franchises.forEach((receivingId) => {
+			var bucket = tradeMachine.deal[receivingId];
+			
+			bucket.players.forEach((player) => {
+				if (player.terms !== 'rfa-rights') {
+					impact[receivingId].playersIn++;
+					impact[receivingId].salaryIn += player.salary || 0;
+					impact[receivingId].recoverableIn += player.recoverable || 0;
+					
+					if (player.fromFranchiseId && impact[player.fromFranchiseId]) {
+						impact[player.fromFranchiseId].playersOut++;
+						impact[player.fromFranchiseId].salaryOut += player.salary || 0;
+						impact[player.fromFranchiseId].recoverableOut += player.recoverable || 0;
+					}
+				}
+			});
+		});
+		
+		return impact;
+	},
+
+	// Generate warnings for a specific franchise
+	getWarningsForFranchise: (fId) => {
+		var warnings = [];
+		var data = franchiseData[fId];
+		if (!data) return warnings;
+		
+		var impact = tradeMachine.calculateTradeImpact();
+		var cashDeltas = tradeMachine.calculateCashDeltas(currentSeason);
+		
+		var imp = impact[fId];
+		if (!imp) return warnings;
+		
+		var netSalary = imp.salaryIn - imp.salaryOut;
+		var netRecoverable = imp.recoverableIn - imp.recoverableOut;
+		var cashDelta = cashDeltas[fId] || 0;
+		
+		// New available after trade (salary change reduces available, cash received increases it)
+		var newAvailable = data.available - netSalary + cashDelta;
+		
+		// New recoverable after trade (accounts for players moving in/out)
+		var newRecoverable = data.recoverable + netRecoverable;
+		
+		// Cap warnings only if available goes negative
+		if (newAvailable < 0) {
+			var deficit = Math.abs(newAvailable);
+			
+			// Check if recoverable can cover the deficit (soft cap)
+			if (isBeforeCutDay && (newAvailable + newRecoverable) >= 0) {
+				warnings.push({
+					type: 'warning',
+					icon: 'fa-exclamation-circle',
+					text: '$' + deficit + ' over (can recover)'
+				});
+			} else {
+				warnings.push({
+					type: 'danger',
+					icon: 'fa-exclamation-triangle',
+					text: '$' + deficit + ' over cap'
+				});
+			}
+		}
+		
+		return warnings;
+	},
+
+	// Update warnings on all party cards
+	updatePartyWarnings: () => {
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		// Clear all warnings first
+		$('.party-warnings').empty().addClass('d-none');
+		
+		franchises.forEach((fId) => {
+			var warnings = tradeMachine.getWarningsForFranchise(fId);
+			var $container = $('#gets-' + fId + ' .party-warnings');
+			
+			if (warnings.length > 0) {
+				$container.removeClass('d-none');
+				warnings.forEach((w) => {
+					$container.append(
+						$('<span class="badge badge-pill badge-' + w.type + ' mr-1"><i class="fa ' + w.icon + ' mr-1"></i>' + w.text + '</span>')
+					);
+				});
+			}
+		});
+	},
+
 	updateTradeTools: () => {
 		var $card = $('.trade-tools-card');
 		var $btn = $('.cash-neutral-btn');
 		var franchises = tradeMachine.franchisesInvolved();
+		
+		// Update party-specific warnings
+		tradeMachine.updatePartyWarnings();
 		
 		if (franchises.length < 2) {
 			$card.addClass('d-none');
@@ -248,6 +356,7 @@ var tradeMachine = {
 		
 		$card.removeClass('d-none');
 		
+		// Update cash-neutral button
 		if (tradeMachine.isCashNeutral(currentSeason)) {
 			$btn.removeClass('btn-outline-success').addClass('btn-success');
 			$btn.find('.btn-text').text('Cash-Neutral ✓');
