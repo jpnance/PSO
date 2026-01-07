@@ -766,12 +766,14 @@ var tradeMachine = {
 			return asset.name + ' (' + tradeMachine.terms(asset) + ')';
 		}
 		else if (asset.type == 'pick') {
-			var text = tradeMachine.roundOrdinal(asset.round) + ' round draft pick';
+			var text;
 			if (asset.pickNumber) {
 				var teamsPerRound = (asset.season <= 2011) ? 10 : 12;
-				text += ' (#' + tradeMachine.formatPickNumber(asset.pickNumber, teamsPerRound) + ')';
+				text = 'Pick ' + tradeMachine.formatPickNumber(asset.pickNumber, teamsPerRound);
+			} else {
+				text = tradeMachine.roundOrdinal(asset.round) + ' round pick';
 			}
-			text += ' from ' + asset.origin + ' in ' + asset.season;
+			text += ' in ' + asset.season + ' (' + asset.origin + ')';
 			return text;
 		}
 		else if (asset.type == 'cash') {
