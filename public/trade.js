@@ -193,6 +193,14 @@ var tradeMachine = {
 	},
 
 	rebuildPickLists: () => {
+		// Collect all pick IDs already in any bucket
+		var picksInDeal = [];
+		tradeMachine.franchisesInvolved().forEach((fId) => {
+			tradeMachine.deal[fId].picks.forEach((p) => {
+				picksInDeal.push(p.id);
+			});
+		});
+		
 		$('.gets').each((i, gets) => {
 			var $pickList = $(gets).find('.pick-list');
 			$pickList.empty();
@@ -201,13 +209,33 @@ var tradeMachine = {
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (franchiseId !== getsId) {
-					$pickList.append($('select.master-pick-list optgroup[class=picks-' + franchiseId + ']').clone());
+					var $optgroup = $('select.master-pick-list optgroup[class=picks-' + franchiseId + ']').clone();
+					
+					// Remove picks already in the deal
+					$optgroup.find('option').each((j, opt) => {
+						if (picksInDeal.includes($(opt).val())) {
+							$(opt).remove();
+						}
+					});
+					
+					// Only add optgroup if it still has options
+					if ($optgroup.find('option').length > 0) {
+						$pickList.append($optgroup);
+					}
 				}
 			});
 		});
 	},
 
 	rebuildPlayerLists: () => {
+		// Collect all player IDs already in any bucket
+		var playersInDeal = [];
+		tradeMachine.franchisesInvolved().forEach((fId) => {
+			tradeMachine.deal[fId].players.forEach((p) => {
+				playersInDeal.push(p.id);
+			});
+		});
+		
 		$('.gets').each((i, gets) => {
 			var $playerList = $(gets).find('.player-list');
 			$playerList.empty();
@@ -216,7 +244,19 @@ var tradeMachine = {
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (franchiseId !== getsId) {
-					$playerList.append($('select.master-player-list optgroup[class=players-' + franchiseId + ']').clone());
+					var $optgroup = $('select.master-player-list optgroup[class=players-' + franchiseId + ']').clone();
+					
+					// Remove players already in the deal
+					$optgroup.find('option').each((j, opt) => {
+						if (playersInDeal.includes($(opt).val())) {
+							$(opt).remove();
+						}
+					});
+					
+					// Only add optgroup if it still has options
+					if ($optgroup.find('option').length > 0) {
+						$playerList.append($optgroup);
+					}
 				}
 			});
 		});
@@ -392,6 +432,10 @@ var tradeMachine = {
 		} else {
 			$('.trade-details-card').addClass('d-none');
 		}
+		
+		// Rebuild dropdowns to exclude already-traded assets
+		tradeMachine.rebuildPlayerLists();
+		tradeMachine.rebuildPickLists();
 
 		franchises.forEach((franchiseId, index) => {
 			var $franchiseSection = $('.gets[id=gets-' + franchiseId + ']');
