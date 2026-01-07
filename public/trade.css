@@ -1,12 +1,136 @@
-label {
+body {
+	background-color: #f8f9fa;
+}
+
+h1 {
+	color: #343a40;
+}
+
+/* Lighter placeholder text */
+::placeholder {
+	color: #c0c0c0 !important;
+	opacity: 1;
+}
+
+/* Card headers match site style */
+.card-header {
+	background-color: #343a40;
+	color: white;
+}
+
+.card-header .badge-light {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+
+.card-footer {
+	background-color: #f8f9fa;
+	border-top: 1px solid #e9ecef;
+}
+
+/* Franchise selection */
+.form-check-label {
 	cursor: pointer;
+	font-weight: 500;
+	color: #495057;
+	transition: color 0.15s;
 }
 
-.gets {
-	border: 1px solid #ccc;
+.form-check-input:checked + .form-check-label {
+	color: #007bff;
 }
 
-textarea {
-	font-family: monospace;
-	font-size: 12px;
+/* Input group styling */
+.input-group-text {
+	background-color: #e9ecef;
+	border-color: #ced4da;
+	min-width: 38px;
+	justify-content: center;
+}
+
+.input-group-text i {
+	color: #6c757d;
+}
+
+/* Amount input */
+input.amount {
+	max-width: 100px;
+}
+
+/* Assets list */
+.assets-container {
+	background-color: #f8f9fa;
+	border-radius: 4px;
+	padding: 0.75rem;
+	min-height: 80px;
+}
+
+.assets li {
+	padding: 0.5rem 0.75rem;
+	background-color: white;
+	border-radius: 4px;
+	margin-bottom: 0.5rem;
+	border: 1px solid #e9ecef;
+	font-size: 0.9rem;
+}
+
+.assets li:last-child {
+	margin-bottom: 0;
+}
+
+.assets li.empty-state {
+	background-color: transparent;
+	border: none;
+	text-align: center;
+	padding: 1rem;
+}
+
+/* Player assets */
+.assets li.asset-player {
+	border-left: 3px solid #28a745;
+}
+
+/* Pick assets */
+.assets li.asset-pick {
+	border-left: 3px solid #17a2b8;
+}
+
+/* Cash assets */
+.assets li.asset-cash {
+	border-left: 3px solid #ffc107;
+}
+
+/* Remove asset button */
+.remove-asset {
+	color: #dc3545;
+	opacity: 0.5;
+	transition: opacity 0.15s;
+	line-height: 1;
+}
+
+.remove-asset:hover {
+	opacity: 1;
+	color: #dc3545;
+	text-decoration: none;
+}
+
+/* Select dropdowns */
+select.form-control {
+	font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+	.gets {
+		margin-bottom: 1rem !important;
+	}
+}
+
+/* Card hover effect for selected parties */
+.gets .card {
+	transition: box-shadow 0.2s;
+}
+
+.gets .card:hover {
+	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
