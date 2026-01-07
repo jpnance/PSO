@@ -180,7 +180,6 @@ async function getLeagueOverview(currentSeason) {
 			displayName: regime ? regime.displayName : 'Unknown',
 			owners: regime ? Regime.sortOwnerNames(regime.ownerIds) : [],
 			roster: roster,
-			rosterCount: roster.length,
 			payroll: budget.payroll,
 			available: budget.available,
 			buyOuts: budget.buyOuts
@@ -316,7 +315,6 @@ async function overview(request, response) {
 		response.render('league', { 
 			franchises: franchises, 
 			currentSeason: currentSeason,
-			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: 'League Overview - PSO',
 			activePage: 'league'
 		});
