@@ -129,7 +129,8 @@ var pointsForOwnerWeek = function(players, owner, week) {
 		{ fillWith: ['K'], default: 7 }
 	];
 
-	var ownerPlayers = players.filter((player) => player.owner == owner && player.bye_week != week);
+	// Only include players with active contracts (not RFA rights)
+	var ownerPlayers = players.filter((player) => player.owner == owner && !player.rfaRights && player.bye_week != week);
 	var weekTotal = 0;
 
 	ownerPlayers.forEach((player) => {

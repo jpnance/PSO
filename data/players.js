@@ -47,9 +47,17 @@ async function generatePlayersJson() {
 		// Add roster info if player has a contract
 		if (contract) {
 			player.owner = franchiseNameById[contract.franchiseId.toString()];
-			player.salary = contract.salary;
-			player.start = contract.startYear;
-			player.end = contract.endYear;
+
+			if (contract.salary != null) {
+				// Active contract
+				player.salary = contract.salary;
+				player.start = contract.startYear;
+				player.end = contract.endYear;
+			}
+			else {
+				// RFA rights only (no active contract)
+				player.rfaRights = true;
+			}
 		}
 
 		return player;

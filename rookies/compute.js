@@ -42,7 +42,8 @@ request
 		console.log(positionCount);
 
 		Object.keys(positionCount).forEach((position) => {
-			let positionPlayers = players.filter((player) => player.owner && player.owner != '' && player.positions.includes(position));
+			// Only include players with active contracts (not RFA rights)
+			let positionPlayers = players.filter((player) => player.owner && player.salary && player.positions.includes(position));
 
 			positionPlayers.sort((a, b) => b.salary - a.salary);
 
