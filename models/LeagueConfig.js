@@ -163,4 +163,7 @@ var LeagueConfig = mongoose.model('LeagueConfig', leagueConfigSchema);
 // Expose the date computation helper as a static method
 LeagueConfig.computeDefaultDates = computeDefaultDates;
 
+// Static constants
+LeagueConfig.ROSTER_LIMIT = 35;
+
 module.exports = LeagueConfig;

@@ -316,6 +316,7 @@ async function overview(request, response) {
 		response.render('league', { 
 			franchises: franchises, 
 			currentSeason: currentSeason,
+			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: 'League Overview - PSO',
 			activePage: 'league'
 		});
@@ -339,6 +340,7 @@ async function franchise(request, response) {
 			franchise: data, 
 			currentSeason: currentSeason, 
 			phase: phase,
+			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: data.displayName + ' - PSO',
 			activePage: 'league'
 		});

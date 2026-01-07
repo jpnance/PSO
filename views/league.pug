@@ -18,7 +18,7 @@ block content
 					div.card.h-100
 						div.card-header.d-flex.justify-content-between.align-items-center
 							a.franchise-name(href='/league/franchise/' + franchise._id)= franchise.displayName
-							span.badge.badge-secondary= franchise.rosterCount + ' players'
+							span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
 						
 						div.card-footer.small.d-flex.justify-content-between
 							span Payroll: $#{formatMoney(franchise.payroll)}

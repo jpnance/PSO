@@ -702,6 +702,159 @@ async function test9_CutBuyOut2(world) {
 	return y1Correct && y2Correct && y3Correct;
 }
 
+// ============ TEST 10: Roster Limit Violation ============
+async function test10_RosterLimitViolation(world) {
+	console.log('\n=== TEST 10: Roster Limit Violation (should reject) ===\n');
+	
+	// Create enough players to put Franchise A at exactly the roster limit
+	var fillerPlayers = [];
+	var fillerContracts = [];
+	var rosterLimit = LeagueConfig.ROSTER_LIMIT;
+	
+	// Franchise A already has 2 players, so we need (limit - 2) more
+	var playersNeeded = rosterLimit - 2;
+	console.log('Creating', playersNeeded, 'additional players to reach roster limit of', rosterLimit);
+	
+	for (var i = 0; i < playersNeeded; i++) {
+		var player = await Player.create({
+			name: TEST_PREFIX + 'Filler_A_' + i,
+			sleeperId: 'test_filler_a_' + i
+		});
+		mockData.players.push(player);
+		fillerPlayers.push(player);
+		
+		var contract = await Contract.create({
+			franchiseId: world.franchiseA._id,
+			playerId: player._id,
+			salary: 1,
+			startYear: TEST_SEASON,
+			endYear: TEST_SEASON
+		});
+		mockData.contracts.push(contract);
+		fillerContracts.push(contract);
+	}
+	
+	// Verify Franchise A is at exactly the roster limit
+	var aContracts = await Contract.find({ franchiseId: world.franchiseA._id, salary: { $ne: null } });
+	console.log('Franchise A now has', aContracts.length, 'players (limit:', rosterLimit + ')');
+	
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+	
+	console.log('Trying to acquire', world.playerB1.name, 'without sending anyone back');
+	
+	// Try to acquire a player without sending anyone back - should fail
+	var result = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		notes: 'Test 10: Roster limit violation',
+		parties: [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				}
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: {
+					players: [],
+					picks: [],
+					cash: []
+				}
+			}
+		]
+	});
+	
+	var pass = !result.success;
+	console.log('Trade rejected:', !result.success ? 'YES ✓' : 'NO ✗');
+	if (result.errors) {
+		console.log('Errors:', result.errors);
+		var hasRosterError = result.errors.some(function(e) { return e.includes('players') && e.includes('limit'); });
+		console.log('Contains roster limit error:', hasRosterError ? 'YES ✓' : 'NO ✗');
+		pass = pass && hasRosterError;
+	}
+	
+	return pass;
+}
+
+// ============ TEST 11: Roster Limit OK (swap at limit) ============
+async function test11_RosterLimitSwap(world) {
+	console.log('\n=== TEST 11: Roster Limit OK - Swap at Limit (should allow) ===\n');
+	
+	// Create enough players to put Franchise A at exactly the roster limit
+	var fillerPlayers = [];
+	var fillerContracts = [];
+	var rosterLimit = LeagueConfig.ROSTER_LIMIT;
+	
+	// Franchise A already has 2 players, so we need (limit - 2) more
+	var playersNeeded = rosterLimit - 2;
+	console.log('Creating', playersNeeded, 'additional players to reach roster limit of', rosterLimit);
+	
+	for (var i = 0; i < playersNeeded; i++) {
+		var player = await Player.create({
+			name: TEST_PREFIX + 'Filler_A_' + i,
+			sleeperId: 'test_filler_a_' + i
+		});
+		mockData.players.push(player);
+		fillerPlayers.push(player);
+		
+		var contract = await Contract.create({
+			franchiseId: world.franchiseA._id,
+			playerId: player._id,
+			salary: 1,
+			startYear: TEST_SEASON,
+			endYear: TEST_SEASON
+		});
+		mockData.contracts.push(contract);
+		fillerContracts.push(contract);
+	}
+	
+	// Verify Franchise A is at exactly the roster limit
+	var aContracts = await Contract.find({ franchiseId: world.franchiseA._id, salary: { $ne: null } });
+	console.log('Franchise A now has', aContracts.length, 'players (limit:', rosterLimit + ')');
+	
+	var contractA = await Contract.findOne({ playerId: world.playerA1._id });
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+	
+	console.log('Franchise A sends', world.playerA1.name, ', receives', world.playerB1.name);
+	console.log('Net change: 0 (should stay at limit)');
+	
+	// Swap players - A sends 1, receives 1. Should succeed at exactly the limit.
+	var result = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		notes: 'Test 11: Roster limit swap',
+		parties: [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				}
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: {
+					players: [{ playerId: world.playerA1._id, salary: contractA.salary, startYear: contractA.startYear, endYear: contractA.endYear }],
+					picks: [],
+					cash: []
+				}
+			}
+		]
+	});
+	
+	var pass = result.success;
+	console.log('Trade accepted:', result.success ? 'YES ✓' : 'NO ✗');
+	if (!result.success && result.errors) {
+		console.log('Errors:', result.errors);
+	}
+	
+	return pass;
+}
+
 // ============ Test Registry ============
 var tests = [
 	{ name: 'Basic 2-Party Swap', fn: test1_BasicPlayerSwap },
@@ -713,6 +866,8 @@ var tests = [
 	{ name: 'Cut Buy-out Calculation', fn: test7_CutBuyOut },
 	{ name: 'Cut Invalid Player', fn: test8_CutInvalidPlayer },
 	{ name: 'Cut Buy-out Calculation 2', fn: test9_CutBuyOut2 },
+	{ name: 'Roster Limit Violation', fn: test10_RosterLimitViolation },
+	{ name: 'Roster Limit Swap at Limit', fn: test11_RosterLimitSwap },
 ];
 
 // ============ Main Runner ============

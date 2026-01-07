@@ -118,6 +118,7 @@ async function getTradeData(currentSeason) {
 		return {
 			_id: f._id,
 			displayName: regime ? regime.displayName : 'Unknown',
+			rosterCount: activeContracts.length,
 			available: available,
 			recoverable: recoverable
 		};
@@ -252,6 +253,7 @@ async function proposePage(request, response) {
 			season: currentSeason,
 			isPlural: isPlural,
 			isBeforeCutDay: isBeforeCutDay,
+			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});

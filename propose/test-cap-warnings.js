@@ -68,7 +68,7 @@ function calculateCashDeltas(deal, franchisesInvolved, season) {
 	return deltas;
 }
 
-function getWarningsForFranchise(fId, franchiseData, deal, franchisesInvolved, currentSeason, isBeforeCutDay) {
+function getWarningsForFranchise(fId, franchiseData, deal, franchisesInvolved, currentSeason, isBeforeCutDay, rosterLimit) {
 	var warnings = [];
 	var data = franchiseData[fId];
 	if (!data) return warnings;
@@ -81,11 +81,23 @@ function getWarningsForFranchise(fId, franchiseData, deal, franchisesInvolved, c
 	
 	var netSalary = imp.salaryIn - imp.salaryOut;
 	var netRecoverable = imp.recoverableIn - imp.recoverableOut;
+	var netPlayers = imp.playersIn - imp.playersOut;
 	var cashDelta = cashDeltas[fId] || 0;
 	
 	var newAvailable = data.available - netSalary + cashDelta;
 	var newRecoverable = data.recoverable + netRecoverable;
+	var newRosterCount = data.rosterCount + netPlayers;
 	
+	// Roster limit warning
+	if (newRosterCount > rosterLimit) {
+		var over = newRosterCount - rosterLimit;
+		warnings.push({
+			type: 'warning',
+			text: 'Must drop ' + over + ' player' + (over > 1 ? 's' : '')
+		});
+	}
+	
+	// Cap warnings
 	if (newAvailable < 0) {
 		var deficit = Math.abs(newAvailable);
 		
@@ -267,11 +279,13 @@ console.log('\n=== Test: calculateCashDeltas ===\n');
 
 console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 
+var ROSTER_LIMIT = 35;
+
 (function testNoWarningWhenUnderCap() {
 	console.log('No warning when staying under cap:');
 	
 	var franchiseData = {
-		'patrick': { available: 100, recoverable: 50 }
+		'patrick': { rosterCount: 30, available: 100, recoverable: 50 }
 	};
 	var deal = {
 		'patrick': { players: [], picks: [], cash: [] },
@@ -289,7 +303,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	};
 	
 	// Patrick sends $50 player, so available goes UP by $50 (100 + 50 = 150)
-	var warnings = getWarningsForFranchise('patrick', franchiseData, deal, ['patrick', 'quinn'], 2025, true);
+	var warnings = getWarningsForFranchise('patrick', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
 	
 	assertEqual(warnings.length, 0, 'No warnings for Patrick');
 })();
@@ -298,7 +312,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	console.log('\nSoft cap warning (over but can recover, before cut day):');
 	
 	var franchiseData = {
-		'quinn': { available: 30, recoverable: 40 }
+		'quinn': { rosterCount: 30, available: 30, recoverable: 40 }
 	};
 	var deal = {
 		'patrick': { players: [], picks: [], cash: [] },
@@ -318,7 +332,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	// Quinn acquires $50 player: available = 30 - 50 = -20
 	// Quinn gains $20 recoverable: recoverable = 40 + 20 = 60
 	// -20 + 60 = 40 >= 0, so can recover
-	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true);
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
 	
 	assertEqual(warnings.length, 1, 'One warning for Quinn');
 	assertEqual(warnings[0].type, 'warning', 'Warning is soft cap (yellow)');
@@ -330,7 +344,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	console.log('\nHard cap warning (over cap, after cut day):');
 	
 	var franchiseData = {
-		'quinn': { available: 30, recoverable: 100 }
+		'quinn': { rosterCount: 30, available: 30, recoverable: 100 }
 	};
 	var deal = {
 		'patrick': { players: [], picks: [], cash: [] },
@@ -348,7 +362,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	};
 	
 	// Same trade, but after cut day - can't recover
-	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, false);
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, false, ROSTER_LIMIT);
 	
 	assertEqual(warnings.length, 1, 'One warning for Quinn');
 	assertEqual(warnings[0].type, 'danger', 'Warning is hard cap (red)');
@@ -359,7 +373,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	console.log('\nHard cap warning (over cap, cannot recover even before cut day):');
 	
 	var franchiseData = {
-		'quinn': { available: 30, recoverable: 10 }
+		'quinn': { rosterCount: 30, available: 30, recoverable: 10 }
 	};
 	var deal = {
 		'patrick': { players: [], picks: [], cash: [] },
@@ -379,7 +393,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	// Quinn acquires $50 player: available = 30 - 50 = -20
 	// Quinn gains $5 recoverable: recoverable = 10 + 5 = 15
 	// -20 + 15 = -5 < 0, cannot recover
-	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true);
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
 	
 	assertEqual(warnings.length, 1, 'One warning for Quinn');
 	assertEqual(warnings[0].type, 'danger', 'Warning is hard cap (red)');
@@ -389,7 +403,7 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	console.log('\nCash received helps avoid cap warning:');
 	
 	var franchiseData = {
-		'quinn': { available: 30, recoverable: 10 }
+		'quinn': { rosterCount: 30, available: 30, recoverable: 10 }
 	};
 	var deal = {
 		'patrick': { players: [], picks: [], cash: [] },
@@ -408,9 +422,101 @@ console.log('\n=== Test: getWarningsForFranchise (Cap Warnings) ===\n');
 	
 	// Quinn acquires $50 player but receives $25 cash
 	// available = 30 - 50 + 25 = 5 >= 0, no warning
-	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true);
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
 	
 	assertEqual(warnings.length, 0, 'No warning when cash covers deficit');
+})();
+
+
+console.log('\n=== Test: getWarningsForFranchise (Roster Limits) ===\n');
+
+(function testRosterLimitWarning() {
+	console.log('Roster limit warning (two-for-one trade):');
+	
+	var franchiseData = {
+		'quinn': { rosterCount: 34, available: 100, recoverable: 50 }
+	};
+	var deal = {
+		'patrick': { 
+			players: [{ 
+				id: 'player3', 
+				fromFranchiseId: 'quinn', 
+				salary: 30, 
+				recoverable: 10,
+				terms: 'signed'
+			}], 
+			picks: [], 
+			cash: [] 
+		},
+		'quinn': { 
+			players: [
+				{ id: 'player1', fromFranchiseId: 'patrick', salary: 20, recoverable: 8, terms: 'signed' },
+				{ id: 'player2', fromFranchiseId: 'patrick', salary: 15, recoverable: 6, terms: 'signed' }
+			], 
+			picks: [], 
+			cash: [] 
+		}
+	};
+	
+	// Quinn has 34 players, receives 2, sends 1 = 35... exactly at limit, no warning
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
+	assertEqual(warnings.length, 0, 'No warning at exactly 35');
+	
+	// Now test with 35 players - would go to 36
+	franchiseData.quinn.rosterCount = 35;
+	warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
+	assertEqual(warnings.length, 1, 'Warning when exceeding 35');
+	assertEqual(warnings[0].type, 'warning', 'Roster warning is yellow');
+	assert(warnings[0].text.includes('drop'), 'Mentions dropping players');
+	assert(warnings[0].text.includes('1'), 'Shows must drop 1 player');
+})();
+
+(function testRosterLimitMultipleDrops() {
+	console.log('\nRoster limit warning (must drop multiple players):');
+	
+	var franchiseData = {
+		'quinn': { rosterCount: 35, available: 100, recoverable: 50 }
+	};
+	var deal = {
+		'patrick': { players: [], picks: [], cash: [] },
+		'quinn': { 
+			players: [
+				{ id: 'player1', fromFranchiseId: 'patrick', salary: 20, recoverable: 8, terms: 'signed' },
+				{ id: 'player2', fromFranchiseId: 'patrick', salary: 15, recoverable: 6, terms: 'signed' },
+				{ id: 'player3', fromFranchiseId: 'patrick', salary: 10, recoverable: 4, terms: 'signed' }
+			], 
+			picks: [], 
+			cash: [] 
+		}
+	};
+	
+	// Quinn has 35 players, receives 3, sends 0 = 38 (3 over)
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
+	assertEqual(warnings.length, 1, 'One roster warning');
+	assert(warnings[0].text.includes('3'), 'Shows must drop 3 players');
+	assert(warnings[0].text.includes('players'), 'Uses plural "players"');
+})();
+
+(function testRfaRightsDoNotCountAgainstRoster() {
+	console.log('\nRFA rights do not count against roster limit:');
+	
+	var franchiseData = {
+		'quinn': { rosterCount: 35, available: 100, recoverable: 50 }
+	};
+	var deal = {
+		'patrick': { players: [], picks: [], cash: [] },
+		'quinn': { 
+			players: [
+				{ id: 'player1', fromFranchiseId: 'patrick', salary: null, recoverable: 0, terms: 'rfa-rights' }
+			], 
+			picks: [], 
+			cash: [] 
+		}
+	};
+	
+	// Quinn has 35 players, receives 1 RFA rights (doesn't count) = still 35
+	var warnings = getWarningsForFranchise('quinn', franchiseData, deal, ['patrick', 'quinn'], 2025, true, ROSTER_LIMIT);
+	assertEqual(warnings.length, 0, 'No warning for RFA rights');
 })();
 
 

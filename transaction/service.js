@@ -406,6 +406,58 @@ async function processTrade(tradeDetails) {
 		return { success: false, errors: cashValidation.errors, warnings: cashValidation.warnings };
 	}
 	
+	// Validate roster limits
+	// Each franchise's post-trade roster must not exceed the limit
+	// RFA rights (salary === null) don't count against roster limit
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var party = tradeDetails.parties[i];
+		var receives = party.receives || {};
+		
+		// Count current roster (contracts with salary, not RFA rights)
+		var currentContracts = await Contract.find({
+			franchiseId: party.franchiseId,
+			salary: { $ne: null }
+		});
+		var currentRosterCount = currentContracts.length;
+		
+		// Count players coming in (excluding RFA rights)
+		var playersIn = (receives.players || []).filter(function(p) {
+			return p.salary !== null;
+		}).length;
+		
+		// Count players going out (to other parties)
+		var playersOut = 0;
+		for (var j = 0; j < tradeDetails.parties.length; j++) {
+			if (i === j) continue;
+			var otherParty = tradeDetails.parties[j];
+			var otherReceives = otherParty.receives || {};
+			var otherPlayers = otherReceives.players || [];
+			
+			for (var k = 0; k < otherPlayers.length; k++) {
+				var playerInfo = otherPlayers[k];
+				// Check if this player is currently on party[i]'s roster
+				var contract = currentContracts.find(function(c) {
+					return c.playerId.equals(playerInfo.playerId);
+				});
+				if (contract && contract.salary !== null) {
+					playersOut++;
+				}
+			}
+		}
+		
+		var newRosterCount = currentRosterCount + playersIn - playersOut;
+		
+		if (newRosterCount > LeagueConfig.ROSTER_LIMIT) {
+			var franchise = await Franchise.findById(party.franchiseId);
+			var franchiseName = franchise ? franchise.name : party.franchiseId;
+			errors.push(franchiseName + ' would have ' + newRosterCount + ' players (limit is ' + LeagueConfig.ROSTER_LIMIT + ')');
+		}
+	}
+	
+	if (errors.length > 0) {
+		return { success: false, errors: errors };
+	}
+	
 	// Build the transaction document
 	var transactionParties = [];
 	

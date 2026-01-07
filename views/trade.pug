@@ -142,6 +142,7 @@ block scripts
 	script.
 		var currentSeason = #{season};
 		var isBeforeCutDay = #{isBeforeCutDay ? 'true' : 'false'};
+		var rosterLimit = #{rosterLimit};
 		var franchiseData = {};
-		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
+		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { rosterCount: " + f.rosterCount + ", available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
 	script(src='/trade.js')
