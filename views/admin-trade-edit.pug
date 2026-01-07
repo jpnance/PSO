@@ -50,12 +50,6 @@ block styles
 
 block content
 	-
-		function formatRound(round) {
-			if (round === 1) return '1st';
-			if (round === 2) return '2nd';
-			if (round === 3) return '3rd';
-			return round + 'th';
-		}
 		function formatDateTimeLocal(ts) {
 			if (!ts) return '';
 			var d = new Date(ts);
@@ -112,7 +106,7 @@ block content
 				if (!seasonAssets[season]) seasonAssets[season] = [];
 				seasonAssets[season].push({ 
 					type: 'pick', 
-					display: formatRound(pick.round) + ' round from ' + pick.fromName + ' in ' + pick.season,
+					display: formatPickDisplay({ round: pick.round, pickNumber: pick.pickNumber, season: pick.season, origin: pick.fromName }),
 					sortOrder: 0,
 					sortKey: pick.pickNumber || 999
 				});

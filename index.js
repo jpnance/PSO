@@ -3,6 +3,7 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var formatPick = require('./helpers/formatPick');
 var app = express();
 
 app.use(bodyParser.json());
@@ -14,6 +15,9 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.set('view engine', 'pug');
+
+// Make helpers available to all templates
+app.locals.formatPickDisplay = formatPick.formatPickDisplay;
 require('./routes')(app);
 
 var mongoose = require('mongoose');

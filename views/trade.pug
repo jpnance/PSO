@@ -1,15 +1,5 @@
 extends layout
 
-mixin pickRound(round)
-	if round == 1
-		| 1st
-	else if round == 2
-		| 2nd
-	else if round == 3
-		| 3rd
-	else
-		| #{round}th
-
 block styles
 	link(rel='stylesheet' href='/trade.css')
 
@@ -31,24 +21,12 @@ block content
 								| ($#{player.salary}, #{player.contract})
 
 		select.master-pick-list
-			-
-				function formatPickNum(pickNumber, round, season) {
-					if (!pickNumber) return null;
-					var teamsPerRound = (season <= 2011) ? 10 : 12;
-					var pickInRound = ((pickNumber - 1) % teamsPerRound) + 1;
-					return round + '.' + String(pickInRound).padStart(2, '0');
-				}
 			each franchise in franchises
 				optgroup(class="picks-" + franchise._id label=franchise.displayName + "'s Picks")
 					each pick in picks
 						if pick.ownerId == franchise._id.toString()
-							- var pickNumDisplay = formatPickNum(pick.pickNumber, pick.round, pick.season)
 							option(value=pick.id data-season=pick.season data-round=pick.round data-picknumber=(pick.pickNumber || '') data-owner=pick.owner data-origin=pick.origin)
-								if pickNumDisplay
-									| Pick #{pickNumDisplay} in #{pick.season} (#{pick.origin})
-								else
-									+pickRound(pick.round)
-									|  round pick in #{pick.season} (#{pick.origin})
+								| #{formatPickDisplay(pick)}
 
 		select.master-franchise-list
 			each franchise in franchises

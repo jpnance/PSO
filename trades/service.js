@@ -3,6 +3,7 @@ var Player = require('../models/Player');
 var Pick = require('../models/Pick');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
+var formatPick = require('../helpers/formatPick');
 
 
 async function getRegime(franchiseId, season) {
@@ -227,16 +228,13 @@ async function buildTradeDisplayData(trades, options) {
 					outcome = becamePlayerDoc ? becamePlayerDoc.name : null;
 				}
 				
-				// Build display string - main line only
-				var display = formatRound(round) + ' round draft pick';
-				
-				// Show pick number inline if known at trade time
-				if (knewPickNumber) {
-					display += ' (#' + formatPickNumber(pickNumber) + ')';
-				}
-				
-				display += ' from ' + originalOwner;
-				display += ' in ' + season;
+				// Build display string using shared helper
+				var display = formatPick.formatPickDisplay({
+					round: round,
+					pickNumber: knewPickNumber ? pickNumber : null,
+					season: season,
+					origin: originalOwner
+				});
 				
 				// Build fine print notes
 				var notes = [];
