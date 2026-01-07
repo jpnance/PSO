@@ -62,31 +62,16 @@ block content
 							strong Season Rollover
 						div.card-body
 							p.text-muted Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
-							a.btn.btn-warning(href='/admin/advance-season') Advance to #{config.season + 1}...
+							a.btn.btn-warning(href='/admin/advance-season') Advance to #{config.season + 1}
 			
 			div.col-lg-6
 				div.card.mb-4
 					div.card-header
-						strong Franchise Management
+						strong Management
 					div.card-body
-						p.text-muted Transfer ownership of a franchise to a new person.
-						a.btn.btn-outline-primary(href='/admin/transfer-franchise') Transfer Franchise...
-			
-			div.col-lg-6
-				div.card.mb-4
-					div.card-header
-						strong Player Management
-					div.card-body
-						p.text-muted Search, edit, and manage players in the database.
-						a.btn.btn-outline-primary(href='/admin/players') Manage Players...
-			
-			div.col-lg-6
-				div.card.mb-4
-					div.card-header
-						strong Trade Management
-					div.card-body
-						p.text-muted Search and edit trades. Fix cash amounts, add notes.
-						a.btn.btn-outline-primary(href='/admin/trades') Manage Trades...
+						a.btn.btn-outline-primary.mr-2.mb-2(href='/admin/transfer-franchise') Transfer Franchise
+						a.btn.btn-outline-primary.mr-2.mb-2(href='/admin/players') Manage Players
+						a.btn.btn-outline-primary.mb-2(href='/admin/trades') Manage Trades
 		
 		div.card.mb-4
 			div.card-header
