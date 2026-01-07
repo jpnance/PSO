@@ -57,17 +57,16 @@ input.amount {
 	max-width: 100px;
 }
 
-/* Assets list */
-.assets-container {
-	background-color: #f8f9fa;
-	border-radius: 4px;
-	padding: 0.75rem;
-	min-height: 80px;
+/* Separator between form and assets */
+.asset-separator {
+	border-top: 1px solid #e9ecef;
+	margin: 0.5rem 0 1rem 0;
 }
 
+/* Assets list */
 .assets li {
 	padding: 0.5rem 0.75rem;
-	background-color: white;
+	background-color: #f8f9fa;
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
 	border: 1px solid #e9ecef;
