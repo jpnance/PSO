@@ -329,19 +329,6 @@ var tradeMachine = {
 		// New recoverable after trade (accounts for players moving in/out)
 		var newRecoverable = data.recoverable + netRecoverable;
 		
-		// Roster limit warning
-		var netPlayers = imp.playersIn - imp.playersOut;
-		var newRosterCount = data.rosterCount + netPlayers;
-		
-		if (newRosterCount > rosterLimit) {
-			var over = newRosterCount - rosterLimit;
-			warnings.push({
-				type: 'warning',
-				icon: 'fa-users',
-				text: 'Must drop ' + over + ' player' + (over > 1 ? 's' : '')
-			});
-		}
-		
 		// Cap warnings only if available goes negative
 		if (newAvailable < 0) {
 			var deficit = Math.abs(newAvailable);
