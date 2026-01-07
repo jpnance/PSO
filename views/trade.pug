@@ -31,13 +31,24 @@ block content
 								| ($#{player.salary}, #{player.contract})
 
 		select.master-pick-list
+			-
+				function formatPickNum(pickNumber, round, season) {
+					if (!pickNumber) return null;
+					var teamsPerRound = (season <= 2011) ? 10 : 12;
+					var pickInRound = ((pickNumber - 1) % teamsPerRound) + 1;
+					return round + '.' + String(pickInRound).padStart(2, '0');
+				}
 			each franchise in franchises
 				optgroup(class="picks-" + franchise._id label=franchise.displayName + "'s Picks")
 					each pick in picks
 						if pick.ownerId == franchise._id.toString()
-							option(value=pick.id data-season=pick.season data-round=pick.round data-owner=pick.owner data-origin=pick.origin)
+							- var pickNumDisplay = formatPickNum(pick.pickNumber, pick.round, pick.season)
+							option(value=pick.id data-season=pick.season data-round=pick.round data-picknumber=(pick.pickNumber || '') data-owner=pick.owner data-origin=pick.origin)
 								+pickRound(pick.round)
-								|  round draft pick from #{pick.origin} in #{pick.season}
+								|  round draft pick
+								if pickNumDisplay
+									|  (##{pickNumDisplay})
+								|  from #{pick.origin} in #{pick.season}
 
 		select.master-franchise-list
 			each franchise in franchises

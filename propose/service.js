@@ -122,10 +122,25 @@ async function getTradeData(currentSeason) {
 			id: p._id.toString(),
 			season: p.season,
 			round: p.round,
+			pickNumber: p.pickNumber || null,
 			owner: owner,
 			ownerId: (p.currentFranchiseId._id || p.currentFranchiseId).toString(),
 			origin: origin
 		};
+	});
+	
+	// Sort picks by season, then by pick number (or round + origin if no pick number)
+	pickList.sort(function(a, b) {
+		// First by season
+		if (a.season !== b.season) return a.season - b.season;
+		// Then by pick number if both have one
+		if (a.pickNumber && b.pickNumber) return a.pickNumber - b.pickNumber;
+		// If only one has a pick number, numbered picks first
+		if (a.pickNumber && !b.pickNumber) return -1;
+		if (!a.pickNumber && b.pickNumber) return 1;
+		// Neither has pick number: sort by round, then origin
+		if (a.round !== b.round) return a.round - b.round;
+		return a.origin.localeCompare(b.origin);
 	});
 	
 	return {

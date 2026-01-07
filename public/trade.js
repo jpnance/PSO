@@ -141,12 +141,15 @@ var tradeMachine = {
 
 	pickData: (pickId) => {
 		var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
+		var pickNumberAttr = $pick.attr('data-picknumber');
+		var pickNumber = pickNumberAttr ? parseInt(pickNumberAttr, 10) : null;
 
 		return {
 			type: 'pick',
 			id: pickId,
 			season: parseInt($pick.data('season')),
 			round: parseInt($pick.data('round')),
+			pickNumber: pickNumber,
 			owner: $pick.data('owner'),
 			origin: $pick.data('origin')
 		};
@@ -288,12 +291,26 @@ var tradeMachine = {
 		}
 	},
 
+	formatPickNumber: (pickNumber, teamsPerRound) => {
+		// Convert overall pick number to round.pick format (e.g., 1.09)
+		teamsPerRound = teamsPerRound || 12;
+		var round = Math.ceil(pickNumber / teamsPerRound);
+		var pickInRound = ((pickNumber - 1) % teamsPerRound) + 1;
+		return round + '.' + pickInRound.toString().padStart(2, '0');
+	},
+
 	textForAsset: (asset) => {
 		if (asset.type == 'player') {
 			return asset.name + ' (' + tradeMachine.terms(asset) + ')';
 		}
 		else if (asset.type == 'pick') {
-			return tradeMachine.roundOrdinal(asset.round) + ' round draft pick from ' + asset.origin + ' in ' + asset.season;
+			var text = tradeMachine.roundOrdinal(asset.round) + ' round draft pick';
+			if (asset.pickNumber) {
+				var teamsPerRound = (asset.season <= 2011) ? 10 : 12;
+				text += ' (#' + tradeMachine.formatPickNumber(asset.pickNumber, teamsPerRound) + ')';
+			}
+			text += ' from ' + asset.origin + ' in ' + asset.season;
+			return text;
 		}
 		else if (asset.type == 'cash') {
 			return '$' + asset.amount + ' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season;
