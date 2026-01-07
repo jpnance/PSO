@@ -219,6 +219,10 @@ select.form-control {
 @media (min-width: 1200px) {
 	.gets .col-xl-6:last-child {
 		display: flex;
+		align-items: flex-start;
+	}
+	
+	.gets .col-xl-6:last-child:has(.empty-state:not(.d-none)) {
 		align-items: center;
 	}
 	
