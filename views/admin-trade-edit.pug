@@ -168,7 +168,7 @@ block content
 								div.party-section
 									div.party-name
 										strong= party.franchiseName
-										|  receives:
+										|  receive#{party.usePlural ? '' : 's'}:
 									
 									- var assets = buildAssetList(party, partyIdx)
 									if assets.length
@@ -203,8 +203,6 @@ block content
 									rows='3'
 									placeholder='Notes about corrections, conditions, etc.'
 								)= trade.notes || ''
-								small.form-text.text-muted
-									| Corrections, conditional pick outcomes, or other clarifications.
 				
 				div.col-lg-4
 					div.card.mb-4

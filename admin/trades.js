@@ -3,6 +3,11 @@ var Player = require('../models/Player');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 
+// Determine if a franchise name is plural (for grammar)
+function isPlural(name) {
+	return name === 'Schexes' || name.includes('/');
+}
+
 // Get display name for a franchise at a given season
 async function getDisplayName(franchiseId, season) {
 	if (!franchiseId) return 'Unknown';
@@ -132,6 +137,7 @@ async function editTradeForm(request, response) {
 		parties.push({
 			franchiseId: party.franchiseId,
 			franchiseName: franchiseName,
+			usePlural: isPlural(franchiseName),
 			players: playersData,
 			picks: picksData,
 			cash: cashData,
