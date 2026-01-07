@@ -69,10 +69,17 @@ block content
 								div.form-check.mb-1
 									input.form-check-input(type="checkbox" id="check-" + franchise._id value=franchise._id)
 									label.form-check-label(for="check-" + franchise._id)= franchise.displayName
-						div.text-center.mt-3
-							button.reset-trade-machine.btn.btn-outline-secondary.btn-sm
+						div.mt-3
+							button.reset-trade-machine.btn.btn-outline-secondary.btn-sm.btn-block
 								i.fa.fa-refresh.mr-1
 								| Reset
+
+				//- Trade Tools Card
+				div.card.trade-tools-card.d-none.mt-4.mb-4
+					div.card-body
+						button.cash-neutral-btn.btn.btn-outline-success.btn-sm.btn-block
+							i.fa.fa-balance-scale.mr-1
+							span.btn-text Make Cash-Neutral
 
 			//- Trade Builder Section
 			div.col-lg-8.col-xl-9
@@ -130,4 +137,6 @@ block content
 												| Nothing yet
 
 block scripts
+	script.
+		var currentSeason = #{season};
 	script(src='/trade.js')

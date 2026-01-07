@@ -236,6 +236,29 @@ var tradeMachine = {
 		});
 	},
 
+	updateTradeTools: () => {
+		var $card = $('.trade-tools-card');
+		var $btn = $('.cash-neutral-btn');
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		if (franchises.length < 2) {
+			$card.addClass('d-none');
+			return;
+		}
+		
+		$card.removeClass('d-none');
+		
+		if (tradeMachine.isCashNeutral(currentSeason)) {
+			$btn.removeClass('btn-outline-success').addClass('btn-success');
+			$btn.find('.btn-text').text('Cash-Neutral ✓');
+			$btn.prop('disabled', true);
+		} else {
+			$btn.removeClass('btn-success').addClass('btn-outline-success');
+			$btn.find('.btn-text').text('Make Cash-Neutral');
+			$btn.prop('disabled', false);
+		}
+	},
+
 	redrawTradeMachine: () => {
 		$('.gets').addClass('d-none');
 
@@ -265,11 +288,149 @@ var tradeMachine = {
 				});
 			}
 		});
+		
+		tradeMachine.updateTradeTools();
 	},
 
 	reset: () => {
 		tradeMachine.deal = {};
 		$('.form-check-input').prop('checked', false);
+		tradeMachine.redrawTradeMachine();
+	},
+
+	// Calculate salary delta for each franchise (positive = receiving more salary)
+	calculateSalaryDeltas: () => {
+		var deltas = {};
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		// Initialize deltas
+		franchises.forEach((fId) => {
+			deltas[fId] = 0;
+		});
+		
+		// For each franchise, add salary they receive, subtract salary they give
+		franchises.forEach((receivingId) => {
+			var bucket = tradeMachine.deal[receivingId];
+			
+			// Add salary from players they receive
+			bucket.players.forEach((player) => {
+				var salary = player.salary || 0;
+				if (player.terms !== 'rfa-rights') {
+					deltas[receivingId] += salary;
+					// The franchise giving this player loses salary
+					if (player.fromFranchiseId && deltas[player.fromFranchiseId] !== undefined) {
+						deltas[player.fromFranchiseId] -= salary;
+					}
+				}
+			});
+		});
+		
+		return deltas;
+	},
+
+	// Calculate net cash position for each franchise in current season
+	calculateCashDeltas: (currentSeason) => {
+		var deltas = {};
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		franchises.forEach((fId) => {
+			deltas[fId] = 0;
+		});
+		
+		franchises.forEach((receivingId) => {
+			var bucket = tradeMachine.deal[receivingId];
+			
+			bucket.cash.forEach((c) => {
+				if (c.season === currentSeason) {
+					// Receiving franchise gets cash
+					deltas[receivingId] += c.amount;
+					// Sending franchise loses cash
+					if (deltas[c.from] !== undefined) {
+						deltas[c.from] -= c.amount;
+					}
+				}
+			});
+		});
+		
+		return deltas;
+	},
+
+	// Check if trade is cash-neutral for current season
+	isCashNeutral: (currentSeason) => {
+		var salaryDeltas = tradeMachine.calculateSalaryDeltas();
+		var cashDeltas = tradeMachine.calculateCashDeltas(currentSeason);
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		if (franchises.length < 2) return true;
+		
+		// Trade is neutral if salary taken on equals cash received
+		// salaryDelta = cap burden change, cashDelta = cap relief from cash
+		// Neutral when: salaryDelta = cashDelta (cash received offsets salary taken on)
+		for (var i = 0; i < franchises.length; i++) {
+			var fId = franchises[i];
+			var salaryDelta = salaryDeltas[fId] || 0;
+			var cashDelta = cashDeltas[fId] || 0;
+			if (salaryDelta !== cashDelta) return false;
+		}
+		return true;
+	},
+
+	// Make the trade cash-neutral by adding appropriate cash transactions
+	makeCashNeutral: (currentSeason) => {
+		var salaryDeltas = tradeMachine.calculateSalaryDeltas();
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		if (franchises.length < 2) return;
+		
+		// Remove existing current-season cash between involved parties
+		franchises.forEach((fId) => {
+			tradeMachine.deal[fId].cash = tradeMachine.deal[fId].cash.filter((c) => {
+				return c.season !== currentSeason || !franchises.includes(c.from);
+			});
+		});
+		
+		// Positive delta = taking on more salary = should RECEIVE cash
+		// Negative delta = shedding salary = should SEND cash
+		var receivers = [];
+		var senders = [];
+		
+		franchises.forEach((fId) => {
+			var delta = salaryDeltas[fId] || 0;
+			if (delta > 0) {
+				receivers.push({ id: fId, amount: delta });
+			} else if (delta < 0) {
+				senders.push({ id: fId, amount: -delta });
+			}
+		});
+		
+		// Match senders to receivers
+		var senderIdx = 0;
+		var receiverIdx = 0;
+		
+		while (senderIdx < senders.length && receiverIdx < receivers.length) {
+			var sender = senders[senderIdx];
+			var receiver = receivers[receiverIdx];
+			
+			var amount = Math.min(sender.amount, receiver.amount);
+			
+			if (amount > 0) {
+				// Add cash from sender to receiver
+				tradeMachine.deal[receiver.id].cash.push({
+					type: 'cash',
+					id: sender.id + '-' + currentSeason,
+					amount: amount,
+					from: sender.id,
+					season: currentSeason
+				});
+			}
+			
+			sender.amount -= amount;
+			receiver.amount -= amount;
+			
+			if (sender.amount === 0) senderIdx++;
+			if (receiver.amount === 0) receiverIdx++;
+		}
+		
 		tradeMachine.redrawTradeMachine();
 	},
 
@@ -405,6 +566,10 @@ $(document).ready(function() {
 
 	$('.reset-trade-machine').on('click', (e) => {
 		tradeMachine.reset();
+	});
+
+	$('.cash-neutral-btn').on('click', (e) => {
+		tradeMachine.makeCashNeutral(currentSeason);
 	});
 
 	// Remove asset from deal
