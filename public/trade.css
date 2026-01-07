@@ -215,6 +215,23 @@ select.form-control {
 	display: none;
 }
 
+/* Vertically center empty state in two-column layout */
+@media (min-width: 1200px) {
+	.gets .col-xl-6:last-child {
+		display: flex;
+		align-items: center;
+	}
+	
+	.gets .assets-container {
+		width: 100%;
+	}
+	
+	.gets .empty-state {
+		text-align: center;
+	}
+}
+
+
 /* Budget impact table */
 .budget-impact .table {
 	font-size: 0.8rem;

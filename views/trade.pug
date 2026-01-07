@@ -99,46 +99,50 @@ block content
 										|  receive#{isPlural(franchise.displayName) ? '' : 's'}:
 								div.party-warnings.mb-2
 
-								//- Add Player
-								div.input-group.input-group-sm.mb-2
-									div.input-group-prepend
-										span.input-group-text.player-icon
-											i.fa.fa-user
-									select.player-list.form-control
-									div.input-group-append
-										button.add-player.btn.btn-primary(type="button")
-											i.fa.fa-plus
+								div.row
+									//- Input Form (left on large screens)
+									div.col-xl-6
+										//- Add Player
+										div.input-group.input-group-sm.mb-2
+											div.input-group-prepend
+												span.input-group-text.player-icon
+													i.fa.fa-user
+											select.player-list.form-control
+											div.input-group-append
+												button.add-player.btn.btn-primary(type="button")
+													i.fa.fa-plus
 
-								//- Add Pick
-								div.input-group.input-group-sm.mb-2
-									div.input-group-prepend
-										span.input-group-text.pick-icon
-											i.fa.fa-ticket
-									select.pick-list.form-control
-									div.input-group-append
-										button.add-pick.btn.btn-primary(type="button")
-											i.fa.fa-plus
+										//- Add Pick
+										div.input-group.input-group-sm.mb-2
+											div.input-group-prepend
+												span.input-group-text.pick-icon
+													i.fa.fa-ticket
+											select.pick-list.form-control
+											div.input-group-append
+												button.add-pick.btn.btn-primary(type="button")
+													i.fa.fa-plus
 
-								//- Add Cash
-								div.input-group.input-group-sm.mb-3
-									div.input-group-prepend
-										span.input-group-text.cash-icon $
-									input.amount.form-control(type="number" placeholder="Amount")
-									select.franchise-list.form-control
-									select.season-list.form-control
-										option #{parseInt(season)}
-										option #{parseInt(season) + 1}
-										option #{parseInt(season) + 2}
-									div.input-group-append
-										button.add-cash.btn.btn-primary(type="button")
-											i.fa.fa-plus
+										//- Add Cash
+										div.input-group.input-group-sm.mb-3.mb-xl-0
+											div.input-group-prepend
+												span.input-group-text.cash-icon $
+											input.amount.form-control(type="number" placeholder="Amount")
+											select.franchise-list.form-control
+											select.season-list.form-control
+												option #{parseInt(season)}
+												option #{parseInt(season) + 1}
+												option #{parseInt(season) + 2}
+											div.input-group-append
+												button.add-cash.btn.btn-primary(type="button")
+													i.fa.fa-plus
 
-								//- Assets List
-								div.assets-container
-									ul.assets.list-unstyled.mb-0
-										li.text-muted.empty-state
-											i.fa.fa-inbox.mr-2
-											| Nothing yet
+									//- Assets List (right on large screens)
+									div.col-xl-6
+										div.assets-container
+											ul.assets.list-unstyled.mb-0
+												li.text-muted.empty-state
+													i.fa.fa-inbox.mr-2
+													| Nothing yet
 
 								hr.party-separator
 
