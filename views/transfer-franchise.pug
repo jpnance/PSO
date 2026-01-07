@@ -33,12 +33,14 @@ block content
 				div.card-header
 					strong Select Franchise
 				div.card-body
-					div.form-group
-						label(for='franchiseId') Franchise
-						select#franchiseId.form-control(name='franchiseId' required)
-							option(value='') Select a franchise...
-							each f in franchises
-								option(value=f.id) #{f.displayName} (#{f.owners})
+					div.row
+						div.col-md-6
+							div.form-group
+								label(for='franchiseId') Franchise
+								select#franchiseId.form-control(name='franchiseId' required)
+									option(value='') Select a franchise...
+									each f in franchises
+										option(value=f.id) #{f.displayName} (#{f.owners})
 			
 			div.card.mb-4
 				div.card-header
