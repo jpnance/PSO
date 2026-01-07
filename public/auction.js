@@ -5,6 +5,7 @@ var pluralFranchises = ['Koci/Mueller', 'Schexes'];
 
 var socket;
 var socketHeartbeatInterval;
+var isReconnecting = false;
 
 var bidButtonTimeout;
 
@@ -261,6 +262,8 @@ function connectToWebSocket() {
 	socket.onmessage = handleMessage;
 
 	socket.onopen = function() {
+		isReconnecting = false;
+
 		socketHeartbeatInterval = setInterval(function() {
 			socket.send(JSON.stringify({
 				type: 'heartbeat'
@@ -271,11 +274,36 @@ function connectToWebSocket() {
 	}
 
 	socket.onclose = function() {
+		isReconnecting = false;
+
 		clearInterval(socketHeartbeatInterval);
 
 		dialog.showModal();
 	}
+
+	socket.onerror = function() {
+		isReconnecting = false;
+	}
 }
+
+function reconnectIfNeeded() {
+	if (isReconnecting) {
+		return;
+	}
+
+	if (socket.readyState === WebSocket.CLOSED || socket.readyState === WebSocket.CLOSING) {
+		isReconnecting = true;
+		connectToWebSocket();
+	}
+}
+
+document.addEventListener('visibilitychange', function() {
+	if (document.visibilityState === 'visible') {
+		reconnectIfNeeded();
+	}
+});
+
+window.addEventListener('focus', reconnectIfNeeded);
 
 function handleMessageLaggy(rawMessage) {
 	setTimeout(handleMessage.bind(null, rawMessage), 1000);
