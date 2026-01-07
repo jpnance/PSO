@@ -231,6 +231,11 @@ select.form-control {
 	}
 }
 
+/* Match asset list font size to input-group-sm */
+.assets {
+	font-size: 0.875rem;
+}
+
 
 /* Budget impact table */
 .budget-impact .table {
