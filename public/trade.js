@@ -395,19 +395,10 @@ var tradeMachine = {
 	},
 
 	updateTradeTools: () => {
-		var $card = $('.trade-tools-card');
 		var $btn = $('.cash-neutral-btn');
-		var franchises = tradeMachine.franchisesInvolved();
 		
 		// Update party-specific warnings
 		tradeMachine.updatePartyWarnings();
-		
-		if (franchises.length < 2) {
-			$card.addClass('d-none');
-			return;
-		}
-		
-		$card.removeClass('d-none');
 		
 		// Update cash-neutral button
 		if (tradeMachine.isCashNeutral(currentSeason)) {
@@ -469,6 +460,7 @@ var tradeMachine = {
 		});
 		
 		tradeMachine.updateTradeTools();
+		tradeMachine.renderBudgetImpact();
 	},
 
 	reset: () => {
@@ -505,6 +497,119 @@ var tradeMachine = {
 		});
 		
 		return deltas;
+	},
+
+	// Calculate budget impact per season for each franchise
+	// Returns { franchiseId: { 2025: delta, 2026: delta, 2027: delta } }
+	calculateBudgetImpact: () => {
+		var franchises = tradeMachine.franchisesInvolved();
+		var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+		var impact = {};
+		
+		// Initialize impact structure
+		franchises.forEach((fId) => {
+			impact[fId] = {};
+			seasons.forEach((s) => {
+				impact[fId][s] = 0;
+			});
+		});
+		
+		// Process players - salary affects budget for years the contract covers
+		franchises.forEach((receivingId) => {
+			var bucket = tradeMachine.deal[receivingId];
+			
+			bucket.players.forEach((player) => {
+				if (player.terms === 'rfa-rights') return;
+				
+				var salary = player.salary || 0;
+				var contract = player.contract; // e.g., "24/26" means 2024-2026
+				
+				// Parse contract end year
+				var endYear = null;
+				if (contract) {
+					var parts = contract.split('/');
+					if (parts.length === 2) {
+						var endYY = parseInt(parts[1]);
+						endYear = 2000 + endYY;
+					}
+				}
+				
+				seasons.forEach((season) => {
+					// Player's salary counts if contract extends through this season
+					if (endYear && season <= endYear) {
+						// Receiver gains this salary obligation
+						impact[receivingId][season] -= salary;
+						// Sender loses this salary obligation  
+						if (player.fromFranchiseId && impact[player.fromFranchiseId]) {
+							impact[player.fromFranchiseId][season] += salary;
+						}
+					}
+				});
+			});
+		});
+		
+		// Process cash - only affects the specific season
+		franchises.forEach((receivingId) => {
+			var bucket = tradeMachine.deal[receivingId];
+			
+			bucket.cash.forEach((c) => {
+				var season = c.season;
+				var amount = c.amount || 0;
+				
+				if (impact[receivingId][season] !== undefined) {
+					// Receiver gains cash (improves budget)
+					impact[receivingId][season] += amount;
+				}
+				if (c.from && impact[c.from] && impact[c.from][season] !== undefined) {
+					// Sender loses cash
+					impact[c.from][season] -= amount;
+				}
+			});
+		});
+		
+		return impact;
+	},
+
+	// Render the budget impact table
+	renderBudgetImpact: () => {
+		var $card = $('.budget-impact-card');
+		var $container = $('.budget-impact');
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		if (franchises.length < 2) {
+			$card.addClass('d-none');
+			$container.empty();
+			return;
+		}
+		
+		$card.removeClass('d-none');
+		
+		var impact = tradeMachine.calculateBudgetImpact();
+		var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+		
+		var html = '<table class="table table-sm table-borderless mb-0">';
+		html += '<thead><tr><th></th>';
+		seasons.forEach((s) => {
+			html += '<th class="text-right">' + s + '</th>';
+		});
+		html += '</tr></thead><tbody>';
+		
+		franchises.forEach((fId) => {
+			var name = tradeMachine.franchiseName(fId);
+			html += '<tr><td><strong>' + name + '</strong></td>';
+			seasons.forEach((s) => {
+				var delta = impact[fId][s];
+				var cls = delta > 0 ? 'text-success' : (delta < 0 ? 'text-danger' : 'text-muted');
+				var sign = delta > 0 ? '+' : (delta < 0 ? '-' : '');
+				var absValue = Math.abs(delta);
+				html += '<td class="text-right ' + cls + '">' + sign + '$' + absValue + '</td>';
+			});
+			html += '</tr>';
+		});
+		
+		html += '</tbody></table>';
+		
+		$container.html(html);
 	},
 
 	// Calculate net cash position for each franchise in current season

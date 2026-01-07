@@ -215,6 +215,22 @@ select.form-control {
 	display: none;
 }
 
+/* Budget impact table */
+.budget-impact .table {
+	font-size: 0.8rem;
+}
+
+.budget-impact .table th,
+.budget-impact .table td {
+	white-space: nowrap;
+	padding: 0.25rem 0.4rem;
+}
+
+.budget-impact .table th {
+	font-weight: 500;
+	color: #6c757d;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991px) {
 	.gets {
