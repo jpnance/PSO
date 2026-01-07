@@ -90,11 +90,10 @@ block content
 						each franchise in franchises
 							div.gets.d-none(id="gets-" + franchise._id)
 								//- Party Header
-								div.party-header.d-flex.justify-content-between.align-items-center.mb-2
+								div.party-header.mb-2
 									span.party-name
 										strong= franchise.displayName
 										|  receive#{isPlural(franchise.displayName) ? '' : 's'}:
-									span.badge.badge-light.asset-count 0 assets
 								div.party-warnings.mb-2
 
 								//- Add Player

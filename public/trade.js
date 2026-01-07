@@ -396,7 +396,6 @@ var tradeMachine = {
 		franchises.forEach((franchiseId, index) => {
 			var $franchiseSection = $('.gets[id=gets-' + franchiseId + ']');
 			var $franchiseAssetList = $franchiseSection.find('ul.assets');
-			var $assetCount = $franchiseSection.find('.asset-count');
 			var $separator = $franchiseSection.find('.party-separator');
 
 			$franchiseSection.removeClass('d-none');
@@ -410,10 +409,7 @@ var tradeMachine = {
 			}
 
 			var sortedAssets = tradeMachine.sortedAssetsForFranchise(franchiseId);
-
-			// Update asset count badge
 			var count = sortedAssets.length;
-			$assetCount.text(count + (count === 1 ? ' asset' : ' assets'));
 
 			if (count === 0) {
 				$franchiseAssetList.append($('<li class="text-muted empty-state"><i class="fa fa-inbox mr-2"></i>Nothing yet</li>'));
