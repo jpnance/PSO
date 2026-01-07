@@ -1,65 +1,65 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
-var request = require('superagent');
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+var Player = require('../models/Player');
+var Contract = require('../models/Contract');
+var Franchise = require('../models/Franchise');
 var PSO = require('../pso.js');
-var sleeperData = Object.values(require('../public/data/sleeper-data.json'));
 
-const siteData = {
-	sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered',
-};
-
-var newSheetsPromise = function() {
-	return new Promise(function(resolve, reject) {
-		request
-			.get(siteData.sheetLink)
-			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
-			.then((response) => {
-				var dataJson = JSON.parse(response.text);
-
-				var players = [];
-
-				dataJson.values.forEach((row, i) => {
-					if (i < 2 || i == dataJson.values.length - 1) {
-						return;
-					}
-
-					var player = {
-						owner: (row[0] != '') ? row[0] : undefined,
-						name: row[1],
-						positions: row[2].split('/'),
-						start: parseInt(row[3]) || 'FA',
-						end: parseInt(row[4]) || undefined,
-						salary: row[5] ? parseInt(row[5].replace('$', '')) : undefined
-					};
-
-					var sleeperPlayer = sleeperData.filter((sleeperPlayerData) => {
-						return sleeperPlayerData.search_full_name == player.name.replace(/[\. '-]/g, '').toLowerCase() && sleeperPlayerData.fantasy_positions.includes(player.positions[0]);
-					});
-
-					if (sleeperPlayer.length == 1) {
-						player.id = sleeperPlayer[0].player_id;
-					}
-					else {
-						if (player.name == 'Mike Williams' && player.positions.includes('WR')) {
-							player.id = '4068';
-						}
-						else if (player.name == 'Marcus Williams' && player.positions.includes('DB')) {
-							player.id = '4091';
-						}
-						else {
-							console.error(player);
-						}
-					}
-
-					players.push(player);
-				});
-
-				resolve(players);
-			});
+async function generatePlayersJson() {
+	// Load franchises to map _id -> owner name
+	var franchises = await Franchise.find({});
+	var franchiseNameById = {};
+	franchises.forEach(function(f) {
+		franchiseNameById[f._id.toString()] = PSO.franchises[f.sleeperRosterId];
 	});
-};
 
-newSheetsPromise().then((players) => {
-	console.log(JSON.stringify(players));
+	// Load all contracts and index by playerId
+	var contracts = await Contract.find({});
+	var contractByPlayerId = {};
+	contracts.forEach(function(c) {
+		contractByPlayerId[c.playerId.toString()] = c;
+	});
+
+	// Query fantasy-relevant players:
+	// active == true && (team != null || (searchRank != null && searchRank < 9999999))
+	var players = await Player.find({
+		sleeperId: { $ne: null },
+		active: true,
+		$or: [
+			{ team: { $ne: null } },
+			{ searchRank: { $ne: null, $lt: 9999999 } }
+		]
+	}).sort({ name: 1 });
+
+	var result = players.map(function(p) {
+		var contract = contractByPlayerId[p._id.toString()];
+
+		var player = {
+			name: p.name,
+			positions: p.positions,
+			id: p.sleeperId
+		};
+
+		// Add roster info if player has a contract
+		if (contract) {
+			player.owner = franchiseNameById[contract.franchiseId.toString()];
+			player.salary = contract.salary;
+			player.start = contract.startYear;
+			player.end = contract.endYear;
+		}
+
+		return player;
+	});
+
+	console.log(JSON.stringify(result));
+	process.exit(0);
+}
+
+generatePlayersJson().catch(function(err) {
+	console.error('Error:', err);
+	process.exit(1);
 });

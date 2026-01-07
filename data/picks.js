@@ -1,56 +1,47 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
-var request = require('superagent');
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+var Pick = require('../models/Pick');
+var Franchise = require('../models/Franchise');
 var PSO = require('../pso.js');
 
-const siteData = {
-	sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/',
-};
-
-var newSheetsPromise = function(season) {
-	return new Promise(function(resolve, reject) {
-		request
-			.get(siteData.sheetLink + season + ' Draft')
-			.query({ alt: 'json', key: process.env.GOOGLE_API_KEY })
-			.then(response => {
-				var dataJson = JSON.parse(response.text);
-
-				var picks = [];
-
-				dataJson.values.forEach((row, i) => {
-					if (!row[3]) {
-						picks.push({
-							season: season,
-							number: parseInt(row[0]),
-							round: parseInt(row[1]),
-							owner: row[2],
-							origin: row[4],
-							player: row[3]
-						});
-					}
-				});
-
-				resolve(picks);
-			});
-	});
-};
-
-var season = new Date().getFullYear();
-var sheetsPromises = [];
-
-[ season, season + 1, season + 2 ].forEach((year) => {
-	sheetsPromises.push(newSheetsPromise(year));
-});
-
-Promise.all(sheetsPromises).then((values) => {
-	var allPicks = [];
-
-	values.forEach((picks) => {
-		picks.forEach((pick) => {
-			allPicks.push(pick);
-		});
+async function generatePicksJson() {
+	// Load franchises to map _id -> owner name
+	var franchises = await Franchise.find({});
+	var franchiseNameById = {};
+	franchises.forEach(function(f) {
+		franchiseNameById[f._id.toString()] = PSO.franchises[f.sleeperRosterId];
 	});
 
-	console.log(JSON.stringify(allPicks));
+	// Get available picks for current and future seasons
+	var currentYear = new Date().getFullYear();
+	var picks = await Pick.find({
+		status: 'available',
+		season: { $gte: currentYear }
+	}).sort({ season: 1, round: 1, pickNumber: 1 });
+
+	var result = picks.map(function(p) {
+		var currentOwner = franchiseNameById[p.currentFranchiseId.toString()];
+		var originalOwner = franchiseNameById[p.originalFranchiseId.toString()];
+
+		return {
+			season: p.season,
+			number: p.pickNumber || null,
+			round: p.round,
+			owner: currentOwner,
+			origin: originalOwner !== currentOwner ? originalOwner : undefined,
+			player: null
+		};
+	});
+
+	console.log(JSON.stringify(result));
+	process.exit(0);
+}
+
+generatePicksJson().catch(function(err) {
+	console.error('Error:', err);
+	process.exit(1);
 });
