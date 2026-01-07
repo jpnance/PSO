@@ -8,6 +8,9 @@ var playerSchema = new Schema({
 	// Synced from Sleeper (for Sleeper-linked players)
 	college: { type: String, default: null },
 	rookieYear: { type: Number, default: null },
+	active: { type: Boolean, default: false },
+	team: { type: String, default: null },
+	searchRank: { type: Number, default: null },
 	// Manual field (never overwritten by sync)
 	notes: { type: String, default: null }
 });

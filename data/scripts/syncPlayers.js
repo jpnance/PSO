@@ -2,7 +2,7 @@
  * Sync players from Sleeper data.
  * 
  * This script can be run repeatedly to keep Player documents in sync with Sleeper:
- * - Updates name, positions, college, rookieYear for existing players (by sleeperId)
+ * - Updates name, positions, college, rookieYear, active, team, searchRank for existing players (by sleeperId)
  * - Creates new players that don't exist yet
  * - Does NOT touch historical players (those without sleeperId)
  * - Does NOT overwrite the `notes` field (manual data)
@@ -81,7 +81,10 @@ async function sync() {
 						name: p.full_name,
 						positions: p.fantasy_positions || [],
 						college: p.college || null,
-						rookieYear: getRookieYear(p)
+						rookieYear: getRookieYear(p),
+						active: p.active || false,
+						team: p.team || null,
+						searchRank: p.search_rank || null
 					}
 					// Note: `notes` is NOT included, so it won't be overwritten
 				},
