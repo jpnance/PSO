@@ -46,13 +46,6 @@ var tradeMachine = {
 		if (!pickId) return;
 		var pickData = tradeMachine.pickData(pickId);
 
-		if (pickData.origin.includes(')')) {
-			pickData.origin = pickData.origin.replace(')', ', via ' + pickData.owner + ')');
-		}
-		else if (!pickData.origin.startsWith(pickData.owner)) {
-			pickData.origin += ' (via ' + pickData.owner + ')';
-		}
-
 		if (!tradeMachine.deal[franchiseId].picks.find((pick) => pick.id == pickData.id)) {
 			tradeMachine.deal[franchiseId].picks.push(pickData);
 		}
