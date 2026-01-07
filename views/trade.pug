@@ -82,7 +82,7 @@ block content
 								div.card-header.d-flex.justify-content-between.align-items-center
 									span
 										strong= franchise.displayName
-										|  receives
+										|  receive#{isPlural(franchise.displayName) ? '' : 's'}
 									span.badge.badge-light.asset-count 0 assets
 
 								div.card-body
