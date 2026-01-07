@@ -1,0 +1,133 @@
+# Free Agency Player Pool Filtering - Sleeper Data Analysis
+
+## Overview
+
+This document summarizes analysis done on `public/data/sleeper-data.json` to determine
+optimal filtering criteria for building a free agency player pool. The goal is to show
+owners any player they could plausibly want to acquire during the season while excluding
+irrelevant entries.
+
+**Note**: The specific counts and numbers in this document were captured in January 2026
+and will fluctuate as Sleeper updates their data. The filtering logic and field behaviors
+should remain stable, but don't treat exact counts as gospel.
+
+## Data Source
+
+- File: `public/data/sleeper-data.json`
+- Total players: 11,403
+- Active players: 8,604
+
+## Relevant Fantasy Positions
+
+The league uses these fantasy-relevant positions:
+- Offense: QB, RB, WR, TE, K
+- IDP: DL, LB, DB
+
+## Key Fields
+
+### `position` vs `fantasy_positions`
+
+Use `fantasy_positions` (array), NOT `position` (string).
+
+- `position` has granular values (CB, S, SS, FS, DE, DT, NT, ILB, OLB) that aren't normalized
+- `fantasy_positions` is already normalized to fantasy categories (DB, DL, LB)
+- Some players have multiple fantasy positions (e.g., edge rushers may have both DL and LB)
+
+### `search_rank`
+
+Sleeper's internal search relevance ranking.
+
+- Values range from 1-2020 (ranked) or 9999999 (unranked placeholder)
+- No values exist between 2020 and 9999999
+- The sequence is sparse (not every integer 1-2020 is used)
+- `null` search_rank: 99 players with fantasy-relevant positions
+- 9999999 search_rank: 4,280 players with fantasy-relevant positions
+
+**IDP Caveat**: search_rank is unreliable for defensive players:
+- Offensive positions: ~35-42% have 9999999 (unranked)
+- IDP positions: 72-80% have 9999999 (unranked)
+
+This means filtering by search_rank alone would exclude too many legitimate IDP players.
+
+### `team`
+
+- `null` means unsigned free agent
+- Non-null means currently on an NFL roster
+- 5,766 of 8,604 active players have team == null
+
+### `active`
+
+- Boolean indicating if Sleeper considers the player "active"
+- Note: Some non-players (coaches, owners, front office) have active == true
+- Examples: Ryan Day, David Tepper, Rick Spielman, Jack Easterby
+- These are filtered out by requiring valid fantasy_positions
+
+### Other Fields
+
+- `status`: "Active", "Inactive", "Injured Reserve", "Practice Squad", etc.
+- `age`, `height`, `weight`, `number`: Some nulls exist but not useful for filtering
+- `years_exp`, `college`: Mostly populated, nulls are mostly team DEF entries
+
+## Recommended Filter
+
+```javascript
+// Include player if:
+// 1. Has a fantasy-relevant position, AND
+// 2. Either on an NFL team OR has a meaningful search_rank
+
+const isRelevantPosition = player.fantasy_positions?.some(pos => 
+  ['QB', 'RB', 'WR', 'TE', 'K', 'DL', 'LB', 'DB'].includes(pos)
+);
+
+const hasTeam = player.team != null;
+const hasRealSearchRank = player.search_rank != null && player.search_rank < 9999999;
+
+const includePlayer = player.active && isRelevantPosition && (hasTeam || hasRealSearchRank);
+```
+
+## Filter Results
+
+With the recommended filter:
+- **3,428 players** would be included (down from ~7,198 with just position filtering)
+
+### What Gets Excluded
+
+Players excluded by this filter are unsigned free agents with search_rank of 9999999.
+Sampling of excluded players confirms they are:
+- Washed/retired veterans (Rex Burkhead, Cameron Wake, Fletcher Cox, Trey Flowers)
+- Deep roster cuts who never stuck
+- Practice squad casualties
+- International pathway players who didn't make it
+
+### What Gets Included
+
+- All players currently on NFL rosters (in-season relevance)
+- Unsigned free agents with real search_rank (speculation targets)
+
+## Position Counts (Using fantasy_positions)
+
+Active players with fantasy-relevant positions:
+- WR: 1,237
+- DB: 1,655
+- DL: 1,397
+- LB: 1,167
+- RB: 683
+- TE: 587
+- QB: 327
+- K: 145
+
+## Implementation Notes
+
+1. The filter `team != null || (search_rank != null && search_rank < 9999999)` balances:
+   - In-season needs (all rostered players available)
+   - Speculation (notable unsigned FAs still searchable)
+
+2. For sorting/displaying players, `search_rank` ascending works well for offense
+   but may not reflect true IDP value due to the ranking bias toward offensive players.
+
+3. The 32 team defense entries (e.g., "HOU DEF") have null for height/weight/years_exp
+   but are filtered out by the fantasy_positions check since DEF is not in our list.
+
+## Files Generated During Analysis
+
+- `sleeper-top50-by-position.txt`: Top 50 players at each position by search_rank (ascending)
