@@ -119,6 +119,23 @@ select.form-control {
 	font-size: 0.875rem;
 }
 
+/* Franchise selection - 2 columns on small screens, 1 on large */
+.franchise-list {
+	column-count: 2;
+	column-gap: 1rem;
+}
+
+@media (min-width: 992px) {
+	.franchise-list {
+		column-count: 1;
+	}
+}
+
+/* Prevent items from breaking across columns */
+.franchise-list .form-check {
+	break-inside: avoid;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991px) {
 	.gets {

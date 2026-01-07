@@ -57,74 +57,75 @@ block content
 	div.container.py-4
 		h1.mb-4 Trade Machine
 
-		//- Franchise Selection Card
-		div.card.mb-4
-			div.card-header
-				strong Select Parties
-			div.card-body
-				div.row
-					each franchise in franchises
-						div.col-6.col-md-4.col-lg-3.mb-2
-							div.form-check
-								input.form-check-input(type="checkbox" id="check-" + franchise._id value=franchise._id)
-								label.form-check-label(for="check-" + franchise._id)= franchise.displayName
-				div.text-center.mt-3
-					button.reset-trade-machine.btn.btn-outline-secondary.btn-sm
-						i.fa.fa-refresh.mr-1
-						| Reset
-
-		//- Trade Builder Section
 		div.row
-			each franchise in franchises
-				div.col-lg-6.gets.d-none.mb-4(id="gets-" + franchise._id)
-					div.card.h-100
-						div.card-header.d-flex.justify-content-between.align-items-center
-							span
-								strong= franchise.displayName
-								|  receives
-							span.badge.badge-light.asset-count 0 assets
+			//- Franchise Selection Card (narrower on large screens)
+			div.col-lg-4.col-xl-3.mb-4
+				div.card
+					div.card-header
+						strong Select Parties
+					div.card-body
+						div.franchise-list
+							each franchise in franchises
+								div.form-check.mb-1
+									input.form-check-input(type="checkbox" id="check-" + franchise._id value=franchise._id)
+									label.form-check-label(for="check-" + franchise._id)= franchise.displayName
+						div.text-center.mt-3
+							button.reset-trade-machine.btn.btn-outline-secondary.btn-sm
+								i.fa.fa-refresh.mr-1
+								| Reset
 
-						div.card-body
-							//- Add Player
-							div.input-group.input-group-sm.mb-2
-								div.input-group-prepend
-									span.input-group-text
-										i.fa.fa-user
-								select.player-list.form-control
-								div.input-group-append
-									button.add-player.btn.btn-primary(type="button")
-										i.fa.fa-plus
+			//- Trade Builder Section
+			div.col-lg-8.col-xl-9
+				each franchise in franchises
+					div.gets.d-none.mb-4(id="gets-" + franchise._id)
+							div.card.h-100
+								div.card-header.d-flex.justify-content-between.align-items-center
+									span
+										strong= franchise.displayName
+										|  receives
+									span.badge.badge-light.asset-count 0 assets
 
-							//- Add Pick
-							div.input-group.input-group-sm.mb-2
-								div.input-group-prepend
-									span.input-group-text
-										i.fa.fa-ticket
-								select.pick-list.form-control
-								div.input-group-append
-									button.add-pick.btn.btn-primary(type="button")
-										i.fa.fa-plus
+								div.card-body
+									//- Add Player
+									div.input-group.input-group-sm.mb-2
+										div.input-group-prepend
+											span.input-group-text
+												i.fa.fa-user
+										select.player-list.form-control
+										div.input-group-append
+											button.add-player.btn.btn-primary(type="button")
+												i.fa.fa-plus
 
-							//- Add Cash
-							div.input-group.input-group-sm.mb-3
-								div.input-group-prepend
-									span.input-group-text $
-								input.amount.form-control(type="number" placeholder="Amount")
-								select.franchise-list.form-control
-								select.season-list.form-control
-									option #{parseInt(season)}
-									option #{parseInt(season) + 1}
-									option #{parseInt(season) + 2}
-								div.input-group-append
-									button.add-cash.btn.btn-primary(type="button")
-										i.fa.fa-plus
+									//- Add Pick
+									div.input-group.input-group-sm.mb-2
+										div.input-group-prepend
+											span.input-group-text
+												i.fa.fa-ticket
+										select.pick-list.form-control
+										div.input-group-append
+											button.add-pick.btn.btn-primary(type="button")
+												i.fa.fa-plus
 
-							//- Assets List
-							div.assets-container
-								ul.assets.list-unstyled.mb-0
-									li.text-muted.empty-state
-										i.fa.fa-inbox.mr-2
-										| Nothing yet
+									//- Add Cash
+									div.input-group.input-group-sm.mb-3
+										div.input-group-prepend
+											span.input-group-text $
+										input.amount.form-control(type="number" placeholder="Amount")
+										select.franchise-list.form-control
+										select.season-list.form-control
+											option #{parseInt(season)}
+											option #{parseInt(season) + 1}
+											option #{parseInt(season) + 2}
+										div.input-group-append
+											button.add-cash.btn.btn-primary(type="button")
+												i.fa.fa-plus
+
+									//- Assets List
+									div.assets-container
+										ul.assets.list-unstyled.mb-0
+											li.text-muted.empty-state
+												i.fa.fa-inbox.mr-2
+												| Nothing yet
 
 block scripts
 	script(src='/trade.js')
