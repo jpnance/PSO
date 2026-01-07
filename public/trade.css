@@ -185,7 +185,21 @@ select.form-control {
 	break-inside: avoid;
 }
 
-/* Party warnings in card headers */
+/* Party sections within Trade Details card */
+.party-header {
+	margin-bottom: 0.75rem;
+}
+
+.party-name {
+	font-size: 1rem;
+}
+
+.party-separator {
+	margin: 1.5rem 0;
+	border-top: 2px solid #e9ecef;
+}
+
+/* Party warnings */
 .party-warnings {
 	display: flex;
 	flex-wrap: wrap;
@@ -195,6 +209,10 @@ select.form-control {
 .party-warnings .badge {
 	font-size: 0.75rem;
 	font-weight: 500;
+}
+
+.party-warnings:empty {
+	display: none;
 }
 
 /* Responsive adjustments */

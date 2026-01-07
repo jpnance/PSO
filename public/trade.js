@@ -383,14 +383,31 @@ var tradeMachine = {
 
 	redrawTradeMachine: () => {
 		$('.gets').addClass('d-none');
+		
+		var franchises = tradeMachine.franchisesInvolved();
+		
+		// Show/hide the Trade Details card wrapper
+		if (franchises.length >= 2) {
+			$('.trade-details-card').removeClass('d-none');
+		} else {
+			$('.trade-details-card').addClass('d-none');
+		}
 
-		tradeMachine.franchisesInvolved().forEach((franchiseId) => {
+		franchises.forEach((franchiseId, index) => {
 			var $franchiseSection = $('.gets[id=gets-' + franchiseId + ']');
 			var $franchiseAssetList = $franchiseSection.find('ul.assets');
 			var $assetCount = $franchiseSection.find('.asset-count');
+			var $separator = $franchiseSection.find('.party-separator');
 
 			$franchiseSection.removeClass('d-none');
 			$franchiseAssetList.empty();
+			
+			// Hide separator on last party
+			if (index === franchises.length - 1) {
+				$separator.addClass('d-none');
+			} else {
+				$separator.removeClass('d-none');
+			}
 
 			var sortedAssets = tradeMachine.sortedAssetsForFranchise(franchiseId);
 

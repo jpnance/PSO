@@ -83,60 +83,62 @@ block content
 
 			//- Trade Builder Section
 			div.col-lg-8.col-xl-9
-				each franchise in franchises
-					div.gets.d-none.mb-4(id="gets-" + franchise._id)
-							div.card.h-100
-								div.card-header
-									div.d-flex.justify-content-between.align-items-center
-										span
-											strong= franchise.displayName
-											|  receive#{isPlural(franchise.displayName) ? '' : 's'}
-										span.badge.badge-light.asset-count 0 assets
-									div.party-warnings.mt-2
+				div.card.trade-details-card.d-none
+					div.card-header
+						strong Trade Details
+					div.card-body
+						each franchise in franchises
+							div.gets.d-none(id="gets-" + franchise._id)
+								//- Party Header
+								div.party-header.d-flex.justify-content-between.align-items-center.mb-2
+									span.party-name
+										strong= franchise.displayName
+										|  receive#{isPlural(franchise.displayName) ? '' : 's'}:
+									span.badge.badge-light.asset-count 0 assets
+								div.party-warnings.mb-2
 
-								div.card-body
-									//- Add Player
-									div.input-group.input-group-sm.mb-2
-										div.input-group-prepend
-											span.input-group-text.player-icon
-												i.fa.fa-user
-										select.player-list.form-control
-										div.input-group-append
-											button.add-player.btn.btn-primary(type="button")
-												i.fa.fa-plus
+								//- Add Player
+								div.input-group.input-group-sm.mb-2
+									div.input-group-prepend
+										span.input-group-text.player-icon
+											i.fa.fa-user
+									select.player-list.form-control
+									div.input-group-append
+										button.add-player.btn.btn-primary(type="button")
+											i.fa.fa-plus
 
-									//- Add Pick
-									div.input-group.input-group-sm.mb-2
-										div.input-group-prepend
-											span.input-group-text.pick-icon
-												i.fa.fa-ticket
-										select.pick-list.form-control
-										div.input-group-append
-											button.add-pick.btn.btn-primary(type="button")
-												i.fa.fa-plus
+								//- Add Pick
+								div.input-group.input-group-sm.mb-2
+									div.input-group-prepend
+										span.input-group-text.pick-icon
+											i.fa.fa-ticket
+									select.pick-list.form-control
+									div.input-group-append
+										button.add-pick.btn.btn-primary(type="button")
+											i.fa.fa-plus
 
-									//- Add Cash
-									div.input-group.input-group-sm.mb-3
-										div.input-group-prepend
-											span.input-group-text.cash-icon $
-										input.amount.form-control(type="number" placeholder="Amount")
-										select.franchise-list.form-control
-										select.season-list.form-control
-											option #{parseInt(season)}
-											option #{parseInt(season) + 1}
-											option #{parseInt(season) + 2}
-										div.input-group-append
-											button.add-cash.btn.btn-primary(type="button")
-												i.fa.fa-plus
+								//- Add Cash
+								div.input-group.input-group-sm.mb-3
+									div.input-group-prepend
+										span.input-group-text.cash-icon $
+									input.amount.form-control(type="number" placeholder="Amount")
+									select.franchise-list.form-control
+									select.season-list.form-control
+										option #{parseInt(season)}
+										option #{parseInt(season) + 1}
+										option #{parseInt(season) + 2}
+									div.input-group-append
+										button.add-cash.btn.btn-primary(type="button")
+											i.fa.fa-plus
 
-									hr.asset-separator
+								//- Assets List
+								div.assets-container
+									ul.assets.list-unstyled.mb-0
+										li.text-muted.empty-state
+											i.fa.fa-inbox.mr-2
+											| Nothing yet
 
-									//- Assets List
-									div.assets-container
-										ul.assets.list-unstyled.mb-0
-											li.text-muted.empty-state
-												i.fa.fa-inbox.mr-2
-												| Nothing yet
+								hr.party-separator
 
 block scripts
 	script.
