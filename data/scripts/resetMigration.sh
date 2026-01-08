@@ -18,11 +18,10 @@
 
 set -e
 
-# Load .env so we have the same vars as Docker
+# Load specific vars from .env (can't source directly due to JSON values)
 if [ -f .env ]; then
-    set -a
-    source .env
-    set +a
+    SEASON=$(grep '^SEASON=' .env | cut -d'=' -f2)
+    GOOGLE_API_KEY=$(grep '^GOOGLE_API_KEY=' .env | cut -d'=' -f2)
 fi
 
 DRY_RUN=false
