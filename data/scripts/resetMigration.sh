@@ -18,6 +18,13 @@
 
 set -e
 
+# Load .env so we have the same vars as Docker
+if [ -f .env ]; then
+    set -a
+    source .env
+    set +a
+fi
+
 DRY_RUN=false
 if [ "$1" = "--dry-run" ]; then
     DRY_RUN=true
@@ -62,11 +69,11 @@ else
 fi
 
 echo -n "Checking WordPress API... "
-if curl -s --max-time 5 "https://www.psofantasyfootball.com" > /dev/null 2>&1; then
+if curl -s --max-time 5 "https://thedynastyleague.wordpress.com" > /dev/null 2>&1; then
     echo "✓ WordPress API reachable"
 else
     echo ""
-    echo "ERROR: Cannot reach WordPress API (psofantasyfootball.com)"
+    echo "ERROR: Cannot reach WordPress API (thedynastyleague.wordpress.com)"
     echo "  Check your network connection"
     PREFLIGHT_FAILED=true
 fi
