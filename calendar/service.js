@@ -179,7 +179,7 @@ async function calendar(request, response) {
 			phaseName: getPhaseName(phase),
 			events: events,
 			nextEvent: nextEvent,
-			pageTitle: config.season + ' Calendar - PSO',
+			pageTitle: 'League Calendar - PSO',
 			activePage: 'calendar'
 		});
 	} catch (err) {

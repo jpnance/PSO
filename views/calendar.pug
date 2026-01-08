@@ -5,9 +5,7 @@ block styles
 
 block content
 	div.container.py-4
-		div.header-section
-			div.season-badge= season
-			h1.mb-2 League Calendar
+		h1.text-center.mb-4 League Calendar
 
 		if nextEvent && !nextEvent.isToday
 			div.next-event-banner
