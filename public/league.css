@@ -182,34 +182,57 @@ nav a:hover {
 }
 
 /* Standings Widget */
+.standings-widget {
+	max-width: 100%;
+	overflow: hidden;
+}
+
 .standings-widget .card-body {
 	padding: 0;
 }
 
 .standings-table {
 	font-size: 0.85rem;
+	table-layout: fixed;
+	width: 100%;
 }
 
 .standings-table thead th {
 	border-top: none;
 	font-weight: 600;
-	font-size: 0.75rem;
+	font-size: 0.7rem;
 	color: #6c757d;
 	text-transform: uppercase;
+	padding: 0.3rem 0.4rem;
 }
 
 .standings-table tbody td {
 	vertical-align: top;
+	padding: 0.3rem 0.4rem;
+}
+
+.standings-table .col-rank {
+	width: 2rem;
+}
+
+.standings-table .col-record {
+	width: 3rem;
+}
+
+.standings-table .col-stat {
+	width: 5rem;
 }
 
 .standings-table .rank {
 	font-weight: 600;
 	color: #6c757d;
-	width: 1.5rem;
 }
 
 .standings-table .name {
 	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .standings-table .playoff-stat {

@@ -47,7 +47,7 @@ block content
 							a.btn.btn-sm.btn-outline-secondary(href='/calendar') View Full Calendar
 			
 			//- Standings widget
-			div.col-md-6.col-lg-4.col-xl-3.mb-4
+			div.col-md-6.col-lg-4.col-xl-4.mb-4
 				if standings && standings.standings && standings.standings.length > 0
 					div.card.standings-widget
 						div.card-header
@@ -62,11 +62,11 @@ block content
 							table.table.table-sm.standings-table.mb-0
 								thead
 									tr
-										th
-										th
-										th.text-right Record
-										th.text-right PF
-										th.text-right PA
+										th.col-rank
+										th.col-name
+										th.col-record.text-right W-L
+										th.col-stat.text-right PF
+										th.col-stat.text-right PA
 								tbody
 									each team, idx in standings.standings
 										-
