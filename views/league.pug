@@ -77,7 +77,8 @@ block content
 												else if (idx === 2) rowClass = 'bronze-row';
 											}
 											var isPlayoffCutoff = idx === 3;
-										tr(class=rowClass + (isPlayoffCutoff ? ' playoff-cutoff' : ''))
+											var isUserTeam = userFranchiseName && team.name === userFranchiseName;
+										tr(class=rowClass + (isPlayoffCutoff ? ' playoff-cutoff' : '') + (isUserTeam ? ' user-team' : ''))
 											td.rank= team.rank
 											td.name= team.name
 											td.text-right

@@ -235,6 +235,11 @@ nav a:hover {
 	white-space: nowrap;
 }
 
+.standings-table .user-team td {
+	font-weight: 700;
+	font-style: italic;
+}
+
 .standings-table .playoff-stat {
 	font-size: 0.8rem;
 	color: #6c757d;
