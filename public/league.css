@@ -134,3 +134,197 @@ nav a:hover {
 .picks-table thead th:first-child {
 	padding-left: 0.75rem;
 }
+
+/* ===== League Overview Widgets ===== */
+
+/* Calendar Widget */
+.calendar-widget .card-body {
+	padding: 1rem;
+}
+
+.phase-badge .badge-phase {
+	font-size: 0.9rem;
+	padding: 0.4rem 0.75rem;
+	background-color: #495057;
+	color: white;
+}
+
+.upcoming-events {
+	border-left: 3px solid #dee2e6;
+	padding-left: 0.75rem;
+}
+
+.event-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.35rem 0;
+	font-size: 0.9rem;
+}
+
+.event-row.next-event {
+	font-weight: 600;
+	color: #007bff;
+}
+
+.event-row .event-name {
+	flex: 1;
+}
+
+.event-row .event-date {
+	color: #6c757d;
+	font-size: 0.85rem;
+}
+
+.event-row .tentative {
+	color: #dc3545;
+	font-size: 0.75rem;
+}
+
+/* Standings Widget */
+.standings-widget .card-body {
+	padding: 0;
+}
+
+.standings-table {
+	font-size: 0.85rem;
+}
+
+.standings-table thead th {
+	border-top: none;
+	font-weight: 600;
+	font-size: 0.75rem;
+	color: #6c757d;
+	text-transform: uppercase;
+}
+
+.standings-table tbody td {
+	vertical-align: top;
+}
+
+.standings-table .rank {
+	font-weight: 600;
+	color: #6c757d;
+	width: 1.5rem;
+}
+
+.standings-table .name {
+	font-weight: 500;
+}
+
+.standings-table .playoff-stat {
+	font-size: 0.8rem;
+	color: #6c757d;
+}
+
+/* Gold/Silver/Bronze rows for finalized standings */
+.standings-table .gold-row td {
+	background-color: #fff9e6;
+}
+
+.standings-table .silver-row td {
+	background-color: #f8f8f8;
+}
+
+.standings-table .bronze-row td {
+	background-color: #fff5ef;
+}
+
+/* Playoff cutoff line below 4th place */
+.standings-table .playoff-cutoff td {
+	border-bottom: 1px solid #6c757d;
+}
+
+/* Schedule Widget */
+.schedule-widget .card-body {
+	padding: 0.5rem 0.75rem;
+}
+
+.schedule-widget .matchup {
+	padding: 0.4rem 0;
+}
+
+.schedule-widget .matchup + .matchup {
+	border-top: 1px solid #eee;
+}
+
+.schedule-widget .competitor {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.1rem 0;
+}
+
+.schedule-widget .competitor .team-name {
+	font-weight: 500;
+}
+
+.schedule-widget .competitor .team-record {
+	color: #6c757d;
+	font-size: 0.9em;
+}
+
+.schedule-widget .competitor .seed {
+	color: #6c757d;
+	font-size: 0.85em;
+}
+
+.schedule-widget .competitor .result {
+	white-space: nowrap;
+}
+
+.schedule-widget .competitor .score {
+	font-size: 0.9em;
+}
+
+.schedule-widget .competitor .chevron {
+	margin-left: 0.3em;
+	visibility: hidden;
+}
+
+.schedule-widget .competitor.winner .team-name {
+	font-weight: 600;
+}
+
+.schedule-widget .competitor.winner .score {
+	font-weight: 600;
+}
+
+.schedule-widget .competitor.winner .chevron {
+	visibility: visible;
+}
+
+.schedule-widget .competitor.loser {
+	color: #6c757d;
+}
+
+/* Divider before third place game */
+.schedule-widget .game-label.third-place-label {
+	margin-top: 0.5rem;
+	padding-top: 0.5rem;
+	border-top: 1px solid #eee;
+}
+
+.schedule-widget .section-label {
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #6c757d;
+	letter-spacing: 0.05em;
+	padding-bottom: 0.25rem;
+	border-bottom: 1px solid #dee2e6;
+	margin-bottom: 0.5rem;
+}
+
+.schedule-widget .game-label {
+	font-size: 0.8rem;
+	color: #6c757d;
+	font-style: italic;
+	text-align: center;
+	margin-top: 0.25rem;
+}
+
+.schedule-widget .tbd-text {
+	color: #6c757d;
+	font-style: italic;
+}

@@ -8,10 +8,157 @@ block content
 		function formatMoney(n) {
 			return n.toLocaleString();
 		}
+		function formatRecord(w, l, t) {
+			if (t && t > 0) {
+				return w + '-' + l + '-' + t;
+			}
+			return w + '-' + l;
+		}
+		function formatPoints(n) {
+			return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+		}
 
 	div.container-fluid.py-4
 		h1.text-center.mb-4 League Overview
 		
+		div.row
+			//- Calendar widget
+			div.col-md-6.col-lg-4.mb-4
+				div.card.calendar-widget
+					div.card-header
+						i.fa.fa-calendar.mr-2
+						| #{currentSeason} Calendar
+					div.card-body
+						div.phase-badge.mb-3
+							span.badge.badge-phase= phaseName
+						if upcomingEvents && upcomingEvents.length > 0
+							div.upcoming-events
+								each event, idx in upcomingEvents
+									if idx < 4
+										div.event-row(class=(idx === 0 ? 'next-event' : ''))
+											span.event-name= event.name
+											span.event-date
+												= event.shortDate
+												if event.tentative
+													span.tentative  *
+						else
+							p.text-muted.mb-0 No upcoming events
+						div.mt-3
+							a.btn.btn-sm.btn-outline-secondary(href='/calendar') View Full Calendar
+			
+			//- Standings widget
+			div.col-md-6.col-lg-4.col-xl-3.mb-4
+				if standings && standings.standings && standings.standings.length > 0
+					div.card.standings-widget
+						div.card-header
+							i.fa.fa-list-ol.mr-2
+							if standings.isPreviousSeason
+								| #{standings.season} Final Standings
+							else if standings.isFinal
+								| #{standings.season} Final Standings
+							else
+								| #{standings.season} Standings
+						div.card-body.p-0
+							table.table.table-sm.standings-table.mb-0
+								thead
+									tr
+										th
+										th
+										th.text-right Record
+										th.text-right PF
+										th.text-right PA
+								tbody
+									each team, idx in standings.standings
+										-
+											var rowClass = '';
+											if (standings.isFinal || standings.isPreviousSeason) {
+												if (idx === 0) rowClass = 'gold-row';
+												else if (idx === 1) rowClass = 'silver-row';
+												else if (idx === 2) rowClass = 'bronze-row';
+											}
+											var isPlayoffCutoff = idx === 3;
+										tr(class=rowClass + (isPlayoffCutoff ? ' playoff-cutoff' : ''))
+											td.rank= team.rank
+											td.name= team.name
+											td.text-right
+												| #{formatRecord(team.wins, team.losses, team.ties)}
+												if team.isPlayoffTeam
+													br
+													span.playoff-stat #{team.playoffWins}-#{team.playoffLosses}
+											td.text-right
+												| #{formatPoints(team.pointsFor)}
+												if team.isPlayoffTeam
+													br
+													span.playoff-stat #{formatPoints(team.playoffPointsFor)}
+											td.text-right
+												| #{formatPoints(team.pointsAgainst)}
+												if team.isPlayoffTeam
+													br
+													span.playoff-stat #{formatPoints(team.playoffPointsAgainst)}
+			
+			//- Schedule widget
+			if schedule && schedule.sections && schedule.sections.length > 0
+				div.col-md-6.col-lg-4.col-xl-3.mb-4
+					div.card.schedule-widget
+						div.card-header
+							i.fa.fa-football-o.mr-2
+							= schedule.title
+						div.card-body
+							-
+								// Sort games to put user's game first (for regular season / semifinals only)
+								function sortGamesForUser(games, userName) {
+									if (!userName || !games) return games;
+									// Don't sort championship round games (they have type property)
+									if (games.some(function(g) { return g.type === 'championship' || g.type === 'thirdPlace'; })) {
+										return games;
+									}
+									return games.slice().sort(function(a, b) {
+										var aHasUser = a.away.name === userName || a.home.name === userName;
+										var bHasUser = b.away.name === userName || b.home.name === userName;
+										if (aHasUser && !bHasUser) return -1;
+										if (!aHasUser && bHasUser) return 1;
+										return 0;
+									});
+								}
+								function formatScore(score) {
+									if (score == null) return '';
+									return score.toFixed(2);
+								}
+							each section, sectionIdx in schedule.sections
+								if section.label
+									div.section-label(class=(sectionIdx > 0 ? 'mt-3' : ''))= section.label
+								if section.tbd
+									div.tbd-text TBD
+								else if section.games
+									- var sortedGames = sortGamesForUser(section.games, userFranchiseName)
+									each game in sortedGames
+										if game.label
+											div.game-label(class={'third-place-label': game.type === 'thirdPlace'})= game.label
+										div.matchup
+											div.competitor(class={winner: game.away.won, loser: game.home.won})
+												span.team-name
+													if game.away.seed
+														span.seed ##{game.away.seed} 
+													= game.away.name
+													if game.away.record
+														span.team-record  (#{game.away.record})
+												if game.away.score != null
+													span.result
+														span.score= formatScore(game.away.score)
+														span.chevron ‹
+											div.competitor(class={winner: game.home.won, loser: game.away.won})
+												span.team-name
+													if game.home.seed
+														span.seed ##{game.home.seed} 
+													= game.home.name
+													if game.home.record
+														span.team-record  (#{game.home.record})
+												if game.home.score != null
+													span.result
+														span.score= formatScore(game.home.score)
+														span.chevron ‹
+		
+		h5.mb-3 Franchises
 		div.row
 			each franchise in franchises
 				div.col-md-6.col-lg-4.col-xl-3.mb-4

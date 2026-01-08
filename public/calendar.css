@@ -14,30 +14,8 @@ body {
 	max-width: 700px;
 }
 
-/* Header Section */
-.header-section {
-	text-align: center;
-	margin-bottom: 2.5rem;
-	padding-top: 1rem;
-}
-
-.season-badge {
-	display: inline-block;
-	background: #343a40;
-	color: white;
-	font-size: 1.1rem;
-	font-weight: 700;
-	padding: 0.4rem 1.2rem;
-	border-radius: 2rem;
-	margin-bottom: 0.75rem;
-	letter-spacing: 0.05em;
-}
-
 h1 {
 	color: #343a40;
-	font-weight: 300;
-	font-size: 2.2rem;
-	letter-spacing: -0.02em;
 }
 
 

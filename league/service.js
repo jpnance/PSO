@@ -7,6 +7,65 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
+var standingsHelper = require('../helpers/standings');
+var scheduleHelper = require('../helpers/schedule');
+
+// Calendar helpers
+function formatShortDate(date) {
+	if (!date) return null;
+	var options = { month: 'short', day: 'numeric' };
+	return new Date(date).toLocaleDateString('en-US', options);
+}
+
+function isPast(date) {
+	if (!date) return false;
+	var today = new Date();
+	today.setHours(0, 0, 0, 0);
+	return new Date(date) < today;
+}
+
+function getUpcomingEvents(config) {
+	var events = [
+		{ key: 'tradeWindow', name: 'Trade Window Opens', date: config.tradeWindow },
+		{ key: 'nflDraft', name: 'NFL Draft', date: config.nflDraft },
+		{ key: 'cutDay', name: 'Cut Day', date: config.cutDay, tentative: config.cutDayTentative },
+		{ key: 'draftDay', name: 'Draft Day', date: config.draftDay, tentative: config.draftDayTentative },
+		{ key: 'contractsDue', name: 'Contracts Due', date: config.contractsDue, tentative: config.contractsDueTentative },
+		{ key: 'faab', name: 'FAAB Begins', date: config.faab },
+		{ key: 'nflSeason', name: 'NFL Season Kicks Off', date: config.nflSeason },
+		{ key: 'tradeDeadline', name: 'Trade Deadline', date: config.tradeDeadline },
+		{ key: 'playoffs', name: 'Playoffs Begin', date: config.playoffs },
+		{ key: 'deadPeriod', name: 'Dead Period', date: config.deadPeriod }
+	];
+
+	// Filter to future events and format
+	var upcoming = events
+		.filter(function(e) { return e.date && !isPast(e.date); })
+		.map(function(e) {
+			return {
+				name: e.name,
+				date: e.date,
+				shortDate: formatShortDate(e.date),
+				tentative: e.tentative || false
+			};
+		})
+		.sort(function(a, b) { return new Date(a.date) - new Date(b.date); });
+
+	return upcoming;
+}
+
+function getPhaseName(phase) {
+	var names = {
+		'dead-period': 'Dead Period',
+		'early-offseason': 'Offseason',
+		'pre-season': 'Pre-Season',
+		'regular-season': 'Regular Season',
+		'post-deadline': 'Post-Deadline',
+		'playoff-fa': 'Playoff FA Period',
+		'unknown': 'Unknown'
+	};
+	return names[phase] || phase;
+}
 
 // Buy-out calculation based on contract year
 function computeBuyOutIfCut(salary, startYear, endYear, season) {
@@ -312,9 +371,47 @@ async function overview(request, response) {
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		
 		var franchises = await getLeagueOverview(currentSeason);
+		
+		// Get standings - try current season first, fall back to previous season
+		var standingsData = await standingsHelper.getStandingsForSeason(currentSeason);
+		if (!standingsData || standingsData.gamesPlayed === 0) {
+			// No games this season yet, show last season's final standings
+			standingsData = await standingsHelper.getStandingsForSeason(currentSeason - 1);
+			if (standingsData) {
+				standingsData.isPreviousSeason = true;
+			}
+		}
+		
+		// Get calendar data
+		var phase = config ? config.getPhase() : 'unknown';
+		var phaseName = getPhaseName(phase);
+		var upcomingEvents = config ? getUpcomingEvents(config) : [];
+		
+		// Get schedule widget data
+		var cutDay = config ? config.cutDay : null;
+		var scheduleData = await scheduleHelper.getScheduleWidget(currentSeason, phase, cutDay);
+		
+		// Find current user's franchise name (if logged in)
+		var userFranchiseName = null;
+		if (request.user) {
+			var userRegime = await Regime.findOne({
+				ownerIds: request.user._id,
+				$or: [{ endSeason: null }, { endSeason: { $gte: currentSeason } }]
+			});
+			if (userRegime) {
+				userFranchiseName = userRegime.displayName;
+			}
+		}
+		
 		response.render('league', { 
 			franchises: franchises, 
 			currentSeason: currentSeason,
+			standings: standingsData,
+			schedule: scheduleData,
+			userFranchiseName: userFranchiseName,
+			phase: phase,
+			phaseName: phaseName,
+			upcomingEvents: upcomingEvents,
 			pageTitle: 'League Overview - PSO',
 			activePage: 'league'
 		});
