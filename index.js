@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var formatPick = require('./helpers/formatPick');
+var { attachSession } = require('./auth/middleware');
 var app = express();
 
 app.use(bodyParser.json());
@@ -15,6 +16,15 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.set('view engine', 'pug');
+
+// Attach session to all requests
+app.use(attachSession);
+
+// Make user available to all templates
+app.use(function(req, res, next) {
+	res.locals.user = req.user;
+	next();
+});
 
 // Make helpers available to all templates
 app.locals.formatPickDisplay = formatPick.formatPickDisplay;

@@ -3,6 +3,8 @@ version: '3.6'
 services:
   web:
     container_name: pso-web
+    extra_hosts:
+      - "login.coinflipper.local:host-gateway"
     profiles:
       - main
       - postseason

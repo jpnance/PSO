@@ -54,6 +54,7 @@ function getAllPeople() {
 	return Array.from(people).sort();
 }
 
+
 // Build regimes from the franchiseNames data
 function buildRegimes() {
 	var regimes = [];
@@ -124,9 +125,10 @@ async function seed() {
 	var personMap = {};
 	for (var i = 0; i < people.length; i++) {
 		var name = people[i];
-		var doc = await Person.create({ name: name });
+		var username = Person.generateUsername(name);
+		var doc = await Person.create({ name: name, username: username });
 		personMap[name] = doc;
-		console.log('  Created person', doc.name);
+		console.log('  Created person', doc.name, '(' + doc.username + ')');
 	}
 
 	// Seed regimes

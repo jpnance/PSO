@@ -362,7 +362,8 @@ async function transferFranchise(request, response) {
 	// Find or create the person
 	var person = await Person.findOne({ name: newOwnerName });
 	if (!person) {
-		person = await Person.create({ name: newOwnerName });
+		var username = Person.generateUsername(newOwnerName);
+		person = await Person.create({ name: newOwnerName, username: username });
 	}
 	
 	// End the current regime

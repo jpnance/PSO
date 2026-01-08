@@ -10,11 +10,17 @@ var trades = require('./trades/service.js');
 var propose = require('./propose/service.js');
 var calendar = require('./calendar/service.js');
 var rookies = require('./rookies/service.js');
+var auth = require('./auth/service.js');
+var { requireLogin, requireAdmin } = require('./auth/middleware.js');
 
 module.exports = function(app) {
-	app.get('/', function(request, response) {
-		response.redirect('https://thedynastyleague.wordpress.com/');
-	});
+	app.get('/', league.overview);
+
+	// Auth routes
+	app.get('/login', auth.loginPage);
+	app.get('/auth/callback', auth.authCallback);
+	app.get('/logout', auth.logout);
+	app.get('/logout/all', auth.logoutAll);
 
 	app.get('/league', league.overview);
 	app.get('/league/franchise/:id', league.franchise);

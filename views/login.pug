@@ -1,0 +1,45 @@
+extends layout
+
+block content
+	div.container.py-4
+		div.row.justify-content-center
+			div.col-12.col-md-6.col-lg-4
+				h1.mb-4 Log In
+
+				if success
+					div.alert.alert-success(role='alert') #{success.message}
+				else
+					if error
+						div.alert.alert-danger(role='alert') #{error.message}
+
+					form#login-form(action=process.env.LOGIN_SERVICE_PUBLIC + '/links/create' method='POST')
+						div.form-group
+							label(for='email') Email Address
+							input.form-control(type='email' id='email' name='email' required)
+
+						input(type='hidden' name='sendLoginLink' value='true')
+						input(type='hidden' name='tokenCallbackUrl' value=process.env.AUTH_CALLBACK_URL)
+
+						button.btn.btn-primary(type='submit') Send Me a Login Link
+
+block scripts
+	script.
+		$('#login-form').on('submit', function(e) {
+			var $form = $(this);
+			var $btn = $form.find('button[type=submit]');
+			
+			$btn.attr('disabled', true).text('Sending...');
+			e.preventDefault();
+
+			$.post($form.attr('action'), $form.serializeArray(), function() {
+				window.location = '/login?success=email-sent';
+			}).fail(function(response) {
+				if (response.status == 400) {
+					window.location = '/login?error=invalid-email';
+				} else if (response.status == 404) {
+					window.location = '/login?error=not-found';
+				} else {
+					window.location = '/login?error=unknown';
+				}
+			});
+		});
