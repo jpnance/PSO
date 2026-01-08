@@ -158,6 +158,8 @@ async function getStandingsForSeason(season) {
 	// Build standings array
 	var allTeams = [];
 	for (var ownerId in owners) {
+		// Set tiebreaker to pointsFor for sorting
+		owners[ownerId].tiebreaker = owners[ownerId].pointsFor;
 		allTeams.push(owners[ownerId]);
 	}
 
