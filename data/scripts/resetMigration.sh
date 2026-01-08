@@ -225,9 +225,9 @@ echo ""
 # Step 4: Seed contracts (interactive)
 echo "=== Step 4: Seeding contracts (interactive) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm -it web node data/scripts/seedContracts.js"
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedContracts.js"
 else
-    $DOCKER_COMPOSE run --rm -it web node data/scripts/seedContracts.js
+    $DOCKER_COMPOSE run --rm web node data/scripts/seedContracts.js
 fi
 echo ""
 
@@ -252,27 +252,27 @@ echo ""
 # Step 7: Seed trades (interactive, needs network)
 echo "=== Step 7: Seeding trades (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm -it web node data/scripts/seedTrades.js"
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js"
 else
-    $DOCKER_COMPOSE run --rm -it web node data/scripts/seedTrades.js
+    $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js
 fi
 echo ""
 
 # Step 8: Seed draft selections (interactive, needs network)
 echo "=== Step 8: Seeding draft selections (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm -it web node data/scripts/seedDraftSelections.js"
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedDraftSelections.js"
 else
-    $DOCKER_COMPOSE run --rm -it web node data/scripts/seedDraftSelections.js
+    $DOCKER_COMPOSE run --rm web node data/scripts/seedDraftSelections.js
 fi
 echo ""
 
 # Step 9: Seed cuts (interactive, needs network)
 echo "=== Step 9: Seeding cuts (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm -it web node data/scripts/seedCuts.js --auto-historical-before=2016"
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedCuts.js --auto-historical-before=2016"
 else
-    $DOCKER_COMPOSE run --rm -it web node data/scripts/seedCuts.js --auto-historical-before=2016
+    $DOCKER_COMPOSE run --rm web node data/scripts/seedCuts.js --auto-historical-before=2016
 fi
 echo ""
 
