@@ -8,21 +8,8 @@ var Pick = require('../models/Pick');
 
 var currentSeason = parseInt(process.env.SEASON, 10);
 
-// Simple admin key check (set ADMIN_KEY in .env)
-function isAuthorized(request) {
-	var adminKey = process.env.ADMIN_KEY;
-	if (!adminKey) return true; // No key configured = allow all (dev mode)
-	
-	var providedKey = request.query.key || request.body?.key || request.headers['x-admin-key'];
-	return providedKey === adminKey;
-}
-
 // GET /admin - show config management page
 async function configPage(request, response) {
-	if (!isAuthorized(request)) {
-		return response.status(401).send('Unauthorized');
-	}
-	
 	var config = await LeagueConfig.findById('pso');
 	if (!config) {
 		config = new LeagueConfig({ _id: 'pso', season: currentSeason });
@@ -43,10 +30,6 @@ async function configPage(request, response) {
 
 // POST /admin/config - update config
 async function updateConfig(request, response) {
-	if (!isAuthorized(request)) {
-		return response.status(401).json({ error: 'Unauthorized' });
-	}
-	
 	var config = await LeagueConfig.findById('pso');
 	if (!config) {
 		config = new LeagueConfig({ _id: 'pso', season: currentSeason });
@@ -78,10 +61,6 @@ async function updateConfig(request, response) {
 
 // GET /admin/advance-season - show rollover form
 async function advanceSeasonForm(request, response) {
-	if (!isAuthorized(request)) {
-		return response.status(401).send('Unauthorized');
-	}
-	
 	var config = await LeagueConfig.findById('pso');
 	if (!config) {
 		return response.status(404).send('Config not found');
@@ -142,10 +121,6 @@ async function advanceSeasonForm(request, response) {
 
 // POST /admin/advance-season - execute rollover
 async function advanceSeason(request, response) {
-	if (!isAuthorized(request)) {
-		return response.status(401).json({ error: 'Unauthorized' });
-	}
-	
 	var config = await LeagueConfig.findById('pso');
 	if (!config) {
 		return response.status(404).json({ error: 'Config not found' });
@@ -291,10 +266,6 @@ async function advanceSeason(request, response) {
 
 // GET /admin/transfer-franchise - show transfer form
 async function transferFranchiseForm(request, response) {
-	if (!isAuthorized(request)) {
-		return response.status(401).send('Unauthorized');
-	}
-	
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
 	
@@ -335,10 +306,6 @@ async function transferFranchiseForm(request, response) {
 
 // POST /admin/transfer-franchise - execute transfer
 async function transferFranchise(request, response) {
-	if (!isAuthorized(request)) {
-		return response.status(401).json({ error: 'Unauthorized' });
-	}
-	
 	var body = request.body;
 	var franchiseId = body.franchiseId;
 	var newOwnerName = (body.newOwnerName || '').trim();

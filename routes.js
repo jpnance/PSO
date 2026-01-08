@@ -49,24 +49,24 @@ module.exports = function(app) {
 	app.get('/scuttlebot', scuttlebot.prompt);
 	app.post('/scuttlebot/message', scuttlebot.postMessage);
 	
-	// Admin routes
-	app.get('/admin', admin.configPage);
-	app.post('/admin/config', admin.updateConfig);
-	app.get('/admin/advance-season', admin.advanceSeasonForm);
-	app.post('/admin/advance-season', admin.advanceSeason);
-	app.get('/admin/transfer-franchise', admin.transferFranchiseForm);
-	app.post('/admin/transfer-franchise', admin.transferFranchise);
+	// Admin routes (require login + admin)
+	app.get('/admin', requireLogin, requireAdmin, admin.configPage);
+	app.post('/admin/config', requireLogin, requireAdmin, admin.updateConfig);
+	app.get('/admin/advance-season', requireLogin, requireAdmin, admin.advanceSeasonForm);
+	app.post('/admin/advance-season', requireLogin, requireAdmin, admin.advanceSeason);
+	app.get('/admin/transfer-franchise', requireLogin, requireAdmin, admin.transferFranchiseForm);
+	app.post('/admin/transfer-franchise', requireLogin, requireAdmin, admin.transferFranchise);
 	
-	// Player management
-	app.get('/admin/players', adminPlayers.listPlayers);
-	app.get('/admin/players/new', adminPlayers.newPlayerForm);
-	app.post('/admin/players/new', adminPlayers.createPlayer);
-	app.get('/admin/players/:id', adminPlayers.editPlayerForm);
-	app.post('/admin/players/:id', adminPlayers.editPlayer);
-	app.post('/admin/players/:id/merge', adminPlayers.mergePlayer);
+	// Player management (require login + admin)
+	app.get('/admin/players', requireLogin, requireAdmin, adminPlayers.listPlayers);
+	app.get('/admin/players/new', requireLogin, requireAdmin, adminPlayers.newPlayerForm);
+	app.post('/admin/players/new', requireLogin, requireAdmin, adminPlayers.createPlayer);
+	app.get('/admin/players/:id', requireLogin, requireAdmin, adminPlayers.editPlayerForm);
+	app.post('/admin/players/:id', requireLogin, requireAdmin, adminPlayers.editPlayer);
+	app.post('/admin/players/:id/merge', requireLogin, requireAdmin, adminPlayers.mergePlayer);
 	
-	// Trade management
-	app.get('/admin/trades', adminTrades.listTrades);
-	app.get('/admin/trades/:id', adminTrades.editTradeForm);
-	app.post('/admin/trades/:id', adminTrades.editTrade);
+	// Trade management (require login + admin)
+	app.get('/admin/trades', requireLogin, requireAdmin, adminTrades.listTrades);
+	app.get('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTradeForm);
+	app.post('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTrade);
 };
