@@ -58,7 +58,8 @@ block styles
 			padding: 0.4rem 0.6rem;
 			border-bottom: 1px solid #eee;
 			font-size: 0.9rem;
-			align-items: baseline;
+			align-items: center;
+			height: 3rem;
 		}
 		/* Mobile: full-width cards */
 		@media (max-width: 576px) {
@@ -118,6 +119,16 @@ block styles
 		}
 		/* Available pick */
 		.pick-row.pick-available { background-color: #f8f9fa; }
+		.pick-row.pick-available .pick-owner {
+			font-size: 1rem;
+			font-weight: 500;
+			color: #343a40;
+		}
+		.pick-row.pick-available .pick-owner .pick-from {
+			font-size: 0.75rem;
+			font-weight: normal;
+			color: #999;
+		}
 
 block content
 	div.container-fluid.py-3
@@ -150,23 +161,27 @@ block content
 									else
 										| —
 								div.pick-details
-									div.pick-player
-										if pick.playerName
-											span.pick-player-name #{pick.playerName}
-											if pick.positionDisplay
-												span.pick-position  #{pick.positionDisplay}
-											if pick.salary
-												span.pick-salary  $#{pick.salary}
-										else if pick.status === 'passed'
-											span.pick-player-name Passed
-										else if pick.status === 'used'
-											span.pick-player-name.text-muted (unknown player)
-										else
-											span.pick-player-name —
-									div.pick-owner
-										span #{pick.currentOwner}
-										if pick.fromOwner
-											span.pick-from  (from #{pick.fromOwner})
+									if pick.playerName || pick.status === 'passed' || pick.status === 'used'
+										div.pick-player
+											if pick.playerName
+												span.pick-player-name #{pick.playerName}
+												if pick.positionDisplay
+													span.pick-position  #{pick.positionDisplay}
+												if pick.salary
+													span.pick-salary  $#{pick.salary}
+											else if pick.status === 'passed'
+												span.pick-player-name Passed
+											else if pick.status === 'used'
+												span.pick-player-name.text-muted (unknown player)
+										div.pick-owner
+											span #{pick.currentOwner}
+											if pick.fromOwner
+												span.pick-from  (from #{pick.fromOwner})
+									else
+										div.pick-owner
+											span #{pick.currentOwner}
+											if pick.fromOwner
+												span.pick-from  (from #{pick.fromOwner})
 		
 		hr.mt-4
 		div.mt-3
