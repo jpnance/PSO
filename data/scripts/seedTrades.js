@@ -677,7 +677,7 @@ async function seed() {
 		var parsed = parseTradeContent(post.content);
 		parsed.tradeNumber = tradeNumber;
 		parsed.timestamp = new Date(post.date);
-		parsed.tradeId = trade.tradeNumber;
+		parsed.tradeId = tradeNumber;
 		parsed.url = post.URL;
 
 		tradeHistory.push(parsed);
