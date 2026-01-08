@@ -22,7 +22,7 @@ services:
     profiles:
       - main
       - postseason
-    image: mongo:3.6.8
+    image: mongo:8.0.4
     volumes:
       - pso-data:/data/db
 
