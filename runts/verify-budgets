@@ -1,3 +1,10 @@
 #!/bin/bash
 
-docker compose run --rm web node data/scripts/verifyBudgets.js
+# Use "docker compose" on macOS (Docker Desktop), "docker-compose" on Linux
+if [ "$(uname)" = "Darwin" ]; then
+    DOCKER_COMPOSE="docker compose"
+else
+    DOCKER_COMPOSE="docker-compose"
+fi
+
+$DOCKER_COMPOSE run --rm web node data/scripts/verifyBudgets.js
