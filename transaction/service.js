@@ -256,10 +256,10 @@ async function validateTradeCash(tradeDetails, config) {
 			}
 			
 			// Get franchise display name
-			var franchiseName = await getFranchiseDisplayName(mongoose.Types.ObjectId(franchiseId), season);
+			var franchiseName = await getFranchiseDisplayName(franchiseId, season);
 			
 			// Look up current available budget
-			var budget = await Budget.findOne({ franchiseId: mongoose.Types.ObjectId(franchiseId), season: season });
+			var budget = await Budget.findOne({ franchiseId: franchiseId, season: season });
 			if (!budget) {
 				errors.push('No budget found for ' + franchiseName + ' in ' + season);
 				continue;
@@ -274,7 +274,7 @@ async function validateTradeCash(tradeDetails, config) {
 					errors.push(message + ' (hard cap violation)');
 				} else {
 					// Soft cap - check if they could cut their way out
-					var recoverable = await computeRecoverable(mongoose.Types.ObjectId(franchiseId), season);
+					var recoverable = await computeRecoverable(franchiseId, season);
 					
 					if (resultingBudget + recoverable >= 0) {
 						// They could cut their way back to $0 or better - soft cap

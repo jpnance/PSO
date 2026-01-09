@@ -84,94 +84,60 @@ function computeBuyOutIfCut(salary, startYear, endYear, season) {
 	return Math.ceil(salary * percentages[contractYearIndex]);
 }
 
-// Compute budget breakdown for a franchise for a specific season
-function computeBudgetForSeason(franchiseId, contracts, trades, cuts, season) {
-	// Get contracts active for this franchise in this season
+// Compute recoverable amount for a franchise (salary - buyout for each contract)
+// This is still calculated from contracts because it depends on current contract state
+function computeRecoverable(franchiseId, contracts, season) {
 	var activeContracts = contracts.filter(function(c) { 
 		return c.franchiseId.equals(franchiseId) && 
 			c.startYear <= season && 
 			c.endYear && c.endYear >= season &&
-			c.salary !== null; // Exclude RFA rights
+			c.salary !== null;
 	});
 	
-	// Payroll = sum of salaries where contract extends through this season
-	var payroll = activeContracts.reduce(function(sum, c) { return sum + (c.salary || 0); }, 0);
-	
-	// Recoverable = sum of (salary - buy-out if cut) for all contracts
-	var recoverable = activeContracts.reduce(function(sum, c) {
+	return activeContracts.reduce(function(sum, c) {
 		var salary = c.salary || 0;
 		var buyOut = computeBuyOutIfCut(salary, c.startYear, c.endYear, season);
 		return sum + (salary - buyOut);
 	}, 0);
-	
-	// Cash in/out from trades for this season
-	var cashIn = 0;
-	var cashOut = 0;
-	
-	trades.forEach(function(trade) {
-		if (!trade.parties) return;
-		
-		trade.parties.forEach(function(party) {
-			if (!party.franchiseId.equals(franchiseId)) return;
-			if (!party.receives || !party.receives.cash) return;
-			
-			party.receives.cash.forEach(function(c) {
-				if (c.season === season) {
-					cashIn += c.amount || 0;
-				}
-			});
-		});
-		
-		// Cash sent TO others = cash out
-		trade.parties.forEach(function(party) {
-			if (party.franchiseId.equals(franchiseId)) return;
-			if (!party.receives || !party.receives.cash) return;
-			
-			party.receives.cash.forEach(function(c) {
-				if (c.season === season && c.fromFranchiseId && c.fromFranchiseId.equals(franchiseId)) {
-					cashOut += c.amount || 0;
-				}
-			});
-		});
-	});
-	
-	// Base amount is always 1000
-	var baseAmount = 1000;
-	
-	// Buy-outs from cuts for this season
-	var buyOuts = 0;
-	cuts.forEach(function(cut) {
-		if (!cut.franchiseId.equals(franchiseId)) return;
-		if (!cut.buyOuts) return;
-		
-		cut.buyOuts.forEach(function(bo) {
-			if (bo.season === season) {
-				buyOuts += bo.amount || 0;
-			}
-		});
-	});
-	
-	var available = baseAmount - payroll - buyOuts + cashIn - cashOut;
-	
-	return {
-		season: season,
-		baseAmount: baseAmount,
-		payroll: payroll,
-		buyOuts: buyOuts,
-		cashIn: cashIn,
-		cashOut: cashOut,
-		available: available,
-		recoverable: recoverable
-	};
 }
 
-// Compute budgets for current and next two seasons
-function computeBudgets(franchiseId, contracts, trades, cuts, currentSeason) {
-	return [
-		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason),
-		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason + 1),
-		computeBudgetForSeason(franchiseId, contracts, trades, cuts, currentSeason + 2)
-	];
+// Get budgets for a franchise from Budget documents, with recoverable calculated
+async function getBudgetsForFranchise(franchiseId, contracts, currentSeason) {
+	var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+	var budgets = await Budget.find({ 
+		franchiseId: franchiseId, 
+		season: { $in: seasons } 
+	}).lean();
+	
+	// Build lookup by season
+	var budgetBySeason = {};
+	budgets.forEach(function(b) {
+		budgetBySeason[b.season] = b;
+	});
+	
+	// Return array with recoverable added
+	return seasons.map(function(season) {
+		var budget = budgetBySeason[season] || {
+			season: season,
+			baseAmount: 1000,
+			payroll: 0,
+			buyOuts: 0,
+			cashIn: 0,
+			cashOut: 0,
+			available: 1000
+		};
+		
+		return {
+			season: budget.season,
+			baseAmount: budget.baseAmount,
+			payroll: budget.payroll,
+			buyOuts: budget.buyOuts,
+			cashIn: budget.cashIn,
+			cashOut: budget.cashOut,
+			available: budget.available,
+			recoverable: computeRecoverable(franchiseId, contracts, season)
+		};
+	});
 }
 
 // Position sort order
@@ -196,8 +162,13 @@ async function getLeagueOverview(currentSeason) {
 	}).populate('ownerIds').lean();
 	
 	var contracts = await Contract.find({}).populate('playerId').lean();
-	var trades = await Transaction.find({ type: 'trade' }).lean();
-	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
+	
+	// Load budgets for current season
+	var budgets = await Budget.find({ season: currentSeason }).lean();
+	var budgetByFranchise = {};
+	budgets.forEach(function(b) {
+		budgetByFranchise[b.franchiseId.toString()] = b;
+	});
 	
 	// Build franchise data
 	var result = [];
@@ -230,8 +201,12 @@ async function getLeagueOverview(currentSeason) {
 				return (b.salary || 0) - (a.salary || 0);
 			});
 		
-		// Compute budget from contracts and trades (current season only for overview)
-		var budget = computeBudgetForSeason(franchise._id, contracts, trades, cuts, currentSeason);
+		// Get budget from Budget document
+		var budget = budgetByFranchise[franchise._id.toString()] || {
+			payroll: 0,
+			available: 1000,
+			buyOuts: 0
+		};
 		
 		result.push({
 			_id: franchise._id,
@@ -267,9 +242,6 @@ async function getFranchise(franchiseId, currentSeason) {
 	var contracts = await Contract.find({ franchiseId: franchiseId })
 		.populate('playerId')
 		.lean();
-	
-	var trades = await Transaction.find({ type: 'trade' }).lean();
-	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
 	
 	var picks = await Pick.find({ currentFranchiseId: franchiseId })
 		.sort({ season: 1, round: 1 })
@@ -340,8 +312,8 @@ async function getFranchise(franchiseId, currentSeason) {
 			(r.endSeason === null || r.endSeason >= currentSeason);
 	});
 	
-	// Compute budgets for current and next two seasons
-	var budgets = computeBudgets(franchise._id, allContracts, trades, cuts, currentSeason);
+	// Get budgets from Budget documents (with recoverable calculated from contracts)
+	var budgets = await getBudgetsForFranchise(franchise._id, allContracts, currentSeason);
 	
 	// Add sorted owner names to each regime
 	var regimesWithSortedOwners = regimes.map(function(r) {

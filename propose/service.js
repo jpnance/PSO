@@ -3,6 +3,7 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var Contract = require('../models/Contract');
+var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Transaction = require('../models/Transaction');
 var transactionService = require('../transaction/service');
@@ -53,9 +54,12 @@ async function getTradeData(currentSeason) {
 		.sort({ season: 1, round: 1 })
 		.lean();
 	
-	// Get trades and cuts for budget calculations
-	var trades = await Transaction.find({ type: 'trade' }).lean();
-	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
+	// Get budgets for current season
+	var budgets = await Budget.find({ season: currentSeason }).lean();
+	var budgetByFranchise = {};
+	budgets.forEach(function(b) {
+		budgetByFranchise[b.franchiseId.toString()] = b;
+	});
 	
 	// Build franchise list with display names and budget info
 	var franchiseList = franchises.map(function(f) {
@@ -72,50 +76,16 @@ async function getTradeData(currentSeason) {
 				c.endYear && c.endYear >= currentSeason;
 		});
 		
-		// Calculate payroll
-		var payroll = activeContracts.reduce(function(sum, c) {
-			return sum + (c.salary || 0);
-		}, 0);
-		
-		// Calculate recoverable (salary - buyout for each contract)
+		// Calculate recoverable (salary - buyout for each contract) - still derived from contracts
 		var recoverable = activeContracts.reduce(function(sum, c) {
 			var salary = c.salary || 0;
 			var buyOut = computeBuyOutIfCut(salary, c.startYear, c.endYear, currentSeason);
 			return sum + (salary - buyOut);
 		}, 0);
 		
-		// Calculate cash in/out for current season
-		var cashIn = 0;
-		var cashOut = 0;
-		trades.forEach(function(trade) {
-			if (!trade.parties) return;
-			trade.parties.forEach(function(party) {
-				if (!party.receives || !party.receives.cash) return;
-				party.receives.cash.forEach(function(c) {
-					if (c.season !== currentSeason) return;
-					if (party.franchiseId.equals(f._id)) {
-						cashIn += c.amount || 0;
-					} else if (c.fromFranchiseId && c.fromFranchiseId.equals(f._id)) {
-						cashOut += c.amount || 0;
-					}
-				});
-			});
-		});
-		
-		// Calculate buyouts from cuts
-		var buyOuts = 0;
-		cuts.forEach(function(cut) {
-			if (!cut.franchiseId || !cut.franchiseId.equals(f._id)) return;
-			if (!cut.buyOuts) return;
-			cut.buyOuts.forEach(function(bo) {
-				if (bo.season === currentSeason) {
-					buyOuts += bo.amount || 0;
-				}
-			});
-		});
-		
-		var baseAmount = 1000;
-		var available = baseAmount - payroll - buyOuts + cashIn - cashOut;
+		// Get available from Budget document
+		var budget = budgetByFranchise[f._id.toString()];
+		var available = budget ? budget.available : 1000;
 		
 		return {
 			_id: f._id,
@@ -347,7 +317,7 @@ async function submitTrade(request, response) {
 			for (var j = 0; j < (bucket.picks || []).length; j++) {
 				var pick = bucket.picks[j];
 				receives.picks.push({
-					pickId: mongoose.Types.ObjectId(pick.id)
+					pickId: pick.id
 				});
 			}
 			
@@ -357,12 +327,13 @@ async function submitTrade(request, response) {
 				receives.cash.push({
 					amount: cash.amount,
 					season: cash.season,
-					fromFranchiseId: mongoose.Types.ObjectId(cash.from)
+					fromFranchiseId: cash.from
 				});
 			}
 			
+			// franchiseId needs to be ObjectId because processTrade() uses .equals() on it
 			parties.push({
-				franchiseId: mongoose.Types.ObjectId(franchiseId),
+				franchiseId: new mongoose.Types.ObjectId(franchiseId),
 				receives: receives
 			});
 		}
