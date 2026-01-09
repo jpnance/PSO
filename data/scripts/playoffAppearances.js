@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
 const PSO = require('../../pso');

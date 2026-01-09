@@ -10,7 +10,7 @@ var budgetHelper = require('../../helpers/budget');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var BASE_AMOUNT = 1000;
 

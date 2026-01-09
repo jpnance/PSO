@@ -28,7 +28,7 @@ var fs = require('fs');
 var Player = require('../../models/Player');
 var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var relevantPositions = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 

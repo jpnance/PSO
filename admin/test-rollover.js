@@ -423,10 +423,7 @@ async function test2_PickNumberCalculation() {
 
 async function runTests() {
 	try {
-		await mongoose.connect(TEST_DB_URI, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true
-		});
+		await mongoose.connect(TEST_DB_URI);
 		console.log('Connected to test database\n');
 		
 		await teardownMockWorld();

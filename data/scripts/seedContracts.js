@@ -13,7 +13,7 @@ var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
 
 var sheetLink = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered';
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var rl = readline.createInterface({
 	input: process.stdin,

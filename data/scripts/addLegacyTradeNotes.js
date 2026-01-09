@@ -26,7 +26,7 @@ var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
 var resolver = require('./playerResolver');
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var LEGACY_CUTOFF = 360;
 

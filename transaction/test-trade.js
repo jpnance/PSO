@@ -31,7 +31,7 @@ function getTestDbUri() {
 
 var testUri = getTestDbUri();
 console.log('Connecting to test database:', testUri);
-mongoose.connect(testUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(testUri);
 
 var TEST_SEASON = 2099; // Use a far-future season to avoid conflicts
 var TEST_PREFIX = 'TEST_';

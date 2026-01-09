@@ -12,7 +12,7 @@ var mainSheetBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZt
 // Past Drafts spreadsheet (tabs named by year: "2024", "2023", etc.)
 var pastDraftsSheetBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1O0iyyKdniwP-oVvBTwlgxJRYs_WhMsypHGBDB8AO2lM/values/';
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 // Build reverse lookup: { season: { ownerName: franchiseId } }
 // Uses PSO.franchiseNames which maps franchiseId -> { year -> ownerName }

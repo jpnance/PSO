@@ -6,7 +6,7 @@ var Person = require('../../models/Person');
 var Regime = require('../../models/Regime');
 var PSO = require('../../pso');
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 // Map display names to the people involved
 var displayNameToOwners = {

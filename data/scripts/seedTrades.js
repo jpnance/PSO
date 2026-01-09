@@ -21,7 +21,7 @@ var resolver = require('./playerResolver');
 
 var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var rl = readline.createInterface({
 	input: process.stdin,

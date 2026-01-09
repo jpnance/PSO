@@ -32,7 +32,7 @@ require('./routes')(app);
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 process.env.PORT = process.env.PORT || 3333;
 

@@ -9,7 +9,7 @@ var Leaders = require('../models/Leaders');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 if (process.argv.length < 3) {
 	console.log('Invalid week');

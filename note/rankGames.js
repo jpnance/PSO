@@ -7,7 +7,7 @@ var Game = require('../models/Game');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
 

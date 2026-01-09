@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var LeagueConfig = require('../../models/LeagueConfig');
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 var currentSeason = parseInt(process.env.SEASON, 10);
 
