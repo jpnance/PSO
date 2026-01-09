@@ -5,6 +5,7 @@ var Budget = require('../../models/Budget');
 var Franchise = require('../../models/Franchise');
 var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
+var LeagueConfig = require('../../models/LeagueConfig');
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -35,8 +36,13 @@ async function seed() {
 	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
 	console.log('Loaded', cuts.length, 'cuts\n');
 
-	// Determine season range (current season from env, plus 2 future years)
-	var currentSeason = parseInt(process.env.SEASON, 10) || new Date().getFullYear();
+	// Get current season from LeagueConfig
+	var leagueConfig = await LeagueConfig.findOne({});
+	if (!leagueConfig || !leagueConfig.season) {
+		console.error('Error: No LeagueConfig found or season not set');
+		process.exit(1);
+	}
+	var currentSeason = leagueConfig.season;
 	var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
 	console.log('Calculating for seasons:', seasons.join(', '), '\n');
 
