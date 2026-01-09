@@ -57,6 +57,8 @@ module.exports = function(app) {
 	app.post('/admin/advance-season', requireLogin, requireAdmin, admin.advanceSeason);
 	app.get('/admin/transfer-franchise', requireLogin, requireAdmin, admin.transferFranchiseForm);
 	app.post('/admin/transfer-franchise', requireLogin, requireAdmin, admin.transferFranchise);
+	app.get('/admin/rosters', requireLogin, requireAdmin, admin.rostersPage);
+	app.post('/admin/rosters/cut', requireLogin, requireAdmin, admin.cutPlayer);
 	
 	// Player management (require login + admin)
 	app.get('/admin/players', requireLogin, requireAdmin, adminPlayers.listPlayers);

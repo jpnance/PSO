@@ -5,6 +5,8 @@ var Person = require('../models/Person');
 var Contract = require('../models/Contract');
 var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
+var Player = require('../models/Player');
+var transactionService = require('../transaction/service');
 
 var currentSeason = parseInt(process.env.SEASON, 10);
 
@@ -356,11 +358,127 @@ async function transferFranchise(request, response) {
 	response.redirect('/admin');
 }
 
+// Position sort order for roster display
+var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
+
+function getPositionIndex(positions) {
+	if (!positions || positions.length === 0) return 999;
+	return Math.min.apply(null, positions.map(function(p) {
+		var idx = positionOrder.indexOf(p);
+		return idx === -1 ? 999 : idx;
+	}));
+}
+
+// GET /admin/rosters - show all rosters with cut buttons
+async function rostersPage(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+	var phase = config ? config.getPhase() : 'unknown';
+	
+	// Get all franchises with current regimes
+	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({
+		startSeason: { $lte: season },
+		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
+	}).lean();
+	
+	// Get all active contracts with player data
+	var contracts = await Contract.find({
+		endYear: { $gte: season }
+	}).populate('playerId').lean();
+	
+	// Build franchise list with rosters
+	var franchiseList = franchises.map(function(f) {
+		var regime = regimes.find(function(r) {
+			return r.franchiseId.equals(f._id);
+		});
+		
+		// Get this franchise's players
+		var roster = contracts
+			.filter(function(c) { return c.franchiseId.equals(f._id); })
+			.map(function(c) {
+				var contract = null;
+				if (c.salary !== null && c.endYear) {
+					var startStr = c.startYear ? String(c.startYear % 100).padStart(2, '0') : 'FA';
+					var endStr = String(c.endYear % 100).padStart(2, '0');
+					contract = startStr + '/' + endStr;
+				}
+				
+				return {
+					playerId: c.playerId ? c.playerId._id.toString() : null,
+					name: c.playerId ? c.playerId.name : 'Unknown',
+					positions: c.playerId ? c.playerId.positions : [],
+					salary: c.salary,
+					contract: contract
+				};
+			})
+			.sort(function(a, b) {
+				return a.name.localeCompare(b.name);
+			});
+		
+		return {
+			_id: f._id.toString(),
+			displayName: regime ? regime.displayName : 'Unknown',
+			roster: roster
+		};
+	}).sort(function(a, b) {
+		return a.displayName.localeCompare(b.displayName);
+	});
+	
+	// Check for flash message from cut operation
+	var cutResult = request.query.cutResult ? JSON.parse(decodeURIComponent(request.query.cutResult)) : null;
+	
+	response.render('admin-rosters', {
+		franchises: franchiseList,
+		currentSeason: season,
+		phase: phase,
+		cutResult: cutResult,
+		pageTitle: 'Roster Management - PSO',
+		activePage: 'admin'
+	});
+}
+
+// POST /admin/rosters/cut - cut a player
+async function cutPlayer(request, response) {
+	var franchiseId = request.body.franchiseId;
+	var playerId = request.body.playerId;
+	var playerName = request.body.playerName;
+	
+	if (!franchiseId || !playerId) {
+		var errorResult = encodeURIComponent(JSON.stringify({ success: false, error: 'Missing franchise or player ID' }));
+		return response.redirect('/admin/rosters?cutResult=' + errorResult);
+	}
+	
+	var result = await transactionService.processCut({
+		franchiseId: franchiseId,
+		playerId: playerId,
+		source: 'manual',
+		notes: null
+	});
+	
+	if (result.success) {
+		var successResult = encodeURIComponent(JSON.stringify({
+			success: true,
+			playerName: playerName,
+			buyOuts: result.buyOuts
+		}));
+		response.redirect('/admin/rosters?cutResult=' + successResult);
+	} else {
+		var errorResult = encodeURIComponent(JSON.stringify({
+			success: false,
+			error: result.errors ? result.errors.join(', ') : 'Unknown error'
+		}));
+		response.redirect('/admin/rosters?cutResult=' + errorResult);
+	}
+}
+
 module.exports = {
 	configPage: configPage,
 	updateConfig: updateConfig,
 	advanceSeasonForm: advanceSeasonForm,
 	advanceSeason: advanceSeason,
 	transferFranchiseForm: transferFranchiseForm,
-	transferFranchise: transferFranchise
+	transferFranchise: transferFranchise,
+	rostersPage: rostersPage,
+	cutPlayer: cutPlayer
 };

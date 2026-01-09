@@ -1,0 +1,149 @@
+extends layout.pug
+
+block styles
+	link(rel='stylesheet' href='/league.css')
+	link(rel='stylesheet' href='/css/positions.css')
+	style.
+		.roster-card {
+			margin-bottom: 1.5rem;
+		}
+		.player-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.5rem 0;
+			border-bottom: 1px solid #eee;
+		}
+		.player-row:last-child {
+			border-bottom: none;
+		}
+		.player-info {
+			flex: 1;
+		}
+		.player-name-row {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+		.player-name {
+			font-weight: 500;
+		}
+		.player-meta {
+			font-size: 0.85rem;
+			color: #6c757d;
+		}
+		.cut-btn {
+			margin-left: 1rem;
+		}
+		.position-badge {
+			font-size: 0.7rem;
+			padding: 0.15rem 0.35rem;
+			border-radius: 0.25rem;
+			border: 1px solid;
+		}
+		.position-badge.pos-QB { background-color: #D7EBFF; color: #1a5276; border-color: #1a5276; }
+		.position-badge.pos-RB { background-color: #F0FFFF; color: #117a65; border-color: #117a65; }
+		.position-badge.pos-WR { background-color: #FAFAD2; color: #9a7b0a; border-color: #9a7b0a; }
+		.position-badge.pos-TE { background-color: #DCFFDC; color: #1e8449; border-color: #1e8449; }
+		.position-badge.pos-DL, .position-badge.pos-LB, .position-badge.pos-DB { background-color: #FFF5EE; color: #a04000; border-color: #a04000; }
+		.position-badge.pos-K { background-color: #F5F5F5; color: #5d6d7e; border-color: #5d6d7e; }
+
+block content
+	div.container.py-4
+		h1.mb-4 Roster Management
+		
+		if cutResult
+			if cutResult.success
+				div.alert.alert-success.alert-dismissible
+					button.close(type='button' data-dismiss='alert') &times;
+					strong Cut successful!
+					|  #{cutResult.playerName} has been released.
+					if cutResult.buyOuts && cutResult.buyOuts.length
+						|  Buy-outs: 
+						each bo, i in cutResult.buyOuts
+							if i > 0
+								| , 
+							| #{bo.season}: $#{bo.amount}
+			else
+				div.alert.alert-danger.alert-dismissible
+					button.close(type='button' data-dismiss='alert') &times;
+					strong Error:
+					|  #{cutResult.error}
+		
+		div.row
+			each franchise in franchises
+				div.col-lg-6.col-xl-4
+					div.card.roster-card
+						div.card-header
+							strong= franchise.displayName
+						div.card-body
+							if franchise.roster.length === 0
+								p.text-muted.mb-0 No players on roster
+							else
+								each player in franchise.roster
+									div.player-row
+										div.player-info
+											div.player-name-row
+												span.player-name= player.name
+												if player.positions && player.positions.length
+													span.position-badge(class='pos-' + player.positions[0])= player.positions.join('/')
+											div.player-meta
+												if player.salary !== null
+													| $#{player.salary}
+													if player.contract
+														| , #{player.contract}
+												else
+													| RFA Rights
+										form.cut-form(method='POST' action='/admin/rosters/cut' onsubmit='return confirmCut(this)')
+											input(type='hidden' name='franchiseId' value=franchise._id)
+											input(type='hidden' name='playerId' value=player.playerId)
+											input(type='hidden' name='playerName' value=player.name)
+											if player.salary !== null
+												button.btn.btn-sm.btn-outline-danger.cut-btn(type='submit')
+													i.fa.fa-scissors.mr-1
+													| Cut
+											else
+												button.btn.btn-sm.btn-outline-secondary.cut-btn(type='submit')
+													i.fa.fa-times.mr-1
+													| Drop
+		
+		div.mt-4
+			a.btn.btn-secondary(href='/admin') ← Back to Admin
+
+	//- Confirmation Modal
+	div#cutModal.modal.fade(tabindex='-1' role='dialog')
+		div.modal-dialog(role='document')
+			div.modal-content
+				div.modal-header
+					h5.modal-title Cut Player
+					button.close(type='button' data-dismiss='modal')
+						span &times;
+				div.modal-body
+					p#cutModalMessage
+					if phase === 'dead-period'
+						div.alert.alert-warning.mb-0
+							i.fa.fa-exclamation-triangle.mr-2
+							| This is during the dead period. Are you sure?
+				div.modal-footer
+					button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+					button#cutModalConfirm.btn.btn-danger(type='button')
+						i.fa.fa-scissors.mr-1
+						| Cut
+
+block scripts
+	script.
+		var pendingForm = null;
+		
+		function confirmCut(form) {
+			pendingForm = form;
+			var playerName = form.querySelector('input[name="playerName"]').value;
+			document.getElementById('cutModalMessage').textContent = 'Are you sure you want to cut ' + playerName + '?';
+			$('#cutModal').modal('show');
+			return false;
+		}
+		
+		document.getElementById('cutModalConfirm').addEventListener('click', function() {
+			if (pendingForm) {
+				pendingForm.submit();
+			}
+		});

@@ -783,6 +783,7 @@ async function processCut(cutDetails) {
 	// Update Budget for each affected season
 	for (var i = 0; i < buyOutEntries.length; i++) {
 		var bo = buyOutEntries[i];
+		var recoverableForSeason = computeRecoverableForContract(salary, startYear, endYear, bo.season);
 		
 		await Budget.updateOne(
 			{ franchiseId: cutDetails.franchiseId, season: bo.season },
@@ -790,6 +791,7 @@ async function processCut(cutDetails) {
 				$inc: {
 					payroll: -salary,
 					buyOuts: bo.amount,
+					recoverable: -recoverableForSeason,
 					available: salary - bo.amount
 				}
 			}
@@ -801,11 +803,13 @@ async function processCut(cutDetails) {
 	for (var season = currentSeason; season <= endYear; season++) {
 		var hasBO = buyOutEntries.some(function(bo) { return bo.season === season; });
 		if (!hasBO) {
+			var recoverableForSeason = computeRecoverableForContract(salary, startYear, endYear, season);
 			await Budget.updateOne(
 				{ franchiseId: cutDetails.franchiseId, season: season },
 				{
 					$inc: {
 						payroll: -salary,
+						recoverable: -recoverableForSeason,
 						available: salary
 					}
 				}
