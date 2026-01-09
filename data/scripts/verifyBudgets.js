@@ -7,6 +7,9 @@ var Franchise = require('../../models/Franchise');
 var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
 var LeagueConfig = require('../../models/LeagueConfig');
+var budgetHelper = require('../../helpers/budget');
+
+var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -56,12 +59,15 @@ async function verify() {
 
 			// Calculate expected values
 			var payroll = 0;
+			var recoverable = 0;
 			contracts.forEach(function(c) {
 				if (!c.franchiseId.equals(franchiseId)) return;
 				if (c.salary === null) return;
 				if (!c.endYear || c.endYear < season) return;
 				if (c.startYear && c.startYear > season) return;
 				payroll += c.salary;
+				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);
+				recoverable += (c.salary - buyOut);
 			});
 
 			var buyOuts = 0;
@@ -118,6 +124,9 @@ async function verify() {
 			}
 			if (actual.available !== expectedAvailable) {
 				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: available is ${actual.available}, expected ${expectedAvailable}`);
+			}
+			if (actual.recoverable !== recoverable) {
+				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: recoverable is ${actual.recoverable}, expected ${recoverable}`);
 			}
 		}
 	}

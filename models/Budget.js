@@ -9,7 +9,8 @@ var budgetSchema = new Schema({
 	buyOuts: { type: Number, default: 0 },
 	cashIn: { type: Number, default: 0 },
 	cashOut: { type: Number, default: 0 },
-	available: { type: Number, default: 1000 }
+	available: { type: Number, default: 1000 },
+	recoverable: { type: Number, default: 0 }
 });
 
 budgetSchema.index({ franchiseId: 1, season: 1 }, { unique: true });

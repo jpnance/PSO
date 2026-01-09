@@ -9,6 +9,9 @@ var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
+var budgetHelper = require('../helpers/budget');
+
+var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
 
 // Format a dollar amount with sign before $ (e.g., -$163, +$50)
 function formatDollars(amount, showPlus) {
@@ -629,7 +632,7 @@ async function processTrade(tradeDetails) {
 	
 	// Update Budget documents for all affected franchises/seasons
 	var currentSeason = config.season;
-	var budgetUpdates = {}; // { 'franchiseId:season': { payrollDelta, cashInDelta, cashOutDelta } }
+	var budgetUpdates = {}; // { 'franchiseId:season': { payrollDelta, recoverableDelta, cashInDelta, cashOutDelta } }
 	
 	function getBudgetKey(franchiseId, season) {
 		return franchiseId.toString() + ':' + season;
@@ -638,7 +641,7 @@ async function processTrade(tradeDetails) {
 	function ensureBudgetUpdate(franchiseId, season) {
 		var key = getBudgetKey(franchiseId, season);
 		if (!budgetUpdates[key]) {
-			budgetUpdates[key] = { franchiseId: franchiseId, season: season, payrollDelta: 0, cashInDelta: 0, cashOutDelta: 0 };
+			budgetUpdates[key] = { franchiseId: franchiseId, season: season, payrollDelta: 0, recoverableDelta: 0, cashInDelta: 0, cashOutDelta: 0 };
 		}
 		return budgetUpdates[key];
 	}
@@ -659,13 +662,17 @@ async function processTrade(tradeDetails) {
 			var startYear = original.startYear;
 			var endYear = original.endYear;
 			
-			// Update payroll for seasons this contract covers
+			// Update payroll and recoverable for seasons this contract covers
 			for (var season = Math.max(startYear, currentSeason); season <= endYear && season <= currentSeason + 2; season++) {
-				// Receiving franchise gains payroll
-				ensureBudgetUpdate(party.franchiseId, season).payrollDelta += salary;
+				var recoverableAmount = computeRecoverableForContract(salary, startYear, endYear, season);
 				
-				// Sending franchise (original owner) loses payroll
+				// Receiving franchise gains payroll and recoverable
+				ensureBudgetUpdate(party.franchiseId, season).payrollDelta += salary;
+				ensureBudgetUpdate(party.franchiseId, season).recoverableDelta += recoverableAmount;
+				
+				// Sending franchise (original owner) loses payroll and recoverable
 				ensureBudgetUpdate(original.franchiseId, season).payrollDelta -= salary;
+				ensureBudgetUpdate(original.franchiseId, season).recoverableDelta -= recoverableAmount;
 			}
 		}
 		
@@ -687,6 +694,7 @@ async function processTrade(tradeDetails) {
 			{
 				$inc: {
 					payroll: update.payrollDelta,
+					recoverable: update.recoverableDelta,
 					cashIn: update.cashInDelta,
 					cashOut: update.cashOutDelta,
 					available: -update.payrollDelta + update.cashInDelta - update.cashOutDelta

@@ -6,6 +6,9 @@ var Franchise = require('../../models/Franchise');
 var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
 var LeagueConfig = require('../../models/LeagueConfig');
+var budgetHelper = require('../../helpers/budget');
+
+var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -55,14 +58,17 @@ async function seed() {
 		for (var j = 0; j < seasons.length; j++) {
 			var season = seasons[j];
 
-			// Calculate payroll: sum of salaries for contracts active in this season
+			// Calculate payroll and recoverable: sum of salaries for contracts active in this season
 			var payroll = 0;
+			var recoverable = 0;
 			contracts.forEach(function(c) {
 				if (!c.franchiseId.equals(franchiseId)) return;
 				if (c.salary === null) return; // RFA rights don't count
 				if (!c.endYear || c.endYear < season) return; // Contract ended before this season
 				if (c.startYear && c.startYear > season) return; // Contract hasn't started yet
 				payroll += c.salary;
+				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);
+				recoverable += (c.salary - buyOut);
 			});
 
 			// Calculate buy-outs from cuts
@@ -108,7 +114,8 @@ async function seed() {
 				buyOuts: buyOuts,
 				cashIn: cashIn,
 				cashOut: cashOut,
-				available: available
+				available: available,
+				recoverable: recoverable
 			});
 
 			created++;
@@ -119,7 +126,8 @@ async function seed() {
 				'buyOuts=' + buyOuts,
 				'cashIn=' + cashIn,
 				'cashOut=' + cashOut,
-				'available=' + available
+				'available=' + available,
+				'recoverable=' + recoverable
 			);
 		}
 	}

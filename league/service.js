@@ -67,42 +67,8 @@ function getPhaseName(phase) {
 	return names[phase] || phase;
 }
 
-// Buy-out calculation based on contract year
-function computeBuyOutIfCut(salary, startYear, endYear, season) {
-	var percentages = [0.60, 0.30, 0.15];
-	
-	// For FA contracts (single year), startYear === endYear
-	if (startYear === null) {
-		startYear = endYear;
-	}
-	
-	var contractYearIndex = season - startYear; // 0, 1, or 2
-	if (contractYearIndex >= percentages.length) {
-		return 0;
-	}
-	
-	return Math.ceil(salary * percentages[contractYearIndex]);
-}
-
-// Compute recoverable amount for a franchise (salary - buyout for each contract)
-// This is still calculated from contracts because it depends on current contract state
-function computeRecoverable(franchiseId, contracts, season) {
-	var activeContracts = contracts.filter(function(c) { 
-		return c.franchiseId.equals(franchiseId) && 
-			c.startYear <= season && 
-			c.endYear && c.endYear >= season &&
-			c.salary !== null;
-	});
-	
-	return activeContracts.reduce(function(sum, c) {
-		var salary = c.salary || 0;
-		var buyOut = computeBuyOutIfCut(salary, c.startYear, c.endYear, season);
-		return sum + (salary - buyOut);
-	}, 0);
-}
-
-// Get budgets for a franchise from Budget documents, with recoverable calculated
-async function getBudgetsForFranchise(franchiseId, contracts, currentSeason) {
+// Get budgets for a franchise from Budget documents
+async function getBudgetsForFranchise(franchiseId, currentSeason) {
 	var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
 	var budgets = await Budget.find({ 
 		franchiseId: franchiseId, 
@@ -115,7 +81,7 @@ async function getBudgetsForFranchise(franchiseId, contracts, currentSeason) {
 		budgetBySeason[b.season] = b;
 	});
 	
-	// Return array with recoverable added
+	// Return array
 	return seasons.map(function(season) {
 		var budget = budgetBySeason[season] || {
 			season: season,
@@ -124,7 +90,8 @@ async function getBudgetsForFranchise(franchiseId, contracts, currentSeason) {
 			buyOuts: 0,
 			cashIn: 0,
 			cashOut: 0,
-			available: 1000
+			available: 1000,
+			recoverable: 0
 		};
 		
 		return {
@@ -135,7 +102,7 @@ async function getBudgetsForFranchise(franchiseId, contracts, currentSeason) {
 			cashIn: budget.cashIn,
 			cashOut: budget.cashOut,
 			available: budget.available,
-			recoverable: computeRecoverable(franchiseId, contracts, season)
+			recoverable: budget.recoverable
 		};
 	});
 }
@@ -238,7 +205,6 @@ async function getFranchise(franchiseId, currentSeason) {
 		.sort({ startSeason: -1 })
 		.lean();
 	
-	var allContracts = await Contract.find({}).lean();
 	var contracts = await Contract.find({ franchiseId: franchiseId })
 		.populate('playerId')
 		.lean();
@@ -312,8 +278,8 @@ async function getFranchise(franchiseId, currentSeason) {
 			(r.endSeason === null || r.endSeason >= currentSeason);
 	});
 	
-	// Get budgets from Budget documents (with recoverable calculated from contracts)
-	var budgets = await getBudgetsForFranchise(franchise._id, allContracts, currentSeason);
+	// Get budgets from Budget documents
+	var budgets = await getBudgetsForFranchise(franchise._id, currentSeason);
 	
 	// Add sorted owner names to each regime
 	var regimesWithSortedOwners = regimes.map(function(r) {

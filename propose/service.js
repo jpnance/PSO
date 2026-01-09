@@ -7,15 +7,9 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Transaction = require('../models/Transaction');
 var transactionService = require('../transaction/service');
+var budgetHelper = require('../helpers/budget');
 
-// Buy-out calculation based on contract year
-function computeBuyOutIfCut(salary, startYear, endYear, season) {
-	var percentages = [0.60, 0.30, 0.15];
-	if (startYear === null) startYear = endYear;
-	var contractYearIndex = season - startYear;
-	if (contractYearIndex >= percentages.length) return 0;
-	return Math.ceil(salary * percentages[contractYearIndex]);
-}
+var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
 // Position sort order for roster display
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -76,16 +70,10 @@ async function getTradeData(currentSeason) {
 				c.endYear && c.endYear >= currentSeason;
 		});
 		
-		// Calculate recoverable (salary - buyout for each contract) - still derived from contracts
-		var recoverable = activeContracts.reduce(function(sum, c) {
-			var salary = c.salary || 0;
-			var buyOut = computeBuyOutIfCut(salary, c.startYear, c.endYear, currentSeason);
-			return sum + (salary - buyOut);
-		}, 0);
-		
-		// Get available from Budget document
+		// Get available and recoverable from Budget document
 		var budget = budgetByFranchise[f._id.toString()];
 		var available = budget ? budget.available : 1000;
+		var recoverable = budget ? budget.recoverable : 0;
 		
 		return {
 			_id: f._id,
