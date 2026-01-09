@@ -8,7 +8,7 @@ services:
     profiles:
       - main
       - postseason
-    image: node:14-alpine
+    image: node:22-alpine
     volumes:
       - .:/app
       - ../ssl:/ssl
@@ -30,7 +30,7 @@ services:
     container_name: pso-cron
     profiles:
       - main
-    image: node:14-alpine
+    image: node:22-alpine
     volumes:
       - .:/app
     command: sh -c "crontab /app/etc/crontab && crond -f"
