@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=colbys"

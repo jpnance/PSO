@@ -5,11 +5,11 @@ Quick Start
 -----------
 To reset and reseed all migration data from scratch:
 
-   make reset-migration
+   runt reset-migration
 
 Or preview what will happen without making changes:
 
-   make reset-migration-dry-run
+   runt reset-migration-dry-run
 
 The script performs preflight checks (SEASON env var, API keys, network
 connectivity, Docker containers) before proceeding.
