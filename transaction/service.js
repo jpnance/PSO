@@ -418,9 +418,10 @@ async function processTrade(tradeDetails) {
 		});
 	}
 	
-	// Check if trades are allowed
+	// Check if trades are allowed (warn but don't block for commissioner)
+	var phaseWarnings = [];
 	if (!config.areTradesEnabled()) {
-		return { success: false, errors: ['Trades are not allowed during ' + config.getPhase() + ' phase'] };
+		phaseWarnings.push('This trade is during the ' + config.getPhase().replace(/-/g, ' ') + ' phase');
 	}
 	
 	var cashValidation = await validateTradeCash(tradeDetails, {
@@ -428,8 +429,11 @@ async function processTrade(tradeDetails) {
 		hardCapActive: config.isHardCapActive()
 	});
 	
+	// Combine all warnings
+	var allWarnings = phaseWarnings.concat(cashValidation.warnings || []);
+	
 	if (!cashValidation.valid) {
-		return { success: false, errors: cashValidation.errors, warnings: cashValidation.warnings };
+		return { success: false, errors: cashValidation.errors, warnings: allWarnings };
 	}
 	
 	// Validate roster limits
@@ -536,7 +540,7 @@ async function processTrade(tradeDetails) {
 		return { 
 			success: true, 
 			validated: true,
-			warnings: cashValidation.warnings || []
+			warnings: allWarnings
 		};
 	}
 	
@@ -706,7 +710,7 @@ async function processTrade(tradeDetails) {
 	return { 
 		success: true, 
 		transaction: transaction,
-		warnings: cashValidation.warnings || []
+		warnings: allWarnings
 	};
 }
 
