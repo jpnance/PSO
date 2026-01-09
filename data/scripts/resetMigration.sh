@@ -231,17 +231,8 @@ else
 fi
 echo ""
 
-# Step 5: Seed budgets
-echo "=== Step 5: Seeding budgets ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedBudgets.js"
-else
-    $DOCKER_COMPOSE run --rm web node data/scripts/seedBudgets.js
-fi
-echo ""
-
-# Step 6: Seed picks
-echo "=== Step 6: Seeding picks ==="
+# Step 5: Seed picks
+echo "=== Step 5: Seeding picks ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedPicks.js"
 else
@@ -249,8 +240,8 @@ else
 fi
 echo ""
 
-# Step 7: Seed trades (interactive, needs network)
-echo "=== Step 7: Seeding trades (interactive, needs network) ==="
+# Step 6: Seed trades (interactive, needs network)
+echo "=== Step 6: Seeding trades (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js"
 else
@@ -258,8 +249,8 @@ else
 fi
 echo ""
 
-# Step 8: Seed draft selections (interactive, needs network)
-echo "=== Step 8: Seeding draft selections (interactive, needs network) ==="
+# Step 7: Seed draft selections (interactive, needs network)
+echo "=== Step 7: Seeding draft selections (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedDraftSelections.js"
 else
@@ -267,8 +258,8 @@ else
 fi
 echo ""
 
-# Step 9: Seed cuts (interactive, needs network)
-echo "=== Step 9: Seeding cuts (interactive, needs network) ==="
+# Step 8: Seed cuts (interactive, needs network)
+echo "=== Step 8: Seeding cuts (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedCuts.js --auto-historical-before=2016"
 else
@@ -276,12 +267,21 @@ else
 fi
 echo ""
 
-# Step 10: Fix legacy trade notes
-echo "=== Step 10: Adding legacy trade notes ==="
+# Step 9: Fix legacy trade notes
+echo "=== Step 9: Adding legacy trade notes ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/addLegacyTradeNotes.js"
 else
     $DOCKER_COMPOSE run --rm web node data/scripts/addLegacyTradeNotes.js
+fi
+echo ""
+
+# Step 10: Seed budgets (calculated from contracts, trades, cuts)
+echo "=== Step 10: Seeding budgets ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedBudgets.js"
+else
+    $DOCKER_COMPOSE run --rm web node data/scripts/seedBudgets.js
 fi
 echo ""
 

@@ -1,140 +1,124 @@
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
-var request = require('superagent');
 
 var Budget = require('../../models/Budget');
 var Franchise = require('../../models/Franchise');
-var PSO = require('../../pso.js');
-
-var sheetLink = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Cash';
+var Contract = require('../../models/Contract');
+var Transaction = require('../../models/Transaction');
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Map owner display names to sleeperRosterId (1-12)
-function getSleeperRosterId(ownerName) {
-	return PSO.franchiseIds[ownerName];
-}
+var BASE_AMOUNT = 1000;
 
-async function fetchCashData() {
-	var response = await request
-		.get(sheetLink)
-		.query({ alt: 'json', key: process.env.GOOGLE_API_KEY });
-
-	var dataJson = JSON.parse(response.text);
-	var budgets = [];
-	var owners = [];
-	var currentSeason = null;
-
-	dataJson.values.forEach(function(row, i) {
-		// First row has owner names
-		if (i === 0) {
-			row.forEach(function(value, j) {
-				if (j >= 2) { // Skip first two columns
-					owners.push(value);
-				}
-			});
-			return;
-		}
-
-		// Row with "Buy-outs" indicates start of a new season
-		if (row.includes('Buy-outs')) {
-			currentSeason = parseInt(row[0]);
-			return;
-		}
-
-		// Row with "Remaining" has the final budget values
-		if (row.includes('Remaining') && currentSeason) {
-			row.forEach(function(value, j) {
-				if (j >= 2 && owners[j - 2]) {
-					budgets.push({
-						season: currentSeason,
-						owner: owners[j - 2],
-						available: parseInt(value.replace('$', '')) || 0
-					});
-				}
-			});
-		}
-	});
-
-	return budgets;
-}
-
+// Seed budgets by calculating from contracts and transactions.
+// This must run AFTER trades and cuts are seeded, since it derives values from them.
 async function seed() {
-	console.log('Seeding budgets from spreadsheet...\n');
+	console.log('Seeding budgets from contracts and transactions...\n');
 
-	var clearExisting = process.argv.includes('--clear');
-	if (clearExisting) {
-		console.log('Clearing existing budgets...');
-		await Budget.deleteMany({});
-	}
+	// Clear existing budgets
+	console.log('Clearing existing budgets...');
+	await Budget.deleteMany({});
 
-	// Load franchises (to map sleeperRosterId -> _id)
-	var franchises = await Franchise.find({});
-	var franchiseByRosterId = {};
-	franchises.forEach(function(f) {
-		franchiseByRosterId[f.sleeperRosterId] = f._id;
-	});
-
+	// Load all franchises
+	var franchises = await Franchise.find({}).lean();
 	console.log('Loaded', franchises.length, 'franchises');
 
-	// Fetch cash data from spreadsheet
-	var cashData = await fetchCashData();
-	console.log('Found', cashData.length, 'budget entries in spreadsheet\n');
+	// Load all contracts
+	var contracts = await Contract.find({}).lean();
+	console.log('Loaded', contracts.length, 'contracts');
+
+	// Load all trades
+	var trades = await Transaction.find({ type: 'trade' }).lean();
+	console.log('Loaded', trades.length, 'trades');
+
+	// Load all cuts
+	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
+	console.log('Loaded', cuts.length, 'cuts\n');
+
+	// Determine season range (current season from env, plus 2 future years)
+	var currentSeason = parseInt(process.env.SEASON, 10) || new Date().getFullYear();
+	var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+	console.log('Calculating for seasons:', seasons.join(', '), '\n');
 
 	var created = 0;
-	var skipped = 0;
-	var errors = [];
 
-	for (var i = 0; i < cashData.length; i++) {
-		var entry = cashData[i];
+	for (var i = 0; i < franchises.length; i++) {
+		var franchise = franchises[i];
+		var franchiseId = franchise._id;
 
-		// Find franchise
-		var sleeperRosterId = getSleeperRosterId(entry.owner);
-		if (!sleeperRosterId) {
-			errors.push({ entry: entry.owner + ' ' + entry.season, reason: 'Unknown owner: ' + entry.owner });
-			skipped++;
-			continue;
-		}
+		for (var j = 0; j < seasons.length; j++) {
+			var season = seasons[j];
 
-		var franchiseId = franchiseByRosterId[sleeperRosterId];
-		if (!franchiseId) {
-			errors.push({ entry: entry.owner + ' ' + entry.season, reason: 'No franchise for rosterId: ' + sleeperRosterId });
-			skipped++;
-			continue;
-		}
+			// Calculate payroll: sum of salaries for contracts active in this season
+			var payroll = 0;
+			contracts.forEach(function(c) {
+				if (!c.franchiseId.equals(franchiseId)) return;
+				if (c.salary === null) return; // RFA rights don't count
+				if (!c.endYear || c.endYear < season) return; // Contract ended before this season
+				if (c.startYear && c.startYear > season) return; // Contract hasn't started yet
+				payroll += c.salary;
+			});
 
-		// Create budget
-		try {
+			// Calculate buy-outs from cuts
+			var buyOuts = 0;
+			cuts.forEach(function(cut) {
+				if (!cut.franchiseId || !cut.franchiseId.equals(franchiseId)) return;
+				if (!cut.buyOuts) return;
+				cut.buyOuts.forEach(function(bo) {
+					if (bo.season === season) {
+						buyOuts += bo.amount;
+					}
+				});
+			});
+
+			// Calculate cash in/out from trades
+			var cashIn = 0;
+			var cashOut = 0;
+			trades.forEach(function(trade) {
+				if (!trade.parties) return;
+				trade.parties.forEach(function(party) {
+					if (!party.receives || !party.receives.cash) return;
+					party.receives.cash.forEach(function(c) {
+						if (c.season !== season) return;
+						if (party.franchiseId.equals(franchiseId)) {
+							cashIn += c.amount || 0;
+						}
+						if (c.fromFranchiseId && c.fromFranchiseId.equals(franchiseId)) {
+							cashOut += c.amount || 0;
+						}
+					});
+				});
+			});
+
+			// Calculate available
+			var available = BASE_AMOUNT - payroll - buyOuts + cashIn - cashOut;
+
+			// Create budget document
 			await Budget.create({
 				franchiseId: franchiseId,
-				season: entry.season,
-				available: entry.available
-				// baseAmount, payroll, buyOuts, cashIn, cashOut will use defaults
+				season: season,
+				baseAmount: BASE_AMOUNT,
+				payroll: payroll,
+				buyOuts: buyOuts,
+				cashIn: cashIn,
+				cashOut: cashOut,
+				available: available
 			});
+
 			created++;
-		}
-		catch (err) {
-			if (err.code === 11000) {
-				errors.push({ entry: entry.owner + ' ' + entry.season, reason: 'Duplicate budget' });
-				skipped++;
-			}
-			else {
-				throw err;
-			}
+
+			console.log(
+				franchise.sleeperRosterId + ' ' + season + ':',
+				'payroll=' + payroll,
+				'buyOuts=' + buyOuts,
+				'cashIn=' + cashIn,
+				'cashOut=' + cashOut,
+				'available=' + available
+			);
 		}
 	}
 
-	console.log('Done!');
-	console.log('  Created:', created);
-	console.log('  Skipped:', skipped);
-
-	if (errors.length > 0) {
-		console.log('\nErrors:');
-		errors.forEach(function(e) {
-			console.log('  -', e.entry + ':', e.reason);
-		});
-	}
-
+	console.log('\nDone! Created', created, 'budget documents.');
 	process.exit(0);
 }
 
@@ -142,4 +126,3 @@ seed().catch(function(err) {
 	console.error('Error:', err);
 	process.exit(1);
 });
-

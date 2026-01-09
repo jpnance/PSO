@@ -1,9 +1,11 @@
+var mongoose = require('mongoose');
 var LeagueConfig = require('../models/LeagueConfig');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var Contract = require('../models/Contract');
 var Pick = require('../models/Pick');
 var Transaction = require('../models/Transaction');
+var transactionService = require('../transaction/service');
 
 // Buy-out calculation based on contract year
 function computeBuyOutIfCut(salary, startYear, endYear, season) {
@@ -246,6 +248,9 @@ async function proposePage(request, response) {
 		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
 		var isBeforeCutDay = !cutDay || today < cutDay;
 		
+		// Check if current user is admin
+		var isAdmin = request.session && request.session.user && request.session.user.admin;
+		
 		response.render('trade', {
 			franchises: data.franchises,
 			teams: data.teams,
@@ -254,6 +259,7 @@ async function proposePage(request, response) {
 			isPlural: isPlural,
 			isBeforeCutDay: isBeforeCutDay,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
+			isAdmin: isAdmin,
 			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});
@@ -263,7 +269,145 @@ async function proposePage(request, response) {
 	}
 }
 
+// Submit a trade (admin only)
+async function submitTrade(request, response) {
+	try {
+		var deal = request.body.deal;
+		
+		if (!deal || typeof deal !== 'object') {
+			return response.status(400).json({ success: false, errors: ['Invalid trade data'] });
+		}
+		
+		var franchiseIds = Object.keys(deal);
+		
+		if (franchiseIds.length < 2) {
+			return response.status(400).json({ success: false, errors: ['Trade must have at least 2 parties'] });
+		}
+		
+		// Check for duplicate players across parties (server-side validation)
+		var allPlayerIds = [];
+		var duplicatePlayers = [];
+		
+		for (var i = 0; i < franchiseIds.length; i++) {
+			var bucket = deal[franchiseIds[i]];
+			var players = bucket.players || [];
+			
+			for (var j = 0; j < players.length; j++) {
+				var playerId = players[j].id;
+				if (allPlayerIds.includes(playerId)) {
+					duplicatePlayers.push(players[j].name || playerId);
+				} else {
+					allPlayerIds.push(playerId);
+				}
+			}
+		}
+		
+		if (duplicatePlayers.length > 0) {
+			return response.status(400).json({ 
+				success: false, 
+				errors: ['Duplicate player(s) in trade: ' + duplicatePlayers.join(', ')] 
+			});
+		}
+		
+		// Transform client deal format to processTrade format
+		var parties = [];
+		
+		for (var i = 0; i < franchiseIds.length; i++) {
+			var franchiseId = franchiseIds[i];
+			var bucket = deal[franchiseId];
+			
+			var receives = {
+				players: [],
+				picks: [],
+				cash: []
+			};
+			
+			// Transform players
+			for (var j = 0; j < (bucket.players || []).length; j++) {
+				var player = bucket.players[j];
+				
+				// Look up the contract to get salary/terms
+				var contract = await Contract.findOne({ playerId: player.id });
+				if (!contract) {
+					return response.status(400).json({ 
+						success: false, 
+						errors: ['Contract not found for player: ' + (player.name || player.id)] 
+					});
+				}
+				
+				receives.players.push({
+					playerId: contract.playerId,
+					salary: contract.salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear
+				});
+			}
+			
+			// Transform picks
+			for (var j = 0; j < (bucket.picks || []).length; j++) {
+				var pick = bucket.picks[j];
+				receives.picks.push({
+					pickId: mongoose.Types.ObjectId(pick.id)
+				});
+			}
+			
+			// Transform cash
+			for (var j = 0; j < (bucket.cash || []).length; j++) {
+				var cash = bucket.cash[j];
+				receives.cash.push({
+					amount: cash.amount,
+					season: cash.season,
+					fromFranchiseId: mongoose.Types.ObjectId(cash.from)
+				});
+			}
+			
+			parties.push({
+				franchiseId: mongoose.Types.ObjectId(franchiseId),
+				receives: receives
+			});
+		}
+		
+		// Call processTrade (with validateOnly flag if set)
+		var validateOnly = request.body.validateOnly === true;
+		
+		var result = await transactionService.processTrade({
+			timestamp: new Date(),
+			source: 'manual',
+			notes: request.body.notes || null,
+			parties: parties,
+			validateOnly: validateOnly
+		});
+		
+		if (result.success) {
+			if (result.validated) {
+				// Validation only - no transaction created yet
+				response.json({
+					success: true,
+					validated: true,
+					warnings: result.warnings || []
+				});
+			} else {
+				// Trade executed
+				response.json({
+					success: true,
+					tradeId: result.transaction.tradeId,
+					warnings: result.warnings || []
+				});
+			}
+		} else {
+			response.status(400).json({
+				success: false,
+				errors: result.errors || ['Unknown error processing trade']
+			});
+		}
+	} catch (err) {
+		console.error('submitTrade error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
 module.exports = {
 	getTradeData: getTradeData,
-	proposePage: proposePage
+	proposePage: proposePage,
+	submitTrade: submitTrade
 };

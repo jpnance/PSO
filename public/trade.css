@@ -199,21 +199,6 @@ select.form-control {
 	border-top: 2px solid #e9ecef;
 }
 
-/* Party warnings */
-.party-warnings {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.25rem;
-}
-
-.party-warnings .badge {
-	font-size: 0.75rem;
-	font-weight: 500;
-}
-
-.party-warnings:empty {
-	display: none;
-}
 
 /* Vertically center empty state in two-column layout */
 @media (min-width: 1200px) {

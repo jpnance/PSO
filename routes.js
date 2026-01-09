@@ -29,6 +29,7 @@ module.exports = function(app) {
 	app.get('/trades/:id', trades.singleTrade);
 	
 	app.get('/propose', propose.proposePage);
+	app.post('/propose/submit', requireLogin, requireAdmin, propose.submitTrade);
 
 	app.get('/draft', draft.draftBoard);
 	

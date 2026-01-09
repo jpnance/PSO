@@ -50,12 +50,16 @@ The resetMigration.sh script runs these steps in order:
   Step  2: seedEntities.js (franchises, people, regimes)
   Step  3: syncPlayers.js
   Step  4: seedContracts.js (interactive)
-  Step  5: seedBudgets.js
-  Step  6: seedPicks.js
-  Step  7: seedTrades.js (interactive, needs network)
-  Step  8: seedDraftSelections.js (interactive, needs network)
-  Step  9: seedCuts.js (interactive, needs network)
-  Step 10: addLegacyTradeNotes.js (needs network)
+  Step  5: seedPicks.js
+  Step  6: seedTrades.js (interactive, needs network)
+  Step  7: seedDraftSelections.js (interactive, needs network)
+  Step  8: seedCuts.js (interactive, needs network)
+  Step  9: addLegacyTradeNotes.js (needs network)
+  Step 10: seedBudgets.js
+
+Note: Budgets are seeded LAST because they are calculated from contract data,
+cash transactions from trades, and buy-outs from cuts. The script derives all
+values from the canonical data in the database.
 
 See the script itself for full details on each step.
 

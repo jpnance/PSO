@@ -307,78 +307,8 @@ var tradeMachine = {
 		return impact;
 	},
 
-	// Generate warnings for a specific franchise
-	getWarningsForFranchise: (fId) => {
-		var warnings = [];
-		var data = franchiseData[fId];
-		if (!data) return warnings;
-		
-		var impact = tradeMachine.calculateTradeImpact();
-		var cashDeltas = tradeMachine.calculateCashDeltas(currentSeason);
-		
-		var imp = impact[fId];
-		if (!imp) return warnings;
-		
-		var netSalary = imp.salaryIn - imp.salaryOut;
-		var netRecoverable = imp.recoverableIn - imp.recoverableOut;
-		var cashDelta = cashDeltas[fId] || 0;
-		
-		// New available after trade (salary change reduces available, cash received increases it)
-		var newAvailable = data.available - netSalary + cashDelta;
-		
-		// New recoverable after trade (accounts for players moving in/out)
-		var newRecoverable = data.recoverable + netRecoverable;
-		
-		// Cap warnings only if available goes negative
-		if (newAvailable < 0) {
-			var deficit = Math.abs(newAvailable);
-			
-			// Check if recoverable can cover the deficit (soft cap)
-			if (isBeforeCutDay && (newAvailable + newRecoverable) >= 0) {
-				warnings.push({
-					type: 'warning',
-					icon: 'fa-exclamation-circle',
-					text: '$' + deficit + ' over (can recover)'
-				});
-			} else {
-				warnings.push({
-					type: 'danger',
-					icon: 'fa-exclamation-triangle',
-					text: '$' + deficit + ' over cap'
-				});
-			}
-		}
-		
-		return warnings;
-	},
-
-	// Update warnings on all party cards
-	updatePartyWarnings: () => {
-		var franchises = tradeMachine.franchisesInvolved();
-		
-		// Clear all warnings first
-		$('.party-warnings').empty().addClass('d-none');
-		
-		franchises.forEach((fId) => {
-			var warnings = tradeMachine.getWarningsForFranchise(fId);
-			var $container = $('#gets-' + fId + ' .party-warnings');
-			
-			if (warnings.length > 0) {
-				$container.removeClass('d-none');
-				warnings.forEach((w) => {
-					$container.append(
-						$('<span class="badge badge-pill badge-' + w.type + ' mr-1"><i class="fa ' + w.icon + ' mr-1"></i>' + w.text + '</span>')
-					);
-				});
-			}
-		});
-	},
-
 	updateTradeTools: () => {
 		var $btn = $('.cash-neutral-btn');
-		
-		// Update party-specific warnings
-		tradeMachine.updatePartyWarnings();
 		
 		// Update cash-neutral button
 		if (tradeMachine.isCashNeutral(currentSeason)) {
@@ -400,9 +330,14 @@ var tradeMachine = {
 		// Show/hide the Trade Details card wrapper
 		if (franchises.length >= 2) {
 			$('.trade-details-card').removeClass('d-none');
+			$('.submit-trade-section').removeClass('d-none');
 		} else {
 			$('.trade-details-card').addClass('d-none');
+			$('.submit-trade-section').addClass('d-none');
 		}
+		
+		// Reset confirmation state when deal changes
+		tradeMachine.resetConfirmState();
 		
 		// Rebuild dropdowns to exclude already-traded assets
 		tradeMachine.rebuildPlayerLists();
@@ -447,6 +382,18 @@ var tradeMachine = {
 		tradeMachine.deal = {};
 		$('.form-check-input').prop('checked', false);
 		tradeMachine.redrawTradeMachine();
+		tradeMachine.resetConfirmState();
+	},
+	
+	resetConfirmState: () => {
+		var $btn = $('.submit-trade-btn');
+		$btn.removeClass('btn-warning').addClass('btn-primary');
+		$btn.html('<i class="fa fa-check mr-1"></i> Submit Trade');
+		$('.trade-result').empty();
+		// Reset the confirm flag (accessed via closure in the click handler)
+		if (typeof window.resetTradeConfirmed === 'function') {
+			window.resetTradeConfirmed();
+		}
 	},
 
 	// Calculate salary delta for each franchise (positive = receiving more salary)
@@ -859,5 +806,77 @@ $(document).ready(function() {
 		}
 
 		tradeMachine.redrawTradeMachine();
+	});
+
+	// Submit trade (admin only) - two-phase: validate first, then confirm if warnings
+	var tradeConfirmed = false;
+	window.resetTradeConfirmed = function() { tradeConfirmed = false; };
+	
+	$('.submit-trade-btn').on('click', (e) => {
+		var $btn = $(e.currentTarget);
+		var $result = $('.trade-result');
+		var notes = $('#trade-notes').val().trim() || null;
+		var validateOnly = !tradeConfirmed;
+		
+		// Disable button while submitting
+		$btn.prop('disabled', true);
+		$btn.html('<i class="fa fa-spinner fa-spin mr-1"></i> ' + (validateOnly ? 'Validating...' : 'Submitting...'));
+		$result.empty();
+		
+		$.ajax({
+			url: '/propose/submit',
+			method: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				deal: tradeMachine.deal,
+				notes: notes,
+				validateOnly: validateOnly
+			}),
+			success: (response) => {
+				if (response.validated) {
+					// Validation passed
+					if (response.warnings && response.warnings.length > 0) {
+						// Has warnings - show them and require confirmation
+						tradeConfirmed = true;
+						$btn.prop('disabled', false);
+						$btn.removeClass('btn-primary').addClass('btn-warning');
+						$btn.html('<i class="fa fa-exclamation-triangle mr-1"></i> Confirm Trade');
+						
+						var html = '<div class="alert alert-warning mb-0">';
+						response.warnings.forEach((w, i) => {
+							if (i > 0) html += '<br>';
+							html += '<i class="fa fa-exclamation-triangle mr-2"></i>' + w;
+						});
+						html += '</div>';
+						$result.html(html);
+					} else {
+						// No warnings - submit for real immediately
+						tradeConfirmed = true;
+						$btn.trigger('click');
+					}
+				} else {
+					// Trade executed - redirect to view it
+					window.location.href = '/trades/' + response.tradeId;
+				}
+			},
+			error: (xhr) => {
+				tradeConfirmed = false;
+				$btn.prop('disabled', false);
+				$btn.removeClass('btn-warning').addClass('btn-primary');
+				$btn.html('<i class="fa fa-check mr-1"></i> Submit Trade');
+				
+				var response = xhr.responseJSON || {};
+				var errors = response.errors || ['Unknown error'];
+				
+				var html = '<div class="alert alert-danger mb-0">';
+				errors.forEach((err, i) => {
+					if (i > 0) html += '<br>';
+					html += '<i class="fa fa-exclamation-circle mr-2"></i>' + err;
+				});
+				html += '</div>';
+				
+				$result.html(html);
+			}
+		});
 	});
 });

@@ -6,8 +6,30 @@ var Roster = require('../models/Roster');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Franchise = require('../models/Franchise');
+var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
+
+// Format a dollar amount with sign before $ (e.g., -$163, +$50)
+function formatDollars(amount, showPlus) {
+	if (amount < 0) {
+		return '-$' + Math.abs(amount);
+	} else if (showPlus && amount > 0) {
+		return '+$' + amount;
+	} else {
+		return '$' + amount;
+	}
+}
+
+// Get display name for a franchise
+async function getFranchiseDisplayName(franchiseId, season) {
+	var regime = await Regime.findOne({
+		franchiseId: franchiseId,
+		startSeason: { $lte: season },
+		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
+	});
+	return regime ? regime.displayName : 'Unknown';
+}
 
 /**
  * Compute buy-out for a single season if a contract is cut.
@@ -110,9 +132,10 @@ async function validateBudgetImpact(franchiseId, season, salaryImpact, config) {
 	var recoverable = await computeRecoverable(franchiseId, season);
 	
 	if (resultingBudget + recoverable >= 0) {
+		var franchiseName = await getFranchiseDisplayName(franchiseId, season);
 		return { 
 			valid: true, 
-			warning: 'Soft cap: $' + resultingBudget + ' available (could recover by cutting $' + (-resultingBudget) + ' in salary)'
+			warning: franchiseName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season
 		};
 	}
 	
@@ -217,9 +240,6 @@ async function validateTradeCash(tradeDetails, config) {
 		var franchiseId = franchiseIds[i];
 		var seasons = Object.keys(cashBySeason[franchiseId]);
 		
-		var franchise = await Franchise.findById(franchiseId).lean();
-		var franchiseName = franchise ? franchise.sleeperRosterId : franchiseId;
-		
 		for (var j = 0; j < seasons.length; j++) {
 			var season = parseInt(seasons[j]);
 			var netChange = cashBySeason[franchiseId][season];
@@ -235,16 +255,19 @@ async function validateTradeCash(tradeDetails, config) {
 				continue;
 			}
 			
+			// Get franchise display name
+			var franchiseName = await getFranchiseDisplayName(mongoose.Types.ObjectId(franchiseId), season);
+			
 			// Look up current available budget
 			var budget = await Budget.findOne({ franchiseId: mongoose.Types.ObjectId(franchiseId), season: season });
 			if (!budget) {
-				errors.push('No budget found for franchise ' + franchiseName + ' season ' + season);
+				errors.push('No budget found for ' + franchiseName + ' in ' + season);
 				continue;
 			}
 			var resultingBudget = budget.available + netChange;
 			
 			if (resultingBudget < 0) {
-				var message = 'Franchise ' + franchiseName + ' would have $' + resultingBudget + ' available for ' + season;
+				var message = franchiseName + ' would have ' + formatDollars(resultingBudget) + ' available in ' + season;
 				
 				// Hard cap for current season after cut day - no way out
 				if (season === currentSeason && hardCapActive) {
@@ -254,12 +277,12 @@ async function validateTradeCash(tradeDetails, config) {
 					var recoverable = await computeRecoverable(mongoose.Types.ObjectId(franchiseId), season);
 					
 					if (resultingBudget + recoverable >= 0) {
-						// They could cut their way back to $0 or better
-						warnings.push(message + ' (soft cap - could recover by cutting $' + (-resultingBudget) + ' in salary)');
+						// They could cut their way back to $0 or better - soft cap
+						warnings.push(franchiseName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season);
 					} else {
 						// Even cutting everyone wouldn't save them
 						var shortfall = -(resultingBudget + recoverable);
-						errors.push(message + ' (would be $' + shortfall + ' short even after cutting all players)');
+						errors.push(message + ' (' + formatDollars(shortfall) + ' short even after cutting all players)');
 					}
 				}
 			}
@@ -448,8 +471,7 @@ async function processTrade(tradeDetails) {
 		var newRosterCount = currentRosterCount + playersIn - playersOut;
 		
 		if (newRosterCount > LeagueConfig.ROSTER_LIMIT) {
-			var franchise = await Franchise.findById(party.franchiseId);
-			var franchiseName = franchise ? franchise.name : party.franchiseId;
+			var franchiseName = await getFranchiseDisplayName(party.franchiseId, config.season);
 			errors.push(franchiseName + ' would have ' + newRosterCount + ' players (limit is ' + LeagueConfig.ROSTER_LIMIT + ')');
 		}
 	}
@@ -465,6 +487,20 @@ async function processTrade(tradeDetails) {
 		var party = tradeDetails.parties[i];
 		var receives = party.receives || {};
 		
+		// Look up picks to get denormalized data for transaction storage
+		var picksData = [];
+		for (var j = 0; j < (receives.picks || []).length; j++) {
+			var pickInfo = receives.picks[j];
+			var pick = await Pick.findById(pickInfo.pickId).lean();
+			if (pick) {
+				picksData.push({
+					round: pick.round,
+					season: pick.season,
+					fromFranchiseId: pick.originalFranchiseId
+				});
+			}
+		}
+		
 		var txParty = {
 			franchiseId: party.franchiseId,
 			receives: {
@@ -472,13 +508,11 @@ async function processTrade(tradeDetails) {
 					return {
 						playerId: p.playerId,
 						salary: p.salary,
-						contractStart: p.startYear,
-						contractEnd: p.endYear
+						startYear: p.startYear,
+						endYear: p.endYear
 					};
 				}),
-				picks: (receives.picks || []).map(function(p) {
-					return { pickId: p.pickId };
-				}),
+				picks: picksData,
 				cash: (receives.cash || []).map(function(c) {
 					return { 
 						amount: c.amount, 
@@ -492,6 +526,15 @@ async function processTrade(tradeDetails) {
 		};
 		
 		transactionParties.push(txParty);
+	}
+	
+	// If validateOnly, return here without applying changes
+	if (tradeDetails.validateOnly) {
+		return { 
+			success: true, 
+			validated: true,
+			warnings: cashValidation.warnings || []
+		};
 	}
 	
 	// Determine the trade ID

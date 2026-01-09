@@ -75,7 +75,6 @@ block content
 									span.party-name
 										strong= franchise.displayName
 										|  receive#{isPlural(franchise.displayName) ? '' : 's'}:
-								div.party-warnings.mb-2
 
 								div.row
 									//- Input Form (left on large screens)
@@ -123,6 +122,16 @@ block content
 													| Nothing yet
 
 								hr.party-separator
+
+						//- Submit Trade section (admin only)
+						if isAdmin
+							div.submit-trade-section.d-none.mt-3.pt-3.border-top.text-center
+								div.form-group
+									input#trade-notes.form-control(type="text" placeholder="Notes (optional)")
+								div.trade-result.mb-3
+								button.submit-trade-btn.btn.btn-primary
+									i.fa.fa-check.mr-1
+									| Submit Trade
 
 block scripts
 	script.
