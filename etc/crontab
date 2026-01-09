@@ -3,4 +3,7 @@
 33 3 */2 * * wget -O /app/public/data/sleeper-data.json https://api.sleeper.app/v1/players/nfl
 #34 3 */2 * * /usr/local/bin/node /app/data/scripts/syncPlayers.js
 
+# Daily budget verification (4am)
+0 4 * * * /usr/local/bin/node /app/data/scripts/verifyBudgets.js
+
 #0 17 * * * /usr/local/bin/node /app/bots/starts.js
