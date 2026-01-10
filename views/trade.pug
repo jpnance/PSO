@@ -33,7 +33,10 @@ block content
 				option(class="franchises-" + franchise._id value=franchise._id data-name=franchise.displayName) #{franchise.displayName}
 
 	div.container.py-4
-		h1.mb-4 Trade Machine
+		if isProcessingMode
+			p: a(href='/admin') ← Back to Admin
+		
+		h1.mb-4= isProcessingMode ? 'Process Trade' : 'Trade Machine'
 
 		div.row
 			//- Franchise Selection Card (narrower on large screens)
@@ -123,12 +126,20 @@ block content
 
 								hr.party-separator
 
-						//- Submit Trade section (admin only)
-						if isAdmin
+						//- Submit Trade section (processing mode only)
+						if isProcessingMode
 							div.submit-trade-section.d-none.mt-3.pt-3.border-top.text-center
 								div.form-group
 									input#trade-notes.form-control(type="text" placeholder="Notes (optional)")
+								div.alert.alert-warning.mb-3
+									i.fa.fa-gavel.mr-2
+									| You are acting as 
+									strong commissioner
+									| . This will execute the trade immediately.
 								div.trade-result.mb-3
+								div.confirm-execute-section.d-none.mb-3
+									label.text-muted(for="confirm-execute") Type #[strong= confirmName] to confirm:
+									input#confirm-execute.form-control.text-center(type="text" placeholder=confirmName autocomplete="off")
 								button.submit-trade-btn.btn.btn-primary
 									i.fa.fa-check.mr-1
 									| Submit Trade
@@ -138,6 +149,7 @@ block scripts
 		var currentSeason = #{season};
 		var isBeforeCutDay = #{isBeforeCutDay ? 'true' : 'false'};
 		var rosterLimit = #{rosterLimit};
+		var confirmName = !{isProcessingMode ? JSON.stringify(confirmName) : 'null'};
 		var franchiseData = {};
 		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { rosterCount: " + f.rosterCount + ", available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
 	script(src='/trade.js')

@@ -389,6 +389,9 @@ var tradeMachine = {
 		var $btn = $('.submit-trade-btn');
 		$btn.removeClass('btn-warning').addClass('btn-primary');
 		$btn.html('<i class="fa fa-check mr-1"></i> Submit Trade');
+		$btn.prop('disabled', false);
+		$('#confirm-execute').val('');
+		$('.confirm-execute-section').addClass('d-none');
 		$('.trade-result').empty();
 		// Reset the confirm flag (accessed via closure in the click handler)
 		if (typeof window.resetTradeConfirmed === 'function') {
@@ -808,14 +811,36 @@ $(document).ready(function() {
 		tradeMachine.redrawTradeMachine();
 	});
 
-	// Submit trade (admin only) - two-phase: validate first, then confirm if warnings
+	// Submit trade (admin only) - three phases: show EXECUTE prompt, validate, confirm if warnings
+	var executePromptShown = false;
 	var tradeConfirmed = false;
-	window.resetTradeConfirmed = function() { tradeConfirmed = false; };
+	window.resetTradeConfirmed = function() { 
+		tradeConfirmed = false; 
+		executePromptShown = false;
+	};
 	
 	$('.submit-trade-btn').on('click', (e) => {
 		var $btn = $(e.currentTarget);
 		var $result = $('.trade-result');
+		var $confirmSection = $('.confirm-execute-section');
 		var notes = $('#trade-notes').val().trim() || null;
+		
+		// First click: show the EXECUTE prompt
+		if (!executePromptShown) {
+			executePromptShown = true;
+			$confirmSection.removeClass('d-none');
+			$('#confirm-execute').focus();
+			return;
+		}
+		
+		// Check that the confirmation name was typed
+		var confirmVal = $('#confirm-execute').val().trim().toUpperCase();
+		var expectedName = (typeof confirmName !== 'undefined' && confirmName) ? confirmName.toUpperCase() : 'EXECUTE';
+		if (confirmVal !== expectedName) {
+			$result.html('<div class="alert alert-danger mb-0"><i class="fa fa-exclamation-circle mr-2"></i>Type the name to confirm</div>');
+			return;
+		}
+		
 		var validateOnly = !tradeConfirmed;
 		
 		// Disable button while submitting
@@ -824,7 +849,7 @@ $(document).ready(function() {
 		$result.empty();
 		
 		$.ajax({
-			url: '/propose/submit',
+			url: '/admin/process-trade',
 			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({

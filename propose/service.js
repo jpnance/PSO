@@ -5,6 +5,7 @@ var Regime = require('../models/Regime');
 var Contract = require('../models/Contract');
 var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
+var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
@@ -193,7 +194,7 @@ function isPlural(name) {
 	return name === 'Schexes' || name.includes('/');
 }
 
-// Route handler for the propose page (trade machine)
+// Route handler for the propose page (trade machine - owner mode)
 async function proposePage(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
@@ -206,8 +207,41 @@ async function proposePage(request, response) {
 		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
 		var isBeforeCutDay = !cutDay || today < cutDay;
 		
-		// Check if current user is admin
-		var isAdmin = request.session && request.session.user && request.session.user.admin;
+		response.render('trade', {
+			franchises: data.franchises,
+			teams: data.teams,
+			picks: data.picks,
+			season: currentSeason,
+			isPlural: isPlural,
+			isBeforeCutDay: isBeforeCutDay,
+			rosterLimit: LeagueConfig.ROSTER_LIMIT,
+			pageTitle: 'Trade Machine - PSO',
+			activePage: 'propose'
+		});
+	} catch (err) {
+		console.error(err);
+		response.status(500).send('Error loading trade data');
+	}
+}
+
+// Route handler for processing trades (commissioner mode)
+async function processPage(request, response) {
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		var data = await getTradeData(currentSeason);
+		
+		// Determine if we're before cut day
+		var today = new Date();
+		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
+		var isBeforeCutDay = !cutDay || today < cutDay;
+		
+		// Get a random player not on an NFL team for the confirmation prompt
+		var teamlessPlayers = await Player.find({ team: null }).select('name').lean();
+		var randomPlayer = teamlessPlayers.length > 0 
+			? teamlessPlayers[Math.floor(Math.random() * teamlessPlayers.length)]
+			: { name: 'EXECUTE' };
 		
 		response.render('trade', {
 			franchises: data.franchises,
@@ -217,9 +251,10 @@ async function proposePage(request, response) {
 			isPlural: isPlural,
 			isBeforeCutDay: isBeforeCutDay,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
-			isAdmin: isAdmin,
-			pageTitle: 'Trade Machine - PSO',
-			activePage: 'propose'
+			isProcessingMode: true,
+			confirmName: randomPlayer.name,
+			pageTitle: 'Process Trade - PSO Admin',
+			activePage: 'admin'
 		});
 	} catch (err) {
 		console.error(err);
@@ -368,5 +403,6 @@ async function submitTrade(request, response) {
 module.exports = {
 	getTradeData: getTradeData,
 	proposePage: proposePage,
+	processPage: processPage,
 	submitTrade: submitTrade
 };

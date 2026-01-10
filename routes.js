@@ -29,7 +29,6 @@ module.exports = function(app) {
 	app.get('/trades/:id', trades.singleTrade);
 	
 	app.get('/propose', propose.proposePage);
-	app.post('/propose/submit', requireLogin, requireAdmin, propose.submitTrade);
 
 	app.get('/draft', draft.draftBoard);
 	
@@ -72,4 +71,8 @@ module.exports = function(app) {
 	app.get('/admin/trades', requireLogin, requireAdmin, adminTrades.listTrades);
 	app.get('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTradeForm);
 	app.post('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTrade);
+	
+	// Process new trades (require login + admin)
+	app.get('/admin/process-trade', requireLogin, requireAdmin, propose.processPage);
+	app.post('/admin/process-trade', requireLogin, requireAdmin, propose.submitTrade);
 };
