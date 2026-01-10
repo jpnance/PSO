@@ -56,12 +56,60 @@ The resetMigration.sh script runs these steps in order:
   Step  8: seedCuts.js (interactive, needs network)
   Step  9: addLegacyTradeNotes.js (needs network)
   Step 10: seedBudgets.js
+  Step 11: applyFixups.js
 
-Note: Budgets are seeded LAST because they are calculated from contract data,
-cash transactions from trades, and buy-outs from cuts. The script derives all
-values from the canonical data in the database.
+Note: Trade cash edits now automatically trigger budget recalculation, so
+fixups can safely run last.
 
 See the script itself for full details on each step.
+
+
+Manual Fixups
+-------------
+The applyFixups.js script reads fixups.json and calls admin route handlers with
+fake request/response objects. This uses the same code paths as the admin UI.
+
+To apply fixups independently (after reset-migration or anytime):
+
+   runt apply-fixups
+   runt apply-fixups --dry-run
+
+Edit data/scripts/fixups.json to add/modify corrections:
+
+   franchiseTransfer:     Transfer ownership to new owner
+   seasonRollover:        Advance season with draft order + date overrides
+   tradeAmendments:       Add notes/timestamps to trades
+   tradeCashCorrections:  Fix or remove cash entries on trades
+   playerCorrections:     Fix positions/notes on historical players
+
+Example fixups.json:
+
+   {
+     "franchiseTransfer": {
+       "sleeperRosterId": 2,
+       "newOwnerName": "Nam Nguyen",
+       "newDisplayName": "Nam",
+       "effectiveSeason": 2026
+     },
+     "seasonRollover": {
+       "draftOrder": { "2": 1, "9": 2, ... },
+       "dateOverrides": { "nflDraft": "2026-04-23" }
+     },
+     "tradeCashCorrections": [
+       { "tradeId": 688, "party": 0, "cash": 0, "remove": true },
+       { "tradeId": 600, "party": 1, "cash": 0, "season": 2026 }
+     ]
+   }
+
+To find party/cash indices for a trade, query mongo:
+
+   docker exec pso-mongo mongosh pso --quiet --eval "
+     db.transactions.findOne({type:'trade', tradeId: 600}).parties
+   "
+
+The output shows parties[0], parties[1], etc. Each party has franchiseId and
+receives.cash[]. Use "party": 0 for the first party, "cash": 0 for the first
+cash entry in that party's receives.cash array.
 
 
 Future Work
@@ -82,11 +130,12 @@ Future Work
   downloaded via Drive API and parsed to reconstruct historical state at
   specific points in time. Complex and may not be worth the effort.
 
-- Trade notes to add (via /admin/trades/:id):
-  - #34, #36: Conditional draft picks. Add notes explaining conditions/outcomes.
+- Known data issues (handled in applyFixups.js):
+  - #34, #36, #37: Conditional draft picks. Placeholder notes added; fill in actual
+    conditions/outcomes when known.
   - #331: Historical exception — pick traded before Pick document existed.
-  - #600, #688: Cash entered into wrong year in spreadsheet. Correct the season
-    and add notes explaining the discrepancy.
+  - #600, #688: Cash entered into wrong year in spreadsheet. Corrections
+    applied automatically by applyFixups.js.
 
 - Historical contract cleanup: Trades before #361 now have contract start/end
   years inferred by addLegacyTradeNotes.js where possible, with notes added for

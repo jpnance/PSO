@@ -1,0 +1,46 @@
+{
+	"franchiseTransfer": {
+		"sleeperRosterId": 2,
+		"newOwnerName": "Nam Nguyen",
+		"newDisplayName": "Nam",
+		"effectiveSeason": 2026
+	},
+
+	"seasonRollover": {
+		"draftOrder": {
+			"12": 1,
+			"7": 2,
+			"1": 3,
+			"3": 4,
+			"10": 5,
+			"5": 6,
+			"6": 7,
+			"4": 8,
+			"9": 9,
+			"8": 10,
+			"2": 11,
+			"11": 12
+		},
+		"dateOverrides": {
+			"nflDraft": "2026-04-23"
+		}
+	},
+
+	"tradeAmendments": [
+		{ "tradeId": 34, "notes": "Contract data may be incomplete: Larry Fitzgerald ($135, 2011). The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder." },
+		{ "tradeId": 36, "notes": "Contract data may be incomplete: Hakeem Nicks ($28, 2011); Tim Tebow ($12, 2012). The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder." },
+		{ "tradeId": 37, "notes": "Contract data may be incomplete: Ray Rice ($250, 2011). The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively." },
+		{ "tradeId": 331, "notes": "Contract data may be incomplete: Deshaun Watson ($31, 2019). The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back." }
+	],
+
+	"tradeCashCorrections": [
+		{ "tradeId": 688, "party": 0, "cash": 0, "remove": true, "notes": "The agreed-to version of this trade moved the $20 from Keyon to Mitch in 2025, not 2026. The transaction was incorrectly carried out on the spreadsheet and not noticed by anyone until nearly two years later." },
+		{ "tradeId": 600, "party": 1, "cash": 0, "season": 2026, "notes": "The agreed-to version of this trade moved $15 from Schexes to Patrick in 2025. That transaction was never carried out on the spreadsheet, though, and the error was not noticed by anyone until over a year later." }
+	],
+
+	"playerCorrections": [
+		{ "name": "Mike Williams", "positions": ["WR"], "notes": "Bucs/Bills 2010-2014, not the Chargers WR" },
+		{ "name": "Steve Smith", "positions": ["WR"], "notes": "Panthers, not the Eagles Steve Smith" },
+		{ "name": "Adrian Peterson", "positions": ["RB"], "notes": "Vikings/etc, not Bears Adrian Peterson" }
+	]
+}

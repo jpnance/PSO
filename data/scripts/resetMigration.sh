@@ -285,6 +285,15 @@ else
 fi
 echo ""
 
+# Step 11: Apply manual fixups (trade edits now trigger budget recalculation)
+echo "=== Step 11: Applying manual fixups ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/applyFixups.js"
+else
+    $DOCKER_COMPOSE run --rm web node data/scripts/applyFixups.js
+fi
+echo ""
+
 echo "=== Done! ==="
 echo ""
 echo "If any interactive scripts prompted for new player resolutions,"

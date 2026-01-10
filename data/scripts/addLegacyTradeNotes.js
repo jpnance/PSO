@@ -398,8 +398,33 @@ async function run() {
 
 			var playerId = player._id.toString();
 
-			// Check if we've already resolved this player's contract
-			if (resolvedContracts[playerId]) {
+			// Check if we've already resolved this player's contract from an earlier trade
+			var knownContract = resolvedContracts[playerId];
+			if (knownContract) {
+				// Apply the known contract to this trade if needed
+				for (var p = 0; p < trade.parties.length; p++) {
+					var party = trade.parties[p];
+					for (var pl = 0; pl < party.receives.players.length; pl++) {
+						var txPlayer = party.receives.players[pl];
+						if (txPlayer.playerId.toString() === playerId) {
+							var needsUpdate = false;
+							if (txPlayer.startYear !== knownContract.startYear) needsUpdate = true;
+							if (txPlayer.endYear !== knownContract.endYear) needsUpdate = true;
+
+							if (needsUpdate) {
+								contractUpdates.push({
+									partyIndex: p,
+									playerIndex: pl,
+									startYear: knownContract.startYear,
+									endYear: knownContract.endYear,
+									playerName: wpContract.name,
+									originalText: '(from earlier trade)'
+								});
+								transactionNeedsUpdate = true;
+							}
+						}
+					}
+				}
 				stats.contractsAlreadyKnown++;
 				continue;
 			}

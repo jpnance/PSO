@@ -2,6 +2,7 @@ var Transaction = require('../models/Transaction');
 var Player = require('../models/Player');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
+var budgetHelper = require('../helpers/budget');
 
 // Determine if a franchise name is plural (for grammar)
 function isPlural(name) {
@@ -166,6 +167,19 @@ async function editTrade(request, response) {
 		return response.status(404).send('Trade not found');
 	}
 	
+	// Track affected franchises and seasons for budget recalculation
+	var affectedFranchises = new Set();
+	var affectedSeasons = new Set();
+	
+	// Collect current cash info before changes
+	trade.parties.forEach(function(party) {
+		(party.receives.cash || []).forEach(function(c) {
+			affectedFranchises.add(party.franchiseId.toString());
+			if (c.fromFranchiseId) affectedFranchises.add(c.fromFranchiseId.toString());
+			affectedSeasons.add(c.season);
+		});
+	});
+	
 	// Update notes
 	var newNotes = (body.notes || '').trim();
 	trade.notes = newNotes || null;
@@ -198,6 +212,7 @@ async function editTrade(request, response) {
 	// Update cash amounts/seasons if provided
 	// Format: cash_0_0_amount, cash_0_0_season (party index, cash index)
 	// Setting amount to 0 removes the cash entry
+	var cashModified = false;
 	for (var i = 0; i < trade.parties.length; i++) {
 		var party = trade.parties[i];
 		var updatedCash = [];
@@ -209,21 +224,27 @@ async function editTrade(request, response) {
 			
 			if (body[amountKey] !== undefined) {
 				var newAmount = parseInt(body[amountKey], 10);
-				if (!isNaN(newAmount)) {
+				if (!isNaN(newAmount) && newAmount !== cashEntry.amount) {
 					cashEntry.amount = newAmount;
+					cashModified = true;
 				}
 			}
 			
 			if (body[seasonKey] !== undefined) {
 				var newSeason = parseInt(body[seasonKey], 10);
-				if (!isNaN(newSeason)) {
+				if (!isNaN(newSeason) && newSeason !== cashEntry.season) {
+					// Track the new season too
+					affectedSeasons.add(newSeason);
 					cashEntry.season = newSeason;
+					cashModified = true;
 				}
 			}
 			
 			// Only keep cash entries with amount > 0
 			if (cashEntry.amount > 0) {
 				updatedCash.push(cashEntry);
+			} else {
+				cashModified = true; // Entry was removed
 			}
 		}
 		
@@ -232,6 +253,13 @@ async function editTrade(request, response) {
 	
 	trade.markModified('parties');
 	await trade.save();
+	
+	// Recalculate budgets if cash was modified
+	if (cashModified && affectedFranchises.size > 0 && affectedSeasons.size > 0) {
+		var franchiseIds = Array.from(affectedFranchises);
+		var seasons = Array.from(affectedSeasons);
+		await budgetHelper.recalculateCashForBudgets(franchiseIds, seasons);
+	}
 	
 	response.redirect('/admin/trades/' + tradeId + '?saved=1');
 }
