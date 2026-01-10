@@ -147,6 +147,8 @@ function parsePlayerContract(itemText, tradeDate) {
 	}
 
 	// Check for single year with -R: "2021-R"
+	// The -R suffix indicates a multi-year rookie contract, NOT a 1-year deal.
+	// If traded in year X with contract "X-R", it's definitely multi-year.
 	var yearRMatch = contractStr.match(/^(\d{2,4})-R$/i);
 	if (yearRMatch) {
 		var year = yearRMatch[1];
@@ -172,7 +174,7 @@ function parsePlayerContract(itemText, tradeDate) {
 			result.startYear = 2008;
 			result.endYear = 2009;
 		} else {
-			// Ambiguous - can't determine start year
+			// Ambiguous - can't determine start year, but we know it's multi-year (not FA)
 			result.endYear = endYear;
 			result.isAmbiguous = true;
 		}
@@ -204,6 +206,11 @@ function parsePlayerContract(itemText, tradeDate) {
 			// must be 2008-2009 (can't be 2007-2009 because no 2007 season)
 			result.startYear = 2008;
 			result.endYear = 2009;
+		} else if (salary >= 100) {
+			// High-salary heuristic: $100+ players were almost certainly signed at auction,
+			// not picked up as in-season free agents. Treat as 1-year auction contract.
+			result.startYear = endYear;
+			result.endYear = endYear;
 		} else {
 			// Ambiguous - can't determine start year
 			result.endYear = endYear;
@@ -212,12 +219,19 @@ function parsePlayerContract(itemText, tradeDate) {
 		return result;
 	}
 
-	// Check for year with -U (unclear what this means, treat as ambiguous)
+	// Check for year with -U (Unrestricted Free Agent - signed at auction or off wire)
 	var yearUMatch = contractStr.match(/^(\d{2,4})-U$/i);
 	if (yearUMatch) {
 		var year = yearUMatch[1];
-		result.endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
-		result.isAmbiguous = true;
+		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
+		result.endYear = endYear;
+		
+		if (salary >= 100) {
+			// High-salary heuristic: $100+ players were almost certainly signed at auction.
+			result.startYear = endYear;
+		} else {
+			result.isAmbiguous = true;
+		}
 		return result;
 	}
 
