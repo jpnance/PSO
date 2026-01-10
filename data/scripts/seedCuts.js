@@ -415,8 +415,14 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 	
 	// Already marked as historical - look up by name
 	if (result.type === 'historical') {
-		var player = await Player.findOne({ name: result.name, historical: true });
+		var player = await Player.findOne({ name: result.name, sleeperId: null });
 		if (player) {
+			// Add position if not already present
+			if (cut.position && (!player.positions || !player.positions.includes(cut.position))) {
+				player.positions = player.positions || [];
+				player.positions.push(cut.position);
+				await player.save();
+			}
 			return { type: 'historical', playerId: player._id };
 		}
 		// Historical player not found in DB - need to create
@@ -439,12 +445,26 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 	// Not found - check if we should auto-create historical
 	if (result.type === 'not-found') {
 		if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold) {
+			// First check if a historical player with this name already exists
+			var existingHistorical = await Player.findOne({ name: cut.name, sleeperId: null });
+			if (existingHistorical) {
+				// Add position if not already present
+				if (cut.position && (!existingHistorical.positions || !existingHistorical.positions.includes(cut.position))) {
+					existingHistorical.positions = existingHistorical.positions || [];
+					existingHistorical.positions.push(cut.position);
+					await existingHistorical.save();
+					console.log('  Added position to existing historical: ' + cut.name + ' [' + existingHistorical.positions.join('/') + ']');
+				}
+				resolver.addResolution(cut.name, null, cut.name);
+				return { type: 'found-historical', playerId: existingHistorical._id };
+			}
+			
 			// Auto-create historical player
 			console.log('  Auto-creating historical: ' + cut.name + ' (' + cut.position + ', ' + cut.cutYear + ')');
 			var player = await Player.create({
 				name: cut.name,
 				positions: [cut.position],
-				historical: true
+				sleeperId: null
 			});
 			resolver.addResolution(cut.name, null, cut.name);
 			
@@ -472,10 +492,26 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 			var displayName = await prompt('Display name (Enter for "' + cut.name + '"): ');
 			displayName = displayName.trim() || cut.name;
 			
+			// Check if a historical player with this name already exists
+			var existingHistorical = await Player.findOne({ name: displayName, sleeperId: null });
+			if (existingHistorical) {
+				// Add position if not already present
+				if (cut.position && (!existingHistorical.positions || !existingHistorical.positions.includes(cut.position))) {
+					existingHistorical.positions = existingHistorical.positions || [];
+					existingHistorical.positions.push(cut.position);
+					await existingHistorical.save();
+					console.log('  Added position to existing historical: ' + displayName + ' [' + existingHistorical.positions.join('/') + ']');
+				} else {
+					console.log('  Using existing historical: ' + displayName);
+				}
+				resolver.addResolution(cut.name, null, displayName);
+				return { type: 'found-historical', playerId: existingHistorical._id };
+			}
+			
 			var player = await Player.create({
 				name: displayName,
 				positions: [cut.position],
-				historical: true
+				sleeperId: null
 			});
 			resolver.addResolution(cut.name, null, displayName);
 			
@@ -513,10 +549,26 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 			var displayName = await prompt('Display name (Enter for "' + cut.name + '"): ');
 			displayName = displayName.trim() || cut.name;
 			
+			// Check if a historical player with this name already exists
+			var existingHistorical = await Player.findOne({ name: displayName, sleeperId: null });
+			if (existingHistorical) {
+				// Add position if not already present
+				if (cut.position && (!existingHistorical.positions || !existingHistorical.positions.includes(cut.position))) {
+					existingHistorical.positions = existingHistorical.positions || [];
+					existingHistorical.positions.push(cut.position);
+					await existingHistorical.save();
+					console.log('  Added position to existing historical: ' + displayName + ' [' + existingHistorical.positions.join('/') + ']');
+				} else {
+					console.log('  Using existing historical: ' + displayName);
+				}
+				resolver.addResolution(cut.name, null, displayName);
+				return { type: 'found-historical', playerId: existingHistorical._id };
+			}
+			
 			var player = await Player.create({
 				name: displayName,
 				positions: [cut.position],
-				historical: true
+				sleeperId: null
 			});
 			resolver.addResolution(cut.name, null, displayName);
 			
