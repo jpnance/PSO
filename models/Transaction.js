@@ -16,7 +16,9 @@ var tradePlayerSchema = new Schema({
 	salary: { type: Number },
 	startYear: { type: Number },
 	endYear: { type: Number },
-	rfaRights: { type: Boolean, default: false }
+	rfaRights: { type: Boolean, default: false },
+	// True if contract years couldn't be definitively determined from source data
+	ambiguous: { type: Boolean, default: false }
 }, { _id: false });
 
 var tradePickSchema = new Schema({

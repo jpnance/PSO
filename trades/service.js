@@ -182,7 +182,12 @@ async function buildTradeDisplayData(trades, options) {
 					notes.push({ type: 'chain', items: chain, separator: '·' });
 				}
 				
-				playerAssets.push({ type: 'player', display: display, notes: notes });
+				playerAssets.push({ 
+					type: 'player', 
+					display: display, 
+					notes: notes,
+					ambiguous: p.ambiguous || false
+				});
 			}
 			
 			// RFA rights
@@ -319,10 +324,20 @@ async function buildTradeDisplayData(trades, options) {
 				allAssets.push({ type: 'nothing', display: 'Nothing', notes: [] });
 			}
 			
+			// Collect names of players with ambiguous contracts
+			var ambiguousPlayers = allAssets
+				.filter(function(a) { return a.ambiguous; })
+				.map(function(a) { 
+					// Extract player name from display string (format: "Name ($X, YY/YY)")
+					var match = a.display.match(/^([^(]+)/);
+					return match ? match[1].trim() : a.display;
+				});
+			
 			parties.push({
 				franchiseName: franchiseName,
 				usePlural: usePlural,
-				assets: allAssets
+				assets: allAssets,
+				ambiguousPlayers: ambiguousPlayers
 			});
 		}
 		
@@ -331,11 +346,18 @@ async function buildTradeDisplayData(trades, options) {
 			return a.franchiseName.localeCompare(b.franchiseName);
 		});
 		
+		// Collect all ambiguous player names across parties
+		var ambiguousPlayers = [];
+		parties.forEach(function(p) {
+			ambiguousPlayers = ambiguousPlayers.concat(p.ambiguousPlayers || []);
+		});
+		
 		tradeData.push({
 			number: tradeNumber,
 			timestamp: trade.timestamp || new Date(),
 			notes: trade.notes,
-			parties: parties
+			parties: parties,
+			ambiguousPlayers: ambiguousPlayers
 		});
 	}
 	

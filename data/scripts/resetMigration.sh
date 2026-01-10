@@ -267,17 +267,10 @@ else
 fi
 echo ""
 
-# Step 9: Fix legacy trade notes
-echo "=== Step 9: Adding legacy trade notes ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/addLegacyTradeNotes.js"
-else
-    $DOCKER_COMPOSE run --rm web node data/scripts/addLegacyTradeNotes.js
-fi
-echo ""
-
-# Step 10: Seed budgets (calculated from contracts, trades, cuts)
-echo "=== Step 10: Seeding budgets ==="
+# Step 9: Seed budgets (calculated from contracts, trades, cuts)
+# Note: addLegacyTradeNotes.js was removed - heuristics are now in seedTrades.js
+# and ambiguous contracts are flagged with the `ambiguous` field on trade players.
+echo "=== Step 9: Seeding budgets ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedBudgets.js"
 else
@@ -285,8 +278,8 @@ else
 fi
 echo ""
 
-# Step 11: Apply manual fixups (trade edits now trigger budget recalculation)
-echo "=== Step 11: Applying manual fixups ==="
+# Step 10: Apply manual fixups (trade edits now trigger budget recalculation)
+echo "=== Step 10: Applying manual fixups ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/applyFixups.js"
 else

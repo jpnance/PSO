@@ -54,9 +54,12 @@ The resetMigration.sh script runs these steps in order:
   Step  6: seedTrades.js (interactive, needs network)
   Step  7: seedDraftSelections.js (interactive, needs network)
   Step  8: seedCuts.js (interactive, needs network)
-  Step  9: addLegacyTradeNotes.js (needs network)
-  Step 10: seedBudgets.js
-  Step 11: applyFixups.js
+  Step  9: seedBudgets.js
+  Step 10: applyFixups.js
+
+Note: seedTrades.js applies heuristics to infer contract years and marks
+ambiguous contracts with the `ambiguous` flag. The trade display template
+shows a callout for trades with ambiguous player contracts.
 
 Note: Trade cash edits now automatically trigger budget recalculation, so
 fixups can safely run last.
@@ -131,16 +134,16 @@ Future Work
   specific points in time. Complex and may not be worth the effort.
 
 - Known data issues (handled in applyFixups.js):
-  - #34, #36, #37: Conditional draft picks. Placeholder notes added; fill in actual
-    conditions/outcomes when known.
+  - #34, #36, #37: Conditional draft picks with notes explaining the conditions
+    and outcomes.
   - #331: Historical exception — pick traded before Pick document existed.
-  - #600, #688: Cash entered into wrong year in spreadsheet. Corrections
-    applied automatically by applyFixups.js.
+  - #600, #688: Cash entered into wrong year in spreadsheet. Corrections applied.
 
-- Historical contract cleanup: Trades before #361 now have contract start/end
-  years inferred by addLegacyTradeNotes.js where possible, with notes added for
-  remaining ambiguous cases. It's possible that more resolutions are possible,
-  especially if we're willing to make some simple assumptions.
+- Historical contract cleanup: Trades before #361 have contract start/end years
+  inferred by seedTrades.js using heuristics (date-based inference, high-salary
+  auction detection). Ambiguous contracts are marked with the `ambiguous` flag
+  and the template displays a callout. Use tradeContractCorrections in fixups.json
+  to manually correct specific cases when you have definitive knowledge.
 
 - Backfill pickId on trade transactions: The tradePickSchema currently stores
   denormalized pick metadata (round, season, fromFranchiseId) instead of a

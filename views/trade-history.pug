@@ -49,6 +49,14 @@ block styles
 			font-size: 0.85rem;
 			margin-top: 0.5rem;
 		}
+		.ambiguous-icon {
+			margin-left: 0.35rem;
+			color: #999;
+			cursor: help;
+		}
+		.ambiguous-icon:hover {
+			color: #666;
+		}
 
 block content
 	div.container.py-4
@@ -78,7 +86,11 @@ block content
 						ul.asset-list
 							each asset in party.assets
 								li
-									div #{asset.display}
+									div
+										| #{asset.display}
+										if asset.ambiguous
+											span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
+												i.fa.fa-question-circle
 									if asset.notes && asset.notes.length > 0
 										each note in asset.notes
 											if note.type === 'chain'

@@ -35,6 +35,129 @@ function prompt(question) {
 }
 
 // ============================================
+// Contract parsing with heuristics
+// ============================================
+
+/**
+ * Parse a contract string and apply heuristics to determine start/end years.
+ * Returns { startYear, endYear, ambiguous }
+ * 
+ * @param {string} contractStr - The contract notation (e.g., "2019", "2019/2021", "FA", "2019-R", "2019-U")
+ * @param {number} salary - The player's salary (used for high-salary heuristic)
+ * @param {Date} tradeDate - The date of the trade
+ */
+function parseContract(contractStr, salary, tradeDate) {
+	var result = { startYear: null, endYear: null, ambiguous: false };
+	
+	if (!contractStr) return result;
+	
+	contractStr = contractStr.trim();
+	var tradeYear = tradeDate.getFullYear();
+	var tradeMonth = tradeDate.getMonth(); // 0-indexed
+	var tradeDay = tradeDate.getDate();
+	// Before August 21 = contracts for this season not yet due
+	var isBeforeAugust21 = (tradeMonth < 7) || (tradeMonth === 7 && tradeDay < 21);
+	
+	// Check for FA/unsigned/franchise - no contract
+	var lowerContract = contractStr.toLowerCase();
+	if (lowerContract === 'fa' || lowerContract === 'unsigned' || lowerContract === 'franchise') {
+		return result; // startYear and endYear stay null
+	}
+	
+	// Check for year range: "2019/21" or "2019/2021" or "19/21"
+	var rangeMatch = contractStr.match(/^(\d{2,4})\/(\d{2,4})$/);
+	if (rangeMatch) {
+		var start = rangeMatch[1];
+		var end = rangeMatch[2];
+		result.startYear = start.length === 2 ? parseInt('20' + start) : parseInt(start);
+		result.endYear = end.length === 2 ? parseInt('20' + end) : parseInt(end);
+		return result; // Explicit range, not ambiguous
+	}
+	
+	// Check for FA/year range: "FA/21" or "FA/2021"
+	var faRangeMatch = contractStr.match(/^FA\/(\d{2,4})$/i);
+	if (faRangeMatch) {
+		var end = faRangeMatch[1];
+		result.startYear = null; // FA pickup
+		result.endYear = end.length === 2 ? parseInt('20' + end) : parseInt(end);
+		return result; // Explicit FA notation, not ambiguous
+	}
+	
+	// Check for single year with -R suffix: "2021-R" (Restricted Free Agent = multi-year)
+	var yearRMatch = contractStr.match(/^(\d{2,4})-R$/i);
+	if (yearRMatch) {
+		var year = yearRMatch[1];
+		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
+		result.endYear = endYear;
+		
+		// -R means multi-year contract (RFA status). Apply date-based heuristics.
+		if (tradeYear === 2008 && endYear > 2008) {
+			result.startYear = 2008;
+		} else if (tradeYear <= endYear - 2) {
+			result.startYear = endYear - 2;
+		} else if (tradeYear === endYear - 1 && isBeforeAugust21) {
+			result.startYear = endYear - 2;
+		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeAugust21) {
+			result.startYear = 2008;
+		} else {
+			// Can't determine if 2-year or 3-year, but we know it's multi-year
+			result.ambiguous = true;
+		}
+		return result;
+	}
+	
+	// Check for single year with -U suffix: "2021-U" (Unrestricted Free Agent)
+	var yearUMatch = contractStr.match(/^(\d{2,4})-U$/i);
+	if (yearUMatch) {
+		var year = yearUMatch[1];
+		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
+		result.endYear = endYear;
+		
+		// -U means UFA. High salary = auction (1-year), low salary = ambiguous
+		if (salary >= 100) {
+			result.startYear = endYear;
+		} else {
+			result.ambiguous = true;
+		}
+		return result;
+	}
+	
+	// Check for single year: "2010" or "10"
+	var singleYearMatch = contractStr.match(/^(\d{2,4})$/);
+	if (singleYearMatch) {
+		var year = singleYearMatch[1];
+		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
+		result.endYear = endYear;
+		
+		// Apply heuristics to determine startYear
+		if (tradeYear === 2008 && endYear > 2008) {
+			result.startYear = 2008;
+		} else if (tradeYear <= endYear - 2) {
+			// Trade 2+ years before contract ends = definitely 3-year contract
+			result.startYear = endYear - 2;
+		} else if (tradeYear === endYear - 1 && isBeforeAugust21) {
+			// Trade 1 year before end, before Aug 21 = 3-year contract
+			result.startYear = endYear - 2;
+		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeAugust21) {
+			// Special case: league started 2008
+			result.startYear = 2008;
+		} else if (salary >= 100) {
+			// High-salary heuristic: $100+ = auction, so 1-year contract
+			result.startYear = endYear;
+		} else {
+			// Can't determine - could be 1-year auction or FA pickup
+			result.startYear = endYear; // Default to 1-year for display
+			result.ambiguous = true;
+		}
+		return result;
+	}
+	
+	// Unknown format - mark as ambiguous
+	result.ambiguous = true;
+	return result;
+}
+
+// ============================================
 // WordPress fetching and parsing (from parseTradeHistory.js)
 // ============================================
 
@@ -65,7 +188,7 @@ async function fetchAllTrades() {
 	return allTrades;
 }
 
-function parseTradeContent(html) {
+function parseTradeContent(html, tradeDate) {
 	var trade = {
 		parties: []
 	};
@@ -101,31 +224,15 @@ function parseTradeContent(html) {
 			var playerMatch = item.match(/<a[^>]*>([^<]+)<\/a>\s*\((\$?\d+),?\s*([^)]+)\)/);
 			if (playerMatch) {
 				var contractStr = playerMatch[3].trim();
-				var contractParts = contractStr.split('/');
-				var startYear, endYear;
-
-				if (contractParts.length === 1) {
-					var year = contractParts[0];
-					var yearLower = year.toLowerCase();
-					if (yearLower === 'fa' || yearLower === 'unsigned' || yearLower === 'franchise') {
-						startYear = null;
-						endYear = null;
-					}
-					else {
-						startYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
-						endYear = startYear;
-					}
-				}
-				else {
-					startYear = contractParts[0] === 'FA' ? null : (contractParts[0].length === 2 ? parseInt('20' + contractParts[0]) : parseInt(contractParts[0]));
-					endYear = contractParts[1] ? (contractParts[1].length === 2 ? parseInt('20' + contractParts[1]) : parseInt(contractParts[1])) : null;
-				}
+				var salary = parseInt(playerMatch[2].replace('$', ''));
+				var contract = parseContract(contractStr, salary, tradeDate);
 
 				party.receives.players.push({
 					name: playerMatch[1].trim(),
-					salary: parseInt(playerMatch[2].replace('$', '')),
-					startYear: startYear,
-					endYear: endYear
+					salary: salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear,
+					ambiguous: contract.ambiguous
 				});
 				continue;
 			}
@@ -134,31 +241,15 @@ function parseTradeContent(html) {
 			var plainPlayerMatch = item.match(/<li>\s*([A-Za-z][A-Za-z\.\s'-]+[A-Za-z])\s*\((\$?\d+),?\s*([^)]+)\)/);
 			if (plainPlayerMatch) {
 				var contractStr = plainPlayerMatch[3].trim();
-				var contractParts = contractStr.split('/');
-				var startYear, endYear;
-
-				if (contractParts.length === 1) {
-					var year = contractParts[0];
-					var yearLower = year.toLowerCase();
-					if (yearLower === 'fa' || yearLower === 'unsigned' || yearLower === 'franchise') {
-						startYear = null;
-						endYear = null;
-					}
-					else {
-						startYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
-						endYear = startYear;
-					}
-				}
-				else {
-					startYear = contractParts[0] === 'FA' ? null : (contractParts[0].length === 2 ? parseInt('20' + contractParts[0]) : parseInt(contractParts[0]));
-					endYear = contractParts[1] ? (contractParts[1].length === 2 ? parseInt('20' + contractParts[1]) : parseInt(contractParts[1])) : null;
-				}
+				var salary = parseInt(plainPlayerMatch[2].replace('$', ''));
+				var contract = parseContract(contractStr, salary, tradeDate);
 
 				party.receives.players.push({
 					name: plainPlayerMatch[1].trim(),
-					salary: parseInt(plainPlayerMatch[2].replace('$', '')),
-					startYear: startYear,
-					endYear: endYear
+					salary: salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear,
+					ambiguous: contract.ambiguous
 				});
 				continue;
 			}
@@ -673,10 +764,11 @@ async function seed() {
 		var post = posts[i];
 		var tradeNumberMatch = post.title.match(/Trade #(\d+)/);
 		var tradeNumber = tradeNumberMatch ? parseInt(tradeNumberMatch[1]) : null;
+		var tradeDate = new Date(post.date);
 
-		var parsed = parseTradeContent(post.content);
+		var parsed = parseTradeContent(post.content, tradeDate);
 		parsed.tradeNumber = tradeNumber;
-		parsed.timestamp = new Date(post.date);
+		parsed.timestamp = tradeDate;
 		parsed.tradeId = tradeNumber;
 		parsed.url = post.URL;
 
@@ -760,12 +852,16 @@ async function seed() {
 				if (player.rfaRights) {
 					party.receives.rfaRights.push({ playerId: playerId });
 				} else {
-					party.receives.players.push({
+					var playerEntry = {
 						playerId: playerId,
 						salary: player.salary,
 						startYear: player.startYear,
 						endYear: player.endYear
-					});
+					};
+					if (player.ambiguous) {
+						playerEntry.ambiguous = true;
+					}
+					party.receives.players.push(playerEntry);
 				}
 			}
 

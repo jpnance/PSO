@@ -27,10 +27,10 @@
 	},
 
 	"tradeAmendments": [
-		{ "tradeId": 34, "notes": "Contract data may be incomplete: Larry Fitzgerald ($135, 2011). The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder." },
-		{ "tradeId": 36, "notes": "Contract data may be incomplete: Hakeem Nicks ($28, 2011); Tim Tebow ($12, 2012). The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder." },
-		{ "tradeId": 37, "notes": "Contract data may be incomplete: Ray Rice ($250, 2011). The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively." },
-		{ "tradeId": 331, "notes": "Contract data may be incomplete: Deshaun Watson ($31, 2019). The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back." }
+		{ "tradeId": 34, "notes": "The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder." },
+		{ "tradeId": 36, "notes": "The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder." },
+		{ "tradeId": 37, "notes": "The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively." },
+		{ "tradeId": 331, "notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back." }
 	],
 
 	"tradeCashCorrections": [
