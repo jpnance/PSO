@@ -38,6 +38,28 @@ function prompt(question) {
 // Contract parsing with heuristics
 // ============================================
 
+// Contract due dates per season (contracts must be submitted by this date)
+var contractDueDates = {
+	2008: new Date('2008-08-24'),
+	2009: new Date('2009-09-02'),
+	2010: new Date('2010-08-31'),
+	2011: new Date('2011-08-26'),
+	2012: new Date('2012-09-01'),
+	2013: new Date('2013-08-31'),
+	2014: new Date('2014-08-31'),
+	2015: new Date('2015-09-05'),
+	2016: new Date('2016-08-28'),
+	2017: new Date('2017-08-27'),
+	2018: new Date('2018-09-01'),
+	2019: new Date('2019-09-01'),
+	2020: new Date('2020-09-07'),
+	2021: new Date('2021-09-06'),
+	2022: new Date('2022-09-05'),
+	2023: new Date('2023-09-04'),
+	2024: new Date('2024-09-02'),
+	2025: new Date('2025-09-01')
+};
+
 /**
  * Parse a contract string and apply heuristics to determine start/end years.
  * Returns { startYear, endYear, ambiguous }
@@ -53,10 +75,9 @@ function parseContract(contractStr, salary, tradeDate) {
 	
 	contractStr = contractStr.trim();
 	var tradeYear = tradeDate.getFullYear();
-	var tradeMonth = tradeDate.getMonth(); // 0-indexed
-	var tradeDay = tradeDate.getDate();
-	// Before August 21 = contracts for this season not yet due
-	var isBeforeAugust21 = (tradeMonth < 7) || (tradeMonth === 7 && tradeDay < 21);
+	// Use per-year contract due date, fall back to August 21 for unknown years
+	var dueDate = contractDueDates[tradeYear] || new Date(tradeYear + '-08-21');
+	var isBeforeContractsDue = tradeDate < dueDate;
 	
 	// Check for FA/unsigned/franchise - no contract
 	var lowerContract = contractStr.toLowerCase();
@@ -95,9 +116,9 @@ function parseContract(contractStr, salary, tradeDate) {
 			result.startYear = 2008;
 		} else if (tradeYear <= endYear - 2) {
 			result.startYear = endYear - 2;
-		} else if (tradeYear === endYear - 1 && isBeforeAugust21) {
+		} else if (tradeYear === endYear - 1 && isBeforeContractsDue) {
 			result.startYear = endYear - 2;
-		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeAugust21) {
+		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeContractsDue) {
 			result.startYear = 2008;
 		} else {
 			// Can't determine if 2-year or 3-year, but we know it's multi-year
@@ -135,10 +156,10 @@ function parseContract(contractStr, salary, tradeDate) {
 		} else if (tradeYear <= endYear - 2) {
 			// Trade 2+ years before contract ends = definitely 3-year contract
 			result.startYear = endYear - 2;
-		} else if (tradeYear === endYear - 1 && isBeforeAugust21) {
-			// Trade 1 year before end, before Aug 21 = 3-year contract
+		} else if (tradeYear === endYear - 1 && isBeforeContractsDue) {
+			// Trade 1 year before end, before contracts due = 3-year contract
 			result.startYear = endYear - 2;
-		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeAugust21) {
+		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeContractsDue) {
 			// Special case: league started 2008
 			result.startYear = 2008;
 		} else if (salary >= 100) {
