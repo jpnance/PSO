@@ -326,6 +326,11 @@ async function buildTradeDisplayData(trades, options) {
 			});
 		}
 		
+		// Sort parties alphabetically by franchise name
+		parties.sort(function(a, b) {
+			return a.franchiseName.localeCompare(b.franchiseName);
+		});
+		
 		tradeData.push({
 			number: tradeNumber,
 			timestamp: trade.timestamp || new Date(),
