@@ -69,11 +69,21 @@ block content
 					div.card-header
 						strong Management
 					div.card-body
-						a.btn.btn-outline-primary.mr-2.mb-2(href='/admin/transfer-franchise') Transfer Franchise
-						a.btn.btn-outline-primary.mr-2.mb-2(href='/admin/rosters') Manage Rosters
-						a.btn.btn-outline-primary.mr-2.mb-2(href='/admin/players') Manage Players
-						a.btn.btn-outline-primary.mr-2.mb-2(href='/admin/trades') Manage Trades
-						a.btn.btn-primary.mb-2(href='/admin/process-trade') Process Trade
+						div.mb-3
+							a.btn.btn-outline-primary(href='/admin/transfer-franchise') Transfer Ownership
+							div.small.text-muted.mt-1 Change a franchise's owner and start a new regime
+						div.mb-3
+							a.btn.btn-outline-primary(href='/admin/rosters') Cut Players
+							div.small.text-muted.mt-1 Release or drop players from any roster
+						div.mb-3
+							a.btn.btn-outline-primary(href='/admin/players') Player Database
+							div.small.text-muted.mt-1 Search, add, or edit player records
+						div.mb-3
+							a.btn.btn-outline-primary(href='/admin/trades') Edit Trade
+							div.small.text-muted.mt-1 Look up a past trade by number
+						div
+							a.btn.btn-outline-primary(href='/admin/process-trade') Execute Trade
+							div.small.text-muted.mt-1 Manually process a trade as commissioner
 		
 		div.card.mb-4
 			div.card-header
