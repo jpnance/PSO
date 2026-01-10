@@ -341,6 +341,45 @@ async function processTrade(tradeDetails) {
 		return { success: false, errors: errors };
 	}
 	
+	// Build a map of which franchises are giving up players
+	var franchisesGivingPlayers = {};
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var party = tradeDetails.parties[i];
+		var receives = party.receives || {};
+		var players = receives.players || [];
+		
+		for (var j = 0; j < players.length; j++) {
+			var playerInfo = players[j];
+			var contract = await Contract.findOne({ playerId: playerInfo.playerId });
+			if (contract) {
+				franchisesGivingPlayers[contract.franchiseId.toString()] = true;
+			}
+		}
+	}
+	
+	// Validate that each party either receives something OR is giving up a player
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var party = tradeDetails.parties[i];
+		var receives = party.receives || {};
+		var receivesPlayers = (receives.players || []).length;
+		var receivesPicks = (receives.picks || []).length;
+		var receivesCash = (receives.cash || []).length;
+		var receivesNothing = (receivesPlayers + receivesPicks + receivesCash) === 0;
+		
+		if (receivesNothing) {
+			var isGivingPlayer = franchisesGivingPlayers[party.franchiseId.toString()];
+			if (!isGivingPlayer) {
+				var currentSeason = parseInt(process.env.SEASON, 10) || new Date().getFullYear();
+				var franchiseName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
+				errors.push(franchiseName + ' must receive something in return (or be trading away a player)');
+			}
+		}
+	}
+	
+	if (errors.length > 0) {
+		return { success: false, errors: errors };
+	}
+	
 	// Validate all players are on the expected franchises (the other party)
 	for (var i = 0; i < tradeDetails.parties.length; i++) {
 		var party = tradeDetails.parties[i];
