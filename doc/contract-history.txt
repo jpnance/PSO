@@ -4289,605 +4289,2766 @@ ID	Owner	Name	Position	Start	End	Salary
 === 2016 data ===
 ID	Owner	Name	Position	Start	End	Salary
 13983	Patrick	A.J. Green	WR	2014	2016	$180
-9591	John/Zach	A.J. Hawk	LB	2014	2015	$2
-15834	John/Zach	Aaron Dobson	WR	2013	2015	$9
 16716	John/Zach	Aaron Donald	DL	2014	2016	$1
-17021		Aaron Murray	QB	FA	2015
-8439	Syed	Aaron Rodgers	QB	2016		$270
+8439	Syed	Aaron Rodgers	QB	2016	2018	$270
 8421	Patrick	Adam Jones	DB	2015	2017	$10
-1097	Daniel	Adam Vinatieri	K	2016		$2
-10452	Keyon	Adrian Peterson	RB	2016		$265
-10693	Syed	Ahmad Bradshaw	RB	FA	2015	$1
-16810	Koci/Mueller	AJ McCarron	QB	2016		$1
+1097	Daniel	Adam Vinatieri	K	2016	2016	$2
+10452	Keyon	Adrian Peterson	RB	2016	2016	$265
+16810	Koci/Mueller	AJ McCarron	QB	2016	2018	$1
 15806	Mitch	Alec Ogletree	LB	2014	2016	$5
-	Daniel	Alex Collins	RB	2016		$7
-15976	James	Alex Okafor	DL	2016		$1
+17933	Daniel	Alex Collins	RB	2016	2018	$7
+15976	James	Alex Okafor	DL	2016	2018	$1
 8416	John/Zach	Alex Smith	QB	2014	2016	$40
 17134	Daniel	Alfred Blue	RB	2014	2016	$3
-15009	Brett/Luke	Alfred Morris	RB	2016		$25
+15009	Brett/Luke	Alfred Morris	RB	2016	2017	$25
 17163	Koci/Mueller	Allen Hurns	WR	2015	2017	$1
 16799	Keyon	Allen Robinson	WR	2014	2016	$5
-14912	Koci/Mueller	Alshon Jeffery	WR	2016		$160
-13478		Alterraun Verner	DB	FA	2015
+14912	Koci/Mueller	Alshon Jeffery	WR	2016	2016	$160
 17677	Schex	Amari Cooper	WR	2015	2017	$17
 17580	Quinn	Ameer Abdullah	RB	2015	2017	$27
-15893	Patrick	Andre Ellington	RB	2013	2015	$2
-4461	Patrick	Andre Johnson	WR	2016		$2
-13226		Andre Roberts	WR	FA	2015
-16889	Mitch	Andre Williams	RB	2016		$1
-14874	Mitch	Andrew Luck	QB	2016		$240
+4461	Patrick	Andre Johnson	WR	2016	2016	$2
+16889	Mitch	Andre Williams	RB	2016	2016	$1
+14874	Mitch	Andrew Luck	QB	2016	2017	$240
 14012	Koci/Mueller	Andy Dalton	QB	2015	2017	$68
-4512	Patrick	Anquan Boldin	WR	2016		$5
+4512	Patrick	Anquan Boldin	WR	2016	2016	$5
 16711	Mitch	Anthony Barr	LB	2015	2016	$2
 9793	John/Zach	Antoine Bethea	DB	2015	2017	$1
-17149	Mitch	Antonio Andrews	RB	FA	2015	$15
-13934	Mitch	Antonio Brown	WR	2016		$310
-5362	Keyon	Antonio Gates	TE	2016		$6
-8423	James	Antrel Rolle	DB	2015	2015	$2
-15350		Antwon Blake	DB	FA	2015
-11254		Aqib Talib	DB	FA	2015
+13934	Mitch	Antonio Brown	WR	2016	2016	$310
+5362	Keyon	Antonio Gates	TE	2016	2016	$6
 12497	Schex	Arian Foster	RB	2015	2017	$90
-16037	Trevor	Armonty Bryant	DL	FA	2015	$1
-15187	Quinn	Austin Davis	QB	FA	2015	$22
-	Trevor	Austin Hooper	TE	2016		$4
+17861	Trevor	Austin Hooper	TE	2016	2018	$4
 16795	Patrick	Austin Seferian-Jenkins	TE	2014	2016	$7
-13338	James	Barry Church	DB	2016		$5
-5536	Brett/Luke	Ben Roethlisberger	QB	2016		$235
+13338	James	Barry Church	DB	2016	2018	$5
+5536	Brett/Luke	Ben Roethlisberger	QB	2016	2016	$235
 16055	John/Zach	Benjamin Cunningham	RB	2015	2017	$1
-5557	Schex	Benjamin Watson	TE	2016		$3
-17623		Bernardick McKinney	LB	FA	2015
-14129	Trevor	Bilal Powell	RB	2016		$15
-16794		Bishop Sankey	RB	FA	2015
-13987	John/Zach	Blaine Gabbert	QB	2016		$15
-15058	Patrick	Blair Walsh	K	2016		$2
-17490		Blake Bell	TE	FA	2015
+5557	Schex	Benjamin Watson	TE	2016	2016	$3
+14129	Trevor	Bilal Powell	RB	2016	2017	$15
+13987	John/Zach	Blaine Gabbert	QB	2016	2016	$15
+15058	Patrick	Blair Walsh	K	2016	2016	$2
 16724	John/Zach	Blake Bortles	QB	2014	2016	$19
 15501	Quinn	Bobby Rainey	RB	2014	2016	$2
-14979	Syed	Bobby Wagner	LB	2016		$20
-13212		Boobie Dixon	RB	FA	2015
+14979	Syed	Bobby Wagner	LB	2016	2016	$20
 17143	Schex	Branden Oliver	RB	2015	2017	$1
 16731	Syed	Brandin Cooks	WR	2014	2016	$19
-15478	Quinn	Brandon Bolden	RB	2016		$1
+15478	Quinn	Brandon Bolden	RB	2016	2016	$1
 17145	Keyon	Brandon Coleman	WR	2015	2017	$12
-12576	Mitch	Brandon LaFell	WR	2016		$5
+12576	Mitch	Brandon LaFell	WR	2016	2016	$5
 15002	Trevor	Brandon Marshall (DEN)	LB	2015	2017	$3
 9705	Trevor	Brandon Marshall (NYJ)	WR	2015	2016	$67
-17171	Trevor	Brandon McManus	K	2016		$2
-14878	Patrick	Brandon Weeden	QB	FA	2015	$1
-	Brett/Luke	Braxton Miller	WR	2016		$5
-17674	Patrick	Breshad Perriman	WR	2016		$3
-12453		Brian Cushing	LB	FA	2015
-12568		Brian Hartline	WR	FA	2015
-12477		Brian Hoyer	QB	FA	2015
-14914	Mitch	Brian Quick	WR	2015	2015	$26
+17171	Trevor	Brandon McManus	K	2016	2018	$2
+17864	Brett/Luke	Braxton Miller	WR	2016	2018	$5
+17674	Patrick	Breshad Perriman	WR	2016	2018	$3
 14879	Syed	Brock Osweiler	QB	2014	2016	$1
-14026		Bruce Carter	LB	FA	2015
 16946	Brett/Luke	Bruce Ellington	WR	2014	2016	$1
-15092	Koci/Mueller	Bryce Brown	RB	FA	2015	$3
-17434		Bryce Petty	QB	FA	2015
-17599		Bud Dupree	LB	FA	2015
 16040	Daniel	C.J. Anderson	RB	2014	2016	$3
 16720	Brett/Luke	C.J. Mosley (BAL)	LB	2014	2016	$1
-	Trevor	C.J. Prosise	RB	2016		$13
-13203	Trevor	C.J. Spiller	RB	2016		$1
-17172	Keyon	Cairo Santos	K	2016		$1
-11284	Quinn	Calais Campbell	DL	FA	2015	$1
-10447	Trevor	Calvin Johnson	WR	2015	2015	$235
-16729	Quinn	Calvin Pryor	DB	FA	2015	$3
-13994	James	Cam Newton	QB	2016		$341
-17704	Schex	Cameron Artis-Payne	RB	2016		$4
-17784	Quinn	Cameron Brate	TE	FA	2015	$5
-13977	Quinn	Cameron Heyward	DL	FA	2015	$1
-13971		Cameron Jordan	DL	FA	2015
-12417	James	Cameron Wake	DL	2015	2015	$2
-	Quinn	Cardale Jones	QB	2016		$2
-13274	Daniel	Carlos Dunlap	DL	2016		$4
+17869	Trevor	C.J. Prosise	RB	2016	2018	$13
+13203	Trevor	C.J. Spiller	RB	2016	2016	$1
+17172	Keyon	Cairo Santos	K	2016	2016	$1
+13994	James	Cam Newton	QB	2016	2018	$341
+17704	Schex	Cameron Artis-Payne	RB	2016	2018	$4
+17911	Quinn	Cardale Jones	QB	2016	2016	$2
+13274	Daniel	Carlos Dunlap	DL	2016	2016	$4
 16777	Keyon	Carlos Hyde	RB	2014	2016	$24
 4459	Keyon	Carson Palmer	QB	2014	2016	$42
-	Quinn	Carson Wentz	QB	2016		$8
-15168	Brett/Luke	Case Keenum	QB	2016		$6
-14184	John/Zach	Cecil Shorts III	WR	2013	2015	$39
-11291	John/Zach	Chad Henne	QB	2013	2015	$10
-17169	John/Zach	Chandler Catanzaro	K	2016		$3
+17795	Quinn	Carson Wentz	QB	2016	2018	$8
+15168	Brett/Luke	Case Keenum	QB	2016	2016	$6
+17169	John/Zach	Chandler Catanzaro	K	2016	2018	$3
 14927	Patrick	Chandler Jones	DL	2015	2017	$11
-17384	Quinn	Charcandrick West	RB	2016		$12
-14145	Brett/Luke	Charles Clay	TE	2015	2015	$3
-15885	Syed	Charles Johnson (MIN)	WR	2016		$3
+17384	Quinn	Charcandrick West	RB	2016	2016	$12
+15885	Syed	Charles Johnson (MIN)	WR	2016	2018	$3
 16749	Schex	Charles Sims	RB	2014	2016	$12
-1442	Daniel	Charles Woodson	DB	2015	2015	$2
-9667		Charlie Whitehurst	QB	FA	2015
-	Quinn	Charone Peake	WR	2016		$1
-17175	Trevor	Chris Boswell	K	2016		$2
+17994	Quinn	Charone Peake	WR	2016	2018	$1
+17175	Trevor	Chris Boswell	K	2016	2016	$2
 17638	Trevor	Chris Conley	WR	2015	2017	$5
-17763		Chris Harper (NE)	WR	FA	2015
-13587	Trevor	Chris Ivory	RB	2016		$43
-11258	Mitch	Chris Johnson	RB	2016		$3
-	Mitch	Chris Moore	WR	2016		$2
-14889		Chris Polk	RB	FA	2015
-15966	Koci/Mueller	Chris Thompson	RB	2016		$5
-	Trevor	Christian Hackenberg	QB	2016		$4
-16767		Christian Kirksey	LB	FA	2015
-15855	Mitch	Christine Michael	RB	2016		$25
-12438		Clay Matthews	LB	FA	2015
-11326	Quinn	Cliff Avril	DL	2016		$2
+13587	Trevor	Chris Ivory	RB	2016	2016	$43
+11258	Mitch	Chris Johnson	RB	2016	2016	$3
+17883	Mitch	Chris Moore	WR	2016	2018	$2
+15966	Koci/Mueller	Chris Thompson	RB	2016	2018	$5
+17836	Trevor	Christian Hackenberg	QB	2016	2018	$4
+15855	Mitch	Christine Michael	RB	2016	2016	$25
+11326	Quinn	Cliff Avril	DL	2016	2016	$2
 17475	Daniel	Clive Walford	TE	2015	2017	$2
-14900	Quinn	Coby Fleener	TE	2016		$30
-	Patrick	Cody Kessler	QB	2016		$8
-16793	Trevor	Cody Latimer	WR	2016		$4
-17173		Cody Parkey	K	FA	2015
-15349	Patrick	Cole Beasley	WR	2016		$1
-14001	Quinn	Colin Kaepernick	QB	2016		$16
-13199	Patrick	Colt McCoy	QB	2016		$1
-12449	Syed	Connor Barwin	LB	FA	2015	$1
-	Daniel	Connor Cook	QB	2016		$1
-15807	John/Zach	Cordarrelle Patterson	WR	2013	2015	$18
-	Quinn	Corey Coleman	WR	2016		$17
-10611	Keyon	Corey Graham	DB	2016		$6
-11271		Curtis Lofton	LB	FA	2015
-9620	Quinn	D'Qwell Jackson	LB	2016		$25
-16159		Da'Rick Rogers	WR	FA	2015
-	Syed	Dak Prescott	QB	2016		$16
-17138		Damien Williams	RB	FA	2015
-14322	Brett/Luke	Dan Bailey	K	2016		$3
-11688	James	Dan Carpenter	K	2016		$1
-15041		Daniel Herron	RB	FA	2015
-11674	Patrick	Danny Amendola	WR	2016		$5
-15074	Trevor	Danny Trevathan	LB	2016		$7
+14900	Quinn	Coby Fleener	TE	2016	2018	$30
+17872	Patrick	Cody Kessler	QB	2016	2018	$8
+16793	Trevor	Cody Latimer	WR	2016	2016	$4
+15349	Patrick	Cole Beasley	WR	2016	2018	$1
+14001	Quinn	Colin Kaepernick	QB	2016	2016	$16
+13199	Patrick	Colt McCoy	QB	2016	2018	$1
+17877	Daniel	Connor Cook	QB	2016	2018	$1
+17805	Quinn	Corey Coleman	WR	2016	2018	$17
+10611	Keyon	Corey Graham	DB	2016	2016	$6
+9620	Quinn	D'Qwell Jackson	LB	2016	2016	$25
+17907	Syed	Dak Prescott	QB	2016	2018	$16
+14322	Brett/Luke	Dan Bailey	K	2016	2016	$3
+11688	James	Dan Carpenter	K	2016	2018	$1
+11674	Patrick	Danny Amendola	WR	2016	2018	$5
+15074	Trevor	Danny Trevathan	LB	2016	2016	$7
 11788	John/Zach	Danny Woodhead	RB	2015	2017	$3
-11238	Koci/Mueller	Darren McFadden	RB	2016		$3
-8544	Patrick	Darren Sproles	RB	2016		$25
-12570	James	Darrius Heyward-Bey	WR	FA	2015	$1
-	Trevor	Darron Lee	LB	2016		$1
-5564	James	Daryl Smith	LB	FA	2015	$2
-10569	Syed	Dashon Goldson	DB	FA	2015	$1
+11238	Koci/Mueller	Darren McFadden	RB	2016	2018	$3
+8544	Patrick	Darren Sproles	RB	2016	2016	$25
+17808	Trevor	Darron Lee	LB	2016	2016	$1
 16800	Mitch	Davante Adams	WR	2014	2016	$5
-17578		David Cobb	RB	FA	2015
-10491	Schex	David Harris	LB	2016		$1
+10491	Schex	David Harris	LB	2016	2018	$1
 17442	Syed	David Johnson	RB	2015	2017	$14
-16945		De'Anthony Thomas	RB	FA	2015
-15795	Syed	DeAndre Hopkins	WR	2016		$270
+15795	Syed	DeAndre Hopkins	WR	2016	2018	$270
 12682	John/Zach	DeAndre Levy	LB	2015	2017	$10
 17718	Daniel	DeAndre Smelter	WR	2015	2017	$1
-	Mitch	DeAndre Washington	RB	2016		$25
-9613	Trevor	DeAngelo Williams	RB	2016		$50
-	Keyon	Deion Jones	LB	2016		$1
-9761	Quinn	Delanie Walker	TE	2016		$30
-14005	Brett/Luke	DeMarco Murray	RB	2016		$120
-16802		Demarcus Lawrence	DL	FA	2015
-8426		DeMarcus Ware	DL/LB	FA	2015
-14958		Demario Davis	LB	FA	2015
-13216	James	Demaryius Thomas	WR	2016		$97
-15951		Denard Robinson	RB	FA	2015
-16723	John/Zach	Deone Bucannon	LB	2016		$10
+17915	Mitch	DeAndre Washington	RB	2016	2018	$25
+9613	Trevor	DeAngelo Williams	RB	2016	2016	$50
+17837	Keyon	Deion Jones	LB	2016	2018	$1
+9761	Quinn	Delanie Walker	TE	2016	2016	$30
+14005	Brett/Luke	DeMarco Murray	RB	2016	2017	$120
+13216	James	Demaryius Thomas	WR	2016	2018	$97
+16723	John/Zach	Deone Bucannon	LB	2016	2018	$10
 16757	Daniel	Derek Carr	QB	2014	2016	$5
-15403		Derek Carrier	TE	FA	2015
-	James	Derrick Henry	RB	2016		$25
-8430	Quinn	Derrick Johnson	LB	2016		$15
-13248	Brett/Luke	Derrick Morgan	DL/LB	FA	2015	$1
-11283	Patrick	DeSean Jackson	WR	2016		$45
+17832	James	Derrick Henry	RB	2016	2018	$25
+8430	Quinn	Derrick Johnson	LB	2016	2016	$15
+11283	Patrick	DeSean Jackson	WR	2016	2016	$45
 17593	Brett/Luke	DeVante Parker	WR	2015	2017	$9
 17682	Keyon	Devin Funchess	WR	2015	2017	$9
-9643		Devin Hester	WR	FA	2015
 17584	John/Zach	Devin Smith	WR	2015	2017	$5
-17135		Devin Street	WR	FA	2015
-16944	Keyon	Devonta Freeman	RB	2016		$241
-	Daniel	Devontae Booker	RB	2016		$13
-13207	Brett/Luke	Dexter McCluster	RB/WR	2015	2015	$5
-13215	Daniel	Dez Bryant	WR	2016		$200
-17553		Dezmin Lewis	WR	FA	2015
-14198	Syed	Dion Lewis	RB	2016		$95
-11250	John/Zach	Dominique Rodgers-Cromartie	DB	FA	2015	$1
-14933	Patrick	Dont'a Hightower	LB	2016		$1
+16944	Keyon	Devonta Freeman	RB	2016	2016	$241
+17908	Daniel	Devontae Booker	RB	2016	2018	$13
+13215	Daniel	Dez Bryant	WR	2016	2016	$200
+14198	Syed	Dion Lewis	RB	2016	2016	$95
+14933	Patrick	Dont'a Hightower	LB	2016	2016	$1
 16791	Daniel	Donte Moncrief	WR	2014	2016	$5
-9594	John/Zach	Donte Whitner	DB	FA	2015	$1
-17136		Dontrelle Inman	WR	FA	2015
 17665	Keyon	Dorial Green-Beckham	WR	2015	2017	$9
 14221	Patrick	Doug Baldwin	WR	2015	2017	$10
 14885	Koci/Mueller	Doug Martin	RB	2015	2017	$45
-2580	Schex	Drew Brees	QB	2016		$265
-10487		Drew Stanton	QB	FA	2015
-16755		Dri Archer	RB	FA	2015
-14255		DuJuan Harris	RB	FA	2015
+2580	Schex	Drew Brees	QB	2016	2016	$265
 17658	John/Zach	Duke Johnson	RB	2015	2017	$14
 14901	Koci/Mueller	Dwayne Allen	TE	2014	2016	$1
-10467	James	Dwayne Bowe	WR	2013	2015	$85
-14100	Keyon	Dwayne Harris	WR	2016		$1
-13251		Earl Thomas	DB	FA	2015
-15848	James	Eddie Lacy	RB	2016		$150
-11276		Eddie Royal	WR	FA	2015
-15803	James	EJ Manuel	QB	2016		$3
+14100	Keyon	Dwayne Harris	WR	2016	2018	$1
+15848	James	Eddie Lacy	RB	2016	2018	$150
+15803	James	EJ Manuel	QB	2016	2018	$3
 5526	Schex	Eli Manning	QB	2015	2016	$115
-	Koci/Mueller	Emmanual Ogbah	LB	2016		$1
+17819	Koci/Mueller	Emmanual Ogbah	LB	2016	2018	$1
 13295	Syed	Emmanuel Sanders	WR	2014	2016	$35
 13271	Patrick	Eric Decker	WR	2015	2017	$30
 16732	John/Zach	Eric Ebron	TE	2014	2016	$14
 17452	Mitch	Eric Kendricks	LB	2015	2016	$1
-15809		Eric Reid	DB	FA	2015
-10481	Koci/Mueller	Eric Weddle	DB	2016		$2
-17585		Evan Spencer	WR	FA	2015
-13373	Syed	Everson Griffen	DL	2016		$5
+10481	Koci/Mueller	Eric Weddle	DB	2016	2018	$2
+13373	Syed	Everson Griffen	DL	2016	2018	$5
 15785	Brett/Luke	Ezekiel Ansah	DL	2014	2016	$1
-	Syed	Ezekiel Elliott	RB	2016		$25
-14941	Schex	Fletcher Cox	DL	2016		$2
-15755	Keyon	Fozzy Whittaker	RB	FA	2015	$1
+17797	Syed	Ezekiel Elliott	RB	2016	2018	$25
+14941	Schex	Fletcher Cox	DL	2016	2018	$2
 17576	Brett/Luke	Frank Clark	DL	2015	2016	$1
-8479	Patrick	Frank Gore	RB	2016		$70
-10195	Patrick	Fred Jackson	RB	2015	2015	$30
-13371		Garrett Graham	TE	FA	2015
-17572		Garrett Grayson	QB	FA	2015
-11364	Brett/Luke	Gary Barnidge	TE	2016		$25
-15836		Gavin Escobar	TE	FA	2015
-13311		Geno Atkins	DL	FA	2015
+8479	Patrick	Frank Gore	RB	2016	2016	$70
+11364	Brett/Luke	Gary Barnidge	TE	2016	2017	$25
 15864	Syed	Geno Smith	QB	2015	2017	$8
-15826	Daniel	Giovani Bernard	RB	2016		$40
-13217	Syed	Golden Tate	WR	2016		$45
-12460	Koci/Mueller	Graham Gano	K	2016		$1
-13377	Trevor	Greg Hardy	DL	2013	2015	$7
+15826	Daniel	Giovani Bernard	RB	2016	2016	$40
+13217	Syed	Golden Tate	WR	2016	2018	$45
+12460	Koci/Mueller	Graham Gano	K	2016	2018	$1
 10475	Keyon	Greg Olsen	TE	2014	2016	$22
-14993		Greg Zuerlein	K	FA	2015
-16735	Mitch	Ha Ha Clinton-Dix	DB	2016		$8
+16735	Mitch	Ha Ha Clinton-Dix	DB	2016	2016	$8
 14945	Syed	Harrison Smith	DB	2014	2016	$8
-17446		Hau'oli Kikaha	LB	FA	2015
-8444		Heath Miller	TE	FA	2015
-	John/Zach	Hunter Henry	TE	2016		$8
+17822	John/Zach	Hunter Henry	TE	2016	2018	$8
 17133	Trevor	Isaiah Crowell	RB	2014	2016	$2
 13979	Koci/Mueller	J.J. Watt	DL	2014	2016	$41
 16792	Brett/Luke	Jace Amaro	TE	2014	2016	$7
-	Daniel	Jacoby Brissett	QB	2016		$2
-17263		Jacquies Smith	DL/LB	FA	2015
+17870	Daniel	Jacoby Brissett	QB	2016	2018	$2
 16734	Mitch	Jadeveon Clowney	DL/LB	2014	2016	$2
 17709	Daniel	Jaelen Strong	WR	2015	2017	$9
-	Trevor	Jalen Ramsey	DB	2016		$1
-	Brett/Luke	Jalin Marshall	WR	2016		$1
-11307	Daniel	Jamaal Charles	RB	2016		$208
+17798	Trevor	Jalen Ramsey	DB	2016	2018	$1
+18077	Brett/Luke	Jalin Marshall	WR	2016	2018	$1
+11307	Daniel	Jamaal Charles	RB	2016	2016	$208
 17399	Mitch	Jameis Winston	QB	2015	2017	$24
-10522	Syed	James Jones	WR	FA	2015	$10
 12454	Daniel	James Laurinaitis	LB	2015	2017	$4
 13214	Keyon	James Starks	RB	2014	2016	$2
-16913	Keyon	James White	RB	FA	2015	$4
-15830	Schex	Jamie Collins	LB	2016		$9
+15830	Schex	Jamie Collins	LB	2016	2018	$9
 17600	Schex	Jamison Crowder	WR	2015	2017	$1
-14974		Janoris Jenkins	DB	FA	2015
-12537	Schex	Jared Cook	TE	2016		$4
-	Schex	Jared Goff	QB	2016		$32
-15358		Jarrett Boykin	WR	FA	2015
-17745		Jarryd Hayne	RB	FA	2015
+12537	Schex	Jared Cook	TE	2016	2018	$4
+17794	Schex	Jared Goff	QB	2016	2018	$32
 16790	Daniel	Jarvis Landry	WR	2014	2016	$3
-17438	Schex	Jason Myers	K	FA	2015	$1
-13256	John/Zach	Jason Pierre-Paul	DL	2016		$3
-4527	Patrick	Jason Witten	TE	2016		$4
+13256	John/Zach	Jason Pierre-Paul	DL	2016	2018	$3
+4527	Patrick	Jason Witten	TE	2016	2018	$4
 17616	Keyon	Javorius Allen	RB	2015	2017	$7
 17556	Schex	Jay Ajayi	RB	2015	2017	$7
-9597	Quinn	Jay Cutler	QB	2016		$60
-	Brett/Luke	Jeff Heuerman	TE	2016		$1
-17137		Jeff Janis	WR	FA	2015
-15985		Jelani Jenkins	LB	FA	2015
+9597	Quinn	Jay Cutler	QB	2016	2016	$60
+17583	Brett/Luke	Jeff Heuerman	TE	2016	2017	$1
 16803	Mitch	Jeremy Hill	RB	2014	2016	$24
-14151		Jeremy Kerley	WR	FA	2015
 17505	Syed	Jeremy Langford	RB	2015	2017	$14
-12579	John/Zach	Jeremy Maclin	WR	2016		$75
+12579	John/Zach	Jeremy Maclin	WR	2016	2018	$75
 16782	Koci/Mueller	Jerick McKinnon	RB	2014	2016	$6
-13228	John/Zach	Jermaine Gresham	TE	2013	2015	$12
-15428		Jermaine Kearse	WR	FA	2015
-11244		Jerod Mayo	LB	FA	2015
-11533	Koci/Mueller	Jerrell Freeman	LB	2016		$11
-5633		Jerricho Cotchery	WR	FA	2015
-13245		Jerry Hughes	DL	FA	2015
-13198	James	Jimmy Clausen	QB	2015	2015	$1
+11533	Koci/Mueller	Jerrell Freeman	LB	2016	2018	$11
 16760	Brett/Luke	Jimmy Garoppolo	QB	2014	2016	$3
-13232	Syed	Jimmy Graham	TE	2016		$26
-13963	Daniel	Jimmy Smith	DB	FA	2015	$1
+13232	Syed	Jimmy Graham	TE	2016	2018	$26
 11252	Brett/Luke	Joe Flacco	QB	2014	2016	$38
-	Quinn	Joey Bosa	DL	2016		$2
+17796	Quinn	Joey Bosa	DL	2016	2016	$2
 16804	Patrick	John Brown	WR	2014	2016	$2
-15831	Brett/Luke	John Cyprien	DB	2013	2015	$1
-16736		Johnny Manziel	QB	FA	2015
-13536	Quinn	Joique Bell	RB	2014	2015	$85
-15364		Jonas Gray	RB	FA	2015
 15632	Daniel	Jonathan Grimes	RB	2014	2016	$4
-11247	Schex	Jonathan Stewart	RB	2016		$80
-	Koci/Mueller	Jonathan Williams	RB	2016		$4
-14189	Mitch	Jordan Cameron	TE	2016		$1
-	Quinn	Jordan Hicks	LB	2016		$3
-	Quinn	Jordan Howard	RB	2016		$7
+11247	Schex	Jonathan Stewart	RB	2016	2016	$80
+17923	Koci/Mueller	Jonathan Williams	RB	2016	2018	$4
+14189	Mitch	Jordan Cameron	TE	2016	2016	$1
+17494	Quinn	Jordan Hicks	LB	2016	2018	$3
+17919	Quinn	Jordan Howard	RB	2016	2018	$7
 16763	Syed	Jordan Matthews	WR	2014	2016	$19
 15860	Syed	Jordan Reed	TE	2014	2016	$45
-14186	Syed	Jordan Todman	RB	FA	2015	$1
 11270	Schex	Jordy Nelson	WR	2015	2017	$110
-16013		Joseph Randle	RB	FA	2015
-4680	James	Josh Brown	K	FA	2015	$1
-	Quinn	Josh Doctson	WR	2016		$17
-	Mitch	Josh Ferguson	RB	2016		$13
-15705	Schex	Josh Gordon	WR	2016		$22
-16143		Josh Hill	TE	FA	2015
-16779		Josh Huff	WR	FA	2015
-17746		Josh Lambo	K	FA	2015
-3609	Schex	Josh McCown	QB	2016		$1
-15124	Trevor	Josh Norman	DB	2016		$1
-17622		Josh Robinson	RB	FA	2015
-12649	Trevor	Julian Edelman	WR	2016		$85
-13982	Koci/Mueller	Julio Jones	WR	2016		$290
-3530		Julius Peppers	DL/LB	FA	2015
-14204	John/Zach	Julius Thomas	TE	2016		$10
-11467	Patrick	Justin Forsett	RB	2016		$65
+17810	Quinn	Josh Doctson	WR	2016	2018	$17
+18006	Mitch	Josh Ferguson	RB	2016	2016	$13
+15705	Schex	Josh Gordon	WR	2016	2018	$22
+3609	Schex	Josh McCown	QB	2016	2018	$1
+15124	Trevor	Josh Norman	DB	2016	2018	$1
+12649	Trevor	Julian Edelman	WR	2016	2016	$85
+13982	Koci/Mueller	Julio Jones	WR	2016	2016	$290
+14204	John/Zach	Julius Thomas	TE	2016	2018	$10
+11467	Patrick	Justin Forsett	RB	2016	2016	$65
 17542	Mitch	Justin Hardy	WR	2015	2017	$9
-14048		Justin Houston	LB	FA	2015
-15845		Justin Hunter	WR	FA	2015
 15683	Syed	Justin Tucker	K	2015	2017	$3
-17140		Juwan Thompson	RB	FA	2015
-14140	Daniel	K.J. Wright	LB	2016		$5
+14140	Daniel	K.J. Wright	LB	2016	2016	$5
 16942	Koci/Mueller	Ka'Deem Carey	RB	2015	2017	$1
-13336	Daniel	Kam Chancellor	DB	2016		$5
+13336	Daniel	Kam Chancellor	DB	2016	2016	$5
 14583	Syed	Kamar Aiken	WR	2015	2017	$1
-	Mitch	Karl Joseph	DB	2016		$1
-5558	Koci/Mueller	Karlos Dansby	LB	2016		$3
+17804	Mitch	Karl Joseph	DB	2016	2018	$1
+5558	Koci/Mueller	Karlos Dansby	LB	2016	2018	$3
 17605	John/Zach	Karlos Williams	RB	2015	2017	$4
-15862	Syed	Kawann Short	DL	FA	2015	$1
-	Quinn	Keanu Neal	DB	2016		$1
-15818	Mitch	Keenan Allen	WR	2016		$110
-15017		Keenan Robinson	LB	FA	2015
-	Quinn	Keith Marshall	RB	2016		$7
-14882	Patrick	Kellen Moore	QB	FA	2015	$15
+17806	Quinn	Keanu Neal	DB	2016	2016	$1
+15818	Mitch	Keenan Allen	WR	2016	2017	$110
+17995	Quinn	Keith Marshall	RB	2016	2016	$7
 16730	Schex	Kelvin Benjamin	WR	2014	2016	$19
-13995		Kelvin Sheppard	LB	FA	2015
-16381		Kenbrell Thompkins	WR	FA	2015
-16066	Syed	Kendall Gaskins	RB	FA	2015	$1
-14909	Patrick	Kendall Wright	WR	2016		$2
-	Koci/Mueller	Kenjon Barner	RB	2016		$18
-	Schex	Kenneth Dixon	RB	2016		$13
-	Koci/Mueller	Kenneth Farrow	RB	2016		$4
-17488		Kenny Bell	WR	FA	2015
-12556	Brett/Luke	Kenny Britt	WR	2016		$1
-17617		Kenny Hilliard	RB	FA	2015
-16016	Daniel	Kenny Stills	WR	2016		$1
-15813	Patrick	Kenny Vaccaro	DB	2016		$3
-	Daniel	Kenyan Drake	RB	2016		$4
+14909	Patrick	Kendall Wright	WR	2016	2018	$2
+15921	Koci/Mueller	Kenjon Barner	RB	2016	2018	$18
+17906	Schex	Kenneth Dixon	RB	2016	2018	$13
+5549	Koci/Mueller	Kenneth Farrow	RB	2016	2018	$4
+12556	Brett/Luke	Kenny Britt	WR	2016	2016	$1
+16016	Daniel	Kenny Stills	WR	2016	2018	$1
+15813	Patrick	Kenny Vaccaro	DB	2016	2016	$3
+17856	Daniel	Kenyan Drake	RB	2016	2018	$4
 14916	Quinn	Keshawn Martin	WR	2014	2016	$3
-17703	James	Kevin White	WR	2016		$65
+17703	James	Kevin White	WR	2016	2018	$65
 16710	Mitch	Khalil Mack	LB	2014	2016	$1
-16530		Khiry Robinson	RB	FA	2015
 15819	Trevor	Kiko Alonso	LB	2015	2016	$8
 14880	Patrick	Kirk Cousins	QB	2015	2017	$35
-15832	Brett/Luke	Knile Davis	RB	2013	2015	$7
 17679	Syed	Kwon Alexander	LB	2015	2017	$1
 14054	Trevor	Kyle Rudolph	TE	2015	2016	$20
-14904	Syed	Ladarius Green	TE	2016		$11
-14886	John/Zach	Lamar Miller	RB	2016		$250
-15369		Lance Dunbar	RB	FA	2015
+14904	Syed	Ladarius Green	TE	2016	2016	$11
+14886	John/Zach	Lamar Miller	RB	2016	2018	$250
 17692	Brett/Luke	Landon Collins	DB	2015	2017	$1
-15904	Brett/Luke	Landry Jones	QB	FA	2015	$1
-	John/Zach	Laquon Treadwell	WR	2016		$17
-15707		Larry Donnell	TE	FA	2015
-5528	James	Larry Fitzgerald	WR	2016		$24
+17811	John/Zach	Laquon Treadwell	WR	2016	2018	$17
+5528	James	Larry Fitzgerald	WR	2016	2018	$24
 15920	Keyon	Latavius Murray	RB	2014	2016	$1
 14985	Brett/Luke	Lavonte David	LB	2015	2016	$15
 10459	Schex	Lawrence Timmons	LB	2014	2016	$1
-15825	Schex	Le'Veon Bell	RB	2016		$275
+15825	Schex	Le'Veon Bell	RB	2016	2016	$275
 13213	Koci/Mueller	LeGarrette Blount	RB	2014	2016	$12
-11245		Leodis McKelvin	DB	FA	2015
-14021		Leonard Hankerson	WR	FA	2015
-17669	Trevor	Leonard Williams	DL	2016		$1
-	Quinn	Leonte Carroo	WR	2016		$17
+17669	Trevor	Leonard Williams	DL	2016	2018	$1
+17865	Quinn	Leonte Carroo	WR	2016	2018	$17
 12514	John/Zach	LeSean McCoy	RB	2015	2016	$200
-	Trevor	Logan Ryan	DB	2016		$1
-16813		Logan Thomas	QB	FA	2015
-16950		Lorenzo Taliaferro	RB	FA	2015
-14938	John/Zach	Luke Kuechly	LB	2016		$50
-5631		Luke McCown	QB	FA	2015
+15861	Trevor	Logan Ryan	DB	2016	2018	$1
+14938	John/Zach	Luke Kuechly	LB	2016	2016	$50
 17742	Daniel	Malcolm Brown	RB	2015	2017	$1
 12426	Koci/Mueller	Malcolm Jenkins	DB	2015	2017	$1
-	Syed	Malcolm Mitchell	WR	2016		$9
-14214	Keyon	Malcolm Smith	LB	2016		$9
-17671		Malcom Brown	DL	FA	2015
-6016		Malcom Floyd	WR	FA	2015
-15047	James	Malik Jackson	DL	FA	2015	$1
-11717		Marcel Reese	RB	FA	2015
-16012		Marcus Lattimore	RB	FA	2015
+17888	Syed	Malcolm Mitchell	WR	2016	2018	$9
+14214	Keyon	Malcolm Smith	LB	2016	2016	$9
 17610	Trevor	Marcus Mariota	QB	2015	2017	$24
 17486	Schex	Marcus Murphy	RB	2015	2017	$1
-17633	Trevor	Marcus Peters	DB	2016		$1
-17717		Mario Alford	WR	FA	2015
-17655		Mario Edwards Jr.	DL	FA	2015
+17633	Trevor	Marcus Peters	DB	2016	2018	$1
 9587	Trevor	Mario Williams	DL	2014	2016	$1
-14932	Quinn	Mark Barron	LB	2016		$2
-13981	James	Mark Ingram	RB	2016		$182
+14932	Quinn	Mark Barron	LB	2016	2016	$2
+13981	James	Mark Ingram	RB	2016	2018	$182
 12482	Patrick	Mark Sanchez	QB	2015	2017	$3
-15873	John/Zach	Markus Wheaton	WR	2016		$25
-16581	Trevor	Marlon Brown	WR	2013	2015	$1
-16787		Marqise Lee	WR	FA	2015
-9838		Marques Colston	WR	FA	2015
-10456	Trevor	Marshawn Lynch	RB	2015	2015	$250
-16886	Patrick	Martavis Bryant	WR	2016		$1
+15873	John/Zach	Markus Wheaton	WR	2016	2018	$25
+16886	Patrick	Martavis Bryant	WR	2016	2018	$1
 11295	Syed	Martellus Bennett	TE	2015	2017	$25
 15072	Schex	Marvin Jones	WR	2014	2016	$1
 10636	Quinn	Mason Crosby	K	2014	2016	$1
-14360		Matt Asiata	RB	FA	2015
-15948	James	Matt Barkley	QB	2013	2015	$17
-4333	Brett/Luke	Matt Bryant	K	FA	2015	$1
-8644		Matt Cassel	QB	FA	2015
-11278	Patrick	Matt Forte	RB	2016		$120
-1575	Mitch	Matt Hasselbeck	QB	FA	2015	$1
+11278	Patrick	Matt Forte	RB	2016	2016	$120
 17695	Syed	Matt Jones	RB	2015	2017	$14
-16593		Matt McGloin	QB	FA	2015
-	Koci/Mueller	Matt Moore	QB	2016		$1
-	Schex	Matt Prater	K	2016		$1
+11128	Koci/Mueller	Matt Moore	QB	2016	2018	$1
+11122	Schex	Matt Prater	K	2016	2016	$1
 11237	Daniel	Matt Ryan	QB	2015	2017	$110
-5615	Quinn	Matt Schaub	QB	FA	2015	$2
-12483	Patrick	Matthew Stafford	QB	2016		$75
+12483	Patrick	Matthew Stafford	QB	2016	2018	$75
 17660	Trevor	Maxx Williams	TE	2015	2017	$8
 17586	John/Zach	Melvin Gordon	RB	2015	2017	$27
-14926	Quinn	Melvin Ingram	LB	FA	2015	$1
-15960	Syed	Micah Hyde	DB	FA	2015	$1
-12762	Trevor	Michael Bennett (SEA)	DL	2016		$7
-12563	Trevor	Michael Crabtree	WR	2016		$27
-17735		Michael Dyer	RB	FA	2015
+12762	Trevor	Michael Bennett (SEA)	DL	2016	2017	$7
+12563	Trevor	Michael Crabtree	WR	2016	2017	$27
 14908	Keyon	Michael Floyd	WR	2015	2017	$25
-10463	Trevor	Michael Griffin	DB	2015	2015	$3
-	Quinn	Michael Thomas (LA)	WR	2016		$3
-	Brett/Luke	Michael Thomas (NO)	WR	2016		$17
-14859		Michael Wilhoite	LB	FA	2015
+17694	Quinn	Michael Thomas (LA)	WR	2016	2016	$3
+17834	Brett/Luke	Michael Thomas (NO)	WR	2016	2018	$17
 17700	Daniel	Mike Davis	RB	2015	2017	$4
 16737	Mitch	Mike Evans	WR	2014	2016	$19
-15837		Mike Glennon	QB	FA	2015
-8461		Mike Nugent	K	FA	2015
-2549		Mike Vick	QB	FA	2015
 12601	Daniel	Mike Wallace	WR	2015	2017	$30
-14922	Mitch	Mohamed Sanu	WR	2016		$20
-15823		Montee Ball	RB	FA	2015
-13264	Schex	Morgan Burnett	DB	2016		$1
+14922	Mitch	Mohamed Sanu	WR	2016	2017	$20
+13264	Schex	Morgan Burnett	DB	2016	2018	$1
 13985	Koci/Mueller	Muhammad Wilkerson	DL	2014	2016	$1
-14978	Patrick	Mychal Kendricks	LB	FA	2015	$1
-15923		Mychal Rivera	TE	FA	2015
-	Mitch	Myles Jack	LB	2016		$1
-9307		Nate Washington	WR	FA	2015
+17823	Mitch	Myles Jack	LB	2016	2018	$1
 13262	Koci/Mueller	NaVorro Bowman	LB	2015	2017	$5
 17668	Brett/Luke	Nelson Agholor	WR	2015	2017	$17
-14877		Nick Foles	QB	FA	2015
-9329		Nick Novak	K	FA	2015
-14921		Nick Toon	WR	FA	2015
-	Brett/Luke	Nick Vannett	TE	2016		$2
-15075		Nigel Bradham	LB	FA	2015
-	Brett/Luke	Noah Spence	DL	2016		$1
+17873	Brett/Luke	Nick Vannett	TE	2016	2018	$2
+17826	Brett/Luke	Noah Spence	DL	2016	2018	$1
 16733	Keyon	Odell Beckham Jr.	WR	2014	2016	$10
-14982	Keyon	Olivier Vernon	DL	FA	2015	$3
-17208		Orleans Darkwa	RB	FA	2015
 17453	Brett/Luke	Owa Odighizuwa	DL	2015	2016	$1
-9684	James	Owen Daniels	TE	2016		$20
-17666		P.J. Dawson	LB	FA	2015
-13980	Brett/Luke	Patrick Peterson	DB	2016		$1
-	Schex	Paul Perkins	RB	2016		$13
-10478	Patrick	Paul Posluszny	LB	2016		$25
+9684	James	Owen Daniels	TE	2016	2016	$20
+13980	Brett/Luke	Patrick Peterson	DB	2016	2017	$1
+17918	Schex	Paul Perkins	RB	2016	2018	$13
+10478	Patrick	Paul Posluszny	LB	2016	2016	$25
 16781	Brett/Luke	Paul Richardson	WR	2014	2016	$2
-16243		Paul Worrilow	LB	FA	2015
-	Keyon	Paxton Lynch	QB	2016		$32
-12569	Patrick	Percy Harvin	WR	FA	2015	$1
-14202		Pernell McPhee	DL/LB	FA	2015
-1428	Daniel	Peyton Manning	QB	2015	2015	$230
-	Keyon	Pharoh Cooper	WR	2016		$5
-5529	Keyon	Philip Rivers	QB	2016		$165
+17814	Keyon	Paxton Lynch	QB	2016	2018	$32
+17893	Keyon	Pharoh Cooper	WR	2016	2018	$5
+5529	Keyon	Philip Rivers	QB	2016	2017	$165
 17643	Mitch	Phillip Dorsett	WR	2015	2017	$17
-11439	Trevor	Pierre Garcon	WR	2016		$10
-10713		Pierre Thomas	RB	FA	2015
-16762	Schex	Preston Brown	LB	FA	2015	$1
-14053	Keyon	Randall Cobb	WR	2016		$75
-17702		Randy Gregory	DL/LB	FA	2015
+11439	Trevor	Pierre Garcon	WR	2016	2016	$10
+14053	Keyon	Randall Cobb	WR	2016	2018	$75
 17601	Koci/Mueller	Rashad Greene	WR	2015	2017	$1
-12503	Quinn	Rashad Jennings	RB	2016		$74
-12674		Rashad Johnson	DB	FA	2015
-	Daniel	Rashard Higgins	WR	2016		$2
-11289		Ray Rice	RB	FA	2015
-9588	Patrick	Reggie Bush	RB	2016		$11
-	James	Reggie Nelson	DB	2016		$5
-2578		Reggie Wayne	WR	FA	2015
+12503	Quinn	Rashad Jennings	RB	2016	2016	$74
+17934	Daniel	Rashard Higgins	WR	2016	2018	$2
+9588	Patrick	Reggie Bush	RB	2016	2016	$11
+10465	James	Reggie Nelson	DB	2016	2018	$5
 13395	Daniel	Reshad Jones	DB	2015	2017	$10
-	Quinn	Ricardo Louis	WR	2016		$1
+17890	Quinn	Ricardo Louis	WR	2016	2016	$1
 16786	Quinn	Richard Rodgers	TE	2014	2016	$7
-14086	Trevor	Richard Sherman	DB	2013	2015	$3
-13225		Riley Cooper	WR	FA	2015
-15102	Syed	Rishard Matthews	WR	2016		$5
-13229	John/Zach	Rob Gronkowski	TE	2016		$200
-9354	John/Zach	Robbie Gould	K	2016		$3
+15102	Syed	Rishard Matthews	WR	2016	2018	$5
+13229	John/Zach	Rob Gronkowski	TE	2016	2018	$200
+9354	John/Zach	Robbie Gould	K	2016	2016	$3
 14875	Syed	Robert Griffin	QB	2015	2017	$28
-17144		Robert Herron	WR	FA	2015
-	Brett/Luke	Robert Nkemdiche	DL	2016		$1
+17816	Brett/Luke	Robert Nkemdiche	DL	2016	2018	$1
 13984	John/Zach	Robert Quinn	DL	2015	2017	$5
-14894	Keyon	Robert Turbin	RB	FA	2015	$2
-15880	Koci/Mueller	Robert Woods	WR	2016		$3
-	Mitch	Roberto Aguayo	K	2016		$1
-8442	Daniel	Roddy White	WR	2015	2015	$25
-	Quinn	Ron Parker	DB	2016		$2
-14895	Daniel	Ronnie Hillman	RB	2016		$2
-14192	James	Roy Helu	RB	2013	2015	$32
+15880	Koci/Mueller	Robert Woods	WR	2016	2018	$3
+17843	Mitch	Roberto Aguayo	K	2016	2018	$1
+14297	Quinn	Ron Parker	DB	2016	2016	$2
+14895	Daniel	Ronnie Hillman	RB	2016	2018	$2
 14911	John/Zach	Rueben Randle	WR	2015	2017	$5
-14881	Trevor	Russell Wilson	QB	2016		$265
+14881	Trevor	Russell Wilson	QB	2016	2016	$265
 8664	Keyon	Ryan Fitzpatrick	QB	2015	2016	$20
-15887		Ryan Griffin	TE	FA	2015
 14037	Schex	Ryan Mallett	QB	2015	2017	$4
-13204	Daniel	Ryan Mathews	RB	2016		$123
+13204	Daniel	Ryan Mathews	RB	2016	2016	$123
 16727	Keyon	Ryan Shazier	LB	2014	2016	$1
 14876	Koci/Mueller	Ryan Tannehill	QB	2015	2017	$110
-13197	Patrick	Sam Bradford	QB	2016		$40
+13197	Patrick	Sam Bradford	QB	2016	2016	$40
 17562	Daniel	Sammie Coates	WR	2015	2017	$3
 16725	Patrick	Sammy Watkins	WR	2014	2016	$19
-10572	Brett/Luke	Scott Chandler	TE	2015	2015	$2
-13284	Quinn	Sean Lee	LB	2016		$15
-	Koci/Mueller	Seth DeValve	TE	2016		$1
-17620		Shane Ray	DL	FA	2015
-14017	Patrick	Shane Vereen	RB	2016		$21
-17688		Shaq Thompson	LB	FA	2015
-14518	Syed	Shaun Draughn	RB	FA	2015	$1
-14937	Keyon	Shea McClellin	DL/LB	FA	2015	$3
-15859		Sio Moore	LB	FA	2015
-16020	Quinn	Spencer Ware	RB	2016		$7
+13284	Quinn	Sean Lee	LB	2016	2016	$15
+17910	Koci/Mueller	Seth DeValve	TE	2016	2018	$1
+14017	Patrick	Shane Vereen	RB	2016	2016	$21
+16020	Quinn	Spencer Ware	RB	2016	2016	$7
 17676	Brett/Luke	Stefon Diggs	WR	2015	2017	$3
 9704	Koci/Mueller	Stephen Gostkowski	K	2015	2017	$2
 17588	Trevor	Stephone Anthony	LB	2015	2017	$1
-	Mitch	Sterling Shepard	WR	2016		$17
+17827	Mitch	Sterling Shepard	WR	2016	2018	$17
 14028	Schex	Stevan Ridley	RB	2015	2017	$1
-2622	Brett/Luke	Steve Smith Sr.	WR	2016		$5
-11923	Brett/Luke	Steven Hauschka	K	2016		$3
-11458	Trevor	Stevie Johnson	WR	2014	2015	$1
-16884		Storm Johnson	RB	FA	2015
-15852		T.J. McDonald	DB	FA	2015
-13304	Koci/Mueller	T.J. Ward	DB	FA	2015	$1
-14114		T.J. Yates	QB	FA	2015
+2622	Brett/Luke	Steve Smith Sr.	WR	2016	2016	$5
+11923	Brett/Luke	Steven Hauschka	K	2016	2016	$3
 17678	Syed	T.J. Yeldon	RB	2015	2017	$27
 14924	John/Zach	T.Y. Hilton	WR	2015	2017	$135
-14167	Mitch	Taiwan Jones	RB	FA	2015	$1
-	Keyon	Tajae Sharpe	WR	2016		$5
-15786	Schex	Tavon Austin	WR	2016		$97
-10453	Koci/Mueller	Ted Ginn Jr.	WR	2016		$18
+17912	Keyon	Tajae Sharpe	WR	2016	2018	$5
+15786	Schex	Tavon Austin	WR	2016	2018	$97
+10453	Koci/Mueller	Ted Ginn Jr.	WR	2016	2018	$18
 16728	Schex	Teddy Bridgewater	QB	2014	2016	$19
 17159	Trevor	Telvin Smith	LB	2014	2016	$1
-16783		Terrance West	RB	FA	2015
 15878	Syed	Terrance Williams	WR	2015	2017	$3
-	James	Terrelle Pryor	WR	2016		$25
+14851	James	Terrelle Pryor	WR	2016	2018	$25
 17689	John/Zach	Tevin Coleman	RB	2015	2017	$27
 15994	Koci/Mueller	Theo Riddick	RB	2015	2017	$1
-8429	Schex	Thomas Davis	LB	2016		$9
-17739	Brett/Luke	Thomas Rawls	RB	2016		$185
-11383	Mitch	Tim Hightower	RB	2016		$5
+8429	Schex	Thomas Davis	LB	2016	2018	$9
+17739	Brett/Luke	Thomas Rawls	RB	2016	2017	$185
+11383	Mitch	Tim Hightower	RB	2016	2016	$5
 17222	Koci/Mueller	TJ Carrie	DB	2014	2016	$1
-	James	TJ Jones	WR	2016		$3
-13211		Toby Gerhart	RB	FA	2015
+17192	James	TJ Jones	WR	2016	2018	$3
 17683	Keyon	Todd Gurley	RB	2015	2017	$27
 2330	Trevor	Tom Brady	QB	2015	2016	$140
-16195	Brett/Luke	Tony Jefferson	DB	FA	2015	$1
-5209	Quinn	Tony Romo	QB	2016		$75
-14032	Koci/Mueller	Torrey Smith	WR	2016		$42
-17577	James	Trae Waynes	DB	2015	2015	$1
+5209	Quinn	Tony Romo	QB	2016	2016	$75
+14032	Koci/Mueller	Torrey Smith	WR	2016	2018	$42
 15457	Koci/Mueller	Travaris Cadet	RB	2015	2017	$1
-15062	John/Zach	Travis Benjamin	WR	2016		$10
-17157		Travis Coons	K	FA	2015
-15847	Mitch	Travis Kelce	TE	2016		$30
-16784		Tre Mason	RB	FA	2015
+15062	John/Zach	Travis Benjamin	WR	2016	2018	$10
+15847	Mitch	Travis Kelce	TE	2016	2018	$30
 17550	Daniel	Tre McBride	WR	2015	2017	$2
-	Syed	Trevor Siemian	QB	2016		$1
-16797		Troy Niklas	TE	FA	2015
+17455	Syed	Trevor Siemian	QB	2016	2018	$1
 17611	Syed	Ty Montgomery	WR	2015	2017	$9
-	Schex	Tyler Boyd	WR	2016		$17
-15788	Daniel	Tyler Eifert	TE	2016		$25
-	Daniel	Tyler Ervin	RB	2016		$7
-	James	Tyler Higbee	TE	2016		$4
+17840	Schex	Tyler Boyd	WR	2016	2018	$17
+15788	Daniel	Tyler Eifert	TE	2016	2016	$25
+17895	Daniel	Tyler Ervin	RB	2016	2018	$7
+17886	James	Tyler Higbee	TE	2016	2018	$4
 17619	Quinn	Tyler Lockett	WR	2015	2017	$5
-15851	Keyon	Tyrann Mathieu	DB	2016		$20
-14163	Brett/Luke	Tyrod Taylor	QB	2016		$185
-17766		Uani' Unga	LB	FA	2015
-9592	Patrick	Vernon Davis	TE	2015	2015	$10
-17468		Vic Beasley Jr.	LB	FA	2015
-13553	Brett/Luke	Victor Cruz	WR	2016		$1
-8475	Syed	Vincent Jackson	WR	2016		$13
-13766	Mitch	Vincent Rey	LB	FA	2015	$1
-14085	Brett/Luke	Virgil Green	TE	2016		$1
+15851	Keyon	Tyrann Mathieu	DB	2016	2016	$20
+14163	Brett/Luke	Tyrod Taylor	QB	2016	2017	$185
+13553	Brett/Luke	Victor Cruz	WR	2016	2016	$1
+8475	Syed	Vincent Jackson	WR	2016	2016	$13
+14085	Brett/Luke	Virgil Green	TE	2016	2017	$1
 13976	Syed	Von Miller	LB	2014	2016	$3
-15246	Patrick	Vontaze Burfict	LB	2016		$10
-	Mitch	Wendell Smallwood	RB	2016		$7
-11609		Wesley Woodyard	LB	FA	2015
-17264		Will Compton	LB	FA	2015
-	John/Zach	Will Fuller	WR	2016		$9
-17184	John/Zach	Willie Snead	WR	2016		$21
-15996		Zac Stacy	RB	FA	2015
-15835	Patrick	Zach Ertz	TE	2016		$18
+15246	Patrick	Vontaze Burfict	LB	2016	2018	$10
+17921	Mitch	Wendell Smallwood	RB	2016	2018	$7
+17809	John/Zach	Will Fuller	WR	2016	2018	$9
+17184	John/Zach	Willie Snead	WR	2016	2018	$21
+15835	Patrick	Zach Ertz	TE	2016	2018	$18
 16814	Trevor	Zach Mettenberger	QB	2014	2016	$2
-	Schex	Zach Miller	TE	2016		$1
-17741	Syed	Zach Zenner	RB	2016		$8
+12699	Schex	Zach Miller	TE	2016	2018	$1
+17741	Syed	Zach Zenner	RB	2016	2018	$8
+
+=== 2017 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Daniel	A.J. Green	WR	2017	2019	$190
+16716	Daniel	Aaron Donald	DL	2017	2017	$1
+18314	Schex/Jeff	Aaron Jones	RB	2017	2019	$2
+8439	Syed/Terence	Aaron Rodgers	QB	2016	2018	$270
+17756		Adam Humphries	WR	FA
+8421	Patrick	Adam Jones	DB	2015	2017	$10
+18276	Syed/Terence	Adam Shaheen	TE	2017	2019	$1
+17178	Koci/Mueller	Adam Thielen	WR	2017	2019	$7
+1097	Daniel	Adam Vinatieri	K	2017	2017	$1
+18305	Syed/Terence	Adoree' Jackson	DB	2017	2019	$1
+13965		Adrian Clayborn	DL	FA
+10452	Trevor	Adrian Peterson	RB	2017	2017	$40
+16810	Koci/Mueller	AJ McCarron	QB	2016	2018	$1
+14984		Akiem Hicks	DL	FA
+15806	Quinn	Alec Ogletree	LB	2017	2017	$40
+18323	James	Alex Anzalone	LB	2017	2019	$1
+17933		Alex Collins	RB	FA
+15976		Alex Okafor	DL	FA
+8416	Schex/Jeff	Alex Smith	QB	2017	2017	$32
+17134		Alfred Blue	RB	FA
+15009	Brett/Luke	Alfred Morris	RB	2016	2017	$25
+17163	Koci/Mueller	Allen Hurns	WR	2015	2017	$1
+16799	Quinn	Allen Robinson	WR	2017	2019	$75
+14912	Koci/Mueller	Alshon Jeffery	WR	2017	2019	$90
+18187	Keyon	Alvin Kamara	RB	2017	2019	$12
+18201	Keyon	Amara Darboh	WR	2017	2019	$1
+17677	Schex/Jeff	Amari Cooper	WR	2015	2017	$17
+17580	Quinn	Ameer Abdullah	RB	2015	2017	$27
+15893		Andre Ellington	RB	FA
+4461		Andre Johnson	WR	FA
+13226		Andre Roberts	WR	FA
+16889		Andre Williams	RB	FA
+13958		Andrew Hawkins	WR	FA
+14874	Mitch	Andrew Luck	QB	2016	2017	$240
+14012	Koci/Mueller	Andy Dalton	QB	2015	2017	$68
+17937		Andy Janovich	RB	FA
+4512	Trevor	Anquan Boldin	WR	2017	2017	$2
+16711		Anthony Barr	LB	FA
+9793	John/Zach	Antoine Bethea	DB	2015	2017	$1
+13158		Antone Smith	RB	FA
+13934	Patrick	Antonio Brown	WR	2017	2017	$350
+5362	Patrick	Antonio Gates	TE	2017	2017	$1
+18188	Schex/Jeff	ArDarius Stewart	WR	2017	2019	$5
+12497		Arian Foster	RB	FA
+17861	Trevor	Austin Hooper	TE	2016	2018	$4
+16795	Patrick	Austin Seferian-Jenkins	TE	2017	2019	$7
+17254		Avery Williamson	LB	FA
+13338	James	Barry Church	DB	2016	2018	$5
+17229		Bashaud Breeland	DB	FA
+5536	Brett/Luke	Ben Roethlisberger	QB	2017	2017	$80
+17623	Quinn	Benardrick McKinney	LB	2017	2017	$10
+16055	John/Zach	Benjamin Cunningham	RB	2015	2017	$1
+5557		Benjamin Watson	TE	FA
+14129	Trevor	Bilal Powell	RB	2016	2017	$15
+16794		Bishop Sankey	RB	FA
+13987		Blaine Gabbert	QB	FA
+15058		Blair Walsh	K	FA
+16724	John/Zach	Blake Bortles	QB	2017	2019	$17
+15501		Bobby Rainey	RB	FA
+14979	Syed/Terence	Bobby Wagner	LB	2017	2017	$14
+16269		Bradley McDougald	DB	FA
+17143		Branden Oliver	RB	FA
+16731	Syed/Terence	Brandin Cooks	WR	2017	2017	$150
+15478		Brandon Bolden	RB	FA
+17145		Brandon Coleman	WR	FA
+13239		Brandon Graham	DL	FA
+12576		Brandon LaFell	WR	FA
+15002	Trevor	Brandon Marshall (DEN)	LB	2015	2017	$3
+9705	Schex/Jeff	Brandon Marshall (NYG)	WR	2017	2017	$30
+17171	Trevor	Brandon McManus	K	2016	2018	$2
+12597		Brandon Tate	WR	FA
+17864	Brett/Luke	Braxton Miller	WR	2016	2018	$5
+17674	Patrick	Breshad Perriman	WR	2016	2018	$3
+18416	Quinn	Brian Hill	RB	2017	2019	$2
+12477	James	Brian Hoyer	QB	2017	2017	$10
+12439		Brian Orakpo	LB	FA
+14914		Brian Quick	WR	FA
+14879	Syed/Terence	Brock Osweiler	QB	2017	2019	$5
+16946		Bruce Ellington	WR	FA
+17434		Bryce Petty	QB	FA
+17479	Patrick	Byron Jones	DB	2017	2019	$1
+16040	Daniel	C.J. Anderson	RB	2017	2019	$45
+18268	Patrick	C.J. Beathard	QB	2017	2019	$2
+16766	Trevor	C.J. Fiedorowicz	TE	2017	2019	$4
+16720	James	C.J. Mosley (BAL)	LB	2017	2019	$5
+17869	Trevor	C.J. Prosise	RB	2016	2018	$13
+13203		C.J. Spiller	RB	FA
+17564		C.J. Uzomah	TE	FA
+17172	Brett/Luke	Cairo Santos	K	2017	2017	$2
+11284	Trevor	Calais Campbell	DL	2017	2018	$7
+15918	Schex/Jeff	Caleb Sturgis	K	2017	2019	$1
+13994	Quinn	Cam Newton	QB	2017	2019	$175
+17704	Schex/Jeff	Cameron Artis-Payne	RB	2016	2018	$4
+17784	Mitch	Cameron Brate	TE	2017	2017	$1
+13971	Daniel	Cameron Jordan	DL	2017	2017	$1
+17750	Keyon	Cameron Meredith	WR	2017	2019	$12
+12417		Cameron Wake	DL	FA
+17911		Cardale Jones	QB	FA
+13274	Daniel	Carlos Dunlap	DL	2017	2017	$11
+18295	Keyon	Carlos Henderson	WR	2017	2019	$3
+16777	Schex/Jeff	Carlos Hyde	RB	2017	2019	$75
+4459	Quinn	Carson Palmer	QB	2017	2017	$70
+17795	Quinn	Carson Wentz	QB	2016	2018	$8
+15168		Case Keenum	QB	FA
+14966		Casey Hayward	DB	FA
+18170	Keyon	Chad Hansen	WR	2017	2019	$1
+11291	Syed/Terence	Chad Henne	QB	2017	2017	$6
+18169	Schex/Jeff	Chad Williams	WR	2017	2019	$1
+17169	John/Zach	Chandler Catanzaro	K	2016	2018	$3
+14927	Patrick	Chandler Jones	LB	2015	2017	$11
+17384		Charcandrick West	RB	FA
+14145	Daniel	Charles Clay	TE	2017	2019	$1
+15885		Charles Johnson (MIN)	WR	FA
+16749	James	Charles Sims	RB	2017	2019	$5
+17994	Quinn	Charone Peake	WR	2016	2018	$1
+12471		Chase Daniel	QB	FA
+18089		Chester Rogers	WR	FA
+17175		Chris Boswell	K	FA
+18341	Koci/Mueller	Chris Carson	RB	2017	2019	$3
+17638	Trevor	Chris Conley	WR	2015	2017	$5
+18272	Brett/Luke	Chris Godwin	WR	2017	2018	$5
+14402	Daniel	Chris Hogan	WR	2017	2019	$8
+13587	Trevor	Chris Ivory	RB	2017	2019	$2
+11258		Chris Johnson	RB	FA
+17883		Chris Moore	WR	FA
+15966	Koci/Mueller	Chris Thompson	RB	2016	2018	$5
+17836	Trevor	Christian Hackenberg	QB	2016	2018	$4
+16767	Quinn	Christian Kirksey	LB	2017	2017	$15
+18279	Daniel	Christian McCaffrey	RB	2017	2019	$24
+15855		Christine Michael	RB	FA
+11326	Patrick	Cliff Avril	DL	2017	2019	$1
+17475		Clive Walford	TE	FA
+14900	Quinn	Coby Fleener	TE	2016	2018	$30
+17872	Patrick	Cody Kessler	QB	2016	2018	$8
+16793		Cody Latimer	WR	FA
+15349	Patrick	Cole Beasley	WR	2016	2018	$1
+14001		Colin Kaepernick	QB	FA
+13199		Colt McCoy	QB	FA
+12449		Connor Barwin	DL	FA
+17877	Daniel	Connor Cook	QB	2016	2018	$1
+18415	Trevor	Cooper Kupp	WR	2017	2019	$5
+15807		Cordarrelle Patterson	WR	FA
+17805	Quinn	Corey Coleman	WR	2016	2018	$17
+18320	Mitch	Corey Davis	WR	2017	2019	$18
+10611		Corey Graham	DB	FA
+17954		Cory James	LB	FA
+14860		Craig Robertson	LB	FA
+16775		Crockett Gillmore	TE	FA
+18284	Syed/Terence	Curtis Samuel	WR	2017	2019	$5
+18043		D.J. Foster	RB	FA
+18181	Daniel	De'Angelo Henderson	RB	2017	2019	$3
+18196	Trevor	D'Onta Foreman	RB	2017	2019	$24
+9620		D'Qwell Jackson	LB	FA
+17907	Syed/Terence	Dak Prescott	QB	2016	2018	$16
+18260	Patrick	Dalvin Cook	RB	2017	2019	$24
+17708		Damarious Randall	DB	FA
+17138	Mitch	Damien Williams	RB	2017	2017	$1
+15380		Damon Harrison	DL	FA
+14322	Keyon	Dan Bailey	K	2017	2019	$1
+11688		Dan Carpenter	K	FA
+17680	James	Danielle Hunter	DL	2017	2019	$5
+11674	John/Zach	Danny Amendola	WR	2016	2018	$5
+15074		Danny Trevathan	LB	FA
+11788	John/Zach	Danny Woodhead	RB	2015	2017	$3
+11238	Koci/Mueller	Darren McFadden	RB	2016	2018	$3
+8544	Trevor	Darren Sproles	RB	2017	2017	$18
+17808	Brett/Luke	Darron Lee	LB	2017	2017	$3
+5564		Daryl Smith	LB	FA
+16800	Trevor	Davante Adams	WR	2017	2019	$100
+15820		David Amerson	DB	FA
+10491		David Harris	LB	FA
+17442	Syed/Terence	David Johnson	RB	2015	2017	$14
+18303	Keyon	David Njoku	TE	2017	2019	$9
+18401	Quinn	Davis Webb	QB	2017	2019	$1
+15795	Daniel	DeAndre Hopkins	WR	2017	2019	$131
+12682		DeAndre Levy	LB	FA
+17718		DeAndre Smelter	WR	FA
+17915	Mitch	DeAndre Washington	RB	2016	2018	$25
+9613		DeAngelo Williams	RB	FA
+18302	Keyon	Dede Westbrook	WR	2017	2019	$5
+16707		Dee Ford	LB	FA
+17837	Keyon	Deion Jones	LB	2016	2018	$1
+9761	Quinn	Delanie Walker	TE	2017	2017	$18
+14005	Brett/Luke	DeMarco Murray	RB	2016	2017	$120
+13216	James	Demaryius Thomas	WR	2016	2018	$97
+13231		Dennis Pitta	TE	FA
+16723	John/Zach	Deone Bucannon	LB	2016	2018	$10
+8627		Derek Anderson	QB	FA
+18217	James	Derek Barnett	DL	2017	2019	$1
+16757	James	Derek Carr	QB	2017	2019	$150
+14964		Derek Wolfe	DL	FA
+17832	James	Derrick Henry	RB	2016	2018	$25
+8430	Koci/Mueller	Derrick Johnson	LB	2017	2017	$1
+13248		Derrick Morgan	DL	FA
+11283	Patrick	DeSean Jackson	WR	2017	2017	$23
+18246	Brett/Luke	Deshaun Watson	QB	2017	2019	$31
+15419		DeShawn Shead	DB	FA
+18328	Syed/Terence	DeShone Kizer	QB	2017	2019	$16
+18340	Syed/Terence	Devante Mays	RB	2017	2019	$3
+17593	Brett/Luke	DeVante Parker	WR	2015	2017	$9
+17682	Keyon	Devin Funchess	WR	2015	2017	$9
+17584		Devin Smith	WR	FA
+16944	Koci/Mueller	Devonta Freeman	RB	2017	2017	$240
+17908	Mitch	Devontae Booker	RB	2017	2017	$2
+13207		Dexter McCluster	RB	FA
+13215	Trevor	Dez Bryant	WR	2017	2018	$135
+14198	Syed/Terence	Dion Lewis	RB	2017	2019	$3
+18109		Don Xzaviar Jackson	RB	FA
+18172	James	Donnel Pumphrey	RB	2017	2019	$3
+14933		Dont'a Hightower	LB	FA
+16791	Daniel	Donte Moncrief	WR	2017	2019	$15
+17136		Dontrelle Inman	WR	FA
+17665		Dorial Green-Beckham	WR	FA
+14221	Patrick	Doug Baldwin	WR	2015	2017	$10
+14885	Quinn	Doug Martin	RB	2017	2019	$50
+2580	Schex/Jeff	Drew Brees	QB	2017	2017	$175
+10487		Drew Stanton	QB	FA
+14255		DuJuan Harris	RB	FA
+17658	Keyon	Duke Johnson Jr.	RB	2015	2017	$14
+15965		Dustin Hopkins	K	FA
+14901		Dwayne Allen	TE	FA
+14100		Dwayne Harris	WR	FA
+17989		Dwayne Washington	RB	FA
+15848	Quinn	Eddie Lacy	RB	2017	2019	$40
+11276		Eddie Royal	WR	FA
+15803	James	EJ Manuel	QB	2016	2018	$3
+5526	Trevor	Eli Manning	QB	2017	2017	$75
+18037		Eli Rogers	WR	FA
+18195	Koci/Mueller	Elijah Hood	RB	2017	2019	$2
+18313	Schex/Jeff	Elijah McGuire	RB	2017	2019	$2
+17819	Koci/Mueller	Emmanual Ogbah	DL	2016	2018	$1
+13295	John/Zach	Emmanuel Sanders	WR	2017	2019	$60
+13252	Daniel	Eric Berry	DB	2017	2017	$2
+13271	Patrick	Eric Decker	WR	2015	2017	$30
+16732	James	Eric Ebron	TE	2017	2019	$18
+17452	Mitch	Eric Kendricks	LB	2017	2017	$6
+10481	Koci/Mueller	Eric Weddle	DB	2016	2018	$2
+18382	Patrick	Evan Engram	TE	2017	2019	$5
+13373	Syed/Terence	Everson Griffen	DL	2016	2018	$5
+15785	Daniel	Ezekiel Ansah	DL	2017	2017	$1
+17797	Syed/Terence	Ezekiel Elliott	RB	2016	2018	$25
+14941	Schex/Jeff	Fletcher Cox	DL	2016	2018	$2
+15755		Fozzy Whittaker	RB	FA
+17576		Frank Clark	DL	FA
+8479	Koci/Mueller	Frank Gore	RB	2017	2017	$50
+11364		Gary Barnidge	TE	FA
+15864		Geno Smith	QB	FA
+18374	Keyon	Gerald Everett	TE	2017	2019	$1
+15826	Daniel	Giovani Bernard	RB	2017	2019	$8
+13217	Keyon	Golden Tate	WR	2016	2018	$45
+12460	Koci/Mueller	Graham Gano	K	2016	2018	$1
+10475	Schex/Jeff	Greg Olsen	TE	2017	2017	$45
+16735		Ha Ha Clinton-Dix	DB	FA
+14945		Harrison Smith	DB	FA
+18363	Keyon	Haason Reddick	LB	2017	2019	$1
+17822	Keyon	Hunter Henry	TE	2016	2018	$8
+17133	Trevor	Isaiah Crowell	RB	2017	2017	$90
+17514		J.J. Nelson	WR	FA
+13979	Koci/Mueller	J.J. Watt	DL	2017	2017	$45
+18192	Mitch	Jabrill Peppers	DB	2017	2019	$1
+16792		Jace Amaro	TE	FA
+16504	James	Jack Doyle	TE	2017	2019	$2
+11373		Jacob Tamme	TE	FA
+17870	Daniel	Jacoby Brissett	QB	2016	2018	$2
+14193	Schex/Jeff	Jacquizz Rodgers	RB	2017	2019	$7
+16734	Mitch	Jadeveon Clowney	DL	2017	2018	$5
+17709		Jaelen Strong	WR	FA
+18242	Brett/Luke	Jake Butt	TE	2017	2018	$2
+17504		Jake Ryan	LB	FA
+17798	Trevor	Jalen Ramsey	DB	2016	2018	$1
+18079	James	Jalen Richard	RB	2017	2019	$1
+18077	Brett/Luke	Jalin Marshall	WR	2016	2018	$1
+18220	Brett/Luke	Jamal Adams	DB	2017	2018	$1
+11307	Daniel	Jamaal Charles	RB	2017	2017	$20
+18362	Daniel	Jamaal Williams	RB	2017	2019	$12
+17399	Mitch	Jameis Winston	QB	2015	2017	$24
+18236	Daniel	James Conner	RB	2017	2019	$6
+12454		James Laurinaitis	LB	FA
+13214		James Starks	RB	FA
+16913	Syed/Terence	James White	RB	2017	2019	$18
+15830	Schex/Jeff	Jamie Collins	LB	2016	2018	$9
+17600	Schex/Jeff	Jamison Crowder	WR	2015	2017	$1
+14974		Janoris Jenkins	DB	FA
+12537	Schex/Jeff	Jared Cook	TE	2016	2018	$4
+17794	John/Zach	Jared Goff	QB	2016	2018	$32
+16172	Schex/Jeff	Jaron Brown	WR	2017	2019	$1
+18190	Keyon	Jarrad Davis	LB	2017	2019	$1
+16790	Daniel	Jarvis Landry	WR	2017	2019	$60
+12691		Jason McCourty	DB	FA
+13256	John/Zach	Jason Pierre-Paul	DL	2016	2018	$3
+4527	John/Zach	Jason Witten	TE	2016	2018	$4
+17936	Koci/Mueller	Jatavis Brown	LB	2017	2019	$1
+17616		Javorius Allen	RB	FA
+17556	Schex/Jeff	Jay Ajayi	RB	2015	2017	$7
+9597	Daniel	Jay Cutler	QB	2017	2017	$20
+17583	Brett/Luke	Jeff Heuerman	TE	2016	2017	$1
+16803	James	Jeremy Hill	RB	2017	2017	$22
+14151		Jeremy Kerley	WR	FA
+17505		Jeremy Langford	RB	FA
+12579	John/Zach	Jeremy Maclin	WR	2016	2018	$75
+18396	Quinn	Jeremy McNichols	RB	2017	2019	$6
+16782		Jerick McKinnon	RB	FA
+15428	Patrick	Jermaine Kearse	WR	2017	2019	$3
+11533	Koci/Mueller	Jerrell Freeman	LB	2016	2018	$11
+17690	Patrick	Jesse James	TE	2017	2019	$1
+16760	Keyon	Jimmy Garoppolo	QB	2017	2019	$31
+13232	Syed/Terence	Jimmy Graham	TE	2016	2018	$26
+11252	Brett/Luke	Joe Flacco	QB	2017	2017	$38
+18193	Daniel	Joe Mixon	RB	2017	2019	$24
+18354	Schex/Jeff	Joe Williams	RB	2017	2019	$12
+17796	Quinn	Joey Bosa	DL	2017	2017	$28
+16804	James	John Brown	WR	2017	2019	$5
+18395	Syed/Terence	John Ross	WR	2017	2019	$18
+15831	Quinn	Johnathan Cyprien	DB	2017	2017	$15
+15632		Jonathan Grimes	RB	FA
+11247	Mitch	Jonathan Stewart	RB	2017	2017	$50
+17923	Koci/Mueller	Jonathan Williams	RB	2016	2018	$4
+18183	Keyon	Jonnu Smith	TE	2017	2019	$2
+14189		Jordan Cameron	TE	FA
+17494	Quinn	Jordan Hicks	LB	2016	2018	$3
+17919	Quinn	Jordan Howard	RB	2016	2018	$7
+16763	James	Jordan Matthews	WR	2017	2018	$16
+15860	Schex/Jeff	Jordan Reed	TE	2017	2019	$40
+11270	Schex/Jeff	Jordy Nelson	WR	2015	2017	$110
+17810	Quinn	Josh Doctson	WR	2016	2018	$17
+18006		Josh Ferguson	RB	FA
+15705		Josh Gordon	WR	FA
+17746		Josh Lambo	K	FA
+18216	Trevor	Josh Malone	WR	2017	2019	$3
+3609	Schex/Jeff	Josh McCown	QB	2016	2018	$1
+15124	Trevor	Josh Norman	DB	2016	2018	$1
+18214	Keyon	Josh Reynolds	WR	2017	2019	$2
+18229	Keyon	Joshua Dobbs	QB	2017	2019	$4
+18306	Daniel	JuJu Smith-Schuster	WR	2017	2019	$9
+12649	Trevor	Julian Edelman	WR	2017	2017	$55
+13982	Koci/Mueller	Julio Jones	WR	2017	2017	$265
+3530		Julius Peppers	DL	FA
+14204	John/Zach	Julius Thomas	TE	2016	2018	$10
+11467		Justin Forsett	RB	FA
+17542	John/Zach	Justin Hardy	WR	2015	2017	$9
+14048		Justin Houston	LB	FA
+15683	Syed/Terence	Justin Tucker	K	2015	2017	$3
+14907	Quinn	KD Cannon	WR	2017	2017	$1
+14140		K.J. Wright	LB	FA
+16942		Ka'Deem Carey	RB	FA
+13336	Trevor	Kam Chancellor	DB	2017	2018	$7
+14583		Kamar Aiken	WR	FA
+17141		Kapri Bibbs	RB	FA
+18225	Keyon	Kareem Hunt	RB	2017	2019	$24
+17804	Mitch	Karl Joseph	DB	2016	2018	$1
+5558		Karlos Dansby	LB	FA
+17605		Karlos Williams	RB	FA
+17806	Schex/Jeff	Keanu Neal	DB	2017	2019	$10
+15818	Mitch	Keenan Allen	WR	2016	2017	$110
+15017		Keenan Robinson	LB	FA
+17995		Keith Marshall	RB	FA
+16730	Schex/Jeff	Kelvin Benjamin	WR	2017	2019	$60
+16008		Kemal Ishmael	DB	FA
+14909	Mitch	Kendall Wright	WR	2017	2017	$1
+15921		Kenjon Barner	RB	FA
+17906	Keyon	Kenneth Dixon	RB	2016	2018	$13
+18093		Kenneth Farrow	RB	FA
+12556	Patrick	Kenny Britt	WR	2017	2017	$10
+18345	Syed/Terence	Kenny Golladay	WR	2017	2019	$9
+16016	Daniel	Kenny Stills	WR	2016	2018	$1
+15813	James	Kenny Vaccaro	DB	2017	2019	$1
+17856	Daniel	Kenyan Drake	RB	2016	2018	$4
+14916		Keshawn Martin	WR	FA
+17927		Kevin Hogan	QB	FA
+17703	Patrick	Kevin White	WR	2017	2019	$6
+16710	Mitch	Khalil Mack	DL	2017	2017	$30
+15819		Kiko Alonso	LB	FA
+14880	Patrick	Kirk Cousins	QB	2015	2017	$35
+15832		Knile Davis	RB	FA
+13340	Daniel	Kurt Coleman	DB	2017	2017	$2
+17679	Syed/Terence	Kwon Alexander	LB	2015	2017	$1
+14054	Trevor	Kyle Rudolph	TE	2017	2018	$20
+14904		Ladarius Green	TE	FA
+14886	Quinn	Lamar Miller	RB	2016	2018	$250
+15369		Lance Dunbar	RB	FA
+14007		Lance Kendricks	TE	FA
+17692	Brett/Luke	Landon Collins	DB	2015	2017	$1
+15904		Landry Jones	QB	FA
+17811	John/Zach	Laquon Treadwell	WR	2016	2018	$17
+5528	James	Larry Fitzgerald	WR	2016	2018	$24
+15920	Syed/Terence	Latavius Murray	RB	2017	2019	$6
+14985	Daniel	Lavonte David	LB	2017	2019	$10
+10459		Lawrence Timmons	LB	FA
+15825	Keyon	Le'Veon Bell	RB	2017	2017	$330
+13213	Koci/Mueller	LeGarrette Blount	RB	2017	2017	$25
+18218	Mitch	Leonard Fournette	RB	2017	2019	$24
+17669		Leonard Williams	DL	FA
+17865	John/Zach	Leonte Carroo	WR	2016	2018	$17
+12514	Patrick	LeSean McCoy	RB	2017	2017	$210
+13281		Linval Joseph	DL	FA
+15861	Trevor	Logan Ryan	DB	2016	2018	$1
+9424	Schex/Jeff	Lorenzo Alexander	DL/LB	2017	2019	$10
+14938	Mitch	Luke Kuechly	LB	2017	2017	$25
+18350	Patrick	Mack Hollins	WR	2017	2019	$3
+18219	James	Malachi Dupre	WR	2017	2019	$1
+17742		Malcolm Brown	RB	FA
+12426	Koci/Mueller	Malcolm Jenkins	DB	2015	2017	$1
+17888	Koci/Mueller	Malcolm Mitchell	WR	2016	2018	$9
+14214		Malcolm Smith	LB	FA
+18281	Keyon	Malik Hooker	DB	2017	2019	$1
+15867		Manti Te'o	LB	FA
+13992		Marcell Dareus	DL	FA
+15888		Marcus Cooper	DB	FA
+17610	Trevor	Marcus Mariota	QB	2015	2017	$24
+17486		Marcus Murphy	RB	FA
+17633		Marcus Peters	DB	FA
+9587		Mario Williams	DL	FA
+14932		Mark Barron	LB	FA
+13981	James	Mark Ingram	RB	2016	2018	$182
+12482		Mark Sanchez	QB	FA
+15873		Markus Wheaton	WR	FA	2017
+18211	Koci/Mueller	Marlon Mack	RB	2017	2019	$12
+15839		Marqise Goodwin	WR	FA
+16787	Quinn	Marqise Lee	WR	2017	2019	$13
+18288	James	Marquel Lee	LB	2017	2019	$1
+16023		Marquess Wilson	WR	FA
+10456	Quinn	Marshawn Lynch	RB	2017	2017	$160
+16886	Patrick	Martavis Bryant	WR	2016	2018	$1
+11295	Syed/Terence	Martellus Bennett	TE	2015	2017	$25
+15072	Mitch	Marvin Jones	WR	2017	2017	$6
+10636	Quinn	Mason Crosby	K	2017	2017	$1
+14023		Mason Foster	LB	FA
+14360		Matt Asiata	RB	FA
+15948	James	Matt Barkley	QB	2017	2019	$1
+4333	Mitch	Matt Bryant	K	2017	2017	$5
+11278	Mitch	Matt Forte	RB	2017	2017	$25
+17695		Matt Jones	RB	FA
+11128	Koci/Mueller	Matt Moore	QB	2016	2018	$1
+11122	James	Matt Prater	K	2017	2017	$1
+11237	Daniel	Matt Ryan	QB	2015	2017	$110
+12483	Patrick	Matthew Stafford	QB	2016	2018	$75
+17660		Maxx Williams	TE	FA
+17586	Patrick	Melvin Gordon	RB	2015	2017	$27
+14926	James	Melvin Ingram	DL/LB	2017	2019	$2
+15960		Micah Hyde	DB	FA
+12762	Trevor	Michael Bennett (SEA)	DL	2016	2017	$7
+12563	Trevor	Michael Crabtree	WR	2016	2017	$27
+14908	Syed/Terence	Michael Floyd	WR	2017	2019	$1
+17964		Michael Thomas (LA)	WR	FA
+17834	Brett/Luke	Michael Thomas (NO)	WR	2016	2018	$17
+14859		Michael Wilhoite	LB	FA
+17700		Mike Davis	RB	FA
+16737	Mitch	Mike Evans	WR	2017	2017	$243
+15952	John/Zach	Mike Gillislee	RB	2017	2019	$70
+15837	Koci/Mueller	Mike Glennon	QB	2017	2017	$16
+8461		Mike Nugent	K	FA
+12601	Daniel	Mike Wallace	WR	2015	2017	$30
+18235	Mitch	Mike Williams (LAC)	WR	2017	2019	$9
+18168	Koci/Mueller	Mitchell Trubisky	QB	2017	2019	$31
+14922		Mohamed Sanu	WR	FA
+13264	Schex/Jeff	Morgan Burnett	DB	2016	2018	$1
+13985		Muhammad Wilkerson	DL	FA
+18167	Mitch	Myles Garrett	DL	2017	2019	$1
+17823	Mitch	Myles Jack	LB	2016	2018	$1
+18252	Schex/Jeff	Nathan Peterman	QB	2017	2019	$4
+13262	Koci/Mueller	NaVorro Bowman	LB	2015	2017	$5
+13234		Ndamukong Suh	DL	FA
+17668	Brett/Luke	Nelson Agholor	WR	2015	2017	$17
+14471		Nick Bellore	LB	FA
+14877		Nick Foles	QB	FA
+17889		Nick Kwiatkoski	LB	FA
+9329	Patrick	Nick Novak	K	2017	2017	$1
+17873	Brett/Luke	Nick Vannett	TE	2016	2018	$2
+15075		Nigel Bradham	LB	FA
+17826	Brett/Luke	Noah Spence	DL	2016	2018	$1
+16733	Syed/Terence	Odell Beckham Jr.	WR	2017	2017	$315
+18322	Brett/Luke	O.J. Howard	TE	2017	2019	$9
+14982	Syed/Terence	Olivier Vernon	DL	2017	2017	$3
+17208		Orleans Darkwa	RB	FA
+17453		Owa Odighizuwa	DL	FA
+9684		Owen Daniels	TE	FA
+18210	Keyon	Patrick Mahomes II	QB	2017	2019	$31
+13980	Brett/Luke	Patrick Peterson	DB	2016	2017	$1
+17918	Schex/Jeff	Paul Perkins	RB	2016	2018	$13
+10478	Patrick	Paul Posluszny	LB	2017	2019	$1
+16781		Paul Richardson	WR	FA
+17814	Keyon	Paxton Lynch	QB	2016	2018	$32
+18106		Peyton Barber	RB	FA
+17893	John/Zach	Pharoh Cooper	WR	2016	2018	$5
+5529	Keyon	Philip Rivers	QB	2016	2017	$165
+17643		Phillip Dorsett	WR	FA
+11439	Koci/Mueller	Pierre Garcon	WR	2017	2019	$32
+16762		Preston Brown	LB	FA
+17758		Quincy Enunwa	WR	FA
+17641		Ramik Wilson	LB	FA
+14053	James	Randall Cobb	WR	2017	2018	$26
+17601		Rashad Greene	WR	FA
+12503		Rashad Jennings	RB	FA
+17934		Rashard Higgins	WR	FA
+11289		Ray Rice	RB	FA
+9588		Reggie Bush	RB	FA
+10465	James	Reggie Nelson	DB	2016	2018	$5
+13395	Daniel	Reshad Jones	DB	2015	2017	$10
+18185	Keyon	Reuben Foster	LB	2017	2019	$1
+15971	Syed/Terence	Rex Burkhead	RB	2017	2019	$7
+17890		Ricardo Louis	WR	FA
+16786		Richard Rodgers	TE	FA
+15102	James	Rishard Matthews	WR	2017	2019	$13
+13229	Quinn	Rob Gronkowski	TE	2016	2018	$200
+9721		Rob Ninkovich	DL	FA
+9354		Robbie Gould	K	FA
+18097	Syed/Terence	Robby Anderson	WR	2017	2019	$2
+14875		Robert Griffin III	QB	FA
+18078	Brett/Luke	Robert Kelley	RB	2017	2017	$38
+17816	Brett/Luke	Robert Nkemdiche	DL	2016	2018	$1
+13984		Robert Quinn	DL	FA
+14894	Schex/Jeff	Robert Turbin	RB	2017	2019	$1
+15880	Koci/Mueller	Robert Woods	WR	2016	2018	$3
+17843		Roberto Aguayo	K	FA
+18226	Koci/Mueller	Rodney Adams	WR	2017	2019	$1
+15222		Rodney McLeod	DB	FA
+14297		Ron Parker	DB	FA
+14895		Ronnie Hillman	RB	FA
+14911		Rueben Randle	WR	FA
+14881	Schex/Jeff	Russell Wilson	QB	2017	2017	$200
+8664		Ryan Fitzpatrick	QB	FA
+15887		Ryan Griffin	TE	FA
+14037		Ryan Mallett	QB	FA
+13204		Ryan Mathews	RB	FA
+16727	James	Ryan Shazier	LB	2017	2019	$7
+18287	Quinn	Ryan Switzer	WR	2017	2019	$5
+14876	James	Ryan Tannehill	QB	2017	2019	$12
+13197	Patrick	Sam Bradford	QB	2017	2017	$38
+18194	Quinn	Samaje Perine	RB	2017	2019	$12
+17562		Sammie Coates	WR	FA
+16725	John/Zach	Sammy Watkins	WR	2017	2019	$55
+14353	Mitch	Scott Tolzien	QB	2017	2017	$1
+13284	Daniel	Sean Lee	LB	2017	2017	$10
+13243		Sean Weatherspoon	LB	FA
+2148		Sebastian Janikowski	K	FA
+17910		Seth DeValve	TE	FA
+17761		Seth Roberts	WR	FA
+14017	Patrick	Shane Vereen	RB	2017	2019	$1
+14518		Shaun Draughn	RB	FA
+4260		Shaun Hill	QB	FA
+15811		Sheldon Richardson	DL	FA
+15859		Sio Moore	LB	FA
+18280	Quinn	Solomon Thomas	DL	2017	2019	$1
+16020		Spencer Ware	RB	FA
+17676	Brett/Luke	Stefon Diggs	WR	2015	2017	$3
+9704	Koci/Mueller	Stephen Gostkowski	K	2015	2017	$2
+17588		Stephone Anthony	LB	FA
+17827	Mitch	Sterling Shepard	WR	2016	2018	$17
+14028		Stevan Ridley	RB	FA
+2622		Steve Smith Sr.	WR	FA
+11923		Steven Hauschka	K	FA
+13304	Syed/Terence	T.J. Ward	DB	2017	2017	$2
+18244	Schex/Jeff	T.J. Watt	LB	2017	2019	$1
+17678	Syed/Terence	T.J. Yeldon	RB	2015	2017	$27
+14924	Quinn	T.Y. Hilton	WR	2015	2017	$135
+18239	Brett/Luke	Taco Charlton	DL	2017	2018	$1
+15070		Tahir Whitehead	LB	FA
+17912		Tajae Sharpe	WR	FA
+18222	Brett/Luke	Takkarist McKinley	DL	2017	2018	$1
+18171	Syed/Terence	Tarik Cohen	RB	2017	2019	$3
+15786	Quinn	Tavon Austin	WR	2016	2018	$97
+17177		Taylor Gabriel	WR	FA
+18224	Keyon	Taywan Taylor	WR	2017	2019	$5
+10453	Koci/Mueller	Ted Ginn Jr.	WR	2016	2018	$18
+16728		Teddy Bridgewater	QB	FA
+17159	Syed/Terence	Telvin Smith	LB	2017	2017	$23
+16783	Patrick	Terrance West	RB	2017	2019	$26
+15878		Terrance Williams	WR	FA
+14851	James	Terrelle Pryor	WR	2016	2018	$25
+17689	John/Zach	Tevin Coleman	RB	2015	2017	$27
+15994	Koci/Mueller	Theo Riddick	RB	2015	2017	$1
+8429	Schex/Jeff	Thomas Davis	LB	2016	2018	$9
+17739	Brett/Luke	Thomas Rawls	RB	2016	2017	$185
+11383	Schex/Jeff	Tim Hightower	RB	2017	2017	$4
+17222		TJ Carrie	DB	FA
+17192		TJ Jones	WR	FA
+17683	Patrick	Todd Gurley	RB	2015	2017	$27
+2330	Trevor	Tom Brady	QB	2017	2017	$235
+16943	Daniel	Tom Savage	QB	2017	2017	$7
+16195	Keyon	Tony Jefferson	DB	2017	2019	$1
+5209		Tony Romo	QB	FA
+14032		Torrey Smith	WR	FA
+15457		Travaris Cadet	RB	FA
+15062	John/Zach	Travis Benjamin	WR	2016	2018	$10
+15847	Mitch	Travis Kelce	TE	2016	2018	$30
+17550		Tre McBride	WR	FA
+18315	James	Tre'Davious White	DB	2017	2019	$1
+16751		Trent Murphy	DL	FA
+18008		Trevone Boykin	QB	FA
+17928		Trevor Davis	WR	FA
+17455	Keyon	Trevor Siemian	QB	2016	2018	$1
+17559	Patrick	Trey Flowers	DL	2017	2019	$1
+18086		Troymaine Pope	RB	FA
+14989		Trumaine Johnson	DB	FA
+17611	Syed/Terence	Ty Montgomery	RB	2017	2019	$99
+17840	Mitch	Tyler Boyd	WR	2016	2018	$17
+15788	Daniel	Tyler Eifert	TE	2017	2017	$35
+17895	Daniel	Tyler Ervin	RB	2016	2018	$7
+17886		Tyler Higbee	TE	FA
+17619	Quinn	Tyler Lockett	WR	2015	2017	$5
+15851		Tyrann Mathieu	DB	FA
+17929	Quinn	Tyreek Hill	WR	2017	2017	$118
+17762	Syed/Terence	Tyrell Williams	WR	2017	2019	$13
+14163	Brett/Luke	Tyrod Taylor	QB	2016	2017	$185
+15853		Vance McDonald	TE	FA
+9592		Vernon Davis	TE	FA
+17468	Trevor	Vic Beasley Jr.	DL	2017	2019	$15
+13553		Victor Cruz	WR	FA
+15934		Vince Williams	LB	FA
+8475		Vincent Jackson	WR	FA
+14085	Brett/Luke	Virgil Green	TE	2016	2017	$1
+13976	Mitch	Von Miller	LB	2017	2017	$1
+15246	Patrick	Vontaze Burfict	LB	2016	2018	$10
+18233	James	Wayne Gallman	RB	2017	2019	$2
+17921	John/Zach	Wendell Smallwood	RB	2016	2018	$7
+14936		Whitney Mercilus	LB	FA
+18104		Wil Lutz	K	FA
+17264		Will Compton	LB	FA
+17809	Patrick	Will Fuller V	WR	2016	2018	$9
+17184	Keyon	Willie Snead	WR	2016	2018	$21
+17852		Yannick Ngakoue	DL	FA
+14973	Trevor	Zach Brown	LB	2017	2018	$10
+18379	Syed/Terence	Zach Cunningham	LB	2017	2019	$1
+15835	Koci/Mueller	Zach Ertz	TE	2017	2019	$18
+16814		Zach Mettenberger	QB	FA
+12699	Schex/Jeff	Zach Miller	TE	2016	2018	$1
+17741		Zach Zenner	RB	FA
+17242		Zachary Orr	LB	FA
+18223	Mitch	Zay Jones	WR	2017	2019	$18
+
+=== 2018 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Daniel	A.J. Green	WR	2017	2019	$190
+15964		A.J. Klein	LB	FA	2018
+16716		Aaron Donald	DL	FA	2018
+18314	Schex	Aaron Jones	RB	2017	2019	$2
+8439	Syed/Terence	Aaron Rodgers	QB	2016	2018	$270
+17756		Adam Humphries	WR	FA	2018
+8421		Adam Jones	DB	FA	2018
+18276	Syed/Terence	Adam Shaheen	TE	2017	2019	$1
+17178	Koci/Mueller	Adam Thielen	WR	2017	2019	$7
+1097		Adam Vinatieri	K	FA	2018
+18305	Syed/Terence	Adoree' Jackson	DB	2017	2019	$1
+13965	Syed/Terence	Adrian Clayborn	DL	2018	2018	$1
+10452	Trevor	Adrian Peterson	RB	2018	2018	$34
+16810	John/Zach	AJ McCarron	QB	2016	2018	$1
+14984		Akiem Hicks	DL	FA	2018
+15806	Koci/Mueller	Alec Ogletree	LB	2018	2020	$22
+18323		Alex Anzalone	LB	FA	2018
+17933	James/Charles	Alex Collins	RB	2018	2019	$85
+15976		Alex Okafor	DL	FA	2018
+8416	James/Charles	Alex Smith	QB	2018	2019	$69
+17134		Alfred Blue	RB	FA	2018
+15009		Alfred Morris	RB	FA	2018
+17163	Quinn	Allen Hurns	WR	2018	2019	$15
+18820	John/Zach	Allen Lazard	WR	2018	2020	$1
+16799	James/Charles	Allen Robinson	WR	2017	2019	$75
+14912	Koci/Mueller	Alshon Jeffery	WR	2017	2019	$90
+18187	Keyon	Alvin Kamara	RB	2017	2019	$12
+18201		Amara Darboh	WR	FA	2018
+17677	Mitch	Amari Cooper	WR	2018	2019	$100
+17580		Ameer Abdullah	RB	FA	2018
+15893		Andre Ellington	RB	FA	2018
+4461		Andre Johnson	WR	FA	2018
+13226		Andre Roberts	WR	FA	2018
+16889		Andre Williams	RB	FA	2018
+13958		Andrew Hawkins	WR	FA	2018
+14874	Mitch	Andrew Luck	QB	2018	2018	$185
+13939		Andrew Sendejo	DB	FA	2018
+14012	Mitch	Andy Dalton	QB	2018	2018	$65
+17937		Andy Janovich	RB	FA	2018
+4512		Anquan Boldin	WR	FA	2018
+16711		Anthony Barr	LB	FA	2018
+17158	Patrick	Anthony Hitchens	LB	2018	2018	$1
+18610	Keyon	Anthony Miller	WR	2018	2020	$9
+17960		Anthony Zettel	DL	FA	2018
+9793		Antoine Bethea	DB	FA	2018
+13158		Antone Smith	RB	FA	2018
+13934	Patrick	Antonio Brown	WR	2018	2018	$375
+18664	Brett/Luke	Antonio Callaway	WR	2018	2019	$3
+5362	Patrick	Antonio Gates	TE	2018	2018	$2
+18188		ArDarius Stewart	WR	FA	2018
+18646	John/Zach	Arden Key	DL	2018	2020	$1
+12497		Arian Foster	RB	FA	2018
+18811	Patrick	Auden Tate	WR	2018	2020	$2
+18458	Koci/Mueller	Austin Ekeler	RB	2018	2020	$12
+17861	Trevor	Austin Hooper	TE	2016	2018	$4
+16795	Patrick	Austin Seferian-Jenkins	TE	2017	2019	$7
+17254		Avery Williamson	LB	FA	2018
+17885		B.J. Goodson	LB	FA	2018
+18565	Quinn	Baker Mayfield	QB	2018	2020	$28
+13338	James/Charles	Barry Church	DB	2016	2018	$5
+17229		Bashaud Breeland	DB	FA	2018
+5536	Trevor	Ben Roethlisberger	QB	2018	2018	$103
+17623	Quinn	Benardrick McKinney	LB	2018	2018	$2
+16055		Benjamin Cunningham	RB	FA	2018
+5557	Schex	Benjamin Watson	TE	2018	2018	$1
+17751		Bennie Fowler III	WR	FA	2018
+14129	Trevor	Bilal Powell	RB	2018	2018	$11
+16794		Bishop Sankey	RB	FA	2018
+13987	Koci/Mueller	Blaine Gabbert	QB	2018	2020	$6
+15058		Blair Walsh	K	FA	2018
+16724	Quinn	Blake Bortles	QB	2017	2019	$17
+17903	Keyon	Blake Martinez	LB	2018	2020	$9
+18794	Syed/Terence	Bo Scarbrough	RB	2018	2018	$2
+15501		Bobby Rainey	RB	FA	2018
+14979	Daniel	Bobby Wagner	LB	2018	2018	$27
+18759	Quinn	Boston Scott	RB	2018	2018	$1
+18569	James/Charles	Bradley Chubb	LB	2018	2020	$1
+16269		Bradley McDougald	DB	FA	2018
+17143		Branden Oliver	RB	FA	2018
+16731	Mitch	Brandin Cooks	WR	2018	2018	$85
+15478		Brandon Bolden	RB	FA	2018
+17145		Brandon Coleman	WR	FA	2018
+13239		Brandon Graham	DL	FA	2018
+12576		Brandon LaFell	WR	FA	2018
+15002	Trevor	Brandon Marshall (DEN)	LB	2018	2020	$4
+9705		Brandon Marshall (NYG)	WR	FA	2018
+17171	Trevor	Brandon McManus	K	2016	2018	$2
+-1	Koci/Mueller	Brandon Powell	WR	2018	2020	$2
+12597		Brandon Tate	WR	FA	2018
+18768	Brett/Luke	Braxton Berrios	WR	2018	2018	$1
+17864	Brett/Luke	Braxton Miller	WR	2016	2018	$5
+17674		Breshad Perriman	WR	FA	2018
+17613		Brett Hundley	QB	FA	2018
+18416	Quinn	Brian Hill	RB	2017	2019	$2
+12477		Brian Hoyer	QB	FA	2018
+12439		Brian Orakpo	LB	FA	2018
+14914		Brian Quick	WR	FA	2018
+15896	Syed/Terence	Brice Butler	WR	2018	2018	$1
+14879		Brock Osweiler	QB	FA	2018
+16946		Bruce Ellington	WR	FA	2018
+17434		Bryce Petty	QB	FA	2018
+18308	Brett/Luke	Budda Baker	DB	2018	2019	$9
+17479		Byron Jones	DB	FA	2018
+18035		Byron Marshall	RB	FA	2018
+16040	Daniel	C.J. Anderson	RB	2017	2019	$45
+18268	Patrick	C.J. Beathard	QB	2017	2019	$2
+16766	Trevor	C.J. Fiedorowicz	TE	2017	2019	$4
+16720	James/Charles	C.J. Mosley (BAL)	LB	2017	2019	$5
+17869	Trevor	C.J. Prosise	RB	2016	2018	$13
+13203		C.J. Spiller	RB	FA	2018
+17564		C.J. Uzomah	TE	FA	2018
+17172		Cairo Santos	K	FA	2018
+11284	Trevor	Calais Campbell	DL	2017	2018	$7
+15918		Caleb Sturgis	K	FA	2018
+10447		Calvin Johnson	WR	FA	2018
+18584	Mitch	Calvin Ridley	WR	2018	2020	$18
+13994	Brett/Luke	Cam Newton	QB	2017	2019	$175
+17704		Cameron Artis-Payne	RB	FA	2018
+17784	Quinn	Cameron Brate	TE	2018	2018	$5
+13977		Cameron Heyward	DL	FA	2018
+13971	Schex	Cameron Jordan	DL	2018	2018	$15
+17750	Keyon	Cameron Meredith	WR	2017	2019	$12
+12417		Cameron Wake	DL	FA	2018
+17911		Cardale Jones	QB	FA	2018
+13274	Daniel	Carlos Dunlap	DL	2018	2018	$1
+18295		Carlos Henderson	WR	FA	2018
+16777	James/Charles	Carlos Hyde	RB	2017	2019	$75
+4459		Carson Palmer	QB	FA	2018
+17795	Daniel	Carson Wentz	QB	2016	2018	$8
+15168	James/Charles	Case Keenum	QB	2018	2018	$48
+14966		Casey Hayward	DB	FA	2018
+18170		Chad Hansen	WR	FA	2018
+11291	Brett/Luke	Chad Henne	QB	2018	2018	$1
+18205	Trevor	Chad Kelly	QB	2018	2020	$8
+18169		Chad Williams	WR	FA	2018
+17169	John/Zach	Chandler Catanzaro	K	2016	2018	$3
+14927	Daniel	Chandler Jones	DL	2018	2018	$12
+17384		Charcandrick West	RB	FA	2018
+14145	Daniel	Charles Clay	TE	2017	2019	$1
+15885		Charles Johnson (MIN)	WR	FA	2018
+16749		Charles Sims	RB	FA	2018
+17994		Charone Peake	WR	FA	2018
+12471		Chase Daniel	QB	FA	2018
+18693	Syed/Terence	Chase Edmonds	RB	2018	2020	$7
+18089		Chester Rogers	WR	FA	2018
+17175	James/Charles	Chris Boswell	K	2018	2018	$1
+18341	Koci/Mueller	Chris Carson	RB	2017	2019	$3
+17638		Chris Conley	WR	FA	2018
+18272	Brett/Luke	Chris Godwin	WR	2017	2018	$5
+14402	Daniel	Chris Hogan	WR	2017	2019	$8
+13587	Trevor	Chris Ivory	RB	2017	2019	$2
+11258		Chris Johnson	RB	FA	2018
+17883		Chris Moore	WR	FA	2018
+15966	Koci/Mueller	Chris Thompson	RB	2016	2018	$5
+18827	Koci/Mueller	Chris Warren	RB	2018	2020	$7
+17836		Christian Hackenberg	QB	FA	2018
+17248		Christian Jones	LB	FA	2018
+18606	James/Charles	Christian Kirk	WR	2018	2020	$9
+16767	Quinn	Christian Kirksey	LB	2018	2020	$5
+18279	Daniel	Christian McCaffrey	RB	2017	2019	$24
+15855		Christine Michael	RB	FA	2018
+11326		Cliff Avril	DL	FA	2018
+17475		Clive Walford	TE	FA	2018
+14900		Coby Fleener	TE	FA	2018
+17872		Cody Kessler	QB	FA	2018
+16793		Cody Latimer	WR	FA	2018
+15349	Quinn	Cole Beasley	WR	2016	2018	$1
+14001		Colin Kaepernick	QB	FA	2018
+13199		Colt McCoy	QB	FA	2018
+11737		Connor Barth	K	FA	2018
+12449		Connor Barwin	DL	FA	2018
+17877		Connor Cook	QB	FA	2018
+18415	Trevor	Cooper Kupp	WR	2017	2019	$5
+15807	Brett/Luke	Cordarrelle Patterson	WR	2018	2018	$21
+18425	Mitch	Corey Clement	RB	2018	2019	$30
+17805	Schex	Corey Coleman	WR	2016	2018	$17
+18320	Mitch	Corey Davis	WR	2017	2019	$18
+10611		Corey Graham	DB	FA	2018
+17752	Patrick	Corey Grant	RB	2018	2020	$1
+17954		Cory James	LB	FA	2018
+18142	Schex	Cory Littleton	LB	2018	2020	$1
+18599	John/Zach	Courtland Sutton	WR	2018	2020	$9
+14860		Craig Robertson	LB	FA	2018
+16775		Crockett Gillmore	TE	FA	2018
+18284	Syed/Terence	Curtis Samuel	WR	2017	2019	$5
+18620	Patrick	D.J. Chark	WR	2018	2020	$5
+18043		D.J. Foster	RB	FA	2018
+18582	John/Zach	DJ Moore	WR	2018	2020	$9
+18196	Trevor	D'Onta Foreman	RB	2017	2019	$24
+9620		D'Qwell Jackson	LB	FA	2018
+18672	Brett/Luke	DaeSean Hamilton	WR	2018	2019	$2
+17907	Syed/Terence	Dak Prescott	QB	2016	2018	$16
+18608	John/Zach	Dallas Goedert	TE	2018	2020	$4
+18696	John/Zach	Dalton Schultz	TE	2018	2020	$1
+18260	Patrick	Dalvin Cook	RB	2017	2019	$24
+17708		Damarious Randall	DB	FA	2018
+17138		Damien Williams	RB	FA	2018
+15380		Damon Harrison	DL	FA	2018
+14322		Dan Bailey	K	FA	2018
+11688		Dan Carpenter	K	FA	2018
+17326		Daniel Sorenson	DB	FA	2018
+17680	James/Charles	Danielle Hunter	DL	2017	2019	$5
+11674	John/Zach	Danny Amendola	WR	2016	2018	$5
+15074	Patrick	Danny Trevathan	LB	2018	2018	$4
+11788		Danny Woodhead	RB	FA	2018
+17694		Dante Fowler Jr.	DL	FA	2018
+18603	Quinn	Dante Pettis	WR	2018	2020	$5
+18593	Schex	Darius Leonard	LB	2018	2020	$1
+11238		Darren McFadden	RB	FA	2018
+8544	Brett/Luke	Darren Sproles	RB	2018	2018	$7
+17808	Brett/Luke	Darron Lee	LB	2018	2018	$1
+5564		Daryl Smith	LB	FA	2018
+18718	John/Zach	Daurice Fountain	WR	2018	2020	$2
+16800	Trevor	Davante Adams	WR	2017	2019	$100
+15820		David Amerson	DB	FA	2018
+10491		David Harris	LB	FA	2018
+18012		David Irving	DL	FA	2018
+17442	Schex	David Johnson (ARI)	RB	2018	2018	$270
+18303	Keyon	David Njoku	TE	2017	2019	$9
+18401	Quinn	Davis Webb	QB	2017	2019	$1
+18181		De'Angelo Henderson	RB	FA	2018
+16945		De'Anthony Thomas	WR	FA	2018
+15795	Daniel	DeAndre Hopkins	WR	2017	2019	$131
+12682		DeAndre Levy	LB	FA	2018
+17718		DeAndre Smelter	WR	FA	2018
+17915		DeAndre Washington	RB	FA	2018
+9613		DeAngelo Williams	RB	FA	2018
+18302	Keyon	Dede Westbrook	WR	2017	2019	$5
+16707		Dee Ford	LB	FA	2018
+17799		DeForest Buckner	DL	FA	2018
+17837	Keyon	Deion Jones	LB	2016	2018	$1
+9761	Mitch	Delanie Walker	TE	2018	2018	$18
+14005		DeMarco Murray	RB	FA	2018
+16802	James/Charles	Demarcus Lawrence	DL	2018	2020	$5
+14958	Quinn	Demario Davis	LB	2018	2020	$3
+13216	Schex	Demaryius Thomas	WR	2016	2018	$97
+13231		Dennis Pitta	TE	FA	2018
+17644	Patrick	Denzel Perryman	LB	2018	2018	$1
+18568	John/Zach	Denzel Ward	DB	2018	2020	$1
+18744	John/Zach	Deon Cain	WR	2018	2020	$3
+16723		Deone Bucannon	LB	FA	2018
+15503		Deonte Thompson	WR	FA	2018
+8627		Derek Anderson	QB	FA	2018
+18217	James/Charles	Derek Barnett	DL	2017	2019	$1
+16757	James/Charles	Derek Carr	QB	2017	2019	$150
+14964		Derek Wolfe	DL	FA	2018
+17832	James/Charles	Derrick Henry	RB	2016	2018	$25
+8430		Derrick Johnson	LB	FA	2018
+13248		Derrick Morgan	DL	FA	2018
+18618	John/Zach	Derrius Guice	RB	2018	2020	$25
+18578	Brett/Luke	Derwin James	DB	2018	2020	$1
+11283	Mitch	DeSean Jackson	WR	2018	2018	$4
+18246	Brett/Luke	Deshaun Watson	QB	2017	2019	$31
+15419		DeShawn Shead	DB	FA	2018
+18328	Syed/Terence	DeShone Kizer	QB	2017	2019	$16
+18291		Desmond King	DB	FA	2018
+18340	Syed/Terence	Devante Mays	RB	2017	2019	$3
+17593	Syed/Terence	DeVante Parker	WR	2018	2020	$11
+17682	Quinn	Devin Funchess	WR	2018	2020	$15
+13236		Devin McCourty	DB	FA	2018
+17584		Devin Smith	WR	FA	2018
+16944	Patrick	Devonta Freeman	RB	2018	2018	$185
+17908	Quinn	Devontae Booker	RB	2018	2020	$40
+13207		Dexter McCluster	RB	FA	2018
+13215	Trevor	Dez Bryant	WR	2018	2018	$13
+14198	Trevor	Dion Lewis	RB	2018	2019	$75
+18109		Don Xzaviar Jackson	RB	FA	2018
+18172		Donnel Pumphrey	RB	FA	2018
+14933		Dont'a Hightower	LB	FA	2018
+16791	Brett/Luke	Donte Moncrief	WR	2018	2018	$4
+17136		Dontrelle Inman	WR	FA	2018
+17665		Dorial Green-Beckham	WR	FA	2018
+14221	Koci/Mueller	Doug Baldwin	WR	2018	2018	$110
+14885	Syed/Terence	Doug Martin	RB	2018	2020	$6
+2580	Schex	Drew Brees	QB	2018	2018	$130
+10487		Drew Stanton	QB	FA	2018
+14255		DuJuan Harris	RB	FA	2018
+17658	Quinn	Duke Johnson Jr.	RB	2018	2018	$30
+15965		Dustin Hopkins	K	FA	2018
+14901		Dwayne Allen	TE	FA	2018
+14100		Dwayne Harris	WR	FA	2018
+17989		Dwayne Washington	RB	FA	2018
+13251		Earl Thomas	DB	FA	2018
+13272		Ed Dickson	TE	FA	2018
+15848		Eddie Lacy	RB	FA	2018
+11276		Eddie Royal	WR	FA	2018
+15803	James/Charles	EJ Manuel	QB	2016	2018	$3
+17691		Eli Harold	DL	FA	2018
+5526	Koci/Mueller	Eli Manning	QB	2018	2018	$60
+18037		Eli Rogers	WR	FA	2018
+18195	Koci/Mueller	Elijah Hood	RB	2017	2019	$2
+18313	Schex	Elijah McGuire	RB	2017	2019	$2
+17819		Emmanual Ogbah	DL	FA	2018
+13295	Koci/Mueller	Emmanuel Sanders	WR	2017	2019	$60
+18765	John/Zach	Equanimeous St. Brown	WR	2018	2020	$3
+13252		Eric Berry	DB	FA	2018
+13271		Eric Decker	WR	FA	2018
+16732	James/Charles	Eric Ebron	TE	2017	2019	$18
+17452	Mitch	Eric Kendricks	LB	2018	2018	$8
+10481	Koci/Mueller	Eric Weddle	DB	2016	2018	$2
+18382	Patrick	Evan Engram	TE	2017	2019	$5
+13373	Patrick	Everson Griffen	DL	2018	2018	$1
+15785		Ezekiel Ansah	DL	FA	2018
+17797	Syed/Terence	Ezekiel Elliott	RB	2016	2018	$25
+14941		Fletcher Cox	DL	FA	2018
+15755		Fozzy Whittaker	RB	FA	2018
+17576		Frank Clark	DL	FA	2018
+8479	Daniel	Frank Gore	RB	2018	2018	$13
+11364		Gary Barnidge	TE	FA	2018
+15864		Geno Smith	QB	FA	2018
+18292	James/Charles	George Kittle	TE	2018	2018	$15
+18374		Gerald Everett	TE	FA	2018
+18110	Patrick	Geronimo Allison	WR	2018	2020	$3
+15245		Giorgio Tavecchio	K	FA	2018
+15826	Mitch	Giovani Bernard	RB	2017	2019	$8
+12716		Glover Quin	DB	FA	2018
+13217	Keyon	Golden Tate	WR	2016	2018	$45
+12460	Koci/Mueller	Graham Gano	K	2016	2018	$1
+10475	Keyon	Greg Olsen	TE	2018	2018	$75
+14993	Trevor	Greg Zuerlein	K	2018	2020	$2
+16735		Ha Ha Clinton-Dix	DB	FA	2018
+18363		Haason Reddick	LB	FA	2018
+18600	Quinn	Harold Landry	LB	2018	2018	$1
+18409	Brett/Luke	Harrison Butker	K	2018	2018	$1
+14945	Daniel	Harrison Smith	DB	2018	2018	$7
+18583	Keyon	Hayden Hurst	TE	2018	2020	$2
+17822	Mitch	Hunter Henry	TE	2018	2020	$6
+18660	John/Zach	Ian Thomas	TE	2018	2020	$1
+17133	Trevor	Isaiah Crowell	RB	2018	2019	$40
+18685	Quinn	Ito Smith	RB	2018	2018	$7
+18463		J.D. McKissic	RB	FA	2018
+17514		J.J. Nelson	WR	FA	2018
+13979	Trevor	J.J. Watt	DL	2018	2018	$26
+18692	Patrick	J'Mon Moore	WR	2018	2020	$3
+18192	Mitch	Jabrill Peppers	DB	2017	2019	$1
+16792		Jace Amaro	TE	FA	2018
+16504	James/Charles	Jack Doyle	TE	2017	2019	$2
+11373		Jacob Tamme	TE	FA	2018
+17870	Daniel	Jacoby Brissett	QB	2016	2018	$2
+14193	Schex	Jacquizz Rodgers	RB	2018	2020	$1
+16734	Mitch	Jadeveon Clowney	DL	2017	2018	$5
+17709		Jaelen Strong	WR	FA	2018
+16039		Jahleel Addae	DB	FA	2018
+18242	Brett/Luke	Jake Butt	TE	2017	2018	$2
+18178	Keyon	Jake Elliott	K	2018	2018	$1
+17504		Jake Ryan	LB	FA	2018
+17987		Jalen Mills	DB	FA	2018
+17798	Trevor	Jalen Ramsey	DB	2016	2018	$1
+18079	James/Charles	Jalen Richard	RB	2017	2019	$1
+18077		Jalin Marshall	WR	FA	2018
+11307		Jamaal Charles	RB	FA	2018
+18362	Daniel	Jamaal Williams	RB	2017	2019	$12
+18220	Brett/Luke	Jamal Adams	DB	2017	2018	$1
+18228	Syed/Terence	Jamal Agnew	DB	2018	2020	$1
+17399	Quinn	Jameis Winston	QB	2018	2018	$125
+18236	Daniel	James Conner	RB	2017	2019	$6
+12454		James Laurinaitis	LB	FA	2018
+13214		James Starks	RB	FA	2018
+18619	James/Charles	James Washington	WR	2018	2020	$9
+16913	Syed/Terence	James White	RB	2017	2019	$18
+15830	Brett/Luke	Jamie Collins Sr.	LB	2018	2018	$1
+17600	Schex	Jamison Crowder	WR	2018	2020	$40
+14974		Janoris Jenkins	DB	FA	2018
+12537	Brett/Luke	Jared Cook	TE	2018	2018	$2
+17794	Schex	Jared Goff	QB	2016	2018	$32
+16172	Schex	Jaron Brown	WR	2017	2019	$1
+18190	Mitch	Jarrad Davis	LB	2017	2019	$1
+16790	Daniel	Jarvis Landry	WR	2017	2019	$60
+12691		Jason McCourty	DB	FA	2018
+17438		Jason Myers	K	FA	2018
+13256		Jason Pierre-Paul	DL	FA	2018
+4527		Jason Witten	TE	FA	2018
+17936	Koci/Mueller	Jatavis Brown	LB	2017	2019	$1
+17616	Mitch	Javorius Allen	RB	2018	2018	$7
+17556	Schex	Jay Ajayi	RB	2018	2020	$70
+9597		Jay Cutler	QB	FA	2018
+18724	John/Zach	Jaylen Samuels	RB	2018	2020	$1
+17821		Jaylon Smith	LB	FA	2018
+17583		Jeff Heuerman	TE	FA	2018
+16803	James/Charles	Jeremy Hill	RB	2018	2018	$3
+14151		Jeremy Kerley	WR	FA	2018
+17505		Jeremy Langford	RB	FA	2018
+12579		Jeremy Maclin	WR	FA	2018
+18396		Jeremy McNichols	RB	FA	2018
+16782	Daniel	Jerick McKinnon	RB	2018	2018	$87
+15428	Patrick	Jermaine Kearse	WR	2017	2019	$3
+18632	John/Zach	Jerome Baker	LB	2018	2020	$1
+11533		Jerrell Freeman	LB	FA	2018
+17690		Jesse James	TE	FA	2018
+16760	Keyon	Jimmy Garoppolo	QB	2017	2019	$31
+13232	Syed/Terence	Jimmy Graham	TE	2016	2018	$26
+11252	Patrick	Joe Flacco	QB	2018	2020	$40
+18193	Mitch	Joe Mixon	RB	2017	2019	$24
+17876	Keyon	Joe Schobert	LB	2018	2018	$5
+18354		Joe Williams	RB	FA	2018
+17796	Keyon	Joey Bosa	DL	2018	2018	$15
+16804	James/Charles	John Brown	WR	2017	2019	$5
+18735	Koci/Mueller	John Kelly	RB	2018	2020	$4
+18395	Syed/Terence	John Ross	WR	2017	2019	$18
+16010		John Simon	LB	FA	2018
+15831		Johnathan Cyprien	DB	FA	2018
+15827		Jonathan Bostic	LB	FA	2018
+15632		Jonathan Grimes	RB	FA	2018
+11247		Jonathan Stewart	RB	FA	2018
+17923		Jonathan Williams	RB	FA	2018
+18183	Keyon	Jonnu Smith	TE	2017	2019	$2
+18657	Daniel	Jordan Akins	TE	2018	2020	$2
+14189		Jordan Cameron	TE	FA	2018
+17494		Jordan Hicks	LB	FA	2018
+17919	Keyon	Jordan Howard	RB	2016	2018	$7
+18721	John/Zach	Jordan Lasley	WR	2018	2020	$1
+16763		Jordan Matthews	WR	FA	2018
+15979	Patrick	Jordan Poyer	DB	2018	2018	$6
+15860	Schex	Jordan Reed	TE	2017	2019	$40
+18728	Keyon	Jordan Wilkins	RB	2018	2020	$13
+11270	Patrick	Jordy Nelson	WR	2018	2018	$50
+18816	John/Zach	Josh Adams	RB	2018	2020	$1
+18570	John/Zach	Josh Allen	QB	2018	2020	$14
+17810	Mitch	Josh Doctson	WR	2016	2018	$17
+18006		Josh Ferguson	RB	FA	2018
+15705	Daniel	Josh Gordon	WR	2018	2020	$59
+11394		Josh Johnson	QB	FA	2018
+17746		Josh Lambo	K	FA	2018
+18216		Josh Malone	WR	FA	2018
+3609	Keyon	Josh McCown	QB	2016	2018	$1
+15124	Trevor	Josh Norman	DB	2016	2018	$1
+18214		Josh Reynolds	WR	FA	2018
+18572	Schex	Josh Rosen	QB	2018	2020	$28
+18229		Joshua Dobbs	QB	FA	2018
+18306	Daniel	JuJu Smith-Schuster	WR	2017	2019	$9
+12649	Schex	Julian Edelman	WR	2018	2018	$55
+13982	Brett/Luke	Julio Jones	WR	2018	2018	$240
+3530		Julius Peppers	DL	FA	2018
+14204		Julius Thomas	TE	FA	2018
+11467		Justin Forsett	RB	FA	2018
+17542		Justin Hardy	WR	FA	2018
+14048		Justin Houston	LB	FA	2018
+18809	Quinn	Justin Jackson	RB	2018	2018	$7
+15683	Syed/Terence	Justin Tucker	K	2018	2020	$3
+18703	John/Zach	Justin Watson	WR	2018	2020	$1
+14140		K.J. Wright	LB	FA	2018
+16942		Ka'Deem Carey	RB	FA	2018
+14816		Kai Forbath	K	FA	2018
+18690	John/Zach	Kalen Ballage	RB	2018	2020	$7
+13336		Kam Chancellor	DB	FA	2018
+14583		Kamar Aiken	WR	FA	2018
+17141		Kapri Bibbs	RB	FA	2018
+18225	Keyon	Kareem Hunt	RB	2017	2019	$24
+17804		Karl Joseph	DB	FA	2018
+5558		Karlos Dansby	LB	FA	2018
+17605		Karlos Williams	RB	FA	2018
+18038		Kasen Williams	WR	FA	2018
+17806	Schex	Keanu Neal	DB	2017	2019	$10
+18466	Keyon	Keelan Cole	WR	2018	2020	$12
+15818	Mitch	Keenan Allen	WR	2018	2018	$215
+15017		Keenan Robinson	LB	FA	2018
+17995		Keith Marshall	RB	FA	2018
+18662	Trevor	Keke Coutee	WR	2018	2020	$5
+16730	Syed/Terence	Kelvin Benjamin	WR	2017	2019	$60
+16008		Kemal Ishmael	DB	FA	2018
+18611	Brett/Luke	Kemoko Turay	DL	2018	2019	$1
+14909		Kendall Wright	WR	FA	2018
+18317		Kendell Beckwith	LB	FA	2018
+15921		Kenjon Barner	RB	FA	2018
+17906	Patrick	Kenneth Dixon	RB	2018	2020	$1
+18093		Kenneth Farrow	RB	FA	2018
+12556		Kenny Britt	WR	FA	2018
+18345	Schex	Kenny Golladay	WR	2017	2019	$9
+16016	Daniel	Kenny Stills	WR	2016	2018	$1
+15813	James/Charles	Kenny Vaccaro	DB	2017	2019	$1
+17856	Daniel	Kenyan Drake	RB	2016	2018	$4
+18602	Mitch	Kerryon Johnson	RB	2018	2020	$25
+16024		Kerwynn Williams	RB	FA	2018
+14916		Keshawn Martin	WR	FA	2018
+17848	Trevor	Kevin Byard	DB	2018	2020	$1
+17927		Kevin Hogan	QB	FA	2018
+17703	Syed/Terence	Kevin White	WR	2018	2020	$1
+16710	Koci/Mueller	Khalil Mack	DL/LB	2018	2020	$11
+15819	Syed/Terence	Kiko Alonso	LB	2018	2018	$1
+14880	Patrick	Kirk Cousins	QB	2018	2020	$100
+15832		Knile Davis	RB	FA	2018
+13340		Kurt Coleman	DB	FA	2018
+17679	Schex	Kwon Alexander	LB	2018	2018	$23
+18667	John/Zach	Kyle Lauletta	QB	2018	2020	$2
+14054	Trevor	Kyle Rudolph	TE	2017	2018	$20
+16772		Kyle Van Noy	LB	FA	2018
+14904		Ladarius Green	TE	FA	2018
+18590	Schex	Lamar Jackson	QB	2018	2020	$14
+14886	Brett/Luke	Lamar Miller	RB	2018	2018	$91
+15369		Lance Dunbar	RB	FA	2018
+14007		Lance Kendricks	TE	FA	2018
+17692	Keyon	Landon Collins	DB	2018	2018	$23
+15904	Brett/Luke	Landry Jones	QB	2018	2018	$1
+17811		Laquon Treadwell	WR	FA	2018
+5528	Keyon	Larry Fitzgerald	WR	2016	2018	$24
+15920	Syed/Terence	Latavius Murray	RB	2017	2019	$6
+14985	Daniel	Lavonte David	LB	2017	2019	$10
+10459		Lawrence Timmons	LB	FA	2018
+15825	Daniel	Le'Veon Bell	RB	2018	2018	$340
+13213	Mitch	LeGarrette Blount	RB	2018	2018	$3
+18580	Trevor	Leighton Vander Esch	LB	2018	2020	$1
+18218	Mitch	Leonard Fournette	RB	2017	2019	$24
+17669		Leonard Williams	DL	FA	2018
+17865		Leonte Carroo	WR	FA	2018
+12514	Syed/Terence	LeSean McCoy	RB	2018	2020	$134
+13281		Linval Joseph	DL	FA	2018
+15861	Trevor	Logan Ryan	DB	2016	2018	$1
+9424		Lorenzo Alexander	LB	FA	2018
+14938	Syed/Terence	Luke Kuechly	LB	2018	2020	$19
+16121	Schex	Luke Willson	TE	2018	2020	$1
+18350	Patrick	Mack Hollins	WR	2017	2019	$3
+18219		Malachi Dupre	WR	FA	2018
+17742		Malcolm Brown	RB	FA	2018
+12426		Malcolm Jenkins	DB	FA	2018
+17888	Koci/Mueller	Malcolm Mitchell	WR	2016	2018	$9
+14214		Malcolm Smith	LB	FA	2018
+18281		Malik Hooker	DB	FA	2018
+18637	John/Zach	Malik Jefferson	LB	2018	2020	$1
+15867		Manti Te'o	LB	FA	2018
+13992		Marcell Dareus	DL	FA	2018
+15888		Marcus Cooper	DB	FA	2018
+18576	Quinn	Marcus Davenport	DL	2018	2018	$1
+17610	Koci/Mueller	Marcus Mariota	QB	2018	2020	$150
+17486		Marcus Murphy	RB	FA	2018
+17633		Marcus Peters	DB	FA	2018
+9587		Mario Williams	DL	FA	2018
+18645	John/Zach	Mark Andrews	TE	2018	2020	$1
+14932	Daniel	Mark Barron	LB	2018	2018	$9
+13981	Schex	Mark Ingram II	RB	2018	2018	$85
+12482		Mark Sanchez	QB	FA	2018
+18671	John/Zach	Mark Walton	RB	2018	2020	$2
+15873		Markus Wheaton	WR	FA	2018
+18211	Koci/Mueller	Marlon Mack	RB	2017	2019	$12
+15839	Schex	Marquise Goodwin	WR	2018	2020	$47
+16787	Keyon	Marqise Lee	WR	2017	2019	$13
+18288	James/Charles	Marquel Lee	LB	2017	2019	$1
+16023		Marquess Wilson	WR	FA	2018
+18733	Trevor	Marquez Valdes-Scantling	WR	2018	2020	$2
+10456	Trevor	Marshawn Lynch	RB	2018	2019	$60
+16886	Patrick	Martavis Bryant	WR	2016	2018	$1
+11295		Martellus Bennett	TE	FA	2018
+15072	Trevor	Marvin Jones Jr.	WR	2018	2018	$73
+10636		Mason Crosby	K	FA	2018
+14023		Mason Foster	LB	FA	2018
+18635	John/Zach	Mason Rudolph	QB	2018	2020	$4
+14360		Matt Asiata	RB	FA	2018
+15948		Matt Barkley	QB	FA	2018
+18424	Keyon	Matt Breida	RB	2018	2020	$7
+4333	Patrick	Matt Bryant	K	2018	2018	$1
+11278		Matt Forte	RB	FA	2018
+17695		Matt Jones	RB	FA	2018
+11128		Matt Moore	QB	FA	2018
+11122		Matt Prater	K	FA	2018
+11237	Syed/Terence	Matt Ryan	QB	2018	2020	$70
+12483	Patrick	Matthew Stafford	QB	2016	2018	$75
+18149		Matthias Farley	DB	FA	2018
+17660		Maxx Williams	TE	FA	2018
+17586	Koci/Mueller	Melvin Gordon	RB	2018	2018	$246
+14926	James/Charles	Melvin Ingram	DL/LB	2017	2019	$2
+15960		Micah Hyde	DB	FA	2018
+12762		Michael Bennett (SEA)	DL	FA	2018
+12563	Trevor	Michael Crabtree	WR	2018	2019	$35
+14908		Michael Floyd	WR	FA	2018
+18640	John/Zach	Michael Gallup	WR	2018	2020	$9
+17964		Michael Thomas (LA)	WR	FA	2018
+17834	Brett/Luke	Michael Thomas (NO)	WR	2016	2018	$17
+14859		Michael Wilhoite	LB	FA	2018
+17700		Mike Davis	RB	FA	2018
+16737	Syed/Terence	Mike Evans	WR	2018	2020	$150
+18601	John/Zach	Mike Gesicki	TE	2018	2020	$7
+15952		Mike Gillislee	RB	FA	2018
+15837		Mike Glennon	QB	FA	2018
+18063		Mike Hull	LB	FA	2018
+8461		Mike Nugent	K	FA	2018
+11658		Mike Tolbert	RB	FA	2018
+12601	Quinn	Mike Wallace	WR	2018	2018	$4
+18235	Mitch	Mike Williams (LAC)	WR	2017	2019	$9
+18573	John/Zach	Minkah Fitzpatrick	DB	2018	2020	$1
+18168	Koci/Mueller	Mitchell Trubisky	QB	2017	2019	$31
+14922	James/Charles	Mohamed Sanu	WR	2018	2019	$11
+13264		Morgan Burnett	DB	FA	2018
+13985		Muhammad Wilkerson	DL	FA	2018
+14978		Mychal Kendricks	LB	FA	2018
+18167	Mitch	Myles Garrett	DL	2017	2019	$1
+17823	Mitch	Myles Jack	LB	2016	2018	$1
+18252	John/Zach	Nathan Peterman	QB	2017	2019	$4
+13262		NaVorro Bowman	LB	FA	2018
+13234		Ndamukong Suh	DL	FA	2018
+17668	Quinn	Nelson Agholor	WR	2018	2019	$10
+14471		Nick Bellore	LB	FA	2018
+18592	John/Zach	Nick Chubb	RB	2018	2020	$25
+14877	Daniel	Nick Foles	QB	2018	2018	$25
+17889		Nick Kwiatkoski	LB	FA	2018
+9329		Nick Novak	K	FA	2018
+17604		Nick O'Leary	TE	FA	2018
+17873	Brett/Luke	Nick Vannett	TE	2016	2018	$2
+17866		Nick Vigil	LB	FA	2018
+15075		Nigel Bradham	LB	FA	2018
+17826	Brett/Luke	Noah Spence	DL	2016	2018	$1
+18663	Quinn	Nyheim Hines	RB	2018	2020	$7
+18322	Brett/Luke	O.J. Howard	TE	2017	2019	$9
+16733	Keyon	Odell Beckham Jr.	WR	2018	2018	$275
+14982		Olivier Vernon	DL	FA	2018
+17208		Orleans Darkwa	RB	FA	2018
+17453		Owa Odighizuwa	DL	FA	2018
+9684		Owen Daniels	TE	FA	2018
+18210	Keyon	Patrick Mahomes II	QB	2017	2019	$31
+13980		Patrick Peterson	DB	FA	2018
+18485	Syed/Terence	Patrick Ricard	DL	2018	2020	$1
+17918		Paul Perkins	RB	FA	2018
+10478		Paul Posluszny	LB	FA	2018
+16781	Quinn	Paul Richardson	WR	2018	2020	$7
+17814		Paxton Lynch	QB	FA	2018
+18106	Schex	Peyton Barber	RB	2018	2020	$30
+17893		Pharoh Cooper	WR	FA	2018
+5529	Daniel	Philip Rivers	QB	2018	2018	$130
+17643	Mitch	Phillip Dorsett	WR	2018	2018	$1
+18823	Patrick	Phillip Lindsay	RB	2018	2020	$1
+11439	Koci/Mueller	Pierre Garcon	WR	2017	2019	$32
+16762		Preston Brown	LB	FA	2018
+17758		Quincy Enunwa	WR	FA	2018
+17767		Raheem Mostert	RB	FA	2018
+17641		Ramik Wilson	LB	FA	2018
+12988		Ramon Humber	LB	FA	2018
+14053	James/Charles	Randall Cobb	WR	2017	2018	$26
+18585	Koci/Mueller	Rashaad Penny	RB	2018	2020	$25
+18581	Mitch	Rashaan Evans	LB	2018	2020	$1
+17601		Rashad Greene	WR	FA	2018
+12503		Rashad Jennings	RB	FA	2018
+17934		Rashard Higgins	WR	FA	2018
+11289		Ray Rice	RB	FA	2018
+16463		Ray-Ray Armstrong	LB	FA	2018
+9588		Reggie Bush	RB	FA	2018
+10465		Reggie Nelson	DB	FA	2018
+13395	Daniel	Reshad Jones	DB	2018	2018	$7
+18185	Keyon	Reuben Foster	LB	2017	2019	$1
+15971	Koci/Mueller	Rex Burkhead	RB	2018	2020	$38
+17890		Ricardo Louis	WR	FA	2018
+16786		Richard Rodgers	TE	FA	2018
+18798	Quinn	Richie James	WR	2018	2018	$1
+18431	Quinn	Ricky Seals-Jones	TE	2018	2018	$1
+15102	James/Charles	Rishard Matthews	WR	2018	2018	$6
+13229	Daniel	Rob Gronkowski	TE	2016	2018	$200
+18078	Brett/Luke	Rob Kelley	RB	2018	2018	$20
+9721		Rob Ninkovich	DL	FA	2018
+9354	Mitch	Robbie Gould	K	2018	2018	$1
+18097	Syed/Terence	Robby Anderson	WR	2017	2019	$2
+14875		Robert Griffin III	QB	FA	2018
+17816	Brett/Luke	Robert Nkemdiche	DL	2016	2018	$1
+13984		Robert Quinn	DL	FA	2018
+14894		Robert Turbin	RB	FA	2018
+15880	Koci/Mueller	Robert Woods	WR	2016	2018	$3
+17843		Roberto Aguayo	K	FA	2018
+17781		Rod Smith	RB	FA	2018
+18226		Rodney Adams	WR	FA	2018
+15222		Rodney McLeod	DB	FA	2018
+18047		Roger Lewis	WR	FA	2018
+14297		Ron Parker	DB	FA	2018
+18597	Mitch	Ronald Jones	RB	2018	2019	$25
+14895		Ronnie Hillman	RB	FA	2018
+18571	Brett/Luke	Roquan Smith	LB	2018	2020	$1
+18630	Trevor	Royce Freeman	RB	2018	2020	$25
+14911		Rueben Randle	WR	FA	2018
+14881	Keyon	Russell Wilson	QB	2018	2018	$220
+8664	Brett/Luke	Ryan Fitzpatrick	QB	2018	2018	$3
+17179		Ryan Grant	WR	FA	2018
+15887		Ryan Griffin	TE	FA	2018
+13973		Ryan Kerrigan	DL	FA	2018
+14037		Ryan Mallett	QB	FA	2018
+13204		Ryan Mathews	RB	FA	2018
+-1	Quinn	Ryan Nall	RB	2018	2018	$1
+16727		Ryan Shazier	LB	FA	2018
+12731	Quinn	Ryan Succop	K	2018	2018	$1
+18287	Quinn	Ryan Switzer	WR	2017	2019	$5
+14876	James/Charles	Ryan Tannehill	QB	2017	2019	$12
+13197	Trevor	Sam Bradford	QB	2018	2019	$26
+18566	Mitch	Sam Darnold	QB	2018	2020	$28
+18636	Brett/Luke	Sam Hubbard	DL	2018	2019	$1
+18194	Quinn	Samaje Perine	RB	2017	2019	$12
+17562		Sammie Coates	WR	FA	2018
+16725	Koci/Mueller	Sammy Watkins	WR	2017	2019	$55
+18567	John/Zach	Saquon Barkley	RB	2018	2020	$25
+14353		Scott Tolzien	QB	FA	2018
+17842	Patrick	Sean Davis	DB	2018	2018	$2
+13284	James/Charles	Sean Lee	LB	2018	2018	$10
+13243		Sean Weatherspoon	LB	FA	2018
+2148		Sebastian Janikowski	K	FA	2018
+17910		Seth DeValve	TE	FA	2018
+17761		Seth Roberts	WR	FA	2018
+14017	Patrick	Shane Vereen	RB	2017	2019	$1
+14518		Shaun Draughn	RB	FA	2018
+4260		Shaun Hill	QB	FA	2018
+15811		Sheldon Richardson	DL	FA	2018
+15859		Sio Moore	LB	FA	2018
+18280	Quinn	Solomon Thomas	DL	2017	2019	$1
+18589	John/Zach	Sony Michel	RB	2018	2020	$25
+16020	Keyon	Spencer Ware	RB	2018	2020	$7
+17676	Keyon	Stefon Diggs	WR	2018	2020	$75
+18027		Stephen Anderson	TE	FA	2018
+9704	Koci/Mueller	Stephen Gostkowski	K	2018	2020	$1
+11923		Stephen Hauschka	K	FA	2018
+16798		Stephon Tuitt	DL	FA	2018
+17588		Stephone Anthony	LB	FA	2018
+17827	Mitch	Sterling Shepard	WR	2016	2018	$17
+14028		Stevan Ridley	RB	FA	2018
+2622		Steve Smith Sr.	WR	FA	2018
+13304		T.J. Ward	DB	FA	2018
+18244	Schex	T.J. Watt	LB	2017	2019	$1
+17678	Mitch	T.J. Yeldon	RB	2018	2018	$2
+14924	Schex	T.Y. Hilton	WR	2018	2018	$175
+18239	Brett/Luke	Taco Charlton	DL	2017	2018	$1
+15070	Daniel	Tahir Whitehead	LB	2018	2018	$3
+17912		Tajae Sharpe	WR	FA	2018
+18222	Brett/Luke	Takkarist McKinley	DL	2017	2018	$1
+18171	Syed/Terence	Tarik Cohen	RB	2017	2019	$3
+15911		Tavarres King	WR	FA	2018
+15786	Patrick	Tavon Austin	RB/WR	2018	2020	$1
+14977		Tavon Wilson	DB	FA	2018
+17177		Taylor Gabriel	WR	FA	2018
+18224	Keyon	Taywan Taylor	WR	2017	2019	$5
+10453	Koci/Mueller	Ted Ginn Jr.	WR	2016	2018	$18
+16728	John/Zach	Teddy Bridgewater	QB	2018	2020	$15
+17159	Schex	Telvin Smith	LB	2018	2018	$17
+16783		Terrance West	RB	FA	2018
+15878		Terrance Williams	WR	FA	2018
+18586	Koci/Mueller	Terrell Edmunds	DB	2018	2020	$1
+14851	Patrick	Terrelle Pryor	WR	2018	2020	$8
+17744		Terron Ward	RB	FA	2018
+17689	Mitch	Tevin Coleman	RB	2018	2018	$76
+15994	Syed/Terence	Theo Riddick	RB	2018	2019	$25
+8429		Thomas Davis	LB	FA	2018
+17739		Thomas Rawls	RB	FA	2018
+11383		Tim Hightower	RB	FA	2018
+18542		Tion Green	RB	FA	2018
+17222		TJ Carrie	DB	FA	2018
+17192		TJ Jones	WR	FA	2018
+17683	Brett/Luke	Todd Gurley II	RB	2018	2018	$360
+2330	Trevor	Tom Brady	QB	2018	2018	$175
+16943		Tom Savage	QB	FA	2018
+16195	Quinn	Tony Jefferson	DB	2017	2019	$1
+5209		Tony Romo	QB	FA	2018
+14032		Torrey Smith	WR	FA	2018
+15457	Patrick	Travaris Cadet	RB	2018	2018	$1
+15062	Schex	Travis Benjamin	WR	2018	2020	$1
+15847	Mitch	Travis Kelce	TE	2016	2018	$30
+18525		Travis Rudolph	WR	FA	2018
+17550		Tre McBride	WR	FA	2018
+18315	James/Charles	Tre'Davious White	DB	2017	2019	$1
+18650	Quinn	Tre'Quan Smith	WR	2018	2020	$9
+18577	Schex	Tremaine Edmunds	LB	2018	2020	$1
+16751		Trent Murphy	DL	FA	2018
+18296	Keyon	Trent Taylor	WR	2018	2020	$1
+18008		Trevone Boykin	QB	FA	2018
+17928		Trevor Davis	WR	FA	2018
+17455		Trevor Siemian	QB	FA	2018
+17195	Keyon	Trey Burton	TE	2018	2020	$19
+17559	Patrick	Trey Flowers	DL	2017	2019	$1
+18086		Troymaine Pope	RB	FA	2018
+14989		Trumaine Johnson	DB	FA	2018
+17611	James/Charles	Ty Montgomery	RB	2018	2018	$10
+17840		Tyler Boyd	WR	FA	2018
+15788	Quinn	Tyler Eifert	TE	2018	2018	$10
+17895		Tyler Ervin	RB	FA	2018
+17886		Tyler Higbee	TE	FA	2018
+17650		Tyler Kroft	TE	FA	2018
+17619	Quinn	Tyler Lockett	WR	2018	2020	$56
+15851		Tyrann Mathieu	DB	FA	2018
+17929	Keyon	Tyreek Hill	WR	2018	2020	$145
+17762	Syed/Terence	Tyrell Williams	WR	2017	2019	$13
+14163	Schex	Tyrod Taylor	QB	2018	2018	$40
+11334		Tyvon Branch	DB	FA	2018
+15853		Vance McDonald	TE	FA	2018
+9592	Schex	Vernon Davis	TE	2018	2019	$4
+17468	Trevor	Vic Beasley Jr.	DL	2017	2019	$15
+13553		Victor Cruz	WR	FA	2018
+15934		Vince Williams	LB	FA	2018
+8475		Vincent Jackson	WR	FA	2018
+13766		Vincent Rey	LB	FA	2018
+14085	Syed/Terence	Virgil Green	TE	2018	2020	$1
+13976		Von Miller	LB	FA	2018
+17845		Vonn Bell	DB	FA	2018
+15246	Mitch	Vontaze Burfict	LB	2018	2018	$1
+18233	James/Charles	Wayne Gallman	RB	2017	2019	$2
+17921		Wendell Smallwood	RB	FA	2018
+11609	Patrick	Wesley Woodyard	LB	2018	2018	$1
+14936		Whitney Mercilus	LB	FA	2018
+18104	Schex	Wil Lutz	K	2018	2018	$1
+17264		Will Compton	LB	FA	2018
+17809	Patrick	Will Fuller V	WR	2016	2018	$9
+17184		Willie Snead	WR	FA	2018
+17852		Yannick Ngakoue	DL	FA	2018
+18452		Younghoe Koo	K	FA	2018
+14973	Trevor	Zach Brown	LB	2017	2018	$10
+18379	Syed/Terence	Zach Cunningham	LB	2017	2019	$1
+15835	Koci/Mueller	Zach Ertz	TE	2017	2019	$18
+16814		Zach Mettenberger	QB	FA	2018
+12699		Zach Miller	TE	FA	2018
+17741		Zach Zenner	RB	FA	2018
+17242		Zachary Orr	LB	FA	2018
+18223	Schex	Zay Jones	WR	2017	2019	$18
+
+=== 2019 data ===
+Owner	Name	Position	Start	End	Salary
+Trevor	A.J. Brown	WR	2019	2021	$16
+Schex	A.J. Green	WR	2019	2019	$120
+	A.J. Klein	LB	FA	2018
+Trevor	Aaron Donald	DL	2019	2019	$15
+Schex	Aaron Jones	RB	2017	2019	$2
+Trevor	Aaron Rodgers	QB	2019	2019	$281
+James/Charles	Adam Humphries	WR	2019	2021	$3
+	Adam Jones	DB	FA	2018
+	Adam Shaheen	TE	FA	2018
+Koci/Mueller	Adam Thielen	WR	2017	2019	$7
+	Adam Vinatieri	K	FA	2018
+	Adarius Taylor	LB	FA	2018
+Syed/Kuan	Adoree' Jackson	DB	2017	2019	$1
+	Adrian Clayborn	DL	FA	2018
+Patrick	Adrian Peterson	RB	2019	2019	$35
+	AJ McCarron	QB	FA	2018
+	Akiem Hicks	DL	FA	2018
+Keyon	Albert Wilson	WR	2019	2021	$4
+	Aldrick Rosas	K	FA	2018
+Koci/Mueller	Alec Ogletree	LB	2018	2020	$22
+	Alex Anzalone	LB	FA	2018
+Koci/Mueller	Alex Barnes	RB	2019	2019	$1
+	Alex Collins	RB	FA	2019
+	Alex Okafor	DL	FA	2018
+	Alex Smith	QB	FA	2019
+James/Charles	Alexander Mattison	RB	2019	2021	$13
+	Alfred Blue	RB	FA	2019
+	Alfred Morris	RB	FA	2018
+	Allen Hurns	WR	FA	2019
+	Allen Lazard	WR	FA	2019
+Schex	Allen Robinson	WR	2017	2019	$75
+Koci/Mueller	Alshon Jeffery	WR	2017	2019	$90
+Keyon	Alvin Kamara	RB	2017	2019	$12
+	Amara Darboh	WR	FA	2018
+Mitch	Amari Cooper	WR	2018	2019	$100
+Patrick	Ameer Abdullah	RB	2019	2021	$1
+	Andre Ellington	RB	FA	2018
+	Andre Johnson	WR	FA	2018
+	Andre Roberts	WR	FA	2018
+	Andre Williams	RB	FA	2018
+	Andrew Hawkins	WR	FA	2018
+	Andrew Luck	QB	FA	2019
+	Andrew Sendejo	DB	FA	2018
+Schex	Andy Dalton	QB	2019	2020	$55
+Patrick	Andy Isabella	WR	2019	2021	$4
+	Andy Janovich	RB	FA	2018
+	Anquan Boldin	WR	FA	2018
+	Anthony Barr	LB	FA	2018
+Patrick	Anthony Hitchens	LB	2019	2019	$2
+Keyon	Anthony Miller	WR	2018	2020	$9
+	Anthony Walker	LB	FA	2018
+	Anthony Zettel	DL	FA	2018
+	Antoine Bethea	DB	FA	2019
+	Antone Smith	RB	FA	2018
+Patrick	Antonio Brown	WR	2019	2019	$250
+Brett/Luke	Antonio Callaway	WR	2018	2019	$3
+	Antonio Gates	TE	FA	2018
+	ArDarius Stewart	WR	FA	2018
+	Arden Key	DL	FA	2018
+	Arian Foster	RB	FA	2018
+	Auden Tate	WR	FA	2018
+Koci/Mueller	Austin Ekeler	RB	2018	2020	$12
+Trevor	Austin Hooper	TE	2019	2021	$3
+	Austin Seferian-Jenkins	TE	FA	2018
+	Avery Williamson	LB	FA	2018
+	B.J. Goodson	LB	FA	2018
+Quinn	Baker Mayfield	QB	2018	2020	$28
+	Barry Church	DB	FA	2018
+	Bashaud Breeland	DB	FA	2018
+Schex	Ben Roethlisberger	QB	2019	2019	$102
+	Benardrick McKinney	LB	FA	2018
+	Benjamin Cunningham	RB	FA	2018
+	Benjamin Watson	TE	FA	2018
+	Bennie Fowler III	WR	FA	2018
+Terence	Benny Snell Jr.	RB	2019	2021	$4
+	Bilal Powell	RB	FA	2018
+	Bishop Sankey	RB	FA	2018
+	Blaine Gabbert	QB	FA	2018
+	Blair Walsh	K	FA	2018
+Quinn	Blake Bortles	QB	2017	2019	$17
+Keyon	Blake Martinez	LB	2018	2020	$9
+	Bo Scarbrough	RB	FA	2018
+	Bobby Rainey	RB	FA	2018
+Koci/Mueller	Bobby Wagner	LB	2019	2019	$32
+	Boston Scott	RB	FA	2018
+James/Charles	Bradley Chubb	LB	2018	2020	$1
+	Bradley McDougald	DB	FA	2018
+	Branden Oliver	RB	FA	2018
+Keyon	Brandin Cooks	WR	2019	2019	$115
+	Brandon Bolden	RB	FA	2018
+	Brandon Coleman	WR	FA	2018
+	Brandon Graham	DL	FA	2018
+	Brandon LaFell	WR	FA	2018
+Trevor	Brandon Marshall (OAK)	LB	2018	2020	$4
+	Brandon Marshall (SEA)	WR	FA	2018
+	Brandon McManus	K	FA	2018
+Koci/Mueller	Brandon Powell	WR	2018	2020	$2
+	Brandon Tate	WR	FA	2018
+	Braxton Berrios	WR	FA	2018
+	Braxton Miller	WR	FA	2018
+	Breshad Perriman	WR	FA	2018
+	Brett Hundley	QB	FA	2018
+Keyon	Brett Maher	K	2019	2019	$1
+Quinn	Brian Burns	LB	2019	2021	$1
+Quinn	Brian Hill	RB	2017	2019	$2
+	Brian Hoyer	QB	FA	2018
+	Brian Orakpo	LB	FA	2018
+	Brian Poole	DB	FA	2018
+	Brian Quick	WR	FA	2018
+	Brice Butler	WR	FA	2018
+	Brock Osweiler	QB	FA	2018
+	Bruce Ellington	WR	FA	2018
+Terence	Bryce Love	RB	2019	2021	$1
+	Bryce Petty	QB	FA	2018
+Brett/Luke	Budda Baker	DB	2018	2019	$9
+	Byron Jones	DB	FA	2018
+	Byron Marshall	RB	FA	2018
+Terence	C.J. Anderson	RB	2019	2020	$13
+	C.J. Beathard	QB	FA	2018
+	C.J. Fiedorowicz	TE	FA	2018
+James/Charles	C.J. Mosley (NYJ)	LB	2017	2019	$5
+	C.J. Prosise	RB	FA	2018
+	C.J. Spiller	RB	FA	2018
+	C.J. Uzomah	TE	FA	2018
+	Cairo Santos	K	FA	2018
+Brett/Luke	Calais Campbell	DL	2019	2020	$7
+	Caleb Sturgis	K	FA	2018
+	Calvin Johnson	WR	FA	2018
+Mitch	Calvin Ridley	WR	2018	2020	$18
+Brett/Luke	Cam Newton	QB	2017	2019	$175
+	Cameron Artis-Payne	RB	FA	2018
+	Cameron Brate	TE	FA	2018
+	Cameron Heyward	DL	FA	2018
+Patrick	Cameron Jordan	DL	2019	2019	$8
+	Cameron Meredith	WR	FA	2018
+	Cameron Wake	DL	FA	2018
+	Cardale Jones	QB	FA	2018
+	Carlos Dunlap	DL	FA	2018
+	Carlos Henderson	WR	FA	2018
+	Carlos Hyde	RB	FA	2019
+	Carson Palmer	QB	FA	2018
+John/Zach	Carson Wentz	QB	2019	2021	$180
+James/Charles	Case Keenum	QB	2019	2019	$16
+	Casey Hayward	DB	FA	2018
+	Chad Hansen	WR	FA	2018
+	Chad Henne	QB	FA	2018
+Trevor	Chad Kelly	QB	2018	2020	$8
+	Chad Williams	WR	FA	2018
+	Chandler Catanzaro	K	FA	2018
+	Chandler Jones	DL	FA	2018
+	Charcandrick West	RB	FA	2018
+Terence	Charles Clay	TE	2017	2019	$1
+	Charles Johnson (MIN)	WR	FA	2018
+	Charles Sims	RB	FA	2018
+	Charone Peake	WR	FA	2018
+Koci/Mueller	Chase Daniel	QB	2019	2021	$5
+Syed/Kuan	Chase Edmonds	RB	2018	2020	$7
+Terence	Chase Winovich	DL	2019	2021	$1
+	Chester Rogers	WR	FA	2018
+	Chris Boswell	K	FA	2018
+Koci/Mueller	Chris Carson	RB	2017	2019	$3
+	Chris Conley	WR	FA	2018
+Brett/Luke	Chris Godwin	WR	2019	2021	$110
+Keyon	Chris Herndon	TE	2019	2021	$3
+Terence	Chris Hogan	WR	2017	2019	$8
+Trevor	Chris Ivory	RB	2017	2019	$2
+	Chris Johnson	RB	FA	2018
+Schex	Chris Jones	DL	2019	2019	$1
+	Chris Moore	WR	FA	2018
+Koci/Mueller	Chris Thompson	RB	2019	2021	$6
+	Chris Warren	RB	FA	2018
+	Christian Hackenberg	QB	FA	2018
+	Christian Jones	LB	FA	2018
+James/Charles	Christian Kirk	WR	2018	2020	$9
+Quinn	Christian Kirksey	LB	2018	2020	$5
+Koci/Mueller	Christian McCaffrey	RB	2017	2019	$24
+	Christine Michael	RB	FA	2018
+	Clayton Geathers	DB	FA	2018
+Trevor	Clelin Ferrell	DL	2019	2021	$1
+	Cliff Avril	DL	FA	2018
+	Clive Walford	TE	FA	2018
+	Coby Fleener	TE	FA	2018
+	Cody Kessler	QB	FA	2018
+	Cody Latimer	WR	FA	2018
+	Cody Parkey	K	FA	2018
+Quinn	Cole Beasley	WR	2019	2019	$2
+	Colin Kaepernick	QB	FA	2018
+Syed/Kuan	Colt McCoy	QB	2019	2021	$1
+	Connor Barth	K	FA	2018
+	Connor Barwin	DL	FA	2018
+	Connor Cook	QB	FA	2018
+Trevor	Cooper Kupp	WR	2017	2019	$5
+Koci/Mueller	Cooper Rush	QB	2019	2021	$1
+Trevor	Cordarrelle Patterson	WR	2019	2020	$2
+Syed/Kuan	Corey Clement	RB	2019	2021	$1
+	Corey Coleman	WR	FA	2018
+Schex	Corey Davis	WR	2017	2019	$18
+	Corey Graham	DB	FA	2018
+	Corey Grant	RB	FA	2018
+	Cory James	LB	FA	2018
+Schex	Cory Littleton	LB	2018	2020	$1
+John/Zach	Courtland Sutton	WR	2018	2020	$9
+	Craig Robertson	LB	FA	2018
+	Crockett Gillmore	TE	FA	2018
+Syed/Kuan	Curtis Samuel	WR	2017	2019	$5
+Patrick	D.J. Chark	WR	2018	2020	$5
+	D.J. Foster	RB	FA	2018
+	D.J. Swearinger	DB	FA	2018
+Trevor	D'Onta Foreman	RB	2017	2019	$24
+	D'Qwell Jackson	LB	FA	2018
+Brett/Luke	DaeSean Hamilton	WR	2018	2019	$2
+Koci/Mueller	Dak Prescott	QB	2019	2021	$107
+John/Zach	Dallas Goedert	TE	2018	2020	$4
+	Dalton Schultz	TE	FA	2018
+Patrick	Dalvin Cook	RB	2017	2019	$24
+Keyon	Damarious Randall	DB	2019	2019	$1
+James/Charles	Damien Harris	RB	2019	2021	$7
+Keyon	Damien Williams	RB	2019	2019	$130
+Keyon	Damion Willis	WR	2019	2021	$1
+	Damon Harrison	DL	FA	2018
+Patrick	Dan Bailey	K	2019	2019	$1
+	Dan Carpenter	K	FA	2018
+Syed/Kuan	Daniel Jones	QB	2019	2021	$19
+	Daniel Sorenson	DB	FA	2018
+Schex	Danielle Hunter	DL	2017	2019	$5
+	Danny Amendola	WR	FA	2019
+Mitch	Danny Trevathan	LB	2019	2019	$2
+	Danny Woodhead	RB	FA	2018
+	Dante Fowler Jr.	DL	FA	2018
+Quinn	Dante Pettis	WR	2018	2020	$5
+Keyon	Dare Ogunbowale	RB	2019	2021	$7
+Schex	Darius Leonard	LB	2018	2020	$1
+Terence	Darnell Savage Jr.	DB	2019	2021	$1
+	Darrel Williams	RB	FA	2018
+Schex	Darrell Henderson	RB	2019	2021	$13
+	Darren McFadden	RB	FA	2018
+Terence	Darren Sproles	RB	2019	2021	$1
+Schex	Darren Waller	TE	2019	2021	$3
+Koci/Mueller	Darrius Shepherd	WR	2019	2021	$2
+	Darron Lee	LB	FA	2018
+Keyon	Darwin Thompson	RB	2019	2021	$25
+	Daryl Smith	LB	FA	2018
+	Daurice Fountain	WR	FA	2018
+Syed/Kuan	Davante Adams	WR	2017	2019	$100
+	David Amerson	DB	FA	2018
+	David Harris	LB	FA	2018
+	David Irving	DL	FA	2018
+Trevor	David Johnson (ARI)	RB	2019	2019	$286
+Mitch	David Montgomery	RB	2019	2021	$25
+Mitch	David Moore	WR	2019	2019	$4
+Keyon	David Njoku	TE	2017	2019	$9
+	Davis Webb	QB	FA	2018
+Patrick	Dawson Knox	TE	2019	2021	$2
+	De'Angelo Henderson	RB	FA	2018
+	De'Anthony Thomas	WR	FA	2018
+Terence	DeAndre Hopkins	WR	2017	2019	$131
+	DeAndre Levy	LB	FA	2018
+	DeAndre Smelter	WR	FA	2018
+	DeAndre Washington	RB	FA	2018
+	DeAngelo Williams	RB	FA	2018
+Patrick	Dede Westbrook	WR	2017	2019	$5
+	Dee Ford	LB	FA	2018
+Brett/Luke	Deebo Samuel	WR	2019	2021	$8
+	DeForest Buckner	DL	FA	2018
+Koci/Mueller	Deion Jones	LB	2019	2019	$27
+Syed/Kuan	Delanie Walker	TE	2019	2019	$6
+	DeMarco Murray	RB	FA	2018
+James/Charles	Demarcus Lawrence	DL	2018	2020	$5
+Quinn	Demario Davis	LB	2018	2020	$3
+	Demaryius Thomas	WR	FA	2018
+	Dennis Pitta	TE	FA	2018
+	Denzel Perryman	LB	FA	2018
+John/Zach	Denzel Ward	DB	2018	2020	$1
+Keyon	Deon Cain	WR	2019	2021	$1
+	Deone Bucannon	LB	FA	2018
+	Deonte Thompson	WR	FA	2018
+	Derek Anderson	QB	FA	2018
+James/Charles	Derek Barnett	DL	2017	2019	$1
+James/Charles	Derek Carr	QB	2017	2019	$150
+	Derek Wolfe	DL	FA	2018
+James/Charles	Derrick Henry	RB	2019	2019	$125
+	Derrick Johnson	LB	FA	2018
+	Derrick Morgan	DL	FA	2018
+John/Zach	Derrius Guice	RB	2018	2020	$25
+Brett/Luke	Derwin James	DB	2018	2020	$1
+Quinn	DeSean Jackson	WR	2019	2019	$15
+Brett/Luke	Deshaun Watson	QB	2017	2019	$31
+	DeShawn Shead	DB	FA	2018
+	DeShone Kizer	QB	FA	2018
+Patrick	Desmond King	DB	2019	2019	$18
+	Devante Mays	RB	FA	2018
+Syed/Kuan	DeVante Parker	WR	2018	2020	$11
+Terence	Devin Bush	LB	2019	2021	$1
+Quinn	Devin Funchess	WR	2018	2020	$15
+	Devin McCourty	DB	FA	2018
+Schex	Devin Singletary	RB	2019	2021	$13
+	Devin Smith	WR	FA	2018
+Schex	Devin White	LB	2019	2021	$1
+Keyon	Devonta Freeman	RB	2019	2019	$160
+	Devontae Booker	RB	FA	2018
+	Dexter McCluster	RB	FA	2018
+Schex	Dexter Williams	RB	2019	2021	$4
+	Dez Bryant	WR	FA	2018
+Trevor	Dion Lewis	RB	2018	2019	$75
+Keyon	Diontae Johnson	WR	2019	2021	$2
+John/Zach	DJ Moore	WR	2018	2020	$9
+Patrick	DK Metcalf	WR	2019	2021	$16
+	Don Xzaviar Jackson	RB	FA	2018
+	Donnel Pumphrey	RB	FA	2018
+	Dont'a Hightower	LB	FA	2018
+	Donte Jackson	DB	FA	2018
+James/Charles	Donte Moncrief	WR	2019	2019	$40
+Mitch	Dontrell Hilliard	RB	2019	2021	$3
+	Dontrelle Inman	WR	FA	2018
+	Dorial Green-Beckham	WR	FA	2018
+	Doug Baldwin	WR	FA	2018
+Syed/Kuan	Doug Martin	RB	2018	2020	$6
+Terence	Drew Brees	QB	2019	2019	$110
+Quinn	Drew Lock	QB	2019	2021	$3
+	Drew Stanton	QB	FA	2018
+	DuJuan Harris	RB	FA	2018
+Brett/Luke	Duke Johnson Jr.	RB	2019	2020	$45
+	Dustin Hopkins	K	FA	2018
+	Dwayne Allen	TE	FA	2018
+	Dwayne Harris	WR	FA	2018
+James/Charles	Dwayne Haskins	QB	2019	2021	$38
+	Dwayne Washington	RB	FA	2018
+	Earl Thomas	DB	FA	2018
+	Ed Dickson	TE	FA	2018
+Brett/Luke	Ed Oliver	DL	2019	2021	$1
+	Eddie Jackson	DB	FA	2018
+	Eddie Lacy	RB	FA	2018
+	Eddie Royal	WR	FA	2018
+	EJ Manuel	QB	FA	2018
+	Eli Harold	DL	FA	2018
+Trevor	Eli Manning	QB	2019	2019	$10
+	Eli Rogers	WR	FA	2018
+	Elijah Hood	RB	FA	2018
+	Elijah McGuire	RB	FA	2018
+	Emmanual Ogbah	DL	FA	2018
+	Emmanuel Sanders	WR	FA	2019
+	Equanimeous St. Brown	WR	FA	2018
+	Eric Berry	DB	FA	2018
+	Eric Decker	WR	FA	2018
+James/Charles	Eric Ebron	TE	2017	2019	$18
+Mitch	Eric Kendricks	LB	2019	2019	$4
+	Eric Weddle	DB	FA	2018
+Patrick	Evan Engram	TE	2017	2019	$5
+	Everson Griffen	DL	FA	2018
+	Ezekiel Ansah	DL	FA	2018
+Syed/Kuan	Ezekiel Elliott	RB	2019	2021	$290
+	Fletcher Cox	DL	FA	2018
+	Fozzy Whittaker	RB	FA	2018
+Keyon	Frank Clark	DL	2019	2021	$1
+Mitch	Frank Gore	RB	2019	2019	$3
+Keyon	Fred Warner	LB	2019	2021	$1
+Koci/Mueller	Gardner Minshew	QB	2019	2021	$3
+	Gary Barnidge	TE	FA	2018
+Brett/Luke	Gary Jennings Jr.	WR	2019	2021	$1
+	Geno Atkins	DL	FA	2018
+	Geno Smith	QB	FA	2018
+Quinn	George Kittle	TE	2019	2019	$160
+	Gerald Everett	TE	FA	2018
+Trevor	Germaine Pratt	LB	2019	2021	$1
+Patrick	Geronimo Allison	WR	2018	2020	$3
+	Giorgio Tavecchio	K	FA	2018
+Mitch	Giovani Bernard	RB	2017	2019	$8
+	Glover Quin	DB	FA	2018
+Patrick	Golden Tate	WR	2019	2021	$20
+	Graham Gano	K	FA	2018
+Quinn	Greg Dortch	WR	2019	2021	$2
+Patrick	Greg Olsen	TE	2019	2019	$10
+Trevor	Greg Zuerlein	K	2018	2020	$2
+Koci/Mueller	Gus Edwards	RB	2019	2021	$2
+Mitch	Ha Ha Clinton-Dix	DB	2019	2019	$2
+	Haason Reddick	LB	FA	2018
+Terence	Hakeem Butler	WR	2019	2021	$1
+	Harold Landry	LB	FA	2018
+Trevor	Harrison Butker	K	2019	2021	$3
+Trevor	Harrison Smith	DB	2019	2019	$4
+	Hayden Hurst	TE	FA	2018
+Schex	Hunter Henry	TE	2018	2020	$6
+Patrick	Hunter Renfrow	WR	2019	2021	$8
+	Ian Thomas	TE	FA	2018
+James/Charles	Irv Smith Jr.	TE	2019	2021	$2
+	Isaiah Crowell	RB	FA	2018
+	Isaiah McKenzie	WR	FA	2018
+Brett/Luke	Ito Smith	RB	2019	2020	$24
+	J.D. McKissic	RB	FA	2018
+Syed/Kuan	J.J. Arcega-Whiteside	WR	2019	2021	$8
+	J.J. Nelson	WR	FA	2018
+Syed/Kuan	J.J. Watt	DL	2019	2021	$10
+Patrick	J'Mon Moore	WR	2018	2020	$3
+Mitch	Jabrill Peppers	DB	2017	2019	$1
+	Jace Amaro	TE	FA	2018
+Terence	Jace Sternberger	TE	2019	2021	$1
+	Jack Crawford	DL	FA	2018
+James/Charles	Jack Doyle	TE	2017	2019	$2
+	Jacob Tamme	TE	FA	2018
+Brett/Luke	Jacoby Brissett	QB	2019	2021	$11
+	Jacquizz Rodgers	RB	FA	2018
+Mitch	Jadeveon Clowney	DL	2019	2021	$1
+	Jaelen Strong	WR	FA	2018
+Keyon	Jahlani Tavai	LB	2019	2021	$1
+	Jahleel Addae	DB	FA	2018
+	Jake Butt	TE	FA	2018
+	Jake Elliott	K	FA	2018
+	Jake Kumerow	WR	FA	2018
+	Jake Ryan	LB	FA	2018
+	Jakeem Grant	WR	FA	2018
+Terence	Jakobi Meyers	WR	2019	2021	$2
+Terence	Jalen Hurd	WR	2019	2021	$4
+	Jalen Mills	DB	FA	2018
+	Jalen Ramsey	DB	FA	2018
+	Jalen Richard	RB	FA	2019
+	Jalin Marshall	WR	FA	2018
+	Jamaal Charles	RB	FA	2018
+Terence	Jamaal Williams	RB	2017	2019	$12
+Brett/Luke	Jamal Adams	DB	2019	2021	$15
+	Jamal Agnew	DB	FA	2018
+Mitch	Jameis Winston	QB	2019	2019	$100
+Terence	James Conner	RB	2017	2019	$6
+	James Laurinaitis	LB	FA	2018
+	James Starks	RB	FA	2018
+James/Charles	James Washington	WR	2018	2020	$9
+Syed/Kuan	James White	RB	2017	2019	$18
+	Jamie Collins Sr.	LB	FA	2018
+James/Charles	Jamison Crowder	WR	2018	2020	$40
+	Janoris Jenkins	DB	FA	2018
+Brett/Luke	Jared Cook	TE	2019	2020	$7
+Quinn	Jared Goff	QB	2019	2021	$125
+	Jaron Brown	WR	FA	2018
+Mitch	Jarrad Davis	LB	2017	2019	$1
+Terence	Jarrett Stidham	QB	2019	2021	$3
+Terence	Jarvis Landry	WR	2017	2019	$60
+	Jason McCourty	DB	FA	2018
+	Jason Myers	K	FA	2018
+	Jason Pierre-Paul	DL	FA	2018
+Brett/Luke	Jason Witten	TE	2019	2019	$5
+	Jatavis Brown	LB	FA	2018
+	Javorius Allen	RB	FA	2018
+	Jay Ajayi	RB	FA	2018
+	Jay Cutler	QB	FA	2018
+Keyon	Jaylen Samuels	RB	2018	2020	$1
+Syed/Kuan	Jaylon Smith	LB	2019	2021	$17
+	Jayon Brown	LB	FA	2019
+	Jeff Driskel	QB	FA	2018
+	Jeff Heuerman	TE	FA	2018
+	Jeff Wilson Jr.	RB	FA	2018
+	Jeremy Hill	RB	FA	2018
+	Jeremy Kerley	WR	FA	2018
+	Jeremy Langford	RB	FA	2018
+	Jeremy Maclin	WR	FA	2018
+	Jeremy McNichols	RB	FA	2018
+	Jerick McKinnon	RB	FA	2019
+	Jermaine Kearse	WR	FA	2018
+John/Zach	Jerome Baker	LB	2018	2020	$1
+	Jerrell Freeman	LB	FA	2018
+	Jesse James	TE	FA	2018
+	Jessie Bates	DB	FA	2018
+Patrick	Jimmy Garoppolo	QB	2017	2019	$31
+Syed/Kuan	Jimmy Graham	TE	2019	2021	$10
+Patrick	Joe Flacco	QB	2018	2020	$40
+Mitch	Joe Mixon	RB	2017	2019	$24
+Patrick	Joe Schobert	LB	2019	2019	$5
+	Joe Williams	RB	FA	2018
+Keyon	Joey Bosa	DL	2019	2019	$14
+James/Charles	John Brown	WR	2017	2019	$5
+James/Charles	John Johnson III	DB	2019	2021	$15
+	John Kelly	RB	FA	2018
+Brett/Luke	John Ross	WR	2017	2019	$18
+	John Simon	LB	FA	2018
+Mitch	Johnathan Abram	DB	2019	2021	$1
+	Johnathan Cyprien	DB	FA	2018
+	Jon Bostic	LB	FA	2018
+	Jonathan Grimes	RB	FA	2018
+	Jonathan Stewart	RB	FA	2018
+	Jonathan Williams	RB	FA	2018
+	Jonnu Smith	TE	FA	2018
+Terence	Jordan Akins	TE	2018	2020	$2
+	Jordan Cameron	TE	FA	2018
+Trevor	Jordan Hicks	LB	2019	2019	$3
+James/Charles	Jordan Howard	RB	2019	2019	$65
+	Jordan Lasley	WR	FA	2018
+	Jordan Matthews	WR	FA	2018
+Patrick	Jordan Poyer	DB	2019	2019	$7
+James/Charles	Jordan Reed	TE	2017	2019	$40
+Koci/Mueller	Jordan Scarlett	RB	2019	2021	$7
+	Jordan Thomas	TE	FA	2018
+Syed/Kuan	Jordan Wilkins	RB	2019	2021	$1
+	Jordy Nelson	WR	FA	2018
+	Josh Adams	RB	FA	2018
+John/Zach	Josh Allen (BUF)	QB	2018	2020	$14
+Terence	Josh Allen (JAX)	DL	2019	2021	$1
+	Josh Bynes	LB	FA	2018
+Koci/Mueller	Josh Doctson	WR	2019	2021	$11
+	Josh Ferguson	RB	FA	2018
+Keyon	Josh Gordon	WR	2019	2019	$55
+Trevor	Josh Jacobs	RB	2019	2021	$25
+	Josh Johnson	QB	FA	2018
+	Josh Lambo	K	FA	2018
+	Josh Malone	WR	FA	2018
+	Josh McCown	QB	FA	2018
+	Josh Norman	DB	FA	2018
+Mitch	Josh Reynolds	WR	2019	2019	$1
+Brett/Luke	Josh Rosen	QB	2018	2020	$28
+Schex	Joshua Dobbs	QB	2019	2019	$1
+Brett/Luke	Juan Thornhill	DB	2019	2021	$1
+Terence	JuJu Smith-Schuster	WR	2017	2019	$9
+Quinn	Julian Edelman	WR	2019	2019	$140
+Koci/Mueller	Julio Jones	WR	2019	2019	$300
+	Julius Peppers	DL	FA	2018
+	Julius Thomas	TE	FA	2018
+	Jurrell Casey	DL	FA	2018
+Terence	Justice Hill	RB	2019	2021	$25
+	Justin Davis	RB	FA	2018
+	Justin Forsett	RB	FA	2018
+	Justin Hardy	WR	FA	2018
+	Justin Houston	LB	FA	2018
+James/Charles	Justin Jackson	RB	2019	2020	$25
+Koci/Mueller	Justin Reid	DB	2019	2021	$5
+	Justin Simmons	DB	FA	2018
+Syed/Kuan	Justin Tucker	K	2018	2020	$3
+	Justin Watson	WR	FA	2018
+	K.J. Wright	LB	FA	2018
+	Ka'Deem Carey	RB	FA	2018
+Mitch	Ka'imi Fairbairn	K	2019	2019	$1
+	Kai Forbath	K	FA	2018
+John/Zach	Kalen Ballage	RB	2018	2020	$7
+	Kam Chancellor	DB	FA	2018
+	Kamar Aiken	WR	FA	2018
+	Kapri Bibbs	RB	FA	2018
+John/Zach	Kareem Hunt	RB	2017	2019	$24
+	Kareem Jackson	DB	FA	2018
+	Karl Joseph	DB	FA	2018
+	Karlos Dansby	LB	FA	2018
+	Karlos Williams	RB	FA	2018
+	Kasen Williams	WR	FA	2018
+James/Charles	Keanu Neal	DB	2019	2021	$10
+	Keelan Cole	WR	FA	2018
+John/Zach	Keenan Allen	WR	2019	2019	$225
+	Keenan Robinson	LB	FA	2018
+Schex	KeeSean Johnson	WR	2019	2021	$4
+	Keith Marshall	RB	FA	2018
+Trevor	Keke Coutee	WR	2018	2020	$5
+	Kelvin Benjamin	WR	FA	2018
+Keyon	Kelvin Harmon	WR	2019	2021	$1
+	Kemal Ishmael	DB	FA	2018
+	Kemoko Turay	DL	FA	2018
+	Kendall Wright	WR	FA	2018
+	Kendell Beckwith	LB	FA	2018
+	Kenjon Barner	RB	FA	2018
+Patrick	Kenneth Dixon	RB	2018	2020	$1
+	Kenneth Farrow	RB	FA	2018
+	Kenny Britt	WR	FA	2018
+Schex	Kenny Golladay	WR	2017	2019	$9
+Terence	Kenny Stills	WR	2019	2020	$13
+	Kenny Vaccaro	DB	FA	2018
+Terence	Kenyan Drake	RB	2019	2020	$70
+Mitch	Kerryon Johnson	RB	2018	2020	$25
+	Kerwynn Williams	RB	FA	2018
+	Keshawn Martin	WR	FA	2018
+Trevor	Kevin Byard	DB	2018	2020	$1
+	Kevin Hogan	QB	FA	2018
+	Kevin White	WR	FA	2018
+Koci/Mueller	Khalil Mack	DL	2018	2020	$11
+	Kiko Alonso	LB	FA	2019
+Patrick	Kirk Cousins	QB	2018	2020	$100
+	Knile Davis	RB	FA	2018
+	Kurt Coleman	DB	FA	2018
+James/Charles	Kwon Alexander	LB	2019	2021	$6
+	Kyle Juszczyk	RB	FA	2018
+	Kyle Lauletta	QB	FA	2018
+Trevor	Kyle Rudolph	TE	2019	2021	$2
+	Kyle Van Noy	LB	FA	2018
+Patrick	Kyler Murray	QB	2019	2021	$38
+	Ladarius Green	TE	FA	2018
+Schex	Lamar Jackson	QB	2018	2020	$14
+	Lamar Miller	RB	FA	2019
+	Lance Dunbar	RB	FA	2018
+	Lance Kendricks	TE	FA	2018
+Schex	Landon Collins	DB	2019	2021	$9
+	Landry Jones	QB	FA	2018
+	Laquon Treadwell	WR	FA	2018
+Schex	Larry Fitzgerald	WR	2019	2019	$29
+	Larry Ogunjobi	DL	FA	2018
+Syed/Kuan	Latavius Murray	RB	2017	2019	$6
+Terence	Lavonte David	LB	2017	2019	$10
+	Lawrence Timmons	LB	FA	2018
+Quinn	Le'Veon Bell	RB	2019	2020	$325
+	LeGarrette Blount	RB	FA	2018
+Trevor	Leighton Vander Esch	LB	2018	2020	$1
+Mitch	Leonard Fournette	RB	2017	2019	$24
+	Leonard Williams	DL	FA	2018
+	Leonte Carroo	WR	FA	2018
+Patrick	LeSean McCoy	RB	2019	2019	$47
+	Linval Joseph	DL	FA	2018
+	Logan Ryan	DB	FA	2018
+	Lorenzo Alexander	LB	FA	2018
+Syed/Kuan	Luke Kuechly	LB	2018	2020	$19
+	Luke Willson	TE	FA	2018
+	Mack Hollins	WR	FA	2018
+	Malachi Dupre	WR	FA	2018
+Mitch	Malcolm Brown	RB	2019	2020	$28
+	Malcolm Jenkins	DB	FA	2018
+	Malcolm Mitchell	WR	FA	2018
+	Malcolm Smith	LB	FA	2018
+	Malik Hooker	DB	FA	2018
+	Malik Jefferson	LB	FA	2018
+	Manti Te'o	LB	FA	2018
+	Marcell Dareus	DL	FA	2018
+	Marcus Cooper	DB	FA	2018
+	Marcus Davenport	DL	FA	2018
+	Marcus Johnson	WR	FA	2018
+James/Charles	Marcus Mariota	QB	2019	2020	$30
+	Marcus Murphy	RB	FA	2018
+	Marcus Peters	DB	FA	2018
+	Margus Hunt	DL	FA	2018
+	Mario Williams	DL	FA	2018
+John/Zach	Mark Andrews	TE	2018	2020	$1
+	Mark Barron	LB	FA	2018
+Schex	Mark Ingram II	RB	2019	2019	$110
+	Mark Sanchez	QB	FA	2018
+	Mark Walton	RB	FA	2018
+	Markus Wheaton	WR	FA	2018
+Koci/Mueller	Marlon Mack	RB	2017	2019	$12
+Brett/Luke	Marqise Lee	WR	2019	2021	$33
+	Marquel Lee	LB	FA	2018
+	Marquess Wilson	WR	FA	2018
+Trevor	Marquez Valdes-Scantling	WR	2018	2020	$2
+James/Charles	Marquise Brown	WR	2019	2021	$16
+Koci/Mueller	Marquise Goodwin	WR	2019	2021	$6
+	Marshawn Lynch	RB	FA	2018
+	Marshon Lattimore	DB	FA	2018
+	Martavis Bryant	WR	FA	2018
+	Martellus Bennett	TE	FA	2018
+Patrick	Marvin Jones Jr.	WR	2019	2019	$55
+	Mason Crosby	K	FA	2019
+	Mason Foster	LB	FA	2018
+	Mason Rudolph	QB	FA	2018
+	Matt Asiata	RB	FA	2018
+	Matt Barkley	QB	FA	2018
+Keyon	Matt Breida	RB	2018	2020	$7
+	Matt Bryant	K	FA	2018
+	Matt Forte	RB	FA	2018
+Brett/Luke	Matt Gay	K	2019	2020	$1
+	Matt Jones	RB	FA	2018
+	Matt Milano	LB	FA	2018
+	Matt Moore	QB	FA	2018
+Terence	Matt Prater	K	2019	2021	$1
+Syed/Kuan	Matt Ryan	QB	2018	2020	$70
+Quinn	Matthew Stafford	QB	2019	2019	$70
+	Matthias Farley	DB	FA	2018
+	Maurice Harris	WR	FA	2018
+	Maxx Williams	TE	FA	2018
+Terence	Mecole Hardman	WR	2019	2021	$8
+Brett/Luke	Melvin Gordon	RB	2019	2021	$171
+James/Charles	Melvin Ingram	DL	2017	2019	$2
+	Micah Hyde	DB	FA	2018
+	Michael Bennett (SEA)	DL	FA	2018
+	Michael Crabtree	WR	FA	2018
+	Michael Floyd	WR	FA	2018
+John/Zach	Michael Gallup	WR	2018	2020	$9
+	Michael Thomas (LA)	WR	FA	2018
+Quinn	Michael Thomas (NO)	WR	2019	2020	$300
+	Michael Wilhoite	LB	FA	2018
+Mitch	Mike Boone	RB	2019	2021	$9
+Brett/Luke	Mike Davis	RB	2019	2020	$19
+Syed/Kuan	Mike Evans	WR	2018	2020	$150
+John/Zach	Mike Gesicki	TE	2018	2020	$7
+	Mike Gillislee	RB	FA	2018
+	Mike Glennon	QB	FA	2018
+	Mike Hull	LB	FA	2018
+	Mike Mitchell	DB	FA	2018
+	Mike Nugent	K	FA	2018
+	Mike Tolbert	RB	FA	2018
+	Mike Wallace	WR	FA	2018
+Mitch	Mike Williams (LAC)	WR	2017	2019	$9
+James/Charles	Miles Boykin	WR	2019	2021	$4
+Schex	Miles Sanders	RB	2019	2021	$25
+John/Zach	Minkah Fitzpatrick	DB	2018	2020	$1
+Koci/Mueller	Mitchell Trubisky	QB	2017	2019	$31
+James/Charles	Mohamed Sanu	WR	2018	2019	$11
+	Morgan Burnett	DB	FA	2018
+	Muhammad Wilkerson	DL	FA	2018
+	Mychal Kendricks	LB	FA	2018
+Mitch	Myles Garrett	DL	2017	2019	$1
+Brett/Luke	Myles Gaskin	RB	2019	2020	$1
+Mitch	Myles Jack	LB	2019	2019	$12
+Syed/Kuan	N'Keal Harry	WR	2019	2021	$16
+	Nathan Peterman	QB	FA	2018
+	NaVorro Bowman	LB	FA	2018
+	Ndamukong Suh	DL	FA	2018
+Quinn	Nelson Agholor	WR	2018	2019	$10
+	Nick Bellore	LB	FA	2018
+Syed/Kuan	Nick Bosa	DL	2019	2021	$1
+John/Zach	Nick Chubb	RB	2018	2020	$25
+Keyon	Nick Foles	QB	2019	2021	$49
+	Nick Kwiatkoski	LB	FA	2018
+Terence	Nick Mullens	QB	2019	2020	$5
+	Nick Novak	K	FA	2018
+	Nick O'Leary	TE	FA	2018
+	Nick Vannett	TE	FA	2018
+	Nick Vigil	LB	FA	2018
+	Nigel Bradham	LB	FA	2018
+Brett/Luke	Noah Fant	TE	2019	2021	$5
+	Noah Spence	DL	FA	2018
+James/Charles	Nyheim Hines	RB	2018	2020	$7
+Brett/Luke	O.J. Howard	TE	2017	2019	$9
+Mitch	Odell Beckham Jr.	WR	2019	2020	$275
+	Olivier Vernon	DL	FA	2018
+	Orleans Darkwa	RB	FA	2018
+	Owa Odighizuwa	DL	FA	2018
+	Owen Daniels	TE	FA	2018
+Brett/Luke	Parris Campbell	WR	2019	2021	$16
+Keyon	Patrick Mahomes II	QB	2017	2019	$31
+Schex	Patrick Onwuasor	LB	2019	2021	$1
+	Patrick Peterson	DB	FA	2018
+	Patrick Ricard	DL	FA	2018
+	Paul Perkins	RB	FA	2018
+	Paul Posluszny	LB	FA	2018
+Quinn	Paul Richardson	WR	2018	2020	$7
+	Paxton Lynch	QB	FA	2018
+Schex	Peyton Barber	RB	2018	2020	$30
+	Pharoh Cooper	WR	FA	2018
+Syed/Kuan	Philip Rivers	QB	2019	2019	$105
+	Phillip Dorsett	WR	FA	2018
+Patrick	Phillip Lindsay	RB	2018	2020	$1
+	Pierre Garcon	WR	FA	2018
+	Preston Brown	LB	FA	2018
+Syed/Kuan	Preston Williams	WR	2019	2021	$2
+Keyon	Qadree Ollison	RB	2019	2021	$2
+Trevor	Quincy Enunwa	WR	2019	2021	$12
+	Raheem Mostert	RB	FA	2018
+	Ramik Wilson	LB	FA	2018
+	Ramon Humber	LB	FA	2018
+Brett/Luke	Randall Cobb	WR	2019	2020	$6
+Koci/Mueller	Rashaad Penny	RB	2018	2020	$25
+	Rashaan Evans	LB	FA	2018
+	Rashad Greene	WR	FA	2018
+	Rashad Jennings	RB	FA	2018
+Brett/Luke	Rashan Gary	LB	2019	2020	$1
+Syed/Kuan	Rashard Higgins	WR	2019	2021	$1
+	Ray Rice	RB	FA	2018
+	Ray-Ray Armstrong	LB	FA	2018
+	Reggie Bush	RB	FA	2018
+	Reggie Nelson	DB	FA	2018
+	Reshad Jones	DB	FA	2018
+	Reuben Foster	LB	FA	2018
+	Rex Burkhead	RB	FA	2019
+	Ricardo Louis	WR	FA	2018
+	Richard Rodgers	TE	FA	2018
+	Richie James	WR	FA	2018
+	Ricky Seals-Jones	TE	FA	2018
+Terence	Riley Ridley	WR	2019	2021	$1
+	Rishard Matthews	WR	FA	2018
+Keyon	Rob Gronkowski	TE	2019	2021	$1
+	Rob Kelley	RB	FA	2018
+	Rob Ninkovich	DL	FA	2018
+James/Charles	Robbie Gould	K	2019	2019	$1
+Syed/Kuan	Robby Anderson	WR	2017	2019	$2
+	Robert Foster	WR	FA	2019
+Schex	Robert Griffin III	QB	2019	2020	$1
+	Robert Nkemdiche	DL	FA	2018
+	Robert Quinn	DL	FA	2018
+	Robert Turbin	RB	FA	2018
+Syed/Kuan	Robert Woods	WR	2019	2019	$160
+	Roberto Aguayo	K	FA	2018
+	Rod Smith	RB	FA	2018
+	Rodney Adams	WR	FA	2018
+Terence	Rodney Anderson	RB	2019	2021	$1
+	Rodney McLeod	DB	FA	2018
+	Roger Lewis	WR	FA	2018
+	Ron Parker	DB	FA	2018
+Schex	Ronald Jones	RB	2018	2019	$25
+	Ronnie Hillman	RB	FA	2018
+Brett/Luke	Roquan Smith	LB	2018	2020	$1
+Trevor	Royce Freeman	RB	2018	2020	$25
+	Rueben Randle	WR	FA	2018
+Trevor	Russell Wilson	QB	2019	2019	$168
+Brett/Luke	Ryan Finley	QB	2019	2021	$3
+Keyon	Ryan Fitzpatrick	QB	2019	2019	$15
+	Ryan Grant	WR	FA	2018
+	Ryan Griffin	TE	FA	2018
+	Ryan Kerrigan	DL	FA	2018
+	Ryan Mallett	QB	FA	2018
+	Ryan Mathews	RB	FA	2018
+	Ryan Shazier	LB	FA	2018
+	Ryan Succop	K	FA	2018
+Patrick	Ryan Switzer	WR	2019	2021	$1
+James/Charles	Ryan Tannehill	QB	2017	2019	$12
+Brett/Luke	Ryquell Armstead	RB	2019	2021	$7
+	Sam Bradford	QB	FA	2018
+Mitch	Sam Darnold	QB	2018	2020	$28
+Brett/Luke	Sam Hubbard	DL	2018	2019	$1
+	Samaje Perine	RB	FA	2018
+	Sammie Coates	WR	FA	2018
+Koci/Mueller	Sammy Watkins	WR	2017	2019	$55
+John/Zach	Saquon Barkley	RB	2018	2020	$25
+	Scott Tolzien	QB	FA	2018
+	Sean Davis	DB	FA	2018
+	Sean Lee	LB	FA	2018
+	Sean Weatherspoon	LB	FA	2018
+	Sebastian Janikowski	K	FA	2018
+	Seth DeValve	TE	FA	2018
+	Seth Roberts	WR	FA	2018
+	Shane Vereen	RB	FA	2018
+	Shaq Thompson	LB	FA	2018
+	Shaun Draughn	RB	FA	2018
+	Shaun Hill	QB	FA	2018
+Keyon	Shawn Williams	DB	2019	2019	$7
+	Sheldon Richardson	DL	FA	2018
+	Sio Moore	LB	FA	2018
+Quinn	Solomon Thomas	DL	2017	2019	$1
+John/Zach	Sony Michel	RB	2018	2020	$25
+	Spencer Ware	RB	FA	2018
+Keyon	Stefon Diggs	WR	2018	2020	$75
+	Stephen Anderson	TE	FA	2018
+Koci/Mueller	Stephen Gostkowski	K	2018	2020	$1
+	Stephen Hauschka	K	FA	2018
+	Stephon Gilmore	DB	FA	2018
+	Stephon Tuitt	DL	FA	2018
+	Stephone Anthony	LB	FA	2018
+Patrick	Sterling Shepard	WR	2019	2021	$42
+	Stevan Ridley	RB	FA	2018
+	Steve Smith Sr.	WR	FA	2018
+Trevor	T.J. Hockenson	TE	2019	2021	$5
+Syed/Kuan	T.J. Logan	RB	2019	2021	$2
+	T.J. Ward	DB	FA	2018
+Patrick	T.J. Watt	LB	2019	2019	$1
+Mitch	T.J. Yeldon	RB	2019	2019	$1
+Schex	T.Y. Hilton	WR	2019	2019	$225
+	Taco Charlton	DL	FA	2018
+	Tahir Whitehead	LB	FA	2018
+	Tajae Sharpe	WR	FA	2018
+	Takkarist McKinley	DL	FA	2018
+Syed/Kuan	Tarik Cohen	RB	2017	2019	$3
+	Tavarres King	WR	FA	2018
+	Tavon Austin	WR	FA	2018
+	Tavon Wilson	DB	FA	2018
+Syed/Kuan	Taylor Gabriel	WR	2019	2019	$1
+Terence	Taylor Rapp	DB	2019	2021	$1
+Koci/Mueller	Taysom Hill	QB	2019	2021	$7
+	Taywan Taylor	WR	FA	2018
+Koci/Mueller	Ted Ginn Jr.	WR	2019	2021	$5
+John/Zach	Teddy Bridgewater	QB	2018	2020	$15
+	Telvin Smith	LB	FA	2018
+	Terrance West	RB	FA	2018
+	Terrance Williams	WR	FA	2018
+Koci/Mueller	Terrell Edmunds	DB	2018	2020	$1
+	Terrelle Pryor	WR	FA	2018
+	Terron Ward	RB	FA	2018
+Patrick	Terry McLaurin	WR	2019	2021	$4
+Quinn	Tevin Coleman	RB	2019	2019	$70
+	Theo Riddick	RB	FA	2018
+	Thomas Davis	LB	FA	2018
+	Thomas Rawls	RB	FA	2018
+	Tim Hightower	RB	FA	2018
+	Tim Patrick	WR	FA	2018
+	Tion Green	RB	FA	2018
+	TJ Carrie	DB	FA	2018
+	TJ Jones	WR	FA	2018
+	Todd Davis	LB	FA	2018
+Schex	Todd Gurley II	RB	2019	2019	$230
+John/Zach	Tom Brady	QB	2019	2019	$100
+	Tom Savage	QB	FA	2018
+Quinn	Tony Jefferson	DB	2017	2019	$1
+Koci/Mueller	Tony Pollard	RB	2019	2021	$7
+	Tony Romo	QB	FA	2018
+	Torrey Smith	WR	FA	2018
+Brett/Luke	Trace McSorley	QB	2019	2021	$1
+	Travaris Cadet	RB	FA	2018
+	Travis Benjamin	WR	FA	2018
+Koci/Mueller	Travis Homer	RB	2019	2021	$1
+Mitch	Travis Kelce	TE	2019	2020	$200
+	Travis Rudolph	WR	FA	2018
+Trevor	Trayveon Williams	RB	2019	2021	$1
+	Tre Boston	DB	FA	2018
+	Tre McBride	WR	FA	2018
+James/Charles	Tre'Davious White	DB	2017	2019	$1
+Quinn	Tre'Quan Smith	WR	2018	2020	$9
+Mitch	Tremaine Edmunds	LB	2018	2020	$1
+	Trent Murphy	DL	FA	2018
+	Trent Taylor	WR	FA	2018
+	Trenton Cannon	RB	FA	2018
+	Trevone Boykin	QB	FA	2018
+	Trevor Davis	WR	FA	2018
+	Trevor Siemian	QB	FA	2018
+	Trey Burton	TE	FA	2019
+Patrick	Trey Flowers	DL	2017	2019	$1
+Schex	Trey Quinn	WR	2019	2021	$1
+	Troymaine Pope	RB	FA	2018
+	Trumaine Johnson	DB	FA	2018
+Keyon	Ty Johnson	RB	2019	2021	$1
+	Ty Montgomery	RB	FA	2019
+Syed/Kuan	Ty Summers	LB	2019	2021	$1
+John/Zach	Tyler Boyd	WR	2019	2021	$100
+	Tyler Eifert	TE	FA	2018
+	Tyler Ervin	RB	FA	2018
+	Tyler Higbee	TE	FA	2018
+	Tyler Kroft	TE	FA	2018
+Quinn	Tyler Lockett	WR	2018	2020	$56
+Schex	Tyrann Mathieu	DB	2019	2019	$1
+Keyon	Tyreek Hill	WR	2018	2020	$145
+Syed/Kuan	Tyrell Williams	WR	2017	2019	$13
+	Tyrod Taylor	QB	FA	2018
+	Tyvon Branch	DB	FA	2018
+Koci/Mueller	Vance McDonald	TE	2019	2021	$8
+	Vernon Davis	TE	FA	2018
+	Vic Beasley Jr.	DL	FA	2018
+	Victor Cruz	WR	FA	2018
+	Vince Williams	LB	FA	2018
+	Vincent Jackson	WR	FA	2018
+	Vincent Rey	LB	FA	2018
+	Virgil Green	TE	FA	2018
+	Von Miller	LB	FA	2018
+	Vonn Bell	DB	FA	2018
+	Vontaze Burfict	LB	FA	2018
+James/Charles	Wayne Gallman	RB	2017	2019	$2
+	Wendell Smallwood	RB	FA	2018
+	Wesley Woodyard	LB	FA	2018
+	Whitney Mercilus	LB	FA	2018
+Schex	Wil Lutz	K	2019	2020	$2
+	Will Compton	LB	FA	2018
+	Will Dissly	TE	FA	2018
+John/Zach	Will Fuller V	WR	2019	2021	$60
+Terence	Will Grier	QB	2019	2021	$3
+Schex	Willie Snead IV	WR	2019	2021	$1
+	Yannick Ngakoue	DL	FA	2018
+	Younghoe Koo	K	FA	2018
+	Zach Brown	LB	FA	2019
+Syed/Kuan	Zach Cunningham	LB	2017	2019	$1
+Koci/Mueller	Zach Ertz	TE	2017	2019	$18
+	Zach Mettenberger	QB	FA	2018
+	Zach Miller	TE	FA	2018
+	Zach Zenner	RB	FA	2018
+	Zachary Orr	LB	FA	2018
+Schex	Zay Jones	WR	2017	2019	$18

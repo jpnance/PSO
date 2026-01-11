@@ -228,6 +228,68 @@ async function run() {
 	}
 
 	// =========================================================================
+	// Trade Contract Corrections
+	// =========================================================================
+	if (fixups.tradeContractCorrections && fixups.tradeContractCorrections.length > 0) {
+		console.log('=== Trade Contract Corrections ===');
+		
+		for (var i = 0; i < fixups.tradeContractCorrections.length; i++) {
+			var tcc = fixups.tradeContractCorrections[i];
+			var trade = await Transaction.findOne({ type: 'trade', tradeId: tcc.tradeId });
+			
+			if (!trade) {
+				console.log('  ✗ Trade #' + tcc.tradeId + ' not found');
+				errors.push('Trade #' + tcc.tradeId + ' not found');
+				continue;
+			}
+			
+			// Find the player in the trade
+			var player = await Player.findOne({ name: tcc.player });
+			if (!player) {
+				console.log('  ✗ Trade #' + tcc.tradeId + ': Player "' + tcc.player + '" not found');
+				errors.push('Trade #' + tcc.tradeId + ': Player "' + tcc.player + '" not found');
+				continue;
+			}
+			
+			// Find and update the player entry in the trade
+			var found = false;
+			for (var p = 0; p < trade.parties.length; p++) {
+				var party = trade.parties[p];
+				for (var pl = 0; pl < (party.receives.players || []).length; pl++) {
+					var playerEntry = party.receives.players[pl];
+					if (playerEntry.playerId.toString() === player._id.toString()) {
+						found = true;
+						
+						console.log('  Trade #' + tcc.tradeId + ': ' + tcc.player);
+						console.log('    ' + (playerEntry.startYear || '?') + '/' + (playerEntry.endYear || '?') + 
+							' → ' + tcc.startYear + '/' + tcc.endYear);
+						
+						if (!dryRun) {
+							playerEntry.startYear = tcc.startYear;
+							playerEntry.endYear = tcc.endYear;
+							playerEntry.ambiguous = false;
+						}
+						break;
+					}
+				}
+				if (found) break;
+			}
+			
+			if (!found) {
+				console.log('  ✗ Trade #' + tcc.tradeId + ': Player "' + tcc.player + '" not in trade');
+				errors.push('Trade #' + tcc.tradeId + ': Player "' + tcc.player + '" not in trade');
+				continue;
+			}
+			
+			if (!dryRun) {
+				await trade.save();
+				console.log('    ✓ Done');
+			}
+		}
+		console.log('');
+	}
+
+	// =========================================================================
 	// Player Corrections
 	// =========================================================================
 	if (fixups.playerCorrections && fixups.playerCorrections.length > 0) {
