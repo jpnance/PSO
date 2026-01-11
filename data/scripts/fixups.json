@@ -247,6 +247,14 @@
 		{ "tradeId": 332, "player": "Joey Bosa", "startYear": 2019, "endYear": 2019 },
 		{ "tradeId": 336, "player": "Derrick Henry", "startYear": 2019, "endYear": 2019 },
 		{ "tradeId": 337, "player": "Keenan Allen", "startYear": 2019, "endYear": 2019 },
-		{ "tradeId": 357, "player": "Rashaan Evans", "startYear": 2018, "endYear": 2020 }
+		{ "tradeId": 357, "player": "Rashaan Evans", "startYear": 2018, "endYear": 2020 },
+		{ "tradeId": 338, "player": "Odell Beckham", "startYear": 2019, "endYear": 2020 },
+		{ "tradeId": 269, "player": "C.J. Uzomah", "startYear": null, "endYear": 2018 },
+		{ "tradeId": 270, "player": "Avery Williamson", "startYear": null, "endYear": 2018 },
+		{ "tradeId": 273, "player": "Marcus Murphy", "startYear": null, "endYear": 2018 },
+		{ "tradeId": 273, "player": "Desmond King", "startYear": null, "endYear": 2018 },
+		{ "tradeId": 274, "player": "Dee Ford", "startYear": null, "endYear": 2018 },
+		{ "tradeId": 276, "player": "Raheem Mostert", "startYear": null, "endYear": 2018 },
+		{ "tradeId": 278, "player": "Malcolm Brown", "startYear": null, "endYear": 2018 }
 	]
 }
