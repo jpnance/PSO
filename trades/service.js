@@ -364,23 +364,116 @@ async function buildTradeDisplayData(trades, options) {
 	return tradeData;
 }
 
+// Get all current regimes for filter dropdown
+async function getCurrentRegimes() {
+	var regimes = await Regime.find({ endSeason: null })
+		.sort({ displayName: 1 })
+		.lean();
+	return regimes;
+}
+
 async function tradeHistory(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// Parse query params
+	var page = parseInt(request.query.page, 10) || 1;
+	var perPage = request.query.per === 'all' ? null : (parseInt(request.query.per, 10) || 20);
+	var filterFranchise = request.query.franchise || null;
+	var filterPartner = request.query.partner || null;
 	
 	// Fetch all trades, oldest first (so we can number them)
 	var trades = await Transaction.find({ type: 'trade' })
 		.sort({ timestamp: 1 })
 		.lean();
 	
-	var tradeData = await buildTradeDisplayData(trades, { currentSeason: currentSeason });
+	// Filter by franchise if specified
+	var filteredTrades = trades;
+	if (filterFranchise) {
+		filteredTrades = filteredTrades.filter(function(trade) {
+			return (trade.parties || []).some(function(party) {
+				return party.franchiseId.toString() === filterFranchise;
+			});
+		});
+	}
+	
+	// Further filter by trading partner if specified
+	if (filterPartner && filterFranchise) {
+		filteredTrades = filteredTrades.filter(function(trade) {
+			var franchiseIds = (trade.parties || []).map(function(p) { return p.franchiseId.toString(); });
+			return franchiseIds.includes(filterFranchise) && franchiseIds.includes(filterPartner);
+		});
+	} else if (filterPartner && !filterFranchise) {
+		// If only partner is specified, filter to trades involving that franchise
+		filteredTrades = filteredTrades.filter(function(trade) {
+			return (trade.parties || []).some(function(party) {
+				return party.franchiseId.toString() === filterPartner;
+			});
+		});
+	}
+	
+	var totalFiltered = filteredTrades.length;
 	
 	// Reverse for display (most recent first)
-	tradeData.reverse();
+	filteredTrades = filteredTrades.slice().reverse();
+	
+	// Paginate
+	var totalPages = perPage ? Math.ceil(totalFiltered / perPage) : 1;
+	page = Math.max(1, Math.min(page, totalPages || 1));
+	var paginatedTrades = perPage 
+		? filteredTrades.slice((page - 1) * perPage, page * perPage)
+		: filteredTrades;
+	
+	// Build display data for paginated trades (but pass all trades for chain links)
+	var tradeData = await buildTradeDisplayData(trades, { currentSeason: currentSeason });
+	
+	// Create a map for quick lookup
+	var tradeDataMap = {};
+	tradeData.forEach(function(t) { tradeDataMap[t.number] = t; });
+	
+	// Get only the trades we want to display
+	var displayTrades = paginatedTrades.map(function(t) {
+		return tradeDataMap[t.tradeId];
+	}).filter(Boolean);
+	
+	// Get current regimes for filter dropdown
+	var regimes = await getCurrentRegimes();
+	
+	// Build filter display names
+	var filterFranchiseName = null;
+	var filterPartnerName = null;
+	if (filterFranchise) {
+		var regime = regimes.find(function(r) { return r.franchiseId.toString() === filterFranchise; });
+		filterFranchiseName = regime ? regime.displayName : 'Unknown';
+	}
+	if (filterPartner) {
+		var regime = regimes.find(function(r) { return r.franchiseId.toString() === filterPartner; });
+		filterPartnerName = regime ? regime.displayName : 'Unknown';
+	}
+	
+	// Build query string helper for pagination links
+	var buildQuery = function(newPage, newPer) {
+		var params = [];
+		if (newPage && newPage > 1) params.push('page=' + newPage);
+		if (newPer && newPer !== 20) params.push('per=' + newPer);
+		if (filterFranchise) params.push('franchise=' + filterFranchise);
+		if (filterPartner) params.push('partner=' + filterPartner);
+		return params.length ? '?' + params.join('&') : '';
+	};
 	
 	response.render('trade-history', {
-		trades: tradeData,
-		totalTrades: tradeData.length,
+		trades: displayTrades,
+		totalTrades: trades.length,
+		totalFiltered: totalFiltered,
+		page: page,
+		perPage: perPage,
+		totalPages: totalPages,
+		regimes: regimes,
+		filterFranchise: filterFranchise,
+		filterFranchiseName: filterFranchiseName,
+		filterPartner: filterPartner,
+		filterPartnerName: filterPartnerName,
+		buildQuery: buildQuery,
 		pageTitle: 'Trade History - PSO',
 		activePage: 'trades'
 	});
@@ -401,14 +494,20 @@ async function singleTrade(request, response) {
 		.sort({ timestamp: 1 })
 		.lean();
 	
-	// Find the specific trade
-	var trade = allTrades.find(function(t) {
+	// Find the specific trade and its neighbors
+	var tradeIndex = allTrades.findIndex(function(t) {
 		return t.tradeId === tradeId;
 	});
 	
-	if (!trade) {
+	if (tradeIndex === -1) {
 		return response.status(404).send('Trade not found');
 	}
+	
+	var trade = allTrades[tradeIndex];
+	
+	// Get prev/next trade IDs
+	var prevTradeId = tradeIndex > 0 ? allTrades[tradeIndex - 1].tradeId : null;
+	var nextTradeId = tradeIndex < allTrades.length - 1 ? allTrades[tradeIndex + 1].tradeId : null;
 	
 	var tradeData = await buildTradeDisplayData(allTrades, { currentSeason: currentSeason });
 	
@@ -417,11 +516,27 @@ async function singleTrade(request, response) {
 		return t.number === tradeId;
 	});
 	
+	// Get current regimes for the filter dropdown (for consistency with main page)
+	var regimes = await getCurrentRegimes();
+	
+	// Get franchise IDs involved in this trade for quick filtering links
+	var involvedFranchises = (trade.parties || []).map(function(party) {
+		var regime = regimes.find(function(r) { return r.franchiseId.toString() === party.franchiseId.toString(); });
+		return {
+			franchiseId: party.franchiseId.toString(),
+			displayName: regime ? regime.displayName : 'Unknown'
+		};
+	});
+	
 	response.render('trade-history', {
 		trades: [singleTradeData],
 		totalTrades: allTrades.length,
 		singleTrade: true,
 		tradeNumber: tradeId,
+		prevTradeId: prevTradeId,
+		nextTradeId: nextTradeId,
+		involvedFranchises: involvedFranchises,
+		regimes: regimes,
 		pageTitle: 'Trade #' + tradeId + ' - PSO',
 		activePage: 'trades'
 	});
