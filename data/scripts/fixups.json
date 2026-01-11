@@ -34,8 +34,8 @@
 	],
 
 	"tradeCashCorrections": [
-		{ "tradeId": 688, "party": 0, "cash": 0, "remove": true, "notes": "The agreed-to version of this trade moved the $20 from Keyon to Mitch in 2025, not 2026. The transaction was incorrectly carried out on the spreadsheet and not noticed by anyone until nearly two years later." },
-		{ "tradeId": 600, "party": 1, "cash": 0, "season": 2026, "notes": "The agreed-to version of this trade moved $15 from Schexes to Patrick in 2025. That transaction was never carried out on the spreadsheet, though, and the error was not noticed by anyone until over a year later." }
+		{ "tradeId": 688, "party": 0, "cash": 0, "remove": true, "notes": "The agreed-to version of this trade moved $15 from Schexes to Patrick in 2025. That transaction was never carried out on the spreadsheet, though, and the error was not noticed by anyone until over a year later." },
+		{ "tradeId": 600, "party": 1, "cash": 0, "season": 2026, "notes": "The agreed-to version of this trade moved the $20 from Keyon to Mitch in 2025, not 2026. The transaction was incorrectly carried out on the spreadsheet and not noticed by anyone until nearly two years later." }
 	],
 
 	"playerCorrections": [
