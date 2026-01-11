@@ -60,6 +60,28 @@ var contractDueDates = {
 	2025: new Date('2025-09-01')
 };
 
+// NFL season start dates (first game of the season)
+var seasonStartDates = {
+	2008: new Date('2008-09-04'),
+	2009: new Date('2009-09-10'),
+	2010: new Date('2010-09-09'),
+	2011: new Date('2011-09-08'),
+	2012: new Date('2012-09-05'),
+	2013: new Date('2013-09-05'),
+	2014: new Date('2014-09-04'),
+	2015: new Date('2015-09-10'),
+	2016: new Date('2016-09-08'),
+	2017: new Date('2017-09-07'),
+	2018: new Date('2018-09-06'),
+	2019: new Date('2019-09-05'),
+	2020: new Date('2020-09-10'),
+	2021: new Date('2021-09-09'),
+	2022: new Date('2022-09-08'),
+	2023: new Date('2023-09-07'),
+	2024: new Date('2024-09-05'),
+	2025: new Date('2025-09-04')
+};
+
 /**
  * Parse a contract string and apply heuristics to determine start/end years.
  * Returns { startYear, endYear, ambiguous }
@@ -134,12 +156,8 @@ function parseContract(contractStr, salary, tradeDate) {
 		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
 		result.endYear = endYear;
 		
-		// -U means UFA. High salary = auction (1-year), low salary = ambiguous
-		if (salary >= 100) {
-			result.startYear = endYear;
-		} else {
-			result.ambiguous = true;
-		}
+		// -U means UFA. Can't determine contract length from notation alone.
+		result.ambiguous = true;
 		return result;
 	}
 	
@@ -162,11 +180,8 @@ function parseContract(contractStr, salary, tradeDate) {
 		} else if (tradeYear === 2009 && endYear === 2009 && isBeforeContractsDue) {
 			// Special case: league started 2008
 			result.startYear = 2008;
-		} else if (salary >= 100) {
-			// High-salary heuristic: $100+ = auction, so 1-year contract
-			result.startYear = endYear;
 		} else {
-			// Can't determine - could be 1-year auction or FA pickup
+			// Can't determine - could be 1-year auction, FA pickup, or final year of multi-year deal
 			result.startYear = endYear; // Default to 1-year for display
 			result.ambiguous = true;
 		}
@@ -806,7 +821,20 @@ async function seed() {
 		franchiseByRosterId[f.sleeperRosterId] = f._id;
 	});
 
+	// Load draft info for rookie contract heuristic
+	var draftInfo = {};
+	var draftTransactions = await Transaction.find({ type: 'draft-select' });
+	draftTransactions.forEach(function(t) {
+		if (t.playerId && t.timestamp) {
+			draftInfo[t.playerId.toString()] = {
+				draftYear: t.timestamp.getFullYear(),
+				salary: t.salary || null
+			};
+		}
+	});
+
 	console.log('Loaded', franchises.length, 'franchises');
+	console.log('Loaded', Object.keys(draftInfo).length, 'draft records for rookie heuristic');
 	console.log('Processing', tradeHistory.length, 'trades...\n');
 
 	var created = 0;
@@ -882,6 +910,37 @@ async function seed() {
 					if (player.ambiguous) {
 						playerEntry.ambiguous = true;
 					}
+					
+					// Apply date-aware rookie contract heuristic
+					// If player was drafted in our league, salary matches, and contract term
+					// is consistent with a rookie deal, we can infer startYear = draftYear
+					var draft = draftInfo[playerId.toString()];
+					if (draft && playerEntry.ambiguous && playerEntry.endYear) {
+						var yearsFromDraft = playerEntry.endYear - draft.draftYear;
+						var salaryMatches = !draft.salary || playerEntry.salary === draft.salary;
+						
+						if (yearsFromDraft >= 0 && yearsFromDraft <= 2 && salaryMatches) {
+							// Check timing: pre-season/early-season = any salary, mid-season = $5+
+							var tradeDate = new Date(trade.timestamp);
+							var seasonStart = seasonStartDates[tradeYear] || new Date(tradeYear + '-09-07');
+							var daysFromSeasonStart = Math.round((tradeDate - seasonStart) / (1000 * 60 * 60 * 24));
+							
+							var isHighConfidence = false;
+							if (daysFromSeasonStart < 28) {
+								// Pre-season or early season (before week 5): any salary is fine
+								isHighConfidence = true;
+							} else if (daysFromSeasonStart < 84 && playerEntry.salary >= 5) {
+								// Mid-season (weeks 5-12): require $5+ salary
+								isHighConfidence = true;
+							}
+							
+							if (isHighConfidence) {
+								playerEntry.startYear = draft.draftYear;
+								playerEntry.ambiguous = false;
+							}
+						}
+					}
+					
 					party.receives.players.push(playerEntry);
 				}
 			}

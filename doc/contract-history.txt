@@ -1,0 +1,4893 @@
+=== 2008 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13358		A.J. Edds	LB	FA	2010
+9591		A.J. Hawk	LB	FA	2010
+12635		Aaron Brown	RB	FA	2010
+12452		Aaron Curry	LB	FA	2010
+13230	Keyon	Aaron Hernandez	TE	2010	2012	$1
+3684	Patrick	Aaron Kampman	DL	2009	2011	$6
+12456		Aaron Maybin	LB	FA	2010
+8439	Koci	Aaron Rodgers	QB	2008	2010	$7
+10464		Aaron Ross	DB	FA	2010
+2594		Aaron Schobel	DL	FA	2010
+8421		Adam Jones	DB	FA	2010
+1097		Adam Vinatieri	K	FA	2010
+2868		Adewale Ogunleye	DL	FA	2010
+10452	John	Adrian Peterson	RB	2010	2010	$325
+10693	Jake/Luke	Ahmad Bradshaw	RB	2010	2010	$70
+1432		Ahman Green	RB	FA	2010
+10883		Akeem Jordan	LB	FA	2010
+13433	John	Akwasi Owusu-Ansah	DB	2010	2012	$1
+10680		Alan Ball	DB	FA	2010
+3543		Albert Haynesworth	DL	FA	2010
+8416	Koci	Alex Smith	QB	2010	2010	$33
+1638		Allen Rossum	DB	FA	2010
+11331		Andre Caldwell	WR	FA	2010
+2555	Trevor	Andre Carter	DL	2010	2011	$16
+4461	Koci	Andre Johnson	WR	2008	2010	$156
+13226		Andre Roberts	WR	FA	2010
+4512	Schexes	Anquan Boldin	WR	2008	2010	$11
+11946	John	Anthony Armstrong	WR	FA	2010	$4
+13212		Anthony Dixon	RB	FA	2010
+9639	Patrick	Anthony Fasano	TE	2009	2011	$4
+10476	John	Anthony Gonzalez	WR	2010	2010	$26
+10470		Anthony Spencer	LB	FA	2010
+9793		Antoine Bethea	DB	FA	2010
+1775	Keyon	Antoine Winfield	DB	2009	2011	$1
+3591		Antonio Bryant	WR	FA	2010
+5362	Schexes	Antonio Gates	TE	2010	2011	$89
+5660		Antonio Smith	DL	FA	2010
+8423	Daniel	Antrel Rolle	DB	2010	2010	$5
+5582		Antwan Odom	DL	FA	2010
+12497	Koci	Arian Foster	RB	2010	2010	$77
+13218	Daniel	Arrelious Benn	WR	2010	2012	$15
+12561	Daniel	Austin Collie	WR	2010	2010	$1
+12447		B.J. Raji	DL	FA	2010
+8450	Trevor	Barrett Ruud	LB	2009	2011	$5
+12525	Jake/Luke	Beanie Wells	RB	2009	2011	$55
+5536	Trevor	Ben Roethlisberger	QB	2010	2010	$80
+13210	Daniel	Ben Tate	RB	2010	2012	$7
+5557	Daniel	Benjamin Watson	TE	2010	2010	$1
+11754	Keyon	BenJarvus Green-Ellis	RB	FA	2010	$6
+5603		Bernard Berrian	WR	FA	2010
+9640	Trevor	Bernard Pollard	DB	2010	2011	$7
+12724	Patrick	Bernard Scott	RB	2010	2012	$15
+13776	Daniel	Blair White	WR	FA	2010	$1
+8593	Jake/Luke	Bo Scaife	TE	2010	2010	$1
+937		Bobby Engram	WR	FA	2010
+4597		Bobby Wade	WR	FA	2010
+9689	John	Brad Smith	WR	FA	2010	$1
+4561		Bradie James	LB	FA	2010
+10466		Brady Quinn	QB	FA	2010
+13239	Jake/Luke	Brandon Graham	DL	2010	2012	$1
+10507	Schexes	Brandon Jackson	RB	FA	2010	$31
+8524	John	Brandon Jacobs	RB	2010	2011	$40
+12576	Schexes	Brandon LaFell	WR	2010	2012	$4
+4582	Syed	Brandon Lloyd	WR	FA	2010	$29
+9705	John	Brandon Marshall	WR	2008	2010	$23
+12549	Patrick	Brandon Pettigrew	TE	2009	2011	$22
+13298	Jake/Luke	Brandon Spikes	LB	2010	2012	$1
+12597	Syed	Brandon Tate	WR	FA	2010	$29
+8418	Jake/Luke	Braylon Edwards	WR	2010	2010	$5
+10605	Syed	Brent Celek	TE	2010	2012	$27
+112	James	Brett Favre	QB	2010	2010	$50
+12453	John	Brian Cushing	LB	2009	2011	$7
+978		Brian Dawkins	DB	FA	2010
+12568	Jake/Luke	Brian Hartline	WR	2010	2012	$1
+12439	John	Brian Orakpo	LB	2009	2011	$13
+2140	Patrick	Brian Urlacher	LB	2010	2010	$4
+3619	Trevor	Brian Westbrook	RB	2010	2010	$1
+11909		Brian Witherspoon	DB	FA	2010
+4475		Bryant Johnson	WR	FA	2010
+4465		Byron Leftwich	QB	FA	2010
+13203	Jake/Luke	C.J. Spiller	RB	2010	2012	$24
+8420	James	Cadillac Williams	RB	2009	2010	$8
+10447	Schexes	Calvin Johnson	WR	2008	2010	$32
+4476	Syed	Calvin Pace	DL	2010	2012	$1
+12703	Trevor	Captain Munnerlyn	DB	2010	2010	$5
+4459	Jake/Luke	Carson Palmer	QB	2009	2011	$79
+8419	Patrick	Cedric Benson	RB	2010	2011	$116
+9634		Cedric Griffin	DB	FA	2010
+9603	Keyon	Chad Greenway	LB	FA	2010	$2
+11291	Daniel	Chad Henne	QB	2010	2012	$15
+2584	Keyon	Chad Ochocinco	WR	2010	2010	$65
+2149		Chad Pennington	QB	FA	2010
+10678		Chansi Stuckey	WR	FA	2010
+13450		Charles Scott	RB	FA	2010
+4493		Charles Tillman	DB	FA	2010
+1442	Jake/Luke	Charles Woodson	DB	2010	2011	$3
+9667		Charlie Whitehurst	QB	FA	2010
+11460		Chaz Schilens	WR	FA	2010
+3784	Daniel	Chester Taylor	RB	2010	2010	$12
+9285		Chris Carr	DB	FA	2010
+2600	James	Chris Chambers	WR	2010	2011	$8
+5606	Schexes	Chris Cooley	TE	2008	2010	$24
+5553		Chris Gamble	DB	FA	2010
+8497		Chris Henry (CIN)	WR	FA	2010
+3622		Chris Hope	DB	FA	2010
+13587	Syed	Chris Ivory	RB	FA	2010	$11
+13166		Chris Jennings	RB	FA	2010
+11258	Keyon	Chris Johnson	RB	2008	2010	$7
+12517		Chris Ogbonnaya	RB	FA	2010
+5551		Chris Perry	RB	FA	2010
+12438	Syed	Clay Matthews	LB	FA	2010	$3
+11816		Clifton Smith	RB	FA	2010
+10579		Clint Session	LB	FA	2010
+3579	Jake/Luke	Clinton Portis	RB	2010	2010	$50
+13199	James	Colt McCoy	QB	2010	2012	$12
+12449		Connor Barwin	DL	FA	2010
+2670		Correll Buckhalter	RB	FA	2010
+9801		Cortland Finnegan	DB	FA	2010
+11271	Schexes	Curtis Lofton	LB	2010	2011	$4
+5542	Trevor	D.J. Williams	LB	2010	2012	$11
+9620		D'Qwell Jackson	LB	FA	2010
+4482	Trevor	Dallas Clark	TE	2010	2010	$68
+13219		Damian Williams	WR	FA	2010
+11688	Schexes	Dan Carpenter	K	FA	2010	$1
+11308	Daniel	Dan Connor	LB	FA	2010	$1
+9628	Patrick	Danieal Manning	DB	2010	2012	$2
+11674	Schexes	Danny Amendola	WR	2010	2010	$36
+10768		Danny Ware	RB	FA	2010
+11788	John	Danny Woodhead	RB/WR	FA	2010	$4
+5589		Darnell Dockett	DL	2010	2010
+13465		Darrell Stuckey	DB	FA	2010
+10458		Darrelle Revis	DB	FA	2010
+2164		Darren Howard	DL	FA	2010
+11238	John	Darren McFadden	RB	2010	2012	$14
+1203		Darren Sharper	DB	FA	2010
+8544	Koci	Darren Sproles	RB	2009	2011	$118
+12570	James	Darrius Heyward-Bey	WR	2009	2011	$14
+13305		Daryl Washington	LB	FA	2010
+1762		Daunte Culpepper	QB	FA	2010
+5658	Daniel	Dave Ball	DL	FA	2010	$1
+1716		David Akers	K	FA	2010
+12459		David Buehler	K	FA	2010
+10600		David Clowney	WR	FA	2010
+3636	Syed	David Garrard	QB	2008	2010	$16
+10491	Trevor	David Harris	LB	2010	2010	$29
+11544		David Hawthorne	LB	FA	2010
+11678	John	Davone Bess	WR	FA	2010	$13
+5533	Keyon	DeAngelo Hall	DB	FA	2010	$3
+9613	Keyon	DeAngelo Williams	RB	2009	2011	$145
+3593	Keyon	Deion Branch	WR	FA	2010	$27
+13398	Schexes	Deji Karim	RB	FA	2010	$2
+8426	James	DeMarcus Ware	LB	2008	2010	$37
+13216	Keyon	Demaryius Thomas	WR	2010	2012	$8
+9619	Jake/Luke	DeMeco Ryans	LB	2010	2010	$15
+9697		Demetrius Williams	WR	FA	2010
+11390		Dennis Dixon	QB	FA	2010
+2163		Dennis Northcutt	WR	FA	2010
+13231	John	Dennis Pitta	TE	2010	2012	$1
+12557		Deon Butler	WR	FA	2010
+8627	Daniel	Derek Anderson	QB	2010	2010	$1
+10692		Derek Stanley	WR	FA	2010
+8430	Koci	Derrick Johnson	LB	FA	2010	$1
+1263	Patrick	Derrick Mason	WR	2010	2010	$25
+13248		Derrick Morgan	DL	FA	2010
+5760		Derrick Ward	RB	FA	2010
+12602		Derrick Williams	WR	FA	2010
+11283	Schexes	DeSean Jackson	WR	2008	2010	$16
+5575		Devery Henderson	WR	FA	2010
+9819	James	Devin Aromashodu	WR	2010	2011	$30
+9643	Keyon	Devin Hester	WR	2009	2011	$40
+11268	Koci	Devin Thomas	WR	2010	2012	$5
+13207	Syed	Dexter McCluster	WR	2010	2012	$8
+13215	James	Dez Bryant	WR	2010	2012	$15
+9716		Domenik Hixon	WR	FA	2010
+13365		Dominique Franks	DB	FA	2010
+11250		Dominique Rodgers-Cromartie	DB	FA	2010
+12489	Patrick	Donald Brown	RB	2009	2011	$28
+1966	Jake/Luke	Donald Driver	WR	2008	2010	$8
+11267		Donnie Avery	WR	FA	2010
+1753	Schexes	Donovan McNabb	QB	2009	2010	$33
+13353		Dorin Dickerson	RB	FA
+2898		Drew Bennett	WR	FA	2010
+2580	Syed	Drew Brees	QB	2009	2010	$171
+11264	Koci	Dustin Keller	TE	2009	2011	$5
+10467	James	Dwayne Bowe	WR	2009	2011	$90
+3539	Daniel	Dwight Freeney	DL	FA	2010	$1
+4498		E.J. Henderson	LB	FA	2010
+11304		Earl Bennett	WR	FA	2010
+13251	Syed	Earl Thomas	DB	2010	2012	$1
+11315	Schexes	Early Doucet	WR	2010	2011	$17
+4950		Earnest Graham	RB	FA	2010
+13272	Jake/Luke	Ed Dickson	TE	2010	2010	$1
+11276	Patrick	Eddie Royal	WR	2008	2010	$13
+1755		Edgerrin James	RB	FA	2010
+5526	Syed	Eli Manning	QB	2008	2010	$24
+8498		Ellis Hobbs	DB	FA	2010
+9712		Elvis Dumervil	DL	FA	2010
+13252	Patrick	Eric Berry	DB	2010	2012	$1
+13271	James	Eric Decker	WR	2010	2012	$2
+10481	Daniel	Eric Weddle	DB	FA	2010	$1
+10770		Eric Weems	WR	FA	2010
+5645		Ernest Wilford	WR	FA	2010
+11870		Evan Moore	TE	FA	2010
+11256	James	Felix Jones	RB	2010	2011	$59
+8479	Schexes	Frank Gore	RB	2008	2010	$184
+11282	Schexes	Fred Davis	TE	FA	2010	$1
+10195	Schexes	Fred Jackson	RB	2009	2011	$1
+1430	James	Fred Taylor	RB	2010	2010	$8
+10449		Gaines Adams	DL	FA	2010
+11543		Garrett Hartley	K	FA	2010
+10537		Garrett Wolfe	RB	FA	2010
+9267		George Wilson	DB	FA	2010
+13240	Jake/Luke	Gerald McCoy	DL	2010	2012	$1
+5661		Gibril Wilson	DB	FA	2010
+12491		Glen Coffee	RB	FA	2010
+13217	Trevor	Golden Tate	WR	2010	2012	$15
+12460		Graham Gano	K	FA	2010
+9495		Greg Camarillo	WR	FA	2010
+1445		Greg Ellis	DL	FA	2010
+9638	Keyon	Greg Jennings	WR	2008	2010	$36
+10475	Jake/Luke	Greg Olsen	TE	2009	2011	$35
+12586	Syed	Hakeem Nicks	WR	2009	2011	$28
+9598		Haloti Ngata	DL	FA	2010
+8444	Jake/Luke	Heath Miller	TE	2010	2010	$2
+1494	Schexes	Hines Ward	WR	2010	2010	$25
+10180		Hiram Eugene	DB	FA	2010
+8458		J.J. Arrington	RB	FA	2010
+3561	Keyon	Jabar Gaffney	WR	FA	2010	$10
+11373	Koci	Jacob Tamme	TE	FA	2010	$1
+13363	James	Jacoby Ford	WR	2010	2012	$1
+10517	Keyon	Jacoby Jones	WR	2010	2010	$60
+13205	Koci	Jahvid Best	RB	2010	2012	$28
+1693		Jake Delhomme	QB	FA	2010
+11307	Trevor	Jamaal Charles	RB	2008	2010	$4
+2136		Jamal Lewis	RB	FA	2010
+10446		JaMarcus Russell	QB	FA	2010
+9674	Syed	James Anderson	LB	FA	2010	$1
+12493		James Davis	RB	FA	2010
+1219	James	James Farrior	LB	2009	2011	$2
+2432	Schexes	James Hall	DL	FA	2010	$1
+11275		James Hardy	WR	FA	2010
+4433	Schexes	James Harrison	LB	2009	2011	$16
+10522	Koci	James Jones	WR	2010	2012	$10
+12454	Jake/Luke	James Laurinaitis	LB	2009	2011	$9
+13214	James	James Starks	RB	2010	2010	$2
+5651	Patrick	Jared Allen	DL	2009	2011	$10
+12564		Jarett Dillard	WR	FA	2010
+9695		Jason Avant	WR	FA	2010
+5552	Syed	Jason Babin	LB	FA	2010	$2
+8440	Patrick	Jason Campbell	QB	2010	2012	$5
+286	Syed	Jason Hanson	K	FA	2010	$1
+13256	Jake/Luke	Jason Pierre-Paul	DL	2010	2012	$1
+10687	Keyon	Jason Snelling	RB	2010	2010	$5
+1245		Jason Taylor	DL	FA	2010
+4527	James	Jason Witten	TE	2008	2010	$134
+13259	Koci	Javier Arenas	DB	2010	2012	$1
+12520	Schexes	Javon Ringer	RB	FA	2010	$1
+9597	James	Jay Cutler	QB	2010	2011	$35
+2548		Jay Feely	K	FA	2010
+4399		Jeff Reed	K	FA	2010
+12579	Patrick	Jeremy Maclin	WR	2010	2010	$55
+3542	Trevor	Jeremy Shockey	TE	2010	2012	$2
+9665		Jerious Norwood	RB	FA	2010
+13228	Keyon	Jermaine Gresham	TE	2010	2012	$4
+11325	John	Jermichael Finley	TE	2010	2010	$75
+11244	John	Jerod Mayo	LB	FA	2010	$1
+9731	Koci	Jerome Harrison	RB	2009	2011	$1
+5633	Keyon	Jerricho Cotchery	WR	2008	2010	$36
+13245		Jerry Hughes	DL	FA	2010
+9266	Patrick	Jim Leonhard	DB	FA	2010	$1
+13198	John	Jimmy Clausen	QB	2010	2012	$6
+4647		Jimmy Wilkerson	DL	FA	2010
+11252	Schexes	Joe Flacco	QB	2008	2010	$5
+13249	Jake/Luke	Joe Haden	DB	2010	2012	$1
+13209	Patrick	Joe McKnight	RB	2010	2012	$7
+982		Joe Nedney	K	FA	2010
+751		Joey Galloway	WR	FA	2010
+1826	James	Joey Porter	LB	2010	2010	$4
+2144	Keyon	John Abraham	DL	2009	2011	$2
+11272	Koci	John Carlson	TE	2009	2011	$7
+43		John Carney	K	FA	2010
+139		John Kasay	K	FA	2010
+9530		John Kuhn	RB	FA	2010
+13458	James	John Skelton	QB	2010	2012	$1
+10543		Johnnie Lee Higgins	WR	FA	2010
+12678	Syed	Johnny Knox	WR	2010	2011	$35
+10469	Keyon	Jon Beason	LB	2008	2010	$3
+1383	Koci	Jon Kitna	QB	FA	2010	$1
+13206		Jonathan Dwyer	RB	FA	2010
+11247	Schexes	Jonathan Stewart	RB	2008	2010	$26
+5537		Jonathan Vilma	LB	FA	2010
+12594	Trevor	Jordan Shipley	WR	2010	2011	$8
+11270	Syed	Jordy Nelson	WR	2010	2012	$1
+9616	Daniel	Joseph Addai	RB	2009	2011	$85
+9270	Trevor	Josh Cribbs	WR	2010	2010	$121
+12473	Daniel	Josh Freeman	QB	2010	2012	$15
+11394		Josh Johnson	QB	FA	2010
+11408	Patrick	Josh Morgan	WR	2009	2011	$10
+5662		Josh Scobee	K	FA	2010
+10499		Josh Wilson	DB	FA	2010
+12571	James	Juaquin Iglesias	WR	2009	2011	$3
+12649	Jake/Luke	Julian Edelman	WR	2010	2011	$7
+5568		Julius Jones	RB	FA	2010
+3530	Schexes	Julius Peppers	DL	2009	2011	$15
+4554		Justin Fargas	RB	FA	2010
+11467	Syed	Justin Forsett	RB	2010	2011	$70
+4601	Trevor	Justin Gage	WR	2010	2011	$1
+8488	Patrick	Justin Tuck	DL	2009	2011	$6
+13059		Kareem Huggins	RB	FA	2010
+5558	Keyon	Karlos Dansby	LB	2009	2011	$1
+13727	Daniel	Keiland Williams	RB	2010	2010	$1
+2161		Keith Bulluck	LB	FA	2010
+5531	Koci	Kellen Winslow	TE	FA	2010	$2
+4523		Kelley Washington	WR	FA	2010
+12556	Patrick	Kenny Britt	WR	2009	2011	$6
+734		Kerry Collins	QB	FA	2010
+8537	John	Kerry Rhodes	DB	FA	2010	$4
+10596		Kevin Boss	TE	FA	2010
+4532		Kevin Curtis	WR	FA	2010
+1798		Kevin Faulk	RB	FA	2010
+10480	John	Kevin Kolb	QB	2010	2011	$39
+12588		Kevin Ogletree	WR	FA	2010
+11298		Kevin Smith	RB	FA	2010
+4713	Daniel	Kevin Walter	WR	2010	2010	$15
+8492		Kirk Morrison	LB	FA	2010
+12516	Trevor	Knowshon Moreno	RB	2009	2011	$28
+13287		Koa Misi	LB	FA	2010
+1981		Kris Brown	K	FA	2010
+1682		Kurt Warner	QB	FA	2010
+8520	Keyon	Kyle Orton	QB	2010	2010	$7
+2582	Koci	Kyle Vanden Bosch	DL	FA	2010	$1
+4519		L.J. Smith	TE	FA	2010
+2553	Trevor	LaDainian Tomlinson	RB	2010	2010	$33
+3584		Ladell Betts	RB	FA	2010
+13277		Lamarr Houston	DL	FA	2010
+10490	Jake/Luke	LaMarr Woodley	LB	2010	2011	$5
+4526	Koci	Lance Briggs	LB	2010	2012	$6
+9400	Syed	Lance Moore	WR	FA	2010	$21
+12747		Lardarius Webb	DB	FA	2010
+12730	Patrick	LaRod Stephens-Howling	RB	FA	2010	$1
+10451	Schexes	LaRon Landry	DB	FA	2010	$1
+5528	Koci	Larry Fitzgerald	WR	2008	2010	$145
+4485		Larry Johnson	RB	FA	2010
+9607		Laurence Maroney	RB	FA	2010
+10519	Koci	Laurent Robinson	WR	FA	2010	$1
+2209		Laveranues Coles	WR	FA	2010
+10459	Schexes	Lawrence Timmons	LB	FA	2010	$1
+3413		Lawrence Tynes	K	FA	2010
+10580		Le'Ron McClain	RB	FA	2010
+5538	Jake/Luke	Lee Evans	WR	2010	2010	$6
+13213	Jake/Luke	LeGarrette Blount	RB	2010	2012	$1
+10615		Legedu Naanee	WR	FA	2010
+9631		LenDale White	RB	FA	2010
+11245	James	Leodis McKelvin	DB	FA	2010	$1
+9703	Trevor	Leon Washington	RB	2010	2010	$25
+12514	Jake/Luke	LeSean McCoy	RB	2010	2011	$95
+11287		Limas Sweed	WR	FA	2010
+8459		Lofa Tatupu	LB	FA	2010
+1680	John	London Fletcher	LB	FA	2010	$3
+12528	James	Louis Delmas	DB	FA	2010	$1
+12585	Syed	Louis Murphy	WR	2010	2012	$1
+12426		Malcolm Jenkins	DB	FA	2010
+11285		Malcolm Kelly	WR	FA	2010
+6016	Koci	Malcom Floyd	WR	2010	2010	$60
+2299		Marc Bulger	QB	FA	2010
+9614	Patrick	Marcedes Lewis	TE	FA	2010	$1
+4469	Trevor	Marcus Trufant	DB	2008	2010	$2
+13221	Jake/Luke	Mardy Gilyard	WR	2010	2012	$2
+11329	Syed	Mario Manningham	WR	2010	2012	$1
+9587	Trevor	Mario Williams	DL	2009	2011	$19
+8523	Patrick	Marion Barber	RB	2009	2011	$125
+8437	Daniel	Mark Clayton	WR	FA	2010	$1
+12482	Trevor	Mark Sanchez	QB	2010	2010	$50
+9838	Syed	Marques Colston	WR	2009	2011	$120
+10456	Patrick	Marshawn Lynch	RB	2010	2012	$12
+11295	James	Martellus Bennett	TE	2009	2011	$7
+10636	Trevor	Mason Crosby	K	2010	2012	$2
+9618		Mathias Kiwanuka	DL	FA	2010
+4333	Keyon	Matt Bryant	K	FA	2010	$1
+8644	Patrick	Matt Cassel	QB	2010	2012	$15
+11278	Daniel	Matt Forte	RB	2010	2011	$120
+1575	Keyon	Matt Hasselbeck	QB	2010	2010	$12
+9596		Matt Leinart	QB	FA	2010
+11128		Matt Moore	QB	FA	2010
+11122	James	Matt Prater	K	FA	2010	$1
+11237	Trevor	Matt Ryan	QB	2008	2010	$10
+5615	Daniel	Matt Schaub	QB	2008	2010	$37
+11387		Matt Slater	WR	FA	2010
+12483	Schexes	Matthew Stafford	QB	2009	2011	$25
+9646	Schexes	Maurice Jones-Drew	RB	2008	2010	$142
+3582		Maurice Morris	RB	FA	2010
+5644	Syed	Mewelde Moore	RB	2010	2011	$1
+10544	Jake/Luke	Michael Bush	RB	2010	2011	$22
+12563	Patrick	Michael Crabtree	WR	2009	2011	$28
+10463	John	Michael Griffin	DB	FA	2010	$1
+13387	John	Michael Hoomanawanui	TE	2010	2012	$1
+5679	Keyon	Michael Turner	RB	2010	2010	$175
+2549	Koci	Michael Vick	QB	FA	2010	$6
+10327		Micheal Spurlock	WR	FA	2010
+9864		Mike Bell	RB	FA	2010
+11436	Daniel	Mike Hart	RB	FA	2010	$1
+8461	Koci	Mike Nugent	K	FA	2010	$1
+1788		Mike Peterson	LB	FA	2010
+10523	Syed	Mike Sims-Walker	WR	FA	2010	$5
+12598	Syed	Mike Thomas	WR	2010	2011	$14
+11658	Patrick	Mike Tolbert	RB	FA	2010	$3
+12601	Jake/Luke	Mike Wallace	WR	2010	2011	$40
+8425	Koci	Mike Williams (SEA)	WR	2010	2012	$1
+13489	Koci	Mike Williams (TB)	WR	2010	2012	$8
+10147	James	Miles Austin	WR	2010	2012	$125
+12581	John	Mohamed Massaquoi	WR	2009	2011	$14
+13208	Daniel	Montario Hardesty	RB	2010	2011	$28
+13264	Trevor	Morgan Burnett	DB	2010	2010	$1
+936		Muhsin Muhammad	WR	FA	2010
+13257	Syed	Nate Allen	DB	2010	2012	$1
+4529	Koci	Nate Burleson	WR	2010	2010	$45
+2569	Trevor	Nate Clements	DB	2008	2010	$4
+5590		Nate Kaeding	K	FA	2010
+9307	Patrick	Nate Washington	WR	FA	2010	$1
+13234	John	Ndamukong Suh	DL	FA	2010	$2
+2300	Daniel	Neil Rackers	K	FA	2010	$1
+8465		Nick Collins	DB	FA	2010
+10621	John	Nick Folk	K	FA	2010	$3
+1170		Olindo Mare	K	FA	2010
+8480	Keyon	Oshiomogho Atogwe	DB	2009	2011	$1
+4514	Trevor	Osi Umenyiora	DL	2009	2011	$4
+9684	Daniel	Owen Daniels	TE	2008	2010	$4
+4243	John	Paris Lenon	LB	FA	2010	$1
+12527		Pat Chung	DB	FA	2010
+5741	Daniel	Patrick Crayton	WR	2010	2010	$10
+1782		Patrick Kerney	DL	FA	2010
+12599		Patrick Turner	WR	FA	2010
+10455	Koci	Patrick Willis	LB	2010	2012	$37
+10478	Schexes	Paul Posluszny	LB	2010	2012	$1
+12569	Patrick	Percy Harvin	WR	2009	2011	$42
+13344		Perrish Cox	DB	FA	2010
+11461	Jake/Luke	Peyton Hillis	RB	FA	2010	$8
+1428	John	Peyton Manning	QB	2010	2010	$151
+5529	Jake/Luke	Philip Rivers	QB	2009	2011	$85
+11439	Keyon	Pierre Garcon	WR	2010	2011	$52
+10713	Koci	Pierre Thomas	RB	2008	2010	$2
+2139	Daniel	Plaxico Burress	WR	2010	2012	$1
+9832		Quinton Ganther	RB	FA	2010
+12555		Ramses Barden	WR	FA	2010
+1433	Trevor	Randy Moss	WR	2010	2010	$155
+12503		Rashad Jennings	RB	FA	2010
+11257	Syed	Rashard Mendenhall	RB	2008	2010	$58
+9268		Rashied Davis	WR	FA	2010
+9713		Ray Edwards	DL	FA	2010
+964	Koci	Ray Lewis	LB	2010	2012	$1
+11289	James	Ray Rice	RB	2008	2010	$2
+9588	Koci	Reggie Bush	RB	FA	2010	$1
+2578	Jake/Luke	Reggie Wayne	WR	2010	2010	$169
+2489		Rian Lindell	K	FA	2010
+2554		Richard Seymour	DL	FA	2010
+1756	James	Ricky Williams	RB	2009	2010	$14
+9235	Patrick	Rob Bironas	K	2010	2010	$1
+13229	Trevor	Rob Gronkowski	TE	2010	2012	$1
+9721		Rob Ninkovich	DL	FA	2010
+9354		Robbie Gould	K	FA	2010
+4596	Keyon	Robert Mathis	DL	2009	2011	$1
+10471	Keyon	Robert Meachem	WR	FA	2010	$18
+3761		Rock Cartwright	RB	FA	2010
+8442	Daniel	Roddy White	WR	2010	2011	$110
+13255	Daniel	Rolando McClain	LB	2010	2010	$1
+3734		Ronald Curry	WR	FA	2010
+8417	Daniel	Ronnie Brown	RB	2010	2011	$65
+8469	John	Roscoe Parrish	WR	FA	2010	$2
+5532	Trevor	Roy E. Williams	WR	2010	2011	$15
+12698		Roy Miller	DL	FA	2010
+3589		Ryan Denney	DL	FA	2010
+8664	Keyon	Ryan Fitzpatrick	QB	FA	2010	$10
+9475	Patrick	Ryan Grant	RB	FA	2010	$1
+1328		Ryan Longwell	K	FA	2010
+13204	Syed	Ryan Mathews	RB	2010	2012	$28
+8491		Ryan Moats	RB	FA	2010
+12702		Ryan Mouton	DB	FA	2010
+12731		Ryan Succop	K	FA	2010
+11362	Patrick	Ryan Torain	RB	FA	2010	$50
+2658		Sage Rosenfels	QB	FA	2010
+4548		Sam Aiken	WR	FA	2010
+13197	John	Sam Bradford	QB	2010	2012	$6
+12595		Sammie Stroughter	WR	FA	2010
+2287		Sammy Morris	RB	FA	2010
+2564	Koci	Santana Moss	WR	2010	2012	$35
+9611	Daniel	Santonio Holmes	WR	2010	2010	$55
+13418	Trevor	Scotty McGee	DB	2010	2010	$1
+13284		Sean Lee	LB	FA	2010
+5669		Sean Ryan	TE	FA	2010
+13243	Trevor	Sean Weatherspoon	LB	2010	2012	$1
+2148	Jake/Luke	Sebastian Janikowski	K	2010	2010	$2
+4568		Seneca Wallace	QB	FA	2010
+4260	James	Shaun Hill	QB	FA	2010	$1
+5623	James	Shaun Phillips	LB	FA	2010	$1
+8427		Shawne Merriman	LB	FA	2010
+3504		Shayne Graham	K	FA	2010
+12500	Syed	Shonn Greene	RB	2009	2011	$28
+10488	Daniel	Sidney Rice	WR	2009	2011	$4
+10387		Spencer Havner	TE	FA	2010
+6132	James	Spencer Johnson	DL	FA	2010	$1
+13594	John	Stafon Johnson	RB	2010	2012	$4
+12021	Syed	Stefan Logan	RB	2010	2010	$10
+4877		Stephen Cooper	LB	FA	2010
+9704	Keyon	Stephen Gostkowski	K	2009	2011	$2
+9702	Syed	Stephen Tulloch	LB	FA	2010	$1
+10585	John	Steve Breaston	WR	2010	2010	$30
+11458	Syed	Steve Johnson	WR	FA	2010	$2
+11323	Trevor	Steve Slaton	RB	2008	2010	$7
+2622	Trevor	Steve Smith (CAR)	WR	2010	2010	$105
+10495	Trevor	Steve Smith (NYG)	WR	2010	2011	$45
+11923		Steven Hauschka	K	FA	2010
+5549	James	Steven Jackson	RB	2010	2010	$200
+10531	Patrick	Stewart Bradley	LB	2010	2012	$2
+2753		T.J. Houshmandzadeh	WR	FA	2010
+13304	Jake/Luke	T.J. Ward	DB	2010	2012	$1
+9606	Jake/Luke	Tamba Hali	DL	FA	2010	$2
+11359		Tashard Choice	RB	FA	2010
+13286	John	Taylor Mays	DB	2010	2012	$1
+13223	James	Taylor Price	WR	2010	2012	$1
+10453	Koci	Ted Ginn Jr.	WR	2010	2012	$20
+4463		Terence Newman	DB	FA	2010
+1056	James	Terrell Owens	WR	2010	2010	$14
+4468		Terrell Suggs	LB	FA	2010
+4569		Terrence McGee	DB	FA	2010
+8429		Thomas Davis	LB	FA	2010
+11332		Thomas DeCoud	DB	FA	2010
+2138	Schexes	Thomas Jones	RB	2010	2010	$10
+11383	Daniel	Tim Hightower	RB	2008	2010	$2
+13200	John	Tim Tebow	QB	2010	2012	$12
+12600		Tiquan Underwood	WR	FA	2010
+13211	Schexes	Toby Gerhart	RB	2010	2012	$14
+2579	James	Todd Heap	TE	FA	2010	$2
+2330	Patrick	Tom Brady	QB	2009	2011	$165
+1231	Schexes	Tony Gonzalez	TE	2010	2010	$50
+13289	Daniel	Tony Moeaki	TE	2010	2012	$1
+5209	Keyon	Tony Romo	QB	2009	2011	$100
+9647	John	Tony Scheffler	TE	2008	2010	$28
+1757		Torry Holt	WR	FA	2010
+5432	Schexes	Tramon Williams	DB	FA	2010	$1
+8560	Syed	Trent Cole	DL	2009	2011	$4
+10536		Trent Edwards	QB	FA	2010
+13386		Trindon Holliday	WR	FA	2010
+4474		Troy Polamalu	DB	FA	2010
+12435		Tyson Jackson	DL	FA	2010
+11334		Tyvon Branch	DB	FA	2010
+9592	Daniel	Vernon Davis	TE	2010	2010	$51
+9589	Keyon	Vince Young	QB	2009	2011	$1
+8475	Keyon	Vincent Jackson	WR	2008	2010	$4
+4549	Keyon	Visanthe Shiancoe	TE	2009	2011	$9
+12424		Vontae Davis	DB	FA	2010
+5941	Patrick	Wes Welker	WR	2009	2011	$80
+9701		Will Blackmon	DB	FA	2010
+5543	Koci	Will Smith	DL	2010	2010	$18
+5880		Willie Parker	RB	FA	2010
+4481	John	Willis McGahee	RB	2010	2012	$1
+4671	Koci	Yeremiah Bell	DB	2010	2012	$15
+10482	Syed	Zach Miller (OAK)	TE	2010	2012	$7
+
+=== 2009 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13358		A.J. Edds	LB	FA	2010
+9591		A.J. Hawk	LB	FA	2010
+12635		Aaron Brown	RB	FA	2010
+12452		Aaron Curry	LB	FA	2010
+13230	Keyon	Aaron Hernandez	TE	2010	2012	$1
+3684	Patrick	Aaron Kampman	DL	2009	2011	$6
+12456		Aaron Maybin	LB	FA	2010
+8439	Koci	Aaron Rodgers	QB	2008	2010	$7
+10464		Aaron Ross	DB	FA	2010
+2594		Aaron Schobel	DL	FA	2010
+8421		Adam Jones	DB	FA	2010
+1097		Adam Vinatieri	K	FA	2010
+2868		Adewale Ogunleye	DL	FA	2010
+10452	John	Adrian Peterson	RB	2010	2010	$325
+10693	Jake/Luke	Ahmad Bradshaw	RB	2010	2010	$70
+1432		Ahman Green	RB	FA	2010
+10883		Akeem Jordan	LB	FA	2010
+13433		Akwasi Owusu-Ansah	DB	FA	2010
+10680		Alan Ball	DB	FA	2010
+3543		Albert Haynesworth	DL	FA	2010
+8416		Alex Smith	QB	FA	2010
+1638		Allen Rossum	DB	FA	2010
+11331		Andre Caldwell	WR	FA	2010
+2555	Trevor	Andre Carter	DL	2010	2011	$16
+4461	Koci	Andre Johnson	WR	2008	2010	$156
+13226		Andre Roberts	WR	FA	2010
+4512	Schexes	Anquan Boldin	WR	2008	2010	$11
+11946	John	Anthony Armstrong	WR	FA	2010	$4
+13212	Syed	Anthony Dixon	RB	FA	2010	$25
+9639	Patrick	Anthony Fasano	TE	2009	2011	$4
+10476	John	Anthony Gonzalez	WR	2010	2010	$26
+10470		Anthony Spencer	LB	FA	2010
+9793		Antoine Bethea	DB	FA	2010
+1775	Keyon	Antoine Winfield	DB	2009	2011	$1
+3591		Antonio Bryant	WR	FA	2010
+5362	Schexes	Antonio Gates	TE	2010	2011	$89
+5660		Antonio Smith	DL	FA	2010
+8423	Daniel	Antrel Rolle	DB	2010	2010	$5
+5582		Antwan Odom	DL	FA	2010
+12497	Koci	Arian Foster	RB	2010	2010	$77
+13218	Daniel	Arrelious Benn	WR	2010	2012	$15
+12561	Daniel	Austin Collie	WR	2010	2010	$1
+12447		B.J. Raji	DL	FA	2010
+8450	Trevor	Barrett Ruud	LB	2009	2011	$5
+12525	Jake/Luke	Beanie Wells	RB	2009	2011	$55
+9835	Patrick	Ben Obomanu	WR	FA	2010	$3
+5536	Trevor	Ben Roethlisberger	QB	2010	2010	$80
+13210	Daniel	Ben Tate	RB	2010	2012	$7
+5557	Daniel	Benjamin Watson	TE	2010	2010	$1
+11754	Keyon	BenJarvus Green-Ellis	RB	FA	2010	$6
+5603		Bernard Berrian	WR	FA	2010
+9640	Trevor	Bernard Pollard	DB	2010	2011	$7
+12724	Patrick	Bernard Scott	RB	2010	2012	$15
+13776	Daniel	Blair White	WR	FA	2010	$1
+8593	Jake/Luke	Bo Scaife	TE	2010	2010	$1
+937		Bobby Engram	WR	FA	2010
+4597		Bobby Wade	WR	FA	2010
+9689	John	Brad Smith	WR	FA	2010	$1
+4561		Bradie James	LB	FA	2010
+10466		Brady Quinn	QB	FA	2010
+12567	John	Brandon Gibson	WR	FA	2010	$1
+13239	Jake/Luke	Brandon Graham	DL	2010	2012	$1
+10507	Schexes	Brandon Jackson	RB	FA	2010	$31
+8524	John	Brandon Jacobs	RB	2010	2011	$40
+12576	Schexes	Brandon LaFell	WR	2010	2012	$4
+4582	Koci	Brandon Lloyd	WR	FA	2010	$29
+9705	John	Brandon Marshall	WR	2008	2010	$23
+12549	Patrick	Brandon Pettigrew	TE	2009	2011	$22
+13298	Jake/Luke	Brandon Spikes	LB	2010	2012	$1
+12597	Syed	Brandon Tate	WR	FA	2010	$29
+8418	Jake/Luke	Braylon Edwards	WR	2010	2010	$5
+10605	Syed	Brent Celek	TE	2010	2012	$27
+112	James	Brett Favre	QB	2010	2010	$50
+12453	John	Brian Cushing	LB	2009	2011	$7
+978		Brian Dawkins	DB	FA	2010
+12568	Jake/Luke	Brian Hartline	WR	2010	2012	$1
+12439	John	Brian Orakpo	LB	2009	2011	$13
+2140	Patrick	Brian Urlacher	LB	2010	2010	$4
+3619	Trevor	Brian Westbrook	RB	2010	2010	$1
+11909		Brian Witherspoon	DB	FA	2010
+4475		Bryant Johnson	WR	FA	2010
+4465		Byron Leftwich	QB	FA	2010
+13203	Jake/Luke	C.J. Spiller	RB	2010	2012	$24
+8420	James	Cadillac Williams	RB	2009	2010	$8
+10447	Schexes	Calvin Johnson	WR	2008	2010	$32
+4476	Syed	Calvin Pace	DL	2010	2012	$1
+12417	Daniel	Cameron Wake	LB	FA	2010	$1
+12703	Trevor	Captain Munnerlyn	DB	2010	2010	$5
+4459	Jake/Luke	Carson Palmer	QB	2009	2011	$79
+8419	Patrick	Cedric Benson	RB	2010	2011	$116
+9634		Cedric Griffin	DB	FA	2010
+9603	Keyon	Chad Greenway	LB	FA	2010	$2
+11291	Daniel	Chad Henne	QB	2010	2012	$15
+2584	Keyon	Chad Ochocinco	WR	2010	2010	$65
+2149		Chad Pennington	QB	FA	2010
+10678		Chansi Stuckey	WR	FA	2010
+10527	Koci	Charles Johnson	DL	FA	2010	$1
+13450		Charles Scott	RB	FA	2010
+4493	Daniel	Charles Tillman	DB	FA	2010	$1
+1442	Jake/Luke	Charles Woodson	DB	2010	2011	$3
+9667		Charlie Whitehurst	QB	FA	2010
+11460		Chaz Schilens	WR	FA	2010
+3784	Daniel	Chester Taylor	RB	2010	2010	$12
+9285		Chris Carr	DB	FA	2010
+2600	James	Chris Chambers	WR	2010	2011	$8
+4864		Chris Clemons	DL	FA	2010
+5606	Schexes	Chris Cooley	TE	2008	2010	$24
+5553		Chris Gamble	DB	FA	2010
+8497		Chris Henry (CIN)	WR	FA	2010
+3622		Chris Hope	DB	FA	2010
+13587	Syed	Chris Ivory	RB	FA	2010	$11
+13166		Chris Jennings	RB	FA	2010
+11258	Keyon	Chris Johnson	RB	2008	2010	$7
+12517		Chris Ogbonnaya	RB	FA	2010
+5551		Chris Perry	RB	FA	2010
+12438	Syed	Clay Matthews	LB	FA	2010	$3
+11816		Clifton Smith	RB	FA	2010
+10579		Clint Session	LB	FA	2010
+3579	Jake/Luke	Clinton Portis	RB	2010	2010	$50
+13199	James	Colt McCoy	QB	2010	2012	$12
+12449		Connor Barwin	DL	FA	2010
+2670		Correll Buckhalter	RB	FA	2010
+9801		Cortland Finnegan	DB	FA	2010
+11271	Schexes	Curtis Lofton	LB	2010	2011	$4
+5542	Trevor	D.J. Williams	LB	2010	2012	$11
+9620		D'Qwell Jackson	LB	FA	2010
+4482	Trevor	Dallas Clark	TE	2010	2010	$68
+13219		Damian Williams	WR	FA	2010
+11688	Schexes	Dan Carpenter	K	FA	2010	$1
+11308		Dan Connor	LB	FA	2010
+9628	Patrick	Danieal Manning	DB	2010	2012	$2
+11674	Schexes	Danny Amendola	WR	2010	2010	$36
+10768		Danny Ware	RB	FA	2010
+11788	John	Danny Woodhead	RB/WR	FA	2010	$4
+5589		Darnell Dockett	DL	2010	2010
+13465		Darrell Stuckey	DB	FA	2010
+10458		Darrelle Revis	DB	FA	2010
+2164		Darren Howard	DL	FA	2010
+11238	John	Darren McFadden	RB	2010	2012	$14
+1203		Darren Sharper	DB	FA	2010
+8544	Koci	Darren Sproles	RB	2009	2011	$118
+12570	James	Darrius Heyward-Bey	WR	2009	2011	$14
+13305		Daryl Washington	LB	FA	2010
+1762		Daunte Culpepper	QB	FA	2010
+5658		Dave Ball	DL	FA	2010
+1716	Schexes	David Akers	K	FA	2010	$5
+12459		David Buehler	K	FA	2010
+10600		David Clowney	WR	FA	2010
+3636	Syed	David Garrard	QB	2008	2010	$16
+10491	Trevor	David Harris	LB	2010	2010	$29
+11544		David Hawthorne	LB	FA	2010
+13442	Syed	David Reed	WR	FA	2010	$1
+11678	John	Davone Bess	WR	FA	2010	$13
+9732	Daniel	Dawan Landry	DB	FA	2010	$1
+5533	Keyon	DeAngelo Hall	DB	FA	2010	$3
+9613	Keyon	DeAngelo Williams	RB	2009	2011	$145
+3593	Keyon	Deion Branch	WR	FA	2010	$27
+13398		Deji Karim	RB	FA	2010
+8426	James	DeMarcus Ware	LB	2008	2010	$37
+13216	Keyon	Demaryius Thomas	WR	2010	2012	$8
+9619	Jake/Luke	DeMeco Ryans	LB	2010	2010	$15
+9697		Demetrius Williams	WR	FA	2010
+11390		Dennis Dixon	QB	FA	2010
+2163		Dennis Northcutt	WR	FA	2010
+13231	John	Dennis Pitta	TE	2010	2012	$1
+12557		Deon Butler	WR	FA	2010
+8627	Daniel	Derek Anderson	QB	2010	2010	$1
+10692		Derek Stanley	WR	FA	2010
+8430	Koci	Derrick Johnson	LB	FA	2010	$1
+1263		Derrick Mason	WR	FA	2010
+13248		Derrick Morgan	DL	FA	2010
+5760		Derrick Ward	RB	FA	2010
+12602		Derrick Williams	WR	FA	2010
+11283	Schexes	DeSean Jackson	WR	2008	2010	$16
+5575		Devery Henderson	WR	FA	2010
+9819	James	Devin Aromashodu	WR	2010	2011	$30
+9643	Keyon	Devin Hester	WR	2009	2011	$40
+11268		Devin Thomas	WR	FA	2010
+13207	Syed	Dexter McCluster	WR	2010	2012	$8
+13215	James	Dez Bryant	WR	2010	2012	$15
+9716		Domenik Hixon	WR	FA	2010
+13365		Dominique Franks	DB	FA	2010
+11250		Dominique Rodgers-Cromartie	DB	FA	2010
+12489	Patrick	Donald Brown	RB	2009	2011	$28
+1966	Jake/Luke	Donald Driver	WR	2008	2010	$8
+11267	Koci	Donnie Avery	WR	FA	2010	$1
+1753	Schexes	Donovan McNabb	QB	2009	2010	$33
+13353		Dorin Dickerson	RB	FA
+2898		Drew Bennett	WR	FA	2010
+2580	Syed	Drew Brees	QB	2009	2010	$171
+11264		Dustin Keller	TE	FA	2010
+10467	James	Dwayne Bowe	WR	2009	2011	$90
+3539	Daniel	Dwight Freeney	DL	FA	2010	$1
+4498		E.J. Henderson	LB	FA	2010
+11304		Earl Bennett	WR	FA	2010
+13251	Syed	Earl Thomas	DB	2010	2012	$1
+11315	Schexes	Early Doucet	WR	2010	2011	$17
+4950		Earnest Graham	RB	FA	2010
+13272	Jake/Luke	Ed Dickson	TE	2010	2010	$1
+11276	Patrick	Eddie Royal	WR	2008	2010	$13
+1755		Edgerrin James	RB	FA	2010
+5526	Syed	Eli Manning	QB	2008	2010	$24
+8498		Ellis Hobbs	DB	FA	2010
+9712		Elvis Dumervil	DL	FA	2010
+13295	Koci	Emmanuel Sanders	WR	FA	2010	$11
+13252	Patrick	Eric Berry	DB	2010	2012	$1
+13271	James	Eric Decker	WR	2010	2012	$2
+10481		Eric Weddle	DB	FA	2010
+10770		Eric Weems	WR	FA	2010
+5645		Ernest Wilford	WR	FA	2010
+11870		Evan Moore	TE	FA	2010
+11256	James	Felix Jones	RB	2010	2011	$59
+8479	Schexes	Frank Gore	RB	2008	2010	$184
+11282	Schexes	Fred Davis	TE	FA	2010	$1
+10195	Schexes	Fred Jackson	RB	2009	2011	$1
+1430	James	Fred Taylor	RB	2010	2010	$8
+10449		Gaines Adams	DL	FA	2010
+11543	Koci	Garrett Hartley	K	FA	2010	$1
+10537		Garrett Wolfe	RB	FA	2010
+9267		George Wilson	DB	FA	2010
+13240		Gerald McCoy	DL	FA	2010
+5661		Gibril Wilson	DB	FA	2010
+12491		Glen Coffee	RB	FA	2010
+13217	Trevor	Golden Tate	WR	2010	2012	$15
+12460	Trevor	Graham Gano	K	FA	2010	$1
+9495		Greg Camarillo	WR	FA	2010
+1445		Greg Ellis	DL	FA	2010
+9638	Keyon	Greg Jennings	WR	2008	2010	$36
+10475	Jake/Luke	Greg Olsen	TE	2009	2011	$35
+12586	Syed	Hakeem Nicks	WR	2009	2011	$28
+9598		Haloti Ngata	DL	FA	2010
+11318	Syed	Harry Douglas	WR	FA	2010	$1
+8444	Jake/Luke	Heath Miller	TE	2010	2010	$2
+1494	Schexes	Hines Ward	WR	2010	2010	$25
+10180		Hiram Eugene	DB	FA	2010
+8458		J.J. Arrington	RB	FA	2010
+3561	Keyon	Jabar Gaffney	WR	FA	2010	$10
+11373	Koci	Jacob Tamme	TE	FA	2010	$1
+13363	James	Jacoby Ford	WR	2010	2012	$1
+10517	Keyon	Jacoby Jones	WR	2010	2010	$60
+13205	Koci	Jahvid Best	RB	2010	2012	$28
+1693		Jake Delhomme	QB	FA	2010
+11307	Trevor	Jamaal Charles	RB	2008	2010	$4
+2136		Jamal Lewis	RB	FA	2010
+10446		JaMarcus Russell	QB	FA	2010
+9674	Syed	James Anderson	LB	FA	2010	$1
+12493	Koci	James Davis	RB	FA	2010	$3
+1219	James	James Farrior	LB	2009	2011	$2
+2432	Schexes	James Hall	DL	FA	2010	$1
+11275		James Hardy	WR	FA	2010
+4433	Schexes	James Harrison	LB	2009	2011	$16
+10522	Koci	James Jones	WR	2010	2012	$10
+12454	Jake/Luke	James Laurinaitis	LB	2009	2011	$9
+13214	James	James Starks	RB	2010	2010	$2
+5651	Patrick	Jared Allen	DL	2009	2011	$10
+12564		Jarett Dillard	WR	FA	2010
+9695		Jason Avant	WR	FA	2010
+5552		Jason Babin	LB	FA	2010
+8440	Patrick	Jason Campbell	QB	2010	2012	$5
+286		Jason Hanson	K	FA	2010
+13256	Jake/Luke	Jason Pierre-Paul	DL	2010	2012	$1
+10687	Keyon	Jason Snelling	RB	2010	2010	$5
+1245		Jason Taylor	DL	FA	2010
+4527	James	Jason Witten	TE	2008	2010	$134
+13748	Syed	Javarris James	RB	FA	2010	$1
+13259	Koci	Javier Arenas	DB	2010	2012	$1
+12520	Schexes	Javon Ringer	RB	FA	2010	$1
+9597	James	Jay Cutler	QB	2010	2011	$35
+2548		Jay Feely	K	FA	2010
+4399	Keyon	Jeff Reed	K	FA	2010	$1
+12579	Patrick	Jeremy Maclin	WR	2010	2010	$55
+3542	Trevor	Jeremy Shockey	TE	2010	2012	$2
+9665		Jerious Norwood	RB	FA	2010
+13228	Keyon	Jermaine Gresham	TE	2010	2012	$4
+11325	Patrick	Jermichael Finley	TE	2010	2010	$75
+11244	John	Jerod Mayo	LB	FA	2010	$1
+9731	Koci	Jerome Harrison	RB	2009	2011	$1
+5633	Keyon	Jerricho Cotchery	WR	2008	2010	$36
+13245		Jerry Hughes	DL	FA	2010
+9266	Patrick	Jim Leonhard	DB	FA	2010	$1
+13198	John	Jimmy Clausen	QB	2010	2012	$6
+13232	Jake/Luke	Jimmy Graham	TE	FA	2010	$1
+4647		Jimmy Wilkerson	DL	FA	2010
+11252	Schexes	Joe Flacco	QB	2008	2010	$5
+13249	Jake/Luke	Joe Haden	DB	2010	2012	$1
+13209	Patrick	Joe McKnight	RB	2010	2012	$7
+982		Joe Nedney	K	FA	2010
+13484	Koci	Joe Webb	QB	FA	2010	$6
+8612	John	Joel Dreessen	TE	FA	2010	$3
+751		Joey Galloway	WR	FA	2010
+1826	James	Joey Porter	LB	2010	2010	$4
+2144	Keyon	John Abraham	DL	2009	2011	$2
+11272		John Carlson	TE	FA	2010
+43		John Carney	K	FA	2010
+139		John Kasay	K	FA	2010
+9530		John Kuhn	RB	FA	2010
+13458	James	John Skelton	QB	2010	2012	$1
+10543		Johnnie Lee Higgins	WR	FA	2010
+12678	Syed	Johnny Knox	WR	2010	2011	$35
+10469	Keyon	Jon Beason	LB	2008	2010	$3
+1383		Jon Kitna	QB	FA	2010
+13206		Jonathan Dwyer	RB	FA	2010
+11247	Schexes	Jonathan Stewart	RB	2008	2010	$26
+5537		Jonathan Vilma	LB	FA	2010
+12594	Trevor	Jordan Shipley	WR	2010	2011	$8
+11270		Jordy Nelson	WR	FA	2010
+9616	Daniel	Joseph Addai	RB	2009	2011	$85
+9270	Trevor	Josh Cribbs	WR	2010	2010	$121
+12473	Daniel	Josh Freeman	QB	2010	2012	$15
+11394		Josh Johnson	QB	FA	2010
+11408	Koci	Josh Morgan	WR	FA	2010	$6
+5662		Josh Scobee	K	FA	2010
+10499		Josh Wilson	DB	FA	2010
+12571		Juaquin Iglesias	WR	FA	2010
+12649	Jake/Luke	Julian Edelman	WR	2010	2011	$7
+5568		Julius Jones	RB	FA	2010
+3530	Schexes	Julius Peppers	DL	2009	2011	$15
+4554		Justin Fargas	RB	FA	2010
+11467	Syed	Justin Forsett	RB	2010	2011	$70
+4601	Trevor	Justin Gage	WR	2010	2011	$1
+8488	Patrick	Justin Tuck	DL	2009	2011	$6
+13059		Kareem Huggins	RB	FA	2010
+5558	Keyon	Karlos Dansby	LB	2009	2011	$1
+13727	Daniel	Keiland Williams	RB	2010	2010	$1
+2161		Keith Bulluck	LB	FA	2010
+5531	Koci	Kellen Winslow	TE	FA	2010	$2
+4523		Kelley Washington	WR	FA	2010
+12556	Patrick	Kenny Britt	WR	2009	2011	$6
+734		Kerry Collins	QB	FA	2010
+8537	John	Kerry Rhodes	DB	FA	2010	$4
+10596	Syed	Kevin Boss	TE	FA	2010	$1
+4532		Kevin Curtis	WR	FA	2010
+1798		Kevin Faulk	RB	FA	2010
+10480	John	Kevin Kolb	QB	2010	2011	$39
+12588		Kevin Ogletree	WR	FA	2010
+11298	Koci	Kevin Smith	RB	FA	2010	$11
+4713	Daniel	Kevin Walter	WR	2010	2010	$15
+8492		Kirk Morrison	LB	FA	2010
+12516	Trevor	Knowshon Moreno	RB	2009	2011	$28
+13287		Koa Misi	LB	FA	2010
+1981		Kris Brown	K	FA	2010
+1682		Kurt Warner	QB	FA	2010
+8520	Keyon	Kyle Orton	QB	2010	2010	$7
+2582		Kyle Vanden Bosch	DL	FA	2010
+4519		L.J. Smith	TE	FA	2010
+2553	Trevor	LaDainian Tomlinson	RB	2010	2010	$33
+3584		Ladell Betts	RB	FA	2010
+13277		Lamarr Houston	DL	FA	2010
+10490	Jake/Luke	LaMarr Woodley	LB	2010	2011	$5
+4526	Koci	Lance Briggs	LB	2010	2012	$6
+9400	Syed	Lance Moore	WR	FA	2010	$21
+12747		Lardarius Webb	DB	FA	2010
+12730	Patrick	LaRod Stephens-Howling	RB	FA	2010	$1
+10451	Schexes	LaRon Landry	DB	FA	2010	$1
+5528	Koci	Larry Fitzgerald	WR	2008	2010	$145
+4485		Larry Johnson	RB	FA	2010
+9607		Laurence Maroney	RB	FA	2010
+10519		Laurent Robinson	WR	FA	2010
+2209		Laveranues Coles	WR	FA	2010
+10459	Schexes	Lawrence Timmons	LB	FA	2010	$1
+3413		Lawrence Tynes	K	FA	2010
+10580		Le'Ron McClain	RB	FA	2010
+5538	Jake/Luke	Lee Evans	WR	2010	2010	$6
+13213	Patrick	LeGarrette Blount	RB	2010	2012	$1
+10615		Legedu Naanee	WR	FA	2010
+9631		LenDale White	RB	FA	2010
+11245	James	Leodis McKelvin	DB	FA	2010	$1
+9703	Trevor	Leon Washington	RB	2010	2010	$25
+12514	Jake/Luke	LeSean McCoy	RB	2010	2011	$95
+11287		Limas Sweed	WR	FA	2010
+8459		Lofa Tatupu	LB	FA	2010
+1680	John	London Fletcher	LB	FA	2010	$3
+12528	James	Louis Delmas	DB	FA	2010	$1
+12585		Louis Murphy	WR	FA	2010
+12426		Malcolm Jenkins	DB	FA	2010
+11285		Malcolm Kelly	WR	FA	2010
+6016	Koci	Malcom Floyd	WR	2010	2010	$60
+2299		Marc Bulger	QB	FA	2010
+13409	Syed	Marc Mariani	WR	FA	2010	$1
+9614	John	Marcedes Lewis	TE	FA	2010	$1
+4469	Trevor	Marcus Trufant	DB	2008	2010	$2
+13221	Jake/Luke	Mardy Gilyard	WR	2010	2012	$2
+11329	Syed	Mario Manningham	WR	2010	2012	$1
+9587	Trevor	Mario Williams	DL	2009	2011	$19
+8523	Patrick	Marion Barber	RB	2009	2011	$125
+8437	Daniel	Mark Clayton	WR	FA	2010	$1
+12482	Trevor	Mark Sanchez	QB	2010	2010	$50
+9838	Syed	Marques Colston	WR	2009	2011	$120
+10456	Patrick	Marshawn Lynch	RB	2010	2012	$12
+11295	James	Martellus Bennett	TE	2009	2011	$7
+10636	Trevor	Mason Crosby	K	2010	2012	$2
+9618		Mathias Kiwanuka	DL	FA	2010
+4333	Keyon	Matt Bryant	K	FA	2010	$1
+8644	Patrick	Matt Cassel	QB	2010	2012	$15
+11278	Daniel	Matt Forte	RB	2010	2011	$120
+1575	Keyon	Matt Hasselbeck	QB	2010	2010	$12
+9596		Matt Leinart	QB	FA	2010
+11128		Matt Moore	QB	FA	2010
+11122	James	Matt Prater	K	FA	2010	$1
+11237	Trevor	Matt Ryan	QB	2008	2010	$10
+5615	Daniel	Matt Schaub	QB	2008	2010	$37
+11387		Matt Slater	WR	FA	2010
+12483	Schexes	Matthew Stafford	QB	2009	2011	$25
+9646	Schexes	Maurice Jones-Drew	RB	2008	2010	$142
+3582	Koci	Maurice Morris	RB	FA	2010	$15
+5644		Mewelde Moore	RB	FA	2010
+10544	Jake/Luke	Michael Bush	RB	2010	2011	$22
+12563	Patrick	Michael Crabtree	WR	2009	2011	$28
+10463	John	Michael Griffin	DB	FA	2010	$1
+13387	John	Michael Hoomanawanui	TE	2010	2012	$1
+5679	Keyon	Michael Turner	RB	2010	2010	$175
+2549	Koci	Michael Vick	QB	FA	2010	$6
+10327		Micheal Spurlock	WR	FA	2010
+9864		Mike Bell	RB	FA	2010
+12499	Patrick	Mike Goodson	RB	FA	2010	$5
+11436	Daniel	Mike Hart	RB	FA	2010	$1
+8461		Mike Nugent	K	FA	2010
+1788		Mike Peterson	LB	FA	2010
+10523	Syed	Mike Sims-Walker	WR	FA	2010	$5
+12598	Syed	Mike Thomas	WR	2010	2011	$14
+11658	Jake/Luke	Mike Tolbert	RB	FA	2010	$3
+12601	Jake/Luke	Mike Wallace	WR	2010	2011	$40
+8425	Koci	Mike Williams (SEA)	WR	2010	2012	$1
+13489	Koci	Mike Williams (TB)	WR	2010	2012	$8
+10147	James	Miles Austin	WR	2010	2012	$125
+12581	John	Mohamed Massaquoi	WR	2009	2011	$14
+13208	Daniel	Montario Hardesty	RB	2010	2011	$28
+13264		Morgan Burnett	DB	FA	2010
+936		Muhsin Muhammad	WR	FA	2010
+13257		Nate Allen	DB	FA	2010
+4529	Koci	Nate Burleson	WR	2010	2010	$45
+2569	Trevor	Nate Clements	DB	2008	2010	$4
+5590		Nate Kaeding	K	FA	2010
+9307	Patrick	Nate Washington	WR	FA	2010	$1
+13234	John	Ndamukong Suh	DL	FA	2010	$2
+2300	Daniel	Neil Rackers	K	FA	2010	$1
+8465		Nick Collins	DB	FA	2010
+10621	John	Nick Folk	K	FA	2010	$3
+1170		Olindo Mare	K	FA	2010
+8480	Keyon	Oshiomogho Atogwe	DB	2009	2011	$1
+4514	Trevor	Osi Umenyiora	DL	2009	2011	$4
+9684	Daniel	Owen Daniels	TE	2008	2010	$4
+4243	John	Paris Lenon	LB	FA	2010	$1
+12527		Pat Chung	DB	FA	2010
+5741	Daniel	Patrick Crayton	WR	2010	2010	$10
+1782		Patrick Kerney	DL	FA	2010
+12599		Patrick Turner	WR	FA	2010
+10455	Koci	Patrick Willis	LB	2010	2012	$37
+10478	Schexes	Paul Posluszny	LB	2010	2012	$1
+12569	Patrick	Percy Harvin	WR	2009	2011	$42
+13344		Perrish Cox	DB	FA	2010
+11461	Jake/Luke	Peyton Hillis	RB	FA	2010	$8
+1428	John	Peyton Manning	QB	2010	2010	$151
+5529	Jake/Luke	Philip Rivers	QB	2009	2011	$85
+11439	Keyon	Pierre Garcon	WR	2010	2011	$52
+10713	Koci	Pierre Thomas	RB	2008	2010	$2
+2139	Daniel	Plaxico Burress	WR	2010	2012	$1
+9832		Quinton Ganther	RB	FA	2010
+12555		Ramses Barden	WR	FA	2010
+3642	Schexes	Randy McMichael	TE	FA	2010	$1
+1433	Trevor	Randy Moss	WR	2010	2010	$155
+12503	Schexes	Rashad Jennings	RB	FA	2010	$1
+11257	Syed	Rashard Mendenhall	RB	2008	2010	$58
+9268		Rashied Davis	WR	FA	2010
+9713		Ray Edwards	DL	FA	2010
+964	Koci	Ray Lewis	LB	2010	2012	$1
+11289	James	Ray Rice	RB	2008	2010	$2
+9588	Koci	Reggie Bush	RB	FA	2010	$1
+2578	Jake/Luke	Reggie Wayne	WR	2010	2010	$169
+2489		Rian Lindell	K	FA	2010
+2554		Richard Seymour	DL	FA	2010
+1756	James	Ricky Williams	RB	2009	2010	$14
+13225	Syed	Riley Cooper	WR	FA	2010	$1
+9235	Patrick	Rob Bironas	K	2010	2010	$1
+13229	Trevor	Rob Gronkowski	TE	2010	2012	$1
+9721		Rob Ninkovich	DL	FA	2010
+9354		Robbie Gould	K	FA	2010
+4596	Keyon	Robert Mathis	DL	2009	2011	$1
+10471	Keyon	Robert Meachem	WR	FA	2010	$18
+3761		Rock Cartwright	RB	FA	2010
+8442	Daniel	Roddy White	WR	2010	2011	$110
+13255		Rolando McClain	LB	FA	2010
+9629		Roman Harper	DB	FA	2010
+3734		Ronald Curry	WR	FA	2010
+8417	Daniel	Ronnie Brown	RB	2010	2011	$65
+8469		Roscoe Parrish	WR	FA	2010
+5532	Trevor	Roy E. Williams	WR	2010	2011	$15
+12698		Roy Miller	DL	FA	2010
+3589		Ryan Denney	DL	FA	2010
+8664	Keyon	Ryan Fitzpatrick	QB	FA	2010	$10
+9475	Patrick	Ryan Grant	RB	FA	2010	$1
+1328		Ryan Longwell	K	FA	2010
+13204	Syed	Ryan Mathews	RB	2010	2012	$28
+8491		Ryan Moats	RB	FA	2010
+12702		Ryan Mouton	DB	FA	2010
+12731		Ryan Succop	K	FA	2010
+11362	Patrick	Ryan Torain	RB	FA	2010	$50
+2658		Sage Rosenfels	QB	FA	2010
+4548		Sam Aiken	WR	FA	2010
+13197	John	Sam Bradford	QB	2010	2012	$6
+12595		Sammie Stroughter	WR	FA	2010
+2287		Sammy Morris	RB	FA	2010
+2564	Koci	Santana Moss	WR	2010	2012	$35
+9611	Daniel	Santonio Holmes	WR	2010	2010	$55
+13418	Trevor	Scotty McGee	DB	2010	2010	$1
+13284		Sean Lee	LB	FA	2010
+5669		Sean Ryan	TE	FA	2010
+13243	Trevor	Sean Weatherspoon	LB	2010	2012	$1
+2148	Jake/Luke	Sebastian Janikowski	K	2010	2010	$2
+4568		Seneca Wallace	QB	FA	2010
+4260	Schexes	Shaun Hill	QB	FA	2010	$1
+5623	James	Shaun Phillips	LB	FA	2010	$1
+8427		Shawne Merriman	LB	FA	2010
+3504		Shayne Graham	K	FA	2010
+12500	Syed	Shonn Greene	RB	2009	2011	$28
+10488	Daniel	Sidney Rice	WR	2009	2011	$4
+10387		Spencer Havner	TE	FA	2010
+6132	James	Spencer Johnson	DL	FA	2010	$1
+13594	John	Stafon Johnson	RB	2010	2012	$4
+12021	Syed	Stefan Logan	RB	2010	2010	$10
+4877		Stephen Cooper	LB	FA	2010
+9704		Stephen Gostkowski	K	FA	2010
+9702		Stephen Tulloch	LB	FA	2010
+10585	John	Steve Breaston	WR	2010	2010	$30
+11458	Syed	Steve Johnson	WR	FA	2010	$2
+11323	Trevor	Steve Slaton	RB	2008	2010	$7
+2622	Trevor	Steve Smith (CAR)	WR	2010	2010	$105
+10495	Trevor	Steve Smith (NYG)	WR	2010	2011	$45
+11923		Steven Hauschka	K	FA	2010
+5549	James	Steven Jackson	RB	2010	2010	$200
+10531	Patrick	Stewart Bradley	LB	2010	2012	$2
+2753		T.J. Houshmandzadeh	WR	FA	2010
+13304	Jake/Luke	T.J. Ward	DB	2010	2012	$1
+9606	Jake/Luke	Tamba Hali	DL	FA	2010	$2
+11359	Syed	Tashard Choice	RB	FA	2010	$60
+13286	John	Taylor Mays	DB	2010	2012	$1
+13223	James	Taylor Price	WR	2010	2012	$1
+10453		Ted Ginn Jr.	WR	FA	2010
+4463		Terence Newman	DB	FA	2010
+1056	James	Terrell Owens	WR	2010	2010	$14
+4468		Terrell Suggs	LB	FA	2010
+11297		Terrell Thomas	DB	FA	2010
+4569		Terrence McGee	DB	FA	2010
+8429		Thomas Davis	LB	FA	2010
+11332		Thomas DeCoud	DB	FA	2010
+2138	Schexes	Thomas Jones	RB	2010	2010	$10
+11383	Daniel	Tim Hightower	RB	2008	2010	$2
+13200	John	Tim Tebow	QB	2010	2012	$12
+12600		Tiquan Underwood	WR	FA	2010
+13211	James	Toby Gerhart	RB	2010	2012	$14
+2579	James	Todd Heap	TE	FA	2010	$2
+2330	Patrick	Tom Brady	QB	2009	2011	$165
+1231	Schexes	Tony Gonzalez	TE	2010	2010	$50
+13289	Daniel	Tony Moeaki	TE	2010	2012	$1
+5209	Keyon	Tony Romo	QB	2009	2011	$100
+9647	John	Tony Scheffler	TE	2008	2010	$28
+1757		Torry Holt	WR	FA	2010
+5432	Schexes	Tramon Williams	DB	FA	2010	$1
+8560	Syed	Trent Cole	DL	2009	2011	$4
+10536		Trent Edwards	QB	FA	2010
+13386		Trindon Holliday	WR	FA	2010
+4474		Troy Polamalu	DB	FA	2010
+10617	Daniel	Troy Smith	QB	FA	2010	$27
+12435		Tyson Jackson	DL	FA	2010
+11334		Tyvon Branch	DB	FA	2010
+9592	Daniel	Vernon Davis	TE	2010	2010	$51
+9589	Keyon	Vince Young	QB	2009	2011	$1
+8475	Keyon	Vincent Jackson	WR	2008	2010	$4
+4549	Keyon	Visanthe Shiancoe	TE	2009	2011	$9
+12424		Vontae Davis	DB	FA	2010
+5941	Patrick	Wes Welker	WR	2009	2011	$80
+9701		Will Blackmon	DB	FA	2010
+5543		Will Smith	DL	FA	2010
+5880		Willie Parker	RB	FA	2010
+4481	John	Willis McGahee	RB	2010	2012	$1
+4671	Koci	Yeremiah Bell	DB	2010	2012	$15
+10482	Syed	Zach Miller (OAK)	TE	2010	2012	$7
+
+=== 2010 data ===
+ID	Owner	Name	Position	Start	End	Salary
+-1	Trevor	A. J. Green	WR	2011		$26
+-1	Trevor	Aaron Williams 	DB	2011		$1
+-1	Keyon	Adrian Clayborn 	DL	2011		$1
+-1	Syed	Akeem Ayers 	LB	2011		$1
+-1	Jake/Luke	Alex Green 	RB	2011		$2
+-1	Koci	Alex Henery	K	2011		$1
+-1	Schexes	Andy Dalton 	QB	2011		$4
+-1	Keyon	Antoine Cason	DB	2011		$1
+-1	Daniel	Austin Pettis 	WR	2011		$1
+-1	Keyon	Blaine Gabbert 	QB	2011		$7
+-1	John	Bruce Carter 	LB	2011		$1
+-1	Trevor	Cam Newton 	QB	2011		$13
+-1	Patrick	Casey Matthews 	LB	2011		$1
+-1	Syed	Cecil Shorts 	WR	2011		$1
+-1	James	Christian Ponder 	QB	2011		$4
+-1	Jake/Luke	Clyde Gates	WR	2011		$1
+-1	Daniel	Colin Kaepernick 	QB	2011		$4
+-1	James	Colin McCarthy 	LB	2011		$1
+-1	Schexes	Da'Quan Bowers 	DL	2011		$1
+-1	Jake/Luke	Dane Sanzenbacher	WR	2011		$1
+-1	Patrick	Daniel Thomas 	RB	2011		$25
+-1	Keyon	Delone Carter 	RB	2011		$13
+-1	James	DeMarco Murray 	RB	2011		$7
+-1	Koci	Denarius Moore 	WR	2011		$13
+-1	John	Desmond Bishop	LB	2011		$1
+-1	John	Donte Whitner	DB	2011		$1
+-1	John	Dwayne Harris 	WR	2011		$13
+-1	Syed	Greg Little 	WR	2011		$26
+-1	John	J. J. Watt 	DL	2011		$1
+-1	Trevor	Jacquizz Rodgers 	RB	2011		$2
+-1	Jake/Luke	Jaiquawn Jarrett 	DB	2011		$1
+-1	Daniel	Jake Locker 	QB	2011		$2
+-1	John	Jared Cook	TE	2011		$3
+-1	Patrick	Jeremy Kerley 	WR	2011		$1
+-1	Syed	Jerrel Jernigan 	WR	2011		$1
+-1	Keyon	Jimmy Smith 	DB	2011		$1
+-1	Daniel	Jonathan Baldwin 	WR	2011		$13
+-1	Daniel	Jordan Cameron 	TE	2011		$1
+-1	James	Julio Jones 	WR	2011		$26
+-1	Koci	Kendall Hunter 	RB	2011		$4
+-1	Trevor	Kyle Rudolph 	TE	2011		$1
+-1	Daniel	Lance Kendricks 	TE	2011		$1
+-1	James	Leonard Hankerson 	WR	2011		$13
+-1	Jake/Luke	Luke Stocker 	TE	2011		$1
+-1	John	Marcell Dareus 	DL	2011		$1
+-1	Daniel	Mark Ingram 	RB	2011		$25
+-1	Daniel	Mason Foster 	LB	2011		$1
+-1	James	Mikel Leshoure 	RB	2011		$7
+-1	James	Nate Irving 	LB	2011		$1
+-1	Schexes	Patrick Peterson 	DB	2011		$1
+-1	Syed	Rahim Moore 	DB	2011		$1
+-1	Patrick	Randall Cobb 	WR	2011		$13
+-1	James	Rob Housler 	TE	2011		$1
+-1	James	Robert Quinn 	DL	2011		$1
+-1	Syed	Roy Helu 	RB	2011		$25
+-1	Syed	Ryan Kerrigan 	LB	2011		$1
+-1	Trevor	Ryan Mallett 	QB	2011		$1
+-1	Syed	Ryan Williams 	RB	2011		$25
+-1	Jake/Luke	Shane Vereen 	RB	2011		$4
+-1	Syed	Stevan Ridley 	RB	2011		$25
+-1	Schexes	Tarvaris Jackson	QB	2011		$6
+-1	Trevor	Terrelle Pryor	QB	2011		$1
+-1	John	Titus Young 	WR	2011		$13
+-1	Keyon	Torrey Smith 	WR	2011		$4
+-1	Syed	Vincent Brown 	WR	2011		$1
+-1	John	Von Miller 	LB	2011		$1
+10147	James	Miles Austin	WR	2010	2012	$125
+10180		Hiram Eugene	DB	FA	2011
+10195	Schexes	Fred Jackson	RB	2009	2011	$1
+10327		Micheal Spurlock	WR	FA	2011
+10387		Spencer Havner	TE	FA	2011
+10446		JaMarcus Russell	QB	FA	2011
+10447	Schexes	Calvin Johnson	WR	2011		$150
+10449		Gaines Adams	DL	FA	2011
+10451	Schexes	LaRon Landry	DB	2011		$1
+10452	Keyon	Adrian Peterson	RB	2011		$290
+10453		Ted Ginn Jr.	WR	FA	2011
+10455	Koci	Patrick Willis	LB	2010	2012	$37
+10456	Patrick	Marshawn Lynch	RB	2010	2012	$12
+10458		Darrelle Revis	DB	FA	2011
+10459	Schexes	Lawrence Timmons	LB	2011		$6
+10463		Michael Griffin	DB	FA	2011
+10464		Aaron Ross	DB	FA	2011
+10466		Brady Quinn	QB	FA	2011
+10467	James	Dwayne Bowe	WR	2009	2011	$90
+10469	Keyon	Jon Beason	LB	2011		$3
+10470		Anthony Spencer	LB	FA	2011
+10471	John	Robert Meachem	WR	2011		$1
+10475	Jake/Luke	Greg Olsen	TE	2009	2011	$35
+10476	Trevor	Anthony Gonzalez	WR	2011		$1
+10478	Schexes	Paul Posluszny	LB	2010	2012	$1
+10480	Trevor	Kevin Kolb	QB	2011		$26
+10481	Schexes	Eric Weddle	DB	2011		$2
+10482	Syed	Zach Miller (SEA)	TE	2010	2012	$7
+10488	Daniel	Sidney Rice	WR	2009	2011	$4
+10490	Jake/Luke	LaMarr Woodley	LB	2010	2011	$5
+10491		David Harris	LB	FA	2011
+10495		Steve Smith (PHI)	WR	FA	2011
+10499		Josh Wilson	DB	FA	2011
+10507		Brandon Jackson	RB	FA	2011
+10517	Trevor	Jacoby Jones	WR	2011		$5
+10519		Laurent Robinson	WR	FA	2011
+10522	Koci	James Jones	WR	2010	2012	$10
+10523	Koci	Mike Sims-Walker	WR	2011		$5
+10527	Koci	Charles Johnson	DL	2011		$1
+10531	Patrick	Stewart Bradley	LB	2010	2012	$2
+10536		Trent Edwards	QB	FA	2011
+10537		Garrett Wolfe	RB	FA	2011
+10543		Johnnie Lee Higgins	WR	FA	2011
+10544	Jake/Luke	Michael Bush	RB	2010	2011	$22
+1056		Terrell Owens	WR	FA	2011
+10579		Clint Session	LB	FA	2011
+10580		Le'Ron McClain	RB	FA	2011
+10585	Keyon	Steve Breaston	WR	2011		$1
+10596		Kevin Boss	TE	FA	2011
+10600		David Clowney	WR	FA	2011
+10605	Syed	Brent Celek	TE	2010	2012	$27
+10615		Legedu Naanee	WR	FA	2011
+10617		Troy Smith	QB	FA	2011
+10621		Nick Folk	K	FA	2011
+10636	Trevor	Mason Crosby	K	2010	2012	$2
+10678		Chansi Stuckey	WR	FA	2011
+10680		Alan Ball	DB	FA	2011
+10687		Jason Snelling	RB	FA	2011
+10692		Derek Stanley	WR	FA	2011
+10693	James	Ahmad Bradshaw	RB	2011		$110
+10713	Schexes	Pierre Thomas	RB	2011		$22
+10768		Danny Ware	RB	FA	2011
+10770		Eric Weems	WR	FA	2011
+10883		Akeem Jordan	LB	FA	2011
+1097		Adam Vinatieri	K	FA	2011
+11122		Matt Prater	K	FA	2011
+11128		Matt Moore	QB	FA	2011
+112		Brett Favre	QB	FA	2011
+11237	Daniel	Matt Ryan	QB	2011		$85
+11238	John	Darren McFadden	RB	2010	2012	$14
+11244	Koci	Jerod Mayo	LB	2011		$30
+11245		Leodis McKelvin	DB	FA	2011
+11247	John	Jonathan Stewart	RB	2011		$30
+11250		Dominique Rodgers-Cromartie	DB	FA	2011
+11252	Syed	Joe Flacco	QB	2011		$50
+11256	James	Felix Jones	RB	2010	2011	$59
+11257	Jake/Luke	Rashard Mendenhall	RB	2011		$170
+11258	Trevor	Chris Johnson	RB	2011		$278
+11264	Keyon	Dustin Keller	TE	2011		$2
+11267	Koci	Donnie Avery	WR	2011		$1
+11268		Devin Thomas	WR	FA	2011
+11270	Keyon	Jordy Nelson	WR	2011		$5
+11271	Schexes	Curtis Lofton	LB	2010	2011	$4
+11272		John Carlson	TE	FA	2011
+11275		James Hardy	WR	FA	2011
+11276	Trevor	Eddie Royal	WR	2011		$1
+11278	Daniel	Matt Forte	RB	2010	2011	$120
+11282		Fred Davis	TE	FA	2011
+11283	Schexes	DeSean Jackson	WR	2011		$134
+11285		Malcolm Kelly	WR	FA	2011
+11287		Limas Sweed	WR	FA	2011
+11289	John	Ray Rice	RB	2011		$250
+11291	Daniel	Chad Henne	QB	2010	2012	$15
+11295	James	Martellus Bennett	TE	2009	2011	$7
+11297	Trevor	Terrell Thomas	DB	2011		$3
+11298		Kevin Smith	RB	FA	2011
+11304		Earl Bennett	WR	FA	2011
+11307	Syed	Jamaal Charles	RB	2011		$275
+11308		Dan Connor	LB	FA	2011
+11315		Early Doucet	WR	FA	2011
+11318		Harry Douglas	WR	FA	2011
+11323		Steve Slaton	RB	FA	2011
+11325	Patrick	Jermichael Finley	TE	2011		$70
+11329	Syed	Mario Manningham	WR	2010	2012	$1
+11331		Andre Caldwell	WR	FA	2011
+11332		Thomas DeCoud	DB	FA	2011
+11334		Tyvon Branch	DB	FA	2011
+11359	James	Tashard Choice	RB	2011		$12
+11362	Schexes	Ryan Torain	RB	2011		$5
+11373		Jacob Tamme	TE	FA	2011
+11383	Schexes	Tim Hightower	RB	2011		$18
+11387		Matt Slater	WR	FA	2011
+11390		Dennis Dixon	QB	FA	2011
+11394		Josh Johnson	QB	FA	2011
+11408		Josh Morgan	WR	FA	2011
+11436		Mike Hart	RB	FA	2011
+11439	Patrick	Pierre Garcon	WR	2011		$15
+11458	Schexes	Steve Johnson	WR	2011		$55
+11460		Chaz Schilens	WR	FA	2011
+11461	Keyon	Peyton Hillis	RB	2011		$95
+11467		Justin Forsett	RB	FA	2011
+11543	Patrick	Garrett Hartley	K	2011		$2
+11544		David Hawthorne	LB	FA	2011
+11658	Daniel	Mike Tolbert	RB	2011		$20
+11674	Koci	Danny Amendola	WR	2011		$78
+11678	Trevor	Davone Bess	WR	2011		$1
+11688		Dan Carpenter	K	FA	2011
+1170		Olindo Mare	K	FA	2011
+11754	Keyon	BenJarvus Green-Ellis	RB	2011		$35
+11788	Syed	Danny Woodhead	RB	2011		$1
+11816		Clifton Smith	RB	FA	2011
+11870		Evan Moore	TE	FA	2011
+11909		Brian Witherspoon	DB	FA	2011
+11923		Steven Hauschka	K	FA	2011
+11946		Anthony Armstrong	WR	FA	2011
+12021		Stefan Logan	RB	FA	2011
+1203		Darren Sharper	DB	FA	2011
+1219	James	James Farrior	LB	2009	2011	$2
+1231	James	Tony Gonzalez	TE	2011		$25
+12417		Cameron Wake	LB	FA	2011
+12424		Vontae Davis	DB	FA	2011
+12426		Malcolm Jenkins	DB	FA	2011
+12435		Tyson Jackson	DL	FA	2011
+12438	Schexes	Clay Matthews	LB	2011		$3
+12439		Brian Orakpo	LB	FA	2011
+12447		B.J. Raji	DL	FA	2011
+12449		Connor Barwin	DL	FA	2011
+1245		Jason Taylor	DL	FA	2011
+12452		Aaron Curry	LB	FA	2011
+12453	John	Brian Cushing	LB	2009	2011	$7
+12454	Jake/Luke	James Laurinaitis	LB	2009	2011	$9
+12456		Aaron Maybin	LB	FA	2011
+12459		David Buehler	K	FA	2011
+12460		Graham Gano	K	FA	2011
+12473	Daniel	Josh Freeman	QB	2010	2012	$15
+12482	Jake/Luke	Mark Sanchez	QB	2011		$20
+12483	Schexes	Matthew Stafford	QB	2009	2011	$25
+12489	Patrick	Donald Brown	RB	2009	2011	$28
+12491		Glen Coffee	RB	FA	2011
+12493		James Davis	RB	FA	2011
+12497	Koci	Arian Foster	RB	2011		$250
+12499	John	Mike Goodson	RB	2011		$1
+12500	Syed	Shonn Greene	RB	2009	2011	$28
+12503	John	Rashad Jennings	RB	2011		$4
+12514	Jake/Luke	LeSean McCoy	RB	2010	2011	$95
+12516	Trevor	Knowshon Moreno	RB	2009	2011	$28
+12517		Chris Ogbonnaya	RB	FA	2011
+12520	Schexes	Javon Ringer	RB	2011		$1
+12525	Jake/Luke	Beanie Wells	RB	2009	2011	$55
+12527	John	Pat Chung	DB	2011		$1
+12528		Louis Delmas	DB	FA	2011
+12549	Patrick	Brandon Pettigrew	TE	2009	2011	$22
+12555		Ramses Barden	WR	FA	2011
+12556	Patrick	Kenny Britt	WR	2009	2011	$6
+12557		Deon Butler	WR	FA	2011
+12561	Schexes	Austin Collie	WR	2011		$28
+12563	Patrick	Michael Crabtree	WR	2009	2011	$28
+12564		Jarett Dillard	WR	FA	2011
+12567		Brandon Gibson	WR	FA	2011
+12568	Jake/Luke	Brian Hartline	WR	2010	2012	$1
+12569	Patrick	Percy Harvin	WR	2009	2011	$42
+12570	Patrick	Darrius Heyward-Bey	WR	2011		$1
+12571		Juaquin Iglesias	WR	FA	2011
+12576	Schexes	Brandon LaFell	WR	2010	2012	$4
+12579	Syed	Jeremy Maclin	WR	2011		$75
+12581	John	Mohamed Massaquoi	WR	2009	2011	$14
+12585		Louis Murphy	WR	FA	2011
+12586	Syed	Hakeem Nicks	WR	2009	2011	$28
+12588		Kevin Ogletree	WR	FA	2011
+12594	Syed	Jordan Shipley	WR	2010	2011	$8
+12595		Sammie Stroughter	WR	FA	2011
+12597	Trevor	Brandon Tate	WR	2011		$1
+12598	John	Mike Thomas	WR	2010	2011	$14
+12599		Patrick Turner	WR	FA	2011
+12600		Tiquan Underwood	WR	FA	2011
+12601	Jake/Luke	Mike Wallace	WR	2010	2011	$40
+12602		Derrick Williams	WR	FA	2011
+1263		Derrick Mason	WR	FA	2011
+12635		Aaron Brown	RB	FA	2011
+12649	Jake/Luke	Julian Edelman	WR	2010	2011	$7
+12678	John	Johnny Knox	WR	2010	2011	$35
+12698		Roy Miller	DL	FA	2011
+12702		Ryan Mouton	DB	FA	2011
+12703		Captain Munnerlyn	DB	FA	2011
+12724	Patrick	Bernard Scott	RB	2010	2012	$15
+12730	Syed	LaRod Stephens-Howling	RB	2011		$1
+12731		Ryan Succop	K	FA	2011
+12747		Lardarius Webb	DB	FA	2011
+13059		Kareem Huggins	RB	FA	2011
+13166		Chris Jennings	RB	FA	2011
+13197	Syed	Sam Bradford	QB	2010	2012	$6
+13198		Jimmy Clausen	QB	FA	2011
+13199	James	Colt McCoy	QB	2010	2012	$12
+13200	John	Tim Tebow	QB	2010	2012	$12
+13203	Jake/Luke	C.J. Spiller	RB	2010	2012	$24
+13204	Syed	Ryan Mathews	RB	2010	2012	$28
+13205	Koci	Jahvid Best	RB	2010	2012	$28
+13206		Jonathan Dwyer	RB	FA	2011
+13207	Syed	Dexter McCluster	WR	2010	2012	$8
+13208	Syed	Montario Hardesty	RB	2011		$1
+13209		Joe McKnight	RB	FA	2011
+13210	Daniel	Ben Tate	RB	2010	2012	$7
+13211	James	Toby Gerhart	RB	2010	2012	$14
+13212		Anthony Dixon	RB	FA	2011
+13213	Patrick	LeGarrette Blount	RB	2010	2012	$1
+13214	Keyon	James Starks	RB	2011		$5
+13215	James	Dez Bryant	WR	2010	2012	$15
+13216		Demaryius Thomas	WR	FA	2011
+13217		Golden Tate	WR	FA	2011
+13218	Daniel	Arrelious Benn	WR	2010	2012	$15
+13219		Damian Williams	WR	FA	2011
+13221	Jake/Luke	Mardy Gilyard	WR	2010	2012	$2
+13223	James	Taylor Price	WR	2010	2012	$1
+13225		Riley Cooper	WR	FA	2011
+13226	Koci	Andre Roberts	WR	2011		$1
+13228	Keyon	Jermaine Gresham	TE	2010	2012	$4
+13229	Trevor	Rob Gronkowski	TE	2010	2012	$1
+13230	Keyon	Aaron Hernandez	TE	2010	2012	$1
+13231	John	Dennis Pitta	TE	2010	2012	$1
+13232	Jake/Luke	Jimmy Graham	TE	2011		$20
+13234	Syed	Ndamukong Suh	DL	2011		$1
+13239	Jake/Luke	Brandon Graham	DL	2010	2012	$1
+13240		Gerald McCoy	DL	FA	2011
+13243	Trevor	Sean Weatherspoon	LB	2010	2012	$1
+13245		Jerry Hughes	DL	FA	2011
+13248		Derrick Morgan	DL	FA	2011
+13249	Jake/Luke	Joe Haden	DB	2010	2012	$1
+13251	Syed	Earl Thomas	DB	2010	2012	$1
+13252	Patrick	Eric Berry	DB	2010	2012	$1
+13255		Rolando McClain	LB	FA	2011
+13256	Jake/Luke	Jason Pierre-Paul	DL	2010	2012	$1
+13257		Nate Allen	DB	FA	2011
+13259	Koci	Javier Arenas	DB	2010	2012	$1
+13264		Morgan Burnett	DB	FA	2011
+13271	James	Eric Decker	WR	2010	2012	$2
+13272		Ed Dickson	TE	FA	2011
+13277		Lamarr Houston	DL	FA	2011
+1328		Ryan Longwell	K	FA	2011
+13284		Sean Lee	LB	FA	2011
+13286		Taylor Mays	DB	FA	2011
+13287		Koa Misi	LB	FA	2011
+13289	Daniel	Tony Moeaki	TE	2010	2012	$1
+13295	Patrick	Emmanuel Sanders	WR	2011		$10
+13298	Jake/Luke	Brandon Spikes	LB	2010	2012	$1
+13304	Jake/Luke	T.J. Ward	DB	2010	2012	$1
+13305		Daryl Washington	LB	FA	2011
+13344		Perrish Cox	DB	FA	2011
+13353		Dorin Dickerson	RB	FA	2011
+13358		A.J. Edds	LB	FA	2011
+13363	James	Jacoby Ford	WR	2010	2012	$1
+13365		Dominique Franks	DB	FA	2011
+13386		Trindon Holliday	WR	FA	2011
+13387	John	Michael Hoomanawanui	TE	2010	2012	$1
+13398		Deji Karim	RB	FA	2011
+13409		Marc Mariani	WR	FA	2011
+13418		Scotty McGee	DB	FA	2011
+13433		Akwasi Owusu-Ansah	DB	FA	2011
+13442		David Reed	WR	FA	2011
+13450		Charles Scott	RB	FA	2011
+13458	James	John Skelton	QB	2010	2012	$1
+13465		Darrell Stuckey	DB	FA	2011
+13484		Joe Webb	QB	FA	2011
+13489	Koci	Mike Williams (TB)	WR	2010	2012	$8
+13587		Chris Ivory	RB	FA	2011
+13594		Stafon Johnson	RB	FA	2011
+13727		Keiland Williams	RB	FA	2011
+13748		Javarris James	RB	FA	2011
+13776		Blair White	WR	FA	2011
+1383		Jon Kitna	QB	FA	2011
+139		John Kasay	K	FA	2011
+1428	Trevor	Peyton Manning	QB	2011		$140
+1430		Fred Taylor	RB	FA	2011
+1432		Ahman Green	RB	FA	2011
+1433	James	Randy Moss	WR	2011		$5
+1442	Jake/Luke	Charles Woodson	DB	2010	2011	$3
+1445		Greg Ellis	DL	FA	2011
+1494	Patrick	Hines Ward	WR	2011		$15
+1575	Koci	Matt Hasselbeck	QB	2011		$2
+1638		Allen Rossum	DB	FA	2011
+1680		London Fletcher	LB	FA	2011
+1682		Kurt Warner	QB	FA	2011
+1693		Jake Delhomme	QB	FA	2011
+1716	Syed	David Akers	K	2011		$1
+1753	Patrick	Donovan McNabb	QB	2011		$5
+1755		Edgerrin James	RB	FA	2011
+1756	Keyon	Ricky Williams	RB	2011		$1
+1757		Torry Holt	WR	FA	2011
+1762		Daunte Culpepper	QB	FA	2011
+1775	Keyon	Antoine Winfield	DB	2009	2011	$1
+1782		Patrick Kerney	DL	FA	2011
+1788		Mike Peterson	LB	FA	2011
+1798		Kevin Faulk	RB	FA	2011
+1826		Joey Porter	LB	FA	2011
+1966	John	Donald Driver	WR	2011		$1
+1981		Kris Brown	K	FA	2011
+2136		Jamal Lewis	RB	FA	2011
+2138	Syed	Thomas Jones	RB	2011		$1
+2139	Daniel	Plaxico Burress	WR	2010	2012	$1
+2140	Patrick	Brian Urlacher	LB	2011		$3
+2144	Keyon	John Abraham	DL	2009	2011	$2
+2148	Jake/Luke	Sebastian Janikowski	K	2011		$1
+2149		Chad Pennington	QB	FA	2011
+2161		Keith Bulluck	LB	FA	2011
+2163		Dennis Northcutt	WR	FA	2011
+2164		Darren Howard	DL	FA	2011
+2209		Laveranues Coles	WR	FA	2011
+2287		Sammy Morris	RB	FA	2011
+2299		Marc Bulger	QB	FA	2011
+2300	Daniel	Neil Rackers	K	2011		$1
+2330	Patrick	Tom Brady	QB	2009	2011	$165
+2432		James Hall	DL	FA	2011
+2489		Rian Lindell	K	FA	2011
+2548		Jay Feely	K	FA	2011
+2549	John	Michael Vick	QB	2011		$185
+2552		Justin Smith	DL	FA	2011
+2553	James	LaDainian Tomlinson	RB	2011		$22
+2554		Richard Seymour	DL	FA	2011
+2555	Trevor	Andre Carter	DL	2010	2011	$16
+2564	Koci	Santana Moss	WR	2010	2012	$35
+2569		Nate Clements	DB	FA	2011
+2578	John	Reggie Wayne	WR	2011		$101
+2579	Koci	Todd Heap	TE	2011		$1
+2580	James	Drew Brees	QB	2011		$145
+2582		Kyle Vanden Bosch	DL	FA	2011
+2584	Keyon	Chad Ochocinco	WR	2011		$30
+2594		Aaron Schobel	DL	FA	2011
+2600		Chris Chambers	WR	FA	2011
+2622	Trevor	Steve Smith (CAR)	WR	2011		$35
+2658		Sage Rosenfels	QB	FA	2011
+2670		Correll Buckhalter	RB	FA	2011
+2753		T.J. Houshmandzadeh	WR	FA	2011
+286		Jason Hanson	K	FA	2011
+2868		Adewale Ogunleye	DL	FA	2011
+2898		Drew Bennett	WR	FA	2011
+3413		Lawrence Tynes	K	FA	2011
+3504		Shayne Graham	K	FA	2011
+3530	Schexes	Julius Peppers	DL	2009	2011	$15
+3539		Dwight Freeney	DL	FA	2011
+3542		Jeremy Shockey	TE	FA	2011
+3543		Albert Haynesworth	DL	FA	2011
+3561		Jabar Gaffney	WR	FA	2011
+3579		Clinton Portis	RB	FA	2011
+3582		Maurice Morris	RB	FA	2011
+3584		Ladell Betts	RB	FA	2011
+3589		Ryan Denney	DL	FA	2011
+3591		Antonio Bryant	WR	FA	2011
+3593	Keyon	Deion Branch	WR	2011		$1
+3619		Brian Westbrook	RB	FA	2011
+3622	John	Chris Hope	DB	2011		$1
+3636	James	David Garrard	QB	2011		$1
+3642		Randy McMichael	TE	FA	2011
+3684		Aaron Kampman	DL	FA	2011
+3734		Ronald Curry	WR	FA	2011
+3761		Rock Cartwright	RB	FA	2011
+3784		Chester Taylor	RB	FA	2011
+4243		Paris Lenon	LB	FA	2011
+4260	Schexes	Shaun Hill	QB	2011		$1
+43		John Carney	K	FA	2011
+4333		Matt Bryant	K	FA	2011
+4399		Jeff Reed	K	FA	2011
+4433	Schexes	James Harrison	LB	2009	2011	$16
+4459	Trevor	Carson Palmer	QB	2011		$1
+4461	Jake/Luke	Andre Johnson	WR	2011		$250
+4463		Terence Newman	DB	FA	2011
+4465		Byron Leftwich	QB	FA	2011
+4468		Terrell Suggs	LB	FA	2011
+4469		Marcus Trufant	DB	FA	2011
+4474		Troy Polamalu	DB	FA	2011
+4475		Bryant Johnson	WR	FA	2011
+4476	Syed	Calvin Pace	DL	2010	2012	$1
+4481	John	Willis McGahee	RB	2010	2012	$1
+4482	John	Dallas Clark	TE	2011		$75
+4485		Larry Johnson	RB	FA	2011
+4493		Charles Tillman	DB	FA	2011
+4498		E.J. Henderson	LB	FA	2011
+4512	James	Anquan Boldin	WR	2011		$45
+4514	Trevor	Osi Umenyiora	DL	2009	2011	$4
+4519		L.J. Smith	TE	FA	2011
+4523		Kelley Washington	WR	FA	2011
+4526	Koci	Lance Briggs	LB	2010	2012	$6
+4527	James	Jason Witten	TE	2011		$80
+4529	James	Nate Burleson	WR	2011		$8
+4532		Kevin Curtis	WR	FA	2011
+4548		Sam Aiken	WR	FA	2011
+4549		Visanthe Shiancoe	TE	FA	2011
+4554		Justin Fargas	RB	FA	2011
+4561		Bradie James	LB	FA	2011
+4568		Seneca Wallace	QB	FA	2011
+4569		Terrence McGee	DB	FA	2011
+4582	Koci	Brandon Lloyd	WR	2011		$65
+4596	Keyon	Robert Mathis	DL	2009	2011	$1
+4597		Bobby Wade	WR	FA	2011
+4601		Justin Gage	WR	FA	2011
+4647		Jimmy Wilkerson	DL	FA	2011
+4671	Koci	Yeremiah Bell	DB	2010	2012	$15
+4713		Kevin Walter	WR	FA	2011
+4864		Chris Clemons	DL	FA	2011
+4877		Stephen Cooper	LB	FA	2011
+4950		Earnest Graham	RB	FA	2011
+5209	Keyon	Tony Romo	QB	2009	2011	$100
+5362	Schexes	Antonio Gates	TE	2010	2011	$89
+5432	Schexes	Tramon Williams	DB	2011		$1
+5526	Syed	Eli Manning	QB	2011		$28
+5528	Syed	Larry Fitzgerald	WR	2011		$135
+5529	Jake/Luke	Philip Rivers	QB	2009	2011	$85
+5531	Koci	Kellen Winslow	TE	2011		$11
+5532	Schexes	Roy Williams	WR	2011		$32
+5533		DeAngelo Hall	DB	FA	2011
+5536	Schexes	Ben Roethlisberger	QB	2011		$90
+5537		Jonathan Vilma	LB	FA	2011
+5538	Keyon	Lee Evans	WR	2011		$5
+5542	Trevor	D.J. Williams	LB	2010	2012	$11
+5543		Will Smith	DL	FA	2011
+5549	Schexes	Steven Jackson	RB	2011		$150
+5551		Chris Perry	RB	FA	2011
+5552		Jason Babin	LB	FA	2011
+5553		Chris Gamble	DB	FA	2011
+5557	Daniel	Benjamin Watson	TE	2011		$1
+5558		Karlos Dansby	LB	FA	2011
+5568		Julius Jones	RB	FA	2011
+5575		Devery Henderson	WR	FA	2011
+5582		Antwan Odom	DL	FA	2011
+5589		Darnell Dockett	DL	FA	2011
+5590	John	Nate Kaeding	K	2011		$1
+5603		Bernard Berrian	WR	FA	2011
+5606	Keyon	Chris Cooley	TE	2011		$1
+5615	Daniel	Matt Schaub	QB	2011		$85
+5623		Shaun Phillips	LB	FA	2011
+5633		Jerricho Cotchery	WR	FA	2011
+5644		Mewelde Moore	RB	FA	2011
+5645		Ernest Wilford	WR	FA	2011
+5651	Patrick	Jared Allen	DL	2009	2011	$10
+5658		Dave Ball	DL	FA	2011
+5660		Antonio Smith	DL	FA	2011
+5661		Gibril Wilson	DB	FA	2011
+5662		Josh Scobee	K	FA	2011
+5669		Sean Ryan	TE	FA	2011
+5679	Patrick	Michael Turner	RB	2011		$175
+5741	Patrick	Patrick Crayton	WR	2011		$1
+5760		Derrick Ward	RB	FA	2011
+5880		Willie Parker	RB	FA	2011
+5941	Patrick	Wes Welker	WR	2009	2011	$80
+6016	Keyon	Malcom Floyd	WR	2011		$15
+6132		Spencer Johnson	DL	FA	2011
+734		Kerry Collins	QB	FA	2011
+751		Joey Galloway	WR	FA	2011
+8416	John	Alex Smith	QB	2011		$5
+8417	Daniel	Ronnie Brown	RB	2010	2011	$65
+8418	Schexes	Braylon Edwards	WR	2011		$15
+8419	Patrick	Cedric Benson	RB	2010	2011	$116
+8420	Schexes	Cadillac Williams	RB	2011		$1
+8421		Adam Jones	DB	FA	2011
+8423		Antrel Rolle	DB	FA	2011
+8425	Koci	Mike Williams (SEA)	WR	2010	2012	$1
+8426	James	DeMarcus Ware	LB	2011		$6
+8427		Shawne Merriman	LB	FA	2011
+8429		Thomas Davis	LB	FA	2011
+8430	Koci	Derrick Johnson	LB	2011		$2
+8437		Mark Clayton	WR	FA	2011
+8439	Koci	Aaron Rodgers	QB	2011		$210
+8440	Patrick	Jason Campbell	QB	2010	2012	$5
+8442	Daniel	Roddy White	WR	2010	2011	$110
+8444	Schexes	Heath Miller	TE	2011		$2
+8450	Trevor	Barrett Ruud	LB	2009	2011	$5
+8458		J.J. Arrington	RB	FA	2011
+8459		Lofa Tatupu	LB	FA	2011
+8461		Mike Nugent	K	FA	2011
+8465		Nick Collins	DB	FA	2011
+8469		Roscoe Parrish	WR	FA	2011
+8475	John	Vincent Jackson	WR	2011		$110
+8479	Daniel	Frank Gore	RB	2011		$199
+8480		Oshiomogho Atogwe	DB	FA	2011
+8488	Patrick	Justin Tuck	DL	2009	2011	$6
+8491		Ryan Moats	RB	FA	2011
+8492		Kirk Morrison	LB	FA	2011
+8497		Chris Henry (CIN)	WR	FA	2011
+8498		Ellis Hobbs	DB	FA	2011
+8520	Keyon	Kyle Orton	QB	2011		$13
+8523	John	Marion Barber	RB	2011		$1
+8524	Schexes	Brandon Jacobs	RB	2011		$10
+8537		Kerry Rhodes	DB	FA	2011
+8544	Koci	Darren Sproles	RB	2011		$6
+8560	Syed	Trent Cole	DL	2009	2011	$4
+8593		Bo Scaife	TE	FA	2011
+8612		Joel Dreessen	TE	FA	2011
+8627		Derek Anderson	QB	FA	2011
+8644	Patrick	Matt Cassel	QB	2010	2012	$15
+8664	Koci	Ryan Fitzpatrick	QB	2011		$21
+9235	Keyon	Rob Bironas	K	2011		$1
+9266		Jim Leonhard	DB	FA	2011
+9267		George Wilson	DB	FA	2011
+9268		Rashied Davis	WR	FA	2011
+9270	Jake/Luke	Josh Cribbs	WR	2011		$45
+9285		Chris Carr	DB	FA	2011
+9307		Nate Washington	WR	FA	2011
+9354		Robbie Gould	K	FA	2011
+936		Muhsin Muhammad	WR	FA	2011
+937		Bobby Engram	WR	FA	2011
+9400	Koci	Lance Moore	WR	2011		$20
+9475	Patrick	Ryan Grant	RB	2011		$65
+9495		Greg Camarillo	WR	FA	2011
+9530		John Kuhn	RB	FA	2011
+9587	Trevor	Mario Williams	DL	2009	2011	$19
+9588	Trevor	Reggie Bush	RB	2011		$22
+9589		Vince Young	QB	FA	2011
+9591		A.J. Hawk	LB	FA	2011
+9592	Daniel	Vernon Davis	TE	2011		$60
+9596		Matt Leinart	QB	FA	2011
+9597	James	Jay Cutler	QB	2010	2011	$35
+9598		Haloti Ngata	DL	FA	2011
+9603	Keyon	Chad Greenway	LB	2011		$1
+9606	Jake/Luke	Tamba Hali	DL	2011		$1
+9607		Laurence Maroney	RB	FA	2011
+9611	Keyon	Santonio Holmes	WR	2011		$30
+9613	John	DeAngelo Williams	RB	2011		$60
+9614	Koci	Marcedes Lewis	TE	2011		$24
+9616	Keyon	Joseph Addai	RB	2011		$23
+9618		Mathias Kiwanuka	DL	FA	2011
+9619	Jake/Luke	DeMeco Ryans	LB	2011		$1
+9620		D'Qwell Jackson	LB	FA	2011
+9628	Patrick	Danieal Manning	DB	2010	2012	$2
+9629		Roman Harper	DB	FA	2011
+9631		LenDale White	RB	FA	2011
+9634		Cedric Griffin	DB	FA	2011
+9638	Keyon	Greg Jennings	WR	2011		$127
+9639	Patrick	Anthony Fasano	TE	2009	2011	$4
+964	Koci	Ray Lewis	LB	2010	2012	$1
+9640	Trevor	Bernard Pollard	DB	2010	2011	$7
+9643	Keyon	Devin Hester	WR	2009	2011	$40
+9646	Trevor	Maurice Jones-Drew	RB	2011		$230
+9647		Tony Scheffler	TE	FA	2011
+9665		Jerious Norwood	RB	FA	2011
+9667		Charlie Whitehurst	QB	FA	2011
+9674		James Anderson	LB	FA	2011
+9684	Daniel	Owen Daniels	TE	2011		$46
+9689	Keyon	Brad Smith	WR	2011		$2
+9695		Jason Avant	WR	FA	2011
+9697		Demetrius Williams	WR	FA	2011
+9701		Will Blackmon	DB	FA	2011
+9702	Koci	Stephen Tulloch	LB	2011		$2
+9703	Koci	Leon Washington	RB	2011		$6
+9704	Schexes	Stephen Gostkowski	K	2011		$1
+9705	Daniel	Brandon Marshall	WR	2011		$75
+9712	Koci	Elvis Dumervil	DL	2011		$8
+9713		Ray Edwards	DL	FA	2011
+9716		Domenik Hixon	WR	FA	2011
+9721		Rob Ninkovich	DL	FA	2011
+9731	Koci	Jerome Harrison	RB	2009	2011	$1
+9732		Dawan Landry	DB	FA	2011
+978		Brian Dawkins	DB	FA	2011
+9793		Antoine Bethea	DB	FA	2011
+9801		Cortland Finnegan	DB	FA	2011
+9819		Devin Aromashodu	WR	FA	2011
+982		Joe Nedney	K	FA	2011
+9832		Quinton Ganther	RB	FA	2011
+9835		Ben Obomanu	WR	FA	2011
+9838	Trevor	Marques Colston	WR	2009	2011	$120
+9864		Mike Bell	RB	FA	2011
+-1	Syed	Danario Alexander	WR	2011		$3
+
+=== 2011 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Trevor	A.J. Green	WR	2011	2013	$26
+13591	Trevor	A.J. Jefferson	DB	FA	2011	$2
+14045	Trevor	Aaron Williams	DB	2011	2013	$1
+2555	Trevor	Andre Carter	DL	2010	2011	$16
+8423	Trevor	Antrel Rolle	DB	FA	2011	$1
+8450	Trevor	Barrett Ruud	LB	2009	2011	$5
+9640	Trevor	Bernard Pollard	DB	2010	2011	$7
+12597	Trevor	Brandon Tate	WR	2011	2013	$1
+4513	Trevor	Bryan Scott	DB	FA	2011	$1
+13994	Trevor	Cam Newton	QB	2011	2013	$13
+4459	Trevor	Carson Palmer	QB	2011	2011	$1
+11258	Trevor	Chris Johnson	RB	2011	2011	$278
+5542	Trevor	D.J. Williams	LB	2010	2012	$11
+11678	Trevor	Davone Bess	WR	2011	2011	$1
+14221	Trevor	Doug Baldwin	WR	FA	2011	$1
+11276	Trevor	Eddie Royal	WR	2011	2013	$1
+10517	Trevor	Jacoby Jones	WR	2011	2011	$5
+14193	Trevor	Jacquizz Rodgers	RB	2011	2013	$2
+12613	Trevor	Jairus Byrd	DB	FA	2011	$1
+5662	Trevor	Josh Scobee	K	FA	2011	$1
+10480	Trevor	Kevin Kolb	QB	2011	2011	$26
+12516	Trevor	Knowshon Moreno	RB	2009	2011	$28
+14054	Trevor	Kyle Rudolph	TE	2011	2013	$1
+9838	Trevor	Marques Colston	WR	2009	2011	$120
+10636	Trevor	Mason Crosby	K	2010	2012	$2
+9646	Trevor	Maurice Jones-Drew	RB	2011	2011	$230
+4514	Trevor	Osi Umenyiora	DL	2009	2011	$4
+1428	Trevor	Peyton Manning	QB	2011	2011	$140
+9588	Trevor	Reggie Bush	RB	2011	2013	$22
+13229	Trevor	Rob Gronkowski	TE	2010	2012	$1
+14037	Trevor	Ryan Mallett	QB	2011	2013	$1
+13243	Trevor	Sean Weatherspoon	LB	2010	2012	$1
+2622	Trevor	Steve Smith (CAR)	WR	2011	2011	$35
+14851	Trevor	Terrelle Pryor	QB	2011	2013	$1
+4245	Syed	Billy Cundiff	QB	FA	2011	$1
+12517	Syed	Chris Ogbonnaya	RB	FA	2011	$20
+14074	Syed	Colin McCarthy	LB	FA	2011	$1
+13935	Syed	Danario Alexander	WR	2011	2013	$3
+11788	Syed	Danny Woodhead	RB	2011	2013	$1
+13216	Syed	Demaryius Thomas	WR	FA	2011	$10
+13207	Syed	Dexter McCluster	WR	2010	2012	$8
+5526	Syed	Eli Manning	QB	2011	2013	$28
+13217	Syed	Golden Tate	WR	FA	2011	$1
+14024	Syed	Greg Little	WR	2011	2013	$26
+5552	Syed	Jason Babin	LB	FA	2011	$5
+12579	Syed	Jeremy Maclin	WR	2011	2013	$75
+11280	Syed	Jerome Simpson	WR	FA	2011	$1
+11252	Syed	Joe Flacco	QB	2011	2013	$50
+13209	Syed	Joe McKnight	RB	FA	2011	$1
+12678	Syed	Johnny Knox	WR	FA	2011	$3
+13488	Syed	Kyle Williams	WR	FA	2011	$10
+10519	Syed	Laurent Robinson	WR	FA	2011	$2
+9614	Syed	Marcedes Lewis	TE	FA	2011	$1
+11329	Syed	Mario Manningham	WR	2010	2012	$1
+13208	Syed	Montario Hardesty	RB	2011	2013	$1
+13264	Syed	Morgan Burnett	DB	FA	2011	$1
+13443	Syed	Perry Riley	LB	FA	2011	$1
+14053	Syed	Randall Cobb	WR	2011	2013	$13
+14192	Syed	Roy Helu	RB	2011	2013	$25
+13973	Syed	Ryan Kerrigan	LB	2011	2013	$1
+13204	Syed	Ryan Mathews	RB	2010	2012	$28
+14051	Syed	Ryan Williams	RB	2011	2013	$25
+13197	Syed	Sam Bradford	QB	2010	2012	$6
+13284	Syed	Sean Lee	LB	FA	2011	$1
+12500	Syed	Shonn Greene	RB	2009	2011	$28
+14028	Syed	Stevan Ridley	RB	2011	2013	$25
+10453	Syed	Ted Ginn	WR	FA	2011	$4
+13200	Syed	Tim Tebow	QB	2010	2012	$12
+10452	Schex	Adrian Peterson	RB	2011	2011	$290
+13934	Schex	Antonio Brown	WR	FA	2011	$1
+5362	Schex	Antonio Gates	TE	2010	2011	$89
+5536	Schex	Ben Roethlisberger	QB	2011	2013	$90
+8524	Schex	Brandon Jacobs	RB	2011	2012	$10
+12576	Schex	Brandon LaFell	WR	2010	2012	$4
+8420	Schex	Cadillac Williams	RB	2011	2012	$1
+10447	Schex	Calvin Johnson	WR	2011	2013	$150
+10485	Schex	Chris Houston	DB	FA	2011	$1
+11390	Schex	Dennis Dixon	QB	FA	2011	$1
+11283	Schex	DeSean Jackson	WR	2011	2012	$134
+10195	Schex	Fred Jackson	RB	2009	2011	$1
+9598	Schex	Haloti Ngata	DL	FA	2011	$1
+13530	Schex	Jake Ballard	TE	FA	2011	$1
+4433	Schex	James Harrison	LB	2009	2011	$16
+286	Schex	Jason Hanson	K	FA	2011	$1
+3530	Schex	Julius Peppers	DL	2009	2011	$15
+11298	Schex	Kevin Smith	RB	FA	2011	$46
+9703	Schex	Leon Washington	RB	FA	2011	$1
+11443	Schex	Matt Flynn	QB	FA	2011	$1
+12483	Schex	Matthew Stafford	QB	2009	2011	$25
+13262	Schex	NaVorro Bowman	LB	FA	2011	$1
+13258	Schex	Pat Angerer	LB	FA	2011	$10
+13980	Schex	Patrick Peterson	DB	2011	2013	$1
+10478	Schex	Paul Posluszny	LB	2010	2012	$1
+1756	Schex	Ricky Williams	RB	FA	2011	$1
+4260	Schex	Shaun Hill	QB	2011	2013	$1
+11458	Schex	Steve Johnson	WR	2011	2013	$55
+5549	Schex	Steven Jackson	RB	2011	2011	$150
+9650	Schex	Tarvaris Jackson	QB	2011	2013	$6
+11383	Schex	Tim Hightower	RB	2011	2013	$18
+9589	Schex	Vince Young	QB	FA	2011	$1
+9793	Patrick	Antoine Bethea	DB	FA	2011	$1
+12724	Patrick	Bernard Scott	RB	2010	2012	$15
+4780	Patrick	Brandon Banks	WR	FA	2011	$1
+12549	Patrick	Brandon Pettigrew	TE	2009	2011	$22
+2140	Patrick	Brian Urlacher	LB	2011	2013	$3
+8419	Patrick	Cedric Benson	RB	2010	2011	$116
+11271	Patrick	Curtis Lofton	LB	FA	2011	$1
+9628	Patrick	Danieal Manning	DB	2010	2012	$2
+12570	Patrick	Darrius Heyward-Bey	WR	2011	2013	$1
+13295	Patrick	Emmanuel Sanders	WR	2011	2013	$10
+5651	Patrick	Jared Allen	DL	2009	2011	$10
+8440	Patrick	Jason Campbell	QB	2010	2012	$5
+11325	Patrick	Jermichael Finley	TE	2011	2013	$70
+139	Patrick	John Kasay	K	FA	2011	$1
+8488	Patrick	Justin Tuck	DL	2009	2011	$6
+12556	Patrick	Kenny Britt	WR	2009	2011	$6
+5528	Patrick	Larry Fitzgerald	WR	2011	2011	$135
+13213	Patrick	LeGarrette Blount	RB	2010	2012	$1
+1680	Patrick	London Fletcher	LB	FA	2011	$1
+10456	Patrick	Marshawn Lynch	RB	2010	2012	$12
+8644	Patrick	Matt Cassel	QB	2010	2012	$15
+8574	Patrick	Michael Boley	LB	FA	2011	$1
+12563	Patrick	Michael Crabtree	WR	2009	2011	$28
+5679	Patrick	Michael Turner	RB	2011	2012	$175
+9307	Patrick	Nate Washington	WR	FA	2011	$2
+12569	Patrick	Percy Harvin	WR	2009	2011	$42
+11439	Patrick	Pierre Garcon	WR	2011	2013	$15
+10713	Patrick	Pierre Thomas	RB	FA	2011	$1
+11289	Patrick	Ray Rice	RB	2011	2011	$250
+4480	Patrick	Rex Grossman	QB	FA	2011	$1
+9475	Patrick	Ryan Grant	RB	2011	2013	$65
+2330	Patrick	Tom Brady	QB	2009	2011	$165
+11334	Patrick	Tyvon Branch	DB	FA	2011	$1
+5941	Patrick	Wes Welker	WR	2009	2011	$80
+8439	Koci	Aaron Rodgers	QB	2011	2011	$210
+14123	Koci	Alex Henery	K	2011	2013	$1
+12497	Koci	Arian Foster	RB	2011	2011	$250
+13210	Koci	Ben Tate	RB	2010	2012	$7
+4582	Koci	Brandon Lloyd	WR	2011	2013	$65
+11674	Koci	Danny Amendola	WR	FA	2011	$1
+8544	Koci	Darren Sproles	RB	2011	2013	$6
+3636	Koci	David Garrard	QB	FA	2011	$1
+14153	Koci	Denarius Moore	WR	2011	2013	$13
+8430	Koci	Derrick Johnson	LB	2011	2013	$2
+9712	Koci	Elvis Dumervil	DL	2011	2013	$8
+13252	Koci	Eric Berry	DB	FA	2011	$1
+13205	Koci	Jahvid Best	RB	2010	2012	$28
+13969	Koci	Jake Locker	QB	2011	2013	$2
+10522	Koci	James Jones	WR	FA	2011	$10
+11244	Koci	Jerod Mayo	LB	2011	2011	$30
+10469	Koci	Jon Beason	LB	FA	2011	$1
+5531	Koci	Kellen Winslow	TE	2011	2013	$11
+8520	Koci	Kyle Orton	QB	FA	2011	$1
+9400	Koci	Lance Moore	WR	2011	2013	$20
+9587	Koci	Mario Williams	DL	FA	2011	$1
+1575	Koci	Matt Hasselbeck	QB	2011	2013	$2
+3582	Koci	Maurice Morris	RB	FA	2011	$1
+10523	Koci	Mike Sims-Walker	WR	2011	2013	$5
+8425	Koci	Mike Williams (SEA)	WR	2010	2012	$1
+13489	Koci	Mike Williams (TB)	WR	2010	2012	$8
+14052	Koci	Mikel Leshoure	RB	FA	2011	$1
+10455	Koci	Patrick Willis	LB	2010	2012	$37
+964	Koci	Ray Lewis	LB	2010	2012	$1
+8664	Koci	Ryan Fitzpatrick	QB	2011	2013	$21
+2564	Koci	Santana Moss	WR	2010	2012	$35
+9702	Koci	Stephen Tulloch	LB	2011	2013	$2
+14032	Koci	Torrey Smith	WR	FA	2011	$10
+4671	Koci	Yeremiah Bell	DB	2010	2012	$15
+13230	Keyon	Aaron Hernandez	TE	2010	2012	$1
+13965	Keyon	Adrian Clayborn	DL	2011	2013	$1
+14012	Keyon	Andy Dalton	QB	2011	2013	$4
+11754	Keyon	BenJarvus Green-Ellis	RB	2011	2011	$35
+13987	Keyon	Blaine Gabbert	QB	2011	2013	$7
+9603	Keyon	Chad Greenway	LB	2011	2011	$1
+13219	Keyon	Damian Williams	WR	FA	2011	$3
+14322	Keyon	Dan Bailey	K	FA	2011	$1
+10491	Keyon	David Harris	LB	FA	2011	$1
+13621	Keyon	David Nelson	WR	FA	2011	$4
+3593	Keyon	Deion Branch	WR	2011	2011	$1
+14077	Keyon	Delone Carter	RB	2011	2012	$13
+9643	Keyon	Devin Hester	WR	2009	2011	$40
+12489	Keyon	Donald Brown	RB	FA	2011	$3
+11264	Keyon	Dustin Keller	TE	2011	2013	$2
+11282	Keyon	Fred Davis	TE	FA	2011	$1
+9638	Keyon	Greg Jennings	WR	2011	2013	$127
+13214	Keyon	James Starks	RB	2011	2013	$5
+13228	Keyon	Jermaine Gresham	TE	2010	2012	$4
+2144	Keyon	John Abraham	DL	2009	2011	$2
+11270	Keyon	Jordy Nelson	WR	2011	2013	$5
+9616	Keyon	Joseph Addai	RB	2011	2011	$23
+5558	Keyon	Karlos Dansby	LB	FA	2011	$1
+12747	Keyon	Lardarius Webb	DB	FA	2011	$3
+6016	Keyon	Malcom Floyd	WR	2011	2013	$15
+4487	Keyon	Nick Barnett	LB	FA	2011	$1
+11461	Keyon	Peyton Hillis	RB	2011	2011	$95
+10465	Keyon	Reggie Nelson	DB	FA	2011	$1
+4596	Keyon	Robert Mathis	DL	2009	2011	$1
+9611	Keyon	Santonio Holmes	WR	2011	2013	$30
+10585	Keyon	Steve Breaston	WR	2011	2013	$1
+5209	Keyon	Tony Romo	QB	2009	2011	$100
+13553	Keyon	Victor Cruz	WR	FA	2011	$1
+14027	Keyon	Vincent Brown	WR	FA	2011	$2
+8416	John	Alex Smith	QB	2011	2013	$5
+12453	John	Brian Cushing	LB	2009	2011	$7
+4493	John	Charles Tillman	DB	FA	2011	$1
+4482	John	Dallas Clark	TE	2011	2013	$75
+14056	John	Daniel Thomas	RB	2011	2013	$25
+11238	John	Darren McFadden	RB	2010	2012	$14
+13305	John	Daryl Washington	LB	FA	2011	$1
+9613	John	DeAngelo Williams	RB	2011	2013	$60
+13231	John	Dennis Pitta	TE	2010	2012	$1
+10635	John	Desmond Bishop	LB	2011	2011	$1
+1966	John	Donald Driver	WR	2011	2013	$1
+11304	John	Earl Bennett	WR	FA	2011	$2
+12586	John	Hakeem Nicks	WR	2009	2011	$28
+11307	John	Jamaal Charles	RB	FA	2011	$25
+12537	John	Jared Cook	TE	2011	2013	$3
+10484	John	John Beck	QB	FA	2011	$5
+11247	John	Jonathan Stewart	RB	2011	2013	$30
+8523	John	Marion Barber	RB	2011	2013	$1
+9618	John	Mathias Kiwanuka	DL	FA	2011	$1
+11128	John	Matt Moore	QB	FA	2011	$1
+13387	John	Michael Hoomanawanui	TE	2010	2012	$1
+2549	John	Michael Vick	QB	2011	2013	$185
+12499	John	Mike Goodson	RB	2011	2013	$1
+12598	John	Mike Thomas	WR	2010	2011	$14
+12581	John	Mohamed Massaquoi	WR	2009	2011	$14
+5590	John	Nate Kaeding	K	2011	2013	$1
+9329	John	Nick Novak	K	FA	2011	$1
+12503	John	Rashad Jennings	RB	2011	2013	$4
+2578	John	Reggie Wayne	WR	2011	2013	$101
+10471	John	Robert Meachem	WR	2011	2013	$1
+14034	John	Titus Young	WR	2011	2013	$13
+8475	John	Vincent Jackson	WR	2011	2013	$110
+13976	John	Von Miller	LB	2011	2011	$1
+4481	John	Willis McGahee	RB	2010	2012	$1
+10693	James	Ahmad Bradshaw	RB	2011	2011	$110
+4512	James	Anquan Boldin	WR	2011	2012	$45
+11284	James	Calais Campbell	DL	FA	2011	$1
+13966	James	Christian Ponder	QB	2011	2013	$4
+13199	James	Colt McCoy	QB	2010	2012	$12
+10768	James	D.J. Ware	RB	FA	2011	$1
+5564	James	Daryl Smith	LB	FA	2011	$3
+14005	James	DeMarco Murray	RB	2011	2013	$7
+8426	James	DeMarcus Ware	LB	2011	2013	$6
+13215	James	Dez Bryant	WR	2010	2012	$15
+2580	James	Drew Brees	QB	2011	2011	$145
+10467	James	Dwayne Bowe	WR	2009	2011	$90
+3552	James	Ed Reed	DB	FA	2011	$1
+13271	James	Eric Decker	WR	2010	2012	$2
+11256	James	Felix Jones	RB	2010	2011	$59
+9267	James	George Wilson	DB	FA	2011	$3
+13363	James	Jacoby Ford	WR	2010	2012	$1
+1219	James	James Farrior	LB	2009	2011	$2
+4527	James	Jason Witten	TE	2011	2011	$80
+9597	James	Jay Cutler	QB	2010	2011	$35
+13982	James	Julio Jones	WR	2011	2013	$26
+2553	James	LaDainian Tomlinson	RB	2011	2011	$22
+11912	James	Lance Ball	RB	FA	2011	$1
+14021	James	Leonard Hankerson	WR	2011	2013	$13
+13992	James	Marcell Dareus	DL	FA	2011	$1
+10147	James	Miles Austin	WR	2010	2012	$125
+4529	James	Nate Burleson	WR	2011	2011	$8
+1433	James	Randy Moss	WR	2011	2013	$5
+9629	James	Roman Harper	DB	FA	2011	$1
+14152	James	Sam Acho	DL	FA	2011	$1
+9704	James	Stephen Gostkowski	K	FA	2011	$5
+11359	James	Tashard Choice	RB	2011	2011	$12
+13211	James	Toby Gerhart	RB	2010	2012	$14
+1231	James	Tony Gonzalez	TE	2011	2011	$25
+14055	Jake/Luke	Alex Green	RB	2011	2013	$2
+4461	Jake/Luke	Andre Johnson	WR	2011	2011	$250
+12525	Jake/Luke	Beanie Wells	RB	2009	2011	$55
+13239	Jake/Luke	Brandon Graham	DL	2010	2012	$1
+13298	Jake/Luke	Brandon Spikes	LB	2010	2012	$1
+12568	Jake/Luke	Brian Hartline	WR	2010	2012	$1
+13203	Jake/Luke	C.J. Spiller	RB	2010	2012	$24
+1442	Jake/Luke	Charles Woodson	DB	2010	2011	$3
+14304	Jake/Luke	Dane Sanzenbacher	WR	2011	2013	$1
+1716	Jake/Luke	David Akers	K	FA	2011	$6
+9619	Jake/Luke	DeMeco Ryans	LB	2011	2012	$1
+11315	Jake/Luke	Early Doucet	WR	FA	2011	$4
+14209	Jake/Luke	Edmund Gates	WR	2011	2013	$1
+10475	Jake/Luke	Greg Olsen	TE	2009	2011	$35
+14043	Jake/Luke	Jaiquawn Jarrett	DB	2011	2013	$1
+12454	Jake/Luke	James Laurinaitis	LB	2009	2011	$9
+13256	Jake/Luke	Jason Pierre-Paul	DL	2010	2012	$1
+13232	Jake/Luke	Jimmy Graham	TE	2011	2011	$20
+13249	Jake/Luke	Joe Haden	DB	2010	2012	$1
+9270	Jake/Luke	Josh Cribbs	WR	2011	2011	$45
+12649	Jake/Luke	Julian Edelman	WR	2010	2011	$7
+10490	Jake/Luke	LaMarr Woodley	LB	2010	2011	$5
+12514	Jake/Luke	LeSean McCoy	RB	2010	2011	$95
+14099	Jake/Luke	Luke Stocker	TE	2011	2013	$1
+12482	Jake/Luke	Mark Sanchez	QB	2011	2013	$20
+10544	Jake/Luke	Michael Bush	RB	2010	2011	$22
+12601	Jake/Luke	Mike Wallace	WR	2010	2011	$40
+5529	Jake/Luke	Philip Rivers	QB	2009	2011	$85
+11257	Jake/Luke	Rashard Mendenhall	RB	2011	2011	$170
+10572	Jake/Luke	Scott Chandler	TE	FA	2011	$9
+2148	Jake/Luke	Sebastian Janikowski	K	2011	2011	$1
+14017	Jake/Luke	Shane Vereen	RB	2011	2013	$4
+13304	Jake/Luke	T.J. Ward	DB	2010	2012	$1
+9606	Jake/Luke	Tamba Hali	DL	2011	2012	$1
+13218	Daniel	Arrelious Benn	WR	2010	2012	$15
+14035	Daniel	Austin Pettis	WR	2011	2011	$1
+5557	Daniel	Benjamin Watson	TE	2011	2011	$1
+11269	Daniel	Brandon Flowers	DB	FA	2011	$1
+9705	Daniel	Brandon Marshall	WR	2011	2011	$75
+11291	Daniel	Chad Henne	QB	2010	2012	$15
+10527	Daniel	Charles Johnson	DL	2011	2013	$1
+14001	Daniel	Colin Kaepernick	QB	2011	2013	$4
+9620	Daniel	D'Qwell Jackson	LB	FA	2011	$1
+8479	Daniel	Frank Gore	RB	2011	2011	$199
+12691	Daniel	Jason McCourty	DB	FA	2011	$1
+12520	Daniel	Javon Ringer	RB	FA	2011	$1
+13986	Daniel	Jonathan Baldwin	WR	2011	2013	$13
+14189	Daniel	Jordan Cameron	TE	2011	2013	$1
+12473	Daniel	Josh Freeman	QB	2010	2012	$15
+14159	Daniel	Kendall Hunter	RB	2011	2013	$4
+4526	Daniel	Lance Briggs	LB	FA	2011	$1
+14007	Daniel	Lance Kendricks	TE	2011	2013	$1
+13981	Daniel	Mark Ingram	RB	2011	2013	$25
+14023	Daniel	Mason Foster	LB	2011	2013	$1
+11278	Daniel	Matt Forte	RB	2010	2011	$120
+11237	Daniel	Matt Ryan	QB	2011	2013	$85
+5615	Daniel	Matt Schaub	QB	2011	2013	$85
+11658	Daniel	Mike Tolbert	RB	2011	2011	$20
+2300	Daniel	Neil Rackers	K	2011	2013	$1
+9684	Daniel	Owen Daniels	TE	2011	2013	$46
+14625	Daniel	Phillip Tanner	RB	FA	2011	$1
+2139	Daniel	Plaxico Burress	WR	2010	2012	$1
+8442	Daniel	Roddy White	WR	2010	2011	$110
+10488	Daniel	Sidney Rice	WR	2009	2011	$4
+14114	Daniel	T.J. Yates	QB	FA	2011	$2
+4468	Daniel	Terrell Suggs	LB	FA	2011	$1
+13289	Daniel	Tony Moeaki	TE	2010	2012	$1
+9592	Daniel	Vernon Davis	TE	2011	2013	$60
+13358		A.J. Edds	LB	FA	2011
+9591		A.J. Hawk	LB	FA	2011
+12635		Aaron Brown	RB	FA	2011
+12452		Aaron Curry	LB	FA	2011
+3684		Aaron Kampman	DL	FA	2011
+12456		Aaron Maybin	LB	FA	2011
+10464		Aaron Ross	DB	FA	2011
+2594		Aaron Schobel	DL	FA	2011
+8421		Adam Jones	DB	FA	2011
+1097		Adam Vinatieri	K	FA	2011
+2868		Adewale Ogunleye	DL	FA	2011
+1432		Ahman Green	RB	FA	2011
+14015		Akeem Ayers	LB	FA	2011
+10883		Akeem Jordan	LB	FA	2011
+13433		Akwasi Owusu-Ansah	DB	FA	2011
+10680		Alan Ball	DB	FA	2011
+3543		Albert Haynesworth	DL	FA	2011
+13642		Alfonso Smith	RB	FA	2011
+1638		Allen Rossum	DB	FA	2011
+13478		Alterraun Verner	DB	FA	2011
+11331		Andre Caldwell	WR	FA	2011
+13226		Andre Roberts	WR	FA	2011
+11946		Anthony Armstrong	WR	FA	2011
+13212		Anthony Dixon	RB	FA	2011
+9639		Anthony Fasano	TE	FA	2011
+10476		Anthony Gonzalez	WR	2011	2011
+10470		Anthony Spencer	LB	FA	2011
+11261		Antoine Cason	DB	FA	2011
+1775		Antoine Winfield	DB	FA	2011
+3591		Antonio Bryant	WR	FA	2011
+5660		Antonio Smith	DL	FA	2011
+5582		Antwan Odom	DL	FA	2011
+12561		Austin Collie	WR	FA	2011
+12447		B.J. Raji	DL	FA	2011
+9835		Ben Obomanu	WR	FA	2011
+5603		Bernard Berrian	WR	FA	2011
+13776		Blair White	WR	FA	2011
+8593		Bo Scaife	TE	FA	2011
+937		Bobby Engram	WR	FA	2011
+4597		Bobby Wade	WR	FA	2011
+9689		Brad Smith	WR	FA	2011
+4561		Bradie James	LB	FA	2011
+10466		Brady Quinn	QB	FA	2011
+12567		Brandon Gibson	WR	FA	2011
+10507		Brandon Jackson	RB	FA	2011
+8418		Braylon Edwards	WR	FA	2011
+10605		Brent Celek	TE	FA	2011
+112		Brett Favre	QB	FA	2011
+978		Brian Dawkins	DB	FA	2011
+12439		Brian Orakpo	LB	FA	2011
+10546		Brian Robison	DL	FA	2011
+3619		Brian Westbrook	RB	FA	2011
+11909		Brian Witherspoon	DB	FA	2011
+14026		Bruce Carter	LB	FA	2011
+4475		Bryant Johnson	WR	FA	2011
+4465		Byron Leftwich	QB	FA	2011
+4476		Calvin Pace	DL	FA	2011
+12417		Cameron Wake	LB	FA	2011
+12703		Captain Munnerlyn	DB	FA	2011
+14181		Casey Matthews	LB	FA	2011
+14184		Cecil Shorts	WR	FA	2011
+9634		Cedric Griffin	DB	FA	2011
+2584		Chad Ochocinco	WR	FA	2011
+2149		Chad Pennington	QB	FA	2011
+10678		Chansi Stuckey	WR	FA	2011
+13450		Charles Scott	RB	FA	2011
+9667		Charlie Whitehurst	QB	FA	2011
+11460		Chaz Schilens	WR	FA	2011
+3784		Chester Taylor	RB	FA	2011
+9285		Chris Carr	DB	FA	2011
+2600		Chris Chambers	WR	FA	2011
+4864		Chris Clemons	DL	FA	2011
+5606		Chris Cooley	TE	FA	2011
+5553		Chris Gamble	DB	FA	2011
+8497		Chris Henry (CIN)	WR	FA	2011
+3622		Chris Hope	DB	FA	2011
+13587		Chris Ivory	RB	FA	2011
+13166		Chris Jennings	RB	FA	2011
+5551		Chris Perry	RB	FA	2011
+12438		Clay Matthews	LB	FA	2011
+11816		Clifton Smith	RB	FA	2011
+10579		Clint Session	LB	FA	2011
+3579		Clinton Portis	RB	FA	2011
+11737		Connor Barth	K	FA	2011
+12449		Connor Barwin	DL	FA	2011
+2670		Correll Buckhalter	RB	FA	2011
+9801		Cortland Finnegan	DB	FA	2011
+12479		Curtis Painter	QB	FA	2011
+14046		Da'Quan Bowers	DL	FA	2011
+11688		Dan Carpenter	K	FA	2011
+11308		Dan Connor	LB	FA	2011
+5589		Darnell Dockett	DL	FA	2011
+13465		Darrell Stuckey	DB	FA	2011
+10458		Darrelle Revis	DB	FA	2011
+2164		Darren Howard	DL	FA	2011
+1203		Darren Sharper	DB	FA	2011
+1762		Daunte Culpepper	QB	FA	2011
+5658		Dave Ball	DL	FA	2011
+12459		David Buehler	K	FA	2011
+10600		David Clowney	WR	FA	2011
+11544		David Hawthorne	LB	FA	2011
+13442		David Reed	WR	FA	2011
+9732		Dawan Landry	DB	FA	2011
+12682		DeAndre Levy	LB	FA	2011
+5533		DeAngelo Hall	DB	FA	2011
+13398		Deji Karim	RB	FA	2011
+9697		Demetrius Williams	WR	FA	2011
+2163		Dennis Northcutt	WR	FA	2011
+12557		Deon Butler	WR	FA	2011
+8627		Derek Anderson	QB	FA	2011
+9668		Derek Hagan	WR	FA	2011
+10692		Derek Stanley	WR	FA	2011
+1263		Derrick Mason	WR	FA	2011
+13248		Derrick Morgan	DL	FA	2011
+5760		Derrick Ward	RB	FA	2011
+12602		Derrick Williams	WR	FA	2011
+5575		Devery Henderson	WR	FA	2011
+9819		Devin Aromashodu	WR	FA	2011
+13236		Devin McCourty	DB	FA	2011
+11268		Devin Thomas	WR	FA	2011
+9716		Domenik Hixon	WR	FA	2011
+13365		Dominique Franks	DB	FA	2011
+11250		Dominique Rodgers-Cromartie	DB	FA	2011
+13597		Donald Jones	WR	FA	2011
+11267		Donnie Avery	WR	FA	2011
+1753		Donovan McNabb	QB	FA	2011
+9594		Donte Whitner	DB	FA	2011
+13353		Dorin Dickerson	RB	FA	2011
+2898		Drew Bennett	WR	FA	2011
+14100		Dwayne Harris	WR	FA	2011
+3539		Dwight Freeney	DL	FA	2011
+4498		E.J. Henderson	LB	FA	2011
+13251		Earl Thomas	DB	FA	2011
+4950		Earnest Graham	RB	FA	2011
+13272		Ed Dickson	TE	FA	2011
+1755		Edgerrin James	RB	FA	2011
+8498		Ellis Hobbs	DB	FA	2011
+10481		Eric Weddle	DB	FA	2011
+10770		Eric Weems	WR	FA	2011
+5645		Ernest Wilford	WR	FA	2011
+11870		Evan Moore	TE	FA	2011
+1430		Fred Taylor	RB	FA	2011
+10449		Gaines Adams	DL	FA	2011
+11543		Garrett Hartley	K	FA	2011
+10537		Garrett Wolfe	RB	FA	2011
+13240		Gerald McCoy	DL	FA	2011
+5661		Gibril Wilson	DB	FA	2011
+12491		Glen Coffee	RB	FA	2011
+12460		Graham Gano	K	FA	2011
+9495		Greg Camarillo	WR	FA	2011
+1445		Greg Ellis	DL	FA	2011
+13377		Greg Hardy	DL	FA	2011
+14106		Greg Salas	WR	FA	2011
+11318		Harry Douglas	WR	FA	2011
+8444		Heath Miller	TE	FA	2011
+1494		Hines Ward	WR	FA	2011
+10180		Hiram Eugene	DB	FA	2011
+12898		Isaac Redman	RB	FA	2011
+13979		J. J. Watt	DL	FA	2011
+8458		J.J. Arrington	RB	FA	2011
+3561		Jabar Gaffney	WR	FA	2011
+11197		Jackie Battle	RB	FA	2011
+11373		Jacob Tamme	TE	FA	2011
+1693		Jake Delhomme	QB	FA	2011
+2136		Jamal Lewis	RB	FA	2011
+10446		JaMarcus Russell	QB	FA	2011
+9674		James Anderson	LB	FA	2011
+12535		James Casey	TE	FA	2011
+12493		James Davis	RB	FA	2011
+2432		James Hall	DL	FA	2011
+11275		James Hardy	WR	FA	2011
+12564		Jarett Dillard	WR	FA	2011
+9695		Jason Avant	WR	FA	2011
+10687		Jason Snelling	RB	FA	2011
+1245		Jason Taylor	DL	FA	2011
+13748		Javarris James	RB	FA	2011
+13259		Javier Arenas	DB	FA	2011
+2548		Jay Feely	K	FA	2011
+4399		Jeff Reed	K	FA	2011
+14151		Jeremy Kerley	WR	FA	2011
+3542		Jeremy Shockey	TE	FA	2011
+9665		Jerious Norwood	RB	FA	2011
+9731		Jerome Harrison	RB	FA	2011
+14040		Jerrel Jernigan	WR	FA	2011
+5633		Jerricho Cotchery	WR	FA	2011
+13245		Jerry Hughes	DL	FA	2011
+9266		Jim Leonhard	DB	FA	2011
+13198		Jimmy Clausen	QB	FA	2011
+13963		Jimmy Smith	DB	FA	2011
+4647		Jimmy Wilkerson	DL	FA	2011
+982		Joe Nedney	K	FA	2011
+13484		Joe Webb	QB	FA	2011
+8612		Joel Dreessen	TE	FA	2011
+751		Joey Galloway	WR	FA	2011
+1826		Joey Porter	LB	FA	2011
+11272		John Carlson	TE	FA	2011
+43		John Carney	K	FA	2011
+9530		John Kuhn	RB	FA	2011
+13458		John Skelton	QB	FA	2011
+10543		Johnnie Lee Higgins	WR	FA	2011
+1383		Jon Kitna	QB	FA	2011
+13206		Jonathan Dwyer	RB	FA	2011
+5537		Jonathan Vilma	LB	FA	2011
+12594		Jordan Shipley	WR	FA	2011
+11394		Josh Johnson	QB	FA	2011
+11408		Josh Morgan	WR	FA	2011
+10499		Josh Wilson	DB	FA	2011
+12571		Juaquin Iglesias	WR	FA	2011
+5568		Julius Jones	RB	FA	2011
+4554		Justin Fargas	RB	FA	2011
+11467		Justin Forsett	RB	FA	2011
+4601		Justin Gage	WR	FA	2011
+2552		Justin Smith	DL	FA	2011
+13336		Kam Chancellor	DB	FA	2011
+13059		Kareem Huggins	RB	FA	2011
+13342		Kavell Conner	LB	FA	2011
+13727		Keiland Williams	RB	FA	2011
+2161		Keith Bulluck	LB	FA	2011
+4523		Kelley Washington	WR	FA	2011
+11265		Kenny Phillips	DB	FA	2011
+734		Kerry Collins	QB	FA	2011
+8537		Kerry Rhodes	DB	FA	2011
+10596		Kevin Boss	TE	FA	2011
+4532		Kevin Curtis	WR	FA	2011
+1798		Kevin Faulk	RB	FA	2011
+12588		Kevin Ogletree	WR	FA	2011
+4713		Kevin Walter	WR	FA	2011
+8492		Kirk Morrison	LB	FA	2011
+13287		Koa Misi	LB	FA	2011
+11766		Kregg Lumpkin	RB	FA	2011
+1981		Kris Brown	K	FA	2011
+1682		Kurt Warner	QB	FA	2011
+2582		Kyle Vanden Bosch	DL	FA	2011
+4519		L.J. Smith	TE	FA	2011
+3584		Ladell Betts	RB	FA	2011
+13277		Lamarr Houston	DL	FA	2011
+12730		LaRod Stephens-Howling	RB	FA	2011
+10451		LaRon Landry	DB	FA	2011
+4485		Larry Johnson	RB	FA	2011
+9607		Laurence Maroney	RB	FA	2011
+2209		Laveranues Coles	WR	FA	2011
+10459		Lawrence Timmons	LB	FA	2011
+3413		Lawrence Tynes	K	FA	2011
+10580		Le'Ron McClain	RB	FA	2011
+5538		Lee Evans	WR	FA	2011
+10615		Legedu Naanee	WR	FA	2011
+9631		LenDale White	RB	FA	2011
+11245		Leodis McKelvin	DB	FA	2011
+11287		Limas Sweed	WR	FA	2011
+8459		Lofa Tatupu	LB	FA	2011
+12528		Louis Delmas	DB	FA	2011
+12585		Louis Murphy	WR	FA	2011
+5631		Luke McCown	QB	FA	2011
+12426		Malcolm Jenkins	DB	FA	2011
+11285		Malcolm Kelly	WR	FA	2011
+2299		Marc Bulger	QB	FA	2011
+13409		Marc Mariani	WR	FA	2011
+4469		Marcus Trufant	DB	FA	2011
+13221		Mardy Gilyard	WR	FA	2011
+8437		Mark Clayton	WR	FA	2011
+11295		Martellus Bennett	TE	FA	2011
+4333		Matt Bryant	K	FA	2011
+9596		Matt Leinart	QB	FA	2011
+11122		Matt Prater	K	FA	2011
+11387		Matt Slater	WR	FA	2011
+5644		Mewelde Moore	RB	FA	2011
+10463		Michael Griffin	DB	FA	2011
+5554		Michael Jenkins	WR	FA	2011
+12436		Michael Johnson	DL	FA	2011
+10327		Micheal Spurlock	WR	FA	2011
+9864		Mike Bell	RB	FA	2011
+11436		Mike Hart	RB	FA	2011
+13397		Mike Kafka	QB	FA	2011
+8461		Mike Nugent	K	FA	2011
+1788		Mike Peterson	LB	FA	2011
+936		Muhsin Muhammad	WR	FA	2011
+13257		Nate Allen	DB	FA	2011
+2569		Nate Clements	DB	FA	2011
+14004		Nate Irving	LB	FA	2011
+13234		Ndamukong Suh	DL	FA	2011
+8465		Nick Collins	DB	FA	2011
+10621		Nick Folk	K	FA	2011
+1170		Olindo Mare	K	FA	2011
+8480		Oshiomogho Atogwe	DB	FA	2011
+4243		Paris Lenon	LB	FA	2011
+12527		Pat Chung	DB	FA	2011
+5741		Patrick Crayton	WR	FA	2011
+1782		Patrick Kerney	DL	FA	2011
+12599		Patrick Turner	WR	FA	2011
+13344		Perrish Cox	DB	FA	2011
+13703		Preston Parker	WR	FA	2011
+5107		Quintin Mikell	DB	FA	2011
+9832		Quinton Ganther	RB	FA	2011
+14050		Rahim Moore	DB	FA	2011
+12555		Ramses Barden	WR	FA	2011
+3642		Randy McMichael	TE	FA	2011
+9268		Rashied Davis	WR	FA	2011
+9713		Ray Edwards	DL	FA	2011
+2489		Rian Lindell	K	FA	2011
+2554		Richard Seymour	DL	FA	2011
+13225		Riley Cooper	WR	FA	2011
+9235		Rob Bironas	K	FA	2011
+14009		Rob Housler	TE	FA	2011
+9721		Rob Ninkovich	DL	FA	2011
+9354		Robbie Gould	K	FA	2011
+13984		Robert Quinn	DL	FA	2011
+3761		Rock Cartwright	RB	FA	2011
+13255		Rolando McClain	LB	FA	2011
+3734		Ronald Curry	WR	FA	2011
+8417		Ronnie Brown	RB	FA	2011
+8469		Roscoe Parrish	WR	FA	2011
+12698		Roy Miller	DL	FA	2011
+5532		Roy Williams	WR	FA	2011
+3589		Ryan Denney	DL	FA	2011
+1328		Ryan Longwell	K	FA	2011
+8491		Ryan Moats	RB	FA	2011
+12702		Ryan Mouton	DB	FA	2011
+12731		Ryan Succop	K	FA	2011
+11362		Ryan Torain	RB	FA	2011
+2658		Sage Rosenfels	QB	FA	2011
+4548		Sam Aiken	WR	FA	2011
+12595		Sammie Stroughter	WR	FA	2011
+2287		Sammy Morris	RB	FA	2011
+13418		Scotty McGee	DB	FA	2011
+5669		Sean Ryan	TE	FA	2011
+4568		Seneca Wallace	QB	FA	2011
+5623		Shaun Phillips	LB	FA	2011
+8427		Shawne Merriman	LB	FA	2011
+3504		Shayne Graham	K	FA	2011
+10387		Spencer Havner	TE	FA	2011
+6132		Spencer Johnson	DL	FA	2011
+13594		Stafon Johnson	RB	FA	2011
+12021		Stefan Logan	RB	FA	2011
+4877		Stephen Cooper	LB	FA	2011
+11323		Steve Slaton	RB	FA	2011
+10495		Steve Smith (PHI)	WR	FA	2011
+11923		Steven Hauschka	K	FA	2011
+10531		Stewart Bradley	LB	FA	2011
+2753		T.J. Houshmandzadeh	WR	FA	2011
+13286		Taylor Mays	DB	FA	2011
+13223		Taylor Price	WR	FA	2011
+4463		Terence Newman	DB	FA	2011
+1056		Terrell Owens	WR	FA	2011
+11297		Terrell Thomas	DB	FA	2011
+4569		Terrence McGee	DB	FA	2011
+8429		Thomas Davis	LB	FA	2011
+11332		Thomas DeCoud	DB	FA	2011
+2138		Thomas Jones	RB	FA	2011
+12600		Tiquan Underwood	WR	FA	2011
+2579		Todd Heap	TE	FA	2011
+9647		Tony Scheffler	TE	FA	2011
+1757		Torry Holt	WR	FA	2011
+5432		Tramon Williams	DB	FA	2011
+8560		Trent Cole	DL	FA	2011
+10536		Trent Edwards	QB	FA	2011
+13386		Trindon Holliday	WR	FA	2011
+4474		Troy Polamalu	DB	FA	2011
+10617		Troy Smith	QB	FA	2011
+12435		Tyson Jackson	DL	FA	2011
+4549		Visanthe Shiancoe	TE	FA	2011
+12424		Vontae Davis	DB	FA	2011
+9701		Will Blackmon	DB	FA	2011
+5543		Will Smith	DL	FA	2011
+5880		Willie Parker	RB	FA	2011
+10482		Zach Miller (SEA)	TE	FA	2011
+
+=== 2012 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Trevor	A.J. Green	WR	2011	2013	$26
+14947	Pat/Quinn	A.J. Jenkins	WR	2012	2014	$4
+13230	Keyon	Aaron Hernandez	TE	2010	2012	$1
+8439	Koci	Aaron Rodgers	QB	2012	2014	$263
+14045	Trevor	Aaron Williams	DB	2011	2013	$1
+10452	Schex	Adrian Peterson	RB	2012	2014	$135
+10693	Daniel	Ahmad Bradshaw	RB	2012	2012	$90
+14006	Pat/Quinn	Akeem Dent	LB	2012	2014	$1
+14123	Koci	Alex Henery	K	2011	2013	$1
+8416	John	Alex Smith	QB	2011	2013	$5
+15009	Mitch	Alfred Morris	RB	2012	2012	$1
+14912	James	Alshon Jeffery	WR	2012	2014	$16
+12490	John	Andre Brown	RB	FA	2012	$70
+14403	John	Andre Holmes	WR	2012	2014	$1
+4461	Trevor	Andre Johnson	WR	2012	2012	$200
+13958	Charles	Andrew Hawkins	WR	FA	2012	$6
+14874	Mitch	Andrew Luck	QB	2012	2014	$25
+14012	Keyon	Andy Dalton	QB	2011	2013	$4
+4512	James	Anquan Boldin	WR	2011	2012	$45
+9639	Schex	Anthony Fasano	TE	2012	2012	$1
+9793	Daniel	Antoine Bethea	DB	2012	2012	$4
+13934	Schex	Antonio Brown	WR	2012	2012	$100
+5362	Mitch	Antonio Gates	TE	2012	2012	$100
+12497	Daniel	Arian Foster	RB	2012	2012	$350
+14223	Mitch	Armon Binns	WR	2012	2012	$1
+12561	Schex	Austin Collie	WR	FA	2012	$1
+8450	Trevor	Barrett Ruud	LB	2012	2014	$1
+12525	Charles	Beanie Wells	RB	2012	2012	$55
+5536	Schex	Ben Roethlisberger	QB	2011	2013	$90
+13210	Daniel	Ben Tate	RB	2010	2012	$7
+11754	Keyon	BenJarvus Green-Ellis	RB	2012	2013	$32
+14891	Jake/Luke	Bernard Pierce	RB	2012	2014	$7
+12724	Pat/Quinn	Bernard Scott	RB	2010	2012	$15
+13987	Daniel	Blaine Gabbert	QB	2012	2014	$24
+15058		Blair Walsh	K	FA	2012
+15057	Syed	Brandon Boykin	DB	2012	2014	$1
+13239	Jake/Luke	Brandon Graham	DL	2010	2012	$1
+12567	Syed	Brandon Gibson	WR	FA	2012	$2
+8524	Mitch	Brandon Jacobs	RB	2012	2012	$10
+12576	Schex	Brandon LaFell	WR	2010	2012	$4
+4582	Mitch	Brandon Lloyd	WR	2011	2013	$65
+9705	Daniel	Brandon Marshall	WR	2012	2012	$115
+12705	Schex	Brandon Myers	TE	FA	2012	$8
+12549	Koci	Brandon Pettigrew	TE	2012	2014	$53
+13298	Jake/Luke	Brandon Spikes	LB	2010	2012	$1
+1858	Trevor	Brandon Stokley	WR	2012	2012	$1
+12597	Pat/Quinn	Brandon Tate	WR	2012	2014	$3
+14878	Syed	Brandon Weeden	QB	2012	2014	$13
+8418	John	Braylon Edwards	WR	2012	2014	$2
+10605	Koci	Brent Celek	TE	2012	2014	$20
+12453	John	Brian Cushing	LB	2012	2012	$11
+12568	Jake/Luke	Brian Hartline	WR	2010	2012	$1
+12439	Trevor	Brian Orakpo	LB	2012	2014	$1
+14914	Koci	Brian Quick	WR	2012	2014	$16
+2140	Pat/Quinn	Brian Urlacher	LB	2011	2013	$3
+14879	Pat/Quinn	Brock Osweiler	QB	2012	2014	$1
+15092	Jake/Luke	Bryce Brown	RB	2012	2014	$2
+13203	Jake/Luke	C.J. Spiller	RB	2010	2012	$24
+11284	Keyon	Calais Campbell	DL	FA	2012	$2
+10447	Schex	Calvin Johnson	WR	2011	2013	$150
+13994	Trevor	Cam Newton	QB	2011	2013	$13
+12417	Syed	Cameron Wake	DL/LB	2012	2012	$28
+4459	Trevor	Carson Palmer	QB	2012	2012	$65
+14966		Casey Hayward	DB	FA	2012
+8419	Schex	Cedric Benson	RB	2012	2012	$40
+9603	Mitch	Chad Greenway	LB	2012	2012	$12
+11291	Mitch	Chad Henne	QB	2012	2012	$2
+14927	Pat/Quinn	Chandler Jones	DL	2012	2014	$1
+10527	Daniel	Charles Johnson	DL	2011	2013	$1
+4493	Pat/Quinn	Charles Tillman	DB	2012	2012	$20
+4864	Trevor	Chris Clemons	DL	2012	2014	$5
+15078	Koci	Chris Givens	WR	2012	2014	$2
+10485		Chris Houston	DB	FA	2012
+13587	Keyon	Chris Ivory	RB	2012	2012	$1
+11258	Mitch	Chris Johnson	RB	2012	2012	$245
+11236	Daniel	Chris Long	DL	2012	2012	$1
+14896	Trevor	Chris Rainey	RB	2012	2014	$13
+13966	Schex	Christian Ponder	QB	2011	2013	$4
+12438	Charles	Clay Matthews	LB	FA	2012	$10
+11326		Cliff Avril	DL	FA	2012
+14900	Keyon	Coby Fleener	TE	2012	2014	$7
+15349		Cole Beasley	WR	FA	2012
+14001	Daniel	Colin Kaepernick	QB	2011	2013	$4
+14074		Colin McCarthy	LB	FA	2012
+12449	Mitch	Connor Barwin	DL	2012	2013	$1
+14970	Keyon	Courtney Upshaw	LB	2012	2014	$1
+11271	Pat/Quinn	Curtis Lofton	LB	2012	2012	$9
+14897	Jake/Luke	Cyrus Gray	RB	2012	2014	$1
+10768	Trevor	D.J. Ware	RB	2012	2012	$2
+9620	Schex	D'Qwell Jackson	LB	2012	2012	$29
+4482	Mitch	Dallas Clark	TE	2012	2012	$12
+14322	Keyon	Dan Bailey	K	2012	2012	$1
+13935		Danario Alexander	WR	FA	2012
+14304	Jake/Luke	Dane Sanzenbacher	WR	2011	2013	$1
+9628	Pat/Quinn	Danieal Manning	DB	2010	2012	$2
+14056	John	Daniel Thomas	RB	2011	2013	$25
+11674	Koci	Danny Amendola	WR	2012	2014	$32
+11788	Syed	Danny Woodhead	RB	2011	2013	$1
+13645	Schex	Darian Stewart	DB	2012	2013	$2
+11933	Pat/Quinn	Darius Reynaud	WR/RB	2012	2014	$1
+11238	John	Darren McFadden	RB	2010	2012	$14
+8544	Koci	Darren Sproles	RB	2011	2013	$6
+12570	Pat/Quinn	Darrius Heyward-Bey	WR	2011	2013	$1
+15111	Charles	Daryl Richardson	RB	FA	2012	$3
+5564	James	Daryl Smith	LB	FA	2012	$1
+13305	Charles	Daryl Washington	LB	2012	2013	$11
+1716	John	David Akers	K	2012	2014	$3
+10491	Keyon	David Harris	LB	2012	2012	$1
+14887	Keyon	David Wilson	RB	2012	2014	$25
+11678	Mitch	Davone Bess	WR	2012	2012	$22
+9613	John	DeAngelo Williams	RB	2011	2013	$60
+3593		Deion Branch	WR	FA	2012
+14005	James	DeMarco Murray	RB	2011	2013	$7
+8426	Mitch	DeMarcus Ware	LB	2011	2013	$6
+13216	James	Demaryius Thomas	WR	2012	2013	$60
+9619	Jake/Luke	DeMeco Ryans	LB	2011	2012	$1
+14153	Koci	Denarius Moore	WR	2011	2013	$13
+13231	Keyon	Dennis Pitta	TE	2010	2012	$1
+8430	Koci	Derrick Johnson	LB	2011	2013	$2
+11283	Charles	DeSean Jackson	WR	2012	2012	$90
+5575	Mitch	Devery Henderson	WR	2012	2012	$2
+14969	Mitch	DeVier Posey	WR	2012	2012	$1
+9643	Pat/Quinn	Devin Hester	WR	2012	2014	$42
+13236	Koci	Devin McCourty	DB	2012	2014	$3
+13207	Syed	Dexter McCluster	WR	2010	2012	$8
+13215	James	Dez Bryant	WR	2010	2012	$15
+14198		Dion Lewis	RB	FA	2012
+12489	Charles	Donald Brown	RB	2012	2014	$35
+13265	James	Donald Butler	LB	FA	2012	$3
+13597		Donald Jones	WR	FA	2012
+11267	Charles	Donnie Avery	WR	FA	2012	$10
+14933	James	Dont'a Hightower	LB	2012	2014	$1
+14221	Jake/Luke	Doug Baldwin	WR	2012	2014	$11
+14885	Syed	Doug Martin	RB	2012	2014	$25
+2580	Keyon	Drew Brees	QB	2012	2012	$240
+11264	Keyon	Dustin Keller	TE	2011	2013	$2
+14901	Jake/Luke	Dwayne Allen	TE	2012	2014	$1
+10467	James	Dwayne Bowe	WR	2012	2012	$100
+14100		Dwayne Harris	WR	FA	2012
+11304	John	Earl Bennett	WR	2012	2014	$1
+13251	Daniel	Earl Thomas	DB	2012	2012	$1
+11315	Jake/Luke	Early Doucet	WR	2012	2012	$2
+13272	Jake/Luke	Ed Dickson	TE	2012	2013	$6
+11276	Mitch	Eddie Royal	WR	2012	2012	$5
+5526	Syed	Eli Manning	QB	2011	2013	$28
+9712	Charles	Elvis Dumervil	DL	2012	2013	$5
+13295	Pat/Quinn	Emmanuel Sanders	WR	2011	2013	$10
+13252	Jake/Luke	Eric Berry	DB	2012	2013	$13
+13271	Mitch	Eric Decker	WR	2010	2012	$2
+10481	Pat/Quinn	Eric Weddle	DB	2012	2014	$3
+14105	Daniel	Evan Royster	RB	2012	2014	$5
+11256	Schex	Felix Jones	RB	2012	2012	$17
+8479	Mitch	Frank Gore	RB	2012	2013	$120
+11282	John	Fred Davis	TE	2012	2014	$35
+10195	Syed	Fred Jackson	RB	2012	2012	$150
+11543	Charles	Garrett Hartley	K	2012	2012	$1
+9267	James	George Wilson	DB	2012	2012	$6
+12475	Koci	Graham Harrell	QB	FA	2012	$2
+9638	Keyon	Greg Jennings	WR	2011	2013	$127
+14024	Syed	Greg Little	WR	2011	2013	$26
+10475	Pat/Quinn	Greg Olsen	TE	2012	2012	$43
+12586	John	Hakeem Nicks	WR	2012	2012	$130
+9598	Schex	Haloti Ngata	DL	2012	2012	$3
+8444	Charles	Heath Miller	TE	FA	2012	$1
+12695	Koci	Henry Melton	DL	FA	2012	$1
+12898	Charles	Isaac Redman	RB	2012	2012	$70
+14888	Mitch	Isaiah Pead	RB	2012	2014	$13
+13979	Jake/Luke	J.J. Watt	DL	2012	2013	$8
+14036	Koci	Jabaal Sheard	DL	2012	2014	$3
+3561		Jabar Gaffney	WR	FA	2012
+11373	Jake/Luke	Jacob Tamme	TE	2012	2013	$55
+13363	James	Jacoby Ford	WR	2010	2012	$1
+10517	Charles	Jacoby Jones	WR	2012	2012	$8
+14193	Syed	Jacquizz Rodgers	RB	2011	2013	$2
+13205	John	Jahvid Best	RB	FA	2012	$5
+12613	John	Jairus Byrd	DB	2012	2013	$7
+13969	Charles	Jake Locker	QB	2011	2013	$2
+11307	Keyon	Jamaal Charles	RB	2012	2012	$225
+9674	Pat/Quinn	James Anderson	LB	2012	2014	$5
+14906	Trevor	James Hanna	TE	2012	2014	$1
+10522	Koci	James Jones	WR	2012	2014	$1
+12454	Syed	James Laurinaitis	LB	2012	2014	$19
+13214	Keyon	James Starks	RB	2011	2013	$5
+14974	Mitch	Janoris Jenkins	DB	2012	2014	$1
+5651	Pat/Quinn	Jared Allen	DL	2012	2012	$43
+12537	John	Jared Cook	TE	2011	2013	$3
+14918	Pat/Quinn	Jarius Wright	WR	2012	2014	$1
+5552	Charles	Jason Babin	LB	2012	2013	$10
+8440	Pat/Quinn	Jason Campbell	QB	2010	2012	$5
+286	Jake/Luke	Jason Hanson	K	2012	2012	$1
+12691	Daniel	Jason McCourty	DB	2012	2012	$6
+13256	Charles	Jason Pierre-Paul	DL	2010	2012	$1
+10687	Trevor	Jason Snelling	RB	2012	2012	$6
+4527	Charles	Jason Witten	TE	2012	2012	$65
+13259	Mitch	Javier Arenas	DB	2012	2012	$5
+12520	Pat/Quinn	Javon Ringer	RB	2012	2014	$1
+9597	Keyon	Jay Cutler	QB	2012	2014	$55
+15749	Schex	Jeff Demps	RB	2012	2014	$3
+14151	John	Jeremy Kerley	WR	FA	2012	$10
+12579	Syed	Jeremy Maclin	WR	2011	2013	$75
+9777	Keyon	Jeremy Mincey	DL	FA	2012	$1
+13228	Mitch	Jermaine Gresham	TE	2010	2012	$4
+11325	Syed	Jermichael Finley	TE	2012	2012	$90
+11244	Koci	Jerod Mayo	LB	2012	2014	$16
+11280	Daniel	Jerome Simpson	WR	2012	2012	$11
+13232	Jake/Luke	Jimmy Graham	TE	2012	2012	$175
+11252	Syed	Joe Flacco	QB	2011	2013	$50
+13249	Jake/Luke	Joe Haden	DB	2010	2012	$1
+13209	Schex	Joe McKnight	RB	2012	2013	$5
+13458	John	John Skelton	QB	2012	2014	$15
+10469	Trevor	Jon Beason	LB	2012	2014	$5
+13986	Daniel	Jonathan Baldwin	WR	2011	2013	$13
+13206	Schex	Jonathan Dwyer	RB	2012	2012	$27
+11247	John	Jonathan Stewart	RB	2011	2013	$30
+14189	Daniel	Jordan Cameron	TE	2011	2013	$1
+11270	Keyon	Jordy Nelson	WR	2011	2013	$5
+9270	John	Josh Cribbs	WR	2012	2013	$42
+12473	Daniel	Josh Freeman	QB	2010	2012	$15
+15705	Syed	Josh Gordon	WR	2012	2014	$4
+11408	Pat/Quinn	Josh Morgan	WR	FA	2012	$1
+12649	Keyon	Julian Edelman	WR	2012	2014	$1
+13982	James	Julio Jones	WR	2011	2013	$26
+3530	Schex	Julius Peppers	DL	2012	2012	$6
+15044	Syed	Juron Criner	WR	2012	2014	$4
+14907	Jake/Luke	Justin Blackmon	WR	2012	2014	$16
+11467	Daniel	Justin Forsett	RB	2012	2012	$4
+2552	Mitch	Justin Smith	DL	2012	2013	$5
+8488	Jake/Luke	Justin Tuck	DL	2012	2012	$6
+15683	Syed	Justin Tucker	K	2012	2014	$1
+13336	Trevor	Kam Chancellor	DB	2012	2013	$15
+9599	John	Kamerion Wimbley	LB	FA	2012	$3
+5558	Charles	Karlos Dansby	LB	2012	2012	$5
+13727	Charles	Keiland Williams	RB	2012	2012	$12
+11392	Schex	Kellen Davis	TE	2012	2012	$6
+5531		Kellen Winslow	TE	FA	2012
+14159	Daniel	Kendall Hunter	RB	2011	2013	$4
+14909	Charles	Kendall Wright	WR	2012	2014	$8
+12556	Pat/Quinn	Kenny Britt	WR	2012	2014	$35
+14916	Koci	Keshawn Martin	WR	2012	2014	$4
+10480	Mitch	Kevin Kolb	QB	2012	2012	$13
+12588	Mitch	Kevin Ogletree	WR	FA	2012	$57
+11298	Schex	Kevin Smith	RB	2012	2012	$47
+14880	Schex	Kirk Cousins	QB	2012	2014	$2
+12516	Charles	Knowshon Moreno	RB	2012	2012	$4
+11494	Trevor	Kyle Arrington	DB	2012	2014	$1
+14054	Trevor	Kyle Rudolph	TE	2011	2013	$1
+14886	Syed	Lamar Miller	RB	2012	2014	$13
+14890	Syed	LaMichael James	RB	2012	2014	$13
+11912	Trevor	Lance Ball	RB	2012	2012	$5
+4526	Daniel	Lance Briggs	LB	2012	2012	$2
+14007	Daniel	Lance Kendricks	TE	2011	2013	$1
+9400	Koci	Lance Moore	WR	2011	2013	$20
+12747	Keyon	Lardarius Webb	DB	2012	2014	$8
+12730	Pat/Quinn	LaRod Stephens-Howling	RB	2012	2014	$3
+5528	Pat/Quinn	Larry Fitzgerald	WR	2012	2014	$130
+10519	John	Laurent Robinson	WR	2012	2012	$25
+15033	Koci	LaVon Brazill	WR	2012	2014	$4
+14985	Keyon	Lavonte David	LB	2012	2014	$1
+10459	Koci	Lawrence Timmons	LB	2012	2014	$5
+13213	Mitch	LeGarrette Blount	RB	2010	2012	$1
+9703	Pat/Quinn	Leon Washington	RB	2012	2014	$28
+14021	James	Leonard Hankerson	WR	2011	2013	$13
+12514	Trevor	LeSean McCoy	RB	2012	2012	$310
+14570		Lestar Jean	WR	FA	2012
+1680	Koci	London Fletcher	LB	2012	2012	$32
+14938	Jake/Luke	Luke Kuechly	LB	2012	2014	$1
+6016	Charles	Malcom Floyd	WR	2011	2013	$15
+9614	James	Marcedes Lewis	TE	2012	2012	$26
+12524		Marcus Thigpen	RB	FA	2012
+11329	Syed	Mario Manningham	WR	2010	2012	$1
+9587	Trevor	Mario Williams	DL	2012	2013	$17
+14932	Charles	Mark Barron	DB	2012	2014	$1
+13981	Daniel	Mark Ingram	RB	2011	2013	$25
+12482	Jake/Luke	Mark Sanchez	QB	2011	2013	$20
+9838	James	Marques Colston	WR	2012	2012	$90
+10456	Pat/Quinn	Marshawn Lynch	RB	2010	2012	$12
+11295	Syed	Martellus Bennett	TE	2012	2014	$16
+15072		Marvin Jones	WR	FA	2012
+10636	Trevor	Mason Crosby	K	2010	2012	$2
+14023	Daniel	Mason Foster	LB	2011	2013	$1
+8644	Pat/Quinn	Matt Cassel	QB	2010	2012	$15
+11443	Schex	Matt Flynn	QB	2012	2014	$5
+11278	Syed	Matt Forte	RB	2012	2012	$200
+1575	Koci	Matt Hasselbeck	QB	2011	2013	$2
+9596	Trevor	Matt Leinart	QB	2012	2012	$1
+11128	John	Matt Moore	QB	2012	2012	$1
+11122	Daniel	Matt Prater	K	FA	2012	$1
+11237	Daniel	Matt Ryan	QB	2011	2013	$85
+5615	Charles	Matt Schaub	QB	2011	2013	$85
+12483	Charles	Matthew Stafford	QB	2012	2012	$220
+9646	James	Maurice Jones-Drew	RB	2012	2012	$197
+14926	James	Melvin Ingram	LB	2012	2014	$1
+10544	Jake/Luke	Michael Bush	RB	2012	2013	$17
+12563	Koci	Michael Crabtree	WR	2012	2014	$22
+14908	Syed	Michael Floyd	WR	2012	2014	$16
+12436	Mitch	Michael Johnson	DL	2012	2012	$1
+5679	Pat/Quinn	Michael Turner	RB	2012	2012	$130
+2549	John	Michael Vick	QB	2011	2013	$185
+12499	John	Mike Goodson	RB	2011	2013	$1
+8461	Mitch	Mike Nugent	K	2012	2012	$1
+11658	Daniel	Mike Tolbert	RB	2012	2012	$1
+12601	Trevor	Mike Wallace	WR	2012	2012	$130
+13489	Koci	Mike Williams (TB)	WR	2010	2012	$8
+14052	Koci	Mikel Leshoure	RB	2012	2014	$5
+10147	Charles	Miles Austin	WR	2012	2012	$70
+12581	Daniel	Mohamed Massaquoi	WR	2012	2012	$1
+14922	Keyon	Mohamed Sanu	WR	2012	2014	$8
+13208	Koci	Montario Hardesty	RB	2012	2014	$6
+13264	John	Morgan Burnett	DB	2012	2012	$8
+14943	Mitch	Morris Claiborne	DB	2012	2014	$1
+14978	Schex	Mychal Kendricks	LB	2012	2014	$1
+4529	Schex	Nate Burleson	WR	2012	2012	$17
+5590	John	Nate Kaeding	K	2011	2013	$1
+9307	Jake/Luke	Nate Washington	WR	2012	2013	$30
+13262	Pat/Quinn	NaVorro Bowman	LB	2012	2014	$10
+13234	Trevor	Ndamukong Suh	DL	2012	2014	$1
+2300		Neil Rackers	K	FA	2012
+4487	Keyon	Nick Barnett	LB	2012	2012	$1
+14877	Pat/Quinn	Nick Foles	QB	2012	2014	$2
+14921	James	Nick Toon	WR	2012	2012	$2
+4514	James	Osi Umenyiora	DL	2012	2013	$2
+9684	Daniel	Owen Daniels	TE	2011	2013	$46
+13258	Schex	Pat Angerer	LB	2012	2014	$1
+13980	Charles	Patrick Peterson	DB	2011	2013	$1
+10455	Trevor	Patrick Willis	LB	2012	2012	$41
+10478	Schex	Paul Posluszny	LB	2010	2012	$1
+12569	Koci	Percy Harvin	WR	2012	2014	$145
+13443	Charles	Perry Riley	LB	2012	2012	$9
+11461	Jake/Luke	Peyton Hillis	RB	2012	2012	$30
+1428	Mitch	Peyton Manning	QB	2012	2013	$150
+5529	Jake/Luke	Philip Rivers	QB	2012	2013	$125
+11439	Pat/Quinn	Pierre Garcon	WR	2011	2013	$15
+10713	John	Pierre Thomas	RB	2012	2012	$24
+2139	Daniel	Plaxico Burress	WR	2010	2012	$1
+5107	Keyon	Quentin Mikell	DB	FA	2012	$1
+14053	Syed	Randall Cobb	WR	2011	2013	$13
+15091		Randy Bullock	K	FA	2012
+1433	James	Randy Moss	WR	2011	2013	$5
+5596	James	Randy Starks	DL	FA	2012	$2
+12503	John	Rashad Jennings	RB	2011	2013	$4
+11257	Charles	Rashard Mendenhall	RB	2012	2013	$40
+964	John	Ray Lewis	LB	FA	2012	$5
+11289	Jake/Luke	Ray Rice	RB	2012	2012	$335
+9588	Trevor	Reggie Bush	RB	2011	2013	$22
+10465	Schex	Reggie Nelson	DB	2012	2012	$3
+2578	Mitch	Reggie Wayne	WR	2012	2012	$73
+13229	Trevor	Rob Gronkowski	TE	2010	2012	$1
+14009	Koci	Rob Housler	TE	2012	2014	$1
+9354	Pat/Quinn	Robbie Gould	K	2012	2012	$1
+14875	Schex	Robert Griffin III	QB	2012	2014	$25
+10471	John	Robert Meachem	WR	2011	2013	$1
+13984	John	Robert Quinn	DL	2012	2014	$3
+14894	Koci	Robert Turbin	RB	2012	2014	$4
+15391	Charles	Rod Streater	WR	2012	2014	$4
+8442	Daniel	Roddy White	WR	2012	2012	$150
+13255	Mitch	Rolando McClain	LB	2012	2012	$1
+9629	James	Roman Harper	DB	2012	2012	$4
+8417	Trevor	Ronnie Brown	RB	2012	2013	$17
+14895	Koci	Ronnie Hillman	RB	2012	2014	$13
+14192	Syed	Roy Helu	RB	2011	2013	$25
+14911	Jake/Luke	Rueben Randle	WR	2012	2014	$16
+14881	Schex	Russell Wilson	QB	2012	2014	$13
+14919	Keyon	Ryan Broyles	WR	2012	2014	$4
+8664	Koci	Ryan Fitzpatrick	QB	2011	2013	$21
+13973	Syed	Ryan Kerrigan	LB	2011	2013	$1
+14883	Trevor	Ryan Lindley	QB	2012	2014	$2
+14037	Trevor	Ryan Mallett	QB	2011	2013	$1
+13204	Syed	Ryan Mathews	RB	2010	2012	$28
+14876	Syed	Ryan Tannehill	QB	2012	2014	$25
+14051	Syed	Ryan Williams	RB	2011	2013	$25
+13197	Syed	Sam Bradford	QB	2010	2012	$6
+2564		Santana Moss	WR	FA	2012
+9611	Schex	Santonio Holmes	WR	2012	2012	$42
+10572	Pat/Quinn	Scott Chandler	TE	2012	2012	$15
+13284	John	Sean Lee	LB	2012	2014	$5
+13243	Trevor	Sean Weatherspoon	LB	2010	2012	$1
+2148	Schex	Sebastian Janikowski	K	2012	2012	$4
+14017	Jake/Luke	Shane Vereen	RB	2011	2013	$4
+14518	Keyon	Shaun Draughn	RB	FA	2012	$1
+4260	Charles	Shaun Hill	QB	2011	2013	$1
+12500	James	Shonn Greene	RB	2012	2013	$55
+10488	Charles	Sidney Rice	WR	2012	2013	$10
+9704	James	Stephen Gostkowski	K	2012	2012	$3
+14910	James	Stephen Hill	WR	2012	2014	$8
+10553	Schex	Stephen Nicholas	LB	FA	2012	$1
+9702	John	Stephen Tulloch	LB	2012	2012	$10
+14942	Mitch	Stephon Gilmore	DB	2012	2014	$1
+14028	Charles	Stevan Ridley	RB	2011	2013	$25
+11458	Schex	Steve Johnson	WR	2011	2013	$55
+11323	Trevor	Steve Slaton	RB	2012	2012	$1
+2622	Keyon	Steve Smith (CAR)	WR	2012	2012	$99
+10495	Daniel	Steve Smith (STL)	WR	2012	2014	$1
+5549	James	Steven Jackson	RB	2012	2012	$135
+13304	Jake/Luke	T.J. Ward	DB	2010	2012	$1
+14114	Charles	T.J. Yates	QB	2012	2012	$14
+14924	Jake/Luke	T.Y. Hilton	WR	2012	2014	$2
+14167	Koci	Taiwan Jones	RB	2012	2014	$3
+9606	Jake/Luke	Tamba Hali	DL	2011	2012	$1
+11359	Mitch	Tashard Choice	RB	2012	2012	$2
+1056		Terrell Owens	WR	FA	2012
+14851	Trevor	Terrelle Pryor	QB	2011	2013	$1
+11383		Tim Hightower	RB	FA	2012
+13200	Syed	Tim Tebow	QB	2010	2012	$12
+14034	Charles	Titus Young	WR	2011	2013	$13
+13211	James	Toby Gerhart	RB	2010	2012	$14
+2330	Pat/Quinn	Tom Brady	QB	2012	2014	$255
+5968	Trevor	Tommy Kelly	DL	2012	2014	$1
+1231	James	Tony Gonzalez	TE	2012	2012	$20
+13289		Tony Moeaki	TE	FA	2012
+5209	James	Tony Romo	QB	2012	2012	$95
+14032	Koci	Torrey Smith	WR	2012	2014	$63
+8560	Mitch	Trent Cole	DL	2012	2013	$15
+14884	Koci	Trent Richardson	RB	2012	2014	$25
+13386	Syed	Trindon Holliday	WR	2012	2014	$3
+11334	Syed	Tyvon Branch	DB	2012	2014	$10
+9592	Daniel	Vernon Davis	TE	2011	2013	$60
+14898	Koci	Vick Ballard	RB	2012	2014	$13
+13553	Keyon	Victor Cruz	WR	2012	2014	$100
+9589		Vince Young	QB	FA	2012
+10482	Schex	Zach Miller	TE	FA	2012	$1
+14027	Keyon	Vincent Brown	WR	2012	2014	$1
+8475	John	Vincent Jackson	WR	2011	2013	$110
+13976	Jake/Luke	Von Miller	LB	2012	2012	$22
+5941	Trevor	Wes Welker	WR	2012	2012	$120
+14936	Daniel	Whitney Mercilus	DL	2012	2014	$1
+12530	Schex	William Moore	DB	FA	2012	$1
+4481	John	Willis McGahee	RB	2010	2012	$1
+
+=== 2013 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Trevor	A.J. Green	WR	2011	2013	$26
+9591		A.J. Hawk	LB	FA	2013
+14947	Pat/Quinn	A.J. Jenkins	WR	2012	2014	$4
+15834	John	Aaron Dobson	WR	2013	2015	$9
+8439	Koci/Mueller	Aaron Rodgers	QB	2012	2014	$263
+16022	Koci/Mueller	Ace Sanders	WR	2013	2015	$5
+10452	Schex	Adrian Peterson	RB	2012	2014	$135
+10693	John	Ahmad Bradshaw	RB	2013	2013	$83
+13988	Mitch	Aldon Smith	LB	2013	2013	$20
+15806	Mitch	Alec Ogletree	LB	2013	2013	$1
+8416	John	Alex Smith	QB	2011	2013	$5
+15009	James	Alfred Morris	RB	2013	2015	$230
+14912	James	Alshon Jeffery	WR	2012	2014	$16
+12490	John	Andre Brown	RB	2013	2013	$60
+15893	Pat/Quinn	Andre Ellington	RB	2013	2015	$2
+4461	Trevor	Andre Johnson	WR	2013	2014	$105
+13226	Schex	Andre Roberts	WR	2013	2015	$3
+14874	Mitch	Andrew Luck	QB	2012	2014	$25
+14012	Keyon	Andy Dalton	QB	2011	2013	$4
+4512	John	Anquan Boldin	WR	2013	2013	$27
+10470	James	Anthony Spencer	DL/LB	2013	2015	$27
+9793	Schex	Anthoine Bethea	DB	FA	2013	$1
+13934	Mitch	Antonio Brown	WR	2013	2013	$85
+5362	Mitch	Antonio Gates	TE	2013	2013	$25
+12497	Daniel	Arian Foster	RB	2013	2013	$270
+15828	Trevor	Arthur Brown	LB	2013	2015	$1
+15805	Charles	Barkevious Mingo	DL/LB	2013	2015	$1
+5536	James	Ben Roethlisberger	QB	2011	2013	$90
+13210	Pat/Quinn	Ben Tate	RB	2013	2015	$45
+11754	Keyon	BenJarvus Green-Ellis	RB	2012	2013	$32
+16055	Schex	Benny Cunningham	RB	FA	2013	$1
+14891	Jake/Luke	Bernard Pierce	RB	2012	2014	$7
+9640	John	Bernard Pollard	DB	FA	2013	$1
+14129	Schex	Bilal Powell	RB	2013	2013	$17
+13987	Daniel	Blaine Gabbert	QB	2012	2014	$24
+15058	Charles	Blair Walsh	K	2013	2013	$2
+15501	Schex	Bobby Rainey	RB	FA	2013	$3
+14979	James	Bobby Wagner	LB	2013	2015	$15
+10507		Brandon Jackson	RB	FA	2013
+12576	Charles	Brandon LaFell	WR	2013	2013	$1
+9705	Mitch	Brandon Marshall	WR	2013	2014	$175
+12705	Trevor	Brandon Myers	TE	2013	2013	$40
+12549	Keyon	Brandon Pettigrew	TE	2013	2013	$17
+12597	Pat/Quinn	Brandon Tate	WR	2012	2014	$3
+14878	Syed	Brandon Weeden	QB	2012	2014	$13
+10605	Schex	Brent Celek	TE	2013	2015	$2
+12453	John	Brian Cushing	LB	2013	2015	$7
+12568	John	Brian Hartline	WR	2013	2015	$12
+12477	Jake/Luke	Brian Hoyer	QB	FA	2013	$11
+12439	Syed	Brian Orakpo	LB	2013	2015	$1
+14914	Koci/Mueller	Brian Quick	WR	2012	2014	$16
+10546		Brian Robison	DL	FA	2013
+14879	Pat/Quinn	Brock Osweiler	QB	2012	2014	$1
+14026	Keyon	Bruce Carter	LB	2013	2015	$3
+15092	Jake/Luke	Bryce Brown	RB	2012	2014	$2
+13203	Jake/Luke	C.J. Spiller	RB	2013	2015	$280
+11284	Keyon	Calais Campbell	DL	2013	2013	$2
+10447	Schex	Calvin Johnson	WR	2011	2013	$150
+13994	Trevor	Cam Newton	QB	2011	2013	$13
+13971	Schex	Cameron Jordan	DL	2013	2015	$2
+12417	Charles	Cameron Wake	DL	2013	2014	$11
+4459	Keyon	Carson Palmer	QB	2013	2013	$82
+14184	John	Cecil Shorts	WR	2013	2015	$39
+9603	Schex	Chad Greenway	LB	2013	2015	$6
+11291	Daniel	Chad Henne	QB	2013	2015	$10
+14927	Pat/Quinn	Chandler Jones	DL	2012	2014	$1
+14145	Charles	Charles Clay	TE	FA	2013	$6
+10527	Daniel	Charles Johnson	DL	2011	2013	$1
+4493	Koci/Mueller	Charles Tillman	DB	2013	2013	$13
+1442		Charles Woodson	DB	FA	2013
+12471	Pat/Quinn	Chase Daniel	QB	FA	2013	$1
+15078	John	Chris Givens	WR	2012	2014	$2
+13587	Keyon	Chris Ivory	RB	2013	2013	$85
+11258	Schex	Chris Johnson	RB	2013	2014	$160
+11236	Daniel	Chris Long	DL	2013	2013	$1
+12517	Keyon	Chris Ogbonnaya	RB	FA	2013	$3
+14896	Trevor	Chris Rainey	RB	2012	2014	$13
+13966	James	Christian Ponder	QB	2011	2013	$4
+15855	Pat/Quinn	Christine Michael	RB	2013	2015	$13
+16496	Daniel	Cierre Wood	RB	2013	2015	$1
+12438	Jake/Luke	Clay Matthews	LB	FA	2013	$1
+11326		Cliff Avril	DL	FA	2013
+14900	Keyon	Coby Fleener	TE	2012	2014	$7
+14001	Daniel	Colin Kaepernick	QB	2011	2013	$4
+12449	Mitch	Connor Barwin	DL	2012	2013	$1
+15807	John	Cordarrelle Patterson	WR	2013	2015	$18
+9801	Trevor	Cortland Finnegan	DB	2013	2014	$1
+14970		Courtney Upshaw	LB	FA	2013
+11271	Charles	Curtis Lofton	LB	2013	2013	$6
+14897	Jake/Luke	Cyrus Gray	RB	2012	2014	$1
+15865		D.J. Swearinger	DB	FA	2013
+9620	Keyon	D'Qwell Jackson	LB	2013	2013	$10
+14087	Schex	Da'Rel Scott	RB	FA	2013	$2
+4482	Keyon	Dallas Clark	TE	FA	2013	$2
+14322	Keyon	Dan Bailey	K	2013	2013	$1
+9628		Danieal Manning	DB	FA	2013
+14056	Koci/Mueller	Daniel Thomas	RB	2013	2015	$22
+13103		Dannell Ellerbe	LB	FA	2013
+11674	Koci/Mueller	Danny Amendola	WR	2012	2014	$32
+11788	Syed	Danny Woodhead	RB	2011	2013	$1
+11933	Pat/Quinn	Darius Reynaud	RB	2012	2014	$1
+15863		Darius Slay	DB	FA	2013
+11238	John	Darren McFadden	RB	2013	2013	$95
+8544	Koci/Mueller	Darren Sproles	RB	2011	2013	$6
+12570	Pat/Quinn	Darrius Heyward-Bey	WR	2011	2013	$1
+15111	Charles	Daryl Richardson	RB	2013	2014	$55
+13305	Charles	Daryl Washington	LB	2012	2013	$11
+15798	Daniel	Datone Jones	DL	2013	2013	$1
+1716	John	David Akers	K	2012	2014	$3
+14887	Keyon	David Wilson	RB	2012	2014	$25
+11678	Jake/Luke	Davone Bess	WR	2013	2013	$1
+15795	Charles	DeAndre Hopkins	WR	2013	2015	$18
+5533	Jake/Luke	DeAngelo Hall	DB	FA	2013	$1
+9613	Mitch	DeAngelo Williams	RB	2013	2013	$70
+13398	Daniel	Deji Karim	RB	2013	2015	$1
+14005	James	DeMarco Murray	RB	2011	2013	$7
+8426	Mitch	DeMarcus Ware	LB	2011	2013	$6
+13216	Schex	Demaryius Thomas	WR	2012	2013	$60
+15951	John	Denard Robinson	RB	2013	2015	$7
+14153	Koci/Mueller	Denarius Moore	WR	2011	2013	$13
+8430	Koci/Mueller	Derrick Johnson	LB	2011	2013	$2
+13248	Keyon	Derrick Morgan	DL	FA	2013	$1
+11283	Mitch	DeSean Jackson	WR	2013	2014	$62
+15812		Desmond Trufant	DB	FA	2013
+9643	Trevor	Devin Hester	WR	2013	2013	$7
+13236	Koci/Mueller	Devin McCourty	DB	2012	2014	$3
+13207	Mitch	Dexter McCluster	WR	2013	2013	$3
+13215	James	Dez Bryant	WR	2013	2015	$185
+15800	Trevor	Dion Jordan	DL	2013	2015	$2
+15974	Trevor	Dion Sims	TE	2013	2013	$9
+12489		Donald Brown	RB	FA	2013
+13265	Keyon	Donald Butler	LB	FA	2013	$1
+11267	Charles	Donnie Avery	WR	2013	2013	$3
+14933	James	Dont'a Hightower	LB	2012	2014	$1
+14939	James	Dontari Poe	DL	FA	2013	$1
+14221	Jake/Luke	Doug Baldwin	WR	2012	2014	$11
+14885	Syed	Doug Martin	RB	2012	2014	$25
+2580	Trevor	Drew Brees	QB	2013	2013	$299
+14255		DuJuan Harris	RB	FA	2013
+15190	Jake/Luke	Duke Ihenacho	DB	FA	2013	$1
+11264		Dustin Keller	TE	FA	2013
+14901		Dwayne Allen	TE	FA	2013
+10467	James	Dwayne Bowe	WR	2013	2015	$85
+15803	James	EJ Manuel	QB	2013	2015	$17
+13272	Jake/Luke	Ed Dickson	TE	2012	2013	$6
+15848	Mitch	Eddie Lacy	RB	2013	2015	$26
+11276	Daniel	Eddie Royal	WR	2013	2013	$1
+5526	Syed	Eli Manning	QB	2011	2013	$28
+9712	Charles	Elvis Dumervil	DL	2012	2013	$5
+13295	Pat/Quinn	Emmanuel Sanders	WR	2011	2013	$10
+13252		Eric Berry	DB	FA	2013
+13271	Jake/Luke	Eric Decker	WR	2013	2013	$115
+15809	Charles	Eric Reid	DB	2013	2015	$1
+10481	Pat/Quinn	Eric Weddle	DB	2012	2014	$3
+11636	Pat/Quinn	Erin Henderson	LB	FA	2013	$1
+15785	Koci/Mueller	Ezekiel Ansah	DL	2013	2015	$1
+11256	Daniel	Felix Jones	RB	2013	2013	$5
+8479	Mitch	Frank Gore	RB	2012	2013	$120
+11282	Schex	Fred Davis	TE	2012	2014	$35
+10195	Trevor	Fred Jackson	RB	2013	2013	$27
+15836	John	Gavin Escobar	TE	2013	2015	$1
+13452	James	George Selvie	DL	FA	2013	$1
+13311	Keyon	Geno Atkins	DL	2013	2015	$5
+15864	Mitch	Geno Smith	QB	2013	2015	$17
+15826	James	Giovani Bernard	RB	2013	2015	$26
+13217	Keyon	Golden Tate	WR	2013	2015	$20
+13377	Trevor	Greg Hardy	DL	2013	2015	$7
+9638	Charles	Greg Jennings	WR	2013	2014	$47
+14024	Mitch	Greg Little	WR	2013	2013	$5
+10475	Mitch	Greg Olsen	TE	2013	2013	$40
+14993	Pat/Quinn	Greg Zuerlein	K	2013	2013	$3
+12586	Schex	Hakeem Nicks	WR	2013	2015	$55
+14945	James	Harrison Smith	DB	2013	2015	$10
+11318	Daniel	Harry Douglas	WR	FA	2013	$2
+8444	Charles	Heath Miller	TE	2013	2013	$4
+12898	Trevor	Isaac Redman	RB	2013	2013	$40
+14888	Mitch	Isaiah Pead	RB	2012	2014	$13
+13979	Jake/Luke	J.J. Watt	DL	2012	2013	$8
+14036		Jabaal Sheard	DL/LB	FA	2013
+11197	Jake/Luke	Jackie Battle	RB	FA	2013	$1
+11373		Jacob Tamme	TE	FA	2013
+13363	Mitch	Jacoby Ford	WR	2013	2013	$4
+10517	Pat/Quinn	Jacoby Jones	WR	2013	2013	$74
+14193	Syed	Jacquizz Rodgers	RB	2011	2013	$2
+12613	Daniel	Jairus Byrd	DB	2012	2013	$7
+13969	Pat/Quinn	Jake Locker	QB	2011	2013	$2
+11307	Koci/Mueller	Jamaal Charles	RB	2013	2013	$265
+14906	Trevor	James Hanna	TE	2012	2014	$1
+10522	Koci/Mueller	James Jones	WR	2012	2014	$1
+12454	Syed	James Laurinaitis	LB	2012	2014	$19
+13214	Keyon	James Starks	RB	2011	2013	$5
+14974	Mitch	Janoris Jenkins	DB	2012	2014	$1
+5651	Pat/Quinn	Jared Allen	DL	2013	2015	$14
+12537	Koci/Mueller	Jared Cook	TE	2011	2013	$3
+14918	Pat/Quinn	Jarius Wright	WR	2012	2014	$1
+15799	Schex	Jarvis Jones	LB	2013	2015	$1
+5552	Syed	Jason Babin	DL	2013	2015	$1
+8440		Jason Campbell	QB	FA	2013
+12691	Daniel	Jason McCourty	DB	2013	2013	$2
+13256	Koci/Mueller	Jason Pierre-Paul	DL	2013	2013	$22
+10687	Jake/Luke	Jason Snelling	RB	FA	2013	$4
+4527	Charles	Jason Witten	TE	2013	2013	$55
+13259	Daniel	Javier Arenas	DB	2013	2013	$2
+9597	Keyon	Jay Cutler	QB	2012	2014	$55
+15749		Jeff Demps	RB	FA	2013
+16237	Jake/Luke	Jeff Tuel	QB	FA	2013	$5
+14151	John	Jeremy Kerley	WR	2013	2015	$1
+12579	Schex	Jeremy Maclin	WR	2013	2015	$7
+13228	John	Jermaine Gresham	TE	2013	2015	$12
+11325	Keyon	Jermichael Finley	TE	2013	2013	$46
+11244	Koci/Mueller	Jerod Mayo	LB	2012	2014	$16
+11280	Syed	Jerome Simpson	WR	2013	2015	$3
+11533	James	Jerrell Freeman	LB	2013	2015	$5
+13232	Jake/Luke	Jimmy Graham	TE	2013	2013	$180
+11252	Syed	Joe Flacco	QB	2011	2013	$50
+13209		Joe McKnight	RB	FA	2013
+15831	Jake/Luke	John Cyprien	DB	2013	2015	$1
+15925	John	Johnathan Franklin	RB	2013	2015	$13
+13536	Mitch	Joique Bell	RB	2013	2013	$16
+13986	James	Jon Baldwin	WR	2011	2013	$13
+15827	Syed	Jon Bostic	LB	2013	2015	$1
+13206		Jonathan Dwyer	RB	FA	2013
+11247	John	Jonathan Stewart	RB	2013	2015	$7
+14189	Daniel	Jordan Cameron	TE	2011	2013	$1
+11270	Keyon	Jordy Nelson	WR	2011	2013	$5
+16013	James	Joseph Randle	RB	2013	2015	$13
+15998	John	Josh Boyce	WR	2013	2015	$1
+9270		Josh Cribbs	WR	FA	2013
+12473	Koci/Mueller	Josh Freeman	QB	2013	2015	$90
+15705	Pat/Quinn	Josh Gordon	WR	2013	2015	$23
+11408	Daniel	Josh Morgan	WR	2013	2013	$3
+12649	Schex	Julian Edelman	WR	2013	2014	$15
+13982	James	Julio Jones	WR	2011	2013	$26
+3530		Julius Peppers	DL	FA	2013
+14204	Daniel	Julius Thomas	TE	2013	2015	$3
+14907	Jake/Luke	Justin Blackmon	WR	2012	2014	$16
+11467	Schex	Justin Forsett	RB	FA	2013	$1
+15845	Daniel	Justin Hunter	WR	2013	2015	$5
+2552	Mitch	Justin Smith	DL	2012	2013	$5
+15683	Syed	Justin Tucker	K	2012	2014	$1
+13336	Trevor	Kam Chancellor	DB	2012	2013	$15
+5558	Trevor	Karlos Dansby	LB	2013	2013	$1
+15818	Mitch	Keenan Allen	WR	2013	2015	$9
+5531	John	Kellen Winslow	TE	FA	2013	$15
+16381	Syed	Kenbrell Thompkins	WR	2013	2015	$18
+14159	Syed	Kendall Hunter	RB	2013	2015	$1
+14909	Charles	Kendall Wright	WR	2012	2014	$8
+15921	Keyon	Kenjon Barner	RB	2013	2015	$7
+12556	Pat/Quinn	Kenny Britt	WR	2012	2014	$35
+16016	Daniel	Kenny Stills	WR	2013	2015	$9
+15813	Keyon	Kenny Vaccaro	DB	2013	2015	$1
+14916	Koci/Mueller	Keshawn Martin	WR	2012	2014	$4
+10480		Kevin Kolb	QB	FA	2013
+15856		Kevin Minter	LB	FA	2013
+12588	Trevor	Kevin Ogletree	WR	2013	2015	$3
+15819	Syed	Kiko Alonso	LB	2013	2015	$1
+14880	Schex	Kirk Cousins	QB	2012	2014	$2
+15832	Jake/Luke	Knile Davis	RB	2013	2015	$7
+12516	Mitch	Knowshon Moreno	RB	2013	2013	$10
+8520	Pat/Quinn	Kyle Orton	QB	FA	2013	$3
+14054	Trevor	Kyle Rudolph	TE	2011	2013	$1
+13488	Schex	Kyle Williams	WR	FA	2013	$1
+14886	Syed	Lamar Miller	RB	2012	2014	$13
+14890	Syed	LaMichael James	RB	2013	2015	$7
+11912		Lance Ball	RB	FA	2013
+4526	Trevor	Lance Briggs	LB	2013	2013	$2
+15369	Keyon	Lance Dunbar	RB	2013	2015	$8
+14007		Lance Kendricks	TE	FA	2013
+9400	Koci/Mueller	Lance Moore	WR	2011	2013	$20
+15904	Trevor	Landry Jones	QB	2013	2015	$1
+12730	Syed	LaRod Stephens-Howling	RB	2013	2015	$1
+10451	John	LaRon Landry	DB	FA	2013	$1
+5528	Pat/Quinn	Larry Fitzgerald	WR	2012	2014	$130
+15920		Latavius Murray	RB	FA	2013
+14985	Keyon	Lavonte David	LB	2012	2014	$1
+10459	Daniel	Lawrence Timmons	LB	2012	2014	$5
+15825	Charles	Le'Veon Bell	RB	2013	2015	$26
+13213	Daniel	LeGarrette Blount	RB	2013	2013	$2
+11245	Keyon	Leodis McKelvin	DB	2013	2015	$3
+9703	Trevor	Leon Washington	RB	2013	2013	$10
+14021	Jake/Luke	Leonard Hankerson	WR	FA	2013	$4
+12514	Trevor	LeSean McCoy	RB	2013	2013	$230
+14570	Daniel	Lestar Jean	WR	2013	2013	$2
+1680	James	London Fletcher	LB	2013	2013	$7
+14938	Jake/Luke	Luke Kuechly	LB	2012	2014	$1
+6016	Charles	Malcom Floyd	WR	2011	2013	$15
+15867	Schex	Manti Te'o	LB	2013	2015	$1
+9614		Marcedes Lewis	TE	FA	2013
+11717	Syed	Marcel Reece	RB	2013	2015	$1
+16012	James	Marcus Lattimore	RB	2013	2015	$7
+12524		Marcus Thigpen	RB	FA	2013
+9587	Trevor	Mario Williams	DL	2012	2013	$17
+14932	Charles	Mark Barron	DB	2012	2014	$1
+13981	James	Mark Ingram	RB	2011	2013	$25
+12482	Jake/Luke	Mark Sanchez	QB	2011	2013	$20
+15873	John	Markus Wheaton	WR	2013	2015	$9
+16581	Syed	Marlon Brown	WR	2013	2015	$1
+9838	Daniel	Marques Colston	WR	2013	2015	$75
+16023	Keyon	Marquess Wilson	WR	2013	2015	$1
+15839	Daniel	Marquise Goodwin	WR	2013	2015	$2
+10456	Charles	Marshawn Lynch	RB	2013	2013	$250
+11295	Syed	Martellus Bennett	TE	2012	2014	$16
+15072	Mitch	Marvin Jones	WR	2013	2013	$1
+10636	Trevor	Mason Crosby	K	2013	2013	$2
+14023	Daniel	Mason Foster	LB	2011	2013	$1
+15948	James	Matt Barkley	QB	2013	2015	$17
+4333	Mitch	Matt Bryant	K	2013	2013	$2
+8644	Mitch	Matt Cassel	QB	2013	2013	$9
+15789	Mitch	Matt Elam	DB	2013	2013	$1
+11443	Schex	Matt Flynn	QB	2012	2014	$5
+11278	Syed	Matt Forte	RB	2013	2013	$235
+11122	Daniel	Matt Prater	K	2013	2013	$3
+11237	Daniel	Matt Ryan	QB	2011	2013	$85
+5615	Charles	Matt Schaub	QB	2011	2013	$85
+12483	Charles	Matthew Stafford	QB	2013	2015	$185
+9646	Pat/Quinn	Maurice Jones-Drew	RB	2013	2013	$205
+15960	Trevor	Micah Hyde	DB	2013	2015	$1
+10544	Jake/Luke	Michael Bush	RB	2012	2013	$17
+12563	Koci/Mueller	Michael Crabtree	WR	2012	2014	$22
+14908	Syed	Michael Floyd	WR	2012	2014	$16
+12436	Syed	Michael Johnson	DL	2013	2015	$3
+5679	James	Michael Turner	RB	2013	2013	$2
+2549	John	Michael Vick	QB	2013	2013	$100
+15952	Jake/Luke	Mike Gillislee	RB	2013	2014	$1
+15837	Koci/Mueller	Mike Glennon	QB	2013	2015	$3
+12499		Mike Goodson	RB	FA	2013
+15968	John	Mike James	RB	2013	2015	$2
+11658	Daniel	Mike Tolbert	RB	2013	2013	$3
+12601	Trevor	Mike Wallace	WR	2013	2014	$65
+13489	John	Mike Williams (TB)	WR	2013	2015	$28
+14052	Koci/Mueller	Mikel Leshoure	RB	2012	2014	$5
+10147	Mitch	Miles Austin	WR	2013	2013	$50
+14922	Keyon	Mohamed Sanu	WR	2012	2014	$8
+15823	Pat/Quinn	Montee Ball	RB	2013	2015	$26
+13264	Schex	Morgan Burnett	DB	2013	2015	$4
+14943	Mitch	Morris Claiborne	DB	2012	2014	$1
+4529	Charles	Nate Burleson	WR	2013	2013	$2
+9307	Jake/Luke	Nate Washington	WR	2012	2013	$30
+13262	Koci/Mueller	NaVorro Bowman	LB	2012	2014	$10
+14877	Pat/Quinn	Nick Foles	QB	2012	2014	$2
+4514	James	Osi Umenyiora	DL	2012	2013	$2
+9684	Daniel	Owen Daniels	TE	2011	2013	$46
+13258		Pat Angerer	LB	FA	2013
+13980	Charles	Patrick Peterson	DB	2011	2013	$1
+10455	Charles	Patrick Willis	LB	2013	2014	$14
+10478	Schex	Paul Posluszny	LB	2013	2013	$30
+12569	Jake/Luke	Percy Harvin	WR	2013	2015	$60
+13443	Pat/Quinn	Perry Riley	LB	2013	2015	$3
+1428	Mitch	Peyton Manning	QB	2012	2013	$150
+1440	Koci/Mueller	Phil Dawson	K	2013	2013	$3
+5529	Jake/Luke	Philip Rivers	QB	2012	2013	$125
+11327	Schex	Philip Wheeler	LB	2013	2015	$1
+11439	Koci/Mueller	Pierre Garcon	WR	2011	2013	$15
+10713	James	Pierre Thomas	RB	2013	2013	$15
+16026	Jake/Luke	Quinton Patton	WR	2013	2015	$2
+14053	Syed	Randall Cobb	WR	2011	2013	$13
+15091	Jake/Luke	Randy Bullock	K	2013	2015	$1
+12503	Keyon	Rashad Jennings	RB	2011	2013	$4
+11257	Charles	Rashard Mendenhall	RB	2012	2013	$40
+11289	Keyon	Ray Rice	RB	2013	2013	$270
+9588	Trevor	Reggie Bush	RB	2011	2013	$22
+2578	Keyon	Reggie Wayne	WR	2013	2013	$80
+14086	Trevor	Richard Sherman	DB	2013	2015	$3
+13225	Jake/Luke	Riley Cooper	WR	2013	2013	$5
+13229	Schex	Rob Gronkowski	TE	2013	2015	$150
+14009	Koci/Mueller	Rob Housler	TE	2013	2015	$8
+9721	Syed	Rob Ninkovich	DL/LB	2013	2015	$1
+14875	Schex	Robert Griffin III	QB	2012	2014	$25
+13984	John	Robert Quinn	DL	2012	2014	$3
+14894	Koci/Mueller	Robert Turbin	RB	2012	2014	$4
+15880	Charles	Robert Woods	WR	2013	2015	$9
+15391	Charles	Rod Streater	WR	2012	2014	$4
+8442	Daniel	Roddy White	WR	2013	2013	$115
+9629	Keyon	Roman Harper	DB	2013	2013	$1
+14895	Pat/Quinn	Ronnie Hillman	RB	2012	2014	$13
+14192	James	Roy Helu	RB	2013	2015	$32
+14911	Jake/Luke	Rueben Randle	WR	2012	2014	$16
+14881	Schex	Russell Wilson	QB	2012	2014	$13
+14919	Keyon	Ryan Broyles	WR	2012	2014	$4
+8664	Trevor	Ryan Fitzpatrick	QB	2013	2013	$3
+13973	John	Ryan Kerrigan	LB	FA	2013	$1
+14037	Trevor	Ryan Mallett	QB	2011	2013	$1
+13204	Daniel	Ryan Mathews	RB	2013	2013	$80
+14876	Syed	Ryan Tannehill	QB	2012	2014	$25
+14051	Pat/Quinn	Ryan Williams	RB	2013	2015	$12
+13197	Koci/Mueller	Sam Bradford	QB	2013	2015	$60
+2564	Charles	Santana Moss	WR	2013	2013	$4
+9611	Schex	Santonio Holmes	WR	2013	2015	$1
+10572	Pat/Quinn	Scott Chandler	TE	2013	2013	$5
+13284	John	Sean Lee	LB	2012	2014	$5
+13243	Trevor	Sean Weatherspoon	LB	2013	2013	$3
+2148	James	Sebastian Janikowski	K	2013	2013	$3
+14017	Jake/Luke	Shane Vereen	RB	2011	2013	$4
+14518	Trevor	Shaun Draughn	RB	2013	2013	$2
+4260	Charles	Shaun Hill	QB	2011	2013	$1
+12500	James	Shonn Greene	RB	2012	2013	$55
+10488	Charles	Sidney Rice	WR	2012	2013	$10
+15859	Charles	Sio Moore	LB	2013	2015	$1
+15822	Mitch	Stedman Bailey	WR	2013	2014	$2
+15981	Koci/Mueller	Stepfan Taylor	RB	2013	2015	$4
+9704	Schex	Stephen Gostkowski	K	2013	2013	$3
+14910	John	Stephen Hill	WR	2013	2015	$10
+14942	Mitch	Stephon Gilmore	DB	2012	2014	$1
+14028	Charles	Stevan Ridley	RB	2011	2013	$25
+11458	Schex	Steve Johnson	WR	2011	2013	$55
+2622	John	Steve Smith (CAR)	WR	2013	2013	$50
+5549	Daniel	Steven Jackson	RB	2013	2015	$150
+14924	Jake/Luke	T.Y. Hilton	WR	2012	2014	$2
+9650	Schex	Tarvaris Jackson	QB	2013	2015	$1
+11359	Pat/Quinn	Tashard Choice	RB	2013	2015	$2
+15911	Syed	Tavarres King	WR	2013	2015	$1
+15786	John	Tavon Austin	WR	2013	2015	$18
+10453	Koci/Mueller	Ted Ginn	WR	FA	2013	$10
+15878	Mitch	Terrance Williams	WR	2013	2014	$5
+4468		Terrell Suggs	LB	FA	2013
+14851	Trevor	Terrelle Pryor	QB	2011	2013	$1
+9648	Syed	Tim Jennings	DB	2013	2015	$1
+13200		Tim Tebow	QB	FA	2013
+13211	Charles	Toby Gerhart	RB	2013	2014	$5
+2330	Pat/Quinn	Tom Brady	QB	2012	2014	$255
+1231	James	Tony Gonzalez	TE	2013	2013	$55
+5209	Syed	Tony Romo	QB	2013	2013	$190
+14032	Koci/Mueller	Torrey Smith	WR	2012	2014	$63
+15062	Pat/Quinn	Travis Benjamin	WR	2013	2015	$5
+15847	Mitch	Travis Kelce	TE	2013	2015	$5
+8560	Schex	Trent Cole	DL	FA	2013	$1
+14884	Koci/Mueller	Trent Richardson	RB	2012	2014	$25
+16252	Schex	Tyler Bray	QB	2013	2015	$2
+15788	James	Tyler Eifert	TE	2013	2015	$18
+15941		Tyler Wilson	QB	FA	2013
+15851	Koci/Mueller	Tyrann Mathieu	DB	2013	2015	$1
+11334	Syed	Tyvon Branch	DB	2012	2014	$10
+15853	John	Vance McDonald	TE	2013	2015	$3
+9592	Syed	Vernon Davis	TE	2011	2013	$60
+14898	John	Vick Ballard	RB	2012	2014	$13
+13553	Keyon	Victor Cruz	WR	2012	2014	$100
+9589		Vince Young	QB	FA	2013
+14027	Keyon	Vincent Brown	WR	2012	2014	$1
+8475	Syed	Vincent Jackson	WR	2011	2013	$110
+13976	Jake/Luke	Von Miller	LB	2013	2013	$3
+15246	Mitch	Vontaze Burfict	LB	2013	2013	$3
+5941	Daniel	Wes Welker	WR	2013	2013	$95
+11609	Syed	Wesley Woodyard	LB	2013	2015	$4
+14936	Daniel	Whitney Mercilus	DL	2012	2014	$1
+12530	Pat/Quinn	William Moore	DB	FA	2013	$1
+4481	Pat/Quinn	Willis McGahee	RB	FA	2013	$29
+15810	Trevor	Xavier Rhodes	DB	2013	2015	$1
+15996	Pat/Quinn	Zac Stacy	RB	2013	2015	$4
+14973	Koci/Mueller	Zach Brown	LB	FA	2013	$1
+15835	James	Zach Ertz	TE	2013	2015	$9
+10482	Koci/Mueller	Zach Miller (SEA)	TE	2013	2015	$5
+16418	John	Zach Sudfeld	TE	2013	2015	$9
+
+=== 2014 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Patrick	A.J. Green	WR	2014	2016	$180
+9591	John/Zach	A.J. Hawk	LB	2014	2015	$2
+15834	John/Zach	Aaron Dobson	WR	2013	2015	$9
+16716	John/Zach	Aaron Donald	DL	2014	2016	$1
+17021	James	Aaron Murray	QB	2014	2016	$10
+8439	Koci/Mueller	Aaron Rodgers	QB	2012	2014	$263
+16022		Ace Sanders	WR	FA	2014
+8421	Patrick	Adam Jones	DB	FA	2014	$2
+1097	Daniel	Adam Vinatieri	K	2014	2014	$1
+10452	Keyon	Adrian Peterson	RB	FA	2014	$18
+10693	Schex	Ahmad Bradshaw	RB	2014	2014	$12
+10138	John/Zach	Ahmad Brooks	LB	FA	2014	$1
+793	James	Ahmad Dixon	DB	2014	2016	$1
+15806	Mitch	Alec Ogletree	LB	2014	2016	$5
+8416	Quinn	Alex Smith	QB	2014	2016	$40
+17134	Daniel	Alfred Blue	RB	2014	2016	$3
+15009	James	Alfred Morris	RB	2013	2015	$230
+17163	Keyon	Allen Hurns	WR	FA	2014	$1
+16799	Keyon	Allen Robinson	WR	2014	2016	$5
+14912	James	Alshon Jeffery	WR	2012	2014	$16
+13478	John/Zach	Alterraun Verner	DB	2014	2016	$1
+14952		Andre Branch	DL	FA	2014
+15893	Patrick	Andre Ellington	RB	2013	2015	$2
+4461	Koci/Mueller	Andre Johnson	WR	2014	2014	$87
+14403	Patrick	Andre Holmes	WR	FA	2014	$1
+13226	Schex	Andre Roberts	WR	2013	2015	$3
+16889	Syed	Andre Williams	RB	2014	2016	$12
+13958	Daniel	Andrew Hawkins	WR	2014	2014	$7
+14874	Mitch	Andrew Luck	QB	2012	2014	$25
+14012	Keyon	Andy Dalton	QB	2014	2014	$110
+4512	Quinn	Anquan Boldin	WR	2014	2014	$20
+16711	Quinn	Anthony Barr	LB	2014	2014	$1
+13212	Quinn	Anthony Dixon	RB	FA	2014	$10
+17158		Anthony Hitchens	LB	FA	2014
+11261	Keyon	Antoine Cason	DB	FA	2014	$1
+13158	Keyon	Antone Smith	RB	FA	2014	$2
+13934	Mitch	Antonio Brown	WR	2014	2015	$165
+5362	Mitch	Antonio Gates	TE	2014	2014	$2
+8423	Brett/Luke	Antrel Rolle	DB	2014	2014	$6
+12497	Daniel	Arian Foster	RB	2014	2014	$175
+15187	Schex	Austin Davis	QB	FA	2014	$8
+16795	Patrick	Austin Seferian-Jenkins	TE	2014	2016	$7
+15805		Barkevious Mingo	LB	FA	2014
+13338	Schex	Barry Church	DB	2014	2014	$5
+5536	Brett/Luke	Ben Roethlisberger	QB	2014	2014	$90
+13210	Patrick	Ben Tate	RB	2013	2015	$45
+11754	James	BenJarvus Green-Ellis	RB	2014	2016	$5
+16055	John/Zach	Benjamin Cunningham	RB	FA	2014	$2
+14891	Brett/Luke	Bernard Pierce	RB	2012	2014	$7
+9640		Bernard Pollard	DB	FA	2014
+14129	Trevor	Bilal Powell	RB	2014	2015	$1
+16794	Brett/Luke	Bishop Sankey	RB	2014	2016	$24
+16724	John/Zach	Blake Bortles	QB	2014	2016	$19
+15501	Mitch	Bobby Rainey	RB	2014	2016	$2
+14979	James	Bobby Wagner	LB	2013	2015	$15
+17143	Syed	Branden Oliver	RB	FA	2014	$3
+16731	Syed	Brandin Cooks	WR	2014	2016	$19
+15478	Quinn	Brandon Bolden	RB	FA	2014	$2
+17145		Brandon Coleman	WR	FA	2014
+12576	Patrick	Brandon LaFell	WR	FA	2014	$5
+9705	Daniel	Brandon Marshall (CHI)	WR	2013	2014	$175
+15002	Mitch	Brandon Marshall (DEN)	LB	FA	2014	$1
+12705		Brandon Myers	TE	FA	2014
+12549		Brandon Pettigrew	TE	FA	2014
+12597		Brandon Tate	WR	FA	2014
+10605		Brent Celek	TE	FA	2014
+12453	Brett/Luke	Brian Cushing	LB	2014	2014	$3
+12568	John/Zach	Brian Hartline	WR	2013	2015	$12
+12477	Trevor	Brian Hoyer	QB	2014	2014	$20
+12439		Brian Orakpo	LB	FA	2014
+14914	Keyon	Brian Quick	WR	FA	2014	$7
+14879	Koci/Mueller	Brock Osweiler	QB	2014	2016	$1
+14026	Keyon	Bruce Carter	LB	2013	2015	$3
+16946	Brett/Luke	Bruce Ellington	WR	2014	2016	$1
+15092	Keyon	Bryce Brown	RB	FA	2014	$13
+16040	Daniel	C.J. Anderson	RB	2014	2016	$3
+16766	Mitch	C.J. Fiedorowicz	TE	2014	2014	$4
+16720	Brett/Luke	C.J. Mosley (BAL)	LB	2014	2016	$1
+13203	Brett/Luke	C.J. Spiller	RB	2013	2015	$280
+11284	Syed	Calais Campbell	DL	2014	2016	$3
+10447	Schex	Calvin Johnson	WR	2014	2014	$225
+16729		Calvin Pryor	DB	FA	2014
+13994	Patrick	Cam Newton	QB	2014	2014	$245
+13971	Schex	Cameron Jordan	DL	2013	2015	$2
+12417	Quinn	Cameron Wake	DL	2013	2014	$11
+13274	Mitch	Carlos Dunlap	DL	2014	2014	$1
+16777	Keyon	Carlos Hyde	RB	2014	2016	$24
+4459	Keyon	Carson Palmer	QB	2014	2016	$42
+15168		Case Keenum	QB	FA	2014
+14184	John/Zach	Cecil Shorts	WR	2013	2015	$39
+9603	Syed	Chad Greenway	LB	FA	2014	$10
+11291	John/Zach	Chad Henne	QB	2013	2015	$10
+17169	James	Chandler Catanzaro	K	FA	2014	$1
+14927	Patrick	Chandler Jones	DL	2012	2014	$1
+14145	Schex	Charles Clay	TE	2014	2014	$15
+16749	Schex	Charles Sims	RB	2014	2016	$12
+4493		Charles Tillman	DB	FA	2014
+1442	James	Charles Woodson	DB	FA	2014	$1
+9667	Patrick	Charlie Whitehurst	QB	FA	2014	$7
+12471		Chase Daniel	QB	FA	2014
+4864	Daniel	Chris Clemons	DL	FA	2014	$1
+15078	John/Zach	Chris Givens	WR	2012	2014	$2
+13587	Keyon	Chris Ivory	RB	2014	2015	$20
+11258	Daniel	Chris Johnson (NYJ)	RB	2014	2014	$82
+16767	James	Christian Kirksey	LB	2014	2016	$1
+15855	Patrick	Christine Michael	RB	2013	2015	$13
+12438		Clay Matthews	LB	FA	2014
+14900	Patrick	Coby Fleener	TE	FA	2014	$3
+16793	Mitch	Cody Latimer	WR	2014	2016	$10
+17173	Schex	Cody Parkey	K	FA	2014	$3
+14001	Daniel	Colin Kaepernick	QB	2014	2016	$160
+13199	Quinn	Colt McCoy	QB	FA	2014	$10
+12449	Koci/Mueller	Connor Barwin	LB	FA	2014	$1
+15807	John/Zach	Cordarrelle Patterson	WR	2013	2015	$18
+13989		Corey Liuget	DL	FA	2014
+14109	Syed	Cortez Allen	DB	FA	2014	$2
+11271	James	Curtis Lofton	LB	2014	2016	$3
+9620	Trevor	D'Qwell Jackson	LB	2014	2015	$1
+16159	Mitch	Da'Rick Rogers	WR	2014	2016	$1
+17138	Schex	Damien Williams	RB	2014	2016	$1
+14322	Keyon	Dan Bailey	K	2014	2014	$1
+11688	James	Dan Carpenter	K	FA	2014	$1
+11674	Patrick	Danny Amendola	WR	2014	2014	$13
+15074		Danny Trevathan	LB	FA	2014
+11788	Trevor	Danny Woodhead	RB	2014	2014	$36
+11238	Schex	Darren McFadden	RB	2014	2014	$20
+8544	Trevor	Darren Sproles	RB	2014	2014	$23
+17153	Patrick	Darrin Reaves	RB	FA	2014	$2
+5564	Quinn	Daryl Smith	LB	2014	2014	$3
+16800	Daniel	Davante Adams	WR	2014	2016	$5
+16821		David Fales	QB	FA	2014
+10491	Koci/Mueller	David Harris	LB	FA	2014	$1
+9732	Patrick	Dawan Landry	DB	FA	2014	$1
+16945	Daniel	De'Anthony Thomas	RB	2014	2016	$3
+15795	Quinn	DeAndre Hopkins	WR	2013	2015	$18
+12682	John/Zach	DeAndre Levy	LB	FA	2014	$1
+5533		DeAngelo Hall	DB	FA	2014	$1
+9613		DeAngelo Williams	RB	FA	2014
+9761	Brett/Luke	Delanie Walker	TE	2014	2014	$2
+14005	John/Zach	DeMarco Murray	RB	2014	2015	$180
+16802	Keyon	Demarcus Lawrence	DL	2014	2016	$1
+8426	Keyon	DeMarcus Ware	DL	2014	2014	$5
+14958	Syed	Demario Davis	LB	FA	2014	$2
+13216	Syed	Demaryius Thomas	WR	2014	2014	$190
+9619	Daniel	DeMeco Ryans	LB	FA	2014	$1
+15951	Quinn	Denard Robinson	RB	FA	2014	$6
+14153		Denarius Moore	WR	FA	2014
+13231	Quinn	Dennis Pitta	TE	2014	2016	$20
+16723		Deone Bucannon	DB	FA	2014
+16757	Daniel	Derek Carr	QB	2014	2016	$5
+8430		Derrick Johnson	LB	FA	2014
+11283	Patrick	DeSean Jackson	WR	2013	2014	$62
+9643	Quinn	Devin Hester	WR	FA	2014	$1
+13236		Devin McCourty	DB	FA	2014
+17135	John/Zach	Devin Street	WR	2014	2016	$1
+16944	James	Devonta Freeman	RB	2014	2016	$24
+13207	Mitch	Dexter McCluster	RB/WR	2014	2014	$8
+13215	James	Dez Bryant	WR	2013	2015	$185
+15800	Trevor	Dion Jordan	DL	2013	2015	$2
+12489		Donald Brown	RB	FA	2014
+13265	Quinn	Donald Butler	LB	FA	2014	$1
+11267	Trevor	Donnie Avery	WR	2014	2015	$1
+14933	James	Dont'a Hightower	LB	2012	2014	$1
+16791	Daniel	Donte Moncrief	WR	2014	2016	$5
+14221	Brett/Luke	Doug Baldwin	WR	2012	2014	$11
+14885	John/Zach	Doug Martin	RB	2012	2014	$25
+2580	Syed	Drew Brees	QB	2014	2014	$265
+10487	Keyon	Drew Stanton	QB	FA	2014	$9
+16755	Trevor	Dri Archer	RB	2014	2016	$12
+14901	Koci/Mueller	Dwayne Allen	TE	2014	2016	$1
+10467	James	Dwayne Bowe	WR	2013	2015	$85
+13251		Earl Thomas	DB	FA	2014
+15848	Daniel	Eddie Lacy	RB	2013	2015	$26
+11276	Koci/Mueller	Eddie Royal	WR	FA	2014	$1
+15803	James	EJ Manuel	QB	2013	2015	$17
+5526	Trevor	Eli Manning	QB	2014	2014	$70
+15640	Koci/Mueller	Emmanuel Lamur	LB	FA	2014	$2
+13295	Syed	Emmanuel Sanders	WR	2014	2016	$35
+13252	Keyon	Eric Berry	DB	2014	2016	$2
+13271	Brett/Luke	Eric Decker	WR	2014	2014	$40
+16732	John/Zach	Eric Ebron	TE	2014	2016	$14
+15809	Quinn	Eric Reid	DB	2013	2015	$1
+10481	James	Eric Weddle	DB	FA	2014	$1
+13373		Everson Griffen	DL	FA	2014
+15785	Brett/Luke	Ezekiel Ansah	DL	2014	2016	$1
+14941		Fletcher Cox	DL	FA	2014
+8479	James	Frank Gore	RB	2014	2014	$100
+17181		Frankie Hammond	WR	FA	2014
+10195	Keyon	Fred Jackson	RB	2014	2014	$50
+16809		Garrett Gilbert	QB	FA	2014
+13371	Brett/Luke	Garrett Graham	TE	2014	2015	$1
+15836		Gavin Escobar	TE	FA	2014
+13311		Geno Atkins	DL	FA	2014
+15864	Mitch	Geno Smith	QB	2013	2015	$17
+16488	Quinn	George Winn	RB	FA	2014	$5
+13240	Mitch	Gerald McCoy	DL	FA	2014	$1
+15826	James	Giovani Bernard	RB	2013	2015	$26
+13217	Keyon	Golden Tate	WR	2013	2015	$20
+12460		Graham Gano	K	FA	2014
+13377	Trevor	Greg Hardy	DL	2013	2015	$7
+9638	Quinn	Greg Jennings	WR	2013	2014	$47
+10475	Keyon	Greg Olsen	TE	2014	2016	$22
+14993	Patrick	Greg Zuerlein	K	2014	2014	$1
+16735	Quinn	Ha Ha Clinton-Dix	DB	2014	2014	$1
+12586	Brett/Luke	Hakeem Nicks	WR	2013	2015	$55
+14945	Syed	Harrison Smith	DB	2014	2016	$8
+11318	Daniel	Harry Douglas	WR	2014	2014	$5
+8444	Koci/Mueller	Heath Miller	TE	2014	2016	$1
+17133	Trevor	Isaiah Crowell	RB	2014	2016	$2
+13979	Koci/Mueller	J.J. Watt	DL	2014	2016	$41
+16792	Brett/Luke	Jace Amaro	TE	2014	2016	$7
+10517		Jacoby Jones	WR	FA	2014
+14193	Koci/Mueller	Jacquizz Rodgers	RB	2014	2016	$1
+16734	Mitch	Jadeveon Clowney	DL/LB	2014	2016	$2
+12613		Jairus Byrd	DB	FA	2014
+13969	Patrick	Jake Locker	QB	2014	2016	$38
+11307	Koci/Mueller	Jamaal Charles	RB	2014	2014	$285
+10522	Koci/Mueller	James Jones	WR	2012	2014	$1
+12454	Syed	James Laurinaitis	LB	2012	2014	$19
+13214	Keyon	James Starks	RB	2014	2016	$2
+16913	Keyon	James White	RB	2014	2016	$6
+15830	Schex	Jamie Collins	LB	FA	2014	$1
+14974	Mitch	Janoris Jenkins	DB	2012	2014	$1
+5651		Jared Allen	DL	FA	2014
+12537	Mitch	Jared Cook	TE	FA	2014	$1
+14918		Jarius Wright	WR	FA	2014
+15358	Daniel	Jarrett Boykin	WR	2014	2016	$7
+16790	Daniel	Jarvis Landry	WR	2014	2016	$3
+9695		Jason Avant	WR	FA	2014
+13256	Trevor	Jason Pierre-Paul	DL	2014	2015	$11
+4527	Patrick	Jason Witten	TE	2014	2014	$50
+9597	James	Jay Cutler	QB	2012	2014	$55
+15985	Schex	Jelani Jenkins	LB	FA	2014	$5
+17137	Syed	Jeff Janis	WR	2014	2016	$2
+16803	Mitch	Jeremy Hill	RB	2014	2016	$24
+14151	John/Zach	Jeremy Kerley	WR	2013	2015	$1
+12579	Schex	Jeremy Maclin	WR	2013	2015	$7
+14500	Trevor	Jeremy Ross	WR	FA	2014	$1
+16782	Koci/Mueller	Jerick McKinnon	RB	2014	2016	$6
+15428	Koci/Mueller	Jermaine Kearse	WR	FA	2014	$5
+13228	John/Zach	Jermaine Gresham	TE	2013	2015	$12
+11325	Trevor	Jermichael Finley	TE	2014	2014	$1
+11244		Jerod Mayo	LB	FA	2014
+11280		Jerome Simpson	WR	FA	2014
+11533	James	Jerrell Freeman	LB	2013	2015	$5
+5633	Patrick	Jerricho Cotchery	WR	2014	2016	$3
+13245	Syed	Jerry Hughes	DL	FA	2014	$2
+13198	James	Jimmy Clausen	QB	FA	2014	$1
+16760	Brett/Luke	Jimmy Garoppolo	QB	2014	2016	$3
+13232	Brett/Luke	Jimmy Graham	TE	2014	2015	$180
+11252	Syed	Joe Flacco	QB	2014	2016	$38
+13249	Brett/Luke	Joe Haden	DB	FA	2014	$1
+16804	Patrick	John Brown	WR	2014	2016	$2
+11272	James	John Carlson	TE	FA	2014	$1
+15831	Brett/Luke	John Cyprien	DB	2013	2015	$1
+9610	Daniel	Johnathan Joseph	DB	FA	2014	$1
+16736	John/Zach	Johnny Manziel	QB	2014	2016	$19
+13536	Quinn	Joique Bell	RB	2014	2015	$85
+15827		Jon Bostic	LB	FA	2014
+13206		Jonathan Dwyer	RB	FA	2014
+15632	Daniel	Jonathan Grimes	RB	2014	2016	$4
+11247	John/Zach	Jonathan Stewart	RB	2013	2015	$7
+14189	Mitch	Jordan Cameron	TE	2014	2014	$95
+16763	Syed	Jordan Matthews	WR	2014	2016	$19
+15860	Syed	Jordan Reed	TE	2014	2016	$45
+14186	Patrick	Jordan Todman	RB	2014	2016	$9
+11270	Syed	Jordy Nelson	WR	2014	2014	$120
+16013	James	Joseph Randle	RB	2013	2015	$13
+15705	Patrick	Josh Gordon	WR	2013	2015	$23
+16779	Syed	Josh Huff	WR	2014	2016	$2
+3609	Koci/Mueller	Josh McCown	QB	2014	2016	$25
+12649	Schex	Julian Edelman	WR	2013	2014	$15
+13982	Daniel	Julio Jones	WR	2014	2014	$130
+3530		Julius Peppers	DL	FA	2014
+14204	Daniel	Julius Thomas	TE	2013	2015	$3
+13566	James	Junior Galette	LB	FA	2014	$2
+10492	Syed	Justin Durant	LB	FA	2014	$2
+11467	Schex	Justin Forsett	RB	FA	2014	$22
+16714	Trevor	Justin Gilbert	DB	2014	2014	$1
+14048	Patrick	Justin Houston	LB	FA	2014	$1
+15845	Mitch	Justin Hunter	WR	2013	2015	$5
+8488		Justin Tuck	DL	FA	2014
+15683	Syed	Justin Tucker	K	2012	2014	$1
+17140	Schex	Juwan Thompson	RB	2014	2016	$2
+16942	Koci/Mueller	Ka'Deem Carey	RB	2014	2016	$6
+13336	Patrick	Kam Chancellor	DB	FA	2014	$1
+5558	Trevor	Karlos Dansby	LB	2014	2015	$10
+15818	Mitch	Keenan Allen	WR	2013	2015	$9
+15017	Keyon	Keenan Robinson	LB	FA	2014	$1
+16730	Mitch	Kelvin Benjamin	WR	2014	2016	$19
+16381	Daniel	Kenbrell Thompkins	WR	2014	2016	$2
+14909	Schex	Kendall Wright	WR	2012	2014	$8
+13404	Daniel	Kendrick Lewis	DB	FA	2014	$1
+12556	Patrick	Kenny Britt	WR	2014	2016	$1
+16016	Daniel	Kenny Stills	WR	2013	2015	$9
+15813	Keyon	Kenny Vaccaro	DB	2013	2015	$1
+14916	Quinn	Keshawn Martin	WR	2014	2016	$3
+16710	Mitch	Khalil Mack	LB	2014	2016	$1
+16530	Syed	Khiry Robinson	RB	2014	2016	$17
+15819		Kiko Alonso	LB	FA	2014
+14880	Brett/Luke	Kirk Cousins	QB	2012	2014	$2
+15832	Brett/Luke	Knile Davis	RB	2013	2015	$7
+12516	Trevor	Knowshon Moreno	RB	2014	2014	$52
+11388		Kroy Biermann	DL	FA	2014
+16715	Koci/Mueller	Kyle Fuller	DB	FA	2014	$1
+8520	John/Zach	Kyle Orton	QB	FA	2014	$2
+14054	Trevor	Kyle Rudolph	TE	2014	2014	$30
+16885	Trevor	Lache Seastrunk	RB	2014	2016	$6
+14904	Keyon	Ladarius Green	TE	2014	2016	$15
+14886	Syed	Lamar Miller	RB	2012	2014	$13
+13277		Lamarr Houston	DL	FA	2014
+14890		LaMichael James	RB	FA	2014
+15369	Keyon	Lance Dunbar	RB	2013	2015	$8
+10451		LaRon Landry	DB	FA	2014
+15707	John/Zach	Larry Donnell	TE	FA	2014	$5
+5528	Daniel	Larry Fitzgerald	WR	2012	2014	$130
+15920	Keyon	Latavius Murray	RB	2014	2016	$1
+14985	Schex	Lavonte David	LB	2012	2014	$1
+10459	Schex	Lawrence Timmons	LB	2014	2016	$1
+15825	Koci/Mueller	Le'Veon Bell	RB	2013	2015	$26
+13213	Koci/Mueller	LeGarrette Blount	RB	2014	2016	$12
+11245	Keyon	Leodis McKelvin	DB	2013	2015	$3
+9703	Trevor	Leon Washington	RB	2014	2014	$1
+12514	Schex	LeSean McCoy	RB	2014	2014	$280
+16813	Syed	Logan Thomas	QB	2014	2016	$10
+16950	Koci/Mueller	Lorenzo Taliaferro	RB	2014	2016	$2
+12585	Keyon	Louis Murphy	WR	FA	2014	$3
+14938	Brett/Luke	Luke Kuechly	LB	2012	2014	$1
+12426	Brett/Luke	Malcolm Jenkins	DB	FA	2014	$1
+6016	Schex	Malcom Floyd	WR	2014	2016	$1
+13992	James	Marcel Dareus	DL	FA	2014	$1
+16012	James	Marcus Lattimore	RB	2013	2015	$7
+9587	Trevor	Mario Williams	DL	2014	2016	$1
+14932	Quinn	Mark Barron	DB	2012	2014	$1
+13981	Brett/Luke	Mark Ingram	RB	2014	2015	$15
+15873	John/Zach	Markus Wheaton	WR	2013	2015	$9
+16581	Trevor	Marlon Brown	WR	2013	2015	$1
+16787	Patrick	Marqise Lee	WR	2014	2016	$10
+9838	Trevor	Marques Colston	WR	2014	2015	$21
+16023		Marquess Wilson	WR	FA	2014
+10456	Schex	Marshawn Lynch	RB	2014	2014	$190
+16886	Syed	Martavis Bryant	WR	2014	2016	$2
+11295	Syed	Martellus Bennett	TE	2012	2014	$16
+15072	Schex	Marvin Jones	WR	2014	2016	$1
+10636	Koci/Mueller	Mason Crosby	K	2014	2016	$1
+14360	Schex	Matt Asiata	RB	FA	2014	$30
+15948	James	Matt Barkley	QB	2013	2015	$17
+4333	Mitch	Matt Bryant	K	2014	2014	$1
+8644		Matt Cassel	QB	FA	2014
+11443	Koci/Mueller	Matt Flynn	QB	2014	2016	$1
+11278	Patrick	Matt Forte	RB	2014	2014	$280
+11122	Trevor	Matt Prater	K	2014	2014	$5
+11237	Daniel	Matt Ryan	QB	2014	2014	$115
+5615	John/Zach	Matt Schaub	QB	FA	2014	$1
+12483	Schex	Matthew Stafford	QB	2013	2015	$185
+9646	Daniel	Maurice Jones-Drew	RB	2014	2014	$40
+15960	Trevor	Micah Hyde	DB	2013	2015	$1
+12563	Koci/Mueller	Michael Crabtree	WR	2012	2014	$22
+14908	Keyon	Michael Floyd	WR	2012	2014	$16
+2549	Brett/Luke	Michael Vick	QB	2014	2014	$4
+16737	Mitch	Mike Evans	WR	2014	2016	$19
+15837	Koci/Mueller	Mike Glennon	QB	2013	2015	$3
+15968	John/Zach	Mike James	RB	2013	2015	$2
+8461		Mike Nugent	K	FA	2014
+12601	Trevor	Mike Wallace	WR	2013	2014	$65
+13489	Brett/Luke	Mike Williams (BUF)	WR	2014	2014	$6
+10147	Patrick	Miles Austin	WR	2014	2016	$10
+14922	Keyon	Mohamed Sanu	WR	2012	2014	$8
+15823	Mitch	Montee Ball	RB	2013	2015	$26
+13264	Schex	Morgan Burnett	DB	2013	2015	$4
+13985	Koci/Mueller	Muhammad Wilkerson	DL	2014	2016	$1
+14978	Koci/Mueller	Mychal Kendricks	LB	2014	2016	$4
+16823		Nate Freese	K	FA	2014
+14004	Patrick	Nate Irving	LB	FA	2014	$1
+9307		Nate Washington	WR	FA	2014
+13262	John/Zach	NaVorro Bowman	LB	FA	2014	$1
+14877	Patrick	Nick Foles	QB	2012	2014	$2
+9329	Trevor	Nick Novak	K	FA	2014	$1
+14156	James	Niles Paul	TE	FA	2014	$1
+16733	Keyon	Odell Beckham	WR	2014	2016	$10
+9684	Quinn	Owen Daniels	TE	2014	2014	$2
+13980	Trevor	Patrick Peterson	DB	2014	2014	$1
+10455	Quinn	Patrick Willis	LB	2013	2014	$14
+10478	Schex	Paul Posluszny	LB	2014	2015	$20
+16781	Brett/Luke	Paul Richardson	WR	2014	2016	$2
+16243	Patrick	Paul Worrilow	LB	2014	2016	$5
+12569	Brett/Luke	Percy Harvin	WR	2013	2015	$60
+13443		Perry Riley	LB	FA	2014
+1428	Mitch	Peyton Manning	QB	2014	2014	$275
+1440	Brett/Luke	Phil Dawson	K	2014	2014	$1
+5529	James	Philip Rivers	QB	2014	2015	$145
+11439	Koci/Mueller	Pierre Garcon	WR	2014	2014	$81
+10713	Mitch	Pierre Thomas	RB	2014	2014	$60
+16762		Preston Brown	LB	FA	2014
+13975	Daniel	Prince Amukamara	DB	FA	2014	$1
+14053	John/Zach	Randall Cobb	WR	2014	2014	$125
+12503	Syed	Rashad Jennings	RB	2014	2014	$135
+11289		Ray Rice	RB	FA	2014
+9588	Trevor	Reggie Bush	RB	2014	2014	$75
+10465	John/Zach	Reggie Nelson	DB	FA	2014	$1
+2578	Syed	Reggie Wayne	WR	2014	2015	$30
+16786	Quinn	Richard Rodgers	TE	2014	2016	$7
+14086	Trevor	Richard Sherman	DB	2013	2015	$3
+13225	Schex	Riley Cooper	WR	2014	2016	$10
+13229	Schex	Rob Gronkowski	TE	2013	2015	$150
+14009		Rob Housler	TE	FA	2014
+9721	Brett/Luke	Rob Ninkovich	DL	2014	2014	$8
+14875	Brett/Luke	Robert Griffin III	QB	2012	2014	$25
+17144	Syed	Robert Herron	WR	2014	2016	$2
+13984	John/Zach	Robert Quinn	DL	2012	2014	$3
+14894	Patrick	Robert Turbin	RB	FA	2014	$2
+15880	Quinn	Robert Woods	WR	2013	2015	$9
+15391		Rod Streater	WR	FA	2014
+8442	Daniel	Roddy White	WR	2014	2014	$80
+13255		Rolando McClain	LB	FA	2014
+14895	Mitch	Ronnie Hillman	RB	FA	2014	$1
+14192	James	Roy Helu	RB	2013	2015	$32
+14911	Brett/Luke	Rueben Randle	WR	2012	2014	$16
+14881	Schex	Russell Wilson	QB	2012	2014	$13
+8664	Trevor	Ryan Fitzpatrick	QB	2014	2014	$38
+15887	Trevor	Ryan Griffin	TE	2014	2016	$1
+13973	John/Zach	Ryan Kerrigan	LB	FA	2014	$1
+14037	Mitch	Ryan Mallett	QB	FA	2014	$1
+13204	Syed	Ryan Mathews	RB	2014	2014	$120
+16727	Keyon	Ryan Shazier	LB	2014	2016	$1
+14876	Syed	Ryan Tannehill	QB	2012	2014	$25
+13197		Sam Bradford	QB	FA	2014
+16725	Keyon	Sammy Watkins	WR	2014	2016	$19
+9611	Schex	Santonio Holmes	WR	2013	2015	$1
+10572	Quinn	Scott Chandler	TE	2014	2014	$1
+14017	Syed	Shane Vereen	RB	2014	2016	$66
+14518		Shaun Draughn	RB	FA	2014
+4260	Brett/Luke	Shaun Hill	QB	2014	2014	$3
+9361	John/Zach	Shaun Suisham	K	FA	2014	$1
+12500	Patrick	Shonn Greene	RB	2014	2014	$30
+15859	Quinn	Sio Moore	LB	2013	2015	$1
+15822	Mitch	Stedman Bailey	WR	2013	2014	$2
+15981	Koci/Mueller	Stepfan Taylor	RB	2013	2015	$4
+9704	Quinn	Stephen Gostkowski	K	2014	2014	$3
+9702		Stephen Tulloch	LB	FA	2014
+14942	Mitch	Stephon Gilmore	DB	2012	2014	$1
+14028	Quinn	Stevan Ridley	RB	2014	2016	$42
+11458	Trevor	Steve Johnson	WR	2014	2015	$1
+2622	Daniel	Steve Smith (BAL)	WR	2014	2015	$12
+11923		Steven Hauschka	K	FA	2014
+5549	Syed	Steven Jackson	RB	2014	2014	$27
+16884	James	Storm Johnson	RB	2014	2016	$3
+17222	Koci/Mueller	T.J. Carrie	DB	2014	2016	$1
+15852		T.J. McDonald	DB	FA	2014
+13304	Trevor	T.J. Ward	DB	2014	2014	$1
+14924	Brett/Luke	T.Y. Hilton	WR	2012	2014	$2
+9606	Mitch	Tamba Hali	LB	2014	2014	$1
+9650	Schex	Tarvaris Jackson	QB	2013	2015	$1
+15235	Daniel	Tashaun Gipson	DB	FA	2014	$1
+15786	Patrick	Tavon Austin	WR	2013	2015	$18
+10453	Koci/Mueller	Ted Ginn	WR	2014	2016	$1
+16728	Quinn	Teddy Bridgewater	QB	2014	2016	$19
+17159	Trevor	Telvin Smith	LB	2014	2016	$1
+16783	Quinn	Terrance West	RB	2014	2016	$12
+15878	Syed	Terrance Williams	WR	2013	2014	$5
+8429		Thomas Davis	LB	FA	2014
+16285	Schex	Tim Wright	TE	FA	2014	$3
+13211	Quinn	Toby Gerhart	RB	2013	2014	$5
+2330	John/Zach	Tom Brady	QB	2014	2014	$167
+16943	Koci/Mueller	Tom Savage	QB	2014	2016	$3
+5209	Brett/Luke	Tony Romo	QB	2014	2014	$145
+14032	Quinn	Torrey Smith	WR	2014	2016	$60
+15457	Quinn	Travaris Cadet	RB	2014	2014	$1
+15062	Quinn	Travis Benjamin	WR	FA	2014	$5
+15847	Mitch	Travis Kelce	TE	2013	2015	$5
+16784	Daniel	Tre Mason	RB	2014	2016	$12
+14884	Koci/Mueller	Trent Richardson	RB	2012	2014	$25
+16797	Daniel	Troy Niklas	TE	2014	2016	$1
+16252		Tyler Bray	QB	FA	2014
+15788	James	Tyler Eifert	TE	2013	2015	$18
+11334		Tyvon Branch	DB	FA	2014
+15853	John/Zach	Vance McDonald	TE	2013	2015	$3
+9592	Koci/Mueller	Vernon Davis	TE	2014	2014	$70
+13553	Keyon	Victor Cruz	WR	2012	2014	$100
+8475	Quinn	Vincent Jackson	WR	2014	2014	$80
+13976	Syed	Von Miller	LB	2014	2016	$3
+15246	Mitch	Vontaze Burfict	LB	2014	2016	$15
+5941	James	Wes Welker	WR	2014	2014	$90
+11609	Koci/Mueller	Wesley Woodyard	LB	2014	2016	$1
+14936		Whitney Mercilus	DL	FA	2014
+13497	Schex	Willie Young	DL	FA	2014	$1
+15996	John/Zach	Zac Stacy	RB	2013	2015	$4
+15835	James	Zach Ertz	TE	2013	2015	$9
+16814	Daniel	Zach Mettenberger	QB	2014	2016	$2
+
+=== 2015 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Patrick	A.J. Green	WR	2014	2016	$180
+9591	John/Zach	A.J. Hawk	LB	2014	2015	$2
+15834	John/Zach	Aaron Dobson	WR	2013	2015	$9
+16716	John/Zach	Aaron Donald	DL	2014	2016	$1
+17021	James	Aaron Murray	QB	2014	2016	$10
+8439	John/Zach	Aaron Rodgers	QB	2015	2015	$315
+8421	Patrick	Adam Jones	DB	2015	2017	$10
+1097	Daniel	Adam Vinatieri	K	2015	2015	$1
+10452	Keyon	Adrian Peterson	RB	2015	2015	$235
+15806	Mitch	Alec Ogletree	LB	2014	2016	$5
+8416	Quinn	Alex Smith	QB	2014	2016	$40
+17134	Daniel	Alfred Blue	RB	2014	2016	$3
+15009	James	Alfred Morris	RB	2013	2015	$230
+17163	Koci/Mueller	Allen Hurns	WR	2015	2017	$1
+16799	Keyon	Allen Robinson	WR	2014	2016	$5
+14912	Koci/Mueller	Alshon Jeffery	WR	2015	2015	$180
+13478	John/Zach	Alterraun Verner	DB	2014	2016	$1
+17677	Quinn	Amari Cooper	WR	2015	2017	$17
+17580	Quinn	Ameer Abdullah	RB	2015	2017	$27
+15893	Patrick	Andre Ellington	RB	2013	2015	$2
+4461	Daniel	Andre Johnson	WR	2015	2015	$110
+13226	John/Zach	Andre Roberts	WR	2013	2015	$3
+16889	Syed	Andre Williams	RB	2014	2016	$12
+14874	Mitch	Andrew Luck	QB	2015	2015	$310
+14012	Koci/Mueller	Andy Dalton	QB	2015	2017	$68
+4512	Quinn	Anquan Boldin	WR	2015	2015	$5
+16711	Mitch	Anthony Barr	LB	2015	2016	$2
+9793	John/Zach	Antoine Bethea	DB	2015	2017	$1
+13934	Mitch	Antonio Brown	WR	2014	2015	$165
+5362	Keyon	Antonio Gates	TE	2015	2015	$10
+8423	James	Antrel Rolle	DB	2015	2015	$2
+12497	Schex	Arian Foster	RB	2015	2017	$90
+16795	Patrick	Austin Seferian-Jenkins	TE	2014	2016	$7
+13338	James	Barry Church	DB	2015	2015	$2
+5536	Brett/Luke	Ben Roethlisberger	QB	2015	2015	$130
+16055	John/Zach	Benjamin Cunningham	RB	2015	2017	$1
+17623	Keyon	Bernardick McKinney	LB	2015	2015	$1
+14129	Trevor	Bilal Powell	RB	2014	2015	$1
+16794	Brett/Luke	Bishop Sankey	RB	2014	2016	$24
+15058	Mitch	Blair Walsh	K	2015	2015	$2
+17490	Schex	Blake Bell	TE	2015	2017	$1
+16724	John/Zach	Blake Bortles	QB	2014	2016	$19
+15501	Quinn	Bobby Rainey	RB	2014	2016	$2
+14979	James	Bobby Wagner	LB	2013	2015	$15
+13212	Quinn	Boobie Dixon	RB	2015	2015	$1
+17143	Schex	Branden Oliver	RB	2015	2017	$1
+16731	Syed	Brandin Cooks	WR	2014	2016	$19
+17145	Keyon	Brandon Coleman	WR	2015	2017	$12
+12576	Patrick	Brandon LaFell	WR	2015	2017	$20
+15002	Trevor	Brandon Marshall (DEN)	LB	2015	2017	$3
+9705	Trevor	Brandon Marshall (NYJ)	WR	2015	2016	$67
+17674	Syed	Breshad Perriman	WR	2015	2017	$17
+12568	John/Zach	Brian Hartline	WR	2013	2015	$12
+12477	Patrick	Brian Hoyer	QB	2015	2017	$30
+14914	Mitch	Brian Quick	WR	2015	2015	$26
+14879	Syed	Brock Osweiler	QB	2014	2016	$1
+14026	Keyon	Bruce Carter	LB	2013	2015	$3
+16946	Brett/Luke	Bruce Ellington	WR	2014	2016	$1
+17434	Schex	Bryce Petty	QB	2015	2017	$6
+17599	Quinn	Bud Dupree	LB	2015	2015	$1
+16040	Daniel	C.J. Anderson	RB	2014	2016	$3
+16720	Brett/Luke	C.J. Mosley (BAL)	LB	2014	2016	$1
+13203	Mitch	C.J. Spiller	RB	2015	2015	$70
+11284	Syed	Calais Campbell	DL	2014	2016	$3
+10447	Trevor	Calvin Johnson	WR	2015	2015	$235
+13994	Patrick	Cam Newton	QB	2015	2015	$150
+17704	Patrick	Cameron Artis-Payne	RB	2015	2017	$7
+13971	Schex	Cameron Jordan	DL	2013	2015	$2
+12417	James	Cameron Wake	DL	2015	2015	$2
+13274	Daniel	Carlos Dunlap	DL	2015	2015	$7
+16777	Keyon	Carlos Hyde	RB	2014	2016	$24
+4459	Keyon	Carson Palmer	QB	2014	2016	$42
+14184	John/Zach	Cecil Shorts III	WR	2013	2015	$39
+11291	John/Zach	Chad Henne	QB	2013	2015	$10
+14927	Patrick	Chandler Jones	DL	2015	2017	$11
+14145	Brett/Luke	Charles Clay	TE	2015	2015	$3
+15885	Koci/Mueller	Charles Johnson (MIN)	WR	2015	2017	$30
+16749	Schex	Charles Sims	RB	2014	2016	$12
+1442	Daniel	Charles Woodson	DB	2015	2015	$2
+17638	Trevor	Chris Conley	WR	2015	2017	$5
+16007	Koci/Mueller	Chris Harper (NE)	WR	2015	2017	$2
+13587	Keyon	Chris Ivory	RB	2014	2015	$20
+11258	Mitch	Chris Johnson	RB	2015	2015	$2
+14889	John/Zach	Chris Polk	RB	2015	2017	$6
+16767	James	Christian Kirksey	LB	2014	2016	$1
+17475	Daniel	Clive Walford	TE	2015	2017	$2
+14900	Quinn	Coby Fleener	TE	2015	2015	$4
+16793	James	Cody Latimer	WR	2014	2016	$10
+17173	Schex	Cody Parkey	K	2015	2015	$1
+14001	Quinn	Colin Kaepernick	QB	2014	2016	$160
+13199	Brett/Luke	Colt McCoy	QB	2015	2015	$2
+12449	Mitch	Connor Barwin	LB	2015	2015	$1
+15807	John/Zach	Cordarrelle Patterson	WR	2013	2015	$18
+11271	James	Curtis Lofton	LB	2014	2016	$3
+9620	Trevor	D'Qwell Jackson	LB	2014	2015	$1
+16159	Mitch	Da'Rick Rogers	WR	2014	2016	$1
+17138	Schex	Damien Williams	RB	2014	2016	$1
+14322	Keyon	Dan Bailey	K	2015	2015	$1
+11688	James	Dan Carpenter	K	2015	2015	$1
+15041	John/Zach	Daniel Herron	RB	2015	2017	$9
+11788	John/Zach	Danny Woodhead	RB	2015	2017	$3
+11238	Mitch	Darren McFadden	RB	2015	2015	$51
+8544	Patrick	Darren Sproles	RB	2015	2015	$30
+16800	Mitch	Davante Adams	WR	2014	2016	$5
+17578	Patrick	David Cobb	RB	2015	2017	$14
+17442	Syed	David Johnson	RB	2015	2017	$14
+16945	Daniel	De'Anthony Thomas	RB	2014	2016	$3
+15795	Quinn	DeAndre Hopkins	WR	2013	2015	$18
+12682	John/Zach	DeAndre Levy	LB	2015	2017	$10
+17718	Daniel	DeAndre Smelter	WR	2015	2017	$1
+9613	Patrick	DeAngelo Williams	RB	2015	2015	$7
+9761	Daniel	Delanie Walker	TE	2015	2015	$15
+14005	John/Zach	DeMarco Murray	RB	2014	2015	$180
+16802	Keyon	Demarcus Lawrence	DL	2014	2016	$1
+13216	Brett/Luke	Demaryius Thomas	WR	2015	2015	$250
+15951	Patrick	Denard Robinson	RB	2015	2017	$20
+16757	Daniel	Derek Carr	QB	2014	2016	$5
+8430	Daniel	Derrick Johnson	LB	2015	2015	$6
+11283	Quinn	DeSean Jackson	WR	2015	2015	$100
+17593	Brett/Luke	DeVante Parker	WR	2015	2017	$9
+17682	Keyon	Devin Funchess	WR	2015	2017	$9
+9643	Trevor	Devin Hester	WR	2015	2016	$11
+17584	John/Zach	Devin Smith	WR	2015	2017	$5
+17135	John/Zach	Devin Street	WR	2014	2016	$1
+16944	James	Devonta Freeman	RB	2014	2016	$24
+13207	Brett/Luke	Dexter McCluster	RB/WR	2015	2015	$5
+13215	James	Dez Bryant	WR	2013	2015	$185
+17553	James	Dezmin Lewis	WR	2015	2017	$2
+16791	Daniel	Donte Moncrief	WR	2014	2016	$5
+17665	Keyon	Dorial Green-Beckham	WR	2015	2017	$9
+14221	Patrick	Doug Baldwin	WR	2015	2017	$10
+14885	Koci/Mueller	Doug Martin	RB	2015	2017	$45
+2580	Keyon	Drew Brees	QB	2015	2015	$230
+16755	Schex	Dri Archer	RB	2015	2017	$3
+17658	Quinn	Duke Johnson	RB	2015	2017	$14
+14901	Koci/Mueller	Dwayne Allen	TE	2014	2016	$1
+10467	James	Dwayne Bowe	WR	2013	2015	$85
+13251	Mitch	Earl Thomas	DB	2015	2015	$2
+15848	Daniel	Eddie Lacy	RB	2013	2015	$26
+11276	Patrick	Eddie Royal	WR	2015	2017	$25
+15803	James	EJ Manuel	QB	2013	2015	$17
+5526	Schex	Eli Manning	QB	2015	2016	$115
+13295	Syed	Emmanuel Sanders	WR	2014	2016	$35
+13271	Patrick	Eric Decker	WR	2015	2017	$30
+16732	John/Zach	Eric Ebron	TE	2014	2016	$14
+17452	Mitch	Eric Kendricks	LB	2015	2016	$1
+15809	Quinn	Eric Reid	DB	2013	2015	$1
+10481	James	Eric Weddle	DB	2015	2015	$6
+17585	Schex	Evan Spencer	WR	2015	2015	$1
+13373	Keyon	Everson Griffen	DL	2015	2017	$1
+15785	Brett/Luke	Ezekiel Ansah	DL	2014	2016	$1
+17576	Brett/Luke	Frank Clark	DL	2015	2016	$1
+8479	Mitch	Frank Gore	RB	2015	2015	$90
+10195	Patrick	Fred Jackson	RB	2015	2015	$30
+13371	Brett/Luke	Garrett Graham	TE	2014	2015	$1
+17572	James	Garrett Grayson	QB	2015	2017	$6
+15836	Patrick	Gavin Escobar	TE	2015	2017	$1
+13311	Mitch	Geno Atkins	DL	2015	2015	$1
+15864	Syed	Geno Smith	QB	2015	2017	$8
+15826	James	Giovani Bernard	RB	2013	2015	$26
+13217	Keyon	Golden Tate	WR	2013	2015	$20
+13377	Trevor	Greg Hardy	DL	2013	2015	$7
+10475	Keyon	Greg Olsen	TE	2014	2016	$22
+14993	John/Zach	Greg Zuerlein	K	2015	2015	$1
+16735	Mitch	Ha Ha Clinton-Dix	DB	2015	2015	$2
+14945	Syed	Harrison Smith	DB	2014	2016	$8
+8444	Koci/Mueller	Heath Miller	TE	2014	2016	$1
+17133	Trevor	Isaiah Crowell	RB	2014	2016	$2
+13979	Koci/Mueller	J.J. Watt	DL	2014	2016	$41
+16792	Brett/Luke	Jace Amaro	TE	2014	2016	$7
+16734	Mitch	Jadeveon Clowney	DL/LB	2014	2016	$2
+17709	Daniel	Jaelen Strong	WR	2015	2017	$9
+11307	Quinn	Jamaal Charles	RB	2015	2015	$220
+17399	Mitch	Jameis Winston	QB	2015	2017	$24
+12454	Daniel	James Laurinaitis	LB	2015	2017	$4
+13214	Keyon	James Starks	RB	2014	2016	$2
+16913	Keyon	James White	RB	2014	2016	$6
+15830	Schex	Jamie Collins	LB	2015	2015	$5
+17600	Schex	Jamison Crowder	WR	2015	2017	$1
+14974	Mitch	Janoris Jenkins	DB	2015	2015	$1
+12537	Mitch	Jared Cook	TE	2015	2015	$1
+15358	Daniel	Jarrett Boykin	WR	2014	2016	$7
+17745	Koci/Mueller	Jarryd Hayne	RB	2015	2017	$4
+16790	Daniel	Jarvis Landry	WR	2014	2016	$3
+13256	Trevor	Jason Pierre-Paul	DL	2014	2015	$11
+4527	Patrick	Jason Witten	TE	2015	2015	$25
+17616	Keyon	Javorius Allen	RB	2015	2017	$7
+17556	Schex	Jay Ajayi	RB	2015	2017	$7
+9597	Keyon	Jay Cutler	QB	2015	2016	$55
+17137	Syed	Jeff Janis	WR	2015	2017	$1
+16803	Mitch	Jeremy Hill	RB	2014	2016	$24
+14151	John/Zach	Jeremy Kerley	WR	2013	2015	$1
+17505	Syed	Jeremy Langford	RB	2015	2017	$14
+12579	Schex	Jeremy Maclin	WR	2013	2015	$7
+16782	Koci/Mueller	Jerick McKinnon	RB	2014	2016	$6
+13228	John/Zach	Jermaine Gresham	TE	2013	2015	$12
+11244	Patrick	Jerod Mayo	LB	2015	2017	$5
+11533	James	Jerrell Freeman	LB	2013	2015	$5
+5633	Schex	Jerricho Cotchery	WR	2015	2017	$1
+13245	Mitch	Jerry Hughes	DL	2015	2015	$6
+13198	James	Jimmy Clausen	QB	2015	2015	$1
+16760	Brett/Luke	Jimmy Garoppolo	QB	2014	2016	$3
+13232	Brett/Luke	Jimmy Graham	TE	2014	2015	$180
+11252	Brett/Luke	Joe Flacco	QB	2014	2016	$38
+16804	Patrick	John Brown	WR	2014	2016	$2
+15831	Brett/Luke	John Cyprien	DB	2013	2015	$1
+16736	John/Zach	Johnny Manziel	QB	2014	2016	$19
+13536	Quinn	Joique Bell	RB	2014	2015	$85
+15364	Keyon	Jonas Gray	RB	2015	2015	$23
+15632	Daniel	Jonathan Grimes	RB	2014	2016	$4
+11247	John/Zach	Jonathan Stewart	RB	2013	2015	$7
+14189	Mitch	Jordan Cameron	TE	2015	2015	$19
+16763	Syed	Jordan Matthews	WR	2014	2016	$19
+15860	Syed	Jordan Reed	TE	2014	2016	$45
+14186	Trevor	Jordan Todman	RB	2015	2015	$1
+11270	Schex	Jordy Nelson	WR	2015	2017	$110
+16013	James	Joseph Randle	RB	2013	2015	$13
+16143	Schex	Josh Hill	TE	2015	2017	$3
+16779	Syed	Josh Huff	WR	2014	2016	$2
+3609	Koci/Mueller	Josh McCown	QB	2014	2016	$25
+17622	Keyon	Josh Robinson	RB	2015	2017	$7
+12649	Trevor	Julian Edelman	WR	2015	2016	$105
+13982	Koci/Mueller	Julio Jones	WR	2015	2015	$190
+14204	Daniel	Julius Thomas	TE	2013	2015	$3
+11467	Trevor	Justin Forsett	RB	2015	2015	$160
+17542	Mitch	Justin Hardy	WR	2015	2017	$9
+14048	Patrick	Justin Houston	LB	2015	2017	$15
+15845	Quinn	Justin Hunter	WR	2013	2015	$5
+15683	Syed	Justin Tucker	K	2015	2017	$3
+17140	Schex	Juwan Thompson	RB	2014	2016	$2
+16942	Koci/Mueller	Ka'Deem Carey	RB	2015	2017	$1
+14583	Syed	Kamar Aiken	WR	2015	2017	$1
+17605	Quinn	Karlos Williams	RB	2015	2017	$4
+15818	Mitch	Keenan Allen	WR	2013	2015	$9
+14882	Brett/Luke	Kellen Moore	QB	2015	2015	$1
+16730	Mitch	Kelvin Benjamin	WR	2014	2016	$19
+16381		Kenbrell Thompkins	WR	FA	2015
+14909	Schex	Kendall Wright	WR	2015	2017	$6
+17488		Kenny Bell	WR	FA	2015
+12556	Patrick	Kenny Britt	WR	2014	2016	$1
+17617	Schex	Kenny Hilliard	RB	2015	2017	$2
+16016	Daniel	Kenny Stills	WR	2013	2015	$9
+15813	Keyon	Kenny Vaccaro	DB	2013	2015	$1
+14916	Quinn	Keshawn Martin	WR	2014	2016	$3
+17703	James	Kevin White	WR	2015	2017	$17
+16710	Mitch	Khalil Mack	LB	2014	2016	$1
+16530	Syed	Khiry Robinson	RB	2014	2016	$17
+15819	Trevor	Kiko Alonso	LB	2015	2016	$8
+14880	Quinn	Kirk Cousins	QB	2015	2017	$35
+15832	Brett/Luke	Knile Davis	RB	2013	2015	$7
+17679	Syed	Kwon Alexander	LB	2015	2017	$1
+14054	Trevor	Kyle Rudolph	TE	2015	2016	$20
+14904	Keyon	Ladarius Green	TE	2014	2016	$15
+14886	Mitch	Lamar Miller	RB	2015	2015	$165
+15369	Keyon	Lance Dunbar	RB	2013	2015	$8
+17692	Brett/Luke	Landon Collins	DB	2015	2017	$1
+15707	John/Zach	Larry Donnell	TE	2015	2017	$5
+5528	James	Larry Fitzgerald	WR	2015	2015	$31
+15920	Keyon	Latavius Murray	RB	2014	2016	$1
+14985	Brett/Luke	Lavonte David	LB	2015	2016	$15
+10459	Schex	Lawrence Timmons	LB	2014	2016	$1
+15825	Koci/Mueller	Le'Veon Bell	RB	2013	2015	$26
+13213	Koci/Mueller	LeGarrette Blount	RB	2014	2016	$12
+11245	Keyon	Leodis McKelvin	DB	2013	2015	$3
+17669	Mitch	Leonard Williams	DL	2015	2015	$1
+12514	John/Zach	LeSean McCoy	RB	2015	2016	$200
+16813		Logan Thomas	QB	FA	2015
+16950	John/Zach	Lorenzo Taliaferro	RB	2014	2016	$2
+14938	Koci/Mueller	Luke Kuechly	LB	2015	2015	$26
+17742	Daniel	Malcolm Brown	RB	2015	2017	$1
+12426	Koci/Mueller	Malcolm Jenkins	DB	2015	2017	$1
+17671	Quinn	Malcom Brown	DL	2015	2015	$1
+6016	Schex	Malcom Floyd	WR	2014	2016	$1
+16012	James	Marcus Lattimore	RB	2013	2015	$7
+17610	Trevor	Marcus Mariota	QB	2015	2017	$24
+17486	Schex	Marcus Murphy	RB	2015	2017	$1
+17717	Trevor	Mario Alford	WR	2015	2017	$2
+17655	Keyon	Mario Edwards Jr.	DL	2015	2015	$1
+9587	Trevor	Mario Williams	DL	2014	2016	$1
+13981	Brett/Luke	Mark Ingram	RB	2014	2015	$15
+12482	Patrick	Mark Sanchez	QB	2015	2017	$3
+15873	John/Zach	Markus Wheaton	WR	2013	2015	$9
+16581	Trevor	Marlon Brown	WR	2013	2015	$1
+16787	Patrick	Marqise Lee	WR	2014	2016	$10
+9838	Quinn	Marques Colston	WR	2015	2015	$45
+10456	Trevor	Marshawn Lynch	RB	2015	2015	$250
+16886	Syed	Martavis Bryant	WR	2014	2016	$2
+11295	Syed	Martellus Bennett	TE	2015	2017	$25
+15072	Schex	Marvin Jones	WR	2014	2016	$1
+10636	Quinn	Mason Crosby	K	2014	2016	$1
+14360	Schex	Matt Asiata	RB	2015	2015	$5
+15948	James	Matt Barkley	QB	2013	2015	$17
+4333	Patrick	Matt Bryant	K	2015	2015	$2
+8644	Patrick	Matt Cassel	QB	2015	2015	$10
+11278	Patrick	Matt Forte	RB	2015	2015	$200
+17695	Syed	Matt Jones	RB	2015	2017	$14
+11237	Daniel	Matt Ryan	QB	2015	2017	$110
+12483	Schex	Matthew Stafford	QB	2013	2015	$185
+17660	Trevor	Maxx Williams	TE	2015	2017	$8
+17586	John/Zach	Melvin Gordon	RB	2015	2017	$27
+15960	Trevor	Micah Hyde	DB	2013	2015	$1
+12563	Brett/Luke	Michael Crabtree	WR	2015	2015	$15
+17735	Patrick	Michael Dyer	RB	2015	2015	$4
+14908	Keyon	Michael Floyd	WR	2015	2017	$25
+10463	Trevor	Michael Griffin	DB	2015	2015	$3
+2549	Brett/Luke	Michael Vick	QB	2015	2015	$1
+17700	Daniel	Mike Davis	RB	2015	2017	$4
+16737	Mitch	Mike Evans	WR	2014	2016	$19
+15837	Koci/Mueller	Mike Glennon	QB	2013	2015	$3
+8461	Mitch	Mike Nugent	K	2015	2015	$1
+12601	Daniel	Mike Wallace	WR	2015	2017	$30
+14922	Brett/Luke	Mohamed Sanu	WR	2015	2015	$3
+15823	Daniel	Montee Ball	RB	2013	2015	$26
+13264	Schex	Morgan Burnett	DB	2013	2015	$4
+13985	Koci/Mueller	Muhammad Wilkerson	DL	2014	2016	$1
+14978	Koci/Mueller	Mychal Kendricks	LB	2014	2016	$4
+15923	Mitch	Mychal Rivera	TE	2015	2015	$1
+9307	James	Nate Washington	WR	2015	2017	$4
+13262	Koci/Mueller	NaVorro Bowman	LB	2015	2017	$5
+17668	Brett/Luke	Nelson Agholor	WR	2015	2017	$17
+14877	Patrick	Nick Foles	QB	2015	2017	$21
+14921	Schex	Nick Toon	WR	2015	2015	$6
+16733	Keyon	Odell Beckham Jr.	WR	2014	2016	$10
+17453	Brett/Luke	Owa Odighizuwa	DL	2015	2016	$1
+9684	Trevor	Owen Daniels	TE	2015	2015	$30
+17666	Keyon	P.J. Dawson	LB	2015	2015	$1
+10478	Quinn	Paul Posluszny	LB	2014	2015	$20
+16781	Brett/Luke	Paul Richardson	WR	2014	2016	$2
+16243	Patrick	Paul Worrilow	LB	2014	2016	$5
+12569	Brett/Luke	Percy Harvin	WR	2013	2015	$60
+1428	Daniel	Peyton Manning	QB	2015	2015	$230
+5529	James	Philip Rivers	QB	2014	2015	$145
+17643	Mitch	Phillip Dorsett	WR	2015	2017	$17
+11439	Koci/Mueller	Pierre Garcon	WR	2015	2017	$15
+14053	Keyon	Randall Cobb	WR	2015	2015	$205
+17702	James	Randy Gregory	DL/LB	2015	2015	$1
+17601	Koci/Mueller	Rashad Greene	WR	2015	2017	$1
+12503	Koci/Mueller	Rashad Jennings	RB	2015	2015	$78
+11289	James	Ray Rice	RB	2015	2017	$1
+9588	Trevor	Reggie Bush	RB	2015	2017	$5
+2578		Reggie Wayne	WR	FA	2015
+13395	Daniel	Reshad Jones	DB	2015	2017	$10
+16786	Quinn	Richard Rodgers	TE	2014	2016	$7
+14086	Trevor	Richard Sherman	DB	2013	2015	$3
+13225	Schex	Riley Cooper	WR	2014	2016	$10
+13229	Schex	Rob Gronkowski	TE	2013	2015	$150
+14875	Syed	Robert Griffin	QB	2015	2017	$28
+17144		Robert Herron	WR	FA	2015
+13984	John/Zach	Robert Quinn	DL	2015	2017	$5
+15880	Quinn	Robert Woods	WR	2013	2015	$9
+8442	Daniel	Roddy White	WR	2015	2015	$25
+14895	Daniel	Ronnie Hillman	RB	2015	2015	$21
+14192	James	Roy Helu	RB	2013	2015	$32
+14911	John/Zach	Rueben Randle	WR	2015	2017	$5
+14881	Trevor	Russell Wilson	QB	2015	2015	$250
+8664	Trevor	Ryan Fitzpatrick	QB	2015	2016	$20
+15887	Trevor	Ryan Griffin	TE	2014	2016	$1
+14037	Schex	Ryan Mallett	QB	2015	2017	$4
+13204	Brett/Luke	Ryan Mathews	RB	2015	2015	$25
+16727	Keyon	Ryan Shazier	LB	2014	2016	$1
+14876	Koci/Mueller	Ryan Tannehill	QB	2015	2017	$110
+13197	Quinn	Sam Bradford	QB	2015	2015	$90
+17562	Daniel	Sammie Coates	WR	2015	2017	$3
+16725	Patrick	Sammy Watkins	WR	2014	2016	$19
+10572	Brett/Luke	Scott Chandler	TE	2015	2015	$2
+13284	Patrick	Sean Lee	LB	2015	2017	$3
+17620	Quinn	Shane Ray	DL	2015	2015	$1
+14017	Syed	Shane Vereen	RB	2014	2016	$66
+17688	Brett/Luke	Shaq Thompson	LB	2015	2017	$1
+15859	Quinn	Sio Moore	LB	2013	2015	$1
+17676	Brett/Luke	Stefon Diggs	WR	2015	2017	$3
+9704	Koci/Mueller	Stephen Gostkowski	K	2015	2017	$2
+17588	Trevor	Stephone Anthony	LB	2015	2017	$1
+14028	Schex	Stevan Ridley	RB	2015	2017	$1
+2622	Daniel	Steve Smith Sr.	WR	2014	2015	$12
+11923	Brett/Luke	Steven Hauschka	K	2015	2015	$1
+11458	Trevor	Stevie Johnson	WR	2014	2015	$1
+16884	James	Storm Johnson	RB	2014	2016	$3
+17222	Koci/Mueller	TJ Carrie	DB	2014	2016	$1
+15852	Trevor	T.J. McDonald	DB	2015	2017	$2
+17678	Syed	T.J. Yeldon	RB	2015	2017	$27
+14924	John/Zach	T.Y. Hilton	WR	2015	2017	$135
+15786	Patrick	Tavon Austin	WR	2013	2015	$18
+16728	Quinn	Teddy Bridgewater	QB	2014	2016	$19
+17159	Trevor	Telvin Smith	LB	2014	2016	$1
+16783	Quinn	Terrance West	RB	2014	2016	$12
+15878	Syed	Terrance Williams	WR	2015	2017	$3
+17689	John/Zach	Tevin Coleman	RB	2015	2017	$27
+15994	Koci/Mueller	Theo Riddick	RB	2015	2017	$1
+13211	Trevor	Toby Gerhart	RB	2015	2017	$2
+17683	Keyon	Todd Gurley	RB	2015	2017	$27
+2330	Trevor	Tom Brady	QB	2015	2016	$140
+5209	Brett/Luke	Tony Romo	QB	2015	2015	$160
+14032	Quinn	Torrey Smith	WR	2014	2016	$60
+17577	James	Trae Waynes	DB	2015	2015	$1
+15457	Koci/Mueller	Travaris Cadet	RB	2015	2017	$1
+15847	Mitch	Travis Kelce	TE	2013	2015	$5
+16784	Daniel	Tre Mason	RB	2014	2016	$12
+17550	Daniel	Tre McBride	WR	2015	2017	$2
+16797	Syed	Troy Niklas	TE	2014	2016	$1
+17611	Syed	Ty Montgomery	WR	2015	2017	$9
+15788	James	Tyler Eifert	TE	2013	2015	$18
+17619	Quinn	Tyler Lockett	WR	2015	2017	$5
+14163	James	Tyrod Taylor	QB	2015	2017	$18
+9592	Patrick	Vernon Davis	TE	2015	2015	$10
+17468	Quinn	Vic Beasley	LB	2015	2015	$1
+13553	Quinn	Victor Cruz	WR	2015	2017	$30
+8475	Quinn	Vincent Jackson	WR	2015	2017	$42
+14085	Syed	Virgil Green	TE	2015	2017	$1
+13976	Syed	Von Miller	LB	2014	2016	$3
+15246		Vontaze Burfict	LB	2015		$1
+15835	James	Zach Ertz	TE	2013	2015	$9
+16814	Daniel	Zach Mettenberger	QB	2014	2016	$2
+17741	Syed	Zach Zenner	RB	2015	2017	$4
+
+=== 2016 data ===
+ID	Owner	Name	Position	Start	End	Salary
+13983	Patrick	A.J. Green	WR	2014	2016	$180
+9591	John/Zach	A.J. Hawk	LB	2014	2015	$2
+15834	John/Zach	Aaron Dobson	WR	2013	2015	$9
+16716	John/Zach	Aaron Donald	DL	2014	2016	$1
+17021		Aaron Murray	QB	FA	2015
+8439	Syed	Aaron Rodgers	QB	2016		$270
+8421	Patrick	Adam Jones	DB	2015	2017	$10
+1097	Daniel	Adam Vinatieri	K	2016		$2
+10452	Keyon	Adrian Peterson	RB	2016		$265
+10693	Syed	Ahmad Bradshaw	RB	FA	2015	$1
+16810	Koci/Mueller	AJ McCarron	QB	2016		$1
+15806	Mitch	Alec Ogletree	LB	2014	2016	$5
+	Daniel	Alex Collins	RB	2016		$7
+15976	James	Alex Okafor	DL	2016		$1
+8416	John/Zach	Alex Smith	QB	2014	2016	$40
+17134	Daniel	Alfred Blue	RB	2014	2016	$3
+15009	Brett/Luke	Alfred Morris	RB	2016		$25
+17163	Koci/Mueller	Allen Hurns	WR	2015	2017	$1
+16799	Keyon	Allen Robinson	WR	2014	2016	$5
+14912	Koci/Mueller	Alshon Jeffery	WR	2016		$160
+13478		Alterraun Verner	DB	FA	2015
+17677	Schex	Amari Cooper	WR	2015	2017	$17
+17580	Quinn	Ameer Abdullah	RB	2015	2017	$27
+15893	Patrick	Andre Ellington	RB	2013	2015	$2
+4461	Patrick	Andre Johnson	WR	2016		$2
+13226		Andre Roberts	WR	FA	2015
+16889	Mitch	Andre Williams	RB	2016		$1
+14874	Mitch	Andrew Luck	QB	2016		$240
+14012	Koci/Mueller	Andy Dalton	QB	2015	2017	$68
+4512	Patrick	Anquan Boldin	WR	2016		$5
+16711	Mitch	Anthony Barr	LB	2015	2016	$2
+9793	John/Zach	Antoine Bethea	DB	2015	2017	$1
+17149	Mitch	Antonio Andrews	RB	FA	2015	$15
+13934	Mitch	Antonio Brown	WR	2016		$310
+5362	Keyon	Antonio Gates	TE	2016		$6
+8423	James	Antrel Rolle	DB	2015	2015	$2
+15350		Antwon Blake	DB	FA	2015
+11254		Aqib Talib	DB	FA	2015
+12497	Schex	Arian Foster	RB	2015	2017	$90
+16037	Trevor	Armonty Bryant	DL	FA	2015	$1
+15187	Quinn	Austin Davis	QB	FA	2015	$22
+	Trevor	Austin Hooper	TE	2016		$4
+16795	Patrick	Austin Seferian-Jenkins	TE	2014	2016	$7
+13338	James	Barry Church	DB	2016		$5
+5536	Brett/Luke	Ben Roethlisberger	QB	2016		$235
+16055	John/Zach	Benjamin Cunningham	RB	2015	2017	$1
+5557	Schex	Benjamin Watson	TE	2016		$3
+17623		Bernardick McKinney	LB	FA	2015
+14129	Trevor	Bilal Powell	RB	2016		$15
+16794		Bishop Sankey	RB	FA	2015
+13987	John/Zach	Blaine Gabbert	QB	2016		$15
+15058	Patrick	Blair Walsh	K	2016		$2
+17490		Blake Bell	TE	FA	2015
+16724	John/Zach	Blake Bortles	QB	2014	2016	$19
+15501	Quinn	Bobby Rainey	RB	2014	2016	$2
+14979	Syed	Bobby Wagner	LB	2016		$20
+13212		Boobie Dixon	RB	FA	2015
+17143	Schex	Branden Oliver	RB	2015	2017	$1
+16731	Syed	Brandin Cooks	WR	2014	2016	$19
+15478	Quinn	Brandon Bolden	RB	2016		$1
+17145	Keyon	Brandon Coleman	WR	2015	2017	$12
+12576	Mitch	Brandon LaFell	WR	2016		$5
+15002	Trevor	Brandon Marshall (DEN)	LB	2015	2017	$3
+9705	Trevor	Brandon Marshall (NYJ)	WR	2015	2016	$67
+17171	Trevor	Brandon McManus	K	2016		$2
+14878	Patrick	Brandon Weeden	QB	FA	2015	$1
+	Brett/Luke	Braxton Miller	WR	2016		$5
+17674	Patrick	Breshad Perriman	WR	2016		$3
+12453		Brian Cushing	LB	FA	2015
+12568		Brian Hartline	WR	FA	2015
+12477		Brian Hoyer	QB	FA	2015
+14914	Mitch	Brian Quick	WR	2015	2015	$26
+14879	Syed	Brock Osweiler	QB	2014	2016	$1
+14026		Bruce Carter	LB	FA	2015
+16946	Brett/Luke	Bruce Ellington	WR	2014	2016	$1
+15092	Koci/Mueller	Bryce Brown	RB	FA	2015	$3
+17434		Bryce Petty	QB	FA	2015
+17599		Bud Dupree	LB	FA	2015
+16040	Daniel	C.J. Anderson	RB	2014	2016	$3
+16720	Brett/Luke	C.J. Mosley (BAL)	LB	2014	2016	$1
+	Trevor	C.J. Prosise	RB	2016		$13
+13203	Trevor	C.J. Spiller	RB	2016		$1
+17172	Keyon	Cairo Santos	K	2016		$1
+11284	Quinn	Calais Campbell	DL	FA	2015	$1
+10447	Trevor	Calvin Johnson	WR	2015	2015	$235
+16729	Quinn	Calvin Pryor	DB	FA	2015	$3
+13994	James	Cam Newton	QB	2016		$341
+17704	Schex	Cameron Artis-Payne	RB	2016		$4
+17784	Quinn	Cameron Brate	TE	FA	2015	$5
+13977	Quinn	Cameron Heyward	DL	FA	2015	$1
+13971		Cameron Jordan	DL	FA	2015
+12417	James	Cameron Wake	DL	2015	2015	$2
+	Quinn	Cardale Jones	QB	2016		$2
+13274	Daniel	Carlos Dunlap	DL	2016		$4
+16777	Keyon	Carlos Hyde	RB	2014	2016	$24
+4459	Keyon	Carson Palmer	QB	2014	2016	$42
+	Quinn	Carson Wentz	QB	2016		$8
+15168	Brett/Luke	Case Keenum	QB	2016		$6
+14184	John/Zach	Cecil Shorts III	WR	2013	2015	$39
+11291	John/Zach	Chad Henne	QB	2013	2015	$10
+17169	John/Zach	Chandler Catanzaro	K	2016		$3
+14927	Patrick	Chandler Jones	DL	2015	2017	$11
+17384	Quinn	Charcandrick West	RB	2016		$12
+14145	Brett/Luke	Charles Clay	TE	2015	2015	$3
+15885	Syed	Charles Johnson (MIN)	WR	2016		$3
+16749	Schex	Charles Sims	RB	2014	2016	$12
+1442	Daniel	Charles Woodson	DB	2015	2015	$2
+9667		Charlie Whitehurst	QB	FA	2015
+	Quinn	Charone Peake	WR	2016		$1
+17175	Trevor	Chris Boswell	K	2016		$2
+17638	Trevor	Chris Conley	WR	2015	2017	$5
+17763		Chris Harper (NE)	WR	FA	2015
+13587	Trevor	Chris Ivory	RB	2016		$43
+11258	Mitch	Chris Johnson	RB	2016		$3
+	Mitch	Chris Moore	WR	2016		$2
+14889		Chris Polk	RB	FA	2015
+15966	Koci/Mueller	Chris Thompson	RB	2016		$5
+	Trevor	Christian Hackenberg	QB	2016		$4
+16767		Christian Kirksey	LB	FA	2015
+15855	Mitch	Christine Michael	RB	2016		$25
+12438		Clay Matthews	LB	FA	2015
+11326	Quinn	Cliff Avril	DL	2016		$2
+17475	Daniel	Clive Walford	TE	2015	2017	$2
+14900	Quinn	Coby Fleener	TE	2016		$30
+	Patrick	Cody Kessler	QB	2016		$8
+16793	Trevor	Cody Latimer	WR	2016		$4
+17173		Cody Parkey	K	FA	2015
+15349	Patrick	Cole Beasley	WR	2016		$1
+14001	Quinn	Colin Kaepernick	QB	2016		$16
+13199	Patrick	Colt McCoy	QB	2016		$1
+12449	Syed	Connor Barwin	LB	FA	2015	$1
+	Daniel	Connor Cook	QB	2016		$1
+15807	John/Zach	Cordarrelle Patterson	WR	2013	2015	$18
+	Quinn	Corey Coleman	WR	2016		$17
+10611	Keyon	Corey Graham	DB	2016		$6
+11271		Curtis Lofton	LB	FA	2015
+9620	Quinn	D'Qwell Jackson	LB	2016		$25
+16159		Da'Rick Rogers	WR	FA	2015
+	Syed	Dak Prescott	QB	2016		$16
+17138		Damien Williams	RB	FA	2015
+14322	Brett/Luke	Dan Bailey	K	2016		$3
+11688	James	Dan Carpenter	K	2016		$1
+15041		Daniel Herron	RB	FA	2015
+11674	Patrick	Danny Amendola	WR	2016		$5
+15074	Trevor	Danny Trevathan	LB	2016		$7
+11788	John/Zach	Danny Woodhead	RB	2015	2017	$3
+11238	Koci/Mueller	Darren McFadden	RB	2016		$3
+8544	Patrick	Darren Sproles	RB	2016		$25
+12570	James	Darrius Heyward-Bey	WR	FA	2015	$1
+	Trevor	Darron Lee	LB	2016		$1
+5564	James	Daryl Smith	LB	FA	2015	$2
+10569	Syed	Dashon Goldson	DB	FA	2015	$1
+16800	Mitch	Davante Adams	WR	2014	2016	$5
+17578		David Cobb	RB	FA	2015
+10491	Schex	David Harris	LB	2016		$1
+17442	Syed	David Johnson	RB	2015	2017	$14
+16945		De'Anthony Thomas	RB	FA	2015
+15795	Syed	DeAndre Hopkins	WR	2016		$270
+12682	John/Zach	DeAndre Levy	LB	2015	2017	$10
+17718	Daniel	DeAndre Smelter	WR	2015	2017	$1
+	Mitch	DeAndre Washington	RB	2016		$25
+9613	Trevor	DeAngelo Williams	RB	2016		$50
+	Keyon	Deion Jones	LB	2016		$1
+9761	Quinn	Delanie Walker	TE	2016		$30
+14005	Brett/Luke	DeMarco Murray	RB	2016		$120
+16802		Demarcus Lawrence	DL	FA	2015
+8426		DeMarcus Ware	DL/LB	FA	2015
+14958		Demario Davis	LB	FA	2015
+13216	James	Demaryius Thomas	WR	2016		$97
+15951		Denard Robinson	RB	FA	2015
+16723	John/Zach	Deone Bucannon	LB	2016		$10
+16757	Daniel	Derek Carr	QB	2014	2016	$5
+15403		Derek Carrier	TE	FA	2015
+	James	Derrick Henry	RB	2016		$25
+8430	Quinn	Derrick Johnson	LB	2016		$15
+13248	Brett/Luke	Derrick Morgan	DL/LB	FA	2015	$1
+11283	Patrick	DeSean Jackson	WR	2016		$45
+17593	Brett/Luke	DeVante Parker	WR	2015	2017	$9
+17682	Keyon	Devin Funchess	WR	2015	2017	$9
+9643		Devin Hester	WR	FA	2015
+17584	John/Zach	Devin Smith	WR	2015	2017	$5
+17135		Devin Street	WR	FA	2015
+16944	Keyon	Devonta Freeman	RB	2016		$241
+	Daniel	Devontae Booker	RB	2016		$13
+13207	Brett/Luke	Dexter McCluster	RB/WR	2015	2015	$5
+13215	Daniel	Dez Bryant	WR	2016		$200
+17553		Dezmin Lewis	WR	FA	2015
+14198	Syed	Dion Lewis	RB	2016		$95
+11250	John/Zach	Dominique Rodgers-Cromartie	DB	FA	2015	$1
+14933	Patrick	Dont'a Hightower	LB	2016		$1
+16791	Daniel	Donte Moncrief	WR	2014	2016	$5
+9594	John/Zach	Donte Whitner	DB	FA	2015	$1
+17136		Dontrelle Inman	WR	FA	2015
+17665	Keyon	Dorial Green-Beckham	WR	2015	2017	$9
+14221	Patrick	Doug Baldwin	WR	2015	2017	$10
+14885	Koci/Mueller	Doug Martin	RB	2015	2017	$45
+2580	Schex	Drew Brees	QB	2016		$265
+10487		Drew Stanton	QB	FA	2015
+16755		Dri Archer	RB	FA	2015
+14255		DuJuan Harris	RB	FA	2015
+17658	John/Zach	Duke Johnson	RB	2015	2017	$14
+14901	Koci/Mueller	Dwayne Allen	TE	2014	2016	$1
+10467	James	Dwayne Bowe	WR	2013	2015	$85
+14100	Keyon	Dwayne Harris	WR	2016		$1
+13251		Earl Thomas	DB	FA	2015
+15848	James	Eddie Lacy	RB	2016		$150
+11276		Eddie Royal	WR	FA	2015
+15803	James	EJ Manuel	QB	2016		$3
+5526	Schex	Eli Manning	QB	2015	2016	$115
+	Koci/Mueller	Emmanual Ogbah	LB	2016		$1
+13295	Syed	Emmanuel Sanders	WR	2014	2016	$35
+13271	Patrick	Eric Decker	WR	2015	2017	$30
+16732	John/Zach	Eric Ebron	TE	2014	2016	$14
+17452	Mitch	Eric Kendricks	LB	2015	2016	$1
+15809		Eric Reid	DB	FA	2015
+10481	Koci/Mueller	Eric Weddle	DB	2016		$2
+17585		Evan Spencer	WR	FA	2015
+13373	Syed	Everson Griffen	DL	2016		$5
+15785	Brett/Luke	Ezekiel Ansah	DL	2014	2016	$1
+	Syed	Ezekiel Elliott	RB	2016		$25
+14941	Schex	Fletcher Cox	DL	2016		$2
+15755	Keyon	Fozzy Whittaker	RB	FA	2015	$1
+17576	Brett/Luke	Frank Clark	DL	2015	2016	$1
+8479	Patrick	Frank Gore	RB	2016		$70
+10195	Patrick	Fred Jackson	RB	2015	2015	$30
+13371		Garrett Graham	TE	FA	2015
+17572		Garrett Grayson	QB	FA	2015
+11364	Brett/Luke	Gary Barnidge	TE	2016		$25
+15836		Gavin Escobar	TE	FA	2015
+13311		Geno Atkins	DL	FA	2015
+15864	Syed	Geno Smith	QB	2015	2017	$8
+15826	Daniel	Giovani Bernard	RB	2016		$40
+13217	Syed	Golden Tate	WR	2016		$45
+12460	Koci/Mueller	Graham Gano	K	2016		$1
+13377	Trevor	Greg Hardy	DL	2013	2015	$7
+10475	Keyon	Greg Olsen	TE	2014	2016	$22
+14993		Greg Zuerlein	K	FA	2015
+16735	Mitch	Ha Ha Clinton-Dix	DB	2016		$8
+14945	Syed	Harrison Smith	DB	2014	2016	$8
+17446		Hau'oli Kikaha	LB	FA	2015
+8444		Heath Miller	TE	FA	2015
+	John/Zach	Hunter Henry	TE	2016		$8
+17133	Trevor	Isaiah Crowell	RB	2014	2016	$2
+13979	Koci/Mueller	J.J. Watt	DL	2014	2016	$41
+16792	Brett/Luke	Jace Amaro	TE	2014	2016	$7
+	Daniel	Jacoby Brissett	QB	2016		$2
+17263		Jacquies Smith	DL/LB	FA	2015
+16734	Mitch	Jadeveon Clowney	DL/LB	2014	2016	$2
+17709	Daniel	Jaelen Strong	WR	2015	2017	$9
+	Trevor	Jalen Ramsey	DB	2016		$1
+	Brett/Luke	Jalin Marshall	WR	2016		$1
+11307	Daniel	Jamaal Charles	RB	2016		$208
+17399	Mitch	Jameis Winston	QB	2015	2017	$24
+10522	Syed	James Jones	WR	FA	2015	$10
+12454	Daniel	James Laurinaitis	LB	2015	2017	$4
+13214	Keyon	James Starks	RB	2014	2016	$2
+16913	Keyon	James White	RB	FA	2015	$4
+15830	Schex	Jamie Collins	LB	2016		$9
+17600	Schex	Jamison Crowder	WR	2015	2017	$1
+14974		Janoris Jenkins	DB	FA	2015
+12537	Schex	Jared Cook	TE	2016		$4
+	Schex	Jared Goff	QB	2016		$32
+15358		Jarrett Boykin	WR	FA	2015
+17745		Jarryd Hayne	RB	FA	2015
+16790	Daniel	Jarvis Landry	WR	2014	2016	$3
+17438	Schex	Jason Myers	K	FA	2015	$1
+13256	John/Zach	Jason Pierre-Paul	DL	2016		$3
+4527	Patrick	Jason Witten	TE	2016		$4
+17616	Keyon	Javorius Allen	RB	2015	2017	$7
+17556	Schex	Jay Ajayi	RB	2015	2017	$7
+9597	Quinn	Jay Cutler	QB	2016		$60
+	Brett/Luke	Jeff Heuerman	TE	2016		$1
+17137		Jeff Janis	WR	FA	2015
+15985		Jelani Jenkins	LB	FA	2015
+16803	Mitch	Jeremy Hill	RB	2014	2016	$24
+14151		Jeremy Kerley	WR	FA	2015
+17505	Syed	Jeremy Langford	RB	2015	2017	$14
+12579	John/Zach	Jeremy Maclin	WR	2016		$75
+16782	Koci/Mueller	Jerick McKinnon	RB	2014	2016	$6
+13228	John/Zach	Jermaine Gresham	TE	2013	2015	$12
+15428		Jermaine Kearse	WR	FA	2015
+11244		Jerod Mayo	LB	FA	2015
+11533	Koci/Mueller	Jerrell Freeman	LB	2016		$11
+5633		Jerricho Cotchery	WR	FA	2015
+13245		Jerry Hughes	DL	FA	2015
+13198	James	Jimmy Clausen	QB	2015	2015	$1
+16760	Brett/Luke	Jimmy Garoppolo	QB	2014	2016	$3
+13232	Syed	Jimmy Graham	TE	2016		$26
+13963	Daniel	Jimmy Smith	DB	FA	2015	$1
+11252	Brett/Luke	Joe Flacco	QB	2014	2016	$38
+	Quinn	Joey Bosa	DL	2016		$2
+16804	Patrick	John Brown	WR	2014	2016	$2
+15831	Brett/Luke	John Cyprien	DB	2013	2015	$1
+16736		Johnny Manziel	QB	FA	2015
+13536	Quinn	Joique Bell	RB	2014	2015	$85
+15364		Jonas Gray	RB	FA	2015
+15632	Daniel	Jonathan Grimes	RB	2014	2016	$4
+11247	Schex	Jonathan Stewart	RB	2016		$80
+	Koci/Mueller	Jonathan Williams	RB	2016		$4
+14189	Mitch	Jordan Cameron	TE	2016		$1
+	Quinn	Jordan Hicks	LB	2016		$3
+	Quinn	Jordan Howard	RB	2016		$7
+16763	Syed	Jordan Matthews	WR	2014	2016	$19
+15860	Syed	Jordan Reed	TE	2014	2016	$45
+14186	Syed	Jordan Todman	RB	FA	2015	$1
+11270	Schex	Jordy Nelson	WR	2015	2017	$110
+16013		Joseph Randle	RB	FA	2015
+4680	James	Josh Brown	K	FA	2015	$1
+	Quinn	Josh Doctson	WR	2016		$17
+	Mitch	Josh Ferguson	RB	2016		$13
+15705	Schex	Josh Gordon	WR	2016		$22
+16143		Josh Hill	TE	FA	2015
+16779		Josh Huff	WR	FA	2015
+17746		Josh Lambo	K	FA	2015
+3609	Schex	Josh McCown	QB	2016		$1
+15124	Trevor	Josh Norman	DB	2016		$1
+17622		Josh Robinson	RB	FA	2015
+12649	Trevor	Julian Edelman	WR	2016		$85
+13982	Koci/Mueller	Julio Jones	WR	2016		$290
+3530		Julius Peppers	DL/LB	FA	2015
+14204	John/Zach	Julius Thomas	TE	2016		$10
+11467	Patrick	Justin Forsett	RB	2016		$65
+17542	Mitch	Justin Hardy	WR	2015	2017	$9
+14048		Justin Houston	LB	FA	2015
+15845		Justin Hunter	WR	FA	2015
+15683	Syed	Justin Tucker	K	2015	2017	$3
+17140		Juwan Thompson	RB	FA	2015
+14140	Daniel	K.J. Wright	LB	2016		$5
+16942	Koci/Mueller	Ka'Deem Carey	RB	2015	2017	$1
+13336	Daniel	Kam Chancellor	DB	2016		$5
+14583	Syed	Kamar Aiken	WR	2015	2017	$1
+	Mitch	Karl Joseph	DB	2016		$1
+5558	Koci/Mueller	Karlos Dansby	LB	2016		$3
+17605	John/Zach	Karlos Williams	RB	2015	2017	$4
+15862	Syed	Kawann Short	DL	FA	2015	$1
+	Quinn	Keanu Neal	DB	2016		$1
+15818	Mitch	Keenan Allen	WR	2016		$110
+15017		Keenan Robinson	LB	FA	2015
+	Quinn	Keith Marshall	RB	2016		$7
+14882	Patrick	Kellen Moore	QB	FA	2015	$15
+16730	Schex	Kelvin Benjamin	WR	2014	2016	$19
+13995		Kelvin Sheppard	LB	FA	2015
+16381		Kenbrell Thompkins	WR	FA	2015
+16066	Syed	Kendall Gaskins	RB	FA	2015	$1
+14909	Patrick	Kendall Wright	WR	2016		$2
+	Koci/Mueller	Kenjon Barner	RB	2016		$18
+	Schex	Kenneth Dixon	RB	2016		$13
+	Koci/Mueller	Kenneth Farrow	RB	2016		$4
+17488		Kenny Bell	WR	FA	2015
+12556	Brett/Luke	Kenny Britt	WR	2016		$1
+17617		Kenny Hilliard	RB	FA	2015
+16016	Daniel	Kenny Stills	WR	2016		$1
+15813	Patrick	Kenny Vaccaro	DB	2016		$3
+	Daniel	Kenyan Drake	RB	2016		$4
+14916	Quinn	Keshawn Martin	WR	2014	2016	$3
+17703	James	Kevin White	WR	2016		$65
+16710	Mitch	Khalil Mack	LB	2014	2016	$1
+16530		Khiry Robinson	RB	FA	2015
+15819	Trevor	Kiko Alonso	LB	2015	2016	$8
+14880	Patrick	Kirk Cousins	QB	2015	2017	$35
+15832	Brett/Luke	Knile Davis	RB	2013	2015	$7
+17679	Syed	Kwon Alexander	LB	2015	2017	$1
+14054	Trevor	Kyle Rudolph	TE	2015	2016	$20
+14904	Syed	Ladarius Green	TE	2016		$11
+14886	John/Zach	Lamar Miller	RB	2016		$250
+15369		Lance Dunbar	RB	FA	2015
+17692	Brett/Luke	Landon Collins	DB	2015	2017	$1
+15904	Brett/Luke	Landry Jones	QB	FA	2015	$1
+	John/Zach	Laquon Treadwell	WR	2016		$17
+15707		Larry Donnell	TE	FA	2015
+5528	James	Larry Fitzgerald	WR	2016		$24
+15920	Keyon	Latavius Murray	RB	2014	2016	$1
+14985	Brett/Luke	Lavonte David	LB	2015	2016	$15
+10459	Schex	Lawrence Timmons	LB	2014	2016	$1
+15825	Schex	Le'Veon Bell	RB	2016		$275
+13213	Koci/Mueller	LeGarrette Blount	RB	2014	2016	$12
+11245		Leodis McKelvin	DB	FA	2015
+14021		Leonard Hankerson	WR	FA	2015
+17669	Trevor	Leonard Williams	DL	2016		$1
+	Quinn	Leonte Carroo	WR	2016		$17
+12514	John/Zach	LeSean McCoy	RB	2015	2016	$200
+	Trevor	Logan Ryan	DB	2016		$1
+16813		Logan Thomas	QB	FA	2015
+16950		Lorenzo Taliaferro	RB	FA	2015
+14938	John/Zach	Luke Kuechly	LB	2016		$50
+5631		Luke McCown	QB	FA	2015
+17742	Daniel	Malcolm Brown	RB	2015	2017	$1
+12426	Koci/Mueller	Malcolm Jenkins	DB	2015	2017	$1
+	Syed	Malcolm Mitchell	WR	2016		$9
+14214	Keyon	Malcolm Smith	LB	2016		$9
+17671		Malcom Brown	DL	FA	2015
+6016		Malcom Floyd	WR	FA	2015
+15047	James	Malik Jackson	DL	FA	2015	$1
+11717		Marcel Reese	RB	FA	2015
+16012		Marcus Lattimore	RB	FA	2015
+17610	Trevor	Marcus Mariota	QB	2015	2017	$24
+17486	Schex	Marcus Murphy	RB	2015	2017	$1
+17633	Trevor	Marcus Peters	DB	2016		$1
+17717		Mario Alford	WR	FA	2015
+17655		Mario Edwards Jr.	DL	FA	2015
+9587	Trevor	Mario Williams	DL	2014	2016	$1
+14932	Quinn	Mark Barron	LB	2016		$2
+13981	James	Mark Ingram	RB	2016		$182
+12482	Patrick	Mark Sanchez	QB	2015	2017	$3
+15873	John/Zach	Markus Wheaton	WR	2016		$25
+16581	Trevor	Marlon Brown	WR	2013	2015	$1
+16787		Marqise Lee	WR	FA	2015
+9838		Marques Colston	WR	FA	2015
+10456	Trevor	Marshawn Lynch	RB	2015	2015	$250
+16886	Patrick	Martavis Bryant	WR	2016		$1
+11295	Syed	Martellus Bennett	TE	2015	2017	$25
+15072	Schex	Marvin Jones	WR	2014	2016	$1
+10636	Quinn	Mason Crosby	K	2014	2016	$1
+14360		Matt Asiata	RB	FA	2015
+15948	James	Matt Barkley	QB	2013	2015	$17
+4333	Brett/Luke	Matt Bryant	K	FA	2015	$1
+8644		Matt Cassel	QB	FA	2015
+11278	Patrick	Matt Forte	RB	2016		$120
+1575	Mitch	Matt Hasselbeck	QB	FA	2015	$1
+17695	Syed	Matt Jones	RB	2015	2017	$14
+16593		Matt McGloin	QB	FA	2015
+	Koci/Mueller	Matt Moore	QB	2016		$1
+	Schex	Matt Prater	K	2016		$1
+11237	Daniel	Matt Ryan	QB	2015	2017	$110
+5615	Quinn	Matt Schaub	QB	FA	2015	$2
+12483	Patrick	Matthew Stafford	QB	2016		$75
+17660	Trevor	Maxx Williams	TE	2015	2017	$8
+17586	John/Zach	Melvin Gordon	RB	2015	2017	$27
+14926	Quinn	Melvin Ingram	LB	FA	2015	$1
+15960	Syed	Micah Hyde	DB	FA	2015	$1
+12762	Trevor	Michael Bennett (SEA)	DL	2016		$7
+12563	Trevor	Michael Crabtree	WR	2016		$27
+17735		Michael Dyer	RB	FA	2015
+14908	Keyon	Michael Floyd	WR	2015	2017	$25
+10463	Trevor	Michael Griffin	DB	2015	2015	$3
+	Quinn	Michael Thomas (LA)	WR	2016		$3
+	Brett/Luke	Michael Thomas (NO)	WR	2016		$17
+14859		Michael Wilhoite	LB	FA	2015
+17700	Daniel	Mike Davis	RB	2015	2017	$4
+16737	Mitch	Mike Evans	WR	2014	2016	$19
+15837		Mike Glennon	QB	FA	2015
+8461		Mike Nugent	K	FA	2015
+2549		Mike Vick	QB	FA	2015
+12601	Daniel	Mike Wallace	WR	2015	2017	$30
+14922	Mitch	Mohamed Sanu	WR	2016		$20
+15823		Montee Ball	RB	FA	2015
+13264	Schex	Morgan Burnett	DB	2016		$1
+13985	Koci/Mueller	Muhammad Wilkerson	DL	2014	2016	$1
+14978	Patrick	Mychal Kendricks	LB	FA	2015	$1
+15923		Mychal Rivera	TE	FA	2015
+	Mitch	Myles Jack	LB	2016		$1
+9307		Nate Washington	WR	FA	2015
+13262	Koci/Mueller	NaVorro Bowman	LB	2015	2017	$5
+17668	Brett/Luke	Nelson Agholor	WR	2015	2017	$17
+14877		Nick Foles	QB	FA	2015
+9329		Nick Novak	K	FA	2015
+14921		Nick Toon	WR	FA	2015
+	Brett/Luke	Nick Vannett	TE	2016		$2
+15075		Nigel Bradham	LB	FA	2015
+	Brett/Luke	Noah Spence	DL	2016		$1
+16733	Keyon	Odell Beckham Jr.	WR	2014	2016	$10
+14982	Keyon	Olivier Vernon	DL	FA	2015	$3
+17208		Orleans Darkwa	RB	FA	2015
+17453	Brett/Luke	Owa Odighizuwa	DL	2015	2016	$1
+9684	James	Owen Daniels	TE	2016		$20
+17666		P.J. Dawson	LB	FA	2015
+13980	Brett/Luke	Patrick Peterson	DB	2016		$1
+	Schex	Paul Perkins	RB	2016		$13
+10478	Patrick	Paul Posluszny	LB	2016		$25
+16781	Brett/Luke	Paul Richardson	WR	2014	2016	$2
+16243		Paul Worrilow	LB	FA	2015
+	Keyon	Paxton Lynch	QB	2016		$32
+12569	Patrick	Percy Harvin	WR	FA	2015	$1
+14202		Pernell McPhee	DL/LB	FA	2015
+1428	Daniel	Peyton Manning	QB	2015	2015	$230
+	Keyon	Pharoh Cooper	WR	2016		$5
+5529	Keyon	Philip Rivers	QB	2016		$165
+17643	Mitch	Phillip Dorsett	WR	2015	2017	$17
+11439	Trevor	Pierre Garcon	WR	2016		$10
+10713		Pierre Thomas	RB	FA	2015
+16762	Schex	Preston Brown	LB	FA	2015	$1
+14053	Keyon	Randall Cobb	WR	2016		$75
+17702		Randy Gregory	DL/LB	FA	2015
+17601	Koci/Mueller	Rashad Greene	WR	2015	2017	$1
+12503	Quinn	Rashad Jennings	RB	2016		$74
+12674		Rashad Johnson	DB	FA	2015
+	Daniel	Rashard Higgins	WR	2016		$2
+11289		Ray Rice	RB	FA	2015
+9588	Patrick	Reggie Bush	RB	2016		$11
+	James	Reggie Nelson	DB	2016		$5
+2578		Reggie Wayne	WR	FA	2015
+13395	Daniel	Reshad Jones	DB	2015	2017	$10
+	Quinn	Ricardo Louis	WR	2016		$1
+16786	Quinn	Richard Rodgers	TE	2014	2016	$7
+14086	Trevor	Richard Sherman	DB	2013	2015	$3
+13225		Riley Cooper	WR	FA	2015
+15102	Syed	Rishard Matthews	WR	2016		$5
+13229	John/Zach	Rob Gronkowski	TE	2016		$200
+9354	John/Zach	Robbie Gould	K	2016		$3
+14875	Syed	Robert Griffin	QB	2015	2017	$28
+17144		Robert Herron	WR	FA	2015
+	Brett/Luke	Robert Nkemdiche	DL	2016		$1
+13984	John/Zach	Robert Quinn	DL	2015	2017	$5
+14894	Keyon	Robert Turbin	RB	FA	2015	$2
+15880	Koci/Mueller	Robert Woods	WR	2016		$3
+	Mitch	Roberto Aguayo	K	2016		$1
+8442	Daniel	Roddy White	WR	2015	2015	$25
+	Quinn	Ron Parker	DB	2016		$2
+14895	Daniel	Ronnie Hillman	RB	2016		$2
+14192	James	Roy Helu	RB	2013	2015	$32
+14911	John/Zach	Rueben Randle	WR	2015	2017	$5
+14881	Trevor	Russell Wilson	QB	2016		$265
+8664	Keyon	Ryan Fitzpatrick	QB	2015	2016	$20
+15887		Ryan Griffin	TE	FA	2015
+14037	Schex	Ryan Mallett	QB	2015	2017	$4
+13204	Daniel	Ryan Mathews	RB	2016		$123
+16727	Keyon	Ryan Shazier	LB	2014	2016	$1
+14876	Koci/Mueller	Ryan Tannehill	QB	2015	2017	$110
+13197	Patrick	Sam Bradford	QB	2016		$40
+17562	Daniel	Sammie Coates	WR	2015	2017	$3
+16725	Patrick	Sammy Watkins	WR	2014	2016	$19
+10572	Brett/Luke	Scott Chandler	TE	2015	2015	$2
+13284	Quinn	Sean Lee	LB	2016		$15
+	Koci/Mueller	Seth DeValve	TE	2016		$1
+17620		Shane Ray	DL	FA	2015
+14017	Patrick	Shane Vereen	RB	2016		$21
+17688		Shaq Thompson	LB	FA	2015
+14518	Syed	Shaun Draughn	RB	FA	2015	$1
+14937	Keyon	Shea McClellin	DL/LB	FA	2015	$3
+15859		Sio Moore	LB	FA	2015
+16020	Quinn	Spencer Ware	RB	2016		$7
+17676	Brett/Luke	Stefon Diggs	WR	2015	2017	$3
+9704	Koci/Mueller	Stephen Gostkowski	K	2015	2017	$2
+17588	Trevor	Stephone Anthony	LB	2015	2017	$1
+	Mitch	Sterling Shepard	WR	2016		$17
+14028	Schex	Stevan Ridley	RB	2015	2017	$1
+2622	Brett/Luke	Steve Smith Sr.	WR	2016		$5
+11923	Brett/Luke	Steven Hauschka	K	2016		$3
+11458	Trevor	Stevie Johnson	WR	2014	2015	$1
+16884		Storm Johnson	RB	FA	2015
+15852		T.J. McDonald	DB	FA	2015
+13304	Koci/Mueller	T.J. Ward	DB	FA	2015	$1
+14114		T.J. Yates	QB	FA	2015
+17678	Syed	T.J. Yeldon	RB	2015	2017	$27
+14924	John/Zach	T.Y. Hilton	WR	2015	2017	$135
+14167	Mitch	Taiwan Jones	RB	FA	2015	$1
+	Keyon	Tajae Sharpe	WR	2016		$5
+15786	Schex	Tavon Austin	WR	2016		$97
+10453	Koci/Mueller	Ted Ginn Jr.	WR	2016		$18
+16728	Schex	Teddy Bridgewater	QB	2014	2016	$19
+17159	Trevor	Telvin Smith	LB	2014	2016	$1
+16783		Terrance West	RB	FA	2015
+15878	Syed	Terrance Williams	WR	2015	2017	$3
+	James	Terrelle Pryor	WR	2016		$25
+17689	John/Zach	Tevin Coleman	RB	2015	2017	$27
+15994	Koci/Mueller	Theo Riddick	RB	2015	2017	$1
+8429	Schex	Thomas Davis	LB	2016		$9
+17739	Brett/Luke	Thomas Rawls	RB	2016		$185
+11383	Mitch	Tim Hightower	RB	2016		$5
+17222	Koci/Mueller	TJ Carrie	DB	2014	2016	$1
+	James	TJ Jones	WR	2016		$3
+13211		Toby Gerhart	RB	FA	2015
+17683	Keyon	Todd Gurley	RB	2015	2017	$27
+2330	Trevor	Tom Brady	QB	2015	2016	$140
+16195	Brett/Luke	Tony Jefferson	DB	FA	2015	$1
+5209	Quinn	Tony Romo	QB	2016		$75
+14032	Koci/Mueller	Torrey Smith	WR	2016		$42
+17577	James	Trae Waynes	DB	2015	2015	$1
+15457	Koci/Mueller	Travaris Cadet	RB	2015	2017	$1
+15062	John/Zach	Travis Benjamin	WR	2016		$10
+17157		Travis Coons	K	FA	2015
+15847	Mitch	Travis Kelce	TE	2016		$30
+16784		Tre Mason	RB	FA	2015
+17550	Daniel	Tre McBride	WR	2015	2017	$2
+	Syed	Trevor Siemian	QB	2016		$1
+16797		Troy Niklas	TE	FA	2015
+17611	Syed	Ty Montgomery	WR	2015	2017	$9
+	Schex	Tyler Boyd	WR	2016		$17
+15788	Daniel	Tyler Eifert	TE	2016		$25
+	Daniel	Tyler Ervin	RB	2016		$7
+	James	Tyler Higbee	TE	2016		$4
+17619	Quinn	Tyler Lockett	WR	2015	2017	$5
+15851	Keyon	Tyrann Mathieu	DB	2016		$20
+14163	Brett/Luke	Tyrod Taylor	QB	2016		$185
+17766		Uani' Unga	LB	FA	2015
+9592	Patrick	Vernon Davis	TE	2015	2015	$10
+17468		Vic Beasley Jr.	LB	FA	2015
+13553	Brett/Luke	Victor Cruz	WR	2016		$1
+8475	Syed	Vincent Jackson	WR	2016		$13
+13766	Mitch	Vincent Rey	LB	FA	2015	$1
+14085	Brett/Luke	Virgil Green	TE	2016		$1
+13976	Syed	Von Miller	LB	2014	2016	$3
+15246	Patrick	Vontaze Burfict	LB	2016		$10
+	Mitch	Wendell Smallwood	RB	2016		$7
+11609		Wesley Woodyard	LB	FA	2015
+17264		Will Compton	LB	FA	2015
+	John/Zach	Will Fuller	WR	2016		$9
+17184	John/Zach	Willie Snead	WR	2016		$21
+15996		Zac Stacy	RB	FA	2015
+15835	Patrick	Zach Ertz	TE	2016		$18
+16814	Trevor	Zach Mettenberger	QB	2014	2016	$2
+	Schex	Zach Miller	TE	2016		$1
+17741	Syed	Zach Zenner	RB	2016		$8

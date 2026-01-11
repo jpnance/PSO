@@ -240,21 +240,22 @@ else
 fi
 echo ""
 
-# Step 6: Seed trades (interactive, needs network)
-echo "=== Step 6: Seeding trades (interactive, needs network) ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js"
-else
-    $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js
-fi
-echo ""
-
-# Step 7: Seed draft selections (interactive, needs network)
-echo "=== Step 7: Seeding draft selections (interactive, needs network) ==="
+# Step 6: Seed draft selections (interactive, needs network)
+# Must run before trades so rookie contract heuristic has draft data available
+echo "=== Step 6: Seeding draft selections (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedDraftSelections.js"
 else
     $DOCKER_COMPOSE run --rm web node data/scripts/seedDraftSelections.js
+fi
+echo ""
+
+# Step 7: Seed trades (interactive, needs network)
+echo "=== Step 7: Seeding trades (interactive, needs network) ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js"
+else
+    $DOCKER_COMPOSE run --rm web node data/scripts/seedTrades.js
 fi
 echo ""
 

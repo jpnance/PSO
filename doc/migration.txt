@@ -51,15 +51,16 @@ The resetMigration.sh script runs these steps in order:
   Step  3: syncPlayers.js
   Step  4: seedContracts.js (interactive)
   Step  5: seedPicks.js
-  Step  6: seedTrades.js (interactive, needs network)
-  Step  7: seedDraftSelections.js (interactive, needs network)
+  Step  6: seedDraftSelections.js (interactive, needs network)
+  Step  7: seedTrades.js (interactive, needs network)
   Step  8: seedCuts.js (interactive, needs network)
   Step  9: seedBudgets.js
   Step 10: applyFixups.js
 
-Note: seedTrades.js applies heuristics to infer contract years and marks
-ambiguous contracts with the `ambiguous` flag. The trade display template
-shows a callout for trades with ambiguous player contracts.
+Note: seedDraftSelections.js must run before seedTrades.js so the rookie
+contract heuristic can access draft data. seedTrades.js applies heuristics
+to infer contract years and marks ambiguous contracts with the `ambiguous`
+flag. The trade display template shows a tooltip for ambiguous player contracts.
 
 Note: Trade cash edits now automatically trigger budget recalculation, so
 fixups can safely run last.
