@@ -99,11 +99,6 @@ nav a:hover {
 	border-top: 1px solid #dee2e6;
 }
 
-.available-row td:first-child {
-	border-left: 3px solid #28a745;
-	padding-left: calc(0.75rem - 3px);
-}
-
 .recoverable-row td,
 .effective-cap-row td {
 	color: #6c757d;
