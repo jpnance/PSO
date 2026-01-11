@@ -39,9 +39,11 @@
 	],
 
 	"playerCorrections": [
-		{ "name": "Mike Williams", "positions": ["WR"], "notes": "Bucs/Bills 2010-2014, not the Chargers WR" },
-		{ "name": "Steve Smith", "positions": ["WR"], "notes": "Panthers, not the Eagles Steve Smith" },
-		{ "name": "Adrian Peterson", "positions": ["RB"], "notes": "Vikings/etc, not Bears Adrian Peterson" }
+		{ "name": "Tony Gonzalez", "positions": ["TE"] },
+		{ "name": "J.T. O'Sullivan", "positions": ["QB"] },
+		{ "name": "Jon Baldwin", "positions": ["WR"] },
+		{ "name": "Charles Scott", "positions": ["RB"] },
+		{ "name": "Scotty McGee", "positions": ["DB"] }
 	],
 
 	"tradeContractCorrections": [
