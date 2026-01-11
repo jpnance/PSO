@@ -2,6 +2,7 @@ extends layout.pug
 
 block styles
 	link(rel='stylesheet' href='/league.css')
+	link(rel='stylesheet' href='/css/positions.css')
 
 block content
 	-
@@ -75,32 +76,29 @@ block content
 							return secondaryIdxA - secondaryIdxB;
 						});
 						
-					- var desktopColSpan = 5
 					table.table.table-sm.mb-0.roster-table
-							thead.table-secondary
-								tr
-									th Player
+						tbody
+							each posKey in positionKeys
+								- var posClass = 'pos-' + posKey.split('/')[0]
+								tr.position-header(class=posClass)
+									th= posKey
 									th.text-center Contract
 									th.text-right= currentSeason
 									th.text-right.d-none.d-md-table-cell= currentSeason + 1
 									th.text-right.d-none.d-md-table-cell= currentSeason + 2
-							tbody
-								each posKey in positionKeys
-									tr.position-header
-										th(colspan=desktopColSpan)= posKey
-									each player in rosterByPosition[posKey]
-										tr
-											td= player.name
-											td.text-center= formatContract(player.startYear, player.endYear)
-											td.text-right
-												if salaryForYear(player, currentSeason)
-													| $#{formatMoney(player.salary)}
-											td.text-right.d-none.d-md-table-cell
-												if salaryForYear(player, currentSeason + 1)
-													| $#{formatMoney(player.salary)}
-											td.text-right.d-none.d-md-table-cell
-												if salaryForYear(player, currentSeason + 2)
-													| $#{formatMoney(player.salary)}
+								each player in rosterByPosition[posKey]
+									tr
+										td= player.name
+										td.text-center= formatContract(player.startYear, player.endYear)
+										td.text-right
+											if salaryForYear(player, currentSeason)
+												| $#{formatMoney(player.salary)}
+										td.text-right.d-none.d-md-table-cell
+											if salaryForYear(player, currentSeason + 1)
+												| $#{formatMoney(player.salary)}
+										td.text-right.d-none.d-md-table-cell
+											if salaryForYear(player, currentSeason + 2)
+												| $#{formatMoney(player.salary)}
 			
 			div.col-lg-4
 				div.card.mb-4

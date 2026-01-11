@@ -67,13 +67,25 @@ nav a:hover {
 	margin-right: 0.75rem;
 }
 
-/* Position group headers in roster */
+/* Position group headers in roster - colored by position */
 .position-header th {
 	font-weight: 600;
 	font-size: 0.85rem;
-	background-color: #f8f9fa;
 	border-top: 1px solid #dee2e6;
 }
+
+.position-header th:first-child {
+	text-transform: uppercase;
+}
+
+.position-header.pos-QB th { background-color: #D7EBFF; color: #1a5276; }
+.position-header.pos-RB th { background-color: #F0FFFF; color: #117a65; }
+.position-header.pos-WR th { background-color: #FAFAD2; color: #9a7b0a; }
+.position-header.pos-TE th { background-color: #DCFFDC; color: #1e8449; }
+.position-header.pos-DL th,
+.position-header.pos-LB th,
+.position-header.pos-DB th { background-color: #FFF5EE; color: #a04000; }
+.position-header.pos-K th { background-color: #F5F5F5; color: #5d6d7e; }
 
 /* Remove borders between roster rows within same position group */
 .roster-table tbody tr:not(.position-header) td {
