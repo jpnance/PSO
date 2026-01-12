@@ -159,7 +159,7 @@ async function buildTradeDisplayData(trades, options) {
 				var contract = formatContract(p.contractStart || p.startYear, p.contractEnd || p.endYear);
 				
 				var display = playerName + ' ($' + (p.salary || 0) + ', ' + contract + ')';
-				var contractInfo = '($' + (p.salary || 0) + ', ' + contract + ')';
+				var contractInfo = '$' + (p.salary || 0) + ' · ' + contract;
 				var notes = [];
 				
 				// Build chain of all trades for this player on the same contract
@@ -294,10 +294,28 @@ async function buildTradeDisplayData(trades, options) {
 					notes.push({ type: 'outcome', text: outcomeText });
 				}
 				
+				// Build the "main" part (the actual pick) for bold display
+				var pickMain;
+				if (knewPickNumber && pickNumber) {
+					var teamsPerRound = (season <= 2011) ? 10 : 12;
+					pickMain = 'Pick ' + formatPick.formatPickNumber(pickNumber, teamsPerRound);
+				} else {
+					pickMain = formatPick.formatRound(round) + ' round pick';
+				}
+				var pickContext = 'in ' + season + ' (' + originalOwner + ')';
+				
 				if (!seasonAssets[season]) seasonAssets[season] = [];
 				// Use pickNumber for sorting (lower is better), or Infinity for unknown picks
 				var sortKey = pickNumber || Infinity;
-				seasonAssets[season].push({ type: 'pick', display: display, notes: notes, sortOrder: 0, sortKey: sortKey });
+				seasonAssets[season].push({ 
+					type: 'pick', 
+					display: display, 
+					pickMain: pickMain,
+					pickContext: pickContext,
+					notes: notes, 
+					sortOrder: 0, 
+					sortKey: sortKey 
+				});
 			}
 			
 			// Cash - grouped by season
@@ -305,9 +323,18 @@ async function buildTradeDisplayData(trades, options) {
 				var c = party.receives.cash[k];
 				var fromOwner = c.fromFranchiseId ? await getDisplayName(c.fromFranchiseId, tradeYear) : 'Unknown';
 				var display = '$' + c.amount + ' from ' + fromOwner + ' in ' + c.season;
+				var cashMain = '$' + c.amount;
+				var cashContext = 'from ' + fromOwner + ' in ' + c.season;
 				
 				if (!seasonAssets[c.season]) seasonAssets[c.season] = [];
-				seasonAssets[c.season].push({ type: 'cash', display: display, notes: [], sortOrder: 1 });
+				seasonAssets[c.season].push({ 
+					type: 'cash', 
+					display: display, 
+					cashMain: cashMain,
+					cashContext: cashContext,
+					notes: [], 
+					sortOrder: 1 
+				});
 			}
 			
 			// Build final asset list
