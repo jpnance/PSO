@@ -490,12 +490,6 @@ async function createProposal(request, response) {
 			return response.status(401).json({ success: false, errors: ['Login required'] });
 		}
 		
-		// Check if trades are enabled
-		var tradesCheck = await checkTradesEnabled();
-		if (!tradesCheck.enabled) {
-			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
-		}
-		
 		var deal = request.body.deal;
 		if (!deal || typeof deal !== 'object') {
 			return response.status(400).json({ success: false, errors: ['Invalid trade data'] });
@@ -513,6 +507,14 @@ async function createProposal(request, response) {
 		});
 		
 		var isDraft = request.body.isDraft === true;
+		
+		// For real proposals, check if trades are enabled (drafts can be shared anytime)
+		if (!isDraft) {
+			var tradesCheck = await checkTradesEnabled();
+			if (!tradesCheck.enabled) {
+				return response.status(400).json({ success: false, errors: [tradesCheck.error] });
+			}
+		}
 		
 		// For real proposals, user must be a party. For drafts, anyone with a franchise can share.
 		if (!isDraft && !userFranchiseInTrade) {
