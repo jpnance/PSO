@@ -21,27 +21,65 @@ block styles
 			font-weight: normal;
 			font-size: 0.9rem;
 		}
-		.party {
-			margin-bottom: 0.75rem;
+		.party:not(:last-child) .asset-list {
+			margin-bottom: 1.25rem;
 		}
 		.party-name {
 			font-weight: 600;
 		}
+		/* Asset list - compact bullet style */
 		.asset-list {
-			margin: 0.25rem 0 0 1.5rem;
+			list-style: none;
+			margin: 0.25rem 0 0 0.5rem;
 			padding: 0;
-			list-style: disc;
 		}
 		.asset-list li {
-			margin-bottom: 0.15rem;
+			padding: 0.15rem 0;
+			font-size: 0.9rem;
 		}
-		.asset-list li:last-child {
-			margin-bottom: 0;
+		.asset-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.25rem;
+			height: 1.25rem;
+			border-radius: 3px;
+			margin-right: 0.35rem;
+			font-size: 0.65rem;
+		}
+		/* Asset type colors - pill backgrounds with borders */
+		.asset-icon.icon-player {
+			background-color: rgba(40, 167, 69, 0.15);
+			border: 1px solid #28a745;
+			color: #28a745;
+		}
+		.asset-icon.icon-pick {
+			background-color: rgba(23, 162, 184, 0.15);
+			border: 1px solid #17a2b8;
+			color: #17a2b8;
+		}
+		.asset-icon.icon-cash {
+			background-color: rgba(211, 158, 0, 0.15);
+			border: 1px solid #d39e00;
+			color: #d39e00;
+		}
+		.asset-icon.icon-rfa {
+			background-color: rgba(111, 66, 193, 0.15);
+			border: 1px solid #6f42c1;
+			color: #6f42c1;
+		}
+		.asset-icon.icon-nothing {
+			background-color: rgba(173, 181, 189, 0.15);
+			border: 1px solid #adb5bd;
+			color: #adb5bd;
 		}
 		.asset-note {
+			display: block;
 			font-size: 0.75rem;
 			color: #888;
 			font-style: italic;
+			margin-left: 1.6rem;
+			margin-top: 0.1rem;
 		}
 		.trade-notes {
 			font-style: italic;
@@ -58,56 +96,70 @@ block styles
 			color: #666;
 		}
 		
-		/* Filter and pagination styles */
-		.filter-bar {
+		/* Sidebar styles */
+		.sidebar {
 			background: #fff;
 			border: 1px solid #ddd;
 			border-radius: 8px;
 			padding: 1rem;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 		}
-		.filter-bar select {
-			font-size: 0.9rem;
+		.sidebar-section {
+			margin-bottom: 1.25rem;
+		}
+		.sidebar-section:last-child {
+			margin-bottom: 0;
+		}
+		.sidebar-title {
+			font-weight: 600;
+			font-size: 0.85rem;
+			color: #495057;
+			margin-bottom: 0.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+		.sidebar select {
+			font-size: 0.875rem;
+		}
+		.sidebar .btn {
+			font-size: 0.875rem;
 		}
 		.filter-summary {
-			font-size: 0.9rem;
+			font-size: 0.8rem;
 			color: #666;
+			margin-top: 0.75rem;
+			padding-top: 0.75rem;
+			border-top: 1px solid #eee;
 		}
 		.filter-summary .active-filter {
+			display: inline-block;
 			background: #e7f1ff;
 			border: 1px solid #b6d4fe;
 			border-radius: 4px;
-			padding: 0.2rem 0.5rem;
-			margin-left: 0.5rem;
+			padding: 0.15rem 0.4rem;
+			margin: 0.15rem 0;
 		}
-		.filter-summary .active-filter .remove-filter {
+		.filter-summary .remove-filter {
 			color: #6c757d;
 			text-decoration: none;
-			margin-left: 0.3rem;
+			margin-left: 0.25rem;
 		}
-		.filter-summary .active-filter .remove-filter:hover {
+		.filter-summary .remove-filter:hover {
 			color: #dc3545;
 		}
-		.pagination-bar {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			flex-wrap: wrap;
-			gap: 1rem;
-			margin-bottom: 1rem;
-		}
 		.pagination-info {
-			font-size: 0.9rem;
-			color: #666;
-		}
-		.pagination-controls {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-		}
-		.pagination-controls .btn {
-			padding: 0.25rem 0.5rem;
 			font-size: 0.85rem;
+			color: #666;
+			margin-bottom: 0.5rem;
+		}
+		.pagination-compact {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.25rem;
+		}
+		.pagination-compact .btn {
+			padding: 0.2rem 0.4rem;
+			font-size: 0.8rem;
 		}
 		.trade-nav {
 			display: flex;
@@ -137,15 +189,12 @@ block styles
 			opacity: 0.4;
 			pointer-events: none;
 		}
-		.involved-links {
-			margin-top: 0.5rem;
-			font-size: 0.85rem;
-		}
-		.involved-links a {
-			color: #6c757d;
-		}
-		.involved-links a:hover {
-			color: #495057;
+		/* Sticky sidebar on large screens */
+		@media (min-width: 992px) {
+			.sidebar-sticky {
+				position: sticky;
+				top: 1rem;
+			}
 		}
 
 block content
@@ -154,162 +203,62 @@ block content
 			p.mb-2
 				a(href="/trades") ← All Trades
 			h1.mb-3 Trade ##{tradeNumber}
-		else
-			h1.mb-4 Trade History
 			
-			//- Filter bar
-			div.filter-bar
-				form.row.align-items-end(method="get" action="/trades")
-					div.col-md-5.col-lg-4.mb-2.mb-md-0
-						label.form-label.small.mb-1(for="franchise-filter") Involving
-						select#franchise-filter.form-control.form-control-sm(name="franchise")
-							option(value="") All franchises
-							each regime in regimes
-								option(value=regime.franchiseId.toString() selected=(filterFranchise === regime.franchiseId.toString()))= regime.displayName
-					
-					div.col-md-5.col-lg-4.mb-2.mb-md-0
-						label.form-label.small.mb-1(for="partner-filter") Trading with
-						select#partner-filter.form-control.form-control-sm(name="partner")
-							option(value="") Anyone
-							each regime in regimes
-								option(value=regime.franchiseId.toString() selected=(filterPartner === regime.franchiseId.toString()))= regime.displayName
-					
-					
-					div.col-md-2.col-lg-4.mt-2.mt-md-0
-						button.btn.btn-primary.btn-sm.btn-block(type="submit")
-							i.fa.fa-filter.mr-1
-							| Filter
-			
-			if filterFranchise || filterPartner
-				div.filter-summary.mt-2
-					| Showing 
-					if filterFranchise && filterPartner
-						span.active-filter
-							= filterFranchiseName
-							a.remove-filter(href="/trades") ×
-						|  and 
-						span.active-filter
-							= filterPartnerName
-							a.remove-filter(href="/trades?franchise=" + filterFranchise) ×
-						| 's franchises 
-						span.text-muted (includes past owners)
-					else if filterFranchise
-						span.active-filter
-							= filterFranchiseName
-							a.remove-filter(href="/trades") ×
-						| 's franchise 
-						span.text-muted (includes past owners)
-					else if filterPartner
-						span.active-filter
-							= filterPartnerName
-							a.remove-filter(href="/trades") ×
-						| 's franchise 
-						span.text-muted (includes past owners)
-			
-			//- Pagination bar
-			if totalFiltered > 0
-				div.pagination-bar
-					div.pagination-info
-						if filterFranchise || filterPartner
-							| Showing #{((page - 1) * (perPage || totalFiltered)) + 1}–#{Math.min(page * (perPage || totalFiltered), totalFiltered)} of #{totalFiltered} trades
-							|  (#{totalTrades} total)
-						else
-							| Showing #{((page - 1) * (perPage || totalFiltered)) + 1}–#{Math.min(page * (perPage || totalFiltered), totalFiltered)} of #{totalTrades} trades
-					
-					if perPage && totalPages > 1
-						div.pagination-controls
-							if page > 1
-								a.btn.btn-outline-secondary(href="/trades" + buildQuery(1, perPage)) « First
-								a.btn.btn-outline-secondary(href="/trades" + buildQuery(page - 1, perPage)) ‹ Prev
-							else
-								span.btn.btn-outline-secondary.disabled « First
-								span.btn.btn-outline-secondary.disabled ‹ Prev
-							
-							span.px-2 Page #{page} of #{totalPages}
-							
-							if page < totalPages
-								a.btn.btn-outline-secondary(href="/trades" + buildQuery(page + 1, perPage)) Next ›
-								a.btn.btn-outline-secondary(href="/trades" + buildQuery(totalPages, perPage)) Last »
-							else
-								span.btn.btn-outline-secondary.disabled Next ›
-								span.btn.btn-outline-secondary.disabled Last »
-
-		if trades.length === 0
-			div.text-center.py-5
-				i.fa.fa-exchange.fa-3x.text-muted.mb-3
-				p.text-muted No trades found matching your filters.
-		
-		each trade in trades
-			div.trade-card(id="trade-" + trade.number)
-				div.trade-header
-					if singleTrade
+			each trade in trades
+				div.trade-card(id="trade-" + trade.number)
+					div.trade-header
 						| Trade ##{trade.number}
-					else
-						a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
-					span.trade-date.ml-3 #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-				
-				each party in trade.parties
-					div.party
-						span.party-name #{party.franchiseName}
-						if party.usePlural
-							|  receive:
-						else
-							|  receives:
-						ul.asset-list
-							each asset in party.assets
-								li
-									div
+						span.trade-date.ml-3 #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+					
+					each party in trade.parties
+						div.party
+							span.party-name #{party.franchiseName}
+							if party.usePlural
+								|  receive:
+							else
+								|  receives:
+							ul.asset-list
+								each asset in party.assets
+									li
+										span.asset-icon(class="icon-" + asset.type)
+											if asset.type === 'player'
+												i.fa.fa-user
+											else if asset.type === 'pick'
+												i.fa.fa-ticket
+											else if asset.type === 'cash'
+												i.fa.fa-dollar
+											else if asset.type === 'rfa'
+												i.fa.fa-handshake-o
+											else
+												i.fa.fa-times
 										| #{asset.display}
 										if asset.ambiguous
 											span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
 												i.fa.fa-question-circle
-									if asset.notes && asset.notes.length > 0
-										each note in asset.notes
-											if note.type === 'chain'
-												div.asset-note
-													each item, idx in note.items
-														if idx > 0
+										if asset.notes && asset.notes.length > 0
+											each note in asset.notes
+												if note.type === 'chain'
+													div.asset-note
+														each item, idx in note.items
+															if idx > 0
+																if item.type === 'outcome'
+																	|  → 
+																else
+																	|  #{note.separator} 
 															if item.type === 'outcome'
-																|  → 
+																| #{item.text}
+															else if item.isCurrent
+																strong ##{item.tradeNumber}
 															else
-																|  #{note.separator} 
-														if item.type === 'outcome'
-															| #{item.text}
-														else if item.isCurrent
-															strong ##{item.tradeNumber}
-														else
-															a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
-											else if note.type === 'outcome'
-												div.asset-note → #{note.text}
-				
-				if trade.notes
-					div.trade-notes #{trade.notes}
-		
-		//- Bottom pagination (when not in single trade view)
-		if !singleTrade && perPage && totalPages > 1
-			div.pagination-bar.mt-4.pt-3.border-top
-				div.pagination-info
-					| Page #{page} of #{totalPages}
-				
-				div.pagination-controls
-					if page > 1
-						a.btn.btn-outline-secondary(href="/trades" + buildQuery(1, perPage)) « First
-						a.btn.btn-outline-secondary(href="/trades" + buildQuery(page - 1, perPage)) ‹ Prev
-					else
-						span.btn.btn-outline-secondary.disabled « First
-						span.btn.btn-outline-secondary.disabled ‹ Prev
+																a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
+												else if note.type === 'outcome'
+													div.asset-note → #{note.text}
 					
-					span.px-2 Page #{page} of #{totalPages}
-					
-					if page < totalPages
-						a.btn.btn-outline-secondary(href="/trades" + buildQuery(page + 1, perPage)) Next ›
-						a.btn.btn-outline-secondary(href="/trades" + buildQuery(totalPages, perPage)) Last »
-					else
-						span.btn.btn-outline-secondary.disabled Next ›
-						span.btn.btn-outline-secondary.disabled Last »
-		//- Bottom navigation for single trade view
-		if singleTrade
-			div.trade-nav.mt-4.pt-3.border-top
+					if trade.notes
+						div.trade-notes #{trade.notes}
+			
+			//- Bottom navigation for single trade view
+			div.trade-nav.mt-3.pt-3.border-top
 				if prevTradeId
 					a.trade-nav-link(href="/trades/" + prevTradeId)
 						i.fa.fa-chevron-left
@@ -327,3 +276,163 @@ block content
 					span.trade-nav-link.disabled
 						| Newer 
 						i.fa.fa-chevron-right
+		else
+			h1.mb-4 Trade History
+			
+			div.row
+				//- Sidebar
+				div.col-lg-3.order-lg-2.mb-4.mb-lg-0
+					div.sidebar.sidebar-sticky
+						//- Go to trade
+						div.sidebar-section
+							div.sidebar-title Jump to Trade
+							form.input-group.input-group-sm(onsubmit="window.location.href='/trades/' + this.q.value; return false;")
+								input.form-control(type="text" name="q" placeholder="#" pattern="[0-9]+" title="Enter a trade number")
+								div.input-group-append
+									button.btn.btn-outline-secondary(type="submit") Go
+						
+						//- Filters
+						div.sidebar-section
+							div.sidebar-title Filter
+							form(method="get" action="/trades")
+								div.form-group.mb-2
+									label.small.mb-1(for="franchise-filter") Franchise
+									select#franchise-filter.form-control.form-control-sm(name="franchise")
+										option(value="") All
+										each regime in regimes
+											option(value=regime.franchiseId.toString() selected=(filterFranchise === regime.franchiseId.toString()))= regime.displayName
+								
+								div.form-group.mb-2
+									label.small.mb-1(for="partner-filter") Trading with
+									select#partner-filter.form-control.form-control-sm(name="partner")
+										option(value="") Anyone
+										each regime in regimes
+											option(value=regime.franchiseId.toString() selected=(filterPartner === regime.franchiseId.toString()))= regime.displayName
+								
+								button.btn.btn-primary.btn-sm.btn-block(type="submit")
+									i.fa.fa-filter.mr-1
+									| Apply
+							
+							if filterFranchise || filterPartner
+								div.filter-summary
+									| Showing: 
+									if filterFranchise
+										span.active-filter
+											= filterFranchiseName
+											a.remove-filter(href="/trades") ×
+									if filterPartner
+										if filterFranchise
+											|  + 
+										span.active-filter
+											= filterPartnerName
+											a.remove-filter(href=filterFranchise ? "/trades?franchise=" + filterFranchise : "/trades") ×
+									div.text-muted.small.mt-1 (includes past owners)
+						
+						//- Pagination
+						if totalFiltered > 0
+							div.sidebar-section
+								div.sidebar-title Browse
+								div.pagination-info
+									if filterFranchise || filterPartner
+										| #{totalFiltered} of #{totalTrades} trades
+									else
+										| #{totalTrades} trades
+									if perPage
+										br
+										| Page #{page} of #{totalPages}
+								
+								if perPage && totalPages > 1
+									div.pagination-compact
+										if page > 1
+											a.btn.btn-outline-secondary(href="/trades" + buildQuery(1, perPage)) «
+											a.btn.btn-outline-secondary(href="/trades" + buildQuery(page - 1, perPage)) ‹
+										else
+											span.btn.btn-outline-secondary.disabled «
+											span.btn.btn-outline-secondary.disabled ‹
+										
+										if page < totalPages
+											a.btn.btn-outline-secondary(href="/trades" + buildQuery(page + 1, perPage)) ›
+											a.btn.btn-outline-secondary(href="/trades" + buildQuery(totalPages, perPage)) »
+										else
+											span.btn.btn-outline-secondary.disabled ›
+											span.btn.btn-outline-secondary.disabled »
+				
+				//- Main content
+				div.col-lg-9.order-lg-1
+					if trades.length === 0
+						div.text-center.py-5
+							i.fa.fa-exchange.fa-3x.text-muted.mb-3
+							p.text-muted No trades found matching your filters.
+					
+					each trade in trades
+						div.trade-card(id="trade-" + trade.number)
+							div.trade-header
+								a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
+								span.trade-date.ml-3 #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+							
+							each party in trade.parties
+								div.party
+									span.party-name #{party.franchiseName}
+									if party.usePlural
+										|  receive:
+									else
+										|  receives:
+								ul.asset-list
+									each asset in party.assets
+										li
+											span.asset-icon(class="icon-" + asset.type)
+												if asset.type === 'player'
+													i.fa.fa-user
+												else if asset.type === 'pick'
+													i.fa.fa-ticket
+												else if asset.type === 'cash'
+													i.fa.fa-dollar
+												else if asset.type === 'rfa'
+													i.fa.fa-handshake-o
+												else
+													i.fa.fa-times
+											| #{asset.display}
+											if asset.ambiguous
+												span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
+													i.fa.fa-question-circle
+											if asset.notes && asset.notes.length > 0
+												each note in asset.notes
+													if note.type === 'chain'
+														div.asset-note
+															each item, idx in note.items
+																if idx > 0
+																	if item.type === 'outcome'
+																		|  → 
+																	else
+																		|  #{note.separator} 
+																if item.type === 'outcome'
+																	| #{item.text}
+																else if item.isCurrent
+																	strong ##{item.tradeNumber}
+																else
+																	a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
+													else if note.type === 'outcome'
+														div.asset-note → #{note.text}
+							
+							if trade.notes
+								div.trade-notes #{trade.notes}
+					
+					//- Bottom pagination
+					if perPage && totalPages > 1
+						div.d-flex.justify-content-center.mt-4.pt-3.border-top
+							div.pagination-compact
+								if page > 1
+									a.btn.btn-outline-secondary(href="/trades" + buildQuery(1, perPage)) « First
+									a.btn.btn-outline-secondary(href="/trades" + buildQuery(page - 1, perPage)) ‹ Prev
+								else
+									span.btn.btn-outline-secondary.disabled « First
+									span.btn.btn-outline-secondary.disabled ‹ Prev
+								
+								span.px-2.text-muted Page #{page} of #{totalPages}
+								
+								if page < totalPages
+									a.btn.btn-outline-secondary(href="/trades" + buildQuery(page + 1, perPage)) Next ›
+									a.btn.btn-outline-secondary(href="/trades" + buildQuery(totalPages, perPage)) Last »
+								else
+									span.btn.btn-outline-secondary.disabled Next ›
+									span.btn.btn-outline-secondary.disabled Last »
