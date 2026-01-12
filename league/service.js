@@ -375,7 +375,8 @@ async function franchise(request, response) {
 			phase: phase,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: data.displayName + ' - PSO',
-			activePage: 'league'
+			activePage: 'franchise',
+			currentFranchiseId: data._id.toString()
 		});
 	} catch (err) {
 		console.error(err);

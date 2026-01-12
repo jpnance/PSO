@@ -1180,7 +1180,7 @@ async function listProposalsForApproval(request, response) {
 		response.render('admin-proposals', {
 			proposals: proposalsDisplay,
 			pageTitle: 'Approve Trades - PSO Admin',
-			activePage: 'admin'
+			activePage: 'admin-proposals'
 		});
 	} catch (err) {
 		console.error('listProposalsForApproval error:', err);

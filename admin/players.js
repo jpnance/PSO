@@ -65,7 +65,7 @@ async function listPlayers(request, response) {
 		totalCount: totalCount,
 		hasSearch: hasSearch,
 		pageTitle: 'Players - PSO Admin',
-		activePage: 'admin'
+		activePage: 'admin-players'
 	});
 }
 
@@ -96,7 +96,7 @@ async function editPlayerForm(request, response) {
 		potentialDuplicates: potentialDuplicates,
 		query: request.query,
 		pageTitle: 'Edit ' + player.name + ' - PSO Admin',
-		activePage: 'admin'
+		activePage: 'admin-players'
 	});
 }
 
@@ -190,7 +190,7 @@ async function newPlayerForm(request, response) {
 	response.render('admin-player-new', {
 		positionOrder: positionOrder,
 		pageTitle: 'New Player - PSO Admin',
-		activePage: 'admin'
+		activePage: 'admin-players'
 	});
 }
 

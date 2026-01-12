@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var formatPick = require('./helpers/formatPick');
 var viewHelpers = require('./helpers/view');
+var navHelpers = require('./helpers/nav');
 var { attachSession } = require('./auth/middleware');
 var app = express();
 
@@ -27,17 +28,66 @@ app.use(function(req, res, next) {
 	next();
 });
 
-// Make banner available to all templates
+// Make banner and navigation data available to all templates
 var LeagueConfig = require('./models/LeagueConfig');
+var Regime = require('./models/Regime');
 app.use(async function(req, res, next) {
 	try {
 		var config = await LeagueConfig.findById('pso').lean();
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		// Banner
 		if (config && config.banner) {
 			res.locals.banner = config.banner;
 			res.locals.bannerStyle = config.bannerStyle || 'info';
 		}
+		
+		// Get all current franchises for sidebar navigation
+		var regimes = await Regime.find({
+			$or: [
+				{ endSeason: null },
+				{ endSeason: { $gte: currentSeason } }
+			]
+		}).populate('ownerIds').lean();
+		
+		// Filter to current regimes and sort by display name
+		var currentRegimes = regimes
+			.filter(function(r) {
+				return r.startSeason <= currentSeason &&
+					(r.endSeason === null || r.endSeason >= currentSeason);
+			})
+			.sort(function(a, b) {
+				return a.displayName.localeCompare(b.displayName);
+			});
+		
+		res.locals.navFranchises = currentRegimes.map(function(r) {
+			return {
+				_id: r.franchiseId,
+				displayName: r.displayName
+			};
+		});
+		
+		// Find current user's franchise (if logged in)
+		if (req.user) {
+			var userRegime = currentRegimes.find(function(r) {
+				return r.ownerIds && r.ownerIds.some(function(owner) {
+					return owner._id.equals(req.user._id);
+				});
+			});
+			if (userRegime) {
+				res.locals.userFranchise = {
+					_id: userRegime.franchiseId,
+					displayName: userRegime.displayName
+				};
+			}
+		}
+		
+		// Check if user is admin
+		res.locals.isAdmin = req.session && req.session.user && req.session.user.admin;
+		
 	} catch (err) {
-		// Silently ignore - banner is non-critical
+		// Silently ignore - navigation is non-critical, will fall back to empty
+		console.error('Nav middleware error:', err);
 	}
 	next();
 });
@@ -55,6 +105,7 @@ app.locals.deltaClass = viewHelpers.deltaClass;
 app.locals.sortedPositions = viewHelpers.sortedPositions;
 app.locals.getPositionKey = viewHelpers.getPositionKey;
 app.locals.POSITION_ORDER = viewHelpers.POSITION_ORDER;
+app.locals.buildNav = navHelpers.buildNav;
 require('./routes')(app);
 
 var mongoose = require('mongoose');

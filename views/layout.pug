@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet' href='/css/bootstrap.min.css')
 		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 		link(rel='stylesheet' href='/css/design-tokens.css')
+		link(rel='stylesheet' href='/css/sidebar.css')
 		block styles
 
 		script(src='/js/jquery.min.js')
@@ -15,74 +16,175 @@ html
 		title #{pageTitle || 'PSO'}
 
 	body
-		nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top.mb-3
-			div.container-fluid
-				a.navbar-brand(href='/league') PSO
-				button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
-					span.navbar-toggler-icon
-				div#navbarNav.collapse.navbar-collapse
-					ul.navbar-nav.mr-auto
-						li.nav-item(class=(activePage === 'league' ? 'active' : ''))
-							a.nav-link(href='/league')
-								i.fa.fa-trophy.mr-1
-								| League
-						li.nav-item(class=(activePage === 'draft' ? 'active' : ''))
-							a.nav-link(href='/draft')
-								i.fa.fa-list-ol.mr-1
-								| Draft
-						li.nav-item(class=(activePage === 'calendar' ? 'active' : ''))
-							a.nav-link(href='/calendar')
-								i.fa.fa-calendar.mr-1
-								| Calendar
-						li.nav-item(class=(activePage === 'rookies' ? 'active' : ''))
-							a.nav-link(href='/rookies')
-								i.fa.fa-graduation-cap.mr-1
-								| Rookies
-						li.nav-item.dropdown(class=(activePage === 'trades' || activePage === 'propose' ? 'active' : ''))
-							a.nav-link.dropdown-toggle(href='#' id='tradesDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-								i.fa.fa-exchange.mr-1
-								| Trades
-							div.dropdown-menu(aria-labelledby='tradesDropdown')
-								a.dropdown-item(href='/trades')
-									i.fa.fa-history.mr-2
-									| Trade History
-								a.dropdown-item(href='/propose')
-									i.fa.fa-plus.mr-2
-									| Trade Machine
-					ul.navbar-nav
-						if user
-							li.nav-item(class=(activePage === 'admin' ? 'active' : ''))
-								a.nav-link(href='/admin')
-									i.fa.fa-cog.mr-1
-									| Admin
-							li.nav-item.dropdown
-								a.nav-link.dropdown-toggle(href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-									i.fa.fa-user.mr-1
-									| #{user.name}
-								div.dropdown-menu.dropdown-menu-right(aria-labelledby='userDropdown')
-									a.dropdown-item(href='/logout')
-										i.fa.fa-sign-out.mr-2
-										| Log Out (This Device)
-									a.dropdown-item(href='/logout/all')
-										i.fa.fa-sign-out.mr-2
-										| Log Out (All Devices)
+		//- Build navigation structure
+		- var nav = buildNav({ activePage: activePage, currentFranchiseId: currentFranchiseId, userFranchise: userFranchise, franchises: navFranchises, isAdmin: isAdmin })
+
+		//- Top Bar
+		header.topbar
+			div.topbar-brand
+				button.hamburger#sidebarToggle(type='button' aria-label='Toggle navigation')
+					i.fa.fa-bars
+				a(href='/' style='color: inherit; text-decoration: none;')
+					h1 Primetime Soap Operas
+
+			//- Search Bar (desktop)
+			div.topbar-search#searchContainer
+				i.fa.fa-search.search-icon
+				input#searchInput(type='text' placeholder='Search players, franchises, trades...' autocomplete='off')
+				kbd /
+
+			//- Mobile search button
+			button.mobile-search-btn#mobileSearchBtn(type='button' aria-label='Search')
+				i.fa.fa-search
+
+			//- User menu
+			if user
+				div.topbar-user-dropdown
+					a.topbar-user(href='#' id='userDropdownToggle')
+						i.fa.fa-user-circle.fa-lg
+						span.d-none.d-sm-inline.ml-2 #{user.name}
+						i.fa.fa-chevron-down.ml-2(style='font-size: 0.7rem;')
+					div.topbar-user-menu#userDropdownMenu
+						a(href='/logout')
+							i.fa.fa-sign-out
+							| Log Out (This Device)
+						a(href='/logout/all')
+							i.fa.fa-sign-out
+							| Log Out (All Devices)
+			else
+				a.topbar-user(href='/login')
+					i.fa.fa-sign-in.mr-2
+					| Log In
+
+		//- Sidebar Overlay (mobile)
+		div.sidebar-overlay#sidebarOverlay
+
+		//- Sidebar
+		nav.nav-sidebar#sidebar
+			div.sidebar-nav
+				//- Mobile Search (shown in sidebar on mobile)
+				div.sidebar-mobile-search.d-lg-none
+					div.mobile-search-wrapper
+						i.fa.fa-search
+						input#mobileSearchInput(type='text' placeholder='Search...')
+
+				//- Primary Section - Always Visible
+				div.sidebar-primary
+					each item in nav.primary
+						if item.href
+							a.sidebar-link(href=item.href class=(item.active ? 'active' : ''))
+								i.fa(class=item.icon)
+								= item.label
+								if item.soon
+									span.badge.badge-secondary Soon
+
+				//- Collapsible Sections
+				each section in nav.sections
+					div.sidebar-section(class=(section.isAdmin ? 'sidebar-admin' : ''))
+						button.sidebar-toggle(type='button' data-toggle='collapse' data-target='#' + section.id + 'Menu' aria-expanded=(section.expanded ? 'true' : 'false'))
+							i.fa(class=section.icon)
+							= section.label
+							i.fa.fa-chevron-down.toggle-icon
+						div(id=section.id + 'Menu' class=(section.expanded ? 'collapse show ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu') : 'collapse ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu')))
+							each item in section.items
+								a.sidebar-link(href=item.href class=(item.active ? 'active' : '') target=(item.external ? '_blank' : null))
+									if item.icon
+										i.fa(class=item.icon)
+									= item.label
+									if item.soon
+										span.badge.badge-secondary Soon
+									if item.external
+										i.fa.fa-external-link.external-icon
+
+		//- Main Content
+		main.main-content
+			if banner
+				div.container-fluid
+					div.alert.mb-3.rounded-0.text-center(class='alert-' + bannerStyle)
+						if bannerStyle === 'danger'
+							i.fa.fa-exclamation-circle.mr-2
+						else if bannerStyle === 'warning'
+							i.fa.fa-exclamation-triangle.mr-2
 						else
-							li.nav-item
-							a.nav-link(href='/login')
-								i.fa.fa-sign-in.mr-1
-								| Log In
+							i.fa.fa-info-circle.mr-2
+						= banner
 
-		if banner
-			div.container-fluid
-				div.alert.mb-0.rounded-0.text-center(class='alert-' + bannerStyle)
-					if bannerStyle === 'danger'
-						i.fa.fa-exclamation-circle.mr-2
-					else if bannerStyle === 'warning'
-						i.fa.fa-exclamation-triangle.mr-2
-					else
-						i.fa.fa-info-circle.mr-2
-					= banner
+			block content
 
-		block content
+		//- Sidebar JavaScript
+		script.
+			(function() {
+				// Mobile sidebar toggle
+				var hamburger = document.getElementById('sidebarToggle');
+				var sidebar = document.getElementById('sidebar');
+				var overlay = document.getElementById('sidebarOverlay');
+
+				hamburger.addEventListener('click', function() {
+					sidebar.classList.toggle('open');
+					overlay.classList.toggle('open');
+				});
+
+				overlay.addEventListener('click', function() {
+					sidebar.classList.remove('open');
+					overlay.classList.remove('open');
+				});
+
+				// Close sidebar when clicking a link (mobile)
+				var sidebarLinks = document.querySelectorAll('.sidebar-link');
+				sidebarLinks.forEach(function(link) {
+					link.addEventListener('click', function() {
+						if (window.innerWidth < 992) {
+							sidebar.classList.remove('open');
+							overlay.classList.remove('open');
+						}
+					});
+				});
+
+				// Mobile search button - opens sidebar and focuses search
+				var mobileSearchBtn = document.getElementById('mobileSearchBtn');
+				var mobileSearchInput = document.getElementById('mobileSearchInput');
+				
+				if (mobileSearchBtn && mobileSearchInput) {
+					mobileSearchBtn.addEventListener('click', function() {
+						sidebar.classList.add('open');
+						overlay.classList.add('open');
+						setTimeout(function() {
+							mobileSearchInput.focus();
+						}, 300);
+					});
+				}
+
+				// Desktop search keyboard shortcut
+				var searchInput = document.getElementById('searchInput');
+				if (searchInput) {
+					document.addEventListener('keydown', function(e) {
+						if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+							e.preventDefault();
+							searchInput.focus();
+						}
+						if (e.key === 'Escape' && document.activeElement === searchInput) {
+							searchInput.blur();
+						}
+					});
+				}
+
+				// User dropdown toggle
+				var userDropdownToggle = document.getElementById('userDropdownToggle');
+				var userDropdownMenu = document.getElementById('userDropdownMenu');
+				
+				if (userDropdownToggle && userDropdownMenu) {
+					userDropdownToggle.addEventListener('click', function(e) {
+						e.preventDefault();
+						userDropdownMenu.classList.toggle('show');
+					});
+
+					// Close dropdown when clicking outside
+					document.addEventListener('click', function(e) {
+						if (!userDropdownToggle.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+							userDropdownMenu.classList.remove('show');
+						}
+					});
+				}
+			})();
 
 		block scripts
