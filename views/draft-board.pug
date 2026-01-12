@@ -129,6 +129,18 @@ block styles
 			font-weight: normal;
 			color: #999;
 		}
+		/* User's own picks - left border accent matching position colors */
+		.pick-row.my-pick {
+			padding-left: calc(0.6rem - 3px);
+		}
+		.pick-row.my-pick.pos-QB { border-left: 3px solid #1a5276; }
+		.pick-row.my-pick.pos-RB { border-left: 3px solid #117a65; }
+		.pick-row.my-pick.pos-WR { border-left: 3px solid #9a7b0a; }
+		.pick-row.my-pick.pos-TE { border-left: 3px solid #1e8449; }
+		.pick-row.my-pick.pos-IDP { border-left: 3px solid #a04000; }
+		.pick-row.my-pick.pos-K { border-left: 3px solid #5d6d7e; }
+		.pick-row.my-pick.pick-passed { border-left: 3px solid #7f8c8d; }
+		.pick-row.my-pick.pick-available { border-left: 3px solid #6c757d; }
 
 block content
 	div.container-fluid.py-3
@@ -153,7 +165,8 @@ block content
 						div.round-header Round #{round}
 						each pick in pickList
 							- var rowClass = pick.positionGroup ? ('pos-' + pick.positionGroup) : (pick.status === 'passed' ? 'pick-passed' : 'pick-available')
-							div.pick-row(class=rowClass)
+							- var isMyPick = userFranchiseName && pick.currentOwner === userFranchiseName
+							div.pick-row(class=rowClass class=(isMyPick ? 'my-pick' : ''))
 								div.pick-num
 									if pick.pickDisplay
 										div #{pick.pickDisplay}
