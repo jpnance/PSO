@@ -122,3 +122,24 @@ mixin tradeParty(party)
 						i.fa.fa-times
 					span.asset-content.icon-nothing
 						span.asset-text Nothing
+
+//- Budget impact table for trades
+//- Usage: +budgetImpactTable(budgetImpact)
+//- budgetImpact: [{ franchiseName, seasons: [{ season, delta }] }]
+mixin budgetImpactTable(budgetImpact)
+	table.table.table-sm.table-borderless.mb-0
+		thead
+			tr
+				th
+				each s in budgetImpact[0].seasons
+					th.text-right= s.season
+		tbody
+			each impact in budgetImpact
+				tr
+					td: strong= impact.franchiseName
+					each s in impact.seasons
+						- var delta = s.delta
+						- var cls = delta > 0 ? 'text-success' : (delta < 0 ? 'text-danger' : 'text-muted')
+						- var sign = delta > 0 ? '+' : (delta < 0 ? '-' : '')
+						- var absVal = Math.abs(delta)
+						td.text-right(class=cls)= sign + '$' + absVal
