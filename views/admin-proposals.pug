@@ -1,6 +1,7 @@
 extends layout
 
 block styles
+	link(rel='stylesheet' href='/css/components.css')
 	style.
 		.proposal-card {
 			border-left: 4px solid #28a745;
@@ -21,6 +22,10 @@ block styles
 			color: #6c757d;
 			font-size: 0.9rem;
 		}
+		/* Use consistent icon colors from design system */
+		.receives .fa-user { color: #28a745; }
+		.receives .fa-ticket { color: #17a2b8; }
+		.receives .fa-dollar { color: #d39e00; }
 
 block content
 	div.container.py-4
@@ -63,7 +68,9 @@ block content
 												i.fa.fa-dollar.mr-1
 												| #{party.cashCount} cash
 										if party.playerCount === 0 && party.pickCount === 0 && party.cashCount === 0
-											span.text-muted Nothing
+											span.text-muted
+												i.fa.fa-times.mr-1
+												| Nothing
 						
 						div.d-flex.align-items-center
 							div.input-group.input-group-sm.mr-2(style="max-width: 300px")
