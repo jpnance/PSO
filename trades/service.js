@@ -159,6 +159,7 @@ async function buildTradeDisplayData(trades, options) {
 				var contract = formatContract(p.contractStart || p.startYear, p.contractEnd || p.endYear);
 				
 				var display = playerName + ' ($' + (p.salary || 0) + ', ' + contract + ')';
+				var contractInfo = '($' + (p.salary || 0) + ', ' + contract + ')';
 				var notes = [];
 				
 				// Build chain of all trades for this player on the same contract
@@ -184,9 +185,12 @@ async function buildTradeDisplayData(trades, options) {
 				
 				playerAssets.push({ 
 					type: 'player', 
-					display: display, 
+					display: display,
+					playerName: playerName,
+					contractInfo: contractInfo,
 					notes: notes,
-					ambiguous: p.ambiguous || false
+					ambiguous: p.ambiguous || false,
+					positions: player ? player.positions : []
 				});
 			}
 			
@@ -198,7 +202,10 @@ async function buildTradeDisplayData(trades, options) {
 				playerAssets.push({
 					type: 'rfa',
 					display: playerName + ' (RFA rights)',
-					notes: []
+					playerName: playerName,
+					contractInfo: '(RFA rights)',
+					notes: [],
+					positions: player ? player.positions : []
 				});
 			}
 			
