@@ -399,8 +399,10 @@ async function tradeHistory(request, response) {
 	var currentSeason = config ? config.season : new Date().getFullYear();
 	
 	// Parse query params
-	var page = parseInt(request.query.page, 10) || 1;
-	var perPage = request.query.per === 'all' ? null : (parseInt(request.query.per, 10) || 20);
+	// null page means "show last 2 pages merged" for a fuller default view
+	var page = request.query.page ? parseInt(request.query.page, 10) : null;
+	var perPage = request.query.per === 'all' ? null : (parseInt(request.query.per, 10) || 10);
+	var isDefaultView = (page === null);
 	var filterFranchise = request.query.franchise || null;
 	var filterPartner = request.query.partner || null;
 	
@@ -436,15 +438,30 @@ async function tradeHistory(request, response) {
 	
 	var totalFiltered = filteredTrades.length;
 	
-	// Reverse for display (most recent first)
-	filteredTrades = filteredTrades.slice().reverse();
-	
-	// Paginate
+	// Stable pagination: page 1 = oldest trades
 	var totalPages = perPage ? Math.ceil(totalFiltered / perPage) : 1;
-	page = Math.max(1, Math.min(page, totalPages || 1));
-	var paginatedTrades = perPage 
-		? filteredTrades.slice((page - 1) * perPage, page * perPage)
-		: filteredTrades;
+	
+	// Default view shows last 2 pages merged (ensures at least 11 trades if available)
+	var paginatedTrades;
+	var displayPage; // for UI display
+	if (isDefaultView && perPage) {
+		// Show last 2 pages (not last 20 trades - the difference matters for partial pages)
+		var startPage = Math.max(1, totalPages - 1); // second-to-last page
+		var startIdx = (startPage - 1) * perPage;
+		paginatedTrades = filteredTrades.slice(startIdx);
+		displayPage = null; // indicates "latest" view
+		page = totalPages; // for nav purposes
+	} else {
+		if (page === null) page = totalPages || 1;
+		page = Math.max(1, Math.min(page, totalPages || 1));
+		paginatedTrades = perPage 
+			? filteredTrades.slice((page - 1) * perPage, page * perPage)
+			: filteredTrades;
+		displayPage = page;
+	}
+	
+	// Reverse for display (newest first on page)
+	paginatedTrades = paginatedTrades.slice().reverse();
 	
 	// Build display data for paginated trades (but pass all trades for chain links)
 	var tradeData = await buildTradeDisplayData(trades, { currentSeason: currentSeason });
@@ -476,20 +493,27 @@ async function tradeHistory(request, response) {
 	// Build query string helper for pagination links
 	var buildQuery = function(newPage, newPer) {
 		var params = [];
-		if (newPage && newPage > 1) params.push('page=' + newPage);
-		if (newPer && newPer !== 20) params.push('per=' + newPer);
+		if (newPage) params.push('page=' + newPage);
+		if (newPer && newPer !== 10) params.push('per=' + newPer);
 		if (filterFranchise) params.push('franchise=' + filterFranchise);
 		if (filterPartner) params.push('partner=' + filterPartner);
 		return params.length ? '?' + params.join('&') : '';
 	};
 	
+	// Calculate "older" page for default view (go to page before the 2 we're showing)
+	var olderPage = isDefaultView ? (totalPages > 2 ? totalPages - 2 : null) : (page > 1 ? page - 1 : null);
+	var newerPage = (!isDefaultView && page < totalPages) ? page + 1 : null;
+	
 	response.render('trade-history', {
 		trades: displayTrades,
 		totalTrades: trades.length,
 		totalFiltered: totalFiltered,
-		page: page,
+		page: displayPage,
 		perPage: perPage,
 		totalPages: totalPages,
+		isDefaultView: isDefaultView,
+		olderPage: olderPage,
+		newerPage: newerPage,
 		regimes: regimes,
 		filterFranchise: filterFranchise,
 		filterFranchiseName: filterFranchiseName,

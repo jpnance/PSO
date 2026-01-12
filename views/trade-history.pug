@@ -84,26 +84,34 @@ block styles
 			color: #666;
 			margin-bottom: 0.5rem;
 		}
-		.pagination-compact {
+		.pagination-nav {
 			display: flex;
-			flex-wrap: wrap;
-			gap: 0.25rem;
+			align-items: center;
+			gap: 0.75rem;
 		}
-		.pagination-compact .btn {
-			padding: 0.2rem 0.4rem;
-			font-size: 0.8rem;
+		.pagination-left, .pagination-right {
+			display: flex;
+			gap: 0.5rem;
+		}
+		.sidebar-nav {
+			display: flex;
+			justify-content: space-between;
+		}
+		.sidebar-nav-left, .sidebar-nav-right {
+			display: flex;
+			gap: 0.25rem;
 		}
 		.trade-nav {
 			display: flex;
-			justify-content: space-between;
 			align-items: center;
+			gap: 0.75rem;
 			margin-bottom: 1rem;
 		}
 		.trade-nav-link {
 			display: inline-flex;
 			align-items: center;
-			gap: 0.3rem;
-			padding: 0.4rem 0.8rem;
+			gap: 0.35rem;
+			padding: 0.4rem 0.75rem;
 			border: 1px solid #ddd;
 			border-radius: 6px;
 			text-decoration: none;
@@ -113,13 +121,9 @@ block styles
 		}
 		.trade-nav-link:hover {
 			background: #f8f9fa;
-			border-color: var(--border-muted);
+			border-color: #adb5bd;
 			text-decoration: none;
 			color: #212529;
-		}
-		.trade-nav-link.disabled {
-			opacity: 0.4;
-			pointer-events: none;
 		}
 		/* Sticky sidebar on large screens */
 		@media (min-width: 992px) {
@@ -132,15 +136,34 @@ block styles
 block content
 	div.container.py-4
 		if singleTrade
-			p.mb-2
-				a(href="/trades") ← All Trades
-			h1.mb-3 Trade ##{tradeNumber}
+			p.mb-4
+				a(href="/trades") ← Back to All Trades
+			
+			//- Navigation at top for quick clicking
+			div.trade-nav.mb-3
+				if prevTradeId
+					a.trade-nav-link(href="/trades/" + prevTradeId)
+						i.fa.fa-chevron-left
+						|  ##{prevTradeId}
+				else
+					span.trade-nav-link.invisible
+						i.fa.fa-chevron-left
+						|  #000
+				span.flex-grow-1
+				if nextTradeId
+					a.trade-nav-link(href="/trades/" + nextTradeId)
+						| ##{nextTradeId} 
+						i.fa.fa-chevron-right
+				else
+					span.trade-nav-link.invisible
+						| #000 
+						i.fa.fa-chevron-right
 			
 			each trade in trades
 				div.trade-card(id="trade-" + trade.number)
 					div.trade-header
-						| Trade ##{trade.number}
-						div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
+						a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
+						div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
 					
 					each party in trade.parties
 						+tradeParty(party)
@@ -148,24 +171,24 @@ block content
 					if trade.notes
 						div.trade-notes #{trade.notes}
 			
-			//- Bottom navigation for single trade view
-			div.trade-nav.mt-3.pt-3.border-top
+			//- Bottom navigation
+			div.trade-nav.mt-4
 				if prevTradeId
 					a.trade-nav-link(href="/trades/" + prevTradeId)
 						i.fa.fa-chevron-left
-						|  Trade ##{prevTradeId}
+						|  ##{prevTradeId}
 				else
-					span.trade-nav-link.disabled
+					span.trade-nav-link.invisible
 						i.fa.fa-chevron-left
-						|  Older
-				
+						|  #000
+				span.flex-grow-1
 				if nextTradeId
 					a.trade-nav-link(href="/trades/" + nextTradeId)
-						| Trade ##{nextTradeId} 
+						| ##{nextTradeId} 
 						i.fa.fa-chevron-right
 				else
-					span.trade-nav-link.disabled
-						| Newer 
+					span.trade-nav-link.invisible
+						| #000 
 						i.fa.fa-chevron-right
 		else
 			h1.mb-4 Trade History
@@ -210,7 +233,7 @@ block content
 									if filterFranchise
 										span.active-filter
 											= filterFranchiseName
-											a.remove-filter(href="/trades") ×
+											a.remove-filter(href=filterPartner ? "/trades?partner=" + filterPartner : "/trades") ×
 									if filterPartner
 										if filterFranchise
 											|  + 
@@ -230,26 +253,55 @@ block content
 										| #{totalTrades} trades
 									if perPage
 										br
-										| Page #{page} of #{totalPages}
+										if isDefaultView
+											| Newest
+										else
+											| Page #{page} of #{totalPages}
 								
 								if perPage && totalPages > 1
-									div.pagination-compact
-										if page > 1
-											a.btn.btn-outline-secondary(href="/trades" + buildQuery(1, perPage)) «
-											a.btn.btn-outline-secondary(href="/trades" + buildQuery(page - 1, perPage)) ‹
-										else
-											span.btn.btn-outline-secondary.disabled «
-											span.btn.btn-outline-secondary.disabled ‹
-										
-										if page < totalPages
-											a.btn.btn-outline-secondary(href="/trades" + buildQuery(page + 1, perPage)) ›
-											a.btn.btn-outline-secondary(href="/trades" + buildQuery(totalPages, perPage)) »
-										else
-											span.btn.btn-outline-secondary.disabled ›
-											span.btn.btn-outline-secondary.disabled »
+									div.sidebar-nav
+										div.sidebar-nav-left
+											if olderPage
+												a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) «
+												a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹
+											else
+												span.trade-nav-link.invisible «
+												span.trade-nav-link.invisible ‹
+										div.sidebar-nav-right
+											if newerPage
+												a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) ›
+												a.trade-nav-link(href="/trades") »
+											else if !isDefaultView
+												span.trade-nav-link.invisible ›
+												a.trade-nav-link(href="/trades") »
+											else
+												span.trade-nav-link.invisible ›
+												span.trade-nav-link.invisible »
 				
 				//- Main content
 				div.col-lg-9.order-lg-1
+					//- Top pagination
+					if perPage && totalPages > 1
+						div.pagination-nav.mb-3
+							div.pagination-left
+								if olderPage
+									a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) « Oldest
+									a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹ Older
+								else
+									span.trade-nav-link.invisible « Oldest
+									span.trade-nav-link.invisible ‹ Older
+							span.flex-grow-1
+							div.pagination-right
+								if newerPage
+									a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) Newer ›
+									a.trade-nav-link(href="/trades") Newest »
+								else if !isDefaultView
+									span.trade-nav-link.invisible Newer ›
+									a.trade-nav-link(href="/trades") Newest »
+								else
+									span.trade-nav-link.invisible Newer ›
+									span.trade-nav-link.invisible Newest »
+					
 					if trades.length === 0
 						div.text-center.py-5
 							i.fa.fa-exchange.fa-3x.text-muted.mb-3
@@ -269,20 +321,22 @@ block content
 					
 					//- Bottom pagination
 					if perPage && totalPages > 1
-						div.d-flex.justify-content-center.mt-4.pt-3.border-top
-							div.pagination-compact
-								if page > 1
-									a.btn.btn-outline-secondary(href="/trades" + buildQuery(1, perPage)) « First
-									a.btn.btn-outline-secondary(href="/trades" + buildQuery(page - 1, perPage)) ‹ Prev
+						div.pagination-nav.mt-4
+							div.pagination-left
+								if olderPage
+									a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) « Oldest
+									a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹ Older
 								else
-									span.btn.btn-outline-secondary.disabled « First
-									span.btn.btn-outline-secondary.disabled ‹ Prev
-								
-								span.px-2.text-muted Page #{page} of #{totalPages}
-								
-								if page < totalPages
-									a.btn.btn-outline-secondary(href="/trades" + buildQuery(page + 1, perPage)) Next ›
-									a.btn.btn-outline-secondary(href="/trades" + buildQuery(totalPages, perPage)) Last »
+									span.trade-nav-link.invisible « Oldest
+									span.trade-nav-link.invisible ‹ Older
+							span.flex-grow-1
+							div.pagination-right
+								if newerPage
+									a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) Newer ›
+									a.trade-nav-link(href="/trades") Newest »
+								else if !isDefaultView
+									span.trade-nav-link.invisible Newer ›
+									a.trade-nav-link(href="/trades") Newest »
 								else
-									span.btn.btn-outline-secondary.disabled Next ›
-									span.btn.btn-outline-secondary.disabled Last »
+									span.trade-nav-link.invisible Newer ›
+									span.trade-nav-link.invisible Newest »
