@@ -139,7 +139,7 @@ function buildNav(options) {
 		expanded: isActive('simulator') || isActive('sunk'),
 		items: [
 			{ label: 'Simulator', icon: 'fa-random', href: '#', soon: true },
-			{ label: 'Sunk Cost Calculator', icon: 'fa-calculator', href: '/sunk' }
+			{ label: 'Sunk Cost Calculator', icon: 'fa-calculator', href: '/sunk', active: isActive('sunk') }
 		]
 	});
 
