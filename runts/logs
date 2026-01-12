@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker logs pso-web -n "${1:-100}" -f
