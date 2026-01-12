@@ -475,7 +475,7 @@ async function checkTradesEnabled() {
 		var phase = config.getPhase().replace(/-/g, ' ');
 		return { 
 			enabled: false, 
-			error: 'Trades are not allowed during the ' + phase + ' phase'
+			error: 'Trades are not allowed during the ' + phase + ' phase.'
 		};
 	}
 	
@@ -700,6 +700,11 @@ async function viewProposal(request, response) {
 			proposal.createdByPersonId._id.equals(user._id);
 		var isParty = !!userParty;
 		
+		// Check if trades are currently enabled
+		var tradesCheck = await checkTradesEnabled();
+		var tradesEnabled = tradesCheck.enabled;
+		var tradesDisabledReason = tradesCheck.error || null;
+		
 		// Compute acceptance window info
 		var acceptanceWindowRemaining = proposal.getAcceptanceWindowRemaining();
 		var acceptanceWindowActive = acceptanceWindowRemaining !== null && acceptanceWindowRemaining > 0;
@@ -713,6 +718,8 @@ async function viewProposal(request, response) {
 			userHasAccepted: userParty ? userParty.accepted : false,
 			acceptanceWindowActive: acceptanceWindowActive,
 			acceptanceWindowRemaining: acceptanceWindowRemaining,
+			tradesEnabled: tradesEnabled,
+			tradesDisabledReason: tradesDisabledReason,
 			pageTitle: 'Trade Proposal - PSO',
 			activePage: 'propose'
 		});
