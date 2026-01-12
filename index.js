@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var formatPick = require('./helpers/formatPick');
+var viewHelpers = require('./helpers/view');
 var { attachSession } = require('./auth/middleware');
 var app = express();
 
@@ -28,6 +29,16 @@ app.use(function(req, res, next) {
 
 // Make helpers available to all templates
 app.locals.formatPickDisplay = formatPick.formatPickDisplay;
+app.locals.formatMoney = viewHelpers.formatMoney;
+app.locals.formatRecord = viewHelpers.formatRecord;
+app.locals.formatPoints = viewHelpers.formatPoints;
+app.locals.formatScore = viewHelpers.formatScore;
+app.locals.ordinal = viewHelpers.ordinal;
+app.locals.formatContractYears = viewHelpers.formatContractYears;
+app.locals.formatDateISO = viewHelpers.formatDateISO;
+app.locals.sortedPositions = viewHelpers.sortedPositions;
+app.locals.getPositionKey = viewHelpers.getPositionKey;
+app.locals.POSITION_ORDER = viewHelpers.POSITION_ORDER;
 require('./routes')(app);
 
 var mongoose = require('mongoose');

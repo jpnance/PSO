@@ -113,14 +113,10 @@ block content
 											else
 												span.text-muted Unknown
 										td
-											if c.startYear && c.endYear
-												| #{c.startYear % 100}/#{c.endYear % 100}
-											else if c.endYear
-												| FA/#{c.endYear % 100}
-											else if c.salary === null
+											if c.salary === null
 												span.text-muted RFA Rights
 											else
-												| —
+												| #{formatContractYears(c.startYear, c.endYear)}
 										td
 											if c.salary !== null
 												| $#{c.salary}

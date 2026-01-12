@@ -4,13 +4,6 @@ block styles
 	link(rel='stylesheet' href='/league.css')
 
 block content
-	-
-		function formatDate(d) {
-			if (!d) return '';
-			var date = new Date(d);
-			return date.toISOString().split('T')[0];
-		}
-	
 	div.container.py-4
 		h1.mb-4 Advance to Season #{newSeason}
 		
@@ -70,7 +63,7 @@ block content
 						div.col-md-6
 							div.form-group
 								label(for='tradeWindow') Trade Window
-								input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDate(defaults.tradeWindow))
+								input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDateISO(defaults.tradeWindow))
 								small.form-text.text-muted Saturday before Super Bowl
 					
 					h5.mt-4 Pre-Season
@@ -78,37 +71,37 @@ block content
 						div.col-md-4
 							div.form-group
 								label(for='cutDay') Cut Day
-								input#cutDay.form-control(type='date' name='cutDay' value=formatDate(defaults.cutDay))
+								input#cutDay.form-control(type='date' name='cutDay' value=formatDateISO(defaults.cutDay))
 						div.col-md-4
 							div.form-group
 								label(for='draftDay') Draft Day
-								input#draftDay.form-control(type='date' name='draftDay' value=formatDate(defaults.draftDay))
+								input#draftDay.form-control(type='date' name='draftDay' value=formatDateISO(defaults.draftDay))
 						div.col-md-4
 							div.form-group
 								label(for='contractsDue') Contracts Due
-								input#contractsDue.form-control(type='date' name='contractsDue' value=formatDate(defaults.contractsDue))
+								input#contractsDue.form-control(type='date' name='contractsDue' value=formatDateISO(defaults.contractsDue))
 					
 					h5.mt-4 Regular Season
 					div.row
 						div.col-md-4
 							div.form-group
 								label(for='faab') FAAB
-								input#faab.form-control(type='date' name='faab' value=formatDate(defaults.faab))
+								input#faab.form-control(type='date' name='faab' value=formatDateISO(defaults.faab))
 						div.col-md-4
 							div.form-group
 								label(for='tradeDeadline') Trade Deadline
-								input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDate(defaults.tradeDeadline))
+								input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDateISO(defaults.tradeDeadline))
 						div.col-md-4
 							div.form-group
 								label(for='playoffs') Playoffs
-								input#playoffs.form-control(type='date' name='playoffs' value=formatDate(defaults.playoffs))
+								input#playoffs.form-control(type='date' name='playoffs' value=formatDateISO(defaults.playoffs))
 					
 					h5.mt-4 End of Season
 					div.row
 						div.col-md-4
 							div.form-group
 								label(for='deadPeriod') Dead Period
-								input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDate(defaults.deadPeriod))
+								input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDateISO(defaults.deadPeriod))
 			
 			//- Submit
 			div.d-flex.justify-content-between

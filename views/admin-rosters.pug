@@ -86,7 +86,7 @@ block content
 											div.player-name-row
 												span.player-name= player.name
 												if player.positions && player.positions.length
-													span.position-badge(class='pos-' + player.positions[0])= player.positions.join('/')
+													span.position-badge(class='pos-' + sortedPositions(player.positions)[0])= sortedPositions(player.positions).join('/')
 											div.player-meta
 												if player.salary !== null
 													| $#{player.salary}

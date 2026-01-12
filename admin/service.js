@@ -7,6 +7,7 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var transactionService = require('../transaction/service');
+var { formatContractYears } = require('../helpers/view');
 
 var currentSeason = parseInt(process.env.SEASON, 10);
 
@@ -399,9 +400,7 @@ async function rostersPage(request, response) {
 			.map(function(c) {
 				var contract = null;
 				if (c.salary !== null && c.endYear) {
-					var startStr = c.startYear ? String(c.startYear % 100).padStart(2, '0') : 'FA';
-					var endStr = String(c.endYear % 100).padStart(2, '0');
-					contract = startStr + '/' + endStr;
+					contract = formatContractYears(c.startYear, c.endYear);
 				}
 				
 				return {

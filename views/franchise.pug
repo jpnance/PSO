@@ -5,10 +5,6 @@ block styles
 	link(rel='stylesheet' href='/css/positions.css')
 
 block content
-	-
-		function formatMoney(n) {
-			return n.toLocaleString();
-		}
 	div.container.py-4
 		h1.mb-1= franchise.displayName
 		p.text-muted
@@ -21,33 +17,11 @@ block content
 						strong Roster
 						span.badge.badge-secondary.ml-2= franchise.rosterCount + '/' + rosterLimit
 					-
-						var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-						
-						function formatContract(start, end) {
-							if (start && end) {
-								return (start % 100) + '/' + (end % 100);
-							} else if (end) {
-								return 'FA/' + (end % 100);
-							} else if (start) {
-								return (start % 100) + '/?';
-							}
-							return '-';
-						}
 						function salaryForYear(player, year) {
 							if (!player.salary) return null;
 							if (!player.endYear) return null;
 							if (player.endYear >= year) return player.salary;
 							return null;
-						}
-						function sortedPositions(positions) {
-							return positions.slice().sort(function(a, b) {
-								var idxA = positionOrder.indexOf(a);
-								var idxB = positionOrder.indexOf(b);
-								return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-							});
-						}
-						function getPositionKey(player) {
-							return sortedPositions(player.positions).join('/');
 						}
 						
 						// Pre-group roster by position
@@ -65,14 +39,14 @@ block content
 						positionKeys.sort(function(a, b) {
 							var partsA = a.split('/');
 							var partsB = b.split('/');
-							var primaryIdxA = positionOrder.indexOf(partsA[0]);
-							var primaryIdxB = positionOrder.indexOf(partsB[0]);
+							var primaryIdxA = POSITION_ORDER.indexOf(partsA[0]);
+							var primaryIdxB = POSITION_ORDER.indexOf(partsB[0]);
 							if (primaryIdxA === -1) primaryIdxA = 999;
 							if (primaryIdxB === -1) primaryIdxB = 999;
 							if (primaryIdxA !== primaryIdxB) return primaryIdxA - primaryIdxB;
 							// Same primary - single position comes before dual
-							var secondaryIdxA = partsA[1] ? positionOrder.indexOf(partsA[1]) : -1;
-							var secondaryIdxB = partsB[1] ? positionOrder.indexOf(partsB[1]) : -1;
+							var secondaryIdxA = partsA[1] ? POSITION_ORDER.indexOf(partsA[1]) : -1;
+							var secondaryIdxB = partsB[1] ? POSITION_ORDER.indexOf(partsB[1]) : -1;
 							return secondaryIdxA - secondaryIdxB;
 						});
 						
@@ -89,7 +63,7 @@ block content
 								each player in rosterByPosition[posKey]
 									tr
 										td= player.name
-										td.text-center= formatContract(player.startYear, player.endYear)
+										td.text-center= formatContractYears(player.startYear, player.endYear)
 										td.text-right
 											if salaryForYear(player, currentSeason)
 												| $#{formatMoney(player.salary)}
@@ -175,12 +149,7 @@ block content
 					- availablePicks.forEach(p => { if (!picksBySeason[p.season]) picksBySeason[p.season] = []; picksBySeason[p.season].push(p); })
 					- var seasons = Object.keys(picksBySeason).sort()
 					-
-						function ordinal(n) {
-							var s = ['th', 'st', 'nd', 'rd'];
-							var v = n % 100;
-							return n + (s[(v - 20) % 10] || s[v] || s[0]);
-						}
-						function formatPickNumber(round, pickNumber, picksPerRound) {
+						function formatPickSlot(round, pickNumber, picksPerRound) {
 							if (!pickNumber) return null;
 							var slotInRound = ((pickNumber - 1) % picksPerRound) + 1;
 							var slot = slotInRound < 10 ? '0' + slotInRound : '' + slotInRound;
@@ -198,7 +167,7 @@ block content
 									each pick, idx in seasonPicks
 										- var nextPick = seasonPicks[idx + 1]
 										- var isLastInRound = nextPick && nextPick.round !== pick.round
-										- var pickNumStr = formatPickNumber(pick.round, pick.pickNumber, picksPerRound)
+										- var pickNumStr = formatPickSlot(pick.round, pick.pickNumber, picksPerRound)
 										tr(class=isLastInRound ? 'round-separator' : '')
 											td
 												| #{ordinal(pick.round)} Round

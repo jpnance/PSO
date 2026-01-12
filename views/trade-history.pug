@@ -247,7 +247,7 @@ block content
 												div.asset-name
 													| #{asset.playerName}
 													if asset.positions && asset.positions.length > 0
-														span.player-position(class="pos-" + asset.positions[0])= asset.positions.join('/')
+														span.player-position(class="pos-" + sortedPositions(asset.positions)[0])= sortedPositions(asset.positions).join('/')
 												div.asset-meta
 													| #{asset.contractInfo}
 													if asset.ambiguous
@@ -428,7 +428,7 @@ block content
 														div.asset-name
 															| #{asset.playerName}
 															if asset.positions && asset.positions.length > 0
-																span.player-position(class="pos-" + asset.positions[0])= asset.positions.join('/')
+																span.player-position(class="pos-" + sortedPositions(asset.positions)[0])= sortedPositions(asset.positions).join('/')
 														div.asset-meta
 															| #{asset.contractInfo}
 															if asset.ambiguous

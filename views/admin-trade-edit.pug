@@ -86,9 +86,7 @@ block content
 			sortedPlayers.forEach(function(p) {
 				var display = p.playerName;
 				if (p.salary) {
-					var startYr = p.startYear ? String(p.startYear % 100).padStart(2, '0') : 'FA';
-					var endYr = p.endYear ? String(p.endYear % 100).padStart(2, '0') : '?';
-					display += ' ($' + p.salary + ', ' + startYr + '/' + endYr + ')';
+					display += ' ($' + p.salary + ', ' + formatContractYears(p.startYear, p.endYear) + ')';
 				}
 				if (p.rfaRights) {
 					display += ' (RFA)';

@@ -190,15 +190,7 @@ block content
 									li
 										span.asset-icon
 											i.fa.fa-ticket
-										if pick.round === 1
-											| 1st
-										else if pick.round === 2
-											| 2nd
-										else if pick.round === 3
-											| 3rd
-										else
-											| #{pick.round}th
-										|  round pick in #{pick.season} (#{pick.origin})
+										| #{ordinal(pick.round)} round pick in #{pick.season} (#{pick.origin})
 								each cash in party.cash
 									li
 										span.asset-icon $

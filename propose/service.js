@@ -10,6 +10,7 @@ var Transaction = require('../models/Transaction');
 var TradeProposal = require('../models/TradeProposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
+var { formatContractYears } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -122,9 +123,7 @@ async function getTradeData(currentSeason) {
 			contract = null;
 		} else {
 			terms = 'signed';
-			var startStr = c.startYear ? String(c.startYear % 100).padStart(2, '0') : 'FA';
-			var endStr = String(c.endYear % 100).padStart(2, '0');
-			contract = startStr + '/' + endStr;
+			contract = formatContractYears(c.startYear, c.endYear);
 		}
 		
 		// Calculate this player's recoverable (salary - buyout)
@@ -646,9 +645,7 @@ async function viewProposal(request, response) {
 				players.push({
 					name: player ? player.name : 'Unknown',
 					salary: contract ? contract.salary : null,
-					contract: contract && contract.endYear ? 
-						(contract.startYear ? String(contract.startYear % 100).padStart(2, '0') : 'FA') + '/' + 
-						String(contract.endYear % 100).padStart(2, '0') : null,
+					contract: contract && contract.endYear ? formatContractYears(contract.startYear, contract.endYear) : null,
 					isRfaRights: contract ? contract.salary === null : false
 				});
 			}

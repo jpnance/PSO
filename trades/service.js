@@ -4,6 +4,7 @@ var Pick = require('../models/Pick');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
+var { formatContractYears, ordinal } = require('../helpers/view');
 
 
 async function getRegime(franchiseId, season) {
@@ -29,19 +30,6 @@ function isPlural(regime) {
 	return false;
 }
 
-function formatContract(startYear, endYear) {
-	if (!endYear) return 'unsigned';
-	var start = startYear ? startYear.toString().slice(-2) : 'FA';
-	var end = endYear.toString().slice(-2);
-	return start + '/' + end;
-}
-
-function formatRound(round) {
-	if (round === 1) return '1st';
-	if (round === 2) return '2nd';
-	if (round === 3) return '3rd';
-	return round + 'th';
-}
 
 function formatPickNumber(pickNumber, teamsPerRound) {
 	// Convert overall pick number to round.pick format (e.g., 2.04)
@@ -156,7 +144,7 @@ async function buildTradeDisplayData(trades, options) {
 				var p = playerList[k];
 				var player = playerMap[p.playerId.toString()];
 				var playerName = player ? player.name : 'Unknown';
-				var contract = formatContract(p.contractStart || p.startYear, p.contractEnd || p.endYear);
+				var contract = formatContractYears(p.contractStart || p.startYear, p.contractEnd || p.endYear);
 				
 				var display = playerName + ' ($' + (p.salary || 0) + ', ' + contract + ')';
 				var contractInfo = '$' + (p.salary || 0) + ' · ' + contract;
