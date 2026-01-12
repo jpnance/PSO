@@ -34,3 +34,21 @@ th.pos-WR { background-color: #FAFAD2; color: #9a7b0a; }
 th.pos-TE { background-color: #DCFFDC; color: #1e8449; }
 th.pos-DL, th.pos-LB, th.pos-DB, th.pos-IDP { background-color: #FFF5EE; color: #a04000; }
 th.pos-K { background-color: #F5F5F5; color: #5d6d7e; }
+
+/* Position badge - inline badge for player positions */
+.position-badge {
+	font-size: 0.7rem;
+	padding: 0.15rem 0.35rem;
+	border-radius: 0.25rem;
+	border: 1px solid;
+	margin-left: 0.35rem;
+	vertical-align: middle;
+}
+.position-badge.pos-QB { background-color: #D7EBFF; color: #1a5276; border-color: #1a5276; }
+.position-badge.pos-RB { background-color: #F0FFFF; color: #117a65; border-color: #117a65; }
+.position-badge.pos-WR { background-color: #FAFAD2; color: #9a7b0a; border-color: #9a7b0a; }
+.position-badge.pos-TE { background-color: #DCFFDC; color: #1e8449; border-color: #1e8449; }
+.position-badge.pos-DL,
+.position-badge.pos-LB,
+.position-badge.pos-DB { background-color: #FFF5EE; color: #a04000; border-color: #a04000; }
+.position-badge.pos-K { background-color: #F5F5F5; color: #5d6d7e; border-color: #5d6d7e; }

@@ -1,4 +1,33 @@
+//- Shared Pug mixins for PSO views
+
+//- Display a win-loss-tie record
 mixin record(record)
 	| #{record.wins}-#{record.losses}
 	if record.ties
 		| -#{record.ties}
+
+//- Position badge with color styling
+//- Usage: +positionBadge(player.positions) or +positionBadge(['QB'])
+mixin positionBadge(positions)
+	if positions && positions.length
+		- var sorted = sortedPositions(positions)
+		span.position-badge(class='pos-' + sorted[0])= sorted.join('/')
+
+//- Status badge for trade proposals and other statuses
+//- Usage: +statusBadge('pending') or +statusBadge(proposal.status)
+mixin statusBadge(status, displayText)
+	span.status-badge(class='status-' + status)= displayText || status
+
+//- Season navigation with quick buttons and optional older/dropdown
+//- Usage: +seasonNav(season, quickSeasons, olderSeasons, 'Past Drafts', '?season=')
+mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPrefix)
+	- var prefix = queryPrefix || '?season='
+	div.season-nav
+		if olderSeasons && olderSeasons.length > 0
+			- var isOlderSeason = olderSeasons.indexOf(currentSeason) !== -1
+			select.older-select(class=(isOlderSeason ? 'active' : '') onchange='if(this.value) window.location.href="' + prefix + '"+this.value')
+				option(value='' selected=!isOlderSeason)= olderLabel || 'Older'
+				each s in olderSeasons
+					option(value=s selected=(s === currentSeason))= s
+		each s in quickSeasons
+			a.btn.btn-sm(href=prefix + s class=(s === currentSeason ? 'btn-primary' : 'btn-outline-secondary'))= s

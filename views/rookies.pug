@@ -1,38 +1,15 @@
 extends layout.pug
+include mixins
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
 	style.
 		.header-row {
 			margin-bottom: 1rem;
 		}
 		.header-row h1 {
 			margin: 0 0 0.5rem 0;
-		}
-		.season-nav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.25rem;
-			align-items: center;
-		}
-		.older-select {
-			padding: 0.25rem 0.5rem;
-			font-size: 0.875rem;
-			border: 1px solid #6c757d;
-			border-radius: 0.2rem;
-			background: white;
-			color: #6c757d;
-			cursor: pointer;
-			height: 31px;
-		}
-		.older-select:focus {
-			outline: none;
-			border-color: #007bff;
-		}
-		.older-select.active {
-			background: #007bff;
-			border-color: #007bff;
-			color: white;
 		}
 		.salary-table {
 			font-size: 0.9rem;
@@ -87,14 +64,7 @@ block content
 	div.container-fluid.py-3
 		div.header-row
 			h1 #{season} Rookie Salaries
-			div.season-nav
-				- var isOlderSeason = olderSeasons.indexOf(season) !== -1
-				select.older-select(class=(isOlderSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
-					option(value='' selected=!isOlderSeason) Older
-					each s in olderSeasons
-						option(value=s selected=(s === season))= s
-				each s in quickSeasons
-					a.btn.btn-sm(href='?season=' + s class=(s === season ? 'btn-primary' : 'btn-outline-secondary'))= s
+			+seasonNav(season, quickSeasons, olderSeasons, 'Older')
 
 		- var positionSalaries = salaries[season]
 		table.table.table-bordered.salary-table

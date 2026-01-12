@@ -1,0 +1,47 @@
+/* Shared UI components - status badges, season nav, etc. */
+
+/* Status badges - used for trade proposals and other statuses */
+.status-badge {
+	display: inline-block;
+	padding: 0.25rem 0.75rem;
+	border-radius: 0.25rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+}
+.status-draft { background: #f8f9fa; color: #6c757d; }
+.status-pending { background: #fff3cd; color: #856404; }
+.status-accepted { background: #d4edda; color: #155724; }
+.status-rejected { background: #f8d7da; color: #721c24; }
+.status-withdrawn { background: #e2e3e5; color: #383d41; }
+.status-expired { background: #e2e3e5; color: #383d41; }
+.status-executed { background: #cce5ff; color: #004085; }
+.status-countered { background: #e2e3e5; color: #383d41; }
+
+/* Season navigation - quick season buttons with optional dropdown for older seasons */
+.season-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+	align-items: center;
+}
+
+.older-select {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+	border: 1px solid #6c757d;
+	border-radius: 0.2rem;
+	background: white;
+	color: #6c757d;
+	cursor: pointer;
+	height: 31px;
+}
+.older-select:focus {
+	outline: none;
+	border-color: #007bff;
+}
+.older-select.active {
+	background: #007bff;
+	border-color: #007bff;
+	color: white;
+}

@@ -1,6 +1,8 @@
 extends layout
+include mixins
 
 block styles
+	link(rel='stylesheet' href='/css/positions.css')
 	style.
 		body {
 			background-color: #f8f9fa;
@@ -15,20 +17,6 @@ block styles
 			font-size: 0.8rem;
 			color: #666;
 		}
-		.player-position {
-			font-size: 0.7rem;
-			padding: 0.15rem 0.35rem;
-			border-radius: 0.25rem;
-			border: 1px solid;
-			margin-left: 0.35rem;
-			vertical-align: middle;
-		}
-		.player-position.pos-QB { background-color: #D7EBFF; color: #1a5276; border-color: #1a5276; }
-		.player-position.pos-RB { background-color: #F0FFFF; color: #117a65; border-color: #117a65; }
-		.player-position.pos-WR { background-color: #FAFAD2; color: #9a7b0a; border-color: #9a7b0a; }
-		.player-position.pos-TE { background-color: #DCFFDC; color: #1e8449; border-color: #1e8449; }
-		.player-position.pos-DL, .player-position.pos-LB, .player-position.pos-DB { background-color: #FFF5EE; color: #a04000; border-color: #a04000; }
-		.player-position.pos-K { background-color: #F5F5F5; color: #5d6d7e; border-color: #5d6d7e; }
 		.trade-card {
 			border: 1px solid #ddd;
 			border-radius: 8px;
@@ -247,7 +235,7 @@ block content
 												div.asset-name
 													| #{asset.playerName}
 													if asset.positions && asset.positions.length > 0
-														span.player-position(class="pos-" + sortedPositions(asset.positions)[0])= sortedPositions(asset.positions).join('/')
+														+positionBadge(asset.positions)
 												div.asset-meta
 													| #{asset.contractInfo}
 													if asset.ambiguous
@@ -428,7 +416,7 @@ block content
 														div.asset-name
 															| #{asset.playerName}
 															if asset.positions && asset.positions.length > 0
-																span.player-position(class="pos-" + sortedPositions(asset.positions)[0])= sortedPositions(asset.positions).join('/')
+																+positionBadge(asset.positions)
 														div.asset-meta
 															| #{asset.contractInfo}
 															if asset.ambiguous

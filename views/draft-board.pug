@@ -1,38 +1,15 @@
 extends layout.pug
+include mixins
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
 	style.
 		.header-row {
 			margin-bottom: 1rem;
 		}
 		.header-row h1 {
 			margin: 0 0 0.5rem 0;
-		}
-		.season-nav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.25rem;
-			align-items: center;
-		}
-		.past-drafts-select {
-			padding: 0.25rem 0.5rem;
-			font-size: 0.875rem;
-			border: 1px solid #6c757d;
-			border-radius: 0.2rem;
-			background: white;
-			color: #6c757d;
-			cursor: pointer;
-			height: 31px;
-		}
-		.past-drafts-select:focus {
-			outline: none;
-			border-color: #007bff;
-		}
-		.past-drafts-select.active {
-			background: #007bff;
-			border-color: #007bff;
-			color: white;
 		}
 		.rounds-container {
 			display: flex;
@@ -146,15 +123,7 @@ block content
 	div.container-fluid.py-3
 		div.header-row
 			h1 #{season} Draft Board
-			div.season-nav
-				if pastSeasons.length > 0
-					- var isPastSeason = pastSeasons.indexOf(season) !== -1
-					select.past-drafts-select(class=(isPastSeason ? 'active' : '') onchange='if(this.value) window.location.href="?season="+this.value')
-						option(value='' selected=!isPastSeason) Past Drafts
-						each s in pastSeasons
-							option(value=s selected=(s === season))= s
-				each s in quickSeasons
-					a.btn.btn-sm(href='?season=' + s class=(s === season ? 'btn-primary' : 'btn-outline-secondary'))= s
+			+seasonNav(season, quickSeasons, pastSeasons, 'Past Drafts')
 
 		if Object.keys(rounds).length === 0
 			div.alert.alert-info No picks found for #{season}

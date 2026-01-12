@@ -1,25 +1,10 @@
 extends layout
+include mixins
 
 block styles
 	link(rel='stylesheet' href='/trade.css')
+	link(rel='stylesheet' href='/css/components.css')
 	style.
-		.status-badge {
-			display: inline-block;
-			padding: 0.25rem 0.75rem;
-			border-radius: 0.25rem;
-			font-weight: 600;
-			text-transform: uppercase;
-			font-size: 0.8rem;
-		}
-		.status-draft { background: #f8f9fa; color: #6c757d; }
-		.status-pending { background: #fff3cd; color: #856404; }
-		.status-accepted { background: #d4edda; color: #155724; }
-		.status-rejected { background: #f8d7da; color: #721c24; }
-		.status-withdrawn { background: #e2e3e5; color: #383d41; }
-		.status-expired { background: #e2e3e5; color: #383d41; }
-		.status-executed { background: #cce5ff; color: #004085; }
-		.status-countered { background: #e2e3e5; color: #383d41; }
-		
 		.party-status {
 			display: flex;
 			align-items: center;
@@ -74,7 +59,7 @@ block content
 		//- Status header
 		div.d-flex.justify-content-between.align-items-center.mb-4
 			h1.mb-0 Trade Proposal
-			span.status-badge(class='status-' + proposal.status)= proposal.status === 'draft' ? 'hypothetical' : proposal.status
+			+statusBadge(proposal.status, proposal.status === 'draft' ? 'hypothetical' : proposal.status)
 
 		//- Hypothetical trade notice
 		if proposal.status === 'draft'
