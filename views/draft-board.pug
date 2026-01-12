@@ -159,7 +159,7 @@ block content
 												if pick.positionDisplay
 													span.pick-position  #{pick.positionDisplay}
 												if pick.salary
-													span.pick-salary  $#{pick.salary}
+													span.pick-salary  #{formatMoney(pick.salary)}
 											else if pick.status === 'passed'
 												span.pick-player-name Passed
 											else if pick.status === 'used'

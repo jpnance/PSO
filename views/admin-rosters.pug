@@ -52,7 +52,7 @@ block content
 						each bo, i in cutResult.buyOuts
 							if i > 0
 								| , 
-							| #{bo.season}: $#{bo.amount}
+							| #{bo.season}: #{formatMoney(bo.amount)}
 			else
 				div.alert.alert-danger.alert-dismissible
 					button.close(type='button' data-dismiss='alert') &times;
@@ -78,7 +78,7 @@ block content
 													+positionBadge(player.positions)
 											div.player-meta
 												if player.salary !== null
-													| $#{player.salary}
+													| #{formatMoney(player.salary)}
 													if player.contract
 														| , #{player.contract}
 												else

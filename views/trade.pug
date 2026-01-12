@@ -32,11 +32,11 @@ block content
 							| #{player.name}
 							|  
 							if player.terms == 'unsigned'
-								| ($#{player.salary}, unsigned)
+								| (#{formatMoney(player.salary)}, unsigned)
 							else if player.terms == 'rfa-rights'
 								| (RFA rights)
 							else
-								| ($#{player.salary}, #{player.contract})
+								| (#{formatMoney(player.salary)}, #{player.contract})
 
 		select.master-pick-list
 			each franchise in franchises

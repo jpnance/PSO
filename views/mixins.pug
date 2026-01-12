@@ -138,8 +138,4 @@ mixin budgetImpactTable(budgetImpact)
 				tr
 					td: strong= impact.franchiseName
 					each s in impact.seasons
-						- var delta = s.delta
-						- var cls = delta > 0 ? 'text-success' : (delta < 0 ? 'text-danger' : 'text-muted')
-						- var sign = delta > 0 ? '+' : (delta < 0 ? '-' : '')
-						- var absVal = Math.abs(delta)
-						td.text-right(class=cls)= sign + '$' + absVal
+						td.text-right(class=deltaClass(s.delta))= formatMoney(s.delta, { sign: 'auto' })

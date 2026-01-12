@@ -562,10 +562,7 @@ var tradeMachine = {
 			html += '<tr><td><strong>' + name + '</strong></td>';
 			seasons.forEach((s) => {
 				var delta = impact[fId][s];
-				var cls = delta > 0 ? 'text-success' : (delta < 0 ? 'text-danger' : 'text-muted');
-				var sign = delta > 0 ? '+' : (delta < 0 ? '-' : '');
-				var absValue = Math.abs(delta);
-				html += '<td class="text-right ' + cls + '">' + sign + '$' + absValue + '</td>';
+				html += '<td class="text-right ' + tradeMachine.deltaClass(delta) + '">' + tradeMachine.formatMoney(delta, { sign: 'auto' }) + '</td>';
 			});
 			html += '</tr>';
 		});
@@ -688,6 +685,39 @@ var tradeMachine = {
 			case 3: return '3rd';
 			default: return round + 'th';
 		}
+	},
+
+	// Format a dollar amount with optional sign
+	formatMoney: (n, options) => {
+		if (n == null) return '';
+		var absValue = Math.abs(n).toLocaleString();
+		
+		if (!options || !options.sign) {
+			return '$' + absValue;
+		}
+		
+		if (options.sign === '+') {
+			return '+$' + absValue;
+		}
+		
+		if (options.sign === '-') {
+			return '-$' + absValue;
+		}
+		
+		if (options.sign === 'auto') {
+			if (n > 0) return '+$' + absValue;
+			if (n < 0) return '-$' + absValue;
+			return '$0';
+		}
+		
+		return '$' + absValue;
+	},
+
+	// Get CSS class for a budget delta
+	deltaClass: (delta) => {
+		if (delta > 0) return 'text-success';
+		if (delta < 0) return 'text-danger';
+		return 'text-muted';
 	},
 
 	sortedAssetsForFranchise: (franchiseId) => {

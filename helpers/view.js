@@ -1,13 +1,35 @@
 // Shared view helpers - available in all Pug templates via app.locals
 
 /**
- * Format a number as currency without $ sign
+ * Format a number as currency with $ sign
  * @param {number} n
- * @returns {string} e.g. "1,234,567"
+ * @param {Object} options
+ * @param {string} options.sign - '+' for explicit plus, '-' for explicit minus, 'auto' for value-based
+ * @returns {string} e.g. "$1,234", "+$500", "-$163"
  */
-function formatMoney(n) {
+function formatMoney(n, options) {
 	if (n == null) return '';
-	return n.toLocaleString();
+	var absValue = Math.abs(n).toLocaleString();
+	
+	if (!options || !options.sign) {
+		return '$' + absValue;
+	}
+	
+	if (options.sign === '+') {
+		return '+$' + absValue;
+	}
+	
+	if (options.sign === '-') {
+		return '-$' + absValue;
+	}
+	
+	if (options.sign === 'auto') {
+		if (n > 0) return '+$' + absValue;
+		if (n < 0) return '-$' + absValue;
+		return '$0';
+	}
+	
+	return '$' + absValue;
 }
 
 /**
@@ -83,6 +105,17 @@ function formatDateISO(d) {
 }
 
 /**
+ * Get CSS class for a budget delta (positive = good, negative = bad)
+ * @param {number} delta
+ * @returns {string} 'text-success', 'text-danger', or 'text-muted'
+ */
+function deltaClass(delta) {
+	if (delta > 0) return 'text-success';
+	if (delta < 0) return 'text-danger';
+	return 'text-muted';
+}
+
+/**
  * Standard position order for sorting
  */
 var POSITION_ORDER = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -118,6 +151,7 @@ module.exports = {
 	ordinal: ordinal,
 	formatContractYears: formatContractYears,
 	formatDateISO: formatDateISO,
+	deltaClass: deltaClass,
 	sortedPositions: sortedPositions,
 	getPositionKey: getPositionKey,
 	POSITION_ORDER: POSITION_ORDER

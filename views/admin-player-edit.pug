@@ -119,7 +119,7 @@ block content
 												| #{formatContractYears(c.startYear, c.endYear)}
 										td
 											if c.salary !== null
-												| $#{c.salary}
+												| #{formatMoney(c.salary)}
 											else
 												span.text-muted —
 			

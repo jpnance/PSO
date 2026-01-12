@@ -78,7 +78,7 @@ block content
 					tr(class=(round % 2 === 0 ? 'even-row' : 'odd-row'))
 						td.round-col #{round}
 						each position in positionOrder
-							td(class='pos-' + position) $#{computeSalary(parseInt(season), positionSalaries[position], round)}
+							td(class='pos-' + position) #{formatMoney(computeSalary(parseInt(season), positionSalaries[position], round))}
 
 block scripts
 	script.
