@@ -64,15 +64,15 @@ block content
 									tr
 										td= player.name
 										td.text-center= formatContractYears(player.startYear, player.endYear)
-									td.text-right
-										if salaryForYear(player, currentSeason)
-											| #{formatMoney(player.salary)}
-									td.text-right.d-none.d-md-table-cell
-										if salaryForYear(player, currentSeason + 1)
-											| #{formatMoney(player.salary)}
-									td.text-right.d-none.d-md-table-cell
-										if salaryForYear(player, currentSeason + 2)
-											| #{formatMoney(player.salary)}
+										td.text-right
+											if salaryForYear(player, currentSeason)
+												| #{formatMoney(player.salary)}
+										td.text-right.d-none.d-md-table-cell
+											if salaryForYear(player, currentSeason + 1)
+												| #{formatMoney(player.salary)}
+										td.text-right.d-none.d-md-table-cell
+											if salaryForYear(player, currentSeason + 2)
+												| #{formatMoney(player.salary)}
 			
 			div.col-lg-4
 				div.card.mb-4
@@ -80,13 +80,13 @@ block content
 						strong Budget
 					- var b = franchise.budgets
 					table.table.table-sm.mb-0.budget-table
-							thead.table-secondary
-								tr
-									th
-									th.text-right= currentSeason
-									th.text-right= currentSeason + 1
-									th.text-right= currentSeason + 2
-							tbody
+						thead.table-secondary
+							tr
+								th
+								th.text-right= currentSeason
+								th.text-right= currentSeason + 1
+								th.text-right= currentSeason + 2
+						tbody
 							tr
 								td Base
 								td.text-right #{formatMoney(b[0].baseAmount)}
@@ -112,21 +112,21 @@ block content
 								td.text-right #{formatMoney(b[0].cashOut, { sign: '-' })}
 								td.text-right #{formatMoney(b[1].cashOut, { sign: '-' })}
 								td.text-right #{formatMoney(b[2].cashOut, { sign: '-' })}
-						tr.available-row
-							td: strong Available
-							td.text-right: strong #{formatMoney(b[0].available)}
-							td.text-right: strong #{formatMoney(b[1].available)}
-							td.text-right: strong #{formatMoney(b[2].available)}
-						tr.recoverable-row
-							td Recoverable
-							td.text-right #{formatMoney(b[0].recoverable, { sign: '+' })}
-							td.text-right #{formatMoney(b[1].recoverable, { sign: '+' })}
-							td.text-right #{formatMoney(b[2].recoverable, { sign: '+' })}
-						tr.effective-cap-row
-							td Effective Cap
-							td.text-right #{formatMoney(b[0].baseAmount - b[0].buyOuts - b[0].cashOut + b[0].cashIn)}
-							td.text-right #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
-							td.text-right #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
+							tr.available-row
+								td: strong Available
+								td.text-right: strong #{formatMoney(b[0].available)}
+								td.text-right: strong #{formatMoney(b[1].available)}
+								td.text-right: strong #{formatMoney(b[2].available)}
+							tr.recoverable-row
+								td Recoverable
+								td.text-right #{formatMoney(b[0].recoverable, { sign: '+' })}
+								td.text-right #{formatMoney(b[1].recoverable, { sign: '+' })}
+								td.text-right #{formatMoney(b[2].recoverable, { sign: '+' })}
+							tr.effective-cap-row
+								td Effective Cap
+								td.text-right #{formatMoney(b[0].baseAmount - b[0].buyOuts - b[0].cashOut + b[0].cashIn)}
+								td.text-right #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
+								td.text-right #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
 				
 				- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
 				if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
