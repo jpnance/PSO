@@ -81,6 +81,26 @@ block content
 							a.btn.btn-primary(href='/admin/proposals') Approve Trades
 							div.small.text-muted.mt-1 Review and approve owner-submitted trade proposals
 		
+			div.col-lg-6
+				div.card.mb-4
+					div.card-header
+						strong Site Banner
+					div.card-body
+						form(method='POST' action='/admin/config')
+							div.form-group
+								label(for='banner') Banner Message
+								input#banner.form-control(type='text' name='banner' value=config.banner placeholder='Leave empty to hide banner')
+							div.form-group
+								label(for='bannerStyle') Style
+								select#bannerStyle.form-control(name='bannerStyle')
+									option(value='info' selected=(config.bannerStyle === 'info' || !config.bannerStyle)) Info (Blue)
+									option(value='warning' selected=(config.bannerStyle === 'warning')) Warning (Yellow)
+									option(value='danger' selected=(config.bannerStyle === 'danger')) Danger (Red)
+							button.btn.btn-primary(type='submit') Update Banner
+							if config.banner
+								|  
+								button.btn.btn-outline-secondary(type='submit' name='clearBanner' value='1') Clear
+		
 		div.card.mb-4
 			div.card-header
 				strong League Schedule

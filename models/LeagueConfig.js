@@ -95,7 +95,11 @@ var leagueConfigSchema = new Schema({
 	playoffs: { type: Date },                   // After NFL Week 15
 	
 	// End of season
-	deadPeriod: { type: Date }                  // Tuesday after NFL Week 17
+	deadPeriod: { type: Date },                 // Tuesday after NFL Week 17
+	
+	// Sitewide banner
+	banner: { type: String, default: '' },
+	bannerStyle: { type: String, enum: ['info', 'warning', 'danger'], default: 'info' }
 });
 
 // Compute current phase based on dates

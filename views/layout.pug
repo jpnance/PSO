@@ -67,9 +67,20 @@ html
 										| Log Out (All Devices)
 						else
 							li.nav-item
-								a.nav-link(href='/login')
-									i.fa.fa-sign-in.mr-1
-									| Log In
+							a.nav-link(href='/login')
+								i.fa.fa-sign-in.mr-1
+								| Log In
+
+		if banner
+			div.container-fluid
+				div.alert.mb-0.rounded-0.text-center(class='alert-' + bannerStyle)
+					if bannerStyle === 'danger'
+						i.fa.fa-exclamation-circle.mr-2
+					else if bannerStyle === 'warning'
+						i.fa.fa-exclamation-triangle.mr-2
+					else
+						i.fa.fa-info-circle.mr-2
+					= banner
 
 		block content
 

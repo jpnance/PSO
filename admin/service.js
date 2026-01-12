@@ -57,6 +57,16 @@ async function updateConfig(request, response) {
 	config.draftDayTentative = body.draftDayTentative === 'true' || body.draftDayTentative === true;
 	config.contractsDueTentative = body.contractsDueTentative === 'true' || body.contractsDueTentative === true;
 	
+	// Update banner (if provided in request)
+	if (body.clearBanner) {
+		config.banner = '';
+	} else if (body.banner !== undefined) {
+		config.banner = body.banner || '';
+	}
+	if (body.bannerStyle !== undefined) {
+		config.bannerStyle = body.bannerStyle;
+	}
+	
 	await config.save();
 	
 	response.redirect('/admin');

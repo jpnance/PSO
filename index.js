@@ -27,6 +27,21 @@ app.use(function(req, res, next) {
 	next();
 });
 
+// Make banner available to all templates
+var LeagueConfig = require('./models/LeagueConfig');
+app.use(async function(req, res, next) {
+	try {
+		var config = await LeagueConfig.findById('pso').lean();
+		if (config && config.banner) {
+			res.locals.banner = config.banner;
+			res.locals.bannerStyle = config.bannerStyle || 'info';
+		}
+	} catch (err) {
+		// Silently ignore - banner is non-critical
+	}
+	next();
+});
+
 // Make helpers available to all templates
 app.locals.formatPickDisplay = formatPick.formatPickDisplay;
 app.locals.formatMoney = viewHelpers.formatMoney;
