@@ -1,0 +1,270 @@
+extends layout
+
+include mixins
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+	style.
+		:root {
+			--storybook-bg: #1a1a2e;
+			--storybook-card: #16213e;
+			--storybook-accent: #e94560;
+			--storybook-text: #eaeaea;
+			--storybook-code: #0f3460;
+		}
+		
+		body {
+			background: var(--storybook-bg);
+			color: var(--storybook-text);
+			font-family: 'Segoe UI', system-ui, sans-serif;
+		}
+		
+		.components-container {
+			max-width: 900px;
+			margin: 0 auto;
+			padding: 2rem;
+		}
+		
+		h1 {
+			font-weight: 300;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			margin-bottom: 0.5rem;
+			color: var(--storybook-accent);
+		}
+		
+		.subtitle {
+			color: #888;
+			margin-bottom: 3rem;
+			font-size: 0.9rem;
+		}
+		
+		.component-section {
+			background: var(--storybook-card);
+			border-radius: 12px;
+			padding: 2rem;
+			margin-bottom: 2rem;
+			border-left: 4px solid var(--storybook-accent);
+		}
+		
+		.component-section h2 {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 0.25rem;
+			color: #fff;
+		}
+		
+		.component-section .usage {
+			font-family: 'Fira Code', 'Consolas', monospace;
+			font-size: 0.75rem;
+			color: #888;
+			margin-bottom: 1.5rem;
+			background: var(--storybook-code);
+			padding: 0.5rem 0.75rem;
+			border-radius: 4px;
+			display: inline-block;
+		}
+		
+		.preview {
+			background: #fff;
+			border-radius: 8px;
+			padding: 1.5rem;
+			color: #333;
+		}
+		
+		.preview-row {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			flex-wrap: wrap;
+			margin-bottom: 1rem;
+		}
+		
+		.preview-row:last-child {
+			margin-bottom: 0;
+		}
+		
+		.variant-label {
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: #999;
+			width: 80px;
+			flex-shrink: 0;
+		}
+		
+		.trade-card-preview {
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			padding: 1rem;
+		}
+		
+		.nav-container {
+			background: #f8f9fa;
+			padding: 1rem;
+			border-radius: 8px;
+		}
+		
+		.color-swatch {
+			display: inline-block;
+			width: 40px;
+			height: 24px;
+			border-radius: 4px;
+			border: 1px solid rgba(0,0,0,0.1);
+		}
+		
+		.color-circle {
+			display: inline-block;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+		}
+
+block content
+	div.components-container
+		h1 PSO Components
+		p.subtitle A visual reference for shared Pug mixins and design tokens
+
+		//- Position Badge
+		div.component-section
+			h2 +positionBadge(positions)
+			code.usage +positionBadge(['QB']) | +positionBadge(['RB', 'WR'])
+			div.preview
+				div.preview-row
+					span.variant-label Single
+					+positionBadge(['QB'])
+					+positionBadge(['RB'])
+					+positionBadge(['WR'])
+					+positionBadge(['TE'])
+					+positionBadge(['DL'])
+					+positionBadge(['LB'])
+					+positionBadge(['DB'])
+					+positionBadge(['K'])
+				div.preview-row
+					span.variant-label Multi
+					+positionBadge(['RB', 'WR'])
+					+positionBadge(['DL', 'LB'])
+
+		//- Status Badge
+		div.component-section
+			h2 +statusBadge(status, displayText?)
+			code.usage +statusBadge('pending') | +statusBadge('draft', 'hypothetical')
+			div.preview
+				div.preview-row
+					+statusBadge('draft')
+					+statusBadge('draft', 'hypothetical')
+					+statusBadge('pending')
+					+statusBadge('accepted')
+					+statusBadge('rejected')
+				div.preview-row
+					+statusBadge('withdrawn')
+					+statusBadge('expired')
+					+statusBadge('executed')
+					+statusBadge('countered')
+
+		//- Season Nav
+		div.component-section
+			h2 +seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel)
+			code.usage +seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
+			div.preview
+				div.nav-container
+					+seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
+
+		//- Trade Asset Icons
+		div.component-section
+			h2 +tradeAssetIcon(type)
+			code.usage +tradeAssetIcon('player') | +tradeAssetIcon('pick') | +tradeAssetIcon('cash')
+			div.preview
+				div.preview-row
+					span.variant-label Types
+					+tradeAssetIcon('player')
+					+tradeAssetIcon('pick')
+					+tradeAssetIcon('cash')
+					+tradeAssetIcon('rfa')
+					+tradeAssetIcon('nothing')
+
+		//- Trade Asset (Full)
+		div.component-section
+			h2 +tradeAsset(asset)
+			code.usage +tradeAsset({ type: 'player', playerName: 'Josh Allen', positions: ['QB'], contractInfo: '22/26' })
+			div.preview
+				ul.asset-list
+					+tradeAsset({ type: 'player', playerName: 'Josh Allen', positions: ['QB'], contractInfo: '22/26' })
+					+tradeAsset({ type: 'player', playerName: 'Deebo Samuel', positions: ['RB', 'WR'], contractInfo: '21/24' })
+					+tradeAsset({ type: 'pick', pickMain: '2025 1st', pickContext: '(from Schex)' })
+					+tradeAsset({ type: 'cash', cashMain: '$500', cashContext: 'in 2025' })
+					+tradeAsset({ type: 'rfa', playerName: 'Cooper Kupp', positions: ['WR'], contractInfo: 'RFA rights' })
+					+tradeAsset({ type: 'nothing', display: 'Nothing' })
+
+		//- Trade Party
+		div.component-section
+			h2 +tradeParty(party)
+			code.usage +tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
+			div.preview
+				div.trade-card-preview
+					- var sampleParties = [{ franchiseName: 'Schex', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { franchiseName: 'Koci', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
+					each party in sampleParties
+						+tradeParty(party)
+
+		//- Budget Impact Table
+		div.component-section
+			h2 +budgetImpactTable(budgetImpact)
+			code.usage +budgetImpactTable([{ franchiseName: 'Schex', seasons: [{ season: 2025, delta: -500 }] }])
+			div.preview
+				- var sampleBudgetImpact = [{ franchiseName: 'Schex', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { franchiseName: 'Koci', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
+				+budgetImpactTable(sampleBudgetImpact)
+
+		//- Design Tokens
+		div.component-section
+			h2 Design Tokens
+			code.usage var(--pos-qb-bg) | var(--asset-player) | var(--status-pending-bg)
+			div.preview
+				div.preview-row
+					span.variant-label Positions
+					span.color-swatch(style="background: var(--pos-qb-bg); border-color: var(--pos-qb-text);" title="--pos-qb-*")
+					span.color-swatch(style="background: var(--pos-rb-bg); border-color: var(--pos-rb-text);" title="--pos-rb-*")
+					span.color-swatch(style="background: var(--pos-wr-bg); border-color: var(--pos-wr-text);" title="--pos-wr-*")
+					span.color-swatch(style="background: var(--pos-te-bg); border-color: var(--pos-te-text);" title="--pos-te-*")
+					span.color-swatch(style="background: var(--pos-idp-bg); border-color: var(--pos-idp-text);" title="--pos-idp-*")
+					span.color-swatch(style="background: var(--pos-k-bg); border-color: var(--pos-k-text);" title="--pos-k-*")
+				div.preview-row
+					span.variant-label Assets
+					span.color-circle(style="background: var(--asset-player);" title="--asset-player")
+					span.color-circle(style="background: var(--asset-pick);" title="--asset-pick")
+					span.color-circle(style="background: var(--asset-cash);" title="--asset-cash")
+					span.color-circle(style="background: var(--asset-rfa);" title="--asset-rfa")
+					span.color-circle(style="background: var(--asset-nothing);" title="--asset-nothing")
+				div.preview-row
+					span.variant-label UI Colors
+					span.color-circle(style="background: var(--color-success);" title="--color-success")
+					span.color-circle(style="background: var(--color-danger);" title="--color-danger")
+					span.color-circle(style="background: var(--color-warning);" title="--color-warning")
+					span.color-circle(style="background: var(--color-info);" title="--color-info")
+					span.color-circle(style="background: var(--color-disabled);" title="--color-disabled")
+
+		//- formatMoney Helper
+		div.component-section
+			h2 formatMoney(n, options?)
+			code.usage formatMoney(1234) | formatMoney(500, { sign: '+' }) | formatMoney(-163, { sign: 'auto' })
+			div.preview
+				div.preview-row
+					span.variant-label Default
+					code formatMoney(1234)
+					|  → 
+					strong #{formatMoney(1234)}
+				div.preview-row
+					span.variant-label Explicit +
+					code formatMoney(500, { sign: '+' })
+					|  → 
+					strong.text-success #{formatMoney(500, { sign: '+' })}
+				div.preview-row
+					span.variant-label Explicit -
+					code formatMoney(163, { sign: '-' })
+					|  → 
+					strong.text-danger #{formatMoney(163, { sign: '-' })}
+				div.preview-row
+					span.variant-label Auto
+					code formatMoney(-500, { sign: 'auto' })
+					|  → 
+					strong.text-danger #{formatMoney(-500, { sign: 'auto' })}

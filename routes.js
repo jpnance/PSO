@@ -45,6 +45,8 @@ module.exports = function(app) {
 	
 	app.get('/rookies', rookies.rookieSalaries);
 
+	app.get('/components', (req, res) => res.render('components', { pageTitle: 'Component Library — PSO' }));
+
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
 
