@@ -45,3 +45,96 @@
 	border-color: #007bff;
 	color: white;
 }
+
+/* Trade asset lists - used in trade history, proposals, etc. */
+.asset-list {
+	list-style: none;
+	margin: 0.25rem 0 0 0;
+	padding: 0;
+}
+.asset-list li {
+	display: flex;
+	align-items: flex-start;
+	padding: 0.35rem 0;
+	font-size: 0.9rem;
+}
+.asset-list .asset-icon {
+	flex-shrink: 0;
+	width: 1.25rem;
+	text-align: center;
+	margin-right: 0.5rem;
+	/* Override conflicting styles from trade.css */
+	display: inline-block;
+	align-self: flex-start;
+	align-items: initial;
+	justify-content: initial;
+	border: none;
+	border-right: none;
+	background: none;
+	padding: 0;
+	font-size: inherit;
+	height: auto;
+}
+.asset-list .asset-content {
+	flex: 1;
+	display: block;
+	padding-left: 0.5rem;
+	border-left: 1px solid currentColor;
+}
+.asset-list .asset-details {
+	display: block;
+}
+.asset-list .asset-name {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-weight: 600;
+	color: #212529;
+}
+.asset-list .asset-meta {
+	display: block;
+	font-size: 0.8rem;
+	color: #666;
+}
+.asset-list .asset-text {
+	color: #212529;
+}
+.asset-list .asset-note {
+	display: block;
+	font-size: 0.75rem;
+	color: #888;
+	font-style: italic;
+	margin-top: 0.1rem;
+}
+
+/* Asset type colors */
+.asset-list .asset-icon.icon-player, .asset-list .asset-content.icon-player { color: #28a745; }
+.asset-list .asset-icon.icon-pick, .asset-list .asset-content.icon-pick { color: #17a2b8; }
+.asset-list .asset-icon.icon-cash, .asset-list .asset-content.icon-cash { color: #d39e00; }
+.asset-list .asset-icon.icon-rfa, .asset-list .asset-content.icon-rfa { color: #6f42c1; }
+.asset-list .asset-icon.icon-nothing, .asset-list .asset-content.icon-nothing { color: #adb5bd; }
+
+.asset-list .ambiguous-icon {
+	margin-left: 0.35rem;
+	color: #999;
+	cursor: help;
+}
+.asset-list .ambiguous-icon:hover {
+	color: #666;
+}
+
+/* Trade party styling */
+.party:not(:last-child) {
+	margin-bottom: 1.25rem;
+	padding-bottom: 1.25rem;
+	border-bottom: 1px solid #dee2e6;
+}
+.party .party-name {
+	font-weight: 600;
+}
+.trade-notes {
+	font-style: italic;
+	color: #666;
+	font-size: 0.85rem;
+	margin-top: 0.5rem;
+}

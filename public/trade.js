@@ -172,16 +172,25 @@ var tradeMachine = {
 		// Get the franchise ID from the optgroup's class (e.g., "players-abc123")
 		var optgroupClass = $player.closest('optgroup').attr('class') || '';
 		var fromFranchiseId = optgroupClass.replace('players-', '');
+		
+		// Parse positions from comma-separated string
+		var positionsStr = $player.data('positions') || '';
+		var positions = positionsStr ? positionsStr.split(',') : [];
+		
+		// RFA rights use a different type for icon/styling
+		var terms = $player.data('terms');
+		var assetType = (terms === 'rfa-rights') ? 'rfa' : 'player';
 
 		return {
-			type: 'player',
+			type: assetType,
 			id: playerId,
 			fromFranchiseId: fromFranchiseId,
 			name: $player.data('name'),
 			salary: parseInt($player.data('salary')) || 0,
 			contract: $player.data('contract'),
-			terms: $player.data('terms'),
-			recoverable: parseInt($player.data('recoverable')) || 0
+			terms: terms,
+			recoverable: parseInt($player.data('recoverable')) || 0,
+			positions: positions
 		};
 	},
 
@@ -366,7 +375,7 @@ var tradeMachine = {
 
 		franchises.forEach((franchiseId, index) => {
 			var $franchiseSection = $('.gets[id=gets-' + franchiseId + ']');
-			var $franchiseAssetList = $franchiseSection.find('ul.assets');
+			var $franchiseAssetList = $franchiseSection.find('ul.asset-list');
 			var $separator = $franchiseSection.find('.party-separator');
 
 			$franchiseSection.removeClass('d-none');
@@ -383,14 +392,17 @@ var tradeMachine = {
 			var count = sortedAssets.length;
 
 			if (count === 0) {
-				$franchiseAssetList.append($('<li class="text-muted empty-state"><i class="fa fa-inbox mr-2"></i>Nothing yet</li>'));
+				$franchiseAssetList.append(tradeMachine.buildNothingElement());
 			}
 			else {
 				sortedAssets.forEach((asset) => {
-					var cssClass = 'asset-' + asset.type;
-					var icon = tradeMachine.iconForAsset(asset);
-					var removeBtn = '<button class="remove-asset btn btn-link btn-sm p-0" data-type="' + asset.type + '" data-id="' + asset.id + '"><i class="fa fa-times"></i></button>';
-					$franchiseAssetList.append($('<li class="' + cssClass + '">' + icon + '<span class="asset-content d-flex justify-content-between align-items-center">' + tradeMachine.textForAsset(asset) + removeBtn + '</span></li>'));
+					var $assetEl = tradeMachine.buildAssetElement(asset);
+					
+					// Add remove button as direct child of asset-content, pushed to the right
+					var $removeBtn = $('<button class="remove-asset btn btn-link btn-sm p-0" data-type="' + asset.type + '" data-id="' + asset.id + '"><i class="fa fa-times"></i></button>');
+					$assetEl.find('.asset-content').append($removeBtn);
+					
+					$franchiseAssetList.append($assetEl);
 				});
 			}
 		});
@@ -719,37 +731,76 @@ var tradeMachine = {
 		return round + '.' + pickInRound.toString().padStart(2, '0');
 	},
 
-	iconForAsset: (asset) => {
-		if (asset.type == 'player') {
-			return '<span class="asset-icon player-icon"><i class="fa fa-user"></i></span>';
+	// Build asset element by cloning template and populating data
+	buildAssetElement: (asset) => {
+		var templateId = 'asset-' + asset.type + '-template';
+		var template = document.getElementById(templateId);
+		if (!template) return $('<li></li>');
+		
+		var $el = $(template.content.cloneNode(true)).children();
+		
+		if (asset.type === 'player' || asset.type === 'rfa') {
+			$el.find('.asset-name').text(asset.name);
+			$el.find('.asset-meta').text(tradeMachine.terms(asset));
+			
+			// Add position badge if positions exist
+			if (asset.positions && asset.positions.length > 0) {
+				var $badge = tradeMachine.buildPositionBadge(asset.positions);
+				$el.find('.asset-name').append(' ').append($badge);
+			}
 		}
-		else if (asset.type == 'pick') {
-			return '<span class="asset-icon pick-icon"><i class="fa fa-ticket"></i></span>';
-		}
-		else if (asset.type == 'cash') {
-			return '<span class="asset-icon cash-icon">$</span>';
-		}
-		return '';
-	},
-
-	textForAsset: (asset) => {
-		if (asset.type == 'player') {
-			return asset.name + ' (' + tradeMachine.terms(asset) + ')';
-		}
-		else if (asset.type == 'pick') {
-			var text;
+		else if (asset.type === 'pick') {
+			var mainText;
 			if (asset.pickNumber) {
 				var teamsPerRound = (asset.season <= 2011) ? 10 : 12;
-				text = 'Pick ' + tradeMachine.formatPickNumber(asset.pickNumber, teamsPerRound);
+				mainText = 'Pick ' + tradeMachine.formatPickNumber(asset.pickNumber, teamsPerRound);
 			} else {
-				text = tradeMachine.roundOrdinal(asset.round) + ' round pick';
+				mainText = tradeMachine.roundOrdinal(asset.round) + ' round pick';
 			}
-			text += ' in ' + asset.season + ' (' + asset.origin + ')';
-			return text;
+			var contextText = ' in ' + asset.season + ' (' + asset.origin + ')';
+			
+			$el.find('.asset-text strong').text(mainText);
+			// Add context text after the strong element
+			$el.find('.asset-text strong').after(contextText);
 		}
-		else if (asset.type == 'cash') {
-			return '$' + asset.amount + ' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season;
+		else if (asset.type === 'cash') {
+			$el.find('.asset-text strong').text('$' + asset.amount);
+			$el.find('.asset-text strong').after(' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season);
 		}
+		
+		return $el;
+	},
+
+	// Build position badge by cloning template
+	buildPositionBadge: (positions) => {
+		var template = document.getElementById('position-badge-template');
+		if (!template || !positions || positions.length === 0) return $('');
+		
+		var $badge = $(template.content.cloneNode(true)).children();
+		
+		// Sort positions and update badge
+		var sorted = tradeMachine.sortPositions(positions);
+		$badge.text(sorted.join('/'));
+		$badge.removeClass('pos-POS').addClass('pos-' + sorted[0]);
+		
+		return $badge;
+	},
+
+	// Sort positions by standard order
+	sortPositions: (positions) => {
+		var order = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
+		return positions.slice().sort((a, b) => {
+			var idxA = order.indexOf(a);
+			var idxB = order.indexOf(b);
+			return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+		});
+	},
+
+	// Build "Nothing" placeholder element
+	buildNothingElement: () => {
+		var template = document.getElementById('asset-nothing-template');
+		if (!template) return $('<li></li>');
+		return $(template.content.cloneNode(true)).children();
 	},
 
 	// Submit a proposal (isDraft: true = share for discussion, false = real proposal)
@@ -880,7 +931,7 @@ $(document).ready(function() {
 		var assetType = $btn.data('type');
 		var assetId = $btn.data('id');
 
-		if (assetType === 'player') {
+		if (assetType === 'player' || assetType === 'rfa') {
 			tradeMachine.deal[franchiseId].players = tradeMachine.deal[franchiseId].players.filter(p => p.id !== assetId);
 		}
 		else if (assetType === 'pick') {

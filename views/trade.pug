@@ -1,16 +1,34 @@
 extends layout
+include mixins
 
 block styles
 	link(rel='stylesheet' href='/trade.css')
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
 
 block content
+	//- Asset templates - mixin output with empty data, cloned by JS
+	template#asset-player-template
+		+tradeAsset({type: 'player', playerName: '', positions: [], contractInfo: ''})
+	template#asset-rfa-template
+		+tradeAsset({type: 'rfa', playerName: '', positions: [], contractInfo: ''})
+	template#asset-pick-template
+		+tradeAsset({type: 'pick', pickMain: '', pickContext: ''})
+	template#asset-cash-template
+		+tradeAsset({type: 'cash', cashMain: '', cashContext: ''})
+	template#asset-nothing-template
+		+tradeAsset({type: 'nothing', display: 'Nothing'})
+	//- Position badge template - pass a placeholder position for structure
+	template#position-badge-template
+		+positionBadge(['POS'])
+
 	//- Hidden master lists for JavaScript to clone from
 	div.d-none
 		select.master-player-list
 			each franchise in franchises
 				optgroup(class="players-" + franchise._id label="From " + franchise.displayName)
 					each player in teams[franchise._id.toString()]
-						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract data-recoverable=player.recoverable)
+						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract data-recoverable=player.recoverable data-positions=(player.positions ? player.positions.join(',') : ''))
 							| #{player.name}
 							|  
 							if player.terms == 'unsigned'
@@ -119,10 +137,7 @@ block content
 									//- Assets List (right on large screens)
 									div.col-xl-6
 										div.assets-container
-											ul.assets.list-unstyled.mb-0
-												li.text-muted.empty-state
-													i.fa.fa-inbox.mr-2
-													| Nothing yet
+											ul.asset-list.mb-0
 
 								hr.party-separator
 

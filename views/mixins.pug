@@ -31,3 +31,94 @@ mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPref
 					option(value=s selected=(s === currentSeason))= s
 		each s in quickSeasons
 			a.btn.btn-sm(href=prefix + s class=(s === currentSeason ? 'btn-primary' : 'btn-outline-secondary'))= s
+
+//- Trade asset icon based on type
+//- Usage: +tradeAssetIcon(asset.type)
+mixin tradeAssetIcon(type)
+	span.asset-icon(class="icon-" + type)
+		if type === 'player'
+			i.fa.fa-user
+		else if type === 'pick'
+			i.fa.fa-ticket
+		else if type === 'cash'
+			i.fa.fa-dollar
+		else if type === 'rfa'
+			i.fa.fa-file-text-o
+		else
+			i.fa.fa-times
+
+//- Trade asset content (player, pick, cash, etc.)
+//- Usage: +tradeAssetContent(asset)
+mixin tradeAssetContent(asset)
+	span.asset-content(class="icon-" + asset.type)
+		span.asset-details
+			if (asset.type === 'player' || asset.type === 'rfa') && asset.hasOwnProperty('playerName')
+				span.asset-name
+					| #{asset.playerName}
+					if asset.positions && asset.positions.length > 0
+						|  
+						+positionBadge(asset.positions)
+				span.asset-meta
+					| #{asset.contractInfo}
+					if asset.ambiguous
+						span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
+							i.fa.fa-question-circle
+			else if asset.type === 'pick' && asset.hasOwnProperty('pickMain')
+				span.asset-text
+					strong #{asset.pickMain}
+					|  #{asset.pickContext}
+			else if asset.type === 'cash' && asset.hasOwnProperty('cashMain')
+				span.asset-text
+					strong #{asset.cashMain}
+					|  #{asset.cashContext}
+			else
+				span.asset-text
+					strong #{asset.display}
+					if asset.ambiguous
+						span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
+							i.fa.fa-question-circle
+		if asset.notes && asset.notes.length > 0
+			each note in asset.notes
+				if note.type === 'chain'
+					span.asset-note
+						each item, idx in note.items
+							if idx > 0
+								if item.type === 'outcome'
+									|  → 
+								else
+									|  #{note.separator} 
+							if item.type === 'outcome'
+								| #{item.text}
+							else if item.isCurrent
+								strong ##{item.tradeNumber}
+							else
+								a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
+				else if note.type === 'outcome'
+					span.asset-note → #{note.text}
+
+//- Single trade asset list item
+//- Usage: +tradeAsset(asset)
+mixin tradeAsset(asset)
+	li
+		+tradeAssetIcon(asset.type)
+		+tradeAssetContent(asset)
+
+//- Full trade party with assets
+//- Usage: +tradeParty(party)
+mixin tradeParty(party)
+	div.party
+		span.party-name #{party.franchiseName}
+		if party.usePlural
+			|  receive:
+		else
+			|  receives:
+		ul.asset-list
+			if party.assets && party.assets.length > 0
+				each asset in party.assets
+					+tradeAsset(asset)
+			else
+				li
+					span.asset-icon.icon-nothing
+						i.fa.fa-times
+					span.asset-content.icon-nothing
+						span.asset-text Nothing

@@ -10,7 +10,7 @@ var Transaction = require('../models/Transaction');
 var TradeProposal = require('../models/TradeProposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
-var { formatContractYears } = require('../helpers/view');
+var { formatContractYears, ordinal } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -631,59 +631,121 @@ async function viewProposal(request, response) {
 			}
 		}
 		
-		// Get display data for parties
+		// Get display data for parties (matching trade history format)
 		var partiesDisplay = [];
 		for (var i = 0; i < proposal.parties.length; i++) {
 			var party = proposal.parties[i];
 			var displayName = await getFranchiseDisplayName(party.franchiseId);
+			var usePlural = displayName === 'Schexes' || displayName.includes('/');
 			
-			// Get player names
-			var players = [];
+			// Build unified assets array (same format as trade history)
+			var assets = [];
+			
+			// Players first, sorted by salary desc
+			var playerData = [];
 			for (var j = 0; j < party.receives.players.length; j++) {
 				var player = await Player.findById(party.receives.players[j].playerId);
 				var contract = await Contract.findOne({ playerId: party.receives.players[j].playerId });
-				players.push({
-					name: player ? player.name : 'Unknown',
-					salary: contract ? contract.salary : null,
-					contract: contract && contract.endYear ? formatContractYears(contract.startYear, contract.endYear) : null,
-					isRfaRights: contract ? contract.salary === null : false
-				});
+				playerData.push({ player: player, contract: contract });
 			}
+			playerData.sort(function(a, b) {
+				return ((b.contract ? b.contract.salary : 0) || 0) - ((a.contract ? a.contract.salary : 0) || 0);
+			});
 			
-			// Get pick details
-			var picks = [];
-			for (var j = 0; j < party.receives.picks.length; j++) {
-				var pick = await Pick.findById(party.receives.picks[j].pickId);
-				if (pick) {
-					var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
-					picks.push({
-						season: pick.season,
-						round: pick.round,
-						origin: origin
+			for (var j = 0; j < playerData.length; j++) {
+				var player = playerData[j].player;
+				var contract = playerData[j].contract;
+				var playerName = player ? player.name : 'Unknown';
+				var positions = player ? player.positions : [];
+				
+				if (contract && contract.salary === null) {
+					// RFA rights
+					assets.push({
+						type: 'rfa',
+						playerName: playerName,
+						contractInfo: '(RFA rights)',
+						positions: positions
+					});
+				} else if (contract) {
+					// Regular player
+					var contractYears = contract.endYear ? formatContractYears(contract.startYear, contract.endYear) : 'unsigned';
+					assets.push({
+						type: 'player',
+						playerName: playerName,
+						contractInfo: '$' + (contract.salary || 0) + ' · ' + contractYears,
+						positions: positions
+					});
+				} else {
+					// No contract found
+					assets.push({
+						type: 'player',
+						playerName: playerName,
+						contractInfo: '(no contract)',
+						positions: positions
 					});
 				}
 			}
 			
-			// Get cash details
-			var cash = [];
+			// Picks - sorted by season then round
+			var pickData = [];
+			for (var j = 0; j < party.receives.picks.length; j++) {
+				var pick = await Pick.findById(party.receives.picks[j].pickId);
+				if (pick) {
+					var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+					pickData.push({ pick: pick, origin: origin });
+				}
+			}
+			pickData.sort(function(a, b) {
+				if (a.pick.season !== b.pick.season) return a.pick.season - b.pick.season;
+				return a.pick.round - b.pick.round;
+			});
+			
+			for (var j = 0; j < pickData.length; j++) {
+				var pick = pickData[j].pick;
+				var origin = pickData[j].origin;
+				var pickMain = ordinal(pick.round) + ' round pick';
+				var pickContext = 'in ' + pick.season + ' (' + origin + ')';
+				assets.push({
+					type: 'pick',
+					pickMain: pickMain,
+					pickContext: pickContext
+				});
+			}
+			
+			// Cash - sorted by season
+			var cashData = [];
 			for (var j = 0; j < party.receives.cash.length; j++) {
 				var c = party.receives.cash[j];
 				var fromName = await getFranchiseDisplayName(c.fromFranchiseId);
-				cash.push({
-					amount: c.amount,
-					season: c.season,
-					from: fromName
+				cashData.push({ cash: c, fromName: fromName });
+			}
+			cashData.sort(function(a, b) { return a.cash.season - b.cash.season; });
+			
+			for (var j = 0; j < cashData.length; j++) {
+				var c = cashData[j].cash;
+				var fromName = cashData[j].fromName;
+				assets.push({
+					type: 'cash',
+					cashMain: '$' + c.amount,
+					cashContext: 'from ' + fromName + ' in ' + c.season
+				});
+			}
+			
+			// Handle empty assets
+			if (assets.length === 0) {
+				assets.push({
+					type: 'nothing',
+					display: 'Nothing'
 				});
 			}
 			
 			partiesDisplay.push({
 				franchiseId: party.franchiseId._id || party.franchiseId,
-				displayName: displayName,
+				franchiseName: displayName,
+				usePlural: usePlural,
 				accepted: party.accepted,
 				acceptedAt: party.acceptedAt,
-				players: players,
-				picks: picks,
-				cash: cash
+				assets: assets
 			});
 		}
 		

@@ -3,19 +3,10 @@ include mixins
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
 	style.
 		body {
 			background-color: #f8f9fa;
-		}
-		.asset-name {
-			display: flex;
-			align-items: center;
-			font-weight: 600;
-			color: #212529;
-		}
-		.asset-meta {
-			font-size: 0.8rem;
-			color: #666;
 		}
 		.trade-card {
 			border: 1px solid #ddd;
@@ -35,64 +26,6 @@ block styles
 			color: #666;
 			font-weight: normal;
 			font-size: 0.8rem;
-		}
-		.party:not(:last-child) .asset-list {
-			margin-bottom: 1.25rem;
-		}
-		.party-name {
-			font-weight: 600;
-		}
-		/* Asset list - compact bullet style */
-		.asset-list {
-			list-style: none;
-			margin: 0.25rem 0 0 0;
-			padding: 0;
-		}
-		.asset-list li {
-			display: flex;
-			align-items: flex-start;
-			padding: 0.35rem 0;
-			font-size: 0.9rem;
-		}
-		.asset-icon {
-			flex-shrink: 0;
-			width: 1.25rem;
-			text-align: center;
-			margin-right: 0.5rem;
-		}
-		.asset-content {
-			flex: 1;
-			padding-left: 0.5rem;
-			border-left: 1px solid currentColor;
-		}
-		/* Asset type colors */
-		.asset-icon.icon-player, .asset-content.icon-player { color: #28a745; }
-		.asset-icon.icon-pick, .asset-content.icon-pick { color: #17a2b8; }
-		.asset-icon.icon-cash, .asset-content.icon-cash { color: #d39e00; }
-		.asset-icon.icon-rfa, .asset-content.icon-rfa { color: #6f42c1; }
-		.asset-icon.icon-nothing, .asset-content.icon-nothing { color: #adb5bd; }
-		.asset-content .asset-text {
-			color: #212529;
-		}
-		.asset-note {
-			font-size: 0.75rem;
-			color: #888;
-			font-style: italic;
-			margin-top: 0.1rem;
-		}
-		.trade-notes {
-			font-style: italic;
-			color: #666;
-			font-size: 0.85rem;
-			margin-top: 0.5rem;
-		}
-		.ambiguous-icon {
-			margin-left: 0.35rem;
-			color: #999;
-			cursor: help;
-		}
-		.ambiguous-icon:hover {
-			color: #666;
 		}
 		
 		/* Sidebar styles */
@@ -210,69 +143,7 @@ block content
 						div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
 					
 					each party in trade.parties
-						div.party
-							span.party-name #{party.franchiseName}
-							if party.usePlural
-								|  receive:
-							else
-								|  receives:
-							ul.asset-list
-								each asset in party.assets
-									li
-										span.asset-icon(class="icon-" + asset.type)
-											if asset.type === 'player'
-												i.fa.fa-user
-											else if asset.type === 'pick'
-												i.fa.fa-ticket
-											else if asset.type === 'cash'
-												i.fa.fa-dollar
-											else if asset.type === 'rfa'
-												i.fa.fa-file-text-o
-											else
-												i.fa.fa-times
-										div.asset-content(class="icon-" + asset.type)
-											if (asset.type === 'player' || asset.type === 'rfa') && asset.playerName
-												div.asset-name
-													| #{asset.playerName}
-													if asset.positions && asset.positions.length > 0
-														+positionBadge(asset.positions)
-												div.asset-meta
-													| #{asset.contractInfo}
-													if asset.ambiguous
-														span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
-															i.fa.fa-question-circle
-											else if asset.type === 'pick' && asset.pickMain
-												span.asset-text
-													strong #{asset.pickMain}
-													|  #{asset.pickContext}
-											else if asset.type === 'cash' && asset.cashMain
-												span.asset-text
-													strong #{asset.cashMain}
-													|  #{asset.cashContext}
-											else
-												span.asset-text
-													| #{asset.display}
-													if asset.ambiguous
-														span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
-															i.fa.fa-question-circle
-											if asset.notes && asset.notes.length > 0
-												each note in asset.notes
-													if note.type === 'chain'
-														div.asset-note
-															each item, idx in note.items
-																if idx > 0
-																	if item.type === 'outcome'
-																		|  → 
-																	else
-																		|  #{note.separator} 
-																if item.type === 'outcome'
-																	| #{item.text}
-																else if item.isCurrent
-																	strong ##{item.tradeNumber}
-																else
-																	a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
-													else if note.type === 'outcome'
-														div.asset-note → #{note.text}
+						+tradeParty(party)
 					
 					if trade.notes
 						div.trade-notes #{trade.notes}
@@ -391,69 +262,7 @@ block content
 								div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
 							
 							each party in trade.parties
-								div.party
-									span.party-name #{party.franchiseName}
-									if party.usePlural
-										|  receive:
-									else
-										|  receives:
-									ul.asset-list
-										each asset in party.assets
-											li
-												span.asset-icon(class="icon-" + asset.type)
-													if asset.type === 'player'
-														i.fa.fa-user
-													else if asset.type === 'pick'
-														i.fa.fa-ticket
-													else if asset.type === 'cash'
-														i.fa.fa-dollar
-													else if asset.type === 'rfa'
-														i.fa.fa-file-text-o
-													else
-														i.fa.fa-times
-												div.asset-content(class="icon-" + asset.type)
-													if (asset.type === 'player' || asset.type === 'rfa') && asset.playerName
-														div.asset-name
-															| #{asset.playerName}
-															if asset.positions && asset.positions.length > 0
-																+positionBadge(asset.positions)
-														div.asset-meta
-															| #{asset.contractInfo}
-															if asset.ambiguous
-																span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
-																	i.fa.fa-question-circle
-													else if asset.type === 'pick' && asset.pickMain
-														span.asset-text
-															strong #{asset.pickMain}
-															|  #{asset.pickContext}
-													else if asset.type === 'cash' && asset.cashMain
-														span.asset-text
-															strong #{asset.cashMain}
-															|  #{asset.cashContext}
-													else
-														span.asset-text
-															| #{asset.display}
-															if asset.ambiguous
-																span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
-																	i.fa.fa-question-circle
-													if asset.notes && asset.notes.length > 0
-														each note in asset.notes
-															if note.type === 'chain'
-																div.asset-note
-																	each item, idx in note.items
-																		if idx > 0
-																			if item.type === 'outcome'
-																				|  → 
-																			else
-																				|  #{note.separator} 
-																		if item.type === 'outcome'
-																			| #{item.text}
-																		else if item.isCurrent
-																			strong ##{item.tradeNumber}
-																		else
-																			a(href="/trades/" + item.tradeNumber) ##{item.tradeNumber}
-															else if note.type === 'outcome'
-																div.asset-note → #{note.text}
+								+tradeParty(party)
 							
 							if trade.notes
 								div.trade-notes #{trade.notes}

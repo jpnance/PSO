@@ -48,46 +48,20 @@ h1 {
 	justify-content: center;
 }
 
-/* Color-coded input backgrounds to match asset types */
-.input-group-text.player-icon,
-.asset-icon.player-icon {
+/* Color-coded input backgrounds for add-asset form */
+.input-group-text.player-icon {
 	background-color: rgba(40, 167, 69, 0.15);
 	border-color: rgba(40, 167, 69, 0.3);
 }
 
-.input-group-text.pick-icon,
-.asset-icon.pick-icon {
+.input-group-text.pick-icon {
 	background-color: rgba(23, 162, 184, 0.15);
 	border-color: rgba(23, 162, 184, 0.3);
 }
 
-.input-group-text.cash-icon,
-.asset-icon.cash-icon {
+.input-group-text.cash-icon {
 	background-color: rgba(255, 193, 7, 0.2);
 	border-color: rgba(255, 193, 7, 0.4);
-}
-
-/* Asset icons - embedded prepend style */
-.asset-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 32px;
-	align-self: stretch;
-	font-size: 0.75rem;
-	border-right: 1px solid;
-}
-
-.asset-icon.player-icon {
-	border-right-color: rgba(40, 167, 69, 0.3);
-}
-
-.asset-icon.pick-icon {
-	border-right-color: rgba(23, 162, 184, 0.3);
-}
-
-.asset-icon.cash-icon {
-	border-right-color: rgba(255, 193, 7, 0.4);
 }
 
 /* Amount input */
@@ -101,67 +75,33 @@ input.amount {
 	margin: 0.5rem 0 1rem 0;
 }
 
-/* Assets list */
-.assets li {
+/* Trade machine asset content needs flex to push remove button right */
+.gets .asset-list .asset-content {
 	display: flex;
-	align-items: center;
-	background-color: #fff;
-	border-radius: 4px;
-	margin-bottom: 0.5rem;
-	border: 1px solid #e9ecef;
-	font-size: 0.9rem;
-	overflow: hidden;
+	justify-content: space-between;
+	align-items: flex-start;
 }
 
-.assets li:last-child {
-	margin-bottom: 0;
-}
-
-.assets li.empty-state {
-	background-color: transparent;
-	border: none;
-	text-align: center;
-	padding: 1rem;
-	justify-content: center;
-}
-
-/* Asset content area */
-.assets li .asset-content {
+.gets .asset-list .asset-details {
 	flex: 1;
-	padding: 0.5rem 0.75rem;
 }
 
-/* Player assets */
-.assets li.asset-player {
-	background-color: rgba(40, 167, 69, 0.1);
-	border-color: rgba(40, 167, 69, 0.3);
-}
-
-/* Pick assets */
-.assets li.asset-pick {
-	background-color: rgba(23, 162, 184, 0.1);
-	border-color: rgba(23, 162, 184, 0.3);
-}
-
-/* Cash assets */
-.assets li.asset-cash {
-	background-color: rgba(255, 193, 7, 0.15);
-	border-color: rgba(255, 193, 7, 0.4);
-}
-
-/* Remove asset button */
-.remove-asset {
+/* Remove button styling */
+.asset-list .remove-asset {
 	color: #dc3545;
 	opacity: 0.5;
 	transition: opacity 0.15s;
 	line-height: 1;
+	flex-shrink: 0;
+	margin-left: 0.5rem;
 }
 
-.remove-asset:hover {
+.asset-list .remove-asset:hover {
 	opacity: 1;
 	color: #dc3545;
 	text-decoration: none;
 }
+
 
 /* Select dropdowns */
 select.form-control {
@@ -221,7 +161,7 @@ select.form-control {
 }
 
 /* Match asset list font size to input-group-sm */
-.assets {
+.gets .asset-list {
 	font-size: 0.875rem;
 }
 

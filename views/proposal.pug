@@ -3,6 +3,7 @@ include mixins
 
 block styles
 	link(rel='stylesheet' href='/trade.css')
+	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
 	style.
 		.party-status {
@@ -34,22 +35,6 @@ block styles
 		}
 		.countdown-timer.warning {
 			color: #dc3545;
-		}
-		
-		.asset-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		}
-		.asset-list li {
-			padding: 0.25rem 0;
-		}
-		.asset-icon {
-			display: inline-block;
-			width: 1.5rem;
-			text-align: center;
-			margin-right: 0.25rem;
-			color: #6c757d;
 		}
 
 block content
@@ -138,7 +123,7 @@ block content
 									i.fa.fa-check
 								else
 									i.fa.fa-hourglass-half
-							span.font-weight-bold= party.displayName
+							span.font-weight-bold= party.franchiseName
 							if party.accepted
 								span.text-muted.small — accepted
 
@@ -147,42 +132,8 @@ block content
 			div.card-header
 				strong Trade Details
 			div.card-body
-				each party, index in parties
-					div.mb-3
-						h5.mb-2
-							strong= party.displayName
-							|  receives:
-						
-						if party.players.length === 0 && party.picks.length === 0 && party.cash.length === 0
-							p.text-muted.mb-0
-								i.fa.fa-inbox.mr-2
-								| Nothing
-						else
-							ul.asset-list
-								each player in party.players
-									li
-										span.asset-icon
-											i.fa.fa-user
-										= player.name
-										if player.isRfaRights
-											|  (RFA rights)
-										else if player.salary !== null
-											|  ($#{player.salary}
-											if player.contract
-												| , #{player.contract}
-											| )
-								each pick in party.picks
-									li
-										span.asset-icon
-											i.fa.fa-ticket
-										| #{ordinal(pick.round)} round pick in #{pick.season} (#{pick.origin})
-								each cash in party.cash
-									li
-										span.asset-icon $
-										| $#{cash.amount} from #{cash.from} in #{cash.season}
-					
-					if index < parties.length - 1
-						hr
+				each party in parties
+					+tradeParty(party)
 
 		//- Notes
 		if proposal.notes
