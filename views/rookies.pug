@@ -29,14 +29,14 @@ block styles
 			font-weight: 600;
 		}
 		/* Position-colored cells with striping */
-		.salary-table td.pos-QB { background-color: #D7EBFF; }
-		.salary-table td.pos-RB { background-color: #F0FFFF; }
-		.salary-table td.pos-WR { background-color: #FAFAD2; }
-		.salary-table td.pos-TE { background-color: #DCFFDC; }
+		.salary-table td.pos-QB { background-color: var(--pos-qb-bg); }
+		.salary-table td.pos-RB { background-color: var(--pos-rb-bg); }
+		.salary-table td.pos-WR { background-color: var(--pos-wr-bg); }
+		.salary-table td.pos-TE { background-color: var(--pos-te-bg); }
 		.salary-table td.pos-DL,
 		.salary-table td.pos-LB,
-		.salary-table td.pos-DB { background-color: #FFF5EE; }
-		.salary-table td.pos-K { background-color: #F5F5F5; }
+		.salary-table td.pos-DB { background-color: var(--pos-idp-bg); }
+		.salary-table td.pos-K { background-color: var(--pos-k-bg); }
 		
 		/* Darken odd rows slightly for stripe effect */
 		.salary-table tr.odd-row td.pos-QB { background-color: #c5dffa; }

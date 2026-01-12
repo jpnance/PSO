@@ -9,14 +9,14 @@
 	text-transform: uppercase;
 	font-size: 0.8rem;
 }
-.status-draft { background: #f8f9fa; color: #6c757d; }
-.status-pending { background: #fff3cd; color: #856404; }
-.status-accepted { background: #d4edda; color: #155724; }
-.status-rejected { background: #f8d7da; color: #721c24; }
-.status-withdrawn { background: #e2e3e5; color: #383d41; }
-.status-expired { background: #e2e3e5; color: #383d41; }
-.status-executed { background: #cce5ff; color: #004085; }
-.status-countered { background: #e2e3e5; color: #383d41; }
+.status-draft { background: var(--status-draft-bg); color: var(--status-draft-text); }
+.status-pending { background: var(--status-pending-bg); color: var(--status-pending-text); }
+.status-accepted { background: var(--status-accepted-bg); color: var(--status-accepted-text); }
+.status-rejected { background: var(--status-rejected-bg); color: var(--status-rejected-text); }
+.status-withdrawn { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
+.status-expired { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
+.status-executed { background: var(--status-executed-bg); color: var(--status-executed-text); }
+.status-countered { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 
 /* Season navigation - quick season buttons with optional dropdown for older seasons */
 .season-nav {
@@ -29,10 +29,10 @@
 .older-select {
 	padding: 0.25rem 0.5rem;
 	font-size: 0.875rem;
-	border: 1px solid #6c757d;
+	border: 1px solid var(--text-muted);
 	border-radius: 0.2rem;
 	background: white;
-	color: #6c757d;
+	color: var(--text-muted);
 	cursor: pointer;
 	height: 31px;
 }
@@ -94,7 +94,7 @@
 .asset-list .asset-meta {
 	display: block;
 	font-size: 0.8rem;
-	color: #666;
+	color: var(--text-secondary);
 }
 .asset-list .asset-text {
 	color: #212529;
@@ -102,17 +102,17 @@
 .asset-list .asset-note {
 	display: block;
 	font-size: 0.75rem;
-	color: #888;
+	color: var(--text-tertiary);
 	font-style: italic;
 	margin-top: 0.1rem;
 }
 
 /* Asset type colors */
-.asset-list .asset-icon.icon-player, .asset-list .asset-content.icon-player { color: #28a745; }
-.asset-list .asset-icon.icon-pick, .asset-list .asset-content.icon-pick { color: #17a2b8; }
-.asset-list .asset-icon.icon-cash, .asset-list .asset-content.icon-cash { color: #d39e00; }
-.asset-list .asset-icon.icon-rfa, .asset-list .asset-content.icon-rfa { color: #6f42c1; }
-.asset-list .asset-icon.icon-nothing, .asset-list .asset-content.icon-nothing { color: #adb5bd; }
+.asset-list .asset-icon.icon-player, .asset-list .asset-content.icon-player { color: var(--asset-player); }
+.asset-list .asset-icon.icon-pick, .asset-list .asset-content.icon-pick { color: var(--asset-pick); }
+.asset-list .asset-icon.icon-cash, .asset-list .asset-content.icon-cash { color: var(--asset-cash); }
+.asset-list .asset-icon.icon-rfa, .asset-list .asset-content.icon-rfa { color: var(--asset-rfa); }
+.asset-list .asset-icon.icon-nothing, .asset-list .asset-content.icon-nothing { color: var(--asset-nothing); }
 
 .asset-list .ambiguous-icon {
 	margin-left: 0.35rem;
@@ -120,21 +120,21 @@
 	cursor: help;
 }
 .asset-list .ambiguous-icon:hover {
-	color: #666;
+	color: var(--text-secondary);
 }
 
 /* Trade party styling */
 .party:not(:last-child) {
 	margin-bottom: 1.25rem;
 	padding-bottom: 1.25rem;
-	border-bottom: 1px solid #dee2e6;
+	border-bottom: 1px solid var(--border-light);
 }
 .party .party-name {
 	font-weight: 600;
 }
 .trade-notes {
 	font-style: italic;
-	color: #666;
+	color: var(--text-secondary);
 	font-size: 0.85rem;
 	margin-top: 0.5rem;
 }

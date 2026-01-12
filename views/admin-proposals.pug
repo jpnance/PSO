@@ -4,7 +4,7 @@ block styles
 	link(rel='stylesheet' href='/css/components.css')
 	style.
 		.proposal-card {
-			border-left: 4px solid #28a745;
+			border-left: 4px solid var(--color-success);
 		}
 		.party-summary {
 			display: flex;
@@ -23,9 +23,9 @@ block styles
 			font-size: 0.9rem;
 		}
 		/* Use consistent icon colors from design system */
-		.receives .fa-user { color: #28a745; }
-		.receives .fa-ticket { color: #17a2b8; }
-		.receives .fa-dollar { color: #d39e00; }
+		.receives .fa-user { color: var(--asset-player); }
+		.receives .fa-ticket { color: var(--asset-pick); }
+		.receives .fa-dollar { color: var(--asset-cash); }
 
 block content
 	div.container.py-4

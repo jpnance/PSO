@@ -78,14 +78,14 @@ nav a:hover {
 	text-transform: uppercase;
 }
 
-.position-header.pos-QB th { background-color: #D7EBFF; color: #1a5276; }
-.position-header.pos-RB th { background-color: #F0FFFF; color: #117a65; }
-.position-header.pos-WR th { background-color: #FAFAD2; color: #9a7b0a; }
-.position-header.pos-TE th { background-color: #DCFFDC; color: #1e8449; }
+.position-header.pos-QB th { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
+.position-header.pos-RB th { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); }
+.position-header.pos-WR th { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); }
+.position-header.pos-TE th { background-color: var(--pos-te-bg); color: var(--pos-te-text); }
 .position-header.pos-DL th,
 .position-header.pos-LB th,
-.position-header.pos-DB th { background-color: #FFF5EE; color: #a04000; }
-.position-header.pos-K th { background-color: #F5F5F5; color: #5d6d7e; }
+.position-header.pos-DB th { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); }
+.position-header.pos-K th { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
 
 /* Remove borders between roster rows within same position group */
 .roster-table tbody tr:not(.position-header) td {

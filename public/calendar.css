@@ -122,7 +122,7 @@ h1 {
 	width: 10px;
 	height: 10px;
 	background: #fff;
-	border: 2px solid #adb5bd;
+	border: 2px solid var(--border-muted);
 	border-radius: 50%;
 }
 
@@ -166,7 +166,7 @@ h1 {
 
 /* Past Events */
 .event.past .event-name {
-	color: #adb5bd;
+	color: var(--text-disabled);
 }
 
 .event.past .event-date {
@@ -205,7 +205,7 @@ h1 {
 
 /* No Date */
 .event.no-date .event-name {
-	color: #adb5bd;
+	color: var(--text-disabled);
 }
 
 /* Footer */

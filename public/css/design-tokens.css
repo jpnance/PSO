@@ -1,0 +1,62 @@
+/* PSO Design Tokens - centralized color and style values */
+
+:root {
+	/* Position colors - background and text pairs */
+	--pos-qb-bg: #D7EBFF;
+	--pos-qb-text: #1a5276;
+	
+	--pos-rb-bg: #F0FFFF;
+	--pos-rb-text: #117a65;
+	
+	--pos-wr-bg: #FAFAD2;
+	--pos-wr-text: #9a7b0a;
+	
+	--pos-te-bg: #DCFFDC;
+	--pos-te-text: #1e8449;
+	
+	--pos-idp-bg: #FFF5EE;
+	--pos-idp-text: #a04000;
+	
+	--pos-k-bg: #F5F5F5;
+	--pos-k-text: #5d6d7e;
+	
+	/* Asset type colors - for trade assets */
+	--asset-player: #28a745;
+	--asset-pick: #17a2b8;
+	--asset-cash: #d39e00;
+	--asset-rfa: #6f42c1;
+	--asset-nothing: #adb5bd;
+	
+	/* Status badge colors - background and text pairs */
+	--status-draft-bg: #f8f9fa;
+	--status-draft-text: #6c757d;
+	
+	--status-pending-bg: #fff3cd;
+	--status-pending-text: #856404;
+	
+	--status-accepted-bg: #d4edda;
+	--status-accepted-text: #155724;
+	
+	--status-rejected-bg: #f8d7da;
+	--status-rejected-text: #721c24;
+	
+	--status-neutral-bg: #e2e3e5;
+	--status-neutral-text: #383d41;
+	
+	--status-executed-bg: #cce5ff;
+	--status-executed-text: #004085;
+	
+	/* UI colors */
+	--border-light: #dee2e6;
+	--border-muted: #adb5bd;
+	--text-muted: #6c757d;
+	--text-secondary: #666;
+	--text-tertiary: #888;
+	--text-disabled: #adb5bd;
+	
+	/* Semantic colors */
+	--color-success: #28a745;
+	--color-danger: #dc3545;
+	--color-warning: #ffc107;
+	--color-info: #17a2b8;
+}

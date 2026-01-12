@@ -89,7 +89,7 @@ block styles
 		}
 		/* Position colors now in /css/positions.css */
 		/* Passed pick - same as K for muted look */
-		.pick-row.pick-passed { background-color: #F5F5F5; }
+		.pick-row.pick-passed { background-color: var(--pos-k-bg); }
 		.pick-row.pick-passed .pick-player-name {
 			color: #7f8c8d;
 			font-style: italic;
@@ -110,14 +110,23 @@ block styles
 		.pick-row.my-pick {
 			padding-left: calc(0.6rem - 3px);
 		}
-		.pick-row.my-pick.pos-QB { border-left: 3px solid #1a5276; }
-		.pick-row.my-pick.pos-RB { border-left: 3px solid #117a65; }
-		.pick-row.my-pick.pos-WR { border-left: 3px solid #9a7b0a; }
-		.pick-row.my-pick.pos-TE { border-left: 3px solid #1e8449; }
-		.pick-row.my-pick.pos-IDP { border-left: 3px solid #a04000; }
-		.pick-row.my-pick.pos-K { border-left: 3px solid #5d6d7e; }
+		.pick-row.my-pick.pos-QB { border-left: 3px solid var(--pos-qb-text); }
+		.pick-row.my-pick.pos-RB { border-left: 3px solid var(--pos-rb-text); }
+		.pick-row.my-pick.pos-WR { border-left: 3px solid var(--pos-wr-text); }
+		.pick-row.my-pick.pos-TE { border-left: 3px solid var(--pos-te-text); }
+		.pick-row.my-pick.pos-IDP { border-left: 3px solid var(--pos-idp-text); }
+		.pick-row.my-pick.pos-K { border-left: 3px solid var(--pos-k-text); }
 		.pick-row.my-pick.pick-passed { border-left: 3px solid #7f8c8d; }
 		.pick-row.my-pick.pick-available { border-left: 3px solid #6c757d; }
+		
+		/* Legend items - combined bg and text colors */
+		small > span.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
+		small > span.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); }
+		small > span.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); }
+		small > span.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); }
+		small > span.pos-IDP { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); }
+		small > span.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
+		small > span.pick-passed { background-color: var(--pos-k-bg); color: #7f8c8d; }
 
 block content
 	div.container-fluid.py-3
@@ -169,10 +178,10 @@ block content
 		div.mt-3
 			h6 Position Legend
 			small
-				span.mr-3.px-2.py-1(style='background-color: #D7EBFF; color: #1a5276;') QB
-				span.mr-3.px-2.py-1(style='background-color: #F0FFFF; color: #117a65;') RB
-				span.mr-3.px-2.py-1(style='background-color: #FAFAD2; color: #9a7b0a;') WR
-				span.mr-3.px-2.py-1(style='background-color: #DCFFDC; color: #1e8449;') TE
-				span.mr-3.px-2.py-1(style='background-color: #FFF5EE; color: #a04000;') IDP
-				span.mr-3.px-2.py-1(style='background-color: #F5F5F5; color: #5d6d7e;') K
-				span.mr-3.px-2.py-1(style='background-color: #F5F5F5; color: #7f8c8d; font-style: italic;') Passed
+				span.mr-3.px-2.py-1.pos-QB QB
+				span.mr-3.px-2.py-1.pos-RB RB
+				span.mr-3.px-2.py-1.pos-WR WR
+				span.mr-3.px-2.py-1.pos-TE TE
+				span.mr-3.px-2.py-1.pos-IDP IDP
+				span.mr-3.px-2.py-1.pos-K K
+				span.mr-3.px-2.py-1.pick-passed(style='font-style: italic;') Passed

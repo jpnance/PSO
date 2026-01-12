@@ -20,7 +20,7 @@ block styles
 			justify-content: center;
 		}
 		.party-status .check.accepted {
-			background: #28a745;
+			background: var(--color-success);
 			color: white;
 		}
 		.party-status .check.waiting {
@@ -110,38 +110,58 @@ block content
 					|  
 					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
 
-		//- Party acceptance status widget
-		if proposal.status === 'pending'
-			div.card.mb-4
-				div.card-header
-					strong Acceptance Status
-				div.card-body
-					each party in parties
-						div.party-status.mb-2
-							div.check(class=party.accepted ? 'accepted' : 'waiting')
-								if party.accepted
-									i.fa.fa-check
-								else
-									i.fa.fa-hourglass-half
-							span.font-weight-bold= party.franchiseName
-							if party.accepted
-								span.text-muted.small — accepted
+		//- Main content area with columns
+		div.row
+			//- Left column: Trade details
+			div.col-lg-8.mb-4.mb-lg-0
+				div.card.h-100
+					div.card-header
+						strong Trade Details
+					div.card-body
+						each party in parties
+							+tradeParty(party)
 
-		//- Trade details
-		div.card.mb-4
-			div.card-header
-				strong Trade Details
-			div.card-body
-				each party in parties
-					+tradeParty(party)
+			//- Right column: Status, Budget, Notes
+			div.col-lg-4
+				//- Party acceptance status widget
+				if proposal.status === 'pending'
+					div.card.mb-4
+						div.card-header
+							strong Acceptance Status
+						div.card-body
+							each party in parties
+								div.party-status.mb-2
+									div.check(class=party.accepted ? 'accepted' : 'waiting')
+										if party.accepted
+											i.fa.fa-check
+										else
+											i.fa.fa-hourglass-half
+									span.font-weight-bold= party.franchiseName
+									if party.accepted
+										span.text-muted.small — accepted
 
-		//- Notes
-		if proposal.notes
-			div.card.mb-4
-				div.card-header
-					strong Notes
-				div.card-body
-					p.mb-0= proposal.notes
+				//- Budget Impact
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Budget Impact
+						if isCashNeutral
+							span.badge.badge-success
+								i.fa.fa-balance-scale.mr-1
+								| Cash-Neutral
+						else
+							span.badge.badge-warning
+								i.fa.fa-exclamation-triangle.mr-1
+								| Not Cash-Neutral
+					div.card-body
+						+budgetImpactTable(budgetImpact)
+
+				//- Notes
+				if proposal.notes
+					div.card.mb-4
+						div.card-header
+							strong Notes
+						div.card-body
+							p.mb-0= proposal.notes
 
 		//- Action buttons
 		div.action-result.mb-3

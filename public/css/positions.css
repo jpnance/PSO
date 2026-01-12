@@ -1,39 +1,39 @@
 /* Position group colors - shared across draft board, rookies, etc. */
 
 /* QB: Light blue */
-.pos-QB, .pick-row.pos-QB { background-color: #D7EBFF; }
-.pos-QB-text, .pos-QB .pick-position, .pick-row.pos-QB .pick-position { color: #1a5276; }
+.pos-QB, .pick-row.pos-QB { background-color: var(--pos-qb-bg); }
+.pos-QB-text, .pos-QB .pick-position, .pick-row.pos-QB .pick-position { color: var(--pos-qb-text); }
 
 /* RB: Azure */
-.pos-RB, .pick-row.pos-RB { background-color: #F0FFFF; }
-.pos-RB-text, .pos-RB .pick-position, .pick-row.pos-RB .pick-position { color: #117a65; }
+.pos-RB, .pick-row.pos-RB { background-color: var(--pos-rb-bg); }
+.pos-RB-text, .pos-RB .pick-position, .pick-row.pos-RB .pick-position { color: var(--pos-rb-text); }
 
 /* WR: Light goldenrod */
-.pos-WR, .pick-row.pos-WR { background-color: #FAFAD2; }
-.pos-WR-text, .pos-WR .pick-position, .pick-row.pos-WR .pick-position { color: #9a7b0a; }
+.pos-WR, .pick-row.pos-WR { background-color: var(--pos-wr-bg); }
+.pos-WR-text, .pos-WR .pick-position, .pick-row.pos-WR .pick-position { color: var(--pos-wr-text); }
 
 /* TE: Light green */
-.pos-TE, .pick-row.pos-TE { background-color: #DCFFDC; }
-.pos-TE-text, .pos-TE .pick-position, .pick-row.pos-TE .pick-position { color: #1e8449; }
+.pos-TE, .pick-row.pos-TE { background-color: var(--pos-te-bg); }
+.pos-TE-text, .pos-TE .pick-position, .pick-row.pos-TE .pick-position { color: var(--pos-te-text); }
 
 /* IDP (DL, LB, DB): Seashell */
 .pos-IDP, .pos-DL, .pos-LB, .pos-DB,
-.pick-row.pos-IDP, .pick-row.pos-DL, .pick-row.pos-LB, .pick-row.pos-DB { background-color: #FFF5EE; }
+.pick-row.pos-IDP, .pick-row.pos-DL, .pick-row.pos-LB, .pick-row.pos-DB { background-color: var(--pos-idp-bg); }
 .pos-IDP-text, .pos-DL-text, .pos-LB-text, .pos-DB-text,
 .pos-IDP .pick-position, .pos-DL .pick-position, .pos-LB .pick-position, .pos-DB .pick-position,
-.pick-row.pos-IDP .pick-position, .pick-row.pos-DL .pick-position, .pick-row.pos-LB .pick-position, .pick-row.pos-DB .pick-position { color: #a04000; }
+.pick-row.pos-IDP .pick-position, .pick-row.pos-DL .pick-position, .pick-row.pos-LB .pick-position, .pick-row.pos-DB .pick-position { color: var(--pos-idp-text); }
 
 /* K: Light gray */
-.pos-K, .pick-row.pos-K { background-color: #F5F5F5; }
-.pos-K-text, .pos-K .pick-position, .pick-row.pos-K .pick-position { color: #5d6d7e; }
+.pos-K, .pick-row.pos-K { background-color: var(--pos-k-bg); }
+.pos-K-text, .pos-K .pick-position, .pick-row.pos-K .pick-position { color: var(--pos-k-text); }
 
 /* Table header variants - use background colors with dark text */
-th.pos-QB { background-color: #D7EBFF; color: #1a5276; }
-th.pos-RB { background-color: #F0FFFF; color: #117a65; }
-th.pos-WR { background-color: #FAFAD2; color: #9a7b0a; }
-th.pos-TE { background-color: #DCFFDC; color: #1e8449; }
-th.pos-DL, th.pos-LB, th.pos-DB, th.pos-IDP { background-color: #FFF5EE; color: #a04000; }
-th.pos-K { background-color: #F5F5F5; color: #5d6d7e; }
+th.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
+th.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); }
+th.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); }
+th.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); }
+th.pos-DL, th.pos-LB, th.pos-DB, th.pos-IDP { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); }
+th.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
 
 /* Position badge - inline badge for player positions */
 .position-badge {
@@ -44,11 +44,11 @@ th.pos-K { background-color: #F5F5F5; color: #5d6d7e; }
 	margin-left: 0.35rem;
 	vertical-align: middle;
 }
-.position-badge.pos-QB { background-color: #D7EBFF; color: #1a5276; border-color: #1a5276; }
-.position-badge.pos-RB { background-color: #F0FFFF; color: #117a65; border-color: #117a65; }
-.position-badge.pos-WR { background-color: #FAFAD2; color: #9a7b0a; border-color: #9a7b0a; }
-.position-badge.pos-TE { background-color: #DCFFDC; color: #1e8449; border-color: #1e8449; }
+.position-badge.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); border-color: var(--pos-qb-text); }
+.position-badge.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); border-color: var(--pos-rb-text); }
+.position-badge.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); border-color: var(--pos-wr-text); }
+.position-badge.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); border-color: var(--pos-te-text); }
 .position-badge.pos-DL,
 .position-badge.pos-LB,
-.position-badge.pos-DB { background-color: #FFF5EE; color: #a04000; border-color: #a04000; }
-.position-badge.pos-K { background-color: #F5F5F5; color: #5d6d7e; border-color: #5d6d7e; }
+.position-badge.pos-DB { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); border-color: var(--pos-idp-text); }
+.position-badge.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); border-color: var(--pos-k-text); }
