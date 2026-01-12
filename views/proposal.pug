@@ -1,0 +1,340 @@
+extends layout
+
+block styles
+	link(rel='stylesheet' href='/trade.css')
+	style.
+		.status-badge {
+			display: inline-block;
+			padding: 0.25rem 0.75rem;
+			border-radius: 0.25rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			font-size: 0.8rem;
+		}
+		.status-draft { background: #f8f9fa; color: #6c757d; }
+		.status-pending { background: #fff3cd; color: #856404; }
+		.status-accepted { background: #d4edda; color: #155724; }
+		.status-rejected { background: #f8d7da; color: #721c24; }
+		.status-withdrawn { background: #e2e3e5; color: #383d41; }
+		.status-expired { background: #e2e3e5; color: #383d41; }
+		.status-executed { background: #cce5ff; color: #004085; }
+		.status-countered { background: #e2e3e5; color: #383d41; }
+		
+		.party-status {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+		.party-status .check {
+			width: 1.5rem;
+			height: 1.5rem;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.party-status .check.accepted {
+			background: #28a745;
+			color: white;
+		}
+		.party-status .check.waiting {
+			background: #e9ecef;
+			color: #6c757d;
+		}
+		
+		.countdown-timer {
+			font-size: 1.5rem;
+			font-weight: 600;
+			font-family: monospace;
+		}
+		.countdown-timer.warning {
+			color: #dc3545;
+		}
+		
+		.asset-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.asset-list li {
+			padding: 0.25rem 0;
+		}
+		.asset-icon {
+			display: inline-block;
+			width: 1.5rem;
+			text-align: center;
+			margin-right: 0.25rem;
+			color: #6c757d;
+		}
+
+block content
+	div.container.py-4
+		p: a(href='/propose') ← Back to Trade Machine
+
+		//- Status header
+		div.d-flex.justify-content-between.align-items-center.mb-4
+			h1.mb-0 Trade Proposal
+			span.status-badge(class='status-' + proposal.status)= proposal.status
+
+		//- Draft notice (legacy - drafts are no longer created but may exist)
+		if proposal.status === 'draft'
+			div.alert.alert-secondary.mb-4
+				i.fa.fa-file-text-o.mr-2
+				strong This is a draft proposal.
+				|  Anyone involved can make it official to start the acceptance process.
+
+		//- Acceptance window notice
+		if proposal.status === 'pending' && acceptanceWindowActive
+			div.alert.alert-warning.mb-4.text-center
+				i.fa.fa-clock-o.mr-2
+				strong Waiting for acceptance.
+				|  All parties must accept within:
+				div.countdown-timer.mt-2#countdown(data-remaining=acceptanceWindowRemaining)
+					| --:--
+
+		//- Window expired notice
+		if proposal.status === 'pending' && !acceptanceWindowActive && proposal.acceptanceWindowStart
+			div.alert.alert-info.mb-4
+				i.fa.fa-refresh.mr-2
+				| Acceptances were reset because the 10-minute window expired. Someone needs to accept again to restart the clock.
+
+		//- Accepted - ready for commissioner
+		if proposal.status === 'accepted'
+			div.alert.alert-success.mb-4
+				i.fa.fa-check-circle.mr-2
+				strong All parties have accepted!
+				|  This trade is now waiting for commissioner approval.
+
+		//- Rejected/Withdrawn/Expired notice
+		if proposal.status === 'rejected'
+			div.alert.alert-danger.mb-4
+				i.fa.fa-times-circle.mr-2
+				| This proposal was rejected.
+
+		if proposal.status === 'withdrawn'
+			div.alert.alert-secondary.mb-4
+				i.fa.fa-undo.mr-2
+				| This proposal was withdrawn by the creator.
+
+		if proposal.status === 'expired'
+			div.alert.alert-secondary.mb-4
+				i.fa.fa-clock-o.mr-2
+				| This proposal has expired.
+
+		if proposal.status === 'countered'
+			div.alert.alert-info.mb-4
+				i.fa.fa-reply.mr-2
+				| This proposal was countered with a new version.
+				if proposal.counteredById
+					|  
+					a(href='/propose/' + proposal.counteredById) View counter-proposal →
+
+		if proposal.status === 'executed'
+			div.alert.alert-success.mb-4
+				i.fa.fa-check.mr-2
+				| This trade has been executed.
+				if proposal.executedTransactionId
+					|  
+					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
+
+		//- Party acceptance status widget
+		if proposal.status === 'pending'
+			div.card.mb-4
+				div.card-header
+					strong Acceptance Status
+				div.card-body
+					each party in parties
+						div.party-status.mb-2
+							div.check(class=party.accepted ? 'accepted' : 'waiting')
+								if party.accepted
+									i.fa.fa-check
+								else
+									i.fa.fa-hourglass-half
+							span.font-weight-bold= party.displayName
+							if party.accepted
+								span.text-muted.small — accepted
+
+		//- Trade details
+		div.card.mb-4
+			div.card-header
+				strong Trade Details
+			div.card-body
+				each party, index in parties
+					div.mb-3
+						h5.mb-2
+							strong= party.displayName
+							|  receives:
+						
+						if party.players.length === 0 && party.picks.length === 0 && party.cash.length === 0
+							p.text-muted.mb-0
+								i.fa.fa-inbox.mr-2
+								| Nothing
+						else
+							ul.asset-list
+								each player in party.players
+									li
+										span.asset-icon
+											i.fa.fa-user
+										= player.name
+										if player.isRfaRights
+											|  (RFA rights)
+										else if player.salary !== null
+											|  ($#{player.salary}
+											if player.contract
+												| , #{player.contract}
+											| )
+								each pick in party.picks
+									li
+										span.asset-icon
+											i.fa.fa-ticket
+										if pick.round === 1
+											| 1st
+										else if pick.round === 2
+											| 2nd
+										else if pick.round === 3
+											| 3rd
+										else
+											| #{pick.round}th
+										|  round pick in #{pick.season} (#{pick.origin})
+								each cash in party.cash
+									li
+										span.asset-icon $
+										| $#{cash.amount} from #{cash.from} in #{cash.season}
+					
+					if index < parties.length - 1
+						hr
+
+		//- Notes
+		if proposal.notes
+			div.card.mb-4
+				div.card-header
+					strong Notes
+				div.card-body
+					p.mb-0= proposal.notes
+
+		//- Action buttons
+		div.action-result.mb-3
+
+		if proposal.status === 'draft' && isParty
+			button.btn.btn-primary.mr-2.formalize-btn
+				i.fa.fa-gavel.mr-1
+				| Make This Official
+
+		if proposal.status === 'pending' && isParty && !userHasAccepted
+			button.btn.btn-success.mr-2.accept-btn
+				i.fa.fa-check.mr-1
+				| Accept
+
+		if (proposal.status === 'draft' || proposal.status === 'pending') && isParty
+			button.btn.btn-outline-danger.mr-2.reject-btn
+				i.fa.fa-times.mr-1
+				| Reject
+
+		if (proposal.status === 'draft' || proposal.status === 'pending') && isCreator
+			button.btn.btn-outline-secondary.withdraw-btn
+				i.fa.fa-undo.mr-1
+				| Withdraw
+
+block scripts
+	script.
+		var proposalId = '#{proposal._id}';
+		var acceptanceWindowRemaining = !{acceptanceWindowRemaining || 'null'};
+		
+		// Countdown timer
+		function updateCountdown() {
+			var $el = $('#countdown');
+			if (!$el.length || acceptanceWindowRemaining === null) return;
+			
+			acceptanceWindowRemaining -= 1000;
+			
+			if (acceptanceWindowRemaining <= 0) {
+				$el.text('Expired').addClass('warning');
+				setTimeout(function() { location.reload(); }, 2000);
+				return;
+			}
+			
+			var seconds = Math.floor(acceptanceWindowRemaining / 1000);
+			var mins = Math.floor(seconds / 60);
+			var secs = seconds % 60;
+			$el.text(mins + ':' + secs.toString().padStart(2, '0'));
+			
+			if (seconds < 60) {
+				$el.addClass('warning');
+			}
+			
+			setTimeout(updateCountdown, 1000);
+		}
+		
+		if (acceptanceWindowRemaining !== null) {
+			updateCountdown();
+		}
+		
+		function showResult(html) {
+			$('.action-result').html(html);
+		}
+		
+		function showError(errors) {
+			var html = '<div class="alert alert-danger">';
+			errors.forEach(function(err, i) {
+				if (i > 0) html += '<br>';
+				html += '<i class="fa fa-exclamation-circle mr-2"></i>' + err;
+			});
+			html += '</div>';
+			showResult(html);
+		}
+		
+		$('.formalize-btn').on('click', function() {
+			var $btn = $(this);
+			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Processing...');
+			
+			$.post('/propose/' + proposalId + '/formalize')
+				.done(function() { location.reload(); })
+				.fail(function(xhr) {
+					$btn.prop('disabled', false).html('<i class="fa fa-gavel mr-1"></i> Make This Official');
+					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
+					showError(errors);
+				});
+		});
+		
+		$('.accept-btn').on('click', function() {
+			var $btn = $(this);
+			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Accepting...');
+			
+			$.post('/propose/' + proposalId + '/accept')
+				.done(function() { location.reload(); })
+				.fail(function(xhr) {
+					$btn.prop('disabled', false).html('<i class="fa fa-check mr-1"></i> Accept');
+					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
+					showError(errors);
+				});
+		});
+		
+		$('.reject-btn').on('click', function() {
+			if (!confirm('Are you sure you want to reject this proposal?')) return;
+			
+			var $btn = $(this);
+			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Rejecting...');
+			
+			$.post('/propose/' + proposalId + '/reject')
+				.done(function() { location.reload(); })
+				.fail(function(xhr) {
+					$btn.prop('disabled', false).html('<i class="fa fa-times mr-1"></i> Reject');
+					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
+					showError(errors);
+				});
+		});
+		
+		$('.withdraw-btn').on('click', function() {
+			if (!confirm('Are you sure you want to withdraw this proposal?')) return;
+			
+			var $btn = $(this);
+			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Withdrawing...');
+			
+			$.post('/propose/' + proposalId + '/withdraw')
+				.done(function() { location.reload(); })
+				.fail(function(xhr) {
+					$btn.prop('disabled', false).html('<i class="fa fa-undo mr-1"></i> Withdraw');
+					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
+					showError(errors);
+				});
+		});

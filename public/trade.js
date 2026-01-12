@@ -322,6 +322,13 @@ var tradeMachine = {
 		}
 	},
 
+	// Check if user is party to the current deal
+	isUserPartyToDeal: () => {
+		if (typeof userFranchiseIds === 'undefined' || !userFranchiseIds.length) return false;
+		var franchises = tradeMachine.franchisesInvolved();
+		return franchises.some((fId) => userFranchiseIds.includes(fId));
+	},
+
 	redrawTradeMachine: () => {
 		$('.gets').addClass('d-none');
 		
@@ -331,9 +338,23 @@ var tradeMachine = {
 		if (franchises.length >= 2) {
 			$('.trade-details-card').removeClass('d-none');
 			$('.submit-trade-section').removeClass('d-none');
+			
+			// Show share/propose section if user is logged in with a franchise
+			if (typeof isLoggedIn !== 'undefined' && isLoggedIn && typeof userFranchiseIds !== 'undefined' && userFranchiseIds.length > 0) {
+				$('.share-propose-section').removeClass('d-none');
+				// Show "Propose Trade" button only if user is party to the deal
+				if (tradeMachine.isUserPartyToDeal()) {
+					$('.propose-trade-btn').removeClass('d-none');
+				} else {
+					$('.propose-trade-btn').addClass('d-none');
+				}
+			} else {
+				$('.share-propose-section').addClass('d-none');
+			}
 		} else {
 			$('.trade-details-card').addClass('d-none');
 			$('.submit-trade-section').addClass('d-none');
+			$('.share-propose-section').addClass('d-none');
 		}
 		
 		// Reset confirmation state when deal changes
@@ -729,6 +750,68 @@ var tradeMachine = {
 		else if (asset.type == 'cash') {
 			return '$' + asset.amount + ' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season;
 		}
+	},
+
+	// Submit a proposal (isDraft: true = share for discussion, false = real proposal)
+	submitProposal: (isDraft) => {
+		var $proposeBtn = $('.propose-trade-btn');
+		var $shareBtn = $('.share-trade-btn');
+		var $result = $('.proposal-result');
+		var $linkSection = $('.proposal-link-section');
+		var notes = $('#proposal-notes').val().trim() || null;
+		
+		var $activeBtn = isDraft ? $shareBtn : $proposeBtn;
+		var btnOriginalHtml = $activeBtn.html();
+		
+		$proposeBtn.prop('disabled', true);
+		$shareBtn.prop('disabled', true);
+		$activeBtn.html('<i class="fa fa-spinner fa-spin mr-1"></i> ' + (isDraft ? 'Sharing...' : 'Proposing...'));
+		$result.empty();
+		$linkSection.addClass('d-none');
+		
+		$.ajax({
+			url: '/propose',
+			method: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				deal: tradeMachine.deal,
+				notes: notes,
+				isDraft: isDraft
+			}),
+			success: (response) => {
+				$proposeBtn.prop('disabled', false);
+				$shareBtn.prop('disabled', false);
+				$activeBtn.html(btnOriginalHtml);
+				
+				var proposalUrl = window.location.origin + '/propose/' + response.proposalId;
+				$('#proposal-link').val(proposalUrl);
+				
+				// Update success message based on type
+				var message = isDraft 
+					? 'Trade shared! Copy this link to discuss:'
+					: 'Proposal sent! Share this link with the other party:';
+				$('.proposal-success-message .message-text').text(message);
+				
+				$linkSection.removeClass('d-none');
+			},
+			error: (xhr) => {
+				$proposeBtn.prop('disabled', false);
+				$shareBtn.prop('disabled', false);
+				$activeBtn.html(btnOriginalHtml);
+				
+				var response = xhr.responseJSON || {};
+				var errors = response.errors || ['Unknown error'];
+				
+				var html = '<div class="alert alert-danger mb-0">';
+				errors.forEach((err, i) => {
+					if (i > 0) html += '<br>';
+					html += '<i class="fa fa-exclamation-circle mr-2"></i>' + err;
+				});
+				html += '</div>';
+				
+				$result.html(html);
+			}
+		});
 	}
 };
 
@@ -819,6 +902,29 @@ $(document).ready(function() {
 		executePromptShown = false;
 	};
 	
+	// Propose trade button (creates pending proposal, proposer auto-accepted)
+	$('.propose-trade-btn').on('click', (e) => {
+		tradeMachine.submitProposal(false);
+	});
+	
+	// Share trade button (creates draft for discussion)
+	$('.share-trade-btn').on('click', (e) => {
+		tradeMachine.submitProposal(true);
+	});
+	
+	// Copy link button
+	$('.copy-link-btn').on('click', (e) => {
+		var $input = $('#proposal-link');
+		$input.select();
+		document.execCommand('copy');
+		
+		var $btn = $(e.currentTarget);
+		$btn.html('<i class="fa fa-check"></i>');
+		setTimeout(() => {
+			$btn.html('<i class="fa fa-copy"></i>');
+		}, 2000);
+	});
+
 	$('.submit-trade-btn').on('click', (e) => {
 		var $btn = $(e.currentTarget);
 		var $result = $('.trade-result');

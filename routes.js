@@ -29,6 +29,15 @@ module.exports = function(app) {
 	app.get('/trades/:id', trades.singleTrade);
 	
 	app.get('/propose', propose.proposePage);
+	
+	// Trade proposals (owners)
+	app.post('/propose', requireLogin, propose.createProposal);
+	app.get('/propose/:id', propose.viewProposal);
+	app.post('/propose/:id/formalize', requireLogin, propose.formalizeProposal);
+	app.post('/propose/:id/accept', requireLogin, propose.acceptProposal);
+	app.post('/propose/:id/reject', requireLogin, propose.rejectProposal);
+	app.post('/propose/:id/withdraw', requireLogin, propose.withdrawProposal);
+	app.post('/propose/:id/counter', requireLogin, propose.counterProposal);
 
 	app.get('/draft', draft.draftBoard);
 	
@@ -75,4 +84,9 @@ module.exports = function(app) {
 	// Process new trades (require login + admin)
 	app.get('/admin/process-trade', requireLogin, requireAdmin, propose.processPage);
 	app.post('/admin/process-trade', requireLogin, requireAdmin, propose.submitTrade);
+	
+	// Trade proposal approval (require login + admin)
+	app.get('/admin/proposals', requireLogin, requireAdmin, propose.listProposalsForApproval);
+	app.post('/admin/proposals/:id/approve', requireLogin, requireAdmin, propose.approveProposal);
+	app.post('/admin/proposals/:id/reject', requireLogin, requireAdmin, propose.adminRejectProposal);
 };

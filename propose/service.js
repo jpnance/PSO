@@ -7,6 +7,7 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
+var TradeProposal = require('../models/TradeProposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
 
@@ -207,6 +208,14 @@ async function proposePage(request, response) {
 		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
 		var isBeforeCutDay = !cutDay || today < cutDay;
 		
+		// Check if user is logged in and owns any franchise
+		var user = request.user;
+		var userFranchiseIds = [];
+		if (user) {
+			var franchises = await getUserFranchises(user);
+			userFranchiseIds = franchises.map(function(f) { return f.toString(); });
+		}
+		
 		response.render('trade', {
 			franchises: data.franchises,
 			teams: data.teams,
@@ -215,6 +224,8 @@ async function proposePage(request, response) {
 			isPlural: isPlural,
 			isBeforeCutDay: isBeforeCutDay,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
+			isLoggedIn: !!user,
+			userFranchiseIds: userFranchiseIds,
 			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});
@@ -400,9 +411,826 @@ async function submitTrade(request, response) {
 	}
 }
 
+// ========== Trade Proposal Functions ==========
+
+// Compute expiration date: 7 days from now or trade deadline, whichever is first
+async function computeExpiresAt() {
+	var sevenDaysFromNow = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+	
+	var config = await LeagueConfig.findById('pso');
+	if (config && config.tradeDeadline) {
+		var deadline = new Date(config.tradeDeadline);
+		if (deadline < sevenDaysFromNow) {
+			return deadline;
+		}
+	}
+	
+	return sevenDaysFromNow;
+}
+
+// Get display name for a franchise in current season
+async function getFranchiseDisplayName(franchiseId) {
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+	
+	var regime = await Regime.findOne({
+		franchiseId: franchiseId,
+		startSeason: { $lte: season },
+		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
+	});
+	
+	return regime ? regime.displayName : 'Unknown';
+}
+
+// Find which franchise(s) the current user owns
+async function getUserFranchises(user) {
+	if (!user) return [];
+	
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+	
+	var regimes = await Regime.find({
+		ownerIds: user._id,
+		startSeason: { $lte: season },
+		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
+	});
+	
+	return regimes.map(function(r) { return r.franchiseId; });
+}
+
+// Check if user owns a specific franchise
+async function userOwnsFranchise(user, franchiseId) {
+	var userFranchises = await getUserFranchises(user);
+	return userFranchises.some(function(fid) {
+		return fid.equals(franchiseId);
+	});
+}
+
+// Check if trades are currently allowed
+async function checkTradesEnabled() {
+	var config = await LeagueConfig.findById('pso');
+	if (!config) return { enabled: true };
+	
+	if (!config.areTradesEnabled()) {
+		var phase = config.getPhase().replace(/-/g, ' ');
+		return { 
+			enabled: false, 
+			error: 'Trades are not allowed during the ' + phase + ' phase'
+		};
+	}
+	
+	return { enabled: true };
+}
+
+// Create a new trade proposal (draft)
+async function createProposal(request, response) {
+	try {
+		var user = request.user;
+		if (!user) {
+			return response.status(401).json({ success: false, errors: ['Login required'] });
+		}
+		
+		// Check if trades are enabled
+		var tradesCheck = await checkTradesEnabled();
+		if (!tradesCheck.enabled) {
+			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
+		}
+		
+		var deal = request.body.deal;
+		if (!deal || typeof deal !== 'object') {
+			return response.status(400).json({ success: false, errors: ['Invalid trade data'] });
+		}
+		
+		var franchiseIds = Object.keys(deal);
+		if (franchiseIds.length < 2) {
+			return response.status(400).json({ success: false, errors: ['Trade must have at least 2 parties'] });
+		}
+		
+		// Check if user owns any of the franchises in the trade
+		var userFranchises = await getUserFranchises(user);
+		var userFranchiseInTrade = franchiseIds.find(function(fid) {
+			return userFranchises.some(function(uf) { return uf.equals(fid); });
+		});
+		
+		var isDraft = request.body.isDraft === true;
+		
+		// For real proposals, user must be a party. For drafts, anyone with a franchise can share.
+		if (!isDraft && !userFranchiseInTrade) {
+			return response.status(403).json({ success: false, errors: ['You must be party to this trade to propose it'] });
+		}
+		
+		if (!userFranchises.length) {
+			return response.status(403).json({ success: false, errors: ['You must own a franchise to share trades'] });
+		}
+		
+		// Build parties array
+		var parties = [];
+		for (var i = 0; i < franchiseIds.length; i++) {
+			var franchiseId = franchiseIds[i];
+			var bucket = deal[franchiseId];
+			
+			var receives = {
+				players: [],
+				picks: [],
+				cash: []
+			};
+			
+			// Players (just store IDs, lookup contract at execution time)
+			for (var j = 0; j < (bucket.players || []).length; j++) {
+				receives.players.push({ playerId: bucket.players[j].id });
+			}
+			
+			// Picks
+			for (var j = 0; j < (bucket.picks || []).length; j++) {
+				receives.picks.push({ pickId: bucket.picks[j].id });
+			}
+			
+			// Cash
+			for (var j = 0; j < (bucket.cash || []).length; j++) {
+				var cash = bucket.cash[j];
+				receives.cash.push({
+					amount: cash.amount,
+					season: cash.season,
+					fromFranchiseId: cash.from
+				});
+			}
+			
+			parties.push({
+				franchiseId: new mongoose.Types.ObjectId(franchiseId),
+				receives: receives,
+				accepted: false,
+				acceptedAt: null,
+				acceptedBy: null
+			});
+		}
+		
+		var expiresAt = await computeExpiresAt();
+		var now = new Date();
+		
+		// For real proposals (not drafts), mark the proposer's party as accepted
+		if (!isDraft) {
+			for (var i = 0; i < parties.length; i++) {
+				if (parties[i].franchiseId.equals(userFranchiseInTrade)) {
+					parties[i].accepted = true;
+					parties[i].acceptedAt = now;
+					parties[i].acceptedBy = user._id;
+				}
+			}
+		}
+		
+		// For drafts where user isn't a party, use their first franchise as creator
+		var creatorFranchiseId = userFranchiseInTrade || userFranchises[0];
+		
+		var proposal = await TradeProposal.create({
+			status: isDraft ? 'draft' : 'pending',
+			createdByFranchiseId: creatorFranchiseId,
+			createdByPersonId: user._id,
+			createdAt: now,
+			expiresAt: expiresAt,
+			acceptanceWindowStart: isDraft ? null : now,  // Proposer accepting starts the clock
+			parties: parties,
+			notes: request.body.notes || null
+		});
+		
+		response.json({
+			success: true,
+			proposalId: proposal._id.toString()
+		});
+	} catch (err) {
+		console.error('createProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// View a proposal
+async function viewProposal(request, response) {
+	try {
+		var proposalId = request.params.id;
+		
+		var proposal = await TradeProposal.findById(proposalId)
+			.populate('createdByPersonId', 'name')
+			.populate('parties.franchiseId');
+		
+		if (!proposal) {
+			return response.status(404).send('Proposal not found');
+		}
+		
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		// Check and handle expiration
+		if (proposal.status === 'draft' || proposal.status === 'pending') {
+			if (proposal.isExpired()) {
+				proposal.status = 'expired';
+				await proposal.save();
+			} else if (proposal.status === 'pending' && proposal.isAcceptanceWindowExpired()) {
+				// Reset acceptances if 10-minute window expired
+				proposal.resetAcceptances();
+				await proposal.save();
+			}
+		}
+		
+		// Get display data for parties
+		var partiesDisplay = [];
+		for (var i = 0; i < proposal.parties.length; i++) {
+			var party = proposal.parties[i];
+			var displayName = await getFranchiseDisplayName(party.franchiseId);
+			
+			// Get player names
+			var players = [];
+			for (var j = 0; j < party.receives.players.length; j++) {
+				var player = await Player.findById(party.receives.players[j].playerId);
+				var contract = await Contract.findOne({ playerId: party.receives.players[j].playerId });
+				players.push({
+					name: player ? player.name : 'Unknown',
+					salary: contract ? contract.salary : null,
+					contract: contract && contract.endYear ? 
+						(contract.startYear ? String(contract.startYear % 100).padStart(2, '0') : 'FA') + '/' + 
+						String(contract.endYear % 100).padStart(2, '0') : null,
+					isRfaRights: contract ? contract.salary === null : false
+				});
+			}
+			
+			// Get pick details
+			var picks = [];
+			for (var j = 0; j < party.receives.picks.length; j++) {
+				var pick = await Pick.findById(party.receives.picks[j].pickId);
+				if (pick) {
+					var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+					picks.push({
+						season: pick.season,
+						round: pick.round,
+						origin: origin
+					});
+				}
+			}
+			
+			// Get cash details
+			var cash = [];
+			for (var j = 0; j < party.receives.cash.length; j++) {
+				var c = party.receives.cash[j];
+				var fromName = await getFranchiseDisplayName(c.fromFranchiseId);
+				cash.push({
+					amount: c.amount,
+					season: c.season,
+					from: fromName
+				});
+			}
+			
+			partiesDisplay.push({
+				franchiseId: party.franchiseId._id || party.franchiseId,
+				displayName: displayName,
+				accepted: party.accepted,
+				acceptedAt: party.acceptedAt,
+				players: players,
+				picks: picks,
+				cash: cash
+			});
+		}
+		
+		// Determine what the current user can do
+		var user = request.user;
+		var userFranchises = user ? await getUserFranchises(user) : [];
+		var userParty = partiesDisplay.find(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		var isCreator = user && proposal.createdByPersonId && 
+			proposal.createdByPersonId._id.equals(user._id);
+		var isParty = !!userParty;
+		
+		// Compute acceptance window info
+		var acceptanceWindowRemaining = proposal.getAcceptanceWindowRemaining();
+		var acceptanceWindowActive = acceptanceWindowRemaining !== null && acceptanceWindowRemaining > 0;
+		
+		response.render('proposal', {
+			proposal: proposal,
+			parties: partiesDisplay,
+			isCreator: isCreator,
+			isParty: isParty,
+			userParty: userParty,
+			userHasAccepted: userParty ? userParty.accepted : false,
+			acceptanceWindowActive: acceptanceWindowActive,
+			acceptanceWindowRemaining: acceptanceWindowRemaining,
+			pageTitle: 'Trade Proposal - PSO',
+			activePage: 'propose'
+		});
+	} catch (err) {
+		console.error('viewProposal error:', err);
+		response.status(500).send('Error loading proposal');
+	}
+}
+
+// Formalize a draft into a pending proposal
+async function formalizeProposal(request, response) {
+	try {
+		var user = request.user;
+		if (!user) {
+			return response.status(401).json({ success: false, errors: ['Login required'] });
+		}
+		
+		// Check if trades are enabled
+		var tradesCheck = await checkTradesEnabled();
+		if (!tradesCheck.enabled) {
+			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
+		}
+		
+		var proposal = await TradeProposal.findById(request.params.id);
+		if (!proposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (proposal.status !== 'draft') {
+			return response.status(400).json({ success: false, errors: ['Only drafts can be formalized'] });
+		}
+		
+		// Check user is a party to this proposal
+		var userFranchises = await getUserFranchises(user);
+		var isParty = proposal.parties.some(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		
+		if (!isParty) {
+			return response.status(403).json({ success: false, errors: ['You must be party to this trade'] });
+		}
+		
+		// Check expiration
+		if (proposal.isExpired()) {
+			proposal.status = 'expired';
+			await proposal.save();
+			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
+		}
+		
+		proposal.status = 'pending';
+		await proposal.save();
+		
+		response.json({ success: true });
+	} catch (err) {
+		console.error('formalizeProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// Accept a proposal (for one party)
+async function acceptProposal(request, response) {
+	try {
+		var user = request.user;
+		if (!user) {
+			return response.status(401).json({ success: false, errors: ['Login required'] });
+		}
+		
+		// Check if trades are enabled
+		var tradesCheck = await checkTradesEnabled();
+		if (!tradesCheck.enabled) {
+			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
+		}
+		
+		var proposal = await TradeProposal.findById(request.params.id);
+		if (!proposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (proposal.status !== 'pending') {
+			return response.status(400).json({ success: false, errors: ['Only pending proposals can be accepted'] });
+		}
+		
+		// Check expiration
+		if (proposal.isExpired()) {
+			proposal.status = 'expired';
+			await proposal.save();
+			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
+		}
+		
+		// Check acceptance window
+		if (proposal.isAcceptanceWindowExpired()) {
+			proposal.resetAcceptances();
+			await proposal.save();
+			return response.status(400).json({ 
+				success: false, 
+				errors: ['Acceptance window expired. Someone needs to accept again to restart the clock.'],
+				windowReset: true
+			});
+		}
+		
+		// Find user's party
+		var userFranchises = await getUserFranchises(user);
+		var partyIndex = proposal.parties.findIndex(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		
+		if (partyIndex === -1) {
+			return response.status(403).json({ success: false, errors: ['You are not a party to this trade'] });
+		}
+		
+		var party = proposal.parties[partyIndex];
+		if (party.accepted) {
+			return response.status(400).json({ success: false, errors: ['You have already accepted'] });
+		}
+		
+		// Accept
+		party.accepted = true;
+		party.acceptedAt = new Date();
+		party.acceptedBy = user._id;
+		
+		// Start acceptance window if this is the first acceptance
+		if (!proposal.acceptanceWindowStart) {
+			proposal.acceptanceWindowStart = new Date();
+		}
+		
+		// Check if all parties have now accepted
+		if (proposal.allPartiesAccepted()) {
+			proposal.status = 'accepted';
+		}
+		
+		await proposal.save();
+		
+		response.json({ 
+			success: true,
+			allAccepted: proposal.status === 'accepted',
+			acceptanceWindowRemaining: proposal.getAcceptanceWindowRemaining()
+		});
+	} catch (err) {
+		console.error('acceptProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// Reject a proposal
+async function rejectProposal(request, response) {
+	try {
+		var user = request.user;
+		if (!user) {
+			return response.status(401).json({ success: false, errors: ['Login required'] });
+		}
+		
+		var proposal = await TradeProposal.findById(request.params.id);
+		if (!proposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (proposal.status !== 'pending' && proposal.status !== 'draft') {
+			return response.status(400).json({ success: false, errors: ['Cannot reject this proposal'] });
+		}
+		
+		// Check user is a party
+		var userFranchises = await getUserFranchises(user);
+		var isParty = proposal.parties.some(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		
+		if (!isParty) {
+			return response.status(403).json({ success: false, errors: ['You are not a party to this trade'] });
+		}
+		
+		proposal.status = 'rejected';
+		await proposal.save();
+		
+		response.json({ success: true });
+	} catch (err) {
+		console.error('rejectProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// Withdraw a proposal (creator only)
+async function withdrawProposal(request, response) {
+	try {
+		var user = request.user;
+		if (!user) {
+			return response.status(401).json({ success: false, errors: ['Login required'] });
+		}
+		
+		var proposal = await TradeProposal.findById(request.params.id);
+		if (!proposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (proposal.status !== 'pending' && proposal.status !== 'draft') {
+			return response.status(400).json({ success: false, errors: ['Cannot withdraw this proposal'] });
+		}
+		
+		// Only creator can withdraw
+		if (!proposal.createdByPersonId.equals(user._id)) {
+			return response.status(403).json({ success: false, errors: ['Only the creator can withdraw'] });
+		}
+		
+		proposal.status = 'withdrawn';
+		await proposal.save();
+		
+		response.json({ success: true });
+	} catch (err) {
+		console.error('withdrawProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// Counter a proposal (creates a new proposal based on this one)
+async function counterProposal(request, response) {
+	try {
+		var user = request.user;
+		if (!user) {
+			return response.status(401).json({ success: false, errors: ['Login required'] });
+		}
+		
+		// Check if trades are enabled
+		var tradesCheck = await checkTradesEnabled();
+		if (!tradesCheck.enabled) {
+			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
+		}
+		
+		var originalProposal = await TradeProposal.findById(request.params.id);
+		if (!originalProposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (originalProposal.status !== 'pending' && originalProposal.status !== 'draft') {
+			return response.status(400).json({ success: false, errors: ['Cannot counter this proposal'] });
+		}
+		
+		// Check user is a party
+		var userFranchises = await getUserFranchises(user);
+		var userFranchiseInTrade = originalProposal.parties.find(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		
+		if (!userFranchiseInTrade) {
+			return response.status(403).json({ success: false, errors: ['You are not a party to this trade'] });
+		}
+		
+		// Get new deal from request body
+		var deal = request.body.deal;
+		if (!deal || typeof deal !== 'object') {
+			return response.status(400).json({ success: false, errors: ['Invalid trade data'] });
+		}
+		
+		var franchiseIds = Object.keys(deal);
+		if (franchiseIds.length < 2) {
+			return response.status(400).json({ success: false, errors: ['Trade must have at least 2 parties'] });
+		}
+		
+		// Build parties array for counter
+		var parties = [];
+		for (var i = 0; i < franchiseIds.length; i++) {
+			var franchiseId = franchiseIds[i];
+			var bucket = deal[franchiseId];
+			
+			var receives = {
+				players: [],
+				picks: [],
+				cash: []
+			};
+			
+			for (var j = 0; j < (bucket.players || []).length; j++) {
+				receives.players.push({ playerId: bucket.players[j].id });
+			}
+			
+			for (var j = 0; j < (bucket.picks || []).length; j++) {
+				receives.picks.push({ pickId: bucket.picks[j].id });
+			}
+			
+			for (var j = 0; j < (bucket.cash || []).length; j++) {
+				var cash = bucket.cash[j];
+				receives.cash.push({
+					amount: cash.amount,
+					season: cash.season,
+					fromFranchiseId: cash.from
+				});
+			}
+			
+			parties.push({
+				franchiseId: new mongoose.Types.ObjectId(franchiseId),
+				receives: receives,
+				accepted: false,
+				acceptedAt: null,
+				acceptedBy: null
+			});
+		}
+		
+		var expiresAt = await computeExpiresAt();
+		var now = new Date();
+		
+		// Mark the counter-proposer's party as accepted
+		for (var i = 0; i < parties.length; i++) {
+			if (parties[i].franchiseId.equals(userFranchiseInTrade.franchiseId)) {
+				parties[i].accepted = true;
+				parties[i].acceptedAt = now;
+				parties[i].acceptedBy = user._id;
+			}
+		}
+		
+		// Create counter proposal
+		var counterProposal = await TradeProposal.create({
+			status: 'pending',
+			createdByFranchiseId: userFranchiseInTrade.franchiseId,
+			createdByPersonId: user._id,
+			createdAt: now,
+			expiresAt: expiresAt,
+			acceptanceWindowStart: now,  // Counter-proposer accepting starts the clock
+			parties: parties,
+			notes: request.body.notes || null,
+			previousVersionId: originalProposal._id
+		});
+		
+		// Mark original as countered
+		originalProposal.status = 'countered';
+		originalProposal.counteredById = counterProposal._id;
+		await originalProposal.save();
+		
+		response.json({
+			success: true,
+			proposalId: counterProposal._id.toString()
+		});
+	} catch (err) {
+		console.error('counterProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// Admin: List proposals ready for approval
+async function listProposalsForApproval(request, response) {
+	try {
+		var proposals = await TradeProposal.find({ status: 'accepted' })
+			.populate('createdByPersonId', 'name')
+			.sort({ createdAt: -1 });
+		
+		// Build display data for each proposal
+		var proposalsDisplay = [];
+		for (var i = 0; i < proposals.length; i++) {
+			var proposal = proposals[i];
+			
+			var partiesDisplay = [];
+			for (var j = 0; j < proposal.parties.length; j++) {
+				var party = proposal.parties[j];
+				var displayName = await getFranchiseDisplayName(party.franchiseId);
+				
+				// Summarize what they receive
+				var playerCount = party.receives.players.length;
+				var pickCount = party.receives.picks.length;
+				var cashCount = party.receives.cash.length;
+				
+				partiesDisplay.push({
+					displayName: displayName,
+					playerCount: playerCount,
+					pickCount: pickCount,
+					cashCount: cashCount
+				});
+			}
+			
+			proposalsDisplay.push({
+				_id: proposal._id,
+				createdAt: proposal.createdAt,
+				createdBy: proposal.createdByPersonId ? proposal.createdByPersonId.name : 'Unknown',
+				parties: partiesDisplay
+			});
+		}
+		
+		response.render('admin-proposals', {
+			proposals: proposalsDisplay,
+			pageTitle: 'Approve Trades - PSO Admin',
+			activePage: 'admin'
+		});
+	} catch (err) {
+		console.error('listProposalsForApproval error:', err);
+		response.status(500).send('Error loading proposals');
+	}
+}
+
+// Admin: Approve a proposal (execute the trade)
+async function approveProposal(request, response) {
+	try {
+		// Check if trades are enabled
+		var tradesCheck = await checkTradesEnabled();
+		if (!tradesCheck.enabled) {
+			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
+		}
+		
+		var proposal = await TradeProposal.findById(request.params.id);
+		if (!proposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (proposal.status !== 'accepted') {
+			return response.status(400).json({ success: false, errors: ['Only fully-accepted proposals can be approved'] });
+		}
+		
+		// Transform proposal to processTrade format
+		var parties = [];
+		for (var i = 0; i < proposal.parties.length; i++) {
+			var party = proposal.parties[i];
+			
+			var receives = {
+				players: [],
+				picks: [],
+				cash: []
+			};
+			
+			// Look up current contract details for each player
+			for (var j = 0; j < party.receives.players.length; j++) {
+				var playerId = party.receives.players[j].playerId;
+				var contract = await Contract.findOne({ playerId: playerId });
+				if (!contract) {
+					var player = await Player.findById(playerId);
+					return response.status(400).json({ 
+						success: false, 
+						errors: ['Contract not found for player: ' + (player ? player.name : playerId)] 
+					});
+				}
+				
+				receives.players.push({
+					playerId: contract.playerId,
+					salary: contract.salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear
+				});
+			}
+			
+			// Picks
+			for (var j = 0; j < party.receives.picks.length; j++) {
+				receives.picks.push({ pickId: party.receives.picks[j].pickId });
+			}
+			
+			// Cash
+			for (var j = 0; j < party.receives.cash.length; j++) {
+				var c = party.receives.cash[j];
+				receives.cash.push({
+					amount: c.amount,
+					season: c.season,
+					fromFranchiseId: c.fromFranchiseId
+				});
+			}
+			
+			parties.push({
+				franchiseId: party.franchiseId,
+				receives: receives
+			});
+		}
+		
+		// Execute the trade
+		var result = await transactionService.processTrade({
+			timestamp: new Date(),
+			source: 'manual',
+			notes: request.body.notes || proposal.notes || null,
+			parties: parties
+		});
+		
+		if (result.success) {
+			proposal.status = 'executed';
+			proposal.executedTransactionId = result.transaction._id;
+			await proposal.save();
+			
+			response.json({
+				success: true,
+				tradeId: result.transaction.tradeId
+			});
+		} else {
+			response.status(400).json({
+				success: false,
+				errors: result.errors || ['Unknown error processing trade']
+			});
+		}
+	} catch (err) {
+		console.error('approveProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
+// Admin: Reject a proposal
+async function adminRejectProposal(request, response) {
+	try {
+		var proposal = await TradeProposal.findById(request.params.id);
+		if (!proposal) {
+			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
+		}
+		
+		if (proposal.status !== 'accepted' && proposal.status !== 'pending') {
+			return response.status(400).json({ success: false, errors: ['Cannot reject this proposal'] });
+		}
+		
+		proposal.status = 'rejected';
+		await proposal.save();
+		
+		response.json({ success: true });
+	} catch (err) {
+		console.error('adminRejectProposal error:', err);
+		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
+	}
+}
+
 module.exports = {
 	getTradeData: getTradeData,
 	proposePage: proposePage,
 	processPage: processPage,
-	submitTrade: submitTrade
+	submitTrade: submitTrade,
+	// Proposal functions
+	createProposal: createProposal,
+	viewProposal: viewProposal,
+	formalizeProposal: formalizeProposal,
+	acceptProposal: acceptProposal,
+	rejectProposal: rejectProposal,
+	withdrawProposal: withdrawProposal,
+	counterProposal: counterProposal,
+	listProposalsForApproval: listProposalsForApproval,
+	approveProposal: approveProposal,
+	adminRejectProposal: adminRejectProposal,
+	// Helper (exported for potential reuse)
+	getUserFranchises: getUserFranchises
 };

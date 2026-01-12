@@ -108,7 +108,7 @@ echo ""
 # =============================================================================
 
 # Collections created by the migration (safe to drop)
-MIGRATION_COLLECTIONS="franchises people regimes players contracts budgets picks transactions leagueconfigs rosters"
+MIGRATION_COLLECTIONS="franchises people regimes players contracts budgets picks transactions leagueconfigs rosters tradeproposals"
 
 # Collections to preserve (pre-existing data)
 # games, championships, playoffAppearances, regularSeasonWinningPercentage, 

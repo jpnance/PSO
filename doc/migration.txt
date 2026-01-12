@@ -19,7 +19,7 @@ What Gets Reset
 ---------------
 The following collections are DROPPED and reseeded:
    franchises, people, regimes, players, contracts, budgets, picks,
-   transactions, leagueconfigs, rosters
+   transactions, leagueconfigs, rosters, tradeproposals
 
 The following collections are PRESERVED (pre-existing data):
    games, championships, playoffAppearances, regularSeasonWinningPercentage,
@@ -118,11 +118,16 @@ cash entry in that party's receives.cash array.
 
 Future Work
 -----------
-- Transaction approval workflow: Add `pending` flag to transactions. Trades and
-  cuts can be proposed (pending: true) and require commissioner approval before
-  changes are applied. Commissioner screen shows all pending transactions,
-  grouped by facilitatedTradeId when a cut is part of a trade. Approve triggers
-  the actual Contract/Budget updates; reject discards or marks rejected.
+- Trade proposal workflow: IMPLEMENTED. Owners can propose trades via the Trade
+  Machine (/propose). Proposals go through: pending → accepted → executed.
+  Proposer is auto-accepted; other parties have 10 minutes to accept once the
+  first party accepts. All-accepted proposals appear in the commissioner queue
+  (/admin/proposals) for one-click approval. Drafts can also be shared for
+  discussion without commitment. See models/TradeProposal.js and propose/service.js.
+
+- Cut approval workflow (not yet implemented): Similar to trades, cuts could be
+  proposed and require commissioner approval. Would use facilitatedTradeId to
+  group cuts that are part of a trade.
 
 - 2012 Expansion Draft: The league expanded from 10 to 12 franchises in 2012.
   Quinn and Mitch joined via an expansion draft where they selected existing

@@ -144,12 +144,37 @@ block content
 									i.fa.fa-check.mr-1
 									| Submit Trade
 
+						//- Share/Propose Trade section (for logged-in franchise owners)
+						if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
+							div.share-propose-section.d-none.mt-3.pt-3.border-top.text-center
+								div.form-group
+									input#proposal-notes.form-control(type="text" placeholder="Notes (optional)")
+								div.proposal-result.mb-3
+								//- Propose button only shown if user is party (handled in JS)
+								button.propose-trade-btn.btn.btn-primary.mr-2.d-none
+									i.fa.fa-paper-plane.mr-1
+									| Propose Trade
+								button.share-trade-btn.btn.btn-outline-secondary
+									i.fa.fa-share-alt.mr-1
+									| Share
+								div.proposal-link-section.d-none.mt-3
+									div.alert.alert-success.mb-2.proposal-success-message
+										i.fa.fa-check.mr-2
+										span.message-text Proposal sent! Share this link:
+									div.input-group
+										input#proposal-link.form-control(type="text" readonly)
+										div.input-group-append
+											button.copy-link-btn.btn.btn-outline-secondary(type="button")
+												i.fa.fa-copy
+
 block scripts
 	script.
 		var currentSeason = #{season};
 		var isBeforeCutDay = #{isBeforeCutDay ? 'true' : 'false'};
 		var rosterLimit = #{rosterLimit};
 		var confirmName = !{isProcessingMode ? JSON.stringify(confirmName) : 'null'};
+		var isLoggedIn = !{isLoggedIn ? 'true' : 'false'};
+		var userFranchiseIds = !{JSON.stringify(userFranchiseIds || [])};
 		var franchiseData = {};
 		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { rosterCount: " + f.rosterCount + ", available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
 	script(src='/trade.js')
