@@ -192,6 +192,18 @@ async function draftBoard(request, response) {
 		pastSeasons.push(y);
 	}
 	
+	// Find current user's franchise name (if logged in)
+	var userFranchiseName = null;
+	if (request.user) {
+		var userRegime = await Regime.findOne({
+			ownerIds: request.user._id,
+			$or: [{ endSeason: null }, { endSeason: { $gte: currentSeason } }]
+		});
+		if (userRegime) {
+			userFranchiseName = userRegime.displayName;
+		}
+	}
+	
 	response.render('draft-board', {
 		season: season,
 		currentSeason: currentSeason,
@@ -199,6 +211,7 @@ async function draftBoard(request, response) {
 		totalPicks: picks.length,
 		quickSeasons: quickSeasons,
 		pastSeasons: pastSeasons,
+		userFranchiseName: userFranchiseName,
 		pageTitle: season + ' Draft Board - PSO',
 		activePage: 'draft'
 	});
