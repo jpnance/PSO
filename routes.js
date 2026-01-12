@@ -29,6 +29,7 @@ module.exports = function(app) {
 	app.get('/trades/:id', trades.singleTrade);
 	
 	app.get('/propose', propose.proposePage);
+	app.post('/propose/budget-impact', propose.budgetImpactPartial);
 	
 	// Trade proposals (owners)
 	app.post('/propose', requireLogin, propose.createProposal);

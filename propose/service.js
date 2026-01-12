@@ -768,80 +768,28 @@ async function viewProposal(request, response) {
 		var acceptanceWindowRemaining = proposal.getAcceptanceWindowRemaining();
 		var acceptanceWindowActive = acceptanceWindowRemaining !== null && acceptanceWindowRemaining > 0;
 		
-		// Calculate budget impact
-		var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
-		var budgetImpact = {};
-		var franchiseIds = proposal.parties.map(function(p) {
-			return (p.franchiseId._id || p.franchiseId).toString();
-		});
-		
-		// Initialize impact structure
-		franchiseIds.forEach(function(fId) {
-			budgetImpact[fId] = {};
-			seasons.forEach(function(s) {
-				budgetImpact[fId][s] = 0;
-			});
-		});
-		
-		// Process each party's receives
+		// Calculate budget impact using shared function
+		// Convert proposal format to deal format: { franchiseId: { players: [{ id }], cash: [{ from, season, amount }] } }
+		var deal = {};
 		for (var i = 0; i < proposal.parties.length; i++) {
 			var party = proposal.parties[i];
-			var receivingId = (party.franchiseId._id || party.franchiseId).toString();
-			
-			// Players: receiving franchise takes on salary, sending franchise loses it
-			for (var j = 0; j < party.receives.players.length; j++) {
-				var contract = await Contract.findOne({ playerId: party.receives.players[j].playerId });
-				if (!contract || contract.salary === null) continue; // Skip RFA rights
-				
-				var salary = contract.salary || 0;
-				var endYear = contract.endYear;
-				var sendingId = contract.franchiseId.toString();
-				
-				seasons.forEach(function(season) {
-					if (endYear && season <= endYear) {
-						// Receiver takes on salary (negative = cap burden)
-						budgetImpact[receivingId][season] -= salary;
-						// Sender loses salary obligation (positive = cap relief)
-						if (budgetImpact[sendingId]) {
-							budgetImpact[sendingId][season] += salary;
-						}
-					}
-				});
-			}
-			
-			// Cash: receiver gains, sender loses
-			for (var j = 0; j < party.receives.cash.length; j++) {
-				var c = party.receives.cash[j];
-				var season = c.season;
-				var amount = c.amount || 0;
-				var sendingId = c.fromFranchiseId.toString();
-				
-				if (budgetImpact[receivingId][season] !== undefined) {
-					budgetImpact[receivingId][season] += amount;
-				}
-				if (budgetImpact[sendingId] && budgetImpact[sendingId][season] !== undefined) {
-					budgetImpact[sendingId][season] -= amount;
-				}
-			}
+			var fId = (party.franchiseId._id || party.franchiseId).toString();
+			deal[fId] = {
+				players: party.receives.players.map(function(p) {
+					return { id: p.playerId.toString() };
+				}),
+				picks: [],
+				cash: party.receives.cash.map(function(c) {
+					return {
+						from: c.fromFranchiseId.toString(),
+						season: c.season,
+						amount: c.amount
+					};
+				})
+			};
 		}
 		
-		// Check if cash-neutral for current season
-		var isCashNeutral = franchiseIds.every(function(fId) {
-			return budgetImpact[fId][currentSeason] === 0;
-		});
-		
-		// Format for display
-		var budgetImpactDisplay = [];
-		for (var i = 0; i < partiesDisplay.length; i++) {
-			var fId = partiesDisplay[i].franchiseId.toString();
-			var seasonImpacts = seasons.map(function(s) {
-				return { season: s, delta: budgetImpact[fId][s] };
-			});
-			budgetImpactDisplay.push({
-				franchiseName: partiesDisplay[i].franchiseName,
-				seasons: seasonImpacts
-			});
-		}
+		var budgetImpactData = await budgetHelper.calculateTradeImpact(deal, currentSeason);
 		
 		response.render('proposal', {
 			proposal: proposal,
@@ -854,8 +802,8 @@ async function viewProposal(request, response) {
 			acceptanceWindowRemaining: acceptanceWindowRemaining,
 			tradesEnabled: tradesEnabled,
 			tradesDisabledReason: tradesDisabledReason,
-			budgetImpact: budgetImpactDisplay,
-			isCashNeutral: isCashNeutral,
+			budgetImpact: budgetImpactData,
+			isCashNeutral: budgetImpactData.isCashNeutral,
 			currentSeason: currentSeason,
 			pageTitle: 'Trade Proposal - PSO',
 			activePage: 'propose'
@@ -1361,6 +1309,30 @@ async function adminRejectProposal(request, response) {
 	}
 }
 
+// Return rendered budget impact partial for XHR updates
+async function budgetImpactPartial(request, response) {
+	try {
+		var deal = request.body.deal;
+		
+		if (!deal || typeof deal !== 'object') {
+			return response.status(400).send('Invalid deal data');
+		}
+		
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		var budgetImpact = await budgetHelper.calculateTradeImpact(deal, currentSeason);
+		
+		response.render('partials/budget-impact', {
+			budgetImpact: budgetImpact,
+			layout: false
+		});
+	} catch (err) {
+		console.error('budgetImpactPartial error:', err);
+		response.status(500).send('Error calculating budget impact');
+	}
+}
+
 module.exports = {
 	getTradeData: getTradeData,
 	proposePage: proposePage,
@@ -1377,6 +1349,8 @@ module.exports = {
 	listProposalsForApproval: listProposalsForApproval,
 	approveProposal: approveProposal,
 	adminRejectProposal: adminRejectProposal,
+	// Partials
+	budgetImpactPartial: budgetImpactPartial,
 	// Helper (exported for potential reuse)
 	getUserFranchises: getUserFranchises
 };

@@ -1,0 +1,31 @@
+//- Budget Impact partial for trade machine
+//- Can be rendered inline on initial page load or fetched via XHR
+//- 
+//- Expected data:
+//- budgetImpact: { franchises: [{ franchiseName, seasons: [{ season, delta, available, resulting }] }], isCashNeutral }
+
+if budgetImpact && budgetImpact.franchises && budgetImpact.franchises.length > 0
+	- var numSeasons = budgetImpact.seasons.length
+	each franchise, idx in budgetImpact.franchises
+		div.franchise-impact(class=idx > 0 ? 'mt-3' : '')
+			div.franchise-name.font-weight-bold.text-center.mb-1= franchise.franchiseName
+			table.table.table-sm.table-borderless.mb-0.w-100
+				colgroup
+					each s in budgetImpact.seasons
+						col(style='width: ' + (100 / numSeasons) + '%;')
+				thead
+					tr.border-bottom
+						each s in budgetImpact.seasons
+							th.text-center= s
+				tbody
+					tr
+						each s in franchise.seasons
+							- var delta = s.delta
+							- var resulting = s.resulting
+							- var isOverCap = resulting !== null && resulting < 0
+							td.text-center
+								div.budget-delta.lead(class=deltaClass(delta))= formatMoney(delta, { sign: 'auto' })
+								if resulting !== null
+									div.budget-resulting.small(class=isOverCap ? 'text-danger' : 'text-muted')= formatMoney(resulting)
+else
+	p.text-muted.mb-0 Select at least two parties to see budget impact.
