@@ -197,15 +197,15 @@ block content
 				i.fa.fa-check.mr-1
 				| Accept
 
-		if proposal.status === 'pending' && isParty
+		if proposal.status === 'pending' && isParty && !isCreator
 			button.btn.btn-outline-danger.mr-2.reject-btn
 				i.fa.fa-times.mr-1
 				| Reject
 
 		if proposal.status === 'pending' && isCreator
-			button.btn.btn-outline-secondary.withdraw-btn
-				i.fa.fa-undo.mr-1
-				| Withdraw
+			button.btn.btn-outline-danger.cancel-btn
+				i.fa.fa-times.mr-1
+				| Cancel
 
 block scripts
 	script.
@@ -296,16 +296,16 @@ block scripts
 				});
 		});
 		
-		$('.withdraw-btn').on('click', function() {
-			if (!confirm('Are you sure you want to withdraw this proposal?')) return;
+		$('.cancel-btn').on('click', function() {
+			if (!confirm('Are you sure you want to cancel this proposal?')) return;
 			
 			var $btn = $(this);
-			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Withdrawing...');
+			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Cancelling...');
 			
 			$.post('/propose/' + proposalId + '/withdraw')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-undo mr-1"></i> Withdraw');
+					$btn.prop('disabled', false).html('<i class="fa fa-times mr-1"></i> Cancel');
 					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
 					showError(errors);
 				});
