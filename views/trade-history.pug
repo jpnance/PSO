@@ -40,21 +40,21 @@ block styles
 			font-size: 0.8rem;
 		}
 		
-		/* Sidebar styles */
-		.sidebar {
+		/* Trade filter panel (BEM) */
+		.trade-filter {
 			background: #fff;
 			border: 1px solid #ddd;
 			border-radius: 8px;
 			padding: 1rem;
 			margin-bottom: 1rem;
 		}
-		.sidebar-section {
+		.trade-filter__section {
 			margin-bottom: 1.25rem;
 		}
-		.sidebar-section:last-child {
+		.trade-filter__section:last-child {
 			margin-bottom: 0;
 		}
-		.sidebar-title {
+		.trade-filter__title {
 			font-weight: 600;
 			font-size: 0.85rem;
 			color: #495057;
@@ -62,10 +62,10 @@ block styles
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
 		}
-		.sidebar select {
+		.trade-filter select {
 			font-size: 0.875rem;
 		}
-		.sidebar .btn {
+		.trade-filter .btn {
 			font-size: 0.875rem;
 		}
 		.filter-summary {
@@ -105,11 +105,11 @@ block styles
 			display: flex;
 			gap: 0.5rem;
 		}
-		.sidebar-nav {
+		.trade-filter__nav {
 			display: flex;
 			justify-content: space-between;
 		}
-		.sidebar-nav-left, .sidebar-nav-right {
+		.trade-filter__nav-left, .trade-filter__nav-right {
 			display: flex;
 			gap: 0.25rem;
 		}
@@ -137,9 +137,9 @@ block styles
 			text-decoration: none;
 			color: #212529;
 		}
-		/* Sticky sidebar on large screens */
+		/* Sticky filter panel on large screens */
 		@media (min-width: 992px) {
-			.sidebar-sticky {
+			.trade-filter--sticky {
 				position: sticky;
 				top: calc(56px + 1rem);
 			}
@@ -206,20 +206,20 @@ block content
 			h1.mb-4 Trade History
 			
 			div.row
-				//- Sidebar
+				//- Filter panel
 				div.col-lg-3.order-lg-2.mb-4.mb-lg-0
-					div.sidebar.sidebar-sticky
+					div.trade-filter.trade-filter--sticky
 						//- Go to trade
-						div.sidebar-section
-							div.sidebar-title Jump to Trade
+						div.trade-filter__section
+							div.trade-filter__title Jump to Trade
 							form.input-group.input-group-sm(onsubmit="window.location.href='/trades/' + this.q.value; return false;")
 								input.form-control(type="text" name="q" placeholder="#" pattern="[0-9]+" title="Enter a trade number")
 								div.input-group-append
 									button.btn.btn-outline-secondary(type="submit") Go
 						
 						//- Filters
-						div.sidebar-section
-							div.sidebar-title Filter
+						div.trade-filter__section
+							div.trade-filter__title Filter
 							form(method="get" action="/trades")
 								div.form-group.mb-2
 									label.small.mb-1(for="franchise-filter") Franchise
@@ -256,8 +256,8 @@ block content
 						
 						//- Pagination
 						if totalFiltered > 0
-							div.sidebar-section
-								div.sidebar-title Browse
+							div.trade-filter__section
+								div.trade-filter__title Browse
 								div.pagination-info
 									if filterFranchise || filterPartner
 										| #{totalFiltered} of #{totalTrades} trades
@@ -271,15 +271,15 @@ block content
 											| Page #{page} of #{totalPages}
 								
 								if perPage && totalPages > 1
-									div.sidebar-nav
-										div.sidebar-nav-left
+									div.trade-filter__nav
+										div.trade-filter__nav-left
 											if olderPage
 												a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) «
 												a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹
 											else
 												span.trade-nav-link.invisible «
 												span.trade-nav-link.invisible ‹
-										div.sidebar-nav-right
+										div.trade-filter__nav-right
 											if newerPage
 												a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) ›
 												a.trade-nav-link(href="/trades") »
