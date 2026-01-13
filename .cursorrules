@@ -1,0 +1,195 @@
+# PSO Design System Rules
+
+## Project Maturity
+
+This codebase is deployed but not yet battle-tested through a real fantasy season. Most features haven't been used by real users yet. This means:
+
+- **Refactoring is cheap** — No established user habits to break
+- **Experimentation is encouraged** — Try the cleaner approach, iterate freely
+- **Debt avoidance matters** — Better to get paradigms right now than accumulate workarounds
+- **New patterns welcome** — Don't shy away from rethinking UI/UX or data models
+
+Treat this as shaping-phase code, not legacy code.
+
+## Design System
+
+This project uses Pug templates with a design system of shared mixins, helpers, and CSS tokens. Follow these conventions when creating or modifying views.
+
+## View Helpers (available globally in Pug)
+
+All helpers are available directly in templates (e.g., `formatMoney(1234)`):
+
+- `formatMoney(n, options?)` — Format currency with `$` sign. Options: `{ sign: '+' | '-' | 'auto' }`
+  - `formatMoney(500)` → `$500`
+  - `formatMoney(500, { sign: '+' })` → `+$500`
+  - `formatMoney(-163, { sign: 'auto' })` → `-$163`
+- `formatRecord(w, l, t?)` — Format win-loss record: `10-5` or `10-5-1`
+- `formatPoints(n)` — Format with 2 decimal places and commas
+- `formatScore(n)` — Alias for formatPoints
+- `formatContractYears(start, end)` — Format as `23/26`, `FA/26`, or `unsigned`
+- `formatDateISO(d)` — Format as `YYYY-MM-DD`
+- `ordinal(n)` — Returns `1st`, `2nd`, `3rd`, etc.
+- `deltaClass(n)` — Returns `text-success`, `text-danger`, or `text-muted` based on sign
+- `sortedPositions(positions)` — Sort position array by standard order (QB, RB, WR, TE, DL, LB, DB, K)
+- `getPositionKey(player)` — Get sorted position string like `RB/WR`
+
+## Pug Mixins (in views/mixins.pug)
+
+Include mixins at top of template: `include mixins`
+
+### Position Badge
+```pug
++positionBadge(['QB'])
++positionBadge(['RB', 'WR'])
+```
+
+### Status Badge
+```pug
++statusBadge('pending')
++statusBadge('draft', 'hypothetical')  //- custom display text
+```
+Statuses: draft, pending, accepted, rejected, withdrawn, expired, executed, countered
+
+### Season Navigation
+```pug
++seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel)
++seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
+```
+
+### Trade Assets
+```pug
+//- Single asset
++tradeAsset({ type: 'player', playerName: 'Josh Allen', positions: ['QB'], contractInfo: '22/26' })
++tradeAsset({ type: 'pick', pickMain: '2025 1st', pickContext: '(from Schex)' })
++tradeAsset({ type: 'cash', cashMain: '$500', cashContext: 'in 2025' })
++tradeAsset({ type: 'rfa', playerName: 'Cooper Kupp', positions: ['WR'], contractInfo: 'RFA rights' })
++tradeAsset({ type: 'nothing', display: 'Nothing' })
+
+//- Full party with assets
++tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
+```
+
+### Budget Impact Table
+```pug
++budgetImpactTable([
+  { franchiseName: 'Schex', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }] },
+  { franchiseName: 'Koci', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }] }
+])
+```
+
+## CSS Files
+
+Include in `block styles` as needed:
+
+```pug
+block styles
+  link(rel='stylesheet' href='/css/positions.css')   //- for +positionBadge
+  link(rel='stylesheet' href='/css/components.css')  //- for status badges, trade assets, season nav
+```
+
+Note: `design-tokens.css` is already included globally via layout.pug.
+
+## CSS Conventions
+
+### Naming: BEM (Block Element Modifier)
+
+Use BEM naming to scope styles and prevent class name collisions:
+
+```css
+/* Block: standalone component */
+.trade-filter { }
+
+/* Element: part of a block (double underscore) */
+.trade-filter__section { }
+.trade-filter__title { }
+
+/* Modifier: variation of block/element (double hyphen) */
+.trade-filter--sticky { }
+.trade-filter__section--highlighted { }
+```
+
+### Where Styles Live
+
+| Type | Location | Naming |
+|------|----------|--------|
+| **Design tokens** | `design-tokens.css` | CSS custom properties (`--pos-qb-bg`) |
+| **Shared components** | `components.css` | BEM blocks (`.status-badge`, `.asset-list`) |
+| **Position styles** | `positions.css` | `.pos-{position}` pattern |
+| **Navigation** | `sidebar.css` | BEM with `nav-` prefix |
+| **Page-specific** | Inline `style.` block | BEM with page prefix (`.trade-filter`, `.draft-board`) |
+
+### Avoid
+
+- Generic class names that could collide (`.sidebar`, `.section`, `.title`, `.card`)
+- Deep nesting beyond Block > Element (no `.a__b__c`)
+- Modifiers without the base class
+
+### Migration
+
+When editing existing views, opportunistically rename colliding classes to BEM.
+Prioritize pages with inline styles that use generic names.
+
+## Design Tokens (CSS Custom Properties)
+
+Use these instead of hardcoded colors:
+
+### Position Colors
+- `--pos-qb-bg`, `--pos-qb-text`
+- `--pos-rb-bg`, `--pos-rb-text`
+- `--pos-wr-bg`, `--pos-wr-text`
+- `--pos-te-bg`, `--pos-te-text`
+- `--pos-idp-bg`, `--pos-idp-text` (also used for DL, LB, DB)
+- `--pos-k-bg`, `--pos-k-text`
+
+### Asset Type Colors
+- `--asset-player` (green)
+- `--asset-pick` (blue)
+- `--asset-cash` (gold)
+- `--asset-rfa` (purple)
+- `--asset-nothing` (gray)
+
+### Status Colors
+- `--status-{status}-bg`, `--status-{status}-text`
+- Statuses: draft, pending, accepted, rejected, withdrawn, expired, executed, countered
+
+### UI Colors
+- `--color-success`, `--color-danger`, `--color-warning`, `--color-info`, `--color-disabled`
+- `--border-light`, `--border-muted`
+- `--text-muted`, `--text-secondary`, `--text-tertiary`
+
+## Component Library
+
+Visit `/components` to see a live showcase of all mixins and design tokens.
+
+## Patterns
+
+### Money Formatting
+Always use `formatMoney()` — never manually prepend `$`:
+```pug
+//- Good
+| #{formatMoney(player.salary)}
+| #{formatMoney(delta, { sign: 'auto' })}
+
+//- Bad
+| $#{player.salary}
+```
+
+### Position Badges
+Use the mixin instead of inline styling:
+```pug
+//- Good
++positionBadge(player.positions)
+
+//- Bad
+span.badge(style='background: #D7EBFF; color: #1a5276')= player.positions.join('/')
+```
+
+### Contract Display
+Use the helper for consistent formatting:
+```pug
+//- Good
+| #{formatContractYears(player.startYear, player.endYear)}
+
+//- Bad
+| #{player.startYear % 100}/#{player.endYear % 100}
+```
