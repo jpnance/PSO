@@ -384,6 +384,25 @@ async function franchise(request, response) {
 	}
 }
 
+// Build a flexible regex pattern that matches names with or without punctuation
+// e.g., "aj" matches "A.J.", "AJ", "Aj", etc.
+function buildFlexibleNamePattern(query) {
+	// Escape special regex characters, but we'll handle . specially
+	var escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	
+	// Split into characters and allow optional punctuation between each
+	var chars = escaped.split('');
+	var pattern = chars.map(function(char, i) {
+		// After each character, allow optional periods, apostrophes, hyphens, spaces
+		if (i < chars.length - 1) {
+			return char + "[.\\s'-]*";
+		}
+		return char;
+	}).join('');
+	
+	return pattern;
+}
+
 // Player search for navbar typeahead
 async function search(request, response) {
 	try {
@@ -397,10 +416,13 @@ async function search(request, response) {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		
+		// Build flexible regex pattern to handle punctuation variations (A.J. vs AJ)
+		var namePattern = buildFlexibleNamePattern(query);
+		
 		// Find all players matching the query
 		// Sort by: searchRank ascending (lower = more relevant), nulls last, then name
 		var players = await Player.aggregate([
-			{ $match: { name: { $regex: query, $options: 'i' } } },
+			{ $match: { name: { $regex: namePattern, $options: 'i' } } },
 			{ $addFields: { 
 				searchRankSort: { $ifNull: ['$searchRank', 999999999] }
 			}},
