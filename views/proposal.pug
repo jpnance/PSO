@@ -13,12 +13,13 @@ block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
 	style.
-		.party-status {
+		/* Proposal page styles (BEM) */
+		.proposal-status {
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
 		}
-		.party-status .check {
+		.proposal-status__check {
 			width: 1.5rem;
 			height: 1.5rem;
 			border-radius: 50%;
@@ -26,21 +27,21 @@ block styles
 			align-items: center;
 			justify-content: center;
 		}
-		.party-status .check.accepted {
+		.proposal-status__check--accepted {
 			background: var(--color-success);
 			color: white;
 		}
-		.party-status .check.waiting {
+		.proposal-status__check--waiting {
 			background: #e9ecef;
 			color: #6c757d;
 		}
 		
-		.countdown-timer {
+		.proposal-countdown {
 			font-size: 1.5rem;
 			font-weight: 600;
 			font-family: monospace;
 		}
-		.countdown-timer.warning {
+		.proposal-countdown--warning {
 			color: #dc3545;
 		}
 
@@ -69,7 +70,7 @@ block content
 				i.fa.fa-clock-o.mr-2
 				strong Waiting for acceptance.
 				|  All parties must accept within:
-				div.countdown-timer.mt-2#countdown(data-remaining=acceptanceWindowRemaining)
+				div.proposal-countdown.mt-2#countdown(data-remaining=acceptanceWindowRemaining)
 					| --:--
 
 		//- Window expired notice
@@ -137,8 +138,8 @@ block content
 							strong Acceptance Status
 						div.card-body
 							each party in parties
-								div.party-status.mb-2
-									div.check(class=party.accepted ? 'accepted' : 'waiting')
+								div.proposal-status.mb-2
+									div.proposal-status__check(class=party.accepted ? 'proposal-status__check--accepted' : 'proposal-status__check--waiting')
 										if party.accepted
 											i.fa.fa-check
 										else
@@ -219,7 +220,7 @@ block scripts
 			acceptanceWindowRemaining -= 1000;
 			
 			if (acceptanceWindowRemaining <= 0) {
-				$el.text('Expired').addClass('warning');
+				$el.text('Expired').addClass('proposal-countdown--warning');
 				setTimeout(function() { location.reload(); }, 2000);
 				return;
 			}
@@ -230,7 +231,7 @@ block scripts
 			$el.text(mins + ':' + secs.toString().padStart(2, '0'));
 			
 			if (seconds < 60) {
-				$el.addClass('warning');
+				$el.addClass('proposal-countdown--warning');
 			}
 			
 			setTimeout(updateCountdown, 1000);
