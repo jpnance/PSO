@@ -28,7 +28,7 @@ block content
 			each franchise in franchises
 				optgroup(class="players-" + franchise._id label="From " + franchise.displayName)
 					each player in teams[franchise._id.toString()]
-						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract data-recoverable=player.recoverable data-positions=(player.positions ? player.positions.join(',') : ''))
+						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract data-contract-display=player.contractDisplay data-recoverable=player.recoverable data-positions=(player.positions ? player.positions.join(',') : ''))
 							| #{player.name}
 							|  
 							if player.terms == 'unsigned'

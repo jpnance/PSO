@@ -188,6 +188,7 @@ var tradeMachine = {
 			name: $player.data('name'),
 			salary: parseInt($player.data('salary')) || 0,
 			contract: $player.data('contract'),
+			contractDisplay: $player.data('contract-display'),
 			terms: terms,
 			recoverable: parseInt($player.data('recoverable')) || 0,
 			positions: positions
@@ -628,15 +629,8 @@ var tradeMachine = {
 	},
 
 	terms: (player) => {
-		if (player.terms == 'unsigned') {
-			return '$' + player.salary + ' · unsigned';
-		}
-		else if (player.terms == 'rfa-rights') {
-			return 'RFA rights';
-		}
-		else {
-			return '$' + player.salary + ' · ' + player.contract;
-		}
+		// Use server-computed contract display for consistent formatting
+		return player.contractDisplay;
 	},
 
 	formatPickNumber: (pickNumber, teamsPerRound) => {

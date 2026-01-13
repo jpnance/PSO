@@ -173,6 +173,16 @@ async function getTradeData(currentSeason) {
 			playerRecoverable = c.salary - buyOut;
 		}
 		
+		// Pre-compute the contract display for client-side use
+		var contractDisplay = null;
+		if (c.salary === null) {
+			contractDisplay = 'RFA rights';
+		} else if (!c.endYear) {
+			contractDisplay = formatContractDisplay(c.salary, null, null);
+		} else {
+			contractDisplay = formatContractDisplay(c.salary, c.startYear, c.endYear);
+		}
+		
 		teams[franchiseId].push({
 			id: c.playerId._id.toString(),
 			name: c.playerId.name,
@@ -180,6 +190,7 @@ async function getTradeData(currentSeason) {
 			salary: c.salary,
 			terms: terms,
 			contract: contract,
+			contractDisplay: contractDisplay,
 			recoverable: playerRecoverable
 		});
 	});
