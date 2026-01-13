@@ -3,29 +3,30 @@ extends layout
 block styles
 	link(rel='stylesheet' href='/css/components.css')
 	style.
-		.proposal-card {
+		/* Admin proposals page styles (BEM) */
+		.admin-proposals__card {
 			border-left: 4px solid var(--color-success);
 		}
-		.party-summary {
+		.admin-proposals__party-summary {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 1rem;
 		}
-		.party-summary .party {
+		.admin-proposals__party {
 			flex: 1;
 			min-width: 200px;
 		}
-		.party-summary .party-name {
+		.admin-proposals__party-name {
 			font-weight: 600;
 		}
-		.party-summary .receives {
+		.admin-proposals__receives {
 			color: #6c757d;
 			font-size: 0.9rem;
 		}
 		/* Use consistent icon colors from design system */
-		.receives .fa-user { color: var(--asset-player); }
-		.receives .fa-ticket { color: var(--asset-pick); }
-		.receives .fa-dollar { color: var(--asset-cash); }
+		.admin-proposals__receives .fa-user { color: var(--asset-player); }
+		.admin-proposals__receives .fa-ticket { color: var(--asset-pick); }
+		.admin-proposals__receives .fa-dollar { color: var(--asset-cash); }
 
 block content
 	div.container.py-4
@@ -39,7 +40,7 @@ block content
 				| No trades waiting for approval.
 		else
 			each proposal in proposals
-				div.card.proposal-card.mb-3
+				div.card.admin-proposals__card.mb-3
 					div.card-body
 						div.d-flex.justify-content-between.align-items-start.mb-3
 							div
@@ -50,11 +51,11 @@ block content
 									i.fa.fa-eye.mr-1
 									| View Details
 						
-						div.party-summary.mb-3
+						div.admin-proposals__party-summary.mb-3
 							each party in proposal.parties
-								div.party
-									div.party-name= party.displayName
-									div.receives
+								div.admin-proposals__party
+									div.admin-proposals__party-name= party.displayName
+									div.admin-proposals__receives
 										if party.playerCount > 0
 											span.mr-2
 												i.fa.fa-user.mr-1
@@ -74,23 +75,23 @@ block content
 						
 						div.d-flex.align-items-center
 							div.input-group.input-group-sm.mr-2(style="max-width: 300px")
-								input.form-control.proposal-notes(type="text" placeholder="Notes (optional)" data-proposal-id=proposal._id)
-							button.btn.btn-success.btn-sm.approve-btn.mr-2(data-proposal-id=proposal._id)
+								input.form-control.admin-proposals__notes(type="text" placeholder="Notes (optional)" data-proposal-id=proposal._id)
+							button.btn.btn-success.btn-sm.admin-proposals__approve-btn.mr-2(data-proposal-id=proposal._id)
 								i.fa.fa-check.mr-1
 								| Approve
-							button.btn.btn-outline-danger.btn-sm.reject-btn(data-proposal-id=proposal._id)
+							button.btn.btn-outline-danger.btn-sm.admin-proposals__reject-btn(data-proposal-id=proposal._id)
 								i.fa.fa-times.mr-1
 								| Reject
 						
-						div.proposal-result.mt-2(data-proposal-id=proposal._id)
+						div.admin-proposals__result.mt-2(data-proposal-id=proposal._id)
 
 block scripts
 	script.
-		$('.approve-btn').on('click', function() {
+		$('.admin-proposals__approve-btn').on('click', function() {
 			var $btn = $(this);
 			var proposalId = $btn.data('proposal-id');
-			var notes = $('.proposal-notes[data-proposal-id="' + proposalId + '"]').val().trim() || null;
-			var $result = $('.proposal-result[data-proposal-id="' + proposalId + '"]');
+			var notes = $('.admin-proposals__notes[data-proposal-id="' + proposalId + '"]').val().trim() || null;
+			var $result = $('.admin-proposals__result[data-proposal-id="' + proposalId + '"]');
 			
 			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Approving...');
 			$result.empty();
@@ -118,12 +119,12 @@ block scripts
 			});
 		});
 		
-		$('.reject-btn').on('click', function() {
+		$('.admin-proposals__reject-btn').on('click', function() {
 			if (!confirm('Are you sure you want to reject this proposal?')) return;
 			
 			var $btn = $(this);
 			var proposalId = $btn.data('proposal-id');
-			var $result = $('.proposal-result[data-proposal-id="' + proposalId + '"]');
+			var $result = $('.admin-proposals__result[data-proposal-id="' + proposalId + '"]');
 			
 			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Rejecting...');
 			$result.empty();
