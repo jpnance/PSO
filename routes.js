@@ -13,6 +13,12 @@ var rookies = require('./rookies/service.js');
 var auth = require('./auth/service.js');
 var { requireLogin, requireAdmin } = require('./auth/middleware.js');
 
+// Middleware to prevent caching of dynamic partials
+function noCache(req, res, next) {
+	res.set('Cache-Control', 'no-store');
+	next();
+}
+
 module.exports = function(app) {
 	app.get('/', league.overview);
 
@@ -23,14 +29,14 @@ module.exports = function(app) {
 	app.get('/logout/all', auth.logoutAll);
 
 	app.get('/league', league.overview);
-	app.get('/league/search', league.search);
+	app.get('/league/search', noCache, league.search);
 	app.get('/franchise/:rosterId', league.franchise);
 	
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);
 	
 	app.get('/propose', propose.proposePage);
-	app.post('/propose/budget-impact', propose.budgetImpactPartial);
+	app.post('/propose/budget-impact', noCache, propose.budgetImpactPartial);
 	
 	// Trade proposals (owners)
 	app.post('/propose', requireLogin, propose.createProposal);
