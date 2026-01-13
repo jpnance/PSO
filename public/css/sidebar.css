@@ -545,13 +545,8 @@
 /* Unrestricted free agent search results (not clickable) */
 .search-result-ufa {
     cursor: default;
-    opacity: 0.7;
 }
 
 .search-result-ufa:hover {
     background-color: transparent;
-}
-
-.search-result-ufa .search-result-franchise {
-    font-style: italic;
 }
