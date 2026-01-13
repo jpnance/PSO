@@ -9,7 +9,7 @@ var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
-var { getPositionIndex } = require('../helpers/view');
+var { getPositionIndex, shortenPlayerName } = require('../helpers/view');
 
 // Calendar helpers
 function formatShortDate(date) {
@@ -482,26 +482,34 @@ function buildTradeSummary(trade, searchedPlayerIds, allPlayerNames) {
 	
 	// Build asset list with searched player first
 	var otherAssets = [];
+	var otherAssetsShort = [];
 	
 	// Add other players (not the searched player)
 	var otherPlayers = playerNames.filter(function(p) { return p.id !== matchedPlayerId; });
 	otherPlayers.forEach(function(p) {
 		otherAssets.push(p.name);
+		otherAssetsShort.push(shortenPlayerName(p.name));
 	});
 	
 	// Add picks
 	picks.forEach(function(pick) {
-		otherAssets.push(pick.season + ' ' + formatPickRound(pick.round));
+		var pickStr = pick.season + ' ' + formatPickRound(pick.round);
+		otherAssets.push(pickStr);
+		otherAssetsShort.push(pickStr);
 	});
 	
 	// Add cash
 	cashItems.forEach(function(cash) {
-		otherAssets.push('$' + cash.amount);
+		var cashStr = '$' + cash.amount;
+		otherAssets.push(cashStr);
+		otherAssetsShort.push(cashStr);
 	});
 	
 	return {
 		matchedPlayerName: matchedPlayerName,
-		otherAssets: otherAssets.join(', ')
+		matchedPlayerShort: matchedPlayerName ? shortenPlayerName(matchedPlayerName) : null,
+		otherAssets: otherAssets.join(', '),
+		otherAssetsShort: otherAssetsShort.join(', ')
 	};
 }
 
@@ -515,7 +523,9 @@ function formatTradeResult(trade, tradeNumber, summary) {
 		type: 'trade',
 		tradeNumber: tradeNumber,
 		matchedPlayerName: summary.matchedPlayerName || null,
+		matchedPlayerShort: summary.matchedPlayerShort || null,
 		otherAssets: summary.otherAssets || null,
+		otherAssetsShort: summary.otherAssetsShort || null,
 		dateStr: dateStr,
 		url: '/trades/' + tradeNumber
 	};

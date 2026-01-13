@@ -574,6 +574,25 @@
     text-overflow: ellipsis;
 }
 
+/* Responsive asset names - full names on larger screens, abbreviated on mobile */
+.search-assets-full {
+    display: block;
+}
+
+.search-assets-short {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .search-assets-full {
+        display: none;
+    }
+    
+    .search-assets-short {
+        display: block;
+    }
+}
+
 /* Section divider between players and trades */
 .search-section-divider {
     padding: 0.4rem 0.75rem;

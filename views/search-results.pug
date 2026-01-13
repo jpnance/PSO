@@ -44,10 +44,19 @@ else
 					span.search-result-name Trade ##{trade.tradeNumber}
 					span.search-result-date= trade.dateStr
 				if trade.matchedPlayerName || trade.otherAssets
-					div.search-result-assets
+					//- Full names on larger screens
+					div.search-result-assets.search-assets-full
 						if trade.matchedPlayerName
 							strong= trade.matchedPlayerName
 							if trade.otherAssets
 								| , #{trade.otherAssets}
 						else
 							| #{trade.otherAssets}
+					//- Abbreviated names on smaller screens
+					div.search-result-assets.search-assets-short
+						if trade.matchedPlayerShort
+							strong= trade.matchedPlayerShort
+							if trade.otherAssetsShort
+								| , #{trade.otherAssetsShort}
+						else
+							| #{trade.otherAssetsShort}
