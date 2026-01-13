@@ -1,26 +1,25 @@
 extends layout.pug
+include mixins
 
 block styles
 	link(rel='stylesheet' href='/league.css')
+	link(rel='stylesheet' href='/css/positions.css')
 	style.
-		.player-row:hover {
+		/* Admin players page styles (BEM) */
+		.admin-players__row:hover {
 			background-color: #f8f9fa;
 		}
-		.player-link {
+		.admin-players__link {
 			text-decoration: none;
 			color: inherit;
 		}
-		.player-link:hover {
+		.admin-players__link:hover {
 			text-decoration: underline;
 		}
-		.search-form {
+		.admin-players__search {
 			max-width: 400px;
 		}
-		.position-badge {
-			font-size: 0.75rem;
-			padding: 0.2rem 0.4rem;
-		}
-		.result-count {
+		.admin-players__result-count {
 			font-size: 0.875rem;
 			color: #6c757d;
 		}
@@ -31,7 +30,7 @@ block content
 			h1.mb-0 Players
 			a.btn.btn-primary(href='/admin/players/new') Add New Player
 		
-		form.search-form.mb-4(method='GET' action='/admin/players')
+		form.admin-players__search.mb-4(method='GET' action='/admin/players')
 			div.input-group
 				input.form-control(
 					type='text'
@@ -64,9 +63,9 @@ block content
 					| No results
 		else
 			if totalCount > players.length
-				p.result-count Showing #{players.length} of #{totalCount} results
+				p.admin-players__result-count Showing #{players.length} of #{totalCount} results
 			else
-				p.result-count #{totalCount} result#{totalCount === 1 ? '' : 's'}
+				p.admin-players__result-count #{totalCount} result#{totalCount === 1 ? '' : 's'}
 			
 			table.table.table-sm
 				thead.thead-light
@@ -76,12 +75,12 @@ block content
 						th Source
 				tbody
 					each player in players
-						tr.player-row
+						tr.admin-players__row
 							td
-								a.player-link(href='/admin/players/' + player._id)= player.name
+								a.admin-players__link(href='/admin/players/' + player._id)= player.name
 							td
 								if player.positions && player.positions.length
-									span.badge.badge-secondary.position-badge= player.positionDisplay
+									+positionBadge(player.positions)
 								else
 									span.text-muted —
 							td
