@@ -13,7 +13,7 @@ async function generatePicksJson() {
 	var franchises = await Franchise.find({});
 	var franchiseNameById = {};
 	franchises.forEach(function(f) {
-		franchiseNameById[f._id.toString()] = PSO.franchises[f.sleeperRosterId];
+		franchiseNameById[f._id.toString()] = PSO.franchises[f.rosterId];
 	});
 
 	// Get available picks for current and future seasons

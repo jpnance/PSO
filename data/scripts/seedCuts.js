@@ -629,7 +629,7 @@ async function run() {
 	var franchises = await Franchise.find({});
 	var franchiseByRosterId = {};
 	franchises.forEach(function(f) {
-		franchiseByRosterId[f.sleeperRosterId] = f._id;
+		franchiseByRosterId[f.rosterId] = f._id;
 	});
 	
 	console.log('\nProcessing ' + analysis.cuts.length + ' cuts...\n');
@@ -643,16 +643,16 @@ async function run() {
 		var cut = analysis.cuts[i];
 		
 		// Find franchise
-		var sleeperRosterId = getSleeperRosterId(cut.owner);
-		if (!sleeperRosterId) {
+		var rosterId = getSleeperRosterId(cut.owner);
+		if (!rosterId) {
 			errors.push({ player: cut.name, reason: 'Unknown owner: ' + cut.owner });
 			skipped++;
 			continue;
 		}
 		
-		var franchiseId = franchiseByRosterId[sleeperRosterId];
+		var franchiseId = franchiseByRosterId[rosterId];
 		if (!franchiseId) {
-			errors.push({ player: cut.name, reason: 'No franchise for rosterId: ' + sleeperRosterId });
+			errors.push({ player: cut.name, reason: 'No franchise for rosterId: ' + rosterId });
 			skipped++;
 			continue;
 		}

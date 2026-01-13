@@ -177,7 +177,7 @@ async function getLeagueOverview(currentSeason) {
 		
 		result.push({
 			_id: franchise._id,
-			sleeperRosterId: franchise.sleeperRosterId,
+			rosterId: franchise.rosterId,
 			displayName: regime ? regime.displayName : 'Unknown',
 			owners: regime ? Regime.sortOwnerNames(regime.ownerIds) : [],
 			roster: roster,
@@ -290,7 +290,7 @@ async function getFranchise(franchiseId, currentSeason) {
 	
 	return {
 		_id: franchise._id,
-		sleeperRosterId: franchise.sleeperRosterId,
+		rosterId: franchise.rosterId,
 		displayName: currentRegime ? currentRegime.displayName : 'Unknown',
 		owners: currentRegime ? Regime.sortOwnerNames(currentRegime.ownerIds) : [],
 		regimes: regimesWithSortedOwners,
@@ -365,7 +365,17 @@ async function franchise(request, response) {
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		var phase = config ? config.getPhase() : 'unknown';
 		
-		var data = await getFranchise(request.params.id, currentSeason);
+		var rosterId = parseInt(request.params.rosterId, 10);
+		if (isNaN(rosterId)) {
+			return response.status(404).send('Franchise not found');
+		}
+		
+		var franchiseDoc = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchiseDoc) {
+			return response.status(404).send('Franchise not found');
+		}
+		
+		var data = await getFranchise(franchiseDoc._id, currentSeason);
 		if (!data) {
 			return response.status(404).send('Franchise not found');
 		}
@@ -376,7 +386,7 @@ async function franchise(request, response) {
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: data.displayName + ' - PSO',
 			activePage: 'franchise',
-			currentFranchiseId: data._id.toString()
+			currentRosterId: data.rosterId
 		});
 	} catch (err) {
 		console.error(err);

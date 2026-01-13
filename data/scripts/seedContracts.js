@@ -26,7 +26,7 @@ function prompt(question) {
 	});
 }
 
-// Map owner display names to sleeperRosterId (1-12)
+// Map owner display names to rosterId (1-12)
 function getSleeperRosterId(ownerName) {
 	return PSO.franchiseIds[ownerName];
 }
@@ -201,11 +201,11 @@ async function seed() {
 		await Contract.deleteMany({});
 	}
 
-	// Load franchises (to map sleeperRosterId -> _id)
+	// Load franchises (to map rosterId -> _id)
 	var franchises = await Franchise.find({});
 	var franchiseByRosterId = {};
 	franchises.forEach(function(f) {
-		franchiseByRosterId[f.sleeperRosterId] = f._id;
+		franchiseByRosterId[f.rosterId] = f._id;
 	});
 
 	console.log('Loaded', franchises.length, 'franchises');
@@ -222,16 +222,16 @@ async function seed() {
 		var rp = rosteredPlayers[i];
 
 		// Find franchise
-		var sleeperRosterId = getSleeperRosterId(rp.owner);
-		if (!sleeperRosterId) {
+		var rosterId = getSleeperRosterId(rp.owner);
+		if (!rosterId) {
 			errors.push({ player: rp.name, reason: 'Unknown owner: ' + rp.owner });
 			skipped++;
 			continue;
 		}
 
-		var franchiseId = franchiseByRosterId[sleeperRosterId];
+		var franchiseId = franchiseByRosterId[rosterId];
 		if (!franchiseId) {
-			errors.push({ player: rp.name, reason: 'No franchise for rosterId: ' + sleeperRosterId });
+			errors.push({ player: rp.name, reason: 'No franchise for rosterId: ' + rosterId });
 			skipped++;
 			continue;
 		}

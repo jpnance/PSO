@@ -862,7 +862,7 @@ async function seed() {
 	var franchises = await Franchise.find({});
 	var franchiseByRosterId = {};
 	franchises.forEach(function(f) {
-		franchiseByRosterId[f.sleeperRosterId] = f._id;
+		franchiseByRosterId[f.rosterId] = f._id;
 	});
 
 	// Load draft info for rookie contract heuristic

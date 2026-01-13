@@ -13,8 +13,8 @@ async function generateCashJson() {
 	var franchises = await Franchise.find({});
 	var franchiseNameById = {};
 	franchises.forEach(function(f) {
-		// Use sleeperRosterId to look up owner name from PSO.franchises
-		franchiseNameById[f._id.toString()] = PSO.franchises[f.sleeperRosterId];
+		// Use rosterId to look up owner name from PSO.franchises
+		franchiseNameById[f._id.toString()] = PSO.franchises[f.rosterId];
 	});
 
 	// Get all budgets, sorted by season then owner

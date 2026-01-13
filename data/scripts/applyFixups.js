@@ -59,12 +59,12 @@ async function run() {
 		console.log('=== Franchise Transfer ===');
 		var ft = fixups.franchiseTransfer;
 		
-		var franchise = await Franchise.findOne({ sleeperRosterId: ft.sleeperRosterId });
+		var franchise = await Franchise.findOne({ rosterId: ft.rosterId });
 		if (!franchise) {
-			console.log('  ✗ Franchise ' + ft.sleeperRosterId + ' not found');
-			errors.push('Franchise ' + ft.sleeperRosterId + ' not found');
+			console.log('  ✗ Franchise ' + ft.rosterId + ' not found');
+			errors.push('Franchise ' + ft.rosterId + ' not found');
 		} else {
-			console.log('  sleeperRosterId: ' + ft.sleeperRosterId + ' → ' + ft.newDisplayName);
+			console.log('  rosterId: ' + ft.rosterId + ' → ' + ft.newDisplayName);
 			console.log('  newOwnerName: ' + ft.newOwnerName);
 			console.log('  effectiveSeason: ' + ft.effectiveSeason);
 			
@@ -98,14 +98,14 @@ async function run() {
 		var franchises = await Franchise.find({}).lean();
 		var body = {};
 		
-		// Map sleeperRosterId → franchiseId for draft order
+		// Map rosterId → franchiseId for draft order
 		if (sr.draftOrder) {
-			console.log('  Draft order (sleeperRosterId → slot):');
+			console.log('  Draft order (rosterId → slot):');
 			franchises.forEach(function(f) {
-				var slot = sr.draftOrder[String(f.sleeperRosterId)];
+				var slot = sr.draftOrder[String(f.rosterId)];
 				if (slot) {
 					body['draftOrder_' + f._id.toString()] = String(slot);
-					console.log('    ' + f.sleeperRosterId + ' → ' + slot);
+					console.log('    ' + f.rosterId + ' → ' + slot);
 				}
 			});
 		}

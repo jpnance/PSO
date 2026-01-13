@@ -113,10 +113,10 @@ async function seed() {
 	for (var i = 1; i <= 12; i++) {
 		var doc = await Franchise.create({
 			foundedYear: 2008,
-			sleeperRosterId: i
+			rosterId: i
 		});
 		franchiseDocs[i] = doc;
-		console.log('  Created franchise', doc._id, '(Sleeper roster', doc.sleeperRosterId + ', currently', PSO.franchises[i] + ')');
+		console.log('  Created franchise', doc._id, '(Sleeper roster', doc.rosterId + ', currently', PSO.franchises[i] + ')');
 	}
 
 	// Seed people

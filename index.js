@@ -31,6 +31,7 @@ app.use(function(req, res, next) {
 // Make banner and navigation data available to all templates
 var LeagueConfig = require('./models/LeagueConfig');
 var Regime = require('./models/Regime');
+var Franchise = require('./models/Franchise');
 app.use(async function(req, res, next) {
 	try {
 		var config = await LeagueConfig.findById('pso').lean();
@@ -41,6 +42,13 @@ app.use(async function(req, res, next) {
 			res.locals.banner = config.banner;
 			res.locals.bannerStyle = config.bannerStyle || 'info';
 		}
+		
+		// Get all franchises for rosterId lookup
+		var franchises = await Franchise.find({}).lean();
+		var franchiseById = {};
+		franchises.forEach(function(f) {
+			franchiseById[f._id.toString()] = f;
+		});
 		
 		// Get all current franchises for sidebar navigation
 		var regimes = await Regime.find({
@@ -61,8 +69,9 @@ app.use(async function(req, res, next) {
 			});
 		
 		res.locals.navFranchises = currentRegimes.map(function(r) {
+			var franchise = franchiseById[r.franchiseId.toString()];
 			return {
-				_id: r.franchiseId,
+				rosterId: franchise ? franchise.rosterId : null,
 				displayName: r.displayName
 			};
 		});
@@ -75,8 +84,9 @@ app.use(async function(req, res, next) {
 				});
 			});
 			if (userRegime) {
+				var userFranchiseDoc = franchiseById[userRegime.franchiseId.toString()];
 				res.locals.userFranchise = {
-					_id: userRegime.franchiseId,
+					rosterId: userFranchiseDoc ? userFranchiseDoc.rosterId : null,
 					displayName: userRegime.displayName
 				};
 			}

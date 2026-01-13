@@ -105,28 +105,28 @@ async function verify() {
 			var actual = await Budget.findOne({ franchiseId: franchiseId, season: season }).lean();
 
 			if (!actual) {
-				drifts.push(`Missing budget for franchise ${franchise.sleeperRosterId} season ${season}`);
+				drifts.push(`Missing budget for franchise ${franchise.rosterId} season ${season}`);
 				continue;
 			}
 
 			// Compare
 			if (actual.payroll !== payroll) {
-				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: payroll is ${actual.payroll}, expected ${payroll}`);
+				drifts.push(`Franchise ${franchise.rosterId} ${season}: payroll is ${actual.payroll}, expected ${payroll}`);
 			}
 			if (actual.buyOuts !== buyOuts) {
-				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: buyOuts is ${actual.buyOuts}, expected ${buyOuts}`);
+				drifts.push(`Franchise ${franchise.rosterId} ${season}: buyOuts is ${actual.buyOuts}, expected ${buyOuts}`);
 			}
 			if (actual.cashIn !== cashIn) {
-				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: cashIn is ${actual.cashIn}, expected ${cashIn}`);
+				drifts.push(`Franchise ${franchise.rosterId} ${season}: cashIn is ${actual.cashIn}, expected ${cashIn}`);
 			}
 			if (actual.cashOut !== cashOut) {
-				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: cashOut is ${actual.cashOut}, expected ${cashOut}`);
+				drifts.push(`Franchise ${franchise.rosterId} ${season}: cashOut is ${actual.cashOut}, expected ${cashOut}`);
 			}
 			if (actual.available !== expectedAvailable) {
-				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: available is ${actual.available}, expected ${expectedAvailable}`);
+				drifts.push(`Franchise ${franchise.rosterId} ${season}: available is ${actual.available}, expected ${expectedAvailable}`);
 			}
 			if (actual.recoverable !== recoverable) {
-				drifts.push(`Franchise ${franchise.sleeperRosterId} ${season}: recoverable is ${actual.recoverable}, expected ${recoverable}`);
+				drifts.push(`Franchise ${franchise.rosterId} ${season}: recoverable is ${actual.recoverable}, expected ${recoverable}`);
 			}
 		}
 	}

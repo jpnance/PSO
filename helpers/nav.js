@@ -7,15 +7,15 @@
  * Build the complete navigation structure
  * @param {Object} options
  * @param {string} options.activePage - Current page identifier
- * @param {string} options.currentFranchiseId - ID of franchise being viewed (if any)
- * @param {Object} options.userFranchise - Logged-in user's franchise { _id, displayName }
- * @param {Array} options.franchises - All franchises [{ _id, displayName }]
+ * @param {number} options.currentRosterId - Roster ID of franchise being viewed (if any)
+ * @param {Object} options.userFranchise - Logged-in user's franchise { rosterId, displayName }
+ * @param {Array} options.franchises - All franchises [{ rosterId, displayName }]
  * @param {boolean} options.isAdmin - Whether user is admin
  * @returns {Object} Navigation structure
  */
 function buildNav(options) {
 	var activePage = options.activePage || '';
-	var currentFranchiseId = options.currentFranchiseId || null;
+	var currentRosterId = options.currentRosterId || null;
 	var userFranchise = options.userFranchise || null;
 	var franchises = options.franchises || [];
 	var isAdmin = options.isAdmin || false;
@@ -31,8 +31,8 @@ function buildNav(options) {
 	}
 
 	// Helper to check if current franchise matches
-	function isFranchiseActive(franchiseId) {
-		return currentFranchiseId && currentFranchiseId === franchiseId.toString();
+	function isFranchiseActive(rosterId) {
+		return currentRosterId && currentRosterId === rosterId;
 	}
 
 	// Build primary navigation (always visible)
@@ -80,8 +80,8 @@ function buildNav(options) {
 			id: 'my-franchise',
 			label: 'My Franchise',
 			icon: 'fa-star',
-			href: '/franchise/' + userFranchise._id,
-			active: isFranchiseActive(userFranchise._id)
+			href: '/franchise/' + userFranchise.rosterId,
+			active: isFranchiseActive(userFranchise.rosterId)
 		});
 	}
 
@@ -97,8 +97,8 @@ function buildNav(options) {
 		items: franchises.map(function(f) {
 			return {
 				label: f.displayName,
-				href: '/franchise/' + f._id,
-				active: isFranchiseActive(f._id)
+				href: '/franchise/' + f.rosterId,
+				active: isFranchiseActive(f.rosterId)
 			};
 		}),
 		isFranchiseList: true

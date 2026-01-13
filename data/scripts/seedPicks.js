@@ -53,7 +53,7 @@ var ownerAliases = {
 	'Pat/Quinn': 1
 };
 
-// Map owner display names to sleeperRosterId (1-12) for a given season
+// Map owner display names to rosterId (1-12) for a given season
 function getSleeperRosterId(ownerName, season) {
 	if (!ownerName) return null;
 	var name = ownerName.trim();
@@ -202,11 +202,11 @@ async function seed() {
 		await Pick.deleteMany({});
 	}
 
-	// Load franchises (to map sleeperRosterId -> _id)
+	// Load franchises (to map rosterId -> _id)
 	var franchises = await Franchise.find({});
 	var franchiseByRosterId = {};
 	franchises.forEach(function(f) {
-		franchiseByRosterId[f.sleeperRosterId] = f._id;
+		franchiseByRosterId[f.rosterId] = f._id;
 	});
 
 	console.log('Loaded', franchises.length, 'franchises');

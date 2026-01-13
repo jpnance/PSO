@@ -121,7 +121,7 @@ async function seed() {
 			created++;
 
 			console.log(
-				franchise.sleeperRosterId + ' ' + season + ':',
+				franchise.rosterId + ' ' + season + ':',
 				'payroll=' + payroll,
 				'buyOuts=' + buyOuts,
 				'cashIn=' + cashIn,

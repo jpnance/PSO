@@ -50,10 +50,10 @@ var mockData = {
 
 // ============ Setup / Teardown ============
 
-async function createMockFranchise(name, sleeperRosterId) {
+async function createMockFranchise(name, rosterId) {
 	var franchise = await Franchise.create({
 		foundedYear: TEST_SEASON - 10,
-		sleeperRosterId: sleeperRosterId
+		rosterId: rosterId
 	});
 	
 	var regime = await Regime.create({

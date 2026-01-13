@@ -90,7 +90,7 @@ Example fixups.json:
 
    {
      "franchiseTransfer": {
-       "sleeperRosterId": 2,
+       "rosterId": 2,
        "newOwnerName": "Nam Nguyen",
        "newDisplayName": "Nam",
        "effectiveSeason": 2026

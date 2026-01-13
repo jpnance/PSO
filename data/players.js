@@ -14,7 +14,7 @@ async function generatePlayersJson() {
 	var franchises = await Franchise.find({});
 	var franchiseNameById = {};
 	franchises.forEach(function(f) {
-		franchiseNameById[f._id.toString()] = PSO.franchises[f.sleeperRosterId];
+		franchiseNameById[f._id.toString()] = PSO.franchises[f.rosterId];
 	});
 
 	// Load all contracts and index by playerId

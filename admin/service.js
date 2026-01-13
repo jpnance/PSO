@@ -299,7 +299,7 @@ async function transferFranchiseForm(request, response) {
 			id: f._id.toString(),
 			displayName: regime ? regime.displayName : 'Unknown',
 			owners: ownerNames,
-			sleeperRosterId: f.sleeperRosterId
+			rosterId: f.rosterId
 		};
 	}).sort(function(a, b) {
 		return a.displayName.localeCompare(b.displayName);
