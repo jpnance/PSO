@@ -33,11 +33,11 @@ async function loadPlayerNames() {
 		if (!p.name) return;
 		var parts = p.name.split(' ');
 		if (parts.length >= 1) {
-			var first = parts[0].toLowerCase().replace(/[^a-z]/g, '');
+			var first = parts[0].toLowerCase().replace(/[^a-z-]/g, '');
 			if (first) firstNames.push(first);
 		}
 		if (parts.length >= 2) {
-			var last = parts[parts.length - 1].toLowerCase().replace(/[^a-z]/g, '');
+			var last = parts[parts.length - 1].toLowerCase().replace(/[^a-z-]/g, '');
 			if (last) lastNames.push(last);
 		}
 	});
