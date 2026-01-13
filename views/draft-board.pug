@@ -5,32 +5,33 @@ block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
 	style.
-		.header-row {
+		/* Draft board page styles (BEM) */
+		.draft-board__header {
 			margin-bottom: 1rem;
 		}
-		.header-row h1 {
+		.draft-board__header h1 {
 			margin: 0 0 0.5rem 0;
 		}
-		.rounds-container {
+		.draft-board__rounds {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 1rem;
 		}
-		.round-card {
+		.draft-board__round {
 			flex: 0 0 auto;
 			width: 320px;
 			border: 1px solid #dee2e6;
 			border-radius: 4px;
 			overflow: hidden;
 		}
-		.round-header {
+		.draft-board__round-header {
 			background: #343a40;
 			color: white;
 			padding: 0.5rem 0.75rem;
 			font-weight: 600;
 			font-size: 1rem;
 		}
-		.pick-row {
+		.draft-board__pick {
 			display: flex;
 			padding: 0.4rem 0.6rem;
 			border-bottom: 1px solid #eee;
@@ -40,142 +41,152 @@ block styles
 		}
 		/* Mobile: full-width cards */
 		@media (max-width: 576px) {
-			.round-card {
+			.draft-board__round {
 				width: 100%;
 			}
-			.pick-row {
+			.draft-board__pick {
 				font-size: 0.95rem;
 			}
 		}
-		.pick-row:last-child {
+		.draft-board__pick:last-child {
 			border-bottom: none;
 		}
-		.pick-num {
+		.draft-board__pick-num {
 			flex: 0 0 50px;
 			font-weight: bold;
 			color: #6c757d;
 			font-size: 0.75rem;
 		}
-		.pick-num-raw {
+		.draft-board__pick-num-raw {
 			font-size: 0.65rem;
 			font-weight: normal;
 			color: #999;
 		}
-		.pick-details {
+		.draft-board__pick-details {
 			flex: 1;
 			min-width: 0;
 		}
-		.pick-player {
+		.draft-board__pick-player {
 			font-weight: 500;
 		}
-		.pick-player-name {
+		.draft-board__pick-player-name {
 		}
-		.pick-position {
+		.draft-board__pick-position {
 			font-size: 0.65rem;
 			font-weight: 600;
 			margin-left: 0.25rem;
 		}
-		.pick-salary {
+		/* Position text colors */
+		.pos-QB .draft-board__pick-position { color: var(--pos-qb-text); }
+		.pos-RB .draft-board__pick-position { color: var(--pos-rb-text); }
+		.pos-WR .draft-board__pick-position { color: var(--pos-wr-text); }
+		.pos-TE .draft-board__pick-position { color: var(--pos-te-text); }
+		.pos-DL .draft-board__pick-position,
+		.pos-LB .draft-board__pick-position,
+		.pos-DB .draft-board__pick-position,
+		.pos-IDP .draft-board__pick-position { color: var(--pos-idp-text); }
+		.pos-K .draft-board__pick-position { color: var(--pos-k-text); }
+		.draft-board__pick-salary {
 			font-size: 0.7rem;
 			color: #555;
 			margin-left: 0.25rem;
 		}
-		.pick-owner {
+		.draft-board__pick-owner {
 			font-size: 0.7rem;
 			color: #6c757d;
 		}
-		.pick-from {
+		.draft-board__pick-from {
 			color: #999;
 		}
 		/* Position colors now in /css/positions.css */
 		/* Passed pick - same as K for muted look */
-		.pick-row.pick-passed { background-color: var(--pos-k-bg); }
-		.pick-row.pick-passed .pick-player-name {
+		.draft-board__pick--passed { background-color: var(--pos-k-bg); }
+		.draft-board__pick--passed .draft-board__pick-player-name {
 			color: #7f8c8d;
 			font-style: italic;
 		}
 		/* Available pick */
-		.pick-row.pick-available { background-color: #f8f9fa; }
-		.pick-row.pick-available .pick-owner {
+		.draft-board__pick--available { background-color: #f8f9fa; }
+		.draft-board__pick--available .draft-board__pick-owner {
 			font-size: 1rem;
 			font-weight: 500;
 			color: #343a40;
 		}
-		.pick-row.pick-available .pick-owner .pick-from {
+		.draft-board__pick--available .draft-board__pick-owner .draft-board__pick-from {
 			font-size: 0.75rem;
 			font-weight: normal;
 			color: #999;
 		}
 		/* User's own picks - left border accent matching position colors */
-		.pick-row.my-pick {
+		.draft-board__pick--mine {
 			padding-left: calc(0.6rem - 3px);
 		}
-		.pick-row.my-pick.pos-QB { border-left: 3px solid var(--pos-qb-text); }
-		.pick-row.my-pick.pos-RB { border-left: 3px solid var(--pos-rb-text); }
-		.pick-row.my-pick.pos-WR { border-left: 3px solid var(--pos-wr-text); }
-		.pick-row.my-pick.pos-TE { border-left: 3px solid var(--pos-te-text); }
-		.pick-row.my-pick.pos-IDP { border-left: 3px solid var(--pos-idp-text); }
-		.pick-row.my-pick.pos-K { border-left: 3px solid var(--pos-k-text); }
-		.pick-row.my-pick.pick-passed { border-left: 3px solid #7f8c8d; }
-		.pick-row.my-pick.pick-available { border-left: 3px solid #6c757d; }
+		.draft-board__pick--mine.pos-QB { border-left: 3px solid var(--pos-qb-text); }
+		.draft-board__pick--mine.pos-RB { border-left: 3px solid var(--pos-rb-text); }
+		.draft-board__pick--mine.pos-WR { border-left: 3px solid var(--pos-wr-text); }
+		.draft-board__pick--mine.pos-TE { border-left: 3px solid var(--pos-te-text); }
+		.draft-board__pick--mine.pos-IDP { border-left: 3px solid var(--pos-idp-text); }
+		.draft-board__pick--mine.pos-K { border-left: 3px solid var(--pos-k-text); }
+		.draft-board__pick--mine.draft-board__pick--passed { border-left: 3px solid #7f8c8d; }
+		.draft-board__pick--mine.draft-board__pick--available { border-left: 3px solid #6c757d; }
 		
 		/* Legend items - combined bg and text colors */
-		small > span.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
-		small > span.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); }
-		small > span.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); }
-		small > span.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); }
-		small > span.pos-IDP { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); }
-		small > span.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
-		small > span.pick-passed { background-color: var(--pos-k-bg); color: #7f8c8d; }
+		.draft-board__legend span.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
+		.draft-board__legend span.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); }
+		.draft-board__legend span.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); }
+		.draft-board__legend span.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); }
+		.draft-board__legend span.pos-IDP { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); }
+		.draft-board__legend span.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
+		.draft-board__legend span.draft-board__pick--passed { background-color: var(--pos-k-bg); color: #7f8c8d; }
 
 block content
 	div.container-fluid.py-3
-		div.header-row
+		div.draft-board__header
 			h1 #{season} Draft Board
 			+seasonNav(season, quickSeasons, pastSeasons, 'Past Drafts')
 
 		if Object.keys(rounds).length === 0
 			div.alert.alert-info No picks found for #{season}
 		else
-			div.rounds-container
+			div.draft-board__rounds
 				each pickList, round in rounds
-					div.round-card
-						div.round-header Round #{round}
+					div.draft-board__round
+						div.draft-board__round-header Round #{round}
 						each pick in pickList
-							- var rowClass = pick.positionGroup ? ('pos-' + pick.positionGroup) : (pick.status === 'passed' ? 'pick-passed' : 'pick-available')
+							- var rowClass = pick.positionGroup ? ('pos-' + pick.positionGroup) : (pick.status === 'passed' ? 'draft-board__pick--passed' : 'draft-board__pick--available')
 							- var isMyPick = userFranchiseName && pick.currentOwner === userFranchiseName
-							div.pick-row(class=rowClass class=(isMyPick ? 'my-pick' : ''))
-								div.pick-num
+							div.draft-board__pick(class=rowClass class=(isMyPick ? 'draft-board__pick--mine' : ''))
+								div.draft-board__pick-num
 									if pick.pickDisplay
 										div #{pick.pickDisplay}
-										div.pick-num-raw ##{pick.pickNumber}
+										div.draft-board__pick-num-raw ##{pick.pickNumber}
 									else
 										| —
-								div.pick-details
+								div.draft-board__pick-details
 									if pick.playerName || pick.status === 'passed' || pick.status === 'used'
-										div.pick-player
+										div.draft-board__pick-player
 											if pick.playerName
-												span.pick-player-name #{pick.playerName}
+												span.draft-board__pick-player-name #{pick.playerName}
 												if pick.positionDisplay
-													span.pick-position  #{pick.positionDisplay}
+													span.draft-board__pick-position  #{pick.positionDisplay}
 												if pick.salary
-													span.pick-salary  #{formatMoney(pick.salary)}
+													span.draft-board__pick-salary  #{formatMoney(pick.salary)}
 											else if pick.status === 'passed'
-												span.pick-player-name Passed
+												span.draft-board__pick-player-name Passed
 											else if pick.status === 'used'
-												span.pick-player-name.text-muted (unknown player)
-										div.pick-owner
+												span.draft-board__pick-player-name.text-muted (unknown player)
+										div.draft-board__pick-owner
 											span #{pick.currentOwner}
 											if pick.fromOwner
-												span.pick-from  (from #{pick.fromOwner})
+												span.draft-board__pick-from  (from #{pick.fromOwner})
 									else
-										div.pick-owner
+										div.draft-board__pick-owner
 											span #{pick.currentOwner}
 											if pick.fromOwner
-												span.pick-from  (from #{pick.fromOwner})
+												span.draft-board__pick-from  (from #{pick.fromOwner})
 		
 		hr.mt-4
-		div.mt-3
+		div.draft-board__legend.mt-3
 			h6 Position Legend
 			small
 				span.mr-3.px-2.py-1.pos-QB QB
@@ -184,4 +195,4 @@ block content
 				span.mr-3.px-2.py-1.pos-TE TE
 				span.mr-3.px-2.py-1.pos-IDP IDP
 				span.mr-3.px-2.py-1.pos-K K
-				span.mr-3.px-2.py-1.pick-passed(style='font-style: italic;') Passed
+				span.mr-3.px-2.py-1.draft-board__pick--passed(style='font-style: italic;') Passed
