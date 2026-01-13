@@ -4,7 +4,7 @@ var Pick = require('../models/Pick');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
-var { formatContractYears, ordinal } = require('../helpers/view');
+var { formatContractYears, formatContractDisplay, ordinal } = require('../helpers/view');
 
 
 async function getRegime(franchiseId, season) {
@@ -144,10 +144,12 @@ async function buildTradeDisplayData(trades, options) {
 				var p = playerList[k];
 				var player = playerMap[p.playerId.toString()];
 				var playerName = player ? player.name : 'Unknown';
-				var contract = formatContractYears(p.contractStart || p.startYear, p.contractEnd || p.endYear);
+				var contractStart = p.contractStart || p.startYear;
+				var contractEnd = p.contractEnd || p.endYear;
+				var contract = formatContractYears(contractStart, contractEnd);
 				
 				var display = playerName + ' ($' + (p.salary || 0) + ', ' + contract + ')';
-				var contractInfo = '$' + (p.salary || 0) + ' · ' + contract;
+				var contractInfo = formatContractDisplay(p.salary || 0, contractStart, contractEnd);
 				var notes = [];
 				
 				// Build chain of all trades for this player on the same contract

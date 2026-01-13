@@ -94,6 +94,18 @@ function formatContractYears(start, end) {
 }
 
 /**
+ * Format full contract display with salary and years
+ * @param {number} salary - salary amount
+ * @param {number} start - start year (e.g. 2023)
+ * @param {number} end - end year (e.g. 2026)
+ * @returns {string} e.g. "$45 · 24/26"
+ */
+function formatContractDisplay(salary, start, end) {
+	var years = formatContractYears(start, end);
+	return formatMoney(salary) + ' · ' + years;
+}
+
+/**
  * Format a date as YYYY-MM-DD (for form inputs)
  * @param {Date|string} d
  * @returns {string}
@@ -402,6 +414,7 @@ module.exports = {
 	formatScore: formatScore,
 	ordinal: ordinal,
 	formatContractYears: formatContractYears,
+	formatContractDisplay: formatContractDisplay,
 	formatDateISO: formatDateISO,
 	deltaClass: deltaClass,
 	sortedPositions: sortedPositions,

@@ -12,8 +12,8 @@ else
 					+positionBadge(result.positions)
 				div.search-result-meta
 					span.search-result-franchise= result.franchiseName
-					if result.salary
-						span.search-result-contract  · #{formatMoney(result.salary)} · #{result.contract}
+					if result.contractDisplay
+						span.search-result-contract  · #{result.contractDisplay}
 		else if result.status === 'rfa'
 			//- RFA - link to franchise that owns rights
 			a.search-result.search-result-rfa(href='/franchise/' + result.franchiseId)
@@ -30,4 +30,4 @@ else
 					span.search-result-name= result.name
 					+positionBadge(result.positions)
 				div.search-result-meta
-					span.search-result-franchise UFA
+					span.search-result-contract UFA

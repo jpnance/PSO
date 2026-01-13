@@ -10,7 +10,7 @@ var Transaction = require('../models/Transaction');
 var TradeProposal = require('../models/TradeProposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
-var { formatContractYears, ordinal, getPositionIndex } = require('../helpers/view');
+var { formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -733,11 +733,10 @@ async function viewProposal(request, response) {
 					});
 				} else if (contract) {
 					// Regular player
-					var contractYears = contract.endYear ? formatContractYears(contract.startYear, contract.endYear) : 'unsigned';
 					assets.push({
 						type: 'player',
 						playerName: playerName,
-						contractInfo: '$' + (contract.salary || 0) + ' · ' + contractYears,
+						contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
 						positions: positions
 					});
 				} else {

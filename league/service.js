@@ -449,7 +449,7 @@ async function search(request, response) {
 		});
 		
 		// Build results
-		var { formatContractYears } = require('../helpers/view');
+		var { formatContractDisplay } = require('../helpers/view');
 		
 		var results = players.map(function(player) {
 			var contract = contractByPlayer[player._id.toString()];
@@ -464,8 +464,7 @@ async function search(request, response) {
 					positions: player.positions || [],
 					franchiseId: franchise ? franchise.rosterId : null,
 					franchiseName: regime ? regime.displayName : 'Unknown',
-					salary: contract.salary,
-					contract: formatContractYears(contract.startYear, contract.endYear),
+					contractDisplay: formatContractDisplay(contract.salary, contract.startYear, contract.endYear),
 					status: 'rostered'
 				};
 			} else if (contract && contract.salary === null) {
@@ -478,8 +477,7 @@ async function search(request, response) {
 					positions: player.positions || [],
 					franchiseId: franchise ? franchise.rosterId : null,
 					franchiseName: regime ? regime.displayName : 'Unknown',
-					salary: null,
-					contract: null,
+					contractDisplay: null,
 					status: 'rfa'
 				};
 			} else {

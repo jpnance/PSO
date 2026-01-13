@@ -629,13 +629,13 @@ var tradeMachine = {
 
 	terms: (player) => {
 		if (player.terms == 'unsigned') {
-			return '$' + player.salary + ', unsigned';
+			return '$' + player.salary + ' · unsigned';
 		}
 		else if (player.terms == 'rfa-rights') {
 			return 'RFA rights';
 		}
 		else {
-			return '$' + player.salary + ', ' + player.contract;
+			return '$' + player.salary + ' · ' + player.contract;
 		}
 	},
 
