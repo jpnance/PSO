@@ -384,9 +384,137 @@ async function franchise(request, response) {
 	}
 }
 
+// Player search for navbar typeahead
+async function search(request, response) {
+	try {
+		var query = (request.query.q || '').trim();
+		
+		// Require at least 2 characters
+		if (query.length < 2) {
+			return response.render('search-results', { results: [] });
+		}
+		
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		// Find all players matching the query
+		// Sort by: searchRank ascending (lower = more relevant), nulls last, then name
+		var players = await Player.aggregate([
+			{ $match: { name: { $regex: query, $options: 'i' } } },
+			{ $addFields: { 
+				searchRankSort: { $ifNull: ['$searchRank', 999999999] }
+			}},
+			{ $sort: { searchRankSort: 1, name: 1 } },
+			{ $limit: 20 }
+		]);
+		
+		if (players.length === 0) {
+			return response.render('search-results', { results: [] });
+		}
+		
+		var playerIds = players.map(function(p) { return p._id; });
+		
+		// Find all contracts for those players (both active contracts and RFA rights)
+		// Active contracts have salary != null, RFA rights have salary = null
+		var contracts = await Contract.find({
+			playerId: { $in: playerIds }
+		}).lean();
+		
+		// Build contract lookup by player ID
+		var contractByPlayer = {};
+		contracts.forEach(function(c) {
+			contractByPlayer[c.playerId.toString()] = c;
+		});
+		
+		// Get current regimes for franchise display names
+		var regimes = await Regime.find({
+			$or: [
+				{ endSeason: null },
+				{ endSeason: { $gte: currentSeason } }
+			]
+		}).lean();
+		
+		var regimeByFranchise = {};
+		regimes.forEach(function(r) {
+			if (r.startSeason <= currentSeason) {
+				regimeByFranchise[r.franchiseId.toString()] = r;
+			}
+		});
+		
+		// Get all franchises to get rosterId
+		var franchises = await Franchise.find({}).lean();
+		var franchiseById = {};
+		franchises.forEach(function(f) {
+			franchiseById[f._id.toString()] = f;
+		});
+		
+		// Build results
+		var { formatContractYears } = require('../helpers/view');
+		
+		var results = players.map(function(player) {
+			var contract = contractByPlayer[player._id.toString()];
+			
+			if (contract && contract.salary !== null) {
+				// Player is rostered (has contract with salary)
+				var regime = regimeByFranchise[contract.franchiseId.toString()];
+				var franchise = franchiseById[contract.franchiseId.toString()];
+				
+				return {
+					name: player.name,
+					positions: player.positions || [],
+					franchiseId: franchise ? franchise.rosterId : null,
+					franchiseName: regime ? regime.displayName : 'Unknown',
+					salary: contract.salary,
+					contract: formatContractYears(contract.startYear, contract.endYear),
+					status: 'rostered'
+				};
+			} else if (contract && contract.salary === null) {
+				// Player is an RFA (contract exists but salary is null)
+				var regime = regimeByFranchise[contract.franchiseId.toString()];
+				var franchise = franchiseById[contract.franchiseId.toString()];
+				
+				return {
+					name: player.name,
+					positions: player.positions || [],
+					franchiseId: franchise ? franchise.rosterId : null,
+					franchiseName: regime ? regime.displayName : 'Unknown',
+					salary: null,
+					contract: null,
+					status: 'rfa'
+				};
+			} else {
+				// Player is an unrestricted free agent (no contract)
+				return {
+					name: player.name,
+					positions: player.positions || [],
+					franchiseId: null,
+					franchiseName: null,
+					salary: null,
+					contract: null,
+					status: 'ufa'
+				};
+			}
+		});
+		
+		// Sort: rostered first, then RFA, then UFA - preserve searchRank order within each group
+		var statusOrder = { rostered: 0, rfa: 1, ufa: 2 };
+		results.sort(function(a, b) {
+			return statusOrder[a.status] - statusOrder[b.status];
+		});
+		
+		results = results.slice(0, 10);
+		
+		response.render('search-results', { results: results });
+	} catch (err) {
+		console.error('Search error:', err);
+		response.render('search-results', { results: [] });
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
 	overview: overview,
-	franchise: franchise
+	franchise: franchise,
+	search: search
 };

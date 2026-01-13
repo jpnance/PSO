@@ -23,6 +23,7 @@ module.exports = function(app) {
 	app.get('/logout/all', auth.logoutAll);
 
 	app.get('/league', league.overview);
+	app.get('/league/search', league.search);
 	app.get('/franchise/:rosterId', league.franchise);
 	
 	app.get('/trades', trades.tradeHistory);

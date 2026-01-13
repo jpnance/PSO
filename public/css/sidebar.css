@@ -444,3 +444,114 @@
     border-top: 1px solid #495057;
     margin: 0.25rem 0;
 }
+
+/* Search Dropdown */
+.search-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.25rem;
+    background-color: #2d3238;
+    border: 1px solid #495057;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1050;
+}
+
+.search-dropdown.show {
+    display: block;
+}
+
+.search-result {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    border-bottom: 1px solid #3d4349;
+    transition: background-color 0.1s;
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.search-result:hover,
+.search-result.focused {
+    background-color: var(--sidebar-hover);
+    color: var(--sidebar-text-hover);
+    text-decoration: none;
+}
+
+.search-result-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-result-name {
+    font-weight: 500;
+    color: #fff;
+}
+
+.search-result-meta {
+    font-size: 0.8rem;
+    color: #868e96;
+    margin-top: 0.15rem;
+}
+
+.search-result-franchise {
+    color: #adb5bd;
+}
+
+.search-result-contract {
+    color: #6c757d;
+}
+
+.search-no-results {
+    padding: 0.75rem 1rem;
+    color: #868e96;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Position badges in search results */
+.search-result .position-badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+}
+
+/* Mobile search dropdown */
+.mobile-search-wrapper {
+    position: relative;
+}
+
+.mobile-search-wrapper .search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.25rem;
+}
+
+/* RFA search results */
+.search-result-rfa .search-result-franchise {
+    color: var(--asset-rfa, #9b59b6);
+}
+
+/* Unrestricted free agent search results (not clickable) */
+.search-result-ufa {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.search-result-ufa:hover {
+    background-color: transparent;
+}
+
+.search-result-ufa .search-result-franchise {
+    font-style: italic;
+}
