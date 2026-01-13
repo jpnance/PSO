@@ -129,7 +129,7 @@ block content
 						each party in parties
 							+tradeParty(party)
 
-			//- Right column: Status, Budget, Notes
+			//- Right column: Status, Budget
 			div.col-lg-4
 				//- Party acceptance status widget
 				if proposal.status === 'pending'
@@ -162,14 +162,6 @@ block content
 								| Not Cash-Neutral
 					div.card-body
 						include partials/budget-impact
-
-				//- Notes
-				if proposal.notes
-					div.card.mb-4
-						div.card-header
-							strong Notes
-						div.card-body
-							p.mb-0= proposal.notes
 
 		//- Action buttons
 		div.action-result.mb-3
