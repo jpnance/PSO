@@ -42,7 +42,8 @@ async function listPlayers(request, response) {
 				name: p.name,
 				sleeperId: p.sleeperId,
 				positions: sortedPositions(p.positions),
-				positionDisplay: sortedPositions(p.positions).join('/') || '—'
+				positionDisplay: sortedPositions(p.positions).join('/') || '—',
+				college: p.college
 			};
 		});
 	}

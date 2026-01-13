@@ -71,23 +71,24 @@ block content
 				thead.thead-light
 					tr
 						th Name
-						th Position
-						th Source
+						th College
 				tbody
 					each player in players
 						tr.admin-players__row
 							td
+								if player.sleeperId
+									i.fa.fa-cloud.text-info.mr-2(title='Sleeper-linked')
+								else
+									i.fa.fa-history.text-success.mr-2(title='Historical')
 								a.admin-players__link(href='/admin/players/' + player._id)= player.name
-							td
 								if player.positions && player.positions.length
+									|  
 									+positionBadge(player.positions)
+							td
+								if player.college
+									= player.college
 								else
 									span.text-muted —
-							td
-								if player.sleeperId
-									i.fa.fa-cloud.text-info(title='Sleeper-linked')
-								else
-									i.fa.fa-history.text-success(title='Historical')
 		
 		div.mt-4
 			a.btn.btn-secondary(href='/admin') ← Back to Admin
