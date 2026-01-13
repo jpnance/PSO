@@ -118,6 +118,18 @@ block content
 					|  
 					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
 
+		//- Share link for active proposals
+		if proposal.status === 'draft' || proposal.status === 'pending'
+			div.input-group.input-group-sm.mb-4
+				div.input-group-prepend
+					span.input-group-text.bg-primary.text-white.border-primary
+						i.fa.fa-link.mr-2
+						| Share
+				input#share-link.form-control.bg-white(type='text' readonly)
+				div.input-group-append
+					button.btn.btn-outline-primary.copy-link-btn(type='button')
+						i.fa.fa-copy
+
 		//- Main content area with columns
 		div.row
 			//- Left column: Trade details
@@ -233,6 +245,9 @@ block scripts
 			updateCountdown();
 		}
 		
+		// Set share link to current URL
+		$('#share-link').val(window.location.href);
+		
 		function showResult(html) {
 			$('.action-result').html(html);
 		}
@@ -246,6 +261,20 @@ block scripts
 			html += '</div>';
 			showResult(html);
 		}
+		
+		// Copy share link
+		$('.copy-link-btn').on('click', function() {
+			var $input = $('#share-link');
+			$input.select();
+			document.execCommand('copy');
+			
+			var $btn = $(this);
+			var originalHtml = $btn.html();
+			$btn.html('<i class="fa fa-check"></i>');
+			setTimeout(function() {
+				$btn.html(originalHtml);
+			}, 2000);
+		});
 		
 		$('.formalize-btn').on('click', function() {
 			var $btn = $(this);

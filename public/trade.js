@@ -740,20 +740,8 @@ var tradeMachine = {
 				isDraft: isDraft
 			}),
 			success: (response) => {
-				$proposeBtn.prop('disabled', false);
-				$shareBtn.prop('disabled', false);
-				$activeBtn.html(btnOriginalHtml);
-				
-				var proposalUrl = window.location.origin + '/propose/' + response.proposalId;
-				$('#proposal-link').val(proposalUrl);
-				
-				// Update success message based on type
-				var message = isDraft 
-					? 'Trade shared! Copy this link to discuss:'
-					: 'Proposal sent! Share this link with the other party:';
-				$('.proposal-success-message .message-text').text(message);
-				
-				$linkSection.removeClass('d-none');
+				// Redirect to the proposal page
+				window.location.href = '/propose/' + response.proposalId;
 			},
 			error: (xhr) => {
 				$proposeBtn.prop('disabled', false);
