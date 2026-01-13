@@ -453,10 +453,10 @@
     left: 0;
     right: 0;
     margin-top: 0.25rem;
-    background-color: #2d3238;
-    border: 1px solid #495057;
+    background-color: #fff;
+    border: 1px solid var(--border-light);
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     max-height: 400px;
     overflow-y: auto;
     z-index: 1050;
@@ -469,9 +469,9 @@
 .search-result {
     display: block;
     padding: 0.6rem 0.75rem;
-    color: var(--sidebar-text);
+    color: #212529;
     text-decoration: none;
-    border-bottom: 1px solid #3d4349;
+    border-bottom: 1px solid var(--border-light);
     transition: background-color 0.1s;
 }
 
@@ -481,8 +481,8 @@
 
 .search-result:hover,
 .search-result.focused {
-    background-color: var(--sidebar-hover);
-    color: var(--sidebar-text-hover);
+    background-color: #f8f9fa;
+    color: #212529;
     text-decoration: none;
 }
 
@@ -494,26 +494,26 @@
 
 .search-result-name {
     font-weight: 500;
-    color: #fff;
+    color: #212529;
 }
 
 .search-result-meta {
     font-size: 0.8rem;
-    color: #868e96;
+    color: var(--text-muted);
     margin-top: 0.15rem;
 }
 
 .search-result-franchise {
-    color: #adb5bd;
+    color: #495057;
 }
 
 .search-result-contract {
-    color: #6c757d;
+    color: var(--text-muted);
 }
 
 .search-no-results {
     padding: 0.75rem 1rem;
-    color: #868e96;
+    color: var(--text-muted);
     font-size: 0.875rem;
     text-align: center;
 }
@@ -539,7 +539,7 @@
 
 /* RFA search results */
 .search-result-rfa .search-result-franchise {
-    color: var(--asset-rfa, #9b59b6);
+    color: var(--asset-rfa);
 }
 
 /* Unrestricted free agent search results (not clickable) */
