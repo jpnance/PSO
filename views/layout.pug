@@ -3,6 +3,19 @@ html
 	head
 		meta(charset='utf-8')
 		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		
+		//- Open Graph meta tags
+		meta(property='og:site_name' content='Primetime Soap Operas')
+		meta(property='og:type' content='website')
+		block og_meta
+			//- Default OG tags if not overridden
+			meta(property='og:title' content=pageTitle || 'Primetime Soap Operas')
+			meta(property='og:description' content='Extra since ’08')
+			meta(property='og:image' content='https://thedynastyleague.com/images/handshake.jpg')
+		
+		//- Twitter Card meta tags
+		meta(name='twitter:card' content='summary_large_image')
+		block twitter_meta
 
 		link(rel='stylesheet' href='/css/bootstrap.min.css')
 		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')

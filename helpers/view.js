@@ -143,6 +143,245 @@ function getPositionKey(player) {
 	return sortedPositions(player.positions).join('/');
 }
 
+/**
+ * Shorten a player name to first initial + last name
+ * @param {string} name - Full name like "Ja'Marr Chase"
+ * @returns {string} - Shortened like "J. Chase"
+ */
+function shortenPlayerName(name) {
+	if (!name) return '';
+	var parts = name.trim().split(/\s+/);
+	if (parts.length === 1) return name;
+	var firstInitial = parts[0].charAt(0) + '.';
+	var lastName = parts[parts.length - 1];
+	return firstInitial + ' ' + lastName;
+}
+
+/**
+ * Format a list with commas (terse, no "and")
+ * @param {string[]} items - Array of strings
+ * @returns {string} - "A, B, C"
+ */
+function oxfordJoin(items) {
+	if (!items || items.length === 0) return '';
+	return items.join(', ');
+}
+
+/**
+ * Convert number to word for small quantities
+ * @param {number} n
+ * @returns {string}
+ */
+function numberToWord(n) {
+	var words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+	return n <= 10 ? words[n] : String(n);
+}
+
+/**
+ * Group picks by round and format as "two 1sts" or "1st, 2nd, and 3rd"
+ * @param {Object[]} picks - Array of pick objects with round info
+ * @returns {string} - Formatted pick summary
+ */
+function formatPicksGrouped(picks) {
+	if (!picks || picks.length === 0) return '';
+	
+	// Extract round numbers from picks
+	var rounds = [];
+	for (var i = 0; i < picks.length; i++) {
+		var round = null;
+		// Try to extract round from pickMain like "1st round pick" or "Pick 2.04"
+		if (picks[i].pickMain) {
+			var match = picks[i].pickMain.match(/(\d+)(?:st|nd|rd|th)/i);
+			if (match) {
+				round = parseInt(match[1], 10);
+			} else {
+				// Try "Pick X.XX" format
+				match = picks[i].pickMain.match(/Pick\s+(\d+)\./i);
+				if (match) {
+					round = parseInt(match[1], 10);
+				}
+			}
+		}
+		if (round) rounds.push(round);
+	}
+	
+	if (rounds.length === 0) {
+		// Fallback: just count picks
+		return picks.length === 1 ? 'a pick' : numberToWord(picks.length) + ' picks';
+	}
+	
+	// Count picks per round
+	var roundCounts = {};
+	for (var i = 0; i < rounds.length; i++) {
+		var r = rounds[i];
+		roundCounts[r] = (roundCounts[r] || 0) + 1;
+	}
+	
+	var roundNums = Object.keys(roundCounts).map(Number).sort(function(a, b) { return a - b; });
+	
+	// Check if all picks are same round
+	if (roundNums.length === 1) {
+		var count = roundCounts[roundNums[0]];
+		var ord = ordinal(roundNums[0]);
+		// "1st" or "two 1sts"
+		if (count === 1) {
+			return ord;
+		}
+		return numberToWord(count) + ' ' + ord + 's';
+	}
+	
+	// Check if all counts are 1 (can list individually)
+	var allSingles = roundNums.every(function(r) { return roundCounts[r] === 1; });
+	if (allSingles) {
+		// "1st, 2nd, 3rd"
+		var ordinals = roundNums.map(function(r) { return ordinal(r); });
+		return ordinals.join(', ');
+	}
+	
+	// Mixed: "two 1sts, 2nd, three 3rds"
+	var parts = [];
+	for (var i = 0; i < roundNums.length; i++) {
+		var r = roundNums[i];
+		var count = roundCounts[r];
+		var ord = ordinal(r);
+		if (count === 1) {
+			parts.push(ord);
+		} else {
+			parts.push(numberToWord(count) + ' ' + ord + 's');
+		}
+	}
+	return parts.join(', ');
+}
+
+/**
+ * Generate OG description for a single party's assets
+ * @param {Object} party - party object with assets array and franchiseName
+ * @param {Object} options - { shorten: boolean } to use shortened player names
+ * @returns {string} e.g. "Will Levis, two 1sts, and $15 in 2025"
+ */
+function formatPartyAssets(party, options) {
+	options = options || {};
+	if (!party || !party.assets || party.assets.length === 0) {
+		return 'Nothing';
+	}
+	
+	var players = [];
+	var rfas = [];
+	var picks = [];
+	var cashItems = [];
+	
+	for (var i = 0; i < party.assets.length; i++) {
+		var asset = party.assets[i];
+		
+		if (asset.type === 'nothing') {
+			return 'Nothing';
+		} else if (asset.type === 'player') {
+			var name = options.shorten ? shortenPlayerName(asset.playerName) : asset.playerName;
+			players.push(name);
+		} else if (asset.type === 'rfa') {
+			var name = options.shorten ? shortenPlayerName(asset.playerName) : asset.playerName;
+			rfas.push(name + ' (RFA)');
+		} else if (asset.type === 'pick') {
+			picks.push(asset);
+		} else if (asset.type === 'cash') {
+			// Format as "$500 in 2025"
+			var cashText = asset.cashMain || '';
+			if (asset.cashContext) {
+				var seasonMatch = asset.cashContext.match(/in\s+(\d{4})/);
+				if (seasonMatch) {
+					cashText += ' in ' + seasonMatch[1];
+				}
+			}
+			cashItems.push(cashText);
+		}
+	}
+	
+	var items = [];
+	
+	// Add players
+	items = items.concat(players);
+	
+	// Add RFAs
+	items = items.concat(rfas);
+	
+	// Add picks (grouped)
+	if (picks.length > 0) {
+		items.push(formatPicksGrouped(picks));
+	}
+	
+	// Add cash
+	items = items.concat(cashItems);
+	
+	return oxfordJoin(items) || 'Nothing';
+}
+
+/**
+ * Generate full OG description for a trade
+ * Format: "Patrick: Will Levis, two 1sts, and $15 in 2025 • Schexes: Ja'Marr Chase and one 3rd"
+ * @param {Array} parties - array of party objects with franchiseName and assets
+ * @param {Object} options - { maxLength: number } for truncation with fallback
+ * @returns {string}
+ */
+function tradeOgDescription(parties, options) {
+	options = options || {};
+	var maxLength = options.maxLength || 155;
+	
+	if (!parties || parties.length === 0) {
+		return 'Trade on Primetime Soap Operas';
+	}
+	
+	// Try full names first
+	var parts = [];
+	for (var i = 0; i < parties.length; i++) {
+		var party = parties[i];
+		var assets = formatPartyAssets(party, { shorten: false });
+		parts.push(party.franchiseName + ': ' + assets);
+	}
+	var result = parts.join(' ↔ ');
+	
+	// If too long, try shortened player names
+	if (result.length > maxLength) {
+		parts = [];
+		for (var i = 0; i < parties.length; i++) {
+			var party = parties[i];
+			var assets = formatPartyAssets(party, { shorten: true });
+			parts.push(party.franchiseName + ': ' + assets);
+		}
+		result = parts.join(' ↔ ');
+	}
+	
+	return result;
+}
+
+/**
+ * Generate a summary of trade assets for a party (simple version for backward compat)
+ * @param {Object} party - party object with assets array
+ * @returns {string} e.g. "Josh Allen, 1st round pick" or "Nothing"
+ */
+function summarizeTradeAssets(party) {
+	return formatPartyAssets(party, { shorten: false });
+}
+
+/**
+ * Generate OG title for a trade
+ * @param {Array} parties - array of party objects with franchiseName
+ * @returns {string} e.g. "Schex ↔ Koci Trade"
+ */
+function tradeOgTitle(parties) {
+	if (!parties || parties.length === 0) {
+		return 'Trade';
+	}
+	
+	var names = parties.map(function(p) { return p.franchiseName; });
+	
+	if (names.length === 2) {
+		return names[0] + ' ↔ ' + names[1] + ' Trade';
+	}
+	
+	// For 3+ party trades
+	return names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1] + ' Trade';
+}
+
 module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
@@ -154,5 +393,12 @@ module.exports = {
 	deltaClass: deltaClass,
 	sortedPositions: sortedPositions,
 	getPositionKey: getPositionKey,
+	shortenPlayerName: shortenPlayerName,
+	oxfordJoin: oxfordJoin,
+	formatPicksGrouped: formatPicksGrouped,
+	formatPartyAssets: formatPartyAssets,
+	summarizeTradeAssets: summarizeTradeAssets,
+	tradeOgTitle: tradeOgTitle,
+	tradeOgDescription: tradeOgDescription,
 	POSITION_ORDER: POSITION_ORDER
 };

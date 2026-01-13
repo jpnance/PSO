@@ -1,6 +1,13 @@
 extends layout
 include mixins
 
+block og_meta
+	- var ogImage = proposal.status === 'draft' ? '/images/handfake.jpg' : '/images/handshake.jpg'
+	meta(property='og:title' content=tradeOgTitle(parties))
+	meta(property='og:description' content=tradeOgDescription(parties))
+	meta(property='og:image' content='https://thedynastyleague.com' + ogImage)
+	meta(property='og:url' content='https://thedynastyleague.com/propose/' + proposal.publicId)
+
 block styles
 	link(rel='stylesheet' href='/trade.css')
 	link(rel='stylesheet' href='/css/positions.css')
