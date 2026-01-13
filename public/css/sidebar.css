@@ -495,6 +495,10 @@
 .search-result-name {
     font-weight: 500;
     color: #212529;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 .search-result-meta {
@@ -603,4 +607,26 @@
     color: var(--text-muted);
     background-color: #f8f9fa;
     border-bottom: 1px solid var(--border-light);
+}
+
+/* Truncation row showing "X more" or quick links */
+.search-result-more {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.search-result-more:last-child {
+    border-bottom: none;
+}
+
+.search-more-link {
+    color: var(--asset-pick);
+    text-decoration: none;
+}
+
+.search-more-link:hover {
+    text-decoration: underline;
 }

@@ -748,19 +748,30 @@ async function search(request, response) {
 			return statusOrder[a.status] - statusOrder[b.status];
 		});
 		
-		playerResults = playerResults.slice(0, 8);
+		// Show 5 players, track extras
+		var totalPlayers = playerResults.length;
+		var displayedPlayers = playerResults.slice(0, 5);
+		var extraPlayersCount = Math.max(0, totalPlayers - 5);
 		
-		// Find trades involving the top matching players (use top 3 by searchRank)
-		var topPlayers = players.slice(0, 3);
-		var playerTradeResults = await findTradesForPlayers(topPlayers, 3);
+		// Find trades involving the displayed players (fetch more to show extras as links)
+		var topPlayers = players.slice(0, 5);
+		var playerTradeResults = await findTradesForPlayers(topPlayers, 6);
 		
-		var tradeResults = playerTradeResults.map(function(result) {
+		var allTradeResults = playerTradeResults.map(function(result) {
 			return formatTradeResult(result.trade, result.trade.tradeId, result.summary);
 		});
 		
+		// Show 3 trades, track extras as quick links
+		var displayedTrades = allTradeResults.slice(0, 3);
+		var extraTrades = allTradeResults.slice(3).map(function(t) {
+			return { tradeNumber: t.tradeNumber, url: t.url };
+		});
+		
 		response.render('search-results', { 
-			players: playerResults, 
-			trades: tradeResults 
+			players: displayedPlayers,
+			extraPlayersCount: extraPlayersCount,
+			trades: displayedTrades,
+			extraTrades: extraTrades
 		});
 	} catch (err) {
 		console.error('Search error:', err);

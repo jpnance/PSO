@@ -33,6 +33,9 @@ else
 						+positionBadge(result.positions)
 					div.search-result-meta
 						span.search-result-contract UFA
+		//- Truncation row for extra players
+		if extraPlayersCount > 0
+			div.search-result-more #{extraPlayersCount} more
 
 	//- Trade results
 	if trades.length > 0
@@ -60,3 +63,10 @@ else
 								| , #{trade.otherAssetsShort}
 						else
 							| #{trade.otherAssetsShort}
+		//- Truncation row for extra trades (quick links)
+		if extraTrades && extraTrades.length > 0
+			div.search-result-more
+				each extra, i in extraTrades
+					a.search-more-link(href=extra.url) ##{extra.tradeNumber}
+					if i < extraTrades.length - 1
+						| , 
