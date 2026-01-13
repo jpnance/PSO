@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	div.container.py-5
+		div.row.justify-content-center
+			div.col-md-8.col-lg-6.text-center
+				div.mb-4
+					i.fa.fa-chain-broken.text-muted(style='font-size: 4rem; opacity: 0.5;')
+				h1.h3.mb-1 404: Trade Not Found
+				p.text-muted.mb-4
+					| (But here's 
+					a(href='/trades/404') Trade #404
+					| .)
+				p.text-left.text-muted.mb-4
+					| This trade proposal may have been executed, expired, deleted, or maybe it never even existed. Check the trade history to see if it went through. Trade proposals are automatically cleaned up after seven days.
+				div
+					a.btn.btn-outline-primary.mr-2(href='/trades')
+						i.fa.fa-history.mr-1
+						| Trade History
+					a.btn.btn-primary(href='/propose')
+						i.fa.fa-exchange.mr-1
+						| Trade Machine

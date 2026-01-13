@@ -689,7 +689,9 @@ async function viewProposal(request, response) {
 			.populate('parties.franchiseId');
 		
 		if (!proposal) {
-			return response.status(404).send('Proposal not found');
+			return response.status(404).render('proposal-not-found', {
+				pageTitle: 'Proposal Not Found'
+			});
 		}
 		
 		var config = await LeagueConfig.findById('pso');
