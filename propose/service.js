@@ -929,7 +929,19 @@ async function formalizeProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
 		}
 		
+		// Find which party the user belongs to and auto-accept for them
+		var userParty = proposal.parties.find(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		
 		proposal.status = 'pending';
+		proposal.createdByFranchiseId = userParty.franchiseId;
+		proposal.createdByPersonId = user._id;
+		userParty.accepted = true;
+		userParty.acceptedAt = new Date();
+		userParty.acceptedBy = user._id;
+		proposal.acceptanceWindowStart = new Date();
+		
 		await proposal.save();
 		
 		response.json({ success: true });
