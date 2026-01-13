@@ -73,11 +73,11 @@ block content
 				div.proposal-countdown.mt-2#countdown(data-remaining=acceptanceWindowRemaining)
 					| --:--
 
-		//- Window expired notice
-		if proposal.status === 'pending' && !acceptanceWindowActive && proposal.acceptanceWindowStart
-			div.alert.alert-info.mb-4
+		//- Window was reset notice (acceptanceWindowStart is null after reset)
+		if proposal.status === 'pending' && !proposal.acceptanceWindowStart
+			div.alert.alert-warning.mb-4
 				i.fa.fa-refresh.mr-2
-				| Acceptances were reset because the 10-minute window expired. Someone needs to accept again to restart the clock.
+				| The acceptance window expired. Accept again to restart the clock.
 
 		//- Accepted - ready for commissioner
 		if proposal.status === 'accepted'
@@ -118,6 +118,27 @@ block content
 					|  
 					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
 
+		//- Action buttons (drafts only - pending buttons go in acceptance widget)
+		if proposal.status === 'draft'
+			div.mb-4
+				div.action-result
+				if isParty
+					if tradesEnabled
+						button.btn.btn-primary.mr-2.formalize-btn
+							i.fa.fa-gavel.mr-1
+							| Propose This Trade
+					else
+						button.btn.btn-primary.mr-2(disabled)
+							i.fa.fa-gavel.mr-1
+							| Propose This Trade
+						span.text-muted.small.ml-2
+							i.fa.fa-info-circle.mr-1
+							= tradesDisabledReason || 'Trades are currently disabled'
+				if isCreator
+					button.btn.btn-outline-danger.delete-btn
+						i.fa.fa-trash.mr-1
+						| Delete
+
 		//- Main content area with columns
 		div.row
 			//- Left column: Trade details
@@ -140,7 +161,6 @@ block content
 					div.card-body
 						each party in parties
 							+tradeParty(party)
-
 			//- Right column: Status, Budget
 			div.col-lg-4
 				//- Party acceptance status widget
@@ -149,8 +169,9 @@ block content
 						div.card-header
 							strong Acceptance Status
 						div.card-body
-							each party in parties
-								div.proposal-status.mb-2
+							each party, idx in parties
+								- var isLast = idx === parties.length - 1
+								div.proposal-status(class=isLast ? '' : 'mb-2')
 									div.proposal-status__check(class=party.accepted ? 'proposal-status__check--accepted' : 'proposal-status__check--waiting')
 										if party.accepted
 											i.fa.fa-check
@@ -159,6 +180,22 @@ block content
 									span.font-weight-bold= party.franchiseName
 									if party.accepted
 										span.text-muted.small — accepted
+						//- Action buttons for pending trades
+						if isParty || isCreator
+							div.card-footer
+								div.action-result
+								if isParty && !userHasAccepted
+									button.btn.btn-success.mr-2.accept-btn
+										i.fa.fa-check.mr-1
+										| Accept
+								if isParty && !isCreator
+									button.btn.btn-outline-danger.mr-2.reject-btn
+										i.fa.fa-times.mr-1
+										| Reject
+								if isCreator
+									button.btn.btn-outline-danger.cancel-btn
+										i.fa.fa-times.mr-1
+										| Cancel
 
 				//- Budget Impact
 				div.card.mb-4
@@ -174,42 +211,6 @@ block content
 								| Not Cash-Neutral
 					div.card-body
 						include partials/budget-impact
-
-		//- Action buttons
-		div.action-result.mb-3
-
-		if proposal.status === 'draft' && isParty
-			if tradesEnabled
-				button.btn.btn-primary.mr-2.formalize-btn
-					i.fa.fa-gavel.mr-1
-					| Propose This Trade
-			else
-				button.btn.btn-primary.mr-2(disabled)
-					i.fa.fa-gavel.mr-1
-					| Propose This Trade
-				p.text-muted.small.mt-2
-					i.fa.fa-info-circle.mr-1
-					= tradesDisabledReason || 'Trades are currently disabled'
-
-		if proposal.status === 'draft' && isCreator
-			button.btn.btn-outline-danger.delete-btn
-				i.fa.fa-trash.mr-1
-				| Delete
-
-		if proposal.status === 'pending' && isParty && !userHasAccepted
-			button.btn.btn-success.mr-2.accept-btn
-				i.fa.fa-check.mr-1
-				| Accept
-
-		if proposal.status === 'pending' && isParty && !isCreator
-			button.btn.btn-outline-danger.mr-2.reject-btn
-				i.fa.fa-times.mr-1
-				| Reject
-
-		if proposal.status === 'pending' && isCreator
-			button.btn.btn-outline-danger.cancel-btn
-				i.fa.fa-times.mr-1
-				| Cancel
 
 block scripts
 	script.
