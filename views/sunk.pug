@@ -2,13 +2,14 @@ extends layout.pug
 
 block styles
 	style.
-		.sunk-container {
+		/* Sunk cost calculator styles (BEM) */
+		.sunk {
 			max-width: 600px;
 		}
-		.sunk-input-group {
+		.sunk__input-group {
 			margin-bottom: 2rem;
 		}
-		.sunk-input {
+		.sunk__input {
 			font-size: 1.5rem;
 			padding: 0.75rem 1rem;
 			border: 2px solid var(--border-light);
@@ -17,32 +18,32 @@ block styles
 			max-width: 280px;
 			transition: border-color 0.15s ease;
 		}
-		.sunk-input:focus {
+		.sunk__input:focus {
 			outline: none;
 			border-color: var(--color-info);
 		}
-		.sunk-input::placeholder {
+		.sunk__input::placeholder {
 			color: var(--text-tertiary);
 		}
-		.sunk-table {
+		.sunk__table {
 			width: 100%;
 			border-collapse: separate;
 			border-spacing: 0;
 		}
-		.sunk-table th {
+		.sunk__table th {
 			background: #343a40;
 			color: white;
 			font-weight: 500;
 			text-align: center;
 			padding: 0.75rem 1rem;
 		}
-		.sunk-table th:first-child {
+		.sunk__table th:first-child {
 			border-top-left-radius: 6px;
 		}
-		.sunk-table th:last-child {
+		.sunk__table th:last-child {
 			border-top-right-radius: 6px;
 		}
-		.sunk-table td {
+		.sunk__table td {
 			font-size: 1.5rem;
 			font-weight: 600;
 			text-align: center;
@@ -51,34 +52,27 @@ block styles
 			border-top: none;
 			background: #f8f9fa;
 		}
-		.sunk-table td:first-child {
+		.sunk__table td:first-child {
 			border-left: 1px solid var(--border-light);
 		}
-		.sunk-table td:last-child {
+		.sunk__table td:last-child {
 			border-right: 1px solid var(--border-light);
 		}
-		.sunk-table tr:last-child td:first-child {
+		.sunk__table tr:last-child td:first-child {
 			border-bottom-left-radius: 6px;
 		}
-		.sunk-table tr:last-child td:last-child {
+		.sunk__table tr:last-child td:last-child {
 			border-bottom-right-radius: 6px;
 		}
-		.sunk-table .year-label {
-			font-size: 0.85rem;
-			font-weight: 400;
-			color: var(--text-muted);
-			display: block;
-			margin-bottom: 0.25rem;
-		}
-		.sunk-table .sunk-item {
+		.sunk__item {
 			text-align: center;
 		}
-		.sunk-table .sunk-item + .sunk-item {
+		.sunk__item + .sunk__item {
 			margin-top: 0.75rem;
 			padding-top: 0.75rem;
 			border-top: 1px solid var(--border-light);
 		}
-		.sunk-table .sunk-label {
+		.sunk__label {
 			font-size: 0.7rem;
 			font-weight: 500;
 			text-transform: uppercase;
@@ -86,53 +80,53 @@ block styles
 			display: block;
 			margin-bottom: 0.25rem;
 		}
-		.sunk-table .sunk-label.buyout {
+		.sunk__label--buyout {
 			color: var(--color-danger);
 		}
-		.sunk-table .sunk-label.recoverable {
+		.sunk__label--recoverable {
 			color: var(--color-success);
 		}
-		.sunk-table .sunk-value {
+		.sunk__value {
 			font-size: 1.25rem;
 			font-weight: 600;
 		}
-		.sunk-table .sunk-value.buyout {
+		.sunk__value--buyout {
 			color: #c0392b;
 		}
-		.sunk-table .sunk-value.recoverable {
+		.sunk__value--recoverable {
 			color: #27ae60;
 		}
-		.sunk-table .sunk-value.empty {
+		.sunk__value--empty {
 			color: var(--text-muted);
 		}
 		
 		/* Mobile: stack years vertically */
 		@media (max-width: 500px) {
-			.sunk-table thead {
+			.sunk__table thead {
 				display: none;
 			}
-			.sunk-table,
-			.sunk-table tbody,
-			.sunk-table tr,
-			.sunk-table td {
+			.sunk__table,
+			.sunk__table tbody,
+			.sunk__table tr,
+			.sunk__table td {
 				display: block;
 				width: 100%;
 			}
-			.sunk-table td {
+			.sunk__table td {
 				border-radius: 0;
 				border: 1px solid var(--border-light);
 				border-bottom: none;
 			}
-			.sunk-table td:first-child {
+			.sunk__table td:first-child {
 				border-top-left-radius: 6px;
 				border-top-right-radius: 6px;
 			}
-			.sunk-table td:last-child {
+			.sunk__table td:last-child {
 				border-bottom: 1px solid var(--border-light);
 				border-bottom-left-radius: 6px;
 				border-bottom-right-radius: 6px;
 			}
-			.sunk-table td::before {
+			.sunk__table td::before {
 				content: attr(data-year);
 				display: block;
 				font-size: 0.75rem;
@@ -145,19 +139,19 @@ block styles
 				padding: 0.5rem 1rem;
 			}
 		}
-		.sunk-info {
+		.sunk__info {
 			margin-top: 2rem;
 			padding: 1rem 1.25rem;
 			background: var(--pos-qb-bg);
 			border-left: 4px solid var(--pos-qb-text);
 			border-radius: 4px;
 		}
-		.sunk-info p {
+		.sunk__info p {
 			margin: 0;
 			color: var(--pos-qb-text);
 			font-size: 0.9rem;
 		}
-		.sunk-info p + p {
+		.sunk__info p + p {
 			margin-top: 0.5rem;
 		}
 
@@ -165,11 +159,11 @@ block content
 	div.container-fluid.py-3
 		h1.mb-4 Sunk Cost Calculator
 
-		div.sunk-container
-			div.sunk-input-group
-				input#salary.sunk-input(type='text' placeholder='Enter base salary...' inputmode='numeric')
+		div.sunk
+			div.sunk__input-group
+				input#salary.sunk__input(type='text' placeholder='Enter base salary...' inputmode='numeric')
 
-			table.sunk-table
+			table.sunk__table
 				thead
 					tr
 						th First Year
@@ -178,28 +172,28 @@ block content
 				tbody
 					tr
 						td(data-year='First Year')
-							div.sunk-item
-								span.sunk-label.buyout Buy-out (60%)
-								span#yearOneBuyout.sunk-value.buyout.empty ?
-							div.sunk-item
-								span.sunk-label.recoverable Recoverable (40%)
-								span#yearOneRecover.sunk-value.recoverable.empty ?
+							div.sunk__item
+								span.sunk__label.sunk__label--buyout Buy-out (60%)
+								span#yearOneBuyout.sunk__value.sunk__value--buyout.sunk__value--empty ?
+							div.sunk__item
+								span.sunk__label.sunk__label--recoverable Recoverable (40%)
+								span#yearOneRecover.sunk__value.sunk__value--recoverable.sunk__value--empty ?
 						td(data-year='Second Year')
-							div.sunk-item
-								span.sunk-label.buyout Buy-out (30%)
-								span#yearTwoBuyout.sunk-value.buyout.empty ?
-							div.sunk-item
-								span.sunk-label.recoverable Recoverable (70%)
-								span#yearTwoRecover.sunk-value.recoverable.empty ?
+							div.sunk__item
+								span.sunk__label.sunk__label--buyout Buy-out (30%)
+								span#yearTwoBuyout.sunk__value.sunk__value--buyout.sunk__value--empty ?
+							div.sunk__item
+								span.sunk__label.sunk__label--recoverable Recoverable (70%)
+								span#yearTwoRecover.sunk__value.sunk__value--recoverable.sunk__value--empty ?
 						td(data-year='Third Year')
-							div.sunk-item
-								span.sunk-label.buyout Buy-out (15%)
-								span#yearThreeBuyout.sunk-value.buyout.empty ?
-							div.sunk-item
-								span.sunk-label.recoverable Recoverable (85%)
-								span#yearThreeRecover.sunk-value.recoverable.empty ?
+							div.sunk__item
+								span.sunk__label.sunk__label--buyout Buy-out (15%)
+								span#yearThreeBuyout.sunk__value.sunk__value--buyout.sunk__value--empty ?
+							div.sunk__item
+								span.sunk__label.sunk__label--recoverable Recoverable (85%)
+								span#yearThreeRecover.sunk__value.sunk__value--recoverable.sunk__value--empty ?
 
-			div.sunk-info
+			div.sunk__info
 				p When a player is cut, the buy-out portion of their salary is a "sunk cost" that continues to count against the cap. The rest of their salary is recoverable by the franchise.
 
 block scripts
@@ -226,13 +220,13 @@ block scripts
 					var recover = salary - buyout;
 					buyoutEl.textContent = formatMoney(buyout);
 					recoverEl.textContent = formatMoney(recover);
-					buyoutEl.classList.remove('empty');
-					recoverEl.classList.remove('empty');
+					buyoutEl.classList.remove('sunk__value--empty');
+					recoverEl.classList.remove('sunk__value--empty');
 				} else {
 					buyoutEl.textContent = '?';
 					recoverEl.textContent = '?';
-					buyoutEl.classList.add('empty');
-					recoverEl.classList.add('empty');
+					buyoutEl.classList.add('sunk__value--empty');
+					recoverEl.classList.add('sunk__value--empty');
 				}
 			}
 
