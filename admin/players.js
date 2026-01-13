@@ -72,10 +72,16 @@ async function editPlayerForm(request, response) {
 		.lean();
 	
 	// Find potential duplicates (same name, different ID)
-	var potentialDuplicates = await Player.find({
+	// Exclude cases where both players have Sleeper IDs - those are legitimately different people
+	var allDuplicates = await Player.find({
 		name: { $regex: new RegExp('^' + player.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i') },
 		_id: { $ne: player._id }
 	}).lean();
+	
+	var potentialDuplicates = allDuplicates.filter(function(dup) {
+		// Only show as duplicate if at least one player is not from Sleeper
+		return !player.sleeperId || !dup.sleeperId;
+	});
 	
 	response.render('admin-player-edit', {
 		player: player,
