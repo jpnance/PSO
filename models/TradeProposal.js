@@ -33,6 +33,13 @@ var proposalPartySchema = new Schema({
 }, { _id: false });
 
 var tradeProposalSchema = new Schema({
+	// Public-facing ID (generated as fun name-based slug in service layer)
+	publicId: {
+		type: String,
+		unique: true,
+		required: true
+	},
+
 	status: {
 		type: String,
 		enum: ['draft', 'pending', 'accepted', 'rejected', 'withdrawn', 'expired', 'executed', 'countered'],
@@ -65,6 +72,7 @@ var tradeProposalSchema = new Schema({
 });
 
 // Indexes
+tradeProposalSchema.index({ publicId: 1 }, { unique: true });
 tradeProposalSchema.index({ status: 1 });
 tradeProposalSchema.index({ createdAt: -1 });
 tradeProposalSchema.index({ expiresAt: 1 });

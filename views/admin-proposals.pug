@@ -46,7 +46,7 @@ block content
 								small.text-muted
 									| Proposed by #{proposal.createdBy} on #{proposal.createdAt.toLocaleDateString()}
 							div
-								a.btn.btn-sm.btn-outline-secondary(href='/propose/' + proposal._id)
+								a.btn.btn-sm.btn-outline-secondary(href='/propose/' + proposal.publicId)
 									i.fa.fa-eye.mr-1
 									| View Details
 						

@@ -208,7 +208,7 @@ block content
 
 block scripts
 	script.
-		var proposalId = '#{proposal._id}';
+		var proposalId = '#{proposal.publicId}';
 		var acceptanceWindowRemaining = !{acceptanceWindowRemaining || 'null'};
 		
 		// Countdown timer

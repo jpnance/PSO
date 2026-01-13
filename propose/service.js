@@ -14,6 +14,57 @@ var { formatContractYears, ordinal } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
+// Cached player names for slug generation
+var cachedFirstNames = null;
+var cachedLastNames = null;
+
+// Load and cache player names for slug generation
+async function loadPlayerNames() {
+	if (cachedFirstNames && cachedLastNames) {
+		return { firstNames: cachedFirstNames, lastNames: cachedLastNames };
+	}
+	
+	var players = await Player.find({}).select('name').lean();
+	
+	var firstNames = [];
+	var lastNames = [];
+	
+	players.forEach(function(p) {
+		if (!p.name) return;
+		var parts = p.name.split(' ');
+		if (parts.length >= 1) {
+			var first = parts[0].toLowerCase().replace(/[^a-z]/g, '');
+			if (first) firstNames.push(first);
+		}
+		if (parts.length >= 2) {
+			var last = parts[parts.length - 1].toLowerCase().replace(/[^a-z]/g, '');
+			if (last) lastNames.push(last);
+		}
+	});
+	
+	// Dedupe
+	cachedFirstNames = Array.from(new Set(firstNames));
+	cachedLastNames = Array.from(new Set(lastNames));
+	
+	return { firstNames: cachedFirstNames, lastNames: cachedLastNames };
+}
+
+// Generate a fun slug like "lamar-kelce-for-tom-jefferson"
+async function generateTradeSlug() {
+	var names = await loadPlayerNames();
+	
+	function pick(arr) {
+		return arr[Math.floor(Math.random() * arr.length)];
+	}
+	
+	var first1 = pick(names.firstNames);
+	var last1 = pick(names.lastNames);
+	var first2 = pick(names.firstNames);
+	var last2 = pick(names.lastNames);
+	
+	return first1 + '-' + last1 + '-for-' + first2 + '-' + last2;
+}
+
 // Position sort order for roster display
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 
@@ -412,6 +463,31 @@ async function submitTrade(request, response) {
 
 // ========== Trade Proposal Functions ==========
 
+// Create a proposal with retry logic for publicId collisions
+async function createProposalWithRetry(data, maxRetries) {
+	maxRetries = maxRetries || 5;
+	
+	// Generate a fun slug for this proposal
+	data.publicId = await generateTradeSlug();
+	
+	for (var attempt = 0; attempt < maxRetries; attempt++) {
+		try {
+			return await TradeProposal.create(data);
+		} catch (err) {
+			// Check if it's a duplicate key error on publicId
+			if (err.code === 11000 && err.keyPattern && err.keyPattern.publicId) {
+				// Regenerate slug and retry
+				data.publicId = await generateTradeSlug();
+				continue;
+			}
+			// Some other error, rethrow
+			throw err;
+		}
+	}
+	
+	throw new Error('Failed to generate unique publicId after ' + maxRetries + ' attempts');
+}
+
 // Compute expiration date: 7 days from now or trade deadline, whichever is first
 async function computeExpiresAt() {
 	var sevenDaysFromNow = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -582,7 +658,7 @@ async function createProposal(request, response) {
 		// For drafts where user isn't a party, use their first franchise as creator
 		var creatorFranchiseId = userFranchiseInTrade || userFranchises[0];
 		
-		var proposal = await TradeProposal.create({
+		var proposal = await createProposalWithRetry({
 			status: isDraft ? 'draft' : 'pending',
 			createdByFranchiseId: creatorFranchiseId,
 			createdByPersonId: user._id,
@@ -595,7 +671,7 @@ async function createProposal(request, response) {
 		
 		response.json({
 			success: true,
-			proposalId: proposal._id.toString()
+			proposalId: proposal.publicId
 		});
 	} catch (err) {
 		console.error('createProposal error:', err);
@@ -606,9 +682,9 @@ async function createProposal(request, response) {
 // View a proposal
 async function viewProposal(request, response) {
 	try {
-		var proposalId = request.params.id;
+		var publicId = request.params.id;
 		
-		var proposal = await TradeProposal.findById(proposalId)
+		var proposal = await TradeProposal.findOne({ publicId: publicId })
 			.populate('createdByPersonId', 'name')
 			.populate('parties.franchiseId');
 		
@@ -828,7 +904,7 @@ async function formalizeProposal(request, response) {
 			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 		}
 		
-		var proposal = await TradeProposal.findById(request.params.id);
+		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -878,7 +954,7 @@ async function acceptProposal(request, response) {
 			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 		}
 		
-		var proposal = await TradeProposal.findById(request.params.id);
+		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -956,7 +1032,7 @@ async function rejectProposal(request, response) {
 			return response.status(401).json({ success: false, errors: ['Login required'] });
 		}
 		
-		var proposal = await TradeProposal.findById(request.params.id);
+		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -993,7 +1069,7 @@ async function withdrawProposal(request, response) {
 			return response.status(401).json({ success: false, errors: ['Login required'] });
 		}
 		
-		var proposal = await TradeProposal.findById(request.params.id);
+		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1031,7 +1107,7 @@ async function counterProposal(request, response) {
 			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 		}
 		
-		var originalProposal = await TradeProposal.findById(request.params.id);
+		var originalProposal = await TradeProposal.findOne({ publicId: request.params.id });
 		if (!originalProposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1112,7 +1188,7 @@ async function counterProposal(request, response) {
 		}
 		
 		// Create counter proposal
-		var counterProposal = await TradeProposal.create({
+		var counterProposal = await createProposalWithRetry({
 			status: 'pending',
 			createdByFranchiseId: userFranchiseInTrade.franchiseId,
 			createdByPersonId: user._id,
@@ -1131,7 +1207,7 @@ async function counterProposal(request, response) {
 		
 		response.json({
 			success: true,
-			proposalId: counterProposal._id.toString()
+			proposalId: counterProposal.publicId
 		});
 	} catch (err) {
 		console.error('counterProposal error:', err);
@@ -1171,6 +1247,7 @@ async function listProposalsForApproval(request, response) {
 			
 			proposalsDisplay.push({
 				_id: proposal._id,
+				publicId: proposal.publicId,
 				createdAt: proposal.createdAt,
 				createdBy: proposal.createdByPersonId ? proposal.createdByPersonId.name : 'Unknown',
 				parties: partiesDisplay

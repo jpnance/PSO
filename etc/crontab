@@ -6,4 +6,7 @@
 # Daily budget verification (4am)
 0 4 * * * /usr/local/bin/node /app/data/scripts/verifyBudgets.js
 
+# Daily proposal cleanup (4:30am)
+30 4 * * * /usr/local/bin/node /app/data/scripts/cleanupProposals.js
+
 #0 17 * * * /usr/local/bin/node /app/bots/starts.js
