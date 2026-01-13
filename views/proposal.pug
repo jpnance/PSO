@@ -118,18 +118,6 @@ block content
 					|  
 					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
 
-		//- Share link for active proposals
-		if proposal.status === 'draft' || proposal.status === 'pending'
-			div.input-group.input-group-sm.mb-4
-				div.input-group-prepend
-					span.input-group-text.bg-primary.text-white.border-primary
-						i.fa.fa-link.mr-2
-						| Share
-				input#share-link.form-control.bg-white(type='text' readonly)
-				div.input-group-append
-					button.btn.btn-outline-primary.copy-link-btn(type='button')
-						i.fa.fa-copy
-
 		//- Main content area with columns
 		div.row
 			//- Left column: Trade details
@@ -137,6 +125,18 @@ block content
 				div.card
 					div.card-header
 						strong Trade Details
+					//- Share link for active proposals
+					if proposal.status === 'draft' || proposal.status === 'pending'
+						div.bg-light.p-3.border-bottom
+							div.input-group.input-group-sm
+								div.input-group-prepend
+									span.input-group-text
+										i.fa.fa-link.mr-2
+										| Share
+								input#share-link.form-control.bg-white(type='text' readonly)
+								div.input-group-append
+									button.btn.btn-outline-secondary.copy-link-btn(type='button')
+										i.fa.fa-copy
 					div.card-body
 						each party in parties
 							+tradeParty(party)
