@@ -547,3 +547,20 @@
 .search-result-ufa:hover {
     background-color: transparent;
 }
+
+/* Trade search results */
+.search-result-trade .search-result-name {
+    color: var(--asset-pick);
+}
+
+/* Section divider between players and trades */
+.search-section-divider {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    background-color: #f8f9fa;
+    border-bottom: 1px solid var(--border-light);
+}

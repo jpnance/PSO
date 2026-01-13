@@ -403,6 +403,78 @@ function buildFlexibleNamePattern(query) {
 	return pattern;
 }
 
+// Format a trade for search results
+function formatTradeResult(trade, tradeNumber, playerName) {
+	var date = new Date(trade.timestamp);
+	var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var dateStr = monthNames[date.getMonth()] + ' ' + date.getFullYear();
+	
+	return {
+		type: 'trade',
+		tradeNumber: tradeNumber,
+		playerName: playerName || null,
+		dateStr: dateStr,
+		url: '/trades/' + tradeNumber
+	};
+}
+
+// Find trades involving specific players, returning which player matched
+// Returns array of { trade, playerName } objects
+async function findTradesForPlayers(players, limit) {
+	if (!players || players.length === 0) return [];
+	
+	var playerIds = players.map(function(p) { return p._id; });
+	
+	// Find trades where any party received these players (or their RFA rights)
+	var trades = await Transaction.find({
+		type: 'trade',
+		$or: [
+			{ 'parties.receives.players.playerId': { $in: playerIds } },
+			{ 'parties.receives.rfaRights.playerId': { $in: playerIds } }
+		]
+	})
+		.sort({ timestamp: -1 })
+		.limit(limit)
+		.lean();
+	
+	// Build a lookup from player ID to player name
+	var playerNameById = {};
+	players.forEach(function(p) {
+		playerNameById[p._id.toString()] = p.name;
+	});
+	
+	// For each trade, find which searched player(s) it involves
+	// Use the highest-ranked (first in array) if multiple match
+	var results = trades.map(function(trade) {
+		var matchedPlayerName = null;
+		
+		// Check each party's received players and RFA rights
+		for (var i = 0; i < (trade.parties || []).length && !matchedPlayerName; i++) {
+			var party = trade.parties[i];
+			
+			// Check players
+			for (var j = 0; j < (party.receives.players || []).length && !matchedPlayerName; j++) {
+				var playerId = party.receives.players[j].playerId.toString();
+				if (playerNameById[playerId]) {
+					matchedPlayerName = playerNameById[playerId];
+				}
+			}
+			
+			// Check RFA rights
+			for (var j = 0; j < (party.receives.rfaRights || []).length && !matchedPlayerName; j++) {
+				var playerId = party.receives.rfaRights[j].playerId.toString();
+				if (playerNameById[playerId]) {
+					matchedPlayerName = playerNameById[playerId];
+				}
+			}
+		}
+		
+		return { trade: trade, playerName: matchedPlayerName };
+	});
+	
+	return results;
+}
+
 // Player search for navbar typeahead
 async function search(request, response) {
 	try {
@@ -410,11 +482,49 @@ async function search(request, response) {
 		
 		// Require at least 2 characters
 		if (query.length < 2) {
-			return response.render('search-results', { results: [] });
+			return response.render('search-results', { players: [], trades: [] });
 		}
 		
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		// Check for direct trade number patterns: "trade 456", "trade #456", "#456", or just "456"
+		var tradeNumberMatch = query.match(/^(?:trade\s*)?#?(\d+)$/i);
+		if (tradeNumberMatch) {
+			var tradeNumber = parseInt(tradeNumberMatch[1], 10);
+			var trade = await Transaction.findOne({ type: 'trade', tradeId: tradeNumber }).lean();
+			
+			if (trade) {
+				return response.render('search-results', {
+					players: [],
+					trades: [formatTradeResult(trade, tradeNumber)]
+				});
+			}
+			// If no trade found with that number, fall through to regular search
+		}
+		
+		// Check if query is just "trade" (show recent trades)
+		if (query.toLowerCase() === 'trade' || query.toLowerCase() === 'trades') {
+			var recentTrades = await Transaction.find({ type: 'trade' })
+				.sort({ timestamp: -1 })
+				.limit(5)
+				.lean();
+			
+			// Get all trades to compute trade numbers
+			var allTrades = await Transaction.find({ type: 'trade' })
+				.sort({ timestamp: 1 })
+				.select('_id tradeId')
+				.lean();
+			
+			var tradeResults = recentTrades.map(function(trade) {
+				return formatTradeResult(trade, trade.tradeId);
+			});
+			
+			return response.render('search-results', {
+				players: [],
+				trades: tradeResults
+			});
+		}
 		
 		// Build flexible regex pattern to handle punctuation variations (A.J. vs AJ)
 		var namePattern = buildFlexibleNamePattern(query);
@@ -431,7 +541,7 @@ async function search(request, response) {
 		]);
 		
 		if (players.length === 0) {
-			return response.render('search-results', { results: [] });
+			return response.render('search-results', { players: [], trades: [] });
 		}
 		
 		var playerIds = players.map(function(p) { return p._id; });
@@ -470,10 +580,10 @@ async function search(request, response) {
 			franchiseById[f._id.toString()] = f;
 		});
 		
-		// Build results
+		// Build player results
 		var { formatContractDisplay } = require('../helpers/view');
 		
-		var results = players.map(function(player) {
+		var playerResults = players.map(function(player) {
 			var contract = contractByPlayer[player._id.toString()];
 			
 			if (contract && contract.salary !== null) {
@@ -482,6 +592,7 @@ async function search(request, response) {
 				var franchise = franchiseById[contract.franchiseId.toString()];
 				
 				return {
+					type: 'player',
 					name: player.name,
 					positions: player.positions || [],
 					franchiseId: franchise ? franchise.rosterId : null,
@@ -495,6 +606,7 @@ async function search(request, response) {
 				var franchise = franchiseById[contract.franchiseId.toString()];
 				
 				return {
+					type: 'player',
 					name: player.name,
 					positions: player.positions || [],
 					franchiseId: franchise ? franchise.rosterId : null,
@@ -505,12 +617,12 @@ async function search(request, response) {
 			} else {
 				// Player is an unrestricted free agent (no contract)
 				return {
+					type: 'player',
 					name: player.name,
 					positions: player.positions || [],
 					franchiseId: null,
 					franchiseName: null,
-					salary: null,
-					contract: null,
+					contractDisplay: null,
 					status: 'ufa'
 				};
 			}
@@ -518,16 +630,27 @@ async function search(request, response) {
 		
 		// Sort: rostered first, then RFA, then UFA - preserve searchRank order within each group
 		var statusOrder = { rostered: 0, rfa: 1, ufa: 2 };
-		results.sort(function(a, b) {
+		playerResults.sort(function(a, b) {
 			return statusOrder[a.status] - statusOrder[b.status];
 		});
 		
-		results = results.slice(0, 10);
+		playerResults = playerResults.slice(0, 8);
 		
-		response.render('search-results', { results: results });
+		// Find trades involving the top matching players (use top 3 by searchRank)
+		var topPlayers = players.slice(0, 3);
+		var playerTradeResults = await findTradesForPlayers(topPlayers, 3);
+		
+		var tradeResults = playerTradeResults.map(function(result) {
+			return formatTradeResult(result.trade, result.trade.tradeId, result.playerName);
+		});
+		
+		response.render('search-results', { 
+			players: playerResults, 
+			trades: tradeResults 
+		});
 	} catch (err) {
 		console.error('Search error:', err);
-		response.render('search-results', { results: [] });
+		response.render('search-results', { players: [], trades: [] });
 	}
 }
 
