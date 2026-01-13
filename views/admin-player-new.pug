@@ -3,12 +3,13 @@ extends layout.pug
 block styles
 	link(rel='stylesheet' href='/league.css')
 	style.
-		.position-check {
+		/* Admin player new page styles (BEM) */
+		.admin-player-new__position-check {
 			display: inline-block;
 			margin-right: 1rem;
 			margin-bottom: 0.5rem;
 		}
-		.position-check input {
+		.admin-player-new__position-check input {
 			margin-right: 0.25rem;
 		}
 
@@ -40,7 +41,7 @@ block content
 								label Positions
 								div
 									each pos in POSITION_ORDER
-										label.position-check
+										label.admin-player-new__position-check
 											input(
 												type='checkbox'
 												name='pos_' + pos
