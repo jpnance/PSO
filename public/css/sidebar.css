@@ -549,8 +549,29 @@
 }
 
 /* Trade search results */
+.search-result-trade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .search-result-trade .search-result-name {
     color: var(--asset-pick);
+    font-weight: 500;
+}
+
+.search-result-trade .search-result-date {
+    color: #adb5bd;
+    font-size: 0.75rem;
+}
+
+.search-result-assets {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Section divider between players and trades */

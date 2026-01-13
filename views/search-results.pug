@@ -40,9 +40,14 @@ else
 			div.search-section-divider Trades
 		each trade in trades
 			a.search-result.search-result-trade(href=trade.url)
-				div.search-result-main
+				div.search-result-trade-header
 					span.search-result-name Trade ##{trade.tradeNumber}
-				div.search-result-meta
-					span= trade.dateStr
-					if trade.playerName
-						span  · #{trade.playerName}
+					span.search-result-date= trade.dateStr
+				if trade.matchedPlayerName || trade.otherAssets
+					div.search-result-assets
+						if trade.matchedPlayerName
+							strong= trade.matchedPlayerName
+							if trade.otherAssets
+								| , #{trade.otherAssets}
+						else
+							| #{trade.otherAssets}

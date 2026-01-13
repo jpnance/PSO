@@ -403,8 +403,110 @@ function buildFlexibleNamePattern(query) {
 	return pattern;
 }
 
+// Format pick round as ordinal
+function formatPickRound(round) {
+	switch (round) {
+		case 1: return '1st';
+		case 2: return '2nd';
+		case 3: return '3rd';
+		default: return round + 'th';
+	}
+}
+
+// Build asset summary for a trade (all parties combined)
+// Returns { assets: string, matchedPlayerName: string }
+function buildTradeSummary(trade, searchedPlayerIds, allPlayerNames) {
+	var matchedPlayerName = null;
+	var matchedPlayerId = null;
+	
+	// Collect all assets across all parties
+	var playerNames = [];
+	var picks = []; // { season, round }
+	var cashItems = []; // { amount, season }
+	
+	for (var i = 0; i < (trade.parties || []).length; i++) {
+		var party = trade.parties[i];
+		
+		// Players
+		for (var j = 0; j < (party.receives.players || []).length; j++) {
+			var p = party.receives.players[j];
+			var playerId = p.playerId.toString();
+			var name = allPlayerNames[playerId] || 'Unknown';
+			
+			// Check if this is a searched player
+			if (searchedPlayerIds[playerId] && !matchedPlayerName) {
+				matchedPlayerName = name;
+				matchedPlayerId = playerId;
+			}
+			
+			playerNames.push({ id: playerId, name: name });
+		}
+		
+		// RFA rights
+		for (var j = 0; j < (party.receives.rfaRights || []).length; j++) {
+			var r = party.receives.rfaRights[j];
+			var playerId = r.playerId.toString();
+			var name = allPlayerNames[playerId] || 'Unknown';
+			
+			if (searchedPlayerIds[playerId] && !matchedPlayerName) {
+				matchedPlayerName = name;
+				matchedPlayerId = playerId;
+			}
+			
+			playerNames.push({ id: playerId, name: name + ' (RFA)' });
+		}
+		
+		// Picks
+		for (var j = 0; j < (party.receives.picks || []).length; j++) {
+			var pick = party.receives.picks[j];
+			picks.push({ season: pick.season, round: pick.round });
+		}
+		
+		// Cash
+		for (var j = 0; j < (party.receives.cash || []).length; j++) {
+			var cash = party.receives.cash[j];
+			cashItems.push({ amount: cash.amount, season: cash.season });
+		}
+	}
+	
+	// Sort picks: by round (1sts first), then by season (future first)
+	picks.sort(function(a, b) {
+		if (a.round !== b.round) return a.round - b.round;
+		return b.season - a.season; // Future seasons first
+	});
+	
+	// Sort cash: by season descending (future cash first)
+	cashItems.sort(function(a, b) {
+		return b.season - a.season;
+	});
+	
+	// Build asset list with searched player first
+	var otherAssets = [];
+	
+	// Add other players (not the searched player)
+	var otherPlayers = playerNames.filter(function(p) { return p.id !== matchedPlayerId; });
+	otherPlayers.forEach(function(p) {
+		otherAssets.push(p.name);
+	});
+	
+	// Add picks
+	picks.forEach(function(pick) {
+		otherAssets.push(pick.season + ' ' + formatPickRound(pick.round));
+	});
+	
+	// Add cash
+	cashItems.forEach(function(cash) {
+		otherAssets.push('$' + cash.amount);
+	});
+	
+	return {
+		matchedPlayerName: matchedPlayerName,
+		otherAssets: otherAssets.join(', ')
+	};
+}
+
 // Format a trade for search results
-function formatTradeResult(trade, tradeNumber, playerName) {
+function formatTradeResult(trade, tradeNumber, summary) {
 	var date = new Date(trade.timestamp);
 	var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	var dateStr = monthNames[date.getMonth()] + ' ' + date.getFullYear();
@@ -412,14 +514,14 @@ function formatTradeResult(trade, tradeNumber, playerName) {
 	return {
 		type: 'trade',
 		tradeNumber: tradeNumber,
-		playerName: playerName || null,
+		matchedPlayerName: summary.matchedPlayerName || null,
+		otherAssets: summary.otherAssets || null,
 		dateStr: dateStr,
 		url: '/trades/' + tradeNumber
 	};
 }
 
-// Find trades involving specific players, returning which player matched
-// Returns array of { trade, playerName } objects
+// Find trades involving specific players, with asset summaries
 async function findTradesForPlayers(players, limit) {
 	if (!players || players.length === 0) return [];
 	
@@ -437,39 +539,41 @@ async function findTradesForPlayers(players, limit) {
 		.limit(limit)
 		.lean();
 	
-	// Build a lookup from player ID to player name
-	var playerNameById = {};
+	if (trades.length === 0) return [];
+	
+	// Build a lookup of searched player IDs
+	var searchedPlayerIds = {};
 	players.forEach(function(p) {
-		playerNameById[p._id.toString()] = p.name;
+		searchedPlayerIds[p._id.toString()] = true;
 	});
 	
-	// For each trade, find which searched player(s) it involves
-	// Use the highest-ranked (first in array) if multiple match
+	// Collect all player IDs from all trades for name lookup
+	var allPlayerIds = new Set();
+	trades.forEach(function(trade) {
+		(trade.parties || []).forEach(function(party) {
+			(party.receives.players || []).forEach(function(p) {
+				allPlayerIds.add(p.playerId.toString());
+			});
+			(party.receives.rfaRights || []).forEach(function(r) {
+				allPlayerIds.add(r.playerId.toString());
+			});
+		});
+	});
+	
+	// Look up all player names
+	var playerDocs = await Player.find({ 
+		_id: { $in: Array.from(allPlayerIds) } 
+	}).select('name').lean();
+	
+	var allPlayerNames = {};
+	playerDocs.forEach(function(p) {
+		allPlayerNames[p._id.toString()] = p.name;
+	});
+	
+	// Build summaries for each trade
 	var results = trades.map(function(trade) {
-		var matchedPlayerName = null;
-		
-		// Check each party's received players and RFA rights
-		for (var i = 0; i < (trade.parties || []).length && !matchedPlayerName; i++) {
-			var party = trade.parties[i];
-			
-			// Check players
-			for (var j = 0; j < (party.receives.players || []).length && !matchedPlayerName; j++) {
-				var playerId = party.receives.players[j].playerId.toString();
-				if (playerNameById[playerId]) {
-					matchedPlayerName = playerNameById[playerId];
-				}
-			}
-			
-			// Check RFA rights
-			for (var j = 0; j < (party.receives.rfaRights || []).length && !matchedPlayerName; j++) {
-				var playerId = party.receives.rfaRights[j].playerId.toString();
-				if (playerNameById[playerId]) {
-					matchedPlayerName = playerNameById[playerId];
-				}
-			}
-		}
-		
-		return { trade: trade, playerName: matchedPlayerName };
+		var summary = buildTradeSummary(trade, searchedPlayerIds, allPlayerNames);
+		return { trade: trade, summary: summary };
 	});
 	
 	return results;
@@ -641,7 +745,7 @@ async function search(request, response) {
 		var playerTradeResults = await findTradesForPlayers(topPlayers, 3);
 		
 		var tradeResults = playerTradeResults.map(function(result) {
-			return formatTradeResult(result.trade, result.trade.tradeId, result.playerName);
+			return formatTradeResult(result.trade, result.trade.tradeId, result.summary);
 		});
 		
 		response.render('search-results', { 
