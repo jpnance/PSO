@@ -50,8 +50,8 @@ block content
 		p: a(href='/propose') ← Back to Trade Machine
 
 		//- Status header
-		div.d-flex.justify-content-between.align-items-center.mb-4
-			h1.mb-0 Trade Proposal
+		div.d-flex.flex-wrap.justify-content-between.align-items-center.mb-4
+			h1.mb-2.mb-md-0 Trade Proposal
 			+statusBadge(proposal.status, proposal.status === 'draft' ? 'hypothetical' : proposal.status)
 
 		//- Hypothetical trade notice
@@ -60,7 +60,7 @@ block content
 				i.fa.fa-file-text-o.mr-2
 				strong This is a hypothetical trade for discussion.
 				if tradesEnabled
-					|  Anyone involved can make it official to start the acceptance process.
+					|  Anyone involved can officially propose it.
 				else
 					|  #{tradesDisabledReason}
 
