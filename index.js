@@ -151,3 +151,14 @@ var wss = new ws.WebSocketServer({ server: server });
 
 var auction = require('./auction/service');
 wss.on('connection', auction.handleConnection);
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+	console.log('SIGTERM received, shutting down...');
+	server.close(() => {
+		mongoose.connection.close(false).then(() => {
+			console.log('Closed out remaining connections');
+			process.exit(0);
+		});
+	});
+});

@@ -34,6 +34,7 @@ services:
     volumes:
       - .:/app
     command: sh -c "crontab /app/etc/crontab && crond -f"
+    stop_grace_period: 2s
 
 volumes:
   pso-data:
