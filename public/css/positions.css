@@ -1,31 +1,28 @@
-/* Position group colors - shared across draft board, rookies, etc. */
+/* Position group colors - shared across pages */
 
 /* QB: Light blue */
-.pos-QB, .pick-row.pos-QB { background-color: var(--pos-qb-bg); }
-.pos-QB-text, .pos-QB .pick-position, .pick-row.pos-QB .pick-position { color: var(--pos-qb-text); }
+.pos-QB { background-color: var(--pos-qb-bg); }
+.pos-QB-text { color: var(--pos-qb-text); }
 
 /* RB: Azure */
-.pos-RB, .pick-row.pos-RB { background-color: var(--pos-rb-bg); }
-.pos-RB-text, .pos-RB .pick-position, .pick-row.pos-RB .pick-position { color: var(--pos-rb-text); }
+.pos-RB { background-color: var(--pos-rb-bg); }
+.pos-RB-text { color: var(--pos-rb-text); }
 
 /* WR: Light goldenrod */
-.pos-WR, .pick-row.pos-WR { background-color: var(--pos-wr-bg); }
-.pos-WR-text, .pos-WR .pick-position, .pick-row.pos-WR .pick-position { color: var(--pos-wr-text); }
+.pos-WR { background-color: var(--pos-wr-bg); }
+.pos-WR-text { color: var(--pos-wr-text); }
 
 /* TE: Light green */
-.pos-TE, .pick-row.pos-TE { background-color: var(--pos-te-bg); }
-.pos-TE-text, .pos-TE .pick-position, .pick-row.pos-TE .pick-position { color: var(--pos-te-text); }
+.pos-TE { background-color: var(--pos-te-bg); }
+.pos-TE-text { color: var(--pos-te-text); }
 
 /* IDP (DL, LB, DB): Seashell */
-.pos-IDP, .pos-DL, .pos-LB, .pos-DB,
-.pick-row.pos-IDP, .pick-row.pos-DL, .pick-row.pos-LB, .pick-row.pos-DB { background-color: var(--pos-idp-bg); }
-.pos-IDP-text, .pos-DL-text, .pos-LB-text, .pos-DB-text,
-.pos-IDP .pick-position, .pos-DL .pick-position, .pos-LB .pick-position, .pos-DB .pick-position,
-.pick-row.pos-IDP .pick-position, .pick-row.pos-DL .pick-position, .pick-row.pos-LB .pick-position, .pick-row.pos-DB .pick-position { color: var(--pos-idp-text); }
+.pos-IDP, .pos-DL, .pos-LB, .pos-DB { background-color: var(--pos-idp-bg); }
+.pos-IDP-text, .pos-DL-text, .pos-LB-text, .pos-DB-text { color: var(--pos-idp-text); }
 
 /* K: Light gray */
-.pos-K, .pick-row.pos-K { background-color: var(--pos-k-bg); }
-.pos-K-text, .pos-K .pick-position, .pick-row.pos-K .pick-position { color: var(--pos-k-text); }
+.pos-K { background-color: var(--pos-k-bg); }
+.pos-K-text { color: var(--pos-k-text); }
 
 /* Table header variants - use background colors with dark text */
 th.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
