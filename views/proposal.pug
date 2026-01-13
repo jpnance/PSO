@@ -177,11 +177,11 @@ block content
 			if tradesEnabled
 				button.btn.btn-primary.mr-2.formalize-btn
 					i.fa.fa-gavel.mr-1
-					| Make This Official
+					| Propose This Trade
 			else
 				button.btn.btn-primary.mr-2(disabled)
 					i.fa.fa-gavel.mr-1
-					| Make This Official
+					| Propose This Trade
 				p.text-muted.small.mt-2
 					i.fa.fa-info-circle.mr-1
 					= tradesDisabledReason || 'Trades are currently disabled'
@@ -261,7 +261,7 @@ block scripts
 			$.post('/propose/' + proposalId + '/formalize')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-gavel mr-1"></i> Make This Official');
+					$btn.prop('disabled', false).html('<i class="fa fa-gavel mr-1"></i> Propose This Trade');
 					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
 					showError(errors);
 				});
