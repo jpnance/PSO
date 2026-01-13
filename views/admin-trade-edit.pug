@@ -3,49 +3,42 @@ extends layout.pug
 block styles
 	link(rel='stylesheet' href='/league.css')
 	style.
-		.party-section {
+		/* Admin trade edit page styles (BEM) */
+		.admin-trade-edit__party {
 			padding: 1rem 0;
 			border-bottom: 1px solid #dee2e6;
 		}
-		.party-section:first-child {
+		.admin-trade-edit__party:first-child {
 			padding-top: 0;
 		}
-		.notes-section {
+		.admin-trade-edit__notes {
 			padding-top: 1rem;
 		}
-		.party-name {
+		.admin-trade-edit__party-name {
 			margin-bottom: 0.5rem;
 		}
-		.asset-list {
+		.admin-trade-edit__asset-list {
 			margin-bottom: 0;
 			padding-left: 1.25rem;
 		}
-		.asset-list li {
+		.admin-trade-edit__asset-list li {
 			padding: 0.25rem 0;
 		}
-		.cash-edit-row {
+		.admin-trade-edit__cash-row {
 			display: flex;
 			gap: 0.5rem;
 			align-items: center;
 		}
-		.cash-edit-row input {
+		.admin-trade-edit__cash-row input {
 			width: 80px;
 		}
-		.cash-edit-row .from-label {
+		.admin-trade-edit__cash-row-from {
 			font-size: 0.85rem;
 			color: #6c757d;
 		}
-		.trade-meta {
+		.admin-trade-edit__meta {
 			font-size: 0.9rem;
 			color: #6c757d;
-		}
-		.timestamp-edit {
-			display: flex;
-			gap: 0.5rem;
-			align-items: center;
-		}
-		.timestamp-edit input {
-			width: auto;
 		}
 
 block content
@@ -149,7 +142,7 @@ block content
 		
 		h1.mb-2
 			| Trade ##{trade.tradeId || '(no ID)'}
-		p.trade-meta
+		p.admin-trade-edit__meta
 			= formatTimestampDisplay(trade.timestamp)
 			if trade.tradeId
 				|  · 
@@ -163,18 +156,18 @@ block content
 							strong Trade Details
 						div.card-body
 							each party, partyIdx in parties
-								div.party-section
-									div.party-name
+								div.admin-trade-edit__party
+									div.admin-trade-edit__party-name
 										strong= party.franchiseName
 										|  receive#{party.usePlural ? '' : 's'}:
 									
 									- var assets = buildAssetList(party, partyIdx)
 									if assets.length
-										ul.asset-list
+										ul.admin-trade-edit__asset-list
 											each asset in assets
 												if asset.type === 'cash'
 													li
-														div.cash-edit-row
+														div.admin-trade-edit__cash-row
 															span $
 															input.form-control.form-control-sm(
 																type='number'
@@ -187,13 +180,13 @@ block content
 																name='cash_' + asset.partyIdx + '_' + asset.cashIdx + '_season'
 																value=asset.season
 															)
-															span.from-label from #{asset.fromName}
+															span.admin-trade-edit__cash-row-from from #{asset.fromName}
 												else
 													li= asset.display
 									else
 										p.text-muted.mb-0 (nothing)
 							
-							div.notes-section
+							div.admin-trade-edit__notes
 								label.font-weight-bold(for='notes') Notes
 								textarea.form-control(
 									id='notes'

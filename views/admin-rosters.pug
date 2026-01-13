@@ -5,35 +5,36 @@ block styles
 	link(rel='stylesheet' href='/league.css')
 	link(rel='stylesheet' href='/css/positions.css')
 	style.
-		.roster-card {
+		/* Admin rosters page styles (BEM) */
+		.admin-rosters__card {
 			margin-bottom: 1.5rem;
 		}
-		.player-row {
+		.admin-rosters__player {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			padding: 0.5rem 0;
 			border-bottom: 1px solid #eee;
 		}
-		.player-row:last-child {
+		.admin-rosters__player:last-child {
 			border-bottom: none;
 		}
-		.player-info {
+		.admin-rosters__player-info {
 			flex: 1;
 		}
-		.player-name-row {
+		.admin-rosters__player-name-row {
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
 		}
-		.player-name {
+		.admin-rosters__player-name {
 			font-weight: 500;
 		}
-		.player-meta {
+		.admin-rosters__player-meta {
 			font-size: 0.85rem;
 			color: #6c757d;
 		}
-		.cut-btn {
+		.admin-rosters__cut-btn {
 			margin-left: 1rem;
 		}
 
@@ -62,7 +63,7 @@ block content
 		div.row
 			each franchise in franchises
 				div.col-lg-6.col-xl-4
-					div.card.roster-card
+					div.card.admin-rosters__card
 						div.card-header
 							strong= franchise.displayName
 						div.card-body
@@ -70,29 +71,29 @@ block content
 								p.text-muted.mb-0 No players on roster
 							else
 								each player in franchise.roster
-									div.player-row
-										div.player-info
-											div.player-name-row
-												span.player-name= player.name
+									div.admin-rosters__player
+										div.admin-rosters__player-info
+											div.admin-rosters__player-name-row
+												span.admin-rosters__player-name= player.name
 												if player.positions && player.positions.length
 													+positionBadge(player.positions)
-											div.player-meta
+											div.admin-rosters__player-meta
 												if player.salary !== null
 													| #{formatMoney(player.salary)}
 													if player.contract
 														| , #{player.contract}
 												else
 													| RFA Rights
-										form.cut-form(method='POST' action='/admin/rosters/cut' onsubmit='return confirmCut(this)')
+										form.admin-rosters__cut-form(method='POST' action='/admin/rosters/cut' onsubmit='return confirmCut(this)')
 											input(type='hidden' name='franchiseId' value=franchise._id)
 											input(type='hidden' name='playerId' value=player.playerId)
 											input(type='hidden' name='playerName' value=player.name)
 											if player.salary !== null
-												button.btn.btn-sm.btn-outline-danger.cut-btn(type='submit')
+												button.btn.btn-sm.btn-outline-danger.admin-rosters__cut-btn(type='submit')
 													i.fa.fa-scissors.mr-1
 													| Cut
 											else
-												button.btn.btn-sm.btn-outline-secondary.cut-btn(type='submit')
+												button.btn.btn-sm.btn-outline-secondary.admin-rosters__cut-btn(type='submit')
 													i.fa.fa-times.mr-1
 													| Drop
 		

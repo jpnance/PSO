@@ -3,21 +3,22 @@ extends layout.pug
 block styles
 	link(rel='stylesheet' href='/league.css')
 	style.
-		.people-list {
+		/* Transfer franchise page styles (BEM) */
+		.transfer-franchise__people-list {
 			max-height: 150px;
 			overflow-y: auto;
 			border: 1px solid #ced4da;
 			border-radius: 0.25rem;
 			display: none;
 		}
-		.people-list.show {
+		.transfer-franchise__people-list--show {
 			display: block;
 		}
-		.people-list-item {
+		.transfer-franchise__people-item {
 			padding: 0.5rem 0.75rem;
 			cursor: pointer;
 		}
-		.people-list-item:hover {
+		.transfer-franchise__people-item:hover {
 			background: #f8f9fa;
 		}
 
@@ -57,9 +58,9 @@ block content
 									required
 									autocomplete='off'
 								)
-								div#peopleList.people-list
+								div#peopleList.transfer-franchise__people-list
 									each person in people
-										div.people-list-item(data-name=person.name)= person.name
+										div.transfer-franchise__people-item(data-name=person.name)= person.name
 								small.form-text.text-muted
 									| Start typing to see existing people, or enter a new name to create a new person.
 						
@@ -97,17 +98,17 @@ block scripts
 		// Simple autocomplete for owner name
 		var input = document.getElementById('newOwnerName');
 		var list = document.getElementById('peopleList');
-		var items = list.querySelectorAll('.people-list-item');
+		var items = list.querySelectorAll('.transfer-franchise__people-item');
 		
 		input.addEventListener('focus', function() {
 			filterList();
-			list.classList.add('show');
+			list.classList.add('transfer-franchise__people-list--show');
 		});
 		
 		input.addEventListener('blur', function() {
 			// Delay to allow click on list item
 			setTimeout(function() {
-				list.classList.remove('show');
+				list.classList.remove('transfer-franchise__people-list--show');
 			}, 200);
 		});
 		
@@ -128,14 +129,14 @@ block scripts
 				}
 			});
 			if (hasVisible && val.length > 0) {
-				list.classList.add('show');
+				list.classList.add('transfer-franchise__people-list--show');
 			}
 		}
 		
 		items.forEach(function(item) {
 			item.addEventListener('click', function() {
 				input.value = item.getAttribute('data-name');
-				list.classList.remove('show');
+				list.classList.remove('transfer-franchise__people-list--show');
 				// Auto-fill display name if empty
 				var displayInput = document.getElementById('newDisplayName');
 				if (!displayInput.value) {

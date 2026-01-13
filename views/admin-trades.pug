@@ -3,7 +3,8 @@ extends layout.pug
 block styles
 	link(rel='stylesheet' href='/league.css')
 	style.
-		.search-form {
+		/* Admin trades page styles (BEM) */
+		.admin-trades__search {
 			max-width: 300px;
 		}
 
@@ -11,7 +12,7 @@ block content
 	div.container.py-4
 		h1.mb-4 Trades
 		
-		form.search-form.mb-4(method='GET' action='/admin/trades')
+		form.admin-trades__search.mb-4(method='GET' action='/admin/trades')
 			div.input-group
 				input.form-control(
 					type='text'
