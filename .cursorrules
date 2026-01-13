@@ -116,18 +116,16 @@ Use BEM naming to scope styles and prevent class name collisions:
 | **Shared components** | `components.css` | BEM blocks (`.status-badge`, `.asset-list`) |
 | **Position styles** | `positions.css` | `.pos-{position}` pattern |
 | **Navigation** | `sidebar.css` | BEM with `nav-` prefix |
-| **Page-specific** | Inline `style.` block | BEM with page prefix (`.trade-filter`, `.draft-board`) |
+| **Page-specific** | `public/css/{page}.css` | BEM with page prefix (`.trade-filter`, `.draft-board`) |
+
+Page-specific CSS files follow the template name: `proposal.pug` → `proposal.css`, `admin-players.pug` → `admin-players.css`, etc.
 
 ### Avoid
 
+- Inline `style.` blocks in templates (extract to CSS files)
 - Generic class names that could collide (`.sidebar`, `.section`, `.title`, `.card`)
 - Deep nesting beyond Block > Element (no `.a__b__c`)
 - Modifiers without the base class
-
-### Migration
-
-When editing existing views, opportunistically rename colliding classes to BEM.
-Prioritize pages with inline styles that use generic names.
 
 ## Design Tokens (CSS Custom Properties)
 
