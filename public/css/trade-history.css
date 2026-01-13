@@ -1,0 +1,152 @@
+/* Trade History page styles */
+
+body {
+	background-color: #f8f9fa;
+}
+
+.trade-card {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	background: #fff;
+}
+
+.trade-header {
+	font-weight: bold;
+	font-size: 1.1rem;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 0.5rem;
+	margin-bottom: 0.75rem;
+}
+
+.trade-date {
+	color: #666;
+	font-weight: normal;
+	font-size: 0.8rem;
+}
+
+/* Trade filter panel (BEM) */
+.trade-filter {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.trade-filter__section {
+	margin-bottom: 1.25rem;
+}
+
+.trade-filter__section:last-child {
+	margin-bottom: 0;
+}
+
+.trade-filter__title {
+	font-weight: 600;
+	font-size: 0.85rem;
+	color: #495057;
+	margin-bottom: 0.5rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.trade-filter select {
+	font-size: 0.875rem;
+}
+
+.trade-filter .btn {
+	font-size: 0.875rem;
+}
+
+.filter-summary {
+	font-size: 0.8rem;
+	color: #666;
+	margin-top: 0.75rem;
+	padding-top: 0.75rem;
+	border-top: 1px solid #eee;
+}
+
+.filter-summary .active-filter {
+	display: inline-block;
+	background: #e7f1ff;
+	border: 1px solid #b6d4fe;
+	border-radius: 4px;
+	padding: 0.15rem 0.4rem;
+	margin: 0.15rem 0;
+}
+
+.filter-summary .remove-filter {
+	color: #6c757d;
+	text-decoration: none;
+	margin-left: 0.25rem;
+}
+
+.filter-summary .remove-filter:hover {
+	color: #dc3545;
+}
+
+.pagination-info {
+	font-size: 0.85rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+}
+
+.pagination-nav {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.pagination-left,
+.pagination-right {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.trade-filter__nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.trade-filter__nav-left,
+.trade-filter__nav-right {
+	display: flex;
+	gap: 0.25rem;
+}
+
+.trade-nav {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 1rem;
+}
+
+.trade-nav-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.4rem 0.75rem;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	text-decoration: none;
+	color: #495057;
+	font-size: 0.9rem;
+	transition: all 0.15s;
+}
+
+.trade-nav-link:hover {
+	background: #f8f9fa;
+	border-color: #adb5bd;
+	text-decoration: none;
+	color: #212529;
+}
+
+/* Sticky filter panel on large screens */
+@media (min-width: 992px) {
+	.trade-filter--sticky {
+		position: sticky;
+		top: calc(56px + 1rem);
+	}
+}

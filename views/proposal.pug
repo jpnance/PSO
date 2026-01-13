@@ -12,38 +12,7 @@ block styles
 	link(rel='stylesheet' href='/trade.css')
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
-	style.
-		/* Proposal page styles (BEM) */
-		.proposal-status {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-		}
-		.proposal-status__check {
-			width: 1.5rem;
-			height: 1.5rem;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.proposal-status__check--accepted {
-			background: var(--color-success);
-			color: white;
-		}
-		.proposal-status__check--waiting {
-			background: #e9ecef;
-			color: #6c757d;
-		}
-		
-		.proposal-countdown {
-			font-size: 1.5rem;
-			font-weight: 600;
-			font-family: monospace;
-		}
-		.proposal-countdown--warning {
-			color: #dc3545;
-		}
+	link(rel='stylesheet' href='/css/proposal.css')
 
 block content
 	div.container.py-4

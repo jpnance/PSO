@@ -1,0 +1,23 @@
+/* Admin players page styles (BEM) */
+
+.admin-players__row:hover {
+	background-color: #f8f9fa;
+}
+
+.admin-players__link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.admin-players__link:hover {
+	text-decoration: underline;
+}
+
+.admin-players__search {
+	max-width: 400px;
+}
+
+.admin-players__result-count {
+	font-size: 0.875rem;
+	color: #6c757d;
+}

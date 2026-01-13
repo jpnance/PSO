@@ -1,0 +1,162 @@
+/* Draft board page styles (BEM) */
+
+.draft-board__header {
+	margin-bottom: 1rem;
+}
+
+.draft-board__header h1 {
+	margin: 0 0 0.5rem 0;
+}
+
+.draft-board__rounds {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.draft-board__round {
+	flex: 0 0 auto;
+	width: 320px;
+	border: 1px solid #dee2e6;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.draft-board__round-header {
+	background: #343a40;
+	color: white;
+	padding: 0.5rem 0.75rem;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.draft-board__pick {
+	display: flex;
+	padding: 0.4rem 0.6rem;
+	border-bottom: 1px solid #eee;
+	font-size: 0.9rem;
+	align-items: center;
+	height: 3rem;
+}
+
+/* Mobile: full-width cards */
+@media (max-width: 576px) {
+	.draft-board__round {
+		width: 100%;
+	}
+	.draft-board__pick {
+		font-size: 0.95rem;
+	}
+}
+
+.draft-board__pick:last-child {
+	border-bottom: none;
+}
+
+.draft-board__pick-num {
+	flex: 0 0 50px;
+	font-weight: bold;
+	color: #6c757d;
+	font-size: 0.75rem;
+}
+
+.draft-board__pick-num-raw {
+	font-size: 0.65rem;
+	font-weight: normal;
+	color: #999;
+}
+
+.draft-board__pick-details {
+	flex: 1;
+	min-width: 0;
+}
+
+.draft-board__pick-player {
+	font-weight: 500;
+}
+
+.draft-board__pick-player-name {
+}
+
+.draft-board__pick-position {
+	font-size: 0.65rem;
+	font-weight: 600;
+	margin-left: 0.25rem;
+}
+
+/* Position text colors */
+.pos-QB .draft-board__pick-position { color: var(--pos-qb-text); }
+.pos-RB .draft-board__pick-position { color: var(--pos-rb-text); }
+.pos-WR .draft-board__pick-position { color: var(--pos-wr-text); }
+.pos-TE .draft-board__pick-position { color: var(--pos-te-text); }
+.pos-DL .draft-board__pick-position,
+.pos-LB .draft-board__pick-position,
+.pos-DB .draft-board__pick-position,
+.pos-IDP .draft-board__pick-position { color: var(--pos-idp-text); }
+.pos-K .draft-board__pick-position { color: var(--pos-k-text); }
+
+.draft-board__pick-salary {
+	font-size: 0.7rem;
+	color: #555;
+	margin-left: 0.25rem;
+}
+
+.draft-board__pick-owner {
+	font-size: 0.7rem;
+	color: #6c757d;
+}
+
+.draft-board__pick-from {
+	color: #999;
+}
+
+/* Position colors now in /css/positions.css */
+/* Passed pick - same as K for muted look */
+.draft-board__pick--passed {
+	background-color: var(--pos-k-bg);
+}
+
+.draft-board__pick--passed .draft-board__pick-player-name {
+	color: #7f8c8d;
+	font-style: italic;
+}
+
+/* Available pick */
+.draft-board__pick--available {
+	background-color: #f8f9fa;
+}
+
+.draft-board__pick--available .draft-board__pick-owner {
+	font-size: 1rem;
+	font-weight: 500;
+	color: #343a40;
+}
+
+.draft-board__pick--available .draft-board__pick-owner .draft-board__pick-from {
+	font-size: 0.75rem;
+	font-weight: normal;
+	color: #999;
+}
+
+/* User's own picks - left border accent matching position colors */
+.draft-board__pick--mine {
+	padding-left: calc(0.6rem - 3px);
+}
+
+.draft-board__pick--mine.pos-QB { border-left: 3px solid var(--pos-qb-text); }
+.draft-board__pick--mine.pos-RB { border-left: 3px solid var(--pos-rb-text); }
+.draft-board__pick--mine.pos-WR { border-left: 3px solid var(--pos-wr-text); }
+.draft-board__pick--mine.pos-TE { border-left: 3px solid var(--pos-te-text); }
+.draft-board__pick--mine.pos-IDP { border-left: 3px solid var(--pos-idp-text); }
+.draft-board__pick--mine.pos-K { border-left: 3px solid var(--pos-k-text); }
+.draft-board__pick--mine.draft-board__pick--passed { border-left: 3px solid #7f8c8d; }
+.draft-board__pick--mine.draft-board__pick--available { border-left: 3px solid #6c757d; }
+
+/* Legend items - combined bg and text colors */
+.draft-board__legend span.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); }
+.draft-board__legend span.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); }
+.draft-board__legend span.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); }
+.draft-board__legend span.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); }
+.draft-board__legend span.pos-IDP { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); }
+.draft-board__legend span.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
+.draft-board__legend span.draft-board__pick--passed { background-color: var(--pos-k-bg); color: #7f8c8d; }

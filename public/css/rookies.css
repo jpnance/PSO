@@ -1,0 +1,62 @@
+/* Rookies page styles (BEM) */
+
+.rookies__header {
+	margin-bottom: 1rem;
+}
+
+.rookies__header h1 {
+	margin: 0 0 0.5rem 0;
+}
+
+.rookies-table {
+	font-size: 0.9rem;
+	width: auto;
+	margin: 0;
+}
+
+.rookies-table th,
+.rookies-table td {
+	text-align: center;
+	padding: 0.5rem 1rem;
+	width: 70px;
+}
+
+.rookies-table__round {
+	background: #343a40;
+	color: white;
+	font-weight: 600;
+}
+
+/* Position-colored cells with striping */
+.rookies-table td.pos-QB { background-color: var(--pos-qb-bg); }
+.rookies-table td.pos-RB { background-color: var(--pos-rb-bg); }
+.rookies-table td.pos-WR { background-color: var(--pos-wr-bg); }
+.rookies-table td.pos-TE { background-color: var(--pos-te-bg); }
+.rookies-table td.pos-DL,
+.rookies-table td.pos-LB,
+.rookies-table td.pos-DB { background-color: var(--pos-idp-bg); }
+.rookies-table td.pos-K { background-color: var(--pos-k-bg); }
+
+/* Darken odd rows slightly for stripe effect */
+.rookies-table__row--odd td.pos-QB { background-color: #c5dffa; }
+.rookies-table__row--odd td.pos-RB { background-color: #ddf5f5; }
+.rookies-table__row--odd td.pos-WR { background-color: #f0eabc; }
+.rookies-table__row--odd td.pos-TE { background-color: #c8f5c8; }
+.rookies-table__row--odd td.pos-DL,
+.rookies-table__row--odd td.pos-LB,
+.rookies-table__row--odd td.pos-DB { background-color: #f5e6dc; }
+.rookies-table__row--odd td.pos-K { background-color: #e8e8e8; }
+
+.rookies-table tbody tr:hover td:not(.rookies-table__round) {
+	filter: brightness(0.92);
+}
+
+@media (max-width: 576px) {
+	.rookies-table {
+		font-size: 0.8rem;
+	}
+	.rookies-table th,
+	.rookies-table td {
+		padding: 0.3rem 0.25rem;
+	}
+}

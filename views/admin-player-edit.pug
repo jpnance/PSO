@@ -2,22 +2,7 @@ extends layout.pug
 
 block styles
 	link(rel='stylesheet' href='/league.css')
-	style.
-		/* Admin player edit page styles (BEM) */
-		.admin-player-edit__position-check {
-			display: inline-block;
-			margin-right: 1rem;
-			margin-bottom: 0.5rem;
-		}
-		.admin-player-edit__position-check input {
-			margin-right: 0.25rem;
-		}
-		.admin-player-edit__duplicate-card {
-			border-left: 3px solid #ffc107;
-		}
-		.admin-player-edit__contract-row {
-			font-size: 0.9rem;
-		}
+	link(rel='stylesheet' href='/css/admin-player-edit.css')
 
 block content
 	div.container.py-4

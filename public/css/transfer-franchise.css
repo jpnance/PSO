@@ -1,0 +1,22 @@
+/* Transfer franchise page styles (BEM) */
+
+.transfer-franchise__people-list {
+	max-height: 150px;
+	overflow-y: auto;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	display: none;
+}
+
+.transfer-franchise__people-list--show {
+	display: block;
+}
+
+.transfer-franchise__people-item {
+	padding: 0.5rem 0.75rem;
+	cursor: pointer;
+}
+
+.transfer-franchise__people-item:hover {
+	background: #f8f9fa;
+}

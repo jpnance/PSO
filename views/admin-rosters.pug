@@ -4,39 +4,7 @@ include mixins
 block styles
 	link(rel='stylesheet' href='/league.css')
 	link(rel='stylesheet' href='/css/positions.css')
-	style.
-		/* Admin rosters page styles (BEM) */
-		.admin-rosters__card {
-			margin-bottom: 1.5rem;
-		}
-		.admin-rosters__player {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0.5rem 0;
-			border-bottom: 1px solid #eee;
-		}
-		.admin-rosters__player:last-child {
-			border-bottom: none;
-		}
-		.admin-rosters__player-info {
-			flex: 1;
-		}
-		.admin-rosters__player-name-row {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-		}
-		.admin-rosters__player-name {
-			font-weight: 500;
-		}
-		.admin-rosters__player-meta {
-			font-size: 0.85rem;
-			color: #6c757d;
-		}
-		.admin-rosters__cut-btn {
-			margin-left: 1rem;
-		}
+	link(rel='stylesheet' href='/css/admin-rosters.css')
 
 block content
 	div.container.py-4

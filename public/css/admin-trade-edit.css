@@ -1,0 +1,47 @@
+/* Admin trade edit page styles (BEM) */
+
+.admin-trade-edit__party {
+	padding: 1rem 0;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.admin-trade-edit__party:first-child {
+	padding-top: 0;
+}
+
+.admin-trade-edit__notes {
+	padding-top: 1rem;
+}
+
+.admin-trade-edit__party-name {
+	margin-bottom: 0.5rem;
+}
+
+.admin-trade-edit__asset-list {
+	margin-bottom: 0;
+	padding-left: 1.25rem;
+}
+
+.admin-trade-edit__asset-list li {
+	padding: 0.25rem 0;
+}
+
+.admin-trade-edit__cash-row {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.admin-trade-edit__cash-row input {
+	width: 80px;
+}
+
+.admin-trade-edit__cash-row-from {
+	font-size: 0.85rem;
+	color: #6c757d;
+}
+
+.admin-trade-edit__meta {
+	font-size: 0.9rem;
+	color: #6c757d;
+}

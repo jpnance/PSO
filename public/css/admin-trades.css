@@ -1,0 +1,5 @@
+/* Admin trades page styles (BEM) */
+
+.admin-trades__search {
+	max-width: 300px;
+}
