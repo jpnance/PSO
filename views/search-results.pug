@@ -21,7 +21,8 @@ else
 					span.search-result-name= result.name
 					+positionBadge(result.positions)
 				div.search-result-meta
-					span.search-result-franchise RFA rights: #{result.franchiseName}
+					span.search-result-franchise= result.franchiseName
+					span.search-result-contract  · RFA
 		else
 			//- Unrestricted free agent - no link
 			div.search-result.search-result-ufa

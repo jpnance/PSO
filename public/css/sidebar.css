@@ -505,6 +505,7 @@
 
 .search-result-franchise {
     color: #495057;
+    font-weight: 500;
 }
 
 .search-result-contract {
@@ -537,10 +538,6 @@
     margin-top: 0.25rem;
 }
 
-/* RFA search results */
-.search-result-rfa .search-result-franchise {
-    color: var(--asset-rfa);
-}
 
 /* Unrestricted free agent search results (not clickable) */
 .search-result-ufa {
