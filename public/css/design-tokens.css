@@ -59,4 +59,11 @@
 	--color-danger: #dc3545;
 	--color-warning: #ffc107;
 	--color-info: #17a2b8;
+	
+	/* Page background */
+	--page-bg: #f8f9fa;
+}
+
+body {
+	background-color: var(--page-bg);
 }
