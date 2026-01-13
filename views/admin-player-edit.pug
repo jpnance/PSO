@@ -3,18 +3,19 @@ extends layout.pug
 block styles
 	link(rel='stylesheet' href='/league.css')
 	style.
-		.position-check {
+		/* Admin player edit page styles (BEM) */
+		.admin-player-edit__position-check {
 			display: inline-block;
 			margin-right: 1rem;
 			margin-bottom: 0.5rem;
 		}
-		.position-check input {
+		.admin-player-edit__position-check input {
 			margin-right: 0.25rem;
 		}
-		.duplicate-card {
+		.admin-player-edit__duplicate-card {
 			border-left: 3px solid #ffc107;
 		}
-		.contract-row {
+		.admin-player-edit__contract-row {
 			font-size: 0.9rem;
 		}
 
@@ -63,7 +64,7 @@ block content
 								label Positions
 								div
 									each pos in POSITION_ORDER
-										label.position-check
+										label.admin-player-edit__position-check
 											input(
 												type='checkbox'
 												name='pos_' + pos
@@ -106,7 +107,7 @@ block content
 									th Salary
 							tbody
 								each c in contracts
-									tr.contract-row
+									tr.admin-player-edit__contract-row
 										td
 											if c.franchiseId
 												= c.franchiseId.rosterId || 'Unknown'
@@ -175,7 +176,7 @@ block content
 									span.text-muted None set
 				
 				if potentialDuplicates && potentialDuplicates.length
-					div.card.mb-4.duplicate-card
+					div.card.mb-4.admin-player-edit__duplicate-card
 						div.card-header
 							strong Potential Duplicates
 							span.badge.badge-warning.ml-2= potentialDuplicates.length
