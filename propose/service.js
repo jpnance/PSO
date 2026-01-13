@@ -10,7 +10,7 @@ var Transaction = require('../models/Transaction');
 var TradeProposal = require('../models/TradeProposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
-var { formatContractYears, ordinal } = require('../helpers/view');
+var { formatContractYears, ordinal, getPositionIndex } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -63,17 +63,6 @@ async function generateTradeSlug() {
 	var last2 = pick(names.lastNames);
 	
 	return first1 + '-' + last1 + '-for-' + first2 + '-' + last2;
-}
-
-// Position sort order for roster display
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-
-function getPositionIndex(positions) {
-	if (!positions || positions.length === 0) return 999;
-	return Math.min.apply(null, positions.map(function(p) {
-		var idx = positionOrder.indexOf(p);
-		return idx === -1 ? 999 : idx;
-	}));
 }
 
 // Get all data needed for the trade machine

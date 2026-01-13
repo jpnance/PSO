@@ -1,5 +1,3 @@
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-
 var salaries = {
 	'2026': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 40, 'RB': 20, 'TE': 11, 'WR': 17 },
 	'2025': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 44, 'RB': 21, 'TE': 9, 'WR': 16 },
@@ -54,7 +52,6 @@ exports.rookieSalaries = function(request, response) {
 		seasons: seasons,
 		quickSeasons: quickSeasons,
 		olderSeasons: olderSeasons,
-		positionOrder: positionOrder,
 		computeSalary: computeSalary
 	});
 };

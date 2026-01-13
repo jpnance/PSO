@@ -7,7 +7,7 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var transactionService = require('../transaction/service');
-var { formatContractYears } = require('../helpers/view');
+var { formatContractYears, getPositionIndex } = require('../helpers/view');
 
 var currentSeason = parseInt(process.env.SEASON, 10);
 
@@ -367,17 +367,6 @@ async function transferFranchise(request, response) {
 	});
 	
 	response.redirect('/admin');
-}
-
-// Position sort order for roster display
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-
-function getPositionIndex(positions) {
-	if (!positions || positions.length === 0) return 999;
-	return Math.min.apply(null, positions.map(function(p) {
-		var idx = positionOrder.indexOf(p);
-		return idx === -1 ? 999 : idx;
-	}));
 }
 
 // GET /admin/rosters - show all rosters with cut buttons

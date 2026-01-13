@@ -4,8 +4,7 @@ var Regime = require('../models/Regime');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
-
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
+var { sortedPositions } = require('../helpers/view');
 
 // First-round rookie salaries by year and position
 var rookieSalaries = {
@@ -45,20 +44,10 @@ function getRookieSalary(season, round, positions) {
 	return Math.ceil(maxBase / Math.pow(2, round - 1));
 }
 
-// Sort positions according to standard order
-function sortPositions(positions) {
-	if (!positions || positions.length === 0) return [];
-	return positions.slice().sort(function(a, b) {
-		var idxA = positionOrder.indexOf(a);
-		var idxB = positionOrder.indexOf(b);
-		return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-	});
-}
-
 // Map positions to groups for color coding (uses primary position)
 function getPositionGroup(positions) {
 	if (!positions || positions.length === 0) return null;
-	var sorted = sortPositions(positions);
+	var sorted = sortedPositions(positions);
 	var primary = sorted[0];
 	if (primary === 'QB') return 'QB';
 	if (primary === 'RB' || primary === 'FB') return 'RB';
@@ -123,11 +112,11 @@ async function draftBoard(request, response) {
 	var playerMap = {};
 	players.forEach(function(p) {
 		var positions = p.positions || [];
-		var sortedPositions = sortPositions(positions);
+		var sorted = sortedPositions(positions);
 		playerMap[p._id.toString()] = {
 			name: p.name,
 			positions: positions,
-			positionDisplay: sortedPositions.join('/'),
+			positionDisplay: sorted.join('/'),
 			positionGroup: getPositionGroup(positions)
 		};
 	});

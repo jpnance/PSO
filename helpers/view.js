@@ -134,6 +134,19 @@ function sortedPositions(positions) {
 }
 
 /**
+ * Get the minimum position index for sorting players by position
+ * @param {string[]} positions
+ * @returns {number} Index in POSITION_ORDER (999 if not found or empty)
+ */
+function getPositionIndex(positions) {
+	if (!positions || positions.length === 0) return 999;
+	return Math.min.apply(null, positions.map(function(p) {
+		var idx = POSITION_ORDER.indexOf(p);
+		return idx === -1 ? 999 : idx;
+	}));
+}
+
+/**
  * Get a player's position key for grouping (e.g. "WR" or "RB/WR")
  * @param {Object} player - player with positions array
  * @returns {string}
@@ -392,6 +405,7 @@ module.exports = {
 	formatDateISO: formatDateISO,
 	deltaClass: deltaClass,
 	sortedPositions: sortedPositions,
+	getPositionIndex: getPositionIndex,
 	getPositionKey: getPositionKey,
 	shortenPlayerName: shortenPlayerName,
 	oxfordJoin: oxfordJoin,

@@ -9,6 +9,7 @@ var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
+var { getPositionIndex } = require('../helpers/view');
 
 // Calendar helpers
 function formatShortDate(date) {
@@ -105,17 +106,6 @@ async function getBudgetsForFranchise(franchiseId, currentSeason) {
 			recoverable: budget.recoverable
 		};
 	});
-}
-
-// Position sort order
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-
-function getPositionIndex(positions) {
-	if (!positions || positions.length === 0) return 999;
-	return Math.min.apply(null, positions.map(function(p) {
-		var idx = positionOrder.indexOf(p);
-		return idx === -1 ? 999 : idx;
-	}));
 }
 
 // Get all franchises with current regimes, rosters, budgets

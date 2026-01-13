@@ -113,6 +113,7 @@ app.locals.formatContractYears = viewHelpers.formatContractYears;
 app.locals.formatDateISO = viewHelpers.formatDateISO;
 app.locals.deltaClass = viewHelpers.deltaClass;
 app.locals.sortedPositions = viewHelpers.sortedPositions;
+app.locals.getPositionIndex = viewHelpers.getPositionIndex;
 app.locals.getPositionKey = viewHelpers.getPositionKey;
 app.locals.shortenPlayerName = viewHelpers.shortenPlayerName;
 app.locals.oxfordJoin = viewHelpers.oxfordJoin;

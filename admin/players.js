@@ -1,17 +1,6 @@
 var Player = require('../models/Player');
 var Contract = require('../models/Contract');
-
-// Position order for sorting
-var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-
-function sortPositions(positions) {
-	if (!positions || positions.length === 0) return [];
-	return positions.slice().sort(function(a, b) {
-		var idxA = positionOrder.indexOf(a);
-		var idxB = positionOrder.indexOf(b);
-		return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-	});
-}
+var { POSITION_ORDER, sortedPositions } = require('../helpers/view');
 
 // GET /admin/players - list/search players
 async function listPlayers(request, response) {
@@ -52,8 +41,8 @@ async function listPlayers(request, response) {
 				_id: p._id,
 				name: p.name,
 				sleeperId: p.sleeperId,
-				positions: sortPositions(p.positions),
-				positionDisplay: sortPositions(p.positions).join('/') || '—'
+				positions: sortedPositions(p.positions),
+				positionDisplay: sortedPositions(p.positions).join('/') || '—'
 			};
 		});
 	}
@@ -90,8 +79,7 @@ async function editPlayerForm(request, response) {
 	
 	response.render('admin-player-edit', {
 		player: player,
-		positions: sortPositions(player.positions),
-		positionOrder: positionOrder,
+		positions: sortedPositions(player.positions),
 		contracts: contracts,
 		potentialDuplicates: potentialDuplicates,
 		query: request.query,
@@ -118,7 +106,7 @@ async function editPlayer(request, response) {
 	
 	// Update positions - collect checked positions
 	var newPositions = [];
-	positionOrder.forEach(function(pos) {
+	POSITION_ORDER.forEach(function(pos) {
 		if (body['pos_' + pos]) {
 			newPositions.push(pos);
 		}
@@ -188,7 +176,6 @@ async function mergePlayer(request, response) {
 // GET /admin/players/new - new player form
 async function newPlayerForm(request, response) {
 	response.render('admin-player-new', {
-		positionOrder: positionOrder,
 		pageTitle: 'New Player - PSO Admin',
 		activePage: 'admin-players'
 	});
@@ -205,7 +192,7 @@ async function createPlayer(request, response) {
 	
 	// Collect positions
 	var positions = [];
-	positionOrder.forEach(function(pos) {
+	POSITION_ORDER.forEach(function(pos) {
 		if (body['pos_' + pos]) {
 			positions.push(pos);
 		}
