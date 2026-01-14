@@ -138,3 +138,23 @@
 	font-size: 0.85rem;
 	margin-top: 0.5rem;
 }
+
+/* Card footer link - for "view more" navigation from cards/widgets */
+.card-footer-link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.65rem 0.75rem;
+	color: #5a7a94;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 0.875rem;
+	background: #f8f9fa;
+	border-top: 1px solid var(--border-light);
+}
+
+.card-footer-link:hover {
+	background: #e9ecef;
+	text-decoration: none;
+	color: #4a6a84;
+}

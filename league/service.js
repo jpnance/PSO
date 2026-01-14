@@ -25,6 +25,31 @@ function isPast(date) {
 	return new Date(date) < today;
 }
 
+function formatRelativeDate(date) {
+	if (!date) return null;
+	
+	var today = new Date();
+	today.setHours(0, 0, 0, 0);
+	var target = new Date(date);
+	target.setHours(0, 0, 0, 0);
+	
+	var diffMs = target - today;
+	var diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+	
+	if (diffDays < 0) return null;
+	if (diffDays === 0) return 'Today';
+	if (diffDays === 1) return 'Tomorrow';
+	if (diffDays < 7) return 'In ' + diffDays + ' days';
+	
+	var diffWeeks = Math.round(diffDays / 7);
+	if (diffWeeks === 1) return 'In 1 week';
+	if (diffWeeks < 5) return 'In ' + diffWeeks + ' weeks';
+	
+	var diffMonths = Math.round(diffDays / 30);
+	if (diffMonths === 1) return 'In 1 month';
+	return 'In ' + diffMonths + ' months';
+}
+
 function getUpcomingEvents(config) {
 	var events = [
 		{ key: 'tradeWindow', name: 'Trade Window Opens', date: config.tradeWindow },
@@ -47,6 +72,7 @@ function getUpcomingEvents(config) {
 				name: e.name,
 				date: e.date,
 				shortDate: formatShortDate(e.date),
+				relativeDate: formatRelativeDate(e.date),
 				tentative: e.tentative || false
 			};
 		})

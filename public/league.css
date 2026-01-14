@@ -12,17 +12,9 @@ body {
 	padding-left: 0.75rem;
 	background-color: #343a40;
 	color: white;
+	font-weight: 600;
 }
 
-.card-header a.franchise-name {
-	color: white;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-.card-header a.franchise-name:hover {
-	text-decoration: underline;
-}
 
 .card-footer {
 	background-color: #e9ecef;
@@ -145,47 +137,119 @@ nav a:hover {
 /* ===== League Overview Widgets ===== */
 
 /* Calendar Widget */
+.calendar-widget .card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.calendar-widget__phase {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	opacity: 0.8;
+}
+
 .calendar-widget .card-body {
 	padding: 1rem;
 }
 
-.phase-badge .badge-phase {
-	font-size: 0.9rem;
-	padding: 0.4rem 0.75rem;
-	background-color: #495057;
-	color: white;
+.calendar-widget__timeline {
+	position: relative;
+	padding-left: 1.25rem;
 }
 
-.upcoming-events {
-	border-left: 3px solid #dee2e6;
-	padding-left: 0.75rem;
+.calendar-widget__timeline::before {
+	content: '';
+	position: absolute;
+	left: 4px;
+	top: 6px;
+	bottom: 6px;
+	width: 2px;
+	background: #dee2e6;
 }
 
-.event-row {
+.calendar-widget__event {
+	position: relative;
+	padding: 0.4rem 0;
+}
+
+.calendar-widget__event::before {
+	content: '';
+	position: absolute;
+	left: -1.25rem;
+	top: 0.65rem;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: white;
+	border: 2px solid #6c757d;
+}
+
+.calendar-widget__event--next::before {
+	background: #007bff;
+	border-color: #007bff;
+}
+
+.calendar-widget__event-inner {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	padding: 0.35rem 0;
-	font-size: 0.9rem;
+	align-items: baseline;
 }
 
-.event-row.next-event {
+.calendar-widget__event-name {
+	font-size: 0.9rem;
+	color: #495057;
+}
+
+.calendar-widget__event--next .calendar-widget__event-name {
 	font-weight: 600;
 	color: #007bff;
 }
 
-.event-row .event-name {
-	flex: 1;
+.calendar-widget__event-when {
+	text-align: right;
+	font-size: 0.8rem;
 }
 
-.event-row .event-date {
-	color: #6c757d;
-	font-size: 0.85rem;
+.calendar-widget__event-relative {
+	color: #495057;
+	font-weight: 500;
 }
 
-.event-row .tentative {
-	color: #dc3545;
+.calendar-widget__event--next .calendar-widget__event-relative {
+	color: #007bff;
+}
+
+.calendar-widget__event-date {
+	display: block;
+	color: #adb5bd;
 	font-size: 0.75rem;
+}
+
+/* Franchise Cards */
+.franchise-card__body {
+	padding: 0.75rem;
+}
+
+.franchise-card__stat {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.25rem 0;
+	font-size: 0.875rem;
+}
+
+.franchise-card__stat + .franchise-card__stat {
+	border-top: 1px solid #f0f0f0;
+}
+
+.franchise-card__label {
+	color: #6c757d;
+}
+
+.franchise-card__value {
+	font-weight: 500;
+	color: #212529;
 }
 
 /* Standings Widget */

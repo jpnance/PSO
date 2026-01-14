@@ -1,6 +1,7 @@
 extends layout.pug
 
 block styles
+	link(rel='stylesheet' href='/css/components.css')
 	link(rel='stylesheet' href='/league.css')
 
 block content
@@ -12,25 +13,29 @@ block content
 			div.col-md-6.col-lg-4.mb-4
 				div.card.calendar-widget
 					div.card-header
-						i.fa.fa-calendar.mr-2
-						| #{currentSeason} Calendar
+						span
+							i.fa.fa-calendar.mr-2
+							| #{currentSeason} Calendar
+						span.calendar-widget__phase= phaseName
 					div.card-body
-						div.phase-badge.mb-3
-							span.badge.badge-phase= phaseName
 						if upcomingEvents && upcomingEvents.length > 0
-							div.upcoming-events
+							div.calendar-widget__timeline
 								each event, idx in upcomingEvents
 									if idx < 4
-										div.event-row(class=(idx === 0 ? 'next-event' : ''))
-											span.event-name= event.name
-											span.event-date
-												= event.shortDate
-												if event.tentative
-													span.tentative  *
+										div.calendar-widget__event(class=(idx === 0 ? 'calendar-widget__event--next' : ''))
+											div.calendar-widget__event-inner
+												span.calendar-widget__event-name= event.name
+												span.calendar-widget__event-when
+													span.calendar-widget__event-relative= event.relativeDate
+													span.calendar-widget__event-date
+														= event.shortDate
+														if event.tentative
+															| *
 						else
 							p.text-muted.mb-0 No upcoming events
-						div.mt-3
-							a.btn.btn-sm.btn-outline-secondary(href='/calendar') View Full Calendar
+					a.card-footer-link(href='/calendar')
+						span View Full Calendar
+						i.fa.fa-chevron-right
 			
 			//- Standings widget
 			div.col-md-6.col-lg-4.col-xl-4.mb-4
@@ -145,10 +150,15 @@ block content
 		div.row
 			each franchise in franchises
 				div.col-md-6.col-lg-4.col-xl-3.mb-4
-					div.card.h-100
-						div.card-header
-							a.franchise-name(href='/franchise/' + franchise.rosterId)= franchise.displayName
-						
-						div.card-footer.small.d-flex.justify-content-between
-							span Payroll: #{formatMoney(franchise.payroll)}
-							span Available: #{formatMoney(franchise.available)}
+					div.card.h-100.franchise-card
+						div.card-header= franchise.displayName
+						div.card-body.franchise-card__body
+							div.franchise-card__stat
+								span.franchise-card__label Payroll
+								span.franchise-card__value= formatMoney(franchise.payroll)
+							div.franchise-card__stat
+								span.franchise-card__label Available
+								span.franchise-card__value= formatMoney(franchise.available)
+						a.card-footer-link(href='/franchise/' + franchise.rosterId)
+							span View Franchise
+							i.fa.fa-chevron-right
