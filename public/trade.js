@@ -475,8 +475,7 @@ var tradeMachine = {
 			return;
 		}
 		
-		$card.removeClass('d-none');
-		
+		// Keep card hidden until content loads to avoid flash
 		// Fetch rendered partial from server
 		$.ajax({
 			url: '/propose/budget-impact',
@@ -485,9 +484,11 @@ var tradeMachine = {
 			data: JSON.stringify({ deal: tradeMachine.deal }),
 			success: (html) => {
 				$container.html(html);
+				$card.removeClass('d-none');
 			},
 			error: () => {
 				$container.html('<p class="text-muted mb-0">Error loading budget impact.</p>');
+				$card.removeClass('d-none');
 			}
 		});
 	},
@@ -719,7 +720,8 @@ var tradeMachine = {
 		var $shareBtn = $('.share-trade-btn');
 		var $result = $('.proposal-result');
 		var $linkSection = $('.proposal-link-section');
-		var notes = $('#proposal-notes').val().trim() || null;
+		var notesVal = $('#proposal-notes').val();
+		var notes = notesVal ? notesVal.trim() || null : null;
 		
 		var $activeBtn = isDraft ? $shareBtn : $proposeBtn;
 		var btnOriginalHtml = $activeBtn.html();
@@ -727,7 +729,7 @@ var tradeMachine = {
 		$proposeBtn.prop('disabled', true);
 		$shareBtn.prop('disabled', true);
 		$activeBtn.html('<i class="fa fa-spinner fa-spin mr-1"></i> ' + (isDraft ? 'Sharing...' : 'Proposing...'));
-		$result.empty();
+		$result.empty().addClass('d-none');
 		$linkSection.addClass('d-none');
 		
 		$.ajax({
@@ -758,7 +760,7 @@ var tradeMachine = {
 				});
 				html += '</div>';
 				
-				$result.html(html);
+				$result.html(html).removeClass('d-none');
 			}
 		});
 	}

@@ -266,6 +266,10 @@ async function proposePage(request, response) {
 			userFranchiseIds = franchises.map(function(f) { return f.toString(); });
 		}
 		
+		// Check if trades are currently enabled
+		var tradesCheck = await checkTradesEnabled();
+		var tradesEnabled = tradesCheck.enabled;
+		
 		response.render('trade', {
 			franchises: data.franchises,
 			teams: data.teams,
@@ -276,6 +280,7 @@ async function proposePage(request, response) {
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			isLoggedIn: !!user,
 			userFranchiseIds: userFranchiseIds,
+			tradesEnabled: tradesEnabled,
 			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});
