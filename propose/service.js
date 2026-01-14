@@ -748,7 +748,7 @@ async function viewProposal(request, response) {
 					assets.push({
 						type: 'rfa',
 						playerName: playerName,
-						contractInfo: '(RFA rights)',
+						contractInfo: 'RFA rights',
 						positions: positions,
 						salary: 0
 					});

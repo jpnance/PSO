@@ -11,7 +11,7 @@
   - [x] Proposal page: Updated copy to "This hypothetical trade hasn't been officially proposed."
   - [x] Proposal page: Removed Cash Neutral badge (redundant with table)
   - [ ] Cash assets in trades should use formatMoney
-  - [ ] Replace "(RFA rights)" with "RFA rights" in trade display
+  - [x] Replace "(RFA rights)" with "RFA rights" in trade display
   - [x] Show cap violation warnings in Budget Impact widget
 - [ ] Allow owners to drop players *(if needed for Feb 7, otherwise Medium)*
 
@@ -66,6 +66,7 @@
 ### Infrastructure & Technical
 - [ ] Figure out a better way to structure database reports
 - [ ] Clean up directory structure
+- [ ] Refactor formatContractDisplay to handle RFA rights and unsigned cases (remove || 0 coercion and manual checks)
 - [ ] Add generic error pages (404, 500, etc.)
 - [ ] Consider E2E testing with Playwright
 

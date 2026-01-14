@@ -193,9 +193,9 @@ async function buildTradeDisplayData(trades, options) {
 				var playerName = player ? player.name : 'Unknown';
 				playerAssets.push({
 					type: 'rfa',
-					display: playerName + ' (RFA rights)',
+					display: playerName + ' RFA rights',
 					playerName: playerName,
-					contractInfo: '(RFA rights)',
+					contractInfo: 'RFA rights',
 					salary: 0,
 					notes: [],
 					positions: player ? player.positions : []
