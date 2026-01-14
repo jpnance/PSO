@@ -616,6 +616,218 @@ function tradeOgTitle(parties, options) {
 	return title;
 }
 
+/**
+ * Collect assets for plain English description (full player names, picks with "a Xth round pick", cash with year)
+ * @param {Object} party - party object with assets array
+ * @param {number} auctionSeason - for filtering cash
+ * @param {number} tradeYear - for pick number display
+ * @returns {Object} { items: Array of formatted strings, hasPlayer: boolean, isCashOnly: boolean, isNothing: boolean }
+ */
+function collectDescriptionAssets(party, auctionSeason, tradeYear) {
+	if (!party || !party.assets || party.assets.length === 0) {
+		return { items: ['nothing'], hasPlayer: false, isCashOnly: false, isNothing: true };
+	}
+	
+	// If only one asset, always include it
+	var forceInclude = party.assets.length === 1;
+	
+	var players = [];
+	var picks = [];
+	var cashItems = []; // { amount, season }
+	var hasNothing = false;
+	
+	for (var i = 0; i < party.assets.length; i++) {
+		var asset = party.assets[i];
+		
+		if (asset.type === 'player' || asset.type === 'rfa') {
+			players.push({ name: asset.playerName, salary: asset.salary || 0 });
+		} else if (asset.type === 'pick') {
+			if (forceInclude || asset.round <= 2) {
+				picks.push({ round: asset.round || 1, season: asset.season, pickNumber: asset.pickNumber });
+			}
+		} else if (asset.type === 'cash') {
+			var season = asset.season || auctionSeason;
+			if (forceInclude || season >= auctionSeason) {
+				cashItems.push({ amount: asset.amount || 0, season: season });
+			}
+		} else if (asset.type === 'nothing') {
+			hasNothing = true;
+		}
+	}
+	
+	var items = [];
+	
+	// Players sorted by salary desc - full names
+	players.sort(function(a, b) { return b.salary - a.salary; });
+	for (var i = 0; i < players.length; i++) {
+		items.push(players[i].name);
+	}
+	
+	// Picks formatted as "a 1st round pick" (or "1.04" for same-year with known number)
+	var numberedPicks = [];
+	var picksByRound = {};
+	for (var i = 0; i < picks.length; i++) {
+		var pick = picks[i];
+		if (pick.season === tradeYear && pick.pickNumber) {
+			numberedPicks.push(pick);
+		} else {
+			picksByRound[pick.round] = (picksByRound[pick.round] || 0) + 1;
+		}
+	}
+	
+	// Add numbered picks (e.g., "1.04")
+	numberedPicks.sort(function(a, b) { return a.pickNumber - b.pickNumber; });
+	for (var i = 0; i < numberedPicks.length; i++) {
+		var pick = numberedPicks[i];
+		var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
+		items.push('pick ' + formatPickHelpers.formatPickNumber(pick.pickNumber, teamsPerRound));
+	}
+	
+	// Add grouped picks as "a 1st round pick" or "two 1st round picks"
+	var rounds = Object.keys(picksByRound).map(Number).sort(function(a, b) { return a - b; });
+	for (var i = 0; i < rounds.length; i++) {
+		var round = rounds[i];
+		var count = picksByRound[round];
+		var roundOrd = ordinal(round);
+		if (count === 1) {
+			items.push('a ' + roundOrd + ' round pick');
+		} else {
+			items.push(numberToWord(count) + ' ' + roundOrd + ' round picks');
+		}
+	}
+	
+	// Cash with year (grouped by season)
+	var cashBySeason = {};
+	for (var i = 0; i < cashItems.length; i++) {
+		var c = cashItems[i];
+		cashBySeason[c.season] = (cashBySeason[c.season] || 0) + c.amount;
+	}
+	var cashSeasons = Object.keys(cashBySeason).map(Number).sort(function(a, b) { return a - b; });
+	for (var i = 0; i < cashSeasons.length; i++) {
+		var season = cashSeasons[i];
+		items.push('$' + cashBySeason[season] + ' in ' + season);
+	}
+	
+	// Handle nothing
+	if (hasNothing && items.length === 0) {
+		items.push('nothing');
+	}
+	
+	// If still no items, it's nothing
+	if (items.length === 0) {
+		items.push('nothing');
+	}
+	
+	var isCashOnly = items.every(function(item) { return item.startsWith('$'); });
+	var isNothing = items.length === 1 && items[0] === 'nothing';
+	
+	return {
+		items: items,
+		hasPlayer: players.length > 0,
+		isCashOnly: isCashOnly,
+		isNothing: isNothing
+	};
+}
+
+/**
+ * Generate plain English trade description
+ * e.g., "Schexes traded Marcus Mariota to Koci for $38 in 2026"
+ * @param {Array} parties - array of party objects with franchiseName, assets
+ * @param {Object} options - { auctionSeason, tradeYear }
+ * @returns {string} plain English description
+ */
+function tradeOgPlainEnglish(parties, options) {
+	options = options || {};
+	var auctionSeason = options.auctionSeason || new Date().getFullYear();
+	var tradeYear = options.tradeYear || auctionSeason;
+	
+	if (!parties || parties.length < 2) {
+		return 'Trade on Primetime Soap Operas';
+	}
+	
+	if (parties.length !== 2) {
+		// Multi-party trades - simplified format
+		var parts = [];
+		for (var i = 0; i < parties.length; i++) {
+			var p = parties[i];
+			var collected = collectDescriptionAssets(p, auctionSeason, tradeYear);
+			parts.push(p.franchiseName + ' receives ' + oxfordJoin(collected.items));
+		}
+		return parts.join('. ') + '.';
+	}
+	
+	// Two-party trade
+	var collected0 = collectDescriptionAssets(parties[0], auctionSeason, tradeYear);
+	var collected1 = collectDescriptionAssets(parties[1], auctionSeason, tradeYear);
+	
+	// Apply the same ordering logic as tradeOgTitle
+	var giverIndex, receiverIndex, givenItems, receivedItems;
+	
+	// Determine order: first side assets come from the party that gives them away
+	// Party 0 RECEIVES items0, so Party 1 GIVES items0
+	// Party 1 RECEIVES items1, so Party 0 GIVES items1
+	// If we want items0 to go first, the giver is Party 1
+	
+	var items0 = collected0.items;
+	var items1 = collected1.items;
+	
+	// Use same ordering logic as tradeOgTitle
+	var nothing0 = collected0.isNothing;
+	var nothing1 = collected1.isNothing;
+	var cashOnly0 = collected0.isCashOnly;
+	var cashOnly1 = collected1.isCashOnly;
+	var hasPlayer0 = collected0.hasPlayer;
+	var hasPlayer1 = collected1.hasPlayer;
+	
+	// Determine which side's assets go first
+	var firstIsParty0Assets = true; // Does party 0's received assets go first in display?
+	
+	// Nothing always goes second
+	if (nothing0 && !nothing1) {
+		firstIsParty0Assets = false;
+	} else if (nothing1 && !nothing0) {
+		firstIsParty0Assets = true;
+	// Cash-only sides go second
+	} else if (cashOnly0 && !cashOnly1) {
+		firstIsParty0Assets = false;
+	} else if (cashOnly1 && !cashOnly0) {
+		firstIsParty0Assets = true;
+	} else if (items0.length < items1.length) {
+		// Fewer assets first
+		firstIsParty0Assets = true;
+	} else if (items1.length < items0.length) {
+		firstIsParty0Assets = false;
+	} else {
+		// Same count - prefer side with player
+		if (hasPlayer0 && !hasPlayer1) {
+			firstIsParty0Assets = true;
+		} else if (hasPlayer1 && !hasPlayer0) {
+			firstIsParty0Assets = false;
+		}
+		// Both have players or neither - keep original order
+	}
+	
+	var giverName, receiverName, firstAssets, secondAssets;
+	
+	if (firstIsParty0Assets) {
+		// Party 0 receives first assets, so Party 1 gave them
+		// Description: Party 1 traded first assets to Party 0 for second assets
+		giverName = parties[1].franchiseName;
+		receiverName = parties[0].franchiseName;
+		firstAssets = items0;
+		secondAssets = items1;
+	} else {
+		// Party 1 receives first assets, so Party 0 gave them
+		giverName = parties[0].franchiseName;
+		receiverName = parties[1].franchiseName;
+		firstAssets = items1;
+		secondAssets = items0;
+	}
+	
+	// Build the sentence: "[Giver] traded [first assets] to [Receiver] for [second assets]."
+	return giverName + ' traded ' + oxfordJoin(firstAssets) + ' to ' + receiverName + ' for ' + oxfordJoin(secondAssets) + '.';
+}
+
 module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
@@ -636,5 +848,6 @@ module.exports = {
 	summarizeTradeAssets: summarizeTradeAssets,
 	tradeOgTitle: tradeOgTitle,
 	tradeOgDescription: tradeOgDescription,
+	tradeOgPlainEnglish: tradeOgPlainEnglish,
 	POSITION_ORDER: POSITION_ORDER
 };

@@ -101,4 +101,5 @@ module.exports = function(app) {
 	app.get('/admin/proposals', requireLogin, requireAdmin, propose.listProposalsForApproval);
 	app.post('/admin/proposals/:id/approve', requireLogin, requireAdmin, propose.approveProposal);
 	app.post('/admin/proposals/:id/reject', requireLogin, requireAdmin, propose.adminRejectProposal);
+	
 };

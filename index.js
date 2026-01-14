@@ -122,6 +122,7 @@ app.locals.formatPartyAssets = viewHelpers.formatPartyAssets;
 app.locals.summarizeTradeAssets = viewHelpers.summarizeTradeAssets;
 app.locals.tradeOgTitle = viewHelpers.tradeOgTitle;
 app.locals.tradeOgDescription = viewHelpers.tradeOgDescription;
+app.locals.tradeOgPlainEnglish = viewHelpers.tradeOgPlainEnglish;
 app.locals.POSITION_ORDER = viewHelpers.POSITION_ORDER;
 app.locals.buildNav = navHelpers.buildNav;
 require('./routes')(app);

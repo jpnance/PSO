@@ -517,6 +517,7 @@ async function getFranchiseDisplayName(franchiseId) {
 	return regime ? regime.displayName : 'Unknown';
 }
 
+// Get regime with owner first names populated
 // Find which franchise(s) the current user owns
 async function getUserFranchises(user) {
 	if (!user) return [];

@@ -16,6 +16,7 @@ async function getRegime(franchiseId, season) {
 	});
 }
 
+
 async function getDisplayName(franchiseId, season) {
 	var regime = await getRegime(franchiseId, season);
 	return regime ? regime.displayName : 'Unknown';
@@ -178,6 +179,7 @@ async function buildTradeDisplayData(trades, options) {
 					display: display,
 					playerName: playerName,
 					contractInfo: contractInfo,
+					salary: p.salary || 0,
 					notes: notes,
 					ambiguous: p.ambiguous || false,
 					positions: player ? player.positions : []
@@ -194,6 +196,7 @@ async function buildTradeDisplayData(trades, options) {
 					display: playerName + ' (RFA rights)',
 					playerName: playerName,
 					contractInfo: '(RFA rights)',
+					salary: 0,
 					notes: [],
 					positions: player ? player.positions : []
 				});
@@ -302,6 +305,9 @@ async function buildTradeDisplayData(trades, options) {
 					display: display, 
 					pickMain: pickMain,
 					pickContext: pickContext,
+					round: round,
+					season: season,
+					pickNumber: knewPickNumber ? pickNumber : null,
 					notes: notes, 
 					sortOrder: 0, 
 					sortKey: sortKey 
@@ -322,6 +328,8 @@ async function buildTradeDisplayData(trades, options) {
 					display: display, 
 					cashMain: cashMain,
 					cashContext: cashContext,
+					amount: c.amount,
+					season: c.season,
 					notes: [], 
 					sortOrder: 1 
 				});
@@ -376,9 +384,16 @@ async function buildTradeDisplayData(trades, options) {
 			ambiguousPlayers = ambiguousPlayers.concat(p.ambiguousPlayers || []);
 		});
 		
+		// Compute auction season for OG title
+		// Before Sept 1 = auction season is that year, after Sept 1 = next year
+		var tradeDate = trade.timestamp || new Date();
+		var auctionSeason = tradeDate.getMonth() >= 8 ? tradeYear + 1 : tradeYear;
+		
 		tradeData.push({
 			number: tradeNumber,
-			timestamp: trade.timestamp || new Date(),
+			timestamp: tradeDate,
+			tradeYear: tradeYear,
+			auctionSeason: auctionSeason,
 			notes: trade.notes,
 			parties: parties,
 			ambiguousPlayers: ambiguousPlayers
