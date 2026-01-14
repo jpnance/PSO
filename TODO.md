@@ -94,3 +94,12 @@
 - Proposal page: Removed Delete button (drafts auto-cleanup in 7 days)
 - Proposal page: Updated hypothetical trade copy
 - Proposal page: Removed redundant Cash Neutral badge
+
+### Testing
+- [ ] Manual testing with open trade window:
+  - Share a hypothetical trade, send link to a friend, have them look at it
+  - Propose a real trade, get the other party to accept, approve as commissioner
+  - Propose a trade that gets rejected
+  - Propose a trade and cancel it yourself
+  - Build a trade that triggers cap warnings, see how it feels
+  - Share a hypothetical between two other owners, have one of them convert it to a real proposal
