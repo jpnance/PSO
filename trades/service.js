@@ -4,7 +4,7 @@ var Pick = require('../models/Pick');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
-var { formatContractYears, formatContractDisplay, ordinal } = require('../helpers/view');
+var { formatMoney, formatContractYears, formatContractDisplay, ordinal } = require('../helpers/view');
 
 
 async function getRegime(franchiseId, season) {
@@ -149,7 +149,7 @@ async function buildTradeDisplayData(trades, options) {
 				var contractEnd = p.contractEnd || p.endYear;
 				var contract = formatContractYears(contractStart, contractEnd);
 				
-				var display = playerName + ' ($' + (p.salary || 0) + ', ' + contract + ')';
+				var display = playerName + ' (' + formatMoney(p.salary || 0) + ', ' + contract + ')';
 				var contractInfo = formatContractDisplay(p.salary || 0, contractStart, contractEnd);
 				var notes = [];
 				
@@ -318,8 +318,8 @@ async function buildTradeDisplayData(trades, options) {
 			for (var k = 0; k < (party.receives.cash || []).length; k++) {
 				var c = party.receives.cash[k];
 				var fromOwner = c.fromFranchiseId ? await getDisplayName(c.fromFranchiseId, tradeYear) : 'Unknown';
-				var display = '$' + c.amount + ' from ' + fromOwner + ' in ' + c.season;
-				var cashMain = '$' + c.amount;
+				var display = formatMoney(c.amount) + ' from ' + fromOwner + ' in ' + c.season;
+				var cashMain = formatMoney(c.amount);
 				var cashContext = 'from ' + fromOwner + ' in ' + c.season;
 				
 				if (!seasonAssets[c.season]) seasonAssets[c.season] = [];

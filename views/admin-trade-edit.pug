@@ -42,7 +42,7 @@ block content
 			sortedPlayers.forEach(function(p) {
 				var display = p.playerName;
 				if (p.salary) {
-					display += ' ($' + p.salary + ', ' + formatContractYears(p.startYear, p.endYear) + ')';
+					display += ' (' + formatMoney(p.salary) + ', ' + formatContractYears(p.startYear, p.endYear) + ')';
 				}
 				if (p.rfaRights) {
 					display += ' (RFA)';

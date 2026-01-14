@@ -10,7 +10,7 @@ var Transaction = require('../models/Transaction');
 var TradeProposal = require('../models/TradeProposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
-var { formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
+var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -815,7 +815,7 @@ async function viewProposal(request, response) {
 				var fromName = cashData[j].fromName;
 				assets.push({
 					type: 'cash',
-					cashMain: '$' + c.amount,
+					cashMain: formatMoney(c.amount),
 					cashContext: 'from ' + fromName + ' in ' + c.season,
 					amount: c.amount,
 					season: c.season

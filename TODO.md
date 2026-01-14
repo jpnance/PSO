@@ -10,7 +10,7 @@
   - [x] Proposal page: Drafts included in 7-day cleanup (Delete button removed)
   - [x] Proposal page: Updated copy to "This hypothetical trade hasn't been officially proposed."
   - [x] Proposal page: Removed Cash Neutral badge (redundant with table)
-  - [ ] Cash assets in trades should use formatMoney
+  - [x] Cash assets in trades should use formatMoney
   - [x] Replace "(RFA rights)" with "RFA rights" in trade display
   - [x] Show cap violation warnings in Budget Impact widget
 - [ ] Allow owners to drop players *(if needed for Feb 7, otherwise Medium)*

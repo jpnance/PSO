@@ -642,6 +642,10 @@ var tradeMachine = {
 		return round + '.' + pickInRound.toString().padStart(2, '0');
 	},
 
+	formatMoney: (n) => {
+		return '$' + n.toLocaleString('en-US');
+	},
+
 	// Build asset element by cloning template and populating data
 	buildAssetElement: (asset) => {
 		var templateId = 'asset-' + asset.type + '-template';
@@ -675,7 +679,7 @@ var tradeMachine = {
 			$el.find('.asset-text strong').after(contextText);
 		}
 		else if (asset.type === 'cash') {
-			$el.find('.asset-text strong').text('$' + asset.amount);
+			$el.find('.asset-text strong').text(tradeMachine.formatMoney(asset.amount));
 			$el.find('.asset-text strong').after(' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season);
 		}
 		
