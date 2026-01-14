@@ -696,6 +696,7 @@ async function viewProposal(request, response) {
 		
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
+		var auctionSeason = computeAuctionSeason(config);
 		
 		// Check and handle expiration
 		if (proposal.status === 'draft' || proposal.status === 'pending') {
@@ -742,7 +743,8 @@ async function viewProposal(request, response) {
 						type: 'rfa',
 						playerName: playerName,
 						contractInfo: '(RFA rights)',
-						positions: positions
+						positions: positions,
+						salary: 0
 					});
 				} else if (contract) {
 					// Regular player
@@ -750,7 +752,8 @@ async function viewProposal(request, response) {
 						type: 'player',
 						playerName: playerName,
 						contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
-						positions: positions
+						positions: positions,
+						salary: contract.salary || 0
 					});
 				} else {
 					// No contract found
@@ -758,7 +761,8 @@ async function viewProposal(request, response) {
 						type: 'player',
 						playerName: playerName,
 						contractInfo: '(no contract)',
-						positions: positions
+						positions: positions,
+						salary: 0
 					});
 				}
 			}
@@ -785,7 +789,9 @@ async function viewProposal(request, response) {
 				assets.push({
 					type: 'pick',
 					pickMain: pickMain,
-					pickContext: pickContext
+					pickContext: pickContext,
+					round: pick.round,
+					season: pick.season
 				});
 			}
 			
@@ -804,7 +810,9 @@ async function viewProposal(request, response) {
 				assets.push({
 					type: 'cash',
 					cashMain: '$' + c.amount,
-					cashContext: 'from ' + fromName + ' in ' + c.season
+					cashContext: 'from ' + fromName + ' in ' + c.season,
+					amount: c.amount,
+					season: c.season
 				});
 			}
 			
@@ -882,6 +890,8 @@ async function viewProposal(request, response) {
 			budgetImpact: budgetImpactData,
 			isCashNeutral: budgetImpactData.isCashNeutral,
 			currentSeason: currentSeason,
+			auctionSeason: auctionSeason,
+			tradeYear: new Date(proposal.createdAt).getFullYear(),
 			pageTitle: 'Trade Proposal - PSO',
 			activePage: 'propose'
 		});
@@ -1421,6 +1431,22 @@ async function budgetImpactPartial(request, response) {
 		console.error('budgetImpactPartial error:', err);
 		response.status(500).send('Error calculating budget impact');
 	}
+}
+
+// Compute auction season based on phase
+// Pre-auction (early-offseason, pre-season): auction season = current season
+// Post-auction (regular-season+): auction season = next season
+function computeAuctionSeason(config) {
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	if (!config) return currentSeason;
+	
+	var phase = config.getPhase();
+	// Post-auction phases: regular-season, post-deadline, playoff-fa, dead-period
+	var postAuctionPhases = ['regular-season', 'post-deadline', 'playoff-fa', 'dead-period'];
+	if (postAuctionPhases.includes(phase)) {
+		return currentSeason + 1;
+	}
+	return currentSeason;
 }
 
 module.exports = {

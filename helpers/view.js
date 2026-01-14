@@ -1,5 +1,7 @@
 // Shared view helpers - available in all Pug templates via app.locals
 
+var formatPickHelpers = require('./formatPick');
+
 /**
  * Format a number as currency with $ sign
  * @param {number} n
@@ -189,7 +191,9 @@ function shortenPlayerName(name) {
  */
 function oxfordJoin(items) {
 	if (!items || items.length === 0) return '';
-	return items.join(', ');
+	if (items.length === 1) return items[0];
+	if (items.length === 2) return items[0] + ' and ' + items[1];
+	return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
 }
 
 /**
@@ -388,23 +392,228 @@ function summarizeTradeAssets(party) {
 }
 
 /**
- * Generate OG title for a trade
- * @param {Array} parties - array of party objects with franchiseName
- * @returns {string} e.g. "Schex ↔ Koci Trade"
+ * Extract last name from a full name
+ * @param {string} name - full name like "Josh Allen" or "Amon-Ra St. Brown"
+ * @returns {string} last name
  */
-function tradeOgTitle(parties) {
-	if (!parties || parties.length === 0) {
-		return 'Trade';
+function getLastName(name) {
+	if (!name) return 'Unknown';
+	var parts = name.trim().split(/\s+/);
+	if (parts.length === 1) return parts[0];
+	// Return everything after the first name (handles "St. Brown", "Jones Jr.", etc.)
+	return parts.slice(1).join(' ');
+}
+
+/**
+ * Collect qualifying assets from a party for OG title
+ * Includes: all players (last name), 1st/2nd round picks (grouped), summed cash
+ * If party has only one asset, always include it regardless of type
+ * @param {Object} party - party object with assets array
+ * @param {number} auctionSeason - the season for current/next auction (for cash filtering)
+ * @param {number} tradeYear - the year the trade was made (for pick number display)
+ * @returns {Array} array of formatted strings
+ */
+function collectTitleAssets(party, auctionSeason, tradeYear) {
+	if (!party || !party.assets || party.assets.length === 0) return ['Nothing'];
+	
+	// If only one asset, always include it
+	var forceInclude = party.assets.length === 1;
+	
+	var players = [];
+	var picks = []; // { round, season, pickNumber }
+	var cashTotal = 0;
+	var hasNothing = false;
+	
+	for (var i = 0; i < party.assets.length; i++) {
+		var asset = party.assets[i];
+		
+		if (asset.type === 'player' || asset.type === 'rfa') {
+			players.push({ name: getLastName(asset.playerName), salary: asset.salary || 0 });
+		} else if (asset.type === 'pick') {
+			if (forceInclude || asset.round <= 2) {
+				picks.push({ round: asset.round || 1, season: asset.season, pickNumber: asset.pickNumber });
+			}
+		} else if (asset.type === 'cash') {
+			var season = asset.season || auctionSeason;
+			if (forceInclude || season >= auctionSeason) {
+				cashTotal += asset.amount || 0;
+			}
+		} else if (asset.type === 'nothing') {
+			hasNothing = true;
+		}
 	}
 	
-	var names = parties.map(function(p) { return p.franchiseName; });
+	var items = [];
 	
-	if (names.length === 2) {
-		return names[0] + ' ↔ ' + names[1] + ' Trade';
+	// Players sorted by salary desc
+	players.sort(function(a, b) { return b.salary - a.salary; });
+	for (var i = 0; i < players.length; i++) {
+		items.push(players[i].name);
 	}
 	
-	// For 3+ party trades
-	return names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1] + ' Trade';
+	// Picks - use pickNumber format for same-year picks with known numbers
+	// Separate numbered picks from grouped picks
+	var numberedPicks = [];
+	var picksByRound = {};
+	for (var i = 0; i < picks.length; i++) {
+		var pick = picks[i];
+		// Use "1.04" format if pick is for same year as trade and pickNumber is known
+		if (pick.season === tradeYear && pick.pickNumber) {
+			numberedPicks.push(pick);
+		} else {
+			picksByRound[pick.round] = (picksByRound[pick.round] || 0) + 1;
+		}
+	}
+	
+	// Sort numbered picks by pickNumber
+	numberedPicks.sort(function(a, b) { return a.pickNumber - b.pickNumber; });
+	for (var i = 0; i < numberedPicks.length; i++) {
+		var pick = numberedPicks[i];
+		var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
+		items.push(formatPickHelpers.formatPickNumber(pick.pickNumber, teamsPerRound));
+	}
+	
+	// Add grouped picks (sorted by round)
+	var rounds = Object.keys(picksByRound).map(Number).sort(function(a, b) { return a - b; });
+	for (var i = 0; i < rounds.length; i++) {
+		var round = rounds[i];
+		var count = picksByRound[round];
+		var roundOrd = ordinal(round);
+		if (count === 1) {
+			items.push(roundOrd);
+		} else {
+			items.push(numberToWord(count) + ' ' + roundOrd + 's');
+		}
+	}
+	
+	// Summed cash
+	if (cashTotal > 0) {
+		items.push('$' + cashTotal);
+	}
+	
+	// Handle nothing
+	if (hasNothing && items.length === 0) {
+		items.push('Nothing');
+	}
+	
+	return items.length > 0 ? items : ['Nothing'];
+}
+
+/**
+ * Generate OG title for a trade
+ * Two-party: "Allen and Brown for Smith, a 1st, and $50"
+ * Multi-party: lists each party's assets separated by commas
+ * For draft status, prefix with "Fake Trade: "
+ * @param {Array} parties - array of party objects with assets
+ * @param {Object} options - { status, auctionSeason }
+ * @returns {string}
+ */
+function tradeOgTitle(parties, options) {
+	options = options || {};
+	var auctionSeason = options.auctionSeason || new Date().getFullYear();
+	var tradeYear = options.tradeYear || auctionSeason;
+	var status = options.status || 'pending';
+	
+	if (!parties || parties.length < 2) {
+		return status === 'draft' ? 'Fake Trade' : 'Trade';
+	}
+	
+	var title;
+	
+	if (parties.length === 2) {
+		// Two-party trade ordering:
+		// 1. Cash-only side always goes second
+		// 2. Fewer notable assets goes first
+		// 3. Tie-breaker: side with players goes first
+		var items0 = collectTitleAssets(parties[0], auctionSeason, tradeYear);
+		var items1 = collectTitleAssets(parties[1], auctionSeason, tradeYear);
+		
+		// Check if all items are cash (start with $) or nothing
+		function isCashOnly(items) {
+			if (!items || items.length === 0) return false;
+			return items.every(function(item) { return item.startsWith('$'); });
+		}
+		
+		function isNothing(items) {
+			return items && items.length === 1 && items[0] === 'Nothing';
+		}
+		
+		// Check if items contain a player (not cash, not picks, not nothing)
+		function hasPlayer(items) {
+			if (!items || items.length === 0) return false;
+			return items.some(function(item) {
+				// Exclude: Nothing, cash ($...), ordinals (1st, 2nd, etc.), grouped picks (two 1sts, etc.)
+				return item !== 'Nothing' && 
+					!item.startsWith('$') && 
+					!/^\d+(st|nd|rd|th)$/.test(item) &&
+					!/^[a-z]+ \d+(st|nd|rd|th)s$/.test(item);
+			});
+		}
+		
+		var nothing0 = isNothing(items0);
+		var nothing1 = isNothing(items1);
+		var cashOnly0 = isCashOnly(items0);
+		var cashOnly1 = isCashOnly(items1);
+		var hasPlayer0 = hasPlayer(items0);
+		var hasPlayer1 = hasPlayer(items1);
+		
+		var firstItems, secondItems;
+		
+		// Nothing always goes second
+		if (nothing0 && !nothing1) {
+			firstItems = items1;
+			secondItems = items0;
+		} else if (nothing1 && !nothing0) {
+			firstItems = items0;
+			secondItems = items1;
+		// Cash-only sides go second
+		} else if (cashOnly0 && !cashOnly1) {
+			firstItems = items1;
+			secondItems = items0;
+		} else if (cashOnly1 && !cashOnly0) {
+			firstItems = items0;
+			secondItems = items1;
+		} else if (items0.length < items1.length) {
+			// Fewer assets first
+			firstItems = items0;
+			secondItems = items1;
+		} else if (items1.length < items0.length) {
+			firstItems = items1;
+			secondItems = items0;
+		} else {
+			// Same count - prefer side with player
+			if (hasPlayer0 && !hasPlayer1) {
+				firstItems = items0;
+				secondItems = items1;
+			} else if (hasPlayer1 && !hasPlayer0) {
+				firstItems = items1;
+				secondItems = items0;
+			} else {
+				// Both have players or neither - keep original order
+				firstItems = items0;
+				secondItems = items1;
+			}
+		}
+		
+		title = oxfordJoin(firstItems) + ' for ' + oxfordJoin(secondItems);
+	} else {
+		// Multi-party trade: list each party's assets
+		var partySummaries = [];
+		for (var i = 0; i < parties.length; i++) {
+			var items = collectTitleAssets(parties[i], auctionSeason, tradeYear);
+			partySummaries.push(oxfordJoin(items));
+		}
+		title = partySummaries.join(', ');
+	}
+	
+	if (status === 'draft') {
+		title = 'Fake Trade: ' + title;
+	} else {
+		// Capitalize first letter
+		title = title.charAt(0).toUpperCase() + title.slice(1);
+	}
+	
+	return title;
 }
 
 module.exports = {
