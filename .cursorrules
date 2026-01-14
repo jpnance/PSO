@@ -1,5 +1,14 @@
 # PSO Design System Rules
 
+## Related Projects
+
+When referencing patterns from other Coinflipper apps, agents may look at these sibling directories:
+
+- `../CoinflipperLogin` - Coinflipper login service and identity management app
+- `../pickahit` - MLB postseason picks pool app
+- `../SubContest` - NFL picks pool app
+- `../SummerClassics` — MLB picks pool app
+
 ## Project Maturity
 
 This codebase is deployed but not yet battle-tested through a real fantasy season. Most features haven't been used by real users yet. This means:

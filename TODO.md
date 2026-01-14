@@ -14,6 +14,13 @@
   - [x] Replace "(RFA rights)" with "RFA rights" in trade display
   - [x] Show cap violation warnings in Budget Impact widget
 - [ ] Allow owners to drop players *(if needed for Feb 7, otherwise Medium)*
+- [ ] Manual testing with open trade window:
+  - Share a hypothetical trade, send link to a friend, have them look at it
+  - Propose a real trade, get the other party to accept, approve as commissioner
+  - Propose a trade that gets rejected
+  - Propose a trade and cancel it yourself
+  - Build a trade that triggers cap warnings, see how it feels
+  - Share a hypothetical between two other owners, have one of them convert it to a real proposal
 
 ## Medium Priority
 *Before August (rookie draft / cut day / auction / season start)*
@@ -69,10 +76,18 @@
 - [ ] Refactor formatContractDisplay to handle RFA rights and unsigned cases (remove || 0 coercion and manual checks)
 - [ ] Add generic error pages (404, 500, etc.)
 - [ ] Consider E2E testing with Playwright
+- [ ] Add sandbox message banner to league config seed
 
 ## Ideas / Someday
 *Experiments, long-term vision, not committed*
 
+### UI/UX Experiments
+- [ ] Experiment with color schemes (themed to Summer Meetings location each year?)
+- [ ] Breadcrumbs in Coinflipper app style
+- [ ] Tighten up draft picks widget on franchise page (3 columns? conflicts with showing results)
+- [ ] Revisit naming for `/propose` and `/trades` - still doesn't feel right
+
+### Misc Ideas
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
 - [ ] Consider having roles specific to PSO ("commish", "podcast host")
 - [ ] Bring PSO Show podcast notes into the 21st century
@@ -81,6 +96,9 @@
 - [ ] Get a real league logo
 - [ ] Implement a simple blog feature
 - [ ] Figure out how to support Colbys basketball league
+
+### Needs Discussion
+- [ ] Trade TTL edge cases: What happens when someone withdraws acceptance but trade is past TTL? Should any action on a trade renew its TTL? Think through pending trade lifecycle more carefully.
 
 ---
 
@@ -95,11 +113,3 @@
 - Proposal page: Updated hypothetical trade copy
 - Proposal page: Removed redundant Cash Neutral badge
 
-### Testing
-- [ ] Manual testing with open trade window:
-  - Share a hypothetical trade, send link to a friend, have them look at it
-  - Propose a real trade, get the other party to accept, approve as commissioner
-  - Propose a trade that gets rejected
-  - Propose a trade and cancel it yourself
-  - Build a trade that triggers cap warnings, see how it feels
-  - Share a hypothetical between two other owners, have one of them convert it to a real proposal
