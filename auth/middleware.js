@@ -15,19 +15,15 @@ async function attachSession(req, res, next) {
 		return next();
 	}
 
-	try {
-		var response = await superagent
-			.post(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/retrieve')
-			.send({ key: sessionKey });
+	var response = await superagent
+		.post(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/retrieve')
+		.send({ key: sessionKey });
 
-		// Look up local user by username from auth service
-		var authUser = response.body.user;
-		var localUser = await Person.findOne({ username: authUser.username });
+	if (response.body?.user) {
+		var localUser = await Person.findOne({ username: response.body.user.username });
 
 		req.session = response.body;
 		req.user = localUser;
-	} catch (error) {
-		// Invalid/expired session - just continue as logged out
 	}
 
 	next();
