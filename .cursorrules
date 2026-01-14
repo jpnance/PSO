@@ -84,7 +84,7 @@ Include in `block styles` as needed:
 ```pug
 block styles
   link(rel='stylesheet' href='/css/positions.css')   //- for +positionBadge
-  link(rel='stylesheet' href='/css/components.css')  //- for status badges, trade assets, season nav
+  link(rel='stylesheet' href='/css/components.css')  //- for status badges, trade assets, season nav, card footer links
 ```
 
 Note: `design-tokens.css` is already included globally via layout.pug.
@@ -191,3 +191,12 @@ Use the helper for consistent formatting:
 //- Bad
 | #{player.startYear % 100}/#{player.endYear % 100}
 ```
+
+### Card Footer Links
+For cards/widgets that link to a detailed view, use `.card-footer-link`:
+```pug
+a.card-footer-link(href='/calendar')
+  span View Full Calendar
+  i.fa.fa-chevron-right
+```
+This creates a full-width clickable footer with hover state. Used on the homepage for calendar widget and franchise cards.
