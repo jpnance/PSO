@@ -86,6 +86,7 @@
 - [ ] Breadcrumbs in Coinflipper app style
 - [ ] Tighten up draft picks widget on franchise page (3 columns? conflicts with showing results)
 - [ ] Revisit naming for `/propose` and `/trades` - still doesn't feel right
+- [ ] Trade display: two columns at larger breakpoints? (let multi-party asset lists flow naturally)
 
 ### Misc Ideas
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
