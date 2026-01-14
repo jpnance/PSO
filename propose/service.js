@@ -880,7 +880,10 @@ async function viewProposal(request, response) {
 			};
 		}
 		
-		var budgetImpactData = await budgetHelper.calculateTradeImpact(deal, currentSeason);
+		var hardCapActive = config ? config.isHardCapActive() : false;
+		var budgetImpactData = await budgetHelper.calculateTradeImpact(deal, currentSeason, {
+			hardCapActive: hardCapActive
+		});
 		
 		response.render('proposal', {
 			proposal: proposal,
@@ -1426,8 +1429,11 @@ async function budgetImpactPartial(request, response) {
 		
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
+		var hardCapActive = config ? config.isHardCapActive() : false;
 		
-		var budgetImpact = await budgetHelper.calculateTradeImpact(deal, currentSeason);
+		var budgetImpact = await budgetHelper.calculateTradeImpact(deal, currentSeason, {
+			hardCapActive: hardCapActive
+		});
 		
 		response.render('partials/budget-impact', {
 			budgetImpact: budgetImpact,

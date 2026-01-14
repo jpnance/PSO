@@ -9,9 +9,12 @@ var BUYOUT_PERCENTAGES = [0.60, 0.30, 0.15];
  * @param {Object} deal - Trade deal object with franchiseId keys
  *   { franchiseId: { players: [{id, ...}], picks: [...], cash: [{amount, from, season}] } }
  * @param {number} currentSeason - Current season year
- * @returns {Promise<Object>} { franchises: [...], seasons: [...], isCashNeutral: boolean }
+ * @param {Object} [options] - Optional config
+ * @param {boolean} [options.hardCapActive] - Whether hard cap is active (after cut day)
+ * @returns {Promise<Object>} { franchises: [...], seasons: [...], isCashNeutral: boolean, warnings: [...] }
  */
-async function calculateTradeImpact(deal, currentSeason) {
+async function calculateTradeImpact(deal, currentSeason, options) {
+	options = options || {};
 	var Contract = require('../models/Contract');
 	var Budget = require('../models/Budget');
 	var Regime = require('../models/Regime');
@@ -132,19 +135,97 @@ async function calculateTradeImpact(deal, currentSeason) {
 		return impact[fId][currentSeason] === 0;
 	});
 	
+	// Get all contracts for each franchise to calculate recoverable
+	// (players they could cut to get back under cap)
+	var allContracts = await Contract.find({
+		franchiseId: { $in: franchiseIds },
+		salary: { $ne: null },
+		endYear: { $gte: currentSeason }
+	}).lean();
+	
+	// Build a map of player IDs being traded away from each franchise
+	var playersLeavingFranchise = {};
+	franchiseIds.forEach(function(fId) {
+		playersLeavingFranchise[fId] = [];
+	});
+	franchiseIds.forEach(function(receivingId) {
+		var bucket = deal[receivingId];
+		if (!bucket || !bucket.players) return;
+		bucket.players.forEach(function(player) {
+			var contract = contractMap[player.id];
+			if (contract && contract.franchiseId) {
+				var sendingId = contract.franchiseId.toString();
+				if (playersLeavingFranchise[sendingId]) {
+					playersLeavingFranchise[sendingId].push(player.id);
+				}
+			}
+		});
+	});
+	
+	// Calculate recoverable for each franchise/season (excluding traded players)
+	var recoverableMap = {};
+	franchiseIds.forEach(function(fId) {
+		recoverableMap[fId] = {};
+		seasons.forEach(function(s) {
+			var recoverable = 0;
+			allContracts.forEach(function(c) {
+				if (c.franchiseId.toString() !== fId) return;
+				if (c.endYear < s) return;
+				// Skip players being traded away
+				if (playersLeavingFranchise[fId].includes(c.playerId.toString())) return;
+				recoverable += computeRecoverableForContract(c.salary, c.startYear, c.endYear, s);
+			});
+			recoverableMap[fId][s] = recoverable;
+		});
+	});
+	
 	// Build result structure for rendering
+	var warnings = [];
 	var franchises = franchiseIds.map(function(fId) {
 		var seasonData = seasons.map(function(s) {
 			var budget = budgetMap[fId + ':' + s];
 			var available = budget ? budget.available : null;
 			var delta = impact[fId][s];
 			var resulting = available !== null ? available + delta : null;
+			var recoverable = recoverableMap[fId][s] || 0;
+			
+			// Determine cap violation status
+			var violation = null;
+			if (resulting !== null && resulting < 0) {
+				var isCurrentSeason = (s === currentSeason);
+				var hardCapApplies = isCurrentSeason && options.hardCapActive;
+				
+				if (hardCapApplies) {
+					violation = 'hard';
+					warnings.push({
+						type: 'error',
+						franchise: franchiseNames[fId],
+						text: 'would violate the hard cap in ' + s
+					});
+				} else if (resulting + recoverable >= 0) {
+					violation = 'soft';
+					warnings.push({
+						type: 'warning',
+						franchise: franchiseNames[fId],
+						text: 'would be over the soft cap in ' + s + ' (can cut to recover)'
+					});
+				} else {
+					violation = 'unrecoverable';
+					warnings.push({
+						type: 'error',
+						franchise: franchiseNames[fId],
+						text: 'cannot recover in ' + s + ' (even after cutting all players)'
+					});
+				}
+			}
 			
 			return {
 				season: s,
 				delta: delta,
 				available: available,
-				resulting: resulting
+				resulting: resulting,
+				recoverable: recoverable,
+				violation: violation
 			};
 		});
 		
@@ -158,7 +239,8 @@ async function calculateTradeImpact(deal, currentSeason) {
 	return {
 		franchises: franchises,
 		seasons: seasons,
-		isCashNeutral: isCashNeutral
+		isCashNeutral: isCashNeutral,
+		warnings: warnings
 	};
 }
 

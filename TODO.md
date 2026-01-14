@@ -11,7 +11,8 @@
   - [x] Proposal page: Updated copy to "This hypothetical trade hasn't been officially proposed."
   - [x] Proposal page: Removed Cash Neutral badge (redundant with table)
   - [ ] Cash assets in trades should use formatMoney
-  - [ ] Show cap violation warnings in Budget Impact widget
+  - [ ] Replace "(RFA rights)" with "RFA rights" in trade display
+  - [x] Show cap violation warnings in Budget Impact widget
 - [ ] Allow owners to drop players *(if needed for Feb 7, otherwise Medium)*
 
 ## Medium Priority
@@ -60,7 +61,7 @@
 - [ ] Admin players page - more mobile-friendly (smaller text, college truncation)
 - [ ] Admin players page - make college editable for historical players
 - [ ] Admin proposals page - extract inline styles to CSS
-- [ ] Improve layout of info banners across the site
+- [ ] Improve layout of info banners across the site (use flexbox: d-flex align-items-start, icon with flex-shrink-0 mt-1, text in span)
 
 ### Infrastructure & Technical
 - [ ] Figure out a better way to structure database reports
