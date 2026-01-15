@@ -606,8 +606,10 @@ async function createProposal(request, response) {
 			return response.status(403).json({ success: false, errors: ['You must own a franchise to share trades'] });
 		}
 		
-		// Build parties array
+		// Build parties array (with full contract info for validation)
 		var parties = [];
+		var validationParties = [];
+		
 		for (var i = 0; i < franchiseIds.length; i++) {
 			var franchiseId = franchiseIds[i];
 			var bucket = deal[franchiseId];
@@ -618,32 +620,76 @@ async function createProposal(request, response) {
 				cash: []
 			};
 			
-			// Players (just store IDs, lookup contract at execution time)
+			var validationReceives = {
+				players: [],
+				picks: [],
+				cash: []
+			};
+			
+			// Players - store IDs for proposal, full contract info for validation
 			for (var j = 0; j < (bucket.players || []).length; j++) {
-				receives.players.push({ playerId: bucket.players[j].id });
+				var playerData = bucket.players[j];
+				receives.players.push({ playerId: playerData.id });
+				
+				// Look up contract for validation
+				var contract = await Contract.findOne({ playerId: playerData.id });
+				if (contract) {
+					validationReceives.players.push({
+						playerId: contract.playerId,
+						salary: contract.salary,
+						startYear: contract.startYear,
+						endYear: contract.endYear
+					});
+				}
 			}
 			
 			// Picks
 			for (var j = 0; j < (bucket.picks || []).length; j++) {
-				receives.picks.push({ pickId: bucket.picks[j].id });
+				var pickData = { pickId: bucket.picks[j].id };
+				receives.picks.push(pickData);
+				validationReceives.picks.push(pickData);
 			}
 			
 			// Cash
 			for (var j = 0; j < (bucket.cash || []).length; j++) {
 				var cash = bucket.cash[j];
-				receives.cash.push({
+				var cashData = {
 					amount: cash.amount,
 					season: cash.season,
 					fromFranchiseId: cash.from
-				});
+				};
+				receives.cash.push(cashData);
+				validationReceives.cash.push(cashData);
 			}
 			
+			var franchiseOid = new mongoose.Types.ObjectId(franchiseId);
+			
 			parties.push({
-				franchiseId: new mongoose.Types.ObjectId(franchiseId),
+				franchiseId: franchiseOid,
 				receives: receives,
 				accepted: false,
 				acceptedAt: null,
 				acceptedBy: null
+			});
+			
+			validationParties.push({
+				franchiseId: franchiseOid,
+				receives: validationReceives
+			});
+		}
+		
+		// Validate the trade before creating proposal
+		var validationResult = await transactionService.processTrade({
+			timestamp: new Date(),
+			source: 'manual',
+			parties: validationParties,
+			validateOnly: true
+		});
+		
+		if (!validationResult.success) {
+			return response.status(400).json({
+				success: false,
+				errors: validationResult.errors || ['Trade validation failed']
 			});
 		}
 		
@@ -948,6 +994,65 @@ async function formalizeProposal(request, response) {
 			proposal.status = 'expired';
 			await proposal.save();
 			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
+		}
+		
+		// Validate the trade before formalizing (conditions may have changed since draft)
+		var validationParties = [];
+		for (var i = 0; i < proposal.parties.length; i++) {
+			var party = proposal.parties[i];
+			var validationReceives = {
+				players: [],
+				picks: [],
+				cash: []
+			};
+			
+			// Look up current contract info for each player
+			for (var j = 0; j < (party.receives.players || []).length; j++) {
+				var playerRef = party.receives.players[j];
+				var contract = await Contract.findOne({ playerId: playerRef.playerId });
+				if (contract) {
+					validationReceives.players.push({
+						playerId: contract.playerId,
+						salary: contract.salary,
+						startYear: contract.startYear,
+						endYear: contract.endYear
+					});
+				}
+			}
+			
+			// Picks
+			for (var j = 0; j < (party.receives.picks || []).length; j++) {
+				validationReceives.picks.push({ pickId: party.receives.picks[j].pickId });
+			}
+			
+			// Cash
+			for (var j = 0; j < (party.receives.cash || []).length; j++) {
+				var cash = party.receives.cash[j];
+				validationReceives.cash.push({
+					amount: cash.amount,
+					season: cash.season,
+					fromFranchiseId: cash.fromFranchiseId
+				});
+			}
+			
+			validationParties.push({
+				franchiseId: party.franchiseId,
+				receives: validationReceives
+			});
+		}
+		
+		var validationResult = await transactionService.processTrade({
+			timestamp: new Date(),
+			source: 'manual',
+			parties: validationParties,
+			validateOnly: true
+		});
+		
+		if (!validationResult.success) {
+			return response.status(400).json({
+				success: false,
+				errors: validationResult.errors || ['Trade validation failed']
+			});
 		}
 		
 		// Find which party the user belongs to and auto-accept for them
