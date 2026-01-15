@@ -720,13 +720,9 @@ var tradeMachine = {
 
 	// Start loading state on a button, returns restore function
 	startLoading: ($btn) => {
-		var $icon = $btn.find('i');
-		var originalClass = $icon.attr('class');
 		$btn.prop('disabled', true);
-		$icon.attr('class', 'fa fa-spinner fa-spin mr-1');
 		return () => {
 			$btn.prop('disabled', false);
-			$icon.attr('class', originalClass);
 		};
 	},
 
