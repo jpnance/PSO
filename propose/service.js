@@ -711,7 +711,7 @@ async function createProposal(request, response) {
 		var creatorFranchiseId = userFranchiseInTrade || userFranchises[0];
 		
 		var proposal = await createProposalWithRetry({
-			status: isDraft ? 'draft' : 'pending',
+			status: isDraft ? 'hypothetical' : 'pending',
 			createdByFranchiseId: creatorFranchiseId,
 			createdByPersonId: user._id,
 			createdAt: now,
@@ -751,7 +751,7 @@ async function viewProposal(request, response) {
 		var auctionSeason = computeAuctionSeason(config);
 		
 		// Check and handle expiration
-		if (proposal.status === 'draft' || proposal.status === 'pending') {
+		if (proposal.status === 'hypothetical' || proposal.status === 'pending') {
 			if (proposal.isExpired()) {
 				proposal.status = 'expired';
 				await proposal.save();
@@ -975,7 +975,7 @@ async function formalizeProposal(request, response) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
 		
-		if (proposal.status !== 'draft') {
+		if (proposal.status !== 'hypothetical') {
 			return response.status(400).json({ success: false, errors: ['Only drafts can be formalized'] });
 		}
 		
@@ -1174,7 +1174,7 @@ async function rejectProposal(request, response) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
 		
-		if (proposal.status !== 'pending' && proposal.status !== 'draft') {
+		if (proposal.status !== 'pending' && proposal.status !== 'hypothetical') {
 			return response.status(400).json({ success: false, errors: ['Cannot reject this proposal'] });
 		}
 		
@@ -1211,8 +1211,8 @@ async function withdrawProposal(request, response) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
 		
-		if (proposal.status !== 'pending' && proposal.status !== 'draft') {
-			return response.status(400).json({ success: false, errors: ['Cannot withdraw this proposal'] });
+		if (proposal.status !== 'pending' && proposal.status !== 'hypothetical') {
+			return response.status(400).json({ success: false, errors: ['Cannot cancel this proposal'] });
 		}
 		
 		// Only creator can withdraw
@@ -1220,7 +1220,7 @@ async function withdrawProposal(request, response) {
 			return response.status(403).json({ success: false, errors: ['Only the creator can withdraw'] });
 		}
 		
-		proposal.status = 'withdrawn';
+		proposal.status = 'canceled';
 		await proposal.save();
 		
 		response.json({ success: true });
@@ -1249,7 +1249,7 @@ async function counterProposal(request, response) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
 		
-		if (originalProposal.status !== 'pending' && originalProposal.status !== 'draft') {
+		if (originalProposal.status !== 'pending' && originalProposal.status !== 'hypothetical') {
 			return response.status(400).json({ success: false, errors: ['Cannot counter this proposal'] });
 		}
 		

@@ -149,16 +149,15 @@ block content
 		//- Status Badge
 		div.component-section
 			h2 +statusBadge(status, displayText?)
-			code.usage +statusBadge('pending') | +statusBadge('draft', 'hypothetical')
+			code.usage +statusBadge('pending') | +statusBadge('hypothetical')
 			div.preview
 				div.preview-row
-					+statusBadge('draft')
-					+statusBadge('draft', 'hypothetical')
+					+statusBadge('hypothetical')
 					+statusBadge('pending')
 					+statusBadge('accepted')
 					+statusBadge('rejected')
 				div.preview-row
-					+statusBadge('withdrawn')
+					+statusBadge('canceled')
 					+statusBadge('expired')
 					+statusBadge('executed')
 					+statusBadge('countered')

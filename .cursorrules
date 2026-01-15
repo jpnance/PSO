@@ -57,7 +57,7 @@ Include mixins at top of template: `include mixins`
 +statusBadge('pending')
 +statusBadge('draft', 'hypothetical')  //- custom display text
 ```
-Statuses: draft, pending, accepted, rejected, withdrawn, expired, executed, countered
+Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed, countered
 
 ### Season Navigation
 ```pug
@@ -157,7 +157,7 @@ Use these instead of hardcoded colors:
 
 ### Status Colors
 - `--status-{status}-bg`, `--status-{status}-text`
-- Statuses: draft, pending, accepted, rejected, withdrawn, expired, executed, countered
+- Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed, countered
 
 ### UI Colors
 - `--color-success`, `--color-danger`, `--color-warning`, `--color-info`, `--color-disabled`

@@ -2,7 +2,7 @@ extends layout
 include mixins
 
 block og_meta
-	- var ogImage = proposal.status === 'draft' ? '/images/handfake.jpg' : '/images/handshake.jpg'
+	- var ogImage = proposal.status === 'hypothetical' ? '/images/handfake.jpg' : '/images/handshake.jpg'
 	meta(property='og:title' content=tradeOgTitle(parties, { status: proposal.status, auctionSeason: auctionSeason, tradeYear: tradeYear }))
 	meta(property='og:description' content=tradeOgPlainEnglish(parties, { auctionSeason: auctionSeason, tradeYear: tradeYear }))
 	meta(property='og:image' content='https://thedynastyleague.com' + ogImage)
@@ -21,10 +21,10 @@ block content
 		//- Status header
 		div.d-flex.flex-wrap.justify-content-between.align-items-center.mb-4
 			h1.mb-2.mb-md-0 Trade Proposal
-			+statusBadge(proposal.status, proposal.status === 'draft' ? 'hypothetical' : proposal.status)
+			+statusBadge(proposal.status)
 
 		//- Hypothetical trade notice
-		if proposal.status === 'draft'
+		if proposal.status === 'hypothetical'
 			div.alert.alert-secondary.mb-4
 				i.fa.fa-file-text-o.mr-2
 				| This hypothetical trade hasn't been officially proposed.
@@ -61,10 +61,10 @@ block content
 				i.fa.fa-times-circle.mr-2
 				| This proposal was rejected.
 
-		if proposal.status === 'withdrawn'
+		if proposal.status === 'canceled'
 			div.alert.alert-secondary.mb-4
 				i.fa.fa-undo.mr-2
-				| This proposal was withdrawn by the creator.
+				| This proposal was canceled by the creator.
 
 		if proposal.status === 'expired'
 			div.alert.alert-secondary.mb-4
@@ -95,7 +95,7 @@ block content
 					div.card-header
 						strong Trade Details
 					//- Share link for active proposals
-					if proposal.status === 'draft' || proposal.status === 'pending'
+					if proposal.status === 'hypothetical' || proposal.status === 'pending'
 						div.bg-light.p-3.border-bottom
 							div.input-group.input-group-sm
 								div.input-group-prepend
@@ -110,7 +110,7 @@ block content
 						each party in parties
 							+tradeParty(party)
 					//- Action buttons for drafts
-					if proposal.status === 'draft' && isParty
+					if proposal.status === 'hypothetical' && isParty
 						div.card-footer
 							div.action-result
 							if tradesEnabled

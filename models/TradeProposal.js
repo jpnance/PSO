@@ -42,8 +42,8 @@ var tradeProposalSchema = new Schema({
 
 	status: {
 		type: String,
-		enum: ['draft', 'pending', 'accepted', 'rejected', 'withdrawn', 'expired', 'executed', 'countered'],
-		default: 'draft'
+		enum: ['hypothetical', 'pending', 'accepted', 'rejected', 'canceled', 'expired', 'executed', 'countered'],
+		default: 'hypothetical'
 	},
 
 	// Who created this proposal

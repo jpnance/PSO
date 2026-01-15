@@ -28,8 +28,8 @@
 	--asset-nothing: #adb5bd;
 	
 	/* Status badge colors - background and text pairs */
-	--status-draft-bg: #d6d8db;
-	--status-draft-text: #383d41;
+	--status-hypothetical-bg: #d6d8db;
+	--status-hypothetical-text: #383d41;
 	
 	--status-pending-bg: #fff3cd;
 	--status-pending-text: #856404;

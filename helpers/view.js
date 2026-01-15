@@ -515,7 +515,7 @@ function tradeOgTitle(parties, options) {
 	var status = options.status || 'pending';
 	
 	if (!parties || parties.length < 2) {
-		return status === 'draft' ? 'Fake Trade' : 'Trade';
+		return status === 'hypothetical' ? 'Fake Trade' : 'Trade';
 	}
 	
 	var title;
@@ -606,7 +606,7 @@ function tradeOgTitle(parties, options) {
 		title = partySummaries.join(', ');
 	}
 	
-	if (status === 'draft') {
+	if (status === 'hypothetical') {
 		title = 'Fake Trade: ' + title;
 	} else {
 		// Capitalize first letter

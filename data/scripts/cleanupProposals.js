@@ -41,7 +41,7 @@ async function run() {
 	
 	// Find old drafts
 	var oldDrafts = await TradeProposal.find({
-		status: 'draft',
+		status: 'hypothetical',
 		createdAt: { $lt: cutoff }
 	}).select('publicId createdAt').lean();
 	
@@ -53,7 +53,7 @@ async function run() {
 	
 	// Find old terminal proposals
 	var oldTerminal = await TradeProposal.find({
-		status: { $in: ['expired', 'rejected', 'withdrawn', 'countered', 'executed'] },
+		status: { $in: ['expired', 'rejected', 'canceled', 'countered', 'executed'] },
 		createdAt: { $lt: cutoff }
 	}).select('publicId status createdAt').lean();
 	

@@ -9,11 +9,11 @@
 	text-transform: uppercase;
 	font-size: 0.8rem;
 }
-.status-draft { background: var(--status-draft-bg); color: var(--status-draft-text); }
+.status-hypothetical { background: var(--status-hypothetical-bg); color: var(--status-hypothetical-text); }
 .status-pending { background: var(--status-pending-bg); color: var(--status-pending-text); }
 .status-accepted { background: var(--status-accepted-bg); color: var(--status-accepted-text); }
 .status-rejected { background: var(--status-rejected-bg); color: var(--status-rejected-text); }
-.status-withdrawn { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
+.status-canceled { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 .status-expired { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 .status-executed { background: var(--status-executed-bg); color: var(--status-executed-text); }
 .status-countered { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
