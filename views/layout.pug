@@ -115,8 +115,8 @@ html
 		//- Main Content
 		main.main-content
 			if banner
-				div.container-fluid
-					div.alert.mb-3.rounded-0.text-center(class='alert-' + bannerStyle)
+				div.container-fluid.pt-3
+					div.alert.text-center(class='alert-' + bannerStyle)
 						if bannerStyle === 'danger'
 							i.fa.fa-exclamation-circle.mr-2
 						else if bannerStyle === 'warning'

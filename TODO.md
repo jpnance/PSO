@@ -76,7 +76,7 @@
 - [ ] Refactor formatContractDisplay to handle RFA rights and unsigned cases (remove || 0 coercion and manual checks)
 - [ ] Add generic error pages (404, 500, etc.)
 - [ ] Consider E2E testing with Playwright
-- [ ] Add sandbox message banner to league config seed
+- [x] Add sandbox message banner to league config seed
 
 ## Ideas / Someday
 *Experiments, long-term vision, not committed*

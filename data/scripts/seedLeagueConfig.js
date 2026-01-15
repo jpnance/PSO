@@ -32,6 +32,10 @@ async function seed() {
 		_id: 'pso',
 		season: currentSeason,
 		
+		// Sandbox banner
+		banner: 'Please play around with the trade machine and execute some trades. Data will be reset every day or so.',
+		bannerStyle: 'warning',
+		
 		// Offseason
 		tradeWindow: defaults.tradeWindow,
 		
