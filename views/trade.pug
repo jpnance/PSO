@@ -162,6 +162,7 @@ block content
 						//- Share/Propose Trade section (for logged-in franchise owners)
 						if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
 							div.share-propose-section.d-none.mt-3.pt-3.border-top.text-center
+								div.proposal-result.mb-3.d-none
 								//- Propose button only shown if user is party AND trades enabled (handled in JS)
 								if tradesEnabled
 									button.propose-trade-btn.btn.btn-primary.mr-2.d-none
@@ -170,7 +171,6 @@ block content
 								button.share-trade-btn.btn.btn-outline-secondary
 									i.fa.fa-share-alt.mr-1
 									| Share
-								div.proposal-result.mt-3.d-none
 								div.proposal-link-section.d-none.mt-3
 									div.alert.alert-success.mb-2.proposal-success-message
 										i.fa.fa-check.mr-2
