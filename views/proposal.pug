@@ -87,23 +87,6 @@ block content
 					|  
 					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
 
-		//- Action buttons (drafts only - pending buttons go in acceptance widget)
-		if proposal.status === 'draft'
-			div.mb-4
-				div.action-result
-				if isParty
-					if tradesEnabled
-						button.btn.btn-primary.mr-2.formalize-btn
-							i.fa.fa-gavel.mr-1
-							| Propose This Trade
-					else
-						button.btn.btn-primary.mr-2(disabled)
-							i.fa.fa-gavel.mr-1
-							| Propose This Trade
-						span.text-muted.small.ml-2
-							i.fa.fa-info-circle.mr-1
-							= tradesDisabledReason || 'Trades are currently disabled'
-
 		//- Main content area with columns
 		div.row
 			//- Left column: Trade details
@@ -126,6 +109,21 @@ block content
 					div.card-body
 						each party in parties
 							+tradeParty(party)
+					//- Action buttons for drafts
+					if proposal.status === 'draft' && isParty
+						div.card-footer
+							div.action-result
+							if tradesEnabled
+								button.btn.btn-primary.formalize-btn
+									i.fa.fa-paper-plane.mr-1
+									| Propose This Trade
+							else
+								button.btn.btn-primary(disabled)
+									i.fa.fa-paper-plane.mr-1
+									| Propose This Trade
+								span.text-muted.small.ml-2
+									i.fa.fa-info-circle.mr-1
+									= tradesDisabledReason || 'Trades are currently disabled'
 			//- Right column: Status, Budget
 			div.col-lg-4
 				//- Party acceptance status widget
@@ -241,7 +239,7 @@ block scripts
 			$.post('/propose/' + proposalId + '/formalize')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-gavel mr-1"></i> Propose This Trade');
+					$btn.prop('disabled', false).html('<i class="fa fa-paper-plane mr-1"></i> Propose This Trade');
 					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
 					showError(errors);
 				});
