@@ -48,6 +48,7 @@
 - [ ] Integrate `/simulator` into the new setup ⚡ *quick win - already works*
 
 ### Trading & Transactions
+- [ ] Extract `buildValidationParties(deal)` helper — same "deal → parties with contract lookups" logic exists in 3 places
 - [ ] Figure out how to deal with locked players in trades
 - [ ] Figure out a data backfill strategy to get more past transactions into the system
 
