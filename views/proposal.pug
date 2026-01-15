@@ -218,6 +218,17 @@ block scripts
 			showResult(html);
 		}
 		
+		function startLoading($btn) {
+			var $icon = $btn.find('i');
+			var originalClass = $icon.attr('class');
+			$btn.prop('disabled', true);
+			$icon.attr('class', 'fa fa-spinner fa-spin mr-1');
+			return function() {
+				$btn.prop('disabled', false);
+				$icon.attr('class', originalClass);
+			};
+		}
+		
 		// Copy share link
 		$('.copy-link-btn').on('click', function() {
 			var $input = $('#share-link');
@@ -233,58 +244,44 @@ block scripts
 		});
 		
 		$('.formalize-btn').on('click', function() {
-			var $btn = $(this);
-			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Processing...');
-			
+			var restore = startLoading($(this));
 			$.post('/propose/' + proposalId + '/formalize')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-paper-plane mr-1"></i> Propose This Trade');
-					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
-					showError(errors);
+					restore();
+					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
 				});
 		});
 		
 		$('.accept-btn').on('click', function() {
-			var $btn = $(this);
-			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Accepting...');
-			
+			var restore = startLoading($(this));
 			$.post('/propose/' + proposalId + '/accept')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-check mr-1"></i> Accept');
-					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
-					showError(errors);
+					restore();
+					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
 				});
 		});
 		
 		$('.reject-btn').on('click', function() {
 			if (!confirm('Are you sure you want to reject this proposal?')) return;
-			
-			var $btn = $(this);
-			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Rejecting...');
-			
+			var restore = startLoading($(this));
 			$.post('/propose/' + proposalId + '/reject')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-times mr-1"></i> Reject');
-					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
-					showError(errors);
+					restore();
+					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
 				});
 		});
 		
 		$('.cancel-btn').on('click', function() {
 			if (!confirm('Are you sure you want to cancel this proposal?')) return;
-			
-			var $btn = $(this);
-			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Cancelling...');
-			
+			var restore = startLoading($(this));
 			$.post('/propose/' + proposalId + '/withdraw')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
-					$btn.prop('disabled', false).html('<i class="fa fa-times mr-1"></i> Cancel');
-					var errors = (xhr.responseJSON || {}).errors || ['Unknown error'];
-					showError(errors);
+					restore();
+					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
 				});
 		});
 		

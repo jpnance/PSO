@@ -718,6 +718,18 @@ var tradeMachine = {
 		return $(template.content.cloneNode(true)).children();
 	},
 
+	// Start loading state on a button, returns restore function
+	startLoading: ($btn) => {
+		var $icon = $btn.find('i');
+		var originalClass = $icon.attr('class');
+		$btn.prop('disabled', true);
+		$icon.attr('class', 'fa fa-spinner fa-spin mr-1');
+		return () => {
+			$btn.prop('disabled', false);
+			$icon.attr('class', originalClass);
+		};
+	},
+
 	// Submit a proposal (isDraft: true = share for discussion, false = real proposal)
 	submitProposal: (isDraft) => {
 		var $proposeBtn = $('.propose-trade-btn');
@@ -728,11 +740,9 @@ var tradeMachine = {
 		var notes = notesVal ? notesVal.trim() || null : null;
 		
 		var $activeBtn = isDraft ? $shareBtn : $proposeBtn;
-		var btnOriginalHtml = $activeBtn.html();
-		
-		$proposeBtn.prop('disabled', true);
-		$shareBtn.prop('disabled', true);
-		$activeBtn.html('<i class="fa fa-spinner fa-spin mr-1"></i> ' + (isDraft ? 'Sharing...' : 'Proposing...'));
+		var restoreActive = tradeMachine.startLoading($activeBtn);
+		var $otherBtn = isDraft ? $proposeBtn : $shareBtn;
+		$otherBtn.prop('disabled', true);
 		$result.empty().addClass('d-none');
 		$linkSection.addClass('d-none');
 		
@@ -750,9 +760,8 @@ var tradeMachine = {
 				window.location.href = '/propose/' + response.proposalId;
 			},
 			error: (xhr) => {
-				$proposeBtn.prop('disabled', false);
-				$shareBtn.prop('disabled', false);
-				$activeBtn.html(btnOriginalHtml);
+				restoreActive();
+				$otherBtn.prop('disabled', false);
 				
 				var response = xhr.responseJSON || {};
 				var errors = response.errors || ['Unknown error'];
