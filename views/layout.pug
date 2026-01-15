@@ -1,3 +1,5 @@
+include mixins
+
 doctype html
 html
 	head
@@ -115,15 +117,9 @@ html
 		//- Main Content
 		main.main-content
 			if banner
+				- var bannerIcon = bannerStyle === 'danger' ? 'fa-exclamation-circle' : (bannerStyle === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle')
 				div.container-fluid.pt-3
-					div.alert.text-center(class='alert-' + bannerStyle)
-						if bannerStyle === 'danger'
-							i.fa.fa-exclamation-circle.mr-2
-						else if bannerStyle === 'warning'
-							i.fa.fa-exclamation-triangle.mr-2
-						else
-							i.fa.fa-info-circle.mr-2
-						= banner
+					+alertBanner(bannerStyle, bannerIcon, banner)
 
 			block content
 
