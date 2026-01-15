@@ -135,7 +135,7 @@ async function validateBudgetImpact(franchiseId, season, salaryImpact, config) {
 	var recoverable = await computeRecoverable(franchiseId, season);
 	
 	if (resultingBudget + recoverable >= 0) {
-		var franchiseName = await getFranchiseDisplayName(franchiseId, season);
+		var franchiseName = await getFranchiseDisplayName(franchiseId, config.season);
 		return { 
 			valid: true, 
 			warning: franchiseName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season
@@ -258,8 +258,8 @@ async function validateTradeCash(tradeDetails, config) {
 				continue;
 			}
 			
-			// Get franchise display name
-			var franchiseName = await getFranchiseDisplayName(franchiseId, season);
+			// Get franchise display name (use current season for regime lookup)
+			var franchiseName = await getFranchiseDisplayName(franchiseId, currentSeason);
 			
 			// Look up current available budget
 			var budget = await Budget.findOne({ franchiseId: franchiseId, season: season });
@@ -322,6 +322,16 @@ async function validateTradeCash(tradeDetails, config) {
 async function processTrade(tradeDetails) {
 	var errors = [];
 	
+	// Load config early so we have access to currentSeason for display names
+	var config = await LeagueConfig.findById('pso');
+	if (!config) {
+		config = new LeagueConfig({ 
+			_id: 'pso',
+			season: new Date().getFullYear()
+		});
+	}
+	var currentSeason = config.season;
+	
 	// Validate parties
 	if (!tradeDetails.parties || tradeDetails.parties.length < 2) {
 		errors.push('Trade must have at least 2 parties');
@@ -369,7 +379,6 @@ async function processTrade(tradeDetails) {
 		if (receivesNothing) {
 			var isGivingPlayer = franchisesGivingPlayers[party.franchiseId.toString()];
 			if (!isGivingPlayer) {
-				var currentSeason = parseInt(process.env.SEASON, 10) || new Date().getFullYear();
 				var franchiseName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
 				errors.push(franchiseName + ' must receive something in return (or be trading away a player)');
 			}
@@ -445,16 +454,6 @@ async function processTrade(tradeDetails) {
 	
 	if (errors.length > 0) {
 		return { success: false, errors: errors };
-	}
-	
-	// Validate cash constraints
-	var config = await LeagueConfig.findById('pso');
-	if (!config) {
-		// Default config if none exists
-		config = new LeagueConfig({ 
-			_id: 'pso',
-			season: parseInt(process.env.SEASON, 10) || new Date().getFullYear()
-		});
 	}
 	
 	// Check if trades are allowed (warn but don't block for commissioner)
