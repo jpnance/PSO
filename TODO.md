@@ -49,6 +49,7 @@
 
 ### Trading & Transactions
 - [ ] Extract `buildValidationParties(deal)` helper — same "deal → parties with contract lookups" logic exists in 3 places
+- [ ] Should budget impact on a hypothetical/proposed trade be baked into the trade details?
 - [ ] Figure out how to deal with locked players in trades
 - [ ] Figure out a data backfill strategy to get more past transactions into the system
 
