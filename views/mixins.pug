@@ -18,6 +18,18 @@ mixin positionBadge(positions)
 mixin statusBadge(status, displayText)
 	span.status-badge(class='status-' + status)= displayText || status
 
+//- Alert banner with icon as bullet point
+//- Usage: +alertBanner('warning', 'fa-refresh', 'Simple message')
+//- Or with block: +alertBanner('success', 'fa-check') followed by indented content
+mixin alertBanner(type, icon, text)
+	div.alert(class='alert-' + type).d-flex.align-items-start
+		i.fa(class=icon).mr-2.mt-1.flex-shrink-0
+		span
+			if text
+				| #{text}
+			else
+				block
+
 //- Season navigation with quick buttons and optional older/dropdown
 //- Usage: +seasonNav(season, quickSeasons, olderSeasons, 'Past Drafts', '?season=')
 mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPrefix)

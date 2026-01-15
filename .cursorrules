@@ -55,9 +55,25 @@ Include mixins at top of template: `include mixins`
 ### Status Badge
 ```pug
 +statusBadge('pending')
-+statusBadge('draft', 'hypothetical')  //- custom display text
++statusBadge('hypothetical', 'draft')  //- custom display text
 ```
 Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed, countered
+
+### Alert Banner
+```pug
+//- Simple message (text parameter)
++alertBanner('danger', 'fa-times-circle', 'This proposal was rejected.').mb-4
+
+//- Complex content (block)
++alertBanner('success', 'fa-check').mb-4
+  | This trade has been executed.
+  if proposal.executedTransactionId
+    |  
+    a(href='/trades/' + id) View in trade history →
+```
+Types: danger, warning, success, info, secondary
+
+For client-side JS, use the `#alert-banner-template` template element and clone it.
 
 ### Season Navigation
 ```pug

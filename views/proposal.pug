@@ -15,6 +15,10 @@ block styles
 	link(rel='stylesheet' href='/css/proposal.css')
 
 block content
+	//- Alert banner template for JS error messages
+	template#alert-banner-template
+		+alertBanner('danger', 'fa-exclamation-circle', '')
+
 	div.container.py-4
 		p: a(href='/propose') ← Back to Trade Machine
 
@@ -25,15 +29,14 @@ block content
 
 		//- Hypothetical trade notice
 		if proposal.status === 'hypothetical'
-			div.alert.alert-secondary.mb-4
-				i.fa.fa-file-text-o.mr-2
+			+alertBanner('secondary', 'fa-file-text-o').mb-4
 				| This hypothetical trade hasn't been officially proposed.
 				if tradesEnabled
 					|  Anyone involved can propose it.
 				else
 					|  #{tradesDisabledReason}
 
-		//- Acceptance window notice
+		//- Acceptance window notice (centered, special layout)
 		if proposal.status === 'pending' && acceptanceWindowActive
 			div.alert.alert-warning.mb-4.text-center
 				i.fa.fa-clock-o.mr-2
@@ -44,44 +47,33 @@ block content
 
 		//- Window was reset notice (acceptanceWindowStart is null after reset)
 		if proposal.status === 'pending' && !proposal.acceptanceWindowStart
-			div.alert.alert-warning.mb-4
-				i.fa.fa-refresh.mr-2
-				| The acceptance window expired. Accept again to restart the clock.
+			+alertBanner('warning', 'fa-refresh', 'The acceptance window expired. Accept again to restart the clock.').mb-4
 
 		//- Accepted - ready for commissioner
 		if proposal.status === 'accepted'
-			div.alert.alert-success.mb-4
-				i.fa.fa-check-circle.mr-2
+			+alertBanner('success', 'fa-check-circle').mb-4
 				strong All parties have accepted!
 				|  This trade is now waiting for commissioner approval.
 
-		//- Rejected/Withdrawn/Expired notice
+		//- Rejected/Canceled/Expired notice
 		if proposal.status === 'rejected'
-			div.alert.alert-danger.mb-4
-				i.fa.fa-times-circle.mr-2
-				| This proposal was rejected.
+			+alertBanner('danger', 'fa-times-circle', 'This proposal was rejected.').mb-4
 
 		if proposal.status === 'canceled'
-			div.alert.alert-secondary.mb-4
-				i.fa.fa-undo.mr-2
-				| This proposal was canceled by the creator.
+			+alertBanner('secondary', 'fa-undo', 'This proposal was canceled by the creator.').mb-4
 
 		if proposal.status === 'expired'
-			div.alert.alert-secondary.mb-4
-				i.fa.fa-clock-o.mr-2
-				| This proposal has expired.
+			+alertBanner('secondary', 'fa-clock-o', 'This proposal has expired.').mb-4
 
 		if proposal.status === 'countered'
-			div.alert.alert-info.mb-4
-				i.fa.fa-reply.mr-2
+			+alertBanner('info', 'fa-reply').mb-4
 				| This proposal was countered with a new version.
 				if proposal.counteredById
 					|  
 					a(href='/propose/' + proposal.counteredById) View counter-proposal →
 
 		if proposal.status === 'executed'
-			div.alert.alert-success.mb-4
-				i.fa.fa-check.mr-2
+			+alertBanner('success', 'fa-check').mb-4
 				| This trade has been executed.
 				if proposal.executedTransactionId
 					|  
@@ -209,13 +201,19 @@ block scripts
 		}
 		
 		function showError(errors) {
-			var html = '<div class="alert alert-danger">';
+			var template = document.getElementById('alert-banner-template');
+			var $container = $('<div class="alert alert-danger"></div>');
+			
 			errors.forEach(function(err, i) {
-				if (i > 0) html += '<br>';
-				html += '<i class="fa fa-exclamation-circle mr-2"></i>' + err;
+				if (i > 0) {
+					$container.append('<div class="mt-2"></div>');
+				}
+				var $banner = $(template.content.cloneNode(true)).children();
+				$container.append($banner.children());
+				$container.find('span').last().text(err);
 			});
-			html += '</div>';
-			showResult(html);
+			
+			showResult($container);
 		}
 		
 		function startLoading($btn) {

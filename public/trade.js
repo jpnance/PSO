@@ -726,6 +726,26 @@ var tradeMachine = {
 		};
 	},
 
+	// Create an alert banner from the template
+	createAlertBanner: (type, icon, messages) => {
+		var template = document.getElementById('alert-banner-template');
+		var $container = $('<div class="alert alert-' + type + ' mb-0"></div>');
+		
+		messages.forEach(function(msg, i) {
+			if (i > 0) {
+				$container.append('<div class="mt-2"></div>');
+			}
+			var $banner = $(template.content.cloneNode(true)).children();
+			$banner.removeClass('alert-danger').addClass('alert-' + type);
+			$banner.find('i.fa').removeClass('fa-exclamation-circle').addClass(icon);
+			$banner.find('span').text(msg);
+			// Unwrap from the alert div since we're putting it in a container
+			$container.append($banner.children());
+		});
+		
+		return $container;
+	},
+
 	// Submit a proposal (isDraft: true = share for discussion, false = real proposal)
 	submitProposal: (isDraft) => {
 		var $proposeBtn = $('.propose-trade-btn');
@@ -762,14 +782,7 @@ var tradeMachine = {
 				var response = xhr.responseJSON || {};
 				var errors = response.errors || ['Unknown error'];
 				
-				var html = '<div class="alert alert-danger mb-0">';
-				errors.forEach((err, i) => {
-					if (i > 0) html += '<br>';
-					html += '<i class="fa fa-exclamation-circle mr-2"></i>' + err;
-				});
-				html += '</div>';
-				
-				$result.html(html).removeClass('d-none');
+				$result.html(tradeMachine.createAlertBanner('danger', 'fa-exclamation-circle', errors)).removeClass('d-none');
 			}
 		});
 	}
@@ -903,7 +916,7 @@ $(document).ready(function() {
 		var confirmVal = $('#confirm-execute').val().trim().toUpperCase();
 		var expectedName = (typeof confirmName !== 'undefined' && confirmName) ? confirmName.toUpperCase() : 'EXECUTE';
 		if (confirmVal !== expectedName) {
-			$result.html('<div class="alert alert-danger mb-0"><i class="fa fa-exclamation-circle mr-2"></i>Type the name to confirm</div>');
+			$result.html(tradeMachine.createAlertBanner('danger', 'fa-exclamation-circle', ['Type the name to confirm']));
 			return;
 		}
 		
@@ -959,14 +972,7 @@ $(document).ready(function() {
 				var response = xhr.responseJSON || {};
 				var errors = response.errors || ['Unknown error'];
 				
-				var html = '<div class="alert alert-danger mb-0">';
-				errors.forEach((err, i) => {
-					if (i > 0) html += '<br>';
-					html += '<i class="fa fa-exclamation-circle mr-2"></i>' + err;
-				});
-				html += '</div>';
-				
-				$result.html(html);
+				$result.html(tradeMachine.createAlertBanner('danger', 'fa-exclamation-circle', errors));
 			}
 		});
 	});

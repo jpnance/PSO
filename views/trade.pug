@@ -21,6 +21,9 @@ block content
 	//- Position badge template - pass a placeholder position for structure
 	template#position-badge-template
 		+positionBadge(['POS'])
+	//- Alert banner template for JS error messages
+	template#alert-banner-template
+		+alertBanner('danger', 'fa-exclamation-circle', '')
 
 	//- Hidden master lists for JavaScript to clone from
 	div.d-none

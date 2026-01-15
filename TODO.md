@@ -69,7 +69,8 @@
 - [ ] Admin players page - more mobile-friendly (smaller text, college truncation)
 - [ ] Admin players page - make college editable for historical players
 - [ ] Admin proposals page - extract inline styles to CSS
-- [ ] Improve layout of info banners across the site (use flexbox: d-flex align-items-start, icon with flex-shrink-0 mt-1, text in span)
+- [x] Improve layout of info banners across the site — created `+alertBanner(type, icon, text)` mixin with template for JS
+- [ ] Improve acceptance window countdown banner style (currently centered, doesn't use alertBanner mixin)
 
 ### Infrastructure & Technical
 - [ ] Figure out a better way to structure database reports
