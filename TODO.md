@@ -56,6 +56,36 @@
 - [ ] Improve commissioner trade approval screen (currently bare-bones)
 - [ ] Figure out how to deal with locked players in trades
 - [ ] Figure out a data backfill strategy to get more past transactions into the system
+- [ ] **Auto-execute trades toggle** — `LeagueConfig.autoExecuteTrades` flag to skip commissioner approval
+- [ ] **Transaction rollbacks** — ability to undo executed trades (see details below)
+
+#### Transaction Rollback Implementation
+
+**Schema changes:**
+- [ ] Add `originalFranchiseId` to `tradePlayerSchema` in `models/Transaction.js`
+- [ ] Add `originalFranchiseId` to `tradePickSchema` (for traded picks)
+
+**Backfill:**
+- [ ] 2-party trades: Infer `originalFranchiseId` programmatically (the other party gave it)
+- [ ] 3-party trades (3 total): Manually supply original owner data
+
+**Code changes:**
+- [ ] Update `processTrade` in `transaction/service.js` to persist `originalOwners` (already computed at line 607-629, just not saved)
+- [ ] Create `rollbackTrade` function:
+  - Restore each asset to its `originalFranchiseId`
+  - Negate budget deltas (payroll, recoverable, cashIn, cashOut, available)
+  - Mark Transaction as reversed/voided
+  - Update TradeProposal status if applicable
+- [ ] Add admin UI trigger for rollback
+
+**Edge cases:**
+- Player cut after being traded (now has buyouts)
+- Traded pick already used in draft
+- Downstream budget changes based on trade
+
+**Out of scope (for now):**
+- FA pickup/cut rollback (missing contract term storage in `droppedPlayerSchema`)
+- Auction rollback (RFA state complexity)
 
 ## Lower Priority
 *Nice to have, no hard deadline*
