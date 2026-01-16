@@ -793,6 +793,40 @@ $(document).ready(function() {
 		tradeMachine.redrawTradeMachine();
 	});
 
+	// Pre-populate from an existing proposal if initialDeal is set
+	if (typeof initialDeal !== 'undefined' && initialDeal) {
+		// First, toggle all franchises into the deal
+		Object.keys(initialDeal).forEach(function(franchiseId) {
+			if (!tradeMachine.deal[franchiseId]) {
+				// Check the checkbox and toggle the franchise
+				$('#franchise-' + franchiseId).prop('checked', true);
+				tradeMachine.toggleFranchiseInvolvement(franchiseId);
+			}
+		});
+		
+		// Then add all assets
+		Object.keys(initialDeal).forEach(function(franchiseId) {
+			var bucket = initialDeal[franchiseId];
+			
+			// Add players
+			(bucket.players || []).forEach(function(playerId) {
+				tradeMachine.addPlayerToDeal(playerId, franchiseId);
+			});
+			
+			// Add picks
+			(bucket.picks || []).forEach(function(pickId) {
+				tradeMachine.addPickToDeal(pickId, franchiseId);
+			});
+			
+			// Add cash
+			(bucket.cash || []).forEach(function(cashItem) {
+				tradeMachine.addCashToDeal(cashItem.amount, cashItem.from, cashItem.season, franchiseId);
+			});
+		});
+		
+		tradeMachine.redrawTradeMachine();
+	}
+
 	$('.form-check').on('click', '.form-check-input', (e) => {
 		var franchiseId = tradeMachine.extractFranchiseId(e.currentTarget.id);
 

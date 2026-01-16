@@ -270,6 +270,32 @@ async function proposePage(request, response) {
 		var tradesCheck = await checkTradesEnabled();
 		var tradesEnabled = tradesCheck.enabled;
 		
+		// Check for pre-population from an existing proposal
+		var initialDeal = null;
+		if (request.query.from) {
+			var sourceProposal = await TradeProposal.findOne({ publicId: request.query.from });
+			if (sourceProposal) {
+				// Build initialDeal structure: { franchiseId: { players: [id, ...], picks: [id, ...], cash: [...] } }
+				initialDeal = {};
+				for (var i = 0; i < sourceProposal.parties.length; i++) {
+					var party = sourceProposal.parties[i];
+					var franchiseId = party.franchiseId.toString();
+					
+					initialDeal[franchiseId] = {
+						players: party.receives.players.map(function(p) { return p.playerId.toString(); }),
+						picks: party.receives.picks.map(function(p) { return p.pickId.toString(); }),
+						cash: party.receives.cash.map(function(c) {
+							return {
+								amount: c.amount,
+								from: c.fromFranchiseId.toString(),
+								season: c.season
+							};
+						})
+					};
+				}
+			}
+		}
+		
 		response.render('trade', {
 			franchises: data.franchises,
 			teams: data.teams,
@@ -281,6 +307,7 @@ async function proposePage(request, response) {
 			isLoggedIn: !!user,
 			userFranchiseIds: userFranchiseIds,
 			tradesEnabled: tradesEnabled,
+			initialDeal: initialDeal,
 			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});
