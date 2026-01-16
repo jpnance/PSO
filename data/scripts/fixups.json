@@ -30,7 +30,10 @@
 		{ "tradeId": 34, "notes": "The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder." },
 		{ "tradeId": 36, "notes": "The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder." },
 		{ "tradeId": 37, "notes": "The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively." },
-		{ "tradeId": 331, "notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back." }
+		{ "tradeId": 94, "notes": "The origins of all four picks in this trade are self-explanatory: none of them had been traded until this deal was made." },
+		{ "tradeId": 299, "notes": "Brett/Luke originally owned both RFA rights; Koci/Mueller originally owned the future 2nd and 3rd; Schex originally owned the 3.04 and 3.11." },
+		{ "tradeId": 331, "notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back." },
+		{ "tradeId": 485, "notes": "Schex originally owned both Khalil Herbert and Montrell Washington; Justin originally owned Dallas Goedert. Keyon did not give up an asset in this trade." }
 	],
 
 	"tradeCashCorrections": [
