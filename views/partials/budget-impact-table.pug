@@ -1,0 +1,28 @@
+//- Inline budget impact summary for trade machine
+//- Renders a combined view of budget impact for all parties
+//- 
+//- Expected data:
+//- budgetImpact: { franchises: [...], seasons: [...], isCashNeutral: boolean, currentSeason: number }
+
+if budgetImpact && budgetImpact.franchises && budgetImpact.franchises.length > 0
+	div.budget-impact-summary
+		div.mb-2
+			strong Budget Impact
+		div.row
+			div.col-md-8.col-xl-6
+				table.budget-impact-table
+					thead
+						tr
+							th
+							each season in budgetImpact.seasons
+								th= season
+					tbody
+						each franchise in budgetImpact.franchises
+							tr
+								td= franchise.franchiseName
+								each s in franchise.seasons
+									- var delta = s.delta
+									- var colorClass = delta > 0 ? 'text-success' : (delta < 0 ? 'text-danger' : 'text-muted')
+									- var sign = delta > 0 ? '+' : (delta < 0 ? '-' : '')
+									- var formatted = sign + formatMoney(Math.abs(delta))
+									td(class=colorClass)= formatted

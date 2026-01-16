@@ -158,3 +158,46 @@
 	text-decoration: none;
 	color: #4a6a84;
 }
+
+/* Budget impact summary - combined view at bottom of trade details */
+.budget-impact-summary {
+	border-top: 1px solid var(--border-light);
+	padding-top: 1rem;
+	margin-top: 1rem;
+}
+.party + .budget-impact-summary {
+	border-top: none;
+	padding-top: 0;
+}
+.budget-impact-table {
+	font-size: 0.8rem;
+	width: 100%;
+	table-layout: fixed;
+}
+.budget-impact-table th {
+	font-weight: 500;
+	color: var(--text-muted);
+	font-size: 0.6rem;
+	padding: 0 0.5rem 0.25rem;
+	text-align: right;
+	vertical-align: bottom;
+	border-bottom: 1px solid #ced4da;
+	width: 9ch;
+}
+.budget-impact-table th:first-child {
+	text-align: left;
+	padding-left: 0;
+	width: auto;
+}
+.budget-impact-table td {
+	padding: 0.25rem 0.5rem;
+	text-align: right;
+}
+.budget-impact-table td:first-child {
+	text-align: left;
+	font-weight: 500;
+	padding-left: 0;
+}
+.budget-impact-table tbody tr + tr td {
+	border-top: 1px dotted #dee2e6;
+}

@@ -49,7 +49,11 @@
 
 ### Trading & Transactions
 - [ ] Extract `buildValidationParties(deal)` helper — same "deal → parties with contract lookups" logic exists in 3 places
-- [ ] Should budget impact on a hypothetical/proposed trade be baked into the trade details?
+- [x] Should budget impact on a hypothetical/proposed trade be baked into the trade details?
+- [x] Update proposal page to use inline budget impact style (match trade machine)
+- [x] Re-add cash-neutral button somewhere — now in action footer with "Make Cash-Neutral for [year]"
+- [ ] Maybe "vetoed" should be a status when the commissioner rejects a trade?
+- [ ] Improve commissioner trade approval screen (currently bare-bones)
 - [ ] Figure out how to deal with locked players in trades
 - [ ] Figure out a data backfill strategy to get more past transactions into the system
 
@@ -72,6 +76,8 @@
 - [ ] Admin proposals page - extract inline styles to CSS
 - [x] Improve layout of info banners across the site — created `+alertBanner(type, icon, text)` mixin with template for JS
 - [ ] Improve acceptance window countdown banner style (currently centered, doesn't use alertBanner mixin)
+- [ ] Integrate acceptance countdown banner into acceptance status card?
+- [ ] Show info banner first on trade proposal screen at mobile breakpoint
 
 ### Infrastructure & Technical
 - [ ] Figure out a better way to structure database reports
@@ -108,6 +114,13 @@
 
 ## Recently Completed
 *Keep a short log for context and momentum.*
+
+### Jan 14, 2026
+- Trade Machine: Redesigned budget impact as compact table (ledger style with year columns)
+- Trade Machine: Moved action buttons (Propose/Share/Cash-Neutral) to card-footer
+- Trade Machine: "Make Cash-Neutral for [year]" button — honest about scope, hides when already neutral
+- Trade Machine: Removed separate Budget Impact card (now inline at bottom of trade details)
+- Upgraded Font Awesome from 4.3.0 to 4.7.0
 
 ### Jan 13, 2026
 - Trade Machine: Fixed budget impact card flash (show after content loads)

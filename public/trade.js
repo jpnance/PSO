@@ -318,18 +318,7 @@ var tradeMachine = {
 	},
 
 	updateTradeTools: () => {
-		var $btn = $('.cash-neutral-btn');
-		
-		// Update cash-neutral button
-		if (tradeMachine.isCashNeutral(currentSeason)) {
-			$btn.removeClass('btn-outline-success').addClass('btn-success');
-			$btn.find('.btn-text').text('Cash-Neutral ✓');
-			$btn.prop('disabled', true);
-		} else {
-			$btn.removeClass('btn-success').addClass('btn-outline-success');
-			$btn.find('.btn-text').text('Make Cash-Neutral');
-			$btn.prop('disabled', false);
-		}
+		// Cash-neutral button removed - budget impact now inline with assets
 	},
 
 	// Check if user is party to the current deal
@@ -357,6 +346,13 @@ var tradeMachine = {
 					$('.propose-trade-btn').removeClass('d-none');
 				} else {
 					$('.propose-trade-btn').addClass('d-none');
+				}
+				// Show cash-neutral button only when trade is NOT cash-neutral
+				var $cashBtn = $('.cash-neutral-btn');
+				if (tradeMachine.isCashNeutral(currentSeason)) {
+					$cashBtn.addClass('d-none');
+				} else {
+					$cashBtn.removeClass('d-none');
 				}
 			} else {
 				$('.share-propose-section').addClass('d-none');
@@ -463,32 +459,33 @@ var tradeMachine = {
 		return deltas;
 	},
 
-	// Fetch and render budget impact from server
+	// Fetch and render budget impact inline with each party's assets
 	renderBudgetImpact: () => {
-		var $card = $('.budget-impact-card');
-		var $container = $('.budget-impact');
 		var franchises = tradeMachine.franchisesInvolved();
 		
 		if (franchises.length < 2) {
-			$card.addClass('d-none');
-			$container.empty();
+			$('.budget-impact-summary').remove();
 			return;
 		}
 		
-		// Keep card hidden until content loads to avoid flash
-		// Fetch rendered partial from server
+		// Fetch budget impact partial from server
 		$.ajax({
 			url: '/propose/budget-impact',
 			method: 'POST',
 			contentType: 'application/json',
+			dataType: 'html',
 			data: JSON.stringify({ deal: tradeMachine.deal }),
 			success: (html) => {
-				$container.html(html);
-				$card.removeClass('d-none');
+				// Remove existing and replace with new
+				$('.budget-impact-summary').remove();
+				
+				if (!html || !html.trim()) return;
+				
+				// Append to card-body (action sections are now in card-footer)
+				$('.trade-details-card .card-body').append(html);
 			},
 			error: () => {
-				$container.html('<p class="text-muted mb-0">Error loading budget impact.</p>');
-				$card.removeClass('d-none');
+				console.error('Error loading budget impact');
 			}
 		});
 	},
@@ -840,10 +837,6 @@ $(document).ready(function() {
 		tradeMachine.reset();
 	});
 
-	$('.cash-neutral-btn').on('click', (e) => {
-		tradeMachine.makeCashNeutral(currentSeason);
-	});
-
 	// Remove asset from deal
 	$(document).on('click', '.remove-asset', (e) => {
 		e.preventDefault();
@@ -865,6 +858,11 @@ $(document).ready(function() {
 		}
 
 		tradeMachine.redrawTradeMachine();
+	});
+
+	// Make trade cash-neutral (delegated since button is dynamically added)
+	$(document).on('click', '.cash-neutral-btn:not(:disabled)', (e) => {
+		tradeMachine.makeCashNeutral(currentSeason);
 	});
 
 	// Submit trade (admin only) - three phases: show EXECUTE prompt, validate, confirm if warnings

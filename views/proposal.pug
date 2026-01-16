@@ -27,58 +27,6 @@ block content
 			h1.mb-2.mb-md-0 Trade Proposal
 			+statusBadge(proposal.status)
 
-		//- Hypothetical trade notice
-		if proposal.status === 'hypothetical'
-			+alertBanner('secondary', 'fa-file-text-o').mb-4
-				| This hypothetical trade hasn't been officially proposed.
-				if tradesEnabled
-					|  Anyone involved can propose it.
-				else
-					|  #{tradesDisabledReason}
-
-		//- Acceptance window notice (centered, special layout)
-		if proposal.status === 'pending' && acceptanceWindowActive
-			div.alert.alert-warning.mb-4.text-center
-				i.fa.fa-clock-o.mr-2
-				strong Waiting for acceptance.
-				|  All parties must accept within:
-				div.proposal-countdown.mt-2#countdown(data-remaining=acceptanceWindowRemaining)
-					| --:--
-
-		//- Window was reset notice (acceptanceWindowStart is null after reset)
-		if proposal.status === 'pending' && !proposal.acceptanceWindowStart
-			+alertBanner('warning', 'fa-refresh', 'The acceptance window expired. Accept again to restart the clock.').mb-4
-
-		//- Accepted - ready for commissioner
-		if proposal.status === 'accepted'
-			+alertBanner('success', 'fa-check-circle').mb-4
-				strong All parties have accepted!
-				|  This trade is now waiting for commissioner approval.
-
-		//- Rejected/Canceled/Expired notice
-		if proposal.status === 'rejected'
-			+alertBanner('danger', 'fa-times-circle', 'This proposal was rejected.').mb-4
-
-		if proposal.status === 'canceled'
-			+alertBanner('secondary', 'fa-undo', 'This proposal was canceled by the creator.').mb-4
-
-		if proposal.status === 'expired'
-			+alertBanner('secondary', 'fa-clock-o', 'This proposal has expired.').mb-4
-
-		if proposal.status === 'countered'
-			+alertBanner('info', 'fa-reply').mb-4
-				| This proposal was countered with a new version.
-				if proposal.counteredById
-					|  
-					a(href='/propose/' + proposal.counteredById) View counter-proposal →
-
-		if proposal.status === 'executed'
-			+alertBanner('success', 'fa-check').mb-4
-				| This trade has been executed.
-				if proposal.executedTransactionId
-					|  
-					a(href='/trades/' + proposal.executedTransactionId) View in trade history →
-
 		//- Main content area with columns
 		div.row
 			//- Left column: Trade details
@@ -101,6 +49,8 @@ block content
 					div.card-body
 						each party in parties
 							+tradeParty(party)
+						//- Budget Impact
+						include partials/budget-impact-table
 					//- Action buttons for drafts
 					if proposal.status === 'hypothetical' && isParty
 						div.card-footer
@@ -116,8 +66,60 @@ block content
 								span.text-muted.small.ml-2
 									i.fa.fa-info-circle.mr-1
 									= tradesDisabledReason || 'Trades are currently disabled'
-			//- Right column: Status, Budget
+			//- Right column: Status, notices
 			div.col-lg-4
+				//- Hypothetical trade notice
+				if proposal.status === 'hypothetical'
+					+alertBanner('secondary', 'fa-file-text-o').mb-4
+						| This hypothetical trade hasn't been officially proposed.
+						if tradesEnabled
+							|  Anyone involved can propose it.
+						else
+							|  #{tradesDisabledReason}
+
+				//- Acceptance window notice
+				if proposal.status === 'pending' && acceptanceWindowActive
+					div.alert.alert-warning.mb-4.text-center
+						i.fa.fa-clock-o.mr-2
+						strong Waiting for acceptance.
+						|  All parties must accept within:
+						div.proposal-countdown.mt-2#countdown(data-remaining=acceptanceWindowRemaining)
+							| --:--
+
+				//- Window was reset notice
+				if proposal.status === 'pending' && !proposal.acceptanceWindowStart
+					+alertBanner('warning', 'fa-refresh', 'The acceptance window expired. Accept again to restart the clock.').mb-4
+
+				//- Accepted - ready for commissioner
+				if proposal.status === 'accepted'
+					+alertBanner('success', 'fa-check-circle').mb-4
+						strong All parties have accepted!
+						|  This trade is now waiting for commissioner approval.
+
+				//- Rejected/Canceled/Expired notice
+				if proposal.status === 'rejected'
+					+alertBanner('danger', 'fa-times-circle', 'This proposal was rejected.').mb-4
+
+				if proposal.status === 'canceled'
+					+alertBanner('secondary', 'fa-undo', 'This proposal was canceled by the creator.').mb-4
+
+				if proposal.status === 'expired'
+					+alertBanner('secondary', 'fa-clock-o', 'This proposal has expired.').mb-4
+
+				if proposal.status === 'countered'
+					+alertBanner('info', 'fa-reply').mb-4
+						| This proposal was countered with a new version.
+						if proposal.counteredById
+							|  
+							a(href='/propose/' + proposal.counteredById) View counter-proposal →
+
+				if proposal.status === 'executed'
+					+alertBanner('success', 'fa-check').mb-4
+						| This trade has been executed.
+						if proposal.executedTransactionId
+							|  
+							a(href='/trades/' + proposal.executedTransactionId) View in trade history →
+
 				//- Party acceptance status widget
 				if proposal.status === 'pending'
 					div.card.mb-4
@@ -151,13 +153,6 @@ block content
 									button.btn.btn-outline-danger.cancel-btn
 										i.fa.fa-times.mr-1
 										| Cancel
-
-				//- Budget Impact
-				div.card.mb-4
-					div.card-header
-						strong Budget Impact
-					div.card-body
-						include partials/budget-impact
 
 block scripts
 	script.

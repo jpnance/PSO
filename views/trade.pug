@@ -76,16 +76,6 @@ block content
 								i.fa.fa-refresh.mr-1
 								| Reset
 
-				//- Budget Impact Card
-				div.card.d-none.mt-4.mb-4.budget-impact-card
-					div.card-header
-						strong Budget Impact
-					div.card-body
-						div.budget-impact.mb-3
-						button.cash-neutral-btn.btn.btn-outline-success.btn-sm.btn-block
-							i.fa.fa-balance-scale.mr-1
-							span.btn-text Make Cash-Neutral
-
 			//- Trade Builder Section
 			div.col-lg-8.col-xl-9
 				div.card.trade-details-card.d-none
@@ -144,45 +134,49 @@ block content
 
 								hr.party-separator
 
-						//- Submit Trade section (processing mode only)
-						if isProcessingMode
-							div.submit-trade-section.d-none.mt-3.pt-3.border-top.text-center
-								div.form-group
-									input#trade-notes.form-control(type="text" placeholder="Notes (optional)")
-								div.alert.alert-warning.mb-3
-									i.fa.fa-gavel.mr-2
-									| You are acting as 
-									strong commissioner
-									| . This will execute the trade immediately.
-								div.trade-result.mb-3
-								div.confirm-execute-section.d-none.mb-3
-									label.text-muted(for="confirm-execute") Type #[strong= confirmName] to confirm:
-									input#confirm-execute.form-control.text-center(type="text" placeholder=confirmName autocomplete="off")
-								button.submit-trade-btn.btn.btn-primary
-									i.fa.fa-check.mr-1
-									| Submit Trade
+					//- Submit Trade section (processing mode only)
+					if isProcessingMode
+						div.card-footer.submit-trade-section.d-none
+							div.form-group
+								input#trade-notes.form-control(type="text" placeholder="Notes (optional)")
+							div.alert.alert-warning.mb-3
+								i.fa.fa-gavel.mr-2
+								| You are acting as 
+								strong commissioner
+								| . This will execute the trade immediately.
+							div.trade-result.mb-3
+							div.confirm-execute-section.d-none.mb-3
+								label.text-muted(for="confirm-execute") Type #[strong= confirmName] to confirm:
+								input#confirm-execute.form-control.text-center(type="text" placeholder=confirmName autocomplete="off")
+							button.submit-trade-btn.btn.btn-primary
+								i.fa.fa-check.mr-1
+								| Submit Trade
 
-						//- Share/Propose Trade section (for logged-in franchise owners)
-						if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
-							div.share-propose-section.d-none.mt-3.pt-3.border-top.text-center
-								div.proposal-result.mb-3.d-none
-								//- Propose button only shown if user is party AND trades enabled (handled in JS)
-								if tradesEnabled
-									button.propose-trade-btn.btn.btn-primary.mr-2.d-none
-										i.fa.fa-paper-plane.mr-1
-										| Propose Trade
-								button.share-trade-btn.btn.btn-outline-secondary
-									i.fa.fa-share-alt.mr-1
-									| Share
-								div.proposal-link-section.d-none.mt-3
-									div.alert.alert-success.mb-2.proposal-success-message
-										i.fa.fa-check.mr-2
-										span.message-text Proposal sent! Share this link:
-									div.input-group
-										input#proposal-link.form-control(type="text" readonly)
-										div.input-group-append
-											button.copy-link-btn.btn.btn-outline-secondary(type="button")
-												i.fa.fa-copy
+					//- Share/Propose Trade section (for logged-in franchise owners)
+					if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
+						div.card-footer.share-propose-section.d-none
+							div.proposal-result.mb-3.d-none
+							//- Cash-neutral button (state controlled by JS based on budget impact)
+							button.cash-neutral-btn.btn.btn-outline-success.d-none
+								i.fa.fa-balance-scale.mr-1
+								span.btn-text Make Cash-Neutral for #{season}
+							//- Propose button only shown if user is party AND trades enabled (handled in JS)
+							if tradesEnabled
+								button.propose-trade-btn.btn.btn-primary.d-none
+									i.fa.fa-paper-plane.mr-1
+									| Propose Trade
+							button.share-trade-btn.btn.btn-outline-secondary
+								i.fa.fa-share-alt.mr-1
+								| Share
+							div.proposal-link-section.d-none.mt-3
+								div.alert.alert-success.mb-2.proposal-success-message
+									i.fa.fa-check.mr-2
+									span.message-text Proposal sent! Share this link:
+								div.input-group
+									input#proposal-link.form-control(type="text" readonly)
+									div.input-group-append
+										button.copy-link-btn.btn.btn-outline-secondary(type="button")
+											i.fa.fa-copy
 
 block scripts
 	script.

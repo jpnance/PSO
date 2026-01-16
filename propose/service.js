@@ -1540,7 +1540,8 @@ async function budgetImpactPartial(request, response) {
 			hardCapActive: hardCapActive
 		});
 		
-		response.render('partials/budget-impact', {
+		// Use table partial for trade machine
+		response.render('partials/budget-impact-table', {
 			budgetImpact: budgetImpact,
 			layout: false
 		});
