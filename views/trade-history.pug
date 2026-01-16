@@ -49,7 +49,7 @@ block content
 				div.trade-card(id="trade-" + trade.number)
 					div.trade-header
 						a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
-						div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
+						div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/New_York' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
 					
 					each party in trade.parties
 						+tradeParty(party)
@@ -197,7 +197,7 @@ block content
 						div.trade-card(id="trade-" + trade.number)
 							div.trade-header
 								a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
-								div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
+								div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/New_York' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
 							
 							each party in trade.parties
 								+tradeParty(party)
