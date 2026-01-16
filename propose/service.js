@@ -843,7 +843,8 @@ async function viewProposal(request, response) {
 					pickMain: pickMain,
 					pickContext: pickContext,
 					round: pick.round,
-					season: pick.season
+					season: pick.season,
+					pickNumber: pick.pickNumber || null
 				});
 			}
 			

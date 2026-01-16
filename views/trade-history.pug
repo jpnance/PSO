@@ -6,7 +6,7 @@ block og_meta
 		- var trade = trades[0]
 		- var ogTitle = 'Trade #' + tradeNumber + ': ' + tradeOgTitle(trade.parties, { status: 'executed', auctionSeason: trade.auctionSeason, tradeYear: trade.tradeYear })
 		meta(property='og:title' content=ogTitle)
-		meta(property='og:description' content=tradeOgPlainEnglish(trade.parties, { auctionSeason: trade.auctionSeason, tradeYear: trade.tradeYear }))
+		meta(property='og:description' content=tradeOgPlainEnglish(trade.parties, { auctionSeason: trade.auctionSeason, tradeYear: trade.tradeYear, status: 'executed' }))
 		meta(property='og:image' content='https://thedynastyleague.com/images/handshake.jpg')
 		meta(property='og:url' content='https://thedynastyleague.com/trades/' + tradeNumber)
 	else

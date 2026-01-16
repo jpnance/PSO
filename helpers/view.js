@@ -732,14 +732,16 @@ function collectDescriptionAssets(party, auctionSeason, tradeYear) {
 /**
  * Generate plain English trade description
  * e.g., "Schexes traded Marcus Mariota to Koci for $38 in 2026"
+ * For hypothetical trades: "Schexes would trade Marcus Mariota to Koci for $38 in 2026"
  * @param {Array} parties - array of party objects with franchiseName, assets
- * @param {Object} options - { auctionSeason, tradeYear }
+ * @param {Object} options - { auctionSeason, tradeYear, status }
  * @returns {string} plain English description
  */
 function tradeOgPlainEnglish(parties, options) {
 	options = options || {};
 	var auctionSeason = options.auctionSeason || new Date().getFullYear();
 	var tradeYear = options.tradeYear || auctionSeason;
+	var status = options.status || 'pending';
 	
 	if (!parties || parties.length < 2) {
 		return 'Trade on Primetime Soap Operas';
@@ -825,7 +827,8 @@ function tradeOgPlainEnglish(parties, options) {
 	}
 	
 	// Build the sentence: "[Giver] traded [first assets] to [Receiver] for [second assets]."
-	return giverName + ' traded ' + oxfordJoin(firstAssets) + ' to ' + receiverName + ' for ' + oxfordJoin(secondAssets) + '.';
+	var verb = status === 'hypothetical' ? 'would trade' : 'traded';
+	return giverName + ' ' + verb + ' ' + oxfordJoin(firstAssets) + ' to ' + receiverName + ' for ' + oxfordJoin(secondAssets) + '.';
 }
 
 module.exports = {

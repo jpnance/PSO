@@ -4,7 +4,7 @@ include mixins
 block og_meta
 	- var ogImage = proposal.status === 'hypothetical' ? '/images/handfake.jpg' : '/images/handshake.jpg'
 	meta(property='og:title' content=tradeOgTitle(parties, { status: proposal.status, auctionSeason: auctionSeason, tradeYear: tradeYear }))
-	meta(property='og:description' content=tradeOgPlainEnglish(parties, { auctionSeason: auctionSeason, tradeYear: tradeYear }))
+	meta(property='og:description' content=tradeOgPlainEnglish(parties, { auctionSeason: auctionSeason, tradeYear: tradeYear, status: proposal.status }))
 	meta(property='og:image' content='https://thedynastyleague.com' + ogImage)
 	meta(property='og:url' content='https://thedynastyleague.com/propose/' + proposal.publicId)
 
