@@ -239,6 +239,7 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 	return {
 		franchises: franchises,
 		seasons: seasons,
+		currentSeason: currentSeason,
 		isCashNeutral: isCashNeutral,
 		warnings: warnings
 	};

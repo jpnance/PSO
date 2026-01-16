@@ -347,13 +347,6 @@ var tradeMachine = {
 				} else {
 					$('.propose-trade-btn').addClass('d-none');
 				}
-				// Show cash-neutral button only when trade is NOT cash-neutral
-				var $cashBtn = $('.cash-neutral-btn');
-				if (tradeMachine.isCashNeutral(currentSeason)) {
-					$cashBtn.addClass('d-none');
-				} else {
-					$cashBtn.removeClass('d-none');
-				}
 			} else {
 				$('.share-propose-section').addClass('d-none');
 			}
@@ -429,8 +422,20 @@ var tradeMachine = {
 		}
 	},
 
-	// Calculate salary delta for each franchise (positive = receiving more salary)
-	calculateSalaryDeltas: () => {
+	// Parse contract end year from contract string like "22/26" or "FA/26"
+	parseContractEndYear: (contract) => {
+		if (!contract) return null;
+		var parts = contract.split('/');
+		if (parts.length !== 2) return null;
+		var endYear = parseInt(parts[1], 10);
+		if (isNaN(endYear)) return null;
+		// Convert 2-digit year to 4-digit (assumes 2000s)
+		return endYear < 100 ? 2000 + endYear : endYear;
+	},
+
+	// Calculate salary delta for each franchise for a specific season
+	// (accounts for contract end years)
+	calculateSalaryDeltasForSeason: (targetSeason) => {
 		var deltas = {};
 		var franchises = tradeMachine.franchisesInvolved();
 		
@@ -440,17 +445,20 @@ var tradeMachine = {
 		});
 		
 		// For each franchise, add salary they receive, subtract salary they give
+		// but only if the contract covers the target season
 		franchises.forEach((receivingId) => {
 			var bucket = tradeMachine.deal[receivingId];
 			
-			// Add salary from players they receive
 			bucket.players.forEach((player) => {
 				var salary = player.salary || 0;
-				if (player.terms !== 'rfa-rights') {
-					deltas[receivingId] += salary;
-					// The franchise giving this player loses salary
-					if (player.fromFranchiseId && deltas[player.fromFranchiseId] !== undefined) {
-						deltas[player.fromFranchiseId] -= salary;
+				if (player.terms !== 'rfa-rights' && player.terms !== 'unsigned') {
+					var endYear = tradeMachine.parseContractEndYear(player.contract);
+					// Only count if contract covers the target season
+					if (endYear && targetSeason <= endYear) {
+						deltas[receivingId] += salary;
+						if (player.fromFranchiseId && deltas[player.fromFranchiseId] !== undefined) {
+							deltas[player.fromFranchiseId] -= salary;
+						}
 					}
 				}
 			});
@@ -458,6 +466,7 @@ var tradeMachine = {
 		
 		return deltas;
 	},
+
 
 	// Fetch and render budget impact inline with each party's assets
 	renderBudgetImpact: () => {
@@ -490,64 +499,17 @@ var tradeMachine = {
 		});
 	},
 
-	// Calculate net cash position for each franchise in current season
-	calculateCashDeltas: (currentSeason) => {
-		var deltas = {};
-		var franchises = tradeMachine.franchisesInvolved();
-		
-		franchises.forEach((fId) => {
-			deltas[fId] = 0;
-		});
-		
-		franchises.forEach((receivingId) => {
-			var bucket = tradeMachine.deal[receivingId];
-			
-			bucket.cash.forEach((c) => {
-				if (c.season === currentSeason) {
-					// Receiving franchise gets cash
-					deltas[receivingId] += c.amount;
-					// Sending franchise loses cash
-					if (deltas[c.from] !== undefined) {
-						deltas[c.from] -= c.amount;
-					}
-				}
-			});
-		});
-		
-		return deltas;
-	},
-
-	// Check if trade is cash-neutral for current season
-	isCashNeutral: (currentSeason) => {
-		var salaryDeltas = tradeMachine.calculateSalaryDeltas();
-		var cashDeltas = tradeMachine.calculateCashDeltas(currentSeason);
-		var franchises = tradeMachine.franchisesInvolved();
-		
-		if (franchises.length < 2) return true;
-		
-		// Trade is neutral if salary taken on equals cash received
-		// salaryDelta = cap burden change, cashDelta = cap relief from cash
-		// Neutral when: salaryDelta = cashDelta (cash received offsets salary taken on)
-		for (var i = 0; i < franchises.length; i++) {
-			var fId = franchises[i];
-			var salaryDelta = salaryDeltas[fId] || 0;
-			var cashDelta = cashDeltas[fId] || 0;
-			if (salaryDelta !== cashDelta) return false;
-		}
-		return true;
-	},
-
-	// Make the trade cash-neutral by adding appropriate cash transactions
-	makeCashNeutral: (currentSeason) => {
-		var salaryDeltas = tradeMachine.calculateSalaryDeltas();
+	// Make the trade cash-neutral by adding appropriate cash transactions for a specific season
+	makeCashNeutral: (targetSeason) => {
+		var salaryDeltas = tradeMachine.calculateSalaryDeltasForSeason(targetSeason);
 		var franchises = tradeMachine.franchisesInvolved();
 		
 		if (franchises.length < 2) return;
 		
-		// Remove existing current-season cash between involved parties
+		// Remove existing cash for target season between involved parties
 		franchises.forEach((fId) => {
 			tradeMachine.deal[fId].cash = tradeMachine.deal[fId].cash.filter((c) => {
-				return c.season !== currentSeason || !franchises.includes(c.from);
+				return c.season !== targetSeason || !franchises.includes(c.from);
 			});
 		});
 		
@@ -579,10 +541,10 @@ var tradeMachine = {
 				// Add cash from sender to receiver
 				tradeMachine.deal[receiver.id].cash.push({
 					type: 'cash',
-					id: sender.id + '-' + currentSeason,
+					id: sender.id + '-' + targetSeason,
 					amount: amount,
 					from: sender.id,
-					season: currentSeason
+					season: targetSeason
 				});
 			}
 			
@@ -896,7 +858,8 @@ $(document).ready(function() {
 
 	// Make trade cash-neutral (delegated since button is dynamically added)
 	$(document).on('click', '.cash-neutral-btn:not(:disabled)', (e) => {
-		tradeMachine.makeCashNeutral(currentSeason);
+		var season = $(e.currentTarget).data('season') || currentSeason;
+		tradeMachine.makeCashNeutral(season);
 	});
 
 	// Submit trade (admin only) - three phases: show EXECUTE prompt, validate, confirm if warnings

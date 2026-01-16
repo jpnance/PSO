@@ -156,10 +156,6 @@ block content
 					if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
 						div.card-footer.share-propose-section.d-none
 							div.proposal-result.mb-3.d-none
-							//- Cash-neutral button (state controlled by JS based on budget impact)
-							button.cash-neutral-btn.btn.btn-outline-success.d-none
-								i.fa.fa-balance-scale.mr-1
-								span.btn-text Make Cash-Neutral for #{season}
 							//- Propose button only shown if user is party AND trades enabled (handled in JS)
 							if tradesEnabled
 								button.propose-trade-btn.btn.btn-primary.d-none
