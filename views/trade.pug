@@ -60,8 +60,8 @@ block content
 		h1.mb-4= isProcessingMode ? 'Process Trade' : 'Trade Machine'
 
 		div.row
-			//- Franchise Selection Card (narrower on large screens)
-			div.col-lg-4.col-xl-3.mb-4
+			//- Franchise Selection Card
+			div.col-md-4.col-xl-3.mb-4
 				div.card
 					div.card-header
 						strong Select Parties
@@ -77,7 +77,7 @@ block content
 								| Reset
 
 			//- Trade Builder Section
-			div.col-lg-8.col-xl-9
+			div.col-md-7.col-xl-5
 				div.card.trade-details-card.d-none
 					div.card-header
 						strong Trade Details
@@ -90,9 +90,19 @@ block content
 										strong= franchise.displayName
 										|  receive#{isPlural(franchise.displayName) ? '' : 's'}:
 
-								div.row
-									//- Input Form (left on large screens)
-									div.col-xl-6
+								//- Assets List
+								div.assets-container.mb-3
+									ul.asset-list.mb-0
+
+								//- Add Asset Controls
+								div.add-asset-controls
+									//- Trigger button (visible when collapsed)
+									button.add-asset-trigger.btn.btn-outline-secondary.btn-sm(type="button")
+										i.fa.fa-plus.mr-1
+										| Add Assets
+
+									//- All inputs (hidden until trigger clicked)
+									div.asset-inputs.d-none
 										//- Add Player
 										div.input-group.input-group-sm.mb-2
 											div.input-group-prepend
@@ -100,7 +110,7 @@ block content
 													i.fa.fa-user
 											select.player-list.form-control
 											div.input-group-append
-												button.add-player.btn.btn-primary(type="button")
+												button.add-player.btn.btn-add-player(type="button")
 													i.fa.fa-plus
 
 										//- Add Pick
@@ -110,27 +120,26 @@ block content
 													i.fa.fa-ticket
 											select.pick-list.form-control
 											div.input-group-append
-												button.add-pick.btn.btn-primary(type="button")
+												button.add-pick.btn.btn-add-pick(type="button")
 													i.fa.fa-plus
 
 										//- Add Cash
-										div.input-group.input-group-sm.mb-3.mb-xl-0
+										div.input-group.input-group-sm.mb-2
 											div.input-group-prepend
 												span.input-group-text.cash-icon $
-											input.amount.form-control(type="number" placeholder="Amount")
+											input.amount.form-control(type="number" placeholder="Cash")
 											select.franchise-list.form-control
 											select.season-list.form-control
 												option #{parseInt(season)}
 												option #{parseInt(season) + 1}
 												option #{parseInt(season) + 2}
 											div.input-group-append
-												button.add-cash.btn.btn-primary(type="button")
+												button.add-cash.btn.btn-add-cash(type="button")
 													i.fa.fa-plus
 
-									//- Assets List (right on large screens)
-									div.col-xl-6
-										div.assets-container
-											ul.asset-list.mb-0
+										//- Collapse button
+										button.done-adding.btn.btn-link.btn-sm.text-muted(type="button")
+											i.fa.fa-chevron-up
 
 								hr.party-separator
 

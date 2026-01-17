@@ -1449,6 +1449,7 @@ async function budgetImpactPartial(request, response) {
 		// Use table partial for trade machine
 		response.render('partials/budget-impact-table', {
 			budgetImpact: budgetImpact,
+			showCashNeutralButtons: true,
 			layout: false
 		});
 	} catch (err) {

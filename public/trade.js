@@ -677,6 +677,17 @@ var tradeMachine = {
 		return $(template.content.cloneNode(true)).children();
 	},
 
+	// Reset add asset controls to collapsed state
+	resetAddAssetControls: () => {
+		$('.add-asset-controls').each((i, controls) => {
+			var $controls = $(controls);
+			$controls.find('.asset-inputs').addClass('d-none');
+			$controls.find('.add-asset-trigger').removeClass('d-none');
+			$controls.find('input.amount').val('');
+		});
+	},
+
+
 	// Start loading state on a button, returns restore function
 	startLoading: ($btn) => {
 		$btn.prop('disabled', true);
@@ -688,18 +699,51 @@ var tradeMachine = {
 	// Create an alert banner from the template
 	createAlertBanner: (type, icon, messages) => {
 		var template = document.getElementById('alert-banner-template');
-		var $container = $('<div class="alert alert-' + type + ' mb-0"></div>');
 		
+		// Fallback if template not found or has no content
+		if (!template || !template.content) {
+			var $container = $('<div class="alert alert-' + type + ' mb-0"></div>');
+			messages.forEach(function(msg, i) {
+				if (i > 0) $container.append('<div class="mt-2"></div>');
+				var $row = $('<div class="d-flex align-items-start"></div>');
+				$row.append('<i class="fa ' + icon + ' mr-2 mt-1 flex-shrink-0"></i>');
+				$row.append($('<span></span>').text(msg));
+				$container.append($row);
+			});
+			return $container;
+		}
+		
+		// For single message, just clone and modify the template directly
+		if (messages.length === 1) {
+			var clonedContent = template.content.cloneNode(true);
+			var banner = clonedContent.querySelector('.alert');
+			if (banner) {
+				banner.classList.remove('alert-danger');
+				banner.classList.add('alert-' + type);
+				banner.classList.add('mb-0');
+				var iconEl = banner.querySelector('i.fa');
+				if (iconEl) {
+					iconEl.classList.remove('fa-exclamation-circle');
+					iconEl.classList.add(icon);
+				}
+				var spanEl = banner.querySelector('span');
+				if (spanEl) {
+					spanEl.textContent = messages[0];
+				}
+				return $(banner);
+			}
+		}
+		
+		// Multiple messages: build container with multiple rows
+		var $container = $('<div class="alert alert-' + type + ' mb-0"></div>');
 		messages.forEach(function(msg, i) {
 			if (i > 0) {
 				$container.append('<div class="mt-2"></div>');
 			}
-			var $banner = $(template.content.cloneNode(true)).children();
-			$banner.removeClass('alert-danger').addClass('alert-' + type);
-			$banner.find('i.fa').removeClass('fa-exclamation-circle').addClass(icon);
-			$banner.find('span').text(msg);
-			// Unwrap from the alert div since we're putting it in a container
-			$container.append($banner.children());
+			var $row = $('<div class="d-flex align-items-start"></div>');
+			$row.append('<i class="fa ' + icon + ' mr-2 mt-1 flex-shrink-0"></i>');
+			$row.append($('<span></span>').text(msg));
+			$container.append($row);
 		});
 		
 		return $container;
@@ -840,9 +884,24 @@ $(document).ready(function() {
 		tradeMachine.redrawTradeMachine();
 	});
 
+	// Add Asset trigger button - shows all inputs
+	$('.gets').on('click', '.add-asset-trigger', (e) => {
+		var $controls = $(e.currentTarget).closest('.add-asset-controls');
+		$controls.find('.add-asset-trigger').addClass('d-none');
+		$controls.find('.asset-inputs').removeClass('d-none');
+	});
+
+	// Done button - collapses back to trigger
+	$('.gets').on('click', '.done-adding', (e) => {
+		var $controls = $(e.currentTarget).closest('.add-asset-controls');
+		$controls.find('.asset-inputs').addClass('d-none');
+		$controls.find('.add-asset-trigger').removeClass('d-none');
+	});
+
 	$('.gets').on('click', '.add-player', (e) => {
-		var franchiseId = tradeMachine.extractFranchiseId(e.delegateTarget.id);
-		var playerId = $('#gets-' + franchiseId + ' select.player-list').val();
+		var $gets = $(e.delegateTarget);
+		var franchiseId = tradeMachine.extractFranchiseId($gets.attr('id'));
+		var playerId = $gets.find('select.player-list').val();
 
 		tradeMachine.addPlayerToDeal(playerId, franchiseId);
 		tradeMachine.redrawTradeMachine();
