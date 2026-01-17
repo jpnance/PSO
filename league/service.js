@@ -627,6 +627,9 @@ function formatTradeResult(trade, tradeNumber, summary) {
 	var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	var dateStr = monthNames[date.getMonth()] + ' ' + date.getFullYear();
 	
+	// Handle missing summary (for searches without player context)
+	summary = summary || {};
+	
 	return {
 		type: 'trade',
 		tradeNumber: tradeNumber,
@@ -637,6 +640,41 @@ function formatTradeResult(trade, tradeNumber, summary) {
 		dateStr: dateStr,
 		url: '/trades/' + tradeNumber
 	};
+}
+
+// Collect all player IDs from an array of trades
+function collectPlayerIdsFromTrades(trades) {
+	var playerIds = new Set();
+	trades.forEach(function(trade) {
+		(trade.parties || []).forEach(function(party) {
+			(party.receives.players || []).forEach(function(p) {
+				playerIds.add(p.playerId.toString());
+			});
+			(party.receives.rfaRights || []).forEach(function(r) {
+				playerIds.add(r.playerId.toString());
+			});
+		});
+	});
+	return Array.from(playerIds);
+}
+
+// Build summaries for trades without a searched player context
+async function buildTradeSummaries(trades) {
+	if (!trades || trades.length === 0) return [];
+	
+	// Collect all player IDs and fetch names
+	var playerIds = collectPlayerIdsFromTrades(trades);
+	var playerDocs = await Player.find({ _id: { $in: playerIds } }).select('name').lean();
+	
+	var allPlayerNames = {};
+	playerDocs.forEach(function(p) {
+		allPlayerNames[p._id.toString()] = p.name;
+	});
+	
+	// Build summary for each trade (no searched player to highlight)
+	return trades.map(function(trade) {
+		return buildTradeSummary(trade, {}, allPlayerNames);
+	});
 }
 
 // Find trades involving specific players, with asset summaries
@@ -717,9 +755,10 @@ async function search(request, response) {
 			var trade = await Transaction.findOne({ type: 'trade', tradeId: tradeNumber }).lean();
 			
 			if (trade) {
+				var summaries = await buildTradeSummaries([trade]);
 				return response.render('search-results', {
 					players: [],
-					trades: [formatTradeResult(trade, tradeNumber)]
+					trades: [formatTradeResult(trade, tradeNumber, summaries[0])]
 				});
 			}
 			// If no trade found with that number, fall through to regular search
@@ -732,14 +771,10 @@ async function search(request, response) {
 				.limit(5)
 				.lean();
 			
-			// Get all trades to compute trade numbers
-			var allTrades = await Transaction.find({ type: 'trade' })
-				.sort({ timestamp: 1 })
-				.select('_id tradeId')
-				.lean();
+			var summaries = await buildTradeSummaries(recentTrades);
 			
-			var tradeResults = recentTrades.map(function(trade) {
-				return formatTradeResult(trade, trade.tradeId);
+			var tradeResults = recentTrades.map(function(trade, i) {
+				return formatTradeResult(trade, trade.tradeId, summaries[i]);
 			});
 			
 			return response.render('search-results', {
