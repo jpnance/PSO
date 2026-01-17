@@ -413,34 +413,96 @@ function getLastName(name) {
  * @param {number} tradeYear - the year the trade was made (for pick number display)
  * @returns {Array} array of formatted strings
  */
-function collectTitleAssets(party, auctionSeason, tradeYear) {
-	if (!party || !party.assets || party.assets.length === 0) return ['Nothing'];
+/**
+ * Calculate net cash per party for current season
+ * For two-party trades: net = received - given (what the other party receives)
+ * @param {Array} parties - array of party objects
+ * @param {number} auctionSeason - current/upcoming auction season
+ * @returns {Map} partyIndex -> net cash amount (positive = receives, negative = gives)
+ */
+function calculateNetCash(parties, auctionSeason) {
+	if (!parties || parties.length !== 2) {
+		// For multi-party trades, just sum each party's received cash
+		var result = new Map();
+		for (var i = 0; i < (parties || []).length; i++) {
+			var total = 0;
+			var party = parties[i];
+			for (var j = 0; j < (party.assets || []).length; j++) {
+				var asset = party.assets[j];
+				if (asset.type === 'cash') {
+					var season = asset.season || auctionSeason;
+					if (season >= auctionSeason) {
+						total += asset.amount || 0;
+					}
+				}
+			}
+			result.set(i, total);
+		}
+		return result;
+	}
+	
+	// Two-party trade: calculate net (received - given)
+	var received0 = 0, received1 = 0;
+	
+	for (var j = 0; j < (parties[0].assets || []).length; j++) {
+		var asset = parties[0].assets[j];
+		if (asset.type === 'cash') {
+			var season = asset.season || auctionSeason;
+			if (season >= auctionSeason) {
+				received0 += asset.amount || 0;
+			}
+		}
+	}
+	
+	for (var j = 0; j < (parties[1].assets || []).length; j++) {
+		var asset = parties[1].assets[j];
+		if (asset.type === 'cash') {
+			var season = asset.season || auctionSeason;
+			if (season >= auctionSeason) {
+				received1 += asset.amount || 0;
+			}
+		}
+	}
+	
+	// Net for party 0 = what they receive - what they give (which equals what party 1 receives)
+	var net0 = received0 - received1;
+	var net1 = received1 - received0;
+	
+	var result = new Map();
+	result.set(0, net0);
+	result.set(1, net1);
+	return result;
+}
+
+function collectTitleAssets(party, auctionSeason, tradeYear, options) {
+	options = options || {};
+	if (!party || !party.assets || party.assets.length === 0) return ['nothing'];
 	
 	// If only one asset, always include it
 	var forceInclude = party.assets.length === 1;
 	
 	var players = [];
 	var picks = []; // { round, season, pickNumber }
-	var cashTotal = 0;
+	var excludedPicks = []; // Track excluded picks so we can promote one if needed
 	var hasNothing = false;
 	
 	for (var i = 0; i < party.assets.length; i++) {
 		var asset = party.assets[i];
 		
-		if (asset.type === 'player' || asset.type === 'rfa') {
-			players.push({ name: getLastName(asset.playerName), salary: asset.salary || 0 });
+		if (asset.type === 'player') {
+			players.push({ name: getLastName(asset.playerName), salary: asset.salary || 0, isRfa: false });
+		} else if (asset.type === 'rfa') {
+			players.push({ name: getLastName(asset.playerName) + ' RFA', salary: asset.salary || 0, isRfa: true });
 		} else if (asset.type === 'pick') {
-			if (forceInclude || asset.round <= 2) {
+			if (forceInclude || asset.round <= 3) {
 				picks.push({ round: asset.round || 1, season: asset.season, pickNumber: asset.pickNumber });
-			}
-		} else if (asset.type === 'cash') {
-			var season = asset.season || auctionSeason;
-			if (forceInclude || season >= auctionSeason) {
-				cashTotal += asset.amount || 0;
+			} else {
+				excludedPicks.push({ round: asset.round || 1, season: asset.season, pickNumber: asset.pickNumber });
 			}
 		} else if (asset.type === 'nothing') {
 			hasNothing = true;
 		}
+		// Cash is handled via netCash parameter
 	}
 	
 	var items = [];
@@ -451,52 +513,71 @@ function collectTitleAssets(party, auctionSeason, tradeYear) {
 		items.push(players[i].name);
 	}
 	
-	// Picks - use pickNumber format for same-year picks with known numbers
-	// Separate numbered picks from grouped picks
-	var numberedPicks = [];
-	var picksByRound = {};
-	for (var i = 0; i < picks.length; i++) {
-		var pick = picks[i];
-		// Use "1.04" format if pick is for same year as trade and pickNumber is known
-		if (pick.season === tradeYear && pick.pickNumber) {
-			numberedPicks.push(pick);
-		} else {
-			picksByRound[pick.round] = (picksByRound[pick.round] || 0) + 1;
+	// Helper to format picks and add to items
+	function formatAndAddPicks(pickList) {
+		var numberedPicks = [];
+		var picksByRound = {};
+		for (var i = 0; i < pickList.length; i++) {
+			var pick = pickList[i];
+			if (pick.season === tradeYear && pick.pickNumber) {
+				numberedPicks.push(pick);
+			} else {
+				picksByRound[pick.round] = (picksByRound[pick.round] || 0) + 1;
+			}
+		}
+		
+		numberedPicks.sort(function(a, b) { return a.pickNumber - b.pickNumber; });
+		for (var i = 0; i < numberedPicks.length; i++) {
+			var pick = numberedPicks[i];
+			var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
+			items.push(formatPickHelpers.formatPickNumber(pick.pickNumber, teamsPerRound));
+		}
+		
+		var rounds = Object.keys(picksByRound).map(Number).sort(function(a, b) { return a - b; });
+		for (var i = 0; i < rounds.length; i++) {
+			var round = rounds[i];
+			var count = picksByRound[round];
+			var roundOrd = ordinal(round);
+			if (count === 1) {
+				items.push(roundOrd);
+			} else {
+				items.push(numberToWord(count) + ' ' + roundOrd + 's');
+			}
 		}
 	}
 	
-	// Sort numbered picks by pickNumber
-	numberedPicks.sort(function(a, b) { return a.pickNumber - b.pickNumber; });
-	for (var i = 0; i < numberedPicks.length; i++) {
-		var pick = numberedPicks[i];
-		var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
-		items.push(formatPickHelpers.formatPickNumber(pick.pickNumber, teamsPerRound));
+	// Add included picks
+	formatAndAddPicks(picks);
+	
+	// Check if we have any "real" assets (players or picks) - not just cash
+	var hasRealAssets = players.length > 0 || picks.length > 0;
+	
+	// If no real assets but we have excluded picks, promote the best one
+	if (!hasRealAssets && excludedPicks.length > 0) {
+		// Sort by round (best first)
+		excludedPicks.sort(function(a, b) { return a.round - b.round; });
+		// Promote the first excluded pick
+		var promoted = excludedPicks.shift();
+		formatAndAddPicks([promoted]);
 	}
 	
-	// Add grouped picks (sorted by round)
-	var rounds = Object.keys(picksByRound).map(Number).sort(function(a, b) { return a - b; });
-	for (var i = 0; i < rounds.length; i++) {
-		var round = rounds[i];
-		var count = picksByRound[round];
-		var roundOrd = ordinal(round);
-		if (count === 1) {
-			items.push(roundOrd);
-		} else {
-			items.push(numberToWord(count) + ' ' + roundOrd + 's');
-		}
+	// Net cash (only show if positive - this party gains money)
+	var netCash = options.netCash;
+	if (netCash !== undefined && netCash > 0) {
+		items.push('$' + netCash);
 	}
 	
-	// Summed cash
-	if (cashTotal > 0) {
-		items.push('$' + cashTotal);
+	// Add "more" indicator only if there are remaining excluded picks
+	if (excludedPicks.length > 0) {
+		items.push('more');
 	}
 	
 	// Handle nothing
 	if (hasNothing && items.length === 0) {
-		items.push('Nothing');
+		items.push('nothing');
 	}
 	
-	return items.length > 0 ? items : ['Nothing'];
+	return items.length > 0 ? items : ['nothing'];
 }
 
 /**
@@ -520,13 +601,16 @@ function tradeOgTitle(parties, options) {
 	
 	var title;
 	
+	// Calculate net cash per party
+	var netCashMap = calculateNetCash(parties, auctionSeason);
+	
 	if (parties.length === 2) {
 		// Two-party trade ordering:
 		// 1. Cash-only side always goes second
 		// 2. Fewer notable assets goes first
 		// 3. Tie-breaker: side with players goes first
-		var items0 = collectTitleAssets(parties[0], auctionSeason, tradeYear);
-		var items1 = collectTitleAssets(parties[1], auctionSeason, tradeYear);
+		var items0 = collectTitleAssets(parties[0], auctionSeason, tradeYear, { netCash: netCashMap.get(0) });
+		var items1 = collectTitleAssets(parties[1], auctionSeason, tradeYear, { netCash: netCashMap.get(1) });
 		
 		// Check if all items are cash (start with $) or nothing
 		function isCashOnly(items) {
@@ -535,15 +619,15 @@ function tradeOgTitle(parties, options) {
 		}
 		
 		function isNothing(items) {
-			return items && items.length === 1 && items[0] === 'Nothing';
+			return items && items.length === 1 && items[0] === 'nothing';
 		}
 		
 		// Check if items contain a player (not cash, not picks, not nothing)
 		function hasPlayer(items) {
 			if (!items || items.length === 0) return false;
 			return items.some(function(item) {
-				// Exclude: Nothing, cash ($...), ordinals (1st, 2nd, etc.), grouped picks (two 1sts, etc.)
-				return item !== 'Nothing' && 
+				// Exclude: nothing, cash ($...), ordinals (1st, 2nd, etc.), grouped picks (two 1sts, etc.)
+				return item !== 'nothing' && 
 					!item.startsWith('$') && 
 					!/^\d+(st|nd|rd|th)$/.test(item) &&
 					!/^[a-z]+ \d+(st|nd|rd|th)s$/.test(item);
@@ -600,16 +684,28 @@ function tradeOgTitle(parties, options) {
 		// Multi-party trade: list each party's assets
 		var partySummaries = [];
 		for (var i = 0; i < parties.length; i++) {
-			var items = collectTitleAssets(parties[i], auctionSeason, tradeYear);
+			var items = collectTitleAssets(parties[i], auctionSeason, tradeYear, { netCash: netCashMap.get(i) });
 			partySummaries.push(oxfordJoin(items));
 		}
-		title = partySummaries.join(', ');
+		title = partySummaries.join('; ');
 	}
 	
-	if (status === 'hypothetical') {
-		title = 'Fake Trade: ' + title;
+	// Status prefix mapping
+	var statusPrefixes = {
+		'hypothetical': 'Fake Trade',
+		'pending': 'Pending',
+		'accepted': 'Accepted',
+		'rejected': 'Rejected',
+		'canceled': 'Canceled',
+		'expired': 'Expired',
+		'executed': 'Executed'
+	};
+	
+	var prefix = statusPrefixes[status];
+	if (prefix) {
+		title = prefix + ': ' + title.charAt(0).toUpperCase() + title.slice(1);
 	} else {
-		// Capitalize first letter
+		// Unknown status - just capitalize first letter
 		title = title.charAt(0).toUpperCase() + title.slice(1);
 	}
 	
@@ -621,9 +717,11 @@ function tradeOgTitle(parties, options) {
  * @param {Object} party - party object with assets array
  * @param {number} auctionSeason - for filtering cash
  * @param {number} tradeYear - for pick number display
+ * @param {Object} options - { netCash: number } pre-calculated net cash for this party
  * @returns {Object} { items: Array of formatted strings, hasPlayer: boolean, isCashOnly: boolean, isNothing: boolean }
  */
-function collectDescriptionAssets(party, auctionSeason, tradeYear) {
+function collectDescriptionAssets(party, auctionSeason, tradeYear, options) {
+	options = options || {};
 	if (!party || !party.assets || party.assets.length === 0) {
 		return { items: ['nothing'], hasPlayer: false, isCashOnly: false, isNothing: true };
 	}
@@ -633,26 +731,26 @@ function collectDescriptionAssets(party, auctionSeason, tradeYear) {
 	
 	var players = [];
 	var picks = [];
-	var cashItems = []; // { amount, season }
+	var excludedPicks = []; // Track excluded picks so we can promote one if needed
 	var hasNothing = false;
 	
 	for (var i = 0; i < party.assets.length; i++) {
 		var asset = party.assets[i];
 		
-		if (asset.type === 'player' || asset.type === 'rfa') {
-			players.push({ name: asset.playerName, salary: asset.salary || 0 });
+		if (asset.type === 'player') {
+			players.push({ name: asset.playerName, salary: asset.salary || 0, isRfa: false });
+		} else if (asset.type === 'rfa') {
+			players.push({ name: asset.playerName + ' (RFA rights)', salary: asset.salary || 0, isRfa: true });
 		} else if (asset.type === 'pick') {
-			if (forceInclude || asset.round <= 2) {
+			if (forceInclude || asset.round <= 3) {
 				picks.push({ round: asset.round || 1, season: asset.season, pickNumber: asset.pickNumber });
-			}
-		} else if (asset.type === 'cash') {
-			var season = asset.season || auctionSeason;
-			if (forceInclude || season >= auctionSeason) {
-				cashItems.push({ amount: asset.amount || 0, season: season });
+			} else {
+				excludedPicks.push({ round: asset.round || 1, season: asset.season, pickNumber: asset.pickNumber });
 			}
 		} else if (asset.type === 'nothing') {
 			hasNothing = true;
 		}
+		// Cash is handled via netCash parameter
 	}
 	
 	var items = [];
@@ -663,49 +761,61 @@ function collectDescriptionAssets(party, auctionSeason, tradeYear) {
 		items.push(players[i].name);
 	}
 	
-	// Picks formatted as "a 1st round pick" (or "1.04" for same-year with known number)
-	var numberedPicks = [];
-	var picksByRound = {};
-	for (var i = 0; i < picks.length; i++) {
-		var pick = picks[i];
-		if (pick.season === tradeYear && pick.pickNumber) {
-			numberedPicks.push(pick);
-		} else {
-			picksByRound[pick.round] = (picksByRound[pick.round] || 0) + 1;
+	// Helper to format picks and add to items
+	function formatAndAddPicks(pickList) {
+		var numberedPicks = [];
+		var picksByRound = {};
+		for (var i = 0; i < pickList.length; i++) {
+			var pick = pickList[i];
+			if (pick.season === tradeYear && pick.pickNumber) {
+				numberedPicks.push(pick);
+			} else {
+				picksByRound[pick.round] = (picksByRound[pick.round] || 0) + 1;
+			}
+		}
+		
+		numberedPicks.sort(function(a, b) { return a.pickNumber - b.pickNumber; });
+		for (var i = 0; i < numberedPicks.length; i++) {
+			var pick = numberedPicks[i];
+			var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
+			items.push('pick ' + formatPickHelpers.formatPickNumber(pick.pickNumber, teamsPerRound));
+		}
+		
+		var rounds = Object.keys(picksByRound).map(Number).sort(function(a, b) { return a - b; });
+		for (var i = 0; i < rounds.length; i++) {
+			var round = rounds[i];
+			var count = picksByRound[round];
+			var roundOrd = ordinal(round);
+			if (count === 1) {
+				items.push('a ' + roundOrd + ' round pick');
+			} else {
+				items.push(numberToWord(count) + ' ' + roundOrd + ' round picks');
+			}
 		}
 	}
 	
-	// Add numbered picks (e.g., "1.04")
-	numberedPicks.sort(function(a, b) { return a.pickNumber - b.pickNumber; });
-	for (var i = 0; i < numberedPicks.length; i++) {
-		var pick = numberedPicks[i];
-		var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
-		items.push('pick ' + formatPickHelpers.formatPickNumber(pick.pickNumber, teamsPerRound));
+	// Add included picks
+	formatAndAddPicks(picks);
+	
+	// Check if we have any "real" assets (players or picks) - not just cash
+	var hasRealAssets = players.length > 0 || picks.length > 0;
+	
+	// If no real assets but we have excluded picks, promote the best one
+	if (!hasRealAssets && excludedPicks.length > 0) {
+		excludedPicks.sort(function(a, b) { return a.round - b.round; });
+		var promoted = excludedPicks.shift();
+		formatAndAddPicks([promoted]);
 	}
 	
-	// Add grouped picks as "a 1st round pick" or "two 1st round picks"
-	var rounds = Object.keys(picksByRound).map(Number).sort(function(a, b) { return a - b; });
-	for (var i = 0; i < rounds.length; i++) {
-		var round = rounds[i];
-		var count = picksByRound[round];
-		var roundOrd = ordinal(round);
-		if (count === 1) {
-			items.push('a ' + roundOrd + ' round pick');
-		} else {
-			items.push(numberToWord(count) + ' ' + roundOrd + ' round picks');
-		}
+	// Net cash (only show if positive - this party gains money)
+	var netCash = options.netCash;
+	if (netCash !== undefined && netCash > 0) {
+		items.push('$' + netCash + ' in ' + auctionSeason);
 	}
 	
-	// Cash with year (grouped by season)
-	var cashBySeason = {};
-	for (var i = 0; i < cashItems.length; i++) {
-		var c = cashItems[i];
-		cashBySeason[c.season] = (cashBySeason[c.season] || 0) + c.amount;
-	}
-	var cashSeasons = Object.keys(cashBySeason).map(Number).sort(function(a, b) { return a - b; });
-	for (var i = 0; i < cashSeasons.length; i++) {
-		var season = cashSeasons[i];
-		items.push('$' + cashBySeason[season] + ' in ' + season);
+	// Add "more" indicator only if there are remaining excluded picks
+	if (excludedPicks.length > 0) {
+		items.push('more');
 	}
 	
 	// Handle nothing
@@ -747,20 +857,23 @@ function tradeOgPlainEnglish(parties, options) {
 		return 'Trade on Primetime Soap Operas';
 	}
 	
+	// Calculate net cash per party
+	var netCashMap = calculateNetCash(parties, auctionSeason);
+	
 	if (parties.length !== 2) {
 		// Multi-party trades - simplified format
 		var parts = [];
 		for (var i = 0; i < parties.length; i++) {
 			var p = parties[i];
-			var collected = collectDescriptionAssets(p, auctionSeason, tradeYear);
+			var collected = collectDescriptionAssets(p, auctionSeason, tradeYear, { netCash: netCashMap.get(i) });
 			parts.push(p.franchiseName + ' receives ' + oxfordJoin(collected.items));
 		}
 		return parts.join('. ') + '.';
 	}
 	
 	// Two-party trade
-	var collected0 = collectDescriptionAssets(parties[0], auctionSeason, tradeYear);
-	var collected1 = collectDescriptionAssets(parties[1], auctionSeason, tradeYear);
+	var collected0 = collectDescriptionAssets(parties[0], auctionSeason, tradeYear, { netCash: netCashMap.get(0) });
+	var collected1 = collectDescriptionAssets(parties[1], auctionSeason, tradeYear, { netCash: netCashMap.get(1) });
 	
 	// Apply the same ordering logic as tradeOgTitle
 	var giverIndex, receiverIndex, givenItems, receivedItems;
@@ -826,8 +939,19 @@ function tradeOgPlainEnglish(parties, options) {
 		secondAssets = items0;
 	}
 	
-	// Build the sentence: "[Giver] traded [first assets] to [Receiver] for [second assets]."
-	var verb = status === 'hypothetical' ? 'would trade' : 'traded';
+	// Build the sentence: "[Giver] [verb] [first assets] to [Receiver] for [second assets]."
+	// Verb tense mapping based on status
+	var verbMapping = {
+		'hypothetical': 'would trade',
+		'pending': 'would trade',
+		'accepted': 'would trade',
+		'rejected': 'would have traded',
+		'canceled': 'would have traded',
+		'expired': 'would have traded',
+		'executed': 'traded'
+	};
+	var verb = verbMapping[status] || 'traded';
+	
 	return giverName + ' ' + verb + ' ' + oxfordJoin(firstAssets) + ' to ' + receiverName + ' for ' + oxfordJoin(secondAssets) + '.';
 }
 
