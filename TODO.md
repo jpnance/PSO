@@ -145,6 +145,15 @@
 ## Recently Completed
 *Keep a short log for context and momentum.*
 
+### Jan 15, 2026
+- Trade Machine: Added `?from=<proposal-slug>` API to pre-populate from existing proposal
+- Trade Machine: Auto-select current user's franchise on fresh trade machine
+- Trade Machine: Show warning when pre-populated assets have moved since original deal
+- Proposal page: Added "Reject & Counter" button (rejects then opens Trade Machine with those assets)
+- Proposal page: Action buttons now wrap properly on mobile with BEM styling (`.proposal-actions`)
+- Removed counter-offer infrastructure (schema fields, route, function, views, CSS)
+- Updated `.cursorrules`: clarified BEM usage — don't target Bootstrap classes directly
+
 ### Jan 14, 2026
 - Trade Machine: Redesigned budget impact as compact table (ledger style with year columns)
 - Trade Machine: Moved action buttons (Propose/Share/Cash-Neutral) to card-footer
