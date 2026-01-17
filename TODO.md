@@ -145,7 +145,7 @@
 ## Recently Completed
 *Keep a short log for context and momentum.*
 
-### Jan 15, 2026
+### Jan 16, 2026
 - Trade Machine: Added `?from=<proposal-slug>` API to pre-populate from existing proposal
 - Trade Machine: Auto-select current user's franchise on fresh trade machine
 - Trade Machine: Show warning when pre-populated assets have moved since original deal
