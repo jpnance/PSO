@@ -698,7 +698,7 @@ function tradeOgTitle(parties, options) {
 		'rejected': 'Rejected',
 		'canceled': 'Canceled',
 		'expired': 'Expired',
-		'executed': 'Executed'
+		'executed': null
 	};
 	
 	var prefix = statusPrefixes[status];
