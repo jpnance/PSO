@@ -53,7 +53,7 @@ block content
 			each franchise in franchises
 				option(class="franchises-" + franchise._id value=franchise._id data-name=franchise.displayName) #{franchise.displayName}
 
-	div.container.py-4
+	div.container.py-4.trade-machine
 		if isProcessingMode
 			p: a(href='/admin') ← Back to Admin
 		
@@ -66,7 +66,7 @@ block content
 					div.card-header
 						strong Select Parties
 					div.card-body
-						div.franchise-list
+						div.trade-machine__franchise-checkboxes
 							each franchise in franchises
 								div.form-check.mb-1
 									input.form-check-input(type="checkbox" id="check-" + franchise._id value=franchise._id)
@@ -83,65 +83,65 @@ block content
 						strong Trade Details
 					div.card-body
 						each franchise in franchises
-							div.gets.d-none(id="gets-" + franchise._id)
+							div.trade-machine__party.d-none(id="party-" + franchise._id)
 								//- Party Header
-								div.party-header.mb-2
-									span.party-name
+								div.trade-machine__party-header.mb-2
+									span.trade-machine__party-name
 										strong= franchise.displayName
 										|  receive#{isPlural(franchise.displayName) ? '' : 's'}:
 
 								//- Assets List
-								div.assets-container.mb-3
+								div.trade-machine__assets.mb-3
 									ul.asset-list.mb-0
 
 								//- Add Asset Controls
-								div.add-asset-controls
+								div.trade-machine__add-controls
 									//- Trigger button (visible when collapsed)
-									button.add-asset-trigger.btn.btn-outline-secondary.btn-sm(type="button")
+									button.trade-machine__add-trigger.btn.btn-outline-secondary.btn-sm(type="button")
 										i.fa.fa-plus.mr-1
 										| Add Assets
 
 									//- All inputs (hidden until trigger clicked)
-									div.asset-inputs.d-none
+									div.trade-machine__add-inputs.d-none
 										//- Add Player
 										div.input-group.input-group-sm.mb-2
 											div.input-group-prepend
-												span.input-group-text.player-icon
+												span.input-group-text.trade-machine__icon--player
 													i.fa.fa-user
 											select.player-list.form-control
 											div.input-group-append
-												button.add-player.btn.btn-add-player(type="button")
+												button.add-player.btn.trade-machine__add-btn--player(type="button")
 													i.fa.fa-plus
 
 										//- Add Pick
 										div.input-group.input-group-sm.mb-2
 											div.input-group-prepend
-												span.input-group-text.pick-icon
+												span.input-group-text.trade-machine__icon--pick
 													i.fa.fa-ticket
 											select.pick-list.form-control
 											div.input-group-append
-												button.add-pick.btn.btn-add-pick(type="button")
+												button.add-pick.btn.trade-machine__add-btn--pick(type="button")
 													i.fa.fa-plus
 
 										//- Add Cash
 										div.input-group.input-group-sm.mb-2
 											div.input-group-prepend
-												span.input-group-text.cash-icon $
-											input.amount.form-control(type="number" placeholder="Cash")
+												span.input-group-text.trade-machine__icon--cash $
+											input.trade-machine__amount-input.form-control(type="number" placeholder="Cash")
 											select.franchise-list.form-control
 											select.season-list.form-control
 												option #{parseInt(season)}
 												option #{parseInt(season) + 1}
 												option #{parseInt(season) + 2}
 											div.input-group-append
-												button.add-cash.btn.btn-add-cash(type="button")
+												button.add-cash.btn.trade-machine__add-btn--cash(type="button")
 													i.fa.fa-plus
 
 										//- Collapse button
-										button.done-adding.btn.btn-link.btn-sm.text-muted(type="button")
+										button.trade-machine__add-done.btn.btn-link.btn-sm.text-muted(type="button")
 											i.fa.fa-chevron-up
 
-								hr.party-separator
+								hr.trade-machine__party-separator
 
 					//- Submit Trade section (processing mode only)
 					if isProcessingMode
@@ -161,9 +161,9 @@ block content
 								i.fa.fa-check.mr-1
 								| Submit Trade
 
-					//- Share/Propose Trade section (for logged-in franchise owners)
-					if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
-						div.card-footer.share-propose-section.d-none
+				//- Share/Propose Trade section (for logged-in franchise owners)
+				if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
+					div.card-footer.trade-machine__footer.d-none
 							div.proposal-result.mb-3.d-none
 							//- Propose button only shown if user is party AND trades enabled (handled in JS)
 							if tradesEnabled

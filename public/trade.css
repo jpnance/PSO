@@ -1,86 +1,107 @@
-h1 {
+/* Trade Machine page styles (BEM) */
+
+/* ==========================================================================
+   Trade Machine Block
+   ========================================================================== */
+
+.trade-machine h1 {
 	color: #343a40;
 }
 
 /* Lighter placeholder text */
-::placeholder {
+.trade-machine ::placeholder {
 	color: #c0c0c0 !important;
 	opacity: 1;
 }
 
 /* Card header badge override */
-.card-header .badge-light {
+.trade-machine .card-header .badge-light {
 	background-color: rgba(255, 255, 255, 0.2);
 	color: white;
 }
 
-.share-propose-section {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	align-items: flex-start;
-}
-
-/* Franchise selection */
-.form-check-label {
+/* Franchise checkbox styling */
+.trade-machine .form-check-label {
 	cursor: pointer;
 	font-weight: 500;
 	color: #495057;
 	transition: color 0.15s;
 }
 
-.form-check-input:checked + .form-check-label {
+.trade-machine .form-check-input:checked + .form-check-label {
 	color: #007bff;
 }
 
-/* Input group styling */
-.input-group-text {
-	background-color: #e9ecef;
-	border-color: #ced4da;
-	min-width: 38px;
-	justify-content: center;
+/* Select dropdown font size */
+.trade-machine select.form-control {
+	font-size: 0.875rem;
 }
 
-/* Color-coded input backgrounds for add-asset form */
-.input-group-text.player-icon {
-	background-color: rgba(40, 167, 69, 0.15);
-	border-color: rgba(40, 167, 69, 0.3);
+/* ==========================================================================
+   Franchise Selection Panel
+   ========================================================================== */
+
+.trade-machine__franchise-checkboxes {
+	column-count: 2;
+	column-gap: 1rem;
 }
 
-.input-group-text.pick-icon {
-	background-color: rgba(23, 162, 184, 0.15);
-	border-color: rgba(23, 162, 184, 0.3);
+@media (min-width: 576px) {
+	.trade-machine__franchise-checkboxes {
+		column-count: 3;
+	}
 }
 
-.input-group-text.cash-icon {
-	background-color: rgba(255, 193, 7, 0.2);
-	border-color: rgba(255, 193, 7, 0.4);
+@media (min-width: 768px) {
+	.trade-machine__franchise-checkboxes {
+		column-count: 1;
+	}
 }
 
-/* Amount input */
-input.amount {
-	max-width: 100px;
+/* Prevent items from breaking across columns */
+.trade-machine__franchise-checkboxes .form-check {
+	break-inside: avoid;
 }
 
-/* Separator between form and assets */
-.asset-separator {
-	border-top: 1px solid #e9ecef;
-	margin: 0.5rem 0 1rem 0;
+/* ==========================================================================
+   Party Sections (each franchise's "receives" block)
+   ========================================================================== */
+
+.trade-machine__party-header {
+	margin-bottom: 0.75rem;
+}
+
+.trade-machine__party-name {
+	font-size: 1rem;
+}
+
+.trade-machine__party-separator {
+	margin: 1.5rem 0;
+	border-top: 2px solid #e9ecef;
+}
+
+.trade-machine__assets {
+	width: 100%;
+}
+
+/* Override asset-list font size in trade machine context */
+.trade-machine__party .asset-list {
+	font-size: 0.875rem;
 }
 
 /* Trade machine asset content needs flex to push remove button right */
-.gets .asset-list .asset-content {
+.trade-machine__party .asset-list .asset-content {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 }
 
-.gets .asset-list .asset-details {
+.trade-machine__party .asset-list .asset-details {
 	flex: 1;
 }
 
 /* Remove button styling */
-.asset-list .remove-asset {
+.trade-machine__remove-btn {
 	color: #dc3545;
 	opacity: 0.5;
 	transition: opacity 0.15s;
@@ -89,105 +110,52 @@ input.amount {
 	margin-left: 0.5rem;
 }
 
-.asset-list .remove-asset:hover {
+.trade-machine__remove-btn:hover {
 	opacity: 1;
 	color: #dc3545;
 	text-decoration: none;
 }
 
-
-/* Select dropdowns */
-select.form-control {
-	font-size: 0.875rem;
-}
-
-/* Franchise selection - 2 columns at xs, 3 at sm, 1 at md+ */
-.franchise-list {
-	column-count: 2;
-	column-gap: 1rem;
-}
-
-@media (min-width: 576px) {
-	.franchise-list {
-		column-count: 3;
-	}
-}
-
-@media (min-width: 768px) {
-	.franchise-list {
-		column-count: 1;
-	}
-}
-
-/* Prevent items from breaking across columns */
-.franchise-list .form-check {
-	break-inside: avoid;
-}
-
-/* Party sections within Trade Details card */
-.party-header {
-	margin-bottom: 0.75rem;
-}
-
-.party-name {
-	font-size: 1rem;
-}
-
-.party-separator {
-	margin: 1.5rem 0;
-	border-top: 2px solid #e9ecef;
-}
-
-
-/* Assets container styling */
-.gets .assets-container {
-	width: 100%;
-}
-
-/* Match asset list font size to input-group-sm */
-.gets .asset-list {
-	font-size: 0.875rem;
-}
-
-/* Responsive adjustments */
 @media (max-width: 991px) {
-	.gets {
-		margin-bottom: 1rem !important;
+	.trade-machine__party {
+		margin-bottom: 1rem;
 	}
 }
 
-/* Card hover effect for selected parties */
-.gets .card {
-	transition: box-shadow 0.2s;
+/* ==========================================================================
+   Add Asset Controls
+   ========================================================================== */
+
+/* Input group icon styling */
+.trade-machine .input-group-text {
+	background-color: #e9ecef;
+	border-color: #ced4da;
+	min-width: 38px;
+	justify-content: center;
 }
 
-.gets .card:hover {
-	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-}
-
-/* Add Asset Controls */
-.add-asset-controls {
+.trade-machine__add-controls {
 	margin-top: 0.5rem;
 }
 
-.add-asset-trigger {
+.trade-machine__add-trigger {
 	border-style: dashed;
 	width: 100%;
 	color: #6c757d;
 	transition: all 0.15s;
 }
 
-.add-asset-trigger:hover {
+.trade-machine__add-trigger:hover {
 	background-color: #f8f9fa;
 	border-color: #6c757d;
 	color: #495057;
 }
 
-.asset-inputs {
-	animation: slideDown 0.15s ease-out;
+.trade-machine__add-inputs {
+	animation: trade-machine-slide-down 0.15s ease-out;
 }
 
-@keyframes slideDown {
+@keyframes trade-machine-slide-down {
 	from {
 		opacity: 0;
 		transform: translateY(-8px);
@@ -198,45 +166,77 @@ select.form-control {
 	}
 }
 
-.done-adding {
+.trade-machine__add-done {
 	display: block;
 	width: 100%;
 	text-align: center;
 }
 
-/* Colored add buttons matching asset types */
-.btn-add-player {
+/* Input icon colors - needs .input-group-text for specificity */
+.input-group-text.trade-machine__icon--player {
+	background-color: rgba(40, 167, 69, 0.15);
+	border-color: rgba(40, 167, 69, 0.3);
+}
+
+.input-group-text.trade-machine__icon--pick {
+	background-color: rgba(23, 162, 184, 0.15);
+	border-color: rgba(23, 162, 184, 0.3);
+}
+
+.input-group-text.trade-machine__icon--cash {
+	background-color: rgba(255, 193, 7, 0.2);
+	border-color: rgba(255, 193, 7, 0.4);
+}
+
+/* Amount input width constraint */
+.trade-machine__amount-input {
+	max-width: 100px;
+}
+
+/* Add buttons - colored by asset type */
+.trade-machine__add-btn--player {
 	background-color: var(--asset-player);
 	border-color: var(--asset-player);
 	color: white;
 }
 
-.btn-add-player:hover {
+.trade-machine__add-btn--player:hover {
 	background-color: #1e7e34;
 	border-color: #1c7430;
 	color: white;
 }
 
-.btn-add-pick {
+.trade-machine__add-btn--pick {
 	background-color: var(--asset-pick);
 	border-color: var(--asset-pick);
 	color: white;
 }
 
-.btn-add-pick:hover {
+.trade-machine__add-btn--pick:hover {
 	background-color: #138496;
 	border-color: #117a8b;
 	color: white;
 }
 
-.btn-add-cash {
+.trade-machine__add-btn--cash {
 	background-color: #ffcc00;
 	border-color: #ffcc00;
 	color: white;
 }
 
-.btn-add-cash:hover {
+.trade-machine__add-btn--cash:hover {
 	background-color: #e6b800;
 	border-color: #d9ad00;
 	color: white;
+}
+
+/* ==========================================================================
+   Footer Actions
+   ========================================================================== */
+
+.trade-machine__footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: flex-start;
 }

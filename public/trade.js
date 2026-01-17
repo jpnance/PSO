@@ -127,7 +127,7 @@ var tradeMachine = {
 	},
 
 	extractFranchiseId: (elementId) => {
-		// Element IDs are like "check-{objectId}" or "gets-{objectId}"
+		// Element IDs are like "check-{objectId}" or "party-{objectId}"
 		var hyphenIndex = elementId.indexOf('-');
 		return hyphenIndex !== -1 ? elementId.substring(hyphenIndex + 1) : elementId;
 	},
@@ -204,14 +204,14 @@ var tradeMachine = {
 			});
 		});
 		
-		$('.gets').each((i, gets) => {
-			var $pickList = $(gets).find('.pick-list');
+		$('.trade-machine__party').each((i, party) => {
+			var $pickList = $(party).find('.pick-list');
 			$pickList.empty();
 
-			var getsId = tradeMachine.extractFranchiseId(gets.id);
+			var partyId = tradeMachine.extractFranchiseId(party.id);
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (franchiseId !== getsId) {
+				if (franchiseId !== partyId) {
 					var $optgroup = $('select.master-pick-list optgroup[class=picks-' + franchiseId + ']').clone();
 					
 					// Remove picks already in the deal
@@ -239,14 +239,14 @@ var tradeMachine = {
 			});
 		});
 		
-		$('.gets').each((i, gets) => {
-			var $playerList = $(gets).find('.player-list');
+		$('.trade-machine__party').each((i, party) => {
+			var $playerList = $(party).find('.player-list');
 			$playerList.empty();
 
-			var getsId = tradeMachine.extractFranchiseId(gets.id);
+			var partyId = tradeMachine.extractFranchiseId(party.id);
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (franchiseId !== getsId) {
+				if (franchiseId !== partyId) {
 					var $optgroup = $('select.master-player-list optgroup[class=players-' + franchiseId + ']').clone();
 					
 					// Remove players already in the deal
@@ -266,14 +266,14 @@ var tradeMachine = {
 	},
 
 	rebuildFranchiseLists: () => {
-		$('.gets').each((i, gets) => {
-			var $franchiseList = $(gets).find('.franchise-list');
+		$('.trade-machine__party').each((i, party) => {
+			var $franchiseList = $(party).find('.franchise-list');
 			$franchiseList.empty();
 
-			var getsId = tradeMachine.extractFranchiseId(gets.id);
+			var partyId = tradeMachine.extractFranchiseId(party.id);
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
-				if (franchiseId !== getsId) {
+				if (franchiseId !== partyId) {
 					$franchiseList.append($('select.master-franchise-list option[class=franchises-' + franchiseId + ']').clone());
 				}
 			});
@@ -329,7 +329,7 @@ var tradeMachine = {
 	},
 
 	redrawTradeMachine: () => {
-		$('.gets').addClass('d-none');
+		$('.trade-machine__party').addClass('d-none');
 		
 		var franchises = tradeMachine.franchisesInvolved();
 		
@@ -340,7 +340,7 @@ var tradeMachine = {
 			
 			// Show share/propose section if user is logged in with a franchise
 			if (typeof isLoggedIn !== 'undefined' && isLoggedIn && typeof userFranchiseIds !== 'undefined' && userFranchiseIds.length > 0) {
-				$('.share-propose-section').removeClass('d-none');
+				$('.trade-machine__footer').removeClass('d-none');
 				// Show "Propose Trade" button only if user is party to the deal
 				if (tradeMachine.isUserPartyToDeal()) {
 					$('.propose-trade-btn').removeClass('d-none');
@@ -348,12 +348,12 @@ var tradeMachine = {
 					$('.propose-trade-btn').addClass('d-none');
 				}
 			} else {
-				$('.share-propose-section').addClass('d-none');
+				$('.trade-machine__footer').addClass('d-none');
 			}
 		} else {
 			$('.trade-details-card').addClass('d-none');
 			$('.submit-trade-section').addClass('d-none');
-			$('.share-propose-section').addClass('d-none');
+			$('.trade-machine__footer').addClass('d-none');
 		}
 		
 		// Reset confirmation state when deal changes
@@ -364,9 +364,9 @@ var tradeMachine = {
 		tradeMachine.rebuildPickLists();
 
 		franchises.forEach((franchiseId, index) => {
-			var $franchiseSection = $('.gets[id=gets-' + franchiseId + ']');
+			var $franchiseSection = $('.trade-machine__party[id=party-' + franchiseId + ']');
 			var $franchiseAssetList = $franchiseSection.find('ul.asset-list');
-			var $separator = $franchiseSection.find('.party-separator');
+			var $separator = $franchiseSection.find('.trade-machine__party-separator');
 
 			$franchiseSection.removeClass('d-none');
 			$franchiseAssetList.empty();
@@ -389,7 +389,7 @@ var tradeMachine = {
 					var $assetEl = tradeMachine.buildAssetElement(asset);
 					
 					// Add remove button as direct child of asset-content, pushed to the right
-					var $removeBtn = $('<button class="remove-asset btn btn-link btn-sm p-0" data-type="' + asset.type + '" data-id="' + asset.id + '"><i class="fa fa-times"></i></button>');
+					var $removeBtn = $('<button class="trade-machine__remove-btn btn btn-link btn-sm p-0" data-type="' + asset.type + '" data-id="' + asset.id + '"><i class="fa fa-times"></i></button>');
 					$assetEl.find('.asset-content').append($removeBtn);
 					
 					$franchiseAssetList.append($assetEl);
@@ -679,11 +679,11 @@ var tradeMachine = {
 
 	// Reset add asset controls to collapsed state
 	resetAddAssetControls: () => {
-		$('.add-asset-controls').each((i, controls) => {
+		$('.trade-machine__add-controls').each((i, controls) => {
 			var $controls = $(controls);
-			$controls.find('.asset-inputs').addClass('d-none');
-			$controls.find('.add-asset-trigger').removeClass('d-none');
-			$controls.find('input.amount').val('');
+			$controls.find('.trade-machine__add-inputs').addClass('d-none');
+			$controls.find('.trade-machine__add-trigger').removeClass('d-none');
+			$controls.find('.trade-machine__amount-input').val('');
 		});
 	},
 
@@ -885,51 +885,51 @@ $(document).ready(function() {
 	});
 
 	// Add Asset trigger button - shows all inputs
-	$('.gets').on('click', '.add-asset-trigger', (e) => {
-		var $controls = $(e.currentTarget).closest('.add-asset-controls');
-		$controls.find('.add-asset-trigger').addClass('d-none');
-		$controls.find('.asset-inputs').removeClass('d-none');
+	$('.trade-machine__party').on('click', '.trade-machine__add-trigger', (e) => {
+		var $controls = $(e.currentTarget).closest('.trade-machine__add-controls');
+		$controls.find('.trade-machine__add-trigger').addClass('d-none');
+		$controls.find('.trade-machine__add-inputs').removeClass('d-none');
 	});
 
 	// Done button - collapses back to trigger
-	$('.gets').on('click', '.done-adding', (e) => {
-		var $controls = $(e.currentTarget).closest('.add-asset-controls');
-		$controls.find('.asset-inputs').addClass('d-none');
-		$controls.find('.add-asset-trigger').removeClass('d-none');
+	$('.trade-machine__party').on('click', '.trade-machine__add-done', (e) => {
+		var $controls = $(e.currentTarget).closest('.trade-machine__add-controls');
+		$controls.find('.trade-machine__add-inputs').addClass('d-none');
+		$controls.find('.trade-machine__add-trigger').removeClass('d-none');
 	});
 
-	$('.gets').on('click', '.add-player', (e) => {
-		var $gets = $(e.delegateTarget);
-		var franchiseId = tradeMachine.extractFranchiseId($gets.attr('id'));
-		var playerId = $gets.find('select.player-list').val();
+	$('.trade-machine__party').on('click', '.add-player', (e) => {
+		var $party = $(e.delegateTarget);
+		var franchiseId = tradeMachine.extractFranchiseId($party.attr('id'));
+		var playerId = $party.find('select.player-list').val();
 
 		tradeMachine.addPlayerToDeal(playerId, franchiseId);
 		tradeMachine.redrawTradeMachine();
 	});
 
-	$('.gets').on('click', '.add-pick', (e) => {
-		var $gets = $(e.delegateTarget);
+	$('.trade-machine__party').on('click', '.add-pick', (e) => {
+		var $party = $(e.delegateTarget);
 
 		var franchiseId = tradeMachine.extractFranchiseId(e.delegateTarget.id);
-		var pickId = $gets.find('.pick-list').val();
+		var pickId = $party.find('.pick-list').val();
 
 		tradeMachine.addPickToDeal(pickId, franchiseId);
 		tradeMachine.redrawTradeMachine();
 	});
 
-	$('.gets').on('click', '.add-cash', (e) => {
-		var $gets = $(e.delegateTarget);
+	$('.trade-machine__party').on('click', '.add-cash', (e) => {
+		var $party = $(e.delegateTarget);
 
 		var toFranchiseId = tradeMachine.extractFranchiseId(e.delegateTarget.id);
-		var amount = parseInt($gets.find('input.amount').val());
-		var fromFranchiseId = $gets.find('select.franchise-list').val();
-		var season = parseInt($gets.find('select.season-list').val());
+		var amount = parseInt($party.find('.trade-machine__amount-input').val());
+		var fromFranchiseId = $party.find('select.franchise-list').val();
+		var season = parseInt($party.find('select.season-list').val());
 
 		tradeMachine.addCashToDeal(amount, fromFranchiseId, season, toFranchiseId);
 		tradeMachine.redrawTradeMachine();
 		
 		// Clear the amount field after adding
-		$gets.find('input.amount').val('');
+		$party.find('.trade-machine__amount-input').val('');
 	});
 
 	$('.reset-trade-machine').on('click', (e) => {
@@ -937,11 +937,11 @@ $(document).ready(function() {
 	});
 
 	// Remove asset from deal
-	$(document).on('click', '.remove-asset', (e) => {
+	$(document).on('click', '.trade-machine__remove-btn', (e) => {
 		e.preventDefault();
 		var $btn = $(e.currentTarget);
-		var $gets = $btn.closest('.gets');
-		var franchiseId = tradeMachine.extractFranchiseId($gets.attr('id'));
+		var $party = $btn.closest('.trade-machine__party');
+		var franchiseId = tradeMachine.extractFranchiseId($party.attr('id'));
 		var assetType = $btn.data('type');
 		var assetId = $btn.data('id');
 
