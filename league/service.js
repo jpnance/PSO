@@ -764,24 +764,8 @@ async function search(request, response) {
 			// If no trade found with that number, fall through to regular search
 		}
 		
-		// Check if query is just "trade" (show recent trades)
-		if (query.toLowerCase() === 'trade' || query.toLowerCase() === 'trades') {
-			var recentTrades = await Transaction.find({ type: 'trade' })
-				.sort({ timestamp: -1 })
-				.limit(5)
-				.lean();
-			
-			var summaries = await buildTradeSummaries(recentTrades);
-			
-			var tradeResults = recentTrades.map(function(trade, i) {
-				return formatTradeResult(trade, trade.tradeId, summaries[i]);
-			});
-			
-			return response.render('search-results', {
-				players: [],
-				trades: tradeResults
-			});
-		}
+		// Check if query is "trade" or "trades" - we'll show recent trades alongside any player results
+		var isTradeKeyword = (query.toLowerCase() === 'trade' || query.toLowerCase() === 'trades');
 		
 		// Build flexible regex pattern to handle punctuation variations (A.J. vs AJ)
 		var namePattern = buildFlexibleNamePattern(query);
@@ -798,6 +782,20 @@ async function search(request, response) {
 		]);
 		
 		if (players.length === 0) {
+			// No player matches - but if it's a trade keyword, show recent trades
+			if (isTradeKeyword) {
+				var recentTrades = await Transaction.find({ type: 'trade' })
+					.sort({ timestamp: -1 })
+					.limit(5)
+					.lean();
+				
+				var summaries = await buildTradeSummaries(recentTrades);
+				var tradeResults = recentTrades.map(function(trade, i) {
+					return formatTradeResult(trade, trade.tradeId, summaries[i]);
+				});
+				
+				return response.render('search-results', { players: [], trades: tradeResults });
+			}
 			return response.render('search-results', { players: [], trades: [] });
 		}
 		
@@ -896,19 +894,36 @@ async function search(request, response) {
 		var displayedPlayers = playerResults.slice(0, 5);
 		var extraPlayersCount = Math.max(0, totalPlayers - 5);
 		
-		// Find trades involving the displayed players (fetch more to show extras as links)
-		var topPlayers = players.slice(0, 5);
-		var playerTradeResults = await findTradesForPlayers(topPlayers, 6);
+		// Find trades to display
+		var displayedTrades = [];
+		var extraTrades = [];
 		
-		var allTradeResults = playerTradeResults.map(function(result) {
-			return formatTradeResult(result.trade, result.trade.tradeId, result.summary);
-		});
-		
-		// Show 3 trades, track extras as quick links
-		var displayedTrades = allTradeResults.slice(0, 3);
-		var extraTrades = allTradeResults.slice(3).map(function(t) {
-			return { tradeNumber: t.tradeNumber, url: t.url };
-		});
+		if (isTradeKeyword) {
+			// For "trade"/"trades" keyword, show recent trades (not player-specific)
+			var recentTrades = await Transaction.find({ type: 'trade' })
+				.sort({ timestamp: -1 })
+				.limit(5)
+				.lean();
+			
+			var summaries = await buildTradeSummaries(recentTrades);
+			displayedTrades = recentTrades.map(function(trade, i) {
+				return formatTradeResult(trade, trade.tradeId, summaries[i]);
+			});
+		} else {
+			// Find trades involving the displayed players (fetch more to show extras as links)
+			var topPlayers = players.slice(0, 5);
+			var playerTradeResults = await findTradesForPlayers(topPlayers, 6);
+			
+			var allTradeResults = playerTradeResults.map(function(result) {
+				return formatTradeResult(result.trade, result.trade.tradeId, result.summary);
+			});
+			
+			// Show 3 trades, track extras as quick links
+			displayedTrades = allTradeResults.slice(0, 3);
+			extraTrades = allTradeResults.slice(3).map(function(t) {
+				return { tradeNumber: t.tradeNumber, url: t.url };
+			});
+		}
 		
 		response.render('search-results', { 
 			players: displayedPlayers,
