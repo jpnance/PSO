@@ -115,13 +115,19 @@ select.form-control {
 	font-size: 0.875rem;
 }
 
-/* Franchise selection - 2 columns on small screens, 1 on large */
+/* Franchise selection - 2 columns at xs, 3 at sm, 1 at md+ */
 .franchise-list {
 	column-count: 2;
 	column-gap: 1rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 576px) {
+	.franchise-list {
+		column-count: 3;
+	}
+}
+
+@media (min-width: 768px) {
 	.franchise-list {
 		column-count: 1;
 	}
@@ -147,24 +153,9 @@ select.form-control {
 }
 
 
-/* Vertically center empty state in two-column layout */
-@media (min-width: 1200px) {
-	.gets .col-xl-6:last-child {
-		display: flex;
-		align-items: flex-start;
-	}
-	
-	.gets .col-xl-6:last-child:has(.empty-state:not(.d-none)) {
-		align-items: center;
-	}
-	
-	.gets .assets-container {
-		width: 100%;
-	}
-	
-	.gets .empty-state {
-		text-align: center;
-	}
+/* Assets container styling */
+.gets .assets-container {
+	width: 100%;
 }
 
 /* Match asset list font size to input-group-sm */
@@ -203,4 +194,80 @@ select.form-control {
 
 .gets .card:hover {
 	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Add Asset Controls */
+.add-asset-controls {
+	margin-top: 0.5rem;
+}
+
+.add-asset-trigger {
+	border-style: dashed;
+	width: 100%;
+	color: #6c757d;
+	transition: all 0.15s;
+}
+
+.add-asset-trigger:hover {
+	background-color: #f8f9fa;
+	border-color: #6c757d;
+	color: #495057;
+}
+
+.asset-inputs {
+	animation: slideDown 0.15s ease-out;
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.done-adding {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+/* Colored add buttons matching asset types */
+.btn-add-player {
+	background-color: var(--asset-player);
+	border-color: var(--asset-player);
+	color: white;
+}
+
+.btn-add-player:hover {
+	background-color: #1e7e34;
+	border-color: #1c7430;
+	color: white;
+}
+
+.btn-add-pick {
+	background-color: var(--asset-pick);
+	border-color: var(--asset-pick);
+	color: white;
+}
+
+.btn-add-pick:hover {
+	background-color: #138496;
+	border-color: #117a8b;
+	color: white;
+}
+
+.btn-add-cash {
+	background-color: #ffcc00;
+	border-color: #ffcc00;
+	color: white;
+}
+
+.btn-add-cash:hover {
+	background-color: #e6b800;
+	border-color: #d9ad00;
+	color: white;
 }
