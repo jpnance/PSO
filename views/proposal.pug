@@ -98,13 +98,22 @@ block content
 
 				//- Rejected/Canceled/Expired notice
 				if proposal.status === 'rejected'
-					+alertBanner('danger', 'fa-times-circle', 'This proposal was rejected.').mb-4
+					+alertBanner('danger', 'fa-times-circle').mb-4
+						| This proposal was rejected.
+						|  
+						a(href='/propose?from=' + proposal.publicId) Start over →
 
 				if proposal.status === 'canceled'
-					+alertBanner('secondary', 'fa-undo', 'This proposal was canceled by the creator.').mb-4
+					+alertBanner('secondary', 'fa-undo').mb-4
+						| This proposal was canceled by the creator.
+						|  
+						a(href='/propose?from=' + proposal.publicId) Start over →
 
 				if proposal.status === 'expired'
-					+alertBanner('secondary', 'fa-clock-o', 'This proposal has expired.').mb-4
+					+alertBanner('secondary', 'fa-clock-o').mb-4
+						| This proposal has expired.
+						|  
+						a(href='/propose?from=' + proposal.publicId) Start over →
 
 				if proposal.status === 'executed'
 					+alertBanner('success', 'fa-check').mb-4
