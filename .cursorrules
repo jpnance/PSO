@@ -102,6 +102,39 @@ For client-side JS, use the `#alert-banner-template` template element and clone 
 ])
 ```
 
+### Page Titles
+Use the `+title()` mixin for hierarchical breadcrumb-style titles:
+```pug
+block title
+  +title('Page Name', 'Section', 'Parent Section')
+```
+
+**Breadcrumb order**: Most specific → most general (left to right), ending with "Primetime Soap Operas"
+
+**Examples**:
+```pug
+//- Standalone page
++title('Trade Machine')
+
+//- Section page
++title('Trade History')
+
+//- Detail within section
++title('Trade #' + tradeNumber, 'Trade History')
+
+//- Item within section
++title(franchise.displayName, 'Franchises')
+
+//- Nested admin page
++title(player.name, 'Players', 'Admin')
+```
+
+**Guidelines**:
+- Views define their own titles using `block title`
+- Dynamic parts use data already passed to the view (e.g., `franchise.displayName`, `player.name`)
+- Controllers should NOT pass `pageTitle` — the view handles title generation
+- Include parent sections to create navigational hierarchy
+
 ## CSS Files
 
 Include in `block styles` as needed:

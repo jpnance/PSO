@@ -537,7 +537,6 @@ async function tradeHistory(request, response) {
 		filterPartner: filterPartner,
 		filterPartnerName: filterPartnerName,
 		buildQuery: buildQuery,
-		pageTitle: 'Trade History - PSO',
 		activePage: 'trades'
 	});
 }
@@ -600,7 +599,6 @@ async function singleTrade(request, response) {
 		nextTradeId: nextTradeId,
 		involvedFranchises: involvedFranchises,
 		regimes: regimes,
-		pageTitle: 'Trade #' + tradeId + ' - PSO',
 		activePage: 'trades'
 	});
 }

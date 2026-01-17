@@ -54,7 +54,6 @@ async function listPlayers(request, response) {
 		filter: filterType,
 		totalCount: totalCount,
 		hasSearch: hasSearch,
-		pageTitle: 'Players - PSO Admin',
 		activePage: 'admin-players'
 	});
 }
@@ -90,7 +89,6 @@ async function editPlayerForm(request, response) {
 		contracts: contracts,
 		potentialDuplicates: potentialDuplicates,
 		query: request.query,
-		pageTitle: 'Edit ' + player.name + ' - PSO Admin',
 		activePage: 'admin-players'
 	});
 }
@@ -183,7 +181,6 @@ async function mergePlayer(request, response) {
 // GET /admin/players/new - new player form
 async function newPlayerForm(request, response) {
 	response.render('admin-player-new', {
-		pageTitle: 'New Player - PSO Admin',
 		activePage: 'admin-players'
 	});
 }

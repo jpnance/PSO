@@ -1,4 +1,8 @@
 extends layout.pug
+include mixins
+
+block title
+	+title('Trades', 'Admin')
 
 block styles
 	link(rel='stylesheet' href='/league.css')

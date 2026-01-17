@@ -45,7 +45,6 @@ exports.rookieSalaries = function(request, response) {
 	var olderSeasons = seasons.slice(1);
 	
 	response.render('rookies', {
-		pageTitle: requestedSeason + ' Rookie Salaries',
 		activePage: 'rookies',
 		season: requestedSeason,
 		salaries: salaries,

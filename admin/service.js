@@ -26,7 +26,6 @@ async function configPage(request, response) {
 		tradesEnabled: config.areTradesEnabled(),
 		faEnabled: config.isFAEnabled(),
 		faPlayoffOnly: config.isFAPlayoffOnly(),
-		pageTitle: 'Admin - PSO',
 		activePage: 'admin'
 	});
 }
@@ -127,7 +126,6 @@ async function advanceSeasonForm(request, response) {
 		pickCount: franchiseList.length * 10, // 10 rounds
 		rfaCount: rfaCount,
 		ufaCount: ufaCount,
-		pageTitle: 'Advance to ' + newSeason + ' - PSO',
 		activePage: 'admin'
 	});
 }
@@ -312,7 +310,6 @@ async function transferFranchiseForm(request, response) {
 		franchises: franchiseList,
 		people: people,
 		currentSeason: currentSeason,
-		pageTitle: 'Transfer Franchise - PSO',
 		activePage: 'admin'
 	});
 }
@@ -431,7 +428,6 @@ async function rostersPage(request, response) {
 		currentSeason: season,
 		phase: phase,
 		cutResult: cutResult,
-		pageTitle: 'Roster Management - PSO',
 		activePage: 'admin'
 	});
 }

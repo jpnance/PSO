@@ -11,7 +11,7 @@ html
 		meta(property='og:type' content='website')
 		block og_meta
 			//- Default OG tags if not overridden
-			meta(property='og:title' content=pageTitle || 'Primetime Soap Operas')
+			meta(property='og:title' content='Primetime Soap Operas')
 			meta(property='og:description' content='Extra since ’08.')
 			meta(property='og:image' content='https://thedynastyleague.com/images/the-gang-slop-og.jpg')
 		
@@ -29,7 +29,8 @@ html
 		script(src='/js/jquery.min.js')
 		script(src='/js/bootstrap.min.js')
 
-		title #{pageTitle || 'PSO'}
+		block title
+			title Primetime Soap Operas
 
 	body
 		//- Build navigation structure

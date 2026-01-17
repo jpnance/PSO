@@ -2,6 +2,9 @@ extends layout
 
 include mixins
 
+block title
+	+title('Component Library')
+
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')

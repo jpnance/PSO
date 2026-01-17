@@ -1,4 +1,8 @@
 extends layout.pug
+include mixins
+
+block title
+	+title(franchise.displayName, 'Franchises')
 
 block styles
 	link(rel='stylesheet' href='/league.css')

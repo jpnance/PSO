@@ -450,7 +450,6 @@ async function overview(request, response) {
 			phaseName: phaseName,
 			upcomingEvents: upcomingEvents,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
-			pageTitle: 'League Overview - PSO',
 			activePage: 'league'
 		});
 	} catch (err) {
@@ -484,7 +483,6 @@ async function franchise(request, response) {
 			currentSeason: currentSeason, 
 			phase: phase,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
-			pageTitle: data.displayName + ' - PSO',
 			activePage: 'franchise',
 			currentRosterId: data.rosterId
 		});

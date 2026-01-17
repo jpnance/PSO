@@ -201,7 +201,6 @@ async function draftBoard(request, response) {
 		quickSeasons: quickSeasons,
 		pastSeasons: pastSeasons,
 		userFranchiseName: userFranchiseName,
-		pageTitle: season + ' Draft Board - PSO',
 		activePage: 'draft'
 	});
 }

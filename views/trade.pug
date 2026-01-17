@@ -1,6 +1,9 @@
 extends layout
 include mixins
 
+block title
+	+title('Trade Machine')
+
 block styles
 	link(rel='stylesheet' href='/trade.css')
 	link(rel='stylesheet' href='/css/positions.css')

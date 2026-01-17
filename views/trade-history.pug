@@ -1,6 +1,12 @@
 extends layout
 include mixins
 
+block title
+	if singleTrade
+		+title('Trade #' + tradeNumber, 'Trade History')
+	else
+		+title('Trade History')
+
 block og_meta
 	if singleTrade && trades.length > 0
 		- var trade = trades[0]

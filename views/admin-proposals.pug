@@ -1,4 +1,8 @@
 extends layout
+include mixins
+
+block title
+	+title('Approve Trades', 'Admin')
 
 block styles
 	link(rel='stylesheet' href='/css/components.css')

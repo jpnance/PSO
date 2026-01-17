@@ -1,6 +1,9 @@
 extends layout.pug
 include mixins
 
+block title
+	+title('Roster Management', 'Admin')
+
 block styles
 	link(rel='stylesheet' href='/league.css')
 	link(rel='stylesheet' href='/css/positions.css')

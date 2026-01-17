@@ -1,6 +1,9 @@
 extends layout.pug
 include mixins
 
+block title
+	+title(season + ' Rookie Salaries')
+
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')

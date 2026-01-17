@@ -43,7 +43,6 @@ async function listTrades(request, response) {
 		return response.render('admin-trades', {
 			query: query,
 			notFound: true,
-			pageTitle: 'Trades - PSO Admin',
 			activePage: 'admin-trades'
 		});
 	}
@@ -52,7 +51,6 @@ async function listTrades(request, response) {
 	response.render('admin-trades', {
 		query: '',
 		notFound: false,
-		pageTitle: 'Trades - PSO Admin',
 		activePage: 'admin-trades'
 	});
 }
@@ -152,7 +150,6 @@ async function editTradeForm(request, response) {
 		parties: parties,
 		tradeYear: tradeYear,
 		query: request.query,
-		pageTitle: 'Trade #' + (trade.tradeId || trade._id) + ' - PSO Admin',
 		activePage: 'admin-trades'
 	});
 }

@@ -308,7 +308,6 @@ async function proposePage(request, response) {
 			userFranchiseIds: userFranchiseIds,
 			tradesEnabled: tradesEnabled,
 			initialDeal: initialDeal,
-			pageTitle: 'Trade Machine - PSO',
 			activePage: 'propose'
 		});
 	} catch (err) {
@@ -346,7 +345,6 @@ async function processPage(request, response) {
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			isProcessingMode: true,
 			confirmName: randomPlayer.name,
-			pageTitle: 'Process Trade - PSO Admin',
 			activePage: 'admin'
 		});
 	} catch (err) {
@@ -768,9 +766,7 @@ async function viewProposal(request, response) {
 			.populate('parties.franchiseId');
 		
 		if (!proposal) {
-			return response.status(404).render('proposal-not-found', {
-				pageTitle: 'Proposal Not Found'
-			});
+			return response.status(404).render('proposal-not-found');
 		}
 		
 		var config = await LeagueConfig.findById('pso');
@@ -975,7 +971,6 @@ async function viewProposal(request, response) {
 			currentSeason: currentSeason,
 			auctionSeason: auctionSeason,
 			tradeYear: new Date(proposal.createdAt).getFullYear(),
-			pageTitle: 'Trade Proposal - PSO',
 			activePage: 'propose'
 		});
 	} catch (err) {
@@ -1302,7 +1297,6 @@ async function listProposalsForApproval(request, response) {
 		
 		response.render('admin-proposals', {
 			proposals: proposalsDisplay,
-			pageTitle: 'Approve Trades - PSO Admin',
 			activePage: 'admin-proposals'
 		});
 	} catch (err) {

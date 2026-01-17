@@ -1,5 +1,15 @@
 //- Shared Pug mixins for PSO views
 
+//- Title breadcrumbs
+//- Usage: +title('Page Name') → "Page Name « Primetime Soap Operas"
+//- Usage: +title('Sub Page', 'Section') → "Sub Page « Section « Primetime Soap Operas"
+mixin title(...breadcrumbs)
+	title
+		each breadcrumb in breadcrumbs
+			| #{breadcrumb} &laquo;
+			|
+		| Primetime Soap Operas
+
 //- Display a win-loss-tie record
 mixin record(record)
 	| #{record.wins}-#{record.losses}
