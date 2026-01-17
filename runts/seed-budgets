@@ -1,10 +1,2 @@
 #!/bin/bash
-
-# Use "docker compose" on macOS (Docker Desktop), "docker-compose" on Linux
-if [ "$(uname)" = "Darwin" ]; then
-    DOCKER_COMPOSE="docker compose"
-else
-    DOCKER_COMPOSE="docker-compose"
-fi
-
-$DOCKER_COMPOSE run --rm web node data/scripts/seedBudgets.js
+docker compose run --rm web node data/scripts/seedBudgets.js
