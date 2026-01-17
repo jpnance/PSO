@@ -151,6 +151,7 @@ Page-specific CSS files follow the template name: `proposal.pug` → `proposal.c
 - Generic class names that could collide (`.sidebar`, `.section`, `.title`, `.card`)
 - Deep nesting beyond Block > Element (no `.a__b__c`)
 - Modifiers without the base class
+- Writing custom CSS that targets Bootstrap classes directly (e.g., `.card-footer { ... }`). Use Bootstrap classes as-is, but when custom styling is needed, add a BEM-namespaced class alongside (e.g., `.proposal-actions`) and target that instead.
 
 ## Design Tokens (CSS Custom Properties)
 
