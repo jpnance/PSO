@@ -1,7 +1,3 @@
-body {
-	background-color: #f8f9fa;
-}
-
 h1 {
 	color: #343a40;
 }
@@ -16,11 +12,6 @@ h1 {
 .card-header .badge-light {
 	background-color: rgba(255, 255, 255, 0.2);
 	color: white;
-}
-
-.card-footer {
-	background-color: #f8f9fa;
-	border-top: 1px solid #e9ecef;
 }
 
 .share-propose-section {
@@ -156,23 +147,6 @@ select.form-control {
 /* Match asset list font size to input-group-sm */
 .gets .asset-list {
 	font-size: 0.875rem;
-}
-
-
-/* Budget impact table */
-.budget-impact .table {
-	font-size: 0.8rem;
-}
-
-.budget-impact .table th,
-.budget-impact .table td {
-	white-space: nowrap;
-	padding: 0.25rem 0.4rem;
-}
-
-.budget-impact .table th {
-	font-weight: 500;
-	color: #6c757d;
 }
 
 /* Responsive adjustments */

@@ -1,9 +1,5 @@
 /* Trade History page styles */
 
-body {
-	background-color: #f8f9fa;
-}
-
 .trade-card {
 	border: 1px solid #ddd;
 	border-radius: 8px;

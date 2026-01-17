@@ -1,7 +1,3 @@
-body {
-	background-color: #f8f9fa;
-}
-
 /* Lighter placeholder text */
 ::placeholder {
 	color: #c0c0c0 !important;
@@ -11,12 +7,6 @@ body {
 .card-header {
 	padding-left: 0.75rem;
 	font-weight: 600;
-}
-
-
-.card-footer {
-	background-color: #e9ecef;
-	font-size: 0.85rem;
 }
 
 .table-sm td, .table-sm th {
