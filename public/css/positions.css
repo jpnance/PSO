@@ -40,6 +40,8 @@ th.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
 	border: 1px solid;
 	margin-left: 0.35rem;
 	vertical-align: middle;
+	white-space: nowrap;
+	flex-shrink: 0;
 }
 .position-badge.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); border-color: var(--pos-qb-text); }
 .position-badge.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); border-color: var(--pos-rb-text); }
