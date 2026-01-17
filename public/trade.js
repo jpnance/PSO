@@ -757,6 +757,8 @@ $(document).ready(function() {
 
 	// Pre-populate from an existing proposal if initialDeal is set
 	if (typeof initialDeal !== 'undefined' && initialDeal) {
+		var missingAssets = [];
+		
 		// First, toggle all franchises into the deal
 		Object.keys(initialDeal).forEach(function(franchiseId) {
 			if (!tradeMachine.deal[franchiseId]) {
@@ -766,18 +768,28 @@ $(document).ready(function() {
 			}
 		});
 		
-		// Then add all assets
+		// Then add all assets, tracking any that can't be found
 		Object.keys(initialDeal).forEach(function(franchiseId) {
 			var bucket = initialDeal[franchiseId];
 			
 			// Add players
 			(bucket.players || []).forEach(function(playerId) {
-				tradeMachine.addPlayerToDeal(playerId, franchiseId);
+				var $player = $('select.master-player-list option[value="' + playerId + '"]');
+				if ($player.length === 0) {
+					missingAssets.push('player');
+				} else {
+					tradeMachine.addPlayerToDeal(playerId, franchiseId);
+				}
 			});
 			
 			// Add picks
 			(bucket.picks || []).forEach(function(pickId) {
-				tradeMachine.addPickToDeal(pickId, franchiseId);
+				var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
+				if ($pick.length === 0) {
+					missingAssets.push('pick');
+				} else {
+					tradeMachine.addPickToDeal(pickId, franchiseId);
+				}
 			});
 			
 			// Add cash
@@ -787,6 +799,29 @@ $(document).ready(function() {
 		});
 		
 		tradeMachine.redrawTradeMachine();
+		
+		// Show warning if any assets couldn't be loaded
+		if (missingAssets.length > 0) {
+			var numberToWord = function(n) {
+				var words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+				return n <= 10 ? words[n] : String(n);
+			};
+			
+			var playerCount = missingAssets.filter(function(a) { return a === 'player'; }).length;
+			var pickCount = missingAssets.filter(function(a) { return a === 'pick'; }).length;
+			
+			var parts = [];
+			if (playerCount === 1) parts.push('one player');
+			else if (playerCount > 1) parts.push(numberToWord(playerCount) + ' players');
+			if (pickCount === 1) parts.push('one pick');
+			else if (pickCount > 1) parts.push(numberToWord(pickCount) + ' picks');
+			
+			var msg = parts.join(' and ') + ' from the original deal couldn\'t be loaded — they may have moved.';
+			msg = msg.charAt(0).toUpperCase() + msg.slice(1);
+			$('.trade-details-card .card-body').prepend(
+				'<div class="alert alert-warning mb-3"><i class="fa fa-exclamation-triangle mr-2"></i>' + msg + '</div>'
+			);
+		}
 	} else if (typeof userFranchiseIds !== 'undefined' && userFranchiseIds.length > 0) {
 		// Auto-select the current user's franchise(s) on a fresh trade machine
 		userFranchiseIds.forEach(function(franchiseId) {
