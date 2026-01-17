@@ -55,9 +55,11 @@ Include mixins at top of template: `include mixins`
 ### Status Badge
 ```pug
 +statusBadge('pending')
-+statusBadge('hypothetical', 'draft')  //- custom display text
++statusBadge('accepted', 'approved')  //- custom display text
 ```
 Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed
+
+**Terminology note**: Use "hypothetical" (not "draft") for uncommitted trade proposals. Use "cancel" (not "withdraw") for the action of canceling a proposal.
 
 ### Alert Banner
 ```pug

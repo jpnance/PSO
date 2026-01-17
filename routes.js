@@ -44,7 +44,7 @@ module.exports = function(app) {
 	app.post('/propose/:id/formalize', requireLogin, propose.formalizeProposal);
 	app.post('/propose/:id/accept', requireLogin, propose.acceptProposal);
 	app.post('/propose/:id/reject', requireLogin, propose.rejectProposal);
-	app.post('/propose/:id/withdraw', requireLogin, propose.withdrawProposal);
+	app.post('/propose/:id/cancel', requireLogin, propose.cancelProposal);
 
 	app.get('/draft', draft.draftBoard);
 	

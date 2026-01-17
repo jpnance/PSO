@@ -2,7 +2,7 @@
  * Clean up old trade proposals.
  * 
  * Policy:
- *   - draft: delete after 7 days (just shared ideas)
+ *   - hypothetical: delete after 7 days (just shared ideas)
  *   - pending past expiration: delete after 7 days (should have moved to expired)
  *   - terminal states: delete after 7 days (expired, rejected, canceled, executed)
  *   - accepted: keep (waiting for admin approval)
@@ -39,8 +39,8 @@ async function run() {
 	console.log('Cutoff: ' + cutoff.toISOString() + ' (' + TTL_DAYS + ' days ago)');
 	console.log('');
 	
-	// Find old drafts
-	var oldDrafts = await TradeProposal.find({
+	// Find old hypothetical trades
+	var oldHypothetical = await TradeProposal.find({
 		status: 'hypothetical',
 		createdAt: { $lt: cutoff }
 	}).select('publicId createdAt').lean();
@@ -57,15 +57,15 @@ async function run() {
 		createdAt: { $lt: cutoff }
 	}).select('publicId status createdAt').lean();
 	
-	console.log('Found ' + oldDrafts.length + ' old drafts');
+	console.log('Found ' + oldHypothetical.length + ' old hypothetical trades');
 	console.log('Found ' + stalePending.length + ' stale pending proposals');
 	console.log('Found ' + oldTerminal.length + ' old terminal proposals');
 	console.log('');
 	
 	var allToDelete = [];
 	
-	oldDrafts.forEach(function(p) {
-		allToDelete.push({ id: p._id, desc: p.publicId + ' [draft] (created ' + p.createdAt.toISOString().slice(0, 10) + ')' });
+	oldHypothetical.forEach(function(p) {
+		allToDelete.push({ id: p._id, desc: p.publicId + ' [hypothetical] (created ' + p.createdAt.toISOString().slice(0, 10) + ')' });
 	});
 	
 	stalePending.forEach(function(p) {

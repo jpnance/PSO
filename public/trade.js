@@ -749,8 +749,8 @@ var tradeMachine = {
 		return $container;
 	},
 
-	// Submit a proposal (isDraft: true = share for discussion, false = real proposal)
-	submitProposal: (isDraft) => {
+	// Submit a proposal (isHypothetical: true = share for discussion, false = real proposal)
+	submitProposal: (isHypothetical) => {
 		var $proposeBtn = $('.propose-trade-btn');
 		var $shareBtn = $('.share-trade-btn');
 		var $result = $('.proposal-result');
@@ -758,9 +758,9 @@ var tradeMachine = {
 		var notesVal = $('#proposal-notes').val();
 		var notes = notesVal ? notesVal.trim() || null : null;
 		
-		var $activeBtn = isDraft ? $shareBtn : $proposeBtn;
+		var $activeBtn = isHypothetical ? $shareBtn : $proposeBtn;
 		var restoreActive = tradeMachine.startLoading($activeBtn);
-		var $otherBtn = isDraft ? $proposeBtn : $shareBtn;
+		var $otherBtn = isHypothetical ? $proposeBtn : $shareBtn;
 		$otherBtn.prop('disabled', true);
 		$result.empty().addClass('d-none');
 		$linkSection.addClass('d-none');
@@ -772,7 +772,7 @@ var tradeMachine = {
 			data: JSON.stringify({
 				deal: tradeMachine.deal,
 				notes: notes,
-				isDraft: isDraft
+				isHypothetical: isHypothetical
 			}),
 			success: (response) => {
 				// Redirect to the proposal page
@@ -978,7 +978,7 @@ $(document).ready(function() {
 		tradeMachine.submitProposal(false);
 	});
 	
-	// Share trade button (creates draft for discussion)
+	// Share trade button (creates hypothetical trade for discussion)
 	$('.share-trade-btn').on('click', (e) => {
 		tradeMachine.submitProposal(true);
 	});

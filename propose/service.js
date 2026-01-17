@@ -588,7 +588,7 @@ async function checkTradesEnabled() {
 	return { enabled: true };
 }
 
-// Create a new trade proposal (draft)
+// Create a new trade proposal (hypothetical or pending)
 async function createProposal(request, response) {
 	try {
 		var user = request.user;
@@ -612,18 +612,18 @@ async function createProposal(request, response) {
 			return userFranchises.some(function(uf) { return uf.equals(fid); });
 		});
 		
-		var isDraft = request.body.isDraft === true;
+		var isHypothetical = request.body.isHypothetical === true;
 		
-		// For real proposals, check if trades are enabled (drafts can be shared anytime)
-		if (!isDraft) {
+		// For pending proposals, check if trades are enabled (hypothetical trades can be shared anytime)
+		if (!isHypothetical) {
 			var tradesCheck = await checkTradesEnabled();
 			if (!tradesCheck.enabled) {
 				return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 			}
 		}
 		
-		// For real proposals, user must be a party. For drafts, anyone with a franchise can share.
-		if (!isDraft && !userFranchiseInTrade) {
+		// For pending proposals, user must be a party. For hypothetical trades, anyone with a franchise can share.
+		if (!isHypothetical && !userFranchiseInTrade) {
 			return response.status(403).json({ success: false, errors: ['You must be party to this trade to propose it'] });
 		}
 		
@@ -721,8 +721,8 @@ async function createProposal(request, response) {
 		var expiresAt = await computeExpiresAt();
 		var now = new Date();
 		
-		// For real proposals (not drafts), mark the proposer's party as accepted
-		if (!isDraft) {
+		// For pending proposals (not hypothetical), mark the proposer's party as accepted
+		if (!isHypothetical) {
 			for (var i = 0; i < parties.length; i++) {
 				if (parties[i].franchiseId.equals(userFranchiseInTrade)) {
 					parties[i].accepted = true;
@@ -732,16 +732,16 @@ async function createProposal(request, response) {
 			}
 		}
 		
-		// For drafts where user isn't a party, use their first franchise as creator
+		// For hypothetical trades where user isn't a party, use their first franchise as creator
 		var creatorFranchiseId = userFranchiseInTrade || userFranchises[0];
 		
 		var proposal = await createProposalWithRetry({
-			status: isDraft ? 'hypothetical' : 'pending',
+			status: isHypothetical ? 'hypothetical' : 'pending',
 			createdByFranchiseId: creatorFranchiseId,
 			createdByPersonId: user._id,
 			createdAt: now,
 			expiresAt: expiresAt,
-			acceptanceWindowStart: isDraft ? null : now,  // Proposer accepting starts the clock
+			acceptanceWindowStart: isHypothetical ? null : now,  // Proposer accepting starts the clock
 			parties: parties,
 			notes: request.body.notes || null
 		});
@@ -979,7 +979,7 @@ async function viewProposal(request, response) {
 	}
 }
 
-// Formalize a draft into a pending proposal
+// Formalize a hypothetical trade into a pending proposal
 async function formalizeProposal(request, response) {
 	try {
 		var user = request.user;
@@ -999,7 +999,7 @@ async function formalizeProposal(request, response) {
 		}
 		
 		if (proposal.status !== 'hypothetical') {
-			return response.status(400).json({ success: false, errors: ['Only drafts can be formalized'] });
+			return response.status(400).json({ success: false, errors: ['Only hypothetical trades can be proposed'] });
 		}
 		
 		// Check user is a party to this proposal
@@ -1019,7 +1019,7 @@ async function formalizeProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
 		}
 		
-		// Validate the trade before formalizing (conditions may have changed since draft)
+		// Validate the trade before formalizing (conditions may have changed since creation)
 		var validationParties = [];
 		for (var i = 0; i < proposal.parties.length; i++) {
 			var party = proposal.parties[i];
@@ -1224,8 +1224,8 @@ async function rejectProposal(request, response) {
 	}
 }
 
-// Withdraw a proposal (creator only)
-async function withdrawProposal(request, response) {
+// Cancel a proposal (creator only)
+async function cancelProposal(request, response) {
 	try {
 		var user = request.user;
 		if (!user) {
@@ -1241,9 +1241,9 @@ async function withdrawProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['Cannot cancel this proposal'] });
 		}
 		
-		// Only creator can withdraw
+		// Only creator can cancel
 		if (!proposal.createdByPersonId.equals(user._id)) {
-			return response.status(403).json({ success: false, errors: ['Only the creator can withdraw'] });
+			return response.status(403).json({ success: false, errors: ['Only the creator can cancel'] });
 		}
 		
 		proposal.status = 'canceled';
@@ -1251,7 +1251,7 @@ async function withdrawProposal(request, response) {
 		
 		response.json({ success: true });
 	} catch (err) {
-		console.error('withdrawProposal error:', err);
+		console.error('cancelProposal error:', err);
 		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
 	}
 }
@@ -1482,7 +1482,7 @@ module.exports = {
 	formalizeProposal: formalizeProposal,
 	acceptProposal: acceptProposal,
 	rejectProposal: rejectProposal,
-	withdrawProposal: withdrawProposal,
+	cancelProposal: cancelProposal,
 	listProposalsForApproval: listProposalsForApproval,
 	approveProposal: approveProposal,
 	adminRejectProposal: adminRejectProposal,
