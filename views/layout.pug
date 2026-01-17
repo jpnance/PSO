@@ -52,28 +52,30 @@ html
 				input#searchInput(type='text' placeholder='Search players, franchises, trades...' autocomplete='off')
 				kbd /
 
-			//- Mobile search button
-			button.mobile-search-btn#mobileSearchBtn(type='button' aria-label='Search')
-				i.fa.fa-search
+			//- Right-side actions (mobile search + user menu)
+			div.topbar-actions
+				//- Mobile search button
+				button.mobile-search-btn#mobileSearchBtn(type='button' aria-label='Search')
+					i.fa.fa-search
 
-			//- User menu
-			if user
-				div.topbar-user-dropdown
-					a.topbar-user(href='#' id='userDropdownToggle')
-						i.fa.fa-user-circle.fa-lg
-						span.d-none.d-sm-inline.ml-2 #{user.name}
-						i.fa.fa-chevron-down.ml-2(style='font-size: 0.7rem;')
-					div.topbar-user-menu#userDropdownMenu
-						a(href='/logout')
-							i.fa.fa-sign-out
-							| Log Out (This Device)
-						a(href='/logout/all')
-							i.fa.fa-sign-out
-							| Log Out (All Devices)
-			else
-				a.topbar-user(href='/login')
-					i.fa.fa-sign-in.mr-2
-					| Log In
+				//- User menu
+				if user
+					div.topbar-user-dropdown
+						a.topbar-user(href='#' id='userDropdownToggle')
+							i.fa.fa-user-circle
+							span.d-none.d-sm-inline #{user.name}
+							i.fa.fa-chevron-down(style='font-size: 0.7rem;')
+						div.topbar-user-menu#userDropdownMenu
+							a(href='/logout')
+								i.fa.fa-sign-out
+								| Log Out (This Device)
+							a(href='/logout/all')
+								i.fa.fa-sign-out
+								| Log Out (All Devices)
+				else
+					a.topbar-user(href='/login')
+						i.fa.fa-sign-in.mr-2
+						| Log In
 
 		//- Sidebar Overlay (mobile)
 		div.sidebar-overlay#sidebarOverlay
