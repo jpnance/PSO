@@ -146,17 +146,38 @@ async function getLeagueOverview(currentSeason) {
 	
 	var contracts = await Contract.find({}).populate('playerId').lean();
 	
-	// Load budgets for current season
-	var budgets = await Budget.find({ season: currentSeason }).lean();
-	var budgetByFranchise = {};
+	// Load budgets for current season and next season
+	var budgets = await Budget.find({ season: { $in: [currentSeason, currentSeason + 1] } }).lean();
+	var budgetByFranchiseSeason = {};
 	budgets.forEach(function(b) {
-		budgetByFranchise[b.franchiseId.toString()] = b;
+		var key = b.franchiseId.toString() + ':' + b.season;
+		budgetByFranchiseSeason[key] = b;
+	});
+	
+	// Load picks for upcoming draft (next available draft season)
+	var picks = await Pick.find({ 
+		season: { $gte: currentSeason },
+		status: 'available'
+	}).lean();
+	
+	// Build pick counts by franchise and season
+	var pickCountsByFranchise = {};
+	picks.forEach(function(p) {
+		var fid = p.currentFranchiseId.toString();
+		if (!pickCountsByFranchise[fid]) {
+			pickCountsByFranchise[fid] = {};
+		}
+		if (!pickCountsByFranchise[fid][p.season]) {
+			pickCountsByFranchise[fid][p.season] = 0;
+		}
+		pickCountsByFranchise[fid][p.season]++;
 	});
 	
 	// Build franchise data
 	var result = [];
 	for (var i = 0; i < franchises.length; i++) {
 		var franchise = franchises[i];
+		var fid = franchise._id.toString();
 		
 		// Find current regime
 		var regime = regimes.find(function(r) {
@@ -165,9 +186,15 @@ async function getLeagueOverview(currentSeason) {
 				(r.endSeason === null || r.endSeason >= currentSeason);
 		});
 		
-		// Find roster (contracts for this franchise)
-		var roster = contracts
-			.filter(function(c) { return c.franchiseId.equals(franchise._id); })
+		// Find roster (contracts for this franchise) - separate actual contracts from RFA rights
+		var franchiseContracts = contracts.filter(function(c) { 
+			return c.franchiseId.equals(franchise._id); 
+		});
+		
+		var actualContracts = franchiseContracts.filter(function(c) { return c.salary !== null; });
+		var rfaContracts = franchiseContracts.filter(function(c) { return c.salary === null; });
+		
+		var roster = actualContracts
 			.map(function(c) {
 				return {
 					name: c.playerId ? c.playerId.name : 'Unknown',
@@ -184,12 +211,40 @@ async function getLeagueOverview(currentSeason) {
 				return (b.salary || 0) - (a.salary || 0);
 			});
 		
-		// Get budget from Budget document
-		var budget = budgetByFranchise[franchise._id.toString()] || {
+		// Count positions and salary for distribution bars
+		var positionCounts = { QB: 0, RB: 0, WR: 0, TE: 0, IDP: 0, K: 0 };
+		var salaryCounts = { QB: 0, RB: 0, WR: 0, TE: 0, IDP: 0, K: 0 };
+		roster.forEach(function(player) {
+			var pos = player.positions[0];
+			var salary = player.salary || 0;
+			if (pos === 'QB') { positionCounts.QB++; salaryCounts.QB += salary; }
+			else if (pos === 'RB') { positionCounts.RB++; salaryCounts.RB += salary; }
+			else if (pos === 'WR') { positionCounts.WR++; salaryCounts.WR += salary; }
+			else if (pos === 'TE') { positionCounts.TE++; salaryCounts.TE += salary; }
+			else if (['DL', 'LB', 'DB'].includes(pos)) { positionCounts.IDP++; salaryCounts.IDP += salary; }
+			else if (pos === 'K') { positionCounts.K++; salaryCounts.K += salary; }
+		});
+		
+		// Get budget from Budget documents
+		var budget = budgetByFranchiseSeason[fid + ':' + currentSeason] || {
 			payroll: 0,
 			available: 1000,
 			buyOuts: 0
 		};
+		var nextBudget = budgetByFranchiseSeason[fid + ':' + (currentSeason + 1)] || {
+			payroll: 0,
+			available: 1000
+		};
+		
+		// Find next draft season with picks
+		var franchisePicks = pickCountsByFranchise[fid] || {};
+		var nextDraftSeason = null;
+		var nextDraftPickCount = 0;
+		var draftSeasons = Object.keys(franchisePicks).map(Number).sort();
+		if (draftSeasons.length > 0) {
+			nextDraftSeason = draftSeasons[0];
+			nextDraftPickCount = franchisePicks[nextDraftSeason];
+		}
 		
 		result.push({
 			_id: franchise._id,
@@ -197,9 +252,16 @@ async function getLeagueOverview(currentSeason) {
 			displayName: regime ? regime.displayName : 'Unknown',
 			owners: regime ? Regime.sortOwnerNames(regime.ownerIds) : [],
 			roster: roster,
+			rosterCount: roster.length,
+			rfaCount: rfaContracts.length,
+			positionCounts: positionCounts,
+			salaryCounts: salaryCounts,
 			payroll: budget.payroll,
 			available: budget.available,
-			buyOuts: budget.buyOuts
+			buyOuts: budget.buyOuts,
+			nextYearAvailable: nextBudget.available,
+			nextDraftSeason: nextDraftSeason,
+			nextDraftPickCount: nextDraftPickCount
 		});
 	}
 	
@@ -336,6 +398,27 @@ async function overview(request, response) {
 			}
 		}
 		
+		// Attach standings info to each franchise for card display
+		// Match on franchiseId (rosterId) instead of name, since names change with regimes
+		if (standingsData && standingsData.standings) {
+			var standingsById = {};
+			standingsData.standings.forEach(function(team) {
+				standingsById[team.franchiseId] = team;
+			});
+			
+			franchises.forEach(function(f) {
+				var standing = standingsById[f.rosterId];
+				if (standing) {
+					f.record = {
+						wins: standing.wins,
+						losses: standing.losses,
+						ties: standing.ties,
+						rank: standing.rank
+					};
+				}
+			});
+		}
+		
 		// Get calendar data
 		var phase = config ? config.getPhase() : 'unknown';
 		var phaseName = getPhaseName(phase);
@@ -366,6 +449,7 @@ async function overview(request, response) {
 			phase: phase,
 			phaseName: phaseName,
 			upcomingEvents: upcomingEvents,
+			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			pageTitle: 'League Overview - PSO',
 			activePage: 'league'
 		});

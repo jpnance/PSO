@@ -228,9 +228,73 @@ nav a:hover {
 }
 
 /* Franchise Cards */
+.franchise-card__header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.125rem;
+}
+
+.franchise-card__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.franchise-card__name {
+	font-weight: 600;
+}
+
+.franchise-card__record {
+	display: inline-block;
+	font-weight: 500;
+	font-size: 0.7rem;
+	padding: 0.15rem 0.4rem;
+	border-radius: 3px;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.franchise-card__record-season {
+	opacity: 0.7;
+	margin-right: 0.15rem;
+}
+
+.franchise-card__owners {
+	font-size: 0.75rem;
+	font-weight: 400;
+	color: #6c757d;
+}
+
 .franchise-card__body {
 	padding: 0.75rem;
 }
+
+.franchise-card__bar {
+	display: flex;
+	height: 6px;
+	border-radius: 3px;
+	overflow: hidden;
+	margin: 0.25rem 0 0.5rem 0;
+}
+
+.franchise-card__pos-segment,
+.franchise-card__salary-segment {
+	min-width: 2px;
+}
+
+.franchise-card__salary-segment--qb { background-color: var(--pos-qb-mid); }
+.franchise-card__salary-segment--rb { background-color: var(--pos-rb-mid); }
+.franchise-card__salary-segment--wr { background-color: var(--pos-wr-mid); }
+.franchise-card__salary-segment--te { background-color: var(--pos-te-mid); }
+.franchise-card__salary-segment--idp { background-color: var(--pos-idp-mid); }
+.franchise-card__salary-segment--k { background-color: var(--pos-k-mid); }
+
+.franchise-card__pos-segment--qb { background-color: var(--pos-qb-mid); }
+.franchise-card__pos-segment--rb { background-color: var(--pos-rb-mid); }
+.franchise-card__pos-segment--wr { background-color: var(--pos-wr-mid); }
+.franchise-card__pos-segment--te { background-color: var(--pos-te-mid); }
+.franchise-card__pos-segment--idp { background-color: var(--pos-idp-mid); }
+.franchise-card__pos-segment--k { background-color: var(--pos-k-mid); }
 
 .franchise-card__stat {
 	display: flex;

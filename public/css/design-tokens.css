@@ -1,23 +1,29 @@
 /* PSO Design Tokens - centralized color and style values */
 
 :root {
-	/* Position colors - background and text pairs */
+	/* Position colors - background, medium, and text tiers */
 	--pos-qb-bg: #D7EBFF;
+	--pos-qb-mid: #5DADE2;
 	--pos-qb-text: #1a5276;
 	
 	--pos-rb-bg: #F0FFFF;
+	--pos-rb-mid: #48C9B0;
 	--pos-rb-text: #117a65;
 	
 	--pos-wr-bg: #FAFAD2;
+	--pos-wr-mid: #F4D03F;
 	--pos-wr-text: #9a7b0a;
 	
 	--pos-te-bg: #DCFFDC;
+	--pos-te-mid: #58D68D;
 	--pos-te-text: #1e8449;
 	
 	--pos-idp-bg: #FFF5EE;
+	--pos-idp-mid: #EB984E;
 	--pos-idp-text: #a04000;
 	
 	--pos-k-bg: #F5F5F5;
+	--pos-k-mid: #99A3A4;
 	--pos-k-text: #5d6d7e;
 	
 	/* Asset type colors - for trade assets */
@@ -62,8 +68,19 @@
 	
 	/* Page background */
 	--page-bg: #f8f9fa;
+	
+	/* Card header - synced with nav color scheme */
+	--card-header-bg: #495057;
+	--card-header-text: #fff;
 }
 
 body {
 	background-color: var(--page-bg);
+}
+
+/* Global card header styling - matches nav scheme */
+.card-header {
+	background-color: var(--card-header-bg);
+	color: var(--card-header-text);
+	border-bottom-color: var(--card-header-bg);
 }
