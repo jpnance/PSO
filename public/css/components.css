@@ -16,7 +16,6 @@
 .status-canceled { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 .status-expired { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 .status-executed { background: var(--status-executed-bg); color: var(--status-executed-text); }
-.status-countered { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 
 /* Season navigation - quick season buttons with optional dropdown for older seasons */
 .season-nav {

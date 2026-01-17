@@ -57,7 +57,7 @@ Include mixins at top of template: `include mixins`
 +statusBadge('pending')
 +statusBadge('hypothetical', 'draft')  //- custom display text
 ```
-Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed, countered
+Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed
 
 ### Alert Banner
 ```pug
@@ -173,7 +173,7 @@ Use these instead of hardcoded colors:
 
 ### Status Colors
 - `--status-{status}-bg`, `--status-{status}-text`
-- Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed, countered
+- Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed
 
 ### UI Colors
 - `--color-success`, `--color-danger`, `--color-warning`, `--color-info`, `--color-disabled`

@@ -4,7 +4,7 @@
  * Policy:
  *   - draft: delete after 7 days (just shared ideas)
  *   - pending past expiration: delete after 7 days (should have moved to expired)
- *   - terminal states: delete after 7 days (expired, rejected, withdrawn, countered, executed)
+ *   - terminal states: delete after 7 days (expired, rejected, canceled, executed)
  *   - accepted: keep (waiting for admin approval)
  * 
  * Executed proposals are safe to delete because the Transaction is the
@@ -53,7 +53,7 @@ async function run() {
 	
 	// Find old terminal proposals
 	var oldTerminal = await TradeProposal.find({
-		status: { $in: ['expired', 'rejected', 'canceled', 'countered', 'executed'] },
+		status: { $in: ['expired', 'rejected', 'canceled', 'executed'] },
 		createdAt: { $lt: cutoff }
 	}).select('publicId status createdAt').lean();
 	

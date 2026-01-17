@@ -1258,128 +1258,6 @@ async function withdrawProposal(request, response) {
 	}
 }
 
-// Counter a proposal (creates a new proposal based on this one)
-async function counterProposal(request, response) {
-	try {
-		var user = request.user;
-		if (!user) {
-			return response.status(401).json({ success: false, errors: ['Login required'] });
-		}
-		
-		// Check if trades are enabled
-		var tradesCheck = await checkTradesEnabled();
-		if (!tradesCheck.enabled) {
-			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
-		}
-		
-		var originalProposal = await TradeProposal.findOne({ publicId: request.params.id });
-		if (!originalProposal) {
-			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
-		}
-		
-		if (originalProposal.status !== 'pending' && originalProposal.status !== 'hypothetical') {
-			return response.status(400).json({ success: false, errors: ['Cannot counter this proposal'] });
-		}
-		
-		// Check user is a party
-		var userFranchises = await getUserFranchises(user);
-		var userFranchiseInTrade = originalProposal.parties.find(function(p) {
-			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
-		});
-		
-		if (!userFranchiseInTrade) {
-			return response.status(403).json({ success: false, errors: ['You are not a party to this trade'] });
-		}
-		
-		// Get new deal from request body
-		var deal = request.body.deal;
-		if (!deal || typeof deal !== 'object') {
-			return response.status(400).json({ success: false, errors: ['Invalid trade data'] });
-		}
-		
-		var franchiseIds = Object.keys(deal);
-		if (franchiseIds.length < 2) {
-			return response.status(400).json({ success: false, errors: ['Trade must have at least 2 parties'] });
-		}
-		
-		// Build parties array for counter
-		var parties = [];
-		for (var i = 0; i < franchiseIds.length; i++) {
-			var franchiseId = franchiseIds[i];
-			var bucket = deal[franchiseId];
-			
-			var receives = {
-				players: [],
-				picks: [],
-				cash: []
-			};
-			
-			for (var j = 0; j < (bucket.players || []).length; j++) {
-				receives.players.push({ playerId: bucket.players[j].id });
-			}
-			
-			for (var j = 0; j < (bucket.picks || []).length; j++) {
-				receives.picks.push({ pickId: bucket.picks[j].id });
-			}
-			
-			for (var j = 0; j < (bucket.cash || []).length; j++) {
-				var cash = bucket.cash[j];
-				receives.cash.push({
-					amount: cash.amount,
-					season: cash.season,
-					fromFranchiseId: cash.from
-				});
-			}
-			
-			parties.push({
-				franchiseId: new mongoose.Types.ObjectId(franchiseId),
-				receives: receives,
-				accepted: false,
-				acceptedAt: null,
-				acceptedBy: null
-			});
-		}
-		
-		var expiresAt = await computeExpiresAt();
-		var now = new Date();
-		
-		// Mark the counter-proposer's party as accepted
-		for (var i = 0; i < parties.length; i++) {
-			if (parties[i].franchiseId.equals(userFranchiseInTrade.franchiseId)) {
-				parties[i].accepted = true;
-				parties[i].acceptedAt = now;
-				parties[i].acceptedBy = user._id;
-			}
-		}
-		
-		// Create counter proposal
-		var counterProposal = await createProposalWithRetry({
-			status: 'pending',
-			createdByFranchiseId: userFranchiseInTrade.franchiseId,
-			createdByPersonId: user._id,
-			createdAt: now,
-			expiresAt: expiresAt,
-			acceptanceWindowStart: now,  // Counter-proposer accepting starts the clock
-			parties: parties,
-			notes: request.body.notes || null,
-			previousVersionId: originalProposal._id
-		});
-		
-		// Mark original as countered
-		originalProposal.status = 'countered';
-		originalProposal.counteredById = counterProposal._id;
-		await originalProposal.save();
-		
-		response.json({
-			success: true,
-			proposalId: counterProposal.publicId
-		});
-	} catch (err) {
-		console.error('counterProposal error:', err);
-		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
-	}
-}
-
 // Admin: List proposals ready for approval
 async function listProposalsForApproval(request, response) {
 	try {
@@ -1607,7 +1485,6 @@ module.exports = {
 	acceptProposal: acceptProposal,
 	rejectProposal: rejectProposal,
 	withdrawProposal: withdrawProposal,
-	counterProposal: counterProposal,
 	listProposalsForApproval: listProposalsForApproval,
 	approveProposal: approveProposal,
 	adminRejectProposal: adminRejectProposal,

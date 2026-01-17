@@ -106,13 +106,6 @@ block content
 				if proposal.status === 'expired'
 					+alertBanner('secondary', 'fa-clock-o', 'This proposal has expired.').mb-4
 
-				if proposal.status === 'countered'
-					+alertBanner('info', 'fa-reply').mb-4
-						| This proposal was countered with a new version.
-						if proposal.counteredById
-							|  
-							a(href='/propose/' + proposal.counteredById) View counter-proposal →
-
 				if proposal.status === 'executed'
 					+alertBanner('success', 'fa-check').mb-4
 						| This trade has been executed.

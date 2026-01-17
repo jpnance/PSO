@@ -42,7 +42,7 @@ var tradeProposalSchema = new Schema({
 
 	status: {
 		type: String,
-		enum: ['hypothetical', 'pending', 'accepted', 'rejected', 'canceled', 'expired', 'executed', 'countered'],
+		enum: ['hypothetical', 'pending', 'accepted', 'rejected', 'canceled', 'expired', 'executed'],
 		default: 'hypothetical'
 	},
 
@@ -62,10 +62,6 @@ var tradeProposalSchema = new Schema({
 
 	// Optional notes
 	notes: { type: String, default: null },
-
-	// Counter-offer tracking
-	previousVersionId: { type: Schema.Types.ObjectId, ref: 'TradeProposal', default: null },
-	counteredById: { type: Schema.Types.ObjectId, ref: 'TradeProposal', default: null },
 
 	// When executed, reference to the resulting Transaction
 	executedTransactionId: { type: Schema.Types.ObjectId, ref: 'Transaction', default: null }
