@@ -170,6 +170,7 @@ block content
 							div.franchise-card__stat
 								span.franchise-card__label Roster
 								span.franchise-card__value #{franchise.rosterCount}/#{rosterLimit}
+							- var unusedSpots = rosterLimit - franchise.rosterCount
 							div.franchise-card__bar
 								if pc.QB > 0
 									div.franchise-card__pos-segment.franchise-card__pos-segment--qb(style='flex: ' + pc.QB, title='QB: ' + pc.QB)
@@ -183,6 +184,8 @@ block content
 									div.franchise-card__pos-segment.franchise-card__pos-segment--idp(style='flex: ' + pc.IDP, title='IDP: ' + pc.IDP)
 								if pc.K > 0
 									div.franchise-card__pos-segment.franchise-card__pos-segment--k(style='flex: ' + pc.K, title='K: ' + pc.K)
+								if unusedSpots > 0
+									div.franchise-card__bar-unused(style='flex: ' + unusedSpots, title='Open: ' + unusedSpots)
 							div.franchise-card__stat
 								span.franchise-card__label Payroll
 								span.franchise-card__value= formatMoney(franchise.payroll)
@@ -199,6 +202,8 @@ block content
 									div.franchise-card__salary-segment.franchise-card__salary-segment--idp(style='flex: ' + sc.IDP, title='IDP: $' + sc.IDP)
 								if sc.K > 0
 									div.franchise-card__salary-segment.franchise-card__salary-segment--k(style='flex: ' + sc.K, title='K: $' + sc.K)
+								if franchise.available > 0
+									div.franchise-card__bar-unused(style='flex: ' + franchise.available, title='Available: $' + franchise.available)
 							div.franchise-card__stat
 								span.franchise-card__label Available
 								span.franchise-card__value= formatMoney(franchise.available)
