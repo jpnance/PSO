@@ -57,9 +57,6 @@ block content
 				option(class="franchises-" + franchise._id value=franchise._id data-name=franchise.displayName) #{franchise.displayName}
 
 	div.container.py-4.trade-machine
-		if isProcessingMode
-			p: a(href='/admin') ← Back to Admin
-		
 		h1.mb-4= isProcessingMode ? 'Process Trade' : 'Trade Machine'
 
 		div.row
