@@ -761,7 +761,7 @@ $(document).ready(function() {
 		Object.keys(initialDeal).forEach(function(franchiseId) {
 			if (!tradeMachine.deal[franchiseId]) {
 				// Check the checkbox and toggle the franchise
-				$('#franchise-' + franchiseId).prop('checked', true);
+				$('#check-' + franchiseId).prop('checked', true);
 				tradeMachine.toggleFranchiseInvolvement(franchiseId);
 			}
 		});
@@ -786,6 +786,15 @@ $(document).ready(function() {
 			});
 		});
 		
+		tradeMachine.redrawTradeMachine();
+	} else if (typeof userFranchiseIds !== 'undefined' && userFranchiseIds.length > 0) {
+		// Auto-select the current user's franchise(s) on a fresh trade machine
+		userFranchiseIds.forEach(function(franchiseId) {
+			if (!tradeMachine.deal[franchiseId]) {
+				$('#check-' + franchiseId).prop('checked', true);
+				tradeMachine.toggleFranchiseInvolvement(franchiseId);
+			}
+		});
 		tradeMachine.redrawTradeMachine();
 	}
 
