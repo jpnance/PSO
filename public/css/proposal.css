@@ -26,13 +26,20 @@
 }
 
 .proposal-countdown {
-	font-size: 1.5rem;
+	background: #ffc107;
+	color: #212529;
+	font-size: 0.8rem;
 	font-weight: 600;
-	font-family: monospace;
+	padding: 0.3rem 0.75rem;
+}
+
+.proposal-countdown .countdown-time {
+	font-variant-numeric: tabular-nums;
 }
 
 .proposal-countdown--warning {
-	color: #dc3545;
+	background: #dc3545;
+	color: white;
 }
 
 /* Action buttons in card footer */
