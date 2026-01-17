@@ -22,18 +22,20 @@ block content
 	div.container.py-4
 		p: a(href='/propose') ← Back to Trade Machine
 
-		//- Status header
-		div.d-flex.flex-wrap.justify-content-between.align-items-center.mb-4
-			h1.mb-2.mb-md-0 Trade Proposal
-			+statusBadge(proposal.status)
+		h1.mb-4 Trade Proposal
 
-		//- Main content area with columns
+		//- Main content area
 		div.row
-			//- Left column: Trade details
-			div.col-lg-8.mb-4.mb-lg-0
+			div.col-md-7.col-xl-5
 				div.card
-					div.card-header
+					div.card-header.d-flex.justify-content-between.align-items-center
 						strong Trade Details
+						if proposal.status === 'pending' && acceptanceWindowActive
+							span.proposal-countdown.badge.badge-pill(data-remaining=acceptanceWindowRemaining)
+								i.fa.fa-clock-o.mr-1
+								span.countdown-time --:--
+						else
+							+statusBadge(proposal.status)
 					//- Share link for active proposals
 					if proposal.status === 'hypothetical' || proposal.status === 'pending'
 						div.bg-light.p-3.border-bottom
@@ -87,48 +89,38 @@ block content
 							+tradeParty(party)
 						//- Budget Impact
 						include partials/budget-impact-table
-					//- Action buttons for drafts
-					if proposal.status === 'hypothetical' && isParty
+						//- Responses (for pending trades)
+						if proposal.status === 'pending'
+							div.acceptance-status.mt-4.pt-3.border-top
+								div.mb-2
+									strong Responses
+								each party, idx in parties
+									- var isLast = idx === parties.length - 1
+									div.proposal-response(class=isLast ? '' : 'mb-1')
+										if party.accepted
+											i.fa.fa-check.text-success.proposal-response__icon
+										else
+											i.fa.fa-circle-o.proposal-response__icon.proposal-response__icon--waiting
+										span= party.franchiseName
+					//- Action buttons
+					if (proposal.status === 'hypothetical' && isParty) || (proposal.status === 'pending' && (isParty || isCreator))
 						div.card-footer.proposal-actions
 							div.proposal-actions__result
-							if tradesEnabled
-								button.btn.btn-primary.formalize-btn
-									i.fa.fa-paper-plane.mr-1
-									| Propose This Trade
-							else
-								button.btn.btn-primary(disabled)
-									i.fa.fa-paper-plane.mr-1
-									| Propose This Trade
-								span.text-muted.small.ml-2
-									i.fa.fa-info-circle.mr-1
-									= tradesDisabledReason || 'Trades are currently disabled'
-			//- Right column: Acceptance status widget
-			div.col-lg-4
-				//- Party acceptance status widget
-				if proposal.status === 'pending'
-					div.card.mb-4
-						div.card-header.d-flex.justify-content-between.align-items-center
-							strong Acceptance Status
-							if acceptanceWindowActive
-								span.proposal-countdown.badge.badge-pill(data-remaining=acceptanceWindowRemaining)
-									i.fa.fa-clock-o.mr-1
-									span.countdown-time --:--
-						div.card-body
-							each party, idx in parties
-								- var isLast = idx === parties.length - 1
-								div.proposal-status(class=isLast ? '' : 'mb-2')
-									div.proposal-status__check(class=party.accepted ? 'proposal-status__check--accepted' : 'proposal-status__check--waiting')
-										if party.accepted
-											i.fa.fa-check
-										else
-											i.fa.fa-hourglass-half
-									span.font-weight-bold= party.franchiseName
-									if party.accepted
-										span.text-muted.small — accepted
-						//- Action buttons for pending trades
-						if isParty || isCreator
-							div.card-footer.proposal-actions
-								div.proposal-actions__result
+							//- Hypothetical: Propose button
+							if proposal.status === 'hypothetical'
+								if tradesEnabled
+									button.btn.btn-primary.formalize-btn
+										i.fa.fa-paper-plane.mr-1
+										| Propose This Trade
+								else
+									button.btn.btn-primary(disabled)
+										i.fa.fa-paper-plane.mr-1
+										| Propose This Trade
+									span.text-muted.small.ml-2
+										i.fa.fa-info-circle.mr-1
+										= tradesDisabledReason || 'Trades are currently disabled'
+							//- Pending: Accept/Reject/Cancel buttons
+							if proposal.status === 'pending'
 								if isParty && !userHasAccepted
 									button.btn.btn-success.mr-2.accept-btn
 										i.fa.fa-check.mr-1
@@ -189,15 +181,32 @@ block scripts
 		
 		function showError(errors) {
 			var template = document.getElementById('alert-banner-template');
-			var $container = $('<div class="alert alert-danger"></div>');
 			
+			// For single error, clone and modify template directly with vanilla DOM
+			if (errors.length === 1 && template && template.content) {
+				var clonedContent = template.content.cloneNode(true);
+				var banner = clonedContent.querySelector('.alert');
+				if (banner) {
+					banner.classList.add('mb-0');
+					var spanEl = banner.querySelector('span');
+					if (spanEl) {
+						spanEl.textContent = errors[0];
+					}
+					showResult($(banner));
+					return;
+				}
+			}
+			
+			// Multiple errors or fallback: build inline
+			var $container = $('<div class="alert alert-danger mb-0"></div>');
 			errors.forEach(function(err, i) {
 				if (i > 0) {
 					$container.append('<div class="mt-2"></div>');
 				}
-				var $banner = $(template.content.cloneNode(true)).children();
-				$container.append($banner.children());
-				$container.find('span').last().text(err);
+				var $row = $('<div class="d-flex align-items-start"></div>');
+				$row.append('<i class="fa fa-exclamation-circle mr-2 mt-1 flex-shrink-0"></i>');
+				$row.append($('<span></span>').text(err));
+				$container.append($row);
 			});
 			
 			showResult($container);

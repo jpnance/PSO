@@ -61,3 +61,14 @@
 .proposal-actions .btn {
 	margin-right: 0 !important; /* Override Bootstrap mr-2 since we're using gap */
 }
+
+/* Response icons - fixed width for alignment */
+.proposal-response__icon {
+	width: 1rem;
+	text-align: center;
+	margin-right: 0.5rem;
+}
+
+.proposal-response__icon--waiting {
+	color: #ccc;
+}

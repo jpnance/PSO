@@ -1166,9 +1166,12 @@ async function acceptProposal(request, response) {
 		party.acceptedAt = new Date();
 		party.acceptedBy = user._id;
 		
-		// Start acceptance window if this is the first acceptance
+		// Start acceptance window if this is the first acceptance (or restart after reset)
+		// Also update creator since whoever restarts the clock is now the proposer
 		if (!proposal.acceptanceWindowStart) {
 			proposal.acceptanceWindowStart = new Date();
+			proposal.createdByPersonId = user._id;
+			proposal.createdByFranchiseId = party.franchiseId;
 		}
 		
 		// Check if all parties have now accepted

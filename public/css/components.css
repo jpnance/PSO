@@ -3,11 +3,11 @@
 /* Status badges - used for trade proposals and other statuses */
 .status-badge {
 	display: inline-block;
-	padding: 0.25rem 0.75rem;
+	padding: 0.15rem 0.5rem;
 	border-radius: 0.25rem;
 	font-weight: 600;
 	text-transform: uppercase;
-	font-size: 0.8rem;
+	font-size: 0.7rem;
 }
 .status-hypothetical { background: var(--status-hypothetical-bg); color: var(--status-hypothetical-text); }
 .status-pending { background: var(--status-pending-bg); color: var(--status-pending-text); }
@@ -180,7 +180,7 @@
 	padding: 0 0.5rem 0.25rem;
 	text-align: right;
 	vertical-align: bottom;
-	border-bottom: 1px solid #ced4da;
+	border-bottom: 1px dotted #dee2e6;
 	width: 9ch;
 }
 .budget-impact-table th:first-child {
