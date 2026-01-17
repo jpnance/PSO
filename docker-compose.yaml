@@ -1,8 +1,8 @@
-version: '3.6'
-
 services:
   web:
     container_name: pso-web
+    depends_on:
+      - mongo
     extra_hosts:
       - "login.coinflipper.local:host-gateway"
     profiles:
@@ -28,6 +28,8 @@ services:
 
   cron:
     container_name: pso-cron
+    depends_on:
+      - mongo
     profiles:
       - main
     image: node:22-alpine

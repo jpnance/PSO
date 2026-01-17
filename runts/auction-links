@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd auction && node links.js"
+docker compose run --rm web node auction/links.js

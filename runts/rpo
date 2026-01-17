@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd note && node rpo.js"
+docker compose run --rm web node note/rpo.js

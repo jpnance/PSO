@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd auction && node index.js site=colbys season=2024 demo"
+docker compose run --rm web node auction/index.js site=colbys season=2024 demo

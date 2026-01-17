@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd bots && node positions.js site=pso"
+docker compose run --rm web node bots/positions.js site=pso

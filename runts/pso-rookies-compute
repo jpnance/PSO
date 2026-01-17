@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd rookies && node compute.js"
+docker compose run --rm web node rookies/compute.js

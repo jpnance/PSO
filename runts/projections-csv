@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd prep && node csv.js"
+docker compose run --rm web node prep/csv.js

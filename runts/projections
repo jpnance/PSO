@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker exec -it -w /app pso-cron sh -c "cd projections && node index.js"
+docker compose run --rm web node projections/index.js
