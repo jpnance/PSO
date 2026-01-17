@@ -37,7 +37,7 @@ block content
 							if player.terms == 'unsigned'
 								| (#{formatMoney(player.salary)}, unsigned)
 							else if player.terms == 'rfa-rights'
-								| RFA rights
+								| (RFA rights)
 							else
 								| (#{formatMoney(player.salary)}, #{player.contract})
 
