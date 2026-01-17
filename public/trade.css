@@ -12,12 +12,7 @@ h1 {
 	opacity: 1;
 }
 
-/* Card headers match site style */
-.card-header {
-	background-color: #343a40;
-	color: white;
-}
-
+/* Card header badge override */
 .card-header .badge-light {
 	background-color: rgba(255, 255, 255, 0.2);
 	color: white;

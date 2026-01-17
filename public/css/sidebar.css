@@ -3,13 +3,15 @@
 :root {
     --sidebar-width: 240px;
     --topbar-height: 56px;
-    --sidebar-bg: #212529;
-    --sidebar-hover: #343a40;
-    --sidebar-active: #495057;
-    --sidebar-text: #adb5bd;
+    
+    /* Charcoal Brown color scheme */
+    --sidebar-bg: #3a3532;
+    --sidebar-hover: #4a4542;
+    --sidebar-active: #5a5552;
+    --sidebar-text: #c8c4c0;
     --sidebar-text-hover: #fff;
-    --sidebar-heading: #6c757d;
-    --primary-accent: #007bff;
+    --sidebar-heading: #8a8682;
+    --primary-accent: #dda060;
 }
 
 /* Top Bar */
@@ -20,7 +22,7 @@
     right: 0;
     height: var(--topbar-height);
     background-color: var(--sidebar-bg);
-    border-bottom: 1px solid #343a40;
+    border-bottom: 1px solid var(--sidebar-hover);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,6 +43,8 @@
     margin: 0;
     letter-spacing: 0.5px;
 }
+
+
 
 .topbar-user {
     display: flex;
@@ -66,22 +70,22 @@
 .topbar-search input {
     width: 100%;
     padding: 0.4rem 0.75rem 0.4rem 2.25rem;
-    border: 1px solid #495057;
+    border: 1px solid var(--sidebar-active);
     border-radius: 6px;
-    background-color: #343a40;
-    color: #fff;
+    background-color: var(--sidebar-hover);
+    color: var(--sidebar-text-hover);
     font-size: 0.875rem;
     transition: all 0.15s ease;
 }
 
 .topbar-search input::placeholder {
-    color: #868e96;
+    color: var(--sidebar-text);
 }
 
 .topbar-search input:focus {
     outline: none;
     border-color: var(--primary-accent);
-    background-color: #3d4349;
+    background-color: var(--sidebar-active);
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
 }
 
@@ -90,7 +94,7 @@
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #868e96;
+    color: var(--sidebar-text);
     font-size: 0.8rem;
     pointer-events: none;
 }
@@ -100,12 +104,12 @@
     right: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #495057;
-    border: 1px solid #6c757d;
+    background-color: var(--sidebar-active);
+    border: 1px solid var(--sidebar-heading);
     border-radius: 3px;
     padding: 0.1rem 0.35rem;
     font-size: 0.65rem;
-    color: #adb5bd;
+    color: var(--sidebar-text);
     font-family: inherit;
 }
 
@@ -152,13 +156,16 @@
 
 .sidebar-nav {
     padding: 0.75rem 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 /* Primary Section */
 .sidebar-primary {
     padding-bottom: 0.75rem;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid #343a40;
+    border-bottom: 1px solid var(--sidebar-hover);
 }
 
 .sidebar-section {
@@ -319,7 +326,7 @@
 /* Mobile search in sidebar */
 .sidebar-mobile-search {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #343a40;
+    border-bottom: 1px solid var(--sidebar-hover);
 }
 
 .mobile-search-wrapper {
@@ -329,15 +336,15 @@
 .mobile-search-wrapper input {
     width: 100%;
     padding: 0.5rem 0.75rem 0.5rem 2rem;
-    border: 1px solid #495057;
+    border: 1px solid var(--sidebar-active);
     border-radius: 6px;
-    background-color: #343a40;
-    color: #fff;
+    background-color: var(--sidebar-hover);
+    color: var(--sidebar-text-hover);
     font-size: 0.875rem;
 }
 
 .mobile-search-wrapper input::placeholder {
-    color: #868e96;
+    color: var(--sidebar-text);
 }
 
 .mobile-search-wrapper input:focus {
@@ -350,13 +357,13 @@
     left: 0.65rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #868e96;
+    color: var(--sidebar-text);
     font-size: 0.8rem;
 }
 
 /* Admin section separator */
 .sidebar-admin {
-    border-top: 1px solid #343a40;
+    border-top: 1px solid var(--sidebar-hover);
     margin-top: 0.5rem;
     padding-top: 0.5rem;
 }
@@ -405,8 +412,8 @@
     top: 100%;
     right: 0;
     margin-top: 0.5rem;
-    background-color: #2d3238;
-    border: 1px solid #495057;
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--sidebar-active);
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     min-width: 220px;
@@ -441,7 +448,7 @@
 }
 
 .topbar-user-menu-divider {
-    border-top: 1px solid #495057;
+    border-top: 1px solid var(--sidebar-active);
     margin: 0.25rem 0;
 }
 
