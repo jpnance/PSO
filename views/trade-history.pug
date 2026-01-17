@@ -28,60 +28,43 @@ block styles
 block content
 	div.container.py-4
 		if singleTrade
-			p.mb-4
-				a(href="/trades") ← Back to All Trades
+			p: a(href="/trades") ← Back to All Trades
 			
-			//- Navigation at top for quick clicking
-			div.trade-nav.mb-3
-				if prevTradeId
-					a.trade-nav-link(href="/trades/" + prevTradeId)
-						i.fa.fa-chevron-left
-						|  ##{prevTradeId}
-				else
-					span.trade-nav-link.invisible
-						i.fa.fa-chevron-left
-						|  #000
-				span.flex-grow-1
-				if nextTradeId
-					a.trade-nav-link(href="/trades/" + nextTradeId)
-						| ##{nextTradeId} 
-						i.fa.fa-chevron-right
-				else
-					span.trade-nav-link.invisible
-						| #000 
-						i.fa.fa-chevron-right
+			h1.mb-4 Trade ##{tradeNumber}
 			
-			each trade in trades
-				div.trade-card(id="trade-" + trade.number)
-					div.trade-header
-						a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
-						div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/New_York' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
+			div.row
+				div.col-md-7.col-xl-5
+					each trade in trades
+						div.trade-card.trade-card--single(id="trade-" + trade.number)
+							div.trade-card__timestamp.trade-card__timestamp--inline
+								span.trade-card__date= formatDateLong(trade.timestamp)
+								span.trade-card__time= formatTime(trade.timestamp)
+							
+							each party in trade.parties
+								+tradeParty(party)
+							
+							if trade.notes
+								div.trade-notes #{trade.notes}
 					
-					each party in trade.parties
-						+tradeParty(party)
-					
-					if trade.notes
-						div.trade-notes #{trade.notes}
-			
-			//- Bottom navigation
-			div.trade-nav.mt-4
-				if prevTradeId
-					a.trade-nav-link(href="/trades/" + prevTradeId)
-						i.fa.fa-chevron-left
-						|  ##{prevTradeId}
-				else
-					span.trade-nav-link.invisible
-						i.fa.fa-chevron-left
-						|  #000
-				span.flex-grow-1
-				if nextTradeId
-					a.trade-nav-link(href="/trades/" + nextTradeId)
-						| ##{nextTradeId} 
-						i.fa.fa-chevron-right
-				else
-					span.trade-nav-link.invisible
-						| #000 
-						i.fa.fa-chevron-right
+					//- Bottom navigation
+					div.trade-nav.mt-4
+						if prevTradeId
+							a.trade-nav-link(href="/trades/" + prevTradeId)
+								i.fa.fa-chevron-left
+								|  ##{prevTradeId}
+						else
+							span.trade-nav-link.invisible
+								i.fa.fa-chevron-left
+								|  #000
+						span.flex-grow-1
+						if nextTradeId
+							a.trade-nav-link(href="/trades/" + nextTradeId)
+								| ##{nextTradeId} 
+								i.fa.fa-chevron-right
+						else
+							span.trade-nav-link.invisible
+								| #000 
+								i.fa.fa-chevron-right
 		else
 			h1.mb-4 Trade History
 			
@@ -203,7 +186,7 @@ block content
 						div.trade-card(id="trade-" + trade.number)
 							div.trade-header
 								a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
-								div.trade-date #{trade.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/New_York' })} at #{trade.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).toLowerCase()} ET
+								div.trade-date= formatDateTime(trade.timestamp)
 							
 							each party in trade.parties
 								+tradeParty(party)

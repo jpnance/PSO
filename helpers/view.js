@@ -955,6 +955,69 @@ function tradeOgPlainEnglish(parties, options) {
 	return giverName + ' ' + verb + ' ' + oxfordJoin(firstAssets) + ' to ' + receiverName + ' for ' + oxfordJoin(secondAssets) + '.';
 }
 
+/**
+ * Format a timestamp for display (Eastern time, no weekday)
+ * @param {Date} d - Date object
+ * @returns {string} e.g. "January 17, 2026 at 3:45 pm ET"
+ */
+function formatDateTime(d) {
+	if (!d) return '';
+	var date = d.toLocaleDateString('en-US', {
+		year: 'numeric', month: 'long', day: 'numeric',
+		timeZone: 'America/New_York'
+	});
+	var time = d.toLocaleTimeString('en-US', {
+		hour: 'numeric', minute: '2-digit',
+		timeZone: 'America/New_York'
+	}).toLowerCase();
+	return date + ' at ' + time + ' ET';
+}
+
+/**
+ * Format a timestamp for display with weekday (Eastern time)
+ * @param {Date} d - Date object
+ * @returns {string} e.g. "Friday, January 17, 2026 at 3:45 pm ET"
+ */
+function formatDateTimeLong(d) {
+	if (!d) return '';
+	var date = d.toLocaleDateString('en-US', {
+		weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+		timeZone: 'America/New_York'
+	});
+	var time = d.toLocaleTimeString('en-US', {
+		hour: 'numeric', minute: '2-digit',
+		timeZone: 'America/New_York'
+	}).toLowerCase();
+	return date + ' at ' + time + ' ET';
+}
+
+/**
+ * Format just the date portion (Eastern time, with weekday)
+ * @param {Date} d - Date object
+ * @returns {string} e.g. "Friday, January 17, 2026"
+ */
+function formatDateLong(d) {
+	if (!d) return '';
+	return d.toLocaleDateString('en-US', {
+		weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+		timeZone: 'America/New_York'
+	});
+}
+
+/**
+ * Format just the time portion (Eastern time)
+ * @param {Date} d - Date object
+ * @returns {string} e.g. "3:45 pm ET"
+ */
+function formatTime(d) {
+	if (!d) return '';
+	var time = d.toLocaleTimeString('en-US', {
+		hour: 'numeric', minute: '2-digit',
+		timeZone: 'America/New_York'
+	}).toLowerCase();
+	return time + ' ET';
+}
+
 module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
@@ -964,6 +1027,10 @@ module.exports = {
 	formatContractYears: formatContractYears,
 	formatContractDisplay: formatContractDisplay,
 	formatDateISO: formatDateISO,
+	formatDateTime: formatDateTime,
+	formatDateTimeLong: formatDateTimeLong,
+	formatDateLong: formatDateLong,
+	formatTime: formatTime,
 	deltaClass: deltaClass,
 	sortedPositions: sortedPositions,
 	getPositionIndex: getPositionIndex,

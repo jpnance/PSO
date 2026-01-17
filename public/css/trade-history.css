@@ -22,6 +22,36 @@
 	font-size: 0.8rem;
 }
 
+/* Single trade view - timestamp header */
+.trade-card__timestamp {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.trade-card__date {
+	color: #666;
+	font-size: 0.85rem;
+}
+
+.trade-card__time {
+	color: #999;
+	font-size: 0.8rem;
+}
+
+/* Variation: time on right (inline) */
+.trade-card__timestamp--inline {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+/* Variation: time on next line (stacked) */
+.trade-card__timestamp--stacked .trade-card__time {
+	display: block;
+	margin-top: 0.25rem;
+}
+
 /* Trade filter panel (BEM) */
 .trade-filter {
 	background: #fff;

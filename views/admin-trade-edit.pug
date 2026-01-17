@@ -22,20 +22,6 @@ block content
 			var mins = String(etDate.getMinutes()).padStart(2, '0');
 			return year + '-' + month + '-' + day + 'T' + hours + ':' + mins;
 		}
-		function formatTimestampDisplay(ts) {
-			if (!ts) return 'Unknown';
-			var d = new Date(ts);
-			var options = { 
-				weekday: 'long', 
-				year: 'numeric', 
-				month: 'long', 
-				day: 'numeric',
-				hour: 'numeric',
-				minute: '2-digit',
-				timeZone: 'America/New_York'
-			};
-			return d.toLocaleString('en-US', options) + ' ET';
-		}
 		// Build sorted asset list like trade history page
 		function buildAssetList(party, partyIdx) {
 			var assets = [];
@@ -110,7 +96,7 @@ block content
 		h1.mb-2
 			| Trade ##{trade.tradeId || '(no ID)'}
 		p.admin-trade-edit__meta
-			= formatTimestampDisplay(trade.timestamp)
+			= formatDateTimeLong(trade.timestamp)
 			if trade.tradeId
 				|  · 
 				a(href='/trades/' + trade.tradeId) View Trade
