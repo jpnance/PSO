@@ -47,24 +47,12 @@ block content
 								div.trade-notes #{trade.notes}
 					
 					//- Bottom navigation
-					div.trade-nav.mt-4
+					div.trade-nav--simple.mt-4
 						if prevTradeId
-							a.trade-nav-link(href="/trades/" + prevTradeId)
-								i.fa.fa-chevron-left
-								|  ##{prevTradeId}
-						else
-							span.trade-nav-link.invisible
-								i.fa.fa-chevron-left
-								|  #000
+							a(href="/trades/" + prevTradeId) ← Trade ##{prevTradeId}
 						span.flex-grow-1
 						if nextTradeId
-							a.trade-nav-link(href="/trades/" + nextTradeId)
-								| ##{nextTradeId} 
-								i.fa.fa-chevron-right
-						else
-							span.trade-nav-link.invisible
-								| #000 
-								i.fa.fa-chevron-right
+							a(href="/trades/" + nextTradeId) Trade ##{nextTradeId} →
 		else
 			h1.mb-4 Trade History
 			
