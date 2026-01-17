@@ -34,3 +34,23 @@
 .proposal-countdown--warning {
 	color: #dc3545;
 }
+
+/* Action buttons in card footer */
+.proposal-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.proposal-actions__result {
+	width: 100%;
+}
+
+.proposal-actions__result:empty {
+	display: none;
+}
+
+.proposal-actions .btn {
+	margin-right: 0 !important; /* Override Bootstrap mr-2 since we're using gap */
+}

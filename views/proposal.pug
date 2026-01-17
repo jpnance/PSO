@@ -53,8 +53,8 @@ block content
 						include partials/budget-impact-table
 					//- Action buttons for drafts
 					if proposal.status === 'hypothetical' && isParty
-						div.card-footer
-							div.action-result
+						div.card-footer.proposal-actions
+							div.proposal-actions__result
 							if tradesEnabled
 								button.btn.btn-primary.formalize-btn
 									i.fa.fa-paper-plane.mr-1
@@ -132,8 +132,8 @@ block content
 										span.text-muted.small — accepted
 						//- Action buttons for pending trades
 						if isParty || isCreator
-							div.card-footer
-								div.action-result
+							div.card-footer.proposal-actions
+								div.proposal-actions__result
 								if isParty && !userHasAccepted
 									button.btn.btn-success.mr-2.accept-btn
 										i.fa.fa-check.mr-1
@@ -142,6 +142,9 @@ block content
 									button.btn.btn-outline-danger.mr-2.reject-btn
 										i.fa.fa-times.mr-1
 										| Reject
+									button.btn.btn-outline-secondary.mr-2.reject-counter-btn
+										i.fa.fa-exchange.mr-1
+										| Reject & Counter
 								if isCreator
 									button.btn.btn-outline-danger.cancel-btn
 										i.fa.fa-times.mr-1
@@ -185,7 +188,7 @@ block scripts
 		$('#share-link').val(window.location.href);
 		
 		function showResult(html) {
-			$('.action-result').html(html);
+			$('.proposal-actions__result').html(html);
 		}
 		
 		function showError(errors) {
@@ -250,6 +253,18 @@ block scripts
 			var restore = startLoading($(this));
 			$.post('/propose/' + proposalId + '/reject')
 				.done(function() { location.reload(); })
+				.fail(function(xhr) {
+					restore();
+					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
+				});
+		});
+		
+		$('.reject-counter-btn').on('click', function() {
+			var restore = startLoading($(this));
+			$.post('/propose/' + proposalId + '/reject')
+				.done(function() {
+					window.location.href = '/propose?from=' + proposalId;
+				})
 				.fail(function(xhr) {
 					restore();
 					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
