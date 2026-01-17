@@ -32,7 +32,7 @@ var proposalPartySchema = new Schema({
 	acceptedBy: { type: Schema.Types.ObjectId, ref: 'Person', default: null }
 }, { _id: false });
 
-var tradeProposalSchema = new Schema({
+var proposalSchema = new Schema({
 	// Public-facing ID (generated as fun name-based slug in service layer)
 	publicId: {
 		type: String,
@@ -68,44 +68,44 @@ var tradeProposalSchema = new Schema({
 });
 
 // Indexes
-tradeProposalSchema.index({ publicId: 1 }, { unique: true });
-tradeProposalSchema.index({ status: 1 });
-tradeProposalSchema.index({ createdAt: -1 });
-tradeProposalSchema.index({ expiresAt: 1 });
-tradeProposalSchema.index({ createdByFranchiseId: 1 });
-tradeProposalSchema.index({ createdByPersonId: 1 });
-tradeProposalSchema.index({ 'parties.franchiseId': 1 });
-tradeProposalSchema.index({ acceptanceWindowStart: 1 }, { sparse: true });
+proposalSchema.index({ publicId: 1 }, { unique: true });
+proposalSchema.index({ status: 1 });
+proposalSchema.index({ createdAt: -1 });
+proposalSchema.index({ expiresAt: 1 });
+proposalSchema.index({ createdByFranchiseId: 1 });
+proposalSchema.index({ createdByPersonId: 1 });
+proposalSchema.index({ 'parties.franchiseId': 1 });
+proposalSchema.index({ acceptanceWindowStart: 1 }, { sparse: true });
 
 // Constants
-tradeProposalSchema.statics.ACCEPTANCE_WINDOW_MINUTES = 10;
+proposalSchema.statics.ACCEPTANCE_WINDOW_MINUTES = 10;
 
 // Check if the acceptance window has expired (returns true if expired)
-tradeProposalSchema.methods.isAcceptanceWindowExpired = function() {
+proposalSchema.methods.isAcceptanceWindowExpired = function() {
 	if (!this.acceptanceWindowStart) return false;
-	var windowMs = tradeProposalSchema.statics.ACCEPTANCE_WINDOW_MINUTES * 60 * 1000;
+	var windowMs = proposalSchema.statics.ACCEPTANCE_WINDOW_MINUTES * 60 * 1000;
 	var deadline = new Date(this.acceptanceWindowStart.getTime() + windowMs);
 	return new Date() > deadline;
 };
 
 // Get remaining time in acceptance window (in milliseconds, or null if not started)
-tradeProposalSchema.methods.getAcceptanceWindowRemaining = function() {
+proposalSchema.methods.getAcceptanceWindowRemaining = function() {
 	if (!this.acceptanceWindowStart) return null;
-	var windowMs = tradeProposalSchema.statics.ACCEPTANCE_WINDOW_MINUTES * 60 * 1000;
+	var windowMs = proposalSchema.statics.ACCEPTANCE_WINDOW_MINUTES * 60 * 1000;
 	var deadline = new Date(this.acceptanceWindowStart.getTime() + windowMs);
 	var remaining = deadline.getTime() - new Date().getTime();
 	return Math.max(0, remaining);
 };
 
 // Check if all parties have accepted
-tradeProposalSchema.methods.allPartiesAccepted = function() {
+proposalSchema.methods.allPartiesAccepted = function() {
 	return this.parties.every(function(party) {
 		return party.accepted === true;
 	});
 };
 
 // Reset all acceptances (when window expires)
-tradeProposalSchema.methods.resetAcceptances = function() {
+proposalSchema.methods.resetAcceptances = function() {
 	this.parties.forEach(function(party) {
 		party.accepted = false;
 		party.acceptedAt = null;
@@ -115,8 +115,8 @@ tradeProposalSchema.methods.resetAcceptances = function() {
 };
 
 // Check if the proposal has expired (7-day expiration)
-tradeProposalSchema.methods.isExpired = function() {
+proposalSchema.methods.isExpired = function() {
 	return new Date() > this.expiresAt;
 };
 
-module.exports = mongoose.model('TradeProposal', tradeProposalSchema);
+module.exports = mongoose.model('Proposal', proposalSchema);

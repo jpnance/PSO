@@ -18,7 +18,7 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 var mongoose = require('mongoose');
 
-var TradeProposal = require('../../models/TradeProposal');
+var Proposal = require('../../models/Proposal');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -40,19 +40,19 @@ async function run() {
 	console.log('');
 	
 	// Find old hypothetical trades
-	var oldHypothetical = await TradeProposal.find({
+	var oldHypothetical = await Proposal.find({
 		status: 'hypothetical',
 		createdAt: { $lt: cutoff }
 	}).select('publicId createdAt').lean();
 	
 	// Find pending proposals past their expiration (should have moved to expired)
-	var stalePending = await TradeProposal.find({
+	var stalePending = await Proposal.find({
 		status: 'pending',
 		expiresAt: { $lt: cutoff }
 	}).select('publicId expiresAt').lean();
 	
 	// Find old terminal proposals
-	var oldTerminal = await TradeProposal.find({
+	var oldTerminal = await Proposal.find({
 		status: { $in: ['expired', 'rejected', 'canceled', 'executed'] },
 		createdAt: { $lt: cutoff }
 	}).select('publicId status createdAt').lean();
@@ -88,7 +88,7 @@ async function run() {
 	
 	if (!dryRun) {
 		var ids = allToDelete.map(function(item) { return item.id; });
-		var result = await TradeProposal.deleteMany({ _id: { $in: ids } });
+		var result = await Proposal.deleteMany({ _id: { $in: ids } });
 		console.log('Deleted ' + result.deletedCount + ' proposals.');
 	} else {
 		console.log('Would delete ' + allToDelete.length + ' proposals.');

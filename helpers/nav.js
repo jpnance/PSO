@@ -69,8 +69,8 @@ function buildNav(options) {
 			id: 'trade-machine',
 			label: 'Trade Machine',
 			icon: 'fa-exchange',
-			href: '/propose',
-			active: isActive('propose')
+			href: '/trade-machine',
+			active: isActive('trade-machine')
 		}
 	];
 

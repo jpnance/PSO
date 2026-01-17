@@ -7,7 +7,7 @@ var adminPlayers = require('./admin/players.js');
 var adminTrades = require('./admin/trades.js');
 var draft = require('./draft/service.js');
 var trades = require('./trades/service.js');
-var propose = require('./propose/service.js');
+var proposals = require('./proposals/service.js');
 var calendar = require('./calendar/service.js');
 var rookies = require('./rookies/service.js');
 var auth = require('./auth/service.js');
@@ -35,16 +35,17 @@ module.exports = function(app) {
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);
 	
-	app.get('/propose', propose.proposePage);
-	app.post('/propose/budget-impact', noCache, propose.budgetImpactPartial);
+	// Trade Machine
+	app.get('/trade-machine', proposals.tradeMachinePage);
+	app.post('/trade-machine', requireLogin, proposals.createProposal);
+	app.post('/trade-machine/budget-impact', noCache, proposals.budgetImpactPartial);
 	
-	// Trade proposals (owners)
-	app.post('/propose', requireLogin, propose.createProposal);
-	app.get('/propose/:id', propose.viewProposal);
-	app.post('/propose/:id/formalize', requireLogin, propose.formalizeProposal);
-	app.post('/propose/:id/accept', requireLogin, propose.acceptProposal);
-	app.post('/propose/:id/reject', requireLogin, propose.rejectProposal);
-	app.post('/propose/:id/cancel', requireLogin, propose.cancelProposal);
+	// Proposals (trade negotiations)
+	app.get('/proposals/:slug', proposals.viewProposal);
+	app.post('/proposals/:slug/propose', requireLogin, proposals.proposeProposal);
+	app.post('/proposals/:slug/accept', requireLogin, proposals.acceptProposal);
+	app.post('/proposals/:slug/reject', requireLogin, proposals.rejectProposal);
+	app.post('/proposals/:slug/cancel', requireLogin, proposals.cancelProposal);
 
 	app.get('/draft', draft.draftBoard);
 	
@@ -93,12 +94,12 @@ module.exports = function(app) {
 	app.post('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTrade);
 	
 	// Process new trades (require login + admin)
-	app.get('/admin/process-trade', requireLogin, requireAdmin, propose.processPage);
-	app.post('/admin/process-trade', requireLogin, requireAdmin, propose.submitTrade);
+	app.get('/admin/process-trade', requireLogin, requireAdmin, proposals.processPage);
+	app.post('/admin/process-trade', requireLogin, requireAdmin, proposals.submitTrade);
 	
-	// Trade proposal approval (require login + admin)
-	app.get('/admin/proposals', requireLogin, requireAdmin, propose.listProposalsForApproval);
-	app.post('/admin/proposals/:id/approve', requireLogin, requireAdmin, propose.approveProposal);
-	app.post('/admin/proposals/:id/reject', requireLogin, requireAdmin, propose.adminRejectProposal);
+	// Proposal approval (require login + admin)
+	app.get('/admin/proposals', requireLogin, requireAdmin, proposals.listProposalsForApproval);
+	app.post('/admin/proposals/:id/approve', requireLogin, requireAdmin, proposals.approveProposal);
+	app.post('/admin/proposals/:id/reject', requireLogin, requireAdmin, proposals.adminRejectProposal);
 	
 };

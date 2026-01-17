@@ -59,7 +59,10 @@ Include mixins at top of template: `include mixins`
 ```
 Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed
 
-**Terminology note**: Use "hypothetical" (not "draft") for uncommitted trade proposals. Use "cancel" (not "withdraw") for the action of canceling a proposal.
+**Terminology notes**:
+- Use "hypothetical" (not "draft") for uncommitted trade proposals
+- Use "cancel" (not "withdraw") for the action of canceling a proposal
+- The model is `Proposal` (not `TradeProposal`), stored in the `proposals` collection
 
 ### Alert Banner
 ```pug
@@ -219,6 +222,19 @@ Use these instead of hardcoded colors:
 ## Component Library
 
 Visit `/components` to see a live showcase of all mixins and design tokens.
+
+## Route Conventions
+
+### Trade-Related Routes
+
+| Feature | Route | Model/Service |
+|---------|-------|---------------|
+| Trade Machine | `/trade-machine` | `proposals/service.js` |
+| Proposals (in-flight) | `/proposals/:slug` | `Proposal` model |
+| Trade History | `/trades` | `Transaction` model (executed trades) |
+| Single Trade | `/trades/:id` | `Transaction` model |
+
+**Key distinction**: A "proposal" is a trade in negotiation. A "trade" (or "transaction") is an executed, permanent record.
 
 ## Patterns
 

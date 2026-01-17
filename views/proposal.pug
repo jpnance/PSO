@@ -9,7 +9,7 @@ block og_meta
 	meta(property='og:title' content=tradeOgTitle(parties, { status: proposal.status, auctionSeason: auctionSeason, tradeYear: tradeYear }))
 	meta(property='og:description' content=tradeOgPlainEnglish(parties, { auctionSeason: auctionSeason, tradeYear: tradeYear, status: proposal.status }))
 	meta(property='og:image' content='https://thedynastyleague.com' + ogImage)
-	meta(property='og:url' content='https://thedynastyleague.com/propose/' + proposal.publicId)
+	meta(property='og:url' content='https://thedynastyleague.com/proposals/' + proposal.publicId)
 
 block styles
 	link(rel='stylesheet' href='/trade.css')
@@ -23,7 +23,7 @@ block content
 		+alertBanner('danger', 'fa-exclamation-circle', '')
 
 	div.container.py-4
-		p: a(href='/propose') ← Back to Trade Machine
+		p: a(href='/trade-machine') ← Back to Trade Machine
 
 		h1.mb-4 Trade Proposal
 
@@ -70,17 +70,17 @@ block content
 							+alertBanner('danger', 'fa-times-circle').mb-3
 								| This proposal was rejected.
 								|  
-								a(href='/propose?from=' + proposal.publicId) Start over →
+								a(href='/trade-machine?from=' + proposal.publicId) Start over →
 						if proposal.status === 'canceled'
 							+alertBanner('secondary', 'fa-undo').mb-3
 								| This proposal was canceled by the creator.
 								|  
-								a(href='/propose?from=' + proposal.publicId) Start over →
+								a(href='/trade-machine?from=' + proposal.publicId) Start over →
 						if proposal.status === 'expired'
 							+alertBanner('secondary', 'fa-clock-o').mb-3
 								| This proposal has expired.
 								|  
-								a(href='/propose?from=' + proposal.publicId) Start over →
+								a(href='/trade-machine?from=' + proposal.publicId) Start over →
 						if proposal.status === 'executed'
 							+alertBanner('success', 'fa-check').mb-3
 								| This trade has been executed.
@@ -238,7 +238,7 @@ block scripts
 		
 		$('.formalize-btn').on('click', function() {
 			var restore = startLoading($(this));
-			$.post('/propose/' + proposalId + '/formalize')
+			$.post('/proposals/' + proposalId + '/propose')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
 					restore();
@@ -248,7 +248,7 @@ block scripts
 		
 		$('.accept-btn').on('click', function() {
 			var restore = startLoading($(this));
-			$.post('/propose/' + proposalId + '/accept')
+			$.post('/proposals/' + proposalId + '/accept')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
 					restore();
@@ -259,7 +259,7 @@ block scripts
 		$('.reject-btn').on('click', function() {
 			if (!confirm('Are you sure you want to reject this proposal?')) return;
 			var restore = startLoading($(this));
-			$.post('/propose/' + proposalId + '/reject')
+			$.post('/proposals/' + proposalId + '/reject')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
 					restore();
@@ -269,9 +269,9 @@ block scripts
 		
 		$('.reject-counter-btn').on('click', function() {
 			var restore = startLoading($(this));
-			$.post('/propose/' + proposalId + '/reject')
+			$.post('/proposals/' + proposalId + '/reject')
 				.done(function() {
-					window.location.href = '/propose?from=' + proposalId;
+					window.location.href = '/trade-machine?from=' + proposalId;
 				})
 				.fail(function(xhr) {
 					restore();
@@ -282,7 +282,7 @@ block scripts
 		$('.cancel-btn').on('click', function() {
 			if (!confirm('Are you sure you want to cancel this proposal?')) return;
 			var restore = startLoading($(this));
-			$.post('/propose/' + proposalId + '/cancel')
+			$.post('/proposals/' + proposalId + '/cancel')
 				.done(function() { location.reload(); })
 				.fail(function(xhr) {
 					restore();

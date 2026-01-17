@@ -7,7 +7,7 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
-var TradeProposal = require('../models/TradeProposal');
+var Proposal = require('../models/Proposal');
 var transactionService = require('../transaction/service');
 var budgetHelper = require('../helpers/budget');
 var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
@@ -245,8 +245,8 @@ function isPlural(name) {
 	return name === 'Schexes' || name.includes('/');
 }
 
-// Route handler for the propose page (trade machine - owner mode)
-async function proposePage(request, response) {
+// Route handler for the trade machine page (owner mode)
+async function tradeMachinePage(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
@@ -273,7 +273,7 @@ async function proposePage(request, response) {
 		// Check for pre-population from an existing proposal
 		var initialDeal = null;
 		if (request.query.from) {
-			var sourceProposal = await TradeProposal.findOne({ publicId: request.query.from });
+			var sourceProposal = await Proposal.findOne({ publicId: request.query.from });
 			if (sourceProposal) {
 				// Build initialDeal structure: { franchiseId: { players: [id, ...], picks: [id, ...], cash: [...] } }
 				initialDeal = {};
@@ -308,7 +308,7 @@ async function proposePage(request, response) {
 			userFranchiseIds: userFranchiseIds,
 			tradesEnabled: tradesEnabled,
 			initialDeal: initialDeal,
-			activePage: 'propose'
+			activePage: 'trade-machine'
 		});
 	} catch (err) {
 		console.error(err);
@@ -502,7 +502,7 @@ async function createProposalWithRetry(data, maxRetries) {
 	
 	for (var attempt = 0; attempt < maxRetries; attempt++) {
 		try {
-			return await TradeProposal.create(data);
+			return await Proposal.create(data);
 		} catch (err) {
 			// Check if it's a duplicate key error on publicId
 			if (err.code === 11000 && err.keyPattern && err.keyPattern.publicId) {
@@ -759,9 +759,9 @@ async function createProposal(request, response) {
 // View a proposal
 async function viewProposal(request, response) {
 	try {
-		var publicId = request.params.id;
+		var publicId = request.params.slug;
 		
-		var proposal = await TradeProposal.findOne({ publicId: publicId })
+		var proposal = await Proposal.findOne({ publicId: publicId })
 			.populate('createdByPersonId', 'name')
 			.populate('parties.franchiseId');
 		
@@ -971,7 +971,7 @@ async function viewProposal(request, response) {
 			currentSeason: currentSeason,
 			auctionSeason: auctionSeason,
 			tradeYear: new Date(proposal.createdAt).getFullYear(),
-			activePage: 'propose'
+			activePage: 'proposals'
 		});
 	} catch (err) {
 		console.error('viewProposal error:', err);
@@ -979,8 +979,8 @@ async function viewProposal(request, response) {
 	}
 }
 
-// Formalize a hypothetical trade into a pending proposal
-async function formalizeProposal(request, response) {
+// Propose a hypothetical trade (convert to pending proposal)
+async function proposeProposal(request, response) {
 	try {
 		var user = request.user;
 		if (!user) {
@@ -993,7 +993,7 @@ async function formalizeProposal(request, response) {
 			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 		}
 		
-		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
+		var proposal = await Proposal.findOne({ publicId: request.params.slug });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1095,7 +1095,7 @@ async function formalizeProposal(request, response) {
 		
 		response.json({ success: true });
 	} catch (err) {
-		console.error('formalizeProposal error:', err);
+		console.error('proposeProposal error:', err);
 		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
 	}
 }
@@ -1114,7 +1114,7 @@ async function acceptProposal(request, response) {
 			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 		}
 		
-		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
+		var proposal = await Proposal.findOne({ publicId: request.params.slug });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1195,7 +1195,7 @@ async function rejectProposal(request, response) {
 			return response.status(401).json({ success: false, errors: ['Login required'] });
 		}
 		
-		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
+		var proposal = await Proposal.findOne({ publicId: request.params.slug });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1232,7 +1232,7 @@ async function cancelProposal(request, response) {
 			return response.status(401).json({ success: false, errors: ['Login required'] });
 		}
 		
-		var proposal = await TradeProposal.findOne({ publicId: request.params.id });
+		var proposal = await Proposal.findOne({ publicId: request.params.slug });
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1259,7 +1259,7 @@ async function cancelProposal(request, response) {
 // Admin: List proposals ready for approval
 async function listProposalsForApproval(request, response) {
 	try {
-		var proposals = await TradeProposal.find({ status: 'accepted' })
+		var proposals = await Proposal.find({ status: 'accepted' })
 			.populate('createdByPersonId', 'name')
 			.sort({ createdAt: -1 });
 		
@@ -1314,7 +1314,7 @@ async function approveProposal(request, response) {
 			return response.status(400).json({ success: false, errors: [tradesCheck.error] });
 		}
 		
-		var proposal = await TradeProposal.findById(request.params.id);
+		var proposal = await Proposal.findById(request.params.id);
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1407,7 +1407,7 @@ async function approveProposal(request, response) {
 // Admin: Reject a proposal
 async function adminRejectProposal(request, response) {
 	try {
-		var proposal = await TradeProposal.findById(request.params.id);
+		var proposal = await Proposal.findById(request.params.id);
 		if (!proposal) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
@@ -1473,21 +1473,23 @@ function computeAuctionSeason(config) {
 
 module.exports = {
 	getTradeData: getTradeData,
-	proposePage: proposePage,
+	// Trade Machine
+	tradeMachinePage: tradeMachinePage,
+	createProposal: createProposal,
+	budgetImpactPartial: budgetImpactPartial,
+	// Admin trade processing
 	processPage: processPage,
 	submitTrade: submitTrade,
-	// Proposal functions
-	createProposal: createProposal,
+	// Proposal actions
 	viewProposal: viewProposal,
-	formalizeProposal: formalizeProposal,
+	proposeProposal: proposeProposal,
 	acceptProposal: acceptProposal,
 	rejectProposal: rejectProposal,
 	cancelProposal: cancelProposal,
+	// Admin proposal approval
 	listProposalsForApproval: listProposalsForApproval,
 	approveProposal: approveProposal,
 	adminRejectProposal: adminRejectProposal,
-	// Partials
-	budgetImpactPartial: budgetImpactPartial,
 	// Helper (exported for potential reuse)
 	getUserFranchises: getUserFranchises
 };

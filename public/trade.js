@@ -479,7 +479,7 @@ var tradeMachine = {
 		
 		// Fetch budget impact partial from server
 		$.ajax({
-			url: '/propose/budget-impact',
+			url: '/trade-machine/budget-impact',
 			method: 'POST',
 			contentType: 'application/json',
 			dataType: 'html',
@@ -766,7 +766,7 @@ var tradeMachine = {
 		$linkSection.addClass('d-none');
 		
 		$.ajax({
-			url: '/propose',
+			url: '/trade-machine',
 			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
@@ -776,7 +776,7 @@ var tradeMachine = {
 			}),
 			success: (response) => {
 				// Redirect to the proposal page
-				window.location.href = '/propose/' + response.proposalId;
+				window.location.href = '/proposals/' + response.proposalId;
 			},
 			error: (xhr) => {
 				restoreActive();
