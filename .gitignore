@@ -3,17 +3,10 @@ vendor/
 node_modules/
 .env
 
-data/colbys.xml
-data/data.xml
-data/scripts/trade-history.json
 
 public/auction/*
 public/data/*
 public/h2h/*
 public/history/*
-public/jaguar/*
-public/rookies/*
 public/simulator/*
-public/sunk
-public/teams/*
 public/trade/*
