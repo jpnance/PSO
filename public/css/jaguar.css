@@ -1,0 +1,129 @@
+/* Jaguar Chart page styles */
+
+/* Header with title and season nav */
+.jaguar__header {
+	margin-bottom: 1rem;
+}
+
+.jaguar__header h1 {
+	margin: 0 0 0.5rem 0;
+}
+
+/* Owner cards grid */
+.owner-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	max-width: 800px;
+}
+
+@media (min-width: 768px) {
+	.owner-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.owner-card--eliminated {
+	opacity: 0.6;
+}
+
+/* Owner table (inside Bootstrap cards) */
+.owner-table {
+	font-size: 0.9rem;
+}
+
+.owner-table td {
+	vertical-align: middle;
+	border-top: 1px solid #eee;
+}
+
+.owner-table tr:first-child td {
+	border-top: none;
+}
+
+.owner-table__opp {
+	color: #495057;
+	padding-left: 0.75rem !important;
+}
+
+.owner-table__total {
+	text-align: right;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	width: 65px;
+}
+
+.owner-table__game-cell {
+	text-align: right;
+	font-size: 0.8rem;
+	white-space: nowrap;
+	width: 70px;
+}
+
+.owner-table__game {
+	display: block;
+	padding: 0.15rem 0.35rem;
+	border-radius: 0.2rem;
+	font-variant-numeric: tabular-nums;
+	color: #6c757d;
+	text-align: center;
+}
+
+.owner-table__game--won {
+	background: #c3e6cb;
+	color: #155724;
+}
+
+.owner-table__game--lost {
+	background: #f5c6cb;
+	color: #721c24;
+}
+
+.owner-table__icon {
+	width: 24px;
+	text-align: center;
+	padding-right: 0.75rem !important;
+}
+
+/* Table row states */
+.owner-table__row--won .owner-table__total,
+.owner-table__row--winning .owner-table__total {
+	color: #28a745;
+}
+
+.owner-table__row--lost .owner-table__total,
+.owner-table__row--losing .owner-table__total {
+	color: #dc3545;
+}
+
+.owner-table__row--won .owner-table__icon {
+	color: #28a745;
+}
+
+.owner-table__row--lost .owner-table__icon {
+	color: #dc3545;
+}
+
+.owner-table__row--winning .owner-table__icon,
+.owner-table__row--losing .owner-table__icon {
+	color: #6c757d;
+}
+
+.owner-table__row--scheduled .owner-table__total {
+	color: #6c757d;
+}
+
+/* Rules lists */
+.jaguar-rules {
+	padding-left: 1.25rem;
+}
+
+.jaguar-rules li {
+	line-height: 1.6;
+	margin-bottom: 0.5rem;
+}
+
+.jaguar-rules li:last-child {
+	margin-bottom: 0;
+}
