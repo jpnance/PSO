@@ -133,8 +133,8 @@ var tradeMachine = {
 	},
 
 	franchiseName: (franchiseId) => {
-		var $franchise = $('select.master-franchise-list option[class=franchises-' + franchiseId + ']');
-		return $franchise.data('name');
+		var franchise = franchiseList.find(f => f.id === franchiseId);
+		return franchise ? franchise.name : 'Unknown';
 	},
 
 	franchisesInvolved: () => {
@@ -148,51 +148,42 @@ var tradeMachine = {
 	},
 
 	pickData: (pickId) => {
-		var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
-		var pickNumberAttr = $pick.attr('data-picknumber');
-		var pickNumber = pickNumberAttr ? parseInt(pickNumberAttr, 10) : null;
-		// Get the franchise ID from the optgroup's class (e.g., "picks-abc123")
-		var optgroupClass = $pick.closest('optgroup').attr('class') || '';
-		var fromFranchiseId = optgroupClass.replace('picks-', '');
-
+		var pick = allPicks.find(p => p.id === pickId);
+		if (!pick) return null;
+		
 		return {
 			type: 'pick',
-			id: pickId,
-			fromFranchiseId: fromFranchiseId,
-			season: parseInt($pick.data('season')),
-			round: parseInt($pick.data('round')),
-			pickNumber: pickNumber,
-			owner: $pick.data('owner'),
-			origin: $pick.data('origin')
+			id: pick.id,
+			fromFranchiseId: pick.ownerId,
+			season: pick.season,
+			round: pick.round,
+			pickNumber: pick.pickNumber || null,
+			owner: pick.owner,
+			origin: pick.origin
 		};
 	},
 
 	playerData: (playerId) => {
-		var $player = $('select.master-player-list option[value="' + playerId + '"]');
-		// Get the franchise ID from the optgroup's class (e.g., "players-abc123")
-		var optgroupClass = $player.closest('optgroup').attr('class') || '';
-		var fromFranchiseId = optgroupClass.replace('players-', '');
-		
-		// Parse positions from comma-separated string
-		var positionsStr = $player.data('positions') || '';
-		var positions = positionsStr ? positionsStr.split(',') : [];
-		
-		// RFA rights use a different type for icon/styling
-		var terms = $player.data('terms');
-		var assetType = (terms === 'rfa-rights') ? 'rfa' : 'player';
-
-		return {
-			type: assetType,
-			id: playerId,
-			fromFranchiseId: fromFranchiseId,
-			name: $player.data('name'),
-			salary: parseInt($player.data('salary')) || 0,
-			contract: $player.data('contract'),
-			contractDisplay: $player.data('contract-display'),
-			terms: terms,
-			recoverable: parseInt($player.data('recoverable')) || 0,
-			positions: positions
-		};
+		// Search all franchises for this player
+		for (var franchiseId in playersByFranchise) {
+			var player = playersByFranchise[franchiseId].find(p => p.id === playerId);
+			if (player) {
+				var assetType = (player.terms === 'rfa-rights') ? 'rfa' : 'player';
+				return {
+					type: assetType,
+					id: player.id,
+					fromFranchiseId: franchiseId,
+					name: player.name,
+					salary: player.salary || 0,
+					contract: player.contract,
+					contractDisplay: player.contractDisplay,
+					terms: player.terms,
+					recoverable: player.recoverable || 0,
+					positions: player.positions || []
+				};
+			}
+		}
+		return null;
 	},
 
 	rebuildPickLists: () => {
@@ -212,17 +203,20 @@ var tradeMachine = {
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (franchiseId !== partyId) {
-					var $optgroup = $('select.master-pick-list optgroup[class=picks-' + franchiseId + ']').clone();
+					// Filter picks owned by this franchise that aren't already in the deal
+					var franchisePicks = allPicks.filter(p => 
+						p.ownerId === franchiseId && !picksInDeal.includes(p.id)
+					);
 					
-					// Remove picks already in the deal
-					$optgroup.find('option').each((j, opt) => {
-						if (picksInDeal.includes($(opt).val())) {
-							$(opt).remove();
-						}
-					});
-					
-					// Only add optgroup if it still has options
-					if ($optgroup.find('option').length > 0) {
+					if (franchisePicks.length > 0) {
+						var franchiseName = tradeMachine.franchiseName(franchiseId);
+						var $optgroup = $('<optgroup>').attr('label', franchiseName + "'s Picks");
+						
+						franchisePicks.forEach((pick) => {
+							var displayText = tradeMachine.formatPickDisplay(pick);
+							$optgroup.append($('<option>').val(pick.id).text(displayText));
+						});
+						
 						$pickList.append($optgroup);
 					}
 				}
@@ -247,17 +241,25 @@ var tradeMachine = {
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (franchiseId !== partyId) {
-					var $optgroup = $('select.master-player-list optgroup[class=players-' + franchiseId + ']').clone();
+					var players = playersByFranchise[franchiseId] || [];
+					var availablePlayers = players.filter(p => !playersInDeal.includes(p.id));
 					
-					// Remove players already in the deal
-					$optgroup.find('option').each((j, opt) => {
-						if (playersInDeal.includes($(opt).val())) {
-							$(opt).remove();
-						}
-					});
-					
-					// Only add optgroup if it still has options
-					if ($optgroup.find('option').length > 0) {
+					if (availablePlayers.length > 0) {
+						var franchiseName = tradeMachine.franchiseName(franchiseId);
+						var $optgroup = $('<optgroup>').attr('label', 'From ' + franchiseName);
+						
+						availablePlayers.forEach((player) => {
+							var displayText = player.name + ' ';
+							if (player.terms === 'unsigned') {
+								displayText += '(' + tradeMachine.formatMoney(player.salary) + ', unsigned)';
+							} else if (player.terms === 'rfa-rights') {
+								displayText += '(RFA rights)';
+							} else {
+								displayText += '(' + tradeMachine.formatMoney(player.salary) + ', ' + player.contract + ')';
+							}
+							$optgroup.append($('<option>').val(player.id).text(displayText));
+						});
+						
 						$playerList.append($optgroup);
 					}
 				}
@@ -274,7 +276,10 @@ var tradeMachine = {
 
 			tradeMachine.franchisesInvolved().forEach((franchiseId) => {
 				if (franchiseId !== partyId) {
-					$franchiseList.append($('select.master-franchise-list option[class=franchises-' + franchiseId + ']').clone());
+					var franchise = franchiseList.find(f => f.id === franchiseId);
+					if (franchise) {
+						$franchiseList.append($('<option>').val(franchise.id).text(franchise.name));
+					}
 				}
 			});
 		});
@@ -605,6 +610,18 @@ var tradeMachine = {
 		return '$' + n.toLocaleString('en-US');
 	},
 
+	formatPickDisplay: (pick) => {
+		var text;
+		if (pick.pickNumber) {
+			var teamsPerRound = (pick.season <= 2011) ? 10 : 12;
+			text = 'Pick ' + tradeMachine.formatPickNumber(pick.pickNumber, teamsPerRound);
+		} else {
+			text = tradeMachine.roundOrdinal(pick.round) + ' round pick';
+		}
+		text += ' in ' + pick.season + ' (' + pick.origin + ')';
+		return text;
+	},
+
 	// Build asset element by cloning template and populating data
 	buildAssetElement: (asset) => {
 		var templateId = 'asset-' + asset.type + '-template';
@@ -818,8 +835,8 @@ $(document).ready(function() {
 			
 			// Add players
 			(bucket.players || []).forEach(function(playerId) {
-				var $player = $('select.master-player-list option[value="' + playerId + '"]');
-				if ($player.length === 0) {
+				var playerData = tradeMachine.playerData(playerId);
+				if (!playerData) {
 					missingAssets.push('player');
 				} else {
 					tradeMachine.addPlayerToDeal(playerId, franchiseId);
@@ -828,8 +845,8 @@ $(document).ready(function() {
 			
 			// Add picks
 			(bucket.picks || []).forEach(function(pickId) {
-				var $pick = $('select.master-pick-list option[value="' + pickId + '"]');
-				if ($pick.length === 0) {
+				var pickData = tradeMachine.pickData(pickId);
+				if (!pickData) {
 					missingAssets.push('pick');
 				} else {
 					tradeMachine.addPickToDeal(pickId, franchiseId);

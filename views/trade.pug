@@ -28,34 +28,6 @@ block content
 	template#alert-banner-template
 		+alertBanner('danger', 'fa-exclamation-circle', '')
 
-	//- Hidden master lists for JavaScript to clone from
-	div.d-none
-		select.master-player-list
-			each franchise in franchises
-				optgroup(class="players-" + franchise._id label="From " + franchise.displayName)
-					each player in teams[franchise._id.toString()]
-						option(value=player.id data-name=player.name data-terms=player.terms data-salary=player.salary data-contract=player.contract data-contract-display=player.contractDisplay data-recoverable=player.recoverable data-positions=(player.positions ? player.positions.join(',') : ''))
-							| #{player.name}
-							|  
-							if player.terms == 'unsigned'
-								| (#{formatMoney(player.salary)}, unsigned)
-							else if player.terms == 'rfa-rights'
-								| (RFA rights)
-							else
-								| (#{formatMoney(player.salary)}, #{player.contract})
-
-		select.master-pick-list
-			each franchise in franchises
-				optgroup(class="picks-" + franchise._id label=franchise.displayName + "'s Picks")
-					each pick in picks
-						if pick.ownerId == franchise._id.toString()
-							option(value=pick.id data-season=pick.season data-round=pick.round data-picknumber=(pick.pickNumber || '') data-owner=pick.owner data-origin=pick.origin)
-								| #{formatPickDisplay(pick)}
-
-		select.master-franchise-list
-			each franchise in franchises
-				option(class="franchises-" + franchise._id value=franchise._id data-name=franchise.displayName) #{franchise.displayName}
-
 	div.container.py-4.trade-machine
 		h1.mb-4= isProcessingMode ? 'Process Trade' : 'Trade Machine'
 
@@ -194,4 +166,9 @@ block scripts
 		var initialDeal = !{initialDeal ? JSON.stringify(initialDeal) : 'null'};
 		var franchiseData = {};
 		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { rosterCount: " + f.rosterCount + ", available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
+		
+		// JSON data for Trade Machine (replaces hidden DOM selects)
+		var playersByFranchise = !{JSON.stringify(teams)};
+		var allPicks = !{JSON.stringify(picks)};
+		var franchiseList = !{JSON.stringify(franchises.map(function(f) { return { id: f._id.toString(), name: f.displayName }; }))};
 	script(src='/trade.js')
