@@ -5,7 +5,7 @@
       <stop stop-color="#aa0000" offset="80%"/>
     </radialGradient>
   </defs>
-  <circle cx="50" cy="50" r="48" fill="url(#g)"/>
-  <path d="M 42,16 A 8 4 0 0 1 58,16 L 54,56 A 4 3 0 0 1 46,56 Z" fill="white"/>
-  <circle cx="50" cy="78" r="8" fill="white"/>
+  <circle cx="50" cy="50" r="50" fill="url(#g)"/>
+  <path d="M 42,16 A 8 4 0 0 1 58,16 L 54,56 A 4 3 0 0 1 46,56 Z" fill="white" transform="translate(0, 4)"/>
+  <circle cx="50" cy="75" r="8" fill="white"/>
 </svg>
