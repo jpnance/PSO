@@ -233,7 +233,7 @@ Visit `/components` to see a live showcase of all mixins and design tokens.
 
 | Feature | Route | Model/Service |
 |---------|-------|---------------|
-| Trade Machine | `/trade-machine` | `proposals/service.js` |
+| Trade Machine | `/trade-machine` | `services/proposals.js` |
 | Proposals (in-flight) | `/proposals/:slug` | `Proposal` model |
 | Trade History | `/trades` | `Transaction` model (executed trades) |
 | Single Trade | `/trades/:id` | `Transaction` model |
