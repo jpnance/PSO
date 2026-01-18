@@ -45,7 +45,7 @@
 - [ ] Integrate `/history` into the new setup *(navbar is easy; polish is not)*
 - [ ] Integrate `/h2h` into the new setup *(navbar is easy; polish is not)*
 - [x] Integrate `/jaguar` into the new setup
-- [ ] Integrate `/simulator` into the new setup *(navbar is easy; polish is not)*
+- [ ] Integrate `/simulator` into the new setup *(already responsive, may be close)*
 
 ### Trading & Transactions
 - [ ] Extract `buildValidationParties(deal)` helper — same "deal → parties with contract lookups" logic exists in 3 places
