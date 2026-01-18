@@ -20,12 +20,8 @@ node seasonSummaries.js
 node weeklyScoringTitles.js
 cd ../..
 
-cd h2h
-mkdir -p ../public/h2h
-node index.js render
-cd ..
+mkdir -p public/h2h
+node generators/h2h.js render
 
-cd history
-mkdir -p ../public/history
-node index.js render
-cd ..
+mkdir -p public/history
+node generators/history.js render

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node note/rpo.js
+docker compose run --rm web node tools/note/rpo.js

@@ -1,6 +1,6 @@
 /**
  * Test suite to verify the new standings logic matches the legacy logic
- * Run with: docker compose exec web node jaguar/test-standings.js
+ * Run with: docker compose exec web node tests/jaguar-standings.js
  */
 
 var dotenv = require('dotenv').config({ path: '/app/.env' });

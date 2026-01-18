@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
-const PSO = require('../config/pso');
+const PSO = require('../../config/pso');
 
 let extraCompletions = [];
 
@@ -27,7 +27,7 @@ const rl = readline.createInterface({
 
 const initializeSleeperPlayers = () => {
 	const relevantFantasyPositions = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
-	const sleeperPlayers = require('../public/data/sleeper-data.json');
+	const sleeperPlayers = require('../../public/data/sleeper-data.json');
 
 	return Object.values(sleeperPlayers).filter((sleeperPlayer) => sleeperPlayer.active && sleeperPlayer.fantasy_positions?.every((fantasyPosition) => relevantFantasyPositions.includes(fantasyPosition)));
 };

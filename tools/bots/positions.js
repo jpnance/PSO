@@ -2,7 +2,7 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var request = require('superagent');
 
-var PSO = require('../config/pso.js');
+var PSO = require('../../config/pso.js');
 
 const siteData = {
 	pso: {
@@ -36,7 +36,7 @@ process.argv.forEach(function(value, index, array) {
 
 function newSleeperJsonPromise(players) {
 	return new Promise(function(resolve, reject) {
-		var sleeperData = Object.values(require('../public/data/sleeper-data.json')).filter((sleeperPlayerData) => sleeperPlayerData.active);
+		var sleeperData = Object.values(require('../../public/data/sleeper-data.json')).filter((sleeperPlayerData) => sleeperPlayerData.active);
 
 		var mergedPlayers = [];
 

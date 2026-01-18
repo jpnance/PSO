@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node scheduler/index.js
+docker compose run --rm web node tools/scheduler.js

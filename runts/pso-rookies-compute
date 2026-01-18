@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node rookies/compute.js
+docker compose run --rm web node tools/rookies.js

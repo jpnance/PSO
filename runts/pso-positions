@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node bots/positions.js site=pso
+docker compose run --rm web node tools/bots/positions.js site=pso

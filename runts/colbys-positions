@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node bots/positions.js site=colbys
+docker compose run --rm web node tools/bots/positions.js site=colbys

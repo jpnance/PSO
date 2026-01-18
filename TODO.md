@@ -70,7 +70,7 @@
 - [ ] 3-party trades (3 total): Manually supply original owner data
 
 **Code changes:**
-- [ ] Update `processTrade` in `transaction/service.js` to persist `originalOwners` (already computed at line 607-629, just not saved)
+- [ ] Update `processTrade` in `services/transaction.js` to persist `originalOwners` (already computed at line 607-629, just not saved)
 - [ ] Create `rollbackTrade` function:
   - Restore each asset to its `originalFranchiseId`
   - Negate budget deltas (payroll, recoverable, cashIn, cashOut, available)
@@ -111,7 +111,7 @@
 
 ### Infrastructure & Technical
 - [ ] Figure out a better way to structure database reports
-- [ ] Clean up directory structure
+- [x] Clean up directory structure
 - [ ] Refactor formatContractDisplay to handle RFA rights and unsigned cases (remove || 0 coercion and manual checks)
 - [ ] Add generic error pages (404, 500, etc.)
 - [ ] Consider E2E testing with Playwright
@@ -130,12 +130,17 @@
 ### Misc Ideas
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
 - [ ] Consider having roles specific to PSO ("commish", "podcast host")
-- [ ] Bring PSO Show podcast notes into the 21st century
+- [ ] Bring PSO Show podcast notes to the website (`tools/note/` → web feature)
 - [ ] Consider a better schedule generation experience
-- [ ] Fantasy prep tools improvements (maybe separate from PSO?)
+- [ ] Fantasy prep tools as web interface (`prep/` → could feed into auction/draft clients)
+- [ ] Projections page — show preseason game predictions (`tools/projections.js` → web page)
 - [ ] Get a real league logo
 - [ ] Implement a simple blog feature
 - [ ] Figure out how to support Colbys basketball league
+
+### Dragons (complex rewrites, no timeline)
+- [ ] Tame the simulator (`simulator/` — part CLI, part HTML generator, part JSON generator)
+- [ ] Auction app overhaul (`auction/` — needs Login integration, general cleanup)
 
 ### Needs Discussion
 - [ ] Trade TTL edge cases: What happens when someone withdraws acceptance but trade is past TTL? Should any action on a trade renew its TTL? Think through pending trade lifecycle more carefully.

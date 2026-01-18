@@ -2,7 +2,7 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var request = require('superagent');
 
-var PSO = require('../config/pso.js');
+var PSO = require('../../config/pso.js');
 
 var newFantraxPromise = function(fantraxId) {
 	return new Promise(function(resolve, reject) {

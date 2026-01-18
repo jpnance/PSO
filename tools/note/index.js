@@ -3,9 +3,9 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 var fs = require('fs');
 var request = require('superagent');
 
-var PSO = require('../config/pso.js');
-var Game = require('../models/Game');
-var Leaders = require('../models/Leaders');
+var PSO = require('../../config/pso.js');
+var Game = require('../../models/Game');
+var Leaders = require('../../models/Leaders');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
@@ -169,7 +169,7 @@ Promise.all(dataPromises).then(function(values) {
 	});
 
 	if (week > 7) {
-		var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
+		var percentagesData = JSON.parse(fs.readFileSync('../../public/data/percentages.json', 'utf8'));
 
 		Object.keys(percentagesData).forEach(franchiseId => {
 			['playoffs', 'decision'].forEach((outcome) => {

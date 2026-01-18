@@ -2,14 +2,14 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var fs = require('fs');
 
-var PSO = require('../config/pso.js');
-var Game = require('../models/Game');
+var PSO = require('../../config/pso.js');
+var Game = require('../../models/Game');
 
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
-var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
+var percentagesData = JSON.parse(fs.readFileSync('../../public/data/percentages.json', 'utf8'));
 
 var week = parseInt(process.argv[2]);
 

@@ -9,4 +9,4 @@
 # Daily proposal cleanup (4:30am)
 30 4 * * * /usr/local/bin/node /app/data/maintenance/cleanup-proposals.js
 
-#0 17 * * * /usr/local/bin/node /app/bots/starts.js
+#0 17 * * * /usr/local/bin/node /app/tools/bots/starts.js

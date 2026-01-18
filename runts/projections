@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node projections/index.js
+docker compose run --rm web node tools/projections.js
