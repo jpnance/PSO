@@ -18,7 +18,7 @@ block content
 			div.col-lg-8
 				div.card.mb-4
 					div.card-header
-						strong Roster
+						| Roster
 						span.badge.badge-secondary.ml-2= franchise.rosterCount + '/' + rosterLimit
 					-
 						function salaryForYear(player, year) {
@@ -80,8 +80,7 @@ block content
 			
 			div.col-lg-4
 				div.card.mb-4
-					div.card-header
-						strong Budget
+					div.card-header Budget
 					- var b = franchise.budgets
 					table.table.table-sm.mb-0.budget-table
 						thead.table-secondary
@@ -136,7 +135,7 @@ block content
 				if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
 					div.card.mb-4
 						div.card-header
-							strong RFA Rights
+							| RFA Rights
 							span.badge.badge-secondary.ml-2= franchise.rfaRights.length
 						table.table.table-sm.mb-0.rfa-table
 							tbody
@@ -146,8 +145,7 @@ block content
 										td.text-right.text-muted= sortedPositions(player.positions).join('/')
 				
 				div.card.mb-4
-					div.card-header
-						strong Draft Picks
+					div.card-header Draft Picks
 					- var availablePicks = franchise.picks.filter(p => p.status === 'available')
 					- var picksBySeason = {}
 					- availablePicks.forEach(p => { if (!picksBySeason[p.season]) picksBySeason[p.season] = []; picksBySeason[p.season].push(p); })
@@ -184,8 +182,7 @@ block content
 						p.text-muted.mb-3.ml-3 No picks data
 				
 				div.card.mb-4
-					div.card-header
-						strong Franchise History
+					div.card-header Franchise History
 					if franchise.regimes && franchise.regimes.length > 0
 						table.table.table-sm.mb-0.history-table
 							tbody
