@@ -151,8 +151,8 @@ if (process.env.NODE_ENV == 'dev') {
 	var https = require('https');
 
 	var options = {
-		key: fs.readFileSync('../ssl/coinflipper-key.pem'),
-		cert: fs.readFileSync('../ssl/coinflipper.pem'),
+		key: fs.readFileSync('./ssl/pso-key.pem'),
+		cert: fs.readFileSync('./ssl/pso.pem'),
 		requestCert: false,
 		rejectUnauthorized: false
 	};

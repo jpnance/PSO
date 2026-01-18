@@ -1,7 +1,8 @@
 *.swp
+.env
 vendor/
 node_modules/
-.env
+ssl/*.pem
 
 
 public/auction/*
