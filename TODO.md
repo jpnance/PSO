@@ -42,10 +42,10 @@
 - [ ] Schedule/results page (maybe special case of `/history`?) ⚡ *quick win*
 
 ### Migrations (existing features → new setup)
-- [ ] Integrate `/history` into the new setup ⚡ *quick win - already works*
-- [ ] Integrate `/h2h` into the new setup ⚡ *quick win - already works*
-- [x] Integrate `/jaguar` into the new setup ⚡ *quick win - already works*
-- [ ] Integrate `/simulator` into the new setup ⚡ *quick win - already works*
+- [ ] Integrate `/history` into the new setup *(navbar is easy; polish is not)*
+- [ ] Integrate `/h2h` into the new setup *(navbar is easy; polish is not)*
+- [x] Integrate `/jaguar` into the new setup
+- [ ] Integrate `/simulator` into the new setup *(navbar is easy; polish is not)*
 
 ### Trading & Transactions
 - [ ] Extract `buildValidationParties(deal)` helper — same "deal → parties with contract lookups" logic exists in 3 places
