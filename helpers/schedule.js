@@ -2,7 +2,7 @@
 // Shows current week's games (upcoming or results)
 
 var Game = require('../models/Game');
-var PSO = require('../pso');
+var PSO = require('../config/pso');
 
 // Get schedule data for the widget
 async function getScheduleWidget(season, phase, cutDay) {

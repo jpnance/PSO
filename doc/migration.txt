@@ -28,13 +28,13 @@ The following collections are PRESERVED (pre-existing data):
 
 Player Resolution
 -----------------
-Several steps use data/scripts/player-resolutions.json to map player names
+Several steps use data/config/player-resolutions.json to map player names
 to Sleeper IDs (or mark them as historical players). This file is tracked in
 git and contains cached resolutions from previous runs. Interactive prompts
 only appear for names not already resolved.
 
 If you need to rebuild the resolutions file from scratch:
-   docker compose run --rm web node data/scripts/extractPlayerResolutions.js
+   docker compose run --rm web node data/utils/extract-player-resolutions.js
 
 After running the migration, commit any changes to player-resolutions.json
 so future runs don't re-prompt for the same players.
@@ -78,7 +78,7 @@ To apply fixups independently (after reset-migration or anytime):
    runt apply-fixups
    runt apply-fixups --dry-run
 
-Edit data/scripts/fixups.json to add/modify corrections:
+Edit data/config/fixups.json to add/modify corrections:
 
    franchiseTransfer:     Transfer ownership to new owner
    seasonRollover:        Advance season with draft order + date overrides

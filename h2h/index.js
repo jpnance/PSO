@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
-var PSO = require('../pso.js');
+var PSO = require('../config/pso.js');
 
 var headToHead = {};
 

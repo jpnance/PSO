@@ -3,7 +3,7 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 var fs = require('fs');
 var request = require('superagent');
 
-var PSO = require('../pso.js');
+var PSO = require('../config/pso.js');
 var Game = require('../models/Game');
 var Leaders = require('../models/Leaders');
 

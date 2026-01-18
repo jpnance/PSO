@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node data/scripts/seedBudgets.js
+docker compose run --rm web node data/seed/budgets.js

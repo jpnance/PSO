@@ -5,7 +5,7 @@ block title
 	+title('Trade Machine')
 
 block styles
-	link(rel='stylesheet' href='/trade.css')
+	link(rel='stylesheet' href='/css/trade.css')
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
 
@@ -171,4 +171,4 @@ block scripts
 		var playersByFranchise = !{JSON.stringify(teams)};
 		var allPicks = !{JSON.stringify(picks)};
 		var franchiseList = !{JSON.stringify(franchises.map(function(f) { return { id: f._id.toString(), name: f.displayName }; }))};
-	script(src='/trade.js')
+	script(src='/js/trade.js')

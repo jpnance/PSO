@@ -4,9 +4,9 @@ cd /app
 
 SEASON=$(grep SEASON .env | sed -E "s/SEASON=//")
 
-cd data
-node index.js $SEASON
-cd scripts
+cd data/fetch
+node games.js $SEASON
+cd ../analysis
 node championships.js
 node highestScoringLosses.js
 node lowestScoringWins.js
@@ -18,8 +18,7 @@ node regularSeasonWins.js
 node regularSeasonAllPlay.js
 node seasonSummaries.js
 node weeklyScoringTitles.js
-cd ..
-cd ..
+cd ../..
 
 cd h2h
 mkdir -p ../public/h2h

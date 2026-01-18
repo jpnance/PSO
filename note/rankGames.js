@@ -2,7 +2,7 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var fs = require('fs');
 
-var PSO = require('../pso.js');
+var PSO = require('../config/pso.js');
 var Game = require('../models/Game');
 
 var mongoose = require('mongoose');

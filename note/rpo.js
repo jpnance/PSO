@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
-const PSO = require('../pso');
+const PSO = require('../config/pso');
 
 let extraCompletions = [];
 

@@ -2,7 +2,7 @@ var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var request = require('superagent');
 
-var PSO = require('../pso.js');
+var PSO = require('../config/pso.js');
 
 var template = [
 	[ [1, 2], [3, 4], [5, 8], [6, 7], [9, 12], [10, 11] ], // pod

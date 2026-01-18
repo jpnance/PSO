@@ -4,7 +4,7 @@ var request = require('superagent');
 
 var players = require('../public/data/players.json');
 
-var PSO = require('../pso.js');
+var PSO = require('../config/pso.js');
 
 var season = process.env.SEASON;
 var sleeperLeagueId = PSO.sleeperLeagueIds[season];

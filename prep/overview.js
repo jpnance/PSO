@@ -18,7 +18,7 @@ var dotenv = require('dotenv').config({ path: '../.env' });
 var fs = require('fs');
 var request = require('superagent');
 
-var PSO = require('../pso.js');
+var PSO = require('../config/pso.js');
 
 const siteData = {
 	pso: {

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./data/scripts/resetMigration.sh
+./data/maintenance/reset-migration.sh

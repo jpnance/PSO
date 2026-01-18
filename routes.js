@@ -1,18 +1,18 @@
-var auction = require('./auction/service.js');
-var jaguar = require('./jaguar/service.js');
-var simulator = require('./simulator/service.js');
-var scuttlebot = require('./scuttlebot/service.js');
-var league = require('./league/service.js');
-var admin = require('./admin/service.js');
-var adminPlayers = require('./admin/players.js');
-var adminTrades = require('./admin/trades.js');
-var draft = require('./draft/service.js');
-var trades = require('./trades/service.js');
-var proposals = require('./proposals/service.js');
-var calendar = require('./calendar/service.js');
-var rookies = require('./rookies/service.js');
-var auth = require('./auth/service.js');
-var { requireLogin, requireAdmin } = require('./auth/middleware.js');
+var auction = require('./services/auction');
+var jaguar = require('./services/jaguar');
+var simulator = require('./services/simulator');
+var scuttlebot = require('./services/scuttlebot');
+var league = require('./services/league');
+var admin = require('./services/admin');
+var adminPlayers = require('./services/admin-players');
+var adminTrades = require('./services/admin-trades');
+var draft = require('./services/draft');
+var trades = require('./services/trades');
+var proposals = require('./services/proposals');
+var calendar = require('./services/calendar');
+var rookies = require('./services/rookies');
+var auth = require('./services/auth');
+var { requireLogin, requireAdmin } = require('./middleware/auth');
 
 // Middleware to prevent caching of dynamic partials
 function noCache(req, res, next) {

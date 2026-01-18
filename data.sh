@@ -2,9 +2,9 @@
 
 cd /app
 
-cd data
-mkdir -p ../public/data
-node schedule.js > ../public/data/schedule.json
-node cash.js > ../public/data/cash.json
-node players.js > ../public/data/players.json
-node picks.js > ../public/data/picks.json
+cd data/fetch
+mkdir -p ../../public/data
+node schedule.js > ../../public/data/schedule.json
+node cash.js > ../../public/data/cash.json
+node players.js > ../../public/data/players.json
+node picks.js > ../../public/data/picks.json

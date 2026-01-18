@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var formatPick = require('./helpers/formatPick');
 var viewHelpers = require('./helpers/view');
 var navHelpers = require('./helpers/nav');
-var { attachSession } = require('./auth/middleware');
+var { attachSession } = require('./middleware/auth');
 var app = express();
 
 app.use(bodyParser.json());
@@ -172,7 +172,7 @@ else {
 var ws = require('ws');
 var wss = new ws.WebSocketServer({ server: server });
 
-var auction = require('./auction/service');
+var auction = require('./services/auction');
 wss.on('connection', auction.handleConnection);
 
 // Graceful shutdown

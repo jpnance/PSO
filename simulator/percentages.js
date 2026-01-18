@@ -1,5 +1,5 @@
 var fs = require('fs');
-var PSO = require('../pso');
+var PSO = require('../config/pso');
 
 if (process.argv.length < 3) {
 	console.log('Invalid week');

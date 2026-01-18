@@ -19,7 +19,7 @@ var Player = require('../models/Player');
 var Budget = require('../models/Budget');
 var LeagueConfig = require('../models/LeagueConfig');
 
-var transactionService = require('./service');
+var transactionService = require('../services/transaction');
 
 // Use a separate test database to avoid polluting dev/prod data
 function getTestDbUri() {
