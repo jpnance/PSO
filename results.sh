@@ -30,8 +30,3 @@ cd history
 mkdir -p ../public/history
 node index.js render
 cd ..
-
-cd jaguar
-mkdir -p ../public/jaguar
-node index.js render
-cd ..
