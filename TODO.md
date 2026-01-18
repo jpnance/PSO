@@ -44,7 +44,7 @@
 ### Migrations (existing features → new setup)
 - [ ] Integrate `/history` into the new setup ⚡ *quick win - already works*
 - [ ] Integrate `/h2h` into the new setup ⚡ *quick win - already works*
-- [ ] Integrate `/jaguar` into the new setup ⚡ *quick win - already works*
+- [x] Integrate `/jaguar` into the new setup ⚡ *quick win - already works*
 - [ ] Integrate `/simulator` into the new setup ⚡ *quick win - already works*
 
 ### Trading & Transactions
@@ -144,6 +144,19 @@
 
 ## Recently Completed
 *Keep a short log for context and momentum.*
+
+### Jan 17, 2026
+- Franchise Timeline: New page (`/timeline`) — Wikipedia-style ownership history chart
+- Franchise Timeline: CSS Grid visualization with 12×12px cells, 1px gaps
+- Franchise Timeline: Legend highlights matching franchise cells on hover
+- Franchise Timeline: Mobile-friendly with horizontal scroll and legend above chart
+- Franchise Timeline: Added to History & Results nav section
+- Jaguar Chart: Migrated to new layout system with `+seasonNav` component
+- Jaguar Chart: Redesigned as mobile-responsive 2x2 owner card grid (no horizontal scrolling)
+- Jaguar Chart: Each card shows opponent matchups with individual game differentials and totals
+- Jaguar Chart: Added test suite validating standings logic against 14 seasons of historical data
+- Jaguar Chart: Cleaned up CSS from 735 lines to 115 lines (removed unused mockup styles)
+- Position badges: Added `white-space: nowrap` and `flex-shrink: 0` to prevent text wrapping on mobile
 
 ### Jan 16, 2026
 - Trade Machine: Added `?from=<proposal-slug>` API to pre-populate from existing proposal
