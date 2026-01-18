@@ -55,7 +55,7 @@ block content
 			//- Trade list view with pill filters
 			- function toggle(id, ids) { return ids.includes(id) ? ids.filter(x => x !== id) : ids.concat(id); }
 			//- Build query string preserving all selections
-			- function buildQuery(people, regimes, franchises, showPast, showPastR) { var parts = []; if (people.length) parts.push('people=' + people.join(',')); if (regimes.length) parts.push('regimes=' + regimes.join(',')); if (franchises.length) parts.push('franchises=' + franchises.join(',')); if (showPast) parts.push('showPast=1'); if (showPastR) parts.push('showPastRegimes=1'); return parts.length ? '?' + parts.join('&') : ''; }
+			- function buildQuery(people, regimes, franchises, showPastPeople, showPastRegimes) { var parts = []; if (people.length) parts.push('people=' + people.join(',')); if (regimes.length) parts.push('regimes=' + regimes.join(',')); if (franchises.length) parts.push('franchises=' + franchises.join(',')); if (showPastPeople) parts.push('showPastPeople=1'); if (showPastRegimes) parts.push('showPastRegimes=1'); return parts.length ? '?' + parts.join('&') : ''; }
 			- var hasAnyFilter = filterPeople.length > 0 || filterRegimes.length > 0 || filterFranchises.length > 0
 			- var baseQuery = buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes)
 				

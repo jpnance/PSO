@@ -541,14 +541,14 @@ async function tradeHistory(request, response) {
 	// Parse query params
 	// null page means "show last 2 pages merged" for a fuller default view
 	var page = request.query.page ? parseInt(request.query.page, 10) : null;
-	var perPage = request.query.per === 'all' ? null : (parseInt(request.query.per, 10) || 10);
+	var perPage = 10;
 	var isDefaultView = (page === null);
 	
 	// Multi-select filtering
 	var filterFranchises = request.query.franchises ? request.query.franchises.split(',').filter(Boolean) : [];
 	var filterPeople = request.query.people ? request.query.people.split(',').filter(Boolean) : [];
 	var filterRegimes = request.query.regimes ? request.query.regimes.split(',').filter(Boolean) : [];
-	var showPastPeople = request.query.showPast === '1';
+	var showPastPeople = request.query.showPastPeople === '1';
 	var showPastRegimes = request.query.showPastRegimes === '1';
 	
 	// Fetch all filter data
