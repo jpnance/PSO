@@ -210,9 +210,10 @@ Game.find().sort({ season: 1, week: 1 }).then(games => {
 
 		if (render) {
 			var fs = require('fs');
+			var path = require('path');
 			var pug = require('pug');
-			var compiledPug = pug.compileFile('../views/history.pug');
-			fs.writeFileSync('../public/history/index.html', compiledPug({ franchises: franchises, history: history, owners: owners, leaders: leaders, stats: stats }));
+			var compiledPug = pug.compileFile(path.join(__dirname, '../views/history.pug'));
+			fs.writeFileSync(path.join(__dirname, '../public/history/index.html'), compiledPug({ franchises: franchises, history: history, owners: owners, leaders: leaders, stats: stats }));
 		}
 
 		process.exit();

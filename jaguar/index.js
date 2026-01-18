@@ -203,9 +203,10 @@ Game.find({
 
 	if (render) {
 		var fs = require('fs');
+		var path = require('path');
 		var pug = require('pug');
-		var compiledPug = pug.compileFile('../views/jaguar.pug');
-		fs.writeFileSync('../public/jaguar/index.html', compiledPug({ defaultSeason: process.env.SEASON, seasons: seasons }));
+		var compiledPug = pug.compileFile(path.join(__dirname, '../views/jaguar.pug'));
+		fs.writeFileSync(path.join(__dirname, '../public/jaguar/index.html'), compiledPug({ defaultSeason: process.env.SEASON, seasons: seasons }));
 	}
 	else {
 		console.log(JSON.stringify(seasons, null, "\t"));

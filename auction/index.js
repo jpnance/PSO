@@ -109,16 +109,17 @@ request
 
 		if (parameters.render) {
 			var fs = require('fs');
+			var path = require('path');
 			var pug = require('pug');
-			var compiledPug = pug.compileFile('../views/auction.pug');
-			fs.writeFileSync('../public/auction/index.html', compiledPug({
+			var compiledPug = pug.compileFile(path.join(__dirname, '../views/auction.pug'));
+			fs.writeFileSync(path.join(__dirname, '../public/auction/index.html'), compiledPug({
 				owners: JSON.parse(process.env.NOMINATION_ORDER),
 				referenceSite: siteData[parameters.site].referenceSite,
 				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
 
-			var compiledPugAdmin = pug.compileFile('../views/auction-admin.pug');
-			fs.writeFileSync('../public/auction/admin.html', compiledPugAdmin({
+			var compiledPugAdmin = pug.compileFile(path.join(__dirname, '../views/auction-admin.pug'));
+			fs.writeFileSync(path.join(__dirname, '../public/auction/admin.html'), compiledPugAdmin({
 				players: players,
 				positions: positions,
 				situations: situations,

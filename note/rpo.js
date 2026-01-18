@@ -16,6 +16,7 @@ const completer = (line) => {
 };
 
 const fs = require('fs');
+const path = require('path');
 const readline = require('readline');
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -114,7 +115,7 @@ rl.on('line', (line) => {
 			break;
 
 		case 'save':
-			fs.writeFileSync('./rpo-data.json', JSON.stringify(rpos, null, '\t'));
+			fs.writeFileSync(path.join(__dirname, './rpo-data.json'), JSON.stringify(rpos, null, '\t'));
 			break;
 
 		case 'selector':

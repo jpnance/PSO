@@ -1,57 +1,61 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
-const PSO = require('../../config/pso');
 
-Game.mapReduce({
-	map: function() {
-		let winner, loser;
+// Regime mapping: normalize historical franchise names
+const regimeMapping = {
+	'Brett/Luke': 'Luke',
+	'Jake/Luke': 'Luke',
+	'James/Charles': 'Charles',
+	'John/Zach': 'John',
+	'Koci': 'Koci/Mueller',
+	'Mitch/Mike': 'Mitch',
+	'Pat/Quinn': 'Patrick',
+	'Schex/Jeff': 'Schex',
+	'Syed/Kuan': 'Syed',
+	'Syed/Terence': 'Syed'
+};
 
-		if (this.away.score > this.home.score) {
-			winner = this.away;
-			loser = this.home;
+const regimeSwitchBranches = Object.entries(regimeMapping).map(([from, to]) => ({
+	case: { $eq: ['$winner.name', from] },
+	then: to
+}));
+
+Game.aggregate([
+	{
+		$match: {
+			type: 'regular',
+			'away.score': { $exists: true },
+			'home.score': { $exists: true }
 		}
-		else if (this.home.score > this.away.score) {
-			winner = this.home;
-			loser = this.away;
+	},
+	{
+		$addFields: {
+			regimeKey: {
+				$switch: {
+					branches: regimeSwitchBranches,
+					default: '$winner.name'
+				}
+			}
 		}
-
-		const key = regimes[this.winner.name] || this.winner.name;
-
-		emit(key, 1);
 	},
-
-	reduce: function(key, results) {
-		var wins = 0;
-
-		results.forEach(result => {
-			wins += result;
-		});
-
-		return wins;
+	{
+		$group: {
+			_id: '$regimeKey',
+			value: { $sum: 1 }
+		}
 	},
-
-	out: 'regularSeasonWins',
-
-	query: {
-		type: 'regular',
-		'away.score': { '$exists': true },
-		'home.score': { '$exists': true }
-	},
-
-	sort: {
-		season: 1,
-		week: 1
-	},
-
-	scope: {
-		regimes: PSO.regimes
+	{
+		$out: 'regularSeasonWins'
 	}
-}).then((data) => {
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });

@@ -64,9 +64,10 @@ Game.find({ type: 'regular' }).sort({ season: 1, week: 1 }).then(games => {
 
 	if (render) {
 		var fs = require('fs');
+		var path = require('path');
 		var pug = require('pug');
-		var compiledPug = pug.compileFile('../views/h2h.pug');
-		fs.writeFileSync('../public/h2h/index.html', compiledPug({ franchises: PSO.franchises, headToHead: headToHead }));
+		var compiledPug = pug.compileFile(path.join(__dirname, '../views/h2h.pug'));
+		fs.writeFileSync(path.join(__dirname, '../public/h2h/index.html'), compiledPug({ franchises: PSO.franchises, headToHead: headToHead }));
 	}
 
 	mongoose.disconnect();

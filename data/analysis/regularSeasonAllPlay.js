@@ -1,47 +1,80 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
 
-Game.mapReduce({
-	map: function() {
-		var finalWeek = 15;
-
-		if (this.season <= 2021) {
-			finalWeek = 14;
+Game.aggregate([
+	{
+		$match: {
+			type: 'regular',
+			'away.score': { $exists: true },
+			'home.score': { $exists: true }
 		}
-
-		if (this.week != finalWeek) {
-			return;
+	},
+	// Filter to final week only (week 15, or week 14 for 2021 and earlier)
+	{
+		$match: {
+			$expr: {
+				$eq: [
+					'$week',
+					{ $cond: [{ $lte: ['$season', 2021] }, 14, 15] }
+				]
+			}
 		}
-
-		var awayAllPlayPct = this.away.record.allPlay.cumulative.wins / (this.away.record.allPlay.cumulative.wins + this.away.record.allPlay.cumulative.losses);
-		var homeAllPlayPct = this.home.record.allPlay.cumulative.wins / (this.home.record.allPlay.cumulative.wins + this.home.record.allPlay.cumulative.losses);
-
-		emit(`${this.season} ${this.home.name}`, { wins: this.home.record.allPlay.cumulative.wins, losses: this.home.record.allPlay.cumulative.losses, ties: this.home.record.allPlay.cumulative.ties, winPct: homeAllPlayPct });
-		emit(`${this.season} ${this.away.name}`, { wins: this.away.record.allPlay.cumulative.wins, losses: this.away.record.allPlay.cumulative.losses, ties: this.away.record.allPlay.cumulative.ties, winPct: awayAllPlayPct });
 	},
-
-	reduce: function(key, results) {
-		return results[0];
+	// Create entries for both home and away teams
+	{
+		$project: {
+			entries: [
+				{
+					key: { $concat: [{ $toString: '$season' }, ' ', '$home.name'] },
+					wins: '$home.record.allPlay.cumulative.wins',
+					losses: '$home.record.allPlay.cumulative.losses',
+					ties: '$home.record.allPlay.cumulative.ties'
+				},
+				{
+					key: { $concat: [{ $toString: '$season' }, ' ', '$away.name'] },
+					wins: '$away.record.allPlay.cumulative.wins',
+					losses: '$away.record.allPlay.cumulative.losses',
+					ties: '$away.record.allPlay.cumulative.ties'
+				}
+			]
+		}
 	},
-
-	out: 'regularSeasonAllPlay',
-
-	query: {
-		type: 'regular',
-		'away.score': { '$exists': true },
-		'home.score': { '$exists': true }
+	{ $unwind: '$entries' },
+	{
+		$project: {
+			_id: '$entries.key',
+			value: {
+				wins: '$entries.wins',
+				losses: '$entries.losses',
+				ties: '$entries.ties',
+				winPct: {
+					$divide: [
+						'$entries.wins',
+						{ $add: ['$entries.wins', '$entries.losses'] }
+					]
+				}
+			}
+		}
 	},
-
-	sort: {
-		season: 1,
-		week: 1
+	// Group to deduplicate (each team appears once per final week)
+	{
+		$group: {
+			_id: '$_id',
+			value: { $first: '$value' }
+		}
 	},
-}).then((data) => {
+	{
+		$out: 'regularSeasonAllPlay'
+	}
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });

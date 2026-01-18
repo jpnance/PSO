@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var PSO = require('../config/pso');
 
 if (process.argv.length < 3) {
@@ -226,5 +227,5 @@ Object.keys(franchiseData).forEach(franchiseId => {
 	});
 });
 
-fs.writeFileSync('../public/data/percentages.json', JSON.stringify(franchiseData));
+fs.writeFileSync(path.join(__dirname, '../public/data/percentages.json'), JSON.stringify(franchiseData));
 //console.log(JSON.stringify(franchiseData, null, '    '));

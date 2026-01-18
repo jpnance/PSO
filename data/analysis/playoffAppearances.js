@@ -1,46 +1,64 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
-const PSO = require('../../config/pso');
 
-Game.mapReduce({
-	map: function() {
-		const awayKey = regimes[this.away.name] || this.away.name;
-		const homeKey = regimes[this.home.name] || this.home.name;
+// Regime mapping: normalize historical franchise names
+const regimeMapping = {
+	'Brett/Luke': 'Luke',
+	'Jake/Luke': 'Luke',
+	'James/Charles': 'Charles',
+	'John/Zach': 'John',
+	'Koci': 'Koci/Mueller',
+	'Mitch/Mike': 'Mitch',
+	'Pat/Quinn': 'Patrick',
+	'Schex/Jeff': 'Schex',
+	'Syed/Kuan': 'Syed',
+	'Syed/Terence': 'Syed'
+};
 
-		emit(awayKey, 1);
-		emit(homeKey, 1);
+function regimeSwitch(field) {
+	const branches = Object.entries(regimeMapping).map(([from, to]) => ({
+		case: { $eq: [field, from] },
+		then: to
+	}));
+	return { $switch: { branches, default: field } };
+}
+
+Game.aggregate([
+	{
+		$match: {
+			type: 'semifinal'
+		}
 	},
-
-	reduce: function(key, results) {
-		let appearances = 0;
-
-		results.forEach(result => {
-			appearances += result;
-		});
-
-		return appearances;
+	// Unwind both teams from each game into separate documents
+	{
+		$project: {
+			teams: ['$away.name', '$home.name']
+		}
 	},
-
-	out: 'playoffAppearances',
-
-	query: {
-		type: 'semifinal'
+	{ $unwind: '$teams' },
+	{
+		$addFields: {
+			regimeKey: regimeSwitch('$teams')
+		}
 	},
-
-	sort: {
-		season: 1,
-		week: 1
+	{
+		$group: {
+			_id: '$regimeKey',
+			value: { $sum: 1 }
+		}
 	},
-
-	scope: {
-		regimes: PSO.regimes
+	{
+		$out: 'playoffAppearances'
 	}
-}).then((data) => {
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });

@@ -1,64 +1,78 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
-const PSO = require('../../config/pso');
 
-Game.mapReduce({
-	map: function() {
-		let winner, loser;
+// Regime mapping: normalize historical franchise names
+const regimeMapping = {
+	'Brett/Luke': 'Luke',
+	'Jake/Luke': 'Luke',
+	'James/Charles': 'Charles',
+	'John/Zach': 'John',
+	'Koci': 'Koci/Mueller',
+	'Mitch/Mike': 'Mitch',
+	'Pat/Quinn': 'Patrick',
+	'Schex/Jeff': 'Schex',
+	'Syed/Kuan': 'Syed',
+	'Syed/Terence': 'Syed'
+};
 
-		if (this.away.score > this.home.score) {
-			winner = this.away;
-			loser = this.home;
+function regimeSwitch(field) {
+	const branches = Object.entries(regimeMapping).map(([from, to]) => ({
+		case: { $eq: [field, from] },
+		then: to
+	}));
+	return { $switch: { branches, default: field } };
+}
+
+Game.aggregate([
+	{
+		$match: {
+			type: 'regular',
+			'away.score': { $exists: true },
+			'home.score': { $exists: true }
 		}
-		else if (this.home.score > this.away.score) {
-			winner = this.home;
-			loser = this.away;
+	},
+	// Create entries for both winner (1 win) and loser (1 loss)
+	{
+		$project: {
+			entries: [
+				{ name: '$winner.name', wins: 1, losses: 0 },
+				{ name: '$loser.name', wins: 0, losses: 1 }
+			]
 		}
-
-		const winnerKey = regimes[this.winner.name] || this.winner.name;
-		const loserKey = regimes[this.loser.name] || this.loser.name;
-
-		emit(winnerKey, { wins: 1, losses: 0 });
-		emit(loserKey, { wins: 0, losses: 1 });
 	},
-
-	reduce: function(key, results) {
-		const record = { wins: 0, losses: 0 };
-
-		results.forEach(result => {
-			record.wins += result.wins;
-			record.losses += result.losses;
-		});
-
-		return record;
+	{ $unwind: '$entries' },
+	{
+		$addFields: {
+			regimeKey: regimeSwitch('$entries.name')
+		}
 	},
-
-	finalize: function(key, reduction) {
-		return (reduction.wins / (reduction.wins + reduction.losses)).toFixed(3);
+	{
+		$group: {
+			_id: '$regimeKey',
+			wins: { $sum: '$entries.wins' },
+			losses: { $sum: '$entries.losses' }
+		}
 	},
-
-	out: 'regularSeasonWinningPercentage',
-
-	query: {
-		type: 'regular',
-		'away.score': { '$exists': true },
-		'home.score': { '$exists': true }
+	{
+		$project: {
+			_id: 1,
+			value: {
+				$round: [{ $divide: ['$wins', { $add: ['$wins', '$losses'] }] }, 3]
+			}
+		}
 	},
-
-	sort: {
-		season: 1,
-		week: 1
-	},
-
-	scope: {
-		regimes: PSO.regimes
+	{
+		$out: 'regularSeasonWinningPercentage'
 	}
-}).then((data) => {
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });

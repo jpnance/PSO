@@ -1,8 +1,9 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var fs = require('fs');
+var path = require('path');
 var pug = require('pug');
-var compiledPug = pug.compileFile('../views/simulator.pug');
+var compiledPug = pug.compileFile(path.join(__dirname, '../views/simulator.pug'));
 
 var season = parseInt(process.env.SEASON);
 
@@ -315,7 +316,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 				});
 			});
 
-			fs.writeFileSync('../public/simulator/index.html', compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, results: results, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+			fs.writeFileSync(path.join(__dirname, '../public/simulator/index.html'), compiledPug({ owners: Object.values(PSO.franchises).sort(), franchises: PSO.franchises, results: results, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 			process.exit();
 		}
 
@@ -396,11 +397,11 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 					});
 				});
 
-				fs.writeFileSync('../public/simulator/index.html', compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
+				fs.writeFileSync(path.join(__dirname, '../public/simulator/index.html'), compiledPug({ franchises: PSO.franchises, schedule: schedule, options: { startWithWeek: startWithWeek + 1, trials: trials } }));
 			}
 
 			if (dataOnly) {
-				fs.writeFileSync('../public/data/simulations.json', JSON.stringify(simulationData));
+				fs.writeFileSync(path.join(__dirname, '../public/data/simulations.json'), JSON.stringify(simulationData));
 			}
 
 			console.log();

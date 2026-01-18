@@ -1,59 +1,77 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
-const PSO = require('../../config/pso');
 
-Game.mapReduce({
-	map: function() {
-		let winner, loser;
+// Regime mapping: normalize historical franchise names
+const regimeMapping = {
+	'Brett/Luke': 'Luke',
+	'Jake/Luke': 'Luke',
+	'James/Charles': 'Charles',
+	'John/Zach': 'John',
+	'Koci': 'Koci/Mueller',
+	'Mitch/Mike': 'Mitch',
+	'Pat/Quinn': 'Patrick',
+	'Schex/Jeff': 'Schex',
+	'Syed/Kuan': 'Syed',
+	'Syed/Terence': 'Syed'
+};
 
-		if (this.away.score > this.home.score) {
-			winner = this.away;
-			loser = this.home;
+function regimeSwitch(field) {
+	const branches = Object.entries(regimeMapping).map(([from, to]) => ({
+		case: { $eq: [field, from] },
+		then: to
+	}));
+	return { $switch: { branches, default: field } };
+}
+
+Game.aggregate([
+	{
+		$match: {
+			type: 'regular',
+			'away.score': { $exists: true },
+			'home.score': { $exists: true }
 		}
-		else if (this.home.score > this.away.score) {
-			winner = this.home;
-			loser = this.away;
+	},
+	// Determine winner and check allPlay losses
+	{
+		$addFields: {
+			winnerData: {
+				$cond: [
+					{ $gt: ['$away.score', '$home.score'] },
+					'$away',
+					'$home'
+				]
+			}
 		}
-
-		if (winner.record.allPlay.week.losses == 0) {
-			const key = regimes[winner.name] || winner.name;
-
-			emit(key, 1);
+	},
+	// Only count games where the winner had 0 allPlay losses (scoring title)
+	{
+		$match: {
+			'winnerData.record.allPlay.week.losses': 0
 		}
 	},
-
-	reduce: function(key, results) {
-		let scoringTitles = 0;
-
-		results.forEach(result => {
-			scoringTitles += result;
-		});
-
-		return scoringTitles;
+	{
+		$addFields: {
+			regimeKey: regimeSwitch('$winnerData.name')
+		}
 	},
-
-	out: 'weeklyScoringTitles',
-
-	query: {
-		type: 'regular',
-		'away.score': { '$exists': true },
-		'home.score': { '$exists': true }
+	{
+		$group: {
+			_id: '$regimeKey',
+			value: { $sum: 1 }
+		}
 	},
-
-	sort: {
-		season: 1,
-		week: 1
-	},
-
-	scope: {
-		regimes: PSO.regimes
+	{
+		$out: 'weeklyScoringTitles'
 	}
-}).then((data) => {
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });

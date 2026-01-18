@@ -1,43 +1,71 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
 
-Game.mapReduce({
-	map: function() {
-		const homeRecord = this.home.record.straight.cumulative.wins + '-' + this.home.record.straight.cumulative.losses + '-' + this.home.record.straight.cumulative.ties;
-		const awayRecord = this.away.record.straight.cumulative.wins + '-' + this.away.record.straight.cumulative.losses + '-' + this.away.record.straight.cumulative.ties;
-
-		emit(homeRecord, { owners: [ this.season + ' ' + this.home.name ] });
-		emit(awayRecord, { owners: [ this.season + ' ' + this.away.name ] });
+Game.aggregate([
+	{
+		$match: {
+			type: 'regular',
+			'away.score': { $exists: true },
+			'home.score': { $exists: true }
+		}
 	},
-
-	reduce: function(key, results) {
-		let owners = [];
-
-		results.forEach(owner => {
-			owners = owners.concat(owner.owners);
-		});
-
-		return { owners: owners };
+	// Create entries for both home and away teams with their records
+	{
+		$project: {
+			entries: [
+				{
+					record: {
+						$concat: [
+							{ $toString: '$home.record.straight.cumulative.wins' },
+							'-',
+							{ $toString: '$home.record.straight.cumulative.losses' },
+							'-',
+							{ $toString: '$home.record.straight.cumulative.ties' }
+						]
+					},
+					owner: { $concat: [{ $toString: '$season' }, ' ', '$home.name'] }
+				},
+				{
+					record: {
+						$concat: [
+							{ $toString: '$away.record.straight.cumulative.wins' },
+							'-',
+							{ $toString: '$away.record.straight.cumulative.losses' },
+							'-',
+							{ $toString: '$away.record.straight.cumulative.ties' }
+						]
+					},
+					owner: { $concat: [{ $toString: '$season' }, ' ', '$away.name'] }
+				}
+			]
+		}
 	},
-
-	out: 'recordOccurrences',
-
-	query: {
-		type: 'regular',
-		'away.score': { '$exists': true },
-		'home.score': { '$exists': true }
+	{ $unwind: '$entries' },
+	{
+		$group: {
+			_id: '$entries.record',
+			value: { $push: '$entries.owner' }
+		}
 	},
-
-	sort: {
-		season: 1,
-		week: 1
+	// Wrap in object to match original mapReduce output format
+	{
+		$project: {
+			_id: 1,
+			value: { owners: '$value' }
+		}
+	},
+	{
+		$out: 'recordOccurrences'
 	}
-}).then((data) => {
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });

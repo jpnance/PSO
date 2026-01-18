@@ -1,77 +1,107 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 const Game = require('../models/Game');
 
-Game.mapReduce({
-	map: function() {
-		['away', 'home'].forEach((ownerType) => {
-			const seasonOwner = this.season + ' ' + this[ownerType].name;
-			const data = {
-				scores: [ this[ownerType].score ],
-				records: [ this[ownerType].record.straight.cumulative.wins + '-' + this[ownerType].record.straight.cumulative.losses + '-' + this[ownerType].record.straight.cumulative.ties ],
-				playoffs: this.type == 'semifinal',
-				titleGame: this.type == 'championship',
-				champion: this.type == 'championship' && this.winner.name == this[ownerType].name
-			};
-
-			emit(seasonOwner, data);
-		});
+Game.aggregate([
+	{
+		$match: {
+			'away.score': { $exists: true },
+			'home.score': { $exists: true },
+			'type': { $ne: 'consolation' }
+		}
 	},
-
-	reduce: function(key, results) {
-		const sumReducer = (a, b) => parseInt(a) + parseInt(b);
-
-		let seasonSummary = { scores: [], records: [], playoffs: false, titleGame: false, champion: false };
-
-		results.forEach((result) => {
-			result.scores.forEach((score) => {
-				seasonSummary.scores.push(score);
-			});
-
-			result.records.forEach((record) => {
-				seasonSummary.records.push(record);
-			});
-
-			if (result.playoffs) {
-				seasonSummary.playoffs = true;
-			}
-
-			if (result.titleGame) {
-				seasonSummary.titleGame = true;
-			}
-
-			if (result.champion) {
-				seasonSummary.champion = true;
-			}
-		});
-
-		seasonSummary.records.sort((a, b) => {
-			const aGames = a.split('-').reduce(sumReducer);
-			const bGames = b.split('-').reduce(sumReducer);
-
-			return a - b;
-		});
-
-		return seasonSummary;
+	{
+		$sort: { season: 1, week: 1 }
 	},
-
-	out: 'seasonSummaries',
-
-	query: {
-		'away.score': { '$exists': true },
-		'home.score': { '$exists': true },
-		'type': { '$ne': 'consolation' }
+	// Create entries for both away and home teams
+	{
+		$project: {
+			season: 1,
+			type: 1,
+			winner: '$winner.name',
+			entries: [
+				{
+					key: { $concat: [{ $toString: '$season' }, ' ', '$away.name'] },
+					name: '$away.name',
+					score: '$away.score',
+					record: {
+						$concat: [
+							{ $toString: '$away.record.straight.cumulative.wins' },
+							'-',
+							{ $toString: '$away.record.straight.cumulative.losses' },
+							'-',
+							{ $toString: '$away.record.straight.cumulative.ties' }
+						]
+					}
+				},
+				{
+					key: { $concat: [{ $toString: '$season' }, ' ', '$home.name'] },
+					name: '$home.name',
+					score: '$home.score',
+					record: {
+						$concat: [
+							{ $toString: '$home.record.straight.cumulative.wins' },
+							'-',
+							{ $toString: '$home.record.straight.cumulative.losses' },
+							'-',
+							{ $toString: '$home.record.straight.cumulative.ties' }
+						]
+					}
+				}
+			]
+		}
 	},
-
-	sort: {
-		season: 1,
-		week: 1
+	{ $unwind: '$entries' },
+	{
+		$group: {
+			_id: '$entries.key',
+			scores: { $push: '$entries.score' },
+			records: { $push: '$entries.record' },
+			playoffs: {
+				$max: { $cond: [{ $eq: ['$type', 'semifinal'] }, true, false] }
+			},
+			titleGame: {
+				$max: { $cond: [{ $eq: ['$type', 'championship'] }, true, false] }
+			},
+			champion: {
+				$max: {
+					$cond: [
+						{
+							$and: [
+								{ $eq: ['$type', 'championship'] },
+								{ $eq: ['$winner', '$entries.name'] }
+							]
+						},
+						true,
+						false
+					]
+				}
+			}
+		}
+	},
+	{
+		$project: {
+			_id: 1,
+			value: {
+				scores: '$scores',
+				records: '$records',
+				playoffs: '$playoffs',
+				titleGame: '$titleGame',
+				champion: '$champion'
+			}
+		}
+	},
+	{
+		$out: 'seasonSummaries'
 	}
-}).then((data) => {
+]).then(() => {
 	mongoose.disconnect();
 	process.exit();
+}).catch(err => {
+	console.error(err);
+	mongoose.disconnect();
+	process.exit(1);
 });
