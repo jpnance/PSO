@@ -52,152 +52,143 @@ block content
 						if nextTradeId
 							a(href="/trades/" + nextTradeId) Trade ##{nextTradeId} →
 		else
-			h1.mb-4 Trade History
-			
-			div.row
-				//- Filter panel
-				div.col-lg-3.order-lg-2.mb-4.mb-lg-0
-					div.trade-filter.trade-filter--sticky
-						//- Go to trade
-						div.trade-filter__section
-							div.trade-filter__title Jump to Trade
-							form.input-group.input-group-sm(onsubmit="window.location.href='/trades/' + this.q.value; return false;")
-								input.form-control(type="text" name="q" placeholder="#" pattern="[0-9]+" title="Enter a trade number")
-								div.input-group-append
-									button.btn.btn-outline-secondary(type="submit") Go
-						
-						//- Filters
-						div.trade-filter__section
-							div.trade-filter__title Filter
-							form(method="get" action="/trades")
-								div.form-group.mb-2
-									label.small.mb-1(for="franchise-filter") Franchise
-									select#franchise-filter.form-control.form-control-sm(name="franchise")
-										option(value="") All
-										each regime in regimes
-											option(value=regime.franchiseId.toString() selected=(filterFranchise === regime.franchiseId.toString()))= regime.displayName
-								
-								div.form-group.mb-2
-									label.small.mb-1(for="partner-filter") Trading with
-									select#partner-filter.form-control.form-control-sm(name="partner")
-										option(value="") Anyone
-										each regime in regimes
-											option(value=regime.franchiseId.toString() selected=(filterPartner === regime.franchiseId.toString()))= regime.displayName
-								
-								button.btn.btn-primary.btn-sm.btn-block(type="submit")
-									i.fa.fa-filter.mr-1
-									| Apply
-							
-							if filterFranchise || filterPartner
-								div.filter-summary
-									| Showing: 
-									if filterFranchise
-										span.active-filter
-											= filterFranchiseName
-											a.remove-filter(href=filterPartner ? "/trades?partner=" + filterPartner : "/trades") ×
-									if filterPartner
-										if filterFranchise
-											|  + 
-										span.active-filter
-											= filterPartnerName
-											a.remove-filter(href=filterFranchise ? "/trades?franchise=" + filterFranchise : "/trades") ×
-									div.text-muted.small.mt-1 (includes past owners)
-						
-						//- Pagination
-						if totalFiltered > 0
-							div.trade-filter__section
-								div.trade-filter__title Browse
-								div.pagination-info
-									if filterFranchise || filterPartner
-										| #{totalFiltered} of #{totalTrades} trades
-									else
-										| #{totalTrades} trades
-									if perPage
-										br
-										if isDefaultView
-											| Newest
-										else
-											| Page #{page} of #{totalPages}
-								
-								if perPage && totalPages > 1
-									div.trade-filter__nav
-										div.trade-filter__nav-left
-											if olderPage
-												a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) «
-												a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹
-											else
-												span.trade-nav-link.invisible «
-												span.trade-nav-link.invisible ‹
-										div.trade-filter__nav-right
-											if newerPage
-												a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) ›
-												a.trade-nav-link(href="/trades") »
-											else if !isDefaultView
-												span.trade-nav-link.invisible ›
-												a.trade-nav-link(href="/trades") »
-											else
-												span.trade-nav-link.invisible ›
-												span.trade-nav-link.invisible »
+			//- Trade list view with pill filters
+			- function toggle(id, ids) { return ids.includes(id) ? ids.filter(x => x !== id) : ids.concat(id); }
+			//- Build query string preserving all selections
+			- function buildQuery(people, regimes, franchises, showPast, showPastR) { var parts = []; if (people.length) parts.push('people=' + people.join(',')); if (regimes.length) parts.push('regimes=' + regimes.join(',')); if (franchises.length) parts.push('franchises=' + franchises.join(',')); if (showPast) parts.push('showPast=1'); if (showPastR) parts.push('showPastRegimes=1'); return parts.length ? '?' + parts.join('&') : ''; }
+			- var hasAnyFilter = filterPeople.length > 0 || filterRegimes.length > 0 || filterFranchises.length > 0
+			- var baseQuery = buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes)
 				
-				//- Main content
-				div.col-lg-9.order-lg-1
-					//- Top pagination
-					if perPage && totalPages > 1
-						div.pagination-nav.mb-3
-							div.pagination-left
-								if olderPage
-									a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) « Oldest
-									a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹ Older
+				h1.mb-4 Trade History
+				
+				div.row
+					//- SIDEBAR (appears second in DOM, but first visually on lg+)
+					div.col-lg-4.order-lg-2.mb-lg-0
+						//- Mobile: collapsible toggle
+						div.d-lg-none.mb-3
+							button.btn.btn-outline-secondary.btn-sm.w-100(type="button" data-toggle="collapse" data-target="#pills-filters")
+								i.fa.fa-filter.mr-1
+								if hasAnyFilter
+									| Filters (#{filterPeople.length + filterRegimes.length + filterFranchises.length} active)
 								else
-									span.trade-nav-link.invisible « Oldest
-									span.trade-nav-link.invisible ‹ Older
+									| Filters
+						
+						//- Filters container (collapsible on mobile, always visible on lg+)
+						div#pills-filters.collapse.d-lg-block
+							div.trade-filter.trade-filter--sticky
+								//- FRANCHISES (most familiar, top)
+								div.trade-filter__section
+									div.trade-filter__title Franchises
+									div.trade-list__pills
+										each franchise in franchises
+											- var fId = franchise._id.toString()
+											- var isActive = filterFranchises.includes(fId)
+											- var newFranchises = toggle(fId, filterFranchises)
+											- var franchiseLabel = franchise.rosterId + ' · ' + franchise.displayName
+											if isActive
+												a.trade-pill.trade-pill--active(href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, showPastPeople, showPastRegimes))
+													= franchiseLabel
+													span.trade-pill__remove ×
+											else
+												a.trade-pill(href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, showPastPeople, showPastRegimes))= franchiseLabel
+								
+								//- REGIMES
+								div.trade-filter__section
+									div.trade-filter__title Regimes
+									div.trade-list__pills
+										each regime in currentRegimes
+											- var rId = regime._id.toString()
+											- var isActive = filterRegimes.includes(rId)
+											- var newRegimes = toggle(rId, filterRegimes)
+											if isActive
+												a.trade-pill.trade-pill--active(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))
+													= regime.displayName
+													span.trade-pill__remove ×
+											else
+												a.trade-pill(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
+										if pastRegimes.length > 0 && !showPastRegimes
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, true)) More…
+									if pastRegimes.length > 0 && showPastRegimes
+										hr.trade-list__divider
+										div.trade-list__pills
+											each regime in pastRegimes
+												- var rId = regime._id.toString()
+												- var isActive = filterRegimes.includes(rId)
+												- var newRegimes = toggle(rId, filterRegimes)
+												if isActive
+													a.trade-pill.trade-pill--active.trade-pill--past(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))
+														= regime.displayName
+														span.trade-pill__remove ×
+												else
+													a.trade-pill.trade-pill--past(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, false)) Less
+								
+								//- PEOPLE
+								div.trade-filter__section
+									div.trade-filter__title People
+									div.trade-list__pills
+										each person in currentPeople
+											- var pId = person._id.toString()
+											- var isActive = filterPeople.includes(pId)
+											- var newPeople = toggle(pId, filterPeople)
+											if isActive
+												a.trade-pill.trade-pill--active(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))
+													= person.name
+													span.trade-pill__remove ×
+											else
+												a.trade-pill(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
+										if pastPeople.length > 0 && !showPastPeople
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, true, showPastRegimes)) More…
+									if pastPeople.length > 0 && showPastPeople
+										hr.trade-list__divider
+										div.trade-list__pills
+											each person in pastPeople
+												- var pId = person._id.toString()
+												- var isActive = filterPeople.includes(pId)
+												- var newPeople = toggle(pId, filterPeople)
+												if isActive
+													a.trade-pill.trade-pill--active.trade-pill--past(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))
+														= person.name
+														span.trade-pill__remove ×
+												else
+													a.trade-pill.trade-pill--past(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, false, showPastRegimes)) Less
+								
+								//- SUMMARY & CLEAR
+								div.trade-filter__section
+									div.text-muted #{totalFiltered} trades
+									if hasAnyFilter
+										a.small(href="/trades?style=pills") Clear all filters
+					
+					//- MAIN CONTENT (narrower trade cards)
+					div.col-lg-8.col-xl-6.order-lg-1
+						if trades.length === 0
+							div.text-center.py-5
+								i.fa.fa-exchange.fa-3x.text-muted.mb-3
+								p.text-muted No trades found matching your filters.
+						
+						each trade in trades
+							div.trade-card.trade-card--single(id="trade-" + trade.number)
+								div.trade-card__timestamp.trade-card__timestamp--inline
+									a.trade-card__date(href="/trades/" + trade.number)= formatDateLong(trade.timestamp)
+									a.trade-card__time(href="/trades/" + trade.number)= formatTime(trade.timestamp)
+								
+								div.trade-card__trade-num.mb-2
+									a.trade-history__title-link(href="/trades/" + trade.number) Trade ##{trade.number}
+								
+								each party in trade.parties
+									+tradeParty(party)
+								
+								if trade.notes
+									div.trade-notes #{trade.notes}
+						
+						//- Bottom pagination
+						- var pageSep = baseQuery ? '&' : '?'
+						div.trade-nav--simple.mt-4
+							if olderPage
+								a(href="/trades" + baseQuery + (olderPage > 1 ? pageSep + "page=" + olderPage : "")) ← Older
 							span.flex-grow-1
-							div.pagination-right
-								if newerPage
-									a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) Newer ›
-									a.trade-nav-link(href="/trades") Newest »
-								else if !isDefaultView
-									span.trade-nav-link.invisible Newer ›
-									a.trade-nav-link(href="/trades") Newest »
-								else
-									span.trade-nav-link.invisible Newer ›
-									span.trade-nav-link.invisible Newest »
-					
-					if trades.length === 0
-						div.text-center.py-5
-							i.fa.fa-exchange.fa-3x.text-muted.mb-3
-							p.text-muted No trades found matching your filters.
-					
-					each trade in trades
-						div.trade-card(id="trade-" + trade.number)
-							div.trade-header
-								a(href="/trades/" + trade.number style="color: inherit; text-decoration: none;") Trade ##{trade.number}
-								div.trade-date= formatDateTime(trade.timestamp)
-							
-							each party in trade.parties
-								+tradeParty(party)
-							
-							if trade.notes
-								div.trade-notes #{trade.notes}
-					
-					//- Bottom pagination
-					if perPage && totalPages > 1
-						div.pagination-nav.mt-4
-							div.pagination-left
-								if olderPage
-									a.trade-nav-link(href="/trades" + buildQuery(1, perPage)) « Oldest
-									a.trade-nav-link(href="/trades" + buildQuery(olderPage, perPage)) ‹ Older
-								else
-									span.trade-nav-link.invisible « Oldest
-									span.trade-nav-link.invisible ‹ Older
-							span.flex-grow-1
-							div.pagination-right
-								if newerPage
-									a.trade-nav-link(href="/trades" + buildQuery(newerPage, perPage)) Newer ›
-									a.trade-nav-link(href="/trades") Newest »
-								else if !isDefaultView
-									span.trade-nav-link.invisible Newer ›
-									a.trade-nav-link(href="/trades") Newest »
-								else
-									span.trade-nav-link.invisible Newer ›
-									span.trade-nav-link.invisible Newest »
+							if newerPage
+								a(href="/trades" + baseQuery + pageSep + "page=" + newerPage) Newer →
+							else if !isDefaultView
+								a(href="/trades" + baseQuery) Newest →

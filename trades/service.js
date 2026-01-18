@@ -2,6 +2,7 @@ var Transaction = require('../models/Transaction');
 var Player = require('../models/Player');
 var Pick = require('../models/Pick');
 var Regime = require('../models/Regime');
+var Person = require('../models/Person');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
 var { formatMoney, formatContractYears, formatContractDisplay, ordinal } = require('../helpers/view');
@@ -411,6 +412,128 @@ async function getCurrentRegimes() {
 	return regimes;
 }
 
+// Get all regimes organized for filtering
+// Returns { current: [...], past: [...], all: [...] }
+async function getRegimesForFilter() {
+	var allRegimes = await Regime.find({})
+		.sort({ displayName: 1, startSeason: -1 })
+		.lean();
+	
+	var current = allRegimes.filter(function(r) { return r.endSeason === null; });
+	var past = allRegimes.filter(function(r) { return r.endSeason !== null; });
+	
+	return {
+		current: current,
+		past: past,
+		all: allRegimes
+	};
+}
+
+// Get all franchises for filtering (using current regime display names)
+async function getFranchisesForFilter() {
+	var Franchise = require('../models/Franchise');
+	var franchises = await Franchise.find({}).sort({ rosterId: 1 }).lean();
+	var currentRegimes = await getCurrentRegimes();
+	
+	// Map franchise ID to current display name
+	var regimeMap = {};
+	currentRegimes.forEach(function(r) {
+		regimeMap[r.franchiseId.toString()] = r.displayName;
+	});
+	
+	return franchises.map(function(f) {
+		return {
+			_id: f._id,
+			franchiseId: f._id,
+			rosterId: f.rosterId,
+			displayName: regimeMap[f._id.toString()] || ('Franchise ' + f.rosterId)
+		};
+	});
+}
+
+// Get all people organized for filtering
+// Returns { current: [...], past: [...], regimesByPerson: { personId: [regimes...] } }
+async function getPeopleForFilter() {
+	// Get all people
+	var people = await Person.find({}).sort({ name: 1 }).lean();
+	
+	// Get all regimes with populated owners
+	var allRegimes = await Regime.find({})
+		.populate('ownerIds', 'name')
+		.lean();
+	
+	// Build a map of person ID -> regimes they were part of
+	var regimesByPerson = {};
+	allRegimes.forEach(function(regime) {
+		(regime.ownerIds || []).forEach(function(owner) {
+			var personId = owner._id.toString();
+			if (!regimesByPerson[personId]) {
+				regimesByPerson[personId] = [];
+			}
+			regimesByPerson[personId].push({
+				franchiseId: regime.franchiseId,
+				startSeason: regime.startSeason,
+				endSeason: regime.endSeason
+			});
+		});
+	});
+	
+	// Categorize people as current (has at least one active regime) or past
+	var currentPeople = [];
+	var pastPeople = [];
+	
+	people.forEach(function(person) {
+		var personRegimes = regimesByPerson[person._id.toString()] || [];
+		var hasActiveRegime = personRegimes.some(function(r) {
+			return r.endSeason === null;
+		});
+		
+		var personData = {
+			_id: person._id,
+			personId: person._id,
+			name: person.name
+		};
+		
+		if (hasActiveRegime) {
+			currentPeople.push(personData);
+		} else if (personRegimes.length > 0) {
+			pastPeople.push(personData);
+		}
+	});
+	
+	return {
+		current: currentPeople,
+		past: pastPeople,
+		regimesByPerson: regimesByPerson
+	};
+}
+
+// Check if a person was managing a party in a trade at the time of the trade
+function personWasPartyAtTime(personRegimes, tradeYear, partyFranchiseIds) {
+	// Find regimes where this person was active at tradeYear
+	var activeRegimes = personRegimes.filter(function(r) {
+		return r.startSeason <= tradeYear && 
+		       (r.endSeason === null || r.endSeason >= tradeYear);
+	});
+	
+	// Check if any of those regimes' franchises were parties to the trade
+	return activeRegimes.some(function(r) {
+		return partyFranchiseIds.includes(r.franchiseId.toString());
+	});
+}
+
+// Check if a regime was active and was a party in a trade at the time
+function regimeWasPartyAtTime(regime, tradeYear, partyFranchiseIds) {
+	// Check if regime was active at trade time
+	var wasActive = regime.startSeason <= tradeYear && 
+	                (regime.endSeason === null || regime.endSeason >= tradeYear);
+	
+	if (!wasActive) return false;
+	
+	// Check if regime's franchise was a party
+	return partyFranchiseIds.includes(regime.franchiseId.toString());
+}
+
 async function tradeHistory(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
@@ -420,35 +543,62 @@ async function tradeHistory(request, response) {
 	var page = request.query.page ? parseInt(request.query.page, 10) : null;
 	var perPage = request.query.per === 'all' ? null : (parseInt(request.query.per, 10) || 10);
 	var isDefaultView = (page === null);
-	var filterFranchise = request.query.franchise || null;
-	var filterPartner = request.query.partner || null;
+	
+	// Multi-select filtering
+	var filterFranchises = request.query.franchises ? request.query.franchises.split(',').filter(Boolean) : [];
+	var filterPeople = request.query.people ? request.query.people.split(',').filter(Boolean) : [];
+	var filterRegimes = request.query.regimes ? request.query.regimes.split(',').filter(Boolean) : [];
+	var showPastPeople = request.query.showPast === '1';
+	var showPastRegimes = request.query.showPastRegimes === '1';
+	
+	// Fetch all filter data
+	var peopleData = await getPeopleForFilter();
+	var regimesData = await getRegimesForFilter();
+	var franchisesData = await getFranchisesForFilter();
 	
 	// Fetch all trades, oldest first (so we can number them)
 	var trades = await Transaction.find({ type: 'trade' })
 		.sort({ timestamp: 1 })
 		.lean();
 	
-	// Filter by franchise if specified
+	// Combined filtering: apply all filters together (AND across categories)
 	var filteredTrades = trades;
-	if (filterFranchise) {
+	
+	// Filter by people (if any selected)
+	if (filterPeople.length > 0) {
 		filteredTrades = filteredTrades.filter(function(trade) {
-			return (trade.parties || []).some(function(party) {
-				return party.franchiseId.toString() === filterFranchise;
+			var tradeYear = trade.timestamp.getFullYear();
+			var tradePartyIds = (trade.parties || []).map(function(p) { return p.franchiseId.toString(); });
+			
+			// Every selected person must have been managing one of the parties at trade time
+			return filterPeople.every(function(personId) {
+				var personRegimes = peopleData.regimesByPerson[personId] || [];
+				return personWasPartyAtTime(personRegimes, tradeYear, tradePartyIds);
 			});
 		});
 	}
 	
-	// Further filter by trading partner if specified
-	if (filterPartner && filterFranchise) {
+	// Filter by regimes (if any selected) - AND with previous filter
+	if (filterRegimes.length > 0) {
 		filteredTrades = filteredTrades.filter(function(trade) {
-			var franchiseIds = (trade.parties || []).map(function(p) { return p.franchiseId.toString(); });
-			return franchiseIds.includes(filterFranchise) && franchiseIds.includes(filterPartner);
+			var tradeYear = trade.timestamp.getFullYear();
+			var tradePartyIds = (trade.parties || []).map(function(p) { return p.franchiseId.toString(); });
+			
+			// Every selected regime must have been active and a party at trade time
+			return filterRegimes.every(function(regimeId) {
+				var regime = regimesData.all.find(function(r) { return r._id.toString() === regimeId; });
+				if (!regime) return false;
+				return regimeWasPartyAtTime(regime, tradeYear, tradePartyIds);
+			});
 		});
-	} else if (filterPartner && !filterFranchise) {
-		// If only partner is specified, filter to trades involving that franchise
+	}
+	
+	// Filter by franchises (if any selected) - AND with previous filters
+	if (filterFranchises.length > 0) {
 		filteredTrades = filteredTrades.filter(function(trade) {
-			return (trade.parties || []).some(function(party) {
-				return party.franchiseId.toString() === filterPartner;
+			var tradePartyIds = (trade.parties || []).map(function(p) { return p.franchiseId.toString(); });
+			return filterFranchises.every(function(fId) {
+				return tradePartyIds.includes(fId);
 			});
 		});
 	}
@@ -495,28 +645,6 @@ async function tradeHistory(request, response) {
 	// Get current regimes for filter dropdown
 	var regimes = await getCurrentRegimes();
 	
-	// Build filter display names
-	var filterFranchiseName = null;
-	var filterPartnerName = null;
-	if (filterFranchise) {
-		var regime = regimes.find(function(r) { return r.franchiseId.toString() === filterFranchise; });
-		filterFranchiseName = regime ? regime.displayName : 'Unknown';
-	}
-	if (filterPartner) {
-		var regime = regimes.find(function(r) { return r.franchiseId.toString() === filterPartner; });
-		filterPartnerName = regime ? regime.displayName : 'Unknown';
-	}
-	
-	// Build query string helper for pagination links
-	var buildQuery = function(newPage, newPer) {
-		var params = [];
-		if (newPage) params.push('page=' + newPage);
-		if (newPer && newPer !== 10) params.push('per=' + newPer);
-		if (filterFranchise) params.push('franchise=' + filterFranchise);
-		if (filterPartner) params.push('partner=' + filterPartner);
-		return params.length ? '?' + params.join('&') : '';
-	};
-	
 	// Calculate "older" page for default view (go to page before the 2 we're showing)
 	var olderPage = isDefaultView ? (totalPages > 2 ? totalPages - 2 : null) : (page > 1 ? page - 1 : null);
 	var newerPage = (!isDefaultView && page < totalPages) ? page + 1 : null;
@@ -532,11 +660,16 @@ async function tradeHistory(request, response) {
 		olderPage: olderPage,
 		newerPage: newerPage,
 		regimes: regimes,
-		filterFranchise: filterFranchise,
-		filterFranchiseName: filterFranchiseName,
-		filterPartner: filterPartner,
-		filterPartnerName: filterPartnerName,
-		buildQuery: buildQuery,
+		filterFranchises: filterFranchises,
+		filterPeople: filterPeople,
+		filterRegimes: filterRegimes,
+		currentPeople: peopleData.current,
+		pastPeople: peopleData.past,
+		showPastPeople: showPastPeople,
+		currentRegimes: regimesData.current,
+		pastRegimes: regimesData.past,
+		showPastRegimes: showPastRegimes,
+		franchises: franchisesData,
 		activePage: 'trades'
 	});
 }

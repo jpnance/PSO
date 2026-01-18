@@ -57,6 +57,108 @@ a.trade-card__time {
 	text-decoration: none;
 }
 
+/* Trade number inside card (for list views) */
+.trade-card__trade-num {
+	font-weight: 600;
+	font-size: 0.9rem;
+}
+
+/* Pills inside filter sections */
+.trade-filter__section .trade-list__pills {
+	margin-top: 0.25rem;
+}
+
+/* Divider between current and past items */
+.trade-list__divider {
+	border: none;
+	border-top: 1px solid #e0e0e0;
+	margin: 0.5rem 0;
+}
+
+/* Pills style - clickable pill-shaped buttons */
+.trade-list__pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+	align-items: center;
+}
+
+.trade-pill {
+	display: inline-block;
+	padding: 0.25rem 0.6rem;
+	border-radius: 1rem;
+	font-size: 0.8rem;
+	text-decoration: none;
+	background: #f0f0f0;
+	color: #495057;
+	border: 1px solid #ddd;
+	transition: all 0.15s;
+}
+
+a.trade-pill:hover {
+	background: #e0e0e0;
+	text-decoration: none;
+	color: #212529;
+}
+
+.trade-pill--active {
+	background: #007bff;
+	color: white;
+	border-color: #007bff;
+}
+
+.trade-pill__remove {
+	color: rgba(255,255,255,0.7);
+	margin-left: 0.35rem;
+}
+
+.trade-pill--active:hover .trade-pill__remove {
+	color: white;
+}
+
+.trade-pill--clear {
+	background: transparent;
+	border-color: #999;
+	color: #999;
+}
+
+.trade-pill--clear:hover {
+	background: #f0f0f0;
+	color: #666;
+}
+
+/* Past people pills - slightly muted */
+.trade-pill--past {
+	background: #f8f8f8;
+	border-color: #e0e0e0;
+	color: #777;
+}
+
+.trade-pill--past:hover {
+	background: #eee;
+	color: #555;
+}
+
+.trade-pill--past.trade-pill--active {
+	background: #6c757d;
+	border-color: #6c757d;
+	color: white;
+}
+
+/* Toggle link (More.../Less) */
+.trade-pill--toggle {
+	background: transparent;
+	border: 1px dashed #aaa;
+	color: #666;
+	font-style: italic;
+}
+
+.trade-pill--toggle:hover {
+	background: #f8f9fa;
+	border-color: #888;
+	color: #333;
+}
+
 /* Variation: time on right (inline) */
 .trade-card__timestamp--inline {
 	display: flex;
@@ -92,8 +194,6 @@ a.trade-card__time {
 	font-size: 0.85rem;
 	color: #495057;
 	margin-bottom: 0.5rem;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
 }
 
 .trade-filter select {
