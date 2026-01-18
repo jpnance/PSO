@@ -38,13 +38,15 @@ html
 
 	body
 		//- Build navigation structure
-		- var nav = buildNav({ activePage: activePage, currentRosterId: currentRosterId, userFranchise: userFranchise, franchises: navFranchises, isAdmin: isAdmin })
+		- var nav = buildNav({ activePage: activePage, currentRosterId: currentRosterId, userFranchise: userFranchise, franchises: navFranchises, isAdmin: isAdmin, pendingApprovalCount: pendingApprovalCount })
 
 		//- Top Bar
 		header.topbar
 			div.topbar-brand
-				button.hamburger#sidebarToggle(type='button' aria-label='Toggle navigation')
+				button.hamburger#sidebarToggle(type='button' aria-label='Toggle navigation' class=(pendingApprovalCount > 0 ? 'has-notification' : ''))
 					i.fa.fa-bars
+					if pendingApprovalCount > 0
+						span.hamburger-notification-dot
 				a(href='/' style='color: inherit; text-decoration: none;')
 					h1
 						span.d-none.d-md-inline Primetime Soap Operas
@@ -106,9 +108,11 @@ html
 				//- Collapsible Sections
 				each section in nav.sections
 					div.sidebar-section(class=(section.isAdmin ? 'sidebar-admin' : ''))
-						button.sidebar-toggle(type='button' data-toggle='collapse' data-target='#' + section.id + 'Menu' aria-expanded=(section.expanded ? 'true' : 'false'))
+						button.sidebar-toggle(type='button' data-toggle='collapse' data-target='#' + section.id + 'Menu' aria-expanded=(section.expanded ? 'true' : 'false') class=(section.hasNotification ? 'has-notification' : ''))
 							i.fa(class=section.icon)
 							= section.label
+							if section.hasNotification
+								span.nav-notification-dot
 							i.fa.fa-chevron-down.toggle-icon
 						div(id=section.id + 'Menu' class=(section.expanded ? 'collapse show ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu') : 'collapse ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu')))
 							each item in section.items
@@ -116,6 +120,8 @@ html
 									if item.icon
 										i.fa(class=item.icon)
 									= item.label
+									if item.badge
+										span.nav-notification-badge= item.badge
 									if item.soon
 										span.badge.badge-secondary Soon
 									if item.external

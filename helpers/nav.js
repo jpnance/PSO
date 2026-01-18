@@ -11,6 +11,7 @@
  * @param {Object} options.userFranchise - Logged-in user's franchise { rosterId, displayName }
  * @param {Array} options.franchises - All franchises [{ rosterId, displayName }]
  * @param {boolean} options.isAdmin - Whether user is admin
+ * @param {number} options.pendingApprovalCount - Number of proposals awaiting admin approval
  * @returns {Object} Navigation structure
  */
 function buildNav(options) {
@@ -19,6 +20,7 @@ function buildNav(options) {
 	var userFranchise = options.userFranchise || null;
 	var franchises = options.franchises || [];
 	var isAdmin = options.isAdmin || false;
+	var pendingApprovalCount = options.pendingApprovalCount || 0;
 
 	// Helper to check if a link is active
 	function isActive(page) {
@@ -165,11 +167,12 @@ function buildNav(options) {
 			icon: 'fa-cog',
 			expanded: isAdminPage(),
 			isAdmin: true,
+			hasNotification: pendingApprovalCount > 0,
 			items: [
 				{ label: 'Dashboard', icon: 'fa-tachometer', href: '/admin', active: isActive('admin') || isActive('admin-dashboard') },
 				{ label: 'Players', icon: 'fa-user', href: '/admin/players', active: isActive('admin-players') },
 				{ label: 'Manage Trades', icon: 'fa-exchange', href: '/admin/trades', active: isActive('admin-trades') },
-				{ label: 'Proposals', icon: 'fa-check-circle', href: '/admin/proposals', active: isActive('admin-proposals') }
+				{ label: 'Proposals', icon: 'fa-check-circle', href: '/admin/proposals', active: isActive('admin-proposals'), badge: pendingApprovalCount > 0 ? pendingApprovalCount : null }
 			]
 		});
 	}

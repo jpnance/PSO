@@ -32,6 +32,7 @@ app.use(function(req, res, next) {
 var LeagueConfig = require('./models/LeagueConfig');
 var Regime = require('./models/Regime');
 var Franchise = require('./models/Franchise');
+var Proposal = require('./models/Proposal');
 app.use(async function(req, res, next) {
 	try {
 		var config = await LeagueConfig.findById('pso').lean();
@@ -94,6 +95,12 @@ app.use(async function(req, res, next) {
 		
 		// Check if user is admin
 		res.locals.isAdmin = req.session && req.session.user && req.session.user.admin;
+		
+		// For admins, count proposals awaiting approval
+		if (res.locals.isAdmin) {
+			var pendingApprovalCount = await Proposal.countDocuments({ status: 'accepted' });
+			res.locals.pendingApprovalCount = pendingApprovalCount;
+		}
 		
 	} catch (err) {
 		// Silently ignore - navigation is non-critical, will fall back to empty

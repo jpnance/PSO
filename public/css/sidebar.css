@@ -138,12 +138,24 @@
 /* Hamburger menu button */
 .hamburger {
     display: none;
+    position: relative;
     background: none;
     border: none;
     color: #fff;
     font-size: 1.5rem;
     padding: 0.25rem 0.5rem;
     cursor: pointer;
+}
+
+.hamburger-notification-dot {
+    position: absolute;
+    top: 6px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    border: 2px solid var(--sidebar-bg);
 }
 
 /* Sidebar */
@@ -372,6 +384,40 @@
     border-top: 1px solid var(--sidebar-hover);
     margin-top: 0.5rem;
     padding-top: 0.5rem;
+}
+
+/* Notification indicators */
+.sidebar-toggle.has-notification {
+    color: var(--primary-accent);
+}
+
+.sidebar-toggle.has-notification i:first-child {
+    opacity: 1;
+}
+
+.nav-notification-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+}
+
+.nav-notification-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    margin-left: auto;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    border-radius: 9px;
 }
 
 /* Mobile Styles */
