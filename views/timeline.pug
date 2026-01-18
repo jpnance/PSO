@@ -1,0 +1,71 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Franchise Timeline', 'History')
+
+block styles
+	link(rel='stylesheet' href='/css/timeline.css')
+
+block content
+	div.container.py-4
+		h1.mb-4 Franchise Timeline
+		
+		div.timeline-container.mb-5
+			div.timeline-grid(style='grid-template-columns: auto repeat(' + timeline.years.length + ', 12px)')
+				//- Header row
+				div.timeline-name
+				each year in timeline.years
+					div.timeline-year(class=year === currentSeason ? 'current-year' : '')= year.toString().slice(-2)
+				
+				//- Data rows
+				each row in timeline.rows
+					div.timeline-name(class=row.isCurrent ? '' : 'past-owner')= row.personName
+					each cell in row.cells
+						if cell.active
+							div.timeline-cell(
+								style='background-color: ' + cell.color
+								title=cell.displayName + ' (' + cell.year + ')'
+								class=row.isCurrent ? '' : 'past-owner'
+								data-franchise=cell.rosterId
+							)
+						else
+							div.timeline-cell
+			
+			div.timeline-legend
+				each item in timeline.legend
+					a.legend-item(
+						href='/franchise/' + item.rosterId
+						data-franchise=item.rosterId
+					)
+						span.legend-swatch(style='background-color: ' + item.color)
+						span.legend-label= item.displayName
+		
+block scripts
+	script.
+		(function() {
+			var legend = document.querySelector('.timeline-legend');
+			var grid = document.querySelector('.timeline-grid');
+			if (!legend || !grid) return;
+			
+			legend.addEventListener('mouseenter', function(e) {
+				var item = e.target.closest('.legend-item');
+				if (!item) return;
+				var fid = item.dataset.franchise;
+				grid.classList.add('highlighting');
+				grid.querySelectorAll('.timeline-cell[data-franchise]').forEach(function(cell) {
+					if (cell.dataset.franchise === fid) {
+						cell.classList.add('highlighted');
+					}
+				});
+			}, true);
+			
+			legend.addEventListener('mouseleave', function(e) {
+				var item = e.target.closest('.legend-item');
+				if (!item) return;
+				grid.classList.remove('highlighting');
+				grid.querySelectorAll('.timeline-cell.highlighted').forEach(function(cell) {
+					cell.classList.remove('highlighted');
+				});
+			}, true);
+		})();

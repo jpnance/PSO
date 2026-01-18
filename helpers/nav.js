@@ -109,12 +109,13 @@ function buildNav(options) {
 		id: 'history',
 		label: 'History & Results',
 		icon: 'fa-history',
-		expanded: isActive('trades'),
+		expanded: isActive('trades') || isActive('timeline'),
 		items: [
 			{ label: 'History', icon: 'fa-calendar-check-o', href: '#', soon: true },
 			{ label: 'Trade History', icon: 'fa-exchange', href: '/trades', active: isActive('trades') },
+			{ label: 'Franchise Timeline', icon: 'fa-align-left', href: '/timeline', active: isActive('timeline') },
 			{ label: 'Head-to-Head', icon: 'fa-users', href: '#', soon: true },
-			{ label: 'Jaguar Chart', icon: 'fa-paw', href: '/jaguar' }
+			{ label: 'Jaguar Chart', icon: 'fa-paw', href: '/jaguar', active: isActive('jaguar') }
 		]
 	});
 

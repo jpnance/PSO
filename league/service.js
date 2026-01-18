@@ -937,10 +937,189 @@ async function search(request, response) {
 	}
 }
 
+// Build timeline data for Wikipedia-style franchise history chart
+async function getTimelineData(currentSeason) {
+	var startYear = 2008;
+	var endYear = currentSeason;
+	var years = [];
+	for (var y = startYear; y <= endYear; y++) {
+		years.push(y);
+	}
+	
+	// Fetch all regimes with populated owners
+	var regimes = await Regime.find({})
+		.populate('ownerIds')
+		.populate('franchiseId')
+		.lean();
+	
+	// Get all franchises
+	var franchises = await Franchise.find({}).lean();
+	var franchiseById = {};
+	franchises.forEach(function(f) {
+		franchiseById[f._id.toString()] = f;
+	});
+	
+	// Build a map of person -> seasons -> franchises they managed
+	var personSeasons = {};
+	var peopleMap = {};
+	
+	regimes.forEach(function(regime) {
+		var franchise = franchiseById[regime.franchiseId._id ? regime.franchiseId._id.toString() : regime.franchiseId.toString()];
+		var rosterId = franchise ? franchise.rosterId : null;
+		
+		var start = regime.startSeason;
+		var end = regime.endSeason || currentSeason;
+		
+		// For each owner of this regime
+		(regime.ownerIds || []).forEach(function(owner) {
+			if (!owner || !owner._id) return;
+			
+			var personId = owner._id.toString();
+			var personName = owner.name;
+			
+			if (!personSeasons[personId]) {
+				personSeasons[personId] = {};
+				peopleMap[personId] = personName;
+			}
+			
+			// Mark each season they were active
+			for (var y = start; y <= end && y <= currentSeason; y++) {
+				if (!personSeasons[personId][y]) {
+					personSeasons[personId][y] = [];
+				}
+				personSeasons[personId][y].push({
+					rosterId: rosterId,
+					displayName: regime.displayName
+				});
+			}
+		});
+	});
+	
+	// Determine the color for each franchise (consistent across the chart)
+	// Using 12 distinct colors that work well together
+	var franchiseColors = {
+		1: '#e74c3c',   // red
+		2: '#3498db',   // blue
+		3: '#2ecc71',   // green
+		4: '#9b59b6',   // purple
+		5: '#f39c12',   // orange
+		6: '#1abc9c',   // teal
+		7: '#e91e63',   // pink
+		8: '#00bcd4',   // cyan
+		9: '#ff5722',   // deep orange
+		10: '#8bc34a',  // light green
+		11: '#ffc107',  // amber
+		12: '#607d8b'   // blue grey
+	};
+	
+	// Build rows for each person
+	var rows = [];
+	Object.keys(personSeasons).forEach(function(personId) {
+		var personName = peopleMap[personId];
+		var seasons = personSeasons[personId];
+		
+		// Find first and last active seasons
+		var activeYears = Object.keys(seasons).map(Number).sort(function(a, b) { return a - b; });
+		var firstSeason = activeYears[0];
+		var lastSeason = activeYears[activeYears.length - 1];
+		var isCurrent = lastSeason >= currentSeason;
+		
+		// Build cells for each year
+		var cells = years.map(function(year) {
+			var active = seasons[year] || [];
+			if (active.length === 0) {
+				return { year: year, active: false };
+			}
+			
+			// Handle co-ownership: could be on multiple franchises (rare but possible)
+			// For display, just use the first one
+			var franchise = active[0];
+			
+			return {
+				year: year,
+				active: true,
+				rosterId: franchise.rosterId,
+				displayName: franchise.displayName,
+				color: franchiseColors[franchise.rosterId] || '#666'
+			};
+		});
+		
+		rows.push({
+			personId: personId,
+			personName: personName,
+			cells: cells,
+			firstSeason: firstSeason,
+			lastSeason: lastSeason,
+			isCurrent: isCurrent,
+			yearsActive: activeYears.length
+		});
+	});
+	
+	// Sort rows: current owners first (sorted by first season), then past owners (sorted by last season desc)
+	rows.sort(function(a, b) {
+		if (a.isCurrent && !b.isCurrent) return -1;
+		if (!a.isCurrent && b.isCurrent) return 1;
+		
+		if (a.isCurrent && b.isCurrent) {
+			// Both current: sort by first season (veterans first)
+			return a.firstSeason - b.firstSeason;
+		}
+		
+		// Both past: sort by last season (most recent first)
+		return b.lastSeason - a.lastSeason;
+	});
+	
+	// Build franchise legend
+	var legend = Object.keys(franchiseColors).map(function(rosterId) {
+		// Find current regime name for this franchise
+		var currentRegime = regimes.find(function(r) {
+			var f = franchiseById[r.franchiseId._id ? r.franchiseId._id.toString() : r.franchiseId.toString()];
+			return f && f.rosterId === parseInt(rosterId) && 
+				r.startSeason <= currentSeason && 
+				(r.endSeason === null || r.endSeason >= currentSeason);
+		});
+		
+		return {
+			rosterId: parseInt(rosterId),
+			displayName: currentRegime ? currentRegime.displayName : 'Franchise ' + rosterId,
+			color: franchiseColors[rosterId]
+		};
+	}).sort(function(a, b) {
+		return a.displayName.localeCompare(b.displayName);
+	});
+	
+	return {
+		years: years,
+		rows: rows,
+		legend: legend,
+		currentSeason: currentSeason,
+		totalPeople: rows.length
+	};
+}
+
+async function timeline(request, response) {
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		var timelineData = await getTimelineData(currentSeason);
+		
+		response.render('timeline', {
+			timeline: timelineData,
+			currentSeason: currentSeason,
+			activePage: 'timeline'
+		});
+	} catch (err) {
+		console.error('Timeline error:', err);
+		response.status(500).send('Error loading timeline');
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
 	overview: overview,
 	franchise: franchise,
-	search: search
+	search: search,
+	timeline: timeline
 };

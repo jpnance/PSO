@@ -1,0 +1,195 @@
+/* Timeline - Wikipedia-style franchise membership chart */
+
+/* ========================================
+   Chart + Legend Container
+   ======================================== */
+
+.timeline-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	background-color: #fff;
+	border: 1px solid var(--border-light);
+	border-radius: 6px;
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+	.timeline-container {
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 2rem;
+		width: fit-content;
+		max-width: none;
+		overflow-x: visible;
+	}
+}
+
+/* ========================================
+   Legend
+   ======================================== */
+
+.timeline-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 0.75rem;
+	order: -1;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid var(--border-light);
+}
+
+@media (min-width: 768px) {
+	.timeline-legend {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		gap: 0.25rem;
+		order: 0;
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+}
+
+.legend-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.15rem 0;
+	text-decoration: none;
+	color: var(--text-secondary);
+	font-size: 0.75rem;
+}
+
+.legend-item:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+.legend-swatch {
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	flex-shrink: 0;
+}
+
+/* ========================================
+   Timeline Grid
+   ======================================== */
+
+.timeline-grid {
+	display: grid;
+	gap: 1px;
+	width: fit-content;
+}
+
+/* Year headers */
+.timeline-year {
+	font-size: 0.6rem;
+	color: var(--text-muted);
+	text-align: center;
+	padding-bottom: 4px;
+}
+
+.timeline-year.current-year {
+	color: var(--text-secondary);
+	font-weight: 600;
+}
+
+/* Name column */
+.timeline-name {
+	font-size: 0.65rem;
+	color: #333;
+	padding-right: 8px;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 12px;
+	text-align: right;
+}
+
+.timeline-name.past-owner {
+	color: #666;
+}
+
+.years-badge {
+	color: #888;
+	font-size: 0.55rem;
+}
+
+/* Data cells */
+.timeline-cell {
+	width: 12px;
+	height: 12px;
+}
+
+.timeline-cell.past-owner {
+	opacity: 0.65;
+}
+
+/* Highlight on legend hover */
+.timeline-grid.highlighting .timeline-cell[data-franchise] {
+	opacity: 0.15;
+}
+
+.timeline-grid.highlighting .timeline-cell.highlighted {
+	opacity: 1;
+}
+
+.timeline-grid.highlighting .timeline-cell.highlighted.past-owner {
+	opacity: 0.8;
+}
+
+/* ========================================
+   Stats Section
+   ======================================== */
+
+.stat-card {
+	background-color: #fff;
+	border: 1px solid var(--border-light);
+	border-radius: 8px;
+	padding: 1rem;
+	text-align: center;
+}
+
+.stat-value {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #333;
+	line-height: 1.2;
+}
+
+.stat-label {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	margin-top: 0.25rem;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+	.timeline-header h1 {
+		font-size: 1.4rem;
+	}
+	
+	.timeline-name {
+		font-size: 0.6rem;
+	}
+	
+	.years-badge {
+		display: none;
+	}
+	
+	.legend-item {
+		font-size: 0.7rem;
+		padding: 0.2rem 0.4rem;
+	}
+	
+	.legend-swatch {
+		width: 10px;
+		height: 10px;
+	}
+}

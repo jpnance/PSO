@@ -36,6 +36,8 @@ module.exports = function(app) {
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);
 	
+	app.get('/timeline', league.timeline);
+	
 	// Trade Machine
 	app.get('/trade-machine', proposals.tradeMachinePage);
 	app.post('/trade-machine', requireLogin, proposals.createProposal);
