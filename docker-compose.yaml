@@ -1,6 +1,7 @@
 services:
   web:
     container_name: pso-web
+    restart: unless-stopped
     depends_on:
       - mongo
     extra_hosts:
@@ -18,6 +19,7 @@ services:
 
   mongo:
     container_name: pso-mongo
+    restart: unless-stopped
     profiles:
       - main
       - postseason
@@ -27,6 +29,7 @@ services:
 
   cron:
     container_name: pso-cron
+    restart: unless-stopped
     depends_on:
       - mongo
     profiles:
