@@ -12,7 +12,6 @@ var mongoose = require('mongoose');
 
 var Transaction = require('../models/Transaction');
 var Contract = require('../models/Contract');
-var Roster = require('../models/Roster');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var Player = require('../models/Player');
@@ -44,8 +43,7 @@ var mockData = {
 	budgets: [],
 	regimes: [],
 	config: null,
-	transactions: [],
-	rosters: []
+	transactions: []
 };
 
 // ============ Setup / Teardown ============
@@ -189,9 +187,6 @@ async function teardownMockWorld() {
 	for (var t of mockData.transactions) {
 		await Transaction.deleteOne({ _id: t._id });
 	}
-	for (var r of mockData.rosters) {
-		await Roster.deleteOne({ _id: r._id });
-	}
 	for (var c of mockData.contracts) {
 		await Contract.deleteOne({ _id: c._id });
 	}
@@ -212,7 +207,7 @@ async function teardownMockWorld() {
 	}
 	
 	// Reset
-	mockData = { franchises: [], players: [], contracts: [], budgets: [], regimes: [], config: null, transactions: [], rosters: [] };
+	mockData = { franchises: [], players: [], contracts: [], budgets: [], regimes: [], config: null, transactions: [] };
 	
 	console.log('Cleanup complete.');
 }

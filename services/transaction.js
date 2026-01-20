@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 var Transaction = require('../models/Transaction');
 var Contract = require('../models/Contract');
-var Roster = require('../models/Roster');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Franchise = require('../models/Franchise');
@@ -642,17 +641,6 @@ async function processTrade(tradeDetails) {
 				{ playerId: playerInfo.playerId },
 				{ franchiseId: party.franchiseId }
 			);
-			
-			// Update or create Roster entry
-			await Roster.updateOne(
-				{ playerId: playerInfo.playerId },
-				{ 
-					franchiseId: party.franchiseId,
-					playerId: playerInfo.playerId,
-					acquiredVia: transaction._id
-				},
-				{ upsert: true }
-			);
 		}
 	}
 	
@@ -861,9 +849,6 @@ async function processCut(cutDetails) {
 	
 	// Delete the Contract
 	await Contract.deleteOne({ _id: contract._id });
-	
-	// Delete Roster entry if exists
-	await Roster.deleteOne({ playerId: cutDetails.playerId, franchiseId: cutDetails.franchiseId });
 	
 	// Create the Transaction
 	var transaction = await Transaction.create({
