@@ -1,0 +1,4300 @@
+
+Session Start: Mon Aug 18 15:55:53 2008
+Session Ident: #dynastyleague
+03[15:55] * Now talking in #dynastyleague
+03[15:55] * Topic is 'Day 1: Monday, August 18th / Day 2: Tuesday, August 19th / 8pm ET'
+03[15:55] * Set by jpnance on Tue Aug 05 12:31:12
+03[15:56] * jpnance sets mode: +o logger_
+[15:57] <dutchboyx9> i guess for today
+[15:57] <dutchboyx9> up to 200
+[15:57] <dutchboyx9> TY
+[15:57] <@jpnance> yeah
+[15:57] <@jpnance> no IDP on that
+[15:58] <@jpnance> and i doubt you'll find one that does rank IDP
+03[15:58] * ks1 (i=4791b5da@gateway/web/ajax/mibbit.com/x-012fc2a01b8eb951) has joined #dynastyleague
+[15:58] <dutchboyx9> i see
+[15:58] <dutchboyx9> idp i can make up though
+[15:59] <dutchboyx9> wont be picking any today
+[15:59] <dutchboyx9> well maybe
+02[15:59] * loltest (i=c0c3422e@gateway/web/ajax/mibbit.com/x-0fbc1af166ba3978) Quit ("http://www.mibbit.com ajax IRC Client")
+[15:59] <ks1> is there a set time this thing is gonna end tonight
+[16:01] <@jpnance> well
+[16:01] <@jpnance> i don't think we'll go past 10pm
+[16:01] <@jpnance> central
+[16:01] <@jpnance> if there's a point where people are just getting horribly tired of it, we can knock off early
+[16:01] <@jpnance> either way, i'd like to get through as much as possible tonight
+[16:03] <ks1> i think im gonna suck at this. never done one of these
+[16:05] <dutchboyx9> how are you goign to do the timer?
+[16:05] <@jpnance> i'll just be eyeballing it, really
+[16:06] <dutchboyx9> ballsy
+[16:07] <ks1> timer for what
+[16:07] <dutchboyx9> last chance to bid
+[16:09] <@jpnance> i'll be entering the results into the rosters as we go along
+[16:09] <@jpnance> unfortunately, ESPN won't let us look at the players in free agency while i'm doing that
+[16:09] <@jpnance> trying to find a way around it
+[16:09] <ks1> oh damn that sucks
+[16:12] <@jpnance> you know
+[16:12] <@jpnance> i think i'll just do it in an HTML table or some shit
+[16:12] <@jpnance> because being able to see stats is more important
+[16:15] <ks1> fuck time is going by too slowly
+[16:16] <@jpnance> haha
+[16:16] <@jpnance> yeah, i wanna get this over with
+[16:18] <ks1> im doing this mock auction draft on espn, just to get the hang of it, i just bid 55 for LT or so i thought, but i ended up with portis for that price
+[16:23] <@jpnance> haha
+[16:35] <ks1> then i left the draft out of embarrassment
+[16:35] <ks1> that was the first player too
+[16:36] <@jpnance> hahaha
+[16:36] <@jpnance> i like it
+03[16:36] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) has joined #dynastyleague
+[16:37] <ks1> i think i got the hang of what not to do
+[16:38] <@jpnance> yeah
+[16:38] <@jpnance> also, keep in mind that the goal of that kind of auction draft is to spend all the money
+[16:38] <@jpnance> but because of the contracts and shit we'll be doing, you might not necessarily want to do that
+[16:38] <@jpnance> you can if you want, of course
+[16:38] <@jpnance> but yeah
+[16:40] <trevor> kj
+[16:40] <dutchboyx9> how much do you have LT going for on your board trevor
+[16:40] <trevor> oh 350
+[16:40] <dutchboyx9> yesss
+[16:40] <dutchboyx9> 351
+[16:42] <ks1> 350, wow
+[16:43] <trevor> pat give me mod privileges
+[16:43] <trevor> i _need_ them
+[16:44] <@jpnance> i don't know what you're talking about
+[16:44] <@jpnance> because i don't habitually use IRC
+[16:44] <@jpnance> and i am unfamiliar as to what its capabilities are
+[16:44] <trevor> oh i want to kick people and dumb shit like that
+03[16:46] * jpnance changes topic to 'http://whattheballs.com/~jpnance/dynasty/'
+[16:46] <ks1> cool cool
+03[16:46] * nomnomnom (i=42449116@gateway/web/ajax/mibbit.com/x-8a510aad7c4456af) has joined #dynastyleague
+[16:46] <@jpnance> since we're doing this in a pretty hokey fashion, i figured i should give you guys as much help as possible
+[16:46] <nomnomnom> nomming
+[16:47] <@jpnance> cash.html shows everybody's money run-down
+[16:47] <@jpnance> "30-player bid" is the maximum bid a player can make if he wants to have a 30-man roster
+03[16:47] * nomnomnom is now known as Guest11358
+[16:47] <@jpnance> but nobody is obligated to actually have a 30-man roster
+[16:47] <Guest11358> why did I get renamed
+[16:47] <ks1> oh really
+[16:47] <@jpnance> yeah
+[16:47] <ks1> well then cool
+03[16:47] * Texas_Schexes (i=467c5368@gateway/web/ajax/mibbit.com/x-f3122fc0406f6d7b) has joined #dynastyleague
+02[16:47] * Guest11358 (i=42449116@gateway/web/ajax/mibbit.com/x-8a510aad7c4456af) Quit (Client Quit)
+03[16:48] * nomming (i=42449116@gateway/web/ajax/mibbit.com/x-24c56ceb4e463e56) has joined #dynastyleague
+[16:48] <@jpnance> results.html is just the running result table of the draft
+[16:48] <nomming> if you rename me again I'm going to be pissed
+[16:48] <@jpnance> it's a really lousy substitute to see who's still available and who isn't
+[16:48] <@jpnance> but it'll have to do
+[16:48] <@jpnance> and the other files are the running rosters for each owner
+[16:48] <nomming> where's my big board
+[16:49] <@jpnance> and i'll be updating each one of those, so be prepared to refresh a lot tonight
+[16:49] <nomming> why isn't there a big board that you just take players off of
+[16:49] <nomming> eh mr. nance?
+[16:49] <@jpnance> i don't know
+[16:49] <@jpnance> i should also note
+[16:50] <@jpnance> on the cash.html
+[16:50] <nomming> is 30 player bid the max bid?
+[16:50] <@jpnance> from left to right, that's the nomination order
+[16:50] <@jpnance> if you want a 30-player roster, yeah
+[16:50] <@jpnance> the general maximum bid is whatever you have left because i'm not mandating 30-player rosters
+[16:50] <nomming> shouldn't it start as 971
+[16:50] <ks1> left to right?
+[16:50] <ks1> where do you see that
+[16:50] <@jpnance> yeah, sorry
+02[16:50] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) Quit ("leaving")
+[16:50] <Texas_Schexes> PAT
+[16:51] <Texas_Schexes> pat
+[16:51] <@jpnance> keyon: the top row
+[16:51] <@jpnance> trevor, john, keyon, ...
+[16:51] <nomming> PAT NANCE pat
+[16:51] <nomming> pat pat pat pat pat pat pat pat
+[16:51] <nomming> nom nom nom nom nom nom nom
+[16:51] <ks1> can you cut it out dude
+[16:51] <ks1> whoever you are
+[16:51] <nomming> nope
+03[16:51] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) has joined #dynastyleague
+[16:51] <ks1> fucking asshole
+[16:51] <Texas_Schexes> johnny remember when I told you to be cool?
+[16:51] <nomming> yes
+[16:52] <Texas_Schexes> be cool
+[16:52] <nomming> oh, I am
+[16:52] <nomming> 4I type in red I'm so cool
+[16:52] <@jpnance> any word on koci?
+[16:53] <trevor> he should be on his way to my house
+[16:53] <@jpnance> k
+[16:53] <trevor> were there any important rules i need to read?
+[16:53] <@jpnance> also, jeff isn't gonna be here for most, if not all, of the night
+[16:53] <trevor> i know i have $1000
+[16:53] <@jpnance> so schex, i guess, has some auto-draft figures for his team
+[16:54] <dutchboyx9> show us?
+[16:54] <nomming> if you're using a bigboard for autodraft purposes the rest of us need to see it
+03[16:54] * UES-Syed (i=cf97f25a@gateway/web/ajax/mibbit.com/x-67e02b04999be427) has joined #dynastyleague
+[16:55] <@jpnance> no, no rules were significantly changed
+[16:55] <UES-Syed> 13i'm a faggot
+[16:55] <trevor> yes you are
+[16:55] <trevor> get ed's dick out of your mouth
+[16:55] <@jpnance> $1000 to spend however you want
+[16:55] <@jpnance> maximum roster size of 30
+[16:55] <@jpnance> scoring system is exactly the same as the league of the FUTURE, for those of you who are in it
+[16:56] <dutchboyx9> $1 into tom brady's jock strap
+[16:56] <ks1> again, where is the nomination order? is it the column on the right
+[16:56] <ks1> i dont see any rows
+[16:56] <@jpnance> keyon: you looking at cash.html?
+[16:56] <nomming> 2let's start
+[16:56] <@jpnance> http://whattheballs.com/~jpnance/dynasty/cash.html
+[16:56] <nomming> 2one of my clocks reads something close to 8
+[16:56] <UES-Syed> 13trevor your IP is 0.124.83.104
+[16:56] <UES-Syed> 13 70.124.83.104
+[16:56] <ks1> thanks
+[16:56] <ks1> got it
+[16:57] <@jpnance> cool
+[16:57] <UES-Syed> 13ks1's IP is 71.145.181.218
+[16:57] <UES-Syed> 13daniel's is 76.104.65.215
+[16:57] <dutchboyx9> 207.151.242.090
+[16:57] <nomming> 2I win because I'm not using an IRC client. victory.
+[16:58] <UES-Syed> 13john's is 66.68.145.22
+[16:58] <UES-Syed> 13honeslty i have no idea what the IPs are
+[16:58] <nomming> 2false
+[16:58] <UES-Syed> 13but whois shows some bullshit that's supposed to be an IP
+[16:58] <trevor> how are we tracking the draft board
+[16:58] <trevor> mine's legit
+[16:58] <trevor> most aren't
+[16:58] <UES-Syed> 13with a cock and some lube
+[16:59] <dutchboyx9> 2 legit... 2 legit 2 quit
+[16:59] <dutchboyx9> i really need the sound to go so i know to bid
+02[16:59] * ks1 (i=4791b5da@gateway/web/ajax/mibbit.com/x-012fc2a01b8eb951) Quit ("http://www.mibbit.com ajax IRC Client")
+[17:00] <nomming> 2 8pm. GO GO GO.
+[17:00] <UES-Syed> 13god damn it john
+[17:00] <UES-Syed> 13i'm going to make erica quief on your face
+03[17:00] * ks1 (i=4791b5da@gateway/web/ajax/mibbit.com/x-d9065b05f65c1694) has joined #dynastyleague
+[17:00] <nomming> 2what I want to go drinking
+[17:00] <trevor> is there a list of players i can mark as drafted
+[17:00] <UES-Syed> 13yeah, print it out and use a sharpie
+[17:00] <nomming> 2and I told pat I'd try to do the first half before I got bored
+[17:00] <trevor> don't have a printer at my house
+[17:01] <@jpnance> any koci updates?
+[17:01] <Texas_Schexes> not here
+[17:01] <@jpnance> james?
+[17:01] <Texas_Schexes> give me a second
+[17:01] <UES-Syed> 13i thought you were pat, pat
+[17:01] <UES-Syed> 13not james
+[17:01] <@jpnance> 10 minutes for both of 'em
+[17:01] <dutchboyx9> nice
+[17:01] <dutchboyx9> they can forgo bidding on LT and AD
+[17:01] <Texas_Schexes> koci's here
+[17:02] <@jpnance> alright, cool
+[17:02] <@jpnance> see what you can find out about james
+[17:02] <Texas_Schexes> uhh crap
+[17:02] <Texas_Schexes> his phone's off
+[17:02] <@jpnance> sweet
+[17:03] <dutchboyx9> jaws says that justin tuck is a good replacement for strahan guys
+[17:03] <dutchboyx9> just so you know
+[17:03] <trevor> mario williams tore his acl today
+[17:03] <ks1> hahah
+[17:04] <dutchboyx9> selvin young got shot today
+[17:04] <ks1> is cedric benson in the pool of available players
+[17:04] <UES-Syed> 13Tom Brady got neutered today
+[17:04] <trevor> god fucking broncos can't stay alive
+[17:05] <trevor> he never had balls
+[17:05] <dutchboyx9> i clicked and trevor was lying guys
+[17:05] <@jpnance> if he's on ESPN's website, yeah
+[17:05] <dutchboyx9> super mario is ok
+[17:05] <@jpnance> darrent williams: still dead
+[17:05] <Texas_Schexes> ohhh
+03[17:05] * mib_ime1qc (i=467c5368@gateway/web/ajax/mibbit.com/x-920e6d054568d84e) has joined #dynastyleague
+[17:05] <@jpnance> is that koci?
+[17:05] <UES-Syed> 13jan stenerud: still skiing in heaven
+[17:05] <mib_ime1qc> yes
+[17:05] <trevor> 1
+[17:06] <trevor> mib_ime1qc: hi koci
+[17:06] <@jpnance> koci: type "/nick koci"
+[17:06] <@jpnance> or something
+03[17:06] * nomming is now known as nomnomnom
+03[17:06] * UES-Syed is now known as titties
+[17:06] <titties> 13YES
+[17:06] <titties> 13ok
+03[17:06] * dutchboyx9 is now known as balls
+03[17:06] * nomnomnom is now known as bewbs
+03[17:06] * trevor is now known as vagina
+03[17:06] * mib_ime1qc is now known as koci2
+03[17:06] * balls is now known as UES-Syed
+[17:06] <UES-Syed> i like balls
+[17:06] <koci2> it wouldn't let me be koci
+03[17:06] * bewbs is now known as jpnanceisnofun
+[17:07] <@jpnance> yeah, somebody us already has that name
+[17:07] <@jpnance> amazingly
+03[17:07] * vagina is now known as jeffsneden
+[17:07] <@jpnance> schex: anything we can do about james?
+[17:07] <jeffsneden> hi all
+[17:07] <@jpnance> any autodraft suggestions?
+[17:07] <jpnanceisnofun> 2I love it trevor
+[17:07] <jpnanceisnofun> 2i love it
+03[17:07] * titties is now known as Blair
+03[17:07] * Blair is now known as BlairSchiffsFatR
+03[17:07] * UES-Syed is now known as JennyHumphrey
+[17:07] <JennyHumphrey> XOXO
+03[17:08] * BlairSchiffsFatR is now known as BlakeLivelyLover
+03[17:08] * jeffsneden is now known as NataliePortman
+03[17:08] * BlakeLivelyLover is now known as JohnsVagina
+[17:08] <JohnsVagina> 13can we just nick to teh player we nominate
+[17:08] <@jpnance> no
+[17:08] <NataliePortman> JohnsVagina: lemon juice will clean up the rank smell
+03[17:08] * JohnsVagina is now known as DwayneBowe
+[17:08] <@jpnance> in fact, can you guys please change your names to something i can recognize
+[17:08] <NataliePortman> DwayneBowe: how much are you worth
+03[17:08] * DwayneBowe is now known as PatsMomsTits
+[17:09] <PatsMomsTits> 13you can recognize THESE, pat
+[17:09] <NataliePortman> hi pat
+03[17:09] * NataliePortman is now known as trevor
+[17:09] <trevor> this is really trevor
+[17:09] <trevor> for realz
+[17:09] <PatsMomsTits> 13no its not
+[17:09] <PatsMomsTits> 13it's jeff
+[17:09] <trevor> 1337
+[17:09] <PatsMomsTits> 13i followed it al the way through
+[17:09] <trevor> is this really going to work?
+03[17:09] * jpnanceisnofun is now known as BlairWaldorf
+03[17:10] * PatsMomsTits is now known as TaylorMomsen
+[17:10] <trevor> i draft the denver broncos
+[17:10] <TaylorMomsen> 13ooh
+[17:10] <TaylorMomsen> 13cant beat that daniel
+[17:10] <ks1> but they suck
+[17:10] <ks1> why would you do that
+[17:10] <TaylorMomsen> 13i used the REAL NAME of the hottie mchottie
+[17:10] <TaylorMomsen> 13what are we waiting for
+[17:10] <TaylorMomsen> 13my hot pink needs to get to biddin
+02[17:10] * BlairWaldorf (i=42449116@gateway/web/ajax/mibbit.com/x-24c56ceb4e463e56) Quit ("http://www.mibbit.com ajax IRC Client")
+03[17:11] * j-j-j-j-j-john (i=42449116@gateway/web/ajax/mibbit.com/x-db15d8b53a4f54b6) has joined #dynastyleague
+[17:11] <JennyHumphrey> SEASON TWO PREMIERES SEPT 1
+[17:11] <@jpnance> alright
+[17:11] <JennyHumphrey> OMG
+[17:11] <@jpnance> james apparently is MIA
+[17:11] <@jpnance> but charles is going to draft for him
+[17:11] <TaylorMomsen> 13well then fuck him in the ass with a toothpick
+[17:11] <JennyHumphrey> chuck
+[17:11] <@jpnance> so we have to chill for a few more minutes
+[17:11] <@jpnance> sorry
+[17:11] <TaylorMomsen> 13chuck is a terrible show
+[17:11] <j-j-j-j-j-john> wtf?
+03[17:11] * JennyHumphrey is now known as JUSTCHILL
+[17:11] <TaylorMomsen> 13but man i bet that girl gives great bjs
+[17:12] <j-j-j-j-j-john> 4 minutes
+03[17:12] * JUSTCHILL is now known as FOR-A-FEW-MINUTE
+03[17:12] * TaylorMomsen is now known as TantricLover
+[17:12] <Texas_Schexes> we're logging him on right now
+03[17:12] * FOR-A-FEW-MINUTE is now known as Jenny-will-Humph
+03[17:12] * Jenny-will-Humph is now known as JennyHumphrey
+03[17:12] * TantricLover is now known as SerenaBass
+[17:13] <@jpnance> does anybody have any last-minute rules questions that might affect their draft strategy?
+[17:13] <@jpnance> contracts aren't set until after the draft
+[17:13] <@jpnance> they'll probably be due by sunday
+[17:13] <trevor> hi
+[17:13] <@jpnance> and they won't be made public until everybody's are in
+[17:13] <trevor> try
+[17:13] <JennyHumphrey> roger
+[17:13] <SerenaBass> 13catch
+[17:13] <@jpnance> so you can't just wait to see trevor give LDT a 1-year contract before you all give your stud RBs 1-year deals in response
+[17:13] <SerenaBass> 13exit
+[17:13] <SerenaBass> 13error
+[17:14] <ks1> gotcha
+[17:14] <ks1> lets go
+[17:14] <JennyHumphrey> wow.. phil dawson just hit a 56 yarder
+[17:14] <SerenaBass> 13error('Patrick Nance isn't using his first name.')
+03[17:14] * trevor is now known as charles123
+[17:14] <@jpnance> we've got one more on the way
+[17:14] <ks1> oh ok
+[17:14] <koci2> \nick
+03[17:14] * SerenaBass is now known as CharlesSchex
+[17:14] <j-j-j-j-j-john> phil dawson is such a hoss
+[17:14] <CharlesSchex> 13ok i'm here
+[17:14] <CharlesSchex> 13lets get this party started
+03[17:14] * CharlesSchex is now known as RedRobinYummmmmm
+03[17:15] * RedRobinYummmmmm is now known as SerenaVanDerWood
+[17:15] <j-j-j-j-j-john> so
+[17:15] <j-j-j-j-j-john> real names?
+[17:15] <@jpnance> yeah, please
+03[17:15] * JennyHumphrey is now known as johnmckee
+03[17:15] * SerenaVanDerWood is now known as SyedAshrafulla
+[17:15] <j-j-j-j-j-john> you have about 15 seconds before I give up and leave
+[17:15] <SyedAshrafulla> 13there we go
+[17:15] <SyedAshrafulla> 13 4th try
+[17:15] <SyedAshrafulla> 13john
+03[17:15] * johnmckee is now known as daniel
+[17:15] <SyedAshrafulla> 13arent you nominating first
+[17:15] <j-j-j-j-j-john> thank you
+03[17:15] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) has joined #dynastyleague
+[17:15] <j-j-j-j-j-john> nope I'm #2
+03[17:15] * Texas_Schexes is now known as schex
+[17:15] <koci2> where's the nomination order?
+[17:15] <j-j-j-j-j-john> Trevor is up first
+[17:16] <@jpnance> is everybody appropriately named?
+[17:16] <trevor> how in the fucking world is this going to work
+[17:16] <j-j-j-j-j-john> in cash.html
+[17:16] <trevor> oh Adrian peterson
+[17:16] <trevor> 350
+03[17:16] * jpnance sets mode: +m
+[17:16] <@jpnance> alright
+[17:16] <@jpnance> we're +m
+[17:16] <@jpnance> so only i can talk for the moment
+[17:16] <@jpnance> http://whattheballs.com/~jpnance/dynasty/
+[17:16] <@jpnance> if you go there, you'll find a bunch of files
+[17:16] <@jpnance> cash.html is the remaining cash situations
+[17:16] <@jpnance> how many spots that owner has left
+[17:16] <@jpnance> and what his maximum bid is if he intends to fill a 30-man roster
+[17:17] <@jpnance> i'm not mandating that a roster have 30 spots filled, though
+[17:17] <@jpnance> so, in general, an owner's maximum bid is however much he has left
+02[17:17] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) Quit (Client Quit)
+[17:17] <@jpnance> results.html is the running results table
+[17:17] <@jpnance> pretty self explanatory
+[17:17] <@jpnance> i wish there were a better way to tell who's been taken and who hasn't but, unfortunately, there isn't
+03[17:17] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) has joined #dynastyleague
+[17:18] <@jpnance> if you need a way to compare people within our scoring system, you can go to the league page and search the free agents wire normally
+[17:18] <@jpnance> the other pages are just each owner's roster up to that point
+[17:18] <@jpnance> i'll be updating this all as fast as i can so, if you're interested in such things, be prepared to refresh a lot
+[17:18] <@jpnance> the nomination order is:
+[17:19] <@jpnance> trevor, john, keyon, koci, patrick, syed, daniel, jeff, schex, james
+[17:19] <@jpnance> so, in a few minutes
+[17:19] <@jpnance> trevor will yell out a name
+[17:19] <@jpnance> and then you guys just type in whatever you want to bid
+[17:19] <@jpnance> hopefully, it'll resemble a real auction
+[17:19] <@jpnance> at some point, i'll decide that the bidding has slowed down enough to declare "going once, going twice, sold"
+[17:20] <@jpnance> (in separate messages, natch.)
+[17:20] <@jpnance> unfortunately, i can't limit the talking to only bids and nominations
+[17:20] <@jpnance> so i ask that you guys keep conversation to google talk or AIM or whatever
+[17:20] <@jpnance> pretty please with a cherry on top
+[17:20] <@jpnance> a few notes
+[17:20] <@jpnance> jeff's not here and probably won't be
+[17:21] <@jpnance> he gave schex some set of rules for drafting for him
+[17:21] <@jpnance> so you'll just have to trust schex is being fair if he ever gets into a bidding war with jeff
+[17:21] <@jpnance> essentially, schex is drafting for two teams
+[17:21] <@jpnance> hopefully, he'll be pretty clear about which bid is intended for which owner
+[17:21] <@jpnance> also, james is not here either, but charles is drafting for him
+[17:21] <@jpnance> any questions?
+03[17:22] * jpnance sets mode: -m
+[17:22] <ks1> picking up a FA after draft
+[17:22] <ks1> doesnt cost a thing right
+[17:22] <@jpnance> costs $1
+[17:22] <daniel> $1
+[17:22] <ks1> ok
+[17:22] <@jpnance> all undrafted players cost $1 to pick up
+[17:22] <j-j-j-j-j-john> what are the rules for if a player is dropped
+[17:22] <@jpnance> he retains his market value for his next owner
+[17:22] <@jpnance> and his contract disappears
+[17:22] <j-j-j-j-j-john> what happens to the dropping owners salary cap
+[17:22] <SyedAshrafulla> 13cap hit
+[17:22] <daniel> 1/2
+[17:22] <SyedAshrafulla> 13 50% of contract
+[17:23] <@jpnance> the owner gets relieved of half of that player's value, and we round up
+[17:23] <j-j-j-j-j-john> k
+[17:23] <trevor> adrian peterson
+[17:23] <trevor> 350
+[17:23] <SyedAshrafulla> 13 400
+[17:23] <daniel> 351
+[17:23] <@jpnance> anything else?
+[17:23] <trevor> 401
+[17:23] <@jpnance> alright then
+[17:23] <@jpnance> there we go
+[17:23] <@jpnance> 401
+[17:23] <@jpnance> going once
+[17:23] <@jpnance> going twice
+[17:23] <@jpnance> sold
+[17:24] <j-j-j-j-j-john> Steve Smith CAR $1
+[17:24] <daniel> $5
+[17:24] <schex> 30
+[17:24] <ks1> 50
+[17:24] <SyedAshrafulla> 13 50
+[17:24] <SyedAshrafulla> 13 75
+[17:24] <@jpnance> 76
+[17:24] <SyedAshrafulla> 13 94
+[17:24] <ks1> 100
+[17:25] <SyedAshrafulla> 13 117
+[17:25] <@jpnance> 117 going once
+[17:25] <ks1> 120
+[17:25] <@jpnance> 120 going once
+[17:25] <@jpnance> going twice
+[17:25] <@jpnance> sold
+[17:25] <daniel> i think make the going once twice faster pat
+[17:26] <ks1> joseph addai
+[17:26] <@jpnance> have to set a starting bid
+[17:26] <daniel> $1
+[17:26] <ks1> ok
+[17:26] <schex> 200
+[17:26] <SyedAshrafulla> 13 290
+[17:26] <j-j-j-j-j-john> 300
+[17:26] <@jpnance> 310
+[17:26] <SyedAshrafulla> 13 312
+[17:26] <ks1> 320
+[17:26] <charles123> 330
+[17:26] <daniel> 321
+[17:26] <@jpnance> 325
+[17:26] <SyedAshrafulla> 13 350
+[17:27] <@jpnance> 351
+[17:27] <@jpnance> going once
+[17:27] <SyedAshrafulla> 13 354
+[17:27] <daniel> 355
+[17:27] <SyedAshrafulla> 13 356
+[17:27] <daniel> 357
+[17:27] <SyedAshrafulla> 13 358
+[17:27] <daniel> 359
+[17:27] <SyedAshrafulla> 13 359.5
+[17:27] <schex> no
+[17:27] <ks1> haha
+[17:27] <@jpnance> that's a 360 bid
+[17:27] <SyedAshrafulla> 13ok fine 360
+[17:28] <daniel> going once
+[17:28] <@jpnance> going once going twice gone
+[17:28] <@jpnance> sorry
+[17:28] <@jpnance> you guys are gonna have to bear with me
+[17:28] <SyedAshrafulla> 13dave's wondering why i'm laughing so hard
+[17:28] <@jpnance> typing a lot
+[17:28] <j-j-j-j-j-john> don't use this window for chat plz
+[17:28] <schex> sold?
+[17:29] <@jpnance> yeah, for $360 to syed
+[17:29] <ks1> koci's turn
+[17:29] <daniel> I'll do the going once going twice thing if you want pat
+[17:29] <koci2> nick folk $1
+[17:29] <ks1> 5
+[17:29] <j-j-j-j-j-john> 2
+[17:29] <schex> $2
+[17:29] <@jpnance> going once
+[17:29] <@jpnance> going twice
+[17:29] <SyedAshrafulla> 13 6
+[17:29] <ks1> 7
+[17:30] <@jpnance> going once
+[17:30] <@jpnance> going twice
+[17:30] <@jpnance> sold
+[17:30] <koci2> you may just want to say who is next to nominate whenever someone is sold
+[17:30] <@jpnance> well, in this case, i am
+[17:30] <@jpnance> tom brady: $150
+[17:30] <daniel> 151
+[17:31] <@jpnance> 175
+[17:31] <charles123> 200
+[17:31] <daniel> 201
+[17:31] <SyedAshrafulla> 13 250
+[17:31] <@jpnance> 205
+[17:31] <j-j-j-j-j-john> 250
+[17:31] <j-j-j-j-j-john> er 255
+[17:31] <@jpnance> 255 to john, going once
+[17:31] <@jpnance> going twice
+[17:31] <@jpnance> sold
+[17:32] <j-j-j-j-j-john> Syed's turn
+[17:32] <@jpnance> syed's up next, but count to 20 first
+[17:32] <SyedAshrafulla> 13Dwayne Bowe, starting bid $60
+[17:32] <trevor> 61
+[17:32] <charles123> 100
+[17:32] <j-j-j-j-j-john> 101
+[17:32] <trevor> wtf john
+[17:32] <charles123> 102
+[17:33] <@jpnance> 102 going once
+[17:33] <@jpnance> going twice
+[17:33] <@jpnance> sold
+[17:33] <daniel> nominate jamal lewis CLE - $100
+[17:33] <@jpnance> daniel's up next
+[17:33] <j-j-j-j-j-john> 115
+[17:33] <SyedAshrafulla> 13 140
+[17:34] <@jpnance> 145
+[17:34] <j-j-j-j-j-john> 150
+[17:34] <daniel> 160
+[17:34] <SyedAshrafulla> 13 173
+[17:34] <@jpnance> 173 to syed
+[17:34] <@jpnance> going once
+[17:34] <@jpnance> going twice
+[17:34] <@jpnance> sold
+[17:35] <@jpnance> jeff's up next
+[17:35] <schex> LDT, 100
+[17:35] <charles123> 170
+[17:35] <trevor> 300
+[17:35] <daniel> 330
+[17:35] <@jpnance> $335
+[17:35] <trevor> 340
+[17:35] <SyedAshrafulla> 13 365
+[17:35] <@jpnance> 370
+[17:35] <@jpnance> 370 to pat, going once
+[17:35] <@jpnance> going twice
+[17:35] <@jpnance> sold
+[17:35] <j-j-j-j-j-john> 375
+[17:35] <j-j-j-j-j-john> damnit
+[17:36] <trevor> you've been consistent pat
+[17:36] <@jpnance> schex is up
+[17:36] <trevor> but it'd be nice if you'd slow the count a tiny bit
+[17:36] <@jpnance> alright
+[17:36] <j-j-j-j-j-john> and by "a tiny bit" he means "quite a bit"
+[17:36] <daniel> just between twice and sold
+[17:36] <schex> Romo 50
+[17:36] <daniel> 100
+[17:36] <ks1> 150
+[17:36] <@jpnance> 170
+[17:36] <SyedAshrafulla> 13 151
+[17:36] <SyedAshrafulla> 13 171
+[17:36] <j-j-j-j-j-john> 175
+[17:36] <ks1> 200
+[17:36] <SyedAshrafulla> 13 215
+[17:36] <ks1> 220
+[17:37] <@jpnance> 220 to keyon going once
+[17:37] <@jpnance> going twice
+[17:37] <@jpnance> sold
+[17:37] <trevor> that was fine
+[17:37] <@jpnance> k
+[17:37] <@jpnance> james (charles) is up next
+[17:37] <charles123> jamarcus russell $2
+[17:37] <@jpnance> whenever you're ready
+[17:38] <@jpnance> $10
+[17:38] <j-j-j-j-j-john> 20
+[17:38] <charles123> 12
+[17:38] <@jpnance> 21
+[17:38] <daniel> 50
+[17:38] <charles123> 55
+03[17:38] * mib_257swa (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-20f620bb49d5ec93) has joined #dynastyleague
+[17:38] <trevor> lsu homer
+[17:38] <@jpnance> 55 to charles going once
+[17:38] <daniel> 60
+[17:38] <schex> NO CHAT
+[17:38] <@jpnance> 60 to daniel
+[17:38] <@jpnance> going once
+[17:38] <@jpnance> going twice
+[17:38] <@jpnance> sold
+[17:39] <@jpnance> yay first round
+[17:39] <trevor> jpnance: are you going to be updating the results.html?
+[17:39] <trevor> that seems most important to me
+[17:39] <@jpnance> yeah, let's pause for a second
+[17:39] <daniel> you have no money
+[17:39] <j-j-j-j-j-john> pause between rounds?
+[17:39] <@jpnance> which pages do you guys want updated most often?
+[17:39] <daniel> set mode +m
+[17:39] <@jpnance> cash and results?
+[17:39] <daniel> yeah, those two
+[17:40] <daniel> not teams
+[17:40] <trevor> yes cash and results
+[17:40] <j-j-j-j-j-john> I say results and let us keep track of cash
+[17:40] <mib_257swa> Sorry I'm late, just got out of deposition.  Does this discussion mean there's a league page where I can see what I missed?
+[17:40] <j-j-j-j-j-john> it seems you only have time to do one
+[17:40] <@jpnance> alright, hold on, i'm gonna let syed take over results
+[17:40] <trevor> who is mib_257swa 
+[17:40] <j-j-j-j-j-john> type "/nick"
+[17:40] <j-j-j-j-j-john> and a name
+[17:40] <j-j-j-j-j-john> kthx
+[17:40] <@jpnance> "/nick james"
+[17:40] <mib_257swa> That's James Reynolds
+03[17:40] * mib_257swa is now known as james
+[17:41] <trevor> james: you have bowe
+[17:41] <trevor> for 102
+[17:41] <@jpnance> james: http://whattheballs.com/~jpnance/dynasty/
+[17:41] <@jpnance> everything's up to date except results.html
+03[17:41] * james is now known as Guest61078
+[17:41] <trevor> jpnance: are we ready?
+[17:41] <j-j-j-j-j-john> results still isn't up
+02[17:42] * ks1 (i=4791b5da@gateway/web/ajax/mibbit.com/x-d9065b05f65c1694) Quit ("http://www.mibbit.com ajax IRC Client")
+[17:42] <@jpnance> not yet
+[17:42] <@jpnance> hold on just a sec
+[17:42] <@jpnance> getting syed set up
+[17:42] <Guest61078> now i'm "guest"
+[17:42] <daniel> delete dick sample
+03[17:42] * Guest61078 is now known as mib_257swa
+[17:42] <@jpnance> make it "james_r" or something
+[17:42] <@jpnance> or guest is fine, honestly
+[17:43] <@jpnance> i know who you are
+03[17:43] * mib_257swa is now known as james_r
+03[17:43] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-7974139ddb31618f) has joined #dynastyleague
+[17:43] <@jpnance> you good, keyon?
+[17:43] <ks1> yeah
+[17:43] <ks1> sorry
+[17:43] <j-j-j-j-j-john> if any of you are in the picks league
+[17:43] <j-j-j-j-j-john> pay me please
+[17:43] <j-j-j-j-j-john> kthx
+[17:43] <daniel> NO CHAT
+[17:43] <j-j-j-j-j-john> go go go
+[17:43] <@jpnance> just a couple more minutes
+[17:43] <ks1> is it my turn or what
+[17:44] <j-j-j-j-j-john> trevor
+[17:44] <@jpnance> it'll be trevor's turn in a sec
+[17:44] <@jpnance> making sure syed's good to go
+[17:44] <@jpnance> he's gonna be updating the results.html from now on
+[17:44] <@jpnance> alright trevor
+[17:44] <trevor> i nominate jared allen $3
+[17:44] <@jpnance> lay #11 on us
+[17:44] <@jpnance> 5
+[17:44] <trevor> 6
+[17:44] <daniel> 10
+[17:44] <j-j-j-j-j-john> 15
+[17:44] <schex> 20
+[17:44] <@jpnance> 21
+[17:44] <@jpnance> 21 to pat, going once
+[17:45] <@jpnance> going twice
+[17:45] <trevor> tavaris is out
+[17:45] <trevor> he's worth more now
+[17:45] <@jpnance> sold
+[17:45] <@jpnance> john's up
+[17:45] <j-j-j-j-j-john> L. Coles 35
+[17:45] <trevor> 36
+[17:45] <@jpnance> 36 to trevor, going once
+[17:45] <daniel> 40
+[17:45] <j-j-j-j-j-john> 40
+[17:45] <trevor> 41
+[17:46] <james_r> 42
+[17:46] <j-j-j-j-j-john> 42
+[17:46] <daniel> 45
+[17:46] <trevor> 45
+[17:46] <trevor> 46
+[17:46] <daniel> 50
+[17:46] <schex> 50
+[17:46] <trevor> 51
+[17:46] <daniel> 60
+[17:46] <schex> 55
+[17:46] <trevor> 61
+[17:46] <@jpnance> 61 to trevor, going once
+[17:46] <schex> 62
+[17:46] <daniel> 65
+[17:46] <trevor> 66
+[17:46] <daniel> 70
+[17:46] <@jpnance> 70 to daniel, going once
+[17:46] <@jpnance> going twice
+[17:46] <j-j-j-j-j-john> 71
+[17:47] <@jpnance> 71 to john, going once
+[17:47] <daniel> 72
+[17:47] <SyedAshrafulla> 13 75
+[17:47] <@jpnance> ha
+[17:47] <@jpnance> 75 to syed, going once
+[17:47] <@jpnance> going twice
+[17:47] <@jpnance> sold
+[17:47] <j-j-j-j-j-john> 76
+[17:47] <j-j-j-j-j-john> k
+[17:47] <ks1> b. westbrook 100
+[17:48] <@jpnance> 130
+[17:48] <daniel> 250
+[17:48] <j-j-j-j-j-john> 150
+[17:48] <@jpnance> 155
+[17:48] <schex> 200
+[17:48] <schex> Jeff:230
+[17:48] <daniel> 250
+[17:48] <@jpnance> 250 to daniel, going once
+[17:48] <schex> 255
+[17:48] <schex> Jeff:260
+[17:48] <daniel> 275
+[17:48] <schex> 270
+[17:48] <schex> Jeff:280
+[17:49] <@jpnance> 280 to jeff, going once
+[17:49] <schex> 295
+[17:49] <schex> Jeff:300
+[17:49] <schex> 310
+[17:49] <@jpnance> 310 to schex, going once
+[17:49] <schex> Jeff:
+[17:49] <schex> 320
+[17:49] <@jpnance> 320 to jeff, going once
+[17:49] <@jpnance> going twice
+[17:49] <@jpnance> "jeff" wins a player
+[17:49] <@jpnance> hooray
+[17:50] <@jpnance> koci's up
+[17:50] <j-j-j-j-j-john> that safety was so cool
+[17:50] <koci2> nate kaeding $1
+[17:50] <schex> jeff's on the phone with me by the way
+[17:50] <schex> hence that war
+[17:50] <@jpnance> 1 to koci, going once
+[17:51] <@jpnance> going twice
+[17:51] <@jpnance> sold
+[17:51] <@jpnance> i'm up
+[17:51] <@jpnance> gimme a minute to catch up
+[17:51] <@jpnance> alright
+[17:52] <@jpnance> jay cutler: $25
+[17:52] <ks1> 50
+[17:52] <james_r> 100
+[17:52] <@jpnance> 100 to james, going once
+[17:52] <@jpnance> going twice
+[17:52] <@jpnance> sold
+[17:52] <@jpnance> syed's up
+[17:53] <SyedAshrafulla> 13oh
+[17:54] <SyedAshrafulla> 13Michael Turner (RB - ATL) at 50
+[17:54] <daniel> 60
+[17:54] <@jpnance> 70
+[17:54] <ks1> 665
+[17:54] <ks1> wow
+[17:54] <ks1> sorry
+[17:54] <@jpnance> don't worry
+[17:54] <daniel> no takebacks
+[17:54] <@jpnance> 70's the high bidh
+[17:54] <@jpnance> 665 is obviously a mistake
+[17:54] <@jpnance> 70 by me
+[17:54] <ks1> 80
+[17:54] <daniel> 100
+[17:54] <SyedAshrafulla> 13the results page should be updated now
+[17:54] <@jpnance> 100 to daniel, going once
+[17:54] <ks1> 110
+[17:54] <SyedAshrafulla> 13 101
+[17:54] <SyedAshrafulla> 13 111
+[17:55] <ks1> 115
+[17:55] <@jpnance> 115 to keyon, going once
+[17:55] <@jpnance> going twice
+[17:55] <@jpnance> sold
+[17:55] <SyedAshrafulla> 13 16 picks in!
+[17:55] <@jpnance> daniel's up
+[17:56] <daniel> ryan grant - 275
+[17:56] <daniel> shit i meant 175
+[17:56] <daniel> ryan grant 175
+[17:56] <@jpnance> 175's good
+[17:56] <schex> 200
+[17:56] <daniel> 201
+[17:56] <@jpnance> 201 to daniel, going once
+[17:56] <@jpnance> going twice
+[17:56] <@jpnance> sold
+[17:57] <@jpnance> jeff's up
+[17:57] <schex> asking
+[17:57] <schex> peyton manning 8
+[17:57] <trevor> 15
+[17:57] <@jpnance> 16
+[17:57] <daniel> 100
+[17:57] <j-j-j-j-j-john> 2 100
+[17:57] <@jpnance> 120
+[17:57] <@jpnance> 120 to me, going once
+[17:57] <SyedAshrafulla> 13 121
+[17:57] <j-j-j-j-j-john> 2 125
+[17:58] <@jpnance> 125 to john, going once
+[17:58] <SyedAshrafulla> 13 126
+[17:58] <@jpnance> 126 to syed, going once
+[17:58] <@jpnance> going twice
+[17:58] <j-j-j-j-j-john> 2 127
+[17:58] <SyedAshrafulla> 13 128
+[17:58] <daniel> 130
+[17:58] <SyedAshrafulla> 13 131
+[17:58] <j-j-j-j-j-john> 2 150
+[17:58] <schex> 135
+[17:58] <@jpnance> 150 to john, going once
+[17:58] <SyedAshrafulla> 13 151
+[17:59] <@jpnance> 151 to syed, going once
+[17:59] <daniel> 160
+[17:59] <SyedAshrafulla> 13 161
+[17:59] <@jpnance> 161 to syed, going once
+[17:59] <@jpnance> going twice
+[17:59] <@jpnance> sold
+[18:00] <@jpnance> schex is up
+[18:00] <schex> big ben 30
+[18:00] <@jpnance> 50
+[18:00] <daniel> 100
+[18:00] <schex> jeff: 101
+[18:00] <trevor> 102
+[18:00] <daniel> 120
+[18:00] <@jpnance> 120 to daniel, going once
+[18:01] <@jpnance> going twice
+[18:01] <@jpnance> sold
+[18:02] <@jpnance> james is up
+[18:02] <james_r> darren mcfadden
+[18:02] <james_r> at 5
+[18:02] <daniel> 1
+[18:02] <daniel> 10
+[18:02] <trevor> 160
+[18:02] <daniel> 161
+[18:02] <@jpnance> 175
+[18:02] <james_r> 176
+[18:02] <@jpnance> 176 to james, going once
+[18:03] <@jpnance> going twice
+[18:03] <trevor> 177
+[18:03] <james_r> 178
+[18:03] <@jpnance> 178 to james, going once
+[18:03] <@jpnance> going twice
+[18:03] <@jpnance> sold
+[18:03] <schex> I'm relieved of jeff duty
+[18:03] <@jpnance> alright, that's the second round
+[18:03] <@jpnance> i recommend everybody check their cash situation
+[18:03] <SyedAshrafulla> 13and the score
+[18:04] <SyedAshrafulla> 13david and koci have a ton of money
+[18:04] <SyedAshrafulla> 13and syed has not exactly a ton
+[18:04] <@jpnance> and i need to pause to pee
+[18:04] <@jpnance> talk amongst yourselves
+[18:04] <daniel> i think one WR nominatored so far
+03[18:04] * jsneden (i=44f44a55@gateway/web/ajax/mibbit.com/x-83c395b6b2037778) has joined #dynastyleague
+[18:04] <j-j-j-j-j-john> 2Coles!
+[18:04] <j-j-j-j-j-john> 2and Steve Smith
+[18:04] <daniel> or it was 3
+[18:04] <james_r> Bowe
+[18:04] <jsneden> WHAT UP BITCHES
+[18:04] <ks1> 3
+[18:04] <SyedAshrafulla> 13three
+[18:04] <j-j-j-j-j-john> 2thar she blows
+[18:04] <j-j-j-j-j-john> 2lots of RBs
+[18:05] <j-j-j-j-j-john> 2but several of the top ones are still available
+[18:05] <daniel> why were you so low on roethlisberger
+[18:05] <ks1> 8
+[18:05] <j-j-j-j-j-john> 2also pretty low on Manning
+[18:05] <SyedAshrafulla> 13the order in the results page is wrong fo ra bit i think
+[18:05] <james_r> and pretty high on Cutler
+[18:05] <ks1> i hate romo now that i saw manning and ben
+[18:05] <j-j-j-j-j-john> 2yup
+[18:06] <@jpnance> alright, i'm ready if everybody else is
+[18:06] <SyedAshrafulla> 13ok i think the order is fixed as to how they were nominated
+[18:06] <@jpnance> all of the cash and team pages should be up to date
+[18:06] <trevor> james hardy $1
+[18:06] <@jpnance> who is that
+[18:06] <daniel> 2
+[18:06] <SyedAshrafulla> 13rookie WR, BUF
+[18:06] <trevor> buffalo rookie receiver
+[18:06] <trevor> 3
+[18:06] <@jpnance> okay
+[18:06] <daniel> 4
+[18:06] <SyedAshrafulla> 13from Indiana
+[18:06] <trevor> 5
+[18:07] <daniel> like 10 feet tall
+[18:07] <@jpnance> if it's a somewhat obscure player, could you guys make sure the position/team are known?
+[18:07] <daniel> 6
+[18:07] <trevor> 7
+[18:07] <@jpnance> 7 to trevor, going once
+[18:07] <daniel> 10
+[18:07] <trevor> 11
+[18:07] <@jpnance> 10 to daniel, going once
+[18:07] <@jpnance> 11 to trevor, going once
+[18:07] <@jpnance> going twice
+[18:07] <@jpnance> sold
+[18:07] <j-j-j-j-j-john> 2Marques Colston 50
+[18:08] <@jpnance> 51
+[18:08] <ks1> 60
+[18:08] <jsneden> 58
+[18:08] <daniel> 61
+[18:08] <schex> 70
+[18:08] <ks1> 75
+[18:08] <schex> 80
+[18:08] <@jpnance> 80 to schex, going once
+[18:08] <SyedAshrafulla> 13 81
+[18:08] <koci2> 81
+[18:08] <schex> 85
+[18:08] <j-j-j-j-j-john> 2 90
+[18:08] <SyedAshrafulla> 13 86
+[18:08] <SyedAshrafulla> 13 91
+[18:08] <schex> 95
+[18:08] <ks1> 100
+[18:08] <schex> 105
+[18:09] <ks1> 110
+[18:09] <schex> 115
+[18:09] <@jpnance> 115 to schex, going once
+[18:09] <@jpnance> going twice
+[18:09] <SyedAshrafulla> 13 116
+[18:09] <schex> 117
+[18:09] <@jpnance> 117 to schex, going once
+[18:09] <SyedAshrafulla> 13i'm out
+[18:09] <@jpnance> going twice
+[18:09] <@jpnance> sold
+[18:10] <ks1> steven jackson 150
+[18:10] <@jpnance> 155
+[18:10] <j-j-j-j-j-john> 6 175
+[18:10] <daniel> 200
+[18:10] <trevor> 191
+[18:10] <jsneden> 300
+[18:10] <schex> 320
+[18:10] <jsneden> 321\
+[18:10] <@jpnance> 321 to jeff, going once
+[18:10] <schex> 322
+[18:10] <jsneden> 323
+[18:11] <koci2> 324
+[18:11] <jsneden> 325
+[18:11] <@jpnance> 325 to jeff, going once
+[18:11] <@jpnance> going twice
+[18:11] <schex> 326
+[18:11] <@jpnance> 326 to schex, going once
+[18:11] <@jpnance> going twice
+[18:11] <jsneden> 327
+[18:11] <@jpnance> 327 to jeff, going once
+[18:11] <schex> 328
+[18:12] <jsneden> 330
+[18:12] <koci2> 331
+[18:12] <@jpnance> 331 to koci, going once
+[18:12] <@jpnance> going twice
+[18:12] <@jpnance> sold
+[18:12] <@jpnance> koci's up
+[18:13] <koci2> rashard mendenhall 50
+[18:13] <@jpnance> 51
+[18:13] <jsneden> 20
+[18:13] <trevor> 53
+[18:13] <@jpnance> 53 to trevor, going once
+[18:13] <jsneden> 54
+[18:13] <SyedAshrafulla> 13 55
+[18:13] <@jpnance> 55 to syed, going once
+[18:13] <@jpnance> going twice
+[18:13] <@jpnance> sold
+[18:14] <@jpnance> felix jones: $10
+[18:14] <ks1> 15
+[18:14] <trevor> 17
+[18:14] <j-j-j-j-j-john> 10 25
+[18:14] <daniel> 26
+[18:14] <trevor> 27
+[18:15] <schex> 30
+[18:15] <ks1> 30
+[18:15] <@jpnance> 30 is schex
+[18:15] <j-j-j-j-j-john> 10 31
+[18:15] <schex> 32
+[18:15] <james_r> 33
+[18:15] <@jpnance> 32 to schex, going once
+[18:15] <@jpnance> 33 to james, going once
+[18:15] <schex> 34
+[18:15] <@jpnance> 34 to schex, going once
+[18:15] <james_r> 36
+[18:15] <@jpnance> 36 to james, going once
+[18:15] <schex> 37
+[18:16] <@jpnance> 37 to schex, going once
+[18:16] <james_r> 38
+[18:16] <@jpnance> 38 to james, going once
+[18:16] <schex> 40
+[18:16] <@jpnance> 40 to schex, going once
+[18:16] <james_r> 44
+[18:16] <@jpnance> 44 to james, going once
+[18:16] <@jpnance> going twice
+[18:16] <@jpnance> sold
+[18:17] <SyedAshrafulla> 13me?
+[18:17] <@jpnance> syed's up
+[18:17] <SyedAshrafulla> 13Tony Scheffler (TE - DEN) at $1
+[18:17] <trevor> 5
+[18:17] <j-j-j-j-j-john> 10 10
+[18:17] <trevor> 11
+[18:17] <ks1> 12
+[18:17] <j-j-j-j-j-john> 10 20
+[18:17] <@jpnance> 20 to john, going once
+[18:17] <jsneden> 21
+[18:17] <@jpnance> 21 to jeff, going once
+[18:18] <j-j-j-j-j-john> 10 22
+[18:18] <@jpnance> 22 to john, going once
+[18:18] <ks1> 25
+[18:18] <j-j-j-j-j-john> 10 26
+[18:18] <@jpnance> 26 to john, going once
+[18:18] <@jpnance> going twice
+[18:18] <@jpnance> sold
+[18:18] <daniel> randy moss NE WR 75
+[18:18] <jsneden> 76
+[18:18] <trevor> 130
+[18:18] <ks1> 100
+[18:19] <ks1> 135
+[18:19] <trevor> 145
+[18:19] <j-j-j-j-j-john> 10 150
+[18:19] <trevor> 151
+[18:19] <j-j-j-j-j-john> 10 155
+[18:19] <trevor> 160
+[18:19] <daniel> 165
+[18:19] <@jpnance> 160 to trevor, going once
+[18:19] <jsneden> 170
+[18:19] <trevor> 174
+[18:19] <jsneden> 180
+[18:19] <j-j-j-j-j-john> 10 175
+[18:20] <@jpnance> 180 to jeff, going once
+[18:20] <trevor> 181
+[18:20] <@jpnance> going twice
+[18:20] <jsneden> 182
+[18:20] <trevor> 183
+[18:20] <jsneden> 185
+[18:20] <trevor> 187
+[18:20] <jsneden> 190
+[18:20] <j-j-j-j-j-john> 10 195
+[18:20] <jsneden> 200
+[18:20] <@jpnance> 200 to jeff, going once
+[18:20] <j-j-j-j-j-john> 10 210
+[18:20] <jsneden> 211
+[18:20] <@jpnance> 211 to jeff, going once
+[18:21] <@jpnance> going twice
+[18:21] <@jpnance> sold
+[18:21] <@jpnance> jeff's up
+[18:21] <jsneden> Brees 20
+[18:21] <@jpnance> 40
+[18:21] <trevor> 50
+[18:21] <ks1> 50
+[18:21] <@jpnance> 60
+[18:22] <jsneden> (Reed)
+[18:22] <trevor> 70
+[18:22] <@jpnance> haha
+[18:22] <@jpnance> 75
+[18:22] <j-j-j-j-j-john> 10 80
+[18:22] <trevor> 85
+[18:22] <ks1> 90
+[18:22] <j-j-j-j-j-john> 10 100
+[18:22] <@jpnance> DREW BREES, FOLKS, NOT REID BREES, WHO IS NOT A FOOTBALL PLAYER
+[18:22] <@jpnance> 100 to john, going once
+[18:22] <@jpnance> going twice
+[18:22] <@jpnance> sold
+[18:22] <j-j-j-j-j-john> 10shrug
+[18:23] <schex> who's up, me?
+[18:23] <@jpnance> yep
+[18:23] <schex> favre, brett, NYJ QB
+[18:23] <schex> 4
+[18:23] <@jpnance> haha
+[18:23] <@jpnance> natch.
+[18:23] <jsneden> 8
+[18:23] <trevor> 12
+[18:23] <jsneden> 16
+[18:23] <ks1> 20
+[18:24] <trevor> 24
+[18:24] <@jpnance> 24 to trevor, going once
+[18:24] <@jpnance> going twice
+[18:24] <daniel> 30
+[18:24] <@jpnance> 30 to daniel, going once,
+[18:24] <@jpnance> going twice
+[18:24] <jsneden> someone sucks at math
+[18:24] <@jpnance> sold
+[18:24] <trevor> 28 was the proper bid
+[18:25] <j-j-j-j-j-john> 10false
+[18:25] <@jpnance> james is up
+[18:25] <james_r> t.o.
+[18:25] <james_r> 40
+[18:25] <j-j-j-j-j-john> 10 100
+[18:25] <trevor> 101
+[18:25] <jsneden> 111
+[18:25] <j-j-j-j-j-john> 10 120
+[18:25] <trevor> 121
+[18:25] <ks1> 130
+[18:25] <j-j-j-j-j-john> 10 130
+[18:25] <@jpnance> 122
+[18:26] <@jpnance> keyon's 130
+[18:26] <j-j-j-j-j-john> 10 140
+[18:26] <@jpnance> 140 to john, going once
+[18:26] <ks1> 145
+[18:26] <@jpnance> 145 to keyon, going once
+[18:26] <@jpnance> going twice
+[18:26] <jsneden> 146
+[18:26] <ks1> 147
+[18:26] <jsneden> 150
+[18:26] <daniel> 155
+[18:26] <@jpnance> 155 to daniel, going once
+[18:26] <ks1> 156
+[18:27] <@jpnance> 156 to keyon, going once
+[18:27] <@jpnance> going twice
+[18:27] <@jpnance> sold
+[18:27] <SyedAshrafulla> 13third round complete
+[18:27] <@jpnance> trevor's up
+[18:27] <schex> hey wait
+[18:27] <schex> proposal
+[18:27] <@jpnance> what's up
+[18:28] <koci2> i vote against it
+[18:28] <jsneden> nay
+[18:28] <schex> once over 100, can we do increments of 5
+[18:28] <jsneden> nay
+[18:28] <j-j-j-j-j-john> 10yay
+[18:28] <schex> increments 
+[18:28] <@jpnance> i'm fine with that
+[18:28] <daniel> 10% min bid
+[18:28] <SyedAshrafulla> 13i vote against it as well
+[18:28] <james_r> aye
+[18:28] <daniel> is that the same?
+[18:28] <trevor> you don't have 100 to bid with syed
+[18:28] <jsneden> fuck rules
+[18:28] <@jpnance> everybody: yea or nay to that?
+[18:28] <SyedAshrafulla> 13nay
+[18:28] <jsneden> nay
+[18:28] <daniel> yea
+[18:28] <ks1> i dont see the problem with the way we have been doing it
+[18:28] <ks1> nay
+[18:29] <james_r> it'll speed the draft; yea
+[18:29] <j-j-j-j-j-john> 10whatever let's go
+[18:29] <jsneden> nay
+[18:29] <koci2> nay
+[18:29] <schex> FUCKTARDS
+[18:29] <jsneden> nay
+[18:29] <daniel> nay wins
+[18:29] <trevor> anthony alridge broncos rb rookie
+[18:29] <trevor> 1
+[18:29] <schex> the fucktards win
+[18:29] <@jpnance> motion fails
+[18:29] <daniel> 2
+[18:29] <jsneden> 2
+[18:29] <jsneden> 3
+[18:29] <trevor> 4
+[18:29] <@jpnance> 4 to trevor, going once
+[18:29] <schex> 5
+[18:29] <jsneden> 5
+[18:29] <jsneden> 6
+[18:29] <@jpnance> 6 to jeff, going once
+[18:29] <@jpnance> going twice
+[18:30] <trevor> 7
+[18:30] <@jpnance> 7 to trevor, going once
+[18:30] <@jpnance> going twice
+[18:30] <@jpnance> sold
+[18:30] <@jpnance> johnnyboy
+[18:30] <SyedAshrafulla> 13i changed the results page; now it's in inverse order so newest picks are at the top
+[18:30] <j-j-j-j-j-john> 10Portis 50
+[18:30] <jsneden> the pipes the pipes
+[18:30] <ks1> 80
+[18:30] <@jpnance> 75
+[18:30] <@jpnance> 85
+[18:30] <ks1> 100
+[18:30] <@jpnance> 105
+[18:31] <ks1> 110
+[18:31] <@jpnance> 115
+[18:31] <j-j-j-j-j-john> 10 120
+[18:31] <ks1> 130
+[18:31] <j-j-j-j-j-john> 10 140
+[18:31] <@jpnance> 140 to john, going once
+[18:31] <ks1> 145
+[18:31] <@jpnance> 150
+[18:31] <j-j-j-j-j-john> 10 150
+[18:31] <j-j-j-j-j-john> 10 155
+[18:31] <@jpnance> 160
+[18:32] <ks1> 170
+[18:32] <@jpnance> 170 to keyon, going once
+[18:32] <@jpnance> going twice
+[18:32] <j-j-j-j-j-john> 10 175
+[18:32] <ks1> 180
+[18:32] <@jpnance> 180 to keyon, going once
+[18:32] <@jpnance> going twice
+[18:32] <@jpnance> sold
+[18:33] <SyedAshrafulla> 13keyon
+[18:33] <SyedAshrafulla> 13that was an illegal bid
+[18:33] <SyedAshrafulla> 13with 202 left
+[18:33] <SyedAshrafulla> 13and 24 players to go
+[18:33] <@jpnance> syed
+[18:33] <SyedAshrafulla> 13his max bid is 202-23 = 179
+[18:33] <@jpnance> the $202 is updated
+[18:33] <j-j-j-j-j-john> 10he had 382 left?
+[18:33] <@jpnance> and also
+[18:33] <SyedAshrafulla> 13ah
+[18:33] <SyedAshrafulla> 13my bad
+[18:33] <ks1> so
+[18:33] <SyedAshrafulla> 13thats what i get for refreshing
+[18:33] <@jpnance> no illegal bids unless they exceed the $1000 total
+[18:33] <SyedAshrafulla> 13right, pat, i remember
+[18:33] <SyedAshrafulla> 13the other rule
+[18:33] <j-j-j-j-j-john> 10kgo
+[18:33] <@jpnance> keyon has $202 left now
+[18:33] <@jpnance> and is up
+[18:34] <@jpnance> lay it on us
+[18:34] <ks1> cool
+[18:34] <ks1> barber 50
+[18:34] <ks1> marion
+[18:34] <@jpnance> 60
+[18:34] <trevor> 78
+[18:34] <j-j-j-j-j-john> 10 70
+[18:34] <j-j-j-j-j-john> 10 80
+[18:34] <@jpnance> 80
+[18:34] <ks1> 100
+[18:34] <@jpnance> 85
+[18:34] <trevor> 100
+[18:34] <j-j-j-j-j-john> 10 105
+[18:34] <trevor> 110
+[18:34] <daniel> 106
+[18:34] <j-j-j-j-j-john> 10 115
+[18:34] <schex> 115
+[18:34] <trevor> 120
+[18:34] <schex> 130
+[18:35] <@jpnance> 130 to schex, going once
+[18:35] <j-j-j-j-j-john> 10 135
+[18:35] <schex> 140
+[18:35] <daniel> 150
+[18:35] <@jpnance> 140 to schex, going once
+[18:35] <j-j-j-j-j-john> 10 150
+[18:35] <@jpnance> 150 to daniel, going once
+[18:35] <j-j-j-j-j-john> 10 155
+[18:35] <schex> 155
+[18:35] <@jpnance> 155 to john, going once
+[18:35] <daniel> 175
+[18:35] <@jpnance> 175 to daniel, going once
+[18:35] <schex> 180
+[18:35] <@jpnance> 180 to schex, going once
+[18:36] <@jpnance> going twice
+[18:36] <daniel> 185
+[18:36] <@jpnance> 185 to daniel, going once
+[18:36] <@jpnance> going twice
+[18:36] <@jpnance> sold
+[18:37] <@jpnance> koci's up
+[18:37] <koci2> oshiomogho atogwe 1
+[18:37] <ks1> who is that
+[18:37] <koci2> S Stl
+02[18:37] * schex (i=467c5368@gateway/web/ajax/mibbit.com/x-f3122fc0406f6d7b) Quit ("http://www.mibbit.com ajax IRC Client")
+[18:37] <@jpnance> $1 going once
+[18:37] <@jpnance> going twice
+[18:37] <trevor> 2
+[18:37] <@jpnance> sold
+03[18:37] * Schex (i=467c5368@gateway/web/ajax/mibbit.com/x-cedbb589cb33c999) has joined #dynastyleague
+[18:37] <j-j-j-j-j-john> 10too late
+[18:37] <SyedAshrafulla> 13no its beofre the sold
+[18:37] <SyedAshrafulla> 13it counts
+[18:38] <j-j-j-j-j-john> 10not on my screen
+[18:38] <jsneden> it is on mine
+[18:38] <daniel> it is on mine
+[18:38] <trevor> race condition!
+[18:38] <james_r> is
+[18:38] <j-j-j-j-j-john> 10odd
+[18:38] <jsneden> nance, rule on this
+[18:38] <@jpnance> easy way to deal with this
+[18:38] <ks1> before on mine
+[18:38] <@jpnance> if i say sold, it's sold
+[18:38] <ks1> nice
+[18:38] <j-j-j-j-j-john> 10k
+[18:38] <SyedAshrafulla> 13k
+[18:38] <jsneden> l
+[18:38] <@jpnance> alright, i'm up
+[18:39] <@jpnance> laurence maroney: $10
+[18:39] <trevor> 60
+[18:39] <j-j-j-j-j-john> 10 75
+[18:39] <daniel> 75
+[18:39] <trevor> 80
+[18:39] <jsneden> 100
+[18:39] <@jpnance> 80to trevor, going once
+[18:39] <j-j-j-j-j-john> 10 85
+[18:39] <trevor> 105
+[18:40] <@jpnance> 105 to trevor, going once
+[18:40] <@jpnance> going twice
+[18:40] <@jpnance> sold
+[18:40] <@jpnance> syed's up
+[18:41] <SyedAshrafulla> 13Todd Heap (TE - BAL) at $10
+[18:41] <@jpnance> 11
+[18:41] <@jpnance> 11 to pat, going once
+[18:41] <daniel> 15
+[18:41] <@jpnance> going twice
+[18:42] <@jpnance> 15 to daniel, going once
+[18:42] <SyedAshrafulla> 13 16
+[18:42] <daniel> 20
+[18:42] <@jpnance> 20 to daniel, going once
+[18:42] <@jpnance> going twice
+[18:42] <@jpnance> sold
+[18:42] <daniel> 1000 / 30 = $33
+[18:42] <@jpnance> daniel's up
+[18:42] <daniel> what are you saviing your money for
+[18:42] <daniel> wes welker WR NE 25
+[18:42] <SyedAshrafulla> 13 40
+[18:42] <@jpnance> 45
+[18:43] <trevor> 60
+[18:43] <@jpnance> 75
+[18:43] <trevor> 76
+[18:43] <Schex> 80
+[18:43] <@jpnance> 85
+[18:43] <james_r> 81
+[18:43] <trevor> 86
+[18:43] <james_r> 87
+[18:43] <SyedAshrafulla> 13 100
+[18:43] <@jpnance> 100 to syed, going once
+[18:43] <@jpnance> going twice
+[18:43] <@jpnance> sold
+[18:44] <@jpnance> jeff's up
+[18:44] <jsneden> Hasselbeck 10
+[18:44] <koci2> 11
+[18:44] <@jpnance> 15
+[18:44] <trevor> 30
+[18:44] <@jpnance> 35
+[18:44] <@jpnance> 35 to pat, going once
+[18:44] <Schex> 40
+[18:45] <trevor> 41
+[18:45] <@jpnance> 42
+[18:45] <Schex> 45
+[18:45] <trevor> 43
+[18:45] <@jpnance> 46
+[18:45] <Schex> 50
+[18:45] <@jpnance> 53
+[18:45] <trevor> 56
+[18:45] <@jpnance> 56 to trevor, going once
+[18:45] <Schex> 57
+[18:45] <@jpnance> going twice
+[18:45] <@jpnance> 57 to schex, going once
+[18:45] <trevor> 58
+[18:46] <@jpnance> 58 to trevor, going once
+[18:46] <@jpnance> going twice
+[18:46] <@jpnance> sold
+[18:46] <@jpnance> schex is up
+[18:47] <Schex> gates, TE SD
+[18:47] <trevor> 40
+[18:47] <Schex> 30
+[18:47] <james_r> 45
+[18:47] <j-j-j-j-j-john> 10 50
+[18:47] <Schex> illegal!
+[18:47] <trevor> 60
+[18:47] <@jpnance> 50's the bid
+[18:47] <daniel> 60
+[18:47] <daniel> 69
+[18:47] <trevor> 80
+[18:47] <daniel> 90
+[18:47] <trevor> 100
+[18:47] <daniel> 110
+[18:47] <james_r> 101
+[18:47] <@jpnance> 110 to daniel, going once
+[18:47] <trevor> 115
+[18:48] <james_r> 117
+[18:48] <daniel> 125
+[18:48] <@jpnance> 125 to daniel, going once
+[18:48] <@jpnance> going twice
+[18:48] <james_r> 127
+[18:48] <daniel> 130
+[18:48] <@jpnance> 127 to james, going once
+[18:48] <@jpnance> 130 to daniel, going once
+[18:48] <@jpnance> going twice
+[18:48] <@jpnance> sold
+[18:49] <@jpnance> james is up
+[18:49] <james_r> whitten te dallas
+[18:49] <james_r> 40
+[18:49] <@jpnance> 45
+[18:49] <charles123> 50
+[18:49] <@jpnance> 55
+[18:49] <trevor> 75
+[18:49] <@jpnance> 80
+[18:49] <james_r> 76
+[18:49] <trevor> 90
+[18:49] <james_r> 127
+[18:50] <@jpnance> 127 to james, going once
+[18:50] <@jpnance> going twice
+[18:50] <@jpnance> sold
+[18:50] <@jpnance> trevor's up
+[18:50] <trevor> big roy williams
+[18:50] <trevor> lions
+[18:50] <ks1> wr?
+[18:51] <jsneden> S Dallas
+[18:51] <trevor> 30
+[18:51] <@jpnance> the wide-out
+[18:51] <@jpnance> 35
+[18:51] <Schex> 60
+[18:51] <j-j-j-j-j-john> 10 75
+[18:51] <trevor> 85
+[18:51] <@jpnance> 85 to trevor, going once
+[18:51] <Schex> 90
+[18:51] <trevor> 100
+[18:51] <@jpnance> 100 to trevor, going once
+[18:51] <@jpnance> going twice
+[18:51] <@jpnance> sold
+[18:52] <SyedAshrafulla> 13i'll trade peyton for a QB and cap room
+[18:52] <j-j-j-j-j-john> 10carson palmer 50
+[18:52] <@jpnance> 55
+[18:52] <j-j-j-j-j-john> 10 60
+[18:52] <@jpnance> 65
+[18:52] <trevor> hey
+[18:52] <trevor> i didn't get witten
+[18:52] <@jpnance> 65 to pat, going once
+[18:52] <jsneden> 66
+[18:53] <@jpnance> trevor: yeah, i'm fixing it, sorry
+[18:53] <@jpnance> 67
+[18:53] <jsneden> 68
+[18:53] <Schex> 70
+[18:53] <j-j-j-j-j-john> 10 70
+[18:53] <koci2> 76
+[18:53] <@jpnance> 72
+[18:53] <@jpnance> 80
+[18:53] <Schex> 85
+[18:53] <j-j-j-j-j-john> 10 90
+[18:53] <@jpnance> 90 to john, going once
+[18:53] <Schex> 95
+[18:53] <@jpnance> 95
+[18:53] <@jpnance> 96
+[18:53] <@jpnance> 96 to pat, going once
+[18:54] <@jpnance> going twice
+[18:54] <Schex> 97
+[18:54] <@jpnance> 100
+[18:54] <@jpnance> 100 to pat, going once
+[18:54] <@jpnance> going twice
+[18:54] <@jpnance> sold
+[18:54] <@jpnance> keyon's up
+[18:55] <ks1> marshawn lynch 10
+[18:55] <@jpnance> 50
+[18:55] <Schex> 100
+[18:55] <@jpnance> 110
+[18:55] <j-j-j-j-j-john> 10 120
+[18:55] <@jpnance> 124
+[18:55] <j-j-j-j-j-john> 10 125
+[18:55] <Schex> 140
+[18:55] <@jpnance> 142
+[18:55] <j-j-j-j-j-john> 10 150
+[18:55] <@jpnance> 160
+[18:55] <Schex> 165
+[18:55] <@jpnance> 166
+02[18:55] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-20f620bb49d5ec93) Quit ("http://www.mibbit.com ajax IRC Client")
+[18:55] <Schex> 170
+03[18:55] * mib_kgcb2b (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-3dbf9ee8f4d80699) has joined #dynastyleague
+[18:55] <@jpnance> 170 to schex, going once
+[18:56] <@jpnance> going twice
+[18:56] <j-j-j-j-j-john> 10 175
+[18:56] <Schex> 176
+[18:56] <@jpnance> 176 to schex, going once
+[18:56] <@jpnance> going twice
+[18:56] <@jpnance> sold
+[18:56] <@jpnance> koci's up
+[18:57] <koci2> chad pennington $1
+[18:57] <Schex> 20
+[18:57] <j-j-j-j-j-john> 10 25
+[18:57] <@jpnance> 25 to john, going once
+[18:57] <@jpnance> going twice
+[18:57] <@jpnance> sold
+[18:57] <j-j-j-j-j-john> 10I love chad pennington so much
+[18:57] <jsneden> uhhhh...
+[18:58] <@jpnance> stephen gostkowski, $1
+[18:58] <Schex> 2
+[18:58] <trevor> 3
+[18:58] <@jpnance> 3 to trevor, going once
+[18:58] <@jpnance> going twice
+[18:58] <@jpnance> sold
+[18:59] <SyedAshrafulla> 13Heath Miller (TE - PIT) for $3
+[18:59] <@jpnance> 5
+[18:59] <ks1> 10
+[18:59] <j-j-j-j-j-john> 10 15
+[18:59] <@jpnance> 20
+[18:59] <jsneden> 20
+[18:59] <j-j-j-j-j-john> 10 30
+[18:59] <jsneden> 21
+[18:59] <jsneden> 31
+[18:59] <@jpnance> 40
+[18:59] <@jpnance> 40 to pat, going once
+[18:59] <jsneden> 45
+[18:59] <@jpnance> 45 to jeff, going once
+[18:59] <@jpnance> going twice
+[19:00] <@jpnance> sold
+[19:00] <@jpnance> daniel's up
+[19:00] <daniel> larry johnson rb kc 50
+[19:00] <@jpnance> 60
+[19:00] <j-j-j-j-j-john> 10 75
+[19:00] <Schex> 100
+[19:01] <j-j-j-j-j-john> 10 110
+[19:01] <Schex> 120
+[19:01] <@jpnance> 120 to schex, going once
+[19:01] <j-j-j-j-j-john> 10 125
+[19:01] <@jpnance> 125 to john, going once
+[19:01] <@jpnance> going twice
+[19:01] <@jpnance> sold
+[19:01] <@jpnance> jeff's up
+[19:02] <j-j-j-j-j-john> 10holy shit what a sweet TD
+[19:02] <jsneden> Derek Anderson 13
+[19:02] <@jpnance> 17
+[19:02] <trevor> 19
+[19:02] <ks1> 20
+[19:02] <@jpnance> 23
+[19:02] <jsneden> 27
+[19:02] <@jpnance> 29
+[19:02] <Schex> 31
+[19:02] <@jpnance> 34
+[19:02] <trevor> 37
+[19:02] <@jpnance> 38
+[19:02] <Schex> 43
+[19:02] <koci2> 44
+[19:02] <jsneden> 51
+[19:02] <@jpnance> 51 to jeff, going once
+[19:03] <koci2> 52
+[19:03] <Schex> 52
+[19:03] <jsneden> 53
+[19:03] <Schex> 54
+[19:03] <jsneden> 55
+[19:03] <Schex> 60
+[19:03] <jsneden> 61
+[19:03] <Schex> 62
+[19:03] <jsneden> 65
+[19:03] <Schex> 66
+[19:03] <jsneden> 67
+[19:03] <Schex> 68
+[19:03] <jsneden> 70
+[19:03] <Schex> 71
+[19:03] <@jpnance> 71 to schex, going once
+[19:03] <jsneden> sold
+[19:04] <@jpnance> going tiwec
+[19:04] <@jpnance> sold
+[19:04] <@jpnance> schex is up
+[19:04] <Schex> lee evans 3
+[19:04] <ks1> 10
+[19:04] <trevor> 11
+[19:04] <@jpnance> 14
+[19:04] <trevor> 18
+[19:04] <j-j-j-j-j-john> 10 25
+[19:04] <trevor> 29
+[19:05] <daniel> 45
+[19:05] <trevor> 50
+[19:05] <@jpnance> 50 to trevor, going once
+[19:05] <@jpnance> going twice
+[19:05] <jsneden> 52
+[19:05] <@jpnance> 52 to jeff, going once
+[19:05] <trevor> 54
+[19:05] <daniel> 55
+[19:05] <@jpnance> 56
+[19:05] <trevor> 59
+[19:05] <@jpnance> 59 to trevor, going once
+[19:05] <@jpnance> going twice
+[19:05] <@jpnance> sold
+[19:06] <@jpnance> james is up
+[19:06] <mib_kgcb2b> ware lb dallas
+[19:06] <mib_kgcb2b> 23
+[19:06] <@jpnance> 23 to james, going once
+[19:06] <Schex> 25
+[19:06] <@jpnance> 25 to schex, going once
+[19:06] <mib_kgcb2b> 26
+[19:06] <mib_kgcb2b> 27
+[19:06] <Schex> 27
+[19:06] <@jpnance> 27 is schex's bid
+[19:06] <Schex> 28
+03[19:06] * mib_kgcb2b is now known as james_r
+[19:06] <@jpnance> 27 to schex, going once
+[19:06] <james_r> 29
+[19:06] <Schex> oh fuck
+[19:07] <Schex> 30
+03[19:07] * ks2 (i=4791ba93@gateway/web/ajax/mibbit.com/x-58c9bcbe6739d7ef) has joined #dynastyleague
+[19:07] <@jpnance> 30 to schex, going once
+[19:07] <james_r> 31
+[19:07] <Schex> 32
+[19:07] <@jpnance> 32 to schex, going once
+[19:07] <james_r> 33
+[19:07] <@jpnance> 33 to james, going once
+[19:07] <@jpnance> going twice
+[19:07] <Schex> 34
+[19:07] <@jpnance> 34 to schex, going once
+[19:07] <@jpnance> going twice
+[19:07] <james_r> 35
+[19:08] <Schex> done
+[19:08] <@jpnance> 35 to james, going once
+[19:08] <@jpnance> going twice
+02[19:08] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-7974139ddb31618f) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:08] <@jpnance> sold
+[19:08] <@jpnance> trevor's up
+[19:08] <trevor> matt schaub
+[19:08] <trevor> 1
+[19:08] <Schex> 12
+[19:08] <jsneden> 5
+[19:08] <jsneden> 17
+[19:08] <trevor> 13
+[19:08] <Schex> 20
+[19:09] <trevor> 21
+[19:09] <jsneden> 22
+[19:09] <Schex> 25
+[19:09] <daniel> 30
+[19:09] <Schex> 32
+[19:09] <@jpnance> 32 to schex, going once
+[19:09] <daniel> 35
+[19:09] <@jpnance> 35 to daniel, going once
+[19:09] <@jpnance> going twice
+[19:09] <@jpnance> sold
+[19:09] <j-j-j-j-j-john> 10Braylon 50
+[19:10] <@jpnance> 55
+[19:10] <trevor> 60
+[19:10] <@jpnance> 65
+[19:10] <jsneden> 100
+[19:10] <trevor> 70
+[19:10] <@jpnance> 100 to jeff, going once
+[19:10] <Schex> 105
+[19:10] <j-j-j-j-j-john> 10 110
+[19:10] <trevor> 120
+[19:10] <j-j-j-j-j-john> 10 125
+[19:10] <@jpnance> 125 to john, going once
+[19:10] <Schex> 130
+[19:10] <trevor> 132
+[19:10] <jsneden> 135
+[19:10] <trevor> 137
+[19:10] <jsneden> 145
+[19:10] <Schex> 150
+[19:11] <jsneden> 155
+[19:11] <trevor> 159
+[19:11] <@jpnance> 159 to trevor, going once
+[19:11] <koci2> 161
+[19:11] <@jpnance> 161 to koci, going once
+[19:11] <@jpnance> going twice
+[19:11] <@jpnance> sold
+[19:11] <ks2> jeremy shockey 15
+[19:12] <trevor> 23
+[19:12] <@jpnance> 24
+[19:12] <ks2> 25
+[19:12] <@jpnance> 30
+[19:12] <ks2> 32
+[19:12] <@jpnance> 33
+[19:12] <ks2> 35
+[19:12] <SyedAshrafulla> 13 36
+[19:12] <Schex> 37
+[19:12] <ks2> 40
+[19:12] <@jpnance> 37 to schex, going once
+[19:12] <@jpnance> 40 to keyon, going once
+[19:12] <@jpnance> going twice
+[19:12] <Schex> 42
+[19:13] <ks2> 43
+[19:13] <@jpnance> 43 to keyon, going once
+[19:13] <@jpnance> going twice
+[19:13] <@jpnance> sold
+[19:13] <@jpnance> koci's up
+[19:14] <koci2> demeco ryans $3
+[19:14] <trevor> 8
+[19:14] <Schex> 20
+[19:14] <@jpnance> 10
+[19:14] <trevor> 25
+[19:14] <@jpnance> 25 to trevor, going once
+[19:14] <ks2> 26
+[19:14] <Schex> 27
+[19:14] <koci2> 27
+[19:14] <trevor> 28
+[19:15] <@jpnance> 28 to trevor, going once
+[19:15] <daniel> 29
+[19:15] <ks2> 30
+[19:15] <@jpnance> 30 to keyon, going once
+[19:15] <@jpnance> going twice
+[19:15] <@jpnance> sold
+[19:15] <@jpnance> jason taylor, #1
+[19:15] <@jpnance> $1
+[19:15] <j-j-j-j-j-john> 10 5
+[19:15] <Schex> 10
+[19:15] <ks2> 10
+[19:16] <@jpnance> 10 to schex, going once
+[19:16] <ks2> 11
+[19:16] <daniel> 15
+[19:16] <@jpnance> 15 to daniel, going once
+[19:16] <@jpnance> going twice
+[19:16] <@jpnance> sold
+[19:16] <@jpnance> syed's up
+[19:17] <SyedAshrafulla> 13Plaxico Burress (WR - NYG) at $8
+[19:17] <@jpnance> 10
+[19:17] <daniel> 25
+[19:17] <ks2> 20
+[19:17] <j-j-j-j-j-john> 10 40
+[19:17] <daniel> 50
+[19:17] <jsneden> 55
+[19:17] <j-j-j-j-j-john> 10 60
+[19:17] <Schex> 60
+[19:17] <@jpnance> 60 to john, going once
+[19:17] <jsneden> 61
+[19:17] <@jpnance> going twice
+[19:17] <j-j-j-j-j-john> 10 62
+[19:17] <@jpnance> 62 to john, going once
+[19:18] <@jpnance> going twice
+[19:18] <@jpnance> sold
+[19:18] <@jpnance> daniel's up
+[19:18] <daniel> torry holt STL WR 50
+[19:18] <Schex> 55
+[19:18] <@jpnance> 60
+[19:18] <j-j-j-j-j-john> 10 65
+[19:18] <@jpnance> 68
+[19:19] <daniel> 69
+[19:19] <@jpnance> 68 to pat, going once
+[19:19] <j-j-j-j-j-john> 10 70
+[19:19] <@jpnance> 71
+[19:19] <daniel> 75
+[19:19] <@jpnance> 71 to pat, going once
+[19:19] <@jpnance> 80
+[19:19] <daniel> 85
+[19:19] <@jpnance> 86
+[19:19] <daniel> 92
+[19:19] <@jpnance> 92 to daniel, going once
+[19:19] <@jpnance> going twice
+[19:19] <@jpnance> sold
+02[19:20] * SyedAshrafulla (i=cf97f25a@gateway/web/ajax/mibbit.com/x-67e02b04999be427) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:20] <@jpnance> jeff's up
+[19:20] <jsneden> fast willie
+[19:20] <jsneden> 17
+[19:20] <jsneden> parker
+[19:20] <Schex> parker
+[19:20] <@jpnance> 18
+[19:20] <ks2> 20
+[19:20] <@jpnance> 22
+[19:20] <Schex> 80
+[19:20] <@jpnance> 84
+[19:20] <jsneden> 120
+[19:21] <@jpnance> 120 to jeff, going once
+[19:21] <@jpnance> going twice
+[19:21] <@jpnance> sold
+[19:21] <@jpnance> schex is up
+03[19:21] * syed (i=807d14b5@gateway/web/ajax/mibbit.com/x-6261675e5b795c1c) has joined #dynastyleague
+[19:22] <Schex> mason crosby 1
+[19:22] <@jpnance> 1 to schex, going once
+[19:22] <jsneden> 2
+[19:22] <Schex> 3
+[19:22] <jsneden> 4
+[19:22] <@jpnance> 4 to jeff, going once
+[19:22] <@jpnance> going twice
+[19:22] <@jpnance> sold
+[19:23] <trevor> that's more points than he scored in the big 12 title game
+[19:23] <@jpnance> james is up
+[19:23] <james_r> alge crumpler
+[19:23] <@jpnance> what's the bid?
+[19:23] <james_r> 12
+[19:23] <Schex> -1
+[19:23] <@jpnance> 12 to james, going once
+[19:24] <@jpnance> going twice
+[19:24] <j-j-j-j-j-john> 10 15
+[19:24] <@jpnance> 15 to john, going once
+[19:24] <@jpnance> going twice
+[19:24] <@jpnance> sold
+[19:24] <@jpnance> trevor's up
+[19:24] <syed> --- Round 6 Complete ---
+[19:24] <syed> 13ahh much better
+[19:25] <trevor> mojo jaxonville
+[19:25] <trevor> 5
+[19:25] <j-j-j-j-j-john> 10bid?
+[19:25] <j-j-j-j-j-john> 10 50
+[19:25] <@jpnance> 10
+[19:25] <@jpnance> 51
+[19:25] <trevor> 85
+[19:25] <jsneden> 86
+[19:25] <trevor> 90
+[19:25] <@jpnance> 87
+[19:25] <Schex> 100
+[19:25] <trevor> 105
+[19:25] <@jpnance> 102
+[19:25] <Schex> 110
+[19:25] <jsneden> 110
+[19:25] <jsneden> 11
+[19:25] <jsneden> 111
+[19:25] <trevor> 115
+[19:25] <jsneden> 120
+[19:25] <trevor> 125
+[19:26] <Schex> 130
+[19:26] <@jpnance> 130 to schex, going once
+[19:26] <jsneden> 133
+[19:26] <Schex> 135
+[19:26] <@jpnance> 135 to schex, going once
+[19:26] <@jpnance> going twice
+[19:26] <@jpnance> sold
+[19:26] <@jpnance> johnnyboy
+[19:27] <j-j-j-j-j-john> 10Frank Gore 100
+[19:27] <Schex> pause pause
+[19:27] <@jpnance> 105
+[19:27] <Schex> koci's booted
+[19:27] <@jpnance> alright
+[19:27] <@jpnance> we'll paus
+[19:27] <@jpnance> e
+[19:27] <@jpnance> i need to pee anyway
+[19:27] <daniel> PEE IN A CUP LIKE I DID
+[19:27] <j-j-j-j-j-john> 10like my starting bid there?
+[19:27] <j-j-j-j-j-john> 10I'm too impatient for this shit
+[19:27] <daniel> and how
+[19:27] <syed> 13what a pussy bid
+[19:27] <jsneden> 110
+03[19:27] * mib_rsc6u2 (i=467c5368@gateway/web/ajax/mibbit.com/x-d0f11d74c36b68e9) has joined #dynastyleague
+[19:27] <syed> 13if you were a man john you wouldve bet 150
+03[19:28] * mib_rsc6u2 is now known as ckoci
+[19:28] <j-j-j-j-j-john> 10koci's back yay
+[19:28] <syed> 13who the hell is koci2 tehn
+[19:28] <j-j-j-j-j-john> 10do we resume or wait for pat?
+[19:28] <jsneden> 110
+[19:28] <jsneden> 110
+[19:28] <ckoci> my thing froze...wasn't able to bid
+[19:28] <jsneden> so big now
+02[19:28] * koci2 (i=467c5368@gateway/web/ajax/mibbit.com/x-920e6d054568d84e) Quit (Read error: 60 (Operation timed out))
+[19:28] <syed> 13stop talking about pat's cock, jeff
+[19:28] <j-j-j-j-j-john> 10pat pat pat pat when do we start
+[19:29] <jsneden> 111
+[19:29] <@jpnance> alright
+[19:29] <@jpnance> let's up
+[19:29] <@jpnance> 111 to jeff, going once
+[19:29] <@jpnance> 115
+[19:29] <trevor> 112
+[19:29] <j-j-j-j-j-john> 10 120
+[19:29] <@jpnance> 125
+[19:29] <jsneden> 130
+[19:29] <trevor> 140
+[19:29] <j-j-j-j-j-john> 10 135
+[19:29] <jsneden> 150
+[19:29] <j-j-j-j-j-john> 10 150
+[19:29] <j-j-j-j-j-john> 10 155
+[19:29] <jsneden> 160
+[19:29] <@jpnance> 160
+[19:29] <@jpnance> 161
+[19:29] <@jpnance> 161 to pat, going once
+[19:29] <jsneden> 165
+[19:30] <@jpnance> 165 to jeff, going once
+[19:30] <Schex> 166
+[19:30] <jsneden> 170
+[19:30] <@jpnance> 175
+[19:30] <@jpnance> 175 to pat, going once
+[19:30] <@jpnance> going twice
+[19:30] <@jpnance> sold
+[19:30] <@jpnance> keyon's up
+[19:30] <ks2> ronnie brown 10
+[19:31] <trevor> 40
+[19:31] <Schex> 50
+[19:31] <j-j-j-j-j-john> 10 65
+[19:31] <trevor> 70
+[19:31] <j-j-j-j-j-john> 10 75
+[19:31] <@jpnance> 75 to john, going once
+[19:31] <jsneden> 80
+[19:31] <@jpnance> 80 to jeff, going once
+[19:31] <@jpnance> going twice
+[19:31] <trevor> 83
+[19:31] <jsneden> 85
+[19:32] <@jpnance> 85 to jeff, going once
+[19:32] <@jpnance> going twice
+[19:32] <j-j-j-j-j-john> 10 86
+[19:32] <jsneden> 87
+[19:32] <j-j-j-j-j-john> 10nuts.
+[19:32] <@jpnance> 87 to jeff, going once
+[19:32] <@jpnance> going twice
+[19:32] <@jpnance> sold
+[19:33] <@jpnance> koci's up
+[19:33] <ckoci> mattie leinart $8
+[19:33] <Schex> 10
+[19:33] <@jpnance> 10 to schex, going once
+[19:33] <ckoci> 11
+[19:33] <james_r> 11
+[19:33] <@jpnance> 11 to koci, going once
+[19:33] <daniel> 15
+[19:33] <jsneden> 15
+[19:33] <jsneden> 16
+[19:33] <daniel> 17
+[19:34] <@jpnance> 17 to daniel, going once
+[19:34] <@jpnance> going twice
+[19:34] <ckoci> 18
+[19:34] <@jpnance> 18 to koci, going once
+[19:34] <@jpnance> going twice
+[19:34] <@jpnance> sold
+[19:35] <@jpnance> lofa tatupu: $1
+[19:35] <trevor> 6
+[19:35] <Schex> 2
+[19:35] <@jpnance> 7
+[19:35] <Schex> 7
+[19:35] <jsneden> 10
+[19:35] <trevor> 12
+[19:35] <@jpnance> 12 to trevor, going once
+[19:35] <@jpnance> going twice
+[19:35] <@jpnance> sold
+[19:35] <Schex> jason taylor is DE, not LB
+[19:36] <syed> 13he's hybrid in the 3-4 right?
+[19:36] <syed> 13Dallas Clark (TE - IND) for $5
+[19:36] <trevor> 20
+[19:36] <@jpnance> syed: he's only DE on ESPN
+[19:36] <@jpnance> 20 to trevor, going once
+[19:36] <@jpnance> going twice
+[19:36] <Schex> 25
+[19:36] <trevor> 30
+[19:36] <Schex> 40
+[19:37] <trevor> 42
+[19:37] <Schex> 43
+[19:37] <@jpnance> 43 to schex, going once
+[19:37] <@jpnance> going twice
+[19:37] <@jpnance> sold
+[19:37] <daniel> tj houshamazoli, cin WR 30
+[19:37] <j-j-j-j-j-john> 10 50
+[19:37] <jsneden> 80
+[19:37] <@jpnance> 55
+[19:37] <j-j-j-j-j-john> 10 85
+[19:38] <@jpnance> 85 to jhon, going once
+[19:38] <jsneden> 90
+[19:38] <j-j-j-j-j-john> 10 95
+[19:38] <jsneden> 99
+[19:38] <@jpnance> 99 to jeff, going once
+[19:38] <@jpnance> going twice
+[19:38] <@jpnance> sold
+[19:39] <syed> 13the dallas clark bid put everyone under $500
+[19:39] <@jpnance> jeff's up
+[19:39] <jsneden> Rivers
+[19:39] <jsneden> 13
+[19:39] <ks2> 20
+[19:40] <james_r> 25
+[19:40] <jsneden> 28
+[19:40] <daniel> 30
+[19:40] <jsneden> 33
+[19:40] <@jpnance> 30 to daniel, going once
+[19:40] <@jpnance> 33 to jeff, going once
+[19:40] <Schex> 35
+[19:40] <james_r> 35
+[19:40] <james_r> 36
+[19:40] <jsneden> 38
+[19:40] <@jpnance> 38 to jeff, going once
+[19:40] <@jpnance> going twice
+[19:40] <@jpnance> sold
+[19:41] <Schex> tedd ginn jr
+[19:41] <trevor> 25
+[19:41] <syed> 13YES jeff we have the same mo left
+[19:41] <@jpnance> 25's no good
+[19:41] <@jpnance> what's the starting bid
+[19:41] <Schex> 25
+[19:41] <@jpnance> 26
+[19:41] <trevor> 27
+[19:41] <@jpnance> 28
+[19:41] <Schex> 30
+[19:41] <@jpnance> 31
+[19:42] <james_r> 33
+[19:42] <@jpnance> 31 to pat, going once
+[19:42] <@jpnance> 34
+[19:42] <trevor> 35
+[19:42] <@jpnance> 38
+02[19:42] * ks2 (i=4791ba93@gateway/web/ajax/mibbit.com/x-58c9bcbe6739d7ef) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:42] <@jpnance> 38 to pat, going once
+[19:42] <james_r> 40
+[19:42] <@jpnance> 42
+[19:42] <@jpnance> 42 to pat, going once
+[19:42] <Schex> 45
+[19:42] <@jpnance> 50
+[19:42] <@jpnance> 50 to pat, going once
+[19:42] <ckoci> 52
+[19:42] <Schex> 55
+[19:42] <@jpnance> 56
+[19:42] <Schex> 57
+[19:42] <@jpnance> 65
+03[19:43] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-2ac561a2baaf805e) has joined #dynastyleague
+[19:43] <@jpnance> 65 to pat, going once
+[19:43] <ckoci> 70
+[19:43] <@jpnance> 70 to koci, going once
+[19:43] <@jpnance> going twice
+[19:43] <@jpnance> sold
+[19:43] <@jpnance> james is up
+[19:44] <james_r> andre johnson houston wr
+[19:44] <james_r> 45
+[19:44] <j-j-j-j-j-john> 10 60
+[19:44] <trevor> 100
+[19:44] <james_r> 120
+[19:44] <trevor> 125
+[19:44] <Schex> 130
+[19:44] <trevor> 135
+[19:44] <@jpnance> 135 to trevor, going once
+[19:44] <Schex> 140
+[19:44] <trevor> 141
+[19:44] <Schex> 142
+[19:44] <james_r> 144
+[19:44] <@jpnance> 144 to james, going once
+[19:44] <trevor> 145
+[19:44] <Schex> 145
+[19:45] <@jpnance> 145 to trevor, going once
+[19:45] <james_r> 148
+[19:45] <@jpnance> 148 to james, going once
+[19:45] <@jpnance> going twice
+[19:45] <@jpnance> sold
+[19:45] <trevor> winslow
+[19:45] <trevor> 20
+[19:45] <j-j-j-j-j-john> 10 30
+[19:45] <@jpnance> 35
+[19:45] <trevor> 40
+[19:45] <@jpnance> 42
+[19:45] <syed> 13 43
+[19:46] <@jpnance> 44
+[19:46] <syed> 13 45
+[19:46] <@jpnance> 50
+[19:46] <@jpnance> 50 to pat, going once
+[19:46] <@jpnance> going twice
+[19:46] <syed> 13 51
+[19:46] <@jpnance> 52
+[19:46] <@jpnance> 52 to pat, going once
+[19:46] <syed> 13 53
+[19:46] <@jpnance> 54
+[19:46] <syed> 13 55
+[19:46] <@jpnance> 56
+[19:46] <syed> 13 57
+[19:46] <@jpnance> 58
+[19:46] <syed> 13 59
+[19:46] <@jpnance> 60
+[19:46] <syed> 13done
+[19:47] <@jpnance> 60 to pat, going once
+[19:47] <@jpnance> going twice
+[19:47] <@jpnance> sold
+[19:47] <j-j-j-j-j-john> 10Fitz $50
+[19:47] <syed> 13 60
+[19:47] <trevor> 70
+[19:47] <j-j-j-j-j-john> 10 75
+[19:47] <trevor> 80
+[19:47] <j-j-j-j-j-john> 10 85
+[19:47] <Schex> 90
+[19:47] <@jpnance> 90 to schex, going once
+[19:48] <trevor> 95
+[19:48] <Schex> 100
+[19:48] <ckoci> 103
+[19:48] <Schex> 105
+[19:48] <trevor> 105
+[19:48] <@jpnance> 105 to trevor, going once
+[19:48] <Schex> 106
+[19:48] <trevor> 107
+[19:48] <Schex> 115
+[19:48] <ckoci> 117
+[19:48] <Schex> 120
+03[19:48] * charlesschex (i=467c46c6@gateway/web/ajax/mibbit.com/x-1cbf54578e4d3d22) has joined #dynastyleague
+[19:48] <ckoci> 122
+[19:48] <Schex> 125
+[19:48] <@jpnance> 125 to schex, going once
+[19:48] <ckoci> 127
+[19:49] <@jpnance> 127 to koci, going once
+[19:49] <Schex> 130
+[19:49] <james_r> 131
+[19:49] <@jpnance> 131 to james, going once
+[19:49] <Schex> 132
+[19:49] <@jpnance> 132 to schex, going once
+[19:49] <james_r> 134
+[19:49] <Schex> 135
+[19:49] <@jpnance> 135 to schex, going once
+[19:49] <james_r> 138
+[19:49] <@jpnance> going twice
+[19:49] <@jpnance> 138 to james, going once
+[19:49] <@jpnance> going twice
+[19:50] <@jpnance> sold
+[19:50] <ks1> sean jones 2
+[19:50] <@jpnance> who's sean jones
+[19:50] <ks1> s cle
+[19:50] <@jpnance> 2 to keyon, goingo nce
+[19:50] <@jpnance> going twice
+[19:50] <@jpnance> sold
+[19:51] <@jpnance> koci's up
+[19:51] <ckoci> desean jackson
+[19:51] <ckoci> 1
+[19:51] <@jpnance> team and position
+[19:51] <j-j-j-j-j-john> 10 5
+[19:51] <ckoci> philadelphia wr
+[19:51] <@jpnance> 5 to john, going once
+[19:51] <ckoci> 6
+[19:52] <j-j-j-j-j-john> 10 7
+[19:52] <trevor> 10
+[19:52] <@jpnance> 10 to trevor, going once
+[19:52] <Schex> 15
+[19:52] <@jpnance> 15 to schex, going once
+[19:52] <@jpnance> going twice
+[19:52] <@jpnance> sold
+[19:53] <@jpnance> lance briggs: $1
+[19:53] <Schex> 2
+[19:53] <trevor> 3
+[19:53] <@jpnance> 3 to trevor, going once
+[19:53] <@jpnance> going twice
+[19:53] <@jpnance> sold
+[19:53] <syed> 13Tony Gonzalez (TE - KAN) at $1
+[19:53] <trevor> 24
+[19:54] <j-j-j-j-j-john> 10 25
+[19:54] <trevor> 31
+[19:54] <@jpnance> 31 to trevor, going once
+[19:54] <@jpnance> going twice
+[19:54] <ckoci> 33
+[19:54] <Schex> 32
+[19:54] <trevor> 38
+[19:54] <Schex> 40
+[19:54] <trevor> 42
+[19:54] <@jpnance> 42 to trevor, going once
+[19:54] <@jpnance> going twice
+[19:54] <@jpnance> sold
+[19:54] <ks1> are we really ending at 10pm?
+[19:55] <@jpnance> we're ending when everybody gets really sick of it
+[19:55] <@jpnance> i can go as long as anybody will
+[19:55] <james_r> I have to be up at 6EST tomorrow
+[19:55] <daniel> steve smith NYG WR 1
+[19:55] <@jpnance> let's pause
+[19:55] <jsneden> agreed, 11 ET
+[19:55] <Schex> when do you need to be out jimbo?
+[19:55] <daniel> last round here
+[19:56] <ks1> just finish this round up i suppose
+[19:56] <j-j-j-j-j-john> 10I can't make any remaining draft days
+[19:56] <j-j-j-j-j-john> 10so if I don't go until I have a full roster today I'm fucked
+[19:56] <j-j-j-j-j-john> 10to counter your "I have to leave now"
+[19:56] <j-j-j-j-j-john> 10I don't need 30
+[19:56] <@jpnance> would you guys be okay with this round and one more?
+[19:56] <@jpnance> probably about 30 more minutes
+[19:56] <jsneden> sure
+[19:56] <jsneden> James?
+[19:56] <Schex> james?
+[19:56] <j-j-j-j-j-john> 10but I need at least 1 more round with normal nominations
+[19:56] <james_r> Peoples' welfare depends on my sharp thinking tomorrow
+[19:56] <james_r> but for the good of the league
+[19:57] <j-j-j-j-j-john> 10so bail out
+[19:57] <james_r> I'll go 11:30EST
+[19:57] <@jpnance> alright
+[19:57] <Schex> cool go
+[19:57] <jsneden> let's go go go
+[19:57] <@jpnance> 11:30pm or the end of the next round
+[19:57] <@jpnance> whichever comes first
+[19:57] <j-j-j-j-j-john> 10steve smith NYG
+[19:57] <@jpnance> daniel's up
+[19:57] <j-j-j-j-j-john> 10was the bid
+[19:57] <syed> 13undertaker put edge inside a ring and then put the ring on fire ... BURIAL
+[19:57] <daniel> steve smith NYG WR 1
+[19:57] <j-j-j-j-j-john> 10 5
+[19:57] <@jpnance> 5 to john, going once
+[19:57] <@jpnance> going twice
+[19:57] <syed> 13 6
+[19:57] <j-j-j-j-j-john> 10 7
+[19:57] <daniel> 10
+[19:57] <j-j-j-j-j-john> 10 11
+[19:57] <daniel> 12
+[19:57] <@jpnance> 11 to john, going once
+[19:58] <j-j-j-j-j-john> 10 15
+[19:58] <daniel> 16
+[19:58] <j-j-j-j-j-john> 10 20
+[19:58] <@jpnance> 20 to john, going once
+[19:58] <@jpnance> going twice
+[19:58] <@jpnance> sold
+[19:58] <j-j-j-j-j-john> 10k
+[19:58] <@jpnance> jeff's up
+[19:59] <jsneden> Roddy White
+[19:59] <jsneden> 7
+[19:59] <trevor> 8
+[19:59] <daniel> 25
+[19:59] <trevor> 30
+[19:59] <@jpnance> 26
+[19:59] <@jpnance> 31
+[19:59] <trevor> 33
+[19:59] <@jpnance> 35
+[19:59] <@jpnance> 35 to pat, going once
+[19:59] <@jpnance> going twice
+[19:59] <Schex> 36
+[19:59] <@jpnance> 37
+[19:59] <trevor> 39
+[19:59] <@jpnance> 40
+[19:59] <@jpnance> 40 to pat, going once
+[19:59] <Schex> 42
+[19:59] <daniel> 45
+[20:00] <@jpnance> 45
+[20:00] <@jpnance> 46
+[20:00] <daniel> 50
+[20:00] <@jpnance> 50 to daniel, going once
+[20:00] <@jpnance> going twice
+[20:00] <@jpnance> sold
+[20:00] <@jpnance> schex is up
+[20:00] <Schex> joey galloway
+[20:00] <Schex> 15
+[20:00] <@jpnance> 16
+[20:00] <j-j-j-j-j-john> 10 30
+[20:01] <@jpnance> 30 to john, going once
+[20:01] <jsneden> 32
+[20:01] <trevor> 33
+[20:01] <j-j-j-j-j-john> 10 35
+[20:01] <jsneden> 35
+[20:01] <@jpnance> 35 to john, going once
+[20:01] <jsneden> 36
+[20:01] <j-j-j-j-j-john> 10 38
+[20:01] <jsneden> 40
+[20:01] <@jpnance> 38 to john, going once
+[20:01] <@jpnance> 40 to jeff, going once
+[20:01] <j-j-j-j-j-john> 10 45
+[20:01] <@jpnance> 45 to john, going once
+[20:01] <@jpnance> going twice
+[20:02] <@jpnance> sold
+[20:02] <j-j-j-j-j-john> 10god he's so old.
+[20:02] <j-j-j-j-j-john> 10James
+[20:02] <jsneden> thanks Johnny
+[20:02] <james_r> mcgee buff db 1
+[20:02] <jsneden> 8
+[20:02] <j-j-j-j-j-john> 10 75
+[20:02] <jsneden> 76
+[20:02] <j-j-j-j-j-john> 10fuck
+[20:02] <j-j-j-j-j-john> 10HA!
+[20:02] <jsneden> hahaha
+[20:02] <@jpnance> 76 to jeff, going once
+[20:02] <syed> 13ahahahaha
+[20:02] <syed> 13oh my god
+[20:02] <@jpnance> going twice
+[20:02] <j-j-j-j-j-john> 10THAT WAS AWESOME
+[20:02] <@jpnance> sold
+[20:02] <j-j-j-j-j-john> 10too drunk to read
+[20:02] <syed> 13and jeff's done
+[20:02] <j-j-j-j-j-john> 10victory
+[20:03] <syed> 13he has 0 money left
+[20:03] <trevor> HAHAHAHAHAAH
+[20:03] <j-j-j-j-j-john> 10I'm sorry I need a break
+[20:03] <trevor> WOW
+[20:03] <j-j-j-j-j-john> 10I'm hysterical over here
+[20:03] <j-j-j-j-j-john> 10phew.
+[20:03] <@jpnance> alright
+[20:03] <@jpnance> last round for the night
+[20:04] <@jpnance> everybody take a look at their cash
+[20:04] <@jpnance> jeff's done drafting
+[20:04] <@jpnance> syed and daniel are close
+[20:04] <ks1> can you put the site up again
+[20:04] <@jpnance> keyon and james are closeish
+[20:04] <@jpnance> http://whattheballs.com/~jpnance/dynasty/
+[20:04] <j-j-j-j-j-john> 10wait so one more round?
+[20:04] <j-j-j-j-j-john> 10or we're done
+[20:04] <@jpnance> yeah
+[20:04] <@jpnance> one more
+[20:04] <j-j-j-j-j-john> 10k good
+[20:04] <james_r> let's go
+[20:04] <@jpnance> everybody good to go?
+[20:05] <syed> 13i want 6 more rounds
+[20:05] <Schex> go
+[20:05] <@jpnance> trevor's up
+[20:05] <ks1> yeah lets get it done
+[20:05] <syed> 13and jeff's allowed to use john's cap room
+[20:05] <trevor> mario williams
+[20:05] <trevor> de houston
+[20:05] <trevor> 5
+[20:05] <Schex> 15
+[20:05] <j-j-j-j-j-john> 10 25
+[20:05] <trevor> 27
+[20:05] <j-j-j-j-j-john> 10 30
+[20:05] <trevor> 31
+[20:05] <@jpnance> 31 to trevor, going once
+[20:05] <@jpnance> going twice
+[20:05] <@jpnance> sold
+[20:06] <Schex> 32
+[20:06] <j-j-j-j-j-john> 10Chad Johnson $1
+[20:06] <Schex> that's sold
+[20:06] <@jpnance> sold to trevor for 31
+[20:06] <ks1> 10
+[20:06] <@jpnance> 11
+[20:06] <Schex> 40
+[20:06] <j-j-j-j-j-john> 10 50
+[20:06] <@jpnance> 51
+[20:06] <Schex> 55
+[20:06] <@jpnance> 56
+[20:06] <trevor> 65
+[20:06] <j-j-j-j-j-john> 10 70
+[20:06] <Schex> 70
+[20:06] <Schex> 75
+[20:06] <@jpnance> 76
+[20:06] <trevor> 80
+[20:06] <Schex> 85
+[20:07] <@jpnance> fuck
+[20:07] <j-j-j-j-j-john> 10 90
+[20:07] <@jpnance> i wanted to bid that :(
+[20:07] <@jpnance> 90 to john, going once
+[20:07] <Schex> 95
+[20:07] <@jpnance> 95 to schex, going once
+[20:07] <@jpnance> going twice
+[20:07] <j-j-j-j-j-john> 10 96
+[20:07] <@jpnance> 96 to john, going once
+[20:07] <@jpnance> going twice
+[20:07] <Schex> 97
+[20:07] <@jpnance> 97 to schex, going once
+[20:07] <@jpnance> going twice
+[20:08] <@jpnance> sold
+[20:08] <ks1> trent cole 5
+[20:08] <@jpnance> position/team
+[20:08] <j-j-j-j-j-john> 10DE/PHI
+[20:08] <ks1> de eagle
+[20:08] <j-j-j-j-j-john> 10also LB I think
+[20:08] <@jpnance> also LB eligibility
+[20:08] <james_r> 6
+[20:08] <@jpnance> 7
+[20:08] <ks1> 10
+[20:08] <@jpnance> 10 to keyon, going once
+[20:09] <@jpnance> going twice
+[20:09] <@jpnance> sold
+[20:09] <@jpnance> koci's up
+[20:10] <ckoci> bobby engram $1
+[20:10] <Schex> 2
+[20:10] <daniel> 10
+[20:10] <trevor> 11
+[20:10] <Schex> 12
+[20:10] <trevor> 13
+[20:10] <@jpnance> 13 to trevor, going once
+[20:10] <@jpnance> going twice
+[20:10] <@jpnance> sold
+[20:11] <@jpnance> ack sorry
+[20:11] <@jpnance> santana moss: $5
+[20:11] <jsneden> Hey Pat
+[20:11] <j-j-j-j-j-john> 10 30
+[20:11] <jsneden> we have a trade
+[20:12] <@jpnance> details after this auction
+[20:12] <daniel> 31
+[20:12] <@jpnance> 35
+[20:12] <daniel> 36
+[20:12] <@jpnance> 37
+[20:12] <@jpnance> 37 to pat, going once
+[20:12] <j-j-j-j-j-john> 10 40
+[20:12] <@jpnance> 41
+[20:12] <@jpnance> 41 to pat, going once
+[20:12] <@jpnance> going twice
+[20:13] <@jpnance> sold
+[20:13] <@jpnance> what's the trade
+[20:13] <jsneden> McGee for 59
+[20:13] <@jpnance> you and whom?
+[20:13] <jsneden> plus I give Koci 15 next year
+[20:14] <@jpnance> so he gets mcgee for $76
+[20:14] <ckoci> no
+[20:14] <ckoci> i get him for 44
+[20:14] <ckoci> i give him 59 now, he gives me 15 next year
+[20:14] <syed> 13yes i understand it
+[20:14] <syed> 13it's being added to the results page
+[20:15] <syed> 13McGee's cap number is *still* 76
+[20:15] <daniel> jeff has $59
+[20:15] <@jpnance> yeah
+[20:15] <daniel> lets keep going
+[20:15] <j-j-j-j-j-john> 10k
+[20:15] <@jpnance> no, hold on
+[20:15] <@jpnance> i wanna be sure i understand this
+[20:15] <@jpnance> so somebody help me out
+[20:15] <daniel> and it cant wait 13 minutes?
+[20:15] <jsneden> I have 15
+[20:15] <@jpnance> not if jeff is back in the auction, no
+[20:15] <ckoci> this should wait until after the draft
+[20:15] <jsneden> err
+[20:15] <jsneden> I have 59
+[20:15] <syed> 13jeff traded T. McGee and $15 in next year's cap to Koci for $59 in this year's cap
+[20:15] <@jpnance> i need to know how much he has left
+[20:16] <Schex> 59
+[20:16] <@jpnance> is that right guys?
+[20:16] <jsneden> yes
+[20:16] <Schex> yep
+[20:16] <james_r> yes
+[20:16] <trevor> yes
+[20:16] <syed> 13so koci gets the -76 for McGee and the -59
+[20:16] <syed> 13jeff gets +76 and +59
+[20:16] <james_r> also yes
+[20:16] <ckoci> wait, what?
+[20:16] <syed> 13uyes
+[20:16] <syed> 13you now have to pay terence mcgee's salary
+[20:16] <jsneden> I get the -76
+[20:16] <syed> 13oh ok
+[20:17] <syed> 13so as part of the deal, jeff has to pay terence mcgee's salary
+[20:17] <Schex> yeah
+[20:17] <Schex> let
+[20:17] <jsneden> you could say it that way
+[20:17] <Schex> s move on
+[20:17] <james_r> he's relieved of all cap room spent, plus adds the cap room he received in cash
+[20:17] <Schex> but jeff has 59
+[20:17] <Schex> it works I promise
+[20:17] <syed> 13i got it
+[20:17] <@jpnance> somebody tell me how to adjust everything
+[20:17] <syed> 13jeff +59
+[20:17] <@jpnance> and somebody else agree with that guy
+[20:17] <syed> 13koci -59
+[20:17] <j-j-j-j-j-john> 10correct
+[20:17] <syed> 13move T. McGee to Koci's roster
+[20:17] <Schex> yes
+[20:17] <ks1> yeah
+[20:18] <j-j-j-j-j-john> 10 5 more nominations
+[20:18] <@jpnance> alright
+[20:18] <@jpnance> syed's up
+[20:18] <syed> 13Nate Bulreson (WR - SEA) for $3
+[20:18] <ks1> 10
+[20:18] <daniel> 15
+[20:18] <j-j-j-j-j-john> 10 30
+[20:18] <@jpnance> 17
+[20:18] <@jpnance> 31
+[20:18] <j-j-j-j-j-john> 10 40
+[20:18] <@jpnance> 41
+[20:18] <trevor> 44
+[20:19] <@jpnance> 45
+[20:19] <Schex> 50
+[20:19] <trevor> 50
+[20:19] <@jpnance> 51
+[20:19] <Schex> 53
+[20:19] <@jpnance> 55
+[20:19] <@jpnance> 55 to pat, going once
+[20:19] <ckoci> 60
+[20:19] <jsneden> 59
+[20:19] <@jpnance> 61
+[20:19] <@jpnance> 61 to pat, going once
+[20:19] <@jpnance> going twice
+[20:19] <trevor> 63
+[20:19] <@jpnance> 64
+[20:20] <ckoci> 65
+[20:20] <@jpnance> 70
+[20:20] <ckoci> 73
+[20:20] <@jpnance> 75
+[20:20] <ckoci> 77
+[20:20] <@jpnance> 80
+[20:20] <ckoci> 82
+[20:20] <@jpnance> 83
+[20:20] <ckoci> 92
+[20:20] <@jpnance> 100
+[20:20] <@jpnance> 100 to pat, going once
+[20:20] <@jpnance> going twice
+[20:20] <ckoci> 105
+[20:21] <@jpnance> 105 to koci, going once
+[20:21] <@jpnance> going twice
+[20:21] <@jpnance> sold
+[20:21] <daniel> James Jones, GB WR $1
+[20:21] <syed> 13 5
+[20:21] <james_r> 10
+[20:21] <@jpnance> 10 to james, going once
+[20:21] <daniel> 11
+[20:21] <@jpnance> 11 to daniel, going once
+[20:22] <james_r> 12
+[20:22] <@jpnance> 12 to james, going once
+[20:22] <daniel> 13
+[20:22] <@jpnance> 13 to daniel, going once
+[20:22] <james_r> 16
+02[20:22] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-2ac561a2baaf805e) Quit ("http://www.mibbit.com ajax IRC Client")
+03[20:22] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-b936577c4587f28d) has joined #dynastyleague
+[20:22] <@jpnance> 16 to james, going once
+[20:22] <@jpnance> going twice
+[20:22] <ks1> 17
+[20:22] <@jpnance> 17 to keyon, going once
+[20:22] <daniel> 18
+[20:22] <@jpnance> 18 to daniel, going once
+[20:23] <@jpnance> going twice
+[20:23] <@jpnance> sold
+[20:23] <@jpnance> jeff's up
+[20:24] <jsneden> urlacher
+[20:24] <jsneden> 2
+[20:24] <Schex> 5
+[20:24] <ckoci> 7
+[20:24] <Schex> 10
+[20:24] <@jpnance> 10 to schex, going once
+[20:24] <ckoci> 11
+[20:24] <@jpnance> 11 to koci, going once
+[20:24] <Schex> 12
+[20:24] <@jpnance> going twice
+[20:24] <ckoci> 13
+[20:24] <Schex> 15
+[20:25] <@jpnance> 15 to schex, going once
+[20:25] <@jpnance> going twice
+[20:25] <@jpnance> sold
+[20:25] <@jpnance> schex is up
+[20:26] <Schex> vinetieri
+[20:26] <Schex> colts kicker
+[20:26] <@jpnance> bid?
+[20:26] <Schex> can't spell
+[20:26] <Schex> 1
+[20:26] <@jpnance> 2
+[20:26] <@jpnance> 2 to pat, going once
+[20:26] <@jpnance> going twice
+[20:26] <@jpnance> sold
+[20:27] <@jpnance> last pick of the night
+[20:27] <@jpnance> james is up
+[20:27] <ks1> make it good
+[20:27] <james_r> greg ellis dallas
+[20:27] <james_r> nothing but the best
+[20:27] <james_r> 3
+[20:27] <@jpnance> 3 to james, going once
+[20:27] <@jpnance> going twice
+[20:27] <syed> 13wow what a lame end to a good auction day
+[20:27] <@jpnance> sold
+[20:27] <@jpnance> haha
+[20:27] <ks1> yeah seriously
+[20:27] <j-j-j-j-j-john> 10aight peace guys. you're going to be getting a fuckload of trade offers from me
+[20:27] <daniel> night guys
+[20:27] <ks1> peace
+[20:27] <james_r> goodnight
+[20:28] <j-j-j-j-j-john> 10christ
+02[20:28] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-b936577c4587f28d) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:28] <Schex> how many picks tomorrow?
+[20:28] <Schex> how many tonight I guess
+[20:28] <@jpnance> as many as we can stomach
+[20:28] <@jpnance> i think we got 9 rounds
+[20:28] <syed> 13 210
+[20:28] <syed> 13it goes fast though
+[20:28] <syed> 13'cause only 3 ppl have money
+[20:28] <j-j-j-j-j-john> 10I'm done drafting though
+[20:28] <syed> 13it should basically be a draft with like 30 second clocks in a few
+[20:28] <syed> 13yeah
+[20:28] <syed> 13i have a feeling
+[20:28] <syed> 13 5 of us run out of money before getting to 20 players
+[20:28] <@jpnance> johnny
+[20:28] <j-j-j-j-j-john> 10all these remaining guys
+[20:28] <j-j-j-j-j-john> 10are going to go for WAY under value
+[20:28] <@jpnance> you've got at least the skill positions populated
+[20:28] <j-j-j-j-j-john> 10and then get signed to 3 year deals
+[20:29] <j-j-j-j-j-john> 10dude
+[20:29] <j-j-j-j-j-john> 10I have steve smith
+[20:29] <j-j-j-j-j-john> 10and there are like 5 good RB left
+[20:29] <@jpnance> the other steve smith
+[20:29] <syed> 13me daniel jeff keyon james
+[20:29] <j-j-j-j-j-john> 10no, this shit is stupid
+[20:29] <syed> 13we are all going to go under before getting to 20 players
+[20:29] <j-j-j-j-j-john> 10we should have done this in one sitting
+[20:29] <syed> 13yeah
+[20:29] <syed> 13its too bad we have to leave now
+[20:29] <syed> 13i want to keep going
+[20:29] <j-j-j-j-j-john> 10we should finish it NOW
+03[20:29] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-f86f0b846f75a5f5) has joined #dynastyleague
+[20:29] <j-j-j-j-j-john> 10fuck james
+[20:29] <james_r> fuck you john
+[20:29] <syed> 13pat, on the results page
+[20:29] <j-j-j-j-j-john> 10you told me 15 rounds
+[20:29] <syed> 13i put the trade terms
+[20:29] <j-j-j-j-j-john> 10that's 150 picks
+[20:30] <syed> 13yeah i want SIX MORE ROUNDS
+[20:30] <syed> 13SIX MORE ROUNDS :P
+02[20:30] * ckoci (i=467c5368@gateway/web/ajax/mibbit.com/x-d0f11d74c36b68e9) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:30] <ks1> lot of good wrs left, and for cheap im sure
+02[20:30] * j-j-j-j-j-john (i=42449116@gateway/web/ajax/mibbit.com/x-db15d8b53a4f54b6) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:30] <trevor> yup
+02[20:30] * Schex (i=467c5368@gateway/web/ajax/mibbit.com/x-cedbb589cb33c999) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:31] <syed> 13well when people nominate Greg Ellis and then pay $3 for them
+02[20:31] * jsneden (i=44f44a55@gateway/web/ajax/mibbit.com/x-83c395b6b2037778) Quit ("http://www.mibbit.com ajax IRC Client")
+02[20:31] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-3dbf9ee8f4d80699) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:31] <ks1> 30 players is way too many
+[20:32] <syed> 13thats the point
+[20:32] <ks1> but i guess you dont have to have that many
+[20:32] <@jpnance> keyon
+[20:32] <syed> 13there should be no FA depth
+[20:32] <@jpnance> you don't have to draft 30
+[20:32] <@jpnance> you can say you're done whenever you want
+[20:32] <ks1> cool cool
+[20:32] <syed> 13i love that jeff ran out on Terence McGee
+[20:33] <@jpnance> haha
+[20:33] <@jpnance> i should check these numbers for consistency
+[20:33] <@jpnance> i almost assuredly made a mistake or ten
+[20:33] <syed> 13all of the results numbers are accurate
+[20:34] <ks1> this was my first auction, and i think i came out pretty poorly so far. would have changed it up a lot
+[20:34] <ks1> still a lotta fun tho
+[20:34] <@jpnance> yeah, my team is horrible
+[20:34] <@jpnance> for what i spent
+02[20:35] * charlesschex (i=467c46c6@gateway/web/ajax/mibbit.com/x-1cbf54578e4d3d22) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:36] <ks1> your rbs are solid, and WR can be had for cheaper at the end of the draft, not too bad
+[20:36] <trevor> i'm not sure how much I overpaid for peterson
+[20:37] <@jpnance> well, if addai and tomlinson both went for $360
+[20:37] <@jpnance> i would say at least $40
+[20:37] <trevor> i mean addai seemed to be a bigg stretch
+[20:37] <trevor> peterson is by far #1 player in dynasty
+[20:37] <@jpnance> i have no clue how you did it
+[20:37] <@jpnance> but i thought you ended up with a great team
+[20:37] <@jpnance> and you still have some cash to work with, too
+[20:38] <trevor> yeah i need another wr and a couple of rookies
+[20:38] <trevor> and i'll be set
+[20:38] <@jpnance> not buying peterson "by far"
+[20:38] <ks1> who the hell is aldridge anyways
+[20:38] <ks1> only guy i had never heard of
+[20:38] <@jpnance> i would listen to an argument that he's the #1 fantasy player
+[20:38] <@jpnance> but he's not obviously the best
+[20:38] <trevor> alridge went to high school with me
+[20:38] <trevor> ran a 4.26
+[20:38] <trevor> and is a scat back type
+[20:39] <trevor> not even sure if he'll make the team
+[20:39] <ks1> are you the bronco fan? i remember one of yall was
+[20:39] <trevor> yeah i am
+[20:40] <@jpnance> you guys have any thoughts on the draft tonight?
+[20:40] <@jpnance> anything that worked well or didn't?
+[20:41] <trevor> so peterson is it worked much better than expected
+[20:41] <trevor> can you get players added to rosters tonight so we can sift through what's left tomorrow
+[20:41] <@jpnance> yep
+[20:41] <@jpnance> doing that right now
+[20:42] <ks1> did i read the settings correctly in that each punt return yard is one point?
+[20:42] <@jpnance> probably so
+[20:42] <@jpnance> we're borrowing the scoring system from the main league most of us play in
+[20:43] <@jpnance> it worked pretty well last year except that defense was a little undervalued
+[20:43] <@jpnance> actually
+[20:43] <@jpnance> trevor
+[20:43] <@jpnance> you know what
+[20:43] <@jpnance> well
+[20:43] <@jpnance> no, nevermind, i can do it
+[20:43] <ks1> im pretty happy with my D, except i overpaid for Ryans. 
+[20:44] <ks1> i saw where Ware went, so i picked accordingly
+[20:44] <trevor> who all do you have?
+[20:44] <ks1> but urlacher and lofa were cheap compared
+[20:44] <@jpnance> yeah, tatupu went cheap
+[20:44] <ks1> it seems picking one of the first players in a position means you will overpay
+[20:44] <ks1> ryans, trent cole, sean jones s cle
+[20:45] <trevor> yeah that's solid
+[20:45] <trevor> the ryans overpay was bad
+[20:45] <ks1> yah
+[20:46] <ks1> allen for 21 was good pat
+[20:48] <ks1> damn schex did awesome 
+02[20:49] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-f86f0b846f75a5f5) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:49] <@jpnance> yeah, i can't decide if schex, koci, or trevor had the best draft
+[20:49] <trevor> koci or schex
+[20:50] <trevor> they are going to pull some shit out of their ass tomorrow
+[20:50] <trevor> with the money they have left
+03[20:55] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-b35e6ba487c0ba6a) has joined #dynastyleague
+02[20:55] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-b35e6ba487c0ba6a) Quit (Client Quit)
+02[21:18] * syed (i=807d14b5@gateway/web/ajax/mibbit.com/x-6261675e5b795c1c) Quit ("http://www.mibbit.com ajax IRC Client")
+03[21:26] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-ef0dca455bc40db0) has joined #dynastyleague
+02[21:27] * ks1 (i=4791ba93@gateway/web/ajax/mibbit.com/x-ef0dca455bc40db0) Quit (Client Quit)
+Session Close: Mon Aug 18 21:43:25 2008
+
+Session Start: Mon Aug 18 21:43:25 2008
+Session Ident: #dynastyleague
+02[21:43] * Disconnected
+Session Close: Mon Aug 18 21:43:26 2008
+
+Session Start: Tue Aug 19 16:31:02 2008
+Session Ident: #dynastyleague
+03[16:31] * Now talking in #dynastyleague
+03[16:31] * Topic is 'http://whattheballs.com/~jpnance/dynasty/'
+03[16:31] * Set by jpnance on Mon Aug 18 16:46:10
+03[16:31] * jpnance sets mode: +o logger_
+[16:37] <@jpnance> i'm gonna go try to grab a bite to eat
+03[16:41] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-5e1e507e6d606c4d) has joined #dynastyleague
+[16:42] <ks1> schex, your team is gonna kick ass
+03[16:42] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) has joined #dynastyleague
+[16:43] <trevor> hi all
+[16:46] <daniel> sup trevor
+[16:46] <daniel> you got any sleeper other than that dude from your high school that will have one week of 3 tds and 100 yards on your bench?
+[16:49] <trevor> can i draft michael vick
+03[16:49] * Jeffaray (i=483df60c@gateway/web/ajax/mibbit.com/x-a1445bca19eda271) has joined #dynastyleague
+[16:49] <@jpnance> you can!
+[16:49] <Jeffaray> hallo
+[16:50] <daniel> im gonna bid him up though
+[16:50] <trevor> as a homer i have to bid on eddie royal
+02[16:50] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-5e1e507e6d606c4d) Quit ("http://www.mibbit.com ajax IRC Client")
+[16:50] <daniel> i like qbs
+[16:50] <trevor> i noticed
+[16:50] <trevor> matty ryan!
+03[16:50] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-305631ae9aa79b96) has joined #dynastyleague
+[16:50] <ks1> damn i wanted royal
+[16:51] <trevor> how much are you paying for slaton?
+[16:51] <daniel> hey pat after I bow out, will I still be able to pick up people off waivers (assuming I have money?)
+03[16:51] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-6d9b5b74a097ed2c) has joined #dynastyleague
+[16:52] <daniel> $1
+[16:52] <daniel> by my question I mean, when will I?
+[16:52] <@jpnance> after the draft
+[16:53] <trevor> come on daniel i know you want to bid $1 players up to $10 with me
+[16:53] <daniel> you know it
+[16:53] <daniel> but I think coming back in the morning will end up being safer.. nobody else can bid up my $1 players
+[16:54] <trevor> i'm going to clean house with them
+[16:54] <trevor> 6 minutes 
+[16:55] <daniel> is syed coming?
+[16:55] <@jpnance> syed said he might be late
+[16:55] <@jpnance> i have his nomination/bid, though
+03[16:56] * ckoci (i=467295b6@gateway/web/ajax/mibbit.com/x-ebaaa51046468da1) has joined #dynastyleague
+[16:56] <daniel> but who will log it..
+02[16:57] * ckoci (i=467295b6@gateway/web/ajax/mibbit.com/x-ebaaa51046468da1) Quit (Client Quit)
+03[16:58] * ckoci (i=467295b6@gateway/web/ajax/mibbit.com/x-146572dcbe2c34a0) has joined #dynastyleague
+[16:58] <ckoci> test
+[16:58] <trevor> ping
+[16:58] <@jpnance> looks like syed's ready to go anyway
+[16:58] <daniel> zingers
+[16:58] <@jpnance> no so worries
+03[16:58] * SyedAshrafulla (i=cf97f34a@gateway/web/ajax/mibbit.com/x-101d39602d741223) has joined #dynastyleague
+[16:58] <SyedAshrafulla> i am here
+[16:58] <@jpnance> alright
+[16:58] <trevor> any suggestions on who i should nominate
+[16:58] <@jpnance> so, a few announcements
+03[16:58] * daniel is now known as JennyHumphrey
+[16:58] <SyedAshrafulla> for some reason it wouldnt let me use syed
+03[16:58] * SyedAshrafulla is now known as syed
+[16:58] <syed> ah there we go
+[16:58] <@jpnance> first of all, john's officially done drafting
+[16:59] <@jpnance> so nobody will be nominated in his place
+03[16:59] * JennyHumphrey is now known as daniel
+[16:59] <@jpnance> and, even if he comes back, he won't be able to re-enter the draft
+[16:59] <@jpnance> if that affects the way you draft or give contracts out, take note
+[16:59] <syed> now Patrick Crayton wont be overvalued, got it
+[16:59] <@jpnance> second, given how long we took last night, we might do a day 3, so i have two questions
+[17:00] <@jpnance> a) how long can you guys go tonight?
+[17:00] <daniel> ALL NIGHT LONG
+[17:00] <@jpnance> b) could you go tomorrow as well?
+[17:00] <syed> all night all night
+[17:00] <ks1> rather just get it done today
+[17:00] <trevor> let people leave as they please
+[17:00] <trevor> and we'll go til people call uncle
+[17:00] <@jpnance> well, here's the thing
+[17:00] <@jpnance> at any point, you can declare that you're done drafting
+[17:01] <@jpnance> but you can't re-enter
+[17:01] <@jpnance> and you can't just pass a nomination when it's your turn
+[17:01] <@jpnance> either you nominate somebody or you're done drafting for good
+[17:01] <trevor> k deal
+[17:01] <Jeffaray> that rule sucks
+[17:01] <ks1> why
+[17:01] <@jpnance> they all do
+[17:01] <james_r> commish doesn't fuck around
+[17:01] <ks1> is everyone here?
+[17:02] <trevor> can i nominate my player yet?
+[17:02] <@jpnance> yeah, everybody's here
+[17:02] <Jeffaray> because I'm going to run out of power and have to leave Friday's
+[17:02] <Schex> then call me again
+[17:02] <Schex> and do it over the phone
+[17:02] <syed> or go to starbucks
+[17:02] <@jpnance> we can stop officially whenever you guys sound like you want to
+[17:02] <@jpnance> but if we do that, we'll probably have a day 3
+[17:02] <daniel> officially start... NOW
+[17:02] <@jpnance> that's all i'm saying
+[17:02] <ks1> sweet, can trevor start the bidding
+[17:03] <trevor> Julius Jones $1
+[17:03] <james_r> for the sake of consistency, you shoudl have a hard and fast rule about when we stop, if you say anyone who leaves has to stop drafting altogether
+03[17:03] * jpnance sets mode: +m
+[17:03] <@jpnance> alright then
+[17:03] <@jpnance> at 8pm PT (three-ish hours from now), we'll see where everybody stands
+[17:03] <@jpnance> we're drafting until then, though
+03[17:03] * jpnance sets mode: -m
+[17:03] <@jpnance> sound reasonable?
+[17:03] <Jeffaray> yeah
+[17:03] <trevor> yes
+[17:03] <james_r> fair enough
+[17:03] <Jeffaray> go go go
+[17:03] <@jpnance> cool
+[17:04] <@jpnance> trevor, start us off
+[17:04] <trevor> julius jones $1
+[17:04] <james_r> 2
+[17:04] <@jpnance> 3
+[17:04] <ks1> 5
+[17:04] <Jeffaray> 8
+[17:04] <Schex> 10
+[17:04] <@jpnance> 8
+[17:04] <james_r> 13
+[17:04] <Jeffaray> 17
+[17:04] <trevor> 15
+[17:04] <daniel> 20
+[17:04] <Jeffaray> these bids are stupid
+[17:04] <@jpnance> 20 to daniel, going once
+[17:04] <@jpnance> going twice
+[17:04] <@jpnance> 21
+[17:04] <@jpnance> 21 to pat, going once
+[17:04] <Schex> 22
+[17:05] <@jpnance> 22 to schex, going once
+[17:05] <@jpnance> going twice
+[17:05] <@jpnance> sold
+[17:05] <Jeffaray> wowie
+[17:05] <daniel> no shit
+[17:05] <ks1> alright
+[17:05] <ks1> reggie wayne 50
+[17:05] <@jpnance> 55
+[17:05] <trevor> 80
+[17:05] <@jpnance> 81
+[17:05] <trevor> 85
+[17:06] <@jpnance> 86
+[17:06] <trevor> 90
+[17:06] <@jpnance> 91
+[17:06] <trevor> 93
+[17:06] <@jpnance> 94
+[17:06] <trevor> 97
+[17:06] <@jpnance> 98
+[17:06] <trevor> 100
+[17:06] <@jpnance> 101
+[17:06] <trevor> stop 1 upping me
+[17:06] <trevor> bet
+[17:06] <trevor> 104
+[17:06] <@jpnance> 115
+[17:06] <@jpnance> 115 to pat, going once
+[17:06] <@jpnance> going twice
+[17:06] <@jpnance> sold
+[17:07] <@jpnance> pause for a sec
+03[17:07] * Guest84641 (i=18af6927@gateway/web/ajax/mibbit.com/x-4b6770565d255f7d) has joined #dynastyleague
+[17:07] <@jpnance> syed: you got the results page up okay?
+[17:07] <syed> we're good, unpause
+[17:07] <@jpnance> cool
+[17:07] <@jpnance> koci's up
+[17:07] <ckoci> shayne graham $1
+[17:08] <@jpnance> 1 to koci, going once
+[17:08] <@jpnance> going twice
+[17:08] <@jpnance> sold
+[17:08] <@jpnance> donovan mcnabb: $10
+[17:08] <ks1> 20
+[17:09] <@jpnance> 20 to keyon, going once
+[17:09] <trevor> 21
+[17:09] <@jpnance> 21 to trevor, going once
+[17:09] <@jpnance> going twice
+[17:09] <@jpnance> sold
+[17:09] <@jpnance> syed's up
+[17:10] <syed> oh i remember
+[17:10] <syed> 13Eli Manning (QB - NYG) for $10
+[17:10] <Schex> 15
+[17:10] <@jpnance> 16
+[17:10] <Schex> 20
+[17:10] <@jpnance> 20 to schex, going once
+[17:10] <ckoci> 22
+[17:10] <@jpnance> 22 to koci, going once
+[17:10] <@jpnance> going twice
+[17:10] <@jpnance> sold
+[17:11] <daniel> earnest graham tb rb $1
+[17:11] <@jpnance> daniel's up
+[17:11] <@jpnance> 2
+[17:11] <ks1> 10
+[17:11] <@jpnance> 11
+[17:11] <trevor> $22
+[17:11] <ks1> 25
+[17:11] <@jpnance> 25 to keyon, going once
+[17:11] <@jpnance> going twice
+[17:11] <@jpnance> sold
+[17:12] <@jpnance> jeff's up
+[17:12] <Jeffaray> Antoine Winfield , Min CB $`
+[17:12] <Jeffaray> $1
+[17:12] <james_r> 2
+[17:12] <@jpnance> 2 to james, going once
+[17:12] <Jeffaray> 3
+[17:12] <@jpnance> 3 to jeff, going once
+[17:13] <@jpnance> going twice
+[17:13] <@jpnance> sold
+[17:13] <syed> 13haha jeff's DB position went from 76 to 3
+[17:13] <@jpnance> schex is up
+[17:13] <Schex> D. Garrard QB JAX
+[17:13] <Schex> 2
+[17:13] <Jeffaray> 5
+[17:13] <daniel> 10
+[17:14] <james_r> 12
+[17:14] <syed> 13 15
+[17:14] <@jpnance> 15 to syed, going once
+[17:14] <@jpnance> going twice
+[17:14] <@jpnance> sold
+[17:14] <@jpnance> james is up
+[17:15] <james_r> jerricho cotchery 12
+[17:15] <ks1> 15
+[17:15] <daniel> 20
+[17:15] <ks1> 25
+[17:15] <Schex> 25
+[17:15] <@jpnance> 25 to keyon, going once
+[17:15] <Schex> 26
+[17:15] <ks1> 28
+[17:15] <james_r> 27
+[17:15] <Schex> 30
+[17:15] <james_r> 31
+[17:15] <ks1> 32
+[17:16] <@jpnance> 32 to keyon, going once
+[17:16] <@jpnance> going twice
+[17:16] <@jpnance> sold
+[17:16] <trevor> brandon jacobs $5
+[17:16] <@jpnance> 10
+[17:16] <@jpnance> 10 to pat, going once
+[17:16] <trevor> 25
+[17:16] <syed> 13 35
+[17:16] <trevor> 36
+[17:16] <Schex> 40
+[17:17] <trevor> 44
+[17:17] <@jpnance> 44 to trevor, going once
+[17:17] <@jpnance> going twice
+[17:17] <@jpnance> sold
+[17:17] <trevor> man i still need money for my < $5 pickups
+[17:18] <@jpnance> skipping john
+[17:18] <@jpnance> keyon's up
+[17:18] <ks1> my bad forgot
+[17:18] <ks1> willis mcgahee 5
+[17:18] <@jpnance> 6
+[17:18] <Schex> 30
+[17:18] <trevor> 36
+[17:18] <@jpnance> 36 to trevor, going once
+[17:18] <@jpnance> going twice
+[17:18] <Schex> 37
+[17:19] <@jpnance> 37 to schex, going once
+[17:19] <ckoci> 39
+[17:19] <@jpnance> 39 to koci, going once
+[17:19] <james_r> 40
+[17:19] <syed> 13 41
+[17:19] <@jpnance> 41 to syed, going once
+[17:19] <@jpnance> going twice
+[17:19] <@jpnance> sold
+[17:20] <@jpnance> koci's up
+[17:20] <ckoci> chris long DL St. Louis $2
+[17:20] <@jpnance> 2 to koci, going once
+[17:20] <Jeffaray> 3
+[17:20] <ckoci> 4
+[17:20] <@jpnance> 3 to jeff, going once
+[17:20] <@jpnance> 4 to koci, going once
+[17:20] <@jpnance> going twice
+[17:20] <@jpnance> sold
+[17:21] <@jpnance> chris cooley, $1
+[17:21] <Schex> 5
+[17:21] <ks1> 5
+[17:21] <ks1> 10
+[17:21] <syed> 13 12
+[17:21] <@jpnance> 12 to syed, going once
+[17:21] <ckoci> 13
+[17:21] <syed> 13 14
+[17:21] <Schex> 14
+[17:21] <Schex> 17
+[17:21] <@jpnance> 17 to schex, going once
+[17:22] <ckoci> 18
+[17:22] <Schex> 19
+[17:22] <ckoci> 20
+[17:22] <@jpnance> 20 to koci, going once
+[17:22] <@jpnance> going twice
+[17:22] <Schex> 22
+[17:22] <@jpnance> 22 to schex, going once
+[17:22] <@jpnance> going twice
+[17:22] <@jpnance> sold
+[17:23] <@jpnance> syed's up
+[17:23] <syed> 13Greg Jennings (WR - GNB) for $1
+[17:23] <ks1> 5
+[17:23] <daniel> 10
+[17:23] <Schex> 15
+[17:24] <ks1> 20
+[17:24] <@jpnance> 15 to schex, going once
+[17:24] <@jpnance> 20 to keyon, going once
+[17:24] <james_r> 21
+[17:24] <ks1> 22
+[17:24] <james_r> 23
+[17:24] <@jpnance> 22 to keyon, going once
+[17:24] <ks1> 25
+[17:24] <@jpnance> 25 to keyon, going once
+[17:24] <james_r> 27
+[17:24] <ks1> 28
+[17:24] <james_r> 29
+[17:24] <@jpnance> 28 to keyon, going once
+[17:25] <ks1> 30
+[17:25] <james_r> 31
+[17:25] <ks1> 32
+[17:25] <james_r> done
+[17:25] <@jpnance> 32 to keyon, going once
+[17:25] <@jpnance> going twice
+[17:25] <@jpnance> sold
+[17:25] <daniel> Nick Barnett GB LB $1
+[17:25] <@jpnance> 1 to daniel, going once
+[17:26] <@jpnance> going twice
+[17:26] <Jeffaray> 2
+[17:26] <@jpnance> 2 to jeff, going once
+[17:26] <daniel> 3
+[17:26] <@jpnance> 3 to daniel, going once
+[17:26] <@jpnance> going twice
+[17:26] <@jpnance> sold
+[17:27] <@jpnance> jeff's up
+[17:27] <Jeffaray> Adewale Ogunleye , Chi DE $1
+[17:27] <Schex> 2
+[17:27] <@jpnance> 2 to schex, going once
+[17:27] <@jpnance> going twice
+[17:27] <Jeffaray> 3
+[17:27] <@jpnance> 3 to jeff, going once
+[17:27] <@jpnance> going twice
+[17:27] <@jpnance> sold
+[17:28] <@jpnance> schex is up
+[17:28] <Schex> Vince Young, God, The Universe
+[17:28] <Schex> 4
+[17:28] <syed> 13that means the rest of his cap room
+[17:29] <daniel> he bid the universe
+[17:29] <@jpnance> haha
+[17:29] <@jpnance> 4 is the bid
+[17:29] <Schex> that's his team man
+[17:29] <@jpnance> 4 to schex, going once
+[17:29] <daniel> 5
+[17:29] <james_r> 9
+[17:29] <@jpnance> 9 to james, going once
+[17:29] <Schex> 7
+[17:29] <@jpnance> going twice
+[17:29] <Schex> 10
+[17:29] <@jpnance> 10 to schex, going once
+[17:29] <@jpnance> going twice
+[17:29] <@jpnance> sold
+[17:30] <@jpnance> (naturally, that's what it costs)
+[17:30] <@jpnance> james is up
+02[17:31] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-6d9b5b74a097ed2c) Quit ("http://www.mibbit.com ajax IRC Client")
+[17:31] <@jpnance> alright then
+[17:31] <@jpnance> we'll pause for a minute
+[17:31] <Schex> looks like he's booted
+[17:31] <daniel> use this time to get your next nomination ready please
+[17:31] <trevor> yes sir
+[17:31] <Guest84641> james' comp just froze
+[17:31] <@jpnance> trevor, keyon, and koci are the next three up
+[17:31] <syed> 13finally the ROCK has COME BACK to PENN STATE
+[17:31] <Guest84641> he brought me here to cover for him if that happened
+[17:32] <Schex> and you are, sir?
+[17:32] <Guest84641> john thompson
+[17:32] <@jpnance> is he gonna tell you his nomination or are we just waiting for him to reboot, or what?
+[17:32] <Guest84641> A. Rolle DB Arizona
+[17:32] <Schex> hey john, shame I can't beat you again this year in that yahoo league
+[17:32] <@jpnance> starting bid
+[17:32] <Guest84641> $2
+[17:32] <@jpnance> cool
+[17:32] <@jpnance> rolle for $2, folks
+[17:33] <@jpnance> 2 to james, going once
+[17:33] <@jpnance> going twice
+[17:33] <@jpnance> sold
+[17:33] <trevor> santonio holmes $10
+[17:33] <@jpnance> 11
+[17:33] <trevor> 13
+[17:33] <syed> 13 15
+[17:33] <trevor> 17
+[17:33] <Jeffaray> 18
+[17:33] <daniel> 21
+[17:33] <trevor> 24
+[17:33] <Jeffaray> 22
+[17:33] <Jeffaray> 25
+[17:33] <trevor> 27
+[17:33] <@jpnance> 27 to trevor, going once
+[17:33] <ckoci> 28
+[17:34] <trevor> 29
+[17:34] <Guest84641> James R 30
+[17:34] <trevor> 31
+03[17:34] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-bf829ee7a0ef97d2) has joined #dynastyleague
+[17:34] <ckoci> 33
+[17:34] <trevor> 35
+[17:34] <Guest84641> 36
+[17:34] <trevor> 39
+[17:34] <Guest84641> 40
+[17:34] <trevor> 47
+[17:34] <@jpnance> 47 to trevor, going once
+[17:34] <@jpnance> going twice
+[17:34] <@jpnance> sold
+[17:35] <ks1> thomas jones 2
+[17:35] <@jpnance> 7
+[17:35] <Schex> 15
+[17:35] <daniel> 20
+[17:35] <@jpnance> 20 to daniel, going once
+[17:35] <Schex> 21
+[17:35] <@jpnance> 21 to schex, going once
+[17:35] <@jpnance> going twice
+[17:35] <james_r> 22
+[17:36] <@jpnance> 22 to james, going once
+[17:36] <@jpnance> going twice
+[17:36] <@jpnance> sold
+[17:36] <@jpnance> koci's up
+[17:36] <ckoci> patrick willis $2
+[17:36] <Schex> 3
+[17:36] <Jeffaray> 4
+[17:37] <@jpnance> 5
+[17:37] <Jeffaray> 6
+[17:37] <ckoci> 8
+[17:37] <james_r> 6
+[17:37] <Jeffaray> 9
+[17:37] <james_r> 9
+[17:37] <ckoci> 11
+[17:37] <@jpnance> 9 to jeff, going once
+[17:37] <Jeffaray> 12
+[17:37] <james_r> 12
+[17:37] <Jeffaray> eat it James
+[17:37] <ckoci> 14
+[17:37] <@jpnance> 14 to koci, going once
+[17:37] <Jeffaray> 15
+[17:37] <ckoci> 17
+[17:37] <@jpnance> 17 to koci, going once
+[17:37] <@jpnance> going twice
+[17:37] <@jpnance> sold
+[17:38] <trevor> aaron ross on tv
+[17:38] <@jpnance> mike vrabel: $1
+[17:38] <@jpnance> 1 to pat, going once
+[17:38] <@jpnance> going twice
+[17:38] <syed> 13 2
+[17:39] <@jpnance> 2 to syed, going once
+[17:39] <@jpnance> going twice
+[17:39] <@jpnance> sold
+[17:39] <syed> 13who's mike vrabel
+[17:39] <@jpnance> you know
+[17:39] <Schex> TD machine
+[17:39] <@jpnance> that NE LB who catches TD sometimes
+[17:39] <trevor> NE cocksucker
+[17:39] <@jpnance> syed's up
+[17:40] <syed> 13Kerry Rhodes (DB - NYJ) for $1
+[17:40] <james_r> are those TD's scored in this league?  offensive TDs by a defensive player?
+[17:40] <@jpnance> yes, they are
+[17:40] <@jpnance> 1 to syed, going once
+[17:40] <ks1> 2
+[17:40] <Schex> 3
+[17:40] <@jpnance> 3 to schex, going once
+[17:40] <@jpnance> going twice
+[17:40] <ks1> 5
+[17:40] <@jpnance> 5 to keyon, going once
+[17:40] <james_r> 6
+[17:40] <@jpnance> going twice
+[17:40] <@jpnance> 6 to james, going once
+[17:41] <@jpnance> going twice
+[17:41] <ckoci> 7
+[17:41] <@jpnance> 7 to koci, going once
+[17:41] <@jpnance> going twice
+[17:41] <@jpnance> sold
+[17:41] <daniel> Patrick Kerney DE SEA $1
+[17:41] <@jpnance> heads up: 3 minute break after this round
+[17:41] <Jeffaray> 3
+[17:41] <@jpnance> 3 to jeff, going once
+[17:41] <@jpnance> going twice
+[17:41] <@jpnance> sold
+[17:42] <syed> 13he's stil a falcon right?
+[17:42] <@jpnance> SEA
+[17:42] <syed> 13right!
+[17:42] <@jpnance> jeff's up
+[17:42] <Jeffaray> David Harris , NYJ LB $2
+[17:43] <@jpnance> 5
+[17:43] <Schex> 10
+[17:43] <trevor> 11
+[17:43] <@jpnance> 12
+[17:43] <@jpnance> 12 to pat, going once
+[17:43] <@jpnance> going twice
+[17:43] <ckoci> 13
+[17:43] <@jpnance> 13 to koci, going once
+[17:43] <@jpnance> going twice
+[17:43] <@jpnance> sold
+02[17:44] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-305631ae9aa79b96) Quit ("http://www.mibbit.com ajax IRC Client")
+[17:44] <@jpnance> pause for a sec
+[17:44] <Schex> B. Marshall Denver
+03[17:44] * jpnance sets mode: +m
+03[17:44] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-2ba0150106266fcc) has joined #dynastyleague
+03[17:44] * jpnance sets mode: -m
+[17:44] <@jpnance> alright
+[17:44] <Schex> 1
+[17:44] <@jpnance> brandon marshall for $1
+[17:44] <daniel> 2
+[17:44] <Jeffaray> 5
+[17:44] <james_r> 7
+[17:44] <daniel> 6
+[17:44] <ckoci> 11
+[17:45] <Jeffaray> 12
+[17:45] <trevor> 13
+[17:45] <daniel> 15
+[17:45] <Jeffaray> 14
+[17:45] <ckoci> 17
+[17:45] <@jpnance> 15 to daniel, going once
+[17:45] <@jpnance> 17 to koci, going once
+[17:45] <@jpnance> going twice
+[17:45] <daniel> 18
+[17:45] <ckoci> 19
+[17:45] <daniel> 20
+[17:45] <@jpnance> 20 to daniel, going once
+[17:45] <ckoci> 21
+[17:45] <@jpnance> 21 to koci, going once
+[17:45] <@jpnance> going twice
+[17:46] <@jpnance> sold
+[17:46] <@jpnance> last pick before the break
+[17:46] <@jpnance> james is up
+02[17:47] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-2ba0150106266fcc) Quit (Client Quit)
+[17:47] <@jpnance> okay, let's break now
+[17:47] <james_r> sidney rice mn
+[17:47] <@jpnance> 3 minutes
+03[17:47] * jpnance sets mode: +m
+03[17:47] * ks (i=4791af03@gateway/web/ajax/mibbit.com/x-b8b8be0dfb107e42) has joined #dynastyleague
+03[17:49] * jpnance sets mode: -m
+[17:49] <@jpnance> james: sidney rice -- what's the bid?
+[17:49] <james_r> 2
+[17:49] <daniel> 5
+[17:49] <james_r> 7
+[17:50] <@jpnance> 7 to james, going once
+[17:50] <daniel> 8
+[17:50] <james_r> 9
+[17:50] <@jpnance> 9 to james, going once
+[17:50] <@jpnance> going twice
+[17:50] <@jpnance> sold
+[17:50] <trevor> champ bailey $1
+[17:50] <@jpnance> 1 to trevor, going once
+[17:50] <@jpnance> gonig twice
+[17:50] <Jeffaray> 2
+[17:51] <trevor> 3
+[17:51] <Jeffaray> 4
+[17:51] <@jpnance> 4 to jeff, going once
+[17:51] <@jpnance> going twice
+[17:51] <@jpnance> sold
+[17:51] <ks> andre davis 2
+[17:51] <Schex> 5
+[17:51] <@jpnance> 5 to schex, going once
+[17:52] <@jpnance> going twice
+[17:52] <@jpnance> sold
+[17:52] <@jpnance> koci's up
+[17:52] <ckoci> edgerrin james $1
+[17:52] <daniel> 5
+[17:52] <@jpnance> 10
+[17:52] <daniel> 11
+[17:53] <Schex> 20
+[17:53] <@jpnance> 20 to schex, going once
+[17:53] <james_r> 22
+[17:53] <@jpnance> 22 to james, going once
+[17:53] <@jpnance> going twice
+[17:53] <Schex> 23
+[17:53] <james_r> 24
+[17:53] <@jpnance> 24 to james, going once
+[17:53] <@jpnance> going twice
+[17:53] <@jpnance> sold
+[17:54] <@jpnance> lendale white: $5
+[17:54] <@jpnance> 5 to pat, going once
+[17:54] <ks> 7
+[17:54] <daniel> 10
+[17:54] <@jpnance> 12
+[17:55] <@jpnance> 12 to pat, going once
+[17:55] <daniel> 13
+[17:55] <@jpnance> 13 to daniel, going once
+[17:55] <james_r> 14
+[17:55] <@jpnance> 14 to james, going once
+[17:55] <daniel> 15
+[17:55] <@jpnance> 15 to daniel, going once
+[17:55] <@jpnance> going twice
+[17:55] <@jpnance> sold
+[17:56] <@jpnance> syed's up
+[17:56] <syed> 13Osi Umeniyora (DE - NYG) for $1
+[17:56] <ks> 5
+[17:56] <@jpnance> 2
+[17:56] <@jpnance> 7
+[17:57] <@jpnance> 7 to pat, going once
+[17:57] <ckoci> 8
+[17:57] <@jpnance> 8 to koci, going once
+[17:57] <@jpnance> going twice
+[17:57] <@jpnance> sold
+[17:57] <daniel> andre carter WAS DE $1
+[17:57] <Schex> 2
+[17:57] <@jpnance> 2 to schex, going once
+[17:58] <@jpnance> going twice
+[17:58] <@jpnance> sold
+[17:58] <@jpnance> jeff's up
+[17:59] <Jeffaray> Keith Bulluck , Ten LB 2
+[17:59] <@jpnance> 2 to jeff, going once
+[17:59] <@jpnance> going twice
+[17:59] <@jpnance> sold
+[17:59] <@jpnance> schex is up
+[17:59] <Schex> rudi johnson 3
+[18:00] <@jpnance> 3 to schex, going once
+[18:00] <james_r> 4
+[18:00] <Schex> 10
+[18:00] <@jpnance> 4 to james, going once
+[18:00] <@jpnance> 11
+[18:00] <james_r> 15
+[18:00] <@jpnance> 16
+[18:00] <@jpnance> 16 to pat, going once
+[18:00] <@jpnance> going twice
+[18:00] <@jpnance> sold
+[18:01] <@jpnance> james is up
+[18:01] <james_r> james hardy wr buff
+[18:01] <james_r> 1
+[18:01] <@jpnance> he's already gone
+[18:01] <@jpnance> 21st pick
+[18:01] <james_r> my bad
+[18:01] <james_r> dj hackett 5
+[18:02] <Jeffaray> 6
+[18:02] <james_r> 8
+[18:02] <@jpnance> 8 to james, going once
+[18:02] <@jpnance> going twice
+[18:02] <@jpnance> sold
+[18:02] <@jpnance> trevor's up
+[18:03] <trevor> deuce mcallister $1
+[18:03] <syed> 13at the end of the 13th round, everyone is at or under $100 except for the Two Misers
+[18:03] <@jpnance> 1 to trevor, going once
+[18:03] <daniel> 2
+[18:03] <ks> 3
+[18:03] <daniel> 4
+[18:03] <@jpnance> 4 to daniel, going once
+[18:03] <ks> 5
+[18:03] <daniel> 6
+[18:03] <@jpnance> 6 to daniel, going once
+[18:03] <@jpnance> going twice
+[18:03] <@jpnance> sold
+[18:04] <daniel> Darrelle Revis
+[18:04] <daniel> , NYJ CB
+[18:04] <daniel> shit
+[18:04] <ks> its cool
+[18:04] <@jpnance> keyon's up
+[18:04] <ks> jonathon stewart car rb 5
+[18:04] <@jpnance> 10
+[18:04] <Schex> 15
+[18:04] <@jpnance> 15 to schex, going once
+[18:05] <ckoci> 18
+[18:05] <Schex> 20
+[18:05] <ckoci> 22
+[18:05] <@jpnance> 22 to koci, going once
+[18:05] <Schex> 24
+[18:05] <@jpnance> 24 to schex, going once
+[18:05] <@jpnance> going twice
+[18:05] <@jpnance> sold
+[18:06] <@jpnance> koci's up
+[18:06] <ckoci> kevin curtis $1
+[18:06] <@jpnance> 1 to koci, going once
+[18:06] <Schex> 10
+[18:06] <ks> 2
+[18:06] <@jpnance> 10 to schex, going once
+[18:06] <@jpnance> going twice
+[18:06] <@jpnance> sold
+[18:07] <@jpnance> marc bulger: $5
+[18:07] <Schex> 6
+[18:07] <@jpnance> 7
+[18:07] <james_r> 8
+[18:07] <@jpnance> 10
+[18:07] <Schex> 11
+[18:07] <@jpnance> 12
+[18:07] <Schex> 15
+[18:08] <@jpnance> 15 to schex, going once
+[18:08] <@jpnance> going twice
+[18:08] <@jpnance> sold
+[18:08] <@jpnance> syed's up
+[18:09] <ckoci> test
+[18:09] <@jpnance> yeah
+[18:09] <ks> here
+[18:09] <Jeffaray> goooooooooo
+[18:10] <Jeffaray> clock
+[18:10] <@jpnance> alright, take a break for a couple of minutes, i'm gonna call syed
+[18:10] <Schex> holding you to that, I'm pissing
+[18:10] <@jpnance> k
+[18:10] <trevor> hey found a picture of miley cirus
+[18:10] <trevor> he's off in the restroom
+[18:10] <syed> 13Aaron Schobel (DE - BUF) for $1
+03[18:10] * jpnance sets mode: +m
+[18:11] <@jpnance> wait until schex gets back
+03[18:11] * jpnance sets mode: -m
+[18:11] <@jpnance> alright
+[18:11] <@jpnance> schobel for $1
+[18:11] <@jpnance> 1 to syed, going once
+[18:12] <@jpnance> going twice
+[18:12] <ks> 2
+[18:12] <@jpnance> 2 to keyon, going once
+[18:12] <@jpnance> going twice
+[18:12] <@jpnance> sold
+[18:13] <@jpnance> grysen's showering, but he told me he nominates darelle revis, NYJ CB $1
+[18:13] <ks> didnt we do this already
+[18:13] <Jeffaray> yes
+[18:13] <@jpnance> no
+[18:13] <@jpnance> he mis-nominated that player
+[18:13] <@jpnance> so revis is up for $1 right now
+[18:13] <@jpnance> 1 to grysen, going once
+[18:13] <ckoci> 2
+[18:13] <@jpnance> 2 to koci, going once
+[18:13] <@jpnance> going twice
+[18:13] <@jpnance> sold
+[18:14] <Jeffaray> Hines Ward $5
+[18:14] <@jpnance> 6
+[18:14] <trevor> 8
+[18:14] <Jeffaray> 7
+[18:14] <Jeffaray> 9
+[18:14] <@jpnance> 9 to jeff, going once
+[18:14] <@jpnance> going twice
+[18:14] <@jpnance> sold
+[18:14] <Jeffaray> WOOHOO
+[18:15] <@jpnance> schex
+[18:15] <Schex> J campbell QB
+[18:15] <Schex> 2
+[18:15] <@jpnance> 4
+[18:15] <Jeffaray> 5
+[18:15] <@jpnance> 6
+[18:15] <Jeffaray> 7
+[18:15] <@jpnance> 8
+[18:15] <@jpnance> 8 to pat, going once
+[18:16] <@jpnance> going twice
+[18:16] <@jpnance> sold
+[18:16] <@jpnance> james is up
+[18:16] <james_r> reggie bush 5
+[18:16] <trevor> 10
+[18:16] <@jpnance> 11
+[18:17] <Schex> 12
+[18:17] <trevor> 13
+[18:17] <james_r> 14
+[18:17] <Schex> 15
+[18:17] <trevor> 16
+[18:17] <ckoci> 22
+[18:17] <@jpnance> 22 to koci, going once
+[18:17] <@jpnance> going twice
+[18:17] <@jpnance> sold
+[18:18] <@jpnance> trevor's up
+[18:18] <trevor> devin hester
+[18:18] <trevor> $4
+[18:18] <@jpnance> 10
+[18:18] <Schex> 15
+[18:18] <james_r> 12
+[18:18] <@jpnance> 16
+[18:18] <trevor> 17
+[18:18] <@jpnance> 18
+[18:18] <ckoci> 25
+[18:18] <Schex> 28
+[18:18] <ckoci> 33
+[18:18] <Schex> 35
+[18:19] <ckoci> 37
+[18:19] <Schex> 40
+[18:19] <ckoci> 47
+[18:19] <Schex> 50
+[18:19] <ckoci> 52
+[18:19] <@jpnance> 50 to schex, going once
+[18:19] <@jpnance> 52 to koci, going once
+[18:19] <Schex> 55
+[18:19] <ckoci> 60
+[18:19] <Schex> take him
+[18:19] <@jpnance> 60 to koci, going once
+[18:19] <Schex> good bid koci
+[18:20] <@jpnance> going twice
+[18:20] <@jpnance> sold
+[18:20] <ckoci> cheaper than ginn
+[18:20] <Schex> ha
+[18:20] <ks> chris johnson 2
+[18:20] <Schex> 3
+[18:20] <trevor> 4
+[18:20] <@jpnance> 4 to trevor, going once
+[18:20] <ks> 5
+[18:21] <@jpnance> 5 to keyon, going once
+[18:21] <@jpnance> going twice
+[18:21] <@jpnance> sold
+[18:21] <@jpnance> koci's up
+[18:21] <trevor> did the results page go to hell?
+[18:21] <daniel> yup
+[18:21] <ckoci> donald driver $1
+[18:22] <@jpnance> 1 to koci, going once
+[18:22] <daniel> 2
+[18:22] <Schex> 5
+[18:22] <daniel> 6
+[18:22] <Jeffaray> 7
+[18:22] <@jpnance> 7 to jeff, going once
+[18:22] <@jpnance> going twice
+[18:22] <@jpnance> sold
+[18:23] <@jpnance> julius peppers: $2
+[18:23] <@jpnance> 2 to pat, going once
+[18:23] <Jeffaray> 3
+[18:24] <@jpnance> 4
+[18:24] <@jpnance> 4 to pat, going once
+[18:24] <@jpnance> going twice
+[18:24] <@jpnance> sold
+[18:24] <ks> nice
+[18:24] <@jpnance> syed's up
+[18:24] <@jpnance> but where the nuts is he
+[18:24] <daniel> i think dead
+[18:25] <daniel> results hasnt updated in a while
+[18:25] <trevor> i told you guys he found pics of miley cirus
+[18:25] <@jpnance> his phone rings twice, then goes to voicemail
+[18:26] <trevor> give him a minute or two and then call him finished
+[18:26] <@jpnance> yeah
+[18:26] <@jpnance> he's got three minutes
+[18:26] <james_r> three mins plz?
+[18:26] <james_r> cool
+[18:29] <@jpnance> i can't find him
+[18:29] <trevor> punt him
+[18:29] <@jpnance> alright
+[18:29] <@jpnance> uh, i have no clue which pick we're on
+[18:29] <daniel> antonio cromartie SD CB - $1
+[18:29] <@jpnance> hold on
+[18:29] <@jpnance> i'll start updating the results page from right now
+[18:30] <@jpnance> no more individual team updates, though
+[18:30] <@jpnance> gimme one second
+[18:30] <trevor> the issue is it's getting hard to see if people have been previously bid on
+[18:30] <@jpnance> i understand
+[18:31] <@jpnance> if you want me to take ten minutes to at least put everybody's name in there, i can
+[18:31] <daniel> how long would it take to update the league page?
+[18:31] <daniel> meaning the actual espn thing
+[18:31] <@jpnance> too long
+[18:31] <@jpnance> like an hour at best
+[18:31] <@jpnance> the interface sucks
+[18:31] <james_r> day three tomorrow?
+[18:31] <daniel> i see.. thats out
+[18:31] <james_r> then he gets to keep drafting too
+[18:31] <ckoci> so can i walk away and come back in 10 min?
+[18:31] <daniel> just take the 10 minutes to update results i think
+[18:32] <Schex> agreed
+[18:32] <Jeffaray> what's the break?
+[18:32] <@jpnance> would everybody be cool breaking for 10 minutes to let me update the results and letting syed enter the draft again if he comes back in that time?
+[18:32] <Schex> sure
+[18:32] <daniel> yea
+[18:32] <Jeffaray> ok, I'm going to the hotel
+[18:32] <ckoci> ok
+[18:32] <james_r> alright, I'll be back in 600 seconds
+[18:32] <trevor> why don't i live within 10 minutes of a hooker
+[18:32] <@jpnance> can you guys do whatever you think you can to get a hold of him?
+[18:32] <@jpnance> 10 minutes starts now
+[18:39] <@jpnance> alright, i think the results page is good now
+[18:40] <ks> here
+[18:41] <trevor> here
+[18:42] <Schex> here
+02[18:43] * Jeffaray (i=483df60c@gateway/web/ajax/mibbit.com/x-a1445bca19eda271) Quit ("http://www.mibbit.com ajax IRC Client")
+[18:43] <daniel> here
+[18:43] <ckoci> here
+[18:44] <Schex> jeff is in transit, he'll be through me via phone
+[18:44] <james_r> here
+[18:44] <@jpnance> alright, well
+[18:45] <@jpnance> i guess that's it for syed
+[18:45] <@jpnance> daniel's up
+[18:45] <daniel> antonio cromartie SD CB - $1
+[18:45] <trevor> 3
+[18:45] <@jpnance> 5
+[18:45] <@jpnance> 5 to pat, going once
+[18:45] <@jpnance> going twice
+[18:45] <@jpnance> sold
+[18:46] <Schex> you're that douchebag!
+[18:46] <@jpnance> yeah yeah
+[18:46] <@jpnance> jeff's up
+03[18:46] * Jeffaray (i=483df60c@gateway/web/ajax/mibbit.com/x-b623890bd2e1c78f) has joined #dynastyleague
+[18:46] <Schex> anthony gonzalez Indy, 2
+[18:47] <Jeffaray> I'm back
+[18:47] <james_r> 3
+[18:47] <@jpnance> 3
+[18:47] <@jpnance> 4
+[18:47] <Jeffaray> 5
+[18:47] <james_r> 5
+[18:47] <james_r> 6
+[18:47] <trevor> 6
+[18:47] <Jeffaray> 7
+[18:47] <james_r> 8
+[18:47] <Jeffaray> 9
+[18:47] <Schex> 10
+[18:47] <Jeffaray> 11
+[18:47] <james_r> 12
+[18:47] <Jeffaray> 13
+[18:47] <Schex> 14
+[18:47] <@jpnance> 14 to schex, going once
+[18:47] <james_r> 15
+[18:48] <@jpnance> 15 to james, going once
+[18:48] <Schex> 16
+[18:48] <@jpnance> going twice
+[18:48] <james_r> 20
+[18:48] <@jpnance> 20 to james, going once
+[18:48] <@jpnance> going twice
+[18:48] <@jpnance> sold
+[18:48] <@jpnance> schex is up
+[18:48] <Schex> J norwood, atlanta
+[18:49] <@jpnance> bid?
+[18:49] <Schex> 3
+[18:49] <@jpnance> (you're horrible about that)
+[18:49] <@jpnance> 3 to schex, going once
+[18:49] <ckoci> 4
+[18:49] <@jpnance> going twice
+[18:49] <Schex> 5
+[18:49] <ckoci> 6
+[18:49] <Schex> 7
+[18:49] <@jpnance> 7 to schex, going once
+[18:49] <@jpnance> going twice
+[18:50] <@jpnance> sold
+[18:50] <@jpnance> james is up
+[18:50] <james_r> leon washington 1
+[18:50] <@jpnance> 5
+[18:50] <trevor> 7
+[18:50] <@jpnance> 10
+[18:50] <james_r> 11
+[18:51] <@jpnance> 15
+[18:51] <Schex> 15
+[18:51] <james_r> 16
+[18:51] <@jpnance> 15 to pat, going once
+[18:51] <@jpnance> 17
+[18:51] <james_r> 18
+[18:51] <@jpnance> 19
+[18:51] <james_r> 20
+[18:51] <Schex> 25
+[18:51] <@jpnance> 27
+[18:51] <Schex> 30
+[18:51] <@jpnance> 32
+[18:51] <Schex> 33
+[18:51] <james_r> 34
+[18:51] <Schex> 35
+[18:52] <@jpnance> 35 to schex, going once
+[18:52] <@jpnance> going twice
+[18:52] <@jpnance> sold
+[18:52] <@jpnance> trevor's up
+[18:52] <trevor> nate clements $3
+[18:52] <@jpnance> 3 to trevor, going once
+[18:53] <@jpnance> going twice
+[18:53] <@jpnance> sold
+[18:53] <@jpnance> keyon's up
+[18:53] <ks> robert meachem 2
+[18:53] <@jpnance> 3
+[18:54] <@jpnance> 3 to pat, going once
+[18:54] <daniel> 4
+[18:54] <@jpnance> 4 to daniel, going once
+[18:54] <@jpnance> going twice
+[18:54] <@jpnance> sold
+[18:54] <@jpnance> koci's up
+[18:54] <ckoci> greg olsen TE CHI $1
+[18:55] <ks> 2
+02[18:55] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-bf829ee7a0ef97d2) Quit ("http://www.mibbit.com ajax IRC Client")
+[18:55] <@jpnance> 2 to keyon, going once
+[18:55] <ckoci> 3
+[18:55] <Jeffaray> 4
+[18:55] <@jpnance> 4 to jeff, going once
+[18:55] <@jpnance> going twice
+[18:55] <@jpnance> sold
+[18:55] <@jpnance> anybody know what happened to james?
+[18:56] <trevor> so is money no longer getting updated
+[18:56] <@jpnance> no, it is
+[18:56] <@jpnance> should be current right now
+[18:56] <trevor> don't see a charge for clements on my tab
+[18:57] <@jpnance> i'll trust you
+[18:57] <@jpnance> i don't imagine you'd be lying to take money away from yourself
+[18:57] <@jpnance> updated
+[18:57] <daniel> put it on my tab
+[18:57] <@jpnance> alright, well
+[18:58] <@jpnance> we'll figure james out when it's his pick
+[18:58] <@jpnance> patrick crayton: $1
+[18:58] <@jpnance> 1 to pat, going once
+[18:58] <ckoci> 2
+[18:58] <Schex> 2
+[18:58] <@jpnance> 3
+[18:58] <Schex> 5
+[18:58] <Jeffaray> 4
+[18:58] <Jeffaray> 6
+[18:58] <@jpnance> 7
+[18:58] <@jpnance> 7 to pat, going once
+[18:58] <@jpnance> going twice
+[18:59] <@jpnance> sold
+[18:59] <daniel> troy polamalu S PIT $1
+[18:59] <Jeffaray> damn you
+[18:59] <@jpnance> 1 to grysen, going once
+[18:59] <@jpnance> going twice
+[18:59] <@jpnance> sold
+[19:00] <@jpnance> jeff's up
+[19:00] <Jeffaray> DOnte Stallworth
+[19:00] <Jeffaray> 2
+[19:00] <@jpnance> 2 to jeff, going once
+[19:00] <Schex> 5
+[19:00] <trevor> 3
+[19:00] <Jeffaray> 6
+[19:00] <@jpnance> 6 to jeff, going once
+[19:00] <@jpnance> going twice
+[19:01] <@jpnance> sold
+[19:01] <@jpnance> schex is up
+[19:01] <Schex> marvin harrison, Indy
+[19:01] <Schex> 3
+[19:01] <trevor> 5
+[19:01] <Schex> 8
+[19:01] <@jpnance> 8 to schex, going once
+[19:01] <@jpnance> going twice
+[19:02] <@jpnance> sold
+03[19:02] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-078b06fb23bf0d15) has joined #dynastyleague
+[19:02] <@jpnance> james is up
+[19:02] <trevor> 3 minute counter?
+[19:02] <@jpnance> oh, yeah
+[19:02] <@jpnance> schex: can you try to get in touch with him, see what's up?
+[19:03] <Schex> yeah
+02[19:03] * ks (i=4791af03@gateway/web/ajax/mibbit.com/x-b8b8be0dfb107e42) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:04] <Schex> no answer
+[19:04] <trevor> does this mibbit thing just suck balls?
+[19:04] <@jpnance> alright, he's got three minutes
+[19:04] <Schex> he's offline now too
+[19:04] <Schex> no phone answer
+[19:04] <Jeffaray> go
+[19:04] <ks1> he's been offline a good while now
+[19:04] <Schex> wait
+[19:04] <Schex> he's back
+[19:04] <Schex> I mean IM
+[19:04] <daniel> ive been connected on MIRC since last night
+[19:05] <Schex> give him another minute, his yahoo name just popped up again
+[19:05] <@jpnance> i haven't seen schex disconnect and he's using mibbit
+[19:05] <trevor> i remember the days of mirc
+[19:05] <Jeffaray> that's old school
+[19:05] <Jeffaray> I haven't used that since middle school
+03[19:05] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-f2098ff181262568) has joined #dynastyleague
+[19:05] <@jpnance> i'm using mirc to log this all
+01[19:05] <@logger_> THAT'S MY JOB LOL
+[19:05] <Jeffaray> sweet
+[19:06] <james_r> looking for me?
+[19:06] <trevor> irssi is better
+[19:06] <syed> 13is this thing done?
+[19:06] <@jpnance> james: you're up whenever you're ready
+[19:06] <Schex> yeah buddy you're up
+[19:06] <james_r> sorry, tech diff
+[19:06] <james_r> one second more
+[19:06] <trevor> no but we waited 10 minutes on your fat ass
+[19:06] <syed> 13i was talkin gto my post-doc
+[19:06] <trevor> that was to syed
+[19:06] <syed> 13he said "stop being a dumbass" about 50 times
+[19:07] <Jeffaray> goooooooooooooooo
+[19:07] <trevor> what dumbass thing did you do this time?
+[19:07] <daniel> james it is your nomination
+[19:07] <Schex> his connection
+[19:07] <Schex> is gone
+02[19:08] * syed (i=cf97f34a@gateway/web/ajax/mibbit.com/x-101d39602d741223) Quit ("http://www.mibbit.com ajax IRC Client")
+02[19:08] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-f2098ff181262568) Quit (Client Quit)
+[19:08] <Schex> he nominates forte
+[19:08] <Schex> 3
+[19:08] <@jpnance> 5
+[19:08] <Schex> 6
+[19:08] <Schex> shit, that's james
+[19:08] <Schex> james bids 6
+[19:08] <@jpnance> 6 to james, going once
+[19:08] <@jpnance> going twice
+[19:08] <ckoci> 7
+[19:09] <Schex> james: 8
+[19:09] <ckoci> 9
+[19:09] <Schex> J: 12
+[19:09] <@jpnance> 12 to james, going once
+[19:09] <@jpnance> going twice
+[19:09] <@jpnance> sold
+[19:09] <Schex> james is officially done
+[19:10] <@jpnance> alright
+[19:10] <@jpnance> trevor's up
+03[19:10] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-d6ee009bc66e4c15) has joined #dynastyleague
+[19:10] <trevor> eddie royal
+[19:10] <trevor> 2
+[19:10] <@jpnance> 3
+[19:10] <trevor> 4
+[19:10] <Schex> 7
+[19:10] <@jpnance> 6
+[19:10] <trevor> 8
+[19:10] <Schex> 10
+[19:10] <@jpnance> 11
+[19:10] <Schex> 12
+[19:10] <@jpnance> 12 to schex, going once
+[19:10] <@jpnance> going twice
+[19:10] <@jpnance> sold
+[19:11] <ks1> kevin smith 2
+[19:11] <@jpnance> position/team
+[19:11] <ks1> rb det
+[19:11] <trevor> 3
+[19:11] <ckoci> 4
+[19:11] <ks1> 5
+[19:11] <ckoci> 6
+[19:11] <@jpnance> 6 to koci, going once
+[19:11] <@jpnance> going twice
+[19:11] <@jpnance> sold
+[19:12] <@jpnance> koci's up
+[19:12] <ckoci> vernon davis TE SF $1
+[19:12] <Schex> 4
+[19:12] <daniel> 3
+[19:12] <@jpnance> 4 to schex, going once
+[19:12] <ckoci> 5
+[19:12] <@jpnance> 5 to koci, going once
+[19:13] <@jpnance> going twice
+[19:13] <@jpnance> sold
+[19:13] <trevor> koci koci koci
+[19:13] <@jpnance> ellis hobbs: $1
+[19:13] <Schex> 5
+[19:14] <@jpnance> 8
+[19:14] <Schex> 10
+[19:14] <@jpnance> 12
+[19:14] <ks1> who
+[19:14] <@jpnance> CB NE
+[19:14] <@jpnance> 12 to pat, going once
+[19:14] <Schex> 14
+[19:14] <@jpnance> 15
+[19:14] <@jpnance> 15 to pat, going once
+[19:14] <@jpnance> going twice
+[19:14] <@jpnance> sold
+[19:15] <@jpnance> grysen's up
+02[19:15] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-078b06fb23bf0d15) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:15] <daniel> josh brown stl k - $1
+03[19:15] * ks2 (i=4791af03@gateway/web/ajax/mibbit.com/x-3670c1c51eaa70a7) has joined #dynastyleague
+[19:15] <@jpnance> josh brown for $1 is the nominee
+[19:15] <@jpnance> keyon
+[19:15] <ks2> sup
+[19:15] <@jpnance> 1 to grysen, going once
+[19:16] <@jpnance> going twice
+[19:16] <@jpnance> sold
+[19:16] <Jeffaray> Jake "of the Hommies", $2
+[19:16] <ks2> 4
+[19:16] <@jpnance> that's delhomme
+[19:16] <@jpnance> 4 to keyon, going once
+[19:16] <Jeffaray> 5
+[19:16] <ks2> 6
+[19:16] <Jeffaray> 7
+[19:17] <@jpnance> 7 to jeff, going once
+[19:17] <@jpnance> going twice
+[19:17] <@jpnance> sold
+[19:17] <Schex> early doucet, WR, Ari, 1
+[19:17] <trevor> 3
+[19:17] <@jpnance> 3 to trevor, going once
+[19:17] <Schex> 4
+[19:17] <@jpnance> 4 to schex, going once
+[19:17] <@jpnance> going twice
+[19:17] <@jpnance> sold
+[19:18] <@jpnance> trevor's up
+[19:18] <trevor> selvin young $2
+[19:18] <@jpnance> 4
+[19:18] <trevor> 5
+[19:18] <@jpnance> 5 to trevor, goingo nce
+[19:18] <@jpnance> going twice
+[19:18] <ks2> 6
+[19:19] <Schex> 7
+[19:19] <@jpnance> 7 to schex, going once
+[19:19] <@jpnance> going twice
+[19:19] <@jpnance> sold
+[19:19] <trevor> i want a bronco besides alridge!
+02[19:19] * Guest84641 (i=18af6927@gateway/web/ajax/mibbit.com/x-4b6770565d255f7d) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:19] <Jeffaray> I'm done.
+[19:19] <@jpnance> k
+[19:19] <@jpnance> keyon's up
+[19:19] <ks2> steve breaston ari wr 1
+[19:19] <@jpnance> 2
+[19:19] <ks2> 3
+[19:19] <Schex> 5
+03[19:20] * Jeffaray (i=483df60c@gateway/web/ajax/mibbit.com/x-b623890bd2e1c78f) has left #dynastyleague
+[19:20] <@jpnance> 5 to schex, going once
+[19:20] <ckoci> 6
+[19:20] <Schex> 7
+[19:20] <ckoci> 8
+[19:20] <Schex> 9
+[19:20] <@jpnance> 9 to schex, going once
+[19:20] <@jpnance> going twice
+[19:20] <@jpnance> sold
+[19:21] <@jpnance> koci's up
+[19:21] <ckoci> aaron rodgers $1
+[19:21] <@jpnance> 2
+[19:21] <ks2> 4
+[19:21] <@jpnance> 5
+[19:21] <@jpnance> 5 to pat, going once
+[19:21] <ckoci> 6
+[19:21] <@jpnance> 6 to koci, going once
+[19:21] <@jpnance> going twice
+[19:21] <@jpnance> sold
+[19:22] <@jpnance> james harrison: $1
+[19:22] <@jpnance> LB PIT
+[19:22] <@jpnance> 1 to pat, going once
+[19:22] <@jpnance> going twice
+[19:22] <@jpnance> sold
+[19:23] <@jpnance> grysen's up
+[19:23] <daniel> chris taylor rb HOU - $1
+[19:23] <@jpnance> 1 to daniel, going once
+[19:23] <@jpnance> going twice
+[19:23] <@jpnance> sold
+[19:24] <@jpnance> schex is up
+[19:24] <daniel> i kind of think syed should be booted from the draft.. I think he is using this as an excuse to skip nominations
+[19:24] <Schex> jeff's done?
+[19:24] <trevor> yes
+[19:24] <@jpnance> yeah, he announced it
+[19:24] <Schex> ok, phil dawson K CLE
+[19:24] <Schex> 1
+[19:24] <@jpnance> STARTING BI
+[19:24] <@jpnance> D
+[19:24] <@jpnance> 1 to schex, going once
+[19:24] <@jpnance> going twice
+[19:25] <@jpnance> sold
+[19:25] <Schex> Hook 'Em, and suck it
+[19:25] <trevor> me now?
+[19:25] <@jpnance> yep
+[19:25] <trevor> steve slaton $2
+[19:25] <@jpnance> 2 to trevor, goingo nce
+[19:25] <@jpnance> going twice
+[19:25] <ckoci> 3
+[19:25] <trevor> 4
+[19:25] <ckoci> 5
+[19:25] <trevor> 6
+[19:26] <@jpnance> 6 to trevor, going once
+[19:26] <@jpnance> going twice
+[19:26] <@jpnance> sold
+02[19:26] * ks2 (i=4791af03@gateway/web/ajax/mibbit.com/x-3670c1c51eaa70a7) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:26] <daniel> can we get an update on who is still in and not?
+[19:26] <@jpnance> sure
+[19:26] <@jpnance> john, jeff, james, and syed are all out
+[19:26] <@jpnance> trevor, keyon, koci, pat, schex, and daniel are still in
+[19:27] <@jpnance> let's break for a minute since it's keyon's pick and he just disappeared
+03[19:27] * ks1000 (i=4791af03@gateway/web/ajax/mibbit.com/x-a807759e2c809493) has joined #dynastyleague
+[19:27] <ks1000> back
+[19:27] <@jpnance> you're up, keyon
+[19:27] <ks1000> fucking shit
+[19:27] <ks1000> ok
+[19:27] <ks1000> chris pery 1
+[19:27] <ks1000> perry 1
+[19:27] <@jpnance> 1 to keyon, going once
+[19:27] <@jpnance> going twice
+[19:28] <@jpnance> sold
+[19:28] <@jpnance> koci's up
+[19:28] <ckoci> ben utecht TE CIN $1
+[19:28] <@jpnance> 1 to koci, going once
+[19:28] <@jpnance> going twice
+[19:28] <daniel> 2
+[19:28] <ckoci> 3
+[19:28] <@jpnance> 3 to koci, going once
+[19:28] <@jpnance> going twice
+[19:29] <@jpnance> sold
+[19:29] <@jpnance> robbie gould: $1
+[19:29] <@jpnance> 1 to pat, going once
+[19:29] <@jpnance> going twice
+[19:29] <@jpnance> sold
+[19:30] <daniel> ahman green RB HOU $1
+[19:30] <@jpnance> 1 to daniel, going once
+[19:30] <@jpnance> going twice
+[19:30] <@jpnance> sold
+[19:30] <trevor> how many RB's are in houston?
+[19:30] <daniel> a ton
+[19:30] <Schex> slaton's the only good one
+[19:30] <@jpnance> schex is up
+[19:31] <Schex> a. boldin, wr, ARI ..........5
+[19:31] <@jpnance> 6
+[19:31] <Schex> 10
+[19:31] <@jpnance> 10 to schex, going once
+[19:31] <@jpnance> going twice
+[19:31] <@jpnance> sold
+[19:32] <trevor> vernon davis 2
+[19:32] <daniel> already gone dude
+[19:32] <daniel> get a job
+[19:32] <@jpnance> he's already gone
+[19:32] <@jpnance> #164-
+[19:32] <trevor> oh just missed that
+[19:32] <trevor> trufant cb seattle
+[19:32] <trevor> 1
+[19:33] <@jpnance> 1 to trevor, going once
+[19:33] <@jpnance> going twice
+[19:33] <@jpnance> sold
+[19:33] <ks1000> LJ smith 1
+[19:33] <@jpnance> 1 to keyon, going once
+[19:33] <@jpnance> going twice
+[19:33] <@jpnance> sold
+[19:34] <@jpnance> koci's up
+[19:34] <ckoci> chris johnson RB TEN $1
+[19:34] <ks1000> already done
+[19:34] <@jpnance> he's gone already
+[19:34] <@jpnance> #143
+[19:34] <ckoci> calvin johnson WR DET $1
+[19:34] <daniel> 2
+[19:34] <@jpnance> 5
+[19:34] <@jpnance> 5 to pat, going once
+[19:34] <Schex> 20
+[19:34] <@jpnance> 20 to schex, going once
+[19:34] <ckoci> 25
+[19:35] <Schex> 30
+[19:35] <@jpnance> 30 to schex, going once
+[19:35] <@jpnance> going twice
+[19:35] <@jpnance> sold
+[19:36] <@jpnance> chris carr, CB, TEN: $2
+[19:36] <@jpnance> 2 to pat, going once
+[19:36] <ckoci> 3
+[19:36] <@jpnance> going twice
+[19:36] <Schex> 3
+[19:36] <Schex> 4
+[19:36] <@jpnance> 4 to schex, going once
+[19:36] <@jpnance> going twice
+[19:36] <ckoci> 5
+[19:36] <Schex> 7
+[19:36] <@jpnance> 7 to schex, going once
+[19:36] <@jpnance> going twice
+[19:36] <@jpnance> sold
+[19:37] <daniel> darius walker RB HOU $1
+[19:37] <@jpnance> ha
+[19:37] <@jpnance> 1 to grysen, going once
+[19:37] <@jpnance> going twice
+[19:37] <@jpnance> sold
+[19:37] <@jpnance> schex is up
+[19:38] <Schex> josh cribbs, "WR" CLE 1
+[19:38] <ckoci> 3
+[19:38] <@jpnance> 2
+[19:38] <Schex> 5
+[19:38] <@jpnance> 5 to schex, going once
+[19:38] <@jpnance> going twice
+[19:38] <@jpnance> sold
+[19:38] <@jpnance> time out
+[19:38] <Schex> pat can you confirm that I have 2 sports left?
+[19:38] <@jpnance> schex: can you agree that you have 2 more players on your roster?
+[19:39] <@jpnance> ha
+[19:39] <Schex> hah
+[19:39] <@jpnance> alright then
+[19:39] <@jpnance> trevor's up
+[19:39] <trevor> ben watson $1
+[19:39] <@jpnance> 2
+[19:39] <trevor> 3
+[19:39] <@jpnance> 4
+[19:39] <trevor> 5
+[19:39] <@jpnance> 5 to trevor, going once
+[19:40] <@jpnance> going twice
+[19:40] <@jpnance> sold
+[19:40] <ks1000> yamon figurs bal wr 1
+[19:40] <@jpnance> 1 to keyon, going once
+[19:40] <@jpnance> going twice
+[19:40] <@jpnance> sold
+[19:40] <@jpnance> ya mon, figurs
+[19:41] <ks1000> HAHAHAHAHA
+[19:41] <@jpnance> koci's up
+[19:41] <ckoci> joe flacco $1
+[19:41] <Schex> 2
+[19:41] <@jpnance> 2 to schex, going once
+[19:41] <ckoci> 3
+[19:41] <@jpnance> 3 to koci, going once
+[19:41] <Schex> 4
+[19:42] <@jpnance> 4 to schex, going once
+[19:42] <@jpnance> going twice
+[19:42] <@jpnance> sold
+[19:42] <trevor> schex down to one person?
+[19:42] <@jpnance> owen daniels: $1
+[19:42] <@jpnance> yep
+[19:42] <@jpnance> 1 to pat, going once
+[19:42] <daniel> 2
+[19:42] <@jpnance> 3
+[19:43] <@jpnance> 3 to pat, going once
+[19:43] <@jpnance> going twice
+[19:43] <@jpnance> sold
+[19:43] <daniel> brandon jackson rb gb $1
+[19:43] <@jpnance> 1 to daniel, going once
+[19:43] <@jpnance> going twice
+[19:43] <@jpnance> sold
+[19:44] <@jpnance> schex is up
+[19:44] <Schex> reggie brown 1
+[19:44] <daniel> nobody bid he leaves
+[19:44] <Schex> WR PHI
+[19:44] <@jpnance> 2
+[19:44] <@jpnance> 2 to pat, going once
+[19:44] <@jpnance> going twice
+[19:44] <Schex> 4
+[19:45] <@jpnance> 4 to schex, going once
+[19:45] <@jpnance> going twice
+[19:45] <@jpnance> sold
+[19:45] <@jpnance> alright
+[19:45] <@jpnance> schex is done
+[19:45] <ckoci> good draft schex
+[19:45] <ks1000> later man, you kicked ass
+[19:45] <trevor> justin tuck 1
+[19:45] <@jpnance> 3
+[19:45] <@jpnance> 3 to pat, going once
+[19:45] <@jpnance> going twice
+[19:46] <@jpnance> sold
+[19:46] <Schex> thanks guys, but I'm still around, nothing better to do
+[19:46] <ks1000> hah coo
+[19:46] <ks1000> ok
+[19:46] <@jpnance> keyon's up
+[19:46] <ks1000> chester taylor 1
+[19:46] <trevor> 2
+[19:46] <ks1000> 3
+[19:46] <@jpnance> 3 to keyon, going once
+[19:47] <@jpnance> going twice
+[19:47] <@jpnance> sold
+[19:47] <@jpnance> koci's up
+[19:47] <ckoci> chad henne QB MIA $1
+[19:47] <@jpnance> 4
+[19:47] <@jpnance> 4 to pat, going once
+[19:47] <@jpnance> going twice
+[19:47] <ckoci> 5
+[19:48] <@jpnance> 5 to koci, going once
+[19:48] <@jpnance> going twice
+[19:48] <@jpnance> sold
+02[19:48] * ks1000 (i=4791af03@gateway/web/ajax/mibbit.com/x-a807759e2c809493) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:48] <@jpnance> it's my pick, but i need a bathroom break for 2 minutes
+[19:48] <@jpnance> and keyon just signed off
+03[19:48] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-686e21284e7df352) has joined #dynastyleague
+[19:48] <@jpnance> 2-minute break
+[19:48] <ks1> back, cool
+[19:49] <Schex> nice koci, I couldn't decide between him and flacco
+[19:49] <Schex> alright guys, good luck with the rest. if john's a dick, you can come to me for cap room
+02[19:50] * Schex (i=42446772@gateway/web/ajax/mibbit.com/x-ec9f7a7da18b6306) Quit ("http://www.mibbit.com ajax IRC Client")
+[19:50] <ks1> hah peace man
+[19:51] <@jpnance> alright
+[19:51] <ks1> who is up
+[19:51] <@jpnance> me
+[19:51] <@jpnance> adrian wilson, S, ARI: $1
+[19:51] <ks1> 2
+[19:52] <@jpnance> 2 to keyon, going once
+[19:52] <@jpnance> going twice
+[19:52] <@jpnance> sold
+[19:52] <@jpnance> daniel's up
+[19:53] <daniel> vernand morency gb rb $1
+[19:53] <@jpnance> 1 to daniel, going once
+[19:53] <@jpnance> going twice
+[19:53] <@jpnance> sold
+[19:54] <trevor>  aaron kampman $1
+[19:54] <@jpnance> trevor's up
+[19:54] <trevor> gb de
+[19:54] <@jpnance> 1 to trevor, going once
+[19:54] <@jpnance> going twice
+[19:54] <@jpnance> sold
+[19:54] <ks1> nice
+[19:54] <@jpnance> let's pause for a second
+[19:54] <ks1> ok
+[19:55] <daniel> turn it into a draft?
+[19:55] <@jpnance> since we're really late in the draft, unless there's action within the first 6 or 7 seconds after the nomination, i'm just going to declare sold
+[19:55] <ks1> fine
+[19:55] <@jpnance> cool?
+[19:55] <daniel> yeah
+[19:55] <ckoci> just say "going once"
+[19:55] <@jpnance> alright, sure
+[19:55] <@jpnance> no going twice unless there's competition
+[19:55] <trevor> sure
+[19:56] <ckoci> cool
+[19:56] <@jpnance> keyon's up
+[19:56] <ks1> deangelo williams 1
+[19:56] <trevor> 2
+[19:56] <@jpnance> 2
+[19:56] <@jpnance> 3
+[19:56] <@jpnance> 3 to pat, going once
+[19:56] <@jpnance> going twice
+[19:56] <@jpnance> sold
+[19:57] <@jpnance> koci's up
+[19:57] <ckoci> ben obomanu WR SEA $1
+[19:57] <trevor> 2
+[19:57] <ckoci> 3
+[19:57] <@jpnance> 3 to koci, going once
+[19:57] <@jpnance> going twice
+[19:57] <@jpnance> sold
+[19:58] <ks1> question
+[19:58] <@jpnance> what's up
+[19:58] <ks1> if i drop a player during the season that i picked up for 1 dollar
+[19:58] <ks1> is that dollar gone
+[19:58] <ks1> do i get it back
+[19:58] <ckoci> it's gone
+[19:58] <daniel> 50 cents?
+[19:58] <@jpnance> you get 50% of his salary back, but we round up
+[19:59] <ks1> so you get it all back?
+[19:59] <@jpnance> not in your favor
+[19:59] <ks1> oh ok
+[19:59] <@jpnance> yeah, i said that retardedly
+[19:59] <ckoci> what if he's signed for 3 years?  is it 50% for the next 3 years?
+[19:59] <@jpnance> nope
+[19:59] <@jpnance> you get out of the contract
+[19:59] <ckoci> just makin sure
+[19:59] <@jpnance> pay 50% of what's left for that year
+[19:59] <@jpnance> also
+[19:59] <@jpnance> drops in the offseason are free
+[19:59] <@jpnance> will witherspoon: $1
+[19:59] <daniel> is before game 1 the offseason?
+[20:00] <@jpnance> before the draft
+[20:00] <@jpnance> 1 to pat, going once
+[20:00] <@jpnance> sold
+[20:00] <daniel> patrick crayton DAL WR $1
+[20:00] <@jpnance> gone already
+[20:00] <daniel> sry
+[20:00] <daniel> drew bennett STL WR $1
+[20:01] <@jpnance> 1 to grysen, going once
+[20:01] <@jpnance> sold
+[20:01] <trevor> matt ryan $1
+[20:01] <ks1> 2
+[20:01] <trevor> 3
+[20:01] <ks1> 4
+[20:01] <trevor> 5
+[20:01] <ks1> 6
+[20:01] <trevor> 7
+[20:01] <ks1> 8
+[20:01] <trevor> 9
+[20:02] <@jpnance> 9 to trevor, going once
+[20:02] <@jpnance> going twice
+[20:02] <@jpnance> sold
+[20:02] <ks1> santana moss 1
+[20:02] <@jpnance> gone already
+[20:02] <ks1> my bad
+[20:02] <@jpnance> you guys should stop nominating my team :(
+[20:02] <daniel> gone
+[20:02] <@jpnance> it's embarrassing
+[20:02] <ks1> ive just been going off memory
+[20:02] <ks1> ok
+[20:03] <ks1> ronald curry 1
+[20:03] <@jpnance> 2
+[20:03] <@jpnance> 2 to pat, going once
+[20:03] <@jpnance> going twice
+[20:03] <@jpnance> sold
+[20:03] <@jpnance> koci's up
+[20:03] <ckoci> heisman winner ricky williams $1
+[20:04] <@jpnance> 1 to koci, going once
+[20:04] <@jpnance> sold
+[20:04] <ks1> 420
+[20:04] <trevor> hehe
+[20:04] <daniel> i get it
+[20:04] <trevor> nice bid
+[20:04] <ks1> yeah it was lame get off my case
+[20:04] <ks1> continue
+[20:04] <@jpnance> TJ rushing, DB of some sort, indy: $1
+[20:04] <@jpnance> 1 to pat, going once
+[20:05] <@jpnance> sold
+[20:05] <daniel> this one is for jeff: limas sweed, WR PIT $1
+[20:05] <daniel> i mean in honor of him, not for him
+[20:05] <@jpnance> 1 to daniel, going once
+[20:05] <ckoci> 2
+[20:05] <daniel> 3
+[20:05] <@jpnance> 2 to koci, going once
+[20:05] <@jpnance> 3 to daniel, going once
+[20:05] <@jpnance> going twice
+[20:06] <@jpnance> sold
+[20:06] <trevor> limas sweed 1
+[20:06] <ks1> huh
+[20:06] <daniel> WELCOME TO 5 MINUTES AGO
+[20:06] <@jpnance> pause for a second
+[20:06] <trevor> damn it
+[20:06] <@jpnance> i need to check something
+[20:06] <ks1> like the very last pick
+[20:06] <trevor> i see that
+[20:07] <trevor> not paying attention
+[20:07] <@jpnance> hold on for a minute, guys
+[20:07] <@jpnance> i think i missed a player of mine
+[20:07] <ks1> cool
+[20:07] <daniel> OH REALLY
+[20:07] <@jpnance> okay, i think i'm good
+[20:07] <@jpnance> trevor's up
+[20:07] <trevor> jamaal charles 1
+[20:08] <ks1> 2
+[20:08] <trevor> 3
+[20:08] <@jpnance> 3 to trevor, going once
+[20:08] <@jpnance> going twice
+[20:08] <@jpnance> sold
+[20:08] <ks1> devin thomas 1
+[20:08] <ckoci> 3
+[20:08] <@jpnance> position/team?
+[20:08] <daniel> wr was
+[20:08] <ks1> wr skins
+[20:09] <@jpnance> 3 to koci, going once
+[20:09] <@jpnance> going twice
+[20:09] <@jpnance> sold
+[20:09] <@jpnance> koci
+[20:09] <ckoci> bernard berrian $1
+[20:09] <@jpnance> hold on
+[20:09] <@jpnance> have you been keeping track of your roster?
+[20:09] <ks1> who are you talking to
+[20:09] <@jpnance> koci
+[20:09] <ckoci> i've been watching the updated number of players left
+[20:10] <@jpnance> has it been consistent, as far as you can tell?
+[20:10] <ckoci> i dunno
+[20:10] <daniel> mine has
+[20:11] <daniel> lets make the rule, if we go over, the last player picked goes back to FA
+[20:11] <@jpnance> i think you actually have 1 extra player, koci
+[20:11] <@jpnance> so you have 4 open spots
+[20:11] <trevor> i see 27
+[20:11] <@jpnance> you do?
+[20:11] <trevor> that's what grep tells me
+[20:11] <@jpnance> oh right
+[20:11] <@jpnance> mcgee
+[20:11] <@jpnance> sorry
+[20:11] <@jpnance> mcgee is listed as jeff on the results
+[20:11] <ckoci> can i drop nate kaeding right now?
+[20:11] <@jpnance> okay, you have three open spots
+[20:11] <ks1> where are you seeing rosters
+[20:11] <@jpnance> ha no
+[20:12] <@jpnance> http://whattheballs.com/~jpnance/dynasty/results.html
+[20:12] <@jpnance> that's all i'm looking at
+[20:12] <@jpnance> alright koci
+[20:12] <ks1> where are you seeing rosters
+[20:12] <@jpnance> berrian for $1?
+02[20:12] * ks1 (i=4791af03@gateway/web/ajax/mibbit.com/x-686e21284e7df352) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:12] <ckoci> yes
+03[20:12] * ks123 (i=4791af03@gateway/web/ajax/mibbit.com/x-61b461cb80eafba4) has joined #dynastyleague
+[20:12] <@jpnance> keyon
+[20:12] <@jpnance> berrian for $1
+[20:12] <@jpnance> 1 to koci, going once
+[20:12] <ks123> 2
+[20:12] <ckoci> 3
+[20:12] <@jpnance> 3 to koci, going once
+[20:12] <@jpnance> going twice
+[20:12] <@jpnance> sold
+[20:13] <@jpnance> fred taylor: $2
+[20:13] <@jpnance> 2 to pat, going once
+[20:13] <@jpnance> sold
+[20:13] <daniel> vincent jackson WR SD $1
+[20:14] <@jpnance> 1 to daniel, going once
+[20:14] <ks123> 2
+[20:14] <@jpnance> 2 to keyon, going once
+[20:14] <@jpnance> going twice
+[20:14] <@jpnance> sold
+[20:14] <trevor> chris chambers 1
+[20:14] <trevor> wr sd
+[20:14] <@jpnance> no
+[20:14] <@jpnance> he's miami now
+[20:14] <@jpnance> right?
+[20:14] <ks123> no
+[20:14] <ks123> sd
+[20:14] <@jpnance> er my bad
+[20:14] <@jpnance> 2
+[20:14] <trevor> yeah you had be scared
+[20:15] <trevor> 3
+[20:15] <@jpnance> 3 to trevor, going once
+[20:15] <trevor> oh sd makes you like him :)
+[20:15] <@jpnance> going twice
+[20:15] <@jpnance> sold
+[20:15] <@jpnance> hold on a sec
+[20:16] <ks123> ok
+[20:16] <ks123> am i connected?
+[20:16] <daniel> 1
+[20:16] <@jpnance> this is going way too fast for me to keep track of without taking a break
+[20:16] <@jpnance> and i need to double-check keyon's players
+[20:16] <ks123> cool
+[20:17] <@jpnance> alright, you're good
+[20:17] <@jpnance> your pick, too
+[20:17] <ks123> trent edwards 1
+[20:17] <@jpnance> 3
+[20:17] <@jpnance> 3 to pat, going once
+[20:17] <@jpnance> going twice
+[20:17] <@jpnance> sold
+[20:18] <@jpnance> koci's up
+[20:18] <ckoci> ray rice RB BAL $1
+[20:18] <@jpnance> 1 to koci, going once
+[20:18] <@jpnance> sold
+[20:18] <@jpnance> one more spot for you, koci
+[20:19] <ckoci> i kno
+[20:19] <trevor> pat's up?
+[20:19] <@jpnance> justin fargas: $1
+[20:19] <@jpnance> 1 to pat, going once
+[20:19] <@jpnance> sold
+[20:20] <daniel> ernest wilford WR MIA $1
+[20:20] <@jpnance> 1 to daniel, going once
+[20:20] <@jpnance> sold
+[20:20] <trevor> shawne merriman $2 (ALL IN)
+[20:20] <@jpnance> haha
+[20:20] <ks123> haha
+[20:20] <@jpnance> 2 to trevor, going once
+[20:20] <trevor> sol
+[20:21] <trevor> sold
+[20:21] <@jpnance> sold
+[20:21] <trevor> sold
+[20:21] <trevor> YEAH!!!!!!!!!
+[20:21] <trevor> yeeha
+[20:21] <daniel> hehe
+[20:21] <daniel> trevor is out
+[20:21] <ks123> later man
+[20:21] <ks123> my turn?
+[20:21] <daniel> yup
+[20:21] <daniel> keyon koci pat daniel is the order
+[20:21] <trevor> koci nastia is on tv right now
+[20:21] <@jpnance> go for it
+[20:21] <ckoci> it's dvring
+[20:21] <ks123> brady quinn 1
+[20:22] <@jpnance> nice
+[20:22] <@jpnance> 1 to keyon, going once
+[20:22] <@jpnance> sold
+[20:22] <@jpnance> alright koci
+[20:22] <ckoci> pierre thomas RB NO $1
+[20:22] <@jpnance> last spot maybe!
+[20:22] <@jpnance> 1 to koci
+[20:22] <@jpnance> going once
+[20:22] <trevor> she looked pretty for you koci
+[20:22] <@jpnance> sold
+[20:23] <ckoci> i go nastia now
+[20:23] <daniel> hrt u koci
+02[20:23] * ckoci (i=467295b6@gateway/web/ajax/mibbit.com/x-146572dcbe2c34a0) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:23] <trevor> night all
+[20:23] <trevor> it was fun
+02[20:23] * trevor (n=trevor@cpe-70-124-83-104.austin.res.rr.com) Quit ("leaving")
+[20:23] <ks123> peace
+[20:23] <ks123> who is left?
+[20:23] <@jpnance> kenny watson: $1
+[20:23] <@jpnance> RB CIN
+[20:24] <@jpnance> 1 to pat, going once
+[20:24] <@jpnance> sold
+[20:24] <daniel> Brad smith WR NYJ $1
+[20:24] <@jpnance> YES
+[20:24] <@jpnance> 1 to grysen, going once
+[20:24] <@jpnance> sold
+[20:24] <ks123> pat did i win santana moss
+[20:24] <@jpnance> no, i got him
+[20:24] <ks123> ok cool
+[20:24] <ks123> my turn?
+[20:24] <daniel> 1
+[20:25] <ks123> donnie avery stl wr 1
+[20:25] <@jpnance> going once
+[20:25] <@jpnance> sold
+[20:26] <@jpnance> reggie williams: $1
+[20:26] <@jpnance> WR JAX
+[20:26] <@jpnance> going once
+[20:26] <@jpnance> sold
+[20:26] <daniel> bryant johnson WR SF $1
+02[20:27] * ks123 (i=4791af03@gateway/web/ajax/mibbit.com/x-61b461cb80eafba4) Quit ("http://www.mibbit.com ajax IRC Client")
+[20:27] <@jpnance> going once
+[20:27] <@jpnance> sold
+03[20:27] * ks200 (i=4791af03@gateway/web/ajax/mibbit.com/x-5105b64aa544f2f1) has joined #dynastyleague
+[20:27] <daniel> oops
+[20:27] <ks200> jon beason car lb 1
+[20:27] <@jpnance> sold
+[20:28] <ks200> alright guys, im out. my connection is messing up anyways
+[20:28] <@jpnance> alright man
+[20:28] <daniel> good draft keyon
+[20:28] <@jpnance> thanks for sticking around
+[20:28] <ks200> same to you daniel
+[20:28] <ks200> no prob
+[20:28] <ks200> one question
+[20:28] <ks200> when can we start to pick up FAs
+[20:28] <ks200> with all the money i have and everything
+[20:28] <@jpnance> i'll send out an email
+[20:28] <ks200> ok cool
+[20:28] <ks200> peace
+[20:28] <@jpnance> once i have the rosters checked out and everything
+[20:28] <@jpnance> yep
+[20:28] <ks200> thanks pat for all your hard work
+02[20:28] * ks200 (i=4791af03@gateway/web/ajax/mibbit.com/x-5105b64aa544f2f1) Quit (Client Quit)
+[20:28] <daniel> tomorrow
+[20:29] <@jpnance> (yeah probably)
+[20:29] <@jpnance> derrick mason, $1
+[20:29] <daniel> sold
+[20:29] <daniel> tim hightower rb ari $1
+[20:29] <@jpnance> sold
+[20:30] <@jpnance> i think i'm done drafting
+03[20:30] * ks20000 (i=4791af03@gateway/web/ajax/mibbit.com/x-5c943e195a12bef8) has joined #dynastyleague
+[20:30] <@jpnance> you've got four more spots to use if you want
+[20:30] <ks20000> wow they just announed ricky williams as the starter
+[20:30] <@jpnance> ha
+[20:30] <daniel> does that mean you declare you are done?
+[20:30] <@jpnance> are you serious
+[20:30] <@jpnance> daniel: yeah
+[20:30] <@jpnance> what sweet players did i miss?
+[20:31] <daniel> iono just some that might blossom
+[20:31] <daniel> deion branch wr SEA $1
+[20:31] <daniel> garrett wolfe rb chi $1
+[20:31] <daniel> dwayne jarrett WR CAR $1
+02[20:31] * ks20000 (i=4791af03@gateway/web/ajax/mibbit.com/x-5c943e195a12bef8) Quit (Client Quit)
+[20:31] <daniel> andre davis wr hou $1
+[20:32] <daniel> whew
+[20:32] <@jpnance> he was gone already
+[20:32] <@jpnance> for $5 to schex earlier
+[20:32] <daniel> you sure?
+[20:32] <daniel> lame
+[20:32] <@jpnance> yeah #123
+[20:32] <daniel> then i quit with one spot left
+[20:32] <@jpnance> haha rock on
+[20:32] <@jpnance> thanks man
+[20:32] <daniel> you too pat
+[20:32] <@jpnance> take care
+[20:32] <daniel> lots of fun
+[20:32] <daniel> night
+[20:32] <@jpnance> i like those last two a lot
+[20:32] <@jpnance> wish i'd thought of 'em
+[20:33] <@jpnance> have fun fleecing johnny for his cash
+[20:33] <@jpnance> we all will
+02[20:34] * james_r (i=0cd2f73d@gateway/web/ajax/mibbit.com/x-d6ee009bc66e4c15) Quit ("http://www.mibbit.com ajax IRC Client")
+Session Close: Tue Aug 19 20:37:20 2008

@@ -1,0 +1,2626 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<league>
+	<version>0.02</version>
+	<drafted>
+		<player>
+			<id>4459</id>
+			<name>Carson Palmer</name>
+			<position>QB</position>
+			<contract>
+				<salary>100</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8479</id>
+			<name>Frank Gore</name>
+			<position>RB</position>
+			<contract>
+				<salary>175</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2553</id>
+			<name>LaDainian Tomlinson</name>
+			<position>RB</position>
+			<contract>
+				<salary>370</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2564</id>
+			<name>Santana Moss</name>
+			<position>WR</position>
+			<contract>
+				<salary>41</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5531</id>
+			<name>Kellen Winslow</name>
+			<position>TE</position>
+			<contract>
+				<salary>60</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5651</id>
+			<name>Jared Allen</name>
+			<position>DL</position>
+			<contract>
+				<salary>21</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1097</id>
+			<name>Adam Vinatieri</name>
+			<position>K</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10536</id>
+			<name>Trent Edwards</name>
+			<position>QB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2844</id>
+			<name>Kenny Watson</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5534</id>
+			<name>Reggie Williams</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1263</id>
+			<name>Derrick Mason</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3734</id>
+			<name>Ronald Curry</name>
+			<position>WR</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9684</id>
+			<name>Owen Daniels</name>
+			<position>TE</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>3601</id>
+			<name>Will Witherspoon</name>
+			<position>LB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8488</id>
+			<name>Justin Tuck</name>
+			<position>DL</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9354</id>
+			<name>Robbie Gould</name>
+			<position>K</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4554</id>
+			<name>Justin Fargas</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1430</id>
+			<name>Fred Taylor</name>
+			<position>RB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9613</id>
+			<name>DeAngelo Williams</name>
+			<position>RB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4433</id>
+			<name>James Harrison</name>
+			<position>LB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8498</id>
+			<name>Ellis Hobbs</name>
+			<position>DB</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5741</id>
+			<name>Patrick Crayton</name>
+			<position>WR</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9605</id>
+			<name>Antonio Cromartie</name>
+			<position>DB</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3530</id>
+			<name>Julius Peppers</name>
+			<position>DL</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8440</id>
+			<name>Jason Campbell</name>
+			<position>QB</position>
+			<contract>
+				<salary>8</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>2649</id>
+			<name>Rudi Johnson</name>
+			<position>RB</position>
+			<contract>
+				<salary>16</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2578</id>
+			<name>Reggie Wayne</name>
+			<position>WR</position>
+			<contract>
+				<salary>115</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9596</id>
+			<name>Matt Leinart</name>
+			<position>QB</position>
+			<contract>
+				<salary>18</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5549</id>
+			<name>Steven Jackson</name>
+			<position>RB</position>
+			<contract>
+				<salary>331</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10453</id>
+			<name>Ted Ginn, Jr.</name>
+			<position>WR</position>
+			<contract>
+				<salary>70</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>4529</id>
+			<name>Nate Burleson</name>
+			<position>WR</position>
+			<contract>
+				<salary>105</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>8418</id>
+			<name>Braylon Edwards</name>
+			<position>WR</position>
+			<contract>
+				<salary>161</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5590</id>
+			<name>Nate Kaeding</name>
+			<position>K</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4569</id>
+			<name>Terrence McGee</name>
+			<position>DB</position>
+			<contract>
+				<salary>76</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5526</id>
+			<name>Eli Manning</name>
+			<position>QB</position>
+			<contract>
+				<salary>22</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9643</id>
+			<name>Devin Hester</name>
+			<position>WR</position>
+			<contract>
+				<salary>60</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9592</id>
+			<name>Vernon Davis</name>
+			<position>TE</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10455</id>
+			<name>Patrick Willis</name>
+			<position>LB</position>
+			<contract>
+				<salary>17</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3504</id>
+			<name>Shayne Graham</name>
+			<position>K</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10713</id>
+			<name>Pierre Thomas</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11289</id>
+			<name>Ray Rice</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5603</id>
+			<name>Bernard Berrian</name>
+			<position>WR</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11268</id>
+			<name>Devin Thomas</name>
+			<position>WR</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11291</id>
+			<name>Chad Henne</name>
+			<position>QB</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5961</id>
+			<name>Ben Utecht</name>
+			<position>TE</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8439</id>
+			<name>Aaron Rodgers</name>
+			<position>QB</position>
+			<contract>
+				<salary>6</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11298</id>
+			<name>Kevin Smith</name>
+			<position>RB</position>
+			<contract>
+				<salary>6</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9588</id>
+			<name>Reggie Bush</name>
+			<position>RB</position>
+			<contract>
+				<salary>22</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9705</id>
+			<name>Brandon Marshall</name>
+			<position>WR</position>
+			<contract>
+				<salary>21</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10491</id>
+			<name>David Harris</name>
+			<position>LB</position>
+			<contract>
+				<salary>13</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8537</id>
+			<name>Kerry Rhodes</name>
+			<position>DB</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11236</id>
+			<name>Chris Long</name>
+			<position>DL</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1428</id>
+			<name>Peyton Manning</name>
+			<position>QB</position>
+			<contract>
+				<salary>161</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9616</id>
+			<name>Joseph Addai</name>
+			<position>RB</position>
+			<contract>
+				<salary>360</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2136</id>
+			<name>Jamal Lewis</name>
+			<position>RB</position>
+			<contract>
+				<salary>173</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5941</id>
+			<name>Wes Welker</name>
+			<position>WR</position>
+			<contract>
+				<salary>100</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2209</id>
+			<name>Laveranues Coles</name>
+			<position>WR</position>
+			<contract>
+				<salary>75</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>11257</id>
+			<name>Rashard Mendenhall</name>
+			<position>RB</position>
+			<contract>
+				<salary>55</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>3636</id>
+			<name>David Garrard</name>
+			<position>QB</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4481</id>
+			<name>Willis McGahee</name>
+			<position>RB</position>
+			<contract>
+				<salary>41</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1257</id>
+			<name>Mike Vrabel</name>
+			<position>LB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5529</id>
+			<name>Philip Rivers</name>
+			<position>QB</position>
+			<contract>
+				<salary>38</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8417</id>
+			<name>Ronnie Brown</name>
+			<position>RB</position>
+			<contract>
+				<salary>87</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2330</id>
+			<name>Tom Brady</name>
+			<position>QB</position>
+			<contract>
+				<salary>255</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4485</id>
+			<name>Larry Johnson</name>
+			<position>RB</position>
+			<contract>
+				<salary>125</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2139</id>
+			<name>Plaxico Burress</name>
+			<position>WR</position>
+			<contract>
+				<salary>62</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>751</id>
+			<name>Joey Galloway</name>
+			<position>WR</position>
+			<contract>
+				<salary>45</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2583</id>
+			<name>Alge Crumpler</name>
+			<position>TE</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9647</id>
+			<name>Tony Scheffler</name>
+			<position>TE</position>
+			<contract>
+				<salary>26</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10495</id>
+			<name>Steve Smith (NYG)</name>
+			<position>WR</position>
+			<contract>
+				<salary>20</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2149</id>
+			<name>Chad Pennington</name>
+			<position>QB</position>
+			<contract>
+				<salary>25</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1575</id>
+			<name>Matt Hasselbeck</name>
+			<position>QB</position>
+			<contract>
+				<salary>58</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10452</id>
+			<name>Adrian Peterson</name>
+			<position>RB</position>
+			<contract>
+				<salary>401</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9607</id>
+			<name>Laurence Maroney</name>
+			<position>RB</position>
+			<contract>
+				<salary>105</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5532</id>
+			<name>Roy Williams</name>
+			<position>WR</position>
+			<contract>
+				<salary>100</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>5538</id>
+			<name>Lee Evans</name>
+			<position>WR</position>
+			<contract>
+				<salary>59</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1231</id>
+			<name>Tony Gonzalez</name>
+			<position>TE</position>
+			<contract>
+				<salary>42</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8459</id>
+			<name>Lofa Tatupu</name>
+			<position>LB</position>
+			<contract>
+				<salary>12</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9587</id>
+			<name>Mario Williams</name>
+			<position>DL</position>
+			<contract>
+				<salary>31</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9704</id>
+			<name>Stephen Gostkowski</name>
+			<position>K</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>11275</id>
+			<name>James Hardy</name>
+			<position>WR</position>
+			<contract>
+				<salary>11</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>937</id>
+			<name>Bobby Engram</name>
+			<position>WR</position>
+			<contract>
+				<salary>13</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4526</id>
+			<name>Lance Briggs</name>
+			<position>LB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>11493</id>
+			<name>Anthony Alridge</name>
+			<position>RB</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11237</id>
+			<name>Matt Ryan</name>
+			<position>QB</position>
+			<contract>
+				<salary>9</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11307</id>
+			<name>Jamaal Charles</name>
+			<position>RB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11323</id>
+			<name>Steve Slaton</name>
+			<position>RB</position>
+			<contract>
+				<salary>6</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2600</id>
+			<name>Chris Chambers</name>
+			<position>WR</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9611</id>
+			<name>Santonio Holmes</name>
+			<position>WR</position>
+			<contract>
+				<salary>47</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5557</id>
+			<name>Benjamin Watson</name>
+			<position>TE</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8427</id>
+			<name>Shawne Merriman</name>
+			<position>DL</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>3684</id>
+			<name>Aaron Kampman</name>
+			<position>DL</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4469</id>
+			<name>Marcus Trufant</name>
+			<position>DB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2569</id>
+			<name>Nate Clements</name>
+			<position>DB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8524</id>
+			<name>Brandon Jacobs</name>
+			<position>RB</position>
+			<contract>
+				<salary>44</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1753</id>
+			<name>Donovan McNabb</name>
+			<position>QB</position>
+			<contract>
+				<salary>21</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5209</id>
+			<name>Tony Romo</name>
+			<position>QB</position>
+			<contract>
+				<salary>220</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3579</id>
+			<name>Clinton Portis</name>
+			<position>RB</position>
+			<contract>
+				<salary>180</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5679</id>
+			<name>Michael Turner</name>
+			<position>RB</position>
+			<contract>
+				<salary>115</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>1056</id>
+			<name>Terrell Owens</name>
+			<position>WR</position>
+			<contract>
+				<salary>156</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>2622</id>
+			<name>Steve Smith (CAR)</name>
+			<position>WR</position>
+			<contract>
+				<salary>120</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>3542</id>
+			<name>Jeremy Shockey</name>
+			<position>TE</position>
+			<contract>
+				<salary>43</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9638</id>
+			<name>Greg Jennings</name>
+			<position>WR</position>
+			<contract>
+				<salary>32</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10469</id>
+			<name>Jon Beason</name>
+			<position>LB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11267</id>
+			<name>Donnie Avery</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10466</id>
+			<name>Brady Quinn</name>
+			<position>QB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8475</id>
+			<name>Vincent Jackson</name>
+			<position>WR</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2612</id>
+			<name>Adrian Wilson</name>
+			<position>DB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10518</id>
+			<name>Yamon Figurs</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4519</id>
+			<name>L.J. Smith</name>
+			<position>TE</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5551</id>
+			<name>Chris Perry</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11258</id>
+			<name>Chris Johnson</name>
+			<position>RB</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2594</id>
+			<name>Aaron Schobel</name>
+			<position>DL</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5633</id>
+			<name>Jerricho Cotchery</name>
+			<position>WR</position>
+			<contract>
+				<salary>32</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4950</id>
+			<name>Earnest Graham</name>
+			<position>RB</position>
+			<contract>
+				<salary>25</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2580</id>
+			<name>Drew Brees</name>
+			<position>QB</position>
+			<contract>
+				<salary>100</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5880</id>
+			<name>Willie Parker</name>
+			<position>RB</position>
+			<contract>
+				<salary>120</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2753</id>
+			<name>T.J. Houshmandzadeh</name>
+			<position>WR</position>
+			<contract>
+				<salary>99</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1433</id>
+			<name>Randy Moss</name>
+			<position>WR</position>
+			<contract>
+				<salary>211</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8444</id>
+			<name>Heath Miller</name>
+			<position>TE</position>
+			<contract>
+				<salary>45</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10636</id>
+			<name>Mason Crosby</name>
+			<position>K</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3619</id>
+			<name>Brian Westbrook</name>
+			<position>RB</position>
+			<contract>
+				<salary>320</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2161</id>
+			<name>Keith Bulluck</name>
+			<position>LB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2868</id>
+			<name>Adewale Ogunleye</name>
+			<position>DL</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1775</id>
+			<name>Antoine Winfield</name>
+			<position>DB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1693</id>
+			<name>Jake Delhomme</name>
+			<position>QB</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3541</id>
+			<name>Donte' Stallworth</name>
+			<position>WR</position>
+			<contract>
+				<salary>6</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10475</id>
+			<name>Greg Olsen</name>
+			<position>TE</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1966</id>
+			<name>Donald Driver</name>
+			<position>WR</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1494</id>
+			<name>Hines Ward</name>
+			<position>WR</position>
+			<contract>
+				<salary>9</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1782</id>
+			<name>Patrick Kerney</name>
+			<position>DL</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1758</id>
+			<name>Champ Bailey</name>
+			<position>DB</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10446</id>
+			<name>JaMarcus Russell</name>
+			<position>QB</position>
+			<contract>
+				<salary>60</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9475</id>
+			<name>Ryan Grant</name>
+			<position>RB</position>
+			<contract>
+				<salary>201</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8523</id>
+			<name>Marion Barber</name>
+			<position>RB</position>
+			<contract>
+				<salary>185</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1757</id>
+			<name>Torry Holt</name>
+			<position>WR</position>
+			<contract>
+				<salary>92</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5362</id>
+			<name>Antonio Gates</name>
+			<position>TE</position>
+			<contract>
+				<salary>130</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2579</id>
+			<name>Todd Heap</name>
+			<position>TE</position>
+			<contract>
+				<salary>20</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5536</id>
+			<name>Ben Roethlisberger</name>
+			<position>QB</position>
+			<contract>
+				<salary>120</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>112</id>
+			<name>Brett Favre</name>
+			<position>QB</position>
+			<contract>
+				<salary>30</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>5615</id>
+			<name>Matt Schaub</name>
+			<position>QB</position>
+			<contract>
+				<salary>35</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8442</id>
+			<name>Roddy White</name>
+			<position>WR</position>
+			<contract>
+				<salary>50</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>10522</id>
+			<name>James Jones</name>
+			<position>WR</position>
+			<contract>
+				<salary>18</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4487</id>
+			<name>Nick Barnett</name>
+			<position>LB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4474</id>
+			<name>Troy Polamalu</name>
+			<position>DB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4680</id>
+			<name>Josh Brown</name>
+			<position>K</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>4475</id>
+			<name>Bryant Johnson</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5645</id>
+			<name>Ernest Wilford</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11287</id>
+			<name>Limas Sweed</name>
+			<position>WR</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2898</id>
+			<name>Drew Bennett</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8487</id>
+			<name>Vernand Morcency</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10507</id>
+			<name>Brandon Jackson</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1432</id>
+			<name>Ahman Green</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2767</id>
+			<name>Chris Taylor</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10471</id>
+			<name>Robert Meachem</name>
+			<position>WR</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2571</id>
+			<name>Deuce McAllister</name>
+			<position>RB</position>
+			<contract>
+				<salary>6</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9631</id>
+			<name>LenDale White</name>
+			<position>RB</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11383</id>
+			<name>Tim Hightower</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10537</id>
+			<name>Garrett Wolfe</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9597</id>
+			<name>Jay Cutler</name>
+			<position>QB</position>
+			<contract>
+				<salary>100</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11238</id>
+			<name>Darren McFadden</name>
+			<position>RB</position>
+			<contract>
+				<salary>178</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10467</id>
+			<name>Dwayne Bowe</name>
+			<position>WR</position>
+			<contract>
+				<salary>102</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>5528</id>
+			<name>Larry Fitzgerald</name>
+			<position>WR</position>
+			<contract>
+				<salary>138</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4461</id>
+			<name>Andre Johnson</name>
+			<position>WR</position>
+			<contract>
+				<salary>148</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4527</id>
+			<name>Jason Witten</name>
+			<position>TE</position>
+			<contract>
+				<salary>127</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8426</id>
+			<name>DeMarcus Ware</name>
+			<position>DL/LB</position>
+			<contract>
+				<salary>35</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1445</id>
+			<name>Greg Ellis</name>
+			<position>DL</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>11256</id>
+			<name>Felix Jones</name>
+			<position>RB</position>
+			<contract>
+				<salary>44</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>11278</id>
+			<name>Matt Forte</name>
+			<position>RB</position>
+			<contract>
+				<salary>12</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>8423</id>
+			<name>Antrel Rolle</name>
+			<position>DB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>10476</id>
+			<name>Anthony Gonzalez</name>
+			<position>WR</position>
+			<contract>
+				<salary>20</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>5682</id>
+			<name>D.J. Hackett</name>
+			<position>WR</position>
+			<contract>
+				<salary>8</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1755</id>
+			<name>Edgerrin James</name>
+			<position>RB</position>
+			<contract>
+				<salary>24</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10488</id>
+			<name>Sidney Rice</name>
+			<position>WR</position>
+			<contract>
+				<salary>9</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>2138</id>
+			<name>Thomas Jones</name>
+			<position>RB</position>
+			<contract>
+				<salary>22</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>8627</id>
+			<name>Derek Anderson</name>
+			<position>QB</position>
+			<contract>
+				<salary>71</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10456</id>
+			<name>Marshawn Lynch</name>
+			<position>RB</position>
+			<contract>
+				<salary>176</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9646</id>
+			<name>Maurice Jones-Drew</name>
+			<position>RB</position>
+			<contract>
+				<salary>135</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2584</id>
+			<name>Chad Johnson</name>
+			<position>WR</position>
+			<contract>
+				<salary>97</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9838</id>
+			<name>Marques Colston</name>
+			<position>WR</position>
+			<contract>
+				<salary>117</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4482</id>
+			<name>Dallas Clark</name>
+			<position>TE</position>
+			<contract>
+				<salary>43</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2140</id>
+			<name>Brian Urlacher</name>
+			<position>LB</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>11283</id>
+			<name>DeSean Jackson</name>
+			<position>WR</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11252</id>
+			<name>Joe Flacco</name>
+			<position>QB</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4512</id>
+			<name>Anquan Boldin</name>
+			<position>WR</position>
+			<contract>
+				<salary>10</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11276</id>
+			<name>Eddie Royal</name>
+			<position>WR</position>
+			<contract>
+				<salary>12</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9703</id>
+			<name>Leon Washington</name>
+			<position>RB</position>
+			<contract>
+				<salary>35</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9665</id>
+			<name>Jerious Norwood</name>
+			<position>RB</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2299</id>
+			<name>Marc Bulger</name>
+			<position>QB</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4532</id>
+			<name>Kevin Curtis</name>
+			<position>WR</position>
+			<contract>
+				<salary>10</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>11247</id>
+			<name>Jonathan Stewart</name>
+			<position>RB</position>
+			<contract>
+				<salary>24</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5606</id>
+			<name>Chris Cooley</name>
+			<position>TE</position>
+			<contract>
+				<salary>22</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5568</id>
+			<name>Julius Jones</name>
+			<position>RB</position>
+			<contract>
+				<salary>22</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>10447</id>
+			<name>Calvin Johnson</name>
+			<position>WR</position>
+			<contract>
+				<salary>30</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+	</drafted>
+	<released>
+		<player>
+			<id>9824</id>
+			<name>T.J. Rushing</name>
+			<position>DB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10836</id>
+			<name>Darius Walker</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8480</id>
+			<name>Oshiomogho Atogwe</name>
+			<position>DB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>3575</id>
+			<name>Andre Davis</name>
+			<position>WR</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9835</id>
+			<name>Ben Obomanu</name>
+			<position>WR</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>4514</id>
+			<name>Osi Umenyiora</name>
+			<position>DL</position>
+			<contract>
+				<salary>8</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9589</id>
+			<name>Vince Young</name>
+			<position>QB</position>
+			<contract>
+				<salary>10</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8560</id>
+			<name>Trent Cole</name>
+			<position>DL/LB</position>
+			<contract>
+				<salary>10</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1756</id>
+			<name>Ricky Williams</name>
+			<position>RB</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>9689</id>
+			<name>Brad Smith</name>
+			<position>WR</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10585</id>
+			<name>Steve Breaston</name>
+			<position>WR</position>
+			<contract>
+				<salary>9</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9270</id>
+			<name>Josh Cribbs</name>
+			<position>WR</position>
+			<contract>
+				<salary>5</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>8449</id>
+			<name>Reggie Brown</name>
+			<position>WR</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>2555</id>
+			<name>Andre Carter</name>
+			<position>DL</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>1440</id>
+			<name>Phil Dawson</name>
+			<position>K</position>
+			<contract>
+				<salary>1</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>3784</id>
+			<name>Chester Taylor</name>
+			<position>RB</position>
+			<contract>
+				<salary>3</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>11315</id>
+			<name>Early Doucet</name>
+			<position>WR</position>
+			<contract>
+				<salary>4</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>1245</id>
+			<name>Jason Taylor</name>
+			<position>DL</position>
+			<contract>
+				<salary>15</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10458</id>
+			<name>Darrelle Revis</name>
+			<position>DB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>5584</id>
+			<name>Sean Jones</name>
+			<position>DB</position>
+			<contract>
+				<salary>2</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+		<player>
+			<id>10621</id>
+			<name>Nick Folk</name>
+			<position>K</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>9285</id>
+			<name>Chris Carr</name>
+			<position>DB</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>939</id>
+			<name>Marvin Harrison</name>
+			<position>WR</position>
+			<contract>
+				<salary>8</salary>
+				<start>2008</start>
+				<end>2009</end>
+			</contract>
+		</player>
+		<player>
+			<id>9619</id>
+			<name>DeMeco Ryans</name>
+			<position>LB</position>
+			<contract>
+				<salary>30</salary>
+				<start>2008</start>
+				<end>2008</end>
+			</contract>
+		</player>
+		<player>
+			<id>10896</id>
+			<name>Selvin Young</name>
+			<position>RB</position>
+			<contract>
+				<salary>7</salary>
+				<start>2008</start>
+				<end>2010</end>
+			</contract>
+		</player>
+	</released>
+	<cash>
+		<add>
+			<id>2</id>
+			<amount>17</amount>
+			<year>2008</year>
+			<description>Terms of Terrence McGee trade with Jeff.</description>
+		</add>
+		<subtract>
+			<id>7</id>
+			<amount>17</amount>
+			<year>2008</year>
+			<description>Terms of Terrence McGee trade with Koci.</description>
+		</subtract>
+		<add>
+			<id>2</id>
+			<amount>15</amount>
+			<year>2009</year>
+			<description>Terms of Terrence McGee trade with Jeff.</description>
+		</add>
+		<subtract>
+			<id>8</id>
+			<amount>8</amount>
+			<year>2008</year>
+			<description>Dropped Jason Taylor ($15).</description>
+		</subtract>
+		<subtract>
+			<id>1</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped T.J. Rushing ($1).</description>
+		</subtract>
+		<subtract>
+			<id>8</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Darius Walker ($1).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Oshiomogho Atogwe ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>3</amount>
+			<year>2008</year>
+			<description>Dropped Andre Davis ($5).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Devery Henderson ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Marcus Pollard ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Michael Jenkins ($1).</description>
+		</subtract>
+		<subtract>
+			<id>3</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Michael Lewis ($1).</description>
+		</subtract>
+		<add>
+			<id>2</id>
+			<amount>190</amount>
+			<year>2008</year>
+			<description>Terms of Tom Brady trade with John.</description>
+		</add>
+		<subtract>
+			<id>4</id>
+			<amount>190</amount>
+			<year>2008</year>
+			<description>Terms of Tom Brady trade with Koci.</description>
+		</subtract>
+		<add>
+			<id>4</id>
+			<amount>61</amount>
+			<year>2009</year>
+			<description>Terms of Tom Brady trade with Koci.</description>
+		</add>
+		<subtract>
+			<id>2</id>
+			<amount>61</amount>
+			<year>2009</year>
+			<description>Terms of Tom Brady trade with John.</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Mike Hart ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Marcedes Lewis ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Jerry Porter ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Glenn Dorsey ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Dwight Freeney ($1).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>2</amount>
+			<year>2008</year>
+			<description>Dropped Ben Obomanu ($3).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>4</amount>
+			<year>2008</year>
+			<description>Dropped Osi Umenyiora ($8).</description>
+		</subtract>
+		<subtract>
+			<id>7</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Shaun McDonald ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Michael Bush ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>5</amount>
+			<year>2008</year>
+			<description>Dropped Vince Young ($10).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Bob Sanders ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Adam Jones ($1).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>5</amount>
+			<year>2008</year>
+			<description>Dropped Trent Cole ($10).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Ricky Williams ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Chris Harris ($1).</description>
+		</subtract>
+		<subtract>
+			<id>8</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Brad Smith ($1).</description>
+		</subtract>
+		<subtract>
+			<id>7</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Kevin Boss ($1).</description>
+		</subtract>
+		<subtract>
+			<id>7</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Justin Gage ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Randy McMichael ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Tatum Bell ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>5</amount>
+			<year>2008</year>
+			<description>Dropped Steve Breaston ($9).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>3</amount>
+			<year>2008</year>
+			<description>Dropped Josh Cribbs ($5).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>2</amount>
+			<year>2008</year>
+			<description>Dropped Reggie Brown ($4).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped T.J. Duckett ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Dante Rosario ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Andre Carter ($2).</description>
+		</subtract>
+		<subtract>
+			<id>7</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Brandon Stokley ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Phil Dawson ($1).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>2</amount>
+			<year>2008</year>
+			<description>Dropped Chester Taylor ($3).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>2</amount>
+			<year>2008</year>
+			<description>Dropped Early Doucet ($4).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>8</amount>
+			<year>2008</year>
+			<description>Dropped Jason Taylor ($15).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Dexter Jackson ($1).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Darrelle Revis ($2).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Roscoe Parrish ($1).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Sean Jones ($2).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>4</amount>
+			<year>2008</year>
+			<description>Dropped Nick Folk ($7).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Charles Tillman ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Bernard Pollard ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped John Kasay ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Javon Walker ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped London Fletcher ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Adam Jones ($1).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Courtney Taylor ($1).</description>
+		</subtract>
+		<subtract>
+			<id>7</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Nathan Vasher ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>4</amount>
+			<year>2008</year>
+			<description>Dropped Chris Carr ($7).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>4</amount>
+			<year>2008</year>
+			<description>Dropped Marvin Harrison ($8).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Kyle Vanden Bosch ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped LaMont Jordan ($1).</description>
+		</subtract>
+		<subtract>
+			<id>4</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Brian Witherspoon ($1).</description>
+		</subtract>
+		<subtract>
+			<id>2</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Mewelde Moore ($1).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>15</amount>
+			<year>2008</year>
+			<description>Dropped DeMeco Ryans ($30).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>4</amount>
+			<year>2008</year>
+			<description>Dropped Selvin Young ($7).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Charles Tillman ($1).</description>
+		</subtract>
+		<subtract>
+			<id>10</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Deion Branch ($1).</description>
+		</subtract>
+		<subtract>
+			<id>6</id>
+			<amount>1</amount>
+			<year>2008</year>
+			<description>Dropped Shaun Suisham ($1).</description>
+		</subtract>
+	</cash>
+</league>

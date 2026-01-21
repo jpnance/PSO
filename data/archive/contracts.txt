@@ -1,0 +1,28 @@
+Palmer: 3
+Tomlinson: 1
+Gore: 3
+Wayne: 2
+Moss: 1
+Winslow: 3
+Witherspoon: 1
+Allen: 1
+Hobbs: 3
+Vinatieri: 1
+Mason: 1
+Reggie Williams: 1
+Watson: 3
+Fargas: 1
+Edwards: 1
+Taylor: 1
+Rushing: 1
+Curry: 1
+DeAngelo Williams: 1
+Tuck: 1
+Daniels: 3
+Gould: 1
+Harrison: 1
+Crayton: 2
+Cromartie: 1
+Peppers: 1
+Campbell: 2
+Johnson: 1
