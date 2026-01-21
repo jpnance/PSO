@@ -90,6 +90,14 @@
 ## Lower Priority
 *Nice to have, no hard deadline*
 
+### Historical Data Reconstruction
+- [ ] Parse `data/archive/` files to reconstruct early league history (2008-2009)
+  - XML files have contract snapshots with player IDs, salaries, and team assignments
+  - Auction chat logs have the full bidding record from founding draft
+  - `results.html` has complete 2008 auction picks in order
+  - Could seed historical contracts into the database for complete league timeline
+  - See `data/archive/README.md` for full inventory and `parse-xml-contracts.js` for initial parsing
+
 ### Information & Content
 - [ ] Bring the rules document over to the website
 - [ ] General transaction log
