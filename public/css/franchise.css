@@ -1,0 +1,79 @@
+/* Franchise Page Styles */
+
+.franchise-roster-cards__filters {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.franchise-roster-cards__position-group {
+    margin-bottom: 1.25rem;
+}
+
+.franchise-roster-cards__position-group:last-child {
+    margin-bottom: 0;
+}
+
+.franchise-roster-cards__card.is-dimmed {
+    opacity: 0.3;
+}
+
+.franchise-roster-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.franchise-roster-cards__card {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 0.5rem 0.65rem;
+}
+
+/* Position-colored backgrounds */
+.franchise-roster-cards__card.pos-QB { background-color: var(--pos-qb-bg); }
+.franchise-roster-cards__card.pos-RB { background-color: var(--pos-rb-bg); }
+.franchise-roster-cards__card.pos-WR { background-color: var(--pos-wr-bg); }
+.franchise-roster-cards__card.pos-TE { background-color: var(--pos-te-bg); }
+.franchise-roster-cards__card.pos-DL,
+.franchise-roster-cards__card.pos-LB,
+.franchise-roster-cards__card.pos-DB { background-color: var(--pos-idp-bg); }
+.franchise-roster-cards__card.pos-K { background-color: var(--pos-k-bg); }
+
+.franchise-roster-cards__line1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.15rem;
+}
+
+.franchise-roster-cards__name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #212529;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.franchise-roster-cards__position {
+    font-weight: 600;
+    font-size: 0.7rem;
+}
+
+.franchise-roster-cards__line2 {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: #555;
+}
+
+.franchise-roster-cards__salary {
+    font-variant-numeric: tabular-nums;
+}
+
+.franchise-roster-cards__separator {
+    color: #999;
+}

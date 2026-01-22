@@ -7,6 +7,8 @@ block title
 block styles
 	link(rel='stylesheet' href='/css/league.css')
 	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/franchise.css')
 
 block content
 	div.container.py-4
@@ -16,67 +18,57 @@ block content
 		
 		div.row
 			div.col-lg-8
-				div.card.mb-4
-					div.card-header
-						| Roster
-						span.badge.badge-secondary.ml-2= franchise.rosterCount + '/' + rosterLimit
-					-
-						function salaryForYear(player, year) {
-							if (!player.salary) return null;
-							if (!player.endYear) return null;
-							if (player.endYear >= year) return player.salary;
-							return null;
+				-
+					// Pre-group roster by position
+					var rosterByPosition = {};
+					var positionKeys = [];
+					franchise.roster.forEach(function(player) {
+						var key = getPositionKey(player);
+						if (!rosterByPosition[key]) {
+							rosterByPosition[key] = [];
+							positionKeys.push(key);
 						}
-						
-						// Pre-group roster by position
-						var rosterByPosition = {};
-						var positionKeys = [];
-						franchise.roster.forEach(function(player) {
-							var key = getPositionKey(player);
-							if (!rosterByPosition[key]) {
-								rosterByPosition[key] = [];
-								positionKeys.push(key);
-							}
-							rosterByPosition[key].push(player);
-						});
-						// Sort position keys: primary position first, then single before dual
-						positionKeys.sort(function(a, b) {
-							var partsA = a.split('/');
-							var partsB = b.split('/');
-							var primaryIdxA = POSITION_ORDER.indexOf(partsA[0]);
-							var primaryIdxB = POSITION_ORDER.indexOf(partsB[0]);
-							if (primaryIdxA === -1) primaryIdxA = 999;
-							if (primaryIdxB === -1) primaryIdxB = 999;
-							if (primaryIdxA !== primaryIdxB) return primaryIdxA - primaryIdxB;
-							// Same primary - single position comes before dual
-							var secondaryIdxA = partsA[1] ? POSITION_ORDER.indexOf(partsA[1]) : -1;
-							var secondaryIdxB = partsB[1] ? POSITION_ORDER.indexOf(partsB[1]) : -1;
-							return secondaryIdxA - secondaryIdxB;
-						});
-						
-					table.table.table-sm.mb-0.roster-table
-						tbody
-							each posKey in positionKeys
-								- var posClass = 'pos-' + posKey.split('/')[0]
-								tr.position-header(class=posClass)
-									th= posKey
-									th.text-center Contract
-									th.text-right= currentSeason
-									th.text-right.d-none.d-md-table-cell= currentSeason + 1
-									th.text-right.d-none.d-md-table-cell= currentSeason + 2
-								each player in rosterByPosition[posKey]
-									tr
-										td= player.name
-										td.text-center= formatContractYears(player.startYear, player.endYear)
-										td.text-right
-											if salaryForYear(player, currentSeason)
-												| #{formatMoney(player.salary)}
-										td.text-right.d-none.d-md-table-cell
-											if salaryForYear(player, currentSeason + 1)
-												| #{formatMoney(player.salary)}
-										td.text-right.d-none.d-md-table-cell
-											if salaryForYear(player, currentSeason + 2)
-												| #{formatMoney(player.salary)}
+						rosterByPosition[key].push(player);
+					});
+					// Sort position keys: primary position first, then single before dual
+					positionKeys.sort(function(a, b) {
+						var partsA = a.split('/');
+						var partsB = b.split('/');
+						var primaryIdxA = POSITION_ORDER.indexOf(partsA[0]);
+						var primaryIdxB = POSITION_ORDER.indexOf(partsB[0]);
+						if (primaryIdxA === -1) primaryIdxA = 999;
+						if (primaryIdxB === -1) primaryIdxB = 999;
+						if (primaryIdxA !== primaryIdxB) return primaryIdxA - primaryIdxB;
+						// Same primary - single position comes before dual
+						var secondaryIdxA = partsA[1] ? POSITION_ORDER.indexOf(partsA[1]) : -1;
+						var secondaryIdxB = partsB[1] ? POSITION_ORDER.indexOf(partsB[1]) : -1;
+						return secondaryIdxA - secondaryIdxB;
+					});
+				
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						span Roster
+						span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
+					div.card-body
+						div.franchise-roster-cards__filters.mb-3
+							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
+							button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
+							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 1)= currentSeason + 1
+							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 2)= currentSeason + 2
+						each posKey in positionKeys
+							div.franchise-roster-cards__position-group(data-position=posKey)
+								div.franchise-roster-cards__grid
+									each player in rosterByPosition[posKey]
+										- var posClass = 'pos-' + posKey.split('/')[0]
+										- var isExpiring = Number(player.endYear) === Number(currentSeason)
+										div.franchise-roster-cards__card(class=posClass data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false')
+											div.franchise-roster-cards__line1
+												span.franchise-roster-cards__name= player.name
+												+positionBadge(player.positions)
+											div.franchise-roster-cards__line2
+												span.franchise-roster-cards__salary= formatMoney(player.salary)
+												span.franchise-roster-cards__separator ·
+												span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
 			
 			div.col-lg-4
 				div.card.mb-4
@@ -199,3 +191,6 @@ block content
 												| #{regime.startSeason}–present
 					else
 						p.text-muted.mb-3.ml-3 No history available
+
+block scripts
+	script(src='/js/franchise.js')

@@ -9,6 +9,7 @@ var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
+var transactionService = require('./transaction');
 var { getPositionIndex, shortenPlayerName } = require('../helpers/view');
 
 // Calendar helpers
@@ -310,12 +311,23 @@ async function getFranchise(franchiseId, currentSeason) {
 	
 	var roster = actualContracts
 		.map(function(c) {
+			var salary = c.salary || 0;
+			var startYear = c.startYear;
+			var endYear = c.endYear;
+			var yearsLeft = endYear ? Math.max(0, endYear - currentSeason + 1) : 0;
+			
+			// Calculate recoverable (salary - buyout) for current season
+			var buyOut = transactionService.computeBuyOutForSeason(salary, startYear, endYear, currentSeason, currentSeason);
+			var recoverable = salary - buyOut;
+			
 			return {
 				name: c.playerId ? c.playerId.name : 'Unknown',
 				positions: c.playerId ? c.playerId.positions : [],
-				salary: c.salary,
-				startYear: c.startYear,
-				endYear: c.endYear
+				salary: salary,
+				startYear: startYear,
+				endYear: endYear,
+				yearsLeft: yearsLeft,
+				recoverable: recoverable
 			};
 		})
 		.sort(function(a, b) {
