@@ -4,7 +4,19 @@
 	
 	if (filterButtons.length === 0) return;
 	
+	// Get current season from the default active button
+	var currentSeasonBtn = document.querySelector('.franchise-roster-cards__filters button.btn-primary');
+	var currentSeason = currentSeasonBtn ? currentSeasonBtn.dataset.filter : null;
+	
 	function applyFilter(filter) {
+		// Current season shows everyone
+		if (filter === currentSeason) {
+			cards.forEach(function(card) {
+				card.classList.remove('is-dimmed');
+			});
+			return;
+		}
+		
 		cards.forEach(function(card) {
 			var startYear = parseInt(card.dataset.startYear, 10);
 			var endYear = parseInt(card.dataset.endYear, 10);
