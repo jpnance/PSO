@@ -77,3 +77,15 @@
 .franchise-roster-cards__separator {
     color: #999;
 }
+
+/* RFA Rights section */
+.franchise-roster-cards__rfa-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.franchise-roster-cards__card--rfa {
+    background-color: color-mix(in srgb, var(--asset-rfa) 15%, white);
+    border-style: dashed;
+}

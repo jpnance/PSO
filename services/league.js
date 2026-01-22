@@ -341,7 +341,8 @@ async function getFranchise(franchiseId, currentSeason) {
 		.map(function(c) {
 			return {
 				name: c.playerId ? c.playerId.name : 'Unknown',
-				positions: c.playerId ? c.playerId.positions : []
+				positions: c.playerId ? c.playerId.positions : [],
+				salary: null
 			};
 		})
 		.sort(function(a, b) {

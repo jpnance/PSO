@@ -69,6 +69,18 @@ block content
 												span.franchise-roster-cards__salary= formatMoney(player.salary)
 												span.franchise-roster-cards__separator ·
 												span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
+						
+						- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
+						if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
+							div.franchise-roster-cards__rfa-section
+								div.franchise-roster-cards__grid
+									each player in franchise.rfaRights
+										div.franchise-roster-cards__card.franchise-roster-cards__card--rfa
+											div.franchise-roster-cards__line1
+												span.franchise-roster-cards__name= player.name
+												+positionBadge(player.positions)
+											div.franchise-roster-cards__line2
+												span= formatContractYears(null, null, player.salary)
 			
 			div.col-lg-4
 				div.card.mb-4
@@ -122,19 +134,6 @@ block content
 								td.text-right #{formatMoney(b[0].baseAmount - b[0].buyOuts - b[0].cashOut + b[0].cashIn)}
 								td.text-right #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
 								td.text-right #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
-				
-				- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
-				if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
-					div.card.mb-4
-						div.card-header
-							| RFA Rights
-							span.badge.badge-secondary.ml-2= franchise.rfaRights.length
-						table.table.table-sm.mb-0.rfa-table
-							tbody
-								each player in franchise.rfaRights
-									tr
-										td= player.name
-										td.text-right.text-muted= sortedPositions(player.positions).join('/')
 				
 				div.card.mb-4
 					div.card-header Draft Picks
