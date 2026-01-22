@@ -1115,14 +1115,18 @@ async function getTimelineData(currentSeason) {
 			};
 		});
 		
-		// Sort: current owners first, then by first season on this franchise
+		// Sort: waterfall - who got there first, tiebreak by who left last
+		// (current owners naturally end up at bottom since they haven't left)
 		franchiseRows.sort(function(a, b) {
-			if (a.isCurrent && !b.isCurrent) return -1;
-			if (!a.isCurrent && b.isCurrent) return 1;
-			
 			var aFirst = a.cells.findIndex(function(c) { return c.active; });
 			var bFirst = b.cells.findIndex(function(c) { return c.active; });
-			return aFirst - bFirst;
+			
+			if (aFirst !== bFirst) return aFirst - bFirst;
+			
+			// Tiebreak: who left last (find last active cell)
+			var aLast = a.cells.length - 1 - a.cells.slice().reverse().findIndex(function(c) { return c.active; });
+			var bLast = b.cells.length - 1 - b.cells.slice().reverse().findIndex(function(c) { return c.active; });
+			return aLast - bLast;
 		});
 		
 		return {
