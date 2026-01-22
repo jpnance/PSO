@@ -62,13 +62,14 @@ block content
 										- var posClass = 'pos-' + posKey.split('/')[0]
 										- var isExpiring = Number(player.endYear) === Number(currentSeason)
 										div.franchise-roster-cards__card(class=posClass data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false')
-											div.franchise-roster-cards__line1
-												span.franchise-roster-cards__name= player.name
+											div.franchise-roster-cards__content
+												div.franchise-roster-cards__name= player.name
+												div.franchise-roster-cards__details
+													span.franchise-roster-cards__salary= formatMoney(player.salary)
+													span.franchise-roster-cards__separator ·
+													span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
+											div.franchise-roster-cards__badge
 												+positionBadge(player.positions)
-											div.franchise-roster-cards__line2
-												span.franchise-roster-cards__salary= formatMoney(player.salary)
-												span.franchise-roster-cards__separator ·
-												span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
 						
 						- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
 						if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
@@ -76,11 +77,12 @@ block content
 								div.franchise-roster-cards__grid
 									each player in franchise.rfaRights
 										div.franchise-roster-cards__card.franchise-roster-cards__card--rfa
-											div.franchise-roster-cards__line1
-												span.franchise-roster-cards__name= player.name
+											div.franchise-roster-cards__content
+												div.franchise-roster-cards__name= player.name
+												div.franchise-roster-cards__details
+													span= formatContractYears(null, null, player.salary)
+											div.franchise-roster-cards__badge
 												+positionBadge(player.positions)
-											div.franchise-roster-cards__line2
-												span= formatContractYears(null, null, player.salary)
 			
 			div.col-lg-4
 				div.card.mb-4

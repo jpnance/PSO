@@ -25,6 +25,10 @@
 }
 
 .franchise-roster-cards__card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 6px;
     padding: 0.5rem 0.65rem;
@@ -40,11 +44,9 @@
 .franchise-roster-cards__card.pos-DB { background-color: var(--pos-idp-bg); }
 .franchise-roster-cards__card.pos-K { background-color: var(--pos-k-bg); }
 
-.franchise-roster-cards__line1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.15rem;
+.franchise-roster-cards__content {
+    flex: 1;
+    min-width: 0;
 }
 
 .franchise-roster-cards__name {
@@ -54,15 +56,15 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 0;
 }
 
-.franchise-roster-cards__position {
-    font-weight: 600;
-    font-size: 0.7rem;
+.franchise-roster-cards__badge {
+    align-self: flex-start;
+    display: flex;
+    flex-shrink: 0;
 }
 
-.franchise-roster-cards__line2 {
+.franchise-roster-cards__details {
     display: flex;
     align-items: center;
     gap: 0.3rem;
