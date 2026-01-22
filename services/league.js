@@ -1088,10 +1088,56 @@ async function getTimelineData(currentSeason) {
 		return a.displayName.localeCompare(b.displayName);
 	});
 	
+	// Build per-franchise breakdowns
+	var franchiseBreakdowns = legend.map(function(legendItem) {
+		var rosterId = legendItem.rosterId;
+		
+		// Filter rows to only people who were ever on this franchise
+		var franchiseRows = rows.filter(function(row) {
+			return row.cells.some(function(cell) {
+				return cell.active && cell.rosterId === rosterId;
+			});
+		}).map(function(row) {
+			// Rebuild cells to only show this franchise
+			var cells = row.cells.map(function(cell) {
+				if (cell.active && cell.rosterId === rosterId) {
+					return cell;
+				}
+				return { year: cell.year, active: false };
+			});
+			
+			return {
+				personName: row.personName,
+				cells: cells,
+				isCurrent: row.isCurrent && row.cells.find(function(c) { 
+					return c.year === currentSeason && c.active && c.rosterId === rosterId; 
+				})
+			};
+		});
+		
+		// Sort: current owners first, then by first season on this franchise
+		franchiseRows.sort(function(a, b) {
+			if (a.isCurrent && !b.isCurrent) return -1;
+			if (!a.isCurrent && b.isCurrent) return 1;
+			
+			var aFirst = a.cells.findIndex(function(c) { return c.active; });
+			var bFirst = b.cells.findIndex(function(c) { return c.active; });
+			return aFirst - bFirst;
+		});
+		
+		return {
+			rosterId: rosterId,
+			displayName: legendItem.displayName,
+			color: legendItem.color,
+			rows: franchiseRows
+		};
+	});
+	
 	return {
 		years: years,
 		rows: rows,
 		legend: legend,
+		franchises: franchiseBreakdowns,
 		currentSeason: currentSeason,
 		totalPeople: rows.length
 	};

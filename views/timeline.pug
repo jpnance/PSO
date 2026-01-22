@@ -12,34 +12,54 @@ block content
 		h1.mb-4 Franchise Timeline
 		
 		div.timeline-container.mb-5
-			div.timeline-grid(style='grid-template-columns: auto repeat(' + timeline.years.length + ', 18px)')
-				//- Header row
-				div.timeline-name
-				each year in timeline.years
-					div.timeline-year(class=year === currentSeason ? 'current-year' : '')= year.toString().slice(-2)
-				
-				//- Data rows
-				each row in timeline.rows
-					div.timeline-name(class=row.isCurrent ? '' : 'past-owner')= row.personName
-					each cell in row.cells
-						if cell.active
-							div.timeline-cell(
-								style='background-color: ' + cell.color
-								title=cell.displayName + ' (' + cell.year + ')'
-								class=row.isCurrent ? '' : 'past-owner'
-								data-franchise=cell.rosterId
-							)
-						else
-							div.timeline-cell
+			div.timeline-chart-wrapper
+				div.timeline-grid(style='grid-template-columns: auto repeat(' + timeline.years.length + ', 18px)')
+					//- Header row
+					div.timeline-name
+					each year in timeline.years
+						div.timeline-year(class=year === currentSeason ? 'current-year' : '')= year.toString().slice(-2)
+					
+					//- Data rows
+					each row in timeline.rows
+						div.timeline-name(class=row.isCurrent ? '' : 'past-owner')= row.personName
+						each cell in row.cells
+							if cell.active
+								div.timeline-cell(
+									style='background-color: ' + cell.color
+									title=cell.displayName + ' (' + cell.year + ')'
+									class=row.isCurrent ? '' : 'past-owner'
+									data-franchise=cell.rosterId
+								)
+							else
+								div.timeline-cell
 			
 			div.timeline-legend
 				each item in timeline.legend
-					a.legend-item(
-						href='/franchise/' + item.rosterId
-						data-franchise=item.rosterId
-					)
+					div.legend-item(data-franchise=item.rosterId)
 						span.legend-swatch(style='background-color: ' + item.color)
 						span.legend-label= item.displayName
+		
+		//- Per-franchise breakdowns
+		h2.h5.mt-5.mb-3 By Franchise
+		div.franchise-breakdowns
+			each franchise in timeline.franchises
+				div.franchise-breakdown
+					div.franchise-breakdown__header
+						span.franchise-breakdown__swatch(style='background-color: ' + franchise.color)
+						span.franchise-breakdown__name= franchise.displayName
+					div.franchise-breakdown__grid(style='grid-template-columns: auto repeat(' + timeline.years.length + ', 10px)')
+						//- Header row
+						div.franchise-breakdown__label
+						each year in timeline.years
+							div.franchise-breakdown__year= year.toString().slice(-2)
+						//- Owner rows
+						each row in franchise.rows
+							div.franchise-breakdown__label(class=row.isCurrent ? '' : 'past-owner')= row.personName
+							each cell in row.cells
+								if cell.active
+									div.franchise-breakdown__cell(style='background-color: ' + franchise.color)
+								else
+									div.franchise-breakdown__cell
 		
 block scripts
 	script.
@@ -48,24 +68,55 @@ block scripts
 			var grid = document.querySelector('.timeline-grid');
 			if (!legend || !grid) return;
 			
-			legend.addEventListener('mouseenter', function(e) {
-				var item = e.target.closest('.legend-item');
-				if (!item) return;
-				var fid = item.dataset.franchise;
+			var activeItem = null;
+			
+			function highlight(fid) {
 				grid.classList.add('highlighting');
 				grid.querySelectorAll('.timeline-cell[data-franchise]').forEach(function(cell) {
 					if (cell.dataset.franchise === fid) {
 						cell.classList.add('highlighted');
 					}
 				});
-			}, true);
+			}
 			
-			legend.addEventListener('mouseleave', function(e) {
-				var item = e.target.closest('.legend-item');
-				if (!item) return;
+			function clearHighlight() {
 				grid.classList.remove('highlighting');
 				grid.querySelectorAll('.timeline-cell.highlighted').forEach(function(cell) {
 					cell.classList.remove('highlighted');
 				});
+				if (activeItem) {
+					activeItem.classList.remove('active');
+					activeItem = null;
+				}
+			}
+			
+			// Click/tap to toggle highlight
+			legend.addEventListener('click', function(e) {
+				var item = e.target.closest('.legend-item');
+				if (!item) return;
+				
+				if (activeItem === item) {
+					clearHighlight();
+				} else {
+					clearHighlight();
+					activeItem = item;
+					item.classList.add('active');
+					highlight(item.dataset.franchise);
+				}
+			});
+			
+			// Hover on desktop (only if nothing is actively selected)
+			legend.addEventListener('mouseenter', function(e) {
+				if (activeItem) return;
+				var item = e.target.closest('.legend-item');
+				if (!item) return;
+				highlight(item.dataset.franchise);
+			}, true);
+			
+			legend.addEventListener('mouseleave', function(e) {
+				if (activeItem) return;
+				var item = e.target.closest('.legend-item');
+				if (!item) return;
+				clearHighlight();
 			}, true);
 		})();

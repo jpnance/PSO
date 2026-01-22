@@ -12,8 +12,11 @@
 	background-color: #fff;
 	border: 1px solid var(--border-light);
 	border-radius: 6px;
-	max-width: 100%;
+}
+
+.timeline-chart-wrapper {
 	overflow-x: auto;
+	max-width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -22,8 +25,11 @@
 		align-items: flex-start;
 		gap: 2rem;
 		width: fit-content;
-		max-width: none;
+	}
+	
+	.timeline-chart-wrapper {
 		overflow-x: visible;
+		max-width: none;
 	}
 }
 
@@ -56,14 +62,18 @@
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.2rem 0;
-	text-decoration: none;
 	color: var(--text-secondary);
 	font-size: 0.875rem;
+	cursor: pointer;
 }
 
-.legend-item:hover {
+.legend-item:hover,
+.legend-item.active {
 	color: #333;
-	text-decoration: none;
+}
+
+.legend-item.active {
+	font-weight: 600;
 }
 
 .legend-swatch {
@@ -142,28 +152,76 @@
 }
 
 /* ========================================
-   Stats Section
+   Franchise Breakdowns
    ======================================== */
 
-.stat-card {
+.franchise-breakdowns {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1rem;
+}
+
+.franchise-breakdown {
 	background-color: #fff;
 	border: 1px solid var(--border-light);
-	border-radius: 8px;
-	padding: 1rem;
-	text-align: center;
+	border-radius: 6px;
+	padding: 0.75rem;
 }
 
-.stat-value {
-	font-size: 1.5rem;
+.franchise-breakdown__header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid var(--border-light);
+}
+
+.franchise-breakdown__swatch {
+	width: 12px;
+	height: 12px;
+	border-radius: 2px;
+	flex-shrink: 0;
+}
+
+.franchise-breakdown__name {
 	font-weight: 600;
+	font-size: 0.875rem;
 	color: #333;
-	line-height: 1.2;
 }
 
-.stat-label {
-	font-size: 0.75rem;
+.franchise-breakdown__grid {
+	display: grid;
+	gap: 1px;
+	width: fit-content;
+}
+
+.franchise-breakdown__year {
+	font-size: 0.5rem;
 	color: var(--text-muted);
-	margin-top: 0.25rem;
+	text-align: center;
+	padding-bottom: 2px;
+}
+
+.franchise-breakdown__label {
+	font-size: 0.65rem;
+	color: #333;
+	padding-right: 6px;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 10px;
+	text-align: right;
+}
+
+.franchise-breakdown__label.past-owner {
+	color: #666;
+}
+
+.franchise-breakdown__cell {
+	width: 10px;
+	height: 10px;
 }
 
 /* ========================================
