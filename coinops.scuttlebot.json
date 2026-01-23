@@ -1,0 +1,8 @@
+{
+  "#": "Deploy by: mkdir -p ~/apps/scuttlebot && ln -s ~/apps/pso/coinops.scuttlebot.json ~/apps/scuttlebot/coinops.json",
+
+  "slug": "scuttlebot",
+  "type": "service",
+
+  "up_cmd": "docker start scuttlebot || docker run -d --name scuttlebot --restart unless-stopped -v ~/apps/pso:/app -w /app node:22-alpine node tools/bots/scuttlebot.js"
+}
