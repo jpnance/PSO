@@ -1,3 +1,4 @@
+slug: pso
 domain: thedynastyleague.com
 port: 9528
 type: node
@@ -10,6 +11,9 @@ up_cmd: "docker compose up -d"
 
 # For backups (omit to skip backups)
 backup_cmd: "docker exec pso-mongo mongodump --archive --gzip > ~/backups/pso/pso.gz"
+
+# For metadata generation (used with monotonic alerting)
+mongo_container: pso-mongo
 
 # Mongo-specific: collections that should never shrink (for alerting)
 # Only relevant if backup_cmd does a mongodump
