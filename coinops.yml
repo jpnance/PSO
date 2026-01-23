@@ -1,0 +1,34 @@
+# coinops.example.yml - Reference template for app configuration
+# Copy to your app repo as coinops.yml and fill in the relevant fields.
+# Ops scripts only read coinops.yml — they never parse .env or other files.
+
+# Required: where nginx routes traffic
+domain: thedynastyleague.com
+
+# Required: port the app listens on (for nginx proxy_pass)
+port: 9528
+
+# App type: node, static, upload, service
+type: node
+
+# For auto-deploy (omit to skip auto-deploy)
+deploy_cmd: "docker compose run --rm --no-deps web npm ci && docker compose down && docker compose up -d"
+
+# For up.sh — bring containers up if they're down (omit if nothing to bring up)
+up_cmd: "docker compose up -d"
+
+# For backups (omit to skip backups)
+backup_cmd: "docker exec pso-mongo mongodump --archive --gzip > ~/backups/pso/pso.gz"
+
+# Mongo-specific: collections that should never shrink (for alerting)
+# Only relevant if backup_cmd does a mongodump
+monotonic:
+  - budgets
+  - contracts
+  - franchises
+  - games
+  - people
+  - picks
+  - players
+  - regimes
+  - transactions
