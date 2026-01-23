@@ -1,14 +1,5 @@
-# coinops.example.yml - Reference template for app configuration
-# Copy to your app repo as coinops.yml and fill in the relevant fields.
-# Ops scripts only read coinops.yml — they never parse .env or other files.
-
-# Required: where nginx routes traffic
 domain: thedynastyleague.com
-
-# Port the app listens on (for nginx proxy_pass) — required for node apps, omit for static/upload
 port: 9528
-
-# App type: node, static, upload, service
 type: node
 
 # For auto-deploy (omit to skip auto-deploy)
