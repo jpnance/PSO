@@ -1,5 +1,7 @@
 {
-  "#": "Deploy by: mkdir -p ~/apps/scuttlebot && ln -s ~/apps/pso/coinops.scuttlebot.json ~/apps/scuttlebot/coinops.json",
+  "#": "Deploy Scuttle bot with:",
+  "$": "mkdir -p ~/apps/scuttlebot",
+  "$": "ln -s ~/apps/pso/coinops.scuttlebot.json ~/apps/scuttlebot/coinops.json",
 
   "slug": "scuttlebot",
   "type": "service",
