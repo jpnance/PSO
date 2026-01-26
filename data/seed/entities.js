@@ -55,28 +55,28 @@ function getAllPeople() {
 }
 
 
-// Build regimes from the franchiseNames data
-function buildRegimes() {
-	var regimes = [];
+// Build tenures from the franchiseNames data (one tenure per franchise+time period)
+function buildTenures() {
+	var tenures = [];
 
 	Object.keys(PSO.franchiseNames).forEach(function(franchiseId) {
 		var years = PSO.franchiseNames[franchiseId];
 		var sortedYears = Object.keys(years).map(Number).sort(function(a, b) { return a - b; });
 
-		var currentRegime = null;
+		var currentTenure = null;
 
 		sortedYears.forEach(function(year) {
 			var displayName = years[year];
 
-			if (!currentRegime || currentRegime.displayName !== displayName) {
-				// End the previous regime
-				if (currentRegime) {
-					currentRegime.endYear = year - 1;
-					regimes.push(currentRegime);
+			if (!currentTenure || currentTenure.displayName !== displayName) {
+				// End the previous tenure
+				if (currentTenure) {
+					currentTenure.endYear = year - 1;
+					tenures.push(currentTenure);
 				}
 
-				// Start a new regime
-				currentRegime = {
+				// Start a new tenure
+				currentTenure = {
 					franchiseId: parseInt(franchiseId),
 					displayName: displayName,
 					ownerNames: displayNameToOwners[displayName] || [displayName],
@@ -86,13 +86,38 @@ function buildRegimes() {
 			}
 		});
 
-		// Push the final (current) regime
-		if (currentRegime) {
-			regimes.push(currentRegime);
+		// Push the final (current) tenure
+		if (currentTenure) {
+			tenures.push(currentTenure);
 		}
 	});
 
-	return regimes;
+	return tenures;
+}
+
+// Group tenures by displayName to build regime documents
+function buildRegimes(tenures) {
+	var regimeMap = {};
+
+	tenures.forEach(function(tenure) {
+		var key = tenure.displayName;
+
+		if (!regimeMap[key]) {
+			regimeMap[key] = {
+				displayName: tenure.displayName,
+				ownerNames: tenure.ownerNames,
+				tenures: []
+			};
+		}
+
+		regimeMap[key].tenures.push({
+			franchiseId: tenure.franchiseId,
+			startYear: tenure.startYear,
+			endYear: tenure.endYear
+		});
+	});
+
+	return Object.values(regimeMap);
 }
 
 async function seed() {
@@ -133,25 +158,33 @@ async function seed() {
 
 	// Seed regimes
 	console.log('\nSeeding regimes...');
-	var regimes = buildRegimes();
+	var tenures = buildTenures();
+	var regimes = buildRegimes(tenures);
 	for (var i = 0; i < regimes.length; i++) {
 		var r = regimes[i];
 		var regime = {
-			franchiseId: franchiseDocs[r.franchiseId]._id,
 			displayName: r.displayName,
 			ownerIds: r.ownerNames.map(function(name) { return personMap[name]._id; }),
-			startSeason: r.startYear,
-			endSeason: r.endYear
+			tenures: r.tenures.map(function(t) {
+				return {
+					franchiseId: franchiseDocs[t.franchiseId]._id,
+					startSeason: t.startYear,
+					endSeason: t.endYear
+				};
+			})
 		};
 		var doc = await Regime.create(regime);
-		console.log('  Created regime:', doc.displayName, '(' + r.startYear + '-' + (r.endYear || 'present') + ') for franchise', r.franchiseId);
+		var tenureSummary = r.tenures.map(function(t) {
+			return 'franchise ' + t.franchiseId + ' (' + t.startYear + '-' + (t.endYear || 'present') + ')';
+		}).join(', ');
+		console.log('  Created regime:', doc.displayName, '-', tenureSummary);
 	}
 
 	console.log('\nDone!');
 	console.log('\nSummary:');
 	console.log('  Franchises:', Object.keys(franchiseDocs).length);
 	console.log('  People:', people.length);
-	console.log('  Regimes:', regimes.length);
+	console.log('  Regimes:', regimes.length, '(with', tenures.length, 'total tenures)');
 
 	process.exit(0);
 }
