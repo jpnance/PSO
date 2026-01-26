@@ -68,7 +68,7 @@ var proposalSchema = new Schema({
 });
 
 // Indexes
-proposalSchema.index({ publicId: 1 }, { unique: true });
+// Note: publicId already has unique:true in schema definition, which creates an index
 proposalSchema.index({ status: 1 });
 proposalSchema.index({ createdAt: -1 });
 proposalSchema.index({ expiresAt: 1 });
