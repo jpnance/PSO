@@ -15,15 +15,27 @@ async function attachSession(req, res, next) {
 		return next();
 	}
 
-	var response = await superagent
-		.post(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/retrieve')
-		.send({ key: sessionKey });
+	try {
+		var request = superagent
+			.post(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/retrieve')
+			.send({ key: sessionKey });
 
-	if (response.body?.user) {
-		var localUser = await Person.findOne({ username: response.body.user.username });
+		// In development, allow self-signed certificates for local login service
+		if (process.env.NODE_ENV === 'dev') {
+			//request.disableTLSCerts();
+		}
 
-		req.session = response.body;
-		req.user = localUser;
+		var response = await request;
+
+		if (response.body?.user) {
+			var localUser = await Person.findOne({ username: response.body.user.username });
+
+			req.session = response.body;
+			req.user = localUser;
+		}
+	} catch (err) {
+		// Log but don't crash - treat as unauthenticated
+		console.error('Auth service error:', err.message);
 	}
 
 	next();
