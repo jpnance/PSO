@@ -101,20 +101,18 @@ a.trade-pill:hover {
 	color: #212529;
 }
 
+a.trade-pill.trade-pill--active:hover {
+	background: #0069d9;
+	border-color: #0062cc;
+	color: white;
+}
+
 .trade-pill--active {
-	background: #007bff;
+	background: var(--primary);
 	color: white;
-	border-color: #007bff;
+	border-color: var(--primary);
 }
 
-.trade-pill__remove {
-	color: rgba(255,255,255,0.7);
-	margin-left: 0.35rem;
-}
-
-.trade-pill--active:hover .trade-pill__remove {
-	color: white;
-}
 
 .trade-pill--clear {
 	background: transparent;
@@ -127,23 +125,6 @@ a.trade-pill:hover {
 	color: #666;
 }
 
-/* Past people pills - slightly muted */
-.trade-pill--past {
-	background: #f8f8f8;
-	border-color: #e0e0e0;
-	color: #777;
-}
-
-.trade-pill--past:hover {
-	background: #eee;
-	color: #555;
-}
-
-.trade-pill--past.trade-pill--active {
-	background: #6c757d;
-	border-color: #6c757d;
-	color: white;
-}
 
 /* Toggle link (More.../Less) */
 .trade-pill--toggle {

@@ -85,12 +85,8 @@ block content
 											- var isActive = filterFranchises.includes(fId)
 											- var newFranchises = toggle(fId, filterFranchises)
 											- var franchiseLabel = franchise.rosterId + ' · ' + franchise.displayName
-											if isActive
-												a.trade-pill.trade-pill--active(href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, showPastPeople, showPastRegimes))
-													= franchiseLabel
-													span.trade-pill__remove ×
-											else
-												a.trade-pill(href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, showPastPeople, showPastRegimes))= franchiseLabel
+											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, showPastPeople, showPastRegimes))= franchiseLabel
 								
 								//- REGIMES
 								div.trade-filter__section
@@ -100,12 +96,8 @@ block content
 											- var rId = regime._id.toString()
 											- var isActive = filterRegimes.includes(rId)
 											- var newRegimes = toggle(rId, filterRegimes)
-											if isActive
-												a.trade-pill.trade-pill--active(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))
-													= regime.displayName
-													span.trade-pill__remove ×
-											else
-												a.trade-pill(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
+											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
 										if pastRegimes.length > 0 && !showPastRegimes
 											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, true)) More…
 									if pastRegimes.length > 0 && showPastRegimes
@@ -115,12 +107,8 @@ block content
 												- var rId = regime._id.toString()
 												- var isActive = filterRegimes.includes(rId)
 												- var newRegimes = toggle(rId, filterRegimes)
-												if isActive
-													a.trade-pill.trade-pill--active.trade-pill--past(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))
-														= regime.displayName
-														span.trade-pill__remove ×
-												else
-													a.trade-pill.trade-pill--past(href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
+												- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+												a(class=pillClass href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
 											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, false)) Less
 								
 								//- PEOPLE
@@ -131,12 +119,8 @@ block content
 											- var pId = person._id.toString()
 											- var isActive = filterPeople.includes(pId)
 											- var newPeople = toggle(pId, filterPeople)
-											if isActive
-												a.trade-pill.trade-pill--active(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))
-													= person.name
-													span.trade-pill__remove ×
-											else
-												a.trade-pill(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
+											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+											a(class=pillClass href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
 										if pastPeople.length > 0 && !showPastPeople
 											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, true, showPastRegimes)) More…
 									if pastPeople.length > 0 && showPastPeople
@@ -146,12 +130,8 @@ block content
 												- var pId = person._id.toString()
 												- var isActive = filterPeople.includes(pId)
 												- var newPeople = toggle(pId, filterPeople)
-												if isActive
-													a.trade-pill.trade-pill--active.trade-pill--past(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))
-														= person.name
-														span.trade-pill__remove ×
-												else
-													a.trade-pill.trade-pill--past(href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
+												- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+												a(class=pillClass href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
 											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, false, showPastRegimes)) Less
 								
 								//- SUMMARY & CLEAR
