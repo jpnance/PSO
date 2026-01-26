@@ -31,9 +31,15 @@ module.exports.authCallback = async function(request, response) {
 
 	try {
 		// Validate the token with the auth service
-		var result = await superagent
+		var request = superagent
 			.post(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/retrieve')
 			.send({ key: token });
+
+		if (process.env.NODE_ENV === 'dev') {
+			request.disableTLSCerts();
+		}
+
+		var result = await request;
 
 		if (!result.body || !result.body.user) {
 			return response.redirect('/login?error=no-user');
@@ -58,8 +64,14 @@ module.exports.logout = async function(request, response) {
 	if (sessionKey) {
 		try {
 			// Delete just this session
-			await superagent
+			var request = superagent
 				.get(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/delete/' + sessionKey);
+
+			if (process.env.NODE_ENV === 'dev') {
+				request.disableTLSCerts();
+			}
+
+			await request;
 		} catch (error) {
 			// Session might already be invalid, that's fine
 		}
@@ -75,8 +87,14 @@ module.exports.logoutAll = async function(request, response) {
 	if (sessionKey) {
 		try {
 			// Delete all sessions for this user
-			await superagent
+			var request = superagent
 				.get(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/deleteAll/' + sessionKey);
+
+			if (process.env.NODE_ENV === 'dev') {
+				request.disableTLSCerts();
+			}
+
+			await request;
 		} catch (error) {
 			// Session might already be invalid, that's fine
 		}
