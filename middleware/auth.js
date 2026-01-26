@@ -22,7 +22,7 @@ async function attachSession(req, res, next) {
 
 		// In development, allow self-signed certificates for local login service
 		if (process.env.NODE_ENV === 'dev') {
-			//request.disableTLSCerts();
+			request.disableTLSCerts();
 		}
 
 		var response = await request;
