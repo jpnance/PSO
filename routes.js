@@ -32,6 +32,7 @@ module.exports = function(app) {
 	app.get('/league', league.overview);
 	app.get('/league/search', noCache, league.search);
 	app.get('/franchise/:rosterId', league.franchise);
+	app.post('/franchise/:rosterId/cut', requireLogin, league.cutPlayer);
 	
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);

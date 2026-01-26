@@ -48,23 +48,18 @@ block content
 				div.card.mb-4#rosterCard
 					div.card-header.d-flex.justify-content-between.align-items-center
 						span Roster
-						div.d-flex.align-items-center
+						span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
+					div.card-body#rosterCardBody
+						div.franchise-roster-cards__toolbar.mb-3
+							div.franchise-roster-cards__filters
+								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
+								button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
+								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 1)= currentSeason + 1
+								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 2)= currentSeason + 2
 							if isOwner
-								button.btn.btn-sm.btn-outline-secondary.mr-2#manageToggle Manage
-							span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
-					div.card-body.hover-option-1#rosterCardBody
-						if isOwner
-							div.franchise-roster-cards__option-picker.mb-3
-								small.text-muted.mr-2 Hover mockup:
-								button.btn.btn-xs.btn-outline-secondary.active(type='button' data-option='1') Corner
-								button.btn.btn-xs.btn-outline-secondary(type='button' data-option='2') Badge Swap
-								button.btn.btn-xs.btn-outline-secondary(type='button' data-option='3') Expand
-								button.btn.btn-xs.btn-outline-secondary(type='button' data-option='4') Inline
-						div.franchise-roster-cards__filters.mb-3
-							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
-							button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
-							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 1)= currentSeason + 1
-							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 2)= currentSeason + 2
+								button.btn.btn-sm.btn-outline-secondary#manageToggle
+									i.fa.fa-scissors.mr-1
+									span.manage-label Manage
 						each posKey in positionKeys
 							div.franchise-roster-cards__position-group(data-position=posKey)
 								div.franchise-roster-cards__grid
@@ -79,20 +74,21 @@ block content
 													span.franchise-roster-cards__salary= formatMoney(player.salary)
 													span.franchise-roster-cards__separator ·
 													span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
-												div.franchise-roster-cards__buyout
-													| Buyout: #{formatMoney(buyout)}
-													span.text-muted  · 
-													| Saves: #{formatMoney(player.recoverable)}
+												div.franchise-roster-cards__manage-details.text-muted
+													if isOwner
+														- var buyout1 = player.recoverable1 !== null ? player.salary - player.recoverable1 : null
+														- var buyout2 = player.recoverable2 !== null ? player.salary - player.recoverable2 : null
+														button.franchise-roster-cards__action(type='button' title='Cut player' data-player-id=player._id data-player-name=player.name data-salary=player.salary data-buyout0=buyout data-buyout1=buyout1 data-buyout2=buyout2 data-recoverable0=player.recoverable data-recoverable1=player.recoverable1 data-recoverable2=player.recoverable2 data-end-year=player.endYear)
+															i.fa.fa-scissors
+													span= '+' + formatMoney(player.recoverable)
+													if player.recoverable1 !== null
+														span  / 
+														span= '+' + formatMoney(player.recoverable1)
+													if player.recoverable2 !== null
+														span  / 
+														span= '+' + formatMoney(player.recoverable2)
 											div.franchise-roster-cards__badge
 												+positionBadge(player.positions)
-											//- Hover action elements (for mockup)
-											if isOwner
-												button.franchise-roster-cards__corner-action(type='button' title='Cut player')
-													i.fa.fa-trash
-												div.franchise-roster-cards__expand-action
-													button.btn.btn-sm.btn-outline-danger(type='button') Cut
-												button.franchise-roster-cards__inline-action(type='button' title='Cut player')
-													i.fa.fa-trash
 						
 						- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
 						if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
@@ -215,6 +211,52 @@ block content
 												| #{regime.startSeason}–present
 					else
 						p.text-muted.mb-3.ml-3 No history available
+		
+		//- Cut confirmation modal
+		if isOwner
+			div.modal.fade#cutModal(tabindex='-1' role='dialog')
+				div.modal-dialog(role='document')
+					form.modal-content(method='POST' action='/franchise/' + franchise.rosterId + '/cut')
+						div.modal-header
+							h5.modal-title Cut Player
+							button.close(type='button' data-dismiss='modal')
+								span &times;
+						div.modal-body
+							input(type='hidden' name='playerId' id='cutPlayerId')
+							input(type='hidden' name='playerName' id='cutPlayerNameInput')
+							p Are you sure you want to cut <strong id="cutPlayerName"></strong>?
+							table.table.table-sm.mb-0
+								thead
+									tr
+										th
+										th.text-right= currentSeason
+										th.text-right= currentSeason + 1
+										th.text-right= currentSeason + 2
+								tbody
+									tr
+										td Salary
+										td.text-right#cutSalary0
+										td.text-right#cutSalary1
+										td.text-right#cutSalary2
+									tr
+										td Buyout
+										td.text-right#cutBuyout0
+										td.text-right#cutBuyout1
+										td.text-right#cutBuyout2
+									tr.table-success
+										td
+											strong Cap Savings
+										td.text-right
+											strong#cutRecoverable0
+										td.text-right
+											strong#cutRecoverable1
+										td.text-right
+											strong#cutRecoverable2
+						div.modal-footer
+							button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+							button.btn.btn-danger(type='submit')
+								i.fa.fa-scissors.mr-1
+								| Cut Player
 
 block scripts
 	script(src='/js/franchise.js')

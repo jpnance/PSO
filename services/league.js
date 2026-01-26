@@ -316,18 +316,24 @@ async function getFranchise(franchiseId, currentSeason) {
 			var endYear = c.endYear;
 			var yearsLeft = endYear ? Math.max(0, endYear - currentSeason + 1) : 0;
 			
-			// Calculate recoverable (salary - buyout) for current season
-			var buyOut = transactionService.computeBuyOutForSeason(salary, startYear, endYear, currentSeason, currentSeason);
-			var recoverable = salary - buyOut;
+			// Calculate recoverable (salary - buyout) for current and future seasons
+			function getRecoverable(cutSeason) {
+				if (!endYear || endYear < cutSeason) return null;
+				var buyOut = transactionService.computeBuyOutForSeason(salary, startYear, endYear, cutSeason, cutSeason);
+				return salary - buyOut;
+			}
 			
 			return {
+				_id: c.playerId ? c.playerId._id : null,
 				name: c.playerId ? c.playerId.name : 'Unknown',
 				positions: c.playerId ? c.playerId.positions : [],
 				salary: salary,
 				startYear: startYear,
 				endYear: endYear,
 				yearsLeft: yearsLeft,
-				recoverable: recoverable
+				recoverable: getRecoverable(currentSeason),
+				recoverable1: getRecoverable(currentSeason + 1),
+				recoverable2: getRecoverable(currentSeason + 2)
 			};
 		})
 		.sort(function(a, b) {
@@ -384,6 +390,7 @@ async function getFranchise(franchiseId, currentSeason) {
 		rosterId: franchise.rosterId,
 		displayName: currentRegime ? currentRegime.displayName : 'Unknown',
 		owners: currentRegime ? Regime.sortOwnerNames(currentRegime.ownerIds) : [],
+		ownerIds: currentRegime ? currentRegime.ownerIds.map(function(o) { return o._id || o; }) : [],
 		regimes: regimesWithSortedOwners,
 		roster: roster,
 		rosterCount: roster.length,
@@ -491,13 +498,23 @@ async function franchise(request, response) {
 		if (!data) {
 			return response.status(404).send('Franchise not found');
 		}
+		
+		// Check if current user is an owner of this franchise
+		var isOwner = false;
+		if (request.user && data.ownerIds) {
+			isOwner = data.ownerIds.some(function(ownerId) {
+				return ownerId.toString() === request.user._id.toString();
+			});
+		}
+		
 		response.render('franchise', { 
 			franchise: data, 
 			currentSeason: currentSeason, 
 			phase: phase,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			activePage: 'franchise',
-			currentRosterId: data.rosterId
+			currentRosterId: data.rosterId,
+			isOwner: isOwner
 		});
 	} catch (err) {
 		console.error(err);
@@ -1178,11 +1195,79 @@ async function timeline(request, response) {
 	}
 }
 
+// POST /franchise/:rosterId/cut - owner cuts a player
+async function cutPlayer(request, response) {
+	var rosterId = parseInt(request.params.rosterId, 10);
+	var playerId = request.body.playerId;
+	var playerName = request.body.playerName || 'Player';
+	
+	function redirectWithError(msg) {
+		// For now, just redirect back - could add flash messages later
+		return response.redirect('/franchise/' + rosterId);
+	}
+	
+	try {
+		if (!playerId) {
+			return redirectWithError('Missing player ID');
+		}
+		
+		// Get franchise
+		var franchiseDoc = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchiseDoc) {
+			return redirectWithError('Franchise not found');
+		}
+		
+		// Check config - are drops enabled?
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		// TODO: Add areCutsEnabled() check when we define cut windows
+		// For now, allow cuts whenever
+		
+		// Check ownership
+		var regime = await Regime.findOne({
+			franchiseId: franchiseDoc._id,
+			ownerIds: request.user._id,
+			$or: [{ endSeason: null }, { endSeason: { $gte: currentSeason } }]
+		});
+		
+		if (!regime) {
+			return redirectWithError('You do not own this franchise');
+		}
+		
+		// Verify player is on this franchise's roster
+		var contract = await Contract.findOne({
+			franchiseId: franchiseDoc._id,
+			playerId: playerId,
+			salary: { $ne: null }
+		});
+		
+		if (!contract) {
+			return redirectWithError('Player is not on this roster');
+		}
+		
+		// Process the cut
+		var result = await transactionService.processCut({
+			franchiseId: franchiseDoc._id,
+			playerId: playerId,
+			source: 'manual',
+			notes: 'Cut by owner via web'
+		});
+		
+		// Redirect back to franchise page
+		response.redirect('/franchise/' + rosterId);
+	} catch (err) {
+		console.error('Cut player error:', err);
+		response.redirect('/franchise/' + rosterId);
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
 	overview: overview,
 	franchise: franchise,
 	search: search,
-	timeline: timeline
+	timeline: timeline,
+	cutPlayer: cutPlayer
 };
