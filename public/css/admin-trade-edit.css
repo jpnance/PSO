@@ -41,6 +41,12 @@
 	color: #6c757d;
 }
 
+.admin-trade-edit__cash-label {
+	min-width: 80px;
+	font-size: 0.85rem;
+	color: #6c757d;
+}
+
 .admin-trade-edit__meta {
 	font-size: 0.9rem;
 	color: #6c757d;

@@ -3,6 +3,8 @@ var Player = require('../models/Player');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var budgetHelper = require('../helpers/budget');
+var formatPick = require('../helpers/formatPick');
+var { formatMoney, formatContractDisplay } = require('../helpers/view');
 
 // Determine if a franchise name is plural (for grammar)
 function isPlural(name) {
@@ -87,6 +89,7 @@ async function editTradeForm(request, response) {
 			playersData.push({
 				playerId: p.playerId,
 				playerName: player ? player.name : 'Unknown',
+				positions: player ? player.positions : [],
 				salary: p.salary,
 				startYear: p.startYear,
 				endYear: p.endYear,
@@ -129,14 +132,90 @@ async function editTradeForm(request, response) {
 			var player = playerMap[rfa.playerId.toString()];
 			rfaData.push({
 				playerId: rfa.playerId,
-				playerName: player ? player.name : 'Unknown'
+				playerName: player ? player.name : 'Unknown',
+				positions: player ? player.positions : []
 			});
 		}
+		
+		// Build assets array for trade card display (matches +tradeParty mixin format)
+		var assets = [];
+		
+		// Players first, sorted by salary descending
+		var sortedPlayers = playersData.slice().sort(function(a, b) {
+			return (b.salary || 0) - (a.salary || 0);
+		});
+		sortedPlayers.forEach(function(p) {
+			var contractInfo = formatContractDisplay(p.salary || 0, p.startYear, p.endYear);
+			if (p.rfaRights) {
+				contractInfo += ' (RFA)';
+			}
+			assets.push({
+				type: 'player',
+				playerName: p.playerName,
+				positions: p.positions || [],
+				contractInfo: contractInfo
+			});
+		});
+		
+		// RFA rights
+		rfaData.forEach(function(rfa) {
+			assets.push({
+				type: 'rfa',
+				playerName: rfa.playerName,
+				positions: rfa.positions || [],
+				contractInfo: 'RFA rights'
+			});
+		});
+		
+		// Group picks and cash by season for sorted display
+		var seasonAssets = {};
+		
+		picksData.forEach(function(pick) {
+			var season = pick.season;
+			if (!seasonAssets[season]) seasonAssets[season] = [];
+			
+			var pickMain = formatPick.formatRound(pick.round) + ' round pick';
+			var pickContext = 'in ' + season + ' (' + pick.fromName + ')';
+			
+			seasonAssets[season].push({
+				type: 'pick',
+				pickMain: pickMain,
+				pickContext: pickContext,
+				sortOrder: 0,
+				sortKey: pick.pickNumber || 999
+			});
+		});
+		
+		cashData.forEach(function(cash) {
+			var season = cash.season;
+			if (!seasonAssets[season]) seasonAssets[season] = [];
+			
+			seasonAssets[season].push({
+				type: 'cash',
+				cashMain: formatMoney(cash.amount),
+				cashContext: 'from ' + cash.fromName + ' in ' + cash.season,
+				sortOrder: 1
+			});
+		});
+		
+		// Add season assets in chronological order
+		var seasons = Object.keys(seasonAssets).map(Number).sort(function(a, b) { return a - b; });
+		seasons.forEach(function(season) {
+			var items = seasonAssets[season];
+			items.sort(function(a, b) {
+				if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
+				return (a.sortKey || 0) - (b.sortKey || 0);
+			});
+			items.forEach(function(item) {
+				assets.push(item);
+			});
+		});
 		
 		parties.push({
 			franchiseId: party.franchiseId,
 			franchiseName: franchiseName,
 			usePlural: isPlural(franchiseName),
+			assets: assets,
 			players: playersData,
 			picks: picksData,
 			cash: cashData,

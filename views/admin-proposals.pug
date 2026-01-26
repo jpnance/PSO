@@ -5,7 +5,9 @@ block title
 	+title('Approve Trades', 'Admin')
 
 block styles
+	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/trade-history.css')
 	link(rel='stylesheet' href='/css/admin-proposals.css')
 
 block content
@@ -18,58 +20,39 @@ block content
 				i.fa.fa-inbox.mr-2
 				| No trades waiting for approval.
 		else
-			each proposal in proposals
-				div.card.admin-proposals__card.mb-3
-					div.card-body
-						div.d-flex.justify-content-between.align-items-start.mb-3
-							div
-								small.text-muted
-									| Proposed by #{proposal.createdBy} · #{formatDateTime(proposal.createdAt)}
-							div
-								a.btn.btn-sm.btn-outline-secondary(href='/proposals/' + proposal.publicId)
-									i.fa.fa-eye.mr-1
-									| View Details
-						
-						div.admin-proposals__party-summary.mb-3
-							each party in proposal.parties
-								div.admin-proposals__party
-									div.admin-proposals__party-name= party.displayName
-									div.admin-proposals__receives
-										if party.playerCount > 0
-											span.mr-2
-												i.fa.fa-user.mr-1
-												| #{party.playerCount} player#{party.playerCount > 1 ? 's' : ''}
-										if party.pickCount > 0
-											span.mr-2
-												i.fa.fa-ticket.mr-1
-												| #{party.pickCount} pick#{party.pickCount > 1 ? 's' : ''}
-										if party.cashCount > 0
-											span
-												i.fa.fa-dollar.mr-1
-												| #{party.cashCount} cash
-										if party.playerCount === 0 && party.pickCount === 0 && party.cashCount === 0
-											span.text-muted
-												i.fa.fa-times.mr-1
-												| Nothing
-						
-						div.d-flex.align-items-center
-							div.input-group.input-group-sm.mr-2(style="max-width: 300px")
-								input.form-control.admin-proposals__notes(type="text" placeholder="Notes (optional)" data-proposal-id=proposal._id)
-							button.btn.btn-success.btn-sm.admin-proposals__approve-btn.mr-2(data-proposal-id=proposal._id)
-								i.fa.fa-check.mr-1
-								| Approve
-							button.btn.btn-outline-danger.btn-sm.admin-proposals__reject-btn(data-proposal-id=proposal._id)
-								i.fa.fa-times.mr-1
-								| Reject
-						
-						div.admin-proposals__result.mt-2(data-proposal-id=proposal._id)
+			div.row
+				div.col-lg-7.col-xl-5
+					each proposal in proposals
+						div.card.admin-proposals__card.mb-4
+							//- Trade card display (same as trade-history)
+							div.trade-card.trade-card--single
+								div.trade-card__timestamp.trade-card__timestamp--inline
+									span.trade-card__date= formatDateLong(proposal.finalAcceptedAt)
+									span.trade-card__time= formatTime(proposal.finalAcceptedAt)
+								
+								each party in proposal.parties
+									+tradeParty(party)
+								
+								//- Budget Impact
+								- var budgetImpact = proposal.budgetImpact
+								include partials/budget-impact-table
+							
+							div.card-footer
+								div.d-flex
+									button.btn.btn-outline-danger.btn-sm.admin-proposals__reject-btn.mr-2(data-proposal-id=proposal._id)
+										i.fa.fa-times.mr-1
+										| Reject
+									button.btn.btn-success.btn-sm.admin-proposals__approve-btn(data-proposal-id=proposal._id)
+										i.fa.fa-check.mr-1
+										| Approve
+								
+								div.admin-proposals__result.mt-2(data-proposal-id=proposal._id)
 
 block scripts
 	script.
 		$('.admin-proposals__approve-btn').on('click', function() {
 			var $btn = $(this);
 			var proposalId = $btn.data('proposal-id');
-			var notes = $('.admin-proposals__notes[data-proposal-id="' + proposalId + '"]').val().trim() || null;
 			var $result = $('.admin-proposals__result[data-proposal-id="' + proposalId + '"]');
 			
 			$btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin mr-1"></i> Approving...');
@@ -79,7 +62,7 @@ block scripts
 				url: '/admin/proposals/' + proposalId + '/approve',
 				method: 'POST',
 				contentType: 'application/json',
-				data: JSON.stringify({ notes: notes }),
+				data: JSON.stringify({}),
 				success: function(response) {
 					// Redirect to the trade
 					window.location.href = '/trades/' + response.tradeId;

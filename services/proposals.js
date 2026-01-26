@@ -1259,11 +1259,15 @@ async function cancelProposal(request, response) {
 // Admin: List proposals ready for approval
 async function listProposalsForApproval(request, response) {
 	try {
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		var hardCapActive = config ? config.isHardCapActive() : false;
+		
 		var proposals = await Proposal.find({ status: 'accepted' })
 			.populate('createdByPersonId', 'name')
 			.sort({ createdAt: -1 });
 		
-		// Build display data for each proposal
+		// Build display data for each proposal (same format as viewProposal)
 		var proposalsDisplay = [];
 		for (var i = 0; i < proposals.length; i++) {
 			var proposal = proposals[i];
@@ -1272,26 +1276,145 @@ async function listProposalsForApproval(request, response) {
 			for (var j = 0; j < proposal.parties.length; j++) {
 				var party = proposal.parties[j];
 				var displayName = await getFranchiseDisplayName(party.franchiseId);
+				var usePlural = displayName === 'Schexes' || displayName.includes('/');
 				
-				// Summarize what they receive
-				var playerCount = party.receives.players.length;
-				var pickCount = party.receives.picks.length;
-				var cashCount = party.receives.cash.length;
+				// Build full asset list (same as viewProposal)
+				var assets = [];
+				
+				// Players - sorted by salary desc
+				var playerData = [];
+				for (var k = 0; k < party.receives.players.length; k++) {
+					var player = await Player.findById(party.receives.players[k].playerId);
+					var contract = await Contract.findOne({ playerId: party.receives.players[k].playerId });
+					playerData.push({ player: player, contract: contract });
+				}
+				playerData.sort(function(a, b) {
+					return ((b.contract ? b.contract.salary : 0) || 0) - ((a.contract ? a.contract.salary : 0) || 0);
+				});
+				
+				for (var k = 0; k < playerData.length; k++) {
+					var player = playerData[k].player;
+					var contract = playerData[k].contract;
+					var playerName = player ? player.name : 'Unknown';
+					var positions = player ? player.positions : [];
+					
+					if (contract && contract.salary === null) {
+						assets.push({
+							type: 'rfa',
+							playerName: playerName,
+							contractInfo: 'RFA rights',
+							positions: positions
+						});
+					} else if (contract) {
+						assets.push({
+							type: 'player',
+							playerName: playerName,
+							contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
+							positions: positions
+						});
+					} else {
+						assets.push({
+							type: 'player',
+							playerName: playerName,
+							contractInfo: '(no contract)',
+							positions: positions
+						});
+					}
+				}
+				
+				// Picks - sorted by season then round
+				var pickData = [];
+				for (var k = 0; k < party.receives.picks.length; k++) {
+					var pick = await Pick.findById(party.receives.picks[k].pickId);
+					if (pick) {
+						var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+						pickData.push({ pick: pick, origin: origin });
+					}
+				}
+				pickData.sort(function(a, b) {
+					if (a.pick.season !== b.pick.season) return a.pick.season - b.pick.season;
+					return a.pick.round - b.pick.round;
+				});
+				
+				for (var k = 0; k < pickData.length; k++) {
+					var pick = pickData[k].pick;
+					var origin = pickData[k].origin;
+					assets.push({
+						type: 'pick',
+						pickMain: ordinal(pick.round) + ' round pick',
+						pickContext: 'in ' + pick.season + ' (' + origin + ')'
+					});
+				}
+				
+				// Cash - sorted by season
+				var cashData = [];
+				for (var k = 0; k < party.receives.cash.length; k++) {
+					var c = party.receives.cash[k];
+					var fromName = await getFranchiseDisplayName(c.fromFranchiseId);
+					cashData.push({ cash: c, fromName: fromName });
+				}
+				cashData.sort(function(a, b) { return a.cash.season - b.cash.season; });
+				
+				for (var k = 0; k < cashData.length; k++) {
+					var c = cashData[k].cash;
+					var fromName = cashData[k].fromName;
+					assets.push({
+						type: 'cash',
+						cashMain: formatMoney(c.amount),
+						cashContext: 'from ' + fromName + ' in ' + c.season
+					});
+				}
+				
+				// Handle empty assets
+				if (assets.length === 0) {
+					assets.push({ type: 'nothing', display: 'Nothing' });
+				}
 				
 				partiesDisplay.push({
-					displayName: displayName,
-					playerCount: playerCount,
-					pickCount: pickCount,
-					cashCount: cashCount
+					franchiseName: displayName,
+					usePlural: usePlural,
+					assets: assets
 				});
 			}
+			
+			// Find when the final party accepted (latest acceptedAt)
+			var finalAcceptedAt = null;
+			for (var j = 0; j < proposal.parties.length; j++) {
+				var partyAcceptedAt = proposal.parties[j].acceptedAt;
+				if (partyAcceptedAt && (!finalAcceptedAt || partyAcceptedAt > finalAcceptedAt)) {
+					finalAcceptedAt = partyAcceptedAt;
+				}
+			}
+			
+			// Calculate budget impact
+			var deal = {};
+			for (var j = 0; j < proposal.parties.length; j++) {
+				var party = proposal.parties[j];
+				var fId = (party.franchiseId._id || party.franchiseId).toString();
+				deal[fId] = {
+					players: party.receives.players.map(function(p) {
+						return { id: p.playerId.toString() };
+					}),
+					picks: [],
+					cash: party.receives.cash.map(function(c) {
+						return {
+							from: c.fromFranchiseId.toString(),
+							season: c.season,
+							amount: c.amount
+						};
+					})
+				};
+			}
+			var budgetImpactData = await budgetHelper.calculateTradeImpact(deal, currentSeason, {
+				hardCapActive: hardCapActive
+			});
 			
 			proposalsDisplay.push({
 				_id: proposal._id,
 				publicId: proposal.publicId,
-				createdAt: proposal.createdAt,
-				createdBy: proposal.createdByPersonId ? proposal.createdByPersonId.name : 'Unknown',
-				parties: partiesDisplay
+				finalAcceptedAt: finalAcceptedAt,
+				parties: partiesDisplay,
+				budgetImpact: budgetImpactData
 			});
 		}
 		

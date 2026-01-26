@@ -4,35 +4,14 @@
 	border-left: 4px solid var(--color-success);
 }
 
-.admin-proposals__party-summary {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+/* Embed trade card seamlessly in the card */
+.admin-proposals__card .trade-card {
+	border: none;
+	box-shadow: none;
+	margin: 0;
 }
 
-.admin-proposals__party {
-	flex: 1;
-	min-width: 200px;
-}
-
-.admin-proposals__party-name {
-	font-weight: 600;
-}
-
-.admin-proposals__receives {
-	color: #6c757d;
-	font-size: 0.9rem;
-}
-
-/* Use consistent icon colors from design system */
-.admin-proposals__receives .fa-user {
-	color: var(--asset-player);
-}
-
-.admin-proposals__receives .fa-ticket {
-	color: var(--asset-pick);
-}
-
-.admin-proposals__receives .fa-dollar {
-	color: var(--asset-cash);
+/* Hide empty result block */
+.admin-proposals__result:empty {
+	display: none;
 }

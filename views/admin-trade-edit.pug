@@ -5,7 +5,9 @@ block title
 	+title('Edit Trade #' + (trade.tradeId || trade._id), 'Trades', 'Admin')
 
 block styles
-	link(rel='stylesheet' href='/css/league.css')
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/trade-history.css')
 	link(rel='stylesheet' href='/css/admin-trade-edit.css')
 
 block content
@@ -22,65 +24,9 @@ block content
 			var mins = String(etDate.getMinutes()).padStart(2, '0');
 			return year + '-' + month + '-' + day + 'T' + hours + ':' + mins;
 		}
-		// Build sorted asset list like trade history page
-		function buildAssetList(party, partyIdx) {
-			var assets = [];
-			// Players first, sorted by salary desc
-			var sortedPlayers = party.players.slice().sort(function(a, b) {
-				return (b.salary || 0) - (a.salary || 0);
-			});
-			sortedPlayers.forEach(function(p) {
-				var display = p.playerName;
-				if (p.salary) {
-					display += ' (' + formatMoney(p.salary) + ', ' + formatContractYears(p.startYear, p.endYear) + ')';
-				}
-				if (p.rfaRights) {
-					display += ' (RFA)';
-				}
-				assets.push({ type: 'player', display: display });
-			});
-			// RFA rights
-			party.rfaRights.forEach(function(rfa) {
-				assets.push({ type: 'player', display: rfa.playerName + ' RFA rights' });
-			});
-			// Group picks and cash by season
-			var seasonAssets = {};
-			party.picks.forEach(function(pick) {
-				var season = pick.season;
-				if (!seasonAssets[season]) seasonAssets[season] = [];
-				seasonAssets[season].push({ 
-					type: 'pick', 
-					display: formatPickDisplay({ round: pick.round, pickNumber: pick.pickNumber, season: pick.season, origin: pick.fromName }),
-					sortOrder: 0,
-					sortKey: pick.pickNumber || 999
-				});
-			});
-			party.cash.forEach(function(cash, cashIdx) {
-				var season = cash.season;
-				if (!seasonAssets[season]) seasonAssets[season] = [];
-				seasonAssets[season].push({ 
-					type: 'cash', 
-					sortOrder: 1,
-					partyIdx: partyIdx,
-					cashIdx: cashIdx,
-					amount: cash.amount,
-					season: cash.season,
-					fromName: cash.fromName
-				});
-			});
-			// Add season assets in order
-			var seasons = Object.keys(seasonAssets).map(Number).sort(function(a, b) { return a - b; });
-			seasons.forEach(function(season) {
-				var items = seasonAssets[season];
-				items.sort(function(a, b) {
-					if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
-					return (a.sortKey || 0) - (b.sortKey || 0);
-				});
-				items.forEach(function(item) {
-					assets.push(item);
-				});
-			});
-			return assets;
+		// Check if trade has any cash to edit
+		function hasCash(parties) {
+			return parties.some(function(p) { return p.cash && p.cash.length > 0; });
 		}
 	
 	div.container.py-4
@@ -90,53 +36,52 @@ block content
 				|  Trade updated successfully.
 				button.close(type='button' data-dismiss='alert') &times;
 		
-		h1.mb-2
-			| Trade ##{trade.tradeId || '(no ID)'}
-		p.admin-trade-edit__meta
-			= formatDateTimeLong(trade.timestamp)
-			if trade.tradeId
-				|  · 
-				a(href='/trades/' + trade.tradeId) View Trade
+		h1.mb-4: a.trade-history__title-link(href="/trades/" + trade.tradeId) Trade ##{trade.tradeId || '(no ID)'}
 		
 		form(method='POST' action='/admin/trades/' + trade._id)
 			div.row
-				div.col-lg-8
+				div.col-md-7.col-xl-5.mb-4
+					//- Trade card display (same as trade-history)
+					div.trade-card.trade-card--single
+						div.trade-card__timestamp.trade-card__timestamp--inline
+							span.trade-card__date= formatDateLong(trade.timestamp)
+							span.trade-card__time= formatTime(trade.timestamp)
+						
+						each party in parties
+							+tradeParty(party)
+						
+						if trade.notes
+							div.trade-notes #{trade.notes}
+				
+				div.col-md-5.col-xl-4
+					//- Edit form
 					div.card.mb-4
 						div.card-header
-							strong Trade Details
+							strong Edit Trade
 						div.card-body
-							each party, partyIdx in parties
-								div.admin-trade-edit__party
-									div.admin-trade-edit__party-name
-										strong= party.franchiseName
-										|  receive#{party.usePlural ? '' : 's'}:
-									
-									- var assets = buildAssetList(party, partyIdx)
-									if assets.length
-										ul.admin-trade-edit__asset-list
-											each asset in assets
-												if asset.type === 'cash'
-													li
-														div.admin-trade-edit__cash-row
-															span $
-															input.form-control.form-control-sm(
-																type='number'
-																name='cash_' + asset.partyIdx + '_' + asset.cashIdx + '_amount'
-																value=asset.amount
-															)
-															span in
-															input.form-control.form-control-sm(
-																type='number'
-																name='cash_' + asset.partyIdx + '_' + asset.cashIdx + '_season'
-																value=asset.season
-															)
-															span.admin-trade-edit__cash-row-from from #{asset.fromName}
-												else
-													li= asset.display
-									else
-										p.text-muted.mb-0 (nothing)
+							//- Cash editing (only show if there's cash)
+							if hasCash(parties)
+								div.mb-4
+									label.font-weight-bold Cash
+									each party, partyIdx in parties
+										each cash, cashIdx in party.cash
+											div.admin-trade-edit__cash-row.mb-2
+												span.admin-trade-edit__cash-label= party.franchiseName
+												span $
+												input.form-control.form-control-sm(
+													type='number'
+													name='cash_' + partyIdx + '_' + cashIdx + '_amount'
+													value=cash.amount
+												)
+												span in
+												input.form-control.form-control-sm(
+													type='number'
+													name='cash_' + partyIdx + '_' + cashIdx + '_season'
+													value=cash.season
+												)
 							
-							div.admin-trade-edit__notes
+							//- Notes
+							div.mb-4
 								label.font-weight-bold(for='notes') Notes
 								textarea.form-control(
 									id='notes'
@@ -144,28 +89,28 @@ block content
 									rows='3'
 									placeholder='Notes about corrections, conditions, etc.'
 								)= trade.notes || ''
-				
-				div.col-lg-4
-					div.card.mb-4
-						div.card-header
-							strong Trade Info
-						div.card-body
-							dl.mb-0
+							
+							//- Timestamp
+							div.mb-4
+								label.font-weight-bold(for='timestamp') Timestamp (ET)
+								input.form-control(
+									type='datetime-local'
+									id='timestamp'
+									name='timestamp'
+									value=formatDateTimeLocal(trade.timestamp)
+								)
+							
+							//- Trade Info
+							dl.mb-4
 								dt ID
 								dd: code= trade._id
 								if trade.tradeId
-									dt Trade ID
+									dt Trade Number
 									dd= trade.tradeId
 								dt Source
 								dd= trade.source
-								dt Timestamp (ET)
-								dd
-									input.form-control.form-control-sm(
-										type='datetime-local'
-										name='timestamp'
-										value=formatDateTimeLocal(trade.timestamp)
-									)
-					
-					div.d-flex.mt-3
-						button.btn.btn-primary.mr-2(type='submit') Save Changes
-						a.btn.btn-secondary(href='/admin/trades') Cancel
+							
+							//- Actions
+							div.d-flex
+								button.btn.btn-primary.mr-2(type='submit') Save Changes
+								a.btn.btn-secondary(href='/admin/trades') Back

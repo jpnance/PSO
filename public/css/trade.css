@@ -240,3 +240,9 @@
 	gap: 0.5rem;
 	align-items: flex-start;
 }
+
+/* Hide empty result blocks */
+.trade-result:empty,
+.proposal-result:empty {
+	display: none;
+}
