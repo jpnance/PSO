@@ -308,3 +308,15 @@ a.trade-pill:hover {
 		top: calc(56px + 1rem);
 	}
 }
+
+/* Loading states for AJAX filtering */
+.trade-filter--loading .trade-pill {
+	pointer-events: none;
+	opacity: 0.6;
+}
+
+.trade-list--loading {
+	opacity: 0.5;
+	pointer-events: none;
+	transition: opacity 0.15s;
+}

@@ -63,7 +63,7 @@ block content
 				
 				div.row
 					//- SIDEBAR (appears second in DOM, but first visually on lg+)
-					div.col-lg-4.order-lg-2.mb-lg-0
+					div#filter-sidebar.col-lg-4.order-lg-2.mb-lg-0
 						//- Mobile: collapsible toggle
 						div.d-lg-none.mb-3
 							button.btn.btn-outline-secondary.btn-sm.w-100(type="button" data-toggle="collapse" data-target="#pills-filters")
@@ -162,29 +162,30 @@ block content
 					
 					//- MAIN CONTENT (narrower trade cards)
 					div.col-lg-8.col-xl-6.order-lg-1
-						if trades.length === 0
-							div.text-center.py-5
-								i.fa.fa-exchange.fa-3x.text-muted.mb-3
-								p.text-muted No trades found matching your filters.
-						
-						each trade in trades
-							div.trade-card.trade-card--single(id="trade-" + trade.number)
-								div.trade-card__timestamp.trade-card__timestamp--inline
-									a.trade-card__date(href="/trades/" + trade.number)= formatDateLong(trade.timestamp)
-									a.trade-card__time(href="/trades/" + trade.number)= formatTime(trade.timestamp)
-								
-								div.trade-card__trade-num.mb-2
-									a.trade-history__title-link(href="/trades/" + trade.number) Trade ##{trade.number}
-								
-								each party in trade.parties
-									+tradeParty(party)
-								
-								if trade.notes
-									div.trade-notes #{trade.notes}
+						div#trade-list
+							if trades.length === 0
+								div.text-center.py-5
+									i.fa.fa-exchange.fa-3x.text-muted.mb-3
+									p.text-muted No trades found matching your filters.
+							
+							each trade in trades
+								div.trade-card.trade-card--single(id="trade-" + trade.number)
+									div.trade-card__timestamp.trade-card__timestamp--inline
+										a.trade-card__date(href="/trades/" + trade.number)= formatDateLong(trade.timestamp)
+										a.trade-card__time(href="/trades/" + trade.number)= formatTime(trade.timestamp)
+									
+									div.trade-card__trade-num.mb-2
+										a.trade-history__title-link(href="/trades/" + trade.number) Trade ##{trade.number}
+									
+									each party in trade.parties
+										+tradeParty(party)
+									
+									if trade.notes
+										div.trade-notes #{trade.notes}
 						
 						//- Bottom pagination
 						- var pageSep = baseQuery ? '&' : '?'
-						div.trade-nav--simple.mt-4
+						div#pagination.trade-nav--simple.mt-4
 							if olderPage
 								a(href="/trades" + baseQuery + (olderPage > 1 ? pageSep + "page=" + olderPage : "")) ← Older
 							span.flex-grow-1
@@ -192,3 +193,6 @@ block content
 								a(href="/trades" + baseQuery + pageSep + "page=" + newerPage) Newer →
 							else if !isDefaultView
 								a(href="/trades" + baseQuery) Newest →
+
+block scripts
+	script(src='/js/trade-history.js')
