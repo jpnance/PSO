@@ -214,7 +214,7 @@ async function seed() {
 	// SEASON represents the current NFL season. The rookie draft happens before
 	// the season starts, so by the time we're in-season, that draft is complete.
 	// Treat SEASON as a past draft, and SEASON+1 onward as future drafts.
-	var currentYear = (parseInt(process.env.SEASON, 10) || 2025) + 1;
+	var currentYear = (PSO.season || 2025) + 1;
 	var allPicks = [];
 
 	// Fetch past drafts (from "Past Drafts" sheet tabs named just by year)

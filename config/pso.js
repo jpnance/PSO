@@ -1,3 +1,36 @@
+// TODO: This should come from LeagueConfig in the database
+module.exports.season = 2025;
+
+module.exports.auctionUsers = {
+	anthony: 'Anthony',
+	brett: 'Brett',
+	jason: 'Jason',
+	justin: 'Justin',
+	keyon: 'Keyon',
+	kociMueller: 'Koci/Mueller',
+	luke: 'Luke',
+	mike: 'Mike',
+	mitch: 'Mitch',
+	patrick: 'Patrick',
+	quinn: 'Quinn',
+	schexes: 'Schexes'
+};
+
+module.exports.nominationOrder = [
+	'Anthony',
+	'Brett',
+	'Jason',
+	'Justin',
+	'Keyon',
+	'Koci/Mueller',
+	'Luke',
+	'Mike',
+	'Mitch',
+	'Patrick',
+	'Quinn',
+	'Schexes'
+];
+
 module.exports.franchises = {
 	1: 'Patrick',
 	2: 'Koci/Mueller',
@@ -357,7 +390,7 @@ module.exports.franchiseNames = {
 	}
 };
 
-module.exports.getWeek = function(now = new Date(), seasonYear = Number(process.env.SEASON)) {
+module.exports.getWeek = function(now = new Date(), seasonYear = module.exports.season) {
 	var laborDay = new Date(seasonYear, 8, 1);
 
 	while (laborDay.getDay() !== 1) {

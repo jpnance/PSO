@@ -1,10 +1,11 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
+var PSO = require('../config/pso');
 
 var request = require('superagent');
 
 var parameters = {
 	render: false,
-	season: parseInt(process.env.SEASON),
+	season: PSO.season,
 	site: 'pso'
 };
 
@@ -113,7 +114,7 @@ request
 			var pug = require('pug');
 			var compiledPug = pug.compileFile(path.join(__dirname, '../views/auction.pug'));
 			fs.writeFileSync(path.join(__dirname, '../public/auction/index.html'), compiledPug({
-				owners: JSON.parse(process.env.NOMINATION_ORDER),
+				owners: PSO.nominationOrder,
 				referenceSite: siteData[parameters.site].referenceSite,
 				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
@@ -123,7 +124,7 @@ request
 				players: players,
 				positions: positions,
 				situations: situations,
-				owners: JSON.parse(process.env.NOMINATION_ORDER),
+				owners: PSO.nominationOrder,
 				referenceSite: siteData[parameters.site].referenceSite,
 				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));

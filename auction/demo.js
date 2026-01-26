@@ -1,9 +1,10 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 var fs = require('fs');
+var PSO = require('../config/pso');
 
 var request = require('superagent');
 
-var nominators = JSON.parse(process.env.NOMINATION_ORDER);
+var nominators = PSO.nominationOrder;
 var players = JSON.parse(fs.readFileSync('./demo.json', 'utf8'));
 
 setInterval(function() {

@@ -1,11 +1,12 @@
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
+var PSO = require('../../config/pso');
 
 var LeagueConfig = require('../../models/LeagueConfig');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var currentSeason = parseInt(process.env.SEASON, 10);
+var currentSeason = PSO.season;
 
 async function seed() {
 	console.log('Seeding league config for season', currentSeason, '...\n');

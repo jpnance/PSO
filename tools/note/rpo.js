@@ -36,7 +36,7 @@ const sleeperPlayers = initializeSleeperPlayers();
 
 let rpos = require('./rpo-data.json');
 let context = {
-	season: process.env.SEASON,
+	season: PSO.season,
 	week: null,
 	owner: null,
 	offerer: null,

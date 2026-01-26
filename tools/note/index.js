@@ -17,7 +17,7 @@ if (process.argv.length < 3) {
 	process.exit();
 }
 
-var season = process.env.SEASON;
+var season = PSO.season;
 var sleeperLeagueId = PSO.sleeperLeagueIds[season];
 
 var week = parseInt(process.argv[2]);
@@ -242,7 +242,7 @@ Promise.all(dataPromises).then(function(values) {
 	console.log('DID ANY TEAMS GET ELIMINATED THIS WEEK?');
 	console.log();
 	console.log('Intro');
-	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + process.env.SEASON + ' season!');
+	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + PSO.season + ' season!');
 	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
 	console.log();
 

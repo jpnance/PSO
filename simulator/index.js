@@ -5,9 +5,9 @@ var path = require('path');
 var pug = require('pug');
 var compiledPug = pug.compileFile(path.join(__dirname, '../views/simulator.pug'));
 
-var season = parseInt(process.env.SEASON);
-
 var PSO = require('../config/pso');
+
+var season = PSO.season;
 
 var mongoOwners = {
 	'Pat/Quinn': 'patQuinn',

@@ -6,7 +6,7 @@ var players = require('../public/data/players.json');
 
 var PSO = require('../config/pso.js');
 
-var season = process.env.SEASON;
+var season = PSO.season;
 var sleeperLeagueId = PSO.sleeperLeagueIds[season];
 
 var positionCount = {

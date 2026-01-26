@@ -1,4 +1,5 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
+var PSO = require('../config/pso');
 
 var auction = {
 	nominator: {
@@ -24,8 +25,8 @@ var auction = {
 	}
 };
 
-var owners = JSON.parse(process.env.AUCTION_USERS);
-var nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
+var owners = PSO.auctionUsers;
+var nominationOrder = [...PSO.nominationOrder];
 
 var sockets = [];
 
@@ -154,7 +155,7 @@ function popBid() {
 };
 
 module.exports.resetNominationOrder = function(request, response) {
-	nominationOrder = JSON.parse(process.env.NOMINATION_ORDER);
+	nominationOrder = [...PSO.nominationOrder];
 
 	response.send(auction);
 };

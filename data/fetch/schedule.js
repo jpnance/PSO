@@ -8,7 +8,7 @@ var schedule = {};
 
 var newWeekSchedulePromise = (weekId) => {
 	return new Promise((resolve, reject) => {
-		request('https://api.sleeper.app/v1/league/' + PSO.sleeperLeagueIds[process.env.SEASON] + '/matchups/' + i)
+		request('https://api.sleeper.app/v1/league/' + PSO.sleeperLeagueIds[PSO.season] + '/matchups/' + i)
 			.then((response) => {
 				var rosters = response.body;
 

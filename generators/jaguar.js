@@ -1,4 +1,5 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
+var PSO = require('../config/pso');
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -206,7 +207,7 @@ Game.find({
 		var path = require('path');
 		var pug = require('pug');
 		var compiledPug = pug.compileFile(path.join(__dirname, '../views/jaguar.pug'));
-		fs.writeFileSync(path.join(__dirname, '../public/jaguar/index.html'), compiledPug({ defaultSeason: process.env.SEASON, seasons: seasons }));
+		fs.writeFileSync(path.join(__dirname, '../public/jaguar/index.html'), compiledPug({ defaultSeason: PSO.season, seasons: seasons }));
 	}
 	else {
 		console.log(JSON.stringify(seasons, null, "\t"));

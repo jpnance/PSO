@@ -3,6 +3,7 @@
 */
 
 var dotenv = require('dotenv').config({ path: '/app/.env' });
+var PSO = require('../../config/pso');
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -14,7 +15,7 @@ var weeks = {};
 var owners = {};
 
 Game.find({
-	season: process.env.SEASON,
+	season: PSO.season,
 	type: 'regular',
 	winner: { '$exists': true }
 }).then(games => {

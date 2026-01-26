@@ -1,8 +1,9 @@
 const dotenv = require('dotenv').config({ path: '/app/.env' });
+const PSO = require('../config/pso');
 
 const auctionKeys = {};
-const auctionUsers = JSON.parse(process.env.AUCTION_USERS);
-const owners = JSON.parse(process.env.NOMINATION_ORDER);
+const auctionUsers = PSO.auctionUsers;
+const owners = PSO.nominationOrder;
 
 Object.keys(auctionUsers).forEach((key) => {
 	auctionKeys[auctionUsers[key]] = key;

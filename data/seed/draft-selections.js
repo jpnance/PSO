@@ -107,7 +107,7 @@ var nicknames = {
 
 function findSleeperMatches(name, draftYear) {
 	var searchName = resolver.normalizePlayerName(name).replace(/\s+/g, '').toLowerCase();
-	var currentYear = parseInt(process.env.SEASON, 10) || new Date().getFullYear();
+	var currentYear = PSO.season || new Date().getFullYear();
 	var expectedYearsExp = currentYear - draftYear;
 	
 	// Try exact match first
@@ -404,7 +404,7 @@ async function seed() {
 		await Pick.updateMany({ status: 'used' }, { $unset: { transactionId: 1 } });
 	}
 
-	var currentYear = parseInt(process.env.SEASON, 10) || new Date().getFullYear();
+	var currentYear = PSO.season || new Date().getFullYear();
 	var startYear = 2010;
 	
 	var created = 0;

@@ -1,3 +1,4 @@
+var PSO = require('../config/pso');
 var LeagueConfig = require('../models/LeagueConfig');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
@@ -9,7 +10,7 @@ var Player = require('../models/Player');
 var transactionService = require('./transaction');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
 
-var currentSeason = parseInt(process.env.SEASON, 10);
+var currentSeason = PSO.season;
 
 // GET /admin - show config management page
 async function configPage(request, response) {

@@ -20,7 +20,7 @@ process.argv.forEach(function(value, index, array) {
 var newByeWeeksPromise = function() {
 	return new Promise(function(resolve, reject) {
 		request
-			.get('https://api.sleeper.com/schedule/nfl/regular/' + process.env.SEASON)
+			.get('https://api.sleeper.com/schedule/nfl/regular/' + PSO.season)
 			.then((response) => {
 				var nflGames = response.body;
 				var teams = [];

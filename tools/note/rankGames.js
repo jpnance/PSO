@@ -13,7 +13,7 @@ var percentagesData = JSON.parse(fs.readFileSync('../../public/data/percentages.
 
 var week = parseInt(process.argv[2]);
 
-Game.find({ season: process.env.SEASON }).sort({ week: 1 }).then(games => {
+Game.find({ season: PSO.season }).sort({ week: 1 }).then(games => {
 	var thisWeeksGames = games.filter(game => game.week == week);
 
 	thisWeeksGames.forEach(game => {
