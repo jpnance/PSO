@@ -45,11 +45,21 @@ block content
 						return secondaryIdxA - secondaryIdxB;
 					});
 				
-				div.card.mb-4
+				div.card.mb-4#rosterCard
 					div.card-header.d-flex.justify-content-between.align-items-center
 						span Roster
-						span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
-					div.card-body
+						div.d-flex.align-items-center
+							if isOwner
+								button.btn.btn-sm.btn-outline-secondary.mr-2#manageToggle Manage
+							span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
+					div.card-body.hover-option-1#rosterCardBody
+						if isOwner
+							div.franchise-roster-cards__option-picker.mb-3
+								small.text-muted.mr-2 Hover mockup:
+								button.btn.btn-xs.btn-outline-secondary.active(type='button' data-option='1') Corner
+								button.btn.btn-xs.btn-outline-secondary(type='button' data-option='2') Badge Swap
+								button.btn.btn-xs.btn-outline-secondary(type='button' data-option='3') Expand
+								button.btn.btn-xs.btn-outline-secondary(type='button' data-option='4') Inline
 						div.franchise-roster-cards__filters.mb-3
 							button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
 							button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
@@ -61,15 +71,28 @@ block content
 									each player in rosterByPosition[posKey]
 										- var posClass = 'pos-' + posKey.split('/')[0]
 										- var isExpiring = Number(player.endYear) === Number(currentSeason)
-										div.franchise-roster-cards__card(class=posClass data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false')
+										- var buyout = player.salary - player.recoverable
+										div.franchise-roster-cards__card(class=posClass data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false' data-recoverable=player.recoverable data-buyout=buyout)
 											div.franchise-roster-cards__content
 												div.franchise-roster-cards__name= player.name
 												div.franchise-roster-cards__details
 													span.franchise-roster-cards__salary= formatMoney(player.salary)
 													span.franchise-roster-cards__separator ·
 													span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
+												div.franchise-roster-cards__buyout
+													| Buyout: #{formatMoney(buyout)}
+													span.text-muted  · 
+													| Saves: #{formatMoney(player.recoverable)}
 											div.franchise-roster-cards__badge
 												+positionBadge(player.positions)
+											//- Hover action elements (for mockup)
+											if isOwner
+												button.franchise-roster-cards__corner-action(type='button' title='Cut player')
+													i.fa.fa-trash
+												div.franchise-roster-cards__expand-action
+													button.btn.btn-sm.btn-outline-danger(type='button') Cut
+												button.franchise-roster-cards__inline-action(type='button' title='Cut player')
+													i.fa.fa-trash
 						
 						- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
 						if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0

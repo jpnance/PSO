@@ -1,0 +1,104 @@
+/* Rules page styles */
+
+.rules-container {
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 576px) {
+	.rules-container {
+		padding: 1rem;
+		border-radius: 0;
+		box-shadow: none;
+	}
+}
+
+.rules-section {
+	margin-bottom: 2rem;
+}
+
+.rules-section:last-child {
+	margin-bottom: 0;
+}
+
+.rules-section h2 {
+	color: #333;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid var(--color-info);
+}
+
+.rules-section h3 {
+	color: #444;
+	margin-top: 1.5rem;
+	margin-bottom: 0.75rem;
+}
+
+.rules-section p {
+	margin-bottom: 0.75rem;
+}
+
+.rules-section ul,
+.rules-section ol {
+	margin-bottom: 1rem;
+}
+
+.rules-section li {
+	margin-bottom: 0.5rem;
+}
+
+.rules-section ul ul,
+.rules-section ol ul {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+/* Draft order list with two columns on larger screens */
+.rules-draft-order {
+	column-count: 2;
+	column-gap: 2rem;
+	max-width: 500px;
+}
+
+@media (max-width: 576px) {
+	.rules-draft-order {
+		column-count: 1;
+	}
+}
+
+/* Examples and notes - styled distinctively */
+.rules-example {
+	background-color: #f8f9fa;
+	padding: 0.5rem 0.75rem;
+	border-left: 3px solid var(--color-info);
+	margin-left: 0;
+	font-style: italic;
+}
+
+.rules-note {
+	color: var(--text-secondary);
+	font-size: 0.9rem;
+}
+
+/* Buy-out table */
+.rules-buyout-table {
+	max-width: 400px;
+	margin-bottom: 1rem;
+}
+
+.rules-buyout-table th {
+	background-color: #f8f9fa;
+}
+
+/* Links within rules */
+.rules-section a {
+	color: var(--color-info);
+}
+
+.rules-section a:hover {
+	text-decoration: underline;
+}

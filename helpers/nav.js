@@ -154,7 +154,7 @@ function buildNav(options) {
 		expanded: isActive('calendar') || isActive('rules'),
 		items: [
 			{ label: 'Calendar', icon: 'fa-calendar-o', href: '/calendar', active: isActive('calendar') },
-			{ label: 'Rules', icon: 'fa-book', href: '#', soon: true },
+			{ label: 'Rules', icon: 'fa-book', href: '/rules', active: isActive('rules') },
 			{ label: 'Blog', icon: 'fa-rss', href: 'https://thedynastyleague.wordpress.com/', external: true }
 		]
 	});

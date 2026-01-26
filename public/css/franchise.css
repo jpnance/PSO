@@ -80,6 +80,139 @@
     color: #999;
 }
 
+/* Buyout info - hidden by default, shown in manage mode */
+.franchise-roster-cards__buyout {
+    display: none;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Manage mode */
+.franchise-roster-cards--manage .franchise-roster-cards__buyout {
+    display: block;
+}
+
+.franchise-roster-cards--manage .franchise-roster-cards__card {
+    cursor: pointer;
+}
+
+.franchise-roster-cards--manage .franchise-roster-cards__card.is-selected {
+    outline: 2px solid var(--color-danger, #dc3545);
+    outline-offset: -2px;
+}
+
+/* Option picker for mockup */
+.franchise-roster-cards__option-picker button {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    margin-right: 0.25rem;
+}
+.franchise-roster-cards__option-picker button.active {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* ============================================
+   Hover Action Mockups
+   Add one of these classes to .card-body to test:
+   - hover-option-1 (corner icon)
+   - hover-option-2 (badge swap)
+   - hover-option-3 (expand reveal)
+   - hover-option-4 (inline append)
+   ============================================ */
+
+/* Hide all action elements by default */
+.franchise-roster-cards__corner-action,
+.franchise-roster-cards__expand-action,
+.franchise-roster-cards__inline-action {
+    display: none;
+}
+
+/* Option 1: Corner icon overlay */
+.hover-option-1 .franchise-roster-cards__card {
+    position: relative;
+}
+.hover-option-1 .franchise-roster-cards__corner-action {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    cursor: pointer;
+    font-size: 0.7rem;
+}
+.hover-option-1 .franchise-roster-cards__card:hover .franchise-roster-cards__corner-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Option 2: Badge swap */
+.hover-option-2 .franchise-roster-cards__card:hover .franchise-roster-cards__badge {
+    display: none;
+}
+.hover-option-2 .franchise-roster-cards__corner-action {
+    display: none;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--color-danger, #dc3545);
+    border-radius: 4px;
+    background: white;
+    color: var(--color-danger, #dc3545);
+    cursor: pointer;
+    font-size: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.hover-option-2 .franchise-roster-cards__card:hover .franchise-roster-cards__corner-action {
+    display: flex;
+}
+
+/* Option 3: Expand reveal */
+.hover-option-3 .franchise-roster-cards__card {
+    flex-wrap: wrap;
+}
+.hover-option-3 .franchise-roster-cards__expand-action {
+    display: none;
+    width: 100%;
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.hover-option-3 .franchise-roster-cards__card:hover .franchise-roster-cards__expand-action {
+    display: block;
+}
+
+/* Option 4: Inline append */
+.hover-option-4 .franchise-roster-cards__inline-action {
+    display: none;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin-left: 0.5rem;
+    border: 1px solid var(--color-danger, #dc3545);
+    border-radius: 4px;
+    background: white;
+    color: var(--color-danger, #dc3545);
+    cursor: pointer;
+    font-size: 0.7rem;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.hover-option-4 .franchise-roster-cards__card:hover .franchise-roster-cards__inline-action {
+    display: flex;
+}
+
 /* RFA Rights section */
 .franchise-roster-cards__rfa-section {
     margin-top: 1.5rem;

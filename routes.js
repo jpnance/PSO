@@ -59,6 +59,7 @@ module.exports = function(app) {
 	app.get('/components', (req, res) => res.render('components'));
 	
 	app.get('/sunk', (req, res) => res.render('sunk', { activePage: 'sunk' }));
+	app.get('/rules', (req, res) => res.render('rules', { activePage: 'rules' }));
 
 	app.get('/jaguar', jaguar.jaguarPage);
 
