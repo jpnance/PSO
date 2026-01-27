@@ -1,0 +1,518 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Sanity Checks', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/admin-sanity.css')
+
+block content
+	div.container.py-4
+		h1.mb-4 Sanity Checks
+		
+		//- Overall Health Banner
+		if allHealthy
+			div.sanity__banner.sanity__banner--healthy.mb-4
+				i.fa.fa-check-circle.sanity__banner-icon
+				div.sanity__banner-text
+					div.sanity__banner-title All Systems Healthy
+					div.sanity__banner-subtitle All 10 sanity checks passed for season #{currentSeason}
+		else
+			div.sanity__banner.sanity__banner--warning.mb-4
+				i.fa.fa-exclamation-triangle.sanity__banner-icon
+				div.sanity__banner-text
+					div.sanity__banner-title Issues Detected
+					div.sanity__banner-subtitle #{problemCount} problem(s) found across sanity checks
+		
+		//- Quick Summary Cards
+		div.row.mb-4
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=rosterProblems.length === 0 ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if rosterProblems.length === 0
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Roster Limits
+						div.sanity__summary-detail
+							if rosterProblems.length === 0
+								| All OK
+							else
+								| #{rosterProblems.length} over limit
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=budgetProblems.length === 0 ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if budgetProblems.length === 0
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Budget Totals
+						div.sanity__summary-detail
+							if budgetProblems.length === 0
+								| All OK
+							else
+								| #{budgetProblems.length} season(s) off
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=pickProblems.length === 0 ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if pickProblems.length === 0
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Pick Integrity
+						div.sanity__summary-detail
+							if pickProblems.length === 0
+								| All OK
+							else
+								| #{pickProblems.length} season(s) off
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=payrollChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if payrollChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Payroll Accuracy
+						div.sanity__summary-detail
+							if payrollChecks.isHealthy
+								| All OK
+							else
+								| #{payrollProblems.length} mismatch(es)
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=contractChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if contractChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Contract Validity
+						div.sanity__summary-detail
+							if contractChecks.isHealthy
+								| All OK
+							else
+								| #{contractProblems.length} invalid
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=rfaChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if rfaChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title RFA Shape
+						div.sanity__summary-detail
+							if rfaChecks.isHealthy
+								| All OK
+							else
+								| #{rfaProblems.length} malformed
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=regimeChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if regimeChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Regime Coverage
+						div.sanity__summary-detail
+							if regimeChecks.isHealthy
+								| All OK
+							else
+								| #{regimeProblems.length} issue(s)
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=pickStatusChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if pickStatusChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Pick Status
+						div.sanity__summary-detail
+							if pickStatusChecks.isHealthy
+								| All OK
+							else
+								| #{pickStatusProblems.length} orphaned
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=tradeChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if tradeChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Trade Balance
+						div.sanity__summary-detail
+							if tradeChecks.isHealthy
+								| All OK
+							else
+								| #{tradeProblems.length} issue(s)
+			
+			div.col-md-4.col-lg-3.mb-3
+				div.sanity__summary-card(class=futureBudgetChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+					div.sanity__summary-icon
+						if futureBudgetChecks.isHealthy
+							i.fa.fa-check
+						else
+							i.fa.fa-times
+					div.sanity__summary-text
+						div.sanity__summary-title Future Budgets
+						div.sanity__summary-detail
+							if futureBudgetChecks.isHealthy
+								| All OK
+							else
+								| #{futureBudgetChecks.missingSeasons.length} season(s) missing
+		
+		//- Detailed Results
+		div.row
+			//- Left Column
+			div.col-lg-6
+				//- Roster Limits
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Roster Limits
+						if rosterProblems.length === 0
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{rosterProblems.length} Over
+					div.card-body
+						p.text-muted.mb-3 Maximum #{rosterLimit} active players per franchise (RFA rights excluded)
+						
+						table.table.table-sm.sanity__table.mb-0
+							thead
+								tr
+									th Franchise
+									th.text-right Players
+									th.text-center Status
+							tbody
+								each check in rosterChecks
+									tr(class=check.isOver ? 'table-danger' : '')
+										td= check.franchiseName
+										td.text-right
+											| #{check.count}
+											span.text-muted  / #{check.limit}
+										td.text-center
+											if check.isOver
+												span.badge.badge-danger
+													i.fa.fa-times
+											else if check.count === check.limit
+												span.badge.badge-warning
+													i.fa.fa-minus
+											else
+												span.badge.badge-success
+													i.fa.fa-check
+				
+				//- Pick Integrity
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Pick Integrity
+						if pickProblems.length === 0
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{pickProblems.length} Issue(s)
+					div.card-body
+						p.text-muted.mb-3 Expected #{expectedPicksPerSeason} picks per season (12 franchises × 10 rounds)
+						
+						each check in pickChecks
+							div.sanity__season-block(class=check.isHealthy ? '' : 'sanity__season-block--warning')
+								div.sanity__season-header
+									strong Season #{check.season}
+									if check.isHealthy
+										span.badge.badge-success.ml-2
+											i.fa.fa-check
+									else
+										span.badge.badge-danger.ml-2
+											i.fa.fa-times
+								div.sanity__season-body
+									div.row.mb-2
+										div.col-6
+											span.text-muted Pick Count:
+										div.col-6.text-right
+											| #{check.pickCount} / #{check.expectedPickCount}
+									if check.problems.length > 0
+										each problem in check.problems
+											div.sanity__problem
+												i.fa.fa-exclamation-circle.mr-2
+												= problem
+				
+				//- Contract Validity
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Contract Validity
+						if contractChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{contractProblems.length} Invalid
+					div.card-body
+						p.text-muted.mb-3 #{contractChecks.totalContracts} contracts checked for valid references and year ranges
+						
+						if contractProblems.length > 0
+							each problem in contractProblems
+								div.sanity__problem-item
+									strong= problem.playerName
+									span.text-muted  (#{problem.franchiseName})
+									div.sanity__problem
+										each p in problem.problems
+											div
+												i.fa.fa-exclamation-circle.mr-2
+												= p
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All contracts valid
+				
+				//- RFA Shape
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong RFA Shape
+						if rfaChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{rfaProblems.length} Malformed
+					div.card-body
+						p.text-muted.mb-3 #{rfaChecks.totalRfaRights} RFA rights checked (should have salary, startYear, endYear = null)
+						
+						if rfaProblems.length > 0
+							each problem in rfaProblems
+								div.sanity__problem-item
+									strong= problem.playerName
+									span.text-muted  (#{problem.franchiseName})
+									div.sanity__problem
+										each p in problem.problems
+											div
+												i.fa.fa-exclamation-circle.mr-2
+												= p
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All RFA rights correctly shaped
+				
+				//- Regime Coverage
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Regime Coverage
+						if regimeChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{regimeProblems.length} Issue(s)
+					div.card-body
+						p.text-muted.mb-3 Each franchise should have exactly one active regime (owner)
+						
+						if regimeProblems.length > 0
+							each problem in regimeProblems
+								div.sanity__problem-item
+									strong= problem.franchiseName
+									div.sanity__problem
+										i.fa.fa-exclamation-circle.mr-2
+										= problem.problem
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All #{regimeChecks.totalFranchises} franchises have exactly one active regime
+			
+			//- Right Column
+			div.col-lg-6
+				//- Budget Accounting
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Budget Accounting
+						if budgetProblems.length === 0
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{budgetProblems.length} Issue(s)
+					div.card-body
+						p.text-muted.mb-3 Expected #{formatMoney(expectedTotalBase)} total per season (12 franchises × $1,000)
+						
+						each check in budgetChecks
+							div.sanity__season-block(class=check.isHealthy ? '' : 'sanity__season-block--warning')
+								div.sanity__season-header
+									strong Season #{check.season}
+									if check.isHealthy
+										span.badge.badge-success.ml-2
+											i.fa.fa-check
+									else
+										span.badge.badge-danger.ml-2
+											i.fa.fa-times
+								
+								div.sanity__season-body
+									div.row.mb-2
+										div.col-6
+											span.text-muted Franchises:
+										div.col-6.text-right
+											| #{check.franchiseCount} / #{check.expectedFranchiseCount}
+									div.row.mb-2
+										div.col-6
+											span.text-muted Base Amount:
+										div.col-6.text-right= formatMoney(check.totalBase)
+									div.row.mb-2
+										div.col-6
+											span.text-muted Total Payroll:
+										div.col-6.text-right= formatMoney(check.totalPayroll)
+									div.row.mb-2
+										div.col-6
+											span.text-muted Total Buy-Outs:
+										div.col-6.text-right= formatMoney(check.totalBuyOuts)
+									div.row.mb-2
+										div.col-6
+											span.text-muted Cash In/Out:
+										div.col-6.text-right
+											| #{formatMoney(check.totalCashIn)} / #{formatMoney(check.totalCashOut)}
+									div.row
+										div.col-6
+											span.text-muted Total Available:
+										div.col-6.text-right
+											strong= formatMoney(check.totalAvailable)
+									
+									if check.problems.length > 0
+										hr.my-2
+										each problem in check.problems
+											div.sanity__problem
+												i.fa.fa-exclamation-circle.mr-2
+												= problem
+				
+				//- Payroll Accuracy
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Payroll Accuracy
+						if payrollChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{payrollProblems.length} Mismatch(es)
+					div.card-body
+						p.text-muted.mb-3 Stored payroll values should match sum of contract salaries
+						
+						if payrollProblems.length > 0
+							each problem in payrollProblems
+								div.sanity__problem-item
+									strong= problem.franchiseName
+									span.text-muted  (#{problem.season})
+									div.sanity__problem
+										i.fa.fa-exclamation-circle.mr-2
+										| Stored: #{formatMoney(problem.stored)}, Calculated: #{formatMoney(problem.calculated)} (diff: #{formatMoney(problem.diff, { sign: 'auto' })})
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All #{payrollChecks.totalChecked} budget payroll values match contract totals
+				
+				//- Pick Status
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Pick Status
+						if pickStatusChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{pickStatusProblems.length} Orphaned
+					div.card-body
+						p.text-muted.mb-3 Used picks should link to a draft-select transaction
+						
+						if pickStatusProblems.length > 0
+							each problem in pickStatusProblems
+								div.sanity__problem-item
+									strong Season #{problem.season} Round #{problem.round}
+									div.sanity__problem
+										i.fa.fa-exclamation-circle.mr-2
+										= problem.problem
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All #{pickStatusChecks.usedPickCount} used picks have transaction links
+				
+				//- Trade Balance
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Trade Balance
+						if tradeChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{tradeProblems.length} Issue(s)
+					div.card-body
+						p.text-muted.mb-3 All trades should have at least 2 parties and assets exchanged
+						
+						if tradeProblems.length > 0
+							each problem in tradeProblems
+								div.sanity__problem-item
+									strong Trade ##{problem.tradeId || 'Unknown'}
+									div.sanity__problem
+										i.fa.fa-exclamation-circle.mr-2
+										= problem.problem
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All #{tradeChecks.totalTrades} trades are properly structured
+				
+				//- Future Budgets
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						strong Future Budget Existence
+						if futureBudgetChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{futureBudgetChecks.missingSeasons.length} Missing
+					div.card-body
+						p.text-muted.mb-3 Budgets must exist for seasons #{futureBudgetChecks.requiredSeasons.join(', ')} (required for trading)
+						
+						if futureBudgetChecks.missingSeasons.length > 0
+							each missing in futureBudgetChecks.missingSeasons
+								div.sanity__problem-item
+									strong Season #{missing.season}
+									div.sanity__problem
+										i.fa.fa-exclamation-circle.mr-2
+										| Only #{missing.count} / #{missing.expected} franchise budgets exist
+						else
+							div.text-success
+								i.fa.fa-check.mr-2
+								| All required season budgets exist

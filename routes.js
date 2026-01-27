@@ -86,6 +86,7 @@ module.exports = function(app) {
 	app.post('/admin/transfer-franchise', requireLogin, requireAdmin, admin.transferFranchise);
 	app.get('/admin/rosters', requireLogin, requireAdmin, admin.rostersPage);
 	app.post('/admin/rosters/cut', requireLogin, requireAdmin, admin.cutPlayer);
+	app.get('/admin/sanity', requireLogin, requireAdmin, admin.sanityPage);
 	
 	// Player management (require login + admin)
 	app.get('/admin/players', requireLogin, requireAdmin, adminPlayers.listPlayers);

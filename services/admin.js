@@ -7,6 +7,7 @@ var Contract = require('../models/Contract');
 var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
+var Transaction = require('../models/Transaction');
 var transactionService = require('./transaction');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
 
@@ -468,6 +469,565 @@ async function rostersPage(request, response) {
 	});
 }
 
+// GET /admin/sanity - sanity check dashboard
+async function sanityPage(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// Get all franchises with their display names
+	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({}).lean();
+	var franchiseIds = new Set(franchises.map(function(f) { return f._id.toString(); }));
+	
+	var franchiseMap = {};
+	franchises.forEach(function(f) {
+		var fIdStr = f._id.toString();
+		var regime = regimes.find(function(r) {
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= currentSeason &&
+					(t.endSeason === null || t.endSeason >= currentSeason);
+			});
+		});
+		franchiseMap[fIdStr] = {
+			_id: f._id,
+			displayName: regime ? regime.displayName : 'Unknown'
+		};
+	});
+	
+	var expectedFranchiseCount = franchises.length;
+	
+	// ========== Roster Check ==========
+	// Count active contracts per franchise (salary !== null means active)
+	var allContracts = await Contract.find({}).lean();
+	var activeContracts = allContracts.filter(function(c) { return c.salary !== null; });
+	
+	var rosterCounts = {};
+	activeContracts.forEach(function(c) {
+		var fIdStr = c.franchiseId.toString();
+		if (!rosterCounts[fIdStr]) {
+			rosterCounts[fIdStr] = 0;
+		}
+		rosterCounts[fIdStr]++;
+	});
+	
+	var rosterProblems = [];
+	var rosterChecks = [];
+	Object.keys(franchiseMap).forEach(function(fIdStr) {
+		var count = rosterCounts[fIdStr] || 0;
+		var franchise = franchiseMap[fIdStr];
+		var check = {
+			franchiseName: franchise.displayName,
+			count: count,
+			limit: LeagueConfig.ROSTER_LIMIT,
+			isOver: count > LeagueConfig.ROSTER_LIMIT
+		};
+		rosterChecks.push(check);
+		if (check.isOver) {
+			rosterProblems.push(check);
+		}
+	});
+	rosterChecks.sort(function(a, b) {
+		return b.count - a.count; // Sort by count descending
+	});
+	
+	// ========== Budget Check ==========
+	// Get all budgets for current and future seasons
+	var budgets = await Budget.find({
+		season: { $gte: currentSeason }
+	}).lean();
+	
+	// Group by season
+	var budgetsBySeason = {};
+	budgets.forEach(function(b) {
+		if (!budgetsBySeason[b.season]) {
+			budgetsBySeason[b.season] = [];
+		}
+		budgetsBySeason[b.season].push(b);
+	});
+	
+	var expectedTotalBase = expectedFranchiseCount * 1000; // $12,000
+	
+	var budgetProblems = [];
+	var budgetChecks = [];
+	
+	Object.keys(budgetsBySeason).sort().forEach(function(seasonStr) {
+		var season = parseInt(seasonStr, 10);
+		var seasonBudgets = budgetsBySeason[season];
+		
+		var check = {
+			season: season,
+			franchiseCount: seasonBudgets.length,
+			expectedFranchiseCount: expectedFranchiseCount,
+			totalBase: 0,
+			totalPayroll: 0,
+			totalBuyOuts: 0,
+			totalCashIn: 0,
+			totalCashOut: 0,
+			totalAvailable: 0,
+			formulaErrors: [],
+			problems: []
+		};
+		
+		seasonBudgets.forEach(function(b) {
+			check.totalBase += b.baseAmount || 0;
+			check.totalPayroll += b.payroll || 0;
+			check.totalBuyOuts += b.buyOuts || 0;
+			check.totalCashIn += b.cashIn || 0;
+			check.totalCashOut += b.cashOut || 0;
+			check.totalAvailable += b.available || 0;
+			
+			// Verify formula: available = baseAmount - payroll - buyOuts + cashIn - cashOut
+			var expectedAvailable = (b.baseAmount || 0) - (b.payroll || 0) - (b.buyOuts || 0) + (b.cashIn || 0) - (b.cashOut || 0);
+			if (b.available !== expectedAvailable) {
+				var franchise = franchiseMap[b.franchiseId.toString()];
+				check.formulaErrors.push({
+					franchiseName: franchise ? franchise.displayName : 'Unknown',
+					actual: b.available,
+					expected: expectedAvailable,
+					diff: b.available - expectedAvailable
+				});
+			}
+		});
+		
+		// Check: all franchises have budgets
+		if (check.franchiseCount !== expectedFranchiseCount) {
+			check.problems.push('Missing budgets: ' + check.franchiseCount + '/' + expectedFranchiseCount + ' franchises');
+		}
+		
+		// Check: base amounts total to expected
+		if (check.totalBase !== expectedTotalBase) {
+			check.problems.push('Base amount drift: $' + check.totalBase + ' (expected $' + expectedTotalBase + ')');
+		}
+		
+		// Check: cash in = cash out (money conservation)
+		if (check.totalCashIn !== check.totalCashOut) {
+			check.problems.push('Cash imbalance: $' + check.totalCashIn + ' in vs $' + check.totalCashOut + ' out');
+		}
+		
+		// Check: total money accounted for
+		var totalCommitted = check.totalAvailable + check.totalPayroll + check.totalBuyOuts;
+		var expectedCommitted = check.totalBase + check.totalCashIn - check.totalCashOut;
+		if (totalCommitted !== expectedCommitted) {
+			check.problems.push('Money drift: $' + totalCommitted + ' accounted vs $' + expectedCommitted + ' expected');
+		}
+		
+		if (check.formulaErrors.length > 0) {
+			check.problems.push(check.formulaErrors.length + ' franchise(s) with formula errors');
+		}
+		
+		check.isHealthy = check.problems.length === 0;
+		check.totalCommitted = totalCommitted;
+		check.expectedCommitted = expectedCommitted;
+		
+		budgetChecks.push(check);
+		if (!check.isHealthy) {
+			budgetProblems.push(check);
+		}
+	});
+	
+	// ========== Pick Integrity Check ==========
+	var picks = await Pick.find({ season: { $gte: currentSeason } }).lean();
+	var expectedPicksPerSeason = expectedFranchiseCount * 10; // 12 franchises × 10 rounds = 120
+	
+	var picksBySeason = {};
+	picks.forEach(function(p) {
+		if (!picksBySeason[p.season]) {
+			picksBySeason[p.season] = [];
+		}
+		picksBySeason[p.season].push(p);
+	});
+	
+	var pickProblems = [];
+	var pickChecks = [];
+	
+	Object.keys(picksBySeason).sort().forEach(function(seasonStr) {
+		var season = parseInt(seasonStr, 10);
+		var seasonPicks = picksBySeason[season];
+		
+		var check = {
+			season: season,
+			pickCount: seasonPicks.length,
+			expectedPickCount: expectedPicksPerSeason,
+			problems: []
+		};
+		
+		// Check count
+		if (check.pickCount !== expectedPicksPerSeason) {
+			check.problems.push('Wrong pick count: ' + check.pickCount + ' (expected ' + expectedPicksPerSeason + ')');
+		}
+		
+		// Check each round has correct number of picks
+		var picksByRound = {};
+		seasonPicks.forEach(function(p) {
+			if (!picksByRound[p.round]) {
+				picksByRound[p.round] = [];
+			}
+			picksByRound[p.round].push(p);
+		});
+		
+		for (var round = 1; round <= 10; round++) {
+			var roundPicks = picksByRound[round] || [];
+			if (roundPicks.length !== expectedFranchiseCount) {
+				check.problems.push('Round ' + round + ': ' + roundPicks.length + ' picks (expected ' + expectedFranchiseCount + ')');
+			}
+		}
+		
+		// Check all currentFranchiseIds are valid
+		var invalidOwners = seasonPicks.filter(function(p) {
+			return !franchiseIds.has(p.currentFranchiseId.toString());
+		});
+		if (invalidOwners.length > 0) {
+			check.problems.push(invalidOwners.length + ' pick(s) owned by invalid franchise');
+		}
+		
+		check.isHealthy = check.problems.length === 0;
+		pickChecks.push(check);
+		if (!check.isHealthy) {
+			pickProblems.push(check);
+		}
+	});
+	
+	// ========== Payroll Accuracy Check ==========
+	// Verify stored payroll matches calculated payroll from contracts
+	var payrollProblems = [];
+	var payrollChecks = [];
+	
+	budgets.forEach(function(b) {
+		var season = b.season;
+		var fIdStr = b.franchiseId.toString();
+		var franchise = franchiseMap[fIdStr];
+		
+		// Calculate payroll from contracts active in this season
+		var calculatedPayroll = 0;
+		allContracts.forEach(function(c) {
+			if (c.franchiseId.toString() !== fIdStr) return;
+			if (c.salary === null) return; // RFA rights
+			if (c.endYear && c.endYear < season) return; // Contract ended
+			if (c.startYear && c.startYear > season) return; // Contract hasn't started
+			calculatedPayroll += c.salary;
+		});
+		
+		if (b.payroll !== calculatedPayroll) {
+			payrollProblems.push({
+				franchiseName: franchise ? franchise.displayName : 'Unknown',
+				season: season,
+				stored: b.payroll,
+				calculated: calculatedPayroll,
+				diff: b.payroll - calculatedPayroll
+			});
+		}
+	});
+	
+	payrollChecks = {
+		totalChecked: budgets.length,
+		problemCount: payrollProblems.length,
+		isHealthy: payrollProblems.length === 0
+	};
+	
+	// ========== Contract Validity Check ==========
+	var players = await Player.find({}).lean();
+	var playerIds = new Set(players.map(function(p) { return p._id.toString(); }));
+	
+	var contractProblems = [];
+	
+	allContracts.forEach(function(c) {
+		var problems = [];
+		
+		// Check player exists
+		if (!playerIds.has(c.playerId.toString())) {
+			problems.push('references non-existent player');
+		}
+		
+		// Check franchise exists
+		if (!franchiseIds.has(c.franchiseId.toString())) {
+			problems.push('references non-existent franchise');
+		}
+		
+		// For active contracts (not RFA rights)
+		if (c.salary !== null) {
+			// Check year range makes sense
+			if (c.startYear && c.endYear && c.startYear > c.endYear) {
+				problems.push('startYear > endYear');
+			}
+			
+			// Check contract is still valid (endYear >= current season)
+			// Note: Expired contracts should have been cleaned up during rollover
+			if (c.endYear && c.endYear < currentSeason) {
+				problems.push('expired contract (endYear ' + c.endYear + ' < current ' + currentSeason + ')');
+			}
+		}
+		
+		if (problems.length > 0) {
+			var player = players.find(function(p) { return p._id.toString() === c.playerId.toString(); });
+			contractProblems.push({
+				playerId: c.playerId.toString(),
+				playerName: player ? player.name : 'Unknown',
+				franchiseName: franchiseMap[c.franchiseId.toString()]?.displayName || 'Unknown',
+				problems: problems
+			});
+		}
+	});
+	
+	var contractChecks = {
+		totalContracts: allContracts.length,
+		problemCount: contractProblems.length,
+		isHealthy: contractProblems.length === 0
+	};
+	
+	// ========== RFA Shape Check ==========
+	var rfaContracts = allContracts.filter(function(c) { return c.salary === null; });
+	var rfaProblems = [];
+	
+	rfaContracts.forEach(function(c) {
+		var problems = [];
+		
+		// RFA rights should have null salary, startYear, endYear
+		if (c.startYear !== null && c.startYear !== undefined) {
+			problems.push('has startYear set');
+		}
+		if (c.endYear !== null && c.endYear !== undefined) {
+			problems.push('has endYear set');
+		}
+		
+		if (problems.length > 0) {
+			var player = players.find(function(p) { return p._id.toString() === c.playerId.toString(); });
+			rfaProblems.push({
+				playerName: player ? player.name : 'Unknown',
+				franchiseName: franchiseMap[c.franchiseId.toString()]?.displayName || 'Unknown',
+				problems: problems
+			});
+		}
+	});
+	
+	var rfaChecks = {
+		totalRfaRights: rfaContracts.length,
+		problemCount: rfaProblems.length,
+		isHealthy: rfaProblems.length === 0
+	};
+	
+	// ========== Regime Coverage Check ==========
+	var regimeProblems = [];
+	
+	franchises.forEach(function(f) {
+		var fIdStr = f._id.toString();
+		
+		// Find all active tenures for this franchise
+		var activeTenures = [];
+		regimes.forEach(function(r) {
+			r.tenures.forEach(function(t) {
+				if (t.franchiseId.toString() === fIdStr && t.endSeason === null) {
+					activeTenures.push({
+						regimeName: r.displayName
+					});
+				}
+			});
+		});
+		
+		if (activeTenures.length === 0) {
+			regimeProblems.push({
+				franchiseId: fIdStr,
+				franchiseName: franchiseMap[fIdStr]?.displayName || 'Unknown (ID: ' + fIdStr + ')',
+				problem: 'No active regime'
+			});
+		} else if (activeTenures.length > 1) {
+			regimeProblems.push({
+				franchiseId: fIdStr,
+				franchiseName: franchiseMap[fIdStr]?.displayName || 'Unknown',
+				problem: 'Multiple active regimes: ' + activeTenures.map(function(t) { return t.regimeName; }).join(', ')
+			});
+		}
+	});
+	
+	var regimeChecks = {
+		totalFranchises: franchises.length,
+		problemCount: regimeProblems.length,
+		isHealthy: regimeProblems.length === 0
+	};
+	
+	// ========== Pick Status Check ==========
+	// Used picks should have a transactionId (draft-select transaction)
+	var usedPicks = picks.filter(function(p) { return p.status === 'used'; });
+	var pickStatusProblems = [];
+	
+	usedPicks.forEach(function(p) {
+		if (!p.transactionId) {
+			pickStatusProblems.push({
+				season: p.season,
+				round: p.round,
+				problem: 'Used pick without transactionId'
+			});
+		}
+	});
+	
+	var pickStatusChecks = {
+		usedPickCount: usedPicks.length,
+		problemCount: pickStatusProblems.length,
+		isHealthy: pickStatusProblems.length === 0
+	};
+	
+	// ========== Trade Balance Check ==========
+	var trades = await Transaction.find({ type: 'trade' }).lean();
+	var tradeProblems = [];
+	
+	trades.forEach(function(t) {
+		if (!t.parties || t.parties.length < 2) {
+			tradeProblems.push({
+				tradeId: t.tradeId,
+				timestamp: t.timestamp,
+				problem: 'Trade has fewer than 2 parties'
+			});
+			return;
+		}
+		
+		// Count assets sent and received for each type
+		var playersSent = [];
+		var playersReceived = [];
+		var picksSent = [];
+		var picksReceived = [];
+		var cashSent = [];
+		var cashReceived = [];
+		var rfaSent = [];
+		var rfaReceived = [];
+		
+		t.parties.forEach(function(party) {
+			if (party.receives) {
+				if (party.receives.players) {
+					party.receives.players.forEach(function(p) {
+						playersReceived.push(p.playerId.toString());
+					});
+				}
+				if (party.receives.picks) {
+					party.receives.picks.forEach(function(p) {
+						picksReceived.push(p.season + '-' + p.round + '-' + p.fromFranchiseId.toString());
+					});
+				}
+				if (party.receives.cash) {
+					party.receives.cash.forEach(function(c) {
+						cashReceived.push({ amount: c.amount, season: c.season });
+					});
+				}
+				if (party.receives.rfaRights) {
+					party.receives.rfaRights.forEach(function(r) {
+						rfaReceived.push(r.playerId.toString());
+					});
+				}
+			}
+		});
+		
+		// In a valid trade, everything received by one party should equal what's sent by other parties
+		// For simplicity, we'll just check that there's at least something exchanged
+		var totalAssets = playersReceived.length + picksReceived.length + cashReceived.length + rfaReceived.length;
+		if (totalAssets === 0) {
+			tradeProblems.push({
+				tradeId: t.tradeId,
+				timestamp: t.timestamp,
+				problem: 'Trade has no assets exchanged'
+			});
+		}
+	});
+	
+	var tradeChecks = {
+		totalTrades: trades.length,
+		problemCount: tradeProblems.length,
+		isHealthy: tradeProblems.length === 0
+	};
+	
+	// ========== Future Budget Existence Check ==========
+	var requiredSeasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+	var missingBudgetSeasons = [];
+	
+	requiredSeasons.forEach(function(season) {
+		var seasonBudgets = budgetsBySeason[season] || [];
+		if (seasonBudgets.length < expectedFranchiseCount) {
+			missingBudgetSeasons.push({
+				season: season,
+				count: seasonBudgets.length,
+				expected: expectedFranchiseCount
+			});
+		}
+	});
+	
+	var futureBudgetChecks = {
+		requiredSeasons: requiredSeasons,
+		missingSeasons: missingBudgetSeasons,
+		isHealthy: missingBudgetSeasons.length === 0
+	};
+	
+	// ========== Overall Health ==========
+	var allHealthy = rosterProblems.length === 0 &&
+		budgetProblems.length === 0 &&
+		pickProblems.length === 0 &&
+		payrollChecks.isHealthy &&
+		contractChecks.isHealthy &&
+		rfaChecks.isHealthy &&
+		regimeChecks.isHealthy &&
+		pickStatusChecks.isHealthy &&
+		tradeChecks.isHealthy &&
+		futureBudgetChecks.isHealthy;
+	
+	var problemCount = rosterProblems.length +
+		budgetProblems.length +
+		pickProblems.length +
+		payrollProblems.length +
+		contractProblems.length +
+		rfaProblems.length +
+		regimeProblems.length +
+		pickStatusProblems.length +
+		tradeProblems.length +
+		missingBudgetSeasons.length;
+	
+	response.render('admin-sanity', {
+		currentSeason: currentSeason,
+		allHealthy: allHealthy,
+		problemCount: problemCount,
+		
+		// Roster
+		rosterChecks: rosterChecks,
+		rosterProblems: rosterProblems,
+		rosterLimit: LeagueConfig.ROSTER_LIMIT,
+		
+		// Budget
+		budgetChecks: budgetChecks,
+		budgetProblems: budgetProblems,
+		expectedTotalBase: expectedTotalBase,
+		
+		// Picks
+		pickChecks: pickChecks,
+		pickProblems: pickProblems,
+		expectedPicksPerSeason: expectedPicksPerSeason,
+		
+		// Payroll accuracy
+		payrollChecks: payrollChecks,
+		payrollProblems: payrollProblems,
+		
+		// Contract validity
+		contractChecks: contractChecks,
+		contractProblems: contractProblems,
+		
+		// RFA shape
+		rfaChecks: rfaChecks,
+		rfaProblems: rfaProblems,
+		
+		// Regime coverage
+		regimeChecks: regimeChecks,
+		regimeProblems: regimeProblems,
+		
+		// Pick status
+		pickStatusChecks: pickStatusChecks,
+		pickStatusProblems: pickStatusProblems,
+		
+		// Trade balance
+		tradeChecks: tradeChecks,
+		tradeProblems: tradeProblems,
+		
+		// Future budgets
+		futureBudgetChecks: futureBudgetChecks,
+		
+		activePage: 'admin'
+	});
+}
+
 // POST /admin/rosters/cut - cut a player
 async function cutPlayer(request, response) {
 	var franchiseId = request.body.franchiseId;
@@ -510,5 +1070,6 @@ module.exports = {
 	transferFranchiseForm: transferFranchiseForm,
 	transferFranchise: transferFranchise,
 	rostersPage: rostersPage,
-	cutPlayer: cutPlayer
+	cutPlayer: cutPlayer,
+	sanityPage: sanityPage
 };

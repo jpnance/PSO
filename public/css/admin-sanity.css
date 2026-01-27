@@ -1,0 +1,167 @@
+/* Sanity Check Dashboard */
+
+/* Overall health banner */
+.sanity__banner {
+	display: flex;
+	align-items: center;
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+	color: #fff;
+}
+
+.sanity__banner--healthy {
+	background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+.sanity__banner--warning {
+	background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.sanity__banner-icon {
+	font-size: 3rem;
+	margin-right: 1.25rem;
+	opacity: 0.9;
+}
+
+.sanity__banner-title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 0.25rem;
+}
+
+.sanity__banner-subtitle {
+	opacity: 0.9;
+}
+
+/* Summary cards */
+.sanity__summary-card {
+	display: flex;
+	align-items: center;
+	padding: 0.75rem 1rem;
+	border-radius: 0.375rem;
+	height: 100%;
+}
+
+.sanity__summary-card--ok {
+	background: #d4edda;
+	border: 1px solid #c3e6cb;
+}
+
+.sanity__summary-card--error {
+	background: #f8d7da;
+	border: 1px solid #f5c6cb;
+}
+
+.sanity__summary-icon {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 0.75rem;
+	flex-shrink: 0;
+}
+
+.sanity__summary-card--ok .sanity__summary-icon {
+	background: #28a745;
+	color: #fff;
+}
+
+.sanity__summary-card--error .sanity__summary-icon {
+	background: #dc3545;
+	color: #fff;
+}
+
+.sanity__summary-title {
+	font-weight: 600;
+	font-size: 0.9rem;
+	line-height: 1.2;
+}
+
+.sanity__summary-detail {
+	font-size: 0.8rem;
+	color: #666;
+}
+
+.sanity__summary-card--error .sanity__summary-detail {
+	color: #721c24;
+}
+
+/* Table styling */
+.sanity__table {
+	font-size: 0.9rem;
+}
+
+.sanity__table th {
+	border-top: none;
+	font-weight: 600;
+	color: var(--text-secondary);
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* Season blocks in budget section */
+.sanity__season-block {
+	background: #f8f9fa;
+	border-radius: 0.375rem;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.sanity__season-block:last-child {
+	margin-bottom: 0;
+}
+
+.sanity__season-block--warning {
+	background: #fff5f5;
+	border: 1px solid #f5c6cb;
+}
+
+.sanity__season-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.75rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sanity__season-body {
+	font-size: 0.9rem;
+}
+
+/* Problem items */
+.sanity__problem-item {
+	padding: 0.5rem 0;
+	border-bottom: 1px solid #eee;
+}
+
+.sanity__problem-item:last-child {
+	border-bottom: none;
+}
+
+/* Problems list */
+.sanity__problem {
+	color: #721c24;
+	font-size: 0.85rem;
+	margin-bottom: 0.25rem;
+}
+
+.sanity__problem:last-child {
+	margin-bottom: 0;
+}
+
+/* Formula errors */
+.sanity__formula-errors {
+	font-size: 0.8rem;
+}
+
+.sanity__formula-error {
+	padding: 0.25rem 0;
+}
+
+/* Card spacing */
+.card-body hr {
+	border-color: rgba(0, 0, 0, 0.1);
+}
