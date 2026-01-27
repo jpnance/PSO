@@ -25,34 +25,46 @@
 				if (!response.ok) throw new Error('Network response was not ok');
 				return response.text();
 			})
-			.then(function(html) {
-				var parser = new DOMParser();
-				var doc = parser.parseFromString(html, 'text/html');
-				
-				// Extract and swap content
-				var newTradeList = doc.getElementById('trade-list');
-				var newFilterSidebar = doc.getElementById('filter-sidebar');
-				var newPagination = doc.getElementById('pagination');
-				
-				if (newTradeList) {
-					tradeList.innerHTML = newTradeList.innerHTML;
+		.then(function(html) {
+			var parser = new DOMParser();
+			var doc = parser.parseFromString(html, 'text/html');
+			
+			// Preserve mobile filter collapse state before replacing
+			var pillsFilter = document.getElementById('pills-filters');
+			var wasOpen = pillsFilter && pillsFilter.classList.contains('show');
+			
+			// Extract and swap content
+			var newTradeList = doc.getElementById('trade-list');
+			var newFilterSidebar = doc.getElementById('filter-sidebar');
+			var newPagination = doc.getElementById('pagination');
+			
+			if (newTradeList) {
+				tradeList.innerHTML = newTradeList.innerHTML;
+			}
+			
+			if (newFilterSidebar) {
+				filterSidebar.innerHTML = newFilterSidebar.innerHTML;
+			}
+			
+			if (newPagination && pagination) {
+				pagination.innerHTML = newPagination.innerHTML;
+			}
+			
+			// Restore mobile filter collapse state
+			if (wasOpen) {
+				var newPillsFilter = document.getElementById('pills-filters');
+				if (newPillsFilter) {
+					newPillsFilter.classList.add('show');
 				}
-				
-				if (newFilterSidebar) {
-					filterSidebar.innerHTML = newFilterSidebar.innerHTML;
-				}
-				
-				if (newPagination && pagination) {
-					pagination.innerHTML = newPagination.innerHTML;
-				}
-				
-				// Update browser history
-				if (updateHistory) {
-					history.pushState({ tradeHistory: true }, '', url);
-				}
-				
-				setLoading(false);
-			})
+			}
+			
+			// Update browser history
+			if (updateHistory) {
+				history.pushState({ tradeHistory: true }, '', url);
+			}
+			
+			setLoading(false);
+		})
 			.catch(function(error) {
 				console.error('Trade history fetch error:', error);
 				setLoading(false);
