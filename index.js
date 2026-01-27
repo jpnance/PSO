@@ -52,44 +52,44 @@ app.use(async function(req, res, next) {
 		});
 		
 		// Get all current franchises for sidebar navigation
-		var regimes = await Regime.find({
-			$or: [
-				{ endSeason: null },
-				{ endSeason: { $gte: currentSeason } }
-			]
-		}).populate('ownerIds').lean();
+		var regimes = await Regime.find({ 'tenures.endSeason': null })
+			.populate('ownerIds')
+			.lean();
 		
-		// Filter to current regimes and sort by display name
-		var currentRegimes = regimes
-			.filter(function(r) {
-				return r.startSeason <= currentSeason &&
-					(r.endSeason === null || r.endSeason >= currentSeason);
-			})
-			.sort(function(a, b) {
-				return a.displayName.localeCompare(b.displayName);
+		// Build nav franchises from active tenures
+		var navFranchises = [];
+		regimes.forEach(function(r) {
+			r.tenures.forEach(function(t) {
+				if (t.endSeason === null && t.startSeason <= currentSeason) {
+					var franchise = franchiseById[t.franchiseId.toString()];
+					navFranchises.push({
+						rosterId: franchise ? franchise.rosterId : null,
+						displayName: r.displayName
+					});
+				}
 			});
-		
-		res.locals.navFranchises = currentRegimes.map(function(r) {
-			var franchise = franchiseById[r.franchiseId.toString()];
-			return {
-				rosterId: franchise ? franchise.rosterId : null,
-				displayName: r.displayName
-			};
 		});
+		navFranchises.sort(function(a, b) {
+			return a.displayName.localeCompare(b.displayName);
+		});
+		res.locals.navFranchises = navFranchises;
 		
 		// Find current user's franchise (if logged in)
 		if (req.user) {
-			var userRegime = currentRegimes.find(function(r) {
+			var userRegime = regimes.find(function(r) {
 				return r.ownerIds && r.ownerIds.some(function(owner) {
 					return owner._id.equals(req.user._id);
 				});
 			});
 			if (userRegime) {
-				var userFranchiseDoc = franchiseById[userRegime.franchiseId.toString()];
-				res.locals.userFranchise = {
-					rosterId: userFranchiseDoc ? userFranchiseDoc.rosterId : null,
-					displayName: userRegime.displayName
-				};
+				var activeTenure = userRegime.tenures.find(function(t) { return t.endSeason === null; });
+				if (activeTenure) {
+					var userFranchiseDoc = franchiseById[activeTenure.franchiseId.toString()];
+					res.locals.userFranchise = {
+						rosterId: userFranchiseDoc ? userFranchiseDoc.rosterId : null,
+						displayName: userRegime.displayName
+					};
+				}
 			}
 		}
 		

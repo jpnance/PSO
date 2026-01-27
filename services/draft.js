@@ -82,15 +82,17 @@ async function draftBoard(request, response) {
 	
 	// Get franchises and regimes for display names
 	var franchises = await Franchise.find({}).lean();
-	var regimes = await Regime.find({
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
-	}).lean();
+	var regimes = await Regime.find({}).lean();
 	
 	function getDisplayName(franchiseId) {
 		if (!franchiseId) return 'Unknown';
+		var fIdStr = franchiseId.toString();
 		var regime = regimes.find(function(r) {
-			return r.franchiseId.equals(franchiseId);
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season);
+			});
 		});
 		return regime ? regime.displayName : 'Unknown';
 	}
@@ -186,7 +188,7 @@ async function draftBoard(request, response) {
 	if (request.user) {
 		var userRegime = await Regime.findOne({
 			ownerIds: request.user._id,
-			$or: [{ endSeason: null }, { endSeason: { $gte: currentSeason } }]
+			'tenures.endSeason': null
 		});
 		if (userRegime) {
 			userFranchiseName = userRegime.displayName;

@@ -25,12 +25,7 @@ function formatDollars(amount, showPlus) {
 
 // Get display name for a franchise
 async function getFranchiseDisplayName(franchiseId, season) {
-	var regime = await Regime.findOne({
-		franchiseId: franchiseId,
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
-	});
-	return regime ? regime.displayName : 'Unknown';
+	return await Regime.getDisplayName(franchiseId, season);
 }
 
 /**

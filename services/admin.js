@@ -84,14 +84,16 @@ async function advanceSeasonForm(request, response) {
 	
 	// Get all franchises with their display names
 	var franchises = await Franchise.find({}).lean();
-	var regimes = await Regime.find({
-		startSeason: { $lte: newSeason },
-		$or: [{ endSeason: null }, { endSeason: { $gte: newSeason } }]
-	}).lean();
+	var regimes = await Regime.find({}).lean();
 	
 	var franchiseList = franchises.map(function(f) {
+		var fIdStr = f._id.toString();
 		var regime = regimes.find(function(r) {
-			return r.franchiseId.equals(f._id);
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= newSeason &&
+					(t.endSeason === null || t.endSeason >= newSeason);
+			});
 		});
 		return {
 			id: f._id.toString(),
@@ -284,12 +286,15 @@ async function transferFranchiseForm(request, response) {
 	// Get all franchises with their current regimes
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({
-		endSeason: null
+		'tenures.endSeason': null
 	}).populate('ownerIds').lean();
 	
 	var franchiseList = franchises.map(function(f) {
+		var fIdStr = f._id.toString();
 		var regime = regimes.find(function(r) {
-			return r.franchiseId.equals(f._id);
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr && t.endSeason === null;
+			});
 		});
 		var ownerNames = regime && regime.ownerIds 
 			? Regime.sortOwnerNames(regime.ownerIds).join(', ')
@@ -344,25 +349,53 @@ async function transferFranchise(request, response) {
 		person = await Person.create({ name: newOwnerName, username: username });
 	}
 	
-	// End the current regime
-	var currentRegime = await Regime.findOne({ 
-		franchiseId: franchiseId, 
-		endSeason: null 
+	// End the current tenure for this franchise
+	var currentRegime = await Regime.findOne({
+		'tenures': {
+			$elemMatch: {
+				franchiseId: franchiseId,
+				endSeason: null
+			}
+		}
 	});
 	
 	if (currentRegime) {
-		currentRegime.endSeason = effectiveSeason - 1;
+		// Find and update the specific tenure
+		currentRegime.tenures.forEach(function(t) {
+			if (t.franchiseId.toString() === franchiseId && t.endSeason === null) {
+				t.endSeason = effectiveSeason - 1;
+			}
+		});
 		await currentRegime.save();
 	}
 	
-	// Create the new regime
-	await Regime.create({
-		franchiseId: franchiseId,
-		displayName: newDisplayName,
-		ownerIds: [person._id],
-		startSeason: effectiveSeason,
-		endSeason: null
-	});
+	// Find or create the new regime (by displayName)
+	var newRegime = await Regime.findOne({ displayName: newDisplayName });
+	
+	if (newRegime) {
+		// Add new tenure to existing regime
+		newRegime.tenures.push({
+			franchiseId: franchiseId,
+			startSeason: effectiveSeason,
+			endSeason: null
+		});
+		// Update ownerIds if needed
+		if (!newRegime.ownerIds.some(function(id) { return id.equals(person._id); })) {
+			newRegime.ownerIds.push(person._id);
+		}
+		await newRegime.save();
+	} else {
+		// Create new regime
+		await Regime.create({
+			displayName: newDisplayName,
+			ownerIds: [person._id],
+			tenures: [{
+				franchiseId: franchiseId,
+				startSeason: effectiveSeason,
+				endSeason: null
+			}]
+		});
+	}
 	
 	response.redirect('/admin');
 }
@@ -375,10 +408,7 @@ async function rostersPage(request, response) {
 	
 	// Get all franchises with current regimes
 	var franchises = await Franchise.find({}).lean();
-	var regimes = await Regime.find({
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
-	}).lean();
+	var regimes = await Regime.find({}).lean();
 	
 	// Get all active contracts with player data
 	var contracts = await Contract.find({
@@ -387,8 +417,13 @@ async function rostersPage(request, response) {
 	
 	// Build franchise list with rosters
 	var franchiseList = franchises.map(function(f) {
+		var fIdStr = f._id.toString();
 		var regime = regimes.find(function(r) {
-			return r.franchiseId.equals(f._id);
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season);
+			});
 		});
 		
 		// Get this franchise's players

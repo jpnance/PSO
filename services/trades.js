@@ -10,17 +10,12 @@ var { formatMoney, formatContractYears, formatContractDisplay, ordinal } = requi
 
 async function getRegime(franchiseId, season) {
 	if (!franchiseId) return null;
-	return await Regime.findOne({
-		franchiseId: franchiseId,
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
-	});
+	return await Regime.findByFranchiseAndSeason(franchiseId, season);
 }
 
 
 async function getDisplayName(franchiseId, season) {
-	var regime = await getRegime(franchiseId, season);
-	return regime ? regime.displayName : 'Unknown';
+	return await Regime.getDisplayName(franchiseId, season);
 }
 
 function isPlural(regime) {
@@ -406,7 +401,7 @@ async function buildTradeDisplayData(trades, options) {
 
 // Get all current regimes for filter dropdown
 async function getCurrentRegimes() {
-	var regimes = await Regime.find({ endSeason: null })
+	var regimes = await Regime.find({ 'tenures.endSeason': null })
 		.sort({ displayName: 1 })
 		.lean();
 	return regimes;
@@ -416,11 +411,16 @@ async function getCurrentRegimes() {
 // Returns { current: [...], past: [...], all: [...] }
 async function getRegimesForFilter() {
 	var allRegimes = await Regime.find({})
-		.sort({ displayName: 1, startSeason: -1 })
+		.sort({ displayName: 1 })
 		.lean();
 	
-	var current = allRegimes.filter(function(r) { return r.endSeason === null; });
-	var past = allRegimes.filter(function(r) { return r.endSeason !== null; });
+	// A regime is "current" if any tenure has endSeason: null
+	var current = allRegimes.filter(function(r) {
+		return r.tenures.some(function(t) { return t.endSeason === null; });
+	});
+	var past = allRegimes.filter(function(r) {
+		return r.tenures.every(function(t) { return t.endSeason !== null; });
+	});
 	
 	return {
 		current: current,
@@ -435,10 +435,14 @@ async function getFranchisesForFilter() {
 	var franchises = await Franchise.find({}).sort({ rosterId: 1 }).lean();
 	var currentRegimes = await getCurrentRegimes();
 	
-	// Map franchise ID to current display name
+	// Map franchise ID to current display name (from active tenures)
 	var regimeMap = {};
 	currentRegimes.forEach(function(r) {
-		regimeMap[r.franchiseId.toString()] = r.displayName;
+		r.tenures.forEach(function(t) {
+			if (t.endSeason === null) {
+				regimeMap[t.franchiseId.toString()] = r.displayName;
+			}
+		});
 	});
 	
 	return franchises.map(function(f) {
@@ -452,7 +456,7 @@ async function getFranchisesForFilter() {
 }
 
 // Get all people organized for filtering
-// Returns { current: [...], past: [...], regimesByPerson: { personId: [regimes...] } }
+// Returns { current: [...], past: [...], regimesByPerson: { personId: [tenures...] } }
 async function getPeopleForFilter() {
 	// Get all people
 	var people = await Person.find({}).sort({ name: 1 }).lean();
@@ -462,7 +466,7 @@ async function getPeopleForFilter() {
 		.populate('ownerIds', 'name')
 		.lean();
 	
-	// Build a map of person ID -> regimes they were part of
+	// Build a map of person ID -> tenures they were part of
 	var regimesByPerson = {};
 	allRegimes.forEach(function(regime) {
 		(regime.ownerIds || []).forEach(function(owner) {
@@ -470,22 +474,25 @@ async function getPeopleForFilter() {
 			if (!regimesByPerson[personId]) {
 				regimesByPerson[personId] = [];
 			}
-			regimesByPerson[personId].push({
-				franchiseId: regime.franchiseId,
-				startSeason: regime.startSeason,
-				endSeason: regime.endSeason
+			// Add all tenures for this regime
+			regime.tenures.forEach(function(t) {
+				regimesByPerson[personId].push({
+					franchiseId: t.franchiseId,
+					startSeason: t.startSeason,
+					endSeason: t.endSeason
+				});
 			});
 		});
 	});
 	
-	// Categorize people as current (has at least one active regime) or past
+	// Categorize people as current (has at least one active tenure) or past
 	var currentPeople = [];
 	var pastPeople = [];
 	
 	people.forEach(function(person) {
-		var personRegimes = regimesByPerson[person._id.toString()] || [];
-		var hasActiveRegime = personRegimes.some(function(r) {
-			return r.endSeason === null;
+		var personTenures = regimesByPerson[person._id.toString()] || [];
+		var hasActiveTenure = personTenures.some(function(t) {
+			return t.endSeason === null;
 		});
 		
 		var personData = {
@@ -494,9 +501,9 @@ async function getPeopleForFilter() {
 			name: person.name
 		};
 		
-		if (hasActiveRegime) {
+		if (hasActiveTenure) {
 			currentPeople.push(personData);
-		} else if (personRegimes.length > 0) {
+		} else if (personTenures.length > 0) {
 			pastPeople.push(personData);
 		}
 	});
@@ -509,29 +516,23 @@ async function getPeopleForFilter() {
 }
 
 // Check if a person was managing a party in a trade at the time of the trade
-function personWasPartyAtTime(personRegimes, tradeYear, partyFranchiseIds) {
-	// Find regimes where this person was active at tradeYear
-	var activeRegimes = personRegimes.filter(function(r) {
-		return r.startSeason <= tradeYear && 
-		       (r.endSeason === null || r.endSeason >= tradeYear);
+function personWasPartyAtTime(personTenures, tradeYear, partyFranchiseIds) {
+	// Find tenures where this person was active at tradeYear
+	var activeTenures = personTenures.filter(function(t) {
+		return t.startSeason <= tradeYear && 
+		       (t.endSeason === null || t.endSeason >= tradeYear);
 	});
 	
-	// Check if any of those regimes' franchises were parties to the trade
-	return activeRegimes.some(function(r) {
-		return partyFranchiseIds.includes(r.franchiseId.toString());
+	// Check if any of those tenures' franchises were parties to the trade
+	return activeTenures.some(function(t) {
+		return partyFranchiseIds.includes(t.franchiseId.toString());
 	});
 }
 
 // Check if a regime was active and was a party in a trade at the time
 function regimeWasPartyAtTime(regime, tradeYear, partyFranchiseIds) {
-	// Check if regime was active at trade time
-	var wasActive = regime.startSeason <= tradeYear && 
-	                (regime.endSeason === null || regime.endSeason >= tradeYear);
-	
-	if (!wasActive) return false;
-	
-	// Check if regime's franchise was a party
-	return partyFranchiseIds.includes(regime.franchiseId.toString());
+	// Use the static helper from the model
+	return Regime.wasPartyAtTime(regime, tradeYear, partyFranchiseIds);
 }
 
 async function tradeHistory(request, response) {
@@ -716,9 +717,14 @@ async function singleTrade(request, response) {
 	
 	// Get franchise IDs involved in this trade for quick filtering links
 	var involvedFranchises = (trade.parties || []).map(function(party) {
-		var regime = regimes.find(function(r) { return r.franchiseId.toString() === party.franchiseId.toString(); });
+		var partyFId = party.franchiseId.toString();
+		var regime = regimes.find(function(r) {
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === partyFId && t.endSeason === null;
+			});
+		});
 		return {
-			franchiseId: party.franchiseId.toString(),
+			franchiseId: partyFId,
 			displayName: regime ? regime.displayName : 'Unknown'
 		};
 	});

@@ -55,10 +55,13 @@ async function createMockFranchise(name, rosterId) {
 	});
 	
 	var regime = await Regime.create({
-		franchiseId: franchise._id,
 		displayName: TEST_PREFIX + name,
-		startSeason: TEST_SEASON - 5,
-		endSeason: null
+		ownerIds: [],
+		tenures: [{
+			franchiseId: franchise._id,
+			startSeason: TEST_SEASON - 5,
+			endSeason: null
+		}]
 	});
 	
 	mockData.franchises.push(franchise);

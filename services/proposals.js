@@ -69,12 +69,7 @@ async function generateTradeSlug() {
 async function getTradeData(currentSeason) {
 	// Get all franchises and their current regimes
 	var franchises = await Franchise.find({}).lean();
-	var regimes = await Regime.find({
-		$or: [
-			{ endSeason: null },
-			{ endSeason: { $gte: currentSeason } }
-		]
-	}).lean();
+	var regimes = await Regime.find({}).lean();
 	
 	// Get all contracts with player data
 	var contracts = await Contract.find({})
@@ -100,10 +95,13 @@ async function getTradeData(currentSeason) {
 	
 	// Build franchise list with display names and budget info
 	var franchiseList = franchises.map(function(f) {
+		var fIdStr = f._id.toString();
 		var regime = regimes.find(function(r) {
-			return r.franchiseId.equals(f._id) &&
-				r.startSeason <= currentSeason &&
-				(r.endSeason === null || r.endSeason >= currentSeason);
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= currentSeason &&
+					(t.endSeason === null || t.endSeason >= currentSeason);
+			});
 		});
 		
 		// Get active contracts (with salary, for current season)
@@ -131,10 +129,14 @@ async function getTradeData(currentSeason) {
 	
 	// Helper to get franchise name by ID
 	function getFranchiseName(franchiseId, season) {
+		var targetFId = franchiseId.toString();
+		var targetSeason = season || currentSeason;
 		var regime = regimes.find(function(r) {
-			return r.franchiseId.equals(franchiseId) &&
-				r.startSeason <= (season || currentSeason) &&
-				(r.endSeason === null || r.endSeason >= (season || currentSeason));
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === targetFId &&
+					t.startSeason <= targetSeason &&
+					(t.endSeason === null || t.endSeason >= targetSeason);
+			});
 		});
 		return regime ? regime.displayName : 'Unknown';
 	}
@@ -538,13 +540,7 @@ async function getFranchiseDisplayName(franchiseId) {
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : new Date().getFullYear();
 	
-	var regime = await Regime.findOne({
-		franchiseId: franchiseId,
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
-	});
-	
-	return regime ? regime.displayName : 'Unknown';
+	return await Regime.getDisplayName(franchiseId, season);
 }
 
 // Get regime with owner first names populated
@@ -552,16 +548,21 @@ async function getFranchiseDisplayName(franchiseId) {
 async function getUserFranchises(user) {
 	if (!user) return [];
 	
-	var config = await LeagueConfig.findById('pso');
-	var season = config ? config.season : new Date().getFullYear();
-	
 	var regimes = await Regime.find({
 		ownerIds: user._id,
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
+		'tenures.endSeason': null
 	});
 	
-	return regimes.map(function(r) { return r.franchiseId; });
+	// Extract franchise IDs from active tenures
+	var franchiseIds = [];
+	regimes.forEach(function(r) {
+		r.tenures.forEach(function(t) {
+			if (t.endSeason === null) {
+				franchiseIds.push(t.franchiseId);
+			}
+		});
+	});
+	return franchiseIds;
 }
 
 // Check if user owns a specific franchise

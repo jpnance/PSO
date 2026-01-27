@@ -206,7 +206,10 @@ block content
 												| #{regime.sortedOwnerNames.join(', ')}
 										td.text-right.text-muted.align-middle
 											if regime.endSeason
-												| #{regime.startSeason}–#{regime.endSeason}
+												if regime.startSeason === regime.endSeason
+													| #{regime.startSeason}
+												else
+													| #{regime.startSeason}–#{regime.endSeason}
 											else
 												| #{regime.startSeason}–present
 					else

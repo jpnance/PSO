@@ -51,10 +51,13 @@ async function setupMockWorld() {
 		});
 		
 		await Regime.create({
-			franchiseId: FRANCHISE_IDS[i],
 			displayName: 'Franchise ' + (i + 1),
 			ownerIds: [],
-			startSeason: 2008
+			tenures: [{
+				franchiseId: FRANCHISE_IDS[i],
+				startSeason: 2008,
+				endSeason: null
+			}]
 		});
 		
 		// Create budgets for current and next season

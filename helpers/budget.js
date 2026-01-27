@@ -30,12 +30,7 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 	var franchiseNames = {};
 	for (var i = 0; i < franchiseIds.length; i++) {
 		var fId = franchiseIds[i];
-		var regime = await Regime.findOne({
-			franchiseId: fId,
-			startSeason: { $lte: currentSeason },
-			$or: [{ endSeason: null }, { endSeason: { $gte: currentSeason } }]
-		});
-		franchiseNames[fId] = regime ? regime.displayName : 'Unknown';
+		franchiseNames[fId] = await Regime.getDisplayName(fId, currentSeason);
 	}
 	
 	// Sort franchise IDs alphabetically by name

@@ -14,12 +14,7 @@ function isPlural(name) {
 // Get display name for a franchise at a given season
 async function getDisplayName(franchiseId, season) {
 	if (!franchiseId) return 'Unknown';
-	var regime = await Regime.findOne({
-		franchiseId: franchiseId,
-		startSeason: { $lte: season },
-		$or: [{ endSeason: null }, { endSeason: { $gte: season } }]
-	});
-	return regime ? regime.displayName : 'Unknown';
+	return await Regime.getDisplayName(franchiseId, season);
 }
 
 // GET /admin/trades - search/redirect to trade
