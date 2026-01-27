@@ -53,4 +53,10 @@ let psoBlogPoll = function() {
 		});
 };
 
-setInterval(psoBlogPoll, interval);
+let pollInterval = setInterval(psoBlogPoll, interval);
+
+process.on('SIGTERM', () => {
+	console.log('SIGTERM received, shutting down...');
+	clearInterval(pollInterval);
+	process.exit(0);
+});
