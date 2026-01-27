@@ -2,17 +2,7 @@
 // Computes final standings including playoff results
 
 var Game = require('../models/Game');
-
-// Sort by wins (desc), then ties (desc), then total points (desc)
-function recordSort(a, b) {
-	if (a.wins != b.wins) {
-		return b.wins - a.wins;
-	}
-	if (a.ties != b.ties) {
-		return b.ties - a.ties;
-	}
-	return b.tiebreaker - a.tiebreaker;
-}
+var tiebreaker = require('./tiebreaker');
 
 // Build standings from game data for a given season
 async function getStandingsForSeason(season) {
@@ -22,6 +12,9 @@ async function getStandingsForSeason(season) {
 	if (!games || games.length === 0) {
 		return null;
 	}
+
+	// Build H2H data for tiebreaker
+	var h2h = tiebreaker.buildH2HData(games);
 
 	// Build owners object using franchiseId as key
 	var owners = {};
@@ -68,9 +61,21 @@ async function getStandingsForSeason(season) {
 		}
 	});
 
+	// Determine total regular season games based on era
+	// Division era (2008-2011): 10 teams × 14 weeks / 2 = 70 games
+	// Expansion era (2012-2020): 12 teams × 14 weeks / 2 = 84 games
+	// Modern era (2021+): 12 teams × 15 weeks / 2 = 90 games
+	var totalRegularSeasonGames;
+	if (season <= 2011) {
+		totalRegularSeasonGames = 70; // 10 teams, 14 weeks
+	} else if (season < 2021) {
+		totalRegularSeasonGames = 84; // 12 teams, 14 weeks
+	} else {
+		totalRegularSeasonGames = 90; // 12 teams, 15 weeks
+	}
+
 	// Count regular season games with scores
 	var gamesWithScores = 0;
-	var totalRegularSeasonGames = 90; // 12 teams × 15 weeks / 2
 
 	// Second pass: process game results
 	games.forEach(function(game) {
@@ -156,12 +161,7 @@ async function getStandingsForSeason(season) {
 	});
 
 	// Build standings array
-	var allTeams = [];
-	for (var ownerId in owners) {
-		// Set tiebreaker to pointsFor for sorting
-		owners[ownerId].tiebreaker = owners[ownerId].pointsFor;
-		allTeams.push(owners[ownerId]);
-	}
+	var allTeams = Object.values(owners);
 
 	// Separate playoff teams from non-playoff teams
 	var playoffTeams = allTeams.filter(function(t) { return t.playoffFinish !== null; });
@@ -173,11 +173,11 @@ async function getStandingsForSeason(season) {
 		return finishOrder[a.playoffFinish] - finishOrder[b.playoffFinish];
 	});
 
-	// Sort non-playoff teams by record
-	nonPlayoffTeams.sort(recordSort);
+	// Sort non-playoff teams by record with proper tiebreaker
+	var sortedNonPlayoff = tiebreaker.sortByRecord(nonPlayoffTeams, h2h, season);
 
 	// Combine: playoff teams first, then non-playoff teams
-	var standings = playoffTeams.concat(nonPlayoffTeams);
+	var standings = playoffTeams.concat(sortedNonPlayoff);
 
 	// Determine if standings are finalized (all regular season games played)
 	var isFinal = gamesWithScores >= totalRegularSeasonGames;

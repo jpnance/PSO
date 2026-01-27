@@ -66,6 +66,19 @@
 	--color-warning: #ffc107;
 	--color-info: #17a2b8;
 	
+	/* Medal colors - for standings */
+	--medal-gold-bg: #fff9e6;
+	--medal-gold-bg-user: #fff0b3;
+	--medal-gold-text: #b8860b;
+	
+	--medal-silver-bg: #f8f8f8;
+	--medal-silver-bg-user: #e0e0e0;
+	--medal-silver-text: #71706e;
+	
+	--medal-bronze-bg: #fff5ef;
+	--medal-bronze-bg-user: #ffe0cc;
+	--medal-bronze-text: #cd7f32;
+	
 	/* Page background */
 	--page-bg: #f8f9fa;
 	

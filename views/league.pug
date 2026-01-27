@@ -91,6 +91,9 @@ block content
 												if team.isPlayoffTeam
 													br
 													span.playoff-stat #{formatPoints(team.playoffPointsAgainst)}
+						a.card-footer-link(href='/standings?season=' + standings.season)
+							span View Full Standings
+							i.fa.fa-chevron-right
 			
 			//- Schedule widget
 			if schedule && schedule.sections && schedule.sections.length > 0

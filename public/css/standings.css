@@ -1,0 +1,447 @@
+/* Standings Page */
+
+.standings__header {
+	margin-bottom: 0.5rem;
+}
+
+.standings__header h1 {
+	margin-bottom: 0;
+}
+
+.standings__header h1 {
+	margin: 0;
+}
+
+.standings__status {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	font-size: 0.875rem;
+}
+
+.standings__status-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	font-weight: 500;
+}
+
+.standings__status-badge--final {
+	background-color: #d4edda;
+	color: #155724;
+}
+
+.standings__status-badge--in-progress {
+	background-color: #fff3cd;
+	color: #856404;
+}
+
+.standings__tiebreaker {
+	color: #6c757d;
+}
+
+/* Main Standings Table */
+.standings-table {
+	font-size: 0.9rem;
+}
+
+.standings-table thead th {
+	border-top: none;
+	font-weight: 600;
+	font-size: 0.75rem;
+	color: #6c757d;
+	text-transform: uppercase;
+	padding: 0.5rem;
+	background-color: #f8f9fa;
+}
+
+.standings-table tbody td {
+	vertical-align: middle;
+	padding: 0.6rem 0.5rem;
+}
+
+.standings-table .col-rank {
+	width: 3rem;
+	text-align: center;
+}
+
+.standings-table .col-name {
+	min-width: 120px;
+}
+
+.standings-table .col-record {
+	width: 5rem;
+}
+
+
+.standings-table .col-pf,
+.standings-table .col-pa,
+.standings-table .col-diff {
+	width: 5.5rem;
+}
+
+.standings-table .col-playoff {
+	width: 5rem;
+}
+
+.standings-table .col-allplay {
+	width: 6rem;
+}
+
+.standings-table .col-stern {
+	width: 6rem;
+}
+
+.standings-table__rank {
+	font-weight: 600;
+	color: #6c757d;
+	text-align: center;
+}
+
+.standings-table__name {
+	font-weight: 400;
+}
+
+.standings-table__record {
+	font-weight: 400;
+}
+
+/* Playoff teams get bold name and record */
+.standings-table__row--playoff .standings-table__name,
+.standings-table__row--playoff .standings-table__record {
+	font-weight: 600;
+}
+
+
+/* Playoff stats shown under regular season stats */
+.standings-table__playoff-stat {
+	font-size: 0.8em;
+	color: #6c757d;
+}
+
+/* Playoff finish badges */
+.standings-table__finish-badge {
+	display: inline-block;
+	font-size: 0.7rem;
+	font-weight: 600;
+	padding: 0.15rem 0.4rem;
+	border-radius: 3px;
+}
+
+.standings-table__finish-badge--champ {
+	background-color: var(--medal-gold-bg);
+	color: var(--medal-gold-text);
+}
+
+.standings-table__finish-badge--second {
+	background-color: var(--medal-silver-bg);
+	color: var(--medal-silver-text);
+}
+
+.standings-table__finish-badge--third {
+	background-color: var(--medal-bronze-bg);
+	color: var(--medal-bronze-text);
+}
+
+.standings-table__finish-badge--fourth {
+	background-color: #f8f9fa;
+	color: #6c757d;
+}
+
+/* User's team highlight */
+.standings-table__row--user {
+	background-color: #e8f4fd !important;
+}
+
+.standings-table__row--user td {
+	font-weight: 600;
+}
+
+/* Gold/Silver/Bronze for final standings */
+.standings-table__row--gold td {
+	background-color: var(--medal-gold-bg);
+}
+
+.standings-table__row--gold .standings-table__rank {
+	color: var(--medal-gold-text);
+}
+
+.standings-table__row--gold.standings-table__row--user td {
+	background-color: var(--medal-gold-bg-user);
+}
+
+.standings-table__row--silver td {
+	background-color: var(--medal-silver-bg);
+}
+
+.standings-table__row--silver .standings-table__rank {
+	color: var(--medal-silver-text);
+}
+
+.standings-table__row--silver.standings-table__row--user td {
+	background-color: var(--medal-silver-bg-user);
+}
+
+.standings-table__row--bronze td {
+	background-color: var(--medal-bronze-bg);
+}
+
+.standings-table__row--bronze .standings-table__rank {
+	color: var(--medal-bronze-text);
+}
+
+.standings-table__row--bronze.standings-table__row--user td {
+	background-color: var(--medal-bronze-bg-user);
+}
+
+/* Playoff cutoff line */
+.standings-table__row--cutoff td {
+	border-bottom: 2px solid #6c757d;
+}
+
+/* Playoff Games */
+.standings__playoff-separator {
+	margin: 0.5rem 0 1rem;
+	border: none;
+	border-top: 1px solid var(--border-light);
+}
+
+.standings__game-wrapper {
+	padding: 0.75rem 1rem;
+	border-radius: 6px;
+	border: 1px solid var(--border-light);
+	background-color: #fff;
+}
+
+.standings__game-wrapper--championship {
+	background: linear-gradient(135deg, var(--medal-gold-bg) 0%, #ffeeba 100%);
+	border-color: #ffc107;
+}
+
+.standings__game-wrapper--thirdPlace {
+	background: linear-gradient(135deg, var(--medal-bronze-bg) 0%, #ffe4d1 100%);
+	border-color: #cd7f32;
+}
+
+.standings__game-label {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #6c757d;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+}
+
+.standings__matchup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.standings__competitor {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.25rem 0;
+}
+
+.standings__competitor--winner {
+	font-weight: 600;
+}
+
+.standings__competitor--loser {
+	color: #6c757d;
+}
+
+.standings__team-name {
+	flex: 1;
+}
+
+.standings__seed {
+	color: #6c757d;
+	font-size: 0.85em;
+}
+
+.standings__result {
+	display: flex;
+	align-items: center;
+}
+
+.standings__score {
+	font-weight: 500;
+	min-width: 4rem;
+	text-align: right;
+}
+
+.standings__chevron {
+	margin-left: 0.3em;
+	visibility: hidden;
+}
+
+.standings__competitor--winner .standings__chevron {
+	visibility: visible;
+}
+
+/* Legend */
+.standings__legend {
+	padding: 1rem;
+	background-color: #f8f9fa;
+	border-radius: 6px;
+}
+
+.standings__legend h6 {
+	margin-bottom: 0.5rem;
+	color: #495057;
+}
+
+.standings__legend p {
+	margin-bottom: 0.5rem;
+}
+
+.standings__legend p:last-child {
+	margin-bottom: 0;
+}
+
+/* Division column */
+.standings-table .col-division {
+	width: 7rem;
+}
+
+.standings-table__division-name {
+	font-size: 0.85em;
+	color: #6c757d;
+}
+
+/* Badges for division winner and wild card */
+.standings-table__badge {
+	display: inline-block;
+	font-size: 0.65rem;
+	font-weight: 600;
+	padding: 0.15rem 0.35rem;
+	border-radius: 3px;
+	margin-left: 0.5rem;
+	vertical-align: middle;
+}
+
+.standings-table__badge--div {
+	background-color: #e3f2fd;
+	color: #1565c0;
+}
+
+.standings-table__badge--wc {
+	background-color: #fce4ec;
+	color: #c2185b;
+}
+
+.standings-table__badge--seed {
+	background-color: #e8f5e9;
+	color: #2e7d32;
+}
+
+/* Playoff seed in playoff grid */
+.standings__playoff-seed {
+	font-size: 0.75rem;
+	color: #6c757d;
+	margin-right: 0.25rem;
+}
+
+/* Playoff team division */
+.standings__playoff-division {
+	font-size: 0.75rem;
+	color: #6c757d;
+	margin-top: 0.25rem;
+}
+
+/* Division standings section */
+.standings__division-title {
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	color: #495057;
+}
+
+/* Mini table for division breakdowns */
+.standings-table--mini {
+	font-size: 0.875rem;
+}
+
+.standings-table--mini td {
+	padding: 0.35rem 0.5rem;
+	border: none;
+}
+
+.standings-table--mini__rank {
+	width: 1.5rem;
+	color: #6c757d;
+	font-weight: 500;
+}
+
+.standings-table--mini__name {
+	font-weight: 500;
+}
+
+.standings-table--mini__record {
+	color: #6c757d;
+}
+
+.standings-table--mini__winner td {
+	background-color: #f8f9fa;
+}
+
+.standings-table--mini__winner .standings-table--mini__name {
+	font-weight: 600;
+}
+
+/* Responsive adjustments */
+
+/* Tablet: Tighten columns but show everything */
+@media (max-width: 991px) {
+	.standings-table .col-pf,
+	.standings-table .col-pa,
+	.standings-table .col-diff,
+	.standings-table__pf,
+	.standings-table__pa,
+	.standings-table__diff {
+		width: 5rem;
+	}
+	
+	.standings-table .col-allplay,
+	.standings-table .col-stern,
+	.standings-table__allplay,
+	.standings-table__stern {
+		width: 5rem;
+	}
+	
+	.standings-table .col-name {
+		min-width: 100px;
+	}
+}
+
+/* Small tablet / large phone: Hide division, stern, PA, +/- */
+/* Keep: Record, All-Play, PF */
+@media (max-width: 768px) {
+	.standings-table .col-division,
+	.standings-table__division,
+	.standings-table .col-stern,
+	.standings-table__stern,
+	.standings-table .col-pa,
+	.standings-table__pa,
+	.standings-table .col-diff,
+	.standings-table__diff {
+		display: none;
+	}
+	
+	.standings-table .col-name {
+		min-width: auto;
+	}
+}
+
+/* Small phone: Also hide all-play */
+/* Keep: Record, PF */
+@media (max-width: 576px) {
+	.standings-table .col-allplay,
+	.standings-table__allplay {
+		display: none;
+	}
+}
+

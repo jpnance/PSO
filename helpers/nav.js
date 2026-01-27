@@ -64,8 +64,8 @@ function buildNav(options) {
 			id: 'standings',
 			label: 'Standings',
 			icon: 'fa-trophy',
-			href: '#',
-			soon: true
+			href: '/standings',
+			active: isActive('standings')
 		},
 		{
 			id: 'trade-machine',

@@ -1,0 +1,205 @@
+extends layout.pug
+include mixins
+
+block title
+	+title(season + ' Standings')
+
+block styles
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/standings.css')
+
+block content
+	div.container-fluid.py-4
+		div.standings__header
+			h1 #{season} Standings
+		.mb-4
+			+seasonNav(season, quickSeasons, olderSeasons, 'Past Seasons', '/standings/')
+		
+		if !standings || !standings.standings || standings.standings.length === 0
+			div.alert.alert-info No standings data available for #{season}
+		else
+			div.row
+				div.col-lg-10.col-xl-8
+					if standings.isPreviousSeason
+						+alertBanner('info', 'fa-info-circle', 'Showing ' + season + ' final standings. The ' + (season + 1) + ' season has not yet begun.').mb-4
+					
+					//- Division era notice
+					if standings.hasDivisions
+						+alertBanner('secondary', 'fa-columns').mb-4
+							| This season used divisions: 
+							each div, idx in standings.divisions
+								if idx > 0
+									|  and 
+								strong= div.name
+							| . Division winners received automatic playoff berths.
+					
+					
+					//- Main standings table
+					div.card
+						div.card-body.p-0
+							table.table.table-hover.standings-table.mb-0
+								thead
+									tr
+										th.col-rank
+										th.col-name Team
+										if standings.hasDivisions
+											th.col-division Division
+										th.col-record.text-right Record
+										th.col-allplay.text-right(title='Weekly record against all opponents') All-Play
+										th.col-stern.text-right(title='Win-loss record plus above-median record') Stern
+										th.col-pf.text-right PF
+										th.col-pa.text-right PA
+										th.col-diff.text-right +/-
+								tbody
+									each team, idx in standings.standings
+										-
+											var rowClass = '';
+											if (standings.isFinal) {
+												if (idx === 0) rowClass = 'standings-table__row--gold';
+												else if (idx === 1) rowClass = 'standings-table__row--silver';
+												else if (idx === 2) rowClass = 'standings-table__row--bronze';
+											}
+											var isPlayoffCutoff = idx === 3;
+											var isUserTeam = userFranchiseIds && userFranchiseIds.includes(team.franchiseId);
+											var totalGames = team.wins + team.losses + team.ties;
+											var winPct = totalGames > 0 ? (team.wins + (team.ties * 0.5)) / totalGames : 0;
+										-
+											var rowClasses = [rowClass];
+											if (isPlayoffCutoff) rowClasses.push('standings-table__row--cutoff');
+											if (isUserTeam) rowClasses.push('standings-table__row--user');
+											if (team.isPlayoffTeam) rowClasses.push('standings-table__row--playoff');
+										tr(class=rowClasses.join(' '))
+											td.standings-table__rank= team.rank
+											td.standings-table__name
+												| #{team.name}
+												if team.playoffSeed
+													span.standings-table__badge.standings-table__badge--seed(title='#' + team.playoffSeed + ' Seed')= team.playoffSeed
+												if team.divisionWinner
+													span.standings-table__badge.standings-table__badge--div(title='Division Winner') D
+												if team.wildCard
+													span.standings-table__badge.standings-table__badge--wc(title='Wild Card') WC
+											if standings.hasDivisions
+												td.standings-table__division
+													span.standings-table__division-name= team.division
+											td.standings-table__record.text-right
+												| #{formatRecord(team.wins, team.losses, team.ties)}
+												if team.isPlayoffTeam
+													br
+													span.standings-table__playoff-stat #{team.playoffWins}-#{team.playoffLosses}
+											td.standings-table__allplay.text-right
+												if team.allPlay
+													| #{formatRecord(team.allPlay.wins, team.allPlay.losses, team.allPlay.ties)}
+													if team.isPlayoffTeam
+														br
+														span.standings-table__playoff-stat —
+											td.standings-table__stern.text-right
+												if team.stern
+													| #{formatRecord(team.stern.wins, team.stern.losses, team.stern.ties)}
+													if team.isPlayoffTeam
+														br
+														span.standings-table__playoff-stat —
+											td.standings-table__pf.text-right
+												| #{formatPoints(team.pointsFor)}
+												if team.isPlayoffTeam
+													br
+													span.standings-table__playoff-stat #{formatPoints(team.playoffPointsFor)}
+											td.standings-table__pa.text-right
+												| #{formatPoints(team.pointsAgainst)}
+												if team.isPlayoffTeam
+													br
+													span.standings-table__playoff-stat #{formatPoints(team.playoffPointsAgainst)}
+											td.standings-table__diff.text-right(class=(team.pointDiff >= 0 ? 'text-success' : 'text-danger'))
+												| #{team.pointDiff >= 0 ? '+' : ''}#{formatPoints(team.pointDiff)}
+												if team.isPlayoffTeam
+													-
+														var playoffDiff = team.playoffPointsFor - team.playoffPointsAgainst;
+													br
+													span.standings-table__playoff-stat(class=(playoffDiff >= 0 ? 'text-success' : 'text-danger'))
+														| #{playoffDiff >= 0 ? '+' : ''}#{formatPoints(playoffDiff)}
+					
+					//- Playoff games (if playoffs have started)
+					if standings.playoffGames && standings.playoffGames.length > 0
+						div.card.mt-4
+							div.card-header
+								i.fa.fa-trophy.mr-2
+								| Playoff Results
+							div.card-body
+								div.row
+									each game, idx in standings.playoffGames
+										-
+											// Add separator before championship round (after semifinals)
+											var isChampRound = game.type === 'championship' || game.type === 'thirdPlace';
+											var prevGame = idx > 0 ? standings.playoffGames[idx - 1] : null;
+											var showSeparator = isChampRound && prevGame && prevGame.type === 'semifinal';
+										if showSeparator
+											div.col-12
+												hr.standings__playoff-separator
+										div.col-sm-6.mb-3.mb-sm-2
+											div.standings__game-wrapper(class='standings__game-wrapper--' + game.type)
+												div.standings__game-label= game.label
+												div.standings__matchup
+													div.standings__competitor(class={
+														'standings__competitor--winner': game.away.won,
+														'standings__competitor--loser': game.home.won
+													})
+														span.standings__team-name
+															if game.away.seed
+																span.standings__seed ##{game.away.seed} 
+															= game.away.name
+														if game.away.score != null
+															span.standings__result
+																span.standings__score= formatScore(game.away.score)
+																span.standings__chevron ‹
+													div.standings__competitor(class={
+														'standings__competitor--winner': game.home.won,
+														'standings__competitor--loser': game.away.won
+													})
+														span.standings__team-name
+															if game.home.seed
+																span.standings__seed ##{game.home.seed} 
+															= game.home.name
+														if game.home.score != null
+															span.standings__result
+																span.standings__score= formatScore(game.home.score)
+																span.standings__chevron ‹
+					
+					//- Division standings (for division era)
+					if standings.hasDivisions && standings.divisions
+						div.card.mt-4
+							div.card-header
+								i.fa.fa-columns.mr-2
+								| Division Standings
+							div.card-body
+								div.row
+									each div in standings.divisions
+										div.col-md-6.mb-3.mb-md-0
+											h6.standings__division-title= div.name
+											table.table.table-sm.standings-table--mini.mb-0
+												tbody
+													-
+														// Use pre-computed division order from service (has proper tiebreaker applied)
+														var divOrder = standings.divisionStandings[div.name] || [];
+														var divTeams = standings.standings.filter(function(t) { return t.division === div.name; });
+														divTeams.sort(function(a, b) {
+															return divOrder.indexOf(a.franchiseId) - divOrder.indexOf(b.franchiseId);
+														});
+													each team, idx in divTeams
+														tr(class=(idx === 0 ? 'standings-table--mini__winner' : ''))
+															td.standings-table--mini__rank= idx + 1
+															td.standings-table--mini__name
+																| #{team.name}
+																if team.divisionWinner
+																	span.standings-table__badge.standings-table__badge--div D
+																if team.wildCard
+																	span.standings-table__badge.standings-table__badge--wc WC
+															td.standings-table--mini__record.text-right
+																| #{formatRecord(team.wins, team.losses, team.ties)}
+					
+					//- Legend/info
+					div.standings__legend.mt-4
+						p.text-muted.small.mb-1
+							| Tiebreaker: #{standings.tiebreakerStrategy.name}. 
+							= standings.tiebreakerStrategy.description
+						if standings.hasDivisions
+							p.text-muted.small.mb-0
+								| Division winners received automatic playoff berths; remaining spots went to wild cards.

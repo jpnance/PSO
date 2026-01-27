@@ -3,6 +3,7 @@ var jaguar = require('./services/jaguar');
 var simulator = require('./services/simulator');
 var scuttlebot = require('./services/scuttlebot');
 var league = require('./services/league');
+var standings = require('./services/standings');
 var admin = require('./services/admin');
 var adminPlayers = require('./services/admin-players');
 var adminTrades = require('./services/admin-trades');
@@ -39,6 +40,9 @@ module.exports = function(app) {
 	
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);
+	
+	app.get('/standings', standings.standingsPage);
+	app.get('/standings/:season', standings.standingsPage);
 	
 	app.get('/timeline', league.timeline);
 	
