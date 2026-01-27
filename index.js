@@ -17,6 +17,16 @@ app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
+// Block AI training crawlers
+app.use(function(req, res, next) {
+	var ua = req.get('User-Agent') || '';
+	if (ua.includes('ClaudeBot') || ua.includes('GPTBot')) {
+		return res.status(403).send('Bots not allowed');
+	}
+	next();
+});
+
 app.set('view engine', 'pug');
 
 // Attach session to all requests
