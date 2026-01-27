@@ -22,16 +22,18 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use(function(req, res, next) {
 	var ua = req.get('User-Agent') || '';
 	var blockedBots = [
-		'ClaudeBot',      // Anthropic AI training
-		'GPTBot',         // OpenAI AI training
-		'CCBot',          // Common Crawl (AI training)
+		'ClaudeBot', // Anthropic AI training
+		'Claude-SearchBot', // Anthropic AI training
+		'GPTBot', // OpenAI AI training
+		'CCBot', // Common Crawl (AI training)
 		'Google-Extended', // Google AI training (separate from search)
-		'Bytespider',     // ByteDance/TikTok
-		'Amazonbot',      // Amazon/Alexa
-		'SemrushBot',     // SEO crawler
-		'AhrefsBot',      // SEO crawler
-		'MJ12bot',        // Majestic SEO (aggressive)
-		'DotBot'          // Moz SEO
+		'Bytespider', // ByteDance/TikTok
+		'Amazonbot', // Amazon/Alexa
+		'SemrushBot', // SEO crawler
+		'AhrefsBot', // SEO crawler
+		'MJ12bot', // Majestic SEO (aggressive)
+		'DotBot', // Moz SEO
+		'AwarioBot', // SEO crawler
 	];
 	if (blockedBots.some(function(bot) { return ua.includes(bot); })) {
 		return res.status(403).send('Bots not allowed');
