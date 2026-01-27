@@ -81,11 +81,11 @@
 		var url = new URL(link.href, window.location.origin);
 		if (!url.pathname.match(/^\/trades\/?$/)) return false;
 		
-		// Must be inside the filter sidebar or pagination
-		return link.closest('#filter-sidebar') || link.closest('#pagination');
+		// Only filter sidebar links - pagination uses normal navigation
+		return !!link.closest('#filter-sidebar');
 	}
 	
-	// Event delegation for filter and pagination clicks
+	// Event delegation for filter clicks (pagination uses normal navigation)
 	document.addEventListener('click', function(e) {
 		var link = e.target.closest('a');
 		
