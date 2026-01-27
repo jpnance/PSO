@@ -60,7 +60,7 @@ a.trade-card__time {
 /* Trade number inside card (for list views) */
 .trade-card__trade-num {
 	font-weight: 600;
-	font-size: 0.9rem;
+	font-size: 1.1rem;
 }
 
 /* Pills inside filter sections */

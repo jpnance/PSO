@@ -150,12 +150,12 @@ block content
 							
 							each trade in trades
 								div.trade-card.trade-card--single(id="trade-" + trade.number)
-									div.trade-card__timestamp.trade-card__timestamp--inline
+									div.trade-card__trade-num
+										a.trade-history__title-link(href="/trades/" + trade.number) Trade ##{trade.number}
+									
+									div.trade-card__timestamp.trade-card__timestamp--inline.mb-2
 										a.trade-card__date(href="/trades/" + trade.number)= formatDateLong(trade.timestamp)
 										a.trade-card__time(href="/trades/" + trade.number)= formatTime(trade.timestamp)
-									
-									div.trade-card__trade-num.mb-2
-										a.trade-history__title-link(href="/trades/" + trade.number) Trade ##{trade.number}
 									
 									each party in trade.parties
 										+tradeParty(party)
