@@ -56,7 +56,7 @@ block content
 								button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 1)= currentSeason + 1
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 2)= currentSeason + 2
-							if isOwner
+							if isOwner && canCut
 								button.btn.btn-sm.btn-outline-secondary#manageToggle
 									i.fa.fa-scissors.mr-1
 									span.manage-label Manage
@@ -74,13 +74,13 @@ block content
 													span.franchise-roster-cards__salary= formatMoney(player.salary)
 													span.franchise-roster-cards__separator ·
 													span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
-												div.franchise-roster-cards__manage-details.text-muted
-													if isOwner
-														- var buyout1 = player.recoverable1 !== null ? player.salary - player.recoverable1 : null
-														- var buyout2 = player.recoverable2 !== null ? player.salary - player.recoverable2 : null
-														button.franchise-roster-cards__action(type='button' title='Cut player' data-player-id=player._id data-player-name=player.name data-salary=player.salary data-buyout0=buyout data-buyout1=buyout1 data-buyout2=buyout2 data-recoverable0=player.recoverable data-recoverable1=player.recoverable1 data-recoverable2=player.recoverable2 data-end-year=player.endYear)
-															i.fa.fa-scissors
-													span= '+' + formatMoney(player.recoverable)
+											div.franchise-roster-cards__manage-details.text-muted
+												if isOwner && canCut
+													- var buyout1 = player.recoverable1 !== null ? player.salary - player.recoverable1 : null
+													- var buyout2 = player.recoverable2 !== null ? player.salary - player.recoverable2 : null
+													button.franchise-roster-cards__action(type='button' title='Cut player' data-player-id=player._id data-player-name=player.name data-salary=player.salary data-buyout0=buyout data-buyout1=buyout1 data-buyout2=buyout2 data-recoverable0=player.recoverable data-recoverable1=player.recoverable1 data-recoverable2=player.recoverable2 data-end-year=player.endYear)
+														i.fa.fa-scissors
+												span= '+' + formatMoney(player.recoverable)
 													if player.recoverable1 !== null
 														span  / 
 														span= '+' + formatMoney(player.recoverable1)
@@ -216,7 +216,7 @@ block content
 						p.text-muted.mb-3.ml-3 No history available
 		
 		//- Cut confirmation modal
-		if isOwner
+		if isOwner && canCut
 			div.modal.fade#cutModal(tabindex='-1' role='dialog')
 				div.modal-dialog(role='document')
 					form.modal-content(method='POST' action='/franchise/' + franchise.rosterId + '/cut')

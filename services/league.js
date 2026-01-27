@@ -7,6 +7,7 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
+var Game = require('../models/Game');
 var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
 var transactionService = require('./transaction');
@@ -534,6 +535,25 @@ async function franchise(request, response) {
 			});
 		}
 		
+		// Determine if cuts are allowed for this franchise
+		var canCut = false;
+		if (config && config.areCutsEnabled()) {
+			if (phase === 'playoff-fa') {
+				// During playoff-fa, only playoff teams can cut
+				var isPlayoffTeam = await Game.exists({
+					season: currentSeason,
+					type: 'semifinal',
+					$or: [
+						{ 'away.franchiseId': franchiseDoc.rosterId },
+						{ 'home.franchiseId': franchiseDoc.rosterId }
+					]
+				});
+				canCut = !!isPlayoffTeam;
+			} else {
+				canCut = true;
+			}
+		}
+		
 		response.render('franchise', { 
 			franchise: data, 
 			currentSeason: currentSeason, 
@@ -541,7 +561,8 @@ async function franchise(request, response) {
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			activePage: 'franchise',
 			currentRosterId: data.rosterId,
-			isOwner: isOwner
+			isOwner: isOwner,
+			canCut: canCut
 		});
 	} catch (err) {
 		console.error(err);
@@ -1250,8 +1271,30 @@ async function cutPlayer(request, response) {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		
-		// TODO: Add areCutsEnabled() check when we define cut windows
-		// For now, allow cuts whenever
+		// Check if cuts are allowed in the current phase
+		if (config) {
+			var phase = config.getPhase();
+			
+			if (!config.areCutsEnabled()) {
+				return redirectWithError('Cuts are not allowed during the ' + phase.replace(/-/g, ' ') + ' phase');
+			}
+			
+			// During playoff-fa, only playoff teams can cut players
+			if (phase === 'playoff-fa') {
+				var isPlayoffTeam = await Game.exists({
+					season: currentSeason,
+					type: 'semifinal',
+					$or: [
+						{ 'away.franchiseId': franchiseDoc.rosterId },
+						{ 'home.franchiseId': franchiseDoc.rosterId }
+					]
+				});
+				
+				if (!isPlayoffTeam) {
+					return redirectWithError('Only playoff teams can cut players during the playoffs');
+				}
+			}
+		}
 		
 		// Check ownership
 		var regime = await Regime.findOne({

@@ -162,6 +162,18 @@ leagueConfigSchema.methods.isFAPlayoffOnly = function() {
 	return this.getPhase() === 'playoff-fa';
 };
 
+// Are cuts (drops) currently allowed?
+// Cuts are NOT allowed between Cut Day and FAAB (pre-season phase),
+// and NOT allowed during the dead period.
+// See rules: "Cut Day will occur prior to either of the drafts,
+// after which drops will not be allowed until after Free Agent Auction."
+leagueConfigSchema.methods.areCutsEnabled = function() {
+	var phase = this.getPhase();
+	// Cuts allowed: early-offseason (before cut day), regular-season, post-deadline, playoff-fa
+	// Cuts NOT allowed: pre-season (cut day through FAAB), dead-period
+	return ['early-offseason', 'regular-season', 'post-deadline', 'playoff-fa'].includes(phase);
+};
+
 var LeagueConfig = mongoose.model('LeagueConfig', leagueConfigSchema);
 
 // Expose the date computation helper as a static method

@@ -8,6 +8,7 @@ var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
+var Game = require('../models/Game');
 var budgetHelper = require('../helpers/budget');
 
 var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
@@ -778,6 +779,35 @@ async function processCut(cutDetails) {
 	// Find the player's active contract on this franchise
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// Check if cuts are allowed in the current phase
+	// Skip this check for admin/system operations (source !== 'manual')
+	if (cutDetails.source === 'manual' && config) {
+		var phase = config.getPhase();
+		var cutsAllowed = config.areCutsEnabled();
+		
+		if (!cutsAllowed) {
+			errors.push('Cuts are not allowed during the ' + phase.replace(/-/g, ' ') + ' phase');
+			return { success: false, errors: errors };
+		}
+		
+		// During playoff-fa, only playoff teams can cut players
+		if (phase === 'playoff-fa') {
+			var isPlayoffTeam = await Game.exists({
+				season: currentSeason,
+				type: 'semifinal',
+				$or: [
+					{ 'away.franchiseId': franchise.rosterId },
+					{ 'home.franchiseId': franchise.rosterId }
+				]
+			});
+			
+			if (!isPlayoffTeam) {
+				errors.push('Only playoff teams can cut players during the playoff FA phase');
+				return { success: false, errors: errors };
+			}
+		}
+	}
 	
 	var contract = await Contract.findOne({
 		playerId: cutDetails.playerId,
