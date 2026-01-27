@@ -98,7 +98,7 @@ echo ""
 # =============================================================================
 
 # Collections created by the migration (safe to drop)
-MIGRATION_COLLECTIONS="franchises people regimes players contracts budgets picks transactions leagueconfigs rosters proposals"
+MIGRATION_COLLECTIONS="franchises people regimes players contracts budgets picks transactions leagueconfigs rosters proposals seasons"
 
 # Collections to preserve (pre-existing data)
 # games, championships, playoffAppearances, regularSeasonWinningPercentage, 
@@ -275,6 +275,15 @@ if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/maintenance/apply-fixups.js"
 else
     $DOCKER_COMPOSE run --rm web node data/maintenance/apply-fixups.js
+fi
+echo ""
+
+# Step 11: Compute season data (playoff seeds, results)
+echo "=== Step 11: Computing season data ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/analysis/seasons.js"
+else
+    $DOCKER_COMPOSE run --rm web node data/analysis/seasons.js
 fi
 echo ""
 

@@ -72,7 +72,7 @@ block content
 											td.standings-table__rank= team.rank
 											td.standings-table__name
 												| #{team.name}
-												if team.playoffSeed
+												if standings.isFinal && team.playoffSeed
 													span.standings-table__badge.standings-table__badge--seed(title='#' + team.playoffSeed + ' Seed')= team.playoffSeed
 												if team.divisionWinner
 													span.standings-table__badge.standings-table__badge--div(title='Division Winner') D

@@ -1,188 +1,169 @@
-// Standings computation logic
-// Computes final standings including playoff results
+// Standings helper for homepage widget
+// Reads from Season model when available
 
+var Season = require('../models/Season');
 var Game = require('../models/Game');
 var tiebreaker = require('./tiebreaker');
 
-// Build standings from game data for a given season
+/**
+ * Get standings for a season (for homepage widget)
+ * Reads from Season model, falls back to computing from games
+ */
 async function getStandingsForSeason(season) {
-	// Get ALL games for the season (regular + playoffs)
-	var games = await Game.find({ season: season }).lean();
+	// Try to load pre-computed season data
+	var seasonDoc = await Season.findById(season).lean();
+	
+	if (seasonDoc && seasonDoc.standings && seasonDoc.standings.length > 0) {
+		return formatSeasonDoc(seasonDoc);
+	}
+	
+	// Fall back to computing from games
+	return computeFromGames(season);
+}
 
+/**
+ * Format Season document for homepage widget
+ */
+function formatSeasonDoc(seasonDoc) {
+	var standings = seasonDoc.standings.map(function(team) {
+		return {
+			rank: team.rank,
+			franchiseId: team.franchiseId,
+			name: team.franchiseName,
+			wins: team.wins,
+			losses: team.losses,
+			ties: team.ties,
+			pointsFor: team.pointsFor,
+			pointsAgainst: team.pointsAgainst,
+			playoffWins: team.playoffWins || 0,
+			playoffLosses: team.playoffLosses || 0,
+			playoffPointsFor: team.playoffPointsFor || 0,
+			playoffPointsAgainst: team.playoffPointsAgainst || 0,
+			isPlayoffTeam: team.playoffFinish != null,
+			playoffFinish: team.playoffFinish,
+			playoffSeed: team.playoffSeed
+		};
+	});
+	
+	return {
+		season: seasonDoc._id,
+		standings: standings,
+		isFinal: seasonDoc.status.regularSeasonComplete,
+		gamesPlayed: seasonDoc.status.gamesPlayed
+	};
+}
+
+/**
+ * Compute standings from games (fallback)
+ */
+async function computeFromGames(season) {
+	var games = await Game.find({ season: season }).lean();
+	
 	if (!games || games.length === 0) {
 		return null;
 	}
-
-	// Build H2H data for tiebreaker
+	
 	var h2h = tiebreaker.buildH2HData(games);
-
-	// Build owners object using franchiseId as key
 	var owners = {};
-
-	// First pass: identify all franchises and compute regular season records
-	games.forEach(function(game) {
-		var awayId = game.away.franchiseId;
-		var homeId = game.home.franchiseId;
-		var awayName = game.away.name;
-		var homeName = game.home.name;
-
-		if (!owners[awayId]) {
-			owners[awayId] = {
-				id: awayId,
-				name: awayName,
-				wins: 0,
-				losses: 0,
-				ties: 0,
-				pointsFor: 0,
-				pointsAgainst: 0,
-				playoffWins: 0,
-				playoffLosses: 0,
-				playoffPointsFor: 0,
-				playoffPointsAgainst: 0,
-				playoffFinish: null // 'champion', 'runner-up', 'third-place', 'fourth-place'
-			};
-		}
-
-		if (!owners[homeId]) {
-			owners[homeId] = {
-				id: homeId,
-				name: homeName,
-				wins: 0,
-				losses: 0,
-				ties: 0,
-				pointsFor: 0,
-				pointsAgainst: 0,
-				playoffWins: 0,
-				playoffLosses: 0,
-				playoffPointsFor: 0,
-				playoffPointsAgainst: 0,
-				playoffFinish: null
-			};
-		}
-	});
-
-	// Determine total regular season games based on era
-	// Division era (2008-2011): 10 teams × 14 weeks / 2 = 70 games
-	// Expansion era (2012-2020): 12 teams × 14 weeks / 2 = 84 games
-	// Modern era (2021+): 12 teams × 15 weeks / 2 = 90 games
+	
+	// Determine total games for this era
 	var totalRegularSeasonGames;
 	if (season <= 2011) {
-		totalRegularSeasonGames = 70; // 10 teams, 14 weeks
+		totalRegularSeasonGames = 70;
 	} else if (season < 2021) {
-		totalRegularSeasonGames = 84; // 12 teams, 14 weeks
+		totalRegularSeasonGames = 84;
 	} else {
-		totalRegularSeasonGames = 90; // 12 teams, 15 weeks
+		totalRegularSeasonGames = 90;
 	}
-
-	// Count regular season games with scores
+	
 	var gamesWithScores = 0;
-
-	// Second pass: process game results
+	
 	games.forEach(function(game) {
+		['away', 'home'].forEach(function(side) {
+			var id = game[side].franchiseId;
+			if (!owners[id]) {
+				owners[id] = {
+					id: id,
+					name: game[side].name,
+					wins: 0, losses: 0, ties: 0,
+					pointsFor: 0, pointsAgainst: 0,
+					playoffWins: 0, playoffLosses: 0,
+					playoffPointsFor: 0, playoffPointsAgainst: 0,
+					playoffFinish: null
+				};
+			}
+		});
+		
 		var awayId = game.away.franchiseId;
 		var homeId = game.home.franchiseId;
-		var awayScore = game.away.score;
-		var homeScore = game.home.score;
-
-		// Regular season games
-		if (game.type === 'regular') {
-			if (awayScore != null && homeScore != null) {
-				gamesWithScores++;
-
-				// Track points for/against
-				owners[awayId].pointsFor += awayScore;
-				owners[awayId].pointsAgainst += homeScore;
-				owners[homeId].pointsFor += homeScore;
-				owners[homeId].pointsAgainst += awayScore;
-
-				// Determine winner
-				if (awayScore > homeScore) {
-					owners[awayId].wins++;
-					owners[homeId].losses++;
-				} else if (homeScore > awayScore) {
-					owners[homeId].wins++;
-					owners[awayId].losses++;
-				} else {
-					owners[awayId].ties++;
-					owners[homeId].ties++;
-				}
+		
+		if (game.type === 'regular' && game.away.score != null && game.home.score != null) {
+			gamesWithScores++;
+			owners[awayId].pointsFor += game.away.score;
+			owners[awayId].pointsAgainst += game.home.score;
+			owners[homeId].pointsFor += game.home.score;
+			owners[homeId].pointsAgainst += game.away.score;
+			
+			if (game.away.score > game.home.score) {
+				owners[awayId].wins++;
+				owners[homeId].losses++;
+			} else if (game.home.score > game.away.score) {
+				owners[homeId].wins++;
+				owners[awayId].losses++;
+			} else {
+				owners[awayId].ties++;
+				owners[homeId].ties++;
 			}
 		}
-
-		// Playoff games (semifinal, thirdPlace, championship)
-		var isPlayoffGame = ['semifinal', 'thirdPlace', 'championship'].includes(game.type);
-		if (isPlayoffGame && awayScore != null && homeScore != null) {
-			// Track playoff points
-			owners[awayId].playoffPointsFor += awayScore;
-			owners[awayId].playoffPointsAgainst += homeScore;
-			owners[homeId].playoffPointsFor += homeScore;
-			owners[homeId].playoffPointsAgainst += awayScore;
-
-			// Track playoff wins/losses
-			if (awayScore > homeScore) {
+		
+		// Playoff games
+		if (['semifinal', 'thirdPlace', 'championship'].includes(game.type) && 
+			game.away.score != null && game.home.score != null) {
+			owners[awayId].playoffPointsFor += game.away.score;
+			owners[awayId].playoffPointsAgainst += game.home.score;
+			owners[homeId].playoffPointsFor += game.home.score;
+			owners[homeId].playoffPointsAgainst += game.away.score;
+			
+			if (game.away.score > game.home.score) {
 				owners[awayId].playoffWins++;
 				owners[homeId].playoffLosses++;
-			} else if (homeScore > awayScore) {
+			} else {
 				owners[homeId].playoffWins++;
 				owners[awayId].playoffLosses++;
 			}
 		}
-
-		// Track playoff finishes
+		
+		// Track finishes
 		if (game.type === 'semifinal') {
-			// Mark both as semifinalists (will be upgraded if they win further)
-			if (owners[awayId].playoffFinish === null) {
-				owners[awayId].playoffFinish = 'fourth-place';
-			}
-			if (owners[homeId].playoffFinish === null) {
-				owners[homeId].playoffFinish = 'fourth-place';
-			}
+			if (!owners[awayId].playoffFinish) owners[awayId].playoffFinish = 'fourth-place';
+			if (!owners[homeId].playoffFinish) owners[homeId].playoffFinish = 'fourth-place';
 		}
-
-		if (game.type === 'thirdPlace' && awayScore != null && homeScore != null) {
-			if (awayScore > homeScore) {
-				owners[awayId].playoffFinish = 'third-place';
-				owners[homeId].playoffFinish = 'fourth-place';
-			} else if (homeScore > awayScore) {
-				owners[homeId].playoffFinish = 'third-place';
-				owners[awayId].playoffFinish = 'fourth-place';
-			}
+		if (game.type === 'thirdPlace' && game.away.score != null) {
+			owners[game.away.score > game.home.score ? awayId : homeId].playoffFinish = 'third-place';
 		}
-
-		if (game.type === 'championship' && awayScore != null && homeScore != null) {
-			if (awayScore > homeScore) {
+		if (game.type === 'championship' && game.away.score != null) {
+			if (game.away.score > game.home.score) {
 				owners[awayId].playoffFinish = 'champion';
 				owners[homeId].playoffFinish = 'runner-up';
-			} else if (homeScore > awayScore) {
+			} else {
 				owners[homeId].playoffFinish = 'champion';
 				owners[awayId].playoffFinish = 'runner-up';
 			}
 		}
 	});
-
-	// Build standings array
+	
 	var allTeams = Object.values(owners);
-
-	// Separate playoff teams from non-playoff teams
-	var playoffTeams = allTeams.filter(function(t) { return t.playoffFinish !== null; });
-	var nonPlayoffTeams = allTeams.filter(function(t) { return t.playoffFinish === null; });
-
-	// Sort playoff teams by finish
+	var playoffTeams = allTeams.filter(function(t) { return t.playoffFinish; });
+	var nonPlayoffTeams = allTeams.filter(function(t) { return !t.playoffFinish; });
+	
 	var finishOrder = { 'champion': 1, 'runner-up': 2, 'third-place': 3, 'fourth-place': 4 };
-	playoffTeams.sort(function(a, b) {
-		return finishOrder[a.playoffFinish] - finishOrder[b.playoffFinish];
-	});
-
-	// Sort non-playoff teams by record with proper tiebreaker
+	playoffTeams.sort(function(a, b) { return finishOrder[a.playoffFinish] - finishOrder[b.playoffFinish]; });
+	
 	var sortedNonPlayoff = tiebreaker.sortByRecord(nonPlayoffTeams, h2h, season);
-
-	// Combine: playoff teams first, then non-playoff teams
 	var standings = playoffTeams.concat(sortedNonPlayoff);
-
-	// Determine if standings are finalized (all regular season games played)
+	
 	var isFinal = gamesWithScores >= totalRegularSeasonGames;
-
-	// Format standings for display
+	
 	var result = standings.map(function(owner, index) {
 		return {
 			rank: index + 1,
@@ -197,11 +178,11 @@ async function getStandingsForSeason(season) {
 			playoffLosses: owner.playoffLosses,
 			playoffPointsFor: owner.playoffPointsFor,
 			playoffPointsAgainst: owner.playoffPointsAgainst,
-			isPlayoffTeam: owner.playoffFinish !== null,
+			isPlayoffTeam: owner.playoffFinish != null,
 			playoffFinish: owner.playoffFinish
 		};
 	});
-
+	
 	return {
 		season: season,
 		standings: result,

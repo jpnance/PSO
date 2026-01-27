@@ -114,10 +114,15 @@ function modernTiebreaker(tiedTeams, h2h) {
 		return parseFloat(b) - parseFloat(a); // Descending by win percentage
 	});
 	
-	// If only one group (all still tied on H2H %), use Points For
+	// If only one group (all still tied on H2H %), use Points For, then alphabetical
 	if (sortedKeys.length === 1) {
 		return teamsWithH2H
-			.sort(function(a, b) { return b.team.pointsFor - a.team.pointsFor; })
+			.sort(function(a, b) { 
+				if (b.team.pointsFor !== a.team.pointsFor) {
+					return b.team.pointsFor - a.team.pointsFor;
+				}
+				return (a.team.name || '').localeCompare(b.team.name || '');
+			})
 			.map(function(t) { return t.team; });
 	}
 	
@@ -192,13 +197,23 @@ function legacyTiebreaker(tiedTeams, h2h) {
 				// Clear H2H winner
 				graduate = tiedForTop[0].team;
 			} else {
-				// Multiple teams tied for most H2H wins - use PF to break
-				tiedForTop.sort(function(a, b) { return b.team.pointsFor - a.team.pointsFor; });
+				// Multiple teams tied for most H2H wins - use PF, then alphabetical
+				tiedForTop.sort(function(a, b) { 
+					if (b.team.pointsFor !== a.team.pointsFor) {
+						return b.team.pointsFor - a.team.pointsFor;
+					}
+					return (a.team.name || '').localeCompare(b.team.name || '');
+				});
 				graduate = tiedForTop[0].team;
 			}
 		} else {
-			// Different number of games - graduate the team with most PF
-			teamsWithH2H.sort(function(a, b) { return b.team.pointsFor - a.team.pointsFor; });
+			// Different number of games - graduate the team with most PF, then alphabetical
+			teamsWithH2H.sort(function(a, b) { 
+				if (b.team.pointsFor !== a.team.pointsFor) {
+					return b.team.pointsFor - a.team.pointsFor;
+				}
+				return (a.team.name || '').localeCompare(b.team.name || '');
+			});
 			graduate = teamsWithH2H[0].team;
 		}
 		

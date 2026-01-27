@@ -7,6 +7,7 @@ SEASON=$(grep SEASON .env | sed -E "s/SEASON=//")
 cd data/fetch
 node games.js $SEASON
 cd ../analysis
+node seasons.js $SEASON
 node championships.js
 node highestScoringLosses.js
 node lowestScoringWins.js
