@@ -13,14 +13,8 @@
   - [x] Cash assets in trades should use formatMoney
   - [x] Replace "(RFA rights)" with "RFA rights" in trade display
   - [x] Show cap violation warnings in Budget Impact widget
-- [ ] Allow owners to drop players *(if needed for Feb 7, otherwise Medium)*
-- [ ] Manual testing with open trade window:
-  - Share a hypothetical trade, send link to a friend, have them look at it
-  - Propose a real trade, get the other party to accept, approve as commissioner
-  - Propose a trade that gets rejected
-  - Propose a trade and cancel it yourself
-  - Build a trade that triggers cap warnings, see how it feels
-  - Share a hypothetical between two other owners, have one of them convert it to a real proposal
+- [x] Allow owners to drop players
+- [x] Manual testing with open trade window
 
 ## Medium Priority
 *Before August (rookie draft / cut day / auction / season start)*
@@ -46,7 +40,7 @@
 - [ ] Integrate `/h2h` into the new setup *(navbar is easy; polish is not)*
 - [x] Integrate `/jaguar` into the new setup
 - [ ] Integrate `/simulator` into the new setup *(already responsive, may be close)*
-- [ ] Route consistency: `/franchise/:id` → `/franchises/:id` ⚡ *quick win*
+- [ ] Route consistency: `/franchise/:rosterId` → `/franchises/:id` (add `/franchises` landing page?) ⚡ *quick win*
 
 ### Trading & Transactions
 - [ ] Extract `buildValidationParties(deal)` helper — same "deal → parties with contract lookups" logic exists in 3 places
