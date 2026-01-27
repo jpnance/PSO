@@ -5,18 +5,8 @@ var Regime = require('../models/Regime');
 var Person = require('../models/Person');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
-var { formatMoney, formatContractYears, formatContractDisplay, ordinal } = require('../helpers/view');
+var { formatMoney, formatContractYears, formatContractDisplay } = require('../helpers/view');
 
-
-async function getRegime(franchiseId, season) {
-	if (!franchiseId) return null;
-	return await Regime.findByFranchiseAndSeason(franchiseId, season);
-}
-
-
-async function getDisplayName(franchiseId, season) {
-	return await Regime.getDisplayName(franchiseId, season);
-}
 
 function isPlural(regime) {
 	if (!regime) return false;
@@ -43,18 +33,56 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 	options = options || {};
 	var currentSeason = options.currentSeason || new Date().getFullYear();
 	
-	// Load all lookup data in parallel
+	// First pass: collect IDs we need from trades we're displaying (not all trades)
+	var playerIds = new Set();
+	var pickKeys = []; // { season, round, originalFranchiseId }
+	
+	tradesToDisplay.forEach(function(trade) {
+		(trade.parties || []).forEach(function(party) {
+			// Collect player IDs
+			(party.receives.players || []).forEach(function(p) {
+				playerIds.add(p.playerId.toString());
+			});
+			// Collect RFA player IDs
+			(party.receives.rfaRights || []).forEach(function(r) {
+				playerIds.add(r.playerId.toString());
+			});
+			// Collect pick keys for lookup
+			(party.receives.picks || []).forEach(function(pickInfo) {
+				if (pickInfo.season && pickInfo.round && pickInfo.fromFranchiseId) {
+					pickKeys.push({
+						season: pickInfo.season,
+						round: pickInfo.round,
+						originalFranchiseId: pickInfo.fromFranchiseId
+					});
+				}
+			});
+		});
+	});
+	
+	// Build pick query conditions
+	var pickConditions = pickKeys.map(function(pk) {
+		return {
+			season: pk.season,
+			round: pk.round,
+			originalFranchiseId: pk.originalFranchiseId
+		};
+	});
+	
+	// Load only what we need in parallel
 	var lookupData = await Promise.all([
-		Player.find({}).lean(),
-		Pick.find({}).lean(),
-		Transaction.find({ type: 'draft-select' }).lean(),
+		playerIds.size > 0 
+			? Player.find({ _id: { $in: Array.from(playerIds) } }).lean()
+			: Promise.resolve([]),
+		pickConditions.length > 0
+			? Pick.find({ $or: pickConditions }).lean()
+			: Promise.resolve([]),
 		Regime.find({}).lean()
 	]);
 	
 	var players = lookupData[0];
 	var picks = lookupData[1];
-	var draftSelections = lookupData[2];
-	var allRegimes = lookupData[3];
+	var allRegimes = lookupData[2];
 	
 	// Build player map
 	var playerMap = {};
@@ -66,6 +94,22 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 		var key = p.season + ':' + p.round + ':' + p.originalFranchiseId.toString();
 		pickLookup[key] = p;
 	});
+	
+	// Collect pick IDs that we have, then load only those draft selections
+	var pickIds = picks.map(function(p) { return p._id; });
+	var draftSelections = pickIds.length > 0
+		? await Transaction.find({ type: 'draft-select', pickId: { $in: pickIds } }).lean()
+		: [];
+	
+	// Also load the players that were drafted (for "pick became X" display)
+	var draftedPlayerIds = draftSelections
+		.filter(function(t) { return t.playerId; })
+		.map(function(t) { return t.playerId; });
+	
+	if (draftedPlayerIds.length > 0) {
+		var draftedPlayers = await Player.find({ _id: { $in: draftedPlayerIds } }).lean();
+		draftedPlayers.forEach(function(p) { playerMap[p._id.toString()] = p; });
+	}
 	
 	// Build pickToPlayer map
 	var pickToPlayer = {}; // pickId -> playerId
@@ -271,7 +315,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 				
 				// Build chain of all trades for this pick, plus outcome
 				var history = originalFranchiseId ? (pickTradeHistory[pickKey] || []) : [];
-				var allTrades = history.slice().sort(function(a, b) { return a.tradeNumber - b.tradeNumber; });
+				var pickChainTrades = history.slice().sort(function(a, b) { return a.tradeNumber - b.tradeNumber; });
 				
 				// Determine if we have an outcome to show
 				var hasOutcome = pickNumber || outcome;
@@ -288,12 +332,12 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 				}
 				
 				// Show chain only if there's more than one trade
-				if (allTrades.length > 1) {
+				if (pickChainTrades.length > 1) {
 					var chain = [];
 					
 					// Add all trades
-					for (var t = 0; t < allTrades.length; t++) {
-						var chainItem = allTrades[t];
+					for (var t = 0; t < pickChainTrades.length; t++) {
+						var chainItem = pickChainTrades[t];
 						chain.push({
 							type: 'trade',
 							tradeNumber: chainItem.tradeNumber,
@@ -342,7 +386,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 			// Cash - grouped by season
 			for (var k = 0; k < (party.receives.cash || []).length; k++) {
 				var c = party.receives.cash[k];
-				var fromOwner = c.fromFranchiseId ? await getDisplayName(c.fromFranchiseId, tradeYear) : 'Unknown';
+				var fromOwner = c.fromFranchiseId ? getDisplayNameAtTime(c.fromFranchiseId, tradeYear) : 'Unknown';
 				var display = formatMoney(c.amount) + ' from ' + fromOwner + ' in ' + c.season;
 				var cashMain = formatMoney(c.amount);
 				var cashContext = 'from ' + fromOwner + ' in ' + c.season;
