@@ -20,7 +20,6 @@ set -e
 
 # Load specific vars from .env (can't source directly due to JSON values)
 if [ -f .env ]; then
-    SEASON=$(grep '^SEASON=' .env | cut -d'=' -f2)
     GOOGLE_API_KEY=$(grep '^GOOGLE_API_KEY=' .env | cut -d'=' -f2)
 fi
 
@@ -44,15 +43,6 @@ fi
 
 echo "=== Preflight Checks ==="
 PREFLIGHT_FAILED=false
-
-# Check SEASON env var
-if [ -z "$SEASON" ]; then
-    echo "ERROR: SEASON environment variable is not set"
-    echo "  Set it in your .env file or export it: export SEASON=2025"
-    PREFLIGHT_FAILED=true
-else
-    echo "✓ SEASON is set to $SEASON"
-fi
 
 # Check GOOGLE_API_KEY env var
 if [ -z "$GOOGLE_API_KEY" ]; then
