@@ -8,7 +8,7 @@ else
 		each result in players
 			if result.status === 'rostered'
 				//- Rostered player - link to franchise
-				a.search-result(href='/franchise/' + result.franchiseId)
+				a.search-result(href='/franchises/' + result.franchiseId)
 					div.search-result-main
 						span.search-result-name= result.name
 						+positionBadge(result.positions)
@@ -18,7 +18,7 @@ else
 							span.search-result-contract  · #{result.contractDisplay}
 			else if result.status === 'rfa'
 				//- RFA - link to franchise that owns rights
-				a.search-result.search-result-rfa(href='/franchise/' + result.franchiseId)
+				a.search-result.search-result-rfa(href='/franchises/' + result.franchiseId)
 					div.search-result-main
 						span.search-result-name= result.name
 						+positionBadge(result.positions)

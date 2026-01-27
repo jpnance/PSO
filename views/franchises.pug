@@ -1,0 +1,23 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Franchises')
+
+block styles
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/league.css')
+
+block content
+	div.container-fluid.py-4
+		h1.text-center.mb-4 Franchises
+		
+		-
+			var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
+			var isOffseason = offseasonPhases.includes(phase);
+			var standingsSeason = standings ? standings.season : null;
+			var cardOpts = { rosterLimit: rosterLimit, isOffseason: isOffseason, standingsSeason: standingsSeason };
+		div.row
+			each franchise in franchises
+				div.col-md-6.col-lg-4.col-xl-3.mb-4
+					+franchiseCard(franchise, cardOpts)

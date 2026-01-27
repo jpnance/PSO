@@ -506,13 +506,13 @@ async function overview(request, response) {
 	}
 }
 
-async function franchise(request, response) {
+async function franchiseDetail(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		var phase = config ? config.getPhase() : 'unknown';
 		
-		var rosterId = parseInt(request.params.rosterId, 10);
+		var rosterId = parseInt(request.params.id, 10);
 		if (isNaN(rosterId)) {
 			return response.status(404).send('Franchise not found');
 		}
@@ -1245,15 +1245,67 @@ async function timeline(request, response) {
 	}
 }
 
-// POST /franchise/:rosterId/cut - owner cuts a player
+// GET /franchises - list all franchises
+async function franchisesList(request, response) {
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		var phase = config ? config.getPhase() : 'unknown';
+		
+		var franchises = await getLeagueOverview(currentSeason);
+		
+		// Get standings for record display
+		var standingsData = await standingsHelper.getStandingsForSeason(currentSeason);
+		if (!standingsData || standingsData.gamesPlayed === 0) {
+			standingsData = await standingsHelper.getStandingsForSeason(currentSeason - 1);
+			if (standingsData) {
+				standingsData.isPreviousSeason = true;
+			}
+		}
+		
+		// Attach standings info to each franchise
+		if (standingsData && standingsData.standings) {
+			var standingsById = {};
+			standingsData.standings.forEach(function(team) {
+				standingsById[team.franchiseId] = team;
+			});
+			
+			franchises.forEach(function(f) {
+				var standing = standingsById[f.rosterId];
+				if (standing) {
+					f.record = {
+						wins: standing.wins,
+						losses: standing.losses,
+						ties: standing.ties,
+						rank: standing.rank
+					};
+				}
+			});
+		}
+		
+		response.render('franchises', {
+			franchises: franchises,
+			currentSeason: currentSeason,
+			phase: phase,
+			standings: standingsData,
+			rosterLimit: LeagueConfig.ROSTER_LIMIT,
+			activePage: 'franchises'
+		});
+	} catch (err) {
+		console.error('Franchises list error:', err);
+		response.status(500).send('Error loading franchises');
+	}
+}
+
+// POST /franchises/:id/cut - owner cuts a player
 async function cutPlayer(request, response) {
-	var rosterId = parseInt(request.params.rosterId, 10);
+	var rosterId = parseInt(request.params.id, 10);
 	var playerId = request.body.playerId;
 	var playerName = request.body.playerName || 'Player';
 	
 	function redirectWithError(msg) {
 		// For now, just redirect back - could add flash messages later
-		return response.redirect('/franchise/' + rosterId);
+		return response.redirect('/franchises/' + rosterId);
 	}
 	
 	try {
@@ -1331,10 +1383,10 @@ async function cutPlayer(request, response) {
 		});
 		
 		// Redirect back to franchise page
-		response.redirect('/franchise/' + rosterId);
+		response.redirect('/franchises/' + rosterId);
 	} catch (err) {
 		console.error('Cut player error:', err);
-		response.redirect('/franchise/' + rosterId);
+		response.redirect('/franchises/' + rosterId);
 	}
 }
 
@@ -1342,7 +1394,8 @@ module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
 	overview: overview,
-	franchise: franchise,
+	franchisesList: franchisesList,
+	franchiseDetail: franchiseDetail,
 	search: search,
 	timeline: timeline,
 	cutPlayer: cutPlayer

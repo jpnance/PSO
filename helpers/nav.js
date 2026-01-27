@@ -82,7 +82,7 @@ function buildNav(options) {
 			id: 'my-franchise',
 			label: 'My Franchise',
 			icon: 'fa-star',
-			href: '/franchise/' + userFranchise.rosterId,
+			href: '/franchises/' + userFranchise.rosterId,
 			active: isFranchiseActive(userFranchise.rosterId)
 		});
 	}
@@ -95,11 +95,11 @@ function buildNav(options) {
 		id: 'franchises',
 		label: 'All Franchises',
 		icon: 'fa-shield',
-		expanded: activePage === 'franchise',
+		expanded: activePage === 'franchise' || activePage === 'franchises',
 		items: franchises.map(function(f) {
 			return {
 				label: f.displayName,
-				href: '/franchise/' + f.rosterId,
+				href: '/franchises/' + f.rosterId,
 				active: isFranchiseActive(f.rosterId)
 			};
 		}),

@@ -161,3 +161,74 @@ mixin budgetImpactTable(budgetImpact)
 					td: strong= impact.franchiseName
 					each s in impact.seasons
 						td.text-right(class=deltaClass(s.delta))= formatMoney(s.delta, { sign: 'auto' })
+
+//- Franchise card for league overview and franchises list
+//- Usage: +franchiseCard(franchise, { rosterLimit, isOffseason, standingsSeason })
+mixin franchiseCard(franchise, opts)
+	- var rosterLimit = opts.rosterLimit || 25
+	- var isOffseason = opts.isOffseason || false
+	- var standingsSeason = opts.standingsSeason || null
+	div.card.h-100.franchise-card
+		div.card-header.franchise-card__header
+			div.franchise-card__title
+				span.franchise-card__name= franchise.displayName
+				if franchise.record
+					span.franchise-card__record
+						if isOffseason && standingsSeason
+							span.franchise-card__record-season= standingsSeason + ': '
+						| #{formatRecord(franchise.record.wins, franchise.record.losses, franchise.record.ties)} · #{ordinal(franchise.record.rank)}
+		div.card-body.franchise-card__body
+			- var pc = franchise.positionCounts || {}
+			- var sc = franchise.salaryCounts || {}
+			
+			div.franchise-card__stat
+				span.franchise-card__label Roster
+				span.franchise-card__value #{franchise.rosterCount}/#{rosterLimit}
+			- var unusedSpots = rosterLimit - franchise.rosterCount
+			div.franchise-card__bar
+				if pc.QB > 0
+					div.franchise-card__pos-segment.franchise-card__pos-segment--qb(style='flex: ' + pc.QB, title='QB: ' + pc.QB)
+				if pc.RB > 0
+					div.franchise-card__pos-segment.franchise-card__pos-segment--rb(style='flex: ' + pc.RB, title='RB: ' + pc.RB)
+				if pc.WR > 0
+					div.franchise-card__pos-segment.franchise-card__pos-segment--wr(style='flex: ' + pc.WR, title='WR: ' + pc.WR)
+				if pc.TE > 0
+					div.franchise-card__pos-segment.franchise-card__pos-segment--te(style='flex: ' + pc.TE, title='TE: ' + pc.TE)
+				if pc.IDP > 0
+					div.franchise-card__pos-segment.franchise-card__pos-segment--idp(style='flex: ' + pc.IDP, title='IDP: ' + pc.IDP)
+				if pc.K > 0
+					div.franchise-card__pos-segment.franchise-card__pos-segment--k(style='flex: ' + pc.K, title='K: ' + pc.K)
+				if unusedSpots > 0
+					div.franchise-card__bar-unused(style='flex: ' + unusedSpots, title='Open: ' + unusedSpots)
+			div.franchise-card__stat
+				span.franchise-card__label Payroll
+				span.franchise-card__value= formatMoney(franchise.payroll)
+			div.franchise-card__bar
+				if sc.QB > 0
+					div.franchise-card__salary-segment.franchise-card__salary-segment--qb(style='flex: ' + sc.QB, title='QB: $' + sc.QB)
+				if sc.RB > 0
+					div.franchise-card__salary-segment.franchise-card__salary-segment--rb(style='flex: ' + sc.RB, title='RB: $' + sc.RB)
+				if sc.WR > 0
+					div.franchise-card__salary-segment.franchise-card__salary-segment--wr(style='flex: ' + sc.WR, title='WR: $' + sc.WR)
+				if sc.TE > 0
+					div.franchise-card__salary-segment.franchise-card__salary-segment--te(style='flex: ' + sc.TE, title='TE: $' + sc.TE)
+				if sc.IDP > 0
+					div.franchise-card__salary-segment.franchise-card__salary-segment--idp(style='flex: ' + sc.IDP, title='IDP: $' + sc.IDP)
+				if sc.K > 0
+					div.franchise-card__salary-segment.franchise-card__salary-segment--k(style='flex: ' + sc.K, title='K: $' + sc.K)
+				if franchise.available > 0
+					div.franchise-card__bar-unused(style='flex: ' + franchise.available, title='Available: $' + franchise.available)
+			div.franchise-card__stat
+				span.franchise-card__label Available
+				span.franchise-card__value= formatMoney(franchise.available)
+			if franchise.nextDraftPickCount > 0
+				div.franchise-card__stat
+					span.franchise-card__label #{franchise.nextDraftSeason} Draft
+					span.franchise-card__value #{franchise.nextDraftPickCount} pick#{franchise.nextDraftPickCount !== 1 ? 's' : ''}
+			if isOffseason && franchise.rfaCount > 0
+				div.franchise-card__stat
+					span.franchise-card__label RFA Rights
+					span.franchise-card__value= franchise.rfaCount
+		a.card-footer-link(href='/franchises/' + franchise.rosterId)
+			span View Franchise
+			i.fa.fa-chevron-right

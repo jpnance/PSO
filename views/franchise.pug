@@ -219,7 +219,7 @@ block content
 		if isOwner && canCut
 			div.modal.fade#cutModal(tabindex='-1' role='dialog')
 				div.modal-dialog(role='document')
-					form.modal-content(method='POST' action='/franchise/' + franchise.rosterId + '/cut')
+					form.modal-content(method='POST' action='/franchises/' + franchise.rosterId + '/cut')
 						div.modal-header
 							h5.modal-title Cut Player
 							button.close(type='button' data-dismiss='modal')
