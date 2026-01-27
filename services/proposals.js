@@ -579,11 +579,18 @@ async function checkTradesEnabled() {
 	if (!config) return { enabled: true };
 	
 	if (!config.areTradesEnabled()) {
-		var phase = config.getPhase().replace(/-/g, ' ');
-		return { 
-			enabled: false, 
-			error: 'Trades are not allowed during the ' + phase + ' phase.'
-		};
+		var message = 'The trade deadline has passed. Trades resume when the trade window opens';
+		
+		// If we have a future tradeWindow date, include it
+		if (config.tradeWindow && new Date(config.tradeWindow) > new Date()) {
+			var options = { month: 'long', day: 'numeric' };
+			var dateStr = new Date(config.tradeWindow).toLocaleDateString('en-US', options);
+			message += ' on ' + dateStr + '.';
+		} else {
+			message += ' in February.';
+		}
+		
+		return { enabled: false, error: message };
 	}
 	
 	return { enabled: true };
@@ -1102,6 +1109,7 @@ async function proposeProposal(request, response) {
 }
 
 // Accept a proposal (for one party)
+// Handles both hypothetical (first accept converts to pending) and pending proposals
 async function acceptProposal(request, response) {
 	try {
 		var user = request.user;
@@ -1120,8 +1128,8 @@ async function acceptProposal(request, response) {
 			return response.status(404).json({ success: false, errors: ['Proposal not found'] });
 		}
 		
-		if (proposal.status !== 'pending') {
-			return response.status(400).json({ success: false, errors: ['Only pending proposals can be accepted'] });
+		if (proposal.status !== 'hypothetical' && proposal.status !== 'pending') {
+			return response.status(400).json({ success: false, errors: ['Only hypothetical or pending proposals can be accepted'] });
 		}
 		
 		// Check expiration
@@ -1131,8 +1139,8 @@ async function acceptProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
 		}
 		
-		// Check acceptance window
-		if (proposal.isAcceptanceWindowExpired()) {
+		// For pending proposals, check acceptance window
+		if (proposal.status === 'pending' && proposal.isAcceptanceWindowExpired()) {
 			proposal.resetAcceptances();
 			await proposal.save();
 			return response.status(400).json({ 
@@ -1157,13 +1165,78 @@ async function acceptProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['You have already accepted'] });
 		}
 		
+		// If hypothetical, validate the trade before converting to pending
+		// (conditions may have changed since creation)
+		if (proposal.status === 'hypothetical') {
+			var validationParties = [];
+			for (var i = 0; i < proposal.parties.length; i++) {
+				var p = proposal.parties[i];
+				var validationReceives = {
+					players: [],
+					picks: [],
+					cash: []
+				};
+				
+				// Look up current contract info for each player
+				for (var j = 0; j < (p.receives.players || []).length; j++) {
+					var playerRef = p.receives.players[j];
+					var contract = await Contract.findOne({ playerId: playerRef.playerId });
+					if (contract) {
+						validationReceives.players.push({
+							playerId: contract.playerId,
+							salary: contract.salary,
+							startYear: contract.startYear,
+							endYear: contract.endYear
+						});
+					}
+				}
+				
+				// Picks
+				for (var j = 0; j < (p.receives.picks || []).length; j++) {
+					validationReceives.picks.push({ pickId: p.receives.picks[j].pickId });
+				}
+				
+				// Cash
+				for (var j = 0; j < (p.receives.cash || []).length; j++) {
+					var cash = p.receives.cash[j];
+					validationReceives.cash.push({
+						amount: cash.amount,
+						season: cash.season,
+						fromFranchiseId: cash.fromFranchiseId
+					});
+				}
+				
+				validationParties.push({
+					franchiseId: p.franchiseId,
+					receives: validationReceives
+				});
+			}
+			
+			var validationResult = await transactionService.processTrade({
+				timestamp: new Date(),
+				source: 'manual',
+				parties: validationParties,
+				validateOnly: true
+			});
+			
+			if (!validationResult.success) {
+				return response.status(400).json({
+					success: false,
+					errors: validationResult.errors || ['Trade validation failed']
+				});
+			}
+			
+			// Convert to pending
+			proposal.status = 'pending';
+		}
+		
 		// Accept
 		party.accepted = true;
 		party.acceptedAt = new Date();
 		party.acceptedBy = user._id;
 		
 		// Start acceptance window if this is the first acceptance (or restart after reset)
-		// Also update creator since whoever restarts the clock is now the proposer
+		// Also update creator since whoever starts/restarts the clock is the proposer
 		if (!proposal.acceptanceWindowStart) {
 			proposal.acceptanceWindowStart = new Date();
 			proposal.createdByPersonId = user._id;

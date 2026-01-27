@@ -133,27 +133,13 @@ block content
 								i.fa.fa-check.mr-1
 								| Submit Trade
 
-				//- Share/Propose Trade section (for logged-in franchise owners)
-				if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
-					div.card-footer.trade-machine__footer.d-none
+					//- Get Link section (for logged-in franchise owners)
+					if isLoggedIn && userFranchiseIds && userFranchiseIds.length > 0
+						div.card-footer.trade-machine__footer.d-none
 							div.proposal-result.mb-3
-							//- Propose button only shown if user is party AND trades enabled (handled in JS)
-							if tradesEnabled
-								button.propose-trade-btn.btn.btn-primary.d-none
-									i.fa.fa-paper-plane.mr-1
-									| Propose Trade
-							button.share-trade-btn.btn.btn-outline-secondary
-								i.fa.fa-share-alt.mr-1
-								| Share
-							div.proposal-link-section.d-none.mt-3
-								div.alert.alert-success.mb-2.proposal-success-message
-									i.fa.fa-check.mr-2
-									span.message-text Proposal sent! Share this link:
-								div.input-group
-									input#proposal-link.form-control(type="text" readonly)
-									div.input-group-append
-										button.copy-link-btn.btn.btn-outline-secondary(type="button")
-											i.fa.fa-copy
+							button.get-link-btn.btn.btn-primary
+								i.fa.fa-link.mr-1
+								| Get Link
 
 block scripts
 	script.

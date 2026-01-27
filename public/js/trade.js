@@ -343,15 +343,9 @@ var tradeMachine = {
 			$('.trade-details-card').removeClass('d-none');
 			$('.submit-trade-section').removeClass('d-none');
 			
-			// Show share/propose section if user is logged in with a franchise
+			// Show get link section if user is logged in with a franchise
 			if (typeof isLoggedIn !== 'undefined' && isLoggedIn && typeof userFranchiseIds !== 'undefined' && userFranchiseIds.length > 0) {
 				$('.trade-machine__footer').removeClass('d-none');
-				// Show "Propose Trade" button only if user is party to the deal
-				if (tradeMachine.isUserPartyToDeal()) {
-					$('.propose-trade-btn').removeClass('d-none');
-				} else {
-					$('.propose-trade-btn').addClass('d-none');
-				}
 			} else {
 				$('.trade-machine__footer').addClass('d-none');
 			}
@@ -767,20 +761,14 @@ var tradeMachine = {
 	},
 
 	// Submit a proposal (isHypothetical: true = share for discussion, false = real proposal)
-	submitProposal: (isHypothetical) => {
-		var $proposeBtn = $('.propose-trade-btn');
-		var $shareBtn = $('.share-trade-btn');
+	submitProposal: () => {
+		var $btn = $('.get-link-btn');
 		var $result = $('.proposal-result');
-		var $linkSection = $('.proposal-link-section');
 		var notesVal = $('#proposal-notes').val();
 		var notes = notesVal ? notesVal.trim() || null : null;
 		
-		var $activeBtn = isHypothetical ? $shareBtn : $proposeBtn;
-		var restoreActive = tradeMachine.startLoading($activeBtn);
-		var $otherBtn = isHypothetical ? $proposeBtn : $shareBtn;
-		$otherBtn.prop('disabled', true);
+		var restoreBtn = tradeMachine.startLoading($btn);
 		$result.empty().addClass('d-none');
-		$linkSection.addClass('d-none');
 		
 		$.ajax({
 			url: '/trade-machine',
@@ -789,15 +777,14 @@ var tradeMachine = {
 			data: JSON.stringify({
 				deal: tradeMachine.deal,
 				notes: notes,
-				isHypothetical: isHypothetical
+				isHypothetical: true
 			}),
 			success: (response) => {
 				// Redirect to the proposal page
 				window.location.href = '/proposals/' + response.proposalId;
 			},
 			error: (xhr) => {
-				restoreActive();
-				$otherBtn.prop('disabled', false);
+				restoreBtn();
 				
 				var response = xhr.responseJSON || {};
 				var errors = response.errors || ['Unknown error'];
@@ -990,27 +977,9 @@ $(document).ready(function() {
 		executePromptShown = false;
 	};
 	
-	// Propose trade button (creates pending proposal, proposer auto-accepted)
-	$('.propose-trade-btn').on('click', (e) => {
-		tradeMachine.submitProposal(false);
-	});
-	
-	// Share trade button (creates hypothetical trade for discussion)
-	$('.share-trade-btn').on('click', (e) => {
-		tradeMachine.submitProposal(true);
-	});
-	
-	// Copy link button
-	$('.copy-link-btn').on('click', (e) => {
-		var $input = $('#proposal-link');
-		$input.select();
-		document.execCommand('copy');
-		
-		var $btn = $(e.currentTarget);
-		$btn.html('<i class="fa fa-check"></i>');
-		setTimeout(() => {
-			$btn.html('<i class="fa fa-copy"></i>');
-		}, 2000);
+	// Get link button (creates hypothetical trade)
+	$('.get-link-btn').on('click', (e) => {
+		tradeMachine.submitProposal();
 	});
 
 	$('.submit-trade-btn').on('click', (e) => {

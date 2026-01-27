@@ -107,19 +107,23 @@ block content
 					if (proposal.status === 'hypothetical' && isParty) || (proposal.status === 'pending' && (isParty || isCreator))
 						div.card-footer.proposal-actions
 							div.proposal-actions__result
-							//- Hypothetical: Propose button
+							//- Hypothetical: Accept button (first accept converts to pending)
 							if proposal.status === 'hypothetical'
 								if tradesEnabled
-									button.btn.btn-primary.formalize-btn
-										i.fa.fa-paper-plane.mr-1
-										| Propose This Trade
+									button.btn.btn-success.mr-2.accept-btn
+										i.fa.fa-check.mr-1
+										| Accept
 								else
-									button.btn.btn-primary(disabled)
-										i.fa.fa-paper-plane.mr-1
-										| Propose This Trade
+									button.btn.btn-success.mr-2(disabled)
+										i.fa.fa-check.mr-1
+										| Accept
 									span.text-muted.small.ml-2
 										i.fa.fa-info-circle.mr-1
 										= tradesDisabledReason || 'Trades are currently disabled'
+								if isCreator
+									button.btn.btn-outline-danger.cancel-btn
+										i.fa.fa-times.mr-1
+										| Discard
 							//- Pending: Accept/Reject/Cancel buttons
 							if proposal.status === 'pending'
 								if isParty && !userHasAccepted
@@ -136,7 +140,7 @@ block content
 								if isCreator
 									button.btn.btn-outline-danger.cancel-btn
 										i.fa.fa-times.mr-1
-										| Cancel
+										| Discard
 
 block scripts
 	script.
@@ -232,16 +236,6 @@ block scripts
 			setTimeout(function() {
 				$btn.html(originalHtml);
 			}, 2000);
-		});
-		
-		$('.formalize-btn').on('click', function() {
-			var restore = startLoading($(this));
-			$.post('/proposals/' + proposalId + '/propose')
-				.done(function() { location.reload(); })
-				.fail(function(xhr) {
-					restore();
-					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
-				});
 		});
 		
 		$('.accept-btn').on('click', function() {
