@@ -27,6 +27,7 @@ app.use(function(req, res, next) {
 		'CCBot',          // Common Crawl (AI training)
 		'Google-Extended', // Google AI training (separate from search)
 		'Bytespider',     // ByteDance/TikTok
+		'Amazonbot',      // Amazon/Alexa
 		'SemrushBot',     // SEO crawler
 		'AhrefsBot',      // SEO crawler
 		'MJ12bot',        // Majestic SEO (aggressive)
