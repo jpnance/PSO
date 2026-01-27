@@ -32,7 +32,7 @@
 - [ ] Get the auction app integrated with Coinflipper Login service
 
 ### Information Pages
-- [ ] Full standings page ⚡ *quick win*
+- [x] Full standings page ⚡ *quick win*
 - [ ] Schedule/results page (maybe special case of `/history`?) ⚡ *quick win*
 
 ### Migrations (existing features → new setup)
@@ -129,6 +129,11 @@
 - [ ] Tighten up draft picks widget on franchise page (3 columns? conflicts with showing results)
 - [x] Revisit naming for `/propose` and `/trades` - resolved: `/trade-machine`, `/proposals/:slug`, `/trades`, `/trades/:id`
 - [ ] Trade display: two columns at larger breakpoints? (let multi-party asset lists flow naturally)
+
+### Standings Enhancements
+- [ ] Introduce Season model to store computed season-level data (playoff seeds, results, etc.)
+- [ ] Add win/loss streaks to standings page
+- [ ] Unify homepage standings widget with full standings page patterns
 
 ### Misc Ideas
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
