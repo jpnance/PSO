@@ -50,6 +50,24 @@ block content
 
 			//- Trade Builder Section
 			div.col-md-7.col-xl-5
+				//- Empty state (shown when < 2 parties selected)
+				div.card.trade-machine__empty-state
+					div.card-body.py-5
+						h4.text-center.text-muted.mb-4 How It Works
+						div.d-flex.justify-content-around.text-center
+							div.trade-machine__step
+								div.trade-machine__step-number 1
+								div.trade-machine__step-label Build
+								div.small.text-muted Select parties and add assets
+							div.trade-machine__step
+								div.trade-machine__step-number 2
+								div.trade-machine__step-label Share
+								div.small.text-muted Get a link to send however you want
+							div.trade-machine__step
+								div.trade-machine__step-number 3
+								div.trade-machine__step-label Accept
+								div.small.text-muted All parties accept, commissioner approves
+
 				div.card.trade-details-card.d-none
 					div.card-header
 						strong Trade Details

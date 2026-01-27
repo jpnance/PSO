@@ -338,8 +338,9 @@ var tradeMachine = {
 		
 		var franchises = tradeMachine.franchisesInvolved();
 		
-		// Show/hide the Trade Details card wrapper
+		// Show/hide the Trade Details card wrapper and empty state
 		if (franchises.length >= 2) {
+			$('.trade-machine__empty-state').addClass('d-none');
 			$('.trade-details-card').removeClass('d-none');
 			$('.submit-trade-section').removeClass('d-none');
 			
@@ -350,6 +351,7 @@ var tradeMachine = {
 				$('.trade-machine__footer').addClass('d-none');
 			}
 		} else {
+			$('.trade-machine__empty-state').removeClass('d-none');
 			$('.trade-details-card').addClass('d-none');
 			$('.submit-trade-section').addClass('d-none');
 			$('.trade-machine__footer').addClass('d-none');
