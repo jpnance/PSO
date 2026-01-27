@@ -37,7 +37,9 @@ function formatPickNumber(pickNumber, teamsPerRound) {
 }
 
 // Shared logic to build trade display data
-async function buildTradeDisplayData(trades, options) {
+// tradesToDisplay: the trades to build full display data for
+// allTrades: all trades (used for building chain link indexes)
+async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 	options = options || {};
 	var currentSeason = options.currentSeason || new Date().getFullYear();
 	
@@ -91,16 +93,15 @@ async function buildTradeDisplayData(trades, options) {
 		return regime ? regime.displayName : 'Unknown';
 	}
 	
-	// Build pick trade history using composite key (season:round:originalFranchiseId)
-	// This lets us track pick ownership across all trades, even without pickId
+	// Build pick trade history from ALL trades (for chain links)
 	var pickTradeHistory = {};
 	
 	function getPickKey(season, round, originalFranchiseId) {
 		return season + ':' + round + ':' + originalFranchiseId.toString();
 	}
 	
-	for (var i = 0; i < trades.length; i++) {
-		var trade = trades[i];
+	for (var i = 0; i < allTrades.length; i++) {
+		var trade = allTrades[i];
 		var tradeNumber = trade.tradeId || (i + 1);
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
@@ -120,10 +121,10 @@ async function buildTradeDisplayData(trades, options) {
 		}
 	}
 	
-	// Build player trade history
+	// Build player trade history from ALL trades (for chain links)
 	var playerTradeHistory = {};
-	for (var i = 0; i < trades.length; i++) {
-		var trade = trades[i];
+	for (var i = 0; i < allTrades.length; i++) {
+		var trade = allTrades[i];
 		var tradeNumber = trade.tradeId || (i + 1);
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
@@ -141,12 +142,12 @@ async function buildTradeDisplayData(trades, options) {
 		}
 	}
 	
-	// Build display data for each trade
+	// Build display data only for tradesToDisplay
 	var tradeData = [];
 	
-	for (var i = 0; i < trades.length; i++) {
-		var trade = trades[i];
-		var tradeNumber = trade.tradeId || (i + 1);
+	for (var i = 0; i < tradesToDisplay.length; i++) {
+		var trade = tradesToDisplay[i];
+		var tradeNumber = trade.tradeId;
 		var tradeYear = trade.timestamp.getFullYear();
 		
 		var parties = [];
@@ -662,17 +663,8 @@ async function tradeHistory(request, response) {
 	// Reverse for display (newest first on page)
 	paginatedTrades = paginatedTrades.slice().reverse();
 	
-	// Build display data for paginated trades (but pass all trades for chain links)
-	var tradeData = await buildTradeDisplayData(trades, { currentSeason: currentSeason });
-	
-	// Create a map for quick lookup
-	var tradeDataMap = {};
-	tradeData.forEach(function(t) { tradeDataMap[t.number] = t; });
-	
-	// Get only the trades we want to display
-	var displayTrades = paginatedTrades.map(function(t) {
-		return tradeDataMap[t.tradeId];
-	}).filter(Boolean);
+	// Build display data only for paginated trades (pass all trades for chain links)
+	var displayTrades = await buildTradeDisplayData(paginatedTrades, trades, { currentSeason: currentSeason });
 	
 	// Reuse current regimes from filter data (no extra DB query needed)
 	var regimes = regimesData.current;
@@ -736,12 +728,9 @@ async function singleTrade(request, response) {
 	var prevTradeId = tradeIndex > 0 ? allTrades[tradeIndex - 1].tradeId : null;
 	var nextTradeId = tradeIndex < allTrades.length - 1 ? allTrades[tradeIndex + 1].tradeId : null;
 	
-	var tradeData = await buildTradeDisplayData(allTrades, { currentSeason: currentSeason });
-	
-	// Find our specific trade in the display data
-	var singleTradeData = tradeData.find(function(t) {
-		return t.number === tradeId;
-	});
+	// Build display data for just this trade (pass all trades for chain links)
+	var tradeData = await buildTradeDisplayData([trade], allTrades, { currentSeason: currentSeason });
+	var singleTradeData = tradeData[0];
 	
 	// Get current regimes for the filter dropdown (for consistency with main page)
 	var regimes = await getCurrentRegimes();
