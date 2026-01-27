@@ -18,10 +18,21 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
-// Block AI training crawlers
+// Block AI training crawlers and aggressive SEO bots
 app.use(function(req, res, next) {
 	var ua = req.get('User-Agent') || '';
-	if (ua.includes('ClaudeBot') || ua.includes('GPTBot')) {
+	var blockedBots = [
+		'ClaudeBot',      // Anthropic AI training
+		'GPTBot',         // OpenAI AI training
+		'CCBot',          // Common Crawl (AI training)
+		'Google-Extended', // Google AI training (separate from search)
+		'Bytespider',     // ByteDance/TikTok
+		'SemrushBot',     // SEO crawler
+		'AhrefsBot',      // SEO crawler
+		'MJ12bot',        // Majestic SEO (aggressive)
+		'DotBot'          // Moz SEO
+	];
+	if (blockedBots.some(function(bot) { return ua.includes(bot); })) {
 		return res.status(403).send('Bots not allowed');
 	}
 	next();
