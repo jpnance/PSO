@@ -41,27 +41,55 @@ async function buildTradeDisplayData(trades, options) {
 	options = options || {};
 	var currentSeason = options.currentSeason || new Date().getFullYear();
 	
-	// Get all players for lookups
-	var players = await Player.find({}).lean();
+	// Load all lookup data in parallel
+	var lookupData = await Promise.all([
+		Player.find({}).lean(),
+		Pick.find({}).lean(),
+		Transaction.find({ type: 'draft-select' }).lean(),
+		Regime.find({}).lean()
+	]);
+	
+	var players = lookupData[0];
+	var picks = lookupData[1];
+	var draftSelections = lookupData[2];
+	var allRegimes = lookupData[3];
+	
+	// Build player map
 	var playerMap = {};
 	players.forEach(function(p) { playerMap[p._id.toString()] = p; });
 	
-	// Get all picks for lookups (keyed by season:round:originalFranchiseId)
-	var picks = await Pick.find({}).lean();
+	// Build pick lookup
 	var pickLookup = {};
 	picks.forEach(function(p) {
 		var key = p.season + ':' + p.round + ':' + p.originalFranchiseId.toString();
 		pickLookup[key] = p;
 	});
 	
-	// Get all draft-select transactions to find which player each pick became
-	var draftSelections = await Transaction.find({ type: 'draft-select' }).lean();
+	// Build pickToPlayer map
 	var pickToPlayer = {}; // pickId -> playerId
 	draftSelections.forEach(function(t) {
 		if (t.pickId && t.playerId) {
 			pickToPlayer[t.pickId.toString()] = t.playerId.toString();
 		}
 	});
+	
+	// In-memory regime lookup (replaces per-trade DB queries)
+	function getRegimeAtTime(franchiseId, season) {
+		if (!franchiseId) return null;
+		var fIdStr = franchiseId.toString();
+		return allRegimes.find(function(r) {
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season);
+			});
+		});
+	}
+	
+	function getDisplayNameAtTime(franchiseId, season) {
+		var regime = getRegimeAtTime(franchiseId, season);
+		return regime ? regime.displayName : 'Unknown';
+	}
 	
 	// Build pick trade history using composite key (season:round:originalFranchiseId)
 	// This lets us track pick ownership across all trades, even without pickId
@@ -125,7 +153,7 @@ async function buildTradeDisplayData(trades, options) {
 		
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
-			var regime = await getRegime(party.franchiseId, tradeYear);
+			var regime = getRegimeAtTime(party.franchiseId, tradeYear);
 			var franchiseName = regime ? regime.displayName : 'Unknown';
 			var usePlural = isPlural(regime);
 			
@@ -205,7 +233,7 @@ async function buildTradeDisplayData(trades, options) {
 				var season = pickInfo.season || currentSeason;
 				var round = pickInfo.round || 1;
 				var originalFranchiseId = pickInfo.fromFranchiseId;
-				var originalOwner = originalFranchiseId ? await getDisplayName(originalFranchiseId, tradeYear) : 'Unknown';
+				var originalOwner = originalFranchiseId ? getDisplayNameAtTime(originalFranchiseId, tradeYear) : 'Unknown';
 				
 				// Look up the actual Pick document for additional info
 				var pickKey = originalFranchiseId ? getPickKey(season, round, originalFranchiseId) : null;
@@ -552,15 +580,18 @@ async function tradeHistory(request, response) {
 	var showPastPeople = request.query.showPastPeople === '1';
 	var showPastRegimes = request.query.showPastRegimes === '1';
 	
-	// Fetch all filter data
-	var peopleData = await getPeopleForFilter();
-	var regimesData = await getRegimesForFilter();
-	var franchisesData = await getFranchisesForFilter();
+	// Fetch all filter data and trades in parallel
+	var parallelData = await Promise.all([
+		getPeopleForFilter(),
+		getRegimesForFilter(),
+		getFranchisesForFilter(),
+		Transaction.find({ type: 'trade' }).sort({ timestamp: 1 }).lean()
+	]);
 	
-	// Fetch all trades, oldest first (so we can number them)
-	var trades = await Transaction.find({ type: 'trade' })
-		.sort({ timestamp: 1 })
-		.lean();
+	var peopleData = parallelData[0];
+	var regimesData = parallelData[1];
+	var franchisesData = parallelData[2];
+	var trades = parallelData[3];
 	
 	// Combined filtering: apply all filters together (AND across categories)
 	var filteredTrades = trades;
@@ -643,8 +674,8 @@ async function tradeHistory(request, response) {
 		return tradeDataMap[t.tradeId];
 	}).filter(Boolean);
 	
-	// Get current regimes for filter dropdown
-	var regimes = await getCurrentRegimes();
+	// Reuse current regimes from filter data (no extra DB query needed)
+	var regimes = regimesData.current;
 	
 	// Calculate "older" page for default view (go to page before the 2 we're showing)
 	var olderPage = isDefaultView ? (totalPages > 2 ? totalPages - 2 : null) : (page > 1 ? page - 1 : null);
