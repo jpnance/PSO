@@ -268,20 +268,6 @@ a.trade-pill.trade-pill--active:hover {
 	color: #212529;
 }
 
-/* Simple text link navigation (single trade view) */
-.trade-nav--simple {
-	display: flex;
-	align-items: center;
-}
-
-.trade-nav--simple a {
-	color: #007bff;
-}
-
-.trade-nav--simple a:hover {
-	color: #0056b3;
-}
-
 /* Sticky filter panel on large screens */
 @media (min-width: 992px) {
 	.trade-filter--sticky {

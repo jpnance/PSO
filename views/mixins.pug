@@ -62,7 +62,7 @@ mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPref
 mixin sequentialNav(opts)
 	- var items = opts.items || []
 	- var current = opts.current
-	- var urlPattern = opts.urlPattern || '?value='
+	- var urlPattern = opts.urlPattern !== undefined ? opts.urlPattern : '?value='
 	- var urlSuffix = opts.urlSuffix || ''
 	- var quickItems = opts.quickItems || null
 	- var jumpLabel = opts.jumpLabel || null
@@ -86,11 +86,11 @@ mixin sequentialNav(opts)
 		var simpleMode = items.length === 0 && (opts.prev !== undefined || opts.next !== undefined)
 	div.seq-nav
 		if simpleMode
-			//- Mode: simple prev/next with current label
-			a.seq-nav__arrow(href=prevItem != null ? buildUrl(prevItem) : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
+			//- Mode: simple prev/next with current label (prev/next are full URLs)
+			a.seq-nav__arrow(href=prevItem ? prevItem : null class=(!prevItem ? 'seq-nav__arrow--disabled' : ''))
 				span ‹
 			span.seq-nav__current= labelFn(current)
-			a.seq-nav__arrow(href=nextItem != null ? buildUrl(nextItem) : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
+			a.seq-nav__arrow(href=nextItem ? nextItem : null class=(!nextItem ? 'seq-nav__arrow--disabled' : ''))
 				span ›
 		else if quickItems
 			//- Mode: pills with optional jump dropdown (inside arrows)

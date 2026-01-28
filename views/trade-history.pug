@@ -161,14 +161,13 @@ block content
 						
 						//- Bottom pagination
 						- var pageSep = baseQuery ? '&' : '?'
-						div#pagination.trade-nav--simple.mt-4
-							if olderPage
-								a(href="/trades" + baseQuery + (olderPage > 1 ? pageSep + "page=" + olderPage : "")) ← Older
-							span.flex-grow-1
-							if newerPage
-								a(href="/trades" + baseQuery + pageSep + "page=" + newerPage) Newer →
-							else if !isDefaultView
-								a(href="/trades" + baseQuery) Newest →
+						- var firstNum = trades.length > 0 ? trades[0].number : null
+						- var lastNum = trades.length > 0 ? trades[trades.length - 1].number : null
+						- var rangeLabel = firstNum === lastNum ? 'Trade #' + firstNum : 'Trades #' + lastNum + '–' + firstNum
+						- var olderUrl = olderPage ? '/trades' + baseQuery + (olderPage > 1 ? pageSep + 'page=' + olderPage : '') : null
+						- var newerUrl = newerPage ? '/trades' + baseQuery + pageSep + 'page=' + newerPage : (!isDefaultView ? '/trades' + baseQuery : null)
+						div#pagination.mt-4
+							+sequentialNav({ prev: olderUrl, next: newerUrl, current: rangeLabel, urlPattern: '' })
 
 block scripts
 	script(src='/js/trade-history.js')
