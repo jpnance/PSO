@@ -9,73 +9,27 @@ block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
 	style.
-		:root {
-			--storybook-bg: #1a1a2e;
-			--storybook-card: #16213e;
-			--storybook-accent: #e94560;
-			--storybook-text: #eaeaea;
-			--storybook-code: #0f3460;
-		}
-		
-		body {
-			background: var(--storybook-bg);
-			color: var(--storybook-text);
-			font-family: 'Segoe UI', system-ui, sans-serif;
-		}
-		
-		.components-container {
-			max-width: 900px;
-			margin: 0 auto;
-			padding: 2rem;
-		}
-		
-		h1 {
-			font-weight: 300;
-			letter-spacing: 0.1em;
-			text-transform: uppercase;
-			margin-bottom: 0.5rem;
-			color: var(--storybook-accent);
-		}
-		
-		.subtitle {
-			color: #888;
-			margin-bottom: 3rem;
-			font-size: 0.9rem;
-		}
-		
 		.component-section {
-			background: var(--storybook-card);
-			border-radius: 12px;
-			padding: 2rem;
 			margin-bottom: 2rem;
-			border-left: 4px solid var(--storybook-accent);
+			padding: 1.5rem;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			background: #fff;
 		}
-		
 		.component-section h2 {
-			font-size: 1.1rem;
-			font-weight: 600;
+			font-size: 1rem;
 			margin-bottom: 0.25rem;
-			color: #fff;
 		}
-		
 		.component-section .usage {
-			font-family: 'Fira Code', 'Consolas', monospace;
+			font-family: monospace;
 			font-size: 0.75rem;
-			color: #888;
-			margin-bottom: 1.5rem;
-			background: var(--storybook-code);
-			padding: 0.5rem 0.75rem;
+			color: #6c757d;
+			margin-bottom: 1rem;
+			background: #f8f9fa;
+			padding: 0.4rem 0.6rem;
 			border-radius: 4px;
 			display: inline-block;
 		}
-		
-		.preview {
-			background: #fff;
-			border-radius: 8px;
-			padding: 1.5rem;
-			color: #333;
-		}
-		
 		.preview-row {
 			display: flex;
 			align-items: center;
@@ -83,32 +37,25 @@ block styles
 			flex-wrap: wrap;
 			margin-bottom: 1rem;
 		}
-		
-		.preview-row:last-child {
-			margin-bottom: 0;
-		}
-		
 		.variant-label {
 			font-size: 0.7rem;
 			text-transform: uppercase;
 			letter-spacing: 0.05em;
-			color: #999;
-			width: 80px;
+			color: #6c757d;
+			width: 100px;
 			flex-shrink: 0;
+			font-weight: 600;
 		}
-		
 		.trade-card-preview {
 			border: 1px solid #dee2e6;
 			border-radius: 8px;
 			padding: 1rem;
 		}
-		
 		.nav-container {
 			background: #f8f9fa;
 			padding: 1rem;
 			border-radius: 8px;
 		}
-		
 		.color-swatch {
 			display: inline-block;
 			width: 40px;
@@ -116,7 +63,6 @@ block styles
 			border-radius: 4px;
 			border: 1px solid rgba(0,0,0,0.1);
 		}
-		
 		.color-circle {
 			display: inline-block;
 			width: 24px;
@@ -125,99 +71,96 @@ block styles
 		}
 
 block content
-	div.components-container
-		h1 PSO Components
-		p.subtitle A visual reference for shared Pug mixins and design tokens
+	div.container.py-4
+		h1 Component Library
+		p.text-muted.mb-4 A visual reference for shared Pug mixins and design tokens
 
 		//- Position Badge
 		div.component-section
 			h2 +positionBadge(positions)
 			code.usage +positionBadge(['QB']) | +positionBadge(['RB', 'WR'])
-			div.preview
-				div.preview-row
-					span.variant-label Single
-					+positionBadge(['QB'])
-					+positionBadge(['RB'])
-					+positionBadge(['WR'])
-					+positionBadge(['TE'])
-					+positionBadge(['DL'])
-					+positionBadge(['LB'])
-					+positionBadge(['DB'])
-					+positionBadge(['K'])
-				div.preview-row
-					span.variant-label Multi
-					+positionBadge(['RB', 'WR'])
-					+positionBadge(['DL', 'LB'])
+			div.preview-row
+				span.variant-label Single
+				+positionBadge(['QB'])
+				+positionBadge(['RB'])
+				+positionBadge(['WR'])
+				+positionBadge(['TE'])
+				+positionBadge(['DL'])
+				+positionBadge(['LB'])
+				+positionBadge(['DB'])
+				+positionBadge(['K'])
+			div.preview-row
+				span.variant-label Multi
+				+positionBadge(['RB', 'WR'])
+				+positionBadge(['DL', 'LB'])
 
 		//- Status Badge
 		div.component-section
 			h2 +statusBadge(status, displayText?)
 			code.usage +statusBadge('pending') | +statusBadge('hypothetical')
-			div.preview
-				div.preview-row
-					+statusBadge('hypothetical')
-					+statusBadge('pending')
-					+statusBadge('accepted')
-					+statusBadge('rejected')
-				div.preview-row
-					+statusBadge('canceled')
-					+statusBadge('expired')
-					+statusBadge('executed')
+			div.preview-row
+				+statusBadge('hypothetical')
+				+statusBadge('pending')
+				+statusBadge('accepted')
+				+statusBadge('rejected')
+			div.preview-row
+				+statusBadge('canceled')
+				+statusBadge('expired')
+				+statusBadge('executed')
 
 		//- Matchup
 		div.component-section
 			h2 +matchup(game, options?)
 			code.usage +matchup({ away: { name, score, record, seed, won }, home: {...}, type }, { label: 'Semifinal' })
-			div.preview
-				div.preview-row
-					span.variant-label Upcoming
-				div(style="max-width: 300px;")
-					+matchup({ away: { name: 'Syed/Terence', record: '8-3' }, home: { name: 'Mitch/Karsten', record: '7-4' } })
-				
-				div.preview-row.mt-3
-					span.variant-label Final
-				div(style="max-width: 300px;")
-					+matchup({ away: { name: 'Koci/Mueller', score: 142.56, record: '9-3', won: true }, home: { name: 'Schex', score: 128.34, record: '7-5', won: false } })
-				
-				div.preview-row.mt-3
-					span.variant-label Playoffs
-				div(style="max-width: 350px;")
-					+matchup({ away: { name: 'Syed/Terence', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, type: 'semifinal' }, { label: 'Semifinal 1' })
-					+matchup({ away: { name: 'Keyon', score: 148.90, seed: 1, won: true }, home: { name: 'Mitch/Karsten', score: 134.56, seed: 4 }, type: 'semifinal' }, { label: 'Semifinal 2' })
-				
-				div.preview-row.mt-3
-					span.variant-label Championship
-				div(style="max-width: 350px;")
-					+matchup({ away: { name: 'Syed/Terence', score: 167.23, seed: 2, won: true }, home: { name: 'Keyon', score: 154.89, seed: 1 }, type: 'championship' }, { label: 'Championship' })
-					+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Mitch/Karsten', score: 125.67, seed: 4 }, type: 'thirdPlace' }, { label: 'Third Place' })
-				
-				div.preview-row.mt-3
-					span.variant-label With Subtitle
-				p.small.text-muted.mb-2 Optional subtitle for regime names. Subtitle appears under the name, not the seed.
-				div(style="max-width: 450px;")
-					+matchup({ away: { name: 'Franchise 9', subtitle: 'Koci/Mueller', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, type: 'championship' }, { label: 'Championship' })
-				
-				div.preview-row.mt-4
-					span.variant-label Container
-				p.small.text-muted.mb-2 Container queries: records hidden &lt;230px, shown at 230px+. Subtitles always visible.
-				div.d-flex.flex-wrap(style="gap: 1rem;")
-					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
-						small.text-muted 220px (no record)
-						+matchup({ away: { name: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci/Mueller', score: 128.34, record: '7-5' } })
-					div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
-						small.text-muted 320px (with record)
-						+matchup({ away: { name: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci/Mueller', score: 128.34, record: '7-5' } })
-				
-				div.preview-row.mt-4
-					span.variant-label Subtitle Sizes
-				p.small.text-muted.mb-2 Regular season game with franchise name + regime subtitle at various widths.
-				div.d-flex.flex-wrap(style="gap: 1rem;")
-					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
-						small.text-muted 220px (no record)
-						+matchup({ away: { name: 'Franchise 9', subtitle: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Mitch/Karsten', score: 128.34, record: '7-5' } })
-					div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
-						small.text-muted 320px (with record)
-						+matchup({ away: { name: 'Franchise 9', subtitle: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Mitch/Karsten', score: 128.34, record: '7-5' } })
+			div.preview-row
+				span.variant-label Upcoming
+			div(style="max-width: 300px;")
+				+matchup({ away: { name: 'Syed/Terence', record: '8-3' }, home: { name: 'Mitch/Karsten', record: '7-4' } })
+			
+			div.preview-row.mt-3
+				span.variant-label Final
+			div(style="max-width: 300px;")
+				+matchup({ away: { name: 'Koci/Mueller', score: 142.56, record: '9-3', won: true }, home: { name: 'Schex', score: 128.34, record: '7-5', won: false } })
+			
+			div.preview-row.mt-3
+				span.variant-label Playoffs
+			div(style="max-width: 350px;")
+				+matchup({ away: { name: 'Syed/Terence', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, type: 'semifinal' }, { label: 'Semifinal 1' })
+				+matchup({ away: { name: 'Keyon', score: 148.90, seed: 1, won: true }, home: { name: 'Mitch/Karsten', score: 134.56, seed: 4 }, type: 'semifinal' }, { label: 'Semifinal 2' })
+			
+			div.preview-row.mt-3
+				span.variant-label Championship
+			div(style="max-width: 350px;")
+				+matchup({ away: { name: 'Syed/Terence', score: 167.23, seed: 2, won: true }, home: { name: 'Keyon', score: 154.89, seed: 1 }, type: 'championship' }, { label: 'Championship' })
+				+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Mitch/Karsten', score: 125.67, seed: 4 }, type: 'thirdPlace' }, { label: 'Third Place' })
+			
+			div.preview-row.mt-3
+				span.variant-label With Subtitle
+			p.small.text-muted.mb-2 Optional subtitle for regime names. Subtitle appears under the name, not the seed.
+			div(style="max-width: 450px;")
+				+matchup({ away: { name: 'Franchise 9', subtitle: 'Koci/Mueller', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, type: 'championship' }, { label: 'Championship' })
+			
+			div.preview-row.mt-4
+				span.variant-label Container
+			p.small.text-muted.mb-2 Container queries: records hidden &lt;230px, shown at 230px+. Subtitles always visible.
+			div.d-flex.flex-wrap(style="gap: 1rem;")
+				div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 220px (no record)
+					+matchup({ away: { name: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci/Mueller', score: 128.34, record: '7-5' } })
+				div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 320px (with record)
+					+matchup({ away: { name: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci/Mueller', score: 128.34, record: '7-5' } })
+			
+			div.preview-row.mt-4
+				span.variant-label Subtitle Sizes
+			p.small.text-muted.mb-2 Regular season game with franchise name + regime subtitle at various widths.
+			div.d-flex.flex-wrap(style="gap: 1rem;")
+				div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 220px (no record)
+					+matchup({ away: { name: 'Franchise 9', subtitle: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Mitch/Karsten', score: 128.34, record: '7-5' } })
+				div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 320px (with record)
+					+matchup({ away: { name: 'Franchise 9', subtitle: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Mitch/Karsten', score: 128.34, record: '7-5' } })
 
 		//- Standings Table
 		div.component-section
@@ -232,150 +175,142 @@ block content
 					{ rank: 5, name: 'Mitch/Karsten', wins: 8, losses: 7, pointsFor: 1834.12, pointsAgainst: 1856.34 },
 					{ rank: 6, name: 'Jeff', wins: 7, losses: 8, pointsFor: 1789.45, pointsAgainst: 1823.67, allPlay: { wins: 98, losses: 67, ties: 0 } }
 				]
-			div.preview
-				div.preview-row
-					span.variant-label D1. Widget
-				p.small.text-muted.mb-2 Compact view for homepage cards. Shows rank, name, record, PF, PA.
-				div(style="max-width: 350px;")
-					+standingsTable(sampleTeams, { variant: 'widget' })
-				
-				div.preview-row.mt-4
-					span.variant-label D2. With Medals
-				p.small.text-muted.mb-2 Final standings with gold/silver/bronze highlighting.
-				div(style="max-width: 350px;")
-					+standingsTable(sampleTeams, { variant: 'widget', isFinal: true, showMedals: true })
-				
-				div.preview-row.mt-4
-					span.variant-label D3. Sidebar
-				p.small.text-muted.mb-2 Medium view with all-play column. Used on schedule page.
-				div(style="max-width: 450px;")
-					+standingsTable(sampleTeams.slice(0, 4), { variant: 'sidebar', showCutoff: false })
-				
-				div.preview-row.mt-4
-					span.variant-label D4. Full
-				p.small.text-muted.mb-2 All columns with playoff stats. Container queries hide columns as width shrinks.
-				div(style="max-width: 850px;")
-					+standingsTable(sampleTeams.slice(0, 4), { variant: 'full', isFinal: true, showPlayoffStats: true })
-				
-				div.preview-row.mt-4
-					span.variant-label D5. Mini
-				p.small.text-muted.mb-2 Minimal view for division breakdowns. No header row.
-				div(style="max-width: 250px;")
-					+standingsTable(sampleTeams.slice(0, 3), { variant: 'mini' })
-				
-				div.preview-row.mt-4
-					span.variant-label D6. Container Queries
-				p.small.text-muted.mb-2 Widget variant at different widths showing responsive column hiding.
-				div.d-flex.flex-wrap(style="gap: 1rem;")
-					div(style="width: 280px; border: 1px dashed #ccc; padding: 0.5rem;")
-						small.text-muted 280px (no PA)
-						+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
-					div(style="width: 350px; border: 1px dashed #ccc; padding: 0.5rem;")
-						small.text-muted 350px (all columns)
-						+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
+			div.preview-row
+				span.variant-label D1. Widget
+			p.small.text-muted.mb-2 Compact view for homepage cards. Shows rank, name, record, PF, PA.
+			div(style="max-width: 350px;")
+				+standingsTable(sampleTeams, { variant: 'widget' })
+			
+			div.preview-row.mt-4
+				span.variant-label D2. With Medals
+			p.small.text-muted.mb-2 Final standings with gold/silver/bronze highlighting.
+			div(style="max-width: 350px;")
+				+standingsTable(sampleTeams, { variant: 'widget', isFinal: true, showMedals: true })
+			
+			div.preview-row.mt-4
+				span.variant-label D3. Sidebar
+			p.small.text-muted.mb-2 Medium view with all-play column. Used on schedule page.
+			div(style="max-width: 450px;")
+				+standingsTable(sampleTeams.slice(0, 4), { variant: 'sidebar', showCutoff: false })
+			
+			div.preview-row.mt-4
+				span.variant-label D4. Full
+			p.small.text-muted.mb-2 All columns with playoff stats. Container queries hide columns as width shrinks.
+			div(style="max-width: 850px;")
+				+standingsTable(sampleTeams.slice(0, 4), { variant: 'full', isFinal: true, showPlayoffStats: true })
+			
+			div.preview-row.mt-4
+				span.variant-label D5. Mini
+			p.small.text-muted.mb-2 Minimal view for division breakdowns. No header row.
+			div(style="max-width: 250px;")
+				+standingsTable(sampleTeams.slice(0, 3), { variant: 'mini' })
+			
+			div.preview-row.mt-4
+				span.variant-label D6. Container Queries
+			p.small.text-muted.mb-2 Widget variant at different widths showing responsive column hiding.
+			div.d-flex.flex-wrap(style="gap: 1rem;")
+				div(style="width: 280px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 280px (no PA)
+					+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
+				div(style="width: 350px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 350px (all columns)
+					+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
 
 		//- Season Nav
 		div.component-section
 			h2 +seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel)
 			code.usage +seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
-			div.preview
-				div.nav-container
-					+seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
+			div.nav-container
+				+seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
 
 		//- Trade Asset Icons
 		div.component-section
 			h2 +tradeAssetIcon(type)
 			code.usage +tradeAssetIcon('player') | +tradeAssetIcon('pick') | +tradeAssetIcon('cash')
-			div.preview
-				div.preview-row
-					span.variant-label Types
-					+tradeAssetIcon('player')
-					+tradeAssetIcon('pick')
-					+tradeAssetIcon('cash')
-					+tradeAssetIcon('rfa')
-					+tradeAssetIcon('nothing')
+			div.preview-row
+				span.variant-label Types
+				+tradeAssetIcon('player')
+				+tradeAssetIcon('pick')
+				+tradeAssetIcon('cash')
+				+tradeAssetIcon('rfa')
+				+tradeAssetIcon('nothing')
 
 		//- Trade Asset (Full)
 		div.component-section
 			h2 +tradeAsset(asset)
 			code.usage +tradeAsset({ type: 'player', playerName: 'Josh Allen', positions: ['QB'], contractInfo: '22/26' })
-			div.preview
-				ul.asset-list
-					+tradeAsset({ type: 'player', playerName: 'Josh Allen', positions: ['QB'], contractInfo: '22/26' })
-					+tradeAsset({ type: 'player', playerName: 'Deebo Samuel', positions: ['RB', 'WR'], contractInfo: '21/24' })
-					+tradeAsset({ type: 'pick', pickMain: '2025 1st', pickContext: '(from Schex)' })
-					+tradeAsset({ type: 'cash', cashMain: '$500', cashContext: 'in 2025' })
-					+tradeAsset({ type: 'rfa', playerName: 'Cooper Kupp', positions: ['WR'], contractInfo: 'RFA rights' })
-					+tradeAsset({ type: 'nothing', display: 'Nothing' })
+			ul.asset-list
+				+tradeAsset({ type: 'player', playerName: 'Josh Allen', positions: ['QB'], contractInfo: '22/26' })
+				+tradeAsset({ type: 'player', playerName: 'Deebo Samuel', positions: ['RB', 'WR'], contractInfo: '21/24' })
+				+tradeAsset({ type: 'pick', pickMain: '2025 1st', pickContext: '(from Schex)' })
+				+tradeAsset({ type: 'cash', cashMain: '$500', cashContext: 'in 2025' })
+				+tradeAsset({ type: 'rfa', playerName: 'Cooper Kupp', positions: ['WR'], contractInfo: 'RFA rights' })
+				+tradeAsset({ type: 'nothing', display: 'Nothing' })
 
 		//- Trade Party
 		div.component-section
 			h2 +tradeParty(party)
 			code.usage +tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
-			div.preview
-				div.trade-card-preview
-					- var sampleParties = [{ franchiseName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { franchiseName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
-					each party in sampleParties
-						+tradeParty(party)
+			div.trade-card-preview
+				- var sampleParties = [{ franchiseName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { franchiseName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
+				each party in sampleParties
+					+tradeParty(party)
 
 		//- Budget Impact Table
 		div.component-section
 			h2 +budgetImpactTable(budgetImpact)
 			code.usage +budgetImpactTable([{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }] }])
-			div.preview
-				- var sampleBudgetImpact = [{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { franchiseName: 'Syed/Terence', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
-				+budgetImpactTable(sampleBudgetImpact)
+			- var sampleBudgetImpact = [{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { franchiseName: 'Syed/Terence', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
+			+budgetImpactTable(sampleBudgetImpact)
 
 		//- Design Tokens
 		div.component-section
 			h2 Design Tokens
 			code.usage var(--pos-qb-bg) | var(--asset-player) | var(--status-pending-bg)
-			div.preview
-				div.preview-row
-					span.variant-label Positions
-					span.color-swatch(style="background: var(--pos-qb-bg); border-color: var(--pos-qb-text);" title="--pos-qb-*")
-					span.color-swatch(style="background: var(--pos-rb-bg); border-color: var(--pos-rb-text);" title="--pos-rb-*")
-					span.color-swatch(style="background: var(--pos-wr-bg); border-color: var(--pos-wr-text);" title="--pos-wr-*")
-					span.color-swatch(style="background: var(--pos-te-bg); border-color: var(--pos-te-text);" title="--pos-te-*")
-					span.color-swatch(style="background: var(--pos-idp-bg); border-color: var(--pos-idp-text);" title="--pos-idp-*")
-					span.color-swatch(style="background: var(--pos-k-bg); border-color: var(--pos-k-text);" title="--pos-k-*")
-				div.preview-row
-					span.variant-label Assets
-					span.color-circle(style="background: var(--asset-player);" title="--asset-player")
-					span.color-circle(style="background: var(--asset-pick);" title="--asset-pick")
-					span.color-circle(style="background: var(--asset-cash);" title="--asset-cash")
-					span.color-circle(style="background: var(--asset-rfa);" title="--asset-rfa")
-					span.color-circle(style="background: var(--asset-nothing);" title="--asset-nothing")
-				div.preview-row
-					span.variant-label UI Colors
-					span.color-circle(style="background: var(--color-success);" title="--color-success")
-					span.color-circle(style="background: var(--color-danger);" title="--color-danger")
-					span.color-circle(style="background: var(--color-warning);" title="--color-warning")
-					span.color-circle(style="background: var(--color-info);" title="--color-info")
-					span.color-circle(style="background: var(--color-disabled);" title="--color-disabled")
+			div.preview-row
+				span.variant-label Positions
+				span.color-swatch(style="background: var(--pos-qb-bg); border-color: var(--pos-qb-text);" title="--pos-qb-*")
+				span.color-swatch(style="background: var(--pos-rb-bg); border-color: var(--pos-rb-text);" title="--pos-rb-*")
+				span.color-swatch(style="background: var(--pos-wr-bg); border-color: var(--pos-wr-text);" title="--pos-wr-*")
+				span.color-swatch(style="background: var(--pos-te-bg); border-color: var(--pos-te-text);" title="--pos-te-*")
+				span.color-swatch(style="background: var(--pos-idp-bg); border-color: var(--pos-idp-text);" title="--pos-idp-*")
+				span.color-swatch(style="background: var(--pos-k-bg); border-color: var(--pos-k-text);" title="--pos-k-*")
+			div.preview-row
+				span.variant-label Assets
+				span.color-circle(style="background: var(--asset-player);" title="--asset-player")
+				span.color-circle(style="background: var(--asset-pick);" title="--asset-pick")
+				span.color-circle(style="background: var(--asset-cash);" title="--asset-cash")
+				span.color-circle(style="background: var(--asset-rfa);" title="--asset-rfa")
+				span.color-circle(style="background: var(--asset-nothing);" title="--asset-nothing")
+			div.preview-row
+				span.variant-label UI Colors
+				span.color-circle(style="background: var(--color-success);" title="--color-success")
+				span.color-circle(style="background: var(--color-danger);" title="--color-danger")
+				span.color-circle(style="background: var(--color-warning);" title="--color-warning")
+				span.color-circle(style="background: var(--color-info);" title="--color-info")
+				span.color-circle(style="background: var(--color-disabled);" title="--color-disabled")
 
 		//- formatMoney Helper
 		div.component-section
 			h2 formatMoney(n, options?)
 			code.usage formatMoney(1234) | formatMoney(500, { sign: '+' }) | formatMoney(-163, { sign: 'auto' })
-			div.preview
-				div.preview-row
-					span.variant-label Default
-					code formatMoney(1234)
-					|  → 
-					strong #{formatMoney(1234)}
-				div.preview-row
-					span.variant-label Explicit +
-					code formatMoney(500, { sign: '+' })
-					|  → 
-					strong.text-success #{formatMoney(500, { sign: '+' })}
-				div.preview-row
-					span.variant-label Explicit -
-					code formatMoney(163, { sign: '-' })
-					|  → 
-					strong.text-danger #{formatMoney(163, { sign: '-' })}
-				div.preview-row
-					span.variant-label Auto
-					code formatMoney(-500, { sign: 'auto' })
-					|  → 
-					strong.text-danger #{formatMoney(-500, { sign: 'auto' })}
+			div.preview-row
+				span.variant-label Default
+				code formatMoney(1234)
+				|  → 
+				strong #{formatMoney(1234)}
+			div.preview-row
+				span.variant-label Explicit +
+				code formatMoney(500, { sign: '+' })
+				|  → 
+				strong.text-success #{formatMoney(500, { sign: '+' })}
+			div.preview-row
+				span.variant-label Explicit -
+				code formatMoney(163, { sign: '-' })
+				|  → 
+				strong.text-danger #{formatMoney(163, { sign: '-' })}
+			div.preview-row
+				span.variant-label Auto
+				code formatMoney(-500, { sign: 'auto' })
+				|  → 
+				strong.text-danger #{formatMoney(-500, { sign: 'auto' })}
