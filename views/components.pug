@@ -290,6 +290,44 @@ block content
 			p.small.text-muted.mb-2 Jump dropdown styled blue when current is in the jump list.
 			+sequentialNav({ items: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], current: 2018, quickItems: [2022, 2023, 2024, 2025], jumpLabel: 'Older...', urlPattern: '#' })
 			
+		//- Player Chip
+		div.component-section
+			h2 +playerChip(options)
+			code.usage +playerChip({ name, positions, detail?, href?, variant? })
+			
+			div.preview-row.mt-4
+				span.variant-label Default (by position)
+			div.player-chip-grid(style="max-width: 700px;")
+				+playerChip({ name: 'Josh Allen', positions: ['QB'], detail: '$44 · 22/26' })
+				+playerChip({ name: 'Saquon Barkley', positions: ['RB'], detail: '$21 · 24/27' })
+				+playerChip({ name: 'Ja\'Marr Chase', positions: ['WR'], detail: '$17 · 22/25' })
+				+playerChip({ name: 'Travis Kelce', positions: ['TE'], detail: '$9 · 20/23' })
+				+playerChip({ name: 'Myles Garrett', positions: ['DL'], detail: '$2 · 23/26' })
+				+playerChip({ name: 'Roquan Smith', positions: ['LB'], detail: '$1 · 24/27' })
+				+playerChip({ name: 'Sauce Gardner', positions: ['DB'], detail: '$2 · 23/26' })
+				+playerChip({ name: 'Justin Tucker', positions: ['K'], detail: '$1 · 21/24' })
+			
+			div.preview-row.mt-4
+				span.variant-label RFA on a Roster
+			p.small.text-muted.mb-2 Purple variant with "RFA Rights" for showing RFAs alongside contracted players.
+			div.player-chip-grid(style="max-width: 500px;")
+				+playerChip({ name: 'Cooper Kupp', positions: ['WR'], detail: 'RFA Rights', variant: 'rfa' })
+				+playerChip({ name: 'Micah Parsons', positions: ['DL', 'LB'], detail: 'RFA Rights', variant: 'rfa' })
+				+playerChip({ name: 'Taysom Hill', positions: ['QB', 'TE'], detail: 'RFA Rights', variant: 'rfa' })
+			
+			div.preview-row.mt-4
+				span.variant-label RFA List (by owner)
+			p.small.text-muted.mb-2 Position-colored chips with owner name — useful when all players are RFAs.
+			div.player-chip-grid(style="max-width: 500px;")
+				+playerChip({ name: 'Cooper Kupp', positions: ['WR'], detail: 'Syed/Terence' })
+				+playerChip({ name: 'Jabrill Peppers', positions: ['WR', 'DB'], detail: 'Koci/Mueller' })
+				+playerChip({ name: 'Derrick Henry', positions: ['RB'], detail: 'Mitch/Karsten' })
+			
+			div.preview-row.mt-4
+				span.variant-label With Link
+			p.small.text-muted.mb-2 Passing href makes the chip a clickable link.
+			+playerChip({ name: 'Lamar Jackson', positions: ['QB'], detail: '$40 · 23/26', href: '#' })
+
 		//- Trade Asset Icons
 		div.component-section
 			h2 +tradeAssetIcon(type)

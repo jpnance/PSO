@@ -28,6 +28,27 @@ mixin positionBadge(positions)
 mixin statusBadge(status, displayText)
 	span.status-badge(class='status-' + status)= displayText || status
 
+//- Player chip - compact player card with position coloring
+//- Usage: +playerChip({ name, positions, detail?, href?, variant? })
+//- Variants: 'default', 'rfa'
+mixin playerChip(opts)
+	- var posClass = opts.positions && opts.positions.length ? 'pos-' + sortedPositions(opts.positions)[0] : ''
+	- var variantClass = opts.variant === 'rfa' ? 'player-chip--rfa' : ''
+	if opts.href
+		a.player-chip(href=opts.href class=posClass + ' ' + variantClass)
+			div.player-chip__content
+				div.player-chip__name= opts.name
+				if opts.detail
+					div.player-chip__detail= opts.detail
+			+positionBadge(opts.positions)
+	else
+		div.player-chip(class=posClass + ' ' + variantClass)
+			div.player-chip__content
+				div.player-chip__name= opts.name
+				if opts.detail
+					div.player-chip__detail= opts.detail
+			+positionBadge(opts.positions)
+
 //- Alert banner with icon as bullet point
 //- Usage: +alertBanner('warning', 'fa-refresh', 'Simple message')
 //- Or with block: +alertBanner('success', 'fa-check') followed by indented content

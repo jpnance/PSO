@@ -13,6 +13,7 @@ var trades = require('./services/trades');
 var proposals = require('./services/proposals');
 var calendar = require('./services/calendar');
 var rookies = require('./services/rookies');
+var freeAgents = require('./services/free-agents');
 var auth = require('./services/auth');
 var { requireLogin, requireAdmin } = require('./middleware/auth');
 
@@ -71,6 +72,8 @@ module.exports = function(app) {
 	
 	app.get('/rookies', rookies.rookieSalaries);
 	app.get('/rookies/:season', rookies.rookieSalaries);
+	
+	app.get('/rfa', freeAgents.rfa);
 
 	app.get('/components', (req, res) => res.render('components'));
 	

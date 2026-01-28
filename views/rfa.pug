@@ -1,0 +1,21 @@
+extends layout
+include mixins
+
+block title
+	+title('Restricted Free Agents')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+
+block content
+	div.container.py-4
+		h1.mb-4 Restricted Free Agents
+		
+		if positionKeys.length === 0
+			p.text-muted No restricted free agents at this time.
+		else
+			each posKey in positionKeys
+				div.player-chip-grid.player-chip-grid--constrained.mb-3
+					each player in playersByPosition[posKey]
+						+playerChip({ name: player.name, positions: player.positions, detail: player.franchise })

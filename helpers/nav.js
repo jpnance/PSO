@@ -126,10 +126,11 @@ function buildNav(options) {
 		id: 'draft',
 		label: 'Draft & Auction',
 		icon: 'fa-list-ol',
-		expanded: isActive('rookies') || isActive('draft'),
+		expanded: isActive('rookies') || isActive('draft') || isActive('rfa'),
 		items: [
 			{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
 			{ label: 'Rookie Draft', icon: 'fa-list-ol', href: '/draft', active: isActive('draft') },
+			{ label: 'Restricted Free Agents', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
 			{ label: 'Free Agent Auction', icon: 'fa-money', href: '#', soon: true }
 		]
 	});

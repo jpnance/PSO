@@ -112,6 +112,26 @@ Options:
 ```
 Types: danger, warning, success, info, secondary
 
+### Player Chip
+```pug
+//- Basic player with contract info
++playerChip({ name: 'Josh Allen', positions: ['QB'], detail: '$44 · 22/26' })
+
+//- RFA variant (dashed purple border)
++playerChip({ name: 'Cooper Kupp', positions: ['WR'], detail: 'Schex', variant: 'rfa' })
+
+//- With link
++playerChip({ name: 'Lamar Jackson', positions: ['QB'], detail: '$40 · 23/26', href: '/players/123' })
+```
+Options:
+- `name` — player name (required)
+- `positions` — array of positions for coloring and badge
+- `detail` — secondary text (salary, contract, franchise name, etc.)
+- `href` — makes the chip a clickable link
+- `variant` — `'rfa'` for dashed purple styling
+
+Use `.player-chip-grid` container class for responsive grid layout.
+
 ### Matchup (Game Result)
 ```pug
 //- Upcoming game (no scores)

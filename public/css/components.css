@@ -182,6 +182,72 @@
 .status-expired { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 .status-executed { background: var(--status-executed-bg); color: var(--status-executed-text); }
 
+/* Player chip - compact player card with position coloring */
+.player-chip {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.65rem;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 6px;
+	background: white;
+	color: inherit;
+	text-decoration: none;
+}
+
+a.player-chip:hover {
+	text-decoration: none;
+	border-color: rgba(0, 0, 0, 0.25);
+}
+
+.player-chip__content {
+	flex: 1;
+	min-width: 0;
+}
+
+.player-chip__name {
+	font-weight: 500;
+	font-size: 0.9rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.player-chip__detail {
+	font-size: 0.75rem;
+	color: #555;
+	white-space: nowrap;
+}
+
+/* Position-colored backgrounds */
+.player-chip.pos-QB { background-color: var(--pos-qb-bg); }
+.player-chip.pos-RB { background-color: var(--pos-rb-bg); }
+.player-chip.pos-WR { background-color: var(--pos-wr-bg); }
+.player-chip.pos-TE { background-color: var(--pos-te-bg); }
+.player-chip.pos-DL,
+.player-chip.pos-LB,
+.player-chip.pos-DB { background-color: var(--pos-idp-bg); }
+.player-chip.pos-K { background-color: var(--pos-k-bg); }
+
+/* RFA variant - needs higher specificity to override position colors */
+.player-chip.player-chip--rfa {
+	background-color: color-mix(in srgb, var(--asset-rfa) 15%, white);
+	border-style: dashed;
+}
+
+/* Grid container for player chips */
+.player-chip-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 0.5rem;
+}
+
+/* Constrained grid - max 3 columns with fixed chip width */
+.player-chip-grid--constrained {
+	grid-template-columns: repeat(auto-fill, minmax(220px, 280px));
+	justify-content: start;
+}
+
 /* Sequential navigation - arrows with dropdown or pills */
 .seq-nav {
 	display: inline-flex;
