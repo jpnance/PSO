@@ -223,8 +223,8 @@ async function jaguarPage(req, res) {
 		}
 	}
 	
-	// Determine current season from query or use computed default
-	var currentSeason = req.query.season ? parseInt(req.query.season) : defaultSeason;
+	// Determine current season from params or use computed default
+	var currentSeason = req.params.season ? parseInt(req.params.season) : defaultSeason;
 	
 	// Single quick pill for the default season, rest in "Older" dropdown (like Rookie Salaries)
 	var quickSeasons = [defaultSeason];

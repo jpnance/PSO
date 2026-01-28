@@ -12,7 +12,9 @@ block content
 	div.container.py-4
 		div.jaguar__header
 			h1 The Jaguar Chart
-			+seasonNav(currentSeason, quickSeasons, olderSeasons, 'Older', '?season=')
+			-
+				var allSeasons = olderSeasons.slice().reverse().concat(quickSeasons)
+			+sequentialNav({ items: allSeasons, current: currentSeason, quickItems: quickSeasons, jumpLabel: 'Older', urlPattern: '/jaguar/' })
 		
 		div.owner-grid.mb-4
 			each s in standings

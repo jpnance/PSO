@@ -13,7 +13,9 @@ block content
 	div.container-fluid.py-3
 		div.rookies__header
 			h1 #{season} Rookie Salaries
-			+seasonNav(season, quickSeasons, olderSeasons, 'Older')
+			-
+				var allSeasons = olderSeasons.slice().reverse().concat(quickSeasons)
+			+sequentialNav({ items: allSeasons, current: season, quickItems: quickSeasons, jumpLabel: 'Older', urlPattern: '/rookies/' })
 
 		- var positionSalaries = salaries[season]
 		table.table.table-bordered.rookies-table

@@ -70,6 +70,7 @@ module.exports = function(app) {
 	app.get('/calendar', calendar.calendar);
 	
 	app.get('/rookies', rookies.rookieSalaries);
+	app.get('/rookies/:season', rookies.rookieSalaries);
 
 	app.get('/components', (req, res) => res.render('components'));
 	
@@ -77,6 +78,7 @@ module.exports = function(app) {
 	app.get('/rules', (req, res) => res.render('rules', { activePage: 'rules' }));
 
 	app.get('/jaguar', jaguar.jaguarPage);
+	app.get('/jaguar/:season', jaguar.jaguarPage);
 
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);

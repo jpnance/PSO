@@ -33,7 +33,7 @@ function computeSalary(season, firstRoundValue, round) {
 
 exports.rookieSalaries = function(request, response) {
 	var defaultSeason = seasons[0];
-	var requestedSeason = request.query.season || defaultSeason;
+	var requestedSeason = request.params.season || defaultSeason;
 	
 	// Validate requested season exists
 	if (!salaries[requestedSeason]) {
