@@ -268,6 +268,16 @@ Visit `/components` to see a live showcase of all mixins and design tokens.
 
 **Key distinction**: A "proposal" is a trade in negotiation. A "trade" (or "transaction") is an executed, permanent record.
 
+## Data Notes
+
+### Game Types
+The `Game` model has a `type` field with these values:
+- `regular` — Regular season games (weeks 1-15)
+- `semifinal` — Playoff semifinal games
+- `championship` — Championship game
+- `thirdPlace` — Third place game
+- `consolation` — **Ignore this.** Legacy data that exists but has no intention of ever being used. Do not display or query for consolation games.
+
 ## Patterns
 
 ### Money Formatting

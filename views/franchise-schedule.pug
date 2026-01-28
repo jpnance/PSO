@@ -1,0 +1,136 @@
+extends layout.pug
+include mixins
+
+block title
+	+title(regimeName + ' ' + season, 'Schedule', 'Franchises')
+
+block styles
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/standings.css')
+	link(rel='stylesheet' href='/css/franchise-schedule.css')
+
+block content
+	div.container-fluid.py-4
+		//- Header
+		div.franchise-schedule__header
+			h1 #{season} Schedule: #{regimeName}
+		
+		//- Navigation
+		if availableSeasons && availableSeasons.length > 1
+			div.franchise-schedule__nav.mb-4
+				select.franchise-schedule__season-select(onchange='if(this.value) window.location.href="/franchises/' + franchise.rosterId + '/schedule/"+this.value')
+					each s in availableSeasons
+						option(value=s selected=(s === season))= s
+		
+		if !scheduleData || (scheduleData.regularGames.length === 0 && scheduleData.playoffGames.length === 0)
+			div.alert.alert-info No games found for this season.
+		else
+			div.row
+				div.col-lg-8.col-xl-6
+					//- Season summary stats
+					if seasonSummary
+						div.card.mb-4
+							div.card-header
+								| Season Summary
+								if seasonSummary.playoffFinish
+									case seasonSummary.playoffFinish
+										when 'champion'
+											span.badge.badge-warning.ml-2 Champion
+										when 'runner-up'
+											span.badge.badge-secondary.ml-2 Runner-Up
+										when 'third-place'
+											span.badge.badge-secondary.ml-2 Third Place
+										when 'fourth-place'
+											span.badge.badge-secondary.ml-2 Fourth Place
+							div.card-body
+								div.franchise-schedule__stats
+									div.franchise-schedule__stat
+										div.franchise-schedule__stat-label Record
+										div.franchise-schedule__stat-value
+											| #{seasonSummary.wins}-#{seasonSummary.losses}
+											if seasonSummary.rank
+												small.text-muted  (#{ordinal(seasonSummary.rank)})
+									if seasonSummary.pointsFor
+										div.franchise-schedule__stat
+											div.franchise-schedule__stat-label PF
+											div.franchise-schedule__stat-value= formatPoints(seasonSummary.pointsFor)
+									if seasonSummary.pointsAgainst
+										div.franchise-schedule__stat
+											div.franchise-schedule__stat-label PA
+											div.franchise-schedule__stat-value= formatPoints(seasonSummary.pointsAgainst)
+									if seasonSummary.averageScore
+										div.franchise-schedule__stat
+											div.franchise-schedule__stat-label Avg
+											div.franchise-schedule__stat-value= formatPoints(seasonSummary.averageScore)
+									if seasonSummary.stdDev
+										div.franchise-schedule__stat
+											div.franchise-schedule__stat-label Std Dev
+											div.franchise-schedule__stat-value= formatPoints(seasonSummary.stdDev)
+					
+					//- Regular season games
+					if scheduleData.regularGames.length > 0
+						div.card.mb-4
+							div.card-header Regular Season
+							div.card-body.p-0
+								table.table.standings-table.franchise-schedule__table.mb-0
+									thead
+										tr
+											th.franchise-schedule__col-week.text-right Wk
+											th Opponent
+											th.franchise-schedule__col-score.text-right Score
+											th.franchise-schedule__col-result.text-center
+											th.franchise-schedule__col-record.text-right Record
+									tbody
+										each game in scheduleData.regularGames
+											- var rowClass = game.result === 'W' ? 'franchise-schedule__row--win' : (game.result === 'L' ? 'franchise-schedule__row--loss' : '')
+											tr(class=rowClass)
+												td.franchise-schedule__week.text-right= game.week
+												td
+													a.franchise-schedule__opponent-link(href='/franchises/' + game.opponent.franchiseId)= game.opponent.name
+													if game.opponent.record
+														span.franchise-schedule__opponent-record  (#{game.opponent.record.wins}-#{game.opponent.record.losses})
+												td.franchise-schedule__score-cell.text-right
+													if game.hasScore
+														| #{formatPoints(game.score)}
+														span.franchise-schedule__score-sep –
+														| #{formatPoints(game.opponentScore)}
+													else
+														span.text-muted —
+												td.franchise-schedule__result.text-center
+													if game.result
+														span.franchise-schedule__result-indicator= game.result
+												td.franchise-schedule__record.text-right
+													if game.record
+														= game.record.wins + '-' + game.record.losses
+					
+					//- Playoff games
+					if scheduleData.playoffGames.length > 0
+						div.card
+							div.card-header Playoffs
+							div.card-body.p-0
+								table.table.standings-table.franchise-schedule__table.mb-0
+									thead
+										tr
+											th.franchise-schedule__col-week.text-right Wk
+											th Opponent
+											th.franchise-schedule__col-score.text-right Score
+											th.franchise-schedule__col-result.text-center
+									tbody
+										each game in scheduleData.playoffGames
+											- var rowClass = game.result === 'W' ? 'franchise-schedule__row--win' : (game.result === 'L' ? 'franchise-schedule__row--loss' : '')
+											tr(class=rowClass)
+												td.franchise-schedule__week.text-right= game.week
+												td
+													a.franchise-schedule__opponent-link(href='/franchises/' + game.opponent.franchiseId)= game.opponent.name
+													if game.opponent.record
+														span.franchise-schedule__opponent-record  (#{game.opponent.record.wins}-#{game.opponent.record.losses})
+												td.franchise-schedule__score-cell.text-right
+													if game.hasScore
+														| #{formatPoints(game.score)}
+														span.franchise-schedule__score-sep –
+														| #{formatPoints(game.opponentScore)}
+													else
+														span.text-muted —
+												td.franchise-schedule__result.text-center
+													if game.result
+														span.franchise-schedule__result-indicator= game.result

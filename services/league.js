@@ -1431,12 +1431,200 @@ async function cutPlayer(request, response) {
 	}
 }
 
+/**
+ * Get schedule for a specific franchise in a specific season
+ */
+async function getFranchiseScheduleData(rosterId, season) {
+	var games = await Game.find({
+		season: season,
+		$or: [
+			{ 'away.franchiseId': rosterId },
+			{ 'home.franchiseId': rosterId }
+		]
+	}).sort({ week: 1 }).lean();
+	
+	// Separate regular season and playoffs
+	var regularGames = [];
+	var playoffGames = [];
+	
+	games.forEach(function(g) {
+		var isHome = g.home.franchiseId === rosterId;
+		var team = isHome ? g.home : g.away;
+		var opponent = isHome ? g.away : g.home;
+		var won = g.winner && g.winner.franchiseId === rosterId;
+		var lost = g.loser && g.loser.franchiseId === rosterId;
+		var hasScore = team.score != null && opponent.score != null;
+		
+		var gameData = {
+			week: g.week,
+			type: g.type,
+			opponent: { 
+				name: opponent.name, 
+				franchiseId: opponent.franchiseId,
+				record: opponent.record && opponent.record.straight && opponent.record.straight.cumulative
+					? opponent.record.straight.cumulative
+					: null
+			},
+			score: team.score,
+			opponentScore: opponent.score,
+			hasScore: hasScore,
+			result: won ? 'W' : (lost ? 'L' : null),
+			record: team.record && team.record.straight && team.record.straight.cumulative 
+				? team.record.straight.cumulative 
+				: null
+		};
+		
+		// Categorize by game type
+		if (g.type === 'regular') {
+			regularGames.push(gameData);
+		} else if (g.type === 'semifinal' || g.type === 'championship' || g.type === 'thirdPlace') {
+			// Format playoff round label
+			if (g.type === 'semifinal') {
+				gameData.roundLabel = 'Semifinal';
+			} else if (g.type === 'championship') {
+				gameData.roundLabel = 'Championship';
+			} else if (g.type === 'thirdPlace') {
+				gameData.roundLabel = 'Third Place';
+			}
+			playoffGames.push(gameData);
+		}
+		// Consolation games are intentionally excluded
+	});
+	
+	return {
+		regularGames: regularGames,
+		playoffGames: playoffGames
+	};
+}
+
+/**
+ * Get available seasons for a franchise
+ */
+async function getFranchiseSeasons(rosterId) {
+	var seasons = await Game.distinct('season', {
+		$or: [
+			{ 'away.franchiseId': rosterId },
+			{ 'home.franchiseId': rosterId }
+		]
+	});
+	return seasons.sort(function(a, b) { return b - a; });
+}
+
+/**
+ * Route handler for franchise schedule page
+ */
+async function franchiseSchedule(request, response) {
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		
+		var rosterId = parseInt(request.params.id, 10);
+		if (isNaN(rosterId)) {
+			return response.status(404).send('Franchise not found');
+		}
+		
+		var franchiseDoc = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchiseDoc) {
+			return response.status(404).send('Franchise not found');
+		}
+		
+		// Get available seasons for this franchise
+		var availableSeasons = await getFranchiseSeasons(rosterId);
+		if (availableSeasons.length === 0) {
+			return response.render('franchise-schedule', {
+				franchise: { rosterId: rosterId },
+				regimeName: 'Unknown',
+				season: currentSeason,
+				scheduleData: null,
+				seasonSummary: null,
+				availableSeasons: [],
+				activePage: 'franchise'
+			});
+		}
+		
+		// Parse requested season, default to most recent with games
+		var requestedSeason = parseInt(request.params.season, 10);
+		var season = requestedSeason && availableSeasons.includes(requestedSeason) 
+			? requestedSeason 
+			: availableSeasons[0];
+		
+		// Get the regime name for this franchise in this season
+		var regimes = await Regime.find({ 'tenures.franchiseId': franchiseDoc._id }).lean();
+		var regimeName = 'Unknown';
+		regimes.forEach(function(r) {
+			r.tenures.forEach(function(t) {
+				if (t.franchiseId.toString() === franchiseDoc._id.toString() &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season)) {
+					regimeName = r.displayName;
+				}
+			});
+		});
+		
+		// Get schedule data
+		var scheduleData = await getFranchiseScheduleData(rosterId, season);
+		
+		// Get season summary from Season model
+		var seasonDoc = await Season.findById(season).lean();
+		var seasonSummary = null;
+		if (seasonDoc) {
+			var standing = seasonDoc.standings.find(function(s) {
+				return s.franchiseId === rosterId;
+			});
+			if (standing) {
+				seasonSummary = {
+					wins: standing.wins,
+					losses: standing.losses,
+					rank: standing.rank,
+					pointsFor: standing.pointsFor,
+					pointsAgainst: standing.pointsAgainst,
+					playoffSeed: standing.playoffSeed,
+					playoffFinish: standing.playoffFinish
+				};
+			}
+		}
+		
+		// Calculate average and standard deviation from regular season games
+		var scoredGames = scheduleData.regularGames.filter(function(g) { return g.hasScore; });
+		if (scoredGames.length > 0) {
+			var scores = scoredGames.map(function(g) { return g.score; });
+			var sum = scores.reduce(function(a, b) { return a + b; }, 0);
+			var avg = sum / scores.length;
+			
+			var variance = scores.reduce(function(acc, s) {
+				return acc + Math.pow(s - avg, 2);
+			}, 0) / scores.length;
+			var stdDev = Math.sqrt(variance);
+			
+			if (!seasonSummary) {
+				seasonSummary = {};
+			}
+			seasonSummary.averageScore = avg;
+			seasonSummary.stdDev = stdDev;
+		}
+		
+		response.render('franchise-schedule', {
+			franchise: { rosterId: rosterId },
+			regimeName: regimeName,
+			season: season,
+			scheduleData: scheduleData,
+			seasonSummary: seasonSummary,
+			availableSeasons: availableSeasons,
+			activePage: 'franchise'
+		});
+	} catch (err) {
+		console.error('Franchise schedule error:', err);
+		response.status(500).send('Error loading franchise schedule');
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
 	overview: overview,
 	franchisesList: franchisesList,
 	franchiseDetail: franchiseDetail,
+	franchiseSchedule: franchiseSchedule,
 	search: search,
 	timeline: timeline,
 	cutPlayer: cutPlayer

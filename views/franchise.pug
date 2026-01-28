@@ -158,7 +158,7 @@ block content
 				if championsWithRegimes.length > 0
 					div.franchise-hero__banners
 						each chip in championsWithRegimes
-							a.franchise-hero__banner(href='/standings/' + chip.season)
+							a.franchise-hero__banner(href='/franchises/' + franchise.rosterId + '/schedule/' + chip.season)
 								div.franchise-hero__banner-top
 									i.fa.fa-trophy
 									span= chip.season
@@ -384,7 +384,7 @@ block content
 												- else if (result.playoffFinish === 'runner-up') dotClass = 'franchise-history__tile--second'
 												- else if (result.playoffFinish === 'third-place') dotClass = 'franchise-history__tile--third'
 												- else if (result.madePlayoffs) dotClass = 'franchise-history__tile--playoffs'
-												a.franchise-history__tile(href='/standings/' + result.season title=result.season + ': ' + result.wins + '-' + result.losses class=dotClass)
+												a.franchise-history__tile(href='/franchises/' + franchise.rosterId + '/schedule/' + result.season title=result.season + ': ' + result.wins + '-' + result.losses class=dotClass)
 		
 		//- Cut confirmation modal
 		if isOwner && canCut

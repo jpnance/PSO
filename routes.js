@@ -37,6 +37,8 @@ module.exports = function(app) {
 	// Franchises
 	app.get('/franchises', league.franchisesList);
 	app.get('/franchises/:id', league.franchiseDetail);
+	app.get('/franchises/:id/schedule', league.franchiseSchedule);
+	app.get('/franchises/:id/schedule/:season', league.franchiseSchedule);
 	app.post('/franchises/:id/cut', requireLogin, league.cutPlayer);
 	
 	app.get('/trades', trades.tradeHistory);
