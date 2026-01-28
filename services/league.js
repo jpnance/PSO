@@ -1507,7 +1507,7 @@ async function getFranchiseSeasons(rosterId) {
 			{ 'home.franchiseId': rosterId }
 		]
 	});
-	return seasons.sort(function(a, b) { return b - a; });
+	return seasons.sort();
 }
 
 /**
