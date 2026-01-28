@@ -127,7 +127,6 @@ app.locals.formatPickNumber = formatPick.formatPickNumber;
 app.locals.formatMoney = viewHelpers.formatMoney;
 app.locals.formatRecord = viewHelpers.formatRecord;
 app.locals.formatPoints = viewHelpers.formatPoints;
-app.locals.formatScore = viewHelpers.formatScore;
 app.locals.ordinal = viewHelpers.ordinal;
 app.locals.formatContractYears = viewHelpers.formatContractYears;
 app.locals.formatDateISO = viewHelpers.formatDateISO;

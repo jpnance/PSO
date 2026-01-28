@@ -58,15 +58,6 @@ function formatPoints(n) {
 	return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-/**
- * Format a score (alias for formatPoints, for semantic clarity)
- * @param {number} score
- * @returns {string}
- */
-function formatScore(score) {
-	if (score == null) return '';
-	return score.toFixed(2);
-}
 
 /**
  * Get ordinal suffix for a number
@@ -1026,7 +1017,6 @@ module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
 	formatPoints: formatPoints,
-	formatScore: formatScore,
 	ordinal: ordinal,
 	formatContractYears: formatContractYears,
 	formatContractDisplay: formatContractDisplay,

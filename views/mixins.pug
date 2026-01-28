@@ -300,7 +300,7 @@ mixin matchup(game, opts)
 							span.matchup__subtitle= game.away.subtitle
 				if hasScores
 					div.matchup__result
-						span.matchup__score= formatScore(game.away.score)
+						span.matchup__score= formatPoints(game.away.score)
 						i.fa.fa-chevron-left.matchup__chevron
 			div.matchup__team(class={ 'matchup__team--winner': game.home.won, 'matchup__team--loser': game.away.won })
 				div.matchup__team-info
@@ -314,7 +314,7 @@ mixin matchup(game, opts)
 							span.matchup__subtitle= game.home.subtitle
 				if hasScores
 					div.matchup__result
-						span.matchup__score= formatScore(game.home.score)
+						span.matchup__score= formatPoints(game.home.score)
 						i.fa.fa-chevron-left.matchup__chevron
 
 //- Franchise card for league overview and franchises list
