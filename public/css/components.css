@@ -47,6 +47,7 @@
 }
 
 .matchup__seed {
+	font-variant: tabular-nums;
 	font-size: 0.75em;
 	color: var(--text-muted);
 	flex-shrink: 0;
