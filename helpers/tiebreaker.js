@@ -299,11 +299,44 @@ function sortByRecord(teams, h2h, season) {
 	return result;
 }
 
+/**
+ * Sort playoff teams by finish, using record as tiebreaker for same finish
+ * 
+ * Finish order: champion > runner-up > third-place > fourth-place
+ * When two teams have the same finish, they're sorted by record using
+ * the season-appropriate tiebreaker algorithm.
+ * 
+ * @param {Array} teams - Array of team objects with playoffFinish set
+ * @param {Object} h2h - H2H data from buildH2HData
+ * @param {number} season - Season year (determines tiebreaker algorithm)
+ * @returns {Array} Sorted array of teams
+ */
+function sortByPlayoffFinish(teams, h2h, season) {
+	if (!teams || teams.length <= 1) {
+		return teams ? teams.slice() : [];
+	}
+	
+	var finishOrder = { 'champion': 1, 'runner-up': 2, 'third-place': 3, 'fourth-place': 4 };
+	
+	// First establish record order for tiebreaking
+	var sortedByRecord = sortByRecord(teams, h2h, season);
+	var recordRank = {};
+	sortedByRecord.forEach(function(t, i) { recordRank[t.id] = i; });
+	
+	// Sort by finish, with record as secondary sort
+	return teams.slice().sort(function(a, b) {
+		var finishDiff = finishOrder[a.playoffFinish] - finishOrder[b.playoffFinish];
+		if (finishDiff !== 0) return finishDiff;
+		return recordRank[a.id] - recordRank[b.id];
+	});
+}
+
 module.exports = {
 	buildH2HData: buildH2HData,
 	getH2HRecord: getH2HRecord,
 	modernTiebreaker: modernTiebreaker,
 	legacyTiebreaker: legacyTiebreaker,
 	getTiebreakerStrategy: getTiebreakerStrategy,
-	sortByRecord: sortByRecord
+	sortByRecord: sortByRecord,
+	sortByPlayoffFinish: sortByPlayoffFinish
 };

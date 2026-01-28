@@ -156,8 +156,8 @@ async function computeFromGames(season) {
 	var playoffTeams = allTeams.filter(function(t) { return t.playoffFinish; });
 	var nonPlayoffTeams = allTeams.filter(function(t) { return !t.playoffFinish; });
 	
-	var finishOrder = { 'champion': 1, 'runner-up': 2, 'third-place': 3, 'fourth-place': 4 };
-	playoffTeams.sort(function(a, b) { return finishOrder[a.playoffFinish] - finishOrder[b.playoffFinish]; });
+	// Sort playoff teams by finish, with record as tiebreaker for same finish
+	playoffTeams = tiebreaker.sortByPlayoffFinish(playoffTeams, h2h, season);
 	
 	var sortedNonPlayoff = tiebreaker.sortByRecord(nonPlayoffTeams, h2h, season);
 	var standings = playoffTeams.concat(sortedNonPlayoff);

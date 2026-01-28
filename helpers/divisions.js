@@ -160,15 +160,17 @@ function sortWithDivisions(teams, h2h, season, sortByRecord) {
 	}
 	
 	// Build full standings:
-	// 1. Division winner 1 (Montagues/Beard)
-	// 2. Division winner 2 (Capulets/Mustache)
+	// 1-2. Division winners (sorted against each other by record/tiebreaker)
 	// 3-4. Wild cards
 	// 5+. Everyone else
-	var standings = [];
-	divisionWinners.forEach(function(dw) {
-		if (dw.team) standings.push(dw.team);
-	});
-	standings = standings.concat(sortedRemaining);
+	var divisionWinnerTeams = divisionWinners
+		.map(function(dw) { return dw.team; })
+		.filter(Boolean);
+	
+	// Sort division winners against each other to determine true #1 and #2
+	var sortedDivisionWinners = sortByRecord(divisionWinnerTeams, h2h, season);
+	
+	var standings = sortedDivisionWinners.concat(sortedRemaining);
 	
 	// Assign division to all teams
 	standings.forEach(function(team) {
