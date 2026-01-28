@@ -8,6 +8,7 @@ var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var Game = require('../models/Game');
+var Season = require('../models/Season');
 var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
 var transactionService = require('./transaction');
@@ -506,6 +507,42 @@ async function overview(request, response) {
 	}
 }
 
+/**
+ * Get season-by-season results for a franchise from the Season model
+ * 
+ * @param {number} franchiseId - The franchise's rosterId
+ * @returns {Array} Array of season results, most recent first
+ */
+async function getFranchiseSeasonHistory(franchiseId) {
+	var seasons = await Season.find().sort({ _id: -1 }).lean();
+	
+	var history = [];
+	
+	seasons.forEach(function(seasonDoc) {
+		var standing = seasonDoc.standings.find(function(s) {
+			return s.franchiseId === franchiseId;
+		});
+		
+		if (standing) {
+			history.push({
+				season: seasonDoc._id,
+				rank: standing.rank,
+				wins: standing.wins,
+				losses: standing.losses,
+				ties: standing.ties,
+				pointsFor: standing.pointsFor,
+				playoffSeed: standing.playoffSeed,
+				playoffFinish: standing.playoffFinish,
+				isChampion: standing.playoffFinish === 'champion',
+				isRunnerUp: standing.playoffFinish === 'runner-up',
+				madePlayoffs: standing.playoffFinish != null
+			});
+		}
+	});
+	
+	return history;
+}
+
 async function franchiseDetail(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
@@ -554,6 +591,9 @@ async function franchiseDetail(request, response) {
 			}
 		}
 		
+		// Get season-by-season results from Season model
+		var seasonHistory = await getFranchiseSeasonHistory(franchiseDoc.rosterId);
+		
 		response.render('franchise', { 
 			franchise: data, 
 			currentSeason: currentSeason, 
@@ -562,7 +602,8 @@ async function franchiseDetail(request, response) {
 			activePage: 'franchise',
 			currentRosterId: data.rosterId,
 			isOwner: isOwner,
-			canCut: canCut
+			canCut: canCut,
+			seasonHistory: seasonHistory
 		});
 	} catch (err) {
 		console.error(err);

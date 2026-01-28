@@ -66,6 +66,11 @@
 	--color-warning: #ffc107;
 	--color-info: #17a2b8;
 	
+	/* Trophy/championship colors */
+	--trophy-gold: #ffd700;
+	--trophy-banner-bg: #d4a917;
+	--trophy-banner-hover: #c49a0f;
+	
 	/* Medal colors - for standings */
 	--medal-gold-bg: #fff9e6;
 	--medal-gold-bg-user: #fff0b3;

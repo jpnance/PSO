@@ -119,6 +119,7 @@
 - [ ] Add generic error pages (404, 500, etc.)
 - [ ] Consider E2E testing with Playwright
 - [x] Add sandbox message banner to league config seed
+- [ ] Investigate upgrading Bootstrap 4 → 5 (gap utilities, updated components, breaking changes?)
 
 ## Ideas / Someday
 *Experiments, long-term vision, not committed*
@@ -131,7 +132,7 @@
 - [ ] Trade display: two columns at larger breakpoints? (let multi-party asset lists flow naturally)
 
 ### Standings Enhancements
-- [ ] Introduce Season model to store computed season-level data (playoff seeds, results, etc.)
+- [x] Introduce Season model to store computed season-level data (playoff seeds, results, etc.)
 - [ ] Add win/loss streaks to standings page
 - [ ] Unify homepage standings widget with full standings page patterns
 

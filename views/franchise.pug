@@ -11,10 +11,160 @@ block styles
 	link(rel='stylesheet' href='/css/franchise.css')
 
 block content
+	-
+		// Aggregate franchise-level stats (all regimes)
+		var franchiseChampionships = seasonHistory ? seasonHistory.filter(s => s.isChampion) : [];
+		var franchisePlayoffs = seasonHistory ? seasonHistory.filter(s => s.madePlayoffs) : [];
+		
+		// Compute regime-specific stats
+		var currentRegime = franchise.regimes ? franchise.regimes[0] : null;
+		var currentRegimeSeasons = [];
+		var currentRegimeChampionships = [];
+		var currentRegimePlayoffs = [];
+		var currentRegimeWins = 0;
+		var currentRegimeLosses = 0;
+		
+		if (currentRegime && seasonHistory) {
+			currentRegimeSeasons = seasonHistory.filter(s => {
+				return s.season >= currentRegime.startSeason && (currentRegime.endSeason === null || s.season <= currentRegime.endSeason);
+			});
+			currentRegimeChampionships = currentRegimeSeasons.filter(s => s.isChampion);
+			currentRegimePlayoffs = currentRegimeSeasons.filter(s => s.madePlayoffs);
+			currentRegimeWins = currentRegimeSeasons.reduce((sum, s) => sum + s.wins, 0);
+			currentRegimeLosses = currentRegimeSeasons.reduce((sum, s) => sum + s.losses, 0);
+		}
+		
+		// Build regime history with their seasons
+		var regimeHistory = [];
+		if (franchise.regimes && seasonHistory) {
+			franchise.regimes.forEach(r => {
+				var regimeSeasons = seasonHistory.filter(s => {
+					return s.season >= r.startSeason && (r.endSeason === null || s.season <= r.endSeason);
+				});
+				var regimeChamps = regimeSeasons.filter(s => s.isChampion);
+				var regimePlayoffApps = regimeSeasons.filter(s => s.madePlayoffs).length;
+				var regimeWins = regimeSeasons.reduce((sum, s) => sum + s.wins, 0);
+				var regimeLosses = regimeSeasons.reduce((sum, s) => sum + s.losses, 0);
+				regimeHistory.push({
+					displayName: r.displayName,
+					owners: r.sortedOwnerNames,
+					startSeason: r.startSeason,
+					endSeason: r.endSeason,
+					seasons: regimeSeasons,
+					championships: regimeChamps,
+					playoffAppearances: regimePlayoffApps,
+					wins: regimeWins,
+					losses: regimeLosses,
+					isCurrent: r.endSeason === null
+				});
+			});
+		}
+		
+		// For hero: find all championships won by PEOPLE in the current regime
+		// (across all their regimes with THIS franchise)
+		var currentOwnerNames = currentRegime ? currentRegime.sortedOwnerNames : [];
+		var heroChampionships = [];
+		var ownerFirstSeason = {}; // Track when each current owner first joined this franchise
+		
+		if (regimeHistory.length > 0 && currentOwnerNames.length > 0) {
+			// Go through regimes oldest-first to find first appearances
+			regimeHistory.slice().reverse().forEach(regime => {
+				regime.owners.forEach(owner => {
+					if (currentOwnerNames.includes(owner) && !ownerFirstSeason[owner]) {
+						ownerFirstSeason[owner] = regime.startSeason;
+					}
+				});
+				
+				// Check if any current owner was part of this regime for championships
+				var hasCurrentOwner = regime.owners.some(owner => currentOwnerNames.includes(owner));
+				if (hasCurrentOwner && regime.championships.length > 0) {
+					regime.championships.forEach(chip => {
+						heroChampionships.push(chip);
+					});
+				}
+			});
+		}
+		
+		// Find the earliest year any current owner joined
+		var earliestOwnerSeason = Object.values(ownerFirstSeason).length > 0 
+			? Math.min(...Object.values(ownerFirstSeason)) 
+			: (currentRegime ? currentRegime.startSeason : null);
+		
+		// Total record across all seasons where current owners were present
+		var totalOwnerWins = 0;
+		var totalOwnerLosses = 0;
+		if (seasonHistory && earliestOwnerSeason) {
+			seasonHistory.filter(s => s.season >= earliestOwnerSeason).forEach(s => {
+				totalOwnerWins += s.wins;
+				totalOwnerLosses += s.losses;
+			});
+		}
+
+	//- ========================================
+	//- FRANCHISE HERO - Three options with toggle
+	//- ========================================
+	//- Count total franchise championships and stats
+	- var franchiseChampionships = []
+	- var franchiseTotalWins = 0, franchiseTotalLosses = 0, franchisePlayoffAppearances = 0
+	- if (regimeHistory) regimeHistory.forEach(r => { r.championships.forEach(c => franchiseChampionships.push(c)); franchiseTotalWins += r.wins; franchiseTotalLosses += r.losses; franchisePlayoffAppearances += r.playoffAppearances || 0; })
+	//- Check if this franchise is the current/most recent champion
+	- var mostRecentSeason = seasonHistory && seasonHistory.length > 0 ? seasonHistory[0] : null
+	- var isCurrentChampion = mostRecentSeason && mostRecentSeason.isChampion
+	- var currentRegime = regimeHistory ? regimeHistory.find(r => r.isCurrent) : null
+	- var pastRegimes = regimeHistory ? regimeHistory.filter(r => !r.isCurrent) : []
+	- var bannersChronological = franchiseChampionships.slice().sort((a, b) => a.season - b.season)
+
+	//- ========================================
+	//- Hero section
+	//- ========================================
+	-
+		// Build championship data with regime names
+		var championsWithRegimes = [];
+		if (regimeHistory) {
+			regimeHistory.forEach(function(r) {
+				r.championships.forEach(function(c) {
+					championsWithRegimes.push({ season: c.season, regime: r.displayName });
+				});
+			});
+			championsWithRegimes.sort(function(a, b) { return a.season - b.season; });
+		}
+		// All franchise seasons chronologically with regime info
+		var allSeasonsChronological = [];
+		if (seasonHistory && regimeHistory) {
+			seasonHistory.slice().reverse().forEach(function(s) {
+				var regime = regimeHistory.find(function(r) {
+					return s.season >= r.startSeason && (r.endSeason === null || s.season <= r.endSeason);
+				});
+				allSeasonsChronological.push({
+					season: s.season,
+					wins: s.wins,
+					losses: s.losses,
+					playoffFinish: s.playoffFinish,
+					madePlayoffs: s.madePlayoffs,
+					regimeName: regime ? regime.displayName : null
+				});
+			});
+		}
+	
+	div.franchise-hero(class=isCurrentChampion ? 'franchise-hero--champion' : '')
+		div.container
+			div.franchise-hero__layout
+				div.franchise-hero__identity
+					h1 Franchise #{franchise.rosterId}
+					if currentRegime && currentRegime.owners && currentRegime.owners.length > 0
+						div.franchise-hero__owners= currentRegime.owners.join(' & ')
+				
+				//- Championship banners
+				if championsWithRegimes.length > 0
+					div.franchise-hero__banners
+						each chip in championsWithRegimes
+							a.franchise-hero__banner(href='/standings/' + chip.season)
+								div.franchise-hero__banner-top
+									i.fa.fa-trophy
+									span= chip.season
+								div.franchise-hero__banner-regime= chip.regime
+
 	div.container.py-4
-		h1.mb-1= franchise.displayName
-		p.text-muted
-			| Owners: #{franchise.owners.join(', ')}
 		
 		div.row
 			div.col-lg-8
@@ -193,27 +343,44 @@ block content
 					else
 						p.text-muted.mb-3.ml-3 No picks data
 				
-				div.card.mb-4
-					div.card-header Franchise History
-					if franchise.regimes && franchise.regimes.length > 0
-						table.table.table-sm.mb-0.history-table
-							tbody
-								each regime in franchise.regimes
-									tr
-										td
-											strong= regime.displayName
-											div.text-muted.small
-												| #{regime.sortedOwnerNames.join(', ')}
-										td.text-right.text-muted.align-middle
-											if regime.endSeason
-												if regime.startSeason === regime.endSeason
-													| #{regime.startSeason}
-												else
-													| #{regime.startSeason}–#{regime.endSeason}
+				//- Franchise History card
+				if regimeHistory && regimeHistory.length > 0
+					div.card.mb-4
+						div.card-header Franchise History
+						div.card-body.franchise-history
+							div.franchise-history__summary
+								span.franchise-history__stat= franchiseTotalWins + '-' + franchiseTotalLosses + ' all-time'
+								span.franchise-history__sep ·
+								span.franchise-history__stat= franchisePlayoffAppearances + ' playoffs'
+								span.franchise-history__sep ·
+								span.franchise-history__stat= franchiseChampionships.length + ' titles'
+							- var regimesChronological = regimeHistory.slice().reverse()
+							each regime in regimesChronological
+								div.franchise-history__regime
+									div.franchise-history__regime-left
+										div.franchise-history__regime-name= regime.displayName
+										div.franchise-history__regime-years
+											if regime.isCurrent
+												= regime.startSeason + '–present'
+											else if regime.startSeason === regime.endSeason
+												= regime.startSeason
 											else
-												| #{regime.startSeason}–present
-					else
-						p.text-muted.mb-3.ml-3 No history available
+												= regime.startSeason + '–' + regime.endSeason
+									div.franchise-history__regime-right
+										div.franchise-history__regime-record
+											= regime.wins + '-' + regime.losses
+											if regime.championships.length > 0
+												each chip in regime.championships
+													i.fa.fa-trophy.franchise-history__trophy(title=chip.season)
+										div.franchise-history__regime-tiles
+											- var seasonsChronological = regime.seasons.slice().reverse()
+											each result in seasonsChronological
+												- var dotClass = ''
+												- if (result.playoffFinish === 'champion') dotClass = 'franchise-history__tile--champ'
+												- else if (result.playoffFinish === 'runner-up') dotClass = 'franchise-history__tile--second'
+												- else if (result.playoffFinish === 'third-place') dotClass = 'franchise-history__tile--third'
+												- else if (result.madePlayoffs) dotClass = 'franchise-history__tile--playoffs'
+												a.franchise-history__tile(href='/standings/' + result.season title=result.season + ': ' + result.wins + '-' + result.losses class=dotClass)
 		
 		//- Cut confirmation modal
 		if isOwner && canCut
