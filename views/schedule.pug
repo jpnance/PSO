@@ -19,13 +19,17 @@ block content
 		
 		//- Season and week navigation
 		.schedule__nav.mb-4
-			select.schedule__nav-select(onchange='if(this.value) window.location.href="/schedule/"+this.value')
-				each s in olderSeasons.concat(quickSeasons).sort(function(a, b) { return b - a; })
-					option(value=s selected=(s === season))= s
+			-
+				var allSeasons = olderSeasons.slice().reverse().concat(quickSeasons)
+				var seasonUrlSuffix = '/' + week
+			+sequentialNav({ items: allSeasons, current: season, urlPattern: '/schedule/', urlSuffix: seasonUrlSuffix })
 			if weeks && weeks.length > 0
-				select.schedule__nav-select.schedule__nav-select--active(onchange='if(this.value) window.location.href="/schedule/' + season + '/"+this.value')
-					each w in weeks
-						option(value=w.week selected=(w.week === week))= w.label
+				-
+					var weekNumbers = weeks.map(function(w) { return w.week })
+					var weekLabels = {}
+					weeks.forEach(function(w) { weekLabels[w.week] = w.label })
+					var weekLabelFn = function(w) { return weekLabels[w] || ('Week ' + w) }
+				+sequentialNav({ items: weekNumbers, current: week, urlPattern: '/schedule/' + season + '/', labelFn: weekLabelFn })
 		
 		if !schedule || !schedule.games || schedule.games.length === 0
 			div.alert.alert-info No games found for this week.

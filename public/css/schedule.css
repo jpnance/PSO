@@ -11,19 +11,14 @@
 /* Combined season and week navigation */
 .schedule__nav {
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1.5rem;
 }
 
-.schedule__nav .season-nav {
-	margin-right: 0.5rem;
-}
-
-.schedule__nav {
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
+@media (max-width: 575px) {
+	.schedule__nav {
+		justify-content: space-between;
+	}
 }
 
 .schedule__nav-select {

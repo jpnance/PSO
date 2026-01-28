@@ -55,13 +55,14 @@ mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPref
 			a.btn.btn-sm(href=prefix + s class=(s === currentSeason ? 'btn-primary' : 'btn-outline-secondary'))= s
 
 //- Sequential navigation with arrows
-//- Usage: +sequentialNav({ items, current, urlPattern, quickItems?, jumpLabel?, labelFn? })
+//- Usage: +sequentialNav({ items, current, urlPattern, quickItems?, jumpLabel?, labelFn?, urlSuffix? })
 //- Without quickItems: dropdown in center between arrows
 //- With quickItems: pills in center, optional jump dropdown on left
 mixin sequentialNav(opts)
 	- var items = opts.items || []
 	- var current = opts.current
 	- var urlPattern = opts.urlPattern || '?value='
+	- var urlSuffix = opts.urlSuffix || ''
 	- var quickItems = opts.quickItems || null
 	- var jumpLabel = opts.jumpLabel || null
 	- var labelFn = opts.labelFn || function(v) { return v }
@@ -71,26 +72,28 @@ mixin sequentialNav(opts)
 	-
 		// Items not in quickItems (for jump dropdown)
 		var jumpItems = quickItems ? items.filter(function(i) { return quickItems.indexOf(i) === -1 }) : []
+		// Helper to build URL
+		var buildUrl = function(item) { return urlPattern + item + urlSuffix }
 	div.seq-nav
 		if quickItems
 			//- Mode: pills with optional jump dropdown (inside arrows)
-			a.seq-nav__arrow(href=prevItem != null ? urlPattern + prevItem : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
+			a.seq-nav__arrow(href=prevItem != null ? buildUrl(prevItem) : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ‹
 			if jumpLabel && jumpItems.length > 0
 				- var jumpActive = jumpItems.indexOf(current) !== -1
-				select.seq-nav__jump(class=(jumpActive ? 'seq-nav__jump--active' : '') onchange='if(this.value) window.location.href="' + urlPattern + '"+this.value')
+				select.seq-nav__jump(class=(jumpActive ? 'seq-nav__jump--active' : '') onchange='if(this.value) window.location.href="' + urlPattern + '"+this.value+"' + urlSuffix + '"')
 					option(value='' selected=!jumpActive)= jumpLabel
 					each item in jumpItems
 						option(value=item selected=(item === current))= labelFn(item)
 			each item in quickItems
-				a.seq-nav__pill(href=urlPattern + item class=(item === current ? 'seq-nav__pill--active' : ''))= labelFn(item)
-			a.seq-nav__arrow(href=nextItem != null ? urlPattern + nextItem : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
+				a.seq-nav__pill(href=buildUrl(item) class=(item === current ? 'seq-nav__pill--active' : ''))= labelFn(item)
+			a.seq-nav__arrow(href=nextItem != null ? buildUrl(nextItem) : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ›
 		else
 			//- Mode: dropdown in center
-			a.seq-nav__arrow(href=prevItem != null ? urlPattern + prevItem : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
+			a.seq-nav__arrow(href=prevItem != null ? buildUrl(prevItem) : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ‹
-			select.seq-nav__dropdown(onchange='if(this.value) window.location.href="' + urlPattern + '"+this.value')
+			select.seq-nav__dropdown(onchange='if(this.value) window.location.href="' + urlPattern + '"+this.value+"' + urlSuffix + '"')
 				each item in items
 					option(value=item selected=(item === current))= labelFn(item)
 			a.seq-nav__arrow(href=nextItem != null ? urlPattern + nextItem : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
