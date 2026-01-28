@@ -163,16 +163,19 @@ mixin budgetImpactTable(budgetImpact)
 						td.text-right(class=deltaClass(s.delta))= formatMoney(s.delta, { sign: 'auto' })
 
 //- Matchup component - displays a game between two teams
-//- Usage: +matchup({ away: { name, score, record, seed, subtitle, won }, home: {...}, label, type })
+//- Usage: +matchup(game) or +matchup(game, { label: 'Semifinal 1' })
+//- Game: { away: { name, score, record, seed, subtitle, won }, home: {...}, type }
 //- Types: regular, semifinal, championship, thirdPlace
+//- Options: label (string) - display a label above the matchup
 //- subtitle: optional secondary text (e.g., regime name when showing franchise names)
-mixin matchup(game)
+mixin matchup(game, opts)
+	- var options = opts || {}
 	- var gameType = game.type || 'regular'
 	- var hasScores = game.away.score != null && game.home.score != null
 	- var hasSubtitle = game.away.subtitle || game.home.subtitle
 	div.matchup(class='matchup--' + gameType class=hasSubtitle ? 'matchup--has-subtitle' : '')
-		if game.label
-			div.matchup__label= game.label
+		if options.label
+			div.matchup__label= options.label
 		div.matchup__teams
 			div.matchup__team(class={ 'matchup__team--winner': game.away.won, 'matchup__team--loser': game.home.won })
 				div.matchup__team-info

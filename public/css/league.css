@@ -396,71 +396,6 @@ nav a:hover {
 	padding: 0.5rem 0.75rem;
 }
 
-.schedule-widget .matchup {
-	padding: 0.4rem 0;
-}
-
-.schedule-widget .matchup + .matchup {
-	border-top: 1px solid #eee;
-}
-
-.schedule-widget .competitor {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.1rem 0;
-}
-
-.schedule-widget .competitor .team-name {
-	font-weight: 500;
-}
-
-.schedule-widget .competitor .team-record {
-	color: #6c757d;
-	font-size: 0.9em;
-}
-
-.schedule-widget .competitor .seed {
-	color: #6c757d;
-	font-size: 0.85em;
-}
-
-.schedule-widget .competitor .result {
-	white-space: nowrap;
-}
-
-.schedule-widget .competitor .score {
-	font-size: 0.9em;
-}
-
-.schedule-widget .competitor .chevron {
-	margin-left: 0.3em;
-	visibility: hidden;
-}
-
-.schedule-widget .competitor.winner .team-name {
-	font-weight: 600;
-}
-
-.schedule-widget .competitor.winner .score {
-	font-weight: 600;
-}
-
-.schedule-widget .competitor.winner .chevron {
-	visibility: visible;
-}
-
-.schedule-widget .competitor.loser {
-	color: #6c757d;
-}
-
-/* Divider before third place game */
-.schedule-widget .game-label.third-place-label {
-	margin-top: 0.5rem;
-	padding-top: 0.5rem;
-	border-top: 1px solid #eee;
-}
-
 .schedule-widget .section-label {
 	font-size: 0.7rem;
 	font-weight: 600;
@@ -470,14 +405,6 @@ nav a:hover {
 	padding-bottom: 0.25rem;
 	border-bottom: 1px solid #dee2e6;
 	margin-bottom: 0.5rem;
-}
-
-.schedule-widget .game-label {
-	font-size: 0.8rem;
-	color: #6c757d;
-	font-style: italic;
-	text-align: center;
-	margin-top: 0.25rem;
 }
 
 .schedule-widget .tbd-text {

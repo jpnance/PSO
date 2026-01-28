@@ -182,20 +182,20 @@ block content
 				div.preview-row.mt-3
 					span.variant-label Playoffs
 				div(style="max-width: 350px;")
-					+matchup({ away: { name: 'Schex', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3, won: false }, label: 'Semifinal 1', type: 'semifinal' })
-					+matchup({ away: { name: 'Koci', score: 148.90, seed: 1, won: true }, home: { name: 'Jeff', score: 134.56, seed: 4, won: false }, label: 'Semifinal 2', type: 'semifinal' })
+					+matchup({ away: { name: 'Schex', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, type: 'semifinal' }, { label: 'Semifinal 1' })
+					+matchup({ away: { name: 'Koci', score: 148.90, seed: 1, won: true }, home: { name: 'Jeff', score: 134.56, seed: 4 }, type: 'semifinal' }, { label: 'Semifinal 2' })
 				
 				div.preview-row.mt-3
 					span.variant-label Championship
 				div(style="max-width: 350px;")
-					+matchup({ away: { name: 'Schex', score: 167.23, seed: 2, won: true }, home: { name: 'Koci', score: 154.89, seed: 1, won: false }, label: 'Championship', type: 'championship' })
-					+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Jeff', score: 125.67, seed: 4, won: false }, label: 'Third Place', type: 'thirdPlace' })
+					+matchup({ away: { name: 'Schex', score: 167.23, seed: 2, won: true }, home: { name: 'Koci', score: 154.89, seed: 1 }, type: 'championship' }, { label: 'Championship' })
+					+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Jeff', score: 125.67, seed: 4 }, type: 'thirdPlace' }, { label: 'Third Place' })
 				
 				div.preview-row.mt-3
 					span.variant-label With Subtitle
 				p.small.text-muted.mb-2 Optional subtitle for regime names. Subtitle appears under the name, not the seed.
 				div(style="max-width: 450px;")
-					+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, label: 'Championship', type: 'championship' })
+					+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, type: 'championship' }, { label: 'Championship' })
 				
 				div.preview-row.mt-4
 					span.variant-label Container

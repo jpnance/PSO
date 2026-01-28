@@ -93,15 +93,16 @@ Types: danger, warning, success, info, secondary
 +matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5' } })
 
 //- Playoff game with seeds and label
-+matchup({ away: { name: 'Schex', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, label: 'Semifinal 1', type: 'semifinal' })
++matchup({ away: { name: 'Schex', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, type: 'semifinal' }, { label: 'Semifinal 1' })
 
 //- Championship (special styling)
-+matchup({ away: {...}, home: {...}, label: 'Championship', type: 'championship' })
++matchup({ away: {...}, home: {...}, type: 'championship' }, { label: 'Championship' })
 
 //- With subtitle (for franchise name + regime display)
-+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 156.78, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12 }, type: 'championship' })
++matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 156.78, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12 }, type: 'championship' }, { label: 'Championship' })
 ```
-Types: regular (default), semifinal, championship, thirdPlace
+Game types: regular (default), semifinal, championship, thirdPlace
+Options: `{ label: 'Label Text' }` - display a label above the matchup
 
 The matchup component uses **container queries**:
 - Records hidden below 280px, shown inline when there's room

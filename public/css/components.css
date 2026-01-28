@@ -5,13 +5,12 @@
 
 .matchup {
 	container-type: inline-size;
-	padding: 0.5rem 0;
+	padding: 0.5rem;
+	border: 1px solid #e9ecef;
+	border-radius: 6px;
+	margin: 0.25rem 0;
 }
 
-/* Separator line between regular games only */
-.matchup:not(.matchup--championship):not(.matchup--thirdPlace) + .matchup:not(.matchup--championship):not(.matchup--thirdPlace) {
-	border-top: 1px solid var(--border-light);
-}
 
 .matchup__label {
 	font-size: 0.7rem;
@@ -44,7 +43,7 @@
 }
 
 .matchup__seed {
-	font-size: 0.85em;
+	font-size: 0.75em;
 	color: var(--text-muted);
 	flex-shrink: 0;
 }
@@ -128,12 +127,14 @@
 	color: var(--text-muted);
 }
 
-/* Type modifiers - championship and third place get special treatment */
+/* Type modifiers */
+.matchup--semifinal {
+	border-color: #ced4da;
+}
+
 .matchup--championship,
 .matchup--thirdPlace {
-	border-radius: 6px;
-	padding: 0.75rem;
-	margin: 0.5rem 0;
+	margin: 0.25rem 0;
 }
 
 .matchup--championship {

@@ -42,7 +42,7 @@ block content
 						i.fa.fa-chevron-right
 			
 			//- Standings widget
-			div.col-md-6.col-lg-4.col-xl-4.mb-4
+			div.col-md-6.col-lg-4.mb-4
 				if standings && standings.standings && standings.standings.length > 0
 					div.card.standings-widget
 						div.card-header
@@ -97,7 +97,7 @@ block content
 			
 			//- Schedule widget
 			if schedule && schedule.sections && schedule.sections.length > 0
-				div.col-md-6.col-lg-4.col-xl-3.mb-4
+				div.col-md-6.col-lg-4.mb-4
 					div.card.schedule-widget
 						div.card-header
 							i.fa.fa-football-o.mr-2
@@ -127,31 +127,7 @@ block content
 								else if section.games
 									- var sortedGames = sortGamesForUser(section.games, userFranchiseName)
 									each game in sortedGames
-										if game.label
-											div.game-label(class={'third-place-label': game.type === 'thirdPlace'})= game.label
-										div.matchup
-											div.competitor(class={winner: game.away.won, loser: game.home.won})
-												span.team-name
-													if game.away.seed
-														span.seed ##{game.away.seed} 
-													= game.away.name
-													if game.away.record
-														span.team-record  (#{game.away.record})
-												if game.away.score != null
-													span.result
-														span.score= formatScore(game.away.score)
-														span.chevron ‹
-											div.competitor(class={winner: game.home.won, loser: game.away.won})
-												span.team-name
-													if game.home.seed
-														span.seed ##{game.home.seed} 
-													= game.home.name
-													if game.home.record
-														span.team-record  (#{game.home.record})
-												if game.home.score != null
-													span.result
-														span.score= formatScore(game.home.score)
-														span.chevron ‹
+										+matchup(game)
 		
 		-
 			var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
