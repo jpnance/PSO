@@ -1,4 +1,168 @@
-/* Shared UI components - status badges, season nav, etc. */
+/* Shared UI components - status badges, season nav, matchup, etc. */
+
+/* ===== Matchup Component ===== */
+/* A game between two teams with optional scores */
+
+.matchup {
+	container-type: inline-size;
+	padding: 0.5rem 0;
+}
+
+/* Separator line between regular games only */
+.matchup:not(.matchup--championship):not(.matchup--thirdPlace) + .matchup:not(.matchup--championship):not(.matchup--thirdPlace) {
+	border-top: 1px solid var(--border-light);
+}
+
+.matchup__label {
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	color: var(--text-muted);
+	margin-bottom: 0.35rem;
+}
+
+.matchup__teams {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+}
+
+.matchup__team {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.15rem 0;
+}
+
+.matchup__team-info {
+	display: flex;
+	align-items: baseline;
+	gap: 0.35rem;
+	min-width: 0;
+	flex: 1;
+}
+
+.matchup__seed {
+	font-size: 0.85em;
+	color: var(--text-muted);
+	flex-shrink: 0;
+}
+
+.matchup__team-name-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.25rem;
+	min-width: 0;
+	flex: 1;
+}
+
+.matchup__name {
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.matchup__subtitle {
+	font-size: 0.75em;
+	color: var(--text-muted);
+	font-weight: 400;
+	flex-basis: 100%;
+	margin-top: -0.3rem;
+}
+
+.matchup__record {
+	font-size: 0.8em;
+	color: var(--text-muted);
+	flex-shrink: 0;
+	display: none;
+}
+
+.matchup__result {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+	margin-left: 0.5rem;
+}
+
+.matchup__score {
+	font-size: 0.9em;
+	min-width: 3.5rem;
+	text-align: right;
+}
+
+.matchup__chevron {
+	margin-left: 0.35rem;
+	font-size: 0.7em;
+	visibility: hidden;
+}
+
+/* When subtitle is present, align to top and make scores more prominent */
+.matchup--has-subtitle .matchup__team {
+	align-items: flex-start;
+	padding: 0.25rem 0;
+}
+
+.matchup--has-subtitle .matchup__score {
+	font-size: 1em;
+	min-width: 4rem;
+}
+
+/* Winner/loser states */
+.matchup__team--winner .matchup__name {
+	font-weight: 600;
+}
+
+.matchup__team--winner .matchup__score {
+	font-weight: 600;
+}
+
+.matchup__team--winner .matchup__chevron {
+	visibility: visible;
+}
+
+.matchup__team--loser {
+	color: var(--text-muted);
+}
+
+/* Type modifiers - championship and third place get special treatment */
+.matchup--championship,
+.matchup--thirdPlace {
+	border-radius: 6px;
+	padding: 0.75rem;
+	margin: 0.5rem 0;
+}
+
+.matchup--championship {
+	background: linear-gradient(135deg, var(--medal-gold-bg) 0%, #ffeeba 100%);
+	border: 1px solid #ffc107;
+}
+
+.matchup--thirdPlace {
+	background: linear-gradient(135deg, var(--medal-bronze-bg) 0%, #ffe4d1 100%);
+	border: 1px solid #cd7f32;
+}
+
+/* Container query: show record when there's room */
+@container (min-width: 280px) {
+	.matchup__record {
+		display: inline;
+	}
+}
+
+/* Container query: more breathing room in wide containers */
+@container (min-width: 450px) {
+	.matchup__team {
+		padding: 0.25rem 0;
+	}
+	
+	.matchup__score {
+		min-width: 4rem;
+	}
+}
 
 /* Status badges - used for trade proposals and other statuses */
 .status-badge {

@@ -164,6 +164,61 @@ block content
 					+statusBadge('expired')
 					+statusBadge('executed')
 
+		//- Matchup
+		div.component-section
+			h2 +matchup(game)
+			code.usage +matchup({ away: { name, score, won }, home: { name, score, won }, label, type })
+			div.preview
+				div.preview-row
+					span.variant-label Upcoming
+				div(style="max-width: 300px;")
+					+matchup({ away: { name: 'Schex', record: '8-3' }, home: { name: 'Koci', record: '7-4' } })
+				
+				div.preview-row.mt-3
+					span.variant-label Final
+				div(style="max-width: 300px;")
+					+matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5', won: false } })
+				
+				div.preview-row.mt-3
+					span.variant-label Playoffs
+				div(style="max-width: 350px;")
+					+matchup({ away: { name: 'Schex', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3, won: false }, label: 'Semifinal 1', type: 'semifinal' })
+					+matchup({ away: { name: 'Koci', score: 148.90, seed: 1, won: true }, home: { name: 'Jeff', score: 134.56, seed: 4, won: false }, label: 'Semifinal 2', type: 'semifinal' })
+				
+				div.preview-row.mt-3
+					span.variant-label Championship
+				div(style="max-width: 350px;")
+					+matchup({ away: { name: 'Schex', score: 167.23, seed: 2, won: true }, home: { name: 'Koci', score: 154.89, seed: 1, won: false }, label: 'Championship', type: 'championship' })
+					+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Jeff', score: 125.67, seed: 4, won: false }, label: 'Third Place', type: 'thirdPlace' })
+				
+				div.preview-row.mt-3
+					span.variant-label With Subtitle
+				p.small.text-muted.mb-2 Optional subtitle for regime names. Subtitle appears under the name, not the seed.
+				div(style="max-width: 450px;")
+					+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, label: 'Championship', type: 'championship' })
+				
+				div.preview-row.mt-4
+					span.variant-label Container
+				p.small.text-muted.mb-2 Container queries: records hidden &lt;280px, shown at 280px+. Subtitles always visible.
+				div.d-flex.flex-wrap(style="gap: 1rem;")
+					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
+						small.text-muted 220px (no record)
+						+matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5' } })
+					div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
+						small.text-muted 320px (with record)
+						+matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5' } })
+				
+				div.preview-row.mt-4
+					span.variant-label Subtitle Sizes
+				p.small.text-muted.mb-2 Regular season game with franchise name + regime subtitle at various widths.
+				div.d-flex.flex-wrap(style="gap: 1rem;")
+					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
+						small.text-muted 220px (no record)
+						+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 128.34, record: '7-5' } })
+					div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
+						small.text-muted 320px (with record)
+						+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 128.34, record: '7-5' } })
+
 		//- Season Nav
 		div.component-section
 			h2 +seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel)

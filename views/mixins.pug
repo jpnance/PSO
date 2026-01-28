@@ -162,6 +162,47 @@ mixin budgetImpactTable(budgetImpact)
 					each s in impact.seasons
 						td.text-right(class=deltaClass(s.delta))= formatMoney(s.delta, { sign: 'auto' })
 
+//- Matchup component - displays a game between two teams
+//- Usage: +matchup({ away: { name, score, record, seed, subtitle, won }, home: {...}, label, type })
+//- Types: regular, semifinal, championship, thirdPlace
+//- subtitle: optional secondary text (e.g., regime name when showing franchise names)
+mixin matchup(game)
+	- var gameType = game.type || 'regular'
+	- var hasScores = game.away.score != null && game.home.score != null
+	- var hasSubtitle = game.away.subtitle || game.home.subtitle
+	div.matchup(class='matchup--' + gameType class=hasSubtitle ? 'matchup--has-subtitle' : '')
+		if game.label
+			div.matchup__label= game.label
+		div.matchup__teams
+			div.matchup__team(class={ 'matchup__team--winner': game.away.won, 'matchup__team--loser': game.home.won })
+				div.matchup__team-info
+					if game.away.seed
+						span.matchup__seed ##{game.away.seed}
+					div.matchup__team-name-group
+						span.matchup__name= game.away.name
+						if game.away.record
+							span.matchup__record (#{game.away.record})
+						if game.away.subtitle
+							span.matchup__subtitle= game.away.subtitle
+				if hasScores
+					div.matchup__result
+						span.matchup__score= formatScore(game.away.score)
+						i.fa.fa-chevron-left.matchup__chevron
+			div.matchup__team(class={ 'matchup__team--winner': game.home.won, 'matchup__team--loser': game.away.won })
+				div.matchup__team-info
+					if game.home.seed
+						span.matchup__seed ##{game.home.seed}
+					div.matchup__team-name-group
+						span.matchup__name= game.home.name
+						if game.home.record
+							span.matchup__record (#{game.home.record})
+						if game.home.subtitle
+							span.matchup__subtitle= game.home.subtitle
+				if hasScores
+					div.matchup__result
+						span.matchup__score= formatScore(game.home.score)
+						i.fa.fa-chevron-left.matchup__chevron
+
 //- Franchise card for league overview and franchises list
 //- Usage: +franchiseCard(franchise, { rosterLimit, isOffseason, standingsSeason })
 mixin franchiseCard(franchise, opts)
