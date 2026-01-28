@@ -45,12 +45,8 @@ block content
 								div.trade-notes #{trade.notes}
 					
 					//- Bottom navigation
-					div.trade-nav--simple.mt-4
-						if prevTradeId
-							a(href="/trades/" + prevTradeId) ← Trade ##{prevTradeId}
-						span.flex-grow-1
-						if nextTradeId
-							a(href="/trades/" + nextTradeId) Trade ##{nextTradeId} →
+					.mt-4
+						+sequentialNav({ prev: prevTradeId, next: nextTradeId, current: 'Trade #' + tradeNumber, urlPattern: '/trades/' })
 		else
 			//- Trade list view with pill filters
 			- function toggle(id, ids) { return ids.includes(id) ? ids.filter(x => x !== id) : ids.concat(id); }

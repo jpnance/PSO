@@ -299,6 +299,11 @@
 	color: white;
 }
 
+.seq-nav__current {
+	font-weight: 600;
+	padding: 0 0.5rem;
+}
+
 /* Trade asset lists - used in trade history, proposals, etc. */
 .asset-list {
 	list-style: none;

@@ -225,6 +225,11 @@ block content
 			code.usage +sequentialNav({ items, current, urlPattern, quickItems?, jumpLabel?, labelFn? })
 			
 			div.preview-row.mt-4
+				span.variant-label Simple Mode
+			p.small.text-muted.mb-2 With prev/next only: arrows with current label in center.
+			+sequentialNav({ prev: 42, next: 44, current: 'Trade #43', urlPattern: '#' })
+			
+			div.preview-row.mt-4
 				span.variant-label Dropdown Mode
 			p.small.text-muted.mb-2 Without quickItems: dropdown in center between arrows.
 			+sequentialNav({ items: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], current: 2024, urlPattern: '#' })

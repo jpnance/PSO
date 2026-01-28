@@ -56,6 +56,7 @@ mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPref
 
 //- Sequential navigation with arrows
 //- Usage: +sequentialNav({ items, current, urlPattern, quickItems?, jumpLabel?, labelFn?, urlSuffix? })
+//- Or: +sequentialNav({ prev, next, current, urlPattern, labelFn? }) for simple prev/next
 //- Without quickItems: dropdown in center between arrows
 //- With quickItems: pills in center, optional jump dropdown on left
 mixin sequentialNav(opts)
@@ -66,16 +67,32 @@ mixin sequentialNav(opts)
 	- var quickItems = opts.quickItems || null
 	- var jumpLabel = opts.jumpLabel || null
 	- var labelFn = opts.labelFn || function(v) { return v }
-	- var currentIdx = items.indexOf(current)
-	- var prevItem = currentIdx > 0 ? items[currentIdx - 1] : null
-	- var nextItem = currentIdx < items.length - 1 ? items[currentIdx + 1] : null
 	-
+		// Support direct prev/next or calculate from items
+		var prevItem, nextItem;
+		if (opts.prev !== undefined || opts.next !== undefined) {
+			prevItem = opts.prev;
+			nextItem = opts.next;
+		} else {
+			var currentIdx = items.indexOf(current);
+			prevItem = currentIdx > 0 ? items[currentIdx - 1] : null;
+			nextItem = currentIdx < items.length - 1 ? items[currentIdx + 1] : null;
+		}
 		// Items not in quickItems (for jump dropdown)
 		var jumpItems = quickItems ? items.filter(function(i) { return quickItems.indexOf(i) === -1 }) : []
 		// Helper to build URL
 		var buildUrl = function(item) { return urlPattern + item + urlSuffix }
+		// Simple mode: no items, just prev/next
+		var simpleMode = items.length === 0 && (opts.prev !== undefined || opts.next !== undefined)
 	div.seq-nav
-		if quickItems
+		if simpleMode
+			//- Mode: simple prev/next with current label
+			a.seq-nav__arrow(href=prevItem != null ? buildUrl(prevItem) : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
+				span ‹
+			span.seq-nav__current= labelFn(current)
+			a.seq-nav__arrow(href=nextItem != null ? buildUrl(nextItem) : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
+				span ›
+		else if quickItems
 			//- Mode: pills with optional jump dropdown (inside arrows)
 			a.seq-nav__arrow(href=prevItem != null ? buildUrl(prevItem) : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ‹
@@ -96,7 +113,7 @@ mixin sequentialNav(opts)
 			select.seq-nav__dropdown(onchange='if(this.value) window.location.href="' + urlPattern + '"+this.value+"' + urlSuffix + '"')
 				each item in items
 					option(value=item selected=(item === current))= labelFn(item)
-			a.seq-nav__arrow(href=nextItem != null ? urlPattern + nextItem : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
+			a.seq-nav__arrow(href=nextItem != null ? buildUrl(nextItem) : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ›
 
 //- Trade asset icon based on type
