@@ -85,31 +85,7 @@ block content
 								else
 									| entering #{schedule.weekLabel}
 							div.card-body.p-0
-								table.table.standings-table.mb-0
-									thead
-										tr
-											th.col-rank
-											th.col-name Team
-											th.col-record.text-right Record
-											th.col-allplay.text-right(title='Weekly record against all opponents') All-Play
-											th.col-pf.text-right PF
-											th.col-pa.text-right.d-none.d-xl-table-cell PA
-									tbody
-										each team, idx in standingsData.standings
-											-
-												var isUserTeam = userFranchiseIds && userFranchiseIds.includes(team.franchiseId);
-												var rowClasses = [];
-												if (isUserTeam) rowClasses.push('standings-table__row--user');
-												if (idx === 3) rowClasses.push('standings-table__row--cutoff');
-											tr(class=rowClasses.join(' '))
-												td.standings-table__rank= idx + 1
-												td.standings-table__name= team.name
-												td.standings-table__record.text-right= team.wins + '-' + team.losses
-												td.standings-table__allplay.text-right
-													if team.allPlay
-														= formatRecord(team.allPlay.wins, team.allPlay.losses, team.allPlay.ties)
-												td.standings-table__pf.text-right= formatPoints(team.pointsFor)
-												td.standings-table__pa.text-right.d-none.d-xl-table-cell= formatPoints(team.pointsAgainst)
+								+standingsTable(standingsData.standings, { variant: 'sidebar', userTeamIds: userFranchiseIds })
 						
 						//- Division standings (for division era)
 						if standingsData.hasDivisions && standingsData.divisionStandings
@@ -122,10 +98,4 @@ block content
 										each div in standingsData.divisionStandings
 											div.col-md-6.mb-3.mb-md-0
 												h6.standings__division-title= div.name
-												table.table.table-sm.standings-table--mini.mb-0
-													tbody
-														each team, idx in div.teams
-															tr(class=(idx === 0 ? 'standings-table--mini__winner' : ''))
-																td.standings-table--mini__rank= idx + 1
-																td.standings-table--mini__name= team.name
-																td.standings-table--mini__record.text-right= team.wins + '-' + team.losses
+												+standingsTable(div.teams, { variant: 'mini', showCutoff: false })

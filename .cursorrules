@@ -110,6 +110,36 @@ The matchup component uses **container queries**:
 
 This allows the same component to work in sidebar widgets and full-width schedule pages.
 
+### Standings Table
+```pug
+//- Basic widget (compact, for homepage cards)
++standingsTable(teams, { variant: 'widget' })
+
+//- Sidebar (with all-play column, for schedule page)
++standingsTable(teams, { variant: 'sidebar', userTeamIds: userFranchiseIds })
+
+//- Full (all columns, for main standings page)
++standingsTable(teams, { variant: 'full', isFinal: true, showMedals: true, showPlayoffStats: true })
+
+//- Mini (minimal, for division breakdowns)
++standingsTable(divisionTeams, { variant: 'mini', showCutoff: false })
+```
+Variants: widget, sidebar, full, mini
+Options:
+- `variant` - which column set to use (default: 'widget')
+- `userTeamId` - single franchise ID to highlight as user's team
+- `userTeamIds` - array of franchise IDs to highlight (for multi-franchise users)
+- `userTeamName` - team name string to highlight
+- `showMedals` - show gold/silver/bronze for top 3 (requires `isFinal: true`)
+- `showCutoff` - show playoff cutoff line after 4th place (default: true)
+- `showPlayoffStats` - show playoff stats under regular stats
+- `isFinal` - indicates final standings (enables medals)
+
+The standings table uses **container queries** to progressively hide columns:
+- Full: hides Stern → PA/Diff → All-Play as width shrinks
+- Sidebar: hides PA → All-Play as width shrinks
+- Widget: hides PA at narrow widths
+
 For client-side JS, use the `#alert-banner-template` template element and clone it.
 
 ### Season Navigation
