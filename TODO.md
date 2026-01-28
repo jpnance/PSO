@@ -134,7 +134,7 @@
 ### Standings Enhancements
 - [x] Introduce Season model to store computed season-level data (playoff seeds, results, etc.)
 - [ ] Add win/loss streaks to standings page
-- [ ] Unify homepage standings widget with full standings page patterns
+- [x] Unify homepage standings widget with full standings page patterns
 
 ### Misc Ideas
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
@@ -153,46 +153,3 @@
 
 ### Needs Discussion
 - [ ] Trade TTL edge cases: What happens when someone withdraws acceptance but trade is past TTL? Should any action on a trade renew its TTL? Think through pending trade lifecycle more carefully.
-
----
-
-## Recently Completed
-*Keep a short log for context and momentum.*
-
-### Jan 17, 2026
-- Franchise Timeline: New page (`/timeline`) — Wikipedia-style ownership history chart
-- Franchise Timeline: CSS Grid visualization with 12×12px cells, 1px gaps
-- Franchise Timeline: Legend highlights matching franchise cells on hover
-- Franchise Timeline: Mobile-friendly with horizontal scroll and legend above chart
-- Franchise Timeline: Added to History & Results nav section
-- Jaguar Chart: Migrated to new layout system with `+seasonNav` component
-- Jaguar Chart: Redesigned as mobile-responsive 2x2 owner card grid (no horizontal scrolling)
-- Jaguar Chart: Each card shows opponent matchups with individual game differentials and totals
-- Jaguar Chart: Added test suite validating standings logic against 14 seasons of historical data
-- Jaguar Chart: Cleaned up CSS from 735 lines to 115 lines (removed unused mockup styles)
-- Position badges: Added `white-space: nowrap` and `flex-shrink: 0` to prevent text wrapping on mobile
-
-### Jan 16, 2026
-- Trade Machine: Added `?from=<proposal-slug>` API to pre-populate from existing proposal
-- Trade Machine: Auto-select current user's franchise on fresh trade machine
-- Trade Machine: Show warning when pre-populated assets have moved since original deal
-- Proposal page: Added "Reject & Counter" button (rejects then opens Trade Machine with those assets)
-- Proposal page: Action buttons now wrap properly on mobile with BEM styling (`.proposal-actions`)
-- Removed counter-offer infrastructure (schema fields, route, function, views, CSS)
-- Updated `.cursorrules`: clarified BEM usage — don't target Bootstrap classes directly
-
-### Jan 14, 2026
-- Trade Machine: Redesigned budget impact as compact table (ledger style with year columns)
-- Trade Machine: Moved action buttons (Propose/Share/Cash-Neutral) to card-footer
-- Trade Machine: "Make Cash-Neutral for [year]" button — honest about scope, hides when already neutral
-- Trade Machine: Removed separate Budget Impact card (now inline at bottom of trade details)
-- Upgraded Font Awesome from 4.3.0 to 4.7.0
-
-### Jan 13, 2026
-- Trade Machine: Fixed budget impact card flash (show after content loads)
-- Trade Machine: Hide "Propose Trade" button during dead period
-- Trade Machine: Notes field now admin-only
-- Proposal page: Removed Delete button (drafts auto-cleanup in 7 days)
-- Proposal page: Updated hypothetical trade copy
-- Proposal page: Removed redundant Cash Neutral badge
-

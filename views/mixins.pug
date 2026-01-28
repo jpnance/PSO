@@ -40,20 +40,6 @@ mixin alertBanner(type, icon, text)
 			else
 				block
 
-//- Season navigation with quick buttons and optional older/dropdown (legacy)
-//- Usage: +seasonNav(season, quickSeasons, olderSeasons, 'Past Drafts', '?season=')
-mixin seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel, queryPrefix)
-	- var prefix = queryPrefix || '?season='
-	div.season-nav
-		if olderSeasons && olderSeasons.length > 0
-			- var isOlderSeason = olderSeasons.indexOf(currentSeason) !== -1
-			select.older-select(class=(isOlderSeason ? 'active' : '') onchange='if(this.value) window.location.href="' + prefix + '"+this.value')
-				option(value='' selected=!isOlderSeason)= olderLabel || 'Older'
-				each s in olderSeasons
-					option(value=s selected=(s === currentSeason))= s
-		each s in quickSeasons
-			a.btn.btn-sm(href=prefix + s class=(s === currentSeason ? 'btn-primary' : 'btn-outline-secondary'))= s
-
 //- Sequential navigation with arrows
 //- Usage: +sequentialNav({ items, current, urlPattern, quickItems?, jumpLabel?, labelFn?, urlSuffix? })
 //- Or: +sequentialNav({ prev, next, current, urlPattern, labelFn? }) for simple prev/next

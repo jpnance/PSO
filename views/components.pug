@@ -244,11 +244,6 @@ block content
 			p.small.text-muted.mb-2 Jump dropdown styled blue when current is in the jump list.
 			+sequentialNav({ items: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], current: 2018, quickItems: [2022, 2023, 2024, 2025], jumpLabel: 'Older...', urlPattern: '#' })
 			
-			div.preview-row.mt-4
-				span.variant-label Legacy: +seasonNav
-			p.small.text-muted.mb-2 For reference: the old implementation with pills and dropdown.
-			+seasonNav(2024, [2022, 2023, 2024], [2018, 2019, 2020, 2021], 'Older')
-
 		//- Trade Asset Icons
 		div.component-section
 			h2 +tradeAssetIcon(type)

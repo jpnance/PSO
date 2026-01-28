@@ -182,34 +182,6 @@
 .status-expired { background: var(--status-neutral-bg); color: var(--status-neutral-text); }
 .status-executed { background: var(--status-executed-bg); color: var(--status-executed-text); }
 
-/* Season navigation - quick season buttons with optional dropdown for older seasons */
-.season-nav {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.25rem;
-	align-items: center;
-}
-
-.older-select {
-	padding: 0.25rem 0.5rem;
-	font-size: 0.875rem;
-	border: 1px solid var(--text-muted);
-	border-radius: 0.2rem;
-	background: white;
-	color: var(--text-muted);
-	cursor: pointer;
-	height: 31px;
-}
-.older-select:focus {
-	outline: none;
-	border-color: #007bff;
-}
-.older-select.active {
-	background: #007bff;
-	border-color: #007bff;
-	color: white;
-}
-
 /* Sequential navigation - arrows with dropdown or pills */
 .seq-nav {
 	display: inline-flex;
