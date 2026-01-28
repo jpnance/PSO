@@ -213,7 +213,7 @@ mixin standingsTable(teams, opts)
 							else if (idx === 2) rowClasses.push('standings-table__row--bronze')
 						}
 						if (showCutoff && idx === 3) rowClasses.push('standings-table__row--cutoff')
-						if (options.userTeamId && team.franchiseId === options.userTeamId) rowClasses.push('standings-table__row--user')
+						if ((options.userTeamId && team.franchiseId === options.userTeamId) || (options.userTeamName && team.name === options.userTeamName)) rowClasses.push('standings-table__row--user')
 						if (team.isPlayoffTeam) rowClasses.push('standings-table__row--playoff')
 						if (variant === 'mini' && idx === 0) rowClasses.push('standings-table__row--winner')
 					tr(class=rowClasses.join(' '))

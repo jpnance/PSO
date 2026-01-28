@@ -54,43 +54,7 @@ block content
 							else
 								| #{standings.season} Standings
 						div.card-body.p-0
-							table.table.table-sm.standings-table.mb-0
-								thead
-									tr
-										th.col-rank
-										th.col-name
-										th.col-record.text-right W-L
-										th.col-stat.text-right PF
-										th.col-stat.text-right PA
-								tbody
-									each team, idx in standings.standings
-										-
-											var rowClass = '';
-											if (standings.isFinal || standings.isPreviousSeason) {
-												if (idx === 0) rowClass = 'gold-row';
-												else if (idx === 1) rowClass = 'silver-row';
-												else if (idx === 2) rowClass = 'bronze-row';
-											}
-											var isPlayoffCutoff = idx === 3;
-											var isUserTeam = userFranchiseName && team.name === userFranchiseName;
-										tr(class=rowClass + (isPlayoffCutoff ? ' playoff-cutoff' : '') + (isUserTeam ? ' user-team' : ''))
-											td.rank= team.rank
-											td.name= team.name
-											td.text-right
-												| #{formatRecord(team.wins, team.losses, team.ties)}
-												if team.isPlayoffTeam
-													br
-													span.playoff-stat #{team.playoffWins}-#{team.playoffLosses}
-											td.text-right
-												| #{formatPoints(team.pointsFor)}
-												if team.isPlayoffTeam
-													br
-													span.playoff-stat #{formatPoints(team.playoffPointsFor)}
-											td.text-right
-												| #{formatPoints(team.pointsAgainst)}
-												if team.isPlayoffTeam
-													br
-													span.playoff-stat #{formatPoints(team.playoffPointsAgainst)}
+							+standingsTable(standings.standings, { variant: 'widget', isFinal: standings.isFinal || standings.isPreviousSeason, showPlayoffStats: true, userTeamName: userFranchiseName })
 						a.card-footer-link(href='/standings?season=' + standings.season)
 							span View Full Standings
 							i.fa.fa-chevron-right
