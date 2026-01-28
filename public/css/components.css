@@ -699,3 +699,48 @@
 .standings-table--mini .standings-table__record {
 	color: #6c757d;
 }
+
+/* ========================================
+   Season Tile Component
+   ======================================== */
+/* Small square tiles indicating season results (playoff finish) */
+
+.season-tile {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background: #ececec;
+	border-radius: 2px;
+}
+
+.season-tile--champ {
+	background: var(--trophy-gold);
+	border: 1px solid var(--medal-gold-text);
+}
+
+.season-tile--second {
+	background: #c0c0c0;
+	border: 1px solid var(--medal-silver-text);
+}
+
+.season-tile--third {
+	background: var(--medal-bronze-text);
+	border: 1px solid #8b4513;
+}
+
+.season-tile--playoffs {
+	background: var(--medal-silver-bg);
+	border: 1px solid var(--medal-silver-text);
+}
+
+/* Size variant: small (for dense grids) */
+.season-tile--sm {
+	width: 10px;
+	height: 10px;
+}
+
+/* Size variant: large (for main timeline grid) */
+.season-tile--lg {
+	width: 18px;
+	height: 18px;
+}

@@ -379,12 +379,7 @@ block content
 										div.franchise-history__regime-tiles
 											- var seasonsChronological = regime.seasons.slice().reverse()
 											each result in seasonsChronological
-												- var dotClass = ''
-												- if (result.playoffFinish === 'champion') dotClass = 'franchise-history__tile--champ'
-												- else if (result.playoffFinish === 'runner-up') dotClass = 'franchise-history__tile--second'
-												- else if (result.playoffFinish === 'third-place') dotClass = 'franchise-history__tile--third'
-												- else if (result.madePlayoffs) dotClass = 'franchise-history__tile--playoffs'
-												a.franchise-history__tile(href='/franchises/' + franchise.rosterId + '/schedule/' + result.season title=result.season + ': ' + result.wins + '-' + result.losses class=dotClass)
+												+seasonTile(result, { href: '/franchises/' + franchise.rosterId + '/schedule/' + result.season })
 		
 		//- Cut confirmation modal
 		if isOwner && canCut

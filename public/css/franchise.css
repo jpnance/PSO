@@ -272,34 +272,6 @@
     margin-top: 0.15rem;
 }
 
-.franchise-history__tile {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    background: #ececec;
-    border-radius: 2px;
-}
-
-.franchise-history__tile--champ {
-    background: var(--trophy-gold);
-    border: 1px solid var(--medal-gold-text);
-}
-
-.franchise-history__tile--second {
-    background: #c0c0c0;
-    border: 1px solid var(--medal-silver-text);
-}
-
-.franchise-history__tile--third {
-    background: var(--medal-bronze-text);
-    border: 1px solid #8b4513;
-}
-
-.franchise-history__tile--playoffs {
-    background: var(--medal-silver-bg);
-    border: 1px solid var(--medal-silver-text);
-}
-
 /* ========================================
    Draft Picks Widget
    ======================================== */

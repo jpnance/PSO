@@ -6,6 +6,7 @@ block title
 
 block styles
 	link(rel='stylesheet' href='/css/timeline.css')
+	link(rel='stylesheet' href='/css/components.css')
 
 block content
 	div.container.py-4
@@ -24,12 +25,8 @@ block content
 						div.timeline-name(class=row.isCurrent ? '' : 'past-owner')= row.personName
 						each cell in row.cells
 							if cell.active
-								div.timeline-cell(
-									style='background-color: ' + cell.color
-									title=cell.displayName + ' (' + cell.year + ')'
-									class=row.isCurrent ? '' : 'past-owner'
-									data-franchise=cell.rosterId
-								)
+								- var cellClass = row.isCurrent ? '' : 'past-owner'
+								+seasonTile({ season: cell.year }, { color: cell.color, href: '/franchises/' + cell.rosterId + '/schedule/' + cell.year, size: 'lg', title: cell.displayName + ' (' + cell.year + ')', class: cellClass, data: { franchise: cell.rosterId } })
 							else
 								div.timeline-cell
 			
@@ -57,7 +54,7 @@ block content
 							div.franchise-breakdown__label(class=row.isCurrent ? '' : 'past-owner')= row.personName
 							each cell in row.cells
 								if cell.active
-									div.franchise-breakdown__cell(style='background-color: ' + franchise.color)
+									+seasonTile({ season: cell.year }, { color: franchise.color, href: '/franchises/' + franchise.rosterId + '/schedule/' + cell.year, size: 'sm' })
 								else
 									div.franchise-breakdown__cell
 		
@@ -72,7 +69,7 @@ block scripts
 			
 			function highlight(fid) {
 				grid.classList.add('highlighting');
-				grid.querySelectorAll('.timeline-cell[data-franchise]').forEach(function(cell) {
+				grid.querySelectorAll('.season-tile[data-franchise]').forEach(function(cell) {
 					if (cell.dataset.franchise === fid) {
 						cell.classList.add('highlighted');
 					}
@@ -81,7 +78,7 @@ block scripts
 			
 			function clearHighlight() {
 				grid.classList.remove('highlighting');
-				grid.querySelectorAll('.timeline-cell.highlighted').forEach(function(cell) {
+				grid.querySelectorAll('.season-tile.highlighted').forEach(function(cell) {
 					cell.classList.remove('highlighted');
 				});
 				if (activeItem) {

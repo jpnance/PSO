@@ -108,6 +108,53 @@ block content
 				+statusBadge('expired')
 				+statusBadge('executed')
 
+		//- Season Tile
+		div.component-section
+			h2 +seasonTile(result, options?)
+			code.usage +seasonTile({ season: 2024, wins: 10, losses: 5, playoffFinish: 'champion' }, { href: '/schedule/2024' })
+			div.preview-row
+				span.variant-label Playoff Finish
+			div.d-flex.align-items-center(style="gap: 0.5rem;")
+				+seasonTile({ season: 2024, wins: 13, losses: 2, playoffFinish: 'champion' })
+				span.small Champion
+				+seasonTile({ season: 2023, wins: 11, losses: 4, playoffFinish: 'runner-up' })
+				span.small Runner-up
+				+seasonTile({ season: 2022, wins: 10, losses: 5, playoffFinish: 'third-place' })
+				span.small Third
+				+seasonTile({ season: 2021, wins: 9, losses: 6, madePlayoffs: true })
+				span.small Playoffs
+				+seasonTile({ season: 2020, wins: 5, losses: 10 })
+				span.small Regular
+			
+			div.preview-row.mt-3
+				span.variant-label Custom Color
+			p.small.text-muted.mb-2 Override background with any color (bypasses playoff styling).
+			div.d-flex.align-items-center(style="gap: 0.5rem;")
+				+seasonTile({ season: 2024 }, { color: '#4a90d9' })
+				+seasonTile({ season: 2023 }, { color: '#e74c3c' })
+				+seasonTile({ season: 2022 }, { color: '#2ecc71' })
+				+seasonTile({ season: 2021 }, { color: '#9b59b6' })
+			
+			div.preview-row.mt-3
+				span.variant-label Size Variants
+			div.d-flex.align-items-center(style="gap: 0.5rem;")
+				+seasonTile({ season: 2024, wins: 10, losses: 5, playoffFinish: 'champion' }, { size: 'sm' })
+				span.small Small (10px)
+				+seasonTile({ season: 2024, wins: 10, losses: 5, playoffFinish: 'champion' })
+				span.small Default (14px)
+				+seasonTile({ season: 2024, wins: 10, losses: 5, playoffFinish: 'champion' }, { size: 'lg' })
+				span.small Large (18px)
+			
+			div.preview-row.mt-3
+				span.variant-label As Links
+			p.small.text-muted.mb-2 With href option, tiles become clickable links.
+			div.d-flex.align-items-center(style="gap: 0.25rem;")
+				+seasonTile({ season: 2020, wins: 8, losses: 7 }, { href: '#', color: '#4a90d9' })
+				+seasonTile({ season: 2021, wins: 10, losses: 5, madePlayoffs: true }, { href: '#', color: '#4a90d9' })
+				+seasonTile({ season: 2022, wins: 12, losses: 3, playoffFinish: 'runner-up' }, { href: '#', color: '#4a90d9' })
+				+seasonTile({ season: 2023, wins: 11, losses: 4, madePlayoffs: true }, { href: '#', color: '#4a90d9' })
+				+seasonTile({ season: 2024, wins: 13, losses: 2, playoffFinish: 'champion' }, { href: '#', color: '#4a90d9' })
+
 		//- Matchup
 		div.component-section
 			h2 +matchup(game, options?)

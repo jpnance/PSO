@@ -69,6 +69,35 @@ Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed
 - Use "cancel" (not "withdraw") for the action of canceling a proposal
 - The model is `Proposal` (not `TradeProposal`), stored in the `proposals` collection
 
+### Season Tile
+```pug
+//- With playoff finish styling (default)
++seasonTile({ season: 2024, wins: 13, losses: 2, playoffFinish: 'champion' })
++seasonTile({ season: 2023, wins: 10, losses: 5, madePlayoffs: true })
++seasonTile({ season: 2022, wins: 6, losses: 9 })
+
+//- With custom color (overrides playoff styling)
++seasonTile({ season: 2024 }, { color: '#4a90d9', href: '/franchises/1/schedule/2024' })
+
+//- With size variants
++seasonTile({ season: 2024 }, { color: '#4a90d9', size: 'sm' })  //- 10px
++seasonTile({ season: 2024 }, { color: '#4a90d9', size: 'lg' })  //- 18px
+
+//- With extra classes and data attributes (for JS interactivity)
++seasonTile({ season: 2024 }, { color: '#4a90d9', class: 'past-owner', data: { franchise: '1' } })
+```
+Result object: `{ season, wins?, losses?, playoffFinish?, madePlayoffs? }`
+- `playoffFinish`: 'champion', 'runner-up', 'third-place', or null
+- If wins/losses provided, they appear in tooltip; otherwise just the year
+
+Options:
+- `href` — makes tile a link
+- `color` — override background color (bypasses playoff styling)
+- `size` — 'sm' (10px), 'lg' (18px), or default (14px)
+- `title` — override tooltip text
+- `class` — additional CSS classes (string)
+- `data` — object of data-* attributes (e.g., `{ franchise: '1' }` → `data-franchise="1"`)
+
 ### Alert Banner
 ```pug
 //- Simple message (text parameter)

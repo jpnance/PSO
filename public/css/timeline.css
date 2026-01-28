@@ -128,26 +128,27 @@
 	font-size: 0.55rem;
 }
 
-/* Data cells */
+/* Data cells - empty placeholder cells */
 .timeline-cell {
 	width: 18px;
 	height: 18px;
 }
 
-.timeline-cell.past-owner {
+/* Past owner styling for season tiles in grid */
+.timeline-grid .season-tile.past-owner {
 	opacity: 0.65;
 }
 
 /* Highlight on legend hover */
-.timeline-grid.highlighting .timeline-cell[data-franchise] {
+.timeline-grid.highlighting .season-tile[data-franchise] {
 	opacity: 0.15;
 }
 
-.timeline-grid.highlighting .timeline-cell.highlighted {
+.timeline-grid.highlighting .season-tile.highlighted {
 	opacity: 1;
 }
 
-.timeline-grid.highlighting .timeline-cell.highlighted.past-owner {
+.timeline-grid.highlighting .season-tile.highlighted.past-owner {
 	opacity: 0.8;
 }
 

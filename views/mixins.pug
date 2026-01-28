@@ -368,6 +368,44 @@ mixin matchup(game, opts)
 						span.matchup__score= formatPoints(game.home.score)
 						i.fa.fa-chevron-left.matchup__chevron
 
+//- Season result tile - small square indicating playoff finish or custom color
+//- Usage: +seasonTile(result) or +seasonTile(result, { href: '/schedule/2024', size: 'sm', color: '#abc' })
+//- Result: { season, wins?, losses?, playoffFinish?, madePlayoffs? }
+//- Options:
+//-   href — makes it a link
+//-   size — 'sm' (10px), 'lg' (18px), or default (14px)
+//-   color — override background color
+//-   title — override tooltip text
+//-   class — additional CSS classes (string)
+//-   data — object of data-* attributes (e.g., { franchise: '1' } → data-franchise="1")
+mixin seasonTile(result, opts)
+	- var options = opts || {}
+	- var tileClass = 'season-tile'
+	- var inlineStyle = null
+	if options.color
+		- inlineStyle = 'background-color: ' + options.color
+	else
+		- if (result.playoffFinish === 'champion') tileClass += ' season-tile--champ'
+		- else if (result.playoffFinish === 'runner-up') tileClass += ' season-tile--second'
+		- else if (result.playoffFinish === 'third-place') tileClass += ' season-tile--third'
+		- else if (result.madePlayoffs) tileClass += ' season-tile--playoffs'
+	- if (options.size) tileClass += ' season-tile--' + options.size
+	- if (options.class) tileClass += ' ' + options.class
+	-
+		var titleText = options.title;
+		if (!titleText) {
+			if (result.wins != null && result.losses != null) {
+				titleText = result.season + ': ' + result.wins + '-' + result.losses;
+			} else {
+				titleText = String(result.season);
+			}
+		}
+		var dataAttrs = options.data || {};
+	if options.href
+		a(href=options.href title=titleText class=tileClass style=inlineStyle)&attributes({'data-franchise': dataAttrs.franchise})
+	else
+		span(title=titleText class=tileClass style=inlineStyle)&attributes({'data-franchise': dataAttrs.franchise})
+
 //- Franchise card for league overview and franchises list
 //- Usage: +franchiseCard(franchise, { rosterLimit, isOffseason, standingsSeason })
 mixin franchiseCard(franchise, opts)
