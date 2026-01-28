@@ -95,6 +95,7 @@
 	font-size: 0.9em;
 	min-width: 3.5rem;
 	text-align: right;
+	font-variant-numeric: tabular-nums;
 }
 
 .matchup__chevron {
@@ -417,6 +418,17 @@
 .standings-table__division {
 	font-size: 0.85em;
 	color: #6c757d;
+}
+
+/* Tabular numbers for numeric columns */
+.standings-table__rank,
+.standings-table__record,
+.standings-table__allplay,
+.standings-table__stern,
+.standings-table__pf,
+.standings-table__pa,
+.standings-table__diff {
+	font-variant-numeric: tabular-nums;
 }
 
 /* Badges */
