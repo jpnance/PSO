@@ -71,8 +71,8 @@ async function draftBoard(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
 	
-	// Allow viewing any season via query param, default to current season's draft
-	var season = parseInt(request.query.season, 10) || currentSeason;
+	// Allow viewing any season via URL, default to current season's draft
+	var season = parseInt(request.params.season, 10) || currentSeason;
 	
 	// Get all picks for this season
 	var picks = await Pick.find({ season: season }).sort({ pickNumber: 1, round: 1 }).lean();

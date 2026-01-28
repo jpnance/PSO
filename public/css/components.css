@@ -210,6 +210,95 @@
 	color: white;
 }
 
+/* Sequential navigation - arrows with dropdown or pills */
+.seq-nav {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.seq-nav__arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	background: white;
+	border: 1px solid #dee2e6;
+	border-radius: 4px;
+	text-decoration: none;
+	color: inherit;
+	font-size: 0.875rem;
+}
+
+.seq-nav__arrow:hover:not(.seq-nav__arrow--disabled) {
+	background: #e9ecef;
+	text-decoration: none;
+	color: inherit;
+}
+
+.seq-nav__arrow--disabled {
+	opacity: 0.4;
+	pointer-events: none;
+}
+
+.seq-nav__dropdown,
+.seq-nav__jump {
+	height: 1.75rem;
+	padding: 0 0.5rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	border: 1px solid #dee2e6;
+	border-radius: 4px;
+	background: white;
+	cursor: pointer;
+}
+
+.seq-nav__dropdown:focus,
+.seq-nav__jump:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+.seq-nav__jump {
+	margin-right: 0.125rem;
+}
+
+.seq-nav__jump--active {
+	background: #007bff;
+	border-color: #007bff;
+	color: white;
+}
+
+.seq-nav__pill {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 1.75rem;
+	padding: 0 0.5rem;
+	border-radius: 4px;
+	text-decoration: none;
+	color: inherit;
+	font-size: 0.875rem;
+}
+
+.seq-nav__pill:hover {
+	background: #e9ecef;
+	text-decoration: none;
+	color: inherit;
+}
+
+.seq-nav__pill--active {
+	background: #007bff;
+	color: white;
+	font-weight: 500;
+}
+
+.seq-nav__pill--active:hover {
+	background: #0056b3;
+	color: white;
+}
+
 /* Trade asset lists - used in trade history, proposals, etc. */
 .asset-list {
 	list-style: none;

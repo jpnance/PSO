@@ -65,7 +65,7 @@ module.exports = function(app) {
 	app.post('/proposals/:slug/reject', requireLogin, proposals.rejectProposal);
 	app.post('/proposals/:slug/cancel', requireLogin, proposals.cancelProposal);
 
-	app.get('/draft', draft.draftBoard);
+	app.get('/draft/:season', draft.draftBoard);
 	
 	app.get('/calendar', calendar.calendar);
 	

@@ -13,7 +13,9 @@ block content
 	div.container-fluid.py-3
 		div.draft-board__header
 			h1 #{season} Draft Board
-			+seasonNav(season, quickSeasons, pastSeasons, 'Past Drafts')
+			-
+				var allSeasons = pastSeasons.slice().reverse().concat(quickSeasons)
+			+sequentialNav({ items: allSeasons, current: season, quickItems: quickSeasons, jumpLabel: 'Past Drafts', urlPattern: '/draft/' })
 
 		if Object.keys(rounds).length === 0
 			div.alert.alert-info No picks found for #{season}

@@ -207,21 +207,42 @@ block content
 			
 			div.preview-row.mt-4
 				span.variant-label D6. Container Queries
-			p.small.text-muted.mb-2 Widget variant at different widths showing responsive column hiding.
+			p.small.text-muted.mb-2 Widget variant at different widths. PA hides ≤380px, PF hides ≤300px.
 			div.d-flex.flex-wrap(style="gap: 1rem;")
 				div(style="width: 280px; border: 1px dashed #ccc; padding: 0.5rem;")
-					small.text-muted 280px (no PA)
+					small.text-muted 280px (no PF/PA)
 					+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
-				div(style="width: 350px; border: 1px dashed #ccc; padding: 0.5rem;")
-					small.text-muted 350px (all columns)
+				div(style="width: 340px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 340px (no PA)
+					+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
+				div(style="width: 420px; border: 1px dashed #ccc; padding: 0.5rem;")
+					small.text-muted 420px (all columns)
 					+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
 
-		//- Season Nav
+		//- Sequential Nav
 		div.component-section
-			h2 +seasonNav(currentSeason, quickSeasons, olderSeasons, olderLabel)
-			code.usage +seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
-			div.nav-container
-				+seasonNav(2025, [2023, 2024, 2025], [2020, 2021, 2022], 'Past Drafts')
+			h2 +sequentialNav(options)
+			code.usage +sequentialNav({ items, current, urlPattern, quickItems?, jumpLabel?, labelFn? })
+			
+			div.preview-row.mt-4
+				span.variant-label Dropdown Mode
+			p.small.text-muted.mb-2 Without quickItems: dropdown in center between arrows.
+			+sequentialNav({ items: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], current: 2024, urlPattern: '#' })
+			
+			div.preview-row.mt-4
+				span.variant-label Pills Mode
+			p.small.text-muted.mb-2 With quickItems: pills in center, optional jump dropdown on left.
+			+sequentialNav({ items: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], current: 2024, quickItems: [2022, 2023, 2024, 2025], jumpLabel: 'Older...', urlPattern: '#' })
+			
+			div.preview-row.mt-4
+				span.variant-label Pills Mode (Active in Jump)
+			p.small.text-muted.mb-2 Jump dropdown styled blue when current is in the jump list.
+			+sequentialNav({ items: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], current: 2018, quickItems: [2022, 2023, 2024, 2025], jumpLabel: 'Older...', urlPattern: '#' })
+			
+			div.preview-row.mt-4
+				span.variant-label Legacy: +seasonNav
+			p.small.text-muted.mb-2 For reference: the old implementation with pills and dropdown.
+			+seasonNav(2024, [2022, 2023, 2024], [2018, 2019, 2020, 2021], 'Older')
 
 		//- Trade Asset Icons
 		div.component-section
