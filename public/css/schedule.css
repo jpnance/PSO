@@ -21,33 +21,6 @@
 	}
 }
 
-.schedule__nav-select {
-	padding: 0.25rem 0.5rem;
-	font-size: 0.875rem;
-	border: 1px solid var(--text-muted);
-	border-radius: 0.2rem;
-	background: white;
-	color: inherit;
-	cursor: pointer;
-	height: 31px;
-}
-
-.schedule__nav-select:focus {
-	outline: none;
-	border-color: #007bff;
-}
-
-.schedule__nav-select--active {
-	border-color: #007bff;
-	background: #007bff;
-	color: white;
-	font-weight: 500;
-}
-
-.schedule__nav-select--active:focus {
-	box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
 /* Weekly stats */
 .schedule__stat {
 	text-align: center;

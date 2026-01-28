@@ -17,28 +17,6 @@
 	text-decoration: underline;
 }
 
-/* Navigation row */
-.franchise-schedule__nav {
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
-}
-
-.franchise-schedule__season-select {
-	padding: 0.25rem 0.5rem;
-	font-size: 0.875rem;
-	border: 1px solid var(--text-muted);
-	border-radius: 0.2rem;
-	background: white;
-	color: inherit;
-	cursor: pointer;
-	height: 31px;
-}
-
-.franchise-schedule__season-select:focus {
-	outline: none;
-	border-color: #007bff;
-}
 
 /* Stats display */
 .franchise-schedule__stats {

@@ -18,9 +18,7 @@ block content
 		//- Navigation
 		if availableSeasons && availableSeasons.length > 1
 			div.franchise-schedule__nav.mb-4
-				select.franchise-schedule__season-select(onchange='if(this.value) window.location.href="/franchises/' + franchise.rosterId + '/schedule/"+this.value')
-					each s in availableSeasons
-						option(value=s selected=(s === season))= s
+				+sequentialNav({ items: availableSeasons, current: season, urlPattern: '/franchises/' + franchise.rosterId + '/schedule/' })
 		
 		if !scheduleData || (scheduleData.regularGames.length === 0 && scheduleData.playoffGames.length === 0)
 			div.alert.alert-info No games found for this season.
