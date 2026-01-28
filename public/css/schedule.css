@@ -1,0 +1,210 @@
+/* Schedule Page Styles */
+
+.schedule__header {
+	margin-bottom: 0.5rem;
+}
+
+.schedule__header h1 {
+	margin-bottom: 0;
+}
+
+/* Combined season and week navigation */
+.schedule__nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.schedule__nav .season-nav {
+	margin-right: 0.5rem;
+}
+
+.schedule__nav {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.schedule__nav-select {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+	border: 1px solid var(--text-muted);
+	border-radius: 0.2rem;
+	background: white;
+	color: inherit;
+	cursor: pointer;
+	height: 31px;
+}
+
+.schedule__nav-select:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+.schedule__nav-select--active {
+	border-color: #007bff;
+	background: #007bff;
+	color: white;
+	font-weight: 500;
+}
+
+.schedule__nav-select--active:focus {
+	box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Weekly stats */
+.schedule__stat {
+	text-align: center;
+}
+
+.schedule__stat-label {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	letter-spacing: 0.05em;
+}
+
+.schedule__stat-value {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.schedule__stat-team {
+	font-size: 0.8125rem;
+	color: var(--text-secondary);
+}
+
+/* Games Container */
+.schedule__games {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+/* Individual Game Card */
+.schedule__game {
+	background: white;
+	border: 1px solid var(--border-light);
+	border-radius: 8px;
+	padding: 0.75rem 1rem;
+	transition: box-shadow 0.15s;
+}
+
+.schedule__game:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.schedule__game--playoff {
+	background: linear-gradient(to right, #fefcf3, white);
+}
+
+.schedule__game-label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin-bottom: 0.5rem;
+	letter-spacing: 0.5px;
+}
+
+/* Stacked Matchup Layout */
+.schedule__matchup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.schedule__team-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.25rem 0;
+}
+
+.schedule__team-row--loser {
+	color: var(--text-muted);
+}
+
+.schedule__team-info {
+	display: flex;
+	align-items: baseline;
+	gap: 0.375rem;
+	min-width: 0;
+}
+
+.schedule__seed {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	font-weight: 500;
+}
+
+.schedule__team-row--winner .schedule__seed {
+	color: inherit;
+}
+
+.schedule__team-name {
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.schedule__record {
+	font-size: 0.8125rem;
+	color: var(--text-muted);
+	white-space: nowrap;
+}
+
+.schedule__score-cell {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	flex-shrink: 0;
+}
+
+.schedule__score {
+	font-size: 1rem;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	min-width: 4rem;
+	text-align: right;
+}
+
+.schedule__team-row--winner .schedule__score {
+	font-weight: 600;
+}
+
+.schedule__winner-indicator {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--color-success);
+	width: 0.75rem;
+	text-align: center;
+}
+
+.schedule__winner-indicator--hidden {
+	visibility: hidden;
+}
+
+.schedule__at {
+	font-size: 0.875rem;
+	color: var(--text-muted);
+	width: 0.75rem;
+	text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+	.schedule__record {
+		display: none;
+	}
+	
+	.schedule__score {
+		min-width: 3rem;
+	}
+	
+	.schedule__week-select {
+		font-size: 0.8125rem;
+	}
+}

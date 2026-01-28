@@ -4,6 +4,7 @@ var simulator = require('./services/simulator');
 var scuttlebot = require('./services/scuttlebot');
 var league = require('./services/league');
 var standings = require('./services/standings');
+var schedule = require('./services/schedule');
 var admin = require('./services/admin');
 var adminPlayers = require('./services/admin-players');
 var adminTrades = require('./services/admin-trades');
@@ -43,6 +44,10 @@ module.exports = function(app) {
 	
 	app.get('/standings', standings.standingsPage);
 	app.get('/standings/:season', standings.standingsPage);
+	
+	app.get('/schedule', schedule.schedulePage);
+	app.get('/schedule/:season', schedule.schedulePage);
+	app.get('/schedule/:season/:week', schedule.schedulePage);
 	
 	app.get('/timeline', league.timeline);
 	

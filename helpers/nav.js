@@ -50,8 +50,8 @@ function buildNav(options) {
 			id: 'schedule',
 			label: 'Schedule',
 			icon: 'fa-calendar',
-			href: '#',
-			soon: true
+			href: '/schedule',
+			active: isActive('schedule')
 		},
 		{
 			id: 'faab',

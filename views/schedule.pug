@@ -1,0 +1,173 @@
+extends layout.pug
+include mixins
+
+block title
+	if schedule
+		+title(schedule.weekLabel, season + ' Schedule')
+	else
+		+title('Schedule')
+
+block styles
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/standings.css')
+	link(rel='stylesheet' href='/css/schedule.css')
+
+block content
+	div.container-fluid.py-4
+		div.schedule__header
+			h1 #{season} Schedule
+		
+		//- Season and week navigation
+		.schedule__nav.mb-4
+			select.schedule__nav-select(onchange='if(this.value) window.location.href="/schedule/"+this.value')
+				each s in olderSeasons.concat(quickSeasons).sort(function(a, b) { return b - a; })
+					option(value=s selected=(s === season))= s
+			if weeks && weeks.length > 0
+				select.schedule__nav-select.schedule__nav-select--active(onchange='if(this.value) window.location.href="/schedule/' + season + '/"+this.value')
+					each w in weeks
+						option(value=w.week selected=(w.week === week))= w.label
+		
+		if !schedule || !schedule.games || schedule.games.length === 0
+			div.alert.alert-info No games found for this week.
+		else
+			div.row
+				div.col-lg-5.col-xl-4
+					//- Games list
+					div.schedule__games
+						-
+							// Sort games: user's game first, then alphabetically
+							var sortedGames = schedule.games.slice();
+							if (userFranchiseIds && userFranchiseIds.length > 0) {
+								sortedGames.sort(function(a, b) {
+									var aIsUser = userFranchiseIds.includes(a.away.franchiseId) || userFranchiseIds.includes(a.home.franchiseId);
+									var bIsUser = userFranchiseIds.includes(b.away.franchiseId) || userFranchiseIds.includes(b.home.franchiseId);
+									if (aIsUser && !bIsUser) return -1;
+									if (!aIsUser && bIsUser) return 1;
+									return 0;
+								});
+							}
+						each game in sortedGames
+							-
+								var gameClasses = ['schedule__game'];
+								if (game.hasScores) gameClasses.push('schedule__game--final');
+								if (schedule.isPlayoffs) gameClasses.push('schedule__game--playoff');
+							
+							div(class=gameClasses.join(' '))
+								if game.label
+									div.schedule__game-label= game.label
+								
+								div.schedule__matchup
+									//- Away team row
+									div.schedule__team-row(class=game.away.won ? 'schedule__team-row--winner' : (game.home.won ? 'schedule__team-row--loser' : ''))
+										div.schedule__team-info
+											if schedule.isPlayoffs && game.away.seed
+												span.schedule__seed ##{game.away.seed}
+											span.schedule__team-name= game.away.name
+											if game.away.record
+												span.schedule__record (#{game.away.record})
+										div.schedule__score-cell
+											if game.hasScores
+												span.schedule__score= formatPoints(game.away.score)
+												if game.away.won
+													span.schedule__winner-indicator ‹
+												else
+													span.schedule__winner-indicator.schedule__winner-indicator--hidden ‹
+									
+									//- Home team row
+									div.schedule__team-row(class=game.home.won ? 'schedule__team-row--winner' : (game.away.won ? 'schedule__team-row--loser' : ''))
+										div.schedule__team-info
+											if schedule.isPlayoffs && game.home.seed
+												span.schedule__seed ##{game.home.seed}
+											span.schedule__team-name= game.home.name
+											if game.home.record
+												span.schedule__record (#{game.home.record})
+										div.schedule__score-cell
+											if game.hasScores
+												span.schedule__score= formatPoints(game.home.score)
+												if game.home.won
+													span.schedule__winner-indicator ‹
+												else
+													span.schedule__winner-indicator.schedule__winner-indicator--hidden ‹
+											else
+												span.schedule__at @
+				
+				//- Stats and Standings
+				if standingsData && standingsData.standings && standingsData.standings.length > 0
+					div.col-lg-7.col-xl-6
+						//- Weekly stats summary
+						if schedule.stats
+							div.card.mb-3
+								div.card-header #{schedule.weekLabel} Summary
+								div.card-body
+									div.row
+										div.col-6.col-md-3.mb-2.mb-md-0
+											div.schedule__stat
+												div.schedule__stat-label High
+												div.schedule__stat-value= formatPoints(schedule.stats.highScore.score)
+												div.schedule__stat-team= schedule.stats.highScore.name
+										div.col-6.col-md-3.mb-2.mb-md-0
+											div.schedule__stat
+												div.schedule__stat-label Low
+												div.schedule__stat-value= formatPoints(schedule.stats.lowScore.score)
+												div.schedule__stat-team= schedule.stats.lowScore.name
+										div.col-6.col-md-3
+											div.schedule__stat
+												div.schedule__stat-label Average
+												div.schedule__stat-value= formatPoints(schedule.stats.average)
+										div.col-6.col-md-3
+											div.schedule__stat
+												div.schedule__stat-label Std Dev
+												div.schedule__stat-value= formatPoints(schedule.stats.stdDev)
+						
+						div.card
+							div.card-header
+								| Standings 
+								if schedule.hasScores
+									| after #{schedule.weekLabel}
+								else
+									| entering #{schedule.weekLabel}
+							div.card-body.p-0
+								table.table.standings-table.mb-0
+									thead
+										tr
+											th.col-rank
+											th.col-name Team
+											th.col-record.text-right Record
+											th.col-allplay.text-right(title='Weekly record against all opponents') All-Play
+											th.col-pf.text-right PF
+											th.col-pa.text-right.d-none.d-xl-table-cell PA
+									tbody
+										each team, idx in standingsData.standings
+											-
+												var isUserTeam = userFranchiseIds && userFranchiseIds.includes(team.franchiseId);
+												var rowClasses = [];
+												if (isUserTeam) rowClasses.push('standings-table__row--user');
+												if (idx === 3) rowClasses.push('standings-table__row--cutoff');
+											tr(class=rowClasses.join(' '))
+												td.standings-table__rank= idx + 1
+												td.standings-table__name= team.name
+												td.standings-table__record.text-right= team.wins + '-' + team.losses
+												td.standings-table__allplay.text-right
+													if team.allPlay
+														= formatRecord(team.allPlay.wins, team.allPlay.losses, team.allPlay.ties)
+												td.standings-table__pf.text-right= formatPoints(team.pointsFor)
+												td.standings-table__pa.text-right.d-none.d-xl-table-cell= formatPoints(team.pointsAgainst)
+						
+						//- Division standings (for division era)
+						if standingsData.hasDivisions && standingsData.divisionStandings
+							div.card.mt-3
+								div.card-header
+									i.fa.fa-columns.mr-2
+									| Division Standings
+								div.card-body
+									div.row
+										each div in standingsData.divisionStandings
+											div.col-md-6.mb-3.mb-md-0
+												h6.standings__division-title= div.name
+												table.table.table-sm.standings-table--mini.mb-0
+													tbody
+														each team, idx in div.teams
+															tr(class=(idx === 0 ? 'standings-table--mini__winner' : ''))
+																td.standings-table--mini__rank= idx + 1
+																td.standings-table--mini__name= team.name
+																td.standings-table--mini__record.text-right= team.wins + '-' + team.losses
