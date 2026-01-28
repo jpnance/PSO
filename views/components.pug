@@ -172,30 +172,30 @@ block content
 				div.preview-row
 					span.variant-label Upcoming
 				div(style="max-width: 300px;")
-					+matchup({ away: { name: 'Schex', record: '8-3' }, home: { name: 'Koci', record: '7-4' } })
+					+matchup({ away: { name: 'Syed/Terence', record: '8-3' }, home: { name: 'Mitch/Karsten', record: '7-4' } })
 				
 				div.preview-row.mt-3
 					span.variant-label Final
 				div(style="max-width: 300px;")
-					+matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5', won: false } })
+					+matchup({ away: { name: 'Koci/Mueller', score: 142.56, record: '9-3', won: true }, home: { name: 'Schex', score: 128.34, record: '7-5', won: false } })
 				
 				div.preview-row.mt-3
 					span.variant-label Playoffs
 				div(style="max-width: 350px;")
-					+matchup({ away: { name: 'Schex', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, type: 'semifinal' }, { label: 'Semifinal 1' })
-					+matchup({ away: { name: 'Koci', score: 148.90, seed: 1, won: true }, home: { name: 'Jeff', score: 134.56, seed: 4 }, type: 'semifinal' }, { label: 'Semifinal 2' })
+					+matchup({ away: { name: 'Syed/Terence', score: 156.78, seed: 2, won: true }, home: { name: 'Nance', score: 142.12, seed: 3 }, type: 'semifinal' }, { label: 'Semifinal 1' })
+					+matchup({ away: { name: 'Keyon', score: 148.90, seed: 1, won: true }, home: { name: 'Mitch/Karsten', score: 134.56, seed: 4 }, type: 'semifinal' }, { label: 'Semifinal 2' })
 				
 				div.preview-row.mt-3
 					span.variant-label Championship
 				div(style="max-width: 350px;")
-					+matchup({ away: { name: 'Schex', score: 167.23, seed: 2, won: true }, home: { name: 'Koci', score: 154.89, seed: 1 }, type: 'championship' }, { label: 'Championship' })
-					+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Jeff', score: 125.67, seed: 4 }, type: 'thirdPlace' }, { label: 'Third Place' })
+					+matchup({ away: { name: 'Syed/Terence', score: 167.23, seed: 2, won: true }, home: { name: 'Keyon', score: 154.89, seed: 1 }, type: 'championship' }, { label: 'Championship' })
+					+matchup({ away: { name: 'Nance', score: 138.45, seed: 3, won: true }, home: { name: 'Mitch/Karsten', score: 125.67, seed: 4 }, type: 'thirdPlace' }, { label: 'Third Place' })
 				
 				div.preview-row.mt-3
 					span.variant-label With Subtitle
 				p.small.text-muted.mb-2 Optional subtitle for regime names. Subtitle appears under the name, not the seed.
 				div(style="max-width: 450px;")
-					+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, type: 'championship' }, { label: 'Championship' })
+					+matchup({ away: { name: 'Franchise 9', subtitle: 'Koci/Mueller', score: 156.78, seed: 2, won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 142.12, seed: 3 }, type: 'championship' }, { label: 'Championship' })
 				
 				div.preview-row.mt-4
 					span.variant-label Container
@@ -203,10 +203,10 @@ block content
 				div.d-flex.flex-wrap(style="gap: 1rem;")
 					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
 						small.text-muted 220px (no record)
-						+matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5' } })
+						+matchup({ away: { name: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci/Mueller', score: 128.34, record: '7-5' } })
 					div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
 						small.text-muted 320px (with record)
-						+matchup({ away: { name: 'Schex', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci', score: 128.34, record: '7-5' } })
+						+matchup({ away: { name: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Koci/Mueller', score: 128.34, record: '7-5' } })
 				
 				div.preview-row.mt-4
 					span.variant-label Subtitle Sizes
@@ -214,10 +214,65 @@ block content
 				div.d-flex.flex-wrap(style="gap: 1rem;")
 					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
 						small.text-muted 220px (no record)
-						+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 128.34, record: '7-5' } })
+						+matchup({ away: { name: 'Franchise 9', subtitle: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Mitch/Karsten', score: 128.34, record: '7-5' } })
 					div(style="width: 320px; border: 1px dashed #ccc; padding: 0.5rem;")
 						small.text-muted 320px (with record)
-						+matchup({ away: { name: 'Franchise 9', subtitle: 'Schexes', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Patrick & Mike', score: 128.34, record: '7-5' } })
+						+matchup({ away: { name: 'Franchise 9', subtitle: 'Syed/Terence', score: 142.56, record: '9-3', won: true }, home: { name: 'Franchise 1', subtitle: 'Mitch/Karsten', score: 128.34, record: '7-5' } })
+
+		//- Standings Table
+		div.component-section
+			h2 +standingsTable(teams, options?)
+			code.usage +standingsTable(teams, { variant: 'widget', showMedals: true, showCutoff: true })
+			-
+				var sampleTeams = [
+					{ rank: 1, name: 'Keyon', wins: 13, losses: 2, pointsFor: 2156.45, pointsAgainst: 1823.12, allPlay: { wins: 142, losses: 23, ties: 0 }, stern: { wins: 28, losses: 2, ties: 0 }, isPlayoffTeam: true, playoffSeed: 1, playoffWins: 2, playoffLosses: 0, playoffPointsFor: 312.45, playoffPointsAgainst: 278.90 },
+					{ rank: 2, name: 'Koci/Mueller', wins: 12, losses: 3, pointsFor: 2089.23, pointsAgainst: 1756.78, allPlay: { wins: 138, losses: 27, ties: 0 }, stern: { wins: 26, losses: 4, ties: 0 }, isPlayoffTeam: true, playoffSeed: 2, playoffWins: 1, playoffLosses: 1, playoffPointsFor: 289.12, playoffPointsAgainst: 301.45 },
+					{ rank: 3, name: 'Syed/Terence', wins: 10, losses: 5, pointsFor: 1945.67, pointsAgainst: 1834.23, allPlay: { wins: 121, losses: 44, ties: 0 }, stern: { wins: 22, losses: 8, ties: 0 }, isPlayoffTeam: true, playoffSeed: 3, playoffWins: 0, playoffLosses: 1, playoffPointsFor: 142.34, playoffPointsAgainst: 156.78 },
+					{ rank: 4, name: 'Schex', wins: 10, losses: 5, pointsFor: 1923.45, pointsAgainst: 1867.89, allPlay: { wins: 118, losses: 47, ties: 0 }, stern: { wins: 21, losses: 9, ties: 0 }, isPlayoffTeam: true, playoffSeed: 4, playoffWins: 0, playoffLosses: 1, playoffPointsFor: 138.90, playoffPointsAgainst: 167.23 },
+					{ rank: 5, name: 'Mitch/Karsten', wins: 8, losses: 7, pointsFor: 1834.12, pointsAgainst: 1856.34 },
+					{ rank: 6, name: 'Jeff', wins: 7, losses: 8, pointsFor: 1789.45, pointsAgainst: 1823.67, allPlay: { wins: 98, losses: 67, ties: 0 } }
+				]
+			div.preview
+				div.preview-row
+					span.variant-label D1. Widget
+				p.small.text-muted.mb-2 Compact view for homepage cards. Shows rank, name, record, PF, PA.
+				div(style="max-width: 350px;")
+					+standingsTable(sampleTeams, { variant: 'widget' })
+				
+				div.preview-row.mt-4
+					span.variant-label D2. With Medals
+				p.small.text-muted.mb-2 Final standings with gold/silver/bronze highlighting.
+				div(style="max-width: 350px;")
+					+standingsTable(sampleTeams, { variant: 'widget', isFinal: true, showMedals: true })
+				
+				div.preview-row.mt-4
+					span.variant-label D3. Sidebar
+				p.small.text-muted.mb-2 Medium view with all-play column. Used on schedule page.
+				div(style="max-width: 450px;")
+					+standingsTable(sampleTeams.slice(0, 4), { variant: 'sidebar', showCutoff: false })
+				
+				div.preview-row.mt-4
+					span.variant-label D4. Full
+				p.small.text-muted.mb-2 All columns with playoff stats. Container queries hide columns as width shrinks.
+				div(style="max-width: 850px;")
+					+standingsTable(sampleTeams.slice(0, 4), { variant: 'full', isFinal: true, showPlayoffStats: true })
+				
+				div.preview-row.mt-4
+					span.variant-label D5. Mini
+				p.small.text-muted.mb-2 Minimal view for division breakdowns. No header row.
+				div(style="max-width: 250px;")
+					+standingsTable(sampleTeams.slice(0, 3), { variant: 'mini' })
+				
+				div.preview-row.mt-4
+					span.variant-label D6. Container Queries
+				p.small.text-muted.mb-2 Widget variant at different widths showing responsive column hiding.
+				div.d-flex.flex-wrap(style="gap: 1rem;")
+					div(style="width: 280px; border: 1px dashed #ccc; padding: 0.5rem;")
+						small.text-muted 280px (no PA)
+						+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
+					div(style="width: 350px; border: 1px dashed #ccc; padding: 0.5rem;")
+						small.text-muted 350px (all columns)
+						+standingsTable(sampleTeams.slice(0, 3), { variant: 'widget' })
 
 		//- Season Nav
 		div.component-section
@@ -259,16 +314,16 @@ block content
 			code.usage +tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
 			div.preview
 				div.trade-card-preview
-					- var sampleParties = [{ franchiseName: 'Schex', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { franchiseName: 'Koci', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
+					- var sampleParties = [{ franchiseName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { franchiseName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
 					each party in sampleParties
 						+tradeParty(party)
 
 		//- Budget Impact Table
 		div.component-section
 			h2 +budgetImpactTable(budgetImpact)
-			code.usage +budgetImpactTable([{ franchiseName: 'Schex', seasons: [{ season: 2025, delta: -500 }] }])
+			code.usage +budgetImpactTable([{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }] }])
 			div.preview
-				- var sampleBudgetImpact = [{ franchiseName: 'Schex', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { franchiseName: 'Koci', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
+				- var sampleBudgetImpact = [{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { franchiseName: 'Syed/Terence', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
 				+budgetImpactTable(sampleBudgetImpact)
 
 		//- Design Tokens

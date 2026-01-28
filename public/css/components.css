@@ -363,3 +363,241 @@
 .budget-impact-table tbody tr + tr td {
 	border-top: 1px dotted #dee2e6;
 }
+
+/* ========================================
+   Standings Table Component
+   ======================================== */
+
+.standings-table-container {
+	container-type: inline-size;
+}
+
+.standings-table {
+	font-size: 0.9rem;
+}
+
+.standings-table thead th {
+	border-top: none;
+	font-weight: 600;
+	font-size: 0.75rem;
+	color: #6c757d;
+	text-transform: uppercase;
+	padding: 0.5rem;
+	background-color: #f8f9fa;
+}
+
+.standings-table tbody td {
+	vertical-align: middle;
+	padding: 0.5rem;
+}
+
+/* Column widths */
+.standings-table__col-rank { width: 2.5rem; text-align: center; }
+.standings-table__col-name { min-width: 120px; }
+.standings-table__col-division { width: 6rem; }
+.standings-table__col-record { width: 5rem; }
+.standings-table__col-allplay { width: 5.5rem; }
+.standings-table__col-stern { width: 5.5rem; }
+.standings-table__col-pf { width: 5rem; }
+.standings-table__col-pa { width: 5rem; }
+.standings-table__col-diff { width: 4.5rem; }
+
+/* Cell styling */
+.standings-table__rank {
+	font-weight: 600;
+	color: #6c757d;
+	text-align: center;
+}
+
+.standings-table__name {
+	font-weight: 500;
+}
+
+.standings-table__division {
+	font-size: 0.85em;
+	color: #6c757d;
+}
+
+/* Badges */
+.standings-table__badge {
+	display: inline-block;
+	font-size: 0.65rem;
+	font-weight: 600;
+	padding: 0.1rem 0.3rem;
+	border-radius: 3px;
+	margin-left: 0.4rem;
+	vertical-align: middle;
+}
+
+.standings-table__badge--seed {
+	background-color: #e8f5e9;
+	color: #2e7d32;
+}
+
+.standings-table__badge--div {
+	background-color: #e3f2fd;
+	color: #1565c0;
+}
+
+.standings-table__badge--wc {
+	background-color: #fce4ec;
+	color: #c2185b;
+}
+
+/* Playoff stats (secondary line) */
+.standings-table__playoff-stat {
+	font-size: 0.8em;
+	color: #6c757d;
+}
+
+/* Row modifiers */
+.standings-table__row--user {
+	background-color: #e8f4fd !important;
+}
+
+.standings-table__row--user td {
+	font-weight: 600;
+}
+
+.standings-table__row--cutoff td {
+	border-bottom: 1px solid #6c757d;
+}
+
+.standings-table__row--playoff .standings-table__name,
+.standings-table__row--playoff .standings-table__record {
+	font-weight: 600;
+}
+
+/* Medal rows for final standings */
+.standings-table__row--gold td {
+	background-color: var(--medal-gold-bg);
+}
+
+.standings-table__row--gold .standings-table__rank {
+	color: var(--medal-gold-text);
+}
+
+.standings-table__row--silver td {
+	background-color: var(--medal-silver-bg);
+}
+
+.standings-table__row--silver .standings-table__rank {
+	color: var(--medal-silver-text);
+}
+
+.standings-table__row--bronze td {
+	background-color: var(--medal-bronze-bg);
+}
+
+.standings-table__row--bronze .standings-table__rank {
+	color: var(--medal-bronze-text);
+}
+
+/* Winner row for mini variant */
+.standings-table__row--winner td {
+	background-color: #f8f9fa;
+}
+
+.standings-table__row--winner .standings-table__name {
+	font-weight: 600;
+}
+
+/* ----------------------------------------
+   Variant: Widget (compact)
+   ---------------------------------------- */
+.standings-table--widget .standings-table {
+	font-size: 0.85rem;
+}
+
+.standings-table--widget .standings-table thead th {
+	font-size: 0.7rem;
+	padding: 0.4rem;
+}
+
+.standings-table--widget .standings-table tbody td {
+	padding: 0.35rem 0.4rem;
+}
+
+.standings-table--widget .standings-table__col-rank { width: 2rem; }
+.standings-table--widget .standings-table__col-record { width: 3.5rem; }
+.standings-table--widget .standings-table__col-pf,
+.standings-table--widget .standings-table__col-pa { width: 4.5rem; }
+
+/* Widget: hide PA at narrow widths */
+@container (max-width: 320px) {
+	.standings-table__col-pa,
+	.standings-table__pa { display: none; }
+}
+
+/* ----------------------------------------
+   Variant: Sidebar
+   ---------------------------------------- */
+.standings-table--sidebar .standings-table {
+	font-size: 0.875rem;
+}
+
+.standings-table--sidebar .standings-table thead th {
+	font-size: 0.7rem;
+	padding: 0.4rem;
+}
+
+.standings-table--sidebar .standings-table tbody td {
+	padding: 0.4rem;
+}
+
+/* Sidebar: hide PA, then all-play at narrow widths */
+@container (max-width: 400px) {
+	.standings-table--sidebar .standings-table__col-pa,
+	.standings-table--sidebar .standings-table__pa { display: none; }
+}
+
+@container (max-width: 320px) {
+	.standings-table--sidebar .standings-table__col-allplay,
+	.standings-table--sidebar .standings-table__allplay { display: none; }
+}
+
+/* ----------------------------------------
+   Variant: Full
+   ---------------------------------------- */
+.standings-table--full .standings-table {
+	font-size: 0.9rem;
+}
+
+/* Full: progressive column hiding */
+@container (max-width: 700px) {
+	.standings-table--full .standings-table__col-stern,
+	.standings-table--full .standings-table__stern { display: none; }
+}
+
+@container (max-width: 550px) {
+	.standings-table--full .standings-table__col-pa,
+	.standings-table--full .standings-table__pa,
+	.standings-table--full .standings-table__col-diff,
+	.standings-table--full .standings-table__diff { display: none; }
+}
+
+@container (max-width: 400px) {
+	.standings-table--full .standings-table__col-allplay,
+	.standings-table--full .standings-table__allplay { display: none; }
+}
+
+/* ----------------------------------------
+   Variant: Mini (division standings)
+   ---------------------------------------- */
+.standings-table--mini .standings-table {
+	font-size: 0.875rem;
+}
+
+.standings-table--mini .standings-table tbody td {
+	padding: 0.35rem 0.5rem;
+	border: none;
+}
+
+.standings-table--mini .standings-table__rank {
+	width: 1.5rem;
+	font-weight: 500;
+}
+
+.standings-table--mini .standings-table__record {
+	color: #6c757d;
+}

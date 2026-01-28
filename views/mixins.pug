@@ -162,6 +162,116 @@ mixin budgetImpactTable(budgetImpact)
 					each s in impact.seasons
 						td.text-right(class=deltaClass(s.delta))= formatMoney(s.delta, { sign: 'auto' })
 
+//- Standings Table component - displays league standings
+//- Usage: +standingsTable(teams, { variant: 'widget' })
+//- Variants: widget (compact), full (all columns), mini (minimal), sidebar (medium)
+//- Options: userTeamId, showMedals, showCutoff, showPlayoffStats, isFinal
+mixin standingsTable(teams, opts)
+	- var options = opts || {}
+	- var variant = options.variant || 'widget'
+	- var showMedals = options.showMedals !== false && options.isFinal
+	- var showCutoff = options.showCutoff !== false
+	- var showPlayoffStats = options.showPlayoffStats || false
+	-
+		var variantClass = 'standings-table--' + variant
+		var columns = {
+			widget: ['rank', 'name', 'record', 'pf', 'pa'],
+			sidebar: ['rank', 'name', 'record', 'allPlay', 'pf', 'pa'],
+			full: ['rank', 'name', 'record', 'allPlay', 'stern', 'pf', 'pa', 'diff'],
+			mini: ['rank', 'name', 'record']
+		}
+		// Seed badges removed - rank column serves same purpose in standings context
+		var cols = columns[variant] || columns.widget
+	div.standings-table-container(class=variantClass)
+		table.table.standings-table.mb-0
+			if variant !== 'mini'
+				thead
+					tr
+						if cols.includes('rank')
+							th.standings-table__col-rank
+						if cols.includes('name')
+							th.standings-table__col-name Team
+						if cols.includes('record')
+							th.standings-table__col-record.text-right Record
+						if cols.includes('allPlay')
+							th.standings-table__col-allplay.text-right All-Play
+						if cols.includes('stern')
+							th.standings-table__col-stern.text-right Stern
+						if cols.includes('pf')
+							th.standings-table__col-pf.text-right PF
+						if cols.includes('pa')
+							th.standings-table__col-pa.text-right PA
+						if cols.includes('diff')
+							th.standings-table__col-diff.text-right +/-
+			tbody
+				each team, idx in teams
+					-
+						var rowClasses = []
+						if (showMedals) {
+							if (idx === 0) rowClasses.push('standings-table__row--gold')
+							else if (idx === 1) rowClasses.push('standings-table__row--silver')
+							else if (idx === 2) rowClasses.push('standings-table__row--bronze')
+						}
+						if (showCutoff && idx === 3) rowClasses.push('standings-table__row--cutoff')
+						if (options.userTeamId && team.franchiseId === options.userTeamId) rowClasses.push('standings-table__row--user')
+						if (team.isPlayoffTeam) rowClasses.push('standings-table__row--playoff')
+						if (variant === 'mini' && idx === 0) rowClasses.push('standings-table__row--winner')
+					tr(class=rowClasses.join(' '))
+						if cols.includes('rank')
+							td.standings-table__rank= team.rank || idx + 1
+						if cols.includes('name')
+							td.standings-table__name
+								= team.name
+								if team.divisionWinner
+									span.standings-table__badge.standings-table__badge--div D
+								if team.wildCard
+									span.standings-table__badge.standings-table__badge--wc WC
+						if cols.includes('record')
+							td.standings-table__record.text-right
+								= formatRecord(team.wins, team.losses, team.ties)
+								if showPlayoffStats && team.isPlayoffTeam
+									br
+									span.standings-table__playoff-stat= team.playoffWins + '-' + team.playoffLosses
+						if cols.includes('allPlay')
+							td.standings-table__allplay.text-right
+								if team.allPlay
+									= formatRecord(team.allPlay.wins, team.allPlay.losses, team.allPlay.ties)
+									if showPlayoffStats && team.isPlayoffTeam
+										br
+										span.standings-table__playoff-stat —
+						if cols.includes('stern')
+							td.standings-table__stern.text-right
+								if team.stern
+									= formatRecord(team.stern.wins, team.stern.losses, team.stern.ties)
+									if showPlayoffStats && team.isPlayoffTeam
+										br
+										span.standings-table__playoff-stat —
+						if cols.includes('pf')
+							td.standings-table__pf.text-right
+								= formatPoints(team.pointsFor)
+								if showPlayoffStats && team.isPlayoffTeam
+									br
+									span.standings-table__playoff-stat= formatPoints(team.playoffPointsFor)
+						if cols.includes('pa')
+							td.standings-table__pa.text-right
+								= formatPoints(team.pointsAgainst)
+								if showPlayoffStats && team.isPlayoffTeam
+									br
+									span.standings-table__playoff-stat= formatPoints(team.playoffPointsAgainst)
+						if cols.includes('diff')
+							-
+								var diff = team.pointsFor - team.pointsAgainst
+								var diffClass = diff >= 0 ? 'text-success' : 'text-danger'
+							td.standings-table__diff.text-right(class=diffClass)
+								= (diff >= 0 ? '+' : '') + formatPoints(diff)
+								if showPlayoffStats && team.isPlayoffTeam
+									-
+										var playoffDiff = team.playoffPointsFor - team.playoffPointsAgainst
+										var playoffDiffClass = playoffDiff >= 0 ? 'text-success' : 'text-danger'
+									br
+									span.standings-table__playoff-stat(class=playoffDiffClass)
+										= (playoffDiff >= 0 ? '+' : '') + formatPoints(playoffDiff)
+
 //- Matchup component - displays a game between two teams
 //- Usage: +matchup(game) or +matchup(game, { label: 'Semifinal 1' })
 //- Game: { away: { name, score, record, seed, subtitle, won }, home: {...}, type }
