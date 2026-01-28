@@ -24,6 +24,8 @@ Treat this as shaping-phase code, not legacy code.
 
 The app runs in Docker. Changes to Pug templates (`views/`) and static files (`public/`) are picked up automatically — no container restart needed. Only restart (`docker compose restart web`) when changing JavaScript files (routes, services, helpers, models).
 
+**Local dev is HTTPS-only.** Use `https://localhost:9528` — plain HTTP will not work. When testing with curl, use `curl -sk` to skip certificate validation.
+
 ## Design System
 
 This project uses Pug templates with a design system of shared mixins, helpers, and CSS tokens. Follow these conventions when creating or modifying views.
