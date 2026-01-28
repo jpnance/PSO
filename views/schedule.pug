@@ -31,7 +31,7 @@ block content
 			div.alert.alert-info No games found for this week.
 		else
 			div.row
-				div.col-lg-5.col-xl-4
+				div.col-lg-5.col-xl-3
 					//- Games list
 					div.schedule__games
 						-
@@ -47,49 +47,7 @@ block content
 								});
 							}
 						each game in sortedGames
-							-
-								var gameClasses = ['schedule__game'];
-								if (game.hasScores) gameClasses.push('schedule__game--final');
-								if (schedule.isPlayoffs) gameClasses.push('schedule__game--playoff');
-							
-							div(class=gameClasses.join(' '))
-								if game.label
-									div.schedule__game-label= game.label
-								
-								div.schedule__matchup
-									//- Away team row
-									div.schedule__team-row(class=game.away.won ? 'schedule__team-row--winner' : (game.home.won ? 'schedule__team-row--loser' : ''))
-										div.schedule__team-info
-											if schedule.isPlayoffs && game.away.seed
-												span.schedule__seed ##{game.away.seed}
-											span.schedule__team-name= game.away.name
-											if game.away.record
-												span.schedule__record (#{game.away.record})
-										div.schedule__score-cell
-											if game.hasScores
-												span.schedule__score= formatPoints(game.away.score)
-												if game.away.won
-													span.schedule__winner-indicator ‹
-												else
-													span.schedule__winner-indicator.schedule__winner-indicator--hidden ‹
-									
-									//- Home team row
-									div.schedule__team-row(class=game.home.won ? 'schedule__team-row--winner' : (game.away.won ? 'schedule__team-row--loser' : ''))
-										div.schedule__team-info
-											if schedule.isPlayoffs && game.home.seed
-												span.schedule__seed ##{game.home.seed}
-											span.schedule__team-name= game.home.name
-											if game.home.record
-												span.schedule__record (#{game.home.record})
-										div.schedule__score-cell
-											if game.hasScores
-												span.schedule__score= formatPoints(game.home.score)
-												if game.home.won
-													span.schedule__winner-indicator ‹
-												else
-													span.schedule__winner-indicator.schedule__winner-indicator--hidden ‹
-											else
-												span.schedule__at @
+							+matchup(game, { label: game.label })
 				
 				//- Stats and Standings
 				if standingsData && standingsData.standings && standingsData.standings.length > 0

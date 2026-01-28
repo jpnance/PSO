@@ -9,6 +9,11 @@
 	border: 1px solid #e9ecef;
 	border-radius: 6px;
 	margin: 0.25rem 0;
+	background: white;
+}
+
+.matchup:first-child {
+	margin-top: 0;
 }
 
 
@@ -148,7 +153,7 @@
 }
 
 /* Container query: show record when there's room */
-@container (min-width: 280px) {
+@container (min-width: 240px) {
 	.matchup__record {
 		display: inline;
 	}

@@ -77,134 +77,14 @@
 
 /* Games Container */
 .schedule__games {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.5rem;
 }
 
-/* Individual Game Card */
-.schedule__game {
-	background: white;
-	border: 1px solid var(--border-light);
-	border-radius: 8px;
-	padding: 0.75rem 1rem;
-	transition: box-shadow 0.15s;
-}
-
-.schedule__game:hover {
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.schedule__game--playoff {
-	background: linear-gradient(to right, #fefcf3, white);
-}
-
-.schedule__game-label {
-	font-size: 0.75rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	color: var(--text-muted);
-	margin-bottom: 0.5rem;
-	letter-spacing: 0.5px;
-}
-
-/* Stacked Matchup Layout */
-.schedule__matchup {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-}
-
-.schedule__team-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0.25rem 0;
-}
-
-.schedule__team-row--loser {
-	color: var(--text-muted);
-}
-
-.schedule__team-info {
-	display: flex;
-	align-items: baseline;
-	gap: 0.375rem;
-	min-width: 0;
-}
-
-.schedule__seed {
-	font-size: 0.75rem;
-	color: var(--text-muted);
-	font-weight: 500;
-}
-
-.schedule__team-row--winner .schedule__seed {
-	color: inherit;
-}
-
-.schedule__team-name {
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.schedule__record {
-	font-size: 0.8125rem;
-	color: var(--text-muted);
-	white-space: nowrap;
-}
-
-.schedule__score-cell {
-	display: flex;
-	align-items: center;
-	gap: 0.25rem;
-	flex-shrink: 0;
-}
-
-.schedule__score {
-	font-size: 1rem;
-	font-weight: 500;
-	font-variant-numeric: tabular-nums;
-	min-width: 4rem;
-	text-align: right;
-}
-
-.schedule__team-row--winner .schedule__score {
-	font-weight: 600;
-}
-
-.schedule__winner-indicator {
-	font-size: 0.875rem;
-	font-weight: 600;
-	color: var(--color-success);
-	width: 0.75rem;
-	text-align: center;
-}
-
-.schedule__winner-indicator--hidden {
-	visibility: hidden;
-}
-
-.schedule__at {
-	font-size: 0.875rem;
-	color: var(--text-muted);
-	width: 0.75rem;
-	text-align: center;
-}
-
-/* Responsive adjustments */
-@media (max-width: 576px) {
-	.schedule__record {
-		display: none;
-	}
-	
-	.schedule__score {
-		min-width: 3rem;
-	}
-	
-	.schedule__week-select {
-		font-size: 0.8125rem;
+/* Single column at lg+ where the container is already narrow */
+@media (min-width: 992px) {
+	.schedule__games {
+		grid-template-columns: 1fr;
 	}
 }
