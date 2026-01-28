@@ -258,12 +258,11 @@ async function processSeason(season) {
 			});
 		});
 		
-		// Assign wild cards (playoff teams that aren't division winners)
-		var wildCardNum = 1;
-		playoffTeams.forEach(function(team) {
-			if (!team.divisionWinner) {
-				team.wildCard = wildCardNum++;
-			}
+		// Assign wild cards (playoff teams that aren't division winners, sorted by record)
+		var wildCardTeams = playoffTeams.filter(function(t) { return !t.divisionWinner; });
+		var sortedWildCards = tiebreaker.sortByRecord(wildCardTeams, h2h, season);
+		sortedWildCards.forEach(function(team, i) {
+			team.wildCard = i + 1;
 		});
 	}
 	

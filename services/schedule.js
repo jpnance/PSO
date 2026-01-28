@@ -52,10 +52,21 @@ async function getWeekSchedule(season, week) {
 	var recordData = buildCumulativeRecords(allGames, week);
 	var records = recordData.strings;
 	
-	// Compute playoff seeds for playoff weeks
+	// Get playoff seeds from Season document for playoff weeks
 	var seeds = {};
 	if (isPlayoffs) {
-		seeds = computePlayoffSeeds(allGames);
+		var seasonDoc = await Season.findById(season).lean();
+		if (seasonDoc && seasonDoc.standings) {
+			seasonDoc.standings.forEach(function(team) {
+				if (team.playoffSeed) {
+					seeds[team.franchiseName] = team.playoffSeed;
+				}
+			});
+		}
+		// Fall back to computing seeds if Season document doesn't have them
+		if (Object.keys(seeds).length === 0) {
+			seeds = computePlayoffSeeds(allGames);
+		}
 	}
 	
 	// Format games for display
