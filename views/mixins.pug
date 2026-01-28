@@ -219,7 +219,7 @@ mixin standingsTable(teams, opts)
 						if (variant === 'mini' && idx === 0) rowClasses.push('standings-table__row--winner')
 					tr(class=rowClasses.join(' '))
 						if cols.includes('rank')
-							td.standings-table__rank= team.rank || idx + 1
+							td.standings-table__rank= (variant === 'mini') ? (idx + 1) : (team.rank || idx + 1)
 						if cols.includes('name')
 							td.standings-table__name
 								= team.name
