@@ -29,18 +29,11 @@ async function getWeekSchedule(season, week) {
 		});
 		weekLabel = 'Week ' + week;
 	} else if (week === 16) {
-		// Semifinals
+		// Combined playoffs view - all playoff games
 		games = allGames.filter(function(g) {
-			return g.type === 'semifinal';
+			return g.type === 'semifinal' || g.type === 'championship' || g.type === 'thirdPlace';
 		});
-		weekLabel = 'Semifinals';
-		isPlayoffs = true;
-	} else if (week === 17) {
-		// Championship round
-		games = allGames.filter(function(g) {
-			return g.type === 'championship' || g.type === 'thirdPlace';
-		});
-		weekLabel = 'Championship Round';
+		weekLabel = 'Playoffs';
 		isPlayoffs = true;
 	}
 	
@@ -101,16 +94,20 @@ async function getWeekSchedule(season, week) {
 			formatted.label = 'Championship';
 		} else if (game.type === 'thirdPlace') {
 			formatted.label = 'Third Place';
+		} else if (game.type === 'semifinal') {
+			// Determine which semifinal based on seeds
+			var highSeed = Math.min(formatted.away.seed || 99, formatted.home.seed || 99);
+			formatted.label = highSeed === 1 ? 'Semifinal 1' : 'Semifinal 2';
 		}
 		
 		return formatted;
 	});
 	
 	// Sort games - for regular season, alphabetically by away team
-	// For playoffs, championship first, then third place; semifinals by seed
+	// For playoffs, semifinals first (by seed), then championship, then third place
 	if (isPlayoffs) {
 		formattedGames.sort(function(a, b) {
-			var typeOrder = { championship: 1, thirdPlace: 2, semifinal: 3 };
+			var typeOrder = { semifinal: 1, championship: 2, thirdPlace: 3 };
 			var typeA = typeOrder[a.type] || 99;
 			var typeB = typeOrder[b.type] || 99;
 			if (typeA !== typeB) return typeA - typeB;
@@ -436,20 +433,18 @@ async function getWeeksForSeason(season) {
 	
 	regularWeeks.sort(function(a, b) { return a - b; });
 	
-	// Check for playoff games
-	var hasSemis = games.some(function(g) { return g.type === 'semifinal'; });
-	var hasChampionship = games.some(function(g) { return g.type === 'championship'; });
+	// Check for any playoff games
+	var hasPlayoffs = games.some(function(g) {
+		return g.type === 'semifinal' || g.type === 'championship' || g.type === 'thirdPlace';
+	});
 	
 	// Build weeks array with labels
 	var weeks = regularWeeks.map(function(w) {
 		return { week: w, label: 'Week ' + w };
 	});
 	
-	if (hasSemis) {
-		weeks.push({ week: 16, label: 'Semifinals' });
-	}
-	if (hasChampionship) {
-		weeks.push({ week: 17, label: 'Finals' });
+	if (hasPlayoffs) {
+		weeks.push({ week: 16, label: 'Playoffs' });
 	}
 	
 	return weeks;
@@ -519,11 +514,61 @@ async function schedulePage(request, response) {
 		// Get schedule data
 		var scheduleData = await getWeekSchedule(season, week);
 		
-		// Compute standings as of this week (only for regular season weeks)
+		// Compute standings as of this week
 		var standingsData = null;
+		var finalStandingsData = null;
+		
 		if (week <= 15) {
+			// Regular season - compute standings dynamically
 			var allGames = await Game.find({ season: season }).lean();
 			standingsData = buildStandingsForWeek(allGames, week, season);
+		} else {
+			// Playoffs - fetch final standings from Season document
+			var seasonDoc = await Season.findById(season).lean();
+			if (seasonDoc && seasonDoc.standings && seasonDoc.standings.length > 0) {
+				// Mark playoff teams for display
+				var standings = seasonDoc.standings.map(function(team) {
+					return {
+						franchiseId: team.franchiseId,
+						name: team.franchiseName,
+						wins: team.wins,
+						losses: team.losses,
+						ties: team.ties || 0,
+						pointsFor: team.pointsFor,
+						pointsAgainst: team.pointsAgainst,
+						allPlay: team.allPlay,
+						stern: team.stern,
+						playoffSeed: team.playoffSeed,
+						playoffWins: team.playoffWins,
+						playoffLosses: team.playoffLosses,
+						playoffPointsFor: team.playoffPointsFor,
+						playoffPointsAgainst: team.playoffPointsAgainst,
+						playoffFinish: team.playoffFinish,
+						isPlayoffTeam: team.playoffSeed != null,
+						division: team.division
+					};
+				});
+				
+				finalStandingsData = {
+					standings: standings,
+					isFinal: seasonDoc.status && seasonDoc.status.playoffsComplete,
+					hasDivisions: seasonDoc.config && seasonDoc.config.hasDivisions,
+					divisionStandings: null
+				};
+				
+				// Build division standings if applicable
+				if (finalStandingsData.hasDivisions && seasonDoc.config.divisions) {
+					finalStandingsData.divisionStandings = seasonDoc.config.divisions.map(function(div) {
+						var divTeams = standings.filter(function(t) {
+							return t.division === div.name;
+						});
+						return {
+							name: div.name,
+							teams: divTeams
+						};
+					});
+				}
+			}
 		}
 		
 		// Build season navigation - only most recent season as quick pill
@@ -547,6 +592,7 @@ async function schedulePage(request, response) {
 		response.render('schedule', {
 			schedule: scheduleData,
 			standingsData: standingsData,
+			finalStandingsData: finalStandingsData,
 			season: season,
 			week: week,
 			weeks: weeks,

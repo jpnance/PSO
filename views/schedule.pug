@@ -35,9 +35,9 @@ block content
 					//- Games list
 					div.schedule__games
 						-
-							// Sort games: user's game first, then alphabetically
+							// Sort games: user's game first (regular season only), then keep original order
 							var sortedGames = schedule.games.slice();
-							if (userFranchiseIds && userFranchiseIds.length > 0) {
+							if (!schedule.isPlayoffs && userFranchiseIds && userFranchiseIds.length > 0) {
 								sortedGames.sort(function(a, b) {
 									var aIsUser = userFranchiseIds.includes(a.away.franchiseId) || userFranchiseIds.includes(a.home.franchiseId);
 									var bIsUser = userFranchiseIds.includes(b.away.franchiseId) || userFranchiseIds.includes(b.home.franchiseId);
@@ -96,6 +96,28 @@ block content
 								div.card-body
 									div.row
 										each div in standingsData.divisionStandings
+											div.col-md-6.mb-3.mb-md-0
+												h6.standings__division-title= div.name
+												+standingsTable(div.teams, { variant: 'mini', showCutoff: false, linkSeason: season })
+				
+				//- Final standings for playoffs view
+				else if finalStandingsData && finalStandingsData.standings && finalStandingsData.standings.length > 0
+					div.col-lg-7.col-xl-6
+						div.card
+							div.card-header
+								| Final Standings
+							div.card-body.p-0
+								+standingsTable(finalStandingsData.standings, { variant: 'sidebar', isFinal: finalStandingsData.isFinal, showMedals: true, showPlayoffStats: true, userTeamIds: userFranchiseIds, linkSeason: season })
+						
+						//- Division standings (for division era)
+						if finalStandingsData.hasDivisions && finalStandingsData.divisionStandings
+							div.card.mt-3
+								div.card-header
+									i.fa.fa-columns.mr-2
+									| Division Standings
+								div.card-body
+									div.row
+										each div in finalStandingsData.divisionStandings
 											div.col-md-6.mb-3.mb-md-0
 												h6.standings__division-title= div.name
 												+standingsTable(div.teams, { variant: 'mini', showCutoff: false, linkSeason: season })
