@@ -54,7 +54,7 @@ block content
 							else
 								| #{standings.season} Standings
 						div.card-body.p-0
-							+standingsTable(standings.standings, { variant: 'widget', isFinal: standings.isFinal || standings.isPreviousSeason, showPlayoffStats: true, userTeamName: userFranchiseName })
+							+standingsTable(standings.standings, { variant: 'widget', isFinal: standings.isFinal || standings.isPreviousSeason, showPlayoffStats: true, userTeamName: userFranchiseName, linkSeason: standings.season })
 						a.card-footer-link(href='/standings?season=' + standings.season)
 							span View Full Standings
 							i.fa.fa-chevron-right

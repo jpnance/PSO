@@ -222,7 +222,10 @@ mixin standingsTable(teams, opts)
 							td.standings-table__rank= (variant === 'mini') ? (idx + 1) : (team.rank || idx + 1)
 						if cols.includes('name')
 							td.standings-table__name
-								= team.name
+								if options.linkSeason && team.franchiseId
+									a(href='/franchises/' + team.franchiseId + '/schedule/' + options.linkSeason)= team.name
+								else
+									= team.name
 								if team.divisionWinner
 									span.standings-table__badge.standings-table__badge--div D
 								if team.wildCard

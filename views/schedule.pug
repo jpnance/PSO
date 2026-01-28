@@ -85,7 +85,7 @@ block content
 								else
 									| entering #{schedule.weekLabel}
 							div.card-body.p-0
-								+standingsTable(standingsData.standings, { variant: 'sidebar', userTeamIds: userFranchiseIds })
+								+standingsTable(standingsData.standings, { variant: 'sidebar', userTeamIds: userFranchiseIds, linkSeason: season })
 						
 						//- Division standings (for division era)
 						if standingsData.hasDivisions && standingsData.divisionStandings
@@ -98,4 +98,4 @@ block content
 										each div in standingsData.divisionStandings
 											div.col-md-6.mb-3.mb-md-0
 												h6.standings__division-title= div.name
-												+standingsTable(div.teams, { variant: 'mini', showCutoff: false })
+												+standingsTable(div.teams, { variant: 'mini', showCutoff: false, linkSeason: season })

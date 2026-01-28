@@ -37,7 +37,7 @@ block content
 					//- Main standings table
 					div.card
 						div.card-body.p-0
-							+standingsTable(standings.standings, { variant: 'full', isFinal: standings.isFinal, showMedals: true, showPlayoffStats: true, userTeamIds: userFranchiseIds })
+							+standingsTable(standings.standings, { variant: 'full', isFinal: standings.isFinal, showMedals: true, showPlayoffStats: true, userTeamIds: userFranchiseIds, linkSeason: season })
 					
 					//- Playoff games (if playoffs have started)
 					if standings.playoffGames && standings.playoffGames.length > 0
@@ -77,7 +77,7 @@ block content
 												divTeams.sort(function(a, b) {
 													return divOrder.indexOf(a.franchiseId) - divOrder.indexOf(b.franchiseId);
 												});
-											+standingsTable(divTeams, { variant: 'mini', showCutoff: false })
+											+standingsTable(divTeams, { variant: 'mini', showCutoff: false, linkSeason: season })
 					
 					//- Legend/info
 					div.standings__legend.mt-4
