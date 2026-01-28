@@ -78,13 +78,18 @@
 /* Games Container */
 .schedule__games {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 1fr;
 	gap: 0.5rem;
 }
 
-/* Single column at lg+ where the container is already narrow */
-@media (min-width: 992px) {
+/* Grid handles spacing, remove matchup margins */
+.schedule__games .matchup {
+	margin: 0;
+}
+
+/* Two columns at sm/md */
+@media (min-width: 576px) and (max-width: 991px) {
 	.schedule__games {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
