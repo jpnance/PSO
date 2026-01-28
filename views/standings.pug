@@ -13,7 +13,9 @@ block content
 		div.standings__header
 			h1 #{season} Standings
 		.mb-4
-			+seasonNav(season, quickSeasons, olderSeasons, 'Past Seasons', '/standings/')
+			-
+				var allSeasons = olderSeasons.slice().reverse().concat(quickSeasons)
+			+sequentialNav({ items: allSeasons, current: season, quickItems: quickSeasons, jumpLabel: 'Past Seasons', urlPattern: '/standings/' })
 		
 		if !standings || !standings.standings || standings.standings.length === 0
 			div.alert.alert-info No standings data available for #{season}
