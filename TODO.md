@@ -3,7 +3,7 @@
 ## High Priority
 *Before Feb 7 trade window opening*
 
-- [ ] **Polish the trading experience** - critical path for owner adoption
+- [x] **Polish the trading experience** - critical path for owner adoption
   - [x] Fix budget impact card flash of unstyled content on Trade Machine
   - [x] Trade Machine: Don't show "Propose Trade" button during dead period
   - [x] Trade Machine: Remove notes field (admin-only)
@@ -126,8 +126,8 @@
 
 ### UI/UX Experiments
 - [ ] Experiment with color schemes (themed to Summer Meetings location each year?)
-- [ ] Breadcrumbs in Coinflipper app style
-- [ ] Tighten up draft picks widget on franchise page (3 columns? conflicts with showing results)
+- [x] Breadcrumbs in Coinflipper app style
+- [x] Tighten up draft picks widget on franchise page (3 columns? conflicts with showing results)
 - [x] Revisit naming for `/propose` and `/trades` - resolved: `/trade-machine`, `/proposals/:slug`, `/trades`, `/trades/:id`
 - [ ] Trade display: two columns at larger breakpoints? (let multi-party asset lists flow naturally)
 

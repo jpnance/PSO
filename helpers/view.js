@@ -1047,5 +1047,6 @@ module.exports = {
 	tradeOgTitle: tradeOgTitle,
 	tradeOgDescription: tradeOgDescription,
 	tradeOgPlainEnglish: tradeOgPlainEnglish,
+	formatPickNumber: formatPickHelpers.formatPickNumber,
 	POSITION_ORDER: POSITION_ORDER
 };

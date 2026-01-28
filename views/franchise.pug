@@ -306,42 +306,46 @@ block content
 								td.text-right #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
 								td.text-right #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
 				
+				//- Draft Picks card
+				- var availablePicks = franchise.picks.filter(p => p.status === 'available')
+				- var picksBySeason = {}
+				- availablePicks.forEach(p => { if (!picksBySeason[p.season]) picksBySeason[p.season] = []; picksBySeason[p.season].push(p); })
+				- var pickSeasons = [currentSeason, currentSeason + 1, currentSeason + 2].filter(s => picksBySeason[s])
+				
 				div.card.mb-4
 					div.card-header Draft Picks
-					- var availablePicks = franchise.picks.filter(p => p.status === 'available')
-					- var picksBySeason = {}
-					- availablePicks.forEach(p => { if (!picksBySeason[p.season]) picksBySeason[p.season] = []; picksBySeason[p.season].push(p); })
-					- var seasons = Object.keys(picksBySeason).sort()
-					-
-						function formatPickSlot(round, pickNumber, picksPerRound) {
-							if (!pickNumber) return null;
-							var slotInRound = ((pickNumber - 1) % picksPerRound) + 1;
-							var slot = slotInRound < 10 ? '0' + slotInRound : '' + slotInRound;
-							return '#' + round + '.' + slot;
-						}
-					if seasons.length
-						each season in seasons
-							- var seasonPicks = picksBySeason[season].slice().sort(function(a, b) { return (a.pickNumber || 999) - (b.pickNumber || 999); })
-							- var picksPerRound = (parseInt(season) <= 2011) ? 10 : 12
-							table.table.table-sm.mb-0.picks-table
-								thead
-									tr.table-secondary
-										th(colspan='2')= season
-								tbody
-									each pick, idx in seasonPicks
-										- var nextPick = seasonPicks[idx + 1]
-										- var isLastInRound = nextPick && nextPick.round !== pick.round
-										- var pickNumStr = formatPickSlot(pick.round, pick.pickNumber, picksPerRound)
-										tr(class=isLastInRound ? 'round-separator' : '')
-											td
-												| #{ordinal(pick.round)} Round
-												if pickNumStr
-													|  (#{pickNumStr})
-											td.text-right.text-muted
-												if pick.originalOwner
-													| from #{pick.originalOwner}
-					else
-						p.text-muted.mb-3.ml-3 No picks data
+					div.card-body
+						if pickSeasons.length
+							each season in pickSeasons
+								- var seasonPicks = picksBySeason[season].slice().sort(function(a, b) { return (a.pickNumber || (a.round * 100)) - (b.pickNumber || (b.round * 100)); })
+								- var showSlots = (season === currentSeason)
+								- var earlyPicks = seasonPicks.filter(function(p) { var r = p.round || Math.ceil(p.pickNumber / 12); return r <= 3; })
+								- var latePicks = seasonPicks.filter(function(p) { var r = p.round || Math.ceil(p.pickNumber / 12); return r > 3; })
+								div.picks-row
+									div.picks-row__season= season
+									div.picks-row__picks
+										if earlyPicks.length
+											div.picks-group
+												each pick in earlyPicks
+													span.picks-pill
+														if showSlots && pick.pickNumber
+															= formatPickNumber(pick.pickNumber, 12)
+														else
+															= ordinal(pick.round)
+															if pick.originalOwner
+																span.picks-pill__from= ' (' + pick.originalOwner + ')'
+										if latePicks.length
+											div.picks-group.picks-group--late
+												each pick in latePicks
+													span.picks-pill
+														if showSlots && pick.pickNumber
+															= formatPickNumber(pick.pickNumber, 12)
+														else
+															= ordinal(pick.round)
+															if pick.originalOwner
+																span.picks-pill__from= ' (' + pick.originalOwner + ')'
+						else
+							p.text-muted.mb-0 No picks data
 				
 				//- Franchise History card
 				if regimeHistory && regimeHistory.length > 0

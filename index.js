@@ -123,6 +123,7 @@ app.use(async function(req, res, next) {
 
 // Make helpers available to all templates
 app.locals.formatPickDisplay = formatPick.formatPickDisplay;
+app.locals.formatPickNumber = formatPick.formatPickNumber;
 app.locals.formatMoney = viewHelpers.formatMoney;
 app.locals.formatRecord = viewHelpers.formatRecord;
 app.locals.formatPoints = viewHelpers.formatPoints;

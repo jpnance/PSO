@@ -138,10 +138,6 @@
    Franchise Hero (top of page)
    ======================================== */
 
-/* Base hero styles */
-.franchise-hero {
-}
-
 .franchise-hero__layout {
     display: flex;
     justify-content: space-between;
@@ -161,96 +157,6 @@
     }
 }
 
-
-/* ========================================
-   Season Tile - reusable with finish colors
-   ======================================== */
-.season-tile {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.75rem;
-    background: #f0f0f0;
-    border-radius: 4px;
-    color: #666;
-    text-decoration: none;
-    line-height: 1.2;
-    border: 1px solid transparent;
-}
-
-.season-tile:hover {
-    background: #e0e0e0;
-    color: #333;
-    text-decoration: none;
-}
-
-.season-tile__year { font-weight: 600; }
-.season-tile__record { font-variant-numeric: tabular-nums; opacity: 0.8; }
-
-/* Finish position colors */
-.season-tile--1st {
-    background: var(--medal-gold-bg, #fff9e6);
-    color: var(--medal-gold-text, #b8860b);
-    border-color: var(--medal-gold-text, #b8860b);
-    font-weight: 600;
-}
-.season-tile--2nd {
-    background: var(--medal-silver-bg, #f5f5f5);
-    color: var(--medal-silver-text, #666);
-    border-color: #999;
-}
-.season-tile--3rd {
-    background: var(--medal-bronze-bg, #fdf5ef);
-    color: var(--medal-bronze-text, #8b5a2b);
-    border-color: #cd7f32;
-}
-.season-tile--4th {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-color: #81c784;
-}
-
-/* Size variants */
-.season-tile--sm {
-    padding: 0.2rem 0.35rem;
-    font-size: 0.65rem;
-}
-.season-tile--xs {
-    padding: 0.15rem 0.25rem;
-    font-size: 0.6rem;
-}
-
-/* Season dot - small square, no text */
-.season-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background: #e0e0e0;
-    border-radius: 3px;
-    border: 1px solid transparent;
-}
-
-.season-dot:hover {
-    transform: scale(1.3);
-}
-
-.season-dot--1st {
-    background: var(--medal-gold-text, #b8860b);
-    border-color: var(--medal-gold-text, #b8860b);
-}
-.season-dot--2nd {
-    background: #999;
-    border-color: #888;
-}
-.season-dot--3rd {
-    background: #cd7f32;
-    border-color: #b8722e;
-}
-.season-dot--4th {
-    background: #81c784;
-    border-color: #66bb6a;
-}
 
 /* Hero: Owners and Banners */
 .franchise-hero__owners {
@@ -301,7 +207,6 @@
     margin-top: 0.1rem;
 }
 
-/* Option D: Season tiles */
 /* ========================================
    Franchise History Card
    ======================================== */
@@ -315,18 +220,6 @@
 .franchise-history__sep {
     color: #ccc;
     margin: 0 0.4rem;
-}
-
-.franchise-history__regime {
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #eee;
-}
-
-.franchise-history__regime:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
 }
 
 .franchise-history__regime {
@@ -407,5 +300,62 @@
     border: 1px solid var(--medal-silver-text);
 }
 
+/* ========================================
+   Draft Picks Widget
+   ======================================== */
 
+.picks-row {
+    display: flex;
+    margin-bottom: 1.25rem;
+}
 
+.picks-row:last-child {
+    margin-bottom: 0;
+}
+
+.picks-row__season {
+    font-weight: 600;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    width: 3rem;
+    padding: 0.1rem 0;
+}
+
+.picks-row__picks {
+    flex: 1;
+    min-width: 0;
+}
+
+.picks-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.picks-group:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.picks-group--late {
+    opacity: 0.7;
+}
+
+.picks-pill {
+    display: inline-block;
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.75rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.picks-pill__from {
+    color: #888;
+    font-size: 0.9em;
+}
