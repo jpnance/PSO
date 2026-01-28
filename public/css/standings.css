@@ -207,82 +207,6 @@
 	border-top: 1px solid var(--border-light);
 }
 
-.standings__game-wrapper {
-	padding: 0.75rem 1rem;
-	border-radius: 6px;
-	border: 1px solid var(--border-light);
-	background-color: #fff;
-}
-
-.standings__game-wrapper--championship {
-	background: linear-gradient(135deg, var(--medal-gold-bg) 0%, #ffeeba 100%);
-	border-color: #ffc107;
-}
-
-.standings__game-wrapper--thirdPlace {
-	background: linear-gradient(135deg, var(--medal-bronze-bg) 0%, #ffe4d1 100%);
-	border-color: #cd7f32;
-}
-
-.standings__game-label {
-	font-size: 0.7rem;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: #6c757d;
-	margin-bottom: 0.5rem;
-	font-weight: 600;
-}
-
-.standings__matchup {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-}
-
-.standings__competitor {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.25rem 0;
-}
-
-.standings__competitor--winner {
-	font-weight: 600;
-}
-
-.standings__competitor--loser {
-	color: #6c757d;
-}
-
-.standings__team-name {
-	flex: 1;
-}
-
-.standings__seed {
-	color: #6c757d;
-	font-size: 0.85em;
-}
-
-.standings__result {
-	display: flex;
-	align-items: center;
-}
-
-.standings__score {
-	font-weight: 500;
-	min-width: 4rem;
-	text-align: right;
-}
-
-.standings__chevron {
-	margin-left: 0.3em;
-	visibility: hidden;
-}
-
-.standings__competitor--winner .standings__chevron {
-	visibility: visible;
-}
-
 /* Legend */
 .standings__legend {
 	padding: 1rem;
@@ -337,20 +261,6 @@
 .standings-table__badge--seed {
 	background-color: #e8f5e9;
 	color: #2e7d32;
-}
-
-/* Playoff seed in playoff grid */
-.standings__playoff-seed {
-	font-size: 0.75rem;
-	color: #6c757d;
-	margin-right: 0.25rem;
-}
-
-/* Playoff team division */
-.standings__playoff-division {
-	font-size: 0.75rem;
-	color: #6c757d;
-	margin-top: 0.25rem;
 }
 
 /* Division standings section */

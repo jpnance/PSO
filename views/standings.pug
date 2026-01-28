@@ -135,33 +135,7 @@ block content
 											div.col-12
 												hr.standings__playoff-separator
 										div.col-sm-6.mb-3.mb-sm-2
-											div.standings__game-wrapper(class='standings__game-wrapper--' + game.type)
-												div.standings__game-label= game.label
-												div.standings__matchup
-													div.standings__competitor(class={
-														'standings__competitor--winner': game.away.won,
-														'standings__competitor--loser': game.home.won
-													})
-														span.standings__team-name
-															if game.away.seed
-																span.standings__seed ##{game.away.seed} 
-															= game.away.name
-														if game.away.score != null
-															span.standings__result
-																span.standings__score= formatScore(game.away.score)
-																span.standings__chevron ‹
-													div.standings__competitor(class={
-														'standings__competitor--winner': game.home.won,
-														'standings__competitor--loser': game.away.won
-													})
-														span.standings__team-name
-															if game.home.seed
-																span.standings__seed ##{game.home.seed} 
-															= game.home.name
-														if game.home.score != null
-															span.standings__result
-																span.standings__score= formatScore(game.home.score)
-																span.standings__chevron ‹
+											+matchup(game, { label: game.label })
 					
 					//- Division standings (for division era)
 					if standings.hasDivisions && standings.divisions

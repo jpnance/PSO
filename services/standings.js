@@ -81,23 +81,31 @@ function formatSeasonDocForDisplay(seasonDoc) {
 	
 	// Format playoff games for display
 	if (seasonDoc.playoffGames && seasonDoc.playoffGames.length > 0) {
+		// Build record lookup from standings (use string keys for consistent lookup)
+		var recordLookup = {};
+		response.standings.forEach(function(t) {
+			recordLookup[String(t.franchiseId)] = t.wins + '-' + t.losses + (t.ties ? '-' + t.ties : '');
+		});
+		
 		response.playoffGames = seasonDoc.playoffGames.map(function(g) {
 			return {
 				type: g.type,
-				label: g.type === 'semifinal' ? 'Semifinal' : (g.type === 'championship' ? 'Championship' : '3rd Place'),
+				label: g.type === 'semifinal' ? 'Semifinal' : (g.type === 'championship' ? 'Championship' : 'Third Place'),
 				away: {
 					franchiseId: g.away.franchiseId,
 					name: g.away.name,
 					score: g.away.score,
 					seed: g.away.seed,
-					won: g.winner === 'away'
+					won: g.winner === 'away',
+					record: recordLookup[String(g.away.franchiseId)] || null
 				},
 				home: {
 					franchiseId: g.home.franchiseId,
 					name: g.home.name,
 					score: g.home.score,
 					seed: g.home.seed,
-					won: g.winner === 'home'
+					won: g.winner === 'home',
+					record: recordLookup[String(g.home.franchiseId)] || null
 				}
 			};
 		});
@@ -321,13 +329,15 @@ async function computeStandingsFromGames(season) {
 			return order[a.type] - order[b.type];
 		})
 		.map(function(g) {
-			var awaySeed = result.find(function(t) { return t.franchiseId === g.away.franchiseId; });
-			var homeSeed = result.find(function(t) { return t.franchiseId === g.home.franchiseId; });
+			var awayTeam = result.find(function(t) { return t.franchiseId === g.away.franchiseId; });
+			var homeTeam = result.find(function(t) { return t.franchiseId === g.home.franchiseId; });
+			var awayRecord = awayTeam ? awayTeam.wins + '-' + awayTeam.losses + (awayTeam.ties ? '-' + awayTeam.ties : '') : null;
+			var homeRecord = homeTeam ? homeTeam.wins + '-' + homeTeam.losses + (homeTeam.ties ? '-' + homeTeam.ties : '') : null;
 			return {
 				type: g.type,
 				label: g.type === 'semifinal' ? 'Semifinal' : (g.type === 'championship' ? 'Championship' : '3rd Place'),
-				away: { franchiseId: g.away.franchiseId, name: g.away.name, score: g.away.score, seed: awaySeed ? awaySeed.playoffSeed : null, won: g.away.score > g.home.score },
-				home: { franchiseId: g.home.franchiseId, name: g.home.name, score: g.home.score, seed: homeSeed ? homeSeed.playoffSeed : null, won: g.home.score > g.away.score }
+				away: { franchiseId: g.away.franchiseId, name: g.away.name, score: g.away.score, seed: awayTeam ? awayTeam.playoffSeed : null, won: g.away.score > g.home.score, record: awayRecord },
+				home: { franchiseId: g.home.franchiseId, name: g.home.name, score: g.home.score, seed: homeTeam ? homeTeam.playoffSeed : null, won: g.home.score > g.away.score, record: homeRecord }
 			};
 		});
 	

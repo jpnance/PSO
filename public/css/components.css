@@ -88,7 +88,6 @@
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
-	margin-left: 0.5rem;
 }
 
 .matchup__score {
@@ -151,7 +150,7 @@
 }
 
 /* Container query: show record when there's room */
-@container (min-width: 240px) {
+@container (min-width: 230px) {
 	.matchup__record {
 		display: inline;
 	}
