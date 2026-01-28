@@ -105,7 +105,7 @@ Game types: regular (default), semifinal, championship, thirdPlace
 Options: `{ label: 'Label Text' }` - display a label above the matchup
 
 The matchup component uses **container queries**:
-- Records hidden below 280px, shown inline when there's room
+- Records hidden below 230px, shown inline when there's room
 - Subtitles always visible on their own line
 
 This allows the same component to work in sidebar widgets and full-width schedule pages.

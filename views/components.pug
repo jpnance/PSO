@@ -166,8 +166,8 @@ block content
 
 		//- Matchup
 		div.component-section
-			h2 +matchup(game)
-			code.usage +matchup({ away: { name, score, won }, home: { name, score, won }, label, type })
+			h2 +matchup(game, options?)
+			code.usage +matchup({ away: { name, score, record, seed, won }, home: {...}, type }, { label: 'Semifinal' })
 			div.preview
 				div.preview-row
 					span.variant-label Upcoming
@@ -199,7 +199,7 @@ block content
 				
 				div.preview-row.mt-4
 					span.variant-label Container
-				p.small.text-muted.mb-2 Container queries: records hidden &lt;280px, shown at 280px+. Subtitles always visible.
+				p.small.text-muted.mb-2 Container queries: records hidden &lt;230px, shown at 230px+. Subtitles always visible.
 				div.d-flex.flex-wrap(style="gap: 1rem;")
 					div(style="width: 220px; border: 1px dashed #ccc; padding: 0.5rem;")
 						small.text-muted 220px (no record)
