@@ -86,7 +86,7 @@ block content
 											tr(class=rowClass)
 												td.franchise-schedule__week.text-right= game.week
 												td
-													a.franchise-schedule__opponent-link(href='/franchises/' + game.opponent.franchiseId)= game.opponent.name
+													a.franchise-schedule__opponent-link(href='/franchises/' + game.opponent.franchiseId + '/schedule/' + season)= game.opponent.name
 													if game.opponent.record
 														span.franchise-schedule__opponent-record  (#{game.opponent.record.wins}-#{game.opponent.record.losses})
 												td.franchise-schedule__score-cell.text-right
@@ -121,7 +121,7 @@ block content
 											tr(class=rowClass)
 												td.franchise-schedule__week.text-right= game.week
 												td
-													a.franchise-schedule__opponent-link(href='/franchises/' + game.opponent.franchiseId)= game.opponent.name
+													a.franchise-schedule__opponent-link(href='/franchises/' + game.opponent.franchiseId + '/schedule/' + season)= game.opponent.name
 													if game.opponent.record
 														span.franchise-schedule__opponent-record  (#{game.opponent.record.wins}-#{game.opponent.record.losses})
 												td.franchise-schedule__score-cell.text-right
