@@ -532,6 +532,7 @@
     text-decoration: none;
     border-bottom: 1px solid var(--border-light);
     transition: background-color 0.1s;
+    cursor: pointer;
 }
 
 .search-result:last-child {
@@ -603,13 +604,6 @@
 
 
 /* Unrestricted free agent search results (not clickable) */
-.search-result-ufa {
-    cursor: default;
-}
-
-.search-result-ufa:hover {
-    background-color: transparent;
-}
 
 /* Trade search results */
 .search-result-trade-header {
