@@ -1017,8 +1017,7 @@ async function seed() {
 					picks: [],
 					cash: [],
 					rfaRights: []
-				},
-				drops: []
+				}
 			};
 
 			for (var k = 0; k < p.receives.players.length; k++) {

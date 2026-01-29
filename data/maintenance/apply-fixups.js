@@ -524,7 +524,7 @@ async function run() {
 			
 			if (link.fixupRef) {
 				// Direct lookup by fixupRef
-				cut = await Transaction.findOne({ type: 'fa-cut', fixupRef: link.fixupRef });
+				cut = await Transaction.findOne({ type: 'fa', fixupRef: link.fixupRef });
 				if (!cut) {
 					console.log('  ✗ Cut fixupRef ' + link.fixupRef + ' not found');
 					errors.push('Cut fixupRef ' + link.fixupRef + ' not found');
@@ -545,8 +545,8 @@ async function run() {
 				var yearEnd = new Date(sleeperYear + 1, 0, 1);
 				
 				var candidates = await Transaction.find({
-					type: 'fa-cut',
-					playerId: player._id,
+					type: 'fa',
+					'drops.playerId': player._id,
 					franchiseId: { $in: tradePartyIds },
 					facilitatedTradeId: null,
 					timestamp: { $gte: yearStart, $lt: yearEnd }
@@ -569,7 +569,8 @@ async function run() {
 					console.log('      Trade #' + link.facilitatesTradeId + ' (' + tradePartyNames + ') at ' + link.timestamp);
 					console.log('');
 					candidates.forEach(function(c, idx) {
-						var buyoutStr = c.buyOuts.map(function(b) { return b.season + ':$' + b.amount; }).join(', ');
+						var drop = c.drops && c.drops[0];
+						var buyoutStr = drop && drop.buyOuts ? drop.buyOuts.map(function(b) { return b.season + ':$' + b.amount; }).join(', ') : '';
 						var franchise = c.franchiseId ? c.franchiseId.displayName : '?';
 						console.log('      ' + (idx + 1) + '. ' + franchise + ' cut on ' + c.timestamp.toISOString().slice(0, 10) +
 							' (fixupRef=' + c.fixupRef + ', buyouts: ' + (buyoutStr || 'none') + ')');
@@ -674,8 +675,8 @@ async function run() {
 					var yearStart = new Date(season, 0, 1);
 					var yearEnd = new Date(season + 1, 0, 1);
 					var cut = await Transaction.findOne({
-						type: 'fa-cut',
-						playerId: player._id,
+						type: 'fa',
+						'drops.playerId': player._id,
 						franchiseId: franchise._id,
 						timestamp: { $gte: yearStart, $lt: yearEnd }
 					});
@@ -696,7 +697,7 @@ async function run() {
 				}
 				
 			} else if (imp.psoType === 'fa-pickup') {
-				// Adds only - create new pickup
+				// Adds only - create new FA transaction
 				for (var a = 0; a < imp.adds.length; a++) {
 					var add = imp.adds[a];
 					var player = await Player.findOne({ sleeperId: add.sleeperId });
@@ -708,8 +709,8 @@ async function run() {
 					
 					// Check if pickup already exists (idempotency)
 					var existingPickup = await Transaction.findOne({
-						type: 'fa-pickup',
-						playerId: player._id,
+						type: 'fa',
+						'adds.playerId': player._id,
 						franchiseId: franchise._id,
 						timestamp: timestamp
 					});
@@ -721,14 +722,17 @@ async function run() {
 						
 						if (!dryRun) {
 							await Transaction.create({
-								type: 'fa-pickup',
+								type: 'fa',
 								timestamp: timestamp,
 								source: 'sleeper',
 								franchiseId: franchise._id,
-								playerId: player._id,
-								salary: imp.salary,
-								startYear: null,
-								endYear: season
+								adds: [{
+									playerId: player._id,
+									salary: imp.salary,
+									startYear: null,
+									endYear: season
+								}],
+								drops: []
 							});
 							console.log('    ✓ Done');
 						}
@@ -736,7 +740,7 @@ async function run() {
 				}
 				
 			} else if (imp.psoType === 'fa-swap') {
-				// Add + drop - find the cut, delete it, create pickup with dropped field
+				// Add + drop - find the cut, delete it, create unified FA transaction
 				if (imp.adds.length !== 1 || imp.drops.length !== 1) {
 					console.log('  ✗ Swap with multiple adds/drops not supported: ' + imp.adds.length + ' adds, ' + imp.drops.length + ' drops');
 					errors.push('Multi-player swap not supported');
@@ -764,8 +768,8 @@ async function run() {
 				var yearStart = new Date(season, 0, 1);
 				var yearEnd = new Date(season + 1, 0, 1);
 				var existingCut = await Transaction.findOne({
-					type: 'fa-cut',
-					playerId: dropPlayer._id,
+					type: 'fa',
+					'drops.playerId': dropPlayer._id,
 					franchiseId: franchise._id,
 					timestamp: { $gte: yearStart, $lt: yearEnd }
 				});
@@ -775,15 +779,18 @@ async function run() {
 					continue;
 				}
 				
-				// Check if swap pickup already exists (idempotency)
-				var existingSwapPickup = await Transaction.findOne({
-					type: 'fa-pickup',
-					playerId: addPlayer._id,
+				// Get the drop info from the existing cut
+				var existingDropInfo = existingCut.drops && existingCut.drops[0];
+				
+				// Check if swap already exists (idempotency)
+				var existingSwap = await Transaction.findOne({
+					type: 'fa',
+					'adds.playerId': addPlayer._id,
 					franchiseId: franchise._id,
 					timestamp: timestamp
 				});
 				
-				if (existingSwapPickup) {
+				if (existingSwap) {
 					console.log('  Swap: ' + franchise.displayName + ' adds ' + add.playerName + ', drops ' + drop.playerName + ' (already exists)');
 				} else {
 					console.log('  Swap: ' + franchise.displayName + ' adds ' + add.playerName + ' ($' + imp.salary + '), drops ' + drop.playerName);
@@ -792,23 +799,25 @@ async function run() {
 						// Delete the standalone cut
 						await Transaction.deleteOne({ _id: existingCut._id });
 						
-						// Create the pickup with dropped field
+						// Create unified FA transaction with add and drop
 						await Transaction.create({
-							type: 'fa-pickup',
+							type: 'fa',
 							timestamp: timestamp,
 							source: 'sleeper',
 							franchiseId: franchise._id,
-							playerId: addPlayer._id,
-							salary: imp.salary,
-							startYear: null,
-							endYear: season,
-							dropped: {
+							adds: [{
+								playerId: addPlayer._id,
+								salary: imp.salary,
+								startYear: null,
+								endYear: season
+							}],
+							drops: [{
 								playerId: dropPlayer._id,
-								salary: existingCut.salary,
-								startYear: existingCut.startYear,
-								endYear: existingCut.endYear,
-								buyOuts: existingCut.buyOuts || []
-							}
+								salary: existingDropInfo ? existingDropInfo.salary : null,
+								startYear: existingDropInfo ? existingDropInfo.startYear : null,
+								endYear: existingDropInfo ? existingDropInfo.endYear : null,
+								buyOuts: existingDropInfo ? (existingDropInfo.buyOuts || []) : []
+							}]
 						});
 						console.log('    ✓ Done');
 					}

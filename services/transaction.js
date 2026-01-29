@@ -561,8 +561,7 @@ async function processTrade(tradeDetails) {
 					};
 				}),
 				rfaRights: []
-			},
-			drops: party.drops || []
+			}
 		};
 		
 		transactionParties.push(txParty);
@@ -877,16 +876,19 @@ async function processCut(cutDetails) {
 	
 	// Create the Transaction
 	var transaction = await Transaction.create({
-		type: 'fa-cut',
+		type: 'fa',
 		timestamp: cutDetails.timestamp || new Date(),
 		source: cutDetails.source || 'manual',
 		notes: cutDetails.notes,
 		franchiseId: cutDetails.franchiseId,
-		playerId: cutDetails.playerId,
-		salary: salary,
-		startYear: startYear,
-		endYear: endYear,
-		buyOuts: buyOutEntries,
+		adds: [],
+		drops: [{
+			playerId: cutDetails.playerId,
+			salary: salary,
+			startYear: startYear,
+			endYear: endYear,
+			buyOuts: buyOutEntries
+		}],
 		facilitatedTradeId: cutDetails.facilitatedTradeId
 	});
 	

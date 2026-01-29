@@ -94,14 +94,14 @@ exports.playerDetail = async function(request, response) {
 		}
 		
 		// Get transaction history for this player
-		// Players can appear in: playerId field, parties.receives.players, parties.receives.rfaRights, dropped, parties.drops
+		// Players can appear in: playerId field, parties.receives.players, parties.receives.rfaRights, adds, drops
 		var transactions = await Transaction.find({
 			$or: [
 				{ playerId: playerId },
 				{ 'parties.receives.players.playerId': playerId },
 				{ 'parties.receives.rfaRights.playerId': playerId },
-				{ 'dropped.playerId': playerId },
-				{ 'parties.drops.playerId': playerId }
+				{ 'adds.playerId': playerId },
+				{ 'drops.playerId': playerId }
 			]
 		})
 			.populate('franchiseId')
@@ -178,47 +178,47 @@ exports.playerDetail = async function(request, response) {
 					entry.tradeId = t.tradeId;
 					break;
 					
-				case 'fa-pickup':
-					// Check if this player was picked up or dropped in this transaction
-					if (t.dropped && t.dropped.playerId && t.dropped.playerId.toString() === playerId) {
-						// This player was dropped to make room for someone else
-						entry.type = 'fa-cut';  // Display as a cut
-						entry.description = 'Dropped by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-						if (t.dropped.salary) {
-							entry.salary = t.dropped.salary;
-						}
-						if (t.dropped.startYear || t.dropped.endYear) {
-							entry.startYear = t.dropped.startYear;
-							entry.endYear = t.dropped.endYear;
-						}
-						if (t.dropped.buyOuts && t.dropped.buyOuts.length > 0) {
-							entry.buyOuts = t.dropped.buyOuts;
-						}
-					} else {
-						// This player was picked up
-						entry.description = 'Signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-						entry.salary = t.salary;
-						if (t.startYear || t.endYear) {
-							entry.startYear = t.startYear;
-							entry.endYear = t.endYear;
-						}
-					}
-					break;
+				case 'fa':
+					// Check if this player is in adds or drops
+					var playerInAdds = t.adds && t.adds.some(function(a) {
+						return a.playerId && a.playerId.toString() === playerId;
+					});
+					var playerInDrops = t.drops && t.drops.some(function(d) {
+						return d.playerId && d.playerId.toString() === playerId;
+					});
 					
-				case 'fa-cut':
-					entry.description = 'Cut by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-					if (t.facilitatedTradeId) {
-						entry.facilitatedTradeId = t.facilitatedTradeId.tradeId;
-					}
-					if (t.salary) {
-						entry.salary = t.salary;
-					}
-					if (t.startYear || t.endYear) {
-						entry.startYear = t.startYear;
-						entry.endYear = t.endYear;
-					}
-					if (t.buyOuts && t.buyOuts.length > 0) {
-						entry.buyOuts = t.buyOuts;
+					if (playerInDrops) {
+						// This player was cut/dropped
+						var dropEntry = t.drops.find(function(d) {
+							return d.playerId && d.playerId.toString() === playerId;
+						});
+						entry.type = 'fa-cut';  // Display type for UI
+						entry.description = 'Cut by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+						if (t.facilitatedTradeId) {
+							entry.facilitatedTradeId = t.facilitatedTradeId.tradeId;
+						}
+						if (dropEntry.salary) {
+							entry.salary = dropEntry.salary;
+						}
+						if (dropEntry.startYear || dropEntry.endYear) {
+							entry.startYear = dropEntry.startYear;
+							entry.endYear = dropEntry.endYear;
+						}
+						if (dropEntry.buyOuts && dropEntry.buyOuts.length > 0) {
+							entry.buyOuts = dropEntry.buyOuts;
+						}
+					} else if (playerInAdds) {
+						// This player was signed/picked up
+						var addEntry = t.adds.find(function(a) {
+							return a.playerId && a.playerId.toString() === playerId;
+						});
+						entry.type = 'fa-pickup';  // Display type for UI
+						entry.description = 'Signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+						entry.salary = addEntry.salary;
+						if (addEntry.startYear || addEntry.endYear) {
+							entry.startYear = addEntry.startYear;
+							entry.endYear = addEntry.endYear;
+						}
 					}
 					break;
 					

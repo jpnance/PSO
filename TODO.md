@@ -49,6 +49,7 @@
 - [x] Re-add cash-neutral button somewhere — now in action footer with "Make Cash-Neutral for [year]"
 - [ ] Maybe "vetoed" should be a status when the commissioner rejects a trade?
 - [ ] **Trade-required drops** — flow for prompting an owner to drop players to complete a trade (roster space)
+- [ ] **Proposal drops** — allow trade creator to specify their drop upfront as part of the proposal (separate FA transaction with `facilitatedTradeId` when executed)
 - [ ] Improve commissioner trade approval screen (currently bare-bones)
 - [ ] Figure out how to deal with locked players in trades
 - [ ] Figure out a data backfill strategy to get more past transactions into the system
@@ -80,7 +81,7 @@
 - Downstream budget changes based on trade
 
 **Out of scope (for now):**
-- FA pickup/cut rollback (missing contract term storage in `droppedPlayerSchema`)
+- FA rollback (complexity of restoring roster state)
 - Auction rollback (RFA state complexity)
 
 ## Lower Priority

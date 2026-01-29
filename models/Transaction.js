@@ -6,7 +6,15 @@ var buyOutSchema = new Schema({
 	amount: { type: Number, required: true }
 }, { _id: false });
 
-var droppedPlayerSchema = new Schema({
+// FA transaction schemas (unified fa-pickup and fa-cut)
+var faAddSchema = new Schema({
+	playerId: { type: Schema.Types.ObjectId, ref: 'Player', required: true },
+	salary: { type: Number },
+	startYear: { type: Number },
+	endYear: { type: Number }
+}, { _id: false });
+
+var faDropSchema = new Schema({
 	playerId: { type: Schema.Types.ObjectId, ref: 'Player', required: true },
 	salary: { type: Number },
 	startYear: { type: Number },
@@ -47,8 +55,7 @@ var tradePartySchema = new Schema({
 		picks: [tradePickSchema],
 		cash: [tradeCashSchema],
 		rfaRights: [tradeRfaRightsSchema]
-	},
-	drops: [droppedPlayerSchema]
+	}
 }, { _id: false });
 
 var transactionSchema = new Schema({
@@ -56,8 +63,7 @@ var transactionSchema = new Schema({
 		type: String,
 		enum: [
 			'trade',
-			'fa-pickup',
-			'fa-cut',
+			'fa',  // unified free agent transaction (replaces fa-pickup and fa-cut)
 			'draft-select',
 			'draft-pass',
 			'auction-ufa',
@@ -81,26 +87,26 @@ var transactionSchema = new Schema({
 	tradeId: { type: Number },
 	parties: [tradePartySchema],
 
-	// FA pickup fields
+	// Shared fields (used by FA, draft, auction, contract)
 	franchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise' },
-	playerId: { type: Schema.Types.ObjectId, ref: 'Player' },
-	salary: { type: Number },
-	dropped: droppedPlayerSchema,
+	playerId: { type: Schema.Types.ObjectId, ref: 'Player' },  // for draft, auction, contract
+	salary: { type: Number },  // for draft, auction, contract
 
-	// FA cut fields (uses franchiseId, playerId from above)
-	buyOuts: [buyOutSchema],
+	// FA transaction fields (type: 'fa')
+	adds: [faAddSchema],
+	drops: [faDropSchema],
 	facilitatedTradeId: { type: Schema.Types.ObjectId, ref: 'Transaction' },
 	fixupRef: { type: Number },  // stable ID for fixup targeting, assigned during seeding
 
-	// Draft fields (uses franchiseId, playerId, salary from above)
+	// Draft fields
 	pickId: { type: Schema.Types.ObjectId, ref: 'Pick' },
 
-	// Auction fields (uses franchiseId, playerId from above)
+	// Auction fields
 	winningBid: { type: Number },
 	originalBidderId: { type: Schema.Types.ObjectId, ref: 'Franchise' },
 	rfaHolderId: { type: Schema.Types.ObjectId, ref: 'Franchise' },
 
-	// Contract fields (uses franchiseId, playerId, salary from above)
+	// Contract fields
 	startYear: { type: Number },
 	endYear: { type: Number }
 });
@@ -111,6 +117,8 @@ transactionSchema.index({ franchiseId: 1 });
 transactionSchema.index({ playerId: 1 });
 transactionSchema.index({ tradeId: 1 }, { sparse: true });
 transactionSchema.index({ 'parties.franchiseId': 1 });
+transactionSchema.index({ 'adds.playerId': 1 });
+transactionSchema.index({ 'drops.playerId': 1 });
 
 module.exports = mongoose.model('Transaction', transactionSchema);
 

@@ -35,7 +35,7 @@ async function verify() {
 	var franchises = await Franchise.find({}).lean();
 	var contracts = await Contract.find({}).lean();
 	var trades = await Transaction.find({ type: 'trade' }).lean();
-	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
+	var cuts = await Transaction.find({ type: 'fa', 'drops.0': { $exists: true } }).lean();
 
 	// Get current season from LeagueConfig
 	var leagueConfig = await LeagueConfig.findOne({});
@@ -73,11 +73,14 @@ async function verify() {
 			var buyOuts = 0;
 			cuts.forEach(function(cut) {
 				if (!cut.franchiseId || !cut.franchiseId.equals(franchiseId)) return;
-				if (!cut.buyOuts) return;
-				cut.buyOuts.forEach(function(bo) {
-					if (bo.season === season) {
-						buyOuts += bo.amount;
-					}
+				if (!cut.drops) return;
+				cut.drops.forEach(function(drop) {
+					if (!drop.buyOuts) return;
+					drop.buyOuts.forEach(function(bo) {
+						if (bo.season === season) {
+							buyOuts += bo.amount;
+						}
+					});
 				});
 			});
 

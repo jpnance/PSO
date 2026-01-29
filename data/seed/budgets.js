@@ -35,8 +35,8 @@ async function seed() {
 	var trades = await Transaction.find({ type: 'trade' }).lean();
 	console.log('Loaded', trades.length, 'trades');
 
-	// Load all cuts
-	var cuts = await Transaction.find({ type: 'fa-cut' }).lean();
+	// Load all cuts (FA transactions with drops)
+	var cuts = await Transaction.find({ type: 'fa', 'drops.0': { $exists: true } }).lean();
 	console.log('Loaded', cuts.length, 'cuts\n');
 
 	// Get current season from LeagueConfig
@@ -75,11 +75,15 @@ async function seed() {
 			var buyOuts = 0;
 			cuts.forEach(function(cut) {
 				if (!cut.franchiseId || !cut.franchiseId.equals(franchiseId)) return;
-				if (!cut.buyOuts) return;
-				cut.buyOuts.forEach(function(bo) {
-					if (bo.season === season) {
-						buyOuts += bo.amount;
-					}
+				// Each cut may have multiple drops, each with their own buyouts
+				if (!cut.drops) return;
+				cut.drops.forEach(function(drop) {
+					if (!drop.buyOuts) return;
+					drop.buyOuts.forEach(function(bo) {
+						if (bo.season === season) {
+							buyOuts += bo.amount;
+						}
+					});
 				});
 			});
 

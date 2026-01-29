@@ -24,7 +24,7 @@ async function analyzeCut(cut, playerTxns) {
 	// Check for specific impossible orderings
 	var hasDraftAfter = laterSameYear.some(function(t) { return t.type === 'draft-select'; });
 	var hasTradeAfter = laterSameYear.some(function(t) { return t.type === 'trade'; });
-	var hasPickupAfter = laterSameYear.some(function(t) { return t.type === 'fa-pickup'; });
+	var hasPickupAfter = laterSameYear.some(function(t) { return t.type === 'fa' && t.adds && t.adds.length > 0; });
 	var hasAuctionAfter = laterSameYear.some(function(t) { 
 		return t.type === 'auction-ufa' || t.type === 'auction-rfa-matched' || t.type === 'auction-rfa-unmatched';
 	});
@@ -53,8 +53,8 @@ async function listCuts(request, response) {
 	var page = Math.max(1, parseInt(request.query.page, 10) || 1);
 	var perPage = 50;
 	
-	// Build query for snapshot-sourced cuts
-	var query = { type: 'fa-cut', source: 'snapshot' };
+	// Build query for snapshot-sourced cuts (FA transactions with drops but no adds)
+	var query = { type: 'fa', source: 'snapshot', adds: { $size: 0 } };
 	if (yearFilter) {
 		var startOfYear = new Date(yearFilter, 0, 1);
 		var endOfYear = new Date(yearFilter + 1, 0, 1);
@@ -63,7 +63,7 @@ async function listCuts(request, response) {
 	
 	// Get all cuts matching the basic filter
 	var allCuts = await Transaction.find(query)
-		.populate('playerId', 'name positions')
+		.populate('drops.playerId', 'name positions')
 		.populate('franchiseId', 'rosterId')
 		.sort({ timestamp: -1 })
 		.lean();
@@ -80,14 +80,20 @@ async function listCuts(request, response) {
 	
 	for (var i = 0; i < allCuts.length; i++) {
 		var cut = allCuts[i];
-		if (!cut.playerId) continue;
+		var dropInfo = cut.drops && cut.drops[0];
+		if (!dropInfo || !dropInfo.playerId) continue;
+		
+		// For compatibility, set cut.playerId to the dropped player
+		cut.playerId = dropInfo.playerId;
 		
 		// Get all transactions for this player
 		var playerTxns = await Transaction.find({
 			$or: [
-				{ playerId: cut.playerId._id },
-				{ 'parties.receives.players.playerId': cut.playerId._id },
-				{ 'parties.receives.rfaRights.playerId': cut.playerId._id }
+				{ playerId: dropInfo.playerId._id },
+				{ 'parties.receives.players.playerId': dropInfo.playerId._id },
+				{ 'parties.receives.rfaRights.playerId': dropInfo.playerId._id },
+				{ 'adds.playerId': dropInfo.playerId._id },
+				{ 'drops.playerId': dropInfo.playerId._id }
 			]
 		}).sort({ timestamp: 1 }).lean();
 		
@@ -99,13 +105,14 @@ async function listCuts(request, response) {
 		
 		var franchiseName = await getDisplayName(cut.franchiseId._id, cut.timestamp.getFullYear());
 		
+		var dropInfo = cut.drops && cut.drops[0];
 		analyzedCuts.push({
 			_id: cut._id,
 			player: cut.playerId,
 			franchiseName: franchiseName,
 			timestamp: cut.timestamp,
 			cutYear: cut.timestamp.getFullYear(),
-			buyOuts: cut.buyOuts,
+			buyOuts: dropInfo ? dropInfo.buyOuts : [],
 			analysis: analysis
 		});
 	}
@@ -135,13 +142,22 @@ async function listCuts(request, response) {
 // GET /admin/cuts/:id - edit form for a single cut
 async function editCutForm(request, response) {
 	var cut = await Transaction.findById(request.params.id)
-		.populate('playerId', 'name positions')
+		.populate('drops.playerId', 'name positions')
 		.populate('franchiseId', 'rosterId')
 		.lean();
 	
-	if (!cut || cut.type !== 'fa-cut') {
+	if (!cut || cut.type !== 'fa') {
 		return response.status(404).send('Cut not found');
 	}
+	
+	// Get the dropped player info
+	var dropInfo = cut.drops && cut.drops[0];
+	if (!dropInfo || !dropInfo.playerId) {
+		return response.status(404).send('Cut has no drop info');
+	}
+	
+	// For compatibility with templates that expect cut.playerId
+	cut.playerId = dropInfo.playerId;
 	
 	var cutYear = cut.timestamp.getFullYear();
 	var franchiseName = await getDisplayName(cut.franchiseId._id, cutYear);
@@ -149,11 +165,11 @@ async function editCutForm(request, response) {
 	// Get all transactions for this player for context
 	var playerTxns = await Transaction.find({
 		$or: [
-			{ playerId: cut.playerId._id },
-			{ 'parties.receives.players.playerId': cut.playerId._id },
-			{ 'parties.receives.rfaRights.playerId': cut.playerId._id },
-			{ 'dropped.playerId': cut.playerId._id },
-			{ 'parties.drops.playerId': cut.playerId._id }
+			{ playerId: dropInfo.playerId._id },
+			{ 'parties.receives.players.playerId': dropInfo.playerId._id },
+			{ 'parties.receives.rfaRights.playerId': dropInfo.playerId._id },
+			{ 'adds.playerId': dropInfo.playerId._id },
+			{ 'drops.playerId': dropInfo.playerId._id }
 		]
 	}).populate('franchiseId', 'rosterId').sort({ timestamp: 1 }).lean();
 	
@@ -169,11 +185,17 @@ async function editCutForm(request, response) {
 			case 'draft-select':
 				description = 'Drafted by ' + tFranchiseName;
 				break;
-			case 'fa-pickup':
-				description = 'Signed by ' + tFranchiseName;
-				break;
-			case 'fa-cut':
-				description = 'Cut by ' + tFranchiseName;
+			case 'fa':
+				// Check if this is an add or drop (or both)
+				var hasAdds = t.adds && t.adds.length > 0;
+				var hasDrops = t.drops && t.drops.length > 0;
+				if (hasAdds && hasDrops) {
+					description = 'Swap by ' + tFranchiseName;
+				} else if (hasAdds) {
+					description = 'Signed by ' + tFranchiseName;
+				} else if (hasDrops) {
+					description = 'Cut by ' + tFranchiseName;
+				}
 				break;
 			case 'trade':
 				description = 'Traded';
@@ -218,7 +240,7 @@ async function editCut(request, response) {
 	var body = request.body;
 	
 	var cut = await Transaction.findById(cutId);
-	if (!cut || cut.type !== 'fa-cut') {
+	if (!cut || cut.type !== 'fa') {
 		return response.status(404).send('Cut not found');
 	}
 	
@@ -250,9 +272,14 @@ async function editCut(request, response) {
 async function autoFixCut(request, response) {
 	var cutId = request.params.id;
 	
-	var cut = await Transaction.findById(cutId).populate('playerId');
-	if (!cut || cut.type !== 'fa-cut') {
+	var cut = await Transaction.findById(cutId).populate('drops.playerId');
+	if (!cut || cut.type !== 'fa') {
 		return response.status(404).send('Cut not found');
+	}
+	
+	var dropInfo = cut.drops && cut.drops[0];
+	if (!dropInfo || !dropInfo.playerId) {
+		return response.status(404).send('Cut has no drop info');
 	}
 	
 	var cutYear = cut.timestamp.getFullYear();
@@ -260,7 +287,7 @@ async function autoFixCut(request, response) {
 	// Find draft transaction for this player in the same year
 	var draft = await Transaction.findOne({
 		$or: [
-			{ playerId: cut.playerId._id, type: 'draft-select' }
+			{ playerId: dropInfo.playerId._id, type: 'draft-select' }
 		],
 		timestamp: {
 			$gte: new Date(cutYear, 0, 1),

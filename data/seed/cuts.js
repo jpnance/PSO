@@ -646,8 +646,8 @@ async function run() {
 	
 	var clearExisting = process.argv.includes('--clear');
 	if (clearExisting) {
-		console.log('Clearing existing fa-cut transactions...');
-		await Transaction.deleteMany({ type: 'fa-cut' });
+		console.log('Clearing existing FA cut transactions...');
+		await Transaction.deleteMany({ type: 'fa', adds: { $size: 0 } });
 	}
 	
 	// Load franchises
@@ -698,18 +698,21 @@ async function run() {
 			continue;
 		}
 		
-		// Create fa-cut transaction
+		// Create FA transaction (drop only)
 		try {
 			await Transaction.create({
-				type: 'fa-cut',
+				type: 'fa',
 				timestamp: new Date(Date.UTC(cut.cutYear, 0, 15, 12, 0, 0)), // Jan 15 noon UTC - placeholder date in dead period
 				source: 'snapshot',
 				franchiseId: franchiseId,
-				playerId: playerId,
-				salary: cut.salary,
-				startYear: cut.startYear,
-				endYear: cut.endYear,
-				buyOuts: cut.buyOuts,
+				adds: [],
+				drops: [{
+					playerId: playerId,
+					salary: cut.salary,
+					startYear: cut.startYear,
+					endYear: cut.endYear,
+					buyOuts: cut.buyOuts
+				}],
 				fixupRef: fixupRefCounter++
 			});
 			created++;
