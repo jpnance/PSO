@@ -32,8 +32,9 @@ async function analyzeCut(cut, playerTxns) {
 	// A cut before a draft in the same year is definitively wrong
 	var isImpossible = hasDraftAfter;
 	
-	// A cut before trade/pickup/auction is suspicious but not always wrong
-	var isSuspicious = hasTradeAfter || hasPickupAfter || hasAuctionAfter;
+	// A cut before trade/auction is suspicious but not always wrong
+	// Note: pickup after cut is fine - player becomes FA and gets signed
+	var isSuspicious = hasTradeAfter || hasAuctionAfter;
 	
 	return {
 		isImpossible: isImpossible,
