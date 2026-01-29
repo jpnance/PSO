@@ -2556,65 +2556,6 @@
 			]
 		},
 		{
-			"sleeperTxId": "1284730042470916096",
-			"timestamp": "2025-10-17T01:53:40.556Z",
-			"psoType": "fa-swap",
-			"rosterId": 1,
-			"salary": 0,
-			"adds": [
-				{
-					"sleeperId": "421",
-					"playerName": "Matthew Stafford"
-				},
-				{
-					"sleeperId": "8151",
-					"playerName": "Kenneth Walker"
-				},
-				{
-					"sleeperId": "10213",
-					"playerName": "Tre Tucker"
-				},
-				{
-					"sleeperId": "10859",
-					"playerName": "Sam LaPorta"
-				},
-				{
-					"sleeperId": "12484",
-					"playerName": "Jayden Higgins"
-				},
-				{
-					"sleeperId": "12519",
-					"playerName": "Luther Burden"
-				}
-			],
-			"drops": [
-				{
-					"sleeperId": "421",
-					"playerName": "Matthew Stafford"
-				},
-				{
-					"sleeperId": "8151",
-					"playerName": "Kenneth Walker"
-				},
-				{
-					"sleeperId": "10213",
-					"playerName": "Tre Tucker"
-				},
-				{
-					"sleeperId": "10859",
-					"playerName": "Sam LaPorta"
-				},
-				{
-					"sleeperId": "12484",
-					"playerName": "Jayden Higgins"
-				},
-				{
-					"sleeperId": "12519",
-					"playerName": "Luther Burden"
-				}
-			]
-		},
-		{
 			"sleeperTxId": "1283495552851406848",
 			"timestamp": "2025-10-16T16:05:18.919Z",
 			"psoType": "fa-swap",
@@ -4478,6 +4419,11 @@
 		{
 			"sleeperTxId": "1286828572715016192",
 			"timestamp": "2025-10-22T20:52:29.156Z",
+			"type": "commissioner"
+		},
+		{
+			"sleeperTxId": "1284730042470916096",
+			"timestamp": "2025-10-17T01:53:40.556Z",
 			"type": "commissioner"
 		},
 		{
