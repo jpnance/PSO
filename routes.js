@@ -136,6 +136,8 @@ module.exports = function(app) {
 	app.get('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.importForm);
 	app.post('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.parseTransactions);
 	app.post('/admin/sleeper-import/save', requireLogin, requireAdmin, sleeperImport.saveAnnotations);
+	app.get('/admin/sleeper-import/fixups', requireLogin, requireAdmin, sleeperImport.generateFixups);
+	app.post('/admin/sleeper-import/save-fixups', requireLogin, requireAdmin, sleeperImport.saveFixupsToFile);
 	
 	// Process new trades (require login + admin)
 	app.get('/admin/process-trade', requireLogin, requireAdmin, proposals.processPage);

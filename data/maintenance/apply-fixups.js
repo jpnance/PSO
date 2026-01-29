@@ -11,6 +11,9 @@
 
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
+var fs = require('fs');
+var path = require('path');
+var readline = require('readline');
 
 var adminService = require('../../services/admin');
 var adminPlayers = require('../../services/admin-players');
@@ -19,10 +22,77 @@ var adminTrades = require('../../services/admin-trades');
 var Franchise = require('../../models/Franchise');
 var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
+var Regime = require('../../models/Regime');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var fixups = require('../config/fixups.json');
+var configDir = path.join(__dirname, '../config');
+var fixupsPath = path.join(configDir, 'fixups.json');
+var fixups = require(fixupsPath);
+var fixupsModified = false;
+
+// Track sleeper fixups separately so we can write back to the correct files
+var sleeperFixupsByYear = {};
+
+// Load additional fixup files (sleeper-fixups-*.json)
+var sleeperFixupsFiles = fs.readdirSync(configDir).filter(function(f) {
+	return f.match(/^sleeper-fixups-\d{4}\.json$/);
+}).sort();
+
+sleeperFixupsFiles.forEach(function(filename) {
+	var match = filename.match(/^sleeper-fixups-(\d{4})\.json$/);
+	var year = match[1];
+	var filePath = path.join(configDir, filename);
+	var sleeperFixups = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+	sleeperFixupsByYear[year] = { path: filePath, data: sleeperFixups, modified: false };
+	
+	// Merge arrays (with source tracking)
+	if (sleeperFixups.sleeperCutTradeLinks) {
+		sleeperFixups.sleeperCutTradeLinks.forEach(function(link, idx) {
+			link._sourceYear = year;
+			link._sourceIndex = idx;
+		});
+		fixups.sleeperCutTradeLinks = (fixups.sleeperCutTradeLinks || []).concat(sleeperFixups.sleeperCutTradeLinks);
+	}
+	if (sleeperFixups.sleeperImports) {
+		fixups.sleeperImports = (fixups.sleeperImports || []).concat(sleeperFixups.sleeperImports);
+	}
+	if (sleeperFixups.sleeperIgnored) {
+		fixups.sleeperIgnored = (fixups.sleeperIgnored || []).concat(sleeperFixups.sleeperIgnored);
+	}
+	
+	console.log('Loaded ' + filename);
+});
+
+function saveSleeperFixups() {
+	var years = Object.keys(sleeperFixupsByYear);
+	console.log('saveSleeperFixups: checking ' + years.length + ' files');
+	years.forEach(function(year) {
+		var entry = sleeperFixupsByYear[year];
+		console.log('  ' + year + ': modified=' + entry.modified);
+		if (entry.modified) {
+			fs.writeFileSync(entry.path, JSON.stringify(entry.data, null, '\t'));
+			console.log('  → Wrote ' + entry.path);
+		}
+	});
+}
+
+function prompt(question) {
+	var rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout
+	});
+	return new Promise(function(resolve) {
+		rl.question(question, function(answer) {
+			rl.close();
+			resolve(answer.trim());
+		});
+	});
+}
+
+function saveFixups() {
+	fs.writeFileSync(fixupsPath, JSON.stringify(fixups, null, '\t'));
+}
 
 function fakeRequest(body, params) {
 	return { body: body || {}, params: params || {}, query: {} };
@@ -410,6 +480,353 @@ async function run() {
 			}
 		}
 		console.log('');
+	}
+
+	// =========================================================================
+	// Sleeper Cut → Trade Links
+	// =========================================================================
+	if (fixups.sleeperCutTradeLinks && fixups.sleeperCutTradeLinks.length > 0) {
+		console.log('=== Sleeper Cut → Trade Links ===');
+		
+		// Load regimes for display name lookup
+		var cutLinkRegimes = await Regime.find({}).lean();
+		function getDisplayName(franchiseId) {
+			for (var i = 0; i < cutLinkRegimes.length; i++) {
+				var r = cutLinkRegimes[i];
+				if (r.tenures) {
+					for (var j = 0; j < r.tenures.length; j++) {
+						var t = r.tenures[j];
+						if (t.franchiseId && t.franchiseId.toString() === franchiseId.toString() && !t.endSeason) {
+							return r.displayName;
+						}
+					}
+				}
+			}
+			return 'Unknown';
+		}
+		
+		for (var i = 0; i < fixups.sleeperCutTradeLinks.length; i++) {
+			var link = fixups.sleeperCutTradeLinks[i];
+			
+			// Find the trade
+			var trade = await Transaction.findOne({ type: 'trade', tradeId: link.facilitatesTradeId });
+			if (!trade) {
+				console.log('  ✗ Trade #' + link.facilitatesTradeId + ' not found');
+				errors.push('Trade #' + link.facilitatesTradeId + ' not found');
+				continue;
+			}
+			
+			// Get franchise IDs and names involved in the trade
+			var tradePartyIds = trade.parties.map(function(p) { return p.franchiseId; });
+			var tradePartyNames = tradePartyIds.map(function(id) { return getDisplayName(id); }).join(' / ');
+			
+			var cut;
+			
+			if (link.fixupRef) {
+				// Direct lookup by fixupRef
+				cut = await Transaction.findOne({ type: 'fa-cut', fixupRef: link.fixupRef });
+				if (!cut) {
+					console.log('  ✗ Cut fixupRef ' + link.fixupRef + ' not found');
+					errors.push('Cut fixupRef ' + link.fixupRef + ' not found');
+					continue;
+				}
+			} else {
+				// Fuzzy matching by player
+				var player = await Player.findOne({ sleeperId: link.sleeperId });
+				if (!player) {
+					console.log('  ✗ Player sleeperId ' + link.sleeperId + ' (' + link.playerName + ') not found');
+					errors.push('Player sleeperId ' + link.sleeperId + ' not found');
+					continue;
+				}
+				
+				// Find cuts of this player in the same calendar year, by a trade party, that don't already have a facilitatedTradeId
+				var sleeperYear = new Date(link.timestamp).getFullYear();
+				var yearStart = new Date(sleeperYear, 0, 1);
+				var yearEnd = new Date(sleeperYear + 1, 0, 1);
+				
+				var candidates = await Transaction.find({
+					type: 'fa-cut',
+					playerId: player._id,
+					franchiseId: { $in: tradePartyIds },
+					facilitatedTradeId: null,
+					timestamp: { $gte: yearStart, $lt: yearEnd }
+				}).populate('franchiseId', 'displayName rosterId');
+				
+				if (candidates.length === 0) {
+					console.log('  ⚠ No unlinked cuts found for ' + player.name + ' by ' + tradePartyNames + ' in ' + sleeperYear + ' (skipping)');
+					continue;
+				} else if (candidates.length === 1) {
+					cut = candidates[0];
+					// Save the fixupRef back for future runs
+					if (link._sourceYear && sleeperFixupsByYear[link._sourceYear]) {
+						sleeperFixupsByYear[link._sourceYear].data.sleeperCutTradeLinks[link._sourceIndex].fixupRef = cut.fixupRef;
+						sleeperFixupsByYear[link._sourceYear].modified = true;
+						console.log('    (saved fixupRef=' + cut.fixupRef + ')');
+					}
+				} else {
+					// Ambiguous - need interactive resolution
+					console.log('\n  ⚠️  Ambiguous: ' + candidates.length + ' cuts found for ' + player.name);
+					console.log('      Trade #' + link.facilitatesTradeId + ' (' + tradePartyNames + ') at ' + link.timestamp);
+					console.log('');
+					candidates.forEach(function(c, idx) {
+						var buyoutStr = c.buyOuts.map(function(b) { return b.season + ':$' + b.amount; }).join(', ');
+						var franchise = c.franchiseId ? c.franchiseId.displayName : '?';
+						console.log('      ' + (idx + 1) + '. ' + franchise + ' cut on ' + c.timestamp.toISOString().slice(0, 10) +
+							' (fixupRef=' + c.fixupRef + ', buyouts: ' + (buyoutStr || 'none') + ')');
+					});
+					console.log('      s. Skip this one');
+					console.log('');
+					
+					var answer = await prompt('  Select (1-' + candidates.length + ' or s): ');
+					
+					if (answer.toLowerCase() === 's') {
+						console.log('  → Skipped\n');
+						continue;
+					}
+					
+					var selection = parseInt(answer, 10);
+					if (isNaN(selection) || selection < 1 || selection > candidates.length) {
+						console.log('  → Invalid selection, skipping\n');
+						continue;
+					}
+					
+					cut = candidates[selection - 1];
+					
+					// Save the fixupRef back to the source file
+					if (link._sourceYear && sleeperFixupsByYear[link._sourceYear]) {
+						sleeperFixupsByYear[link._sourceYear].data.sleeperCutTradeLinks[link._sourceIndex].fixupRef = cut.fixupRef;
+						sleeperFixupsByYear[link._sourceYear].modified = true;
+						console.log('  → Selected fixupRef=' + cut.fixupRef + ' (saved to sleeper-fixups-' + link._sourceYear + '.json)\n');
+					} else {
+						fixups.sleeperCutTradeLinks[i].fixupRef = cut.fixupRef;
+						fixupsModified = true;
+						console.log('  → Selected fixupRef=' + cut.fixupRef + ' (saved to fixups.json)\n');
+					}
+				}
+			}
+			
+			// Apply the update
+			var cutPlayer = await Player.findById(cut.playerId);
+			console.log('  Cut fixupRef=' + cut.fixupRef + ' (' + (cutPlayer ? cutPlayer.name : '?') + ') → Trade #' + link.facilitatesTradeId);
+			
+			if (!dryRun) {
+				cut.facilitatedTradeId = trade._id;
+				if (link.timestamp) {
+					cut.timestamp = new Date(link.timestamp);
+				}
+				await cut.save();
+				console.log('    ✓ Done');
+			}
+		}
+		console.log('');
+	}
+
+	// =========================================================================
+	// Sleeper Imports (FA transactions)
+	// =========================================================================
+	if (fixups.sleeperImports && fixups.sleeperImports.length > 0) {
+		console.log('=== Sleeper Imports ===');
+		
+		// Load franchises with current regime display names
+		var allFranchises = await Franchise.find({});
+		var allRegimes = await Regime.find({}).populate('ownerIds', 'name');
+		var franchiseByRosterId = {};
+		
+		allFranchises.forEach(function(f) {
+			// Find current regime for this franchise (check tenures, not franchiseId on regime)
+			var currentRegime = allRegimes.find(function(r) {
+				return r.tenures && r.tenures.some(function(t) {
+					return t.franchiseId && t.franchiseId.toString() === f._id.toString() && !t.endSeason;
+				});
+			});
+			franchiseByRosterId[f.rosterId] = {
+				_id: f._id,
+				rosterId: f.rosterId,
+				displayName: currentRegime ? currentRegime.displayName : ('Roster ' + f.rosterId)
+			};
+		});
+		
+		for (var i = 0; i < fixups.sleeperImports.length; i++) {
+			var imp = fixups.sleeperImports[i];
+			var timestamp = new Date(imp.timestamp);
+			var season = timestamp.getFullYear();
+			
+			// Get franchise
+			var franchise = franchiseByRosterId[imp.rosterId];
+			if (!franchise) {
+				console.log('  ✗ Roster ID ' + imp.rosterId + ' not found');
+				errors.push('Roster ID ' + imp.rosterId + ' not found');
+				continue;
+			}
+			
+			if (imp.psoType === 'fa-cut') {
+				// Drops only - find and update existing cut
+				for (var d = 0; d < imp.drops.length; d++) {
+					var drop = imp.drops[d];
+					var player = await Player.findOne({ sleeperId: drop.sleeperId });
+					if (!player) {
+						console.log('  ✗ Player ' + drop.playerName + ' (sleeperId ' + drop.sleeperId + ') not found');
+						errors.push('Player ' + drop.playerName + ' not found');
+						continue;
+					}
+					
+					// Find matching cut (same player, franchise, year, with placeholder timestamp)
+					var yearStart = new Date(season, 0, 1);
+					var yearEnd = new Date(season + 1, 0, 1);
+					var cut = await Transaction.findOne({
+						type: 'fa-cut',
+						playerId: player._id,
+						franchiseId: franchise._id,
+						timestamp: { $gte: yearStart, $lt: yearEnd }
+					});
+					
+					if (!cut) {
+						console.log('  ⚠ No cut found for ' + drop.playerName + ' by ' + franchise.displayName + ' in ' + season + ' (skipping)');
+						continue;
+					}
+					
+					console.log('  Cut: ' + drop.playerName + ' by ' + franchise.displayName + ' → ' + timestamp.toISOString().slice(0, 10));
+					
+					if (!dryRun) {
+						cut.timestamp = timestamp;
+						cut.source = 'sleeper';
+						await cut.save();
+						console.log('    ✓ Done');
+					}
+				}
+				
+			} else if (imp.psoType === 'fa-pickup') {
+				// Adds only - create new pickup
+				for (var a = 0; a < imp.adds.length; a++) {
+					var add = imp.adds[a];
+					var player = await Player.findOne({ sleeperId: add.sleeperId });
+					if (!player) {
+						console.log('  ✗ Player ' + add.playerName + ' (sleeperId ' + add.sleeperId + ') not found');
+						errors.push('Player ' + add.playerName + ' not found');
+						continue;
+					}
+					
+					// Check if pickup already exists (idempotency)
+					var existingPickup = await Transaction.findOne({
+						type: 'fa-pickup',
+						playerId: player._id,
+						franchiseId: franchise._id,
+						timestamp: timestamp
+					});
+					
+					if (existingPickup) {
+						console.log('  Pickup: ' + add.playerName + ' by ' + franchise.displayName + ' (already exists)');
+					} else {
+						console.log('  Pickup: ' + add.playerName + ' by ' + franchise.displayName + ' ($' + imp.salary + ' FA/' + (season % 100) + ')');
+						
+						if (!dryRun) {
+							await Transaction.create({
+								type: 'fa-pickup',
+								timestamp: timestamp,
+								source: 'sleeper',
+								franchiseId: franchise._id,
+								playerId: player._id,
+								salary: imp.salary,
+								startYear: null,
+								endYear: season
+							});
+							console.log('    ✓ Done');
+						}
+					}
+				}
+				
+			} else if (imp.psoType === 'fa-swap') {
+				// Add + drop - find the cut, delete it, create pickup with dropped field
+				if (imp.adds.length !== 1 || imp.drops.length !== 1) {
+					console.log('  ✗ Swap with multiple adds/drops not supported: ' + imp.adds.length + ' adds, ' + imp.drops.length + ' drops');
+					errors.push('Multi-player swap not supported');
+					continue;
+				}
+				
+				var add = imp.adds[0];
+				var drop = imp.drops[0];
+				
+				var addPlayer = await Player.findOne({ sleeperId: add.sleeperId });
+				var dropPlayer = await Player.findOne({ sleeperId: drop.sleeperId });
+				
+				if (!addPlayer) {
+					console.log('  ✗ Player ' + add.playerName + ' (sleeperId ' + add.sleeperId + ') not found');
+					errors.push('Player ' + add.playerName + ' not found');
+					continue;
+				}
+				if (!dropPlayer) {
+					console.log('  ✗ Player ' + drop.playerName + ' (sleeperId ' + drop.sleeperId + ') not found');
+					errors.push('Player ' + drop.playerName + ' not found');
+					continue;
+				}
+				
+				// Find the existing cut for the dropped player
+				var yearStart = new Date(season, 0, 1);
+				var yearEnd = new Date(season + 1, 0, 1);
+				var existingCut = await Transaction.findOne({
+					type: 'fa-cut',
+					playerId: dropPlayer._id,
+					franchiseId: franchise._id,
+					timestamp: { $gte: yearStart, $lt: yearEnd }
+				});
+				
+				if (!existingCut) {
+					console.log('  ⚠ No cut found for ' + drop.playerName + ' by ' + franchise.displayName + ' in ' + season + ' (skipping swap)');
+					continue;
+				}
+				
+				// Check if swap pickup already exists (idempotency)
+				var existingSwapPickup = await Transaction.findOne({
+					type: 'fa-pickup',
+					playerId: addPlayer._id,
+					franchiseId: franchise._id,
+					timestamp: timestamp
+				});
+				
+				if (existingSwapPickup) {
+					console.log('  Swap: ' + franchise.displayName + ' adds ' + add.playerName + ', drops ' + drop.playerName + ' (already exists)');
+				} else {
+					console.log('  Swap: ' + franchise.displayName + ' adds ' + add.playerName + ' ($' + imp.salary + '), drops ' + drop.playerName);
+					
+					if (!dryRun) {
+						// Delete the standalone cut
+						await Transaction.deleteOne({ _id: existingCut._id });
+						
+						// Create the pickup with dropped field
+						await Transaction.create({
+							type: 'fa-pickup',
+							timestamp: timestamp,
+							source: 'sleeper',
+							franchiseId: franchise._id,
+							playerId: addPlayer._id,
+							salary: imp.salary,
+							startYear: null,
+							endYear: season,
+							dropped: {
+								playerId: dropPlayer._id,
+								salary: existingCut.salary,
+								startYear: existingCut.startYear,
+								endYear: existingCut.endYear,
+								buyOuts: existingCut.buyOuts || []
+							}
+						});
+						console.log('    ✓ Done');
+					}
+				}
+			}
+		}
+		console.log('');
+	}
+
+	// =========================================================================
+	// Save modified fixup files
+	// =========================================================================
+	if (!dryRun) {
+		if (fixupsModified) {
+			saveFixups();
+			console.log('Updated fixups.json with resolved fixupRefs\n');
+		}
+		saveSleeperFixups();
 	}
 
 	// =========================================================================

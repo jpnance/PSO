@@ -663,6 +663,7 @@ async function run() {
 	var skipped = 0;
 	var errors = [];
 	var createdHistoricalThisRun = {};  // Track historical players created this run
+	var fixupRefCounter = 1;  // Sequential ID for fixup targeting
 	
 	for (var i = 0; i < analysis.cuts.length; i++) {
 		var cut = analysis.cuts[i];
@@ -701,11 +702,15 @@ async function run() {
 		try {
 			await Transaction.create({
 				type: 'fa-cut',
-				timestamp: new Date(Date.UTC(cut.cutYear, 0, 1, 12, 0, 0)), // Jan 1 noon UTC (displays correctly in ET)
+				timestamp: new Date(Date.UTC(cut.cutYear, 0, 15, 12, 0, 0)), // Jan 15 noon UTC - placeholder date in dead period
 				source: 'snapshot',
 				franchiseId: franchiseId,
 				playerId: playerId,
-				buyOuts: cut.buyOuts
+				salary: cut.salary,
+				startYear: cut.startYear,
+				endYear: cut.endYear,
+				buyOuts: cut.buyOuts,
+				fixupRef: fixupRefCounter++
 			});
 			created++;
 		} catch (err) {

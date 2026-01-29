@@ -428,6 +428,151 @@ exports.parseTransactions = async function(req, res) {
 	res.redirect('/admin/sleeper-import?year=' + year);
 };
 
+// Generate fixups from annotations
+exports.generateFixups = async function(req, res) {
+	try {
+		var year = req.query.year;
+		
+		if (!year) {
+			return res.status(400).json({ success: false, error: 'Missing year' });
+		}
+		
+		var filePath = path.join(SLEEPER_DATA_DIR, 'transactions-' + year + '.json');
+		
+		if (!fs.existsSync(filePath)) {
+			return res.status(404).json({ success: false, error: 'File not found for year ' + year });
+		}
+		
+		var fileContent = fs.readFileSync(filePath, 'utf8');
+		var jsonData = JSON.parse(fileContent);
+		
+		var transactions;
+		if (jsonData.data && jsonData.data.league_transactions_filtered) {
+			transactions = jsonData.data.league_transactions_filtered;
+		} else if (Array.isArray(jsonData)) {
+			transactions = jsonData;
+		} else {
+			return res.status(400).json({ success: false, error: 'Could not find transactions array' });
+		}
+		
+		// Find annotated transactions
+		var fixups = {
+			sleeperCutTradeLinks: [],
+			sleeperImports: [],
+			sleeperIgnored: []
+		};
+		
+		transactions.forEach(function(tx) {
+			if (!tx._pso) return;
+			
+			var disposition = tx._pso.disposition;
+			var timestamp = new Date(tx.created).toISOString();
+			
+			if (disposition === 'trade-facilitating' && tx._pso.facilitatesTradeId) {
+				// Each drop in the transaction gets its own fixup entry
+				var drops = tx.drops ? Object.keys(tx.drops) : [];
+				drops.forEach(function(sleeperId) {
+					var playerData = tx.player_map && tx.player_map[sleeperId];
+					var playerName = playerData ? (playerData.first_name + ' ' + playerData.last_name) : sleeperId;
+					fixups.sleeperCutTradeLinks.push({
+						fixupRef: null,  // filled in after interactive resolution
+						facilitatesTradeId: tx._pso.facilitatesTradeId,
+						sleeperId: sleeperId,
+						playerName: playerName,
+						timestamp: timestamp
+					});
+				});
+			} else if (disposition === 'import') {
+				// Get roster ID (franchise) - for adds, it's the value in the adds object
+				var rosterId = null;
+				if (tx.adds) {
+					var addPlayerIds = Object.keys(tx.adds);
+					if (addPlayerIds.length > 0) {
+						rosterId = tx.adds[addPlayerIds[0]];
+					}
+				}
+				if (!rosterId && tx.roster_ids && tx.roster_ids.length > 0) {
+					rosterId = tx.roster_ids[0];
+				}
+				
+				// Get salary from waiver bid
+				var salary = tx.settings && tx.settings.waiver_bid !== undefined ? tx.settings.waiver_bid : 0;
+				
+				// Build add/drop details with player names
+				var adds = [];
+				var drops = [];
+				
+				if (tx.adds) {
+					Object.keys(tx.adds).forEach(function(sleeperId) {
+						var playerData = tx.player_map && tx.player_map[sleeperId];
+						var playerName = playerData ? (playerData.first_name + ' ' + playerData.last_name) : sleeperId;
+						adds.push({ sleeperId: sleeperId, playerName: playerName });
+					});
+				}
+				
+				if (tx.drops) {
+					Object.keys(tx.drops).forEach(function(sleeperId) {
+						var playerData = tx.player_map && tx.player_map[sleeperId];
+						var playerName = playerData ? (playerData.first_name + ' ' + playerData.last_name) : sleeperId;
+						drops.push({ sleeperId: sleeperId, playerName: playerName });
+					});
+				}
+				
+				// Determine transaction type
+				var psoType = 'fa-pickup';
+				if (adds.length > 0 && drops.length > 0) {
+					psoType = 'fa-swap';
+				} else if (drops.length > 0 && adds.length === 0) {
+					psoType = 'fa-cut';
+				}
+				
+				fixups.sleeperImports.push({
+					sleeperTxId: tx.transaction_id,
+					timestamp: timestamp,
+					psoType: psoType,
+					rosterId: rosterId,
+					salary: salary,
+					adds: adds,
+					drops: drops
+				});
+			} else if (disposition === 'ignore') {
+				fixups.sleeperIgnored.push({
+					sleeperTxId: tx.transaction_id,
+					timestamp: timestamp,
+					type: tx.type
+				});
+			}
+		});
+		
+		// Return with tab indentation for consistency with fixups.json
+		res.set('Content-Type', 'application/json');
+		res.send(JSON.stringify({ success: true, fixups: fixups }, null, '\t'));
+	} catch (err) {
+		res.status(500).json({ success: false, error: err.message });
+	}
+};
+
+// Save generated fixups to a file
+exports.saveFixupsToFile = async function(req, res) {
+	try {
+		var year = req.body.year;
+		var fixups = req.body.fixups;
+		
+		if (!year || !fixups) {
+			return res.status(400).json({ success: false, error: 'Missing year or fixups' });
+		}
+		
+		var filename = 'sleeper-fixups-' + year + '.json';
+		var filePath = path.join(__dirname, '../data/config', filename);
+		
+		fs.writeFileSync(filePath, JSON.stringify(fixups, null, '\t'));
+		
+		res.json({ success: true, filename: filename });
+	} catch (err) {
+		res.status(500).json({ success: false, error: err.message });
+	}
+};
+
 // Save annotations back to the JSON file
 exports.saveAnnotations = async function(req, res) {
 	try {

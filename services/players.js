@@ -106,6 +106,7 @@ exports.playerDetail = async function(request, response) {
 		})
 			.populate('franchiseId')
 			.populate('playerId', 'name')
+			.populate('facilitatedTradeId', 'tradeId')
 			.sort({ timestamp: -1 })
 			.lean();
 		
@@ -178,12 +179,47 @@ exports.playerDetail = async function(request, response) {
 					break;
 					
 				case 'fa-pickup':
-					entry.description = 'Signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-					entry.salary = t.salary;
+					// Check if this player was picked up or dropped in this transaction
+					if (t.dropped && t.dropped.playerId && t.dropped.playerId.toString() === playerId) {
+						// This player was dropped to make room for someone else
+						entry.type = 'fa-cut';  // Display as a cut
+						entry.description = 'Dropped by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+						if (t.dropped.salary) {
+							entry.salary = t.dropped.salary;
+						}
+						if (t.dropped.startYear || t.dropped.endYear) {
+							entry.startYear = t.dropped.startYear;
+							entry.endYear = t.dropped.endYear;
+						}
+						if (t.dropped.buyOuts && t.dropped.buyOuts.length > 0) {
+							entry.buyOuts = t.dropped.buyOuts;
+						}
+					} else {
+						// This player was picked up
+						entry.description = 'Signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+						entry.salary = t.salary;
+						if (t.startYear || t.endYear) {
+							entry.startYear = t.startYear;
+							entry.endYear = t.endYear;
+						}
+					}
 					break;
 					
 				case 'fa-cut':
 					entry.description = 'Cut by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					if (t.facilitatedTradeId) {
+						entry.facilitatedTradeId = t.facilitatedTradeId.tradeId;
+					}
+					if (t.salary) {
+						entry.salary = t.salary;
+					}
+					if (t.startYear || t.endYear) {
+						entry.startYear = t.startYear;
+						entry.endYear = t.endYear;
+					}
+					if (t.buyOuts && t.buyOuts.length > 0) {
+						entry.buyOuts = t.buyOuts;
+					}
 					break;
 					
 				case 'draft-select':

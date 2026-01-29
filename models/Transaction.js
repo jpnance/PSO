@@ -8,6 +8,9 @@ var buyOutSchema = new Schema({
 
 var droppedPlayerSchema = new Schema({
 	playerId: { type: Schema.Types.ObjectId, ref: 'Player', required: true },
+	salary: { type: Number },
+	startYear: { type: Number },
+	endYear: { type: Number },
 	buyOuts: [buyOutSchema]
 }, { _id: false });
 
@@ -87,6 +90,7 @@ var transactionSchema = new Schema({
 	// FA cut fields (uses franchiseId, playerId from above)
 	buyOuts: [buyOutSchema],
 	facilitatedTradeId: { type: Schema.Types.ObjectId, ref: 'Transaction' },
+	fixupRef: { type: Number },  // stable ID for fixup targeting, assigned during seeding
 
 	// Draft fields (uses franchiseId, playerId, salary from above)
 	pickId: { type: Schema.Types.ObjectId, ref: 'Pick' },

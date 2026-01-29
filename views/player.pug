@@ -73,12 +73,39 @@ block content
 									i.fa(class=iconClass)
 								div.player-timeline__content
 									div.player-timeline__main
-										if entry.type === 'trade' && entry.tradeId
-											a(href='/trades/' + entry.tradeId)= entry.description
-										else if entry.type === 'draft-select' && entry.draftSeason
-											a(href='/draft/' + entry.draftSeason)= entry.description
-										else
-											span= entry.description
+									if entry.type === 'trade' && entry.tradeId
+										a(href='/trades/' + entry.tradeId)= entry.description
+									else if entry.type === 'draft-select' && entry.draftSeason
+										a(href='/draft/' + entry.draftSeason)= entry.description
+									else if entry.type === 'fa-cut'
+										span= entry.description
+										if entry.facilitatedTradeId
+											|  for 
+											a(href='/trades/' + entry.facilitatedTradeId) Trade ##{entry.facilitatedTradeId}
+										if entry.salary
+											br
+											span.player-timeline__salary
+												= formatMoney(entry.salary)
+												if entry.endYear
+													|  · #{formatContractYears(entry.startYear, entry.endYear)}
+											if entry.buyOuts && entry.buyOuts.length > 0
+												span.text-muted.ml-2.small
+													| (buyout: 
+													each bo, idx in entry.buyOuts
+														if idx > 0
+															| , 
+														| #{formatMoney(bo.amount)} in #{bo.season}
+													| )
+									else if entry.type === 'fa-pickup'
+										span= entry.description
+										if entry.salary
+											br
+											span.player-timeline__salary
+												= formatMoney(entry.salary)
+												if entry.endYear
+													|  · #{formatContractYears(entry.startYear, entry.endYear)}
+									else
+										span= entry.description
 										if entry.salary
 											span.player-timeline__salary= formatMoney(entry.salary)
 									div.player-timeline__date= formatDateMedium(entry.timestamp)

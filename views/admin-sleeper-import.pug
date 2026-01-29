@@ -90,9 +90,31 @@ block content
 						i.fa.fa-save.mr-1
 						| Save Annotations
 					span#saveStatus.ml-2.text-muted
+					button#generateFixups.btn.btn-outline-secondary.ml-3
+						i.fa.fa-wrench.mr-1
+						| Generate Fixups
 				div
 					span.text-muted.small
 						| Cluster: transactions within 120s
+
+			//- Fixups preview modal
+			#fixupsModal.modal.fade(tabindex='-1')
+				.modal-dialog.modal-lg
+					.modal-content
+						.modal-header
+							h5.modal-title Generated Fixups
+							button.close(type='button' data-dismiss='modal')
+								span &times;
+						.modal-body
+							pre#fixupsOutput.bg-light.p-3(style='max-height: 400px; overflow: auto; font-size: 0.75rem')
+						.modal-footer
+							button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+							button#copyFixups.btn.btn-outline-primary(type='button')
+								i.fa.fa-copy.mr-1
+								| Copy to Clipboard
+							button#saveFixupsToFile.btn.btn-primary(type='button')
+								i.fa.fa-save.mr-1
+								| Save to data/config/
 
 			//- Filter tabs
 			ul.nav.nav-tabs.mb-3#typeTabs(role='tablist')
@@ -334,6 +356,71 @@ block scripts
 					.catch(function(err) {
 						saveStatus.textContent = 'Error: ' + err.message;
 						saveBtn.disabled = false;
+					});
+				});
+				
+				// Generate fixups
+				var generateBtn = document.getElementById('generateFixups');
+				var fixupsOutput = document.getElementById('fixupsOutput');
+				var copyBtn = document.getElementById('copyFixups');
+				
+				generateBtn.addEventListener('click', function() {
+					generateBtn.disabled = true;
+					generateBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-1"></i> Generating...';
+					
+					fetch('/admin/sleeper-import/fixups?year=' + #{selectedYear})
+						.then(function(res) { return res.json(); })
+						.then(function(data) {
+							fixupsOutput.textContent = JSON.stringify(data.fixups, null, '\t');
+							$('#fixupsModal').modal('show');
+						})
+						.catch(function(err) {
+							alert('Error: ' + err.message);
+						})
+						.finally(function() {
+							generateBtn.disabled = false;
+							generateBtn.innerHTML = '<i class="fa fa-wrench mr-1"></i> Generate Fixups';
+						});
+				});
+				
+				copyBtn.addEventListener('click', function() {
+					navigator.clipboard.writeText(fixupsOutput.textContent).then(function() {
+						copyBtn.innerHTML = '<i class="fa fa-check mr-1"></i> Copied!';
+						setTimeout(function() {
+							copyBtn.innerHTML = '<i class="fa fa-copy mr-1"></i> Copy to Clipboard';
+						}, 2000);
+					});
+				});
+				
+				// Save fixups to file
+				var saveToFileBtn = document.getElementById('saveFixupsToFile');
+				saveToFileBtn.addEventListener('click', function() {
+					saveToFileBtn.disabled = true;
+					saveToFileBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-1"></i> Saving...';
+					
+					fetch('/admin/sleeper-import/save-fixups', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ year: #{selectedYear}, fixups: JSON.parse(fixupsOutput.textContent) })
+					})
+					.then(function(res) { return res.json(); })
+					.then(function(data) {
+						if (data.success) {
+							saveToFileBtn.innerHTML = '<i class="fa fa-check mr-1"></i> Saved to ' + data.filename;
+							setTimeout(function() {
+								saveToFileBtn.innerHTML = '<i class="fa fa-save mr-1"></i> Save to data/config/';
+								saveToFileBtn.disabled = false;
+							}, 3000);
+						} else {
+							alert('Error: ' + data.error);
+							saveToFileBtn.innerHTML = '<i class="fa fa-save mr-1"></i> Save to data/config/';
+							saveToFileBtn.disabled = false;
+						}
+					})
+					.catch(function(err) {
+						alert('Error: ' + err.message);
+						saveToFileBtn.innerHTML = '<i class="fa fa-save mr-1"></i> Save to data/config/';
+						saveToFileBtn.disabled = false;
 					});
 				});
 			})();
