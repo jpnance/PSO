@@ -16,7 +16,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var resolutionsPath = path.join(__dirname, 'player-resolutions.json');
+var resolutionsPath = path.join(__dirname, '../config/player-resolutions.json');
 var resolutions = null;
 var dirty = false;
 
