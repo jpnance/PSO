@@ -21,6 +21,15 @@ var resolver = require('../utils/player-resolver');
 
 var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
 
+// Build ESPN ID → Sleeper player lookup
+var espnToSleeper = {};
+sleeperData.forEach(function(p) {
+	if (p.espn_id) {
+		espnToSleeper[String(p.espn_id)] = p;
+	}
+});
+console.log('Loaded', Object.keys(espnToSleeper).length, 'ESPN ID mappings from Sleeper data');
+
 mongoose.connect(process.env.MONGODB_URI);
 
 var rl = readline.createInterface({
@@ -303,12 +312,26 @@ function parseTradeContent(html, tradeDate) {
 			// Player with link: <a href="...">Player Name</a> ($salary, start/end) or ($salary, year)
 			var playerMatch = item.match(/<a[^>]*>([^<]+)<\/a>\s*\((\$?\d+),?\s*([^)]+)\)/);
 			if (playerMatch) {
+				// Extract href separately since it could be anywhere in the tag
+				var hrefMatch = item.match(/<a[^>]*\shref="([^"]*)"[^>]*>/);
+				var href = hrefMatch ? hrefMatch[1] : null;
 				var contractStr = playerMatch[3].trim();
 				var salary = parseInt(playerMatch[2].replace('$', ''));
 				var contract = parseContract(contractStr, salary, tradeDate);
 
+				// Try to extract ESPN ID from the href
+				// Patterns: /nfl/player/_/id/12345/name or /nfl/players/profile?playerId=12345
+				var espnId = null;
+				if (href) {
+					var espnIdMatch = href.match(/\/id\/(\d+)\//) || href.match(/playerId=(\d+)/);
+					if (espnIdMatch) {
+						espnId = espnIdMatch[1];
+					}
+				}
+
 				party.receives.players.push({
 					name: playerMatch[1].trim(),
+					espnId: espnId,
 					salary: salary,
 					startYear: contract.startYear,
 					endYear: contract.endYear,
@@ -406,8 +429,20 @@ function parseTradeContent(html, tradeDate) {
 			// RFA rights
 			var rfaMatch = item.match(/<a[^>]*>([^<]+)<\/a>\s*\(RFA rights\)/i) || item.match(/<li>\s*([A-Za-z][A-Za-z\.\s'&#;0-9-]+[A-Za-z])\s*\(RFA rights\)/i);
 			if (rfaMatch) {
+				// Extract ESPN ID from href if present
+				var rfaHrefMatch = item.match(/<a[^>]*\shref="([^"]*)"[^>]*>/);
+				var rfaHref = rfaHrefMatch ? rfaHrefMatch[1] : null;
+				var rfaEspnId = null;
+				if (rfaHref) {
+					var rfaEspnIdMatch = rfaHref.match(/\/id\/(\d+)\//) || rfaHref.match(/playerId=(\d+)/);
+					if (rfaEspnIdMatch) {
+						rfaEspnId = rfaEspnIdMatch[1];
+					}
+				}
+
 				party.receives.players.push({
 					name: rfaMatch[1].trim().replace(/&#8217;/g, "'"),
+					espnId: rfaEspnId,
 					rfaRights: true,
 					salary: null,
 					startYear: null,
@@ -518,10 +553,29 @@ var nicknames = {
 	'ike': 'isaac', 'isaac': 'ike'
 };
 
-async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
+async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, espnId) {
 	if (!rawName) return null;
 	
 	var name = decodeHtmlEntities(rawName);
+	
+	// Try ESPN ID first - this is unambiguous
+	if (espnId && espnToSleeper[espnId]) {
+		var sleeperPlayer = espnToSleeper[espnId];
+		var player = await Player.findOne({ sleeperId: sleeperPlayer.player_id });
+		if (player) {
+			// Cache this resolution for future runs
+			resolver.addResolution(name, sleeperPlayer.player_id, null, contextInfo);
+			return player._id;
+		}
+		var newPlayer = await Player.create({
+			name: sleeperPlayer.full_name,
+			sleeperId: sleeperPlayer.player_id,
+			positions: sleeperPlayer.fantasy_positions || []
+		});
+		resolver.addResolution(name, sleeperPlayer.player_id, null, contextInfo);
+		return newPlayer._id;
+	}
+	
 	var cached = resolver.lookup(name, contextInfo);
 	
 	if (cached && !cached.ambiguous && cached.sleeperId) {
@@ -553,7 +607,10 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 		return newPlayer._id;
 	}
 	
-	var sleeperSearchName = name.replace(/[\. '-]/g, '').toLowerCase();
+	var sleeperSearchName = name
+		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')  // Strip ordinals/suffixes
+		.replace(/[\. '-]/g, '')
+		.toLowerCase();
 	
 	var matches = sleeperData.filter(function(p) {
 		return p.search_full_name === sleeperSearchName;
@@ -601,6 +658,7 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 		
 		console.log('\n⚠️  ' + (cached && cached.ambiguous ? 'Ambiguous name: ' : 'Multiple matches for: ') + name);
 		console.log('   Trade context: ' + tradeContext);
+		if (tradeUrl) console.log('   WordPress: ' + tradeUrl);
 		displayMatches.forEach(function(m, i) {
 			var details = [
 				m.full_name,
@@ -614,8 +672,15 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 			console.log('  ' + (i + 1) + ') ' + details);
 		});
 		console.log('  0) Create as historical player (none of the above)');
+		console.log('  s) Skip this player for now');
 
 		var choice = await prompt('Select option: ');
+		
+		if (choice.toLowerCase() === 's') {
+			console.log('  Skipped - will need manual resolution later');
+			return null;
+		}
+		
 		var idx = parseInt(choice);
 
 		if (idx > 0 && idx <= displayMatches.length) {
@@ -643,7 +708,9 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 		if (nicknames[firstName] && lastName) {
 			var altFirstName = nicknames[firstName].charAt(0).toUpperCase() + nicknames[firstName].slice(1);
 			var altFullName = altFirstName + ' ' + lastName;
-			var altSearchName = altFullName.replace(/[\. '-]/g, '').toLowerCase();
+			var altSearchName = altFullName
+				.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')
+				.replace(/[\. '-]/g, '').toLowerCase();
 			
 			var altMatches = sleeperData.filter(function(p) {
 				return p.search_full_name === altSearchName;
@@ -652,6 +719,7 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 			if (altMatches.length > 0) {
 				console.log('\n⚠️  No matches for "' + name + '", but found matches for "' + altFullName + '":');
 				console.log('   Trade context: ' + tradeContext);
+				if (tradeUrl) console.log('   WordPress: ' + tradeUrl);
 				altMatches.forEach(function(m, i) {
 					var details = [
 						m.full_name,
@@ -664,8 +732,15 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 					console.log('  ' + (i + 1) + ') ' + details);
 				});
 				console.log('  0) None of these');
+				console.log('  s) Skip this player for now');
 				
 				var altChoice = await prompt('Select option: ');
+				
+				if (altChoice.toLowerCase() === 's') {
+					console.log('  Skipped - will need manual resolution later');
+					return null;
+				}
+				
 				var altIdx = parseInt(altChoice);
 				
 				if (altIdx > 0 && altIdx <= altMatches.length) {
@@ -688,15 +763,24 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 		
 		console.log('\n⚠️  No Sleeper matches for: ' + name);
 		console.log('   Trade context: ' + tradeContext);
+		if (tradeUrl) console.log('   WordPress: ' + tradeUrl);
 		console.log('  1) Create as historical player');
 		console.log('  2) Search by different name');
 		console.log('  3) Enter Sleeper ID manually');
+		console.log('  s) Skip this player for now');
 
 		var choice = await prompt('Select option: ');
 
+		if (choice.toLowerCase() === 's') {
+			console.log('  Skipped - will need manual resolution later');
+			return null;
+		}
+
 		if (choice === '2') {
 			var altName = await prompt('Enter alternate name to search: ');
-			var altSearchName = altName.replace(/[\. '-]/g, '').toLowerCase();
+			var altSearchName = altName
+				.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')
+				.replace(/[\. '-]/g, '').toLowerCase();
 			var altMatches = sleeperData.filter(function(p) {
 				return p.search_full_name === altSearchName;
 			});
@@ -782,8 +866,15 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo) {
 			console.log('    ' + (i + 1) + ') ' + p.name + ' (ID: ' + p._id + ')');
 		});
 		console.log('    0) Create NEW historical player (different person)');
+		console.log('    s) Skip this player for now');
 		
 		var histChoice = await prompt('  Select option: ');
+		
+		if (histChoice.toLowerCase() === 's') {
+			console.log('  Skipped - will need manual resolution later');
+			return null;
+		}
+		
 		var histIdx = parseInt(histChoice);
 		
 		if (histIdx > 0 && histIdx <= matchingHistoricals.length) {
@@ -933,9 +1024,10 @@ async function seed() {
 			for (var k = 0; k < p.receives.players.length; k++) {
 				var player = p.receives.players[k];
 				var tradeContext = 'Trade #' + trade.tradeNumber + ' (' + new Date(trade.timestamp).toISOString().split('T')[0] + ') - ' + p.owner + ' receives';
+				var tradeUrl = trade.url;
 				var contextInfo = { year: tradeYear, franchise: p.owner.toLowerCase() };
 				
-				var playerId = await findOrCreatePlayer(player.name, tradeContext, contextInfo);
+				var playerId = await findOrCreatePlayer(player.name, tradeContext, contextInfo, tradeUrl, player.espnId);
 
 				if (!playerId) {
 					unmatchedPlayers.add(player.name);

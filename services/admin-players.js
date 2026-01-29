@@ -128,6 +128,12 @@ async function editPlayer(request, response) {
 	var newNotes = (body.notes || '').trim();
 	player.notes = newNotes || null;
 	
+	// Update college (only for historical players without sleeperId)
+	if (!player.sleeperId && body.college !== undefined) {
+		var newCollege = (body.college || '').trim();
+		player.college = newCollege || null;
+	}
+	
 	await player.save();
 	
 	response.redirect('/admin/players/' + playerId + '?saved=1');

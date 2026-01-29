@@ -67,6 +67,16 @@ block content
 								placeholder='Leave blank for historical players'
 							)
 						
+						if !player.sleeperId
+							div.form-group
+								label(for='college') College
+								input#college.form-control(
+									type='text'
+									name='college'
+									value=player.college || ''
+									placeholder='e.g. USC, Syracuse'
+								)
+						
 						div.form-group
 							label(for='notes') Notes
 							input#notes.form-control(
@@ -140,12 +150,8 @@ block content
 							i.fa.fa-history.mr-1
 							| Historical Player
 						div.card-body
-							p.small.text-muted
+							p.small.text-muted.mb-0
 								| This player is not linked to Sleeper. Edits are safe and will not be overwritten.
-							if player.notes
-								dl.mb-0
-									dt Notes
-									dd= player.notes
 				
 				div.card.mb-4
 					div.card-header

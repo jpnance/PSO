@@ -46,7 +46,8 @@
 		{ "name": "J.T. O'Sullivan", "positions": ["QB"] },
 		{ "name": "Jon Baldwin", "positions": ["WR"] },
 		{ "name": "Charles Scott", "positions": ["RB"] },
-		{ "name": "Scotty McGee", "positions": ["DB"] }
+		{ "name": "Scotty McGee", "positions": ["DB"] },
+		{ "name": "Mike Williams", "college": "USC" }
 	],
 
 	"tradeContractCorrections": [

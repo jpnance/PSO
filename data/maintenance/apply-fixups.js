@@ -290,6 +290,73 @@ async function run() {
 	}
 
 	// =========================================================================
+	// Trade Player Corrections (swap wrong player for correct one)
+	// =========================================================================
+	if (fixups.tradePlayerCorrections && fixups.tradePlayerCorrections.length > 0) {
+		console.log('=== Trade Player Corrections ===');
+		
+		for (var i = 0; i < fixups.tradePlayerCorrections.length; i++) {
+			var tpc = fixups.tradePlayerCorrections[i];
+			var trade = await Transaction.findOne({ type: 'trade', tradeId: tpc.tradeId });
+			
+			if (!trade) {
+				console.log('  ✗ Trade #' + tpc.tradeId + ' not found');
+				errors.push('Trade #' + tpc.tradeId + ' not found');
+				continue;
+			}
+			
+			// Find the wrong and correct players
+			var wrongPlayer = await Player.findOne({ sleeperId: tpc.wrongSleeperId });
+			var correctPlayer = await Player.findOne({ sleeperId: tpc.correctSleeperId });
+			
+			if (!wrongPlayer) {
+				console.log('  ✗ Trade #' + tpc.tradeId + ': Wrong player (sleeperId ' + tpc.wrongSleeperId + ') not found');
+				errors.push('Trade #' + tpc.tradeId + ': Wrong player not found');
+				continue;
+			}
+			
+			if (!correctPlayer) {
+				console.log('  ✗ Trade #' + tpc.tradeId + ': Correct player (sleeperId ' + tpc.correctSleeperId + ') not found');
+				errors.push('Trade #' + tpc.tradeId + ': Correct player not found');
+				continue;
+			}
+			
+			// Find and replace the player in the trade
+			var found = false;
+			for (var p = 0; p < trade.parties.length; p++) {
+				var party = trade.parties[p];
+				for (var pl = 0; pl < (party.receives.players || []).length; pl++) {
+					var playerEntry = party.receives.players[pl];
+					if (playerEntry.playerId.toString() === wrongPlayer._id.toString()) {
+						found = true;
+						
+						console.log('  Trade #' + tpc.tradeId + ': ' + wrongPlayer.name + ' → ' + correctPlayer.name);
+						if (tpc.notes) console.log('    (' + tpc.notes + ')');
+						
+						if (!dryRun) {
+							playerEntry.playerId = correctPlayer._id;
+						}
+						break;
+					}
+				}
+				if (found) break;
+			}
+			
+			if (!found) {
+				console.log('  ✗ Trade #' + tpc.tradeId + ': Player "' + wrongPlayer.name + '" not in trade');
+				errors.push('Trade #' + tpc.tradeId + ': Player "' + wrongPlayer.name + '" not in trade');
+				continue;
+			}
+			
+			if (!dryRun) {
+				await trade.save();
+				console.log('    ✓ Done');
+			}
+		}
+		console.log('');
+	}
+
+	// =========================================================================
 	// Player Corrections
 	// =========================================================================
 	if (fixups.playerCorrections && fixups.playerCorrections.length > 0) {
@@ -317,14 +384,18 @@ async function run() {
 			
 			var body = { name: player.name };
 			
-			if (pc.positions) {
-				pc.positions.forEach(function(pos) { body['pos_' + pos] = 'on'; });
-				console.log('    positions: ' + pc.positions.join(', '));
-			}
-			if (pc.notes !== undefined) {
-				body.notes = pc.notes;
-				console.log('    notes: ' + pc.notes);
-			}
+		if (pc.positions) {
+			pc.positions.forEach(function(pos) { body['pos_' + pos] = 'on'; });
+			console.log('    positions: ' + pc.positions.join(', '));
+		}
+		if (pc.college !== undefined) {
+			body.college = pc.college;
+			console.log('    college: ' + pc.college);
+		}
+		if (pc.notes !== undefined) {
+			body.notes = pc.notes;
+			console.log('    notes: ' + pc.notes);
+		}
 			
 			if (!dryRun) {
 				var res = fakeResponse();

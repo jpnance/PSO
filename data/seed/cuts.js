@@ -168,18 +168,33 @@ function computeBuyOuts(salary, startYear, endYear, cutYear) {
 }
 
 // Find player in Sleeper data (returns match info, doesn't create anything)
-function findSleeperMatch(name, position, hint) {
-	var searchName = name.replace(/[\. '-]/g, '').toLowerCase();
+function findSleeperMatch(name, position, hint, rawName) {
+	var searchName = name
+		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')  // Strip ordinals/suffixes
+		.replace(/[\. '-]/g, '').toLowerCase();
 	
 	// Check resolver cache first
-	var cached = resolver.lookup(name, { position: position });
-	
-	if (cached && !cached.ambiguous) {
-		return {
-			type: cached.sleeperId ? 'cached' : 'historical',
-			sleeperId: cached.sleeperId,
-			name: cached.name
-		};
+	// If there's a hint, try the raw name (with hint) first and DON'T fall back to plain name
+	if (hint && rawName) {
+		var cachedWithHint = resolver.lookup(rawName, { position: position });
+		if (cachedWithHint && !cachedWithHint.ambiguous) {
+			return {
+				type: cachedWithHint.sleeperId ? 'cached' : 'historical',
+				sleeperId: cachedWithHint.sleeperId,
+				name: cachedWithHint.name
+			};
+		}
+		// Hint exists but no resolution for hinted name - treat as ambiguous, don't fall back
+	} else {
+		// No hint - check plain name
+		var cached = resolver.lookup(name, { position: position });
+		if (cached && !cached.ambiguous) {
+			return {
+				type: cached.sleeperId ? 'cached' : 'historical',
+				sleeperId: cached.sleeperId,
+				name: cached.name
+			};
+		}
 	}
 	
 	// If there's a hint, this name is implicitly ambiguous
@@ -306,7 +321,7 @@ async function analyzeCuts(rows) {
 	
 	for (var i = 0; i < cuts.length; i++) {
 		var cut = cuts[i];
-		var result = findSleeperMatch(cut.name, cut.position, cut.hint);
+		var result = findSleeperMatch(cut.name, cut.position, cut.hint, cut.rawName);
 		
 		switch (result.type) {
 			case 'cached':
@@ -405,7 +420,7 @@ async function analyzeCuts(rows) {
 
 // Resolve a player - may prompt interactively or auto-create historical
 async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThisRun) {
-	var result = findSleeperMatch(cut.name, cut.position, cut.hint);
+	var result = findSleeperMatch(cut.name, cut.position, cut.hint, cut.rawName);
 	
 	// Already cached with Sleeper ID
 	if (result.type === 'cached') {
@@ -438,7 +453,9 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 	
 	// Exact match - cache and return
 	if (result.type === 'exact' || result.type === 'exact-no-pos' || result.type === 'hint-match' || result.type === 'nickname') {
-		resolver.addResolution(cut.name, result.sleeperId);
+		// Use rawName if there's a hint, so "Mike Williams (TB)" saves as "mike williams tb"
+		var resolutionName = cut.hint ? cut.rawName : cut.name;
+		resolver.addResolution(resolutionName, result.sleeperId);
 		return result;
 	}
 	
@@ -455,7 +472,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 					await existingHistorical.save();
 					console.log('  Added position to existing historical: ' + cut.name + ' [' + existingHistorical.positions.join('/') + ']');
 				}
-				resolver.addResolution(cut.name, null, cut.name);
+				var resolutionName = cut.hint ? cut.rawName : cut.name;
+				resolver.addResolution(resolutionName, null, cut.name);
 				return { type: 'found-historical', playerId: existingHistorical._id };
 			}
 			
@@ -466,7 +484,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 				positions: [cut.position],
 				sleeperId: null
 			});
-			resolver.addResolution(cut.name, null, cut.name);
+			var resolutionName = cut.hint ? cut.rawName : cut.name;
+			resolver.addResolution(resolutionName, null, cut.name);
 			
 			// Track so we don't create again this run
 			if (createdHistoricalThisRun) {
@@ -484,7 +503,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 		
 		if (choice.trim()) {
 			var sleeperId = choice.trim();
-			resolver.addResolution(cut.name, sleeperId);
+			var resolutionName = cut.hint ? cut.rawName : cut.name;
+			resolver.addResolution(resolutionName, sleeperId);
 			var player = await Player.findOne({ sleeperId: sleeperId });
 			return { type: 'manual', sleeperId: sleeperId, playerId: player?._id };
 		} else {
@@ -504,7 +524,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 				} else {
 					console.log('  Using existing historical: ' + displayName);
 				}
-				resolver.addResolution(cut.name, null, displayName);
+				var resolutionName = cut.hint ? cut.rawName : cut.name;
+				resolver.addResolution(resolutionName, null, displayName);
 				return { type: 'found-historical', playerId: existingHistorical._id };
 			}
 			
@@ -513,7 +534,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 				positions: [cut.position],
 				sleeperId: null
 			});
-			resolver.addResolution(cut.name, null, displayName);
+			var resolutionName = cut.hint ? cut.rawName : cut.name;
+			resolver.addResolution(resolutionName, null, displayName);
 			
 			// Track so we don't create again this run
 			if (createdHistoricalThisRun) {
@@ -561,7 +583,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 				} else {
 					console.log('  Using existing historical: ' + displayName);
 				}
-				resolver.addResolution(cut.name, null, displayName);
+				var resolutionName = cut.hint ? cut.rawName : cut.name;
+				resolver.addResolution(resolutionName, null, displayName);
 				return { type: 'found-historical', playerId: existingHistorical._id };
 			}
 			
@@ -570,7 +593,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 				positions: [cut.position],
 				sleeperId: null
 			});
-			resolver.addResolution(cut.name, null, displayName);
+			var resolutionName = cut.hint ? cut.rawName : cut.name;
+			resolver.addResolution(resolutionName, null, displayName);
 			
 			// Track so we don't create again this run
 			if (createdHistoricalThisRun) {
@@ -581,7 +605,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThis
 		}
 		
 		var sleeperId = result.matches[idx - 1].player_id;
-		resolver.addResolution(cut.name, sleeperId);
+		var resolutionName = cut.hint ? cut.rawName : cut.name;
+		resolver.addResolution(resolutionName, sleeperId);
 		var player = await Player.findOne({ sleeperId: sleeperId });
 		return { type: 'disambiguated', sleeperId: sleeperId, playerId: player?._id };
 	}

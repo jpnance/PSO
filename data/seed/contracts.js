@@ -55,7 +55,9 @@ async function findSleeperPlayerId(name, positions, rosterInfo) {
 	}
 	
 	// Need to search Sleeper data
-	var searchName = name.replace(/[\. '-]/g, '').toLowerCase();
+	var searchName = name
+		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')  // Strip ordinals/suffixes
+		.replace(/[\. '-]/g, '').toLowerCase();
 	
 	var matches = sleeperData.filter(function(p) {
 		return p.search_full_name === searchName &&
