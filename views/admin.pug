@@ -6,13 +6,26 @@ block title
 
 block styles
 	link(rel='stylesheet' href='/css/league.css')
+	style.
+		@media (min-width: 1200px) {
+			.admin-container { max-width: 1400px; }
+		}
+		.admin-link-grid {
+			display: grid;
+			gap: 1rem;
+		}
+		@media (min-width: 768px) {
+			.admin-link-grid { grid-template-columns: 1fr 1fr; }
+		}
+		.admin-link-item a.btn { width: 100%; text-align: left; }
 
 block content
-	div.container.py-4
+	div.container-xl.admin-container.py-4
 		h1.mb-4 League Admin
 		
+		//- Top row: Status + Banner side by side, with Rollover conditional
 		div.row
-			div.col-lg-6
+			div.col-lg-4.col-xl-3
 				div.card.mb-4
 					div.card-header
 						strong Current Status
@@ -50,45 +63,51 @@ block content
 												span.badge.badge-success Enabled
 										else
 											span.badge.badge-secondary Disabled
-			
-			//- Only show advance button after championship day (post-season dead period, not pre-season)
-			if phase === 'dead-period' && config.deadPeriod && new Date() >= config.deadPeriod
-				div.col-lg-6
-					div.card.mb-4
-						div.card-header
+				
+				//- Only show advance button after championship day (post-season dead period, not pre-season)
+				if phase === 'dead-period' && config.deadPeriod && new Date() >= config.deadPeriod
+					div.card.mb-4.border-warning
+						div.card-header.bg-warning.text-dark
 							strong Season Rollover
 						div.card-body
-							p.text-muted Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
-							a.btn.btn-warning(href='/admin/advance-season') Advance to #{config.season + 1}
+							p.text-muted.small Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
+							a.btn.btn-warning.btn-block(href='/admin/advance-season') Advance to #{config.season + 1}
 			
-			div.col-lg-6
+			div.col-lg-8.col-xl-5
 				div.card.mb-4
 					div.card-header
 						strong Management
 					div.card-body
-						div.mb-3
-							a.btn.btn-outline-primary(href='/admin/sanity') Sanity Checks
-							div.small.text-muted.mt-1 Verify roster limits and budget accounting
-						div.mb-3
-							a.btn.btn-outline-primary(href='/admin/transfer-franchise') Transfer Ownership
-							div.small.text-muted.mt-1 Change a franchise's owner and start a new regime
-						div.mb-3
-							a.btn.btn-outline-primary(href='/admin/rosters') Cut Players
-							div.small.text-muted.mt-1 Release or drop players from any roster
-						div.mb-3
-							a.btn.btn-outline-primary(href='/admin/players') Player Database
-							div.small.text-muted.mt-1 Search, add, or edit player records
-						div.mb-3
-							a.btn.btn-outline-primary(href='/admin/trades') Edit Trade
-							div.small.text-muted.mt-1 Look up a past trade by number
-						div.mb-3
-							a.btn.btn-outline-primary(href='/admin/process-trade') Execute Trade
-							div.small.text-muted.mt-1 Manually process a trade as commissioner
-						div
-							a.btn.btn-outline-primary(href='/admin/proposals') Approve Trades
-							div.small.text-muted.mt-1 Review and approve owner-submitted trade proposals
-		
-			div.col-lg-6
+						div.admin-link-grid
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/sanity') Sanity Checks
+								div.small.text-muted.mt-1 Verify roster limits and budget accounting
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/transfer-franchise') Transfer Ownership
+								div.small.text-muted.mt-1 Change a franchise's owner and start a new regime
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/rosters') Cut Players
+								div.small.text-muted.mt-1 Release or drop players from any roster
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/players') Player Database
+								div.small.text-muted.mt-1 Search, add, or edit player records
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/trades') Edit Trade
+								div.small.text-muted.mt-1 Look up a past trade by number
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/process-trade') Execute Trade
+								div.small.text-muted.mt-1 Manually process a trade as commissioner
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/proposals') Approve Trades
+								div.small.text-muted.mt-1 Review and approve owner-submitted trade proposals
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/cuts') Fix Cut Timestamps
+								div.small.text-muted.mt-1 Review and correct cut transaction dates
+							div.admin-link-item
+								a.btn.btn-outline-primary(href='/admin/sleeper-import') Sleeper Import
+								div.small.text-muted.mt-1 Parse and validate Sleeper transaction data
+			
+			div.col-lg-4.col-xl-4
 				div.card.mb-4
 					div.card-header
 						strong Site Banner
@@ -113,73 +132,76 @@ block content
 				strong League Schedule
 			div.card-body
 				form(method='POST' action='/admin/config')
-					h5 Offseason
 					div.row
-						div.col-md-4
-							div.form-group
-								label(for='tradeWindow') Trade Window
-								input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDateISO(config.tradeWindow))
-								small.form-text.text-muted Saturday before Super Bowl
-						div.col-md-4
-							div.form-group
-								label(for='nflDraft') NFL Draft
-								input#nflDraft.form-control(type='date' name='nflDraft' value=formatDateISO(config.nflDraft))
-								small.form-text.text-muted Last Thursday of April
+						div.col-xl-6
+							h5 Offseason
+							div.row
+								div.col-sm-6
+									div.form-group
+										label(for='tradeWindow') Trade Window
+										input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDateISO(config.tradeWindow))
+										small.form-text.text-muted Saturday before Super Bowl
+								div.col-sm-6
+									div.form-group
+										label(for='nflDraft') NFL Draft
+										input#nflDraft.form-control(type='date' name='nflDraft' value=formatDateISO(config.nflDraft))
+										small.form-text.text-muted Last Thursday of April
+							
+							h5.mt-4 Pre-Season
+							div.row
+								div.col-sm-4
+									div.form-group
+										label(for='cutDay') Cut Day
+										input#cutDay.form-control(type='date' name='cutDay' value=formatDateISO(config.cutDay))
+										div.form-check.mt-1
+											input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
+											label.form-check-label(for='cutDayTentative') Tentative
+								div.col-sm-4
+									div.form-group
+										label(for='draftDay') Draft Day
+										input#draftDay.form-control(type='date' name='draftDay' value=formatDateISO(config.draftDay))
+										div.form-check.mt-1
+											input#draftDayTentative.form-check-input(type='checkbox' name='draftDayTentative' value='true' checked=config.draftDayTentative)
+											label.form-check-label(for='draftDayTentative') Tentative
+								div.col-sm-4
+									div.form-group
+										label(for='contractsDue') Contracts Due
+										input#contractsDue.form-control(type='date' name='contractsDue' value=formatDateISO(config.contractsDue))
+										div.form-check.mt-1
+											input#contractsDueTentative.form-check-input(type='checkbox' name='contractsDueTentative' value='true' checked=config.contractsDueTentative)
+											label.form-check-label(for='contractsDueTentative') Tentative
+						
+						div.col-xl-6
+							h5 Regular Season
+							div.row
+								div.col-sm-6.col-md-3.col-xl-6
+									div.form-group
+										label(for='faab') FAAB
+										input#faab.form-control(type='date' name='faab' value=formatDateISO(config.faab))
+										small.form-text.text-muted Wednesday before NFL Week 1
+								div.col-sm-6.col-md-3.col-xl-6
+									div.form-group
+										label(for='nflSeason') NFL Season
+										input#nflSeason.form-control(type='date' name='nflSeason' value=formatDateISO(config.nflSeason))
+										small.form-text.text-muted Thursday after Labor Day
+								div.col-sm-6.col-md-3.col-xl-6
+									div.form-group
+										label(for='tradeDeadline') Trade Deadline
+										input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDateISO(config.tradeDeadline))
+										small.form-text.text-muted Wednesday after NFL Week 9
+								div.col-sm-6.col-md-3.col-xl-6
+									div.form-group
+										label(for='playoffs') Playoffs
+										input#playoffs.form-control(type='date' name='playoffs' value=formatDateISO(config.playoffs))
+										small.form-text.text-muted After NFL Week 15
+							
+							h5.mt-4 End of Season
+							div.row
+								div.col-sm-6
+									div.form-group
+										label(for='deadPeriod') Dead Period
+										input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDateISO(config.deadPeriod))
+										small.form-text.text-muted Tuesday after NFL Week 17
 					
-					h5.mt-4 Pre-Season
-					div.row
-						div.col-md-4
-							div.form-group
-								label(for='cutDay') Cut Day
-								input#cutDay.form-control(type='date' name='cutDay' value=formatDateISO(config.cutDay))
-								div.form-check.mt-1
-									input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
-									label.form-check-label(for='cutDayTentative') Tentative
-						div.col-md-4
-							div.form-group
-								label(for='draftDay') Draft Day
-								input#draftDay.form-control(type='date' name='draftDay' value=formatDateISO(config.draftDay))
-								div.form-check.mt-1
-									input#draftDayTentative.form-check-input(type='checkbox' name='draftDayTentative' value='true' checked=config.draftDayTentative)
-									label.form-check-label(for='draftDayTentative') Tentative
-						div.col-md-4
-							div.form-group
-								label(for='contractsDue') Contracts Due
-								input#contractsDue.form-control(type='date' name='contractsDue' value=formatDateISO(config.contractsDue))
-								div.form-check.mt-1
-									input#contractsDueTentative.form-check-input(type='checkbox' name='contractsDueTentative' value='true' checked=config.contractsDueTentative)
-									label.form-check-label(for='contractsDueTentative') Tentative
-					
-					h5.mt-4 Regular Season
-					div.row
-						div.col-md-4
-							div.form-group
-								label(for='faab') FAAB
-								input#faab.form-control(type='date' name='faab' value=formatDateISO(config.faab))
-								small.form-text.text-muted Wednesday before NFL Week 1
-						div.col-md-4
-							div.form-group
-								label(for='nflSeason') NFL Season
-								input#nflSeason.form-control(type='date' name='nflSeason' value=formatDateISO(config.nflSeason))
-								small.form-text.text-muted Thursday after Labor Day
-						div.col-md-4
-							div.form-group
-								label(for='tradeDeadline') Trade Deadline
-								input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDateISO(config.tradeDeadline))
-								small.form-text.text-muted Wednesday after NFL Week 9
-					div.row
-						div.col-md-4
-							div.form-group
-								label(for='playoffs') Playoffs
-								input#playoffs.form-control(type='date' name='playoffs' value=formatDateISO(config.playoffs))
-								small.form-text.text-muted After NFL Week 15
-					
-					h5.mt-4 End of Season
-					div.row
-						div.col-md-4
-							div.form-group
-								label(for='deadPeriod') Dead Period
-								input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDateISO(config.deadPeriod))
-								small.form-text.text-muted Tuesday after NFL Week 17
-					
+					hr.my-4
 					button.btn.btn-primary(type='submit') Save Configuration

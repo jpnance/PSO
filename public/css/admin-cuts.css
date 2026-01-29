@@ -1,0 +1,115 @@
+/* ========================================
+   Admin Cuts - Cut Timestamp Review
+   ======================================== */
+
+/* Filters */
+.admin-cuts__filters {
+	padding: 1rem;
+	background: #f8f9fa;
+	border-radius: 6px;
+}
+
+/* Stats */
+.admin-cuts__stats {
+	font-size: 0.9rem;
+}
+
+/* Table */
+.admin-cuts__table {
+	font-size: 0.9rem;
+}
+
+.admin-cuts__table th {
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.admin-cuts__date {
+	font-family: var(--font-mono, 'SFMono-Regular', Consolas, monospace);
+	font-size: 0.85rem;
+}
+
+/* Timeline (for edit page) */
+.admin-cuts__timeline {
+	position: relative;
+}
+
+.admin-cuts__timeline-entry {
+	display: flex;
+	gap: 0.75rem;
+	padding: 0.6rem 0;
+	position: relative;
+}
+
+/* Connecting line between entries */
+.admin-cuts__timeline-entry:not(:last-child)::before {
+	content: '';
+	position: absolute;
+	left: calc(0.8rem - 1px);
+	top: calc(0.6rem + 1.6rem);
+	bottom: 0;
+	width: 2px;
+	background: #dee2e6;
+}
+
+.admin-cuts__timeline-icon {
+	flex-shrink: 0;
+	width: 1.6rem;
+	height: 1.6rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	border: 2px solid #dee2e6;
+	border-radius: 50%;
+	font-size: 0.7rem;
+	color: #666;
+	z-index: 1;
+}
+
+.admin-cuts__timeline-entry--current .admin-cuts__timeline-icon {
+	border-color: #007bff;
+	background: #e7f3ff;
+	color: #007bff;
+}
+
+.admin-cuts__timeline-content {
+	flex: 1;
+	min-width: 0;
+	padding-top: 0.15rem;
+}
+
+.admin-cuts__timeline-main {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.5rem;
+}
+
+.admin-cuts__timeline-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.2rem;
+}
+
+.admin-cuts__timeline-date {
+	font-family: var(--font-mono, 'SFMono-Regular', Consolas, monospace);
+	font-size: 0.8rem;
+	color: #666;
+}
+
+/* Highlight the current cut entry */
+.admin-cuts__timeline-entry--current {
+	background: #f0f7ff;
+	margin: 0 -0.75rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	border-radius: 4px;
+}
+
+/* Analysis alerts */
+.admin-cuts__analysis {
+	margin-top: 1rem;
+}

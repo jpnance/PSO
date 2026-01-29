@@ -1,0 +1,211 @@
+extends layout
+
+include mixins
+
+block title
+	+title('Sleeper Import', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/admin-sleeper-import.css')
+
+block content
+	.container.my-4
+		h1.mb-4 Sleeper Transaction Import
+
+		if error
+			.alert.alert-danger.mb-4
+				strong Error: 
+				= error
+
+		//- Year selection
+		.card.mb-4
+			.card-header Select Year
+			.card-body
+				if years.length === 0
+					p.text-muted No transaction files found. Add JSON files to #[code data/sleeper/transactions-YYYY.json]
+				else
+					form.form-inline(method='GET' action='/admin/sleeper-import')
+						.form-group.mr-3
+							label.mr-2(for='year') Year
+							select#year.form-control(name='year')
+								each y in years
+									option(value=y selected=(y === selectedYear))= y
+						button.btn.btn-primary(type='submit') Load Transactions
+
+		if result
+			//- Stats summary
+			.row.mb-4
+				.col-md-3
+					.card
+						.card-body.text-center
+							.h2.mb-0= result.stats.total
+							.text-muted Total Transactions
+				.col-md-3
+					.card
+						.card-body.text-center
+							.h2.mb-0= result.stats.withIssues
+							.text-muted(class=result.stats.withIssues > 0 ? 'text-warning' : '') With Issues
+				.col-md-3
+					.card
+						.card-body.text-center
+							.h2.mb-0= result.stats.commissionerMatched
+							.text-muted Commissioner → Trade
+				.col-md-3
+					.card
+						.card-body.text-center
+							.h2.mb-0= result.stats.commissionerUnmatched
+							.text-muted(class=result.stats.commissionerUnmatched > 0 ? 'text-warning' : '') Unmatched Commissioner
+
+			//- Type breakdown
+			.row.mb-4
+				.col-md-6
+					.card
+						.card-header By Type
+						.card-body
+							each count, type in result.stats.byType
+								.d-flex.justify-content-between.mb-1
+									span.badge.badge-secondary= type
+									span= count
+				.col-md-6
+					.card
+						.card-header By Season
+						.card-body
+							each count, season in result.stats.bySeason
+								.d-flex.justify-content-between.mb-1
+									span= season
+									span= count
+
+			//- Missing players warning
+			if result.stats.missingPlayers.length > 0
+				.alert.alert-warning.mb-4
+					h5.alert-heading Missing Players (#{result.stats.missingPlayers.length})
+					.missing-players-list
+						each mp in result.stats.missingPlayers
+							span.badge.badge-warning.mr-1.mb-1= mp
+
+			//- Filter tabs
+			ul.nav.nav-tabs.mb-3#typeTabs(role='tablist')
+				li.nav-item
+					a.nav-link.active(data-toggle='tab' href='#all-tab') All
+				li.nav-item
+					a.nav-link(data-toggle='tab' href='#issues-tab') 
+						| Issues 
+						if result.stats.withIssues > 0
+							span.badge.badge-warning.ml-1= result.stats.withIssues
+				li.nav-item
+					a.nav-link(data-toggle='tab' href='#unmatched-tab')
+						| Unmatched 
+						if result.stats.commissionerUnmatched > 0
+							span.badge.badge-warning.ml-1= result.stats.commissionerUnmatched
+				each count, type in result.stats.byType
+					li.nav-item
+						a.nav-link(data-toggle='tab' href='#type-' + type + '-tab')
+							= type
+							span.badge.badge-secondary.ml-1= count
+
+			.tab-content
+				//- All transactions
+				#all-tab.tab-pane.fade.show.active
+					+transactionTable(result.transactions)
+
+				//- Issues only
+				#issues-tab.tab-pane.fade
+					- var issuesTxs = result.transactions.filter(tx => tx.hasIssues)
+					if issuesTxs.length > 0
+						+transactionTable(issuesTxs)
+					else
+						.text-muted.text-center.py-4 No transactions with issues
+
+				//- Unmatched commissioner actions
+				#unmatched-tab.tab-pane.fade
+					- var unmatchedTxs = result.transactions.filter(tx => tx.psoType === 'commissioner' && !tx.likelyTradeExecution)
+					if unmatchedTxs.length > 0
+						+transactionTable(unmatchedTxs)
+					else
+						.text-muted.text-center.py-4 All commissioner actions matched to trades
+
+				//- By type
+				each count, type in result.stats.byType
+					.tab-pane.fade(id='type-' + type + '-tab')
+						- var typeTxs = result.transactions.filter(tx => tx.psoType === type)
+						+transactionTable(typeTxs)
+
+mixin transactionTable(transactions)
+	.table-responsive
+		table.table.table-sm.table-hover.sleeper-tx-table
+			thead
+				tr
+					th Date
+					th Type
+					th Week
+					th Adds
+					th Drops
+					th Bid
+					th Notes
+			tbody
+				each tx in transactions
+					-
+						var badgeClass = 'badge-secondary';
+						if (tx.psoType === 'trade') badgeClass = 'badge-primary';
+						else if (tx.psoType === 'fa-pickup') badgeClass = 'badge-success';
+						else if (tx.psoType === 'fa-cut') badgeClass = 'badge-danger';
+						else if (tx.psoType === 'fa-swap') badgeClass = 'badge-info';
+						else if (tx.psoType === 'commissioner') badgeClass = tx.likelyTradeExecution ? 'badge-primary' : 'badge-warning';
+					tr(class=tx.hasIssues ? 'table-warning' : '')
+						td.text-nowrap
+							= tx.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' })
+							br
+							small.text-muted= tx.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+						td
+							span.badge(class=badgeClass)= tx.psoType
+							if tx.sleeperType !== tx.psoType
+								br
+								small.text-muted= tx.sleeperType
+						td.text-center= tx.leg || '-'
+						td
+							each add in tx.adds
+								.player-item
+									if add.psoPlayer
+										a(href='/players/' + add.psoPlayer._id)= add.psoPlayer.name
+									else
+										span.text-danger= add.sleeperName
+										|  
+										i.fa.fa-exclamation-triangle.text-warning(title='Player not found in PSO')
+									if add.franchise
+										small.text-muted.ml-1 → F#{add.rosterId}
+						td
+							each drop in tx.drops
+								.player-item
+									if drop.psoPlayer
+										a(href='/players/' + drop.psoPlayer._id)= drop.psoPlayer.name
+									else
+										span.text-danger= drop.sleeperName
+										|  
+										i.fa.fa-exclamation-triangle.text-warning(title='Player not found in PSO')
+									if drop.franchise
+										small.text-muted.ml-1 ← F#{drop.rosterId}
+						td.text-center
+							if tx.waiverBid !== null
+								| $#{tx.waiverBid}
+							else
+								| -
+						td
+							if tx.psoType === 'commissioner'
+								if tx.matchedTrade
+									a.badge.badge-primary(href='/trades/' + tx.matchedTrade.tradeId) Trade ##{tx.matchedTrade.tradeId}
+								else if tx.debugPlayerNames && tx.debugPlayerNames.length > 0
+									small.text-muted Looking for: #{tx.debugPlayerNames.join(', ')}
+								else
+									small.text-muted (no resolved players)
+								|  
+							if tx.hasIssues
+								button.btn.btn-sm.btn-outline-warning(type='button' data-toggle='collapse' data-target='#issues-' + tx.sleeperTxId)
+									i.fa.fa-exclamation-triangle
+									|  #{tx.issues.length}
+					if tx.hasIssues
+						tr.collapse(id='issues-' + tx.sleeperTxId)
+							td(colspan='7')
+								.alert.alert-warning.mb-0.py-2
+									ul.mb-0
+										each issue in tx.issues
+											li= issue

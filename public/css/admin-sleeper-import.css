@@ -1,0 +1,38 @@
+/* Sleeper Import Admin Page */
+
+.sleeper-tx-table {
+	font-size: 0.875rem;
+}
+
+.sleeper-tx-table th {
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.sleeper-tx-table .player-item {
+	margin-bottom: 0.25rem;
+}
+
+.sleeper-tx-table .player-item:last-child {
+	margin-bottom: 0;
+}
+
+.missing-players-list {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+#jsonData {
+	font-size: 0.75rem;
+	min-height: 150px;
+}
+
+/* Tab styling */
+.nav-tabs .nav-link {
+	font-size: 0.875rem;
+	padding: 0.5rem 0.75rem;
+}
+
+.nav-tabs .badge {
+	font-size: 0.7rem;
+}

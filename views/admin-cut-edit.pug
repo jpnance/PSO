@@ -1,0 +1,151 @@
+extends layout.pug
+include mixins
+
+block title
+	+title(cut.playerId.name + ' Cut', 'Cut Timestamps', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/admin-cuts.css')
+
+block content
+	-
+		function formatDateTimeLocal(ts) {
+			if (!ts) return '';
+			var d = new Date(ts);
+			var etDate = new Date(d.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+			var year = etDate.getFullYear();
+			var month = String(etDate.getMonth() + 1).padStart(2, '0');
+			var day = String(etDate.getDate()).padStart(2, '0');
+			var hours = String(etDate.getHours()).padStart(2, '0');
+			var mins = String(etDate.getMinutes()).padStart(2, '0');
+			return year + '-' + month + '-' + day + 'T' + hours + ':' + mins;
+		}
+	
+	div.container.py-4
+		//- Success/error messages
+		if query.saved
+			div.alert.alert-success.alert-dismissible.fade.show
+				strong Saved!
+				if query['auto-fixed']
+					|  Cut timestamp automatically moved after draft.
+				else
+					|  Cut timestamp updated.
+				button.close(type='button' data-dismiss='alert') &times;
+		
+		if query.error === 'no-draft'
+			div.alert.alert-warning.alert-dismissible.fade.show
+				strong Could not auto-fix.
+				|  No draft transaction found in the same year.
+				button.close(type='button' data-dismiss='alert') &times;
+		
+		//- Header
+		div.d-flex.align-items-center.mb-4
+			div
+				h1.mb-0
+					a(href='/players/' + cut.playerId._id)= cut.playerId.name
+					|  
+					if cut.playerId.positions && cut.playerId.positions.length
+						+positionBadge(cut.playerId.positions)
+				div.text-muted Cut by #{franchiseName} in #{cut.timestamp.getFullYear()}
+		
+		div.row
+			//- Timeline (left column)
+			div.col-lg-7.mb-4
+				h5.text-muted.mb-3 Transaction Timeline
+				
+				div.admin-cuts__timeline
+					each entry in timeline
+						div.admin-cuts__timeline-entry(class=entry.isCurrent ? 'admin-cuts__timeline-entry--current' : '')
+							div.admin-cuts__timeline-icon
+								- var iconClass = { trade: 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', contract: 'fa-file-text-o' }[entry.type] || 'fa-circle'
+								i.fa(class=iconClass)
+							div.admin-cuts__timeline-content
+								div.admin-cuts__timeline-main
+									span= entry.description
+									if entry.isCurrent
+										span.badge.badge-primary.ml-2 This cut
+								div.admin-cuts__timeline-meta
+									span.admin-cuts__timeline-date= formatDateISO(entry.timestamp)
+									if entry.isJan1 && entry.source === 'snapshot'
+										span.badge.badge-warning.ml-1 Placeholder
+									else if entry.source === 'snapshot'
+										span.badge.badge-secondary.ml-1 Snapshot
+				
+				//- Issue analysis
+				if analysis.isImpossible || analysis.isSuspicious
+					div.admin-cuts__analysis.mt-4
+						if analysis.isImpossible
+							div.alert.alert-danger
+								i.fa.fa-exclamation-triangle.mr-2
+								strong Impossible ordering: 
+								| This cut appears before the draft transaction in the same year.
+								| The cut must have happened after the player was drafted.
+						else if analysis.hasTradeAfter
+							div.alert.alert-warning
+								i.fa.fa-question-circle.mr-2
+								strong Suspicious ordering: 
+								| This cut appears before a trade in the same year.
+								| Review the timeline to determine the correct order.
+						else if analysis.hasPickupAfter || analysis.hasAuctionAfter
+							div.alert.alert-warning
+								i.fa.fa-question-circle.mr-2
+								strong Suspicious ordering: 
+								| This cut appears before a pickup/auction in the same year.
+			
+			//- Edit form (right column)
+			div.col-lg-5
+				div.card
+					div.card-header
+						strong Edit Cut Timestamp
+					div.card-body
+						form(method='POST' action='/admin/cuts/' + cut._id)
+							//- Timestamp
+							div.mb-4
+								label.font-weight-bold(for='timestamp') Timestamp (ET)
+								input.form-control(
+									type='datetime-local'
+									id='timestamp'
+									name='timestamp'
+									value=formatDateTimeLocal(cut.timestamp)
+								)
+								small.form-text.text-muted
+									| Set to the approximate date/time of the cut.
+							
+							//- Notes
+							div.mb-4
+								label.font-weight-bold(for='notes') Notes
+								textarea.form-control(
+									id='notes'
+									name='notes'
+									rows='2'
+									placeholder='Notes about the timestamp source...'
+								)= cut.notes || ''
+							
+							//- Transaction info
+							dl.mb-4
+								dt ID
+								dd: code= cut._id
+								dt Source
+								dd= cut.source
+								if cut.buyOuts && cut.buyOuts.length
+									dt Buy-outs
+									dd
+										each bo in cut.buyOuts
+											div #{formatMoney(bo.amount)} in #{bo.season}
+							
+							//- Actions
+							div.d-flex.flex-wrap
+								button.btn.btn-primary.mr-2.mb-2(type='submit') Save Changes
+								a.btn.btn-secondary.mb-2(href='/admin/cuts') Back to List
+						
+						//- Auto-fix button (if applicable)
+						if analysis.isImpossible && analysis.hasDraftAfter
+							hr.mt-3
+							form(method='POST' action='/admin/cuts/' + cut._id + '/auto-fix')
+								p.small.text-muted.mb-2
+									| Auto-fix will move this cut to the day after the draft.
+								button.btn.btn-outline-success.btn-block(type='submit')
+									i.fa.fa-magic.mr-2
+									| Auto-Fix (Move After Draft)

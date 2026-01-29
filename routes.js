@@ -8,6 +8,8 @@ var schedule = require('./services/schedule');
 var admin = require('./services/admin');
 var adminPlayers = require('./services/admin-players');
 var adminTrades = require('./services/admin-trades');
+var adminCuts = require('./services/admin-cuts');
+var sleeperImport = require('./services/sleeper-import');
 var draft = require('./services/draft');
 var trades = require('./services/trades');
 var proposals = require('./services/proposals');
@@ -123,6 +125,16 @@ module.exports = function(app) {
 	app.get('/admin/trades', requireLogin, requireAdmin, adminTrades.listTrades);
 	app.get('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTradeForm);
 	app.post('/admin/trades/:id', requireLogin, requireAdmin, adminTrades.editTrade);
+	
+	// Cut timestamp management (require login + admin)
+	app.get('/admin/cuts', requireLogin, requireAdmin, adminCuts.listCuts);
+	app.get('/admin/cuts/:id', requireLogin, requireAdmin, adminCuts.editCutForm);
+	app.post('/admin/cuts/:id', requireLogin, requireAdmin, adminCuts.editCut);
+	app.post('/admin/cuts/:id/auto-fix', requireLogin, requireAdmin, adminCuts.autoFixCut);
+	
+	// Sleeper transaction import (require login + admin)
+	app.get('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.importForm);
+	app.post('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.parseTransactions);
 	
 	// Process new trades (require login + admin)
 	app.get('/admin/process-trade', requireLogin, requireAdmin, proposals.processPage);

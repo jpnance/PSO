@@ -105,7 +105,8 @@
 - [ ] Make the site more uniform looking
 - [ ] Improve icons in the navbar for small breakpoints
 - [ ] Admin players page - more mobile-friendly (smaller text, college truncation)
-- [ ] Admin players page - make college editable for historical players
+- [x] Admin players page - make college editable for historical players
+- [ ] Search results - show NFL team or college when displaying multiple players with same name
 - [ ] Admin proposals page - extract inline styles to CSS
 - [x] Improve layout of info banners across the site — created `+alertBanner(type, icon, text)` mixin with template for JS
 - [ ] Improve acceptance window countdown banner style (currently centered, doesn't use alertBanner mixin)
@@ -153,3 +154,9 @@
 
 ### Needs Discussion
 - [ ] Trade TTL edge cases: What happens when someone withdraws acceptance but trade is past TTL? Should any action on a trade renew its TTL? Think through pending trade lifecycle more carefully.
+
+### Data Quality Overrides
+- [ ] Mechanism to override Sleeper data when it's known to be wrong
+  - **Example:** Chris Johnson (sleeperId 272) is the famous Titans/Jets RB, but Sleeper has him tagged as `DB/RB`
+  - **Example:** Charles Johnson (sleeperId 37) has `DL/WR` which is likely wrong
+  - Options: `sleeper-overrides.json`, position corrections in `fixups.json`, manual position field on Player model

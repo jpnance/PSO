@@ -1,0 +1,98 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Cut Timestamps', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/admin-cuts.css')
+
+block content
+	div.container.py-4
+		h1.mb-4 Cut Timestamp Review
+		
+		p.text-muted.mb-4
+			| Cuts imported from spreadsheets have placeholder timestamps (Jan 1 of the cut year).
+			| This tool helps identify and fix cuts with incorrect ordering.
+		
+		//- Filters
+		form.admin-cuts__filters.mb-4(method='GET')
+			div.form-row.align-items-end
+				div.col-auto
+					label.small.text-muted Filter
+					select.form-control(name='filter')
+						option(value='impossible' selected=(filter === 'impossible')) Impossible (cut before draft)
+						option(value='suspicious' selected=(filter === 'suspicious')) Suspicious (cut before trade/pickup)
+						option(value='all' selected=(filter === 'all')) All snapshot cuts
+				div.col-auto
+					label.small.text-muted Year
+					select.form-control(name='year')
+						option(value='') All years
+						each y in years
+							option(value=y selected=(yearFilter === y))= y
+				div.col-auto
+					label.small.text-muted &nbsp;
+					button.btn.btn-primary(type='submit') Filter
+		
+		//- Stats
+		div.admin-cuts__stats.mb-3
+			span.badge.badge-secondary= stats.showing + ' shown'
+			span.text-muted.ml-2 of #{stats.total} total snapshot cuts
+		
+		//- Results table
+		if cuts.length > 0
+			table.table.table-sm.admin-cuts__table
+				thead
+					tr
+						th Player
+						th Cut By
+						th Current Date
+						th Issue
+						th
+				tbody
+					each cut in cuts
+						tr(class=cut.analysis.isImpossible ? 'table-danger' : (cut.analysis.isSuspicious ? 'table-warning' : ''))
+							td
+								a(href='/players/' + cut.player._id)= cut.player.name
+								if cut.player.positions && cut.player.positions.length
+									|  
+									+positionBadge(cut.player.positions)
+							td= cut.franchiseName
+							td
+								span.admin-cuts__date= formatDateISO(cut.timestamp)
+								if cut.timestamp.getDate() === 1 && cut.timestamp.getMonth() === 0
+									span.badge.badge-warning.ml-1 Jan 1
+							td
+								if cut.analysis.isImpossible
+									span.text-danger
+										i.fa.fa-exclamation-triangle.mr-1
+										| Cut before draft
+								else if cut.analysis.hasTradeAfter
+									span.text-warning Cut before trade
+								else if cut.analysis.hasPickupAfter
+									span.text-warning Cut before pickup
+								else if cut.analysis.hasAuctionAfter
+									span.text-warning Cut before auction
+								else
+									span.text-muted OK
+							td.text-right
+								a.btn.btn-sm.btn-outline-primary(href='/admin/cuts/' + cut._id) Edit
+			
+			//- Pagination
+			if totalPages > 1
+				nav.mt-4
+					ul.pagination.justify-content-center
+						li.page-item(class=page === 1 ? 'disabled' : '')
+							a.page-link(href='?filter=' + filter + (yearFilter ? '&year=' + yearFilter : '') + '&page=' + (page - 1)) Previous
+						each p in Array.from({length: totalPages}, (_, i) => i + 1)
+							if p === page || p === 1 || p === totalPages || (p >= page - 2 && p <= page + 2)
+								li.page-item(class=p === page ? 'active' : '')
+									a.page-link(href='?filter=' + filter + (yearFilter ? '&year=' + yearFilter : '') + '&page=' + p)= p
+							else if p === page - 3 || p === page + 3
+								li.page-item.disabled
+									span.page-link ...
+		else
+			div.alert.alert-info
+				| No cuts match the current filter.
