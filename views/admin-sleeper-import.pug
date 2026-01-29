@@ -210,10 +210,8 @@ mixin transactionTable(transactions)
 							if tx.psoType === 'commissioner'
 								if tx.matchedTrade
 									a.badge.badge-primary(href='/trades/' + tx.matchedTrade.tradeId) Trade ##{tx.matchedTrade.tradeId}
-								else if tx.debugPlayerNames && tx.debugPlayerNames.length > 0
-									small.text-muted Looking for: #{tx.debugPlayerNames.join(', ')}
 								else
-									small.text-muted (no resolved players)
+									small.text-muted (unmatched)
 								|  
 						if tx.hasIssues
 							button.btn.btn-sm.btn-outline-warning(type='button' data-toggle='collapse' data-target='#issues-' + tx.sleeperTxId)
