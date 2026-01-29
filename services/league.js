@@ -357,6 +357,7 @@ async function getFranchise(franchiseId, currentSeason) {
 	var rfaRights = rfaContracts
 		.map(function(c) {
 			return {
+				_id: c.playerId ? c.playerId._id : null,
 				name: c.playerId ? c.playerId.name : 'Unknown',
 				positions: c.playerId ? c.playerId.positions : [],
 				salary: null

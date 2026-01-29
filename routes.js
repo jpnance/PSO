@@ -14,6 +14,7 @@ var proposals = require('./services/proposals');
 var calendar = require('./services/calendar');
 var rookies = require('./services/rookies');
 var freeAgents = require('./services/free-agents');
+var players = require('./services/players');
 var auth = require('./services/auth');
 var { requireLogin, requireAdmin } = require('./middleware/auth');
 
@@ -74,6 +75,8 @@ module.exports = function(app) {
 	app.get('/rookies/:season', rookies.rookieSalaries);
 	
 	app.get('/rfa', freeAgents.rfa);
+	
+	app.get('/players/:id', players.playerDetail);
 
 	app.get('/components', (req, res) => res.render('components'));
 	

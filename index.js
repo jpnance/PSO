@@ -133,6 +133,7 @@ app.locals.formatDateISO = viewHelpers.formatDateISO;
 app.locals.formatDateTime = viewHelpers.formatDateTime;
 app.locals.formatDateTimeLong = viewHelpers.formatDateTimeLong;
 app.locals.formatDateLong = viewHelpers.formatDateLong;
+app.locals.formatDateMedium = viewHelpers.formatDateMedium;
 app.locals.formatTime = viewHelpers.formatTime;
 app.locals.deltaClass = viewHelpers.deltaClass;
 app.locals.sortedPositions = viewHelpers.sortedPositions;

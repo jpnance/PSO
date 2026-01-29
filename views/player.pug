@@ -1,0 +1,72 @@
+extends layout
+include mixins
+
+block title
+	+title(player.name, 'Players')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/components.css')
+	link(rel='stylesheet' href='/css/player.css')
+
+block content
+	- var primaryPos = player.positions && player.positions.length ? player.positions[0] : 'QB'
+	
+	//- Hero with position accent
+	div.player-hero(class='player-hero--' + primaryPos)
+		div.container
+			div.player-hero__layout
+				div.player-hero__badge
+					+positionBadge(player.positions)
+				div.player-hero__info
+					h1.player-hero__name= player.name
+					div.player-hero__meta
+						if player.team
+							span= player.team
+						if player.team && player.college
+							span.player-hero__sep ·
+						if player.college
+							span= player.college
+	
+	div.container.py-4
+		div.row
+			div.col-lg-7
+				//- Current status
+				div.player-status.mb-4
+					if contract
+						if contract.isRfa
+							div.player-status__label RFA Rights
+							div.player-status__value
+								| Held by 
+								a(href='/franchises/' + contract.franchiseRosterId)= contract.franchiseName
+						else
+							div.player-status__contract
+								span.player-status__salary= formatMoney(contract.salary)
+								span.player-status__years= formatContractYears(contract.startYear, contract.endYear)
+							div.player-status__owner
+								| Rostered by 
+								a(href='/franchises/' + contract.franchiseRosterId)= contract.franchiseName
+					else
+						div.player-status__label Free Agent
+						div.player-status__value.text-muted Not under contract
+				
+				//- Transaction history
+				if history.length > 0
+					h5.text-muted.mb-3 Transaction History
+					div.player-timeline
+						each entry in history
+							- var iconClass = { trade: 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', contract: 'fa-file-text-o' }[entry.type] || 'fa-circle'
+							div.player-timeline__entry
+								div.player-timeline__icon
+									i.fa(class=iconClass)
+								div.player-timeline__content
+									div.player-timeline__main
+										if entry.type === 'trade' && entry.tradeId
+											a(href='/trades/' + entry.tradeId)= entry.description
+										else
+											span= entry.description
+										if entry.salary
+											span.player-timeline__salary= formatMoney(entry.salary)
+									div.player-timeline__date= formatDateMedium(entry.timestamp)
+				else
+					p.text-muted No transaction history found.

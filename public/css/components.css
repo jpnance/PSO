@@ -248,6 +248,16 @@ a.player-chip:hover {
 	justify-content: start;
 }
 
+/* Wrapper for player chips with data attributes (for filtering) */
+.player-chip-wrapper {
+	display: contents;
+}
+
+.player-chip-wrapper.is-dimmed {
+	display: block;
+	opacity: 0.3;
+}
+
 /* Sequential navigation - arrows with dropdown or pills */
 .seq-nav {
 	display: inline-flex;

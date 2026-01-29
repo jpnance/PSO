@@ -1,0 +1,11 @@
+extends layout
+include mixins
+
+block title
+	+title('Player Not Found')
+
+block content
+	div.container.py-4
+		h1.mb-4 Player Not Found
+		p.text-muted The player you're looking for doesn't exist or has been removed.
+		a(href='/') ← Back to League Overview

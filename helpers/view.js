@@ -1000,6 +1000,20 @@ function formatDateLong(d) {
 }
 
 /**
+ * Format date without weekday, e.g. "January 17, 2026"
+ * @param {Date} d - Date object
+ * @returns {string} e.g. "January 17, 2026"
+ */
+function formatDateMedium(d) {
+	if (!d) return '';
+	var date = new Date(d);
+	return date.toLocaleDateString('en-US', {
+		year: 'numeric', month: 'long', day: 'numeric',
+		timeZone: 'America/New_York'
+	});
+}
+
+/**
  * Format just the time portion (Eastern time)
  * @param {Date} d - Date object
  * @returns {string} e.g. "3:45 pm ET"
@@ -1024,6 +1038,7 @@ module.exports = {
 	formatDateTime: formatDateTime,
 	formatDateTimeLong: formatDateTimeLong,
 	formatDateLong: formatDateLong,
+	formatDateMedium: formatDateMedium,
 	formatTime: formatTime,
 	deltaClass: deltaClass,
 	sortedPositions: sortedPositions,

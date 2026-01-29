@@ -56,6 +56,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+a.franchise-roster-cards__name:hover {
+    color: #007bff;
 }
 
 .franchise-roster-cards__badge {

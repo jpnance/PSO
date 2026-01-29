@@ -48,11 +48,12 @@ exports.rfa = async function(request, response) {
 			.map(function(c) {
 				var franchiseId = c.franchiseId ? c.franchiseId._id.toString() : null;
 				return {
+					_id: c.playerId._id,
 					name: c.playerId.name,
 					positions: c.playerId.positions || [],
 					team: c.playerId.team,
 					franchise: franchiseId ? franchiseDisplayNames[franchiseId] || 'Unknown' : 'Unknown',
-					franchiseId: c.franchiseId ? c.franchiseId.rosterId : null
+					franchiseRosterId: c.franchiseId ? c.franchiseId.rosterId : null
 				};
 			})
 			.sort(function(a, b) {

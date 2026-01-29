@@ -1,0 +1,179 @@
+/* ========================================
+   Player Page
+   ======================================== */
+
+/* Hero section with position-colored accent */
+.player-hero {
+	padding: 1.5rem 0;
+	margin-bottom: 0;
+	border-bottom: 3px solid #dee2e6;
+}
+
+.player-hero--QB { border-bottom-color: var(--pos-qb-text); background: linear-gradient(to bottom, var(--pos-qb-bg), white); }
+.player-hero--RB { border-bottom-color: var(--pos-rb-text); background: linear-gradient(to bottom, var(--pos-rb-bg), white); }
+.player-hero--WR { border-bottom-color: var(--pos-wr-text); background: linear-gradient(to bottom, var(--pos-wr-bg), white); }
+.player-hero--TE { border-bottom-color: var(--pos-te-text); background: linear-gradient(to bottom, var(--pos-te-bg), white); }
+.player-hero--DL,
+.player-hero--LB,
+.player-hero--DB { border-bottom-color: var(--pos-idp-text); background: linear-gradient(to bottom, var(--pos-idp-bg), white); }
+.player-hero--K { border-bottom-color: var(--pos-k-text); background: linear-gradient(to bottom, var(--pos-k-bg), white); }
+
+.player-hero__layout {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.player-hero__badge {
+	flex-shrink: 0;
+}
+
+.player-hero__badge .position-badge {
+	font-size: 1rem;
+	padding: 0.4rem 0.6rem;
+}
+
+.player-hero__name {
+	margin: 0;
+	font-size: 1.75rem;
+	line-height: 1.2;
+}
+
+.player-hero__meta {
+	color: #666;
+	font-size: 0.95rem;
+}
+
+.player-hero__sep {
+	margin: 0 0.4rem;
+	color: #999;
+}
+
+/* Status section */
+.player-status {
+	padding: 1rem 1.25rem;
+	background: #f8f9fa;
+	border-radius: 6px;
+	border-left: 4px solid #dee2e6;
+}
+
+.player-status__label {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #666;
+	margin-bottom: 0.25rem;
+}
+
+.player-status__value {
+	font-size: 1rem;
+}
+
+.player-status__value a {
+	font-weight: 500;
+}
+
+.player-status__contract {
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+	margin-bottom: 0.25rem;
+}
+
+.player-status__salary {
+	font-size: 1.5rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.player-status__years {
+	font-size: 1rem;
+	color: #666;
+}
+
+.player-status__owner {
+	font-size: 0.9rem;
+	color: #666;
+}
+
+.player-status__owner a {
+	color: inherit;
+}
+
+.player-status__owner a:hover {
+	color: #007bff;
+}
+
+/* Timeline */
+.player-timeline {
+	position: relative;
+}
+
+.player-timeline__entry {
+	display: flex;
+	gap: 0.75rem;
+	padding: 0.5rem 0;
+	position: relative;
+}
+
+/* Connecting line from icon to next entry (not on last entry) */
+.player-timeline__entry:not(:last-child)::before {
+	content: '';
+	position: absolute;
+	left: calc(0.7rem - 1px);
+	top: calc(0.5rem + 1.4rem);
+	bottom: 0;
+	width: 2px;
+	background: #dee2e6;
+}
+
+.player-timeline__icon {
+	flex-shrink: 0;
+	width: 1.4rem;
+	height: 1.4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	border: 2px solid #dee2e6;
+	border-radius: 50%;
+	font-size: 0.65rem;
+	color: #666;
+	z-index: 1;
+}
+
+.player-timeline__content {
+	flex: 1;
+	min-width: 0;
+	padding-top: 0.1rem;
+}
+
+.player-timeline__main {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.5rem;
+}
+
+.player-timeline__main a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: #ccc;
+}
+
+.player-timeline__main a:hover {
+	color: #007bff;
+	text-decoration-color: #007bff;
+}
+
+.player-timeline__salary {
+	color: #666;
+	font-size: 0.85rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.player-timeline__date {
+	font-size: 0.8rem;
+	color: #999;
+	margin-top: 0.1rem;
+}

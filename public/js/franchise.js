@@ -1,6 +1,6 @@
 (function() {
 	var filterButtons = document.querySelectorAll('.franchise-roster-cards__filters button');
-	var cards = document.querySelectorAll('.franchise-roster-cards__card');
+	var cards = document.querySelectorAll('.player-chip-wrapper');
 	var cardBody = document.querySelector('#rosterCard .card-body');
 	var manageToggle = document.getElementById('manageToggle');
 	
