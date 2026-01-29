@@ -965,6 +965,7 @@ async function search(request, response) {
 				
 				return {
 					type: 'player',
+					_id: player._id,
 					name: player.name,
 					positions: player.positions || [],
 					franchiseId: franchise ? franchise.rosterId : null,
@@ -979,6 +980,7 @@ async function search(request, response) {
 				
 				return {
 					type: 'player',
+					_id: player._id,
 					name: player.name,
 					positions: player.positions || [],
 					franchiseId: franchise ? franchise.rosterId : null,
@@ -990,6 +992,7 @@ async function search(request, response) {
 				// Player is an unrestricted free agent (no contract)
 				return {
 					type: 'player',
+					_id: player._id,
 					name: player.name,
 					positions: player.positions || [],
 					franchiseId: null,

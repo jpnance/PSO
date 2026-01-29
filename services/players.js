@@ -2,16 +2,23 @@ var Player = require('../models/Player');
 var Contract = require('../models/Contract');
 var Transaction = require('../models/Transaction');
 var Regime = require('../models/Regime');
+var LeagueConfig = require('../models/LeagueConfig');
+var Season = require('../models/Season');
+var transactionService = require('./transaction');
 
 exports.playerDetail = async function(request, response) {
 	try {
 		var playerId = request.params.id;
 		
-		// Get player
+		// Get player and config
 		var player = await Player.findById(playerId).lean();
 		if (!player) {
 			return response.status(404).render('player-not-found');
 		}
+		
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		var phase = config ? config.getPhase() : 'dead-period';
 		
 		// Get current contract (if any)
 		var contract = await Contract.findOne({ playerId: playerId })
@@ -19,8 +26,12 @@ exports.playerDetail = async function(request, response) {
 			.lean();
 		
 		var contractInfo = null;
+		var isOwner = false;
+		var canCut = false;
+		var canTrade = false;
+		
 		if (contract) {
-			// Look up regime display name
+			// Look up regime display name and owner IDs
 			var regime = await Regime.findOne({
 				'tenures': {
 					$elemMatch: {
@@ -28,7 +39,23 @@ exports.playerDetail = async function(request, response) {
 						endSeason: null
 					}
 				}
-			}).lean();
+			}).populate('ownerIds', '_id').lean();
+			
+			// Check if current user owns this franchise
+			if (request.user && regime && regime.ownerIds) {
+				isOwner = regime.ownerIds.some(function(owner) {
+					return owner._id.toString() === request.user._id.toString();
+				});
+			}
+			
+			// Calculate buyout info for cuts
+			var salary = contract.salary || 0;
+			var buyout = null;
+			if (contract.salary !== null && contract.startYear && contract.endYear) {
+				buyout = transactionService.computeBuyOutForSeason(
+					salary, contract.startYear, contract.endYear, currentSeason, currentSeason
+				);
+			}
 			
 			contractInfo = {
 				salary: contract.salary,
@@ -37,8 +64,33 @@ exports.playerDetail = async function(request, response) {
 				isRfa: contract.salary === null,
 				franchiseId: contract.franchiseId._id,
 				franchiseRosterId: contract.franchiseId.rosterId,
-				franchiseName: regime ? regime.displayName : 'Unknown'
+				franchiseName: regime ? regime.displayName : 'Unknown',
+				buyout: buyout,
+				recoverable: buyout !== null ? salary - buyout : null
 			};
+			
+			// Determine if cuts are allowed
+			if (isOwner && config && config.areCutsEnabled() && contract.salary !== null) {
+				if (phase === 'playoff-fa') {
+					// Only playoff teams can cut during playoff FA
+					var isPlayoffTeam = await Season.exists({
+						season: currentSeason,
+						'standings': {
+							$elemMatch: {
+								franchiseId: contract.franchiseId._id,
+								madePlayoffs: true
+							}
+						}
+					});
+					canCut = !!isPlayoffTeam;
+				} else {
+					canCut = true;
+				}
+			}
+			
+			// Determine if trades are allowed
+			var tradePhases = ['early-offseason', 'pre-season', 'regular-season'];
+			canTrade = tradePhases.includes(phase) && contract.salary !== null;
 		}
 		
 		// Get transaction history for this player
@@ -137,6 +189,7 @@ exports.playerDetail = async function(request, response) {
 				case 'draft-select':
 					entry.description = 'Drafted by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 					entry.salary = t.salary;
+					entry.draftSeason = new Date(t.timestamp).getFullYear();
 					break;
 					
 				case 'auction-ufa':
@@ -172,7 +225,10 @@ exports.playerDetail = async function(request, response) {
 			activePage: 'player',
 			player: player,
 			contract: contractInfo,
-			history: history
+			history: history,
+			isOwner: isOwner,
+			canCut: canCut,
+			canTrade: canTrade
 		});
 	} catch (err) {
 		console.error('Error loading player detail:', err);

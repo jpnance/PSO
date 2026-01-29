@@ -50,6 +50,18 @@ block content
 						div.player-status__label Free Agent
 						div.player-status__value.text-muted Not under contract
 				
+				//- Actions bar
+				if (isOwner && canCut) || canTrade
+					div.player-actions.mb-4
+						if canTrade
+							a.btn.btn-outline-primary(href='/trade-machine?player=' + player._id)
+								i.fa.fa-exchange.mr-2
+								| Start Trade
+						if isOwner && canCut
+							button.btn.btn-outline-danger(type='button' data-toggle='modal' data-target='#cutModal')
+								i.fa.fa-scissors.mr-2
+								| Cut Player
+				
 				//- Transaction history
 				if history.length > 0
 					h5.text-muted.mb-3 Transaction History
@@ -63,6 +75,8 @@ block content
 									div.player-timeline__main
 										if entry.type === 'trade' && entry.tradeId
 											a(href='/trades/' + entry.tradeId)= entry.description
+										else if entry.type === 'draft-select' && entry.draftSeason
+											a(href='/draft/' + entry.draftSeason)= entry.description
 										else
 											span= entry.description
 										if entry.salary
@@ -70,3 +84,32 @@ block content
 									div.player-timeline__date= formatDateMedium(entry.timestamp)
 				else
 					p.text-muted No transaction history found.
+		
+		//- Cut confirmation modal
+		if isOwner && canCut && contract
+			div.modal.fade#cutModal(tabindex='-1' role='dialog')
+				div.modal-dialog(role='document')
+					form.modal-content(method='POST' action='/franchises/' + contract.franchiseRosterId + '/cut')
+						div.modal-header
+							h5.modal-title Cut Player
+							button.close(type='button' data-dismiss='modal')
+								span &times;
+						div.modal-body
+							input(type='hidden' name='playerId' value=player._id)
+							input(type='hidden' name='playerName' value=player.name)
+							p Are you sure you want to cut <strong>#{player.name}</strong>?
+							if contract.buyout !== null
+								table.table.table-sm.mb-0
+									tbody
+										tr
+											td Salary
+											td.text-right= formatMoney(contract.salary)
+										tr
+											td Buyout
+											td.text-right= formatMoney(contract.buyout)
+										tr.font-weight-bold
+											td Recoverable
+											td.text-right= formatMoney(contract.recoverable)
+						div.modal-footer
+							button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+							button.btn.btn-danger(type='submit') Cut Player

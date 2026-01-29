@@ -272,7 +272,7 @@ async function tradeMachinePage(request, response) {
 		var tradesCheck = await checkTradesEnabled();
 		var tradesEnabled = tradesCheck.enabled;
 		
-		// Check for pre-population from an existing proposal
+		// Check for pre-population from an existing proposal or player
 		var initialDeal = null;
 		if (request.query.from) {
 			var sourceProposal = await Proposal.findOne({ publicId: request.query.from });
@@ -293,6 +293,43 @@ async function tradeMachinePage(request, response) {
 								season: c.season
 							};
 						})
+					};
+				}
+			}
+		} else if (request.query.player && user) {
+			// Pre-select franchises for "Start Trade" from player page
+			var playerContract = await Contract.findOne({ playerId: request.query.player })
+				.populate('franchiseId')
+				.lean();
+			if (playerContract && playerContract.franchiseId) {
+				var ownerFranchiseId = playerContract.franchiseId._id.toString();
+				var userOwnsPlayer = userFranchiseIds.includes(ownerFranchiseId);
+				
+				initialDeal = {};
+				
+				if (userOwnsPlayer) {
+					// My player: just select my franchise, I'll pick a partner
+					initialDeal[ownerFranchiseId] = {
+						players: [],
+						picks: [],
+						cash: []
+					};
+				} else {
+					// Someone else's player: select both franchises, add player to my receives
+					var myFranchiseId = userFranchiseIds[0]; // Use first franchise if user has multiple
+					
+					// Their franchise (sending the player)
+					initialDeal[ownerFranchiseId] = {
+						players: [],
+						picks: [],
+						cash: []
+					};
+					
+					// My franchise (receiving the player)
+					initialDeal[myFranchiseId] = {
+						players: [request.query.player],
+						picks: [],
+						cash: []
 					};
 				}
 			}

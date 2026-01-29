@@ -177,3 +177,10 @@
 	color: #999;
 	margin-top: 0.1rem;
 }
+
+/* Actions bar */
+.player-actions {
+	display: flex;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+}
