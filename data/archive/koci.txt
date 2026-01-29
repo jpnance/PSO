@@ -1,0 +1,196 @@
+2012:
+Player Position Start End Salary
+Yeremiah Bell DB 2010 2012 15
+Elvis Dumervil DL 2011 2013 $8
+Alex Henery K 2011 2013 $1
+Patrick Willis LB 2010 2012 $37
+Derrick Johnson LB 2011 2013 $2
+Stephen Tulloch LB 2011 2013 $2
+Ray Lewis LB 2010 2012 $1
+Ryan Fitzpatrick QB 2011 2013 $21
+Jake Locker QB 2011 2013 $2
+Matt Hasselbeck QB 2011 2013 $2
+Jahvid Best RB 2010 2012 $28
+Ben Tate RB 2010 2012 $7
+Darren Sproles RB 2011 2013 $6
+Kellen Winslow TE 2011 2013 $11
+Brandon Lloyd WR 2011 2013 $65
+Santana Moss WR 2010 2012 $35
+Lance Moore WR 2011 2013 20
+Denarius Moore WR 2011 2013 13
+Mike Williams (TB) WR 2010 2012 $8
+Mike Sims-Walker WR 2011 2013 $5
+Mike Williams (SEA) WR 2010 2012 $1
+
+2012 auction nomination order and winning bidder:
+Patrick LB Navorro Bowman
+James QB Tony Romo
+Koci QB Aaron Rodgers
+Schex RB Adrian Peterson
+Trevor WR Wes Welker
+Patrick QB Tom Brady
+Jake/Luke TE Jimmy Graham
+Charles TE Jason Witten
+Daniel RB Arian Foster
+Keyon QB Drew Brees
+Charles QB Matthew Stafford
+Mitch QB Peyton Manning
+Jake/Luke RB Michael Bush
+Mitch TE Antonio Gates
+Mitch RB Chris Johnson (RB)
+Jake/Luke RB Ray Rice
+Trevor WR Andre Johnson
+Mitch RB Frank Gore
+Trevor RB LeSean McCoy
+Jake/Luke RB Peyton Hillis
+James RB Maurice Jones-Drew
+Charles WR Miles Austin
+Keyon RB Jamaal Charles
+Jake/Luke QB Philip Rivers
+James RB Shonn Greene
+Syed TE Jermichael Finley
+Patrick WR Larry Fitzgerald
+James RB Steven Jackson
+James WR Marques Colston
+Daniel RB Ahmad Bradshaw
+Syed RB Matt Forte
+Daniel QB Blaine Gabbert
+Daniel WR Roddy White
+Trevor WR Mike Wallace
+Koci WR Michael Crabtree
+Trevor DB Kam Chancellor
+Koci TE Brent Celek
+James TE Tony Gonzalez
+Koci TE Brandon Pettigrew
+Koci WR Percy Harvin
+Daniel WR Brandon Marshall
+Syed RB Fred Jackson
+Patrick RB Michael Turner
+James WR Dwayne Bowe
+Schex WR Antonio Brown
+Keyon QB Jay Cutler
+Keyon DB Lardarius Webb
+Syed LB James Laurinaitis
+Trevor LB Patrick Willis
+John WR Hakeem Nicks
+Charles LB Daryl Washington
+Patrick WR Devin Hester
+John WR Laurent Robinson
+James WR Demaryius Thomas
+Keyon RB BenJarvus Green-Ellis
+Keyon WR Steve Smith (CAR)
+Charles WR DeSean Jackson
+Keyon WR Victor Cruz
+Koci WR Danny Amendola
+Patrick DL Jared Allen
+Keyon WR Josh Cribbs
+John TE Fred Davis
+Charles WR Sidney Rice
+Koci WR James Jones
+John WR Deion Branch
+Schex RB Kevin Smith
+Trevor QB Carson Palmer
+John QB John Skelton
+Charles RB Donald Brown
+Mitch QB Kevin Kolb
+Trevor DL Mario Williams
+Schex RB Cedric Benson
+Mitch DL Trent Cole
+Schex QB Matt Flynn
+Jake/Luke WR Nate Washington
+James DL Osi Umenyiora
+John K David Akers
+Charles RB Beanie Wells
+Koci WR Torrey Smith
+Mitch WR Reggie Wayne
+Patrick RB Leon Washington
+John RB Pierre Thomas
+Syed DL Cameron Wake
+Charles RB Rashard Mendenhall
+John LB Sean Lee
+Jake/Luke TE Jacob Tamme
+Jake/Luke DB Eric Berry
+James DL Haloti Ngata
+John WR Earl Bennett
+Charles RB Isaac Redman
+Mitch WR Davone Bess
+Mitch LB Rolando McClain
+Patrick TE Greg Olsen
+James K Stephen Gostkowski
+James DB George Wilson
+Trevor RB Lance Ball
+Patrick DB Charles Tillman
+Trevor RB Ronnie Brown
+Schex DB Reggie Nelson
+James TE Marcedes Lewis
+John LB Brian Cushing
+Schex DL Julius Peppers
+Patrick WR Kenny Britt
+Mitch RB Brandon Jacobs
+Patrick LB James Anderson
+Schex RB Felix Jones
+Trevor LB Barrett Ruud
+Schex LB D'Qwell Jackson
+Koci LB London Fletcher
+Schex WR Terrell Owens
+Patrick TE Scott Chandler
+James DB Roman Harper
+John DB Morgan Burnett
+Daniel RB Mike Tolbert
+Schex WR Santonio Holmes
+Charles RB Knowshon Moreno
+Mitch LB Chad Greenway
+Schex K Sebastian Janikowski
+Syed DB Tyvon Branch
+John DB Jairus Byrd
+Charles DL Elvis Dumervil
+Daniel WR Jerome Simpson
+Jake/Luke DL Justin Tuck
+Koci LB Jerod Mayo
+Daniel WR Mohamed Massaquoi
+Keyon LB Nick Barnett
+Schex RB Jonathan Dwyer
+Charles RB Keiland Williams
+John LB Stephen Tulloch
+Schex DB Chris Houston
+Syed TE Martellus Bennett
+Jake/Luke TE Ed Dickson
+Charles DL Jason Babin
+Schex WR Nate Burleson
+Jake/Luke WR Doug Baldwin
+John DL Calais Campbell
+Charles LB Karlos Dansby
+Koci LB Lawrence Timmons
+Mitch DL Justin Smith
+Patrick K Robbie Gould
+Jake/Luke WR Early Doucet
+Patrick LB Curtis Lofton
+Schex TE Kellen Winslow
+Charles K Garrett Hartley
+Charles WR Lestar Jean
+Jake/Luke DL J.J. Watt
+John WR Jabar Gaffney
+Schex RB Joe McKnight
+Koci RB Taiwan Jones
+Mitch RB Alfred Morris ®
+Patrick WR Brandon Tate
+Schex RB zzz Add Player zzz
+Syed WR Trindon Holliday
+Charles WR Jacoby Jones
+Charles TE Tony Moeaki
+Jake/Luke DL Ziggy Hood
+John LB Colin McCarthy
+John DL Cliff Avril
+Keyon RB Chris Ivory
+Schex QB Vince Young
+Mitch LB Akeem Dent
+Schex LB Pat Angerer
+Jake/Luke K Jason Hanson
+Trevor LB Jon Beason
+Charles RB Dion Lewis
+Daniel RB Evan Royster
+Jake/Luke LB Von Miller
+John WR Yamon Figurs
+Keyon K Dan Bailey
+Koci RB Montario Hardesty
+
