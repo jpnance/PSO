@@ -170,17 +170,17 @@ if [ -f "$SLEEPER_FILE" ]; then
     else
         echo "Sleeper data is ${FILE_AGE_DAYS} day(s) old. Refreshing..."
         if [ "$DRY_RUN" = true ]; then
-            echo "[dry-run] make sleeper"
+            echo "[dry-run] bash ./runts/sleeper"
         else
-            make sleeper
+            bash ./runts/sleeper
         fi
     fi
 else
     echo "Sleeper data not found. Fetching..."
     if [ "$DRY_RUN" = true ]; then
-        echo "[dry-run] make sleeper"
+        echo "[dry-run] bash ./runts/sleeper"
     else
-        make sleeper
+        bash ./runts/sleeper
     fi
 fi
 echo ""
