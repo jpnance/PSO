@@ -58,37 +58,37 @@ block content
 											)
 											= pos
 							
-						div.form-group
-							label(for='sleeperId') Sleeper ID
-							input#sleeperId.form-control(
-								type='text'
-								name='sleeperId'
-								value=player.sleeperId || ''
-								placeholder='Leave blank for historical players'
-							)
-						
-						if !player.sleeperId
 							div.form-group
-								label(for='college') College
-								input#college.form-control(
+								label(for='sleeperId') Sleeper ID
+								input#sleeperId.form-control(
 									type='text'
-									name='college'
-									value=player.college || ''
-									placeholder='e.g. USC, Syracuse'
+									name='sleeperId'
+									value=player.sleeperId || ''
+									placeholder='Leave blank for historical players'
 								)
-						
-						div.form-group
-							label(for='notes') Notes
-							input#notes.form-control(
-								type='text'
-								name='notes'
-								value=player.notes || ''
-								placeholder='Disambiguation notes, not overwritten by sync'
-							)
-						
-						div.d-flex.justify-content-between
-							button.btn.btn-primary(type='submit') Save Changes
-							a.btn.btn-secondary(href='/admin/players') Cancel
+							
+							if !player.sleeperId
+								div.form-group
+									label(for='college') College
+									input#college.form-control(
+										type='text'
+										name='college'
+										value=player.college || ''
+										placeholder='e.g. USC, Syracuse'
+									)
+							
+							div.form-group
+								label(for='notes') Notes
+								input#notes.form-control(
+									type='text'
+									name='notes'
+									value=player.notes || ''
+									placeholder='Disambiguation notes, not overwritten by sync'
+								)
+							
+							div.d-flex.justify-content-between
+								button.btn.btn-primary(type='submit') Save Changes
+								a.btn.btn-secondary(href='/admin/players') Cancel
 				
 				if contracts && contracts.length
 					div.card.mb-4
