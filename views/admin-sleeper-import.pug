@@ -86,6 +86,15 @@ block content
 			//- Actions bar
 			.d-flex.justify-content-between.align-items-center.mb-3
 				div
+					.btn-group.mr-3
+						button.btn.btn-outline-secondary.dropdown-toggle(type='button' data-toggle='dropdown')
+							| Set All Visible...
+						.dropdown-menu
+							a.dropdown-item.bulk-set(href='#' data-disposition='import') Import
+							a.dropdown-item.bulk-set(href='#' data-disposition='ignore') Ignore
+							a.dropdown-item.bulk-set(href='#' data-disposition='unsure') Unsure
+							.dropdown-divider
+							a.dropdown-item.bulk-set(href='#' data-disposition='') Clear
 					button#saveAnnotations.btn.btn-success(disabled)
 						i.fa.fa-save.mr-1
 						| Save Annotations
@@ -192,9 +201,10 @@ mixin transactionTable(transactions)
 						if (tx.clusterStart && tx.isMultiCluster) rowClasses.push('cluster-start');
 					tr(class=rowClasses.join(' ') data-cluster=tx.isMultiCluster ? tx.clusterId : null)
 						td.text-nowrap
-							= tx.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' })
+							- var effectiveTime = tx.statusUpdated || tx.timestamp
+							= effectiveTime.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: '2-digit' })
 							br
-							small.text-muted= tx.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+							small.text-muted= effectiveTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
 						td
 							span.badge(class=badgeClass)= tx.psoType
 							if tx.sleeperType !== tx.psoType
@@ -325,6 +335,50 @@ block scripts
 						
 						if (!pendingChanges[txId]) pendingChanges[txId] = {};
 						pendingChanges[txId].facilitatesTradeId = value;
+						updateSaveState();
+					});
+				});
+				
+				// Bulk set disposition for all visible transactions
+				document.querySelectorAll('.bulk-set').forEach(function(item) {
+					item.addEventListener('click', function(e) {
+						e.preventDefault();
+						var disposition = this.dataset.disposition;
+						
+						// Find the active tab pane
+						var activePane = document.querySelector('.tab-pane.active');
+						if (!activePane) return;
+						
+						// Get all disposition selects in the active pane
+						var selects = activePane.querySelectorAll('.disposition-select');
+						selects.forEach(function(select) {
+							var txId = select.dataset.txId;
+							select.value = disposition;
+							
+							// Hide trade ID input when not trade-facilitating
+							var tradeInput = select.parentElement.querySelector('.trade-id-input');
+							if (tradeInput) {
+								tradeInput.style.display = disposition === 'trade-facilitating' ? '' : 'none';
+								if (disposition !== 'trade-facilitating') tradeInput.value = '';
+							}
+							
+							// Sync across tabs
+							document.querySelectorAll('.disposition-select[data-tx-id="' + txId + '"]').forEach(function(other) {
+								if (other !== select) {
+									other.value = disposition;
+									var otherInput = other.parentElement.querySelector('.trade-id-input');
+									if (otherInput) {
+										otherInput.style.display = disposition === 'trade-facilitating' ? '' : 'none';
+										if (disposition !== 'trade-facilitating') otherInput.value = '';
+									}
+								}
+							});
+							
+							// Track change
+							if (!pendingChanges[txId]) pendingChanges[txId] = {};
+							pendingChanges[txId].disposition = disposition;
+						});
+						
 						updateSaveState();
 					});
 				});

@@ -68,7 +68,10 @@
 				"status_updated": 1767027888600,
 				"transaction_id": "1311229368411897856",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -316,7 +319,10 @@
 				"status_updated": 1766941539689,
 				"transaction_id": "1310700480443203584",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -438,7 +444,10 @@
 				"status_updated": 1766941539689,
 				"transaction_id": "1311024061312139264",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -508,7 +517,10 @@
 				"status_updated": 1766855132703,
 				"transaction_id": "1310422199248637952",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -599,7 +611,10 @@
 				"status_updated": 1766709045326,
 				"transaction_id": "1310076325435830272",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -643,7 +658,10 @@
 				"status_updated": 1766693929736,
 				"transaction_id": "1310012926056230912",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -712,7 +730,10 @@
 				"status_updated": 1766682316227,
 				"transaction_id": "1308883143742193664",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -781,7 +802,10 @@
 				"status_updated": 1766682316227,
 				"transaction_id": "1309727853025189888",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -850,7 +874,10 @@
 				"status_updated": 1766682316227,
 				"transaction_id": "1309891490314485760",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -919,7 +946,10 @@
 				"status_updated": 1766682316227,
 				"transaction_id": "1309891883694055424",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -988,7 +1018,10 @@
 				"status_updated": 1766682316227,
 				"transaction_id": "1309896892305391616",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1057,7 +1090,10 @@
 				"status_updated": 1766250313980,
 				"transaction_id": "1307794782491279360",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1126,7 +1162,10 @@
 				"status_updated": 1766250313980,
 				"transaction_id": "1307795343206785024",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1195,7 +1234,10 @@
 				"status_updated": 1766077545437,
 				"transaction_id": "1306360928333230080",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1264,7 +1306,10 @@
 				"status_updated": 1766077545437,
 				"transaction_id": "1306376413296742400",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1334,7 +1379,10 @@
 				"status_updated": 1766077545437,
 				"transaction_id": "1306739130511679488",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1403,7 +1451,10 @@
 				"status_updated": 1766077545437,
 				"transaction_id": "1306751365711691776",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1472,7 +1523,10 @@
 				"status_updated": 1765731903190,
 				"transaction_id": "1305959670501879808",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1541,7 +1595,10 @@
 				"status_updated": 1765731903190,
 				"transaction_id": "1305959852278812672",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1610,7 +1667,10 @@
 				"status_updated": 1765731903190,
 				"transaction_id": "1305973770749480960",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1679,7 +1739,10 @@
 				"status_updated": 1765645495126,
 				"transaction_id": "1305544727625490432",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1748,7 +1811,10 @@
 				"status_updated": 1765645495126,
 				"transaction_id": "1305570600563003392",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1818,7 +1884,10 @@
 				"status_updated": 1765559147646,
 				"transaction_id": "1305015435535589376",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1888,7 +1957,10 @@
 				"status_updated": 1765559147646,
 				"transaction_id": "1305182714936164352",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -1957,7 +2029,10 @@
 				"status_updated": 1765472749199,
 				"transaction_id": "1304174863904161792",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2026,7 +2101,10 @@
 				"status_updated": 1765472749199,
 				"transaction_id": "1304529928808595456",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2095,7 +2173,10 @@
 				"status_updated": 1765472749199,
 				"transaction_id": "1304888467754328064",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2165,7 +2246,10 @@
 				"status_updated": 1765127130239,
 				"transaction_id": "1303227639212802048",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2234,7 +2318,10 @@
 				"status_updated": 1765040722270,
 				"transaction_id": "1302733160135528448",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2303,7 +2390,10 @@
 				"status_updated": 1764954290607,
 				"transaction_id": "1302491654174818304",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2372,7 +2462,10 @@
 				"status_updated": 1764954290607,
 				"transaction_id": "1302703449443426304",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2442,7 +2535,10 @@
 				"status_updated": 1764867926935,
 				"transaction_id": "1301521981497167872",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2511,7 +2607,10 @@
 				"status_updated": 1764867926935,
 				"transaction_id": "1302155095953149952",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2580,7 +2679,10 @@
 				"status_updated": 1764867926935,
 				"transaction_id": "1302313388218527744",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2649,7 +2751,10 @@
 				"status_updated": 1764522340945,
 				"transaction_id": "1300674046282694656",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2718,7 +2823,10 @@
 				"status_updated": 1764522340945,
 				"transaction_id": "1300897174262931456",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2787,7 +2895,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1298692708256198656",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2856,7 +2967,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299099256598040576",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2925,7 +3039,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299100863117164544",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -2994,7 +3111,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299221155516813312",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3063,7 +3183,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299452856419508224",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3132,7 +3255,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299453452182650880",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3201,7 +3327,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299453886028869632",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3270,7 +3399,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299766601536532481",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3339,7 +3471,10 @@
 				"status_updated": 1764263113244,
 				"transaction_id": "1299785867589591040",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3408,7 +3543,10 @@
 				"status_updated": 1763917505819,
 				"transaction_id": "1298335917601218560",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3477,7 +3615,10 @@
 				"status_updated": 1763917505819,
 				"transaction_id": "1298348241036795904",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3546,7 +3687,10 @@
 				"status_updated": 1763917505819,
 				"transaction_id": "1298356947359133696",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3596,7 +3740,10 @@
 				"status_updated": 1763831096183,
 				"transaction_id": "1297963257436332032",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3645,7 +3792,10 @@
 				"status_updated": 1763831096183,
 				"transaction_id": "1297963532255522816",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3714,7 +3864,10 @@
 				"status_updated": 1763831096183,
 				"transaction_id": "1297964437377941504",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3835,7 +3988,10 @@
 				"status_updated": 1763831096183,
 				"transaction_id": "1297968745733423104",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3904,7 +4060,10 @@
 				"status_updated": 1763744748665,
 				"transaction_id": "1297389976991858688",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -3973,7 +4132,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1296219611359907840",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4043,7 +4205,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1296475283733381120",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4112,7 +4277,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1296502207776063488",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4181,7 +4349,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1296724804220518400",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4250,7 +4421,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1296988136445849600",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4319,7 +4493,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1296988670561120256",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4389,7 +4566,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1297050430110461952",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4458,7 +4638,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1297069374837911553",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4527,7 +4710,10 @@
 				"status_updated": 1763658339500,
 				"transaction_id": "1297222013592559616",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4576,7 +4762,10 @@
 				"status_updated": 1763312707595,
 				"transaction_id": "1295547227929841664",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4645,7 +4834,10 @@
 				"status_updated": 1763312707595,
 				"transaction_id": "1295552442724814848",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4715,7 +4907,10 @@
 				"status_updated": 1763312707595,
 				"transaction_id": "1295745577593626624",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4784,7 +4979,10 @@
 				"status_updated": 1763312707595,
 				"transaction_id": "1295817960463568896",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4853,7 +5051,10 @@
 				"status_updated": 1763139893821,
 				"transaction_id": "1294782900595609600",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4922,7 +5123,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1293956705213763584",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -4992,7 +5196,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1294026004674662400",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5062,7 +5269,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1294110998986231808",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5131,7 +5341,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1294508106440540160",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5200,7 +5413,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1294710343792066560",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5269,7 +5485,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1294720061310771200",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5340,7 +5559,10 @@
 				"status_updated": 1763053527080,
 				"transaction_id": "1294731316293545984",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5409,7 +5631,10 @@
 				"status_updated": 1762707895741,
 				"transaction_id": "1293287662886588416",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5478,7 +5703,10 @@
 				"status_updated": 1762621546428,
 				"transaction_id": "1292902265417383936",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5547,7 +5775,10 @@
 				"status_updated": 1762535093382,
 				"transaction_id": "1292214385015529472",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5616,7 +5847,10 @@
 				"status_updated": 1762535093382,
 				"transaction_id": "1292216840193335296",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5685,7 +5919,10 @@
 				"status_updated": 1762535093382,
 				"transaction_id": "1292217315353456640",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5734,7 +5971,10 @@
 				"status_updated": 1762535093382,
 				"transaction_id": "1292277674391138304",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5803,7 +6043,10 @@
 				"status_updated": 1762535093382,
 				"transaction_id": "1292325887991087104",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -5872,7 +6115,10 @@
 				"status_updated": 1762535093382,
 				"transaction_id": "1292523997623255040",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6032,7 +6278,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1291634917259628544",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6101,7 +6350,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1291831149265457152",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6171,7 +6423,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1291924914592296960",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6220,7 +6475,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1291977218666295296",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6269,7 +6527,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1292036696539406336",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6338,7 +6599,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1292044735589941248",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6409,7 +6673,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1292124191788650496",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6458,7 +6725,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1292148666080952320",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6527,7 +6797,10 @@
 				"status_updated": 1762448692312,
 				"transaction_id": "1292183968153604096",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -6598,7 +6871,7 @@
 				"type": "waiver",
 				"waiver_budget": null,
 				"_pso": {
-					"disposition": "ignore"
+					"disposition": "import"
 				}
 			},
 			{
@@ -6644,7 +6917,10 @@
 				"status_updated": 1762406470645,
 				"transaction_id": "1292030019236810752",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -6795,7 +7071,10 @@
 				"status_updated": 1762406448291,
 				"transaction_id": "1292029925477343233",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -6840,7 +7119,10 @@
 				"status_updated": 1762406424967,
 				"transaction_id": "1292029827653599232",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -6985,7 +7267,10 @@
 				"status_updated": 1762380809470,
 				"transaction_id": "1291922388467847168",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -7155,7 +7440,10 @@
 				"status_updated": 1762376717098,
 				"transaction_id": "1291905223819788288",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -7199,7 +7487,10 @@
 				"status_updated": 1762376614874,
 				"transaction_id": "1291904795061264384",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -7244,7 +7535,10 @@
 				"status_updated": 1762376394641,
 				"transaction_id": "1291903871337127936",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -7335,7 +7629,10 @@
 				"status_updated": 1762362137205,
 				"transaction_id": "1291844071312072704",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -7420,7 +7717,10 @@
 				"status_updated": 1762359096955,
 				"transaction_id": "1291831319579353088",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -7505,7 +7805,10 @@
 				"status_updated": 1762323548730,
 				"transaction_id": "1291682219517026304",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -7616,7 +7919,10 @@
 				"status_updated": 1762321620576,
 				"transaction_id": "1291674132253007872",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -7665,7 +7971,10 @@
 				"status_updated": 1762103144378,
 				"transaction_id": "1290457841932468224",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -7714,7 +8023,10 @@
 				"status_updated": 1762103144378,
 				"transaction_id": "1290493874480910336",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -7783,7 +8095,10 @@
 				"status_updated": 1762103144378,
 				"transaction_id": "1290709942478589952",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -7852,7 +8167,10 @@
 				"status_updated": 1762103144378,
 				"transaction_id": "1290712929313783808",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -7901,7 +8219,10 @@
 				"status_updated": 1762103144378,
 				"transaction_id": "1290751864601600000",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -7966,7 +8287,10 @@
 				"status_updated": 1762037677692,
 				"transaction_id": "1290483189478866944",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -8011,7 +8335,10 @@
 				"status_updated": 1762037667724,
 				"transaction_id": "1290483147674226688",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -8162,7 +8489,10 @@
 				"status_updated": 1762030344360,
 				"transaction_id": "1290452431259316224",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -8323,7 +8653,10 @@
 				"status_updated": 1762013137979,
 				"transaction_id": "1290096292218834944",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -8388,7 +8721,10 @@
 				"status_updated": 1761924966366,
 				"transaction_id": "1290010443913363456",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -8453,7 +8789,10 @@
 				"status_updated": 1761924767723,
 				"transaction_id": "1290009610748432384",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -8518,7 +8857,10 @@
 				"status_updated": 1761924578435,
 				"transaction_id": "1290008816812818432",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -8583,7 +8925,10 @@
 				"status_updated": 1761842347890,
 				"transaction_id": "1289663916913205248",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -8652,7 +8997,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1288851566605930496",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -8723,7 +9071,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289060964150317057",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -8793,7 +9144,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289445363236753408",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -8862,7 +9216,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289623407972855808",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -8912,7 +9269,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289646304770691072",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -8982,7 +9342,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289646840316174336",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9051,7 +9414,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289649206167879680",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9120,7 +9486,10 @@
 				"status_updated": 1761840318634,
 				"transaction_id": "1289650152339943424",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9185,7 +9554,10 @@
 				"status_updated": 1761773391039,
 				"transaction_id": "1289374690913058816",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -9254,7 +9626,10 @@
 				"status_updated": 1761581142110,
 				"transaction_id": "1288540500093067264",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9323,7 +9698,10 @@
 				"status_updated": 1761494734197,
 				"transaction_id": "1287894197734502400",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9394,7 +9772,10 @@
 				"status_updated": 1761494734197,
 				"transaction_id": "1287970473656737792",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9463,7 +9844,10 @@
 				"status_updated": 1761494734197,
 				"transaction_id": "1288197712797253632",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -9595,7 +9979,10 @@
 				"status_updated": 1761427898625,
 				"transaction_id": "1287925590703226880",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -9664,7 +10051,10 @@
 				"status_updated": 1761408325596,
 				"transaction_id": "1287483417310560256",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9713,7 +10103,10 @@
 				"status_updated": 1761408325596,
 				"transaction_id": "1287835730353098753",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -9758,7 +10151,10 @@
 				"status_updated": 1761311916033,
 				"transaction_id": "1287439124453683200",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -9802,7 +10198,10 @@
 				"status_updated": 1761311901510,
 				"transaction_id": "1287439063539810304",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -9870,7 +10269,10 @@
 				"status_updated": 1761311858009,
 				"transaction_id": "1287438354673065984",
 				"type": "trade",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -10001,7 +10403,10 @@
 				"status_updated": 1761254041949,
 				"transaction_id": "1287196382947475456",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -10073,7 +10478,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1285948735272017920",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10142,7 +10550,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1286310419551485952",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10211,7 +10622,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1286370648582529024",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10281,7 +10695,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1286723529227653120",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10351,7 +10768,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1286830590166835200",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10421,7 +10841,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1287056595326361600",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10490,7 +10913,10 @@
 				"status_updated": 1761235518669,
 				"transaction_id": "1287072078142382080",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10535,7 +10961,10 @@
 				"status_updated": 1761166349156,
 				"transaction_id": "1286828572715016192",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -10630,7 +11059,10 @@
 				"status_updated": 1760976346505,
 				"transaction_id": "1285696761263828992",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -10674,7 +11106,10 @@
 				"status_updated": 1760896480030,
 				"transaction_id": "1285696659564531712",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10744,7 +11179,10 @@
 				"status_updated": 1760889901678,
 				"transaction_id": "1285613220081467392",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10813,7 +11251,10 @@
 				"status_updated": 1760889901678,
 				"transaction_id": "1285614462379757568",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10882,7 +11323,10 @@
 				"status_updated": 1760889901678,
 				"transaction_id": "1285628623755157504",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -10951,7 +11395,10 @@
 				"status_updated": 1760803492873,
 				"transaction_id": "1285258041674969088",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11021,7 +11468,10 @@
 				"status_updated": 1760803492873,
 				"transaction_id": "1285259418849529856",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11090,7 +11540,10 @@
 				"status_updated": 1760717118053,
 				"transaction_id": "1284867136434499584",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11235,7 +11688,10 @@
 				"status_updated": 1760666020556,
 				"transaction_id": "1284730042470916096",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11300,7 +11756,10 @@
 				"status_updated": 1760656647232,
 				"transaction_id": "1284690727900565504",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -11370,7 +11829,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1283495552851406848",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11439,7 +11901,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1283501588043825152",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11508,7 +11973,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1283613871554183168",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11577,7 +12045,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1283900812237504512",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11646,7 +12117,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1284024225098629120",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11715,7 +12189,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1284331192472055808",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11785,7 +12262,10 @@
 				"status_updated": 1760630718919,
 				"transaction_id": "1284559148075200512",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11890,7 +12370,10 @@
 				"status_updated": 1760561166203,
 				"transaction_id": "1284290251438723072",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -11939,7 +12422,10 @@
 				"status_updated": 1760371497333,
 				"transaction_id": "1283189719592620032",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -11988,7 +12474,10 @@
 				"status_updated": 1760285090767,
 				"transaction_id": "1283117891150938112",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12033,7 +12522,10 @@
 				"status_updated": 1760252342937,
 				"transaction_id": "1282994952774643712",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -12077,7 +12569,10 @@
 				"status_updated": 1760243551475,
 				"transaction_id": "1282958078710382592",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12126,7 +12621,10 @@
 				"status_updated": 1760198742735,
 				"transaction_id": "1282488925914415104",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12195,7 +12693,10 @@
 				"status_updated": 1760198742735,
 				"transaction_id": "1282537535246995456",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12264,7 +12765,10 @@
 				"status_updated": 1760198742735,
 				"transaction_id": "1282728957430501376",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12329,7 +12833,10 @@
 				"status_updated": 1760191283023,
 				"transaction_id": "1282738848933085184",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -12394,7 +12901,10 @@
 				"status_updated": 1760129488613,
 				"transaction_id": "1282479664392056833",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -12443,7 +12953,10 @@
 				"status_updated": 1760112336194,
 				"transaction_id": "1282090792277536768",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12492,7 +13005,10 @@
 				"status_updated": 1760112336194,
 				"transaction_id": "1282090888587149312",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12561,7 +13077,10 @@
 				"status_updated": 1760112336194,
 				"transaction_id": "1282393634200637440",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12626,7 +13145,10 @@
 				"status_updated": 1760048854011,
 				"transaction_id": "1282141458362568704",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -12695,7 +13217,10 @@
 				"status_updated": 1760025936742,
 				"transaction_id": "1281037878918385664",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12764,7 +13289,10 @@
 				"status_updated": 1760025936742,
 				"transaction_id": "1281688004829642752",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12833,7 +13361,10 @@
 				"status_updated": 1760025936742,
 				"transaction_id": "1282019548861575168",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12902,7 +13433,10 @@
 				"status_updated": 1760025936742,
 				"transaction_id": "1282020023258333184",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -12971,7 +13505,10 @@
 				"status_updated": 1760025936742,
 				"transaction_id": "1282023283402756096",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -13015,7 +13552,10 @@
 				"status_updated": 1759871398852,
 				"transaction_id": "1281397157479337984",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13084,7 +13624,10 @@
 				"status_updated": 1759680338426,
 				"transaction_id": "1280547196801933312",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13153,7 +13696,10 @@
 				"status_updated": 1759680338426,
 				"transaction_id": "1280557289278824449",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13222,7 +13768,10 @@
 				"status_updated": 1759507523954,
 				"transaction_id": "1279558941986017280",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13291,7 +13840,10 @@
 				"status_updated": 1759507523954,
 				"transaction_id": "1279626288893554688",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13360,7 +13912,10 @@
 				"status_updated": 1759507523954,
 				"transaction_id": "1279691906606956544",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13429,7 +13984,10 @@
 				"status_updated": 1759507523954,
 				"transaction_id": "1279693744542584832",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13498,7 +14056,10 @@
 				"status_updated": 1759507523954,
 				"transaction_id": "1279694288627707904",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13547,7 +14108,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278783920548089856",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13616,7 +14180,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278802863258112000",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13665,7 +14232,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278818815290900480",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13734,7 +14304,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278818982723354624",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13783,7 +14356,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278901903828226048",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13833,7 +14409,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278931661223919616",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13903,7 +14482,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278939455977189376",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -13974,7 +14556,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278942109713334272",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14043,7 +14628,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1278942996317872128",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14112,7 +14700,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1279284015748116480",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14181,7 +14772,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1279291139756679168",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14230,7 +14824,10 @@
 				"status_updated": 1759421097272,
 				"transaction_id": "1279488339526811648",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -14274,7 +14871,10 @@
 				"status_updated": 1759420744420,
 				"transaction_id": "1279506975792599040",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14359,7 +14959,10 @@
 				"status_updated": 1759348880220,
 				"transaction_id": "1279205555491078144",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -14424,7 +15027,10 @@
 				"status_updated": 1759291936703,
 				"transaction_id": "1278966717065736192",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -14468,7 +15074,10 @@
 				"status_updated": 1759255111827,
 				"transaction_id": "1278812262345216000",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -14512,7 +15121,10 @@
 				"status_updated": 1759244025961,
 				"transaction_id": "1278765764853125120",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -14556,7 +15168,10 @@
 				"status_updated": 1759235690973,
 				"transaction_id": "1278730805379620864",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14606,7 +15221,10 @@
 				"status_updated": 1759075530363,
 				"transaction_id": "1277857478939250688",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14655,7 +15273,10 @@
 				"status_updated": 1759075530363,
 				"transaction_id": "1277998979803525120",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14724,7 +15345,10 @@
 				"status_updated": 1759075530363,
 				"transaction_id": "1278043116883968000",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -14789,7 +15413,10 @@
 				"status_updated": 1759067683654,
 				"transaction_id": "1278026131605315584",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -14914,7 +15541,10 @@
 				"status_updated": 1759006439832,
 				"transaction_id": "1277769256401907712",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": null,
@@ -15026,7 +15656,10 @@
 				"status_updated": 1759006408192,
 				"transaction_id": "1277769123694145536",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -15095,7 +15728,10 @@
 				"status_updated": 1758902714468,
 				"transaction_id": "1276980281894526976",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15164,7 +15800,10 @@
 				"status_updated": 1758902714468,
 				"transaction_id": "1277049822662107136",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15233,7 +15872,10 @@
 				"status_updated": 1758902714468,
 				"transaction_id": "1277087140362072065",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15284,7 +15926,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276179199136120832",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15353,7 +15998,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276219393415598080",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15422,7 +16070,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276604895054532608",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15472,7 +16123,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276937788192727040",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15542,7 +16196,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276937933403754496",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15591,7 +16248,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276938896445296640",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15661,7 +16321,10 @@
 				"status_updated": 1758816303899,
 				"transaction_id": "1276950583026159616",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -15705,7 +16368,10 @@
 				"status_updated": 1758627261969,
 				"transaction_id": "1276178869174439936",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -15749,7 +16415,10 @@
 				"status_updated": 1758627248630,
 				"transaction_id": "1276178813226582016",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15818,7 +16487,10 @@
 				"status_updated": 1758297910932,
 				"transaction_id": "1274584141899255808",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15888,7 +16560,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1273388514976747520",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -15957,7 +16632,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1273982122738057216",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16027,7 +16705,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1273985169908314112",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16096,7 +16777,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1274042034998476800",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16165,7 +16849,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1274149019517460480",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16235,7 +16922,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1274212112608002048",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16305,7 +16995,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1274233515860295680",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16374,7 +17067,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1274432230705369088",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16443,7 +17139,10 @@
 				"status_updated": 1758211505358,
 				"transaction_id": "1274432815240323072",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16514,7 +17213,10 @@
 				"status_updated": 1757865910379,
 				"transaction_id": "1272945153597792256",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16584,7 +17286,10 @@
 				"status_updated": 1757865910379,
 				"transaction_id": "1272945494259171328",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16654,7 +17359,10 @@
 				"status_updated": 1757779499946,
 				"transaction_id": "1272608421035659264",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16703,7 +17411,10 @@
 				"status_updated": 1757693090544,
 				"transaction_id": "1272012476786933760",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16772,7 +17483,10 @@
 				"status_updated": 1757693090544,
 				"transaction_id": "1272189056616239104",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -16816,7 +17530,10 @@
 				"status_updated": 1757633884153,
 				"transaction_id": "1272012340623048704",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16886,7 +17603,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271131720007024640",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -16955,7 +17675,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271167598783889408",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17024,7 +17747,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271188952983822336",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17094,7 +17820,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271247921521651712",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17163,7 +17892,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271248527581790208",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17232,7 +17964,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271335607406194688",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17302,7 +18037,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271514776412897280",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17351,7 +18089,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271553209604796416",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17420,7 +18161,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271573967093645312",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17490,7 +18234,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271617428312301568",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17560,7 +18307,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271684694257172480",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17629,7 +18379,10 @@
 				"status_updated": 1757606742672,
 				"transaction_id": "1271865682518093824",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17678,7 +18431,10 @@
 				"status_updated": 1757261115289,
 				"transaction_id": "1270379342232305664",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17727,7 +18483,10 @@
 				"status_updated": 1757261115289,
 				"transaction_id": "1270379416454713344",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17796,7 +18555,10 @@
 				"status_updated": 1757261115289,
 				"transaction_id": "1270422591437275136",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17845,7 +18607,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268639498372136960",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17914,7 +18679,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268655223975456768",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -17963,7 +18731,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268667190945525760",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -18012,7 +18783,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268667292657405952",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -18061,7 +18835,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268760044724305920",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -18110,7 +18887,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268761728506675201",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -18160,7 +18940,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268762171785879553",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -18229,7 +19012,10 @@
 				"status_updated": 1756915538557,
 				"transaction_id": "1268766971869007875",
 				"type": "waiver",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -18273,7 +19059,10 @@
 				"status_updated": 1756859094938,
 				"transaction_id": "1268762639123611648",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": null,
@@ -18317,7 +19106,10 @@
 				"status_updated": 1756859036728,
 				"transaction_id": "1268762394973192192",
 				"type": "free_agent",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "import"
+				}
 			},
 			{
 				"adds": {
@@ -18382,7 +19174,10 @@
 				"status_updated": 1756655952299,
 				"transaction_id": "1267910597136097280",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -18447,7 +19242,10 @@
 				"status_updated": 1756649327694,
 				"transaction_id": "1267882811533037568",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			},
 			{
 				"adds": {
@@ -18532,7 +19330,10 @@
 				"status_updated": 1756524601589,
 				"transaction_id": "1267359672327733248",
 				"type": "commissioner",
-				"waiver_budget": null
+				"waiver_budget": null,
+				"_pso": {
+					"disposition": "ignore"
+				}
 			}
 		]
 	}

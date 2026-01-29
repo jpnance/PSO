@@ -466,7 +466,8 @@ exports.generateFixups = async function(req, res) {
 			if (!tx._pso) return;
 			
 			var disposition = tx._pso.disposition;
-			var timestamp = new Date(tx.created).toISOString();
+			// Prefer status_updated (when transaction was executed) over created (when bid was placed)
+			var timestamp = new Date(tx.status_updated || tx.created).toISOString();
 			
 			if (disposition === 'trade-facilitating' && tx._pso.facilitatesTradeId) {
 				// Each drop in the transaction gets its own fixup entry
