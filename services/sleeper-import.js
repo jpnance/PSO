@@ -302,6 +302,43 @@ async function parseSleeperTransactions(year) {
 		return b.timestamp - a.timestamp;
 	});
 
+	// Assign cluster IDs to transactions within 60s of each other
+	var clusterId = 0;
+	for (var i = 0; i < parsed.length; i++) {
+		var tx = parsed[i];
+		
+		if (tx.clusterId === undefined) {
+			// Start a new cluster
+			tx.clusterId = clusterId;
+			tx.clusterStart = true;
+			
+			// Find all transactions within 60s (looking forward since sorted newest first)
+			for (var j = i + 1; j < parsed.length; j++) {
+				var other = parsed[j];
+				var timeDiff = Math.abs(tx.timestamp - other.timestamp);
+				
+				if (timeDiff <= 120000) { // 120 seconds
+					other.clusterId = clusterId;
+					other.clusterStart = false;
+				} else {
+					break; // No need to check further since sorted by time
+				}
+			}
+			
+			clusterId++;
+		}
+	}
+	
+	// Mark clusters with multiple transactions
+	var clusterCounts = {};
+	parsed.forEach(function(tx) {
+		clusterCounts[tx.clusterId] = (clusterCounts[tx.clusterId] || 0) + 1;
+	});
+	parsed.forEach(function(tx) {
+		tx.clusterSize = clusterCounts[tx.clusterId];
+		tx.isMultiCluster = tx.clusterSize > 1;
+	});
+
 	// Load trades for commissioner action matching
 	var trades = await Transaction.find({ type: 'trade' }).lean();
 	
@@ -389,4 +426,79 @@ exports.importForm = async function(req, res) {
 exports.parseTransactions = async function(req, res) {
 	var year = req.body.year;
 	res.redirect('/admin/sleeper-import?year=' + year);
+};
+
+// Save annotations back to the JSON file
+exports.saveAnnotations = async function(req, res) {
+	try {
+		var year = req.body.year;
+		var annotations = req.body.annotations; // { txId: disposition, ... }
+		
+		if (!year || !annotations) {
+			return res.status(400).json({ success: false, error: 'Missing year or annotations' });
+		}
+		
+		var filePath = path.join(SLEEPER_DATA_DIR, 'transactions-' + year + '.json');
+		
+		if (!fs.existsSync(filePath)) {
+			return res.status(404).json({ success: false, error: 'File not found for year ' + year });
+		}
+		
+		// Read current file
+		var fileContent = fs.readFileSync(filePath, 'utf8');
+		var jsonData = JSON.parse(fileContent);
+		
+		// Find transactions array
+		var transactions;
+		var isWrapped = false;
+		if (jsonData.data && jsonData.data.league_transactions_filtered) {
+			transactions = jsonData.data.league_transactions_filtered;
+			isWrapped = true;
+		} else if (Array.isArray(jsonData)) {
+			transactions = jsonData;
+		} else {
+			return res.status(400).json({ success: false, error: 'Could not find transactions array' });
+		}
+		
+		// Apply annotations
+		var updated = 0;
+		transactions.forEach(function(tx) {
+			var txId = tx.transaction_id;
+			if (annotations[txId] !== undefined) {
+				var annotation = annotations[txId];
+				
+				if (!tx._pso) {
+					tx._pso = {};
+				}
+				
+				// Handle disposition
+				if (annotation.disposition === '' || annotation.disposition === undefined) {
+					delete tx._pso.disposition;
+				} else {
+					tx._pso.disposition = annotation.disposition;
+				}
+				
+				// Handle facilitatesTradeId
+				if (annotation.facilitatesTradeId) {
+					tx._pso.facilitatesTradeId = annotation.facilitatesTradeId;
+				} else {
+					delete tx._pso.facilitatesTradeId;
+				}
+				
+				// Clean up empty _pso object
+				if (Object.keys(tx._pso).length === 0) {
+					delete tx._pso;
+				}
+				
+				updated++;
+			}
+		});
+		
+		// Write back
+		fs.writeFileSync(filePath, JSON.stringify(jsonData, null, '\t'));
+		
+		res.json({ success: true, updated: updated });
+	} catch (err) {
+		res.status(500).json({ success: false, error: err.message });
+	}
 };

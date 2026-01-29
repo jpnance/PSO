@@ -135,6 +135,7 @@ module.exports = function(app) {
 	// Sleeper transaction import (require login + admin)
 	app.get('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.importForm);
 	app.post('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.parseTransactions);
+	app.post('/admin/sleeper-import/save', requireLogin, requireAdmin, sleeperImport.saveAnnotations);
 	
 	// Process new trades (require login + admin)
 	app.get('/admin/process-trade', requireLogin, requireAdmin, proposals.processPage);

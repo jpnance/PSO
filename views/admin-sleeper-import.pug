@@ -83,6 +83,17 @@ block content
 						each mp in result.stats.missingPlayers
 							span.badge.badge-warning.mr-1.mb-1= mp
 
+			//- Actions bar
+			.d-flex.justify-content-between.align-items-center.mb-3
+				div
+					button#saveAnnotations.btn.btn-success(disabled)
+						i.fa.fa-save.mr-1
+						| Save Annotations
+					span#saveStatus.ml-2.text-muted
+				div
+					span.text-muted.small
+						| Cluster: transactions within 120s
+
 			//- Filter tabs
 			ul.nav.nav-tabs.mb-3#typeTabs(role='tablist')
 				li.nav-item
@@ -142,6 +153,7 @@ mixin transactionTable(transactions)
 					th Drops
 					th Bid
 					th Notes
+					th Disposition
 			tbody
 				each tx in transactions
 					-
@@ -151,7 +163,12 @@ mixin transactionTable(transactions)
 						else if (tx.psoType === 'fa-cut') badgeClass = 'badge-danger';
 						else if (tx.psoType === 'fa-swap') badgeClass = 'badge-info';
 						else if (tx.psoType === 'commissioner') badgeClass = tx.likelyTradeExecution ? 'badge-primary' : 'badge-warning';
-					tr(class=tx.hasIssues ? 'table-warning' : '')
+					-
+						var rowClasses = [];
+						if (tx.hasIssues) rowClasses.push('table-warning');
+						if (tx.isMultiCluster) rowClasses.push('cluster-' + (tx.clusterId % 2 === 0 ? 'even' : 'odd'));
+						if (tx.clusterStart && tx.isMultiCluster) rowClasses.push('cluster-start');
+					tr(class=rowClasses.join(' ') data-cluster=tx.isMultiCluster ? tx.clusterId : null)
 						td.text-nowrap
 							= tx.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' })
 							br
@@ -198,14 +215,127 @@ mixin transactionTable(transactions)
 								else
 									small.text-muted (no resolved players)
 								|  
-							if tx.hasIssues
-								button.btn.btn-sm.btn-outline-warning(type='button' data-toggle='collapse' data-target='#issues-' + tx.sleeperTxId)
-									i.fa.fa-exclamation-triangle
-									|  #{tx.issues.length}
+						if tx.hasIssues
+							button.btn.btn-sm.btn-outline-warning(type='button' data-toggle='collapse' data-target='#issues-' + tx.sleeperTxId)
+								i.fa.fa-exclamation-triangle
+								|  #{tx.issues.length}
+						td.disposition-cell
+							- var currentDisposition = tx.raw._pso && tx.raw._pso.disposition ? tx.raw._pso.disposition : ''
+							- var currentTradeId = tx.raw._pso && tx.raw._pso.facilitatesTradeId ? tx.raw._pso.facilitatesTradeId : ''
+							.d-flex.align-items-center
+								select.form-control.form-control-sm.disposition-select(data-tx-id=tx.sleeperTxId)
+									option(value='' selected=(currentDisposition === '')) —
+									option(value='import' selected=(currentDisposition === 'import')) Import
+									option(value='ignore' selected=(currentDisposition === 'ignore')) Ignore
+									option(value='trade-facilitating' selected=(currentDisposition === 'trade-facilitating')) Trade Drop
+									option(value='unsure' selected=(currentDisposition === 'unsure')) Unsure
+								input.form-control.form-control-sm.trade-id-input.ml-1(
+									type='number'
+									placeholder='#'
+									data-tx-id=tx.sleeperTxId
+									value=currentTradeId
+									style=(currentDisposition === 'trade-facilitating' ? '' : 'display:none')
+								)
 					if tx.hasIssues
 						tr.collapse(id='issues-' + tx.sleeperTxId)
-							td(colspan='7')
+							td(colspan='8')
 								.alert.alert-warning.mb-0.py-2
 									ul.mb-0
 										each issue in tx.issues
 											li= issue
+
+block scripts
+	if selectedYear
+		script.
+			(function() {
+				var pendingChanges = {};
+				var saveBtn = document.getElementById('saveAnnotations');
+				var saveStatus = document.getElementById('saveStatus');
+				
+				function updateSaveState() {
+					var count = Object.keys(pendingChanges).length;
+					saveBtn.disabled = count === 0;
+					saveStatus.textContent = count > 0 ? count + ' unsaved change(s)' : '';
+				}
+				
+				// Track disposition changes
+				document.querySelectorAll('.disposition-select').forEach(function(select) {
+					select.addEventListener('change', function() {
+						var txId = this.dataset.txId;
+						var value = this.value;
+						// Find sibling input in the same cell
+						var tradeInput = this.parentElement.querySelector('.trade-id-input');
+						
+						// Show/hide trade ID input
+						if (tradeInput) {
+							tradeInput.style.display = value === 'trade-facilitating' ? '' : 'none';
+							if (value !== 'trade-facilitating') {
+								tradeInput.value = '';
+							}
+						}
+						
+						// Sync all instances of this transaction across tabs
+						document.querySelectorAll('.disposition-select[data-tx-id="' + txId + '"]').forEach(function(other) {
+							if (other !== select) {
+								other.value = value;
+								var otherInput = other.parentElement.querySelector('.trade-id-input');
+								if (otherInput) {
+									otherInput.style.display = value === 'trade-facilitating' ? '' : 'none';
+									if (value !== 'trade-facilitating') otherInput.value = '';
+								}
+							}
+						});
+						
+						if (!pendingChanges[txId]) pendingChanges[txId] = {};
+						pendingChanges[txId].disposition = value;
+						updateSaveState();
+					});
+				});
+				
+				// Track trade ID changes
+				document.querySelectorAll('.trade-id-input').forEach(function(input) {
+					input.addEventListener('change', function() {
+						var txId = this.dataset.txId;
+						var value = this.value ? parseInt(this.value, 10) : null;
+						
+						// Sync all instances across tabs
+						document.querySelectorAll('.trade-id-input[data-tx-id="' + txId + '"]').forEach(function(other) {
+							if (other !== input) other.value = value || '';
+						});
+						
+						if (!pendingChanges[txId]) pendingChanges[txId] = {};
+						pendingChanges[txId].facilitatesTradeId = value;
+						updateSaveState();
+					});
+				});
+				
+				// Save annotations
+				saveBtn.addEventListener('click', function() {
+					saveBtn.disabled = true;
+					saveStatus.textContent = 'Saving...';
+					
+					fetch('/admin/sleeper-import/save', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							year: #{selectedYear},
+							annotations: pendingChanges
+						})
+					})
+					.then(function(res) { return res.json(); })
+					.then(function(data) {
+						if (data.success) {
+							saveStatus.textContent = 'Saved!';
+							pendingChanges = {};
+							setTimeout(function() { saveStatus.textContent = ''; }, 2000);
+						} else {
+							saveStatus.textContent = 'Error: ' + data.error;
+							saveBtn.disabled = false;
+						}
+					})
+					.catch(function(err) {
+						saveStatus.textContent = 'Error: ' + err.message;
+						saveBtn.disabled = false;
+					});
+				});
+			})();

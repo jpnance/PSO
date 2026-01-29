@@ -36,3 +36,35 @@
 .nav-tabs .badge {
 	font-size: 0.7rem;
 }
+
+/* Cluster highlighting for transactions within 120s of each other */
+.cluster-even {
+	background-color: rgba(0, 123, 255, 0.08);
+}
+
+.cluster-odd {
+	background-color: rgba(40, 167, 69, 0.08);
+}
+
+.cluster-start {
+	border-top: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Override table-warning background when clustered */
+.cluster-even.table-warning,
+.cluster-odd.table-warning {
+	background-color: rgba(255, 193, 7, 0.25);
+}
+
+/* Disposition dropdown */
+.disposition-select {
+	min-width: 100px;
+	font-size: 0.75rem;
+	padding: 0.2rem 0.4rem;
+}
+
+.trade-id-input {
+	width: 50px;
+	font-size: 0.75rem;
+	padding: 0.2rem 0.4rem;
+}
