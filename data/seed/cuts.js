@@ -676,7 +676,7 @@ async function run() {
 		try {
 			await Transaction.create({
 				type: 'fa-cut',
-				timestamp: new Date(cut.cutYear, 0, 1), // Jan 1 of cut year
+				timestamp: new Date(Date.UTC(cut.cutYear, 0, 1, 12, 0, 0)), // Jan 1 noon UTC (displays correctly in ET)
 				source: 'snapshot',
 				franchiseId: franchiseId,
 				playerId: playerId,
