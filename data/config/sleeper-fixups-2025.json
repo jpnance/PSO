@@ -1884,25 +1884,6 @@
 			]
 		},
 		{
-			"sleeperTxId": "1292184698537148416",
-			"timestamp": "2025-11-06T17:04:52.312Z",
-			"psoType": "fa-swap",
-			"rosterId": 11,
-			"salary": 5,
-			"adds": [
-				{
-					"sleeperId": "10905",
-					"playerName": "Brian Branch"
-				}
-			],
-			"drops": [
-				{
-					"sleeperId": "6828",
-					"playerName": "A.J. Dillon"
-				}
-			]
-		},
-		{
 			"sleeperTxId": "1291904795061264384",
 			"timestamp": "2025-11-05T21:03:34.874Z",
 			"psoType": "fa-cut",
@@ -4383,6 +4364,11 @@
 			"sleeperTxId": "1292215135498153984",
 			"timestamp": "2025-11-06T17:36:45.801Z",
 			"type": "commissioner"
+		},
+		{
+			"sleeperTxId": "1292184698537148416",
+			"timestamp": "2025-11-06T17:04:52.312Z",
+			"type": "waiver"
 		},
 		{
 			"sleeperTxId": "1292030019236810752",

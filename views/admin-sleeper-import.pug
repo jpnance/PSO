@@ -88,13 +88,11 @@ block content
 				div
 					.btn-group.mr-3
 						button.btn.btn-outline-secondary.dropdown-toggle(type='button' data-toggle='dropdown')
-							| Set All Visible...
+							| Set Unhandled...
 						.dropdown-menu
 							a.dropdown-item.bulk-set(href='#' data-disposition='import') Import
 							a.dropdown-item.bulk-set(href='#' data-disposition='ignore') Ignore
 							a.dropdown-item.bulk-set(href='#' data-disposition='unsure') Unsure
-							.dropdown-divider
-							a.dropdown-item.bulk-set(href='#' data-disposition='') Clear
 					button#saveAnnotations.btn.btn-success(disabled)
 						i.fa.fa-save.mr-1
 						| Save Annotations
@@ -339,7 +337,7 @@ block scripts
 					});
 				});
 				
-				// Bulk set disposition for all visible transactions
+				// Bulk set disposition for unhandled transactions in active tab
 				document.querySelectorAll('.bulk-set').forEach(function(item) {
 					item.addEventListener('click', function(e) {
 						e.preventDefault();
@@ -349,9 +347,12 @@ block scripts
 						var activePane = document.querySelector('.tab-pane.active');
 						if (!activePane) return;
 						
-						// Get all disposition selects in the active pane
+						// Get all disposition selects in the active pane that are unset
 						var selects = activePane.querySelectorAll('.disposition-select');
 						selects.forEach(function(select) {
+							// Skip if already has a disposition set
+							if (select.value) return;
+							
 							var txId = select.dataset.txId;
 							select.value = disposition;
 							
