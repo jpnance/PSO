@@ -63,6 +63,7 @@ function normalizePlayerName(name) {
 	if (!name) return '';
 	return name
 		.replace(/&#8217;/g, "'")  // HTML apostrophe
+		.replace(/\s*\([A-Z]{2,4}\)\s*/g, '')  // Strip team suffixes like (CAR), (NO), (JAX)
 		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')
 		.replace(/[^\w\s]/g, '')
 		.replace(/\s+/g, ' ')
