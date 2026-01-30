@@ -409,7 +409,6 @@ ID,Owner,Name,Position,Start,End,Salary
 8475,Quinn,Vincent Jackson,WR,2015,2017,$42
 14085,Syed/Terence,Virgil Green,TE,2015,2017,$1
 13976,Syed/Terence,Von Miller,LB,2014,2016,$3
-15246,,Vontaze Burfict,LB,2015,,$1
 15835,James,Zach Ertz,TE,2013,2015,$9
 16814,Daniel,Zach Mettenberger,QB,2014,2016,$2
 17741,Syed/Terence,Zach Zenner,RB,2015,2017,$4

@@ -287,10 +287,16 @@ echo ""
 echo "=== Step 12: Seeding auction transactions (interactive) ==="
 for year in 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025; do
     echo "--- Auction year: $year ---"
-    if [ "$DRY_RUN" = true ]; then
-        echo "[dry-run] docker compose run --rm web node data/seed/auction.js $year"
+    # Use --auto-historical for early years (many players won't be in Sleeper)
+    if [ "$year" -lt 2015 ]; then
+        AUTO_HIST="--auto-historical"
     else
-        docker compose run --rm -it web node data/seed/auction.js $year
+        AUTO_HIST=""
+    fi
+    if [ "$DRY_RUN" = true ]; then
+        echo "[dry-run] docker compose run --rm web node data/seed/auction.js $year $AUTO_HIST"
+    else
+        docker compose run --rm -it web node data/seed/auction.js $year $AUTO_HIST
     fi
 done
 echo ""
