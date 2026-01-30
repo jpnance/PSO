@@ -27,6 +27,7 @@
     "matt colburn",
     "michael bennett",
     "mike hughes",
+    "mike williams",
     "myles white",
     "nick williams",
     "player invalid",
@@ -40,5 +41,3550 @@
     "tony washington",
     "tyler davis",
     "zach miller"
-  ]
+  ],
+  "aaron brown|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Aaron Brown"
+  },
+  "aaron curry|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Aaron Curry"
+  },
+  "aaron jones|2021|type:trade|brett": {
+    "sleeperId": "4199"
+  },
+  "aaron kampman|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Aaron Kampman"
+  },
+  "aaron maybin|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Aaron Maybin"
+  },
+  "aaron rodgers|2015|type:trade|john/zach": {
+    "sleeperId": "96"
+  },
+  "aaron rodgers|2015|type:trade|quinn": {
+    "sleeperId": "96"
+  },
+  "aaron rodgers|2016|type:trade|syed/terence": {
+    "sleeperId": "96"
+  },
+  "ace sanders|2013|type:trade|koci/mueller": {
+    "sleeperId": "1450"
+  },
+  "adarius taylor|2018|type:cut|anthony": {
+    "sleeperId": "2190"
+  },
+  "adewale ogunleye|2010|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Adewale Ogunleye"
+  },
+  "adrian peterson|2011|type:trade|schexes": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2014|type:cut|quinn": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2014|type:trade|quinn": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2016|type:cut|keyon": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2016|type:trade|john/zach": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2021|type:trade|jason": {
+    "sleeperId": "184"
+  },
+  "ahmad bradshaw|2013|type:trade|john": {
+    "sleeperId": "78"
+  },
+  "ahmad dixon|2014|type:draft|james": {
+    "sleeperId": null,
+    "name": "Ahmad Dixon"
+  },
+  "ahman green|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Ahman Green"
+  },
+  "aj brown|2019|type:trade|syed/kuan": {
+    "sleeperId": "5859"
+  },
+  "aj brown|2020|type:trade|keyon": {
+    "sleeperId": "5859"
+  },
+  "aj edds|2010|type:draft|john": {
+    "sleeperId": null,
+    "name": "A.J. Edds"
+  },
+  "aj green|2016|type:trade|john/zach": {
+    "sleeperId": "830"
+  },
+  "aj green|2017|type:trade|patrick": {
+    "sleeperId": "830"
+  },
+  "aj green|2018|type:trade|john/zach": {
+    "sleeperId": "830"
+  },
+  "aj johnson|2021|type:cut|mitch": {
+    "sleeperId": "5822"
+  },
+  "aj mccarron|2018|type:trade|john/zach": {
+    "sleeperId": "1895"
+  },
+  "akeem jordan|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Akeem Jordan"
+  },
+  "akwasi owusuansah|2010|type:draft|john": {
+    "sleeperId": null,
+    "name": "Akwasi Owusu-Ansah"
+  },
+  "alex green|2011|type:draft|jake/luke": {
+    "sleeperId": null,
+    "name": "Alex Green"
+  },
+  "alex henery|2011|type:draft|koci": {
+    "sleeperId": null,
+    "name": "Alex Henery"
+  },
+  "alex smith|2014|type:trade|quinn": {
+    "sleeperId": "268"
+  },
+  "alex smith|2015|type:trade|john/zach": {
+    "sleeperId": "268"
+  },
+  "alex smith|2017|type:trade|quinn": {
+    "sleeperId": "268"
+  },
+  "alex smith|2018|type:trade|james/charles": {
+    "sleeperId": "268"
+  },
+  "alfonso smith|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Alfonso Smith"
+  },
+  "alfred blue|2014|type:trade|daniel": {
+    "sleeperId": "1944"
+  },
+  "alfred morris|2012|type:trade|syed": {
+    "sleeperId": "1170"
+  },
+  "alfred morris|2016|type:trade|schex/jeff": {
+    "sleeperId": "1170"
+  },
+  "allen robinson|2017|type:trade|james/charles": {
+    "sleeperId": "1992"
+  },
+  "allen robinson|2017|type:trade|schex/jeff": {
+    "sleeperId": "1992"
+  },
+  "allen robinson|2019|type:trade|schex": {
+    "sleeperId": "1992"
+  },
+  "allen robinson|2020|type:trade|mitch": {
+    "sleeperId": "1992"
+  },
+  "allen robinson|2021|type:trade|keyon": {
+    "sleeperId": "1992"
+  },
+  "allen rossum|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Allen Rossum"
+  },
+  "alshon jeffery|2015|type:trade|koci/mueller": {
+    "sleeperId": "1149"
+  },
+  "alvin kamara|2019|type:trade|john/zach": {
+    "sleeperId": "4035"
+  },
+  "alvin kamara|2021|type:trade|jason": {
+    "sleeperId": "4035"
+  },
+  "amari cooper|2016|type:trade|schex/jeff": {
+    "sleeperId": "2309"
+  },
+  "amari cooper|2017|type:trade|syed/terence": {
+    "sleeperId": "2309"
+  },
+  "amari cooper|2019|type:trade|patrick": {
+    "sleeperId": "2309"
+  },
+  "andre johnson|2009|type:trade|koci": {
+    "sleeperId": "92"
+  },
+  "andre johnson|2011|type:trade|patrick": {
+    "sleeperId": "92"
+  },
+  "andre johnson|2014|type:trade|koci/mueller": {
+    "sleeperId": "92"
+  },
+  "andre johnson|2015|type:trade|daniel": {
+    "sleeperId": "92"
+  },
+  "andre roberts|2014|type:trade|john/zach": {
+    "sleeperId": "627"
+  },
+  "andrew luck|2017|type:trade|quinn": {
+    "sleeperId": "1111"
+  },
+  "andy dalton|2011|type:trade|keyon": {
+    "sleeperId": "829"
+  },
+  "andy isabella|2020|type:trade|schex": {
+    "sleeperId": "5915"
+  },
+  "anthony gonzalez|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Anthony Gonzalez"
+  },
+  "anthony miller|2019|type:trade|syed/kuan": {
+    "sleeperId": "5013"
+  },
+  "antoine cason|2011|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Antoine Cason"
+  },
+  "antoine cason|2014|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Antoine Cason"
+  },
+  "antoine winfield|2020|type:trade|schex": {
+    "sleeperId": "6888"
+  },
+  "antoine winfield|2021|type:trade|mitch": {
+    "sleeperId": "6888"
+  },
+  "antonio brown|2016|type:trade|schex/jeff": {
+    "sleeperId": "536"
+  },
+  "antonio brown|2018|type:trade|keyon": {
+    "sleeperId": "536"
+  },
+  "antonio bryant|2010|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Antonio Bryant"
+  },
+  "antonio gates|2009|type:trade|schexes": {
+    "sleeperId": "322"
+  },
+  "antwan odom|2009|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Antwan Odom"
+  },
+  "antwan odom|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Antwan Odom"
+  },
+  "arian foster|2012|type:trade|daniel": {
+    "sleeperId": "669"
+  },
+  "austin collie|2009|type:trade|daniel": {
+    "sleeperId": null,
+    "name": "Austin Collie"
+  },
+  "austin ekeler|2020|type:trade|john/zach": {
+    "sleeperId": "4663"
+  },
+  "austin ekeler|2020|type:trade|schex": {
+    "sleeperId": "4663"
+  },
+  "avery williamson|2018|type:trade|trevor": {
+    "sleeperId": "1940"
+  },
+  "baker mayfield|2019|type:trade|mitch": {
+    "sleeperId": "4892"
+  },
+  "baker mayfield|2020|type:trade|john/zach": {
+    "sleeperId": "4892"
+  },
+  "baron batch|2012|type:cut|quinn": {
+    "sleeperId": null,
+    "name": "Baron Batch"
+  },
+  "barrett ruud|2012|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Barrett Ruud"
+  },
+  "beanie wells|2012|type:cut|quinn": {
+    "sleeperId": null,
+    "name": "Beanie Wells"
+  },
+  "ben roethlisberger|2012|type:trade|james": {
+    "sleeperId": "138"
+  },
+  "ben roethlisberger|2018|type:trade|koci/mueller": {
+    "sleeperId": "138"
+  },
+  "ben tate|2011|type:trade|koci": {
+    "sleeperId": "1004"
+  },
+  "ben tate|2012|type:trade|daniel": {
+    "sleeperId": "1004"
+  },
+  "bernard berrian|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Bernard Berrian"
+  },
+  "bernard berrian|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Bernard Berrian"
+  },
+  "bernard pollard|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Bernard Pollard"
+  },
+  "bernard pollard|2013|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Bernard Pollard"
+  },
+  "bernard pollard|2014|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Bernard Pollard"
+  },
+  "bernard scott|2010|type:trade|patrick": {
+    "sleeperId": null,
+    "name": "Bernard Scott"
+  },
+  "bernardick mckinney|2015|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Bernardick McKinney"
+  },
+  "blair walsh|2017|type:trade|mitch": {
+    "sleeperId": "1214"
+  },
+  "blake bortles|2017|type:trade|keyon": {
+    "sleeperId": "1979"
+  },
+  "blake bortles|2017|type:trade|quinn": {
+    "sleeperId": "1979"
+  },
+  "bobby rainey|2014|type:trade|mitch": {
+    "sleeperId": "1059"
+  },
+  "bobby rainey|2015|type:trade|quinn": {
+    "sleeperId": "1059"
+  },
+  "bobby wagner|2018|type:trade|syed/terence": {
+    "sleeperId": "1233"
+  },
+  "bradie james|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Bradie James"
+  },
+  "brandin cooks|2019|type:trade|john/zach": {
+    "sleeperId": "2197"
+  },
+  "brandin cooks|2019|type:trade|keyon": {
+    "sleeperId": "2197"
+  },
+  "brandin cooks|2020|type:trade|quinn": {
+    "sleeperId": "2197"
+  },
+  "brandon jackson|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Brandon Jackson"
+  },
+  "brandon jackson|2013|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Brandon Jackson"
+  },
+  "brandon lloyd|2010|type:trade|koci": {
+    "sleeperId": "386"
+  },
+  "brandon marshall|2008|type:trade|john": {
+    "sleeperId": "648"
+  },
+  "brandon marshall|2014|type:trade|daniel": {
+    "sleeperId": "648"
+  },
+  "brandon marshall|2015|type:trade|quinn": {
+    "sleeperId": "648"
+  },
+  "braylon edwards|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Braylon Edwards"
+  },
+  "braylon edwards|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Braylon Edwards"
+  },
+  "brett hundley|2017|type:trade|mitch": {
+    "sleeperId": "2450"
+  },
+  "brian dawkins|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Brian Dawkins"
+  },
+  "brian hill|2020|type:trade|schex": {
+    "sleeperId": "4187"
+  },
+  "brian hoyer|2014|type:trade|trevor": {
+    "sleeperId": "345"
+  },
+  "brian urlacher|2012|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Brian Urlacher"
+  },
+  "brian westbrook|2010|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Brian Westbrook"
+  },
+  "brian witherspoon|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Brian Witherspoon"
+  },
+  "brock osweiler|2015|type:trade|syed/terence": {
+    "sleeperId": "1126"
+  },
+  "bryant johnson|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Bryant Johnson"
+  },
+  "bryant johnson|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Bryant Johnson"
+  },
+  "bryce brown|2014|type:trade|schex": {
+    "sleeperId": "1026"
+  },
+  "budda baker|2020|type:trade|keyon": {
+    "sleeperId": "4081"
+  },
+  "byron young|2023|type:cut|anthony": {
+    "sleeperId": "10917"
+  },
+  "byron young|2025|type:contract|schexes": {
+    "sleeperId": "10917"
+  },
+  "cadillac williams|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Cadillac Williams"
+  },
+  "calais campbell|2013|type:trade|syed": {
+    "sleeperId": "125"
+  },
+  "calvin ridley|2020|type:trade|john/zach": {
+    "sleeperId": "4981"
+  },
+  "calvin ridley|2020|type:trade|schex": {
+    "sleeperId": "4981"
+  },
+  "calvin ridley|2021|type:trade|luke": {
+    "sleeperId": "4981"
+  },
+  "cam newton|2018|type:trade|brett/luke": {
+    "sleeperId": "954"
+  },
+  "cameron brate|2017|type:trade|mitch": {
+    "sleeperId": "2214"
+  },
+  "cameron brate|2017|type:trade|quinn": {
+    "sleeperId": "2214"
+  },
+  "camryn bynum": {
+    "sleeperId": "7715"
+  },
+  "cardale jones|2016|type:trade|jake/luke": {
+    "sleeperId": "3210"
+  },
+  "carlos dunlap|2013|type:trade|trevor": {
+    "sleeperId": "529"
+  },
+  "carlos hyde|2017|type:trade|james/charles": {
+    "sleeperId": "2257"
+  },
+  "carlos hyde|2017|type:trade|schex/jeff": {
+    "sleeperId": "2257"
+  },
+  "carson palmer|2009|type:trade|jake/luke": {
+    "sleeperId": "91"
+  },
+  "carson palmer|2016|type:trade|john/zach": {
+    "sleeperId": "91"
+  },
+  "carson palmer|2017|type:trade|schex/jeff": {
+    "sleeperId": "91"
+  },
+  "carson wentz|2017|type:trade|mitch": {
+    "sleeperId": "3161"
+  },
+  "carson wentz|2018|type:trade|daniel": {
+    "sleeperId": "3161"
+  },
+  "carson wentz|2018|type:trade|john/zach": {
+    "sleeperId": "3161"
+  },
+  "carson wentz|2019|type:trade|mitch": {
+    "sleeperId": "3161"
+  },
+  "case keenum|2016|type:trade|james": {
+    "sleeperId": "1737"
+  },
+  "case keenum|2016|type:trade|quinn": {
+    "sleeperId": "1737"
+  },
+  "case keenum|2018|type:trade|schex": {
+    "sleeperId": "1737"
+  },
+  "chad greenway|2012|type:trade|schex": {
+    "sleeperId": "249"
+  },
+  "chad henne|2014|type:trade|john": {
+    "sleeperId": "89"
+  },
+  "chad ochocinco|2009|type:trade|james": {
+    "sleeperId": null,
+    "name": "Chad Ochocinco"
+  },
+  "chansi stuckey|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Chansi Stuckey"
+  },
+  "charles johnson|2011|type:trade|daniel": {
+    "sleeperId": "37"
+  },
+  "charles johnson|2014|type:cut|jason": {
+    "sleeperId": "37"
+  },
+  "charles johnson|2016|type:cut|koci/mueller": {
+    "sleeperId": "1530"
+  },
+  "charles johnson|2016|type:cut|luke": {
+    "sleeperId": "1530"
+  },
+  "charles scott|2010|type:draft|daniel": {
+    "sleeperId": null,
+    "name": "Charles Scott"
+  },
+  "charles tillman|2012|type:trade|koci": {
+    "sleeperId": "185"
+  },
+  "charlie batch|2012|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Charlie Batch"
+  },
+  "chase claypool|2020|type:trade|keyon": {
+    "sleeperId": "6886"
+  },
+  "chase edmonds|2020|type:trade|keyon": {
+    "sleeperId": "5000"
+  },
+  "chase edmonds|2020|type:trade|luke": {
+    "sleeperId": "5000"
+  },
+  "chaz schilens|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Chaz Schilens"
+  },
+  "chaz schilens|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Chaz Schilens"
+  },
+  "chris carr|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Chris Carr"
+  },
+  "chris carr|2010|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Chris Carr"
+  },
+  "chris carson|2020|type:trade|james/charles": {
+    "sleeperId": "4273"
+  },
+  "chris chambers|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Chris Chambers"
+  },
+  "chris chambers|2011|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Chris Chambers"
+  },
+  "chris cooley|2011|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Chris Cooley"
+  },
+  "chris givens|2013|type:trade|john": {
+    "sleeperId": "1201"
+  },
+  "chris harper|2016|type:cut|koci/mueller": {
+    "sleeperId": "2721"
+  },
+  "chris hope|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Chris Hope"
+  },
+  "chris hope|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Chris Hope"
+  },
+  "chris houston|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Chris Houston"
+  },
+  "chris ivory|2015|type:trade|trevor": {
+    "sleeperId": "717"
+  },
+  "chris jennings|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Chris Jennings"
+  },
+  "chris johnson|2012|type:trade|schex": {
+    "sleeperId": "272"
+  },
+  "chris jones|2018|type:cut|koci/mueller": {
+    "sleeperId": "3558"
+  },
+  "chris jones|2019|type:cut|anthony": {
+    "sleeperId": "3558"
+  },
+  "chris perry|2009|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Chris Perry"
+  },
+  "chris rainey|2012|type:draft|trevor": {
+    "sleeperId": null,
+    "name": "Chris Rainey"
+  },
+  "christian mccaffrey|2018|type:trade|koci/mueller": {
+    "sleeperId": "4034"
+  },
+  "christian mccaffrey|2020|type:trade|john/zach": {
+    "sleeperId": "4034"
+  },
+  "christian ponder|2012|type:trade|james": {
+    "sleeperId": "941"
+  },
+  "christian ponder|2012|type:trade|schex": {
+    "sleeperId": "941"
+  },
+  "cj beathard|2018|type:trade|keyon": {
+    "sleeperId": "4127"
+  },
+  "cj uzomah|2018|type:trade|daniel": {
+    "sleeperId": "2460"
+  },
+  "cliff avril|2016|type:trade|quinn": {
+    "sleeperId": "170"
+  },
+  "clifton smith|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Clifton Smith"
+  },
+  "clifton smith|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Clifton Smith"
+  },
+  "clint session|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Clint Session"
+  },
+  "cody latimer|2014|type:trade|james": {
+    "sleeperId": "2004"
+  },
+  "cole beasley|2018|type:trade|quinn": {
+    "sleeperId": "1144"
+  },
+  "colin kaepernick|2015|type:trade|quinn": {
+    "sleeperId": "980"
+  },
+  "colin mccarthy|2011|type:draft|james": {
+    "sleeperId": null,
+    "name": "Colin McCarthy"
+  },
+  "colt mccoy|2014|type:trade|koci/mueller": {
+    "sleeperId": "533"
+  },
+  "corey coleman|2018|type:trade|schex": {
+    "sleeperId": "3177"
+  },
+  "corey davis|2018|type:trade|schex": {
+    "sleeperId": "4036"
+  },
+  "correll buckhalter|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Correll Buckhalter"
+  },
+  "curtis painter|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Curtis Painter"
+  },
+  "curtis samuel|2019|type:trade|keyon": {
+    "sleeperId": "4082"
+  },
+  "curtis samuel|2020|type:trade|brett/luke": {
+    "sleeperId": "4082"
+  },
+  "dak prescott|2019|type:trade|koci/mueller": {
+    "sleeperId": "3294"
+  },
+  "damien harris|2019|type:trade|james/charles": {
+    "sleeperId": "5890"
+  },
+  "damien williams|2019|type:trade|keyon": {
+    "sleeperId": "1833"
+  },
+  "damien williams|2019|type:trade|mitch": {
+    "sleeperId": "1833"
+  },
+  "dan connor|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Dan Connor"
+  },
+  "danario alexander|2012|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Danario Alexander"
+  },
+  "dane sanzenbacher|2011|type:draft|jake/luke": {
+    "sleeperId": null,
+    "name": "Dane Sanzenbacher"
+  },
+  "daniel herron|2016|type:cut|justin": {
+    "sleeperId": "1307"
+  },
+  "daniel jones|2021|type:trade|schex": {
+    "sleeperId": "5870"
+  },
+  "daniel sorenson|2017|type:cut|mitch": {
+    "sleeperId": "2022"
+  },
+  "daniel thomas|2011|type:trade|john": {
+    "sleeperId": "806"
+  },
+  "danielle hunter|2019|type:trade|schex": {
+    "sleeperId": "2393"
+  },
+  "danny amendola|2014|type:trade|patrick": {
+    "sleeperId": "491"
+  },
+  "danny amendola|2017|type:trade|john/zach": {
+    "sleeperId": "491"
+  },
+  "danny amendola|2018|type:trade|trevor": {
+    "sleeperId": "491"
+  },
+  "danny ware|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Danny Ware"
+  },
+  "danny woodhead|2011|type:trade|syed": {
+    "sleeperId": "735"
+  },
+  "darel scott|2013|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Da'Rel Scott"
+  },
+  "darius reynaud|2013|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Darius Reynaud"
+  },
+  "darnell mooney|2020|type:trade|james/charles": {
+    "sleeperId": "7090"
+  },
+  "darrell henderson|2020|type:trade|james/charles": {
+    "sleeperId": "5916"
+  },
+  "darrell henderson|2021|type:trade|trevor": {
+    "sleeperId": "5916"
+  },
+  "darren howard|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Darren Howard"
+  },
+  "darren mcfadden|2012|type:trade|syed": {
+    "sleeperId": "326"
+  },
+  "darren mcfadden|2013|type:trade|schex": {
+    "sleeperId": "326"
+  },
+  "darrynton evans|2021|type:trade|schex": {
+    "sleeperId": "7064"
+  },
+  "darwin thompson|2020|type:trade|mitch": {
+    "sleeperId": "6178"
+  },
+  "daryl smith|2014|type:trade|koci/mueller": {
+    "sleeperId": "211"
+  },
+  "daryl smith|2015|type:trade|james": {
+    "sleeperId": "211"
+  },
+  "davante adams|2015|type:trade|mitch": {
+    "sleeperId": "2133"
+  },
+  "davante adams|2016|type:trade|trevor": {
+    "sleeperId": "2133"
+  },
+  "davante adams|2018|type:trade|syed/terence": {
+    "sleeperId": "2133"
+  },
+  "davante adams|2019|type:trade|schex": {
+    "sleeperId": "2133"
+  },
+  "davante adams|2020|type:trade|keyon": {
+    "sleeperId": "2133"
+  },
+  "dave ball|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Dave Ball"
+  },
+  "david akers|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "David Akers"
+  },
+  "david akers|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "David Akers"
+  },
+  "david akers|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "David Akers"
+  },
+  "david akers|2013|type:cut|justin": {
+    "sleeperId": null,
+    "name": "David Akers"
+  },
+  "david buehler|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "David Buehler"
+  },
+  "david johnson|2017|type:trade|schex/jeff": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2018|type:trade|daniel": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2018|type:trade|syed/terence": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2021|type:cut|patrick": {
+    "sleeperId": "2391"
+  },
+  "david long|2021|type:trade|james/charles": {
+    "sleeperId": "5928"
+  },
+  "david montgomery|2021|type:trade|schex": {
+    "sleeperId": "5892"
+  },
+  "david wilson|2012|type:draft|keyon": {
+    "sleeperId": null,
+    "name": "David Wilson"
+  },
+  "davone bess|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Davone Bess"
+  },
+  "dawan landry|2011|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Dawan Landry"
+  },
+  "dawan landry|2014|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Dawan Landry"
+  },
+  "deandre hopkins|2016|type:trade|keyon": {
+    "sleeperId": "1426"
+  },
+  "deandre hopkins|2016|type:trade|syed/terence": {
+    "sleeperId": "1426"
+  },
+  "deandre hopkins|2019|type:trade|koci/mueller": {
+    "sleeperId": "1426"
+  },
+  "dede westbrook|2018|type:trade|patrick": {
+    "sleeperId": "4146"
+  },
+  "dede westbrook|2019|type:trade|keyon": {
+    "sleeperId": "4146"
+  },
+  "dede westbrook|2020|type:trade|schex": {
+    "sleeperId": "4146"
+  },
+  "dee ford|2018|type:trade|trevor": {
+    "sleeperId": "2015"
+  },
+  "deion branch|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Deion Branch"
+  },
+  "deji karim|2010|type:draft|koci": {
+    "sleeperId": null,
+    "name": "Deji Karim"
+  },
+  "delanie walker|2017|type:trade|keyon": {
+    "sleeperId": "284"
+  },
+  "delanie walker|2018|type:trade|mitch": {
+    "sleeperId": "284"
+  },
+  "delone carter|2011|type:draft|keyon": {
+    "sleeperId": null,
+    "name": "Delone Carter"
+  },
+  "demarco murray|2011|type:trade|james": {
+    "sleeperId": "904"
+  },
+  "demarco murray|2014|type:trade|syed": {
+    "sleeperId": "904"
+  },
+  "demarco murray|2015|type:trade|john": {
+    "sleeperId": "904"
+  },
+  "demarco murray|2015|type:trade|quinn": {
+    "sleeperId": "904"
+  },
+  "demaryius thomas|2012|type:trade|schex": {
+    "sleeperId": "560"
+  },
+  "demaryius thomas|2014|type:trade|syed": {
+    "sleeperId": "560"
+  },
+  "demaryius thomas|2014|type:trade|trevor": {
+    "sleeperId": "560"
+  },
+  "demaryius thomas|2015|type:trade|koci/mueller": {
+    "sleeperId": "560"
+  },
+  "demaryius thomas|2017|type:trade|schex/jeff": {
+    "sleeperId": "560"
+  },
+  "demaryius thomas|2018|type:trade|daniel": {
+    "sleeperId": "560"
+  },
+  "demeco ryans|2009|type:trade|patrick": {
+    "sleeperId": "220"
+  },
+  "demeco ryans|2013|type:trade|schex": {
+    "sleeperId": "220"
+  },
+  "denard robinson|2014|type:trade|syed": {
+    "sleeperId": "1449"
+  },
+  "dennis northcutt|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Dennis Northcutt"
+  },
+  "dennis pitta|2012|type:trade|keyon": {
+    "sleeperId": "527"
+  },
+  "dennis pitta|2014|type:trade|quinn": {
+    "sleeperId": "527"
+  },
+  "deon cain|2019|type:trade|syed/kuan": {
+    "sleeperId": "5101"
+  },
+  "deonte harris": {
+    "sleeperId": "6234"
+  },
+  "derek carr|2014|type:trade|daniel": {
+    "sleeperId": "2028"
+  },
+  "derek carr|2016|type:trade|james": {
+    "sleeperId": "2028"
+  },
+  "derek carr|2020|type:trade|schex": {
+    "sleeperId": "2028"
+  },
+  "derek stanley|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Derek Stanley"
+  },
+  "derrick henry|2019|type:trade|syed/kuan": {
+    "sleeperId": "3198"
+  },
+  "derrick henry|2019|type:trade|trevor": {
+    "sleeperId": "3198"
+  },
+  "derrick mason|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Derrick Mason"
+  },
+  "derrick ward|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Derrick Ward"
+  },
+  "derrick ward|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Derrick Ward"
+  },
+  "derrick williams|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Derrick Williams"
+  },
+  "derrius guice|2019|type:trade|keyon": {
+    "sleeperId": "4949"
+  },
+  "desean jackson|2014|type:trade|patrick": {
+    "sleeperId": "147"
+  },
+  "desean jackson|2018|type:trade|schex": {
+    "sleeperId": "147"
+  },
+  "desean jackson|2019|type:trade|schex": {
+    "sleeperId": "147"
+  },
+  "deshaun watson|2019|type:trade|quinn": {
+    "sleeperId": "4017"
+  },
+  "deshaun watson|2020|type:trade|brett/luke": {
+    "sleeperId": "4017"
+  },
+  "desmond king|2018|type:trade|syed/terence": {
+    "sleeperId": "4216"
+  },
+  "devante parker|2019|type:trade|james/charles": {
+    "sleeperId": "2319"
+  },
+  "devery henderson|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Devery Henderson"
+  },
+  "devin aromashodu|2011|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Devin Aromashodu"
+  },
+  "devin singletary|2020|type:trade|mitch": {
+    "sleeperId": "6130"
+  },
+  "devin smith|2015|type:draft|john/zach": {
+    "sleeperId": "2342"
+  },
+  "devin thomas|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Devin Thomas"
+  },
+  "devin thomas|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Devin Thomas"
+  },
+  "devin white|2019|type:trade|keyon": {
+    "sleeperId": "6119"
+  },
+  "devin white|2019|type:trade|mitch": {
+    "sleeperId": "6119"
+  },
+  "devin white|2021|type:trade|schex": {
+    "sleeperId": "6119"
+  },
+  "devonta freeman|2016|type:trade|john/zach": {
+    "sleeperId": "2168"
+  },
+  "devonta freeman|2017|type:trade|john/zach": {
+    "sleeperId": "2168"
+  },
+  "devonta freeman|2018|type:trade|keyon": {
+    "sleeperId": "2168"
+  },
+  "devonta freeman|2019|type:trade|trevor": {
+    "sleeperId": "2168"
+  },
+  "dez bryant|2016|type:trade|james": {
+    "sleeperId": "574"
+  },
+  "dion lewis|2016|type:trade|syed/terence": {
+    "sleeperId": "788"
+  },
+  "dion lewis|2018|type:trade|schex": {
+    "sleeperId": "788"
+  },
+  "diontae johnson|2020|type:trade|schex": {
+    "sleeperId": "5937"
+  },
+  "dj moore|2022|type:trade|keyon": {
+    "sleeperId": "4983"
+  },
+  "dj moore|2022|type:trade|quinn": {
+    "sleeperId": "4983"
+  },
+  "dj moore|2024|type:trade|justin": {
+    "sleeperId": "4983"
+  },
+  "dj moore|2024|type:trade|quinn": {
+    "sleeperId": "4983"
+  },
+  "dominique franks|2010|type:draft|patrick": {
+    "sleeperId": null,
+    "name": "Dominique Franks"
+  },
+  "donald brown|2010|type:trade|patrick": {
+    "sleeperId": "377"
+  },
+  "donald driver|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Donald Driver"
+  },
+  "donald jones|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Donald Jones"
+  },
+  "donald jones|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Donald Jones"
+  },
+  "donald jones|2012|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Donald Jones"
+  },
+  "donovan mcnabb|2009|type:trade|patrick": {
+    "sleeperId": null,
+    "name": "Donovan McNabb"
+  },
+  "doug martin|2013|type:trade|john": {
+    "sleeperId": "1195"
+  },
+  "doug martin|2017|type:trade|schex/jeff": {
+    "sleeperId": "1195"
+  },
+  "drew bennett|2009|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Drew Bennett"
+  },
+  "drew brees|2008|type:trade|jeff": {
+    "sleeperId": "289"
+  },
+  "drew brees|2014|type:trade|syed": {
+    "sleeperId": "289"
+  },
+  "drew brees|2015|type:trade|keyon": {
+    "sleeperId": "289"
+  },
+  "drew brees|2018|type:trade|mitch": {
+    "sleeperId": "289"
+  },
+  "drew brees|2019|type:trade|koci/mueller": {
+    "sleeperId": "289"
+  },
+  "drew davis|2013|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Drew Davis"
+  },
+  "drew lock|2019|type:trade|keyon": {
+    "sleeperId": "5854"
+  },
+  "drew stanton|2017|type:trade|schex/jeff": {
+    "sleeperId": "181"
+  },
+  "duke johnson|2015|type:trade|john/zach": {
+    "sleeperId": "2382"
+  },
+  "duke johnson|2016|type:trade|keyon": {
+    "sleeperId": "2382"
+  },
+  "dwayne bowe|2012|type:trade|daniel": {
+    "sleeperId": "286"
+  },
+  "earl thomas|2013|type:trade|schex": {
+    "sleeperId": "643"
+  },
+  "early doucet|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Early Doucet"
+  },
+  "early doucet|2012|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Early Doucet"
+  },
+  "earnest graham|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Earnest Graham"
+  },
+  "earnest graham|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Earnest Graham"
+  },
+  "eddie lacy|2014|type:trade|daniel": {
+    "sleeperId": "1527"
+  },
+  "eddie lacy|2016|type:trade|mitch": {
+    "sleeperId": "1527"
+  },
+  "eddie royal|2008|type:trade|patrick": {
+    "sleeperId": "297"
+  },
+  "ej henderson|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "E.J. Henderson"
+  },
+  "eli manning|2008|type:trade|john": {
+    "sleeperId": "188"
+  },
+  "eli manning|2009|type:trade|syed": {
+    "sleeperId": "188"
+  },
+  "eli manning|2015|type:trade|schex/jeff": {
+    "sleeperId": "188"
+  },
+  "eli manning|2018|type:trade|trevor": {
+    "sleeperId": "188"
+  },
+  "elijah mitchell|2022|type:trade|koci/mueller": {
+    "sleeperId": "7561"
+  },
+  "ellis hobbs|2009|type:trade|schexes": {
+    "sleeperId": null,
+    "name": "Ellis Hobbs"
+  },
+  "emmanual ogbah|2017|type:cut|koci/mueller": {
+    "sleeperId": "3197"
+  },
+  "emmanuel sanders|2015|type:trade|koci/mueller": {
+    "sleeperId": "538"
+  },
+  "emmanuel sanders|2016|type:trade|koci/mueller": {
+    "sleeperId": "538"
+  },
+  "emmanuel sanders|2016|type:trade|syed/terence": {
+    "sleeperId": "538"
+  },
+  "emmanuel sanders|2017|type:trade|john/zach": {
+    "sleeperId": "538"
+  },
+  "emmanuel sanders|2018|type:trade|koci/mueller": {
+    "sleeperId": "538"
+  },
+  "eric decker|2012|type:trade|syed": {
+    "sleeperId": "558"
+  },
+  "eric ebron|2017|type:trade|keyon": {
+    "sleeperId": "2118"
+  },
+  "ernest wilford|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Ernest Wilford"
+  },
+  "evan engram|2020|type:trade|keyon": {
+    "sleeperId": "4066"
+  },
+  "evan moore|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Evan Moore"
+  },
+  "evan moore|2011|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Evan Moore"
+  },
+  "ezekiel elliott|2020|type:trade|keyon": {
+    "sleeperId": "3164"
+  },
+  "ezekiel elliott|2021|type:trade|jason": {
+    "sleeperId": "3164"
+  },
+  "ezekiel elliott|2021|type:trade|luke": {
+    "sleeperId": "3164"
+  },
+  "frank gore|2010|type:trade|schexes": {
+    "sleeperId": "232"
+  },
+  "frank gore|2014|type:trade|mitch": {
+    "sleeperId": "232"
+  },
+  "frank gore|2016|type:trade|john/zach": {
+    "sleeperId": "232"
+  },
+  "frank gore|2017|type:trade|quinn": {
+    "sleeperId": "232"
+  },
+  "fred jackson|2014|type:trade|keyon": {
+    "sleeperId": "228"
+  },
+  "fred jackson|2014|type:trade|schex": {
+    "sleeperId": "228"
+  },
+  "fred jackson|2014|type:trade|syed": {
+    "sleeperId": "228"
+  },
+  "garrett wolfe|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Garrett Wolfe"
+  },
+  "gavin escobar|2013|type:trade|syed": {
+    "sleeperId": "1485"
+  },
+  "george kittle|2017|type:trade|daniel": {
+    "sleeperId": "4217"
+  },
+  "george kittle|2019|type:trade|quinn": {
+    "sleeperId": "4217"
+  },
+  "george kittle|2021|type:trade|keyon": {
+    "sleeperId": "4217"
+  },
+  "germaine pratt|2019|type:trade|syed/kuan": {
+    "sleeperId": "5894"
+  },
+  "gibril wilson|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Gibril Wilson"
+  },
+  "giovani bernard|2018|type:trade|mitch": {
+    "sleeperId": "1386"
+  },
+  "giovani bernard|2020|type:trade|keyon": {
+    "sleeperId": "1386"
+  },
+  "giovani bernard|2021|type:trade|mitch": {
+    "sleeperId": "1386"
+  },
+  "golden tate|2016|type:trade|keyon": {
+    "sleeperId": "642"
+  },
+  "graham gano|2010|type:trade|trevor": {
+    "sleeperId": "503"
+  },
+  "greg camarillo|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Greg Camarillo"
+  },
+  "greg ellis|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Greg Ellis"
+  },
+  "greg ellis|2009|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Greg Ellis"
+  },
+  "greg olsen|2016|type:trade|schex/jeff": {
+    "sleeperId": "58"
+  },
+  "hakeem nicks|2011|type:trade|john": {
+    "sleeperId": "474"
+  },
+  "hakeem nicks|2012|type:trade|schex": {
+    "sleeperId": "474"
+  },
+  "hakeem nicks|2013|type:trade|jake/luke": {
+    "sleeperId": "474"
+  },
+  "henry ruggs|2020|type:trade|koci/mueller": {
+    "sleeperId": "6789"
+  },
+  "hines ward|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Hines Ward"
+  },
+  "hollywood brown|2024|type:cut|anthony": {
+    "sleeperId": "5848"
+  },
+  "hunter henry|2016|type:trade|keyon": {
+    "sleeperId": "3214"
+  },
+  "hunter henry|2018|type:trade|schex": {
+    "sleeperId": "3214"
+  },
+  "hunter henry|2020|type:trade|patrick": {
+    "sleeperId": "3214"
+  },
+  "isaac redman|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Isaac Redman"
+  },
+  "isaac redman|2013|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Isaac Redman"
+  },
+  "j j watt|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "J. J. Watt"
+  },
+  "jabar gaffney|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Jabar Gaffney"
+  },
+  "jabar gaffney|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Jabar Gaffney"
+  },
+  "jacoby jones|2011|type:trade|trevor": {
+    "sleeperId": "203"
+  },
+  "jacquian williams|2014|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Jacquian Williams"
+  },
+  "jacquizz rodgers|2012|type:trade|syed": {
+    "sleeperId": "949"
+  },
+  "jaelen strong|2015|type:trade|daniel": {
+    "sleeperId": "2375"
+  },
+  "jahlani tavai|2019|type:trade|syed/kuan": {
+    "sleeperId": "6179"
+  },
+  "jairus byrd|2013|type:trade|daniel": {
+    "sleeperId": "332"
+  },
+  "jairus byrd|2013|type:trade|syed": {
+    "sleeperId": "332"
+  },
+  "jake delhomme|2008|type:trade|schex": {
+    "sleeperId": null,
+    "name": "Jake Delhomme"
+  },
+  "jake locker|2011|type:draft|daniel": {
+    "sleeperId": null,
+    "name": "Jake Locker"
+  },
+  "jalen reagor|2021|type:trade|schex": {
+    "sleeperId": "6798"
+  },
+  "jamaal charles|2011|type:trade|john": {
+    "sleeperId": "323"
+  },
+  "jamaal charles|2011|type:trade|syed": {
+    "sleeperId": "323"
+  },
+  "jamaal charles|2013|type:trade|koci/mueller": {
+    "sleeperId": "323"
+  },
+  "jamaal charles|2014|type:trade|koci/mueller": {
+    "sleeperId": "323"
+  },
+  "jamaal charles|2014|type:trade|quinn": {
+    "sleeperId": "323"
+  },
+  "jamaal quinn|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Jamaal Quinn"
+  },
+  "jamarcus russell|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "JaMarcus Russell"
+  },
+  "jameis winston|2018|type:trade|keyon": {
+    "sleeperId": "2306"
+  },
+  "jameis winston|2018|type:trade|mitch": {
+    "sleeperId": "2306"
+  },
+  "jameis winston|2018|type:trade|quinn": {
+    "sleeperId": "2306"
+  },
+  "jameis winston|2018|type:trade|schex": {
+    "sleeperId": "2306"
+  },
+  "jameis winston|2019|type:trade|mitch": {
+    "sleeperId": "2306"
+  },
+  "jameis winston|2019|type:trade|quinn": {
+    "sleeperId": "2306"
+  },
+  "james davis|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "James Davis"
+  },
+  "james hardy|2010|type:cut|mike": {
+    "sleeperId": null,
+    "name": "James Hardy"
+  },
+  "james harrison|2008|type:trade|schex": {
+    "sleeperId": "48"
+  },
+  "james laurinaitis|2009|type:trade|jake/luke": {
+    "sleeperId": "453"
+  },
+  "james robinson|2020|type:trade|patrick": {
+    "sleeperId": "6955"
+  },
+  "james white|2019|type:trade|james/charles": {
+    "sleeperId": "1848"
+  },
+  "jamison crowder|2019|type:trade|james/charles": {
+    "sleeperId": "2410"
+  },
+  "jared cook|2013|type:trade|koci/mueller": {
+    "sleeperId": "367"
+  },
+  "jared goff|2017|type:trade|john/zach": {
+    "sleeperId": "3163"
+  },
+  "jared goff|2018|type:trade|schex": {
+    "sleeperId": "3163"
+  },
+  "jared goff|2019|type:trade|mitch": {
+    "sleeperId": "3163"
+  },
+  "jared goff|2019|type:trade|quinn": {
+    "sleeperId": "3163"
+  },
+  "jarett dillard|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Jarett Dillard"
+  },
+  "jason babin|2012|type:trade|john": {
+    "sleeperId": "668"
+  },
+  "jason hanson|2012|type:trade|jake/luke": {
+    "sleeperId": null,
+    "name": "Jason Hanson"
+  },
+  "jason witten|2017|type:trade|john/zach": {
+    "sleeperId": "23"
+  },
+  "jason witten|2019|type:trade|keyon": {
+    "sleeperId": "23"
+  },
+  "javon ringer|2009|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Javon Ringer"
+  },
+  "javon ringer|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Javon Ringer"
+  },
+  "javon ringer|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Javon Ringer"
+  },
+  "javon ringer|2013|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Javon Ringer"
+  },
+  "jay cutler|2014|type:trade|james": {
+    "sleeperId": "416"
+  },
+  "jaylen samuels|2019|type:trade|keyon": {
+    "sleeperId": "5107"
+  },
+  "jaylen samuels|2019|type:trade|patrick": {
+    "sleeperId": "5107"
+  },
+  "jaylon jones|2024|type:cut|koci/mueller": {
+    "sleeperId": "11052"
+  },
+  "jaylon smith|2019|type:trade|keyon": {
+    "sleeperId": "3167"
+  },
+  "jeff demps|2013|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Jeff Demps"
+  },
+  "jeff reed|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Jeff Reed"
+  },
+  "jeff wilson|2020|type:trade|schex": {
+    "sleeperId": "5284"
+  },
+  "jeffrey simmons|2020|type:cut|justin": {
+    "sleeperId": "6125"
+  },
+  "jeremy hill|2016|type:trade|james": {
+    "sleeperId": "1892"
+  },
+  "jeremy maclin|2015|type:trade|mitch": {
+    "sleeperId": "411"
+  },
+  "jeremy shockey|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Jeremy Shockey"
+  },
+  "jeremy shockey|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Jeremy Shockey"
+  },
+  "jerick mckinnon|2018|type:trade|mitch": {
+    "sleeperId": "2161"
+  },
+  "jerious norwood|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Jerious Norwood"
+  },
+  "jermichael finley|2010|type:trade|patrick": {
+    "sleeperId": null,
+    "name": "Jermichael Finley"
+  },
+  "jerod mayo|2014|type:trade|schex": {
+    "sleeperId": "27"
+  },
+  "jerome harrison|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Jerome Harrison"
+  },
+  "jerome simpson|2013|type:trade|keyon": {
+    "sleeperId": "321"
+  },
+  "jerrel jernigan|2011|type:draft|syed": {
+    "sleeperId": null,
+    "name": "Jerrel Jernigan"
+  },
+  "jerry jeudy|2021|type:trade|trevor": {
+    "sleeperId": "6783"
+  },
+  "jimmy clausen|2010|type:trade|john": {
+    "sleeperId": "611"
+  },
+  "jimmy garoppolo|2018|type:trade|patrick": {
+    "sleeperId": "1837"
+  },
+  "jimmy garoppolo|2020|type:trade|quinn": {
+    "sleeperId": "1837"
+  },
+  "jimmy graham|2013|type:trade|schex": {
+    "sleeperId": "616"
+  },
+  "jimmy graham|2014|type:trade|trevor": {
+    "sleeperId": "616"
+  },
+  "jj arrington|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "J.J. Arrington"
+  },
+  "jj watt|2018|type:trade|syed/terence": {
+    "sleeperId": "856"
+  },
+  "joe flacco|2015|type:trade|brett/luke": {
+    "sleeperId": "19"
+  },
+  "joe mcknight|2012|type:trade|schex": {
+    "sleeperId": "523"
+  },
+  "joe mixon|2018|type:trade|mitch": {
+    "sleeperId": "4018"
+  },
+  "joe mixon|2019|type:trade|keyon": {
+    "sleeperId": "4018"
+  },
+  "joe mixon|2019|type:trade|syed/kuan": {
+    "sleeperId": "4018"
+  },
+  "joe nedney|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Joe Nedney"
+  },
+  "joe tryon": {
+    "sleeperId": "7625"
+  },
+  "joe tryon|2021|type:cut|luke": {
+    "sleeperId": "7625"
+  },
+  "joe williams|2017|type:trade|schex/jeff": {
+    "sleeperId": "4042"
+  },
+  "joey bosa|2016|type:trade|jake/luke": {
+    "sleeperId": "3156"
+  },
+  "joey bosa|2018|type:trade|keyon": {
+    "sleeperId": "3156"
+  },
+  "joey bosa|2019|type:trade|john/zach": {
+    "sleeperId": "3156"
+  },
+  "joey galloway|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Joey Galloway"
+  },
+  "john abraham|2012|type:trade|daniel": {
+    "sleeperId": null,
+    "name": "John Abraham"
+  },
+  "john brown|2019|type:trade|keyon": {
+    "sleeperId": "2238"
+  },
+  "john brown|2019|type:trade|koci/mueller": {
+    "sleeperId": "2238"
+  },
+  "john kasay|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "John Kasay"
+  },
+  "john ross|2019|type:trade|brett/luke": {
+    "sleeperId": "4038"
+  },
+  "john skelton|2010|type:draft|james": {
+    "sleeperId": null,
+    "name": "John Skelton"
+  },
+  "johnathan franklin|2013|type:draft|john": {
+    "sleeperId": null,
+    "name": "Johnathan Franklin"
+  },
+  "johnny knox|2011|type:trade|john": {
+    "sleeperId": null,
+    "name": "Johnny Knox"
+  },
+  "johnny manziel|2014|type:trade|john/zach": {
+    "sleeperId": "1907"
+  },
+  "joique bell|2014|type:trade|syed": {
+    "sleeperId": "736"
+  },
+  "joique bell|2015|type:trade|quinn": {
+    "sleeperId": "736"
+  },
+  "jon baldwin|2011|type:draft|daniel": {
+    "sleeperId": null,
+    "name": "Jon Baldwin"
+  },
+  "jon cooper|2021|type:cut|jason": {
+    "sleeperId": "7765"
+  },
+  "jonas gray|2015|type:trade|keyon": {
+    "sleeperId": "1698"
+  },
+  "jonas gray|2015|type:trade|koci/mueller": {
+    "sleeperId": "1698"
+  },
+  "jonas gray|2015|type:trade|syed": {
+    "sleeperId": "1698"
+  },
+  "jonathan dwyer|2010|type:draft|james": {
+    "sleeperId": null,
+    "name": "Jonathan Dwyer"
+  },
+  "jonathan stewart|2015|type:trade|quinn": {
+    "sleeperId": "218"
+  },
+  "jonathan stewart|2016|type:trade|schex/jeff": {
+    "sleeperId": "218"
+  },
+  "jonathan taylor|2020|type:trade|schex": {
+    "sleeperId": "6813"
+  },
+  "jonathan vilma|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Jonathan Vilma"
+  },
+  "jonnu smith|2018|type:trade|john/zach": {
+    "sleeperId": "4144"
+  },
+  "jordan hicks|2020|type:trade|james/charles": {
+    "sleeperId": "2389"
+  },
+  "jordan howard|2017|type:trade|keyon": {
+    "sleeperId": "3306"
+  },
+  "jordan reed|2013|type:trade|john": {
+    "sleeperId": "1500"
+  },
+  "jordan reed|2016|type:trade|koci/mueller": {
+    "sleeperId": "1500"
+  },
+  "jordan reed|2019|type:trade|james/charles": {
+    "sleeperId": "1500"
+  },
+  "jordan shipley|2010|type:draft|trevor": {
+    "sleeperId": null,
+    "name": "Jordan Shipley"
+  },
+  "jordan wilkins|2020|type:trade|schex": {
+    "sleeperId": "5100"
+  },
+  "jordy nelson|2013|type:trade|syed": {
+    "sleeperId": "175"
+  },
+  "jordy nelson|2015|type:trade|koci/mueller": {
+    "sleeperId": "175"
+  },
+  "joseph addai|2011|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Joseph Addai"
+  },
+  "joseph randle|2015|type:trade|schex/jeff": {
+    "sleeperId": "1487"
+  },
+  "josh allen|2018|type:trade|john/zach": {
+    "sleeperId": "4984"
+  },
+  "josh boyce|2013|type:trade|syed": {
+    "sleeperId": "1362"
+  },
+  "josh brown|2015|type:trade|james": {
+    "sleeperId": "102"
+  },
+  "josh dobbs|2020|type:cut|koci/mueller": {
+    "sleeperId": "4179"
+  },
+  "josh doctson|2017|type:trade|mitch": {
+    "sleeperId": "3178"
+  },
+  "josh freeman|2013|type:trade|koci": {
+    "sleeperId": "448"
+  },
+  "josh gordon|2012|type:trade|syed": {
+    "sleeperId": "1244"
+  },
+  "josh gordon|2014|type:trade|keyon": {
+    "sleeperId": "1244"
+  },
+  "josh gordon|2018|type:trade|schex": {
+    "sleeperId": "1244"
+  },
+  "josh gordon|2019|type:trade|trevor": {
+    "sleeperId": "1244"
+  },
+  "josh lambo|2019|type:trade|keyon": {
+    "sleeperId": "2671"
+  },
+  "josh lambo|2019|type:trade|syed/kuan": {
+    "sleeperId": "2671"
+  },
+  "josh mccown|2014|type:trade|koci/mueller": {
+    "sleeperId": "208"
+  },
+  "josh mccown|2017|type:trade|keyon": {
+    "sleeperId": "208"
+  },
+  "josh mccown|2017|type:trade|mitch": {
+    "sleeperId": "208"
+  },
+  "josh morgan|2013|type:trade|daniel": {
+    "sleeperId": "222"
+  },
+  "josh reynolds|2021|type:trade|jason": {
+    "sleeperId": "4171"
+  },
+  "josh robinson|2015|type:draft|keyon": {
+    "sleeperId": "2506"
+  },
+  "josh rosen|2019|type:trade|brett/luke": {
+    "sleeperId": "4863"
+  },
+  "josh wilson|2009|type:trade|patrick": {
+    "sleeperId": "700"
+  },
+  "jt osullivan|2008|type:trade|keyon": {
+    "sleeperId": null,
+    "name": "J.T. O'Sullivan"
+  },
+  "juaquin iglesias|2010|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Juaquin Iglesias"
+  },
+  "julian edelman|2018|type:trade|brett/luke": {
+    "sleeperId": "344"
+  },
+  "julian edelman|2019|type:trade|keyon": {
+    "sleeperId": "344"
+  },
+  "julio jones|2014|type:trade|daniel": {
+    "sleeperId": "947"
+  },
+  "julio jones|2016|type:trade|syed/terence": {
+    "sleeperId": "947"
+  },
+  "julio jones|2017|type:trade|koci/mueller": {
+    "sleeperId": "947"
+  },
+  "julio jones|2019|type:trade|koci/mueller": {
+    "sleeperId": "947"
+  },
+  "julius jones|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Julius Jones"
+  },
+  "justin blackmon|2012|type:trade|jake/luke": {
+    "sleeperId": "1114"
+  },
+  "justin fargas|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Justin Fargas"
+  },
+  "justin forsett|2009|type:trade|syed": {
+    "sleeperId": "458"
+  },
+  "justin gage|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Justin Gage"
+  },
+  "justin gage|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Justin Gage"
+  },
+  "justin hardy|2017|type:trade|john/zach": {
+    "sleeperId": "2412"
+  },
+  "justin hunter|2014|type:trade|mitch": {
+    "sleeperId": "1418"
+  },
+  "justin hunter|2015|type:trade|quinn": {
+    "sleeperId": "1418"
+  },
+  "justin hunter|2015|type:trade|syed": {
+    "sleeperId": "604"
+  },
+  "justin madubuike": {
+    "sleeperId": "6818"
+  },
+  "kadeem carey|2014|type:trade|john/zach": {
+    "sleeperId": "2104"
+  },
+  "kamerion wimbley|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Kamerion Wimbley"
+  },
+  "kamren curl": {
+    "sleeperId": "7136"
+  },
+  "kareem huggins|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Kareem Huggins"
+  },
+  "kareem hunt|2019|type:trade|john/zach": {
+    "sleeperId": "4098"
+  },
+  "karlos williams|2015|type:trade|john/zach": {
+    "sleeperId": "2458"
+  },
+  "keanu neal|2019|type:trade|james/charles": {
+    "sleeperId": "3181"
+  },
+  "keenan allen|2017|type:trade|patrick": {
+    "sleeperId": "1479"
+  },
+  "keenan allen|2019|type:trade|syed/kuan": {
+    "sleeperId": "1479"
+  },
+  "keenan allen|2019|type:trade|trevor": {
+    "sleeperId": "1479"
+  },
+  "keiland williams|2010|type:draft|daniel": {
+    "sleeperId": null,
+    "name": "Keiland Williams"
+  },
+  "keith bulluck|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Keith Bulluck"
+  },
+  "kelvin benjamin|2015|type:trade|schex/jeff": {
+    "sleeperId": "2182"
+  },
+  "kelvin benjamin|2018|type:trade|syed/terence": {
+    "sleeperId": "2182"
+  },
+  "kendall hunter|2011|type:trade|daniel": {
+    "sleeperId": "978"
+  },
+  "kendall hunter|2013|type:trade|keyon": {
+    "sleeperId": "978"
+  },
+  "kendall wright|2014|type:trade|schex": {
+    "sleeperId": "1097"
+  },
+  "kendrick lewis|2014|type:trade|daniel": {
+    "sleeperId": "713"
+  },
+  "kenneth dixon|2016|type:trade|keyon": {
+    "sleeperId": "3208"
+  },
+  "kenneth walker|2022|type:trade|justin": {
+    "sleeperId": "8151"
+  },
+  "kenneth walker|2025|type:trade|jason": {
+    "sleeperId": "8151"
+  },
+  "kenneth walker|2025|type:trade|justin": {
+    "sleeperId": "8151"
+  },
+  "kenneth walker|2025|type:trade|luke": {
+    "sleeperId": "8151"
+  },
+  "kenny golladay|2018|type:trade|schex": {
+    "sleeperId": "4131"
+  },
+  "kenny golladay|2021|type:trade|jason": {
+    "sleeperId": "4131"
+  },
+  "keshawn martin|2014|type:trade|quinn": {
+    "sleeperId": "1102"
+  },
+  "kevin boss|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Kevin Boss"
+  },
+  "kevin byard|2019|type:trade|syed/kuan": {
+    "sleeperId": "3233"
+  },
+  "kevin faulk|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Kevin Faulk"
+  },
+  "kevin white|2015|type:draft|james": {
+    "sleeperId": "2312"
+  },
+  "kevin white|2016|type:cut|schexes": {
+    "sleeperId": "2312"
+  },
+  "kevin white|2018|type:cut|luke": {
+    "sleeperId": "2312"
+  },
+  "kevin white|2018|type:cut|patrick": {
+    "sleeperId": "2312"
+  },
+  "kirk cousins|2014|type:trade|brett/luke": {
+    "sleeperId": "1166"
+  },
+  "kirk cousins|2016|type:trade|patrick": {
+    "sleeperId": "1166"
+  },
+  "kirk morrison|2008|type:trade|patrick": {
+    "sleeperId": null,
+    "name": "Kirk Morrison"
+  },
+  "kregg lumpkin|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Kregg Lumpkin"
+  },
+  "kwon alexander|2019|type:trade|james/charles": {
+    "sleeperId": "2429"
+  },
+  "kyle allen|2019|type:trade|john/zach": {
+    "sleeperId": "5127"
+  },
+  "kyle orton|2010|type:trade|keyon": {
+    "sleeperId": "388"
+  },
+  "kyle vanden bosch|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Kyle Vanden Bosch"
+  },
+  "kyle williams|2025|type:contract|mike": {
+    "sleeperId": "12547"
+  },
+  "ladell betts|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Ladell Betts"
+  },
+  "lamar jackson|2022|type:trade|justin": {
+    "sleeperId": "4881"
+  },
+  "lamar jackson|2022|type:trade|luke": {
+    "sleeperId": "4881"
+  },
+  "lamar jackson|2025|type:trade|jason": {
+    "sleeperId": "4881"
+  },
+  "lamar jackson|2025|type:trade|mitch": {
+    "sleeperId": "4881"
+  },
+  "lamar miller|2015|type:trade|koci/mueller": {
+    "sleeperId": "1048"
+  },
+  "lamar miller|2016|type:trade|daniel": {
+    "sleeperId": "1048"
+  },
+  "lamar miller|2017|type:trade|quinn": {
+    "sleeperId": "1048"
+  },
+  "lamical perine|2020|type:trade|schex": {
+    "sleeperId": "6908"
+  },
+  "lance ball|2013|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Lance Ball"
+  },
+  "lance briggs|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Lance Briggs"
+  },
+  "larod stephenshowling|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "LaRod Stephens-Howling"
+  },
+  "larod stephenshowling|2013|type:cut|luke": {
+    "sleeperId": null,
+    "name": "LaRod Stephens-Howling"
+  },
+  "larod stephenshowling|2013|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "LaRod Stephens-Howling"
+  },
+  "laron landry|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "LaRon Landry"
+  },
+  "laron landry|2013|type:cut|justin": {
+    "sleeperId": null,
+    "name": "LaRon Landry"
+  },
+  "laron landry|2013|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "LaRon Landry"
+  },
+  "laron landry|2014|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "LaRon Landry"
+  },
+  "larry fitzgerald|2009|type:trade|koci": {
+    "sleeperId": "223"
+  },
+  "larry fitzgerald|2011|type:trade|patrick": {
+    "sleeperId": "223"
+  },
+  "larry fitzgerald|2014|type:trade|daniel": {
+    "sleeperId": "223"
+  },
+  "larry fitzgerald|2017|type:trade|keyon": {
+    "sleeperId": "223"
+  },
+  "larry fitzgerald|2018|type:trade|schex": {
+    "sleeperId": "223"
+  },
+  "larry foote|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Larry Foote"
+  },
+  "larry johnson|2009|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Larry Johnson"
+  },
+  "larry johnson|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Larry Johnson"
+  },
+  "latavius murray|2014|type:trade|keyon": {
+    "sleeperId": "1476"
+  },
+  "latavius murray|2020|type:trade|john/zach": {
+    "sleeperId": "1476"
+  },
+  "latavius murray|2020|type:trade|schex": {
+    "sleeperId": "1476"
+  },
+  "laurence maroney|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Laurence Maroney"
+  },
+  "laurence maroney|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Laurence Maroney"
+  },
+  "laurent robinson|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Laurent Robinson"
+  },
+  "laveranues coles|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Laveranues Coles"
+  },
+  "lavon brazill|2012|type:draft|koci": {
+    "sleeperId": null,
+    "name": "LaVon Brazill"
+  },
+  "lavonte david|2014|type:trade|schex": {
+    "sleeperId": "1192"
+  },
+  "lawrence timmons|2013|type:trade|daniel": {
+    "sleeperId": "298"
+  },
+  "lawrence timmons|2014|type:trade|schex": {
+    "sleeperId": "298"
+  },
+  "lawrence tynes|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Lawrence Tynes"
+  },
+  "lawrence tynes|2011|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Lawrence Tynes"
+  },
+  "lee evans|2009|type:trade|daniel": {
+    "sleeperId": null,
+    "name": "Lee Evans"
+  },
+  "legarrette blount|2010|type:trade|patrick": {
+    "sleeperId": "730"
+  },
+  "legarrette blount|2014|type:trade|koci/mueller": {
+    "sleeperId": "730"
+  },
+  "legedu naanee|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Legedu Naanee"
+  },
+  "leighton vander esch|2019|type:trade|syed/kuan": {
+    "sleeperId": "4980"
+  },
+  "lendale white|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "LenDale White"
+  },
+  "leonard fournette|2019|type:trade|james/charles": {
+    "sleeperId": "3969"
+  },
+  "leonte carroo|2017|type:trade|john/zach": {
+    "sleeperId": "3253"
+  },
+  "lesean mccoy|2014|type:trade|schex": {
+    "sleeperId": "676"
+  },
+  "lesean mccoy|2015|type:trade|john/zach": {
+    "sleeperId": "676"
+  },
+  "lesean mccoy|2017|type:trade|patrick": {
+    "sleeperId": "676"
+  },
+  "lestar jean|2012|type:cut|quinn": {
+    "sleeperId": null,
+    "name": "Lestar Jean"
+  },
+  "lestar jean|2013|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Lestar Jean"
+  },
+  "leveon bell|2014|type:trade|koci/mueller": {
+    "sleeperId": "1408"
+  },
+  "leveon bell|2014|type:trade|schex": {
+    "sleeperId": "1408"
+  },
+  "leveon bell|2015|type:trade|syed/terence": {
+    "sleeperId": "1408"
+  },
+  "leveon bell|2016|type:trade|schex/jeff": {
+    "sleeperId": "1408"
+  },
+  "leveon bell|2017|type:trade|quinn": {
+    "sleeperId": "1408"
+  },
+  "leveon bell|2018|type:trade|daniel": {
+    "sleeperId": "1408"
+  },
+  "leveon bell|2019|type:trade|quinn": {
+    "sleeperId": "1408"
+  },
+  "limas sweed|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Limas Sweed"
+  },
+  "lj smith|2009|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "L.J. Smith"
+  },
+  "lofa tatupu|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Lofa Tatupu"
+  },
+  "lofa tatupu|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Lofa Tatupu"
+  },
+  "london fletcher|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "London Fletcher"
+  },
+  "london fletcher|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "London Fletcher"
+  },
+  "lorenzo taliaferro|2014|type:trade|john/zach": {
+    "sleeperId": "1880"
+  },
+  "luke kuechly|2017|type:trade|mitch": {
+    "sleeperId": "1181"
+  },
+  "luke kuechly|2017|type:trade|quinn": {
+    "sleeperId": "1181"
+  },
+  "luke kuechly|2018|type:trade|brett/luke": {
+    "sleeperId": "1181"
+  },
+  "luke kuechly|2019|type:trade|keyon": {
+    "sleeperId": "1181"
+  },
+  "malcolm brown|2018|type:trade|brett/luke": {
+    "sleeperId": "2588"
+  },
+  "malcolm kelly|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Malcolm Kelly"
+  },
+  "malcolm mitchell|2016|type:trade|koci/mueller": {
+    "sleeperId": "3273"
+  },
+  "marc bulger|2008|type:trade|jeff": {
+    "sleeperId": null,
+    "name": "Marc Bulger"
+  },
+  "marcedes lewis|2010|type:trade|john": {
+    "sleeperId": "111"
+  },
+  "marcel reece|2013|type:trade|john": {
+    "sleeperId": "126"
+  },
+  "marcel reese|2015|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Marcel Reese"
+  },
+  "marcus lattimore|2013|type:draft|james": {
+    "sleeperId": null,
+    "name": "Marcus Lattimore"
+  },
+  "marcus murphy|2018|type:trade|schex": {
+    "sleeperId": "2529"
+  },
+  "marcus williams|2022|type:cut|koci/mueller": {
+    "sleeperId": "4091"
+  },
+  "mardy gilyard|2010|type:draft|jake/luke": {
+    "sleeperId": null,
+    "name": "Mardy Gilyard"
+  },
+  "marion barber|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Marion Barber"
+  },
+  "marion barber|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Marion Barber"
+  },
+  "mark barron|2017|type:trade|schex/jeff": {
+    "sleeperId": "1255"
+  },
+  "mark clayton|2010|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Mark Clayton"
+  },
+  "mark ingram|2012|type:trade|james": {
+    "sleeperId": "956"
+  },
+  "mark ingram|2017|type:trade|schex/jeff": {
+    "sleeperId": "956"
+  },
+  "mark ingram|2018|type:trade|brett/luke": {
+    "sleeperId": "956"
+  },
+  "mark ingram|2019|type:trade|keyon": {
+    "sleeperId": "956"
+  },
+  "mark sanchez|2014|type:trade|patrick": {
+    "sleeperId": "350"
+  },
+  "marlon brown|2014|type:trade|trevor": {
+    "sleeperId": "1675"
+  },
+  "marqise goodwin|2016|type:cut|luke": {
+    "sleeperId": "1346"
+  },
+  "marqise lee|2017|type:trade|keyon": {
+    "sleeperId": "1987"
+  },
+  "marques colston|2011|type:trade|trevor": {
+    "sleeperId": "201"
+  },
+  "marques colston|2012|type:trade|syed": {
+    "sleeperId": "201"
+  },
+  "marques colston|2013|type:trade|daniel": {
+    "sleeperId": "201"
+  },
+  "marquise brown|2019|type:trade|james/charles": {
+    "sleeperId": "5848"
+  },
+  "marquise goodwin|2018|type:trade|schex": {
+    "sleeperId": "1346"
+  },
+  "marshawn lynch|2012|type:trade|charles": {
+    "sleeperId": "745"
+  },
+  "marshawn lynch|2015|type:trade|keyon": {
+    "sleeperId": "745"
+  },
+  "marshawn lynch|2017|type:trade|mitch": {
+    "sleeperId": "745"
+  },
+  "marvin jones|2017|type:trade|schex/jeff": {
+    "sleeperId": "1067"
+  },
+  "mason crosby|2014|type:trade|quinn": {
+    "sleeperId": "59"
+  },
+  "mathias kiwanuka|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Mathias Kiwanuka"
+  },
+  "mathias kiwanuka|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Mathias Kiwanuka"
+  },
+  "matt asiata|2014|type:trade|schex": {
+    "sleeperId": "936"
+  },
+  "matt breida|2019|type:trade|quinn": {
+    "sleeperId": "4455"
+  },
+  "matt bryant|2017|type:trade|patrick": {
+    "sleeperId": "127"
+  },
+  "matt forte|2014|type:trade|patrick": {
+    "sleeperId": "103"
+  },
+  "matt forte|2016|type:trade|john/zach": {
+    "sleeperId": "103"
+  },
+  "matt forte|2017|type:trade|mitch": {
+    "sleeperId": "103"
+  },
+  "matt judon|2022|type:trade|luke": {
+    "sleeperId": "3303"
+  },
+  "matt leinart|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Matt Leinart"
+  },
+  "matt mcgloin|2015|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Matt McGloin"
+  },
+  "matt moore|2019|type:trade|schex": {
+    "sleeperId": "233"
+  },
+  "matt ryan|2017|type:trade|syed/terence": {
+    "sleeperId": "24"
+  },
+  "matt ryan|2019|type:trade|patrick": {
+    "sleeperId": "24"
+  },
+  "matt slater|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Matt Slater"
+  },
+  "matthew stafford|2012|type:trade|charles": {
+    "sleeperId": "421"
+  },
+  "matthew stafford|2014|type:trade|schex": {
+    "sleeperId": "421"
+  },
+  "matthew stafford|2015|type:trade|patrick": {
+    "sleeperId": "421"
+  },
+  "matthew stafford|2018|type:trade|brett/luke": {
+    "sleeperId": "421"
+  },
+  "matthew stafford|2019|type:trade|schex": {
+    "sleeperId": "421"
+  },
+  "matthew stafford|2021|type:trade|luke": {
+    "sleeperId": "421"
+  },
+  "maurice jonesdrew|2011|type:trade|trevor": {
+    "sleeperId": "293"
+  },
+  "maurice jonesdrew|2012|type:trade|keyon": {
+    "sleeperId": "293"
+  },
+  "maurice jonesdrew|2013|type:trade|daniel": {
+    "sleeperId": "293"
+  },
+  "melvin gordon|2016|type:trade|patrick": {
+    "sleeperId": "2320"
+  },
+  "melvin gordon|2019|type:trade|syed/kuan": {
+    "sleeperId": "2320"
+  },
+  "mewelde moore|2009|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Mewelde Moore"
+  },
+  "mewelde moore|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Mewelde Moore"
+  },
+  "micah kiser|2021|type:trade|john/zach": {
+    "sleeperId": "5074"
+  },
+  "michael bennett|2015|type:cut|patrick": {
+    "sleeperId": "495"
+  },
+  "michael bush|2013|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Michael Bush"
+  },
+  "michael carter|2021|type:draft|schex": {
+    "sleeperId": "7607"
+  },
+  "michael carter|2021|type:trade|keyon": {
+    "sleeperId": "7607"
+  },
+  "michael carter|2025|type:trade|jason": {
+    "sleeperId": "7607"
+  },
+  "michael floyd|2012|type:trade|syed": {
+    "sleeperId": "1219"
+  },
+  "michael floyd|2013|type:trade|keyon": {
+    "sleeperId": "1219"
+  },
+  "michael gallup|2019|type:trade|keyon": {
+    "sleeperId": "5038"
+  },
+  "michael gallup|2020|type:trade|luke": {
+    "sleeperId": "5038"
+  },
+  "michael jenkins|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Michael Jenkins"
+  },
+  "michael thomas|2019|type:trade|quinn": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2020|type:trade|patrick": {
+    "sleeperId": "3199"
+  },
+  "michael turner|2012|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Michael Turner"
+  },
+  "michael turner|2013|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Michael Turner"
+  },
+  "mike davis|2020|type:trade|john/zach": {
+    "sleeperId": "2431"
+  },
+  "mike evans|2017|type:trade|quinn": {
+    "sleeperId": "2216"
+  },
+  "mike evans|2018|type:trade|keyon": {
+    "sleeperId": "2216"
+  },
+  "mike evans|2019|type:trade|mitch": {
+    "sleeperId": "2216"
+  },
+  "mike evans|2020|type:trade|schex": {
+    "sleeperId": "2216"
+  },
+  "mike gesicki|2019|type:trade|keyon": {
+    "sleeperId": "4993"
+  },
+  "mike gillislee|2017|type:trade|john/zach": {
+    "sleeperId": "1353"
+  },
+  "mike goodson|2013|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Mike Goodson"
+  },
+  "mike goodson|2013|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Mike Goodson"
+  },
+  "mike mitchell|2013|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Mike Mitchell"
+  },
+  "mike mitchell|2018|type:cut|luke": {
+    "sleeperId": "395"
+  },
+  "mike simswalker|2009|type:trade|john": {
+    "sleeperId": null,
+    "name": "Mike Sims-Walker"
+  },
+  "mike tolbert|2010|type:trade|jake/luke": {
+    "sleeperId": "182"
+  },
+  "mike vick|2015|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Mike Vick"
+  },
+  "mike wallace|2018|type:trade|quinn": {
+    "sleeperId": "365"
+  },
+  "mike williams|2010|type:draft|koci": {
+    "sleeperId": "748"
+  },
+  "mike williams|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Mike Williams"
+  },
+  "mike williams|2014|type:cut|brett": {
+    "sleeperId": "748"
+  },
+  "mike williams|2014|type:cut|justin": {
+    "sleeperId": "748"
+  },
+  "mike williams|2017|type:draft|mitch": {
+    "sleeperId": "4068"
+  },
+  "mike williams|2023|type:trade|koci/mueller": {
+    "sleeperId": "4068"
+  },
+  "mike williams|2024|type:trade|brett": {
+    "sleeperId": "4068"
+  },
+  "mike williams|2025|type:cut|brett": {
+    "sleeperId": "4068"
+  },
+  "mikel leshoure|2011|type:draft|james": {
+    "sleeperId": null,
+    "name": "Mikel Leshoure"
+  },
+  "miles sanders|2019|type:trade|keyon": {
+    "sleeperId": "6151"
+  },
+  "montario hardesty|2010|type:draft|daniel": {
+    "sleeperId": null,
+    "name": "Montario Hardesty"
+  },
+  "montee ball|2014|type:trade|mitch": {
+    "sleeperId": "1454"
+  },
+  "montee ball|2015|type:trade|daniel": {
+    "sleeperId": "1454"
+  },
+  "morgan burnett|2012|type:trade|john": {
+    "sleeperId": "597"
+  },
+  "muhsin muhammad|2009|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Muhsin Muhammad"
+  },
+  "myles jack|2018|type:trade|schex": {
+    "sleeperId": "3166"
+  },
+  "nate burleson|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Nate Burleson"
+  },
+  "nate freese|2014|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Nate Freese"
+  },
+  "nate kaeding|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Nate Kaeding"
+  },
+  "nate kaeding|2012|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Nate Kaeding"
+  },
+  "nathan gerry": {
+    "sleeperId": "4213"
+  },
+  "nathan gerry|2019|type:cut|schexes": {
+    "sleeperId": "4213"
+  },
+  "nathan gerry|2020|type:cut|jason": {
+    "sleeperId": "4213"
+  },
+  "nathan peterman|2018|type:trade|john/zach": {
+    "sleeperId": "4183"
+  },
+  "nathan peterman|2018|type:trade|koci/mueller": {
+    "sleeperId": "4183"
+  },
+  "navorro bowman|2012|type:trade|koci": {
+    "sleeperId": "632"
+  },
+  "navorro bowman|2014|type:trade|koci/mueller": {
+    "sleeperId": "632"
+  },
+  "neil rackers|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Neil Rackers"
+  },
+  "neil rackers|2009|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Neil Rackers"
+  },
+  "neil rackers|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Neil Rackers"
+  },
+  "neil rackers|2012|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Neil Rackers"
+  },
+  "nick barnett|2012|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Nick Barnett"
+  },
+  "nick foles|2020|type:trade|trevor": {
+    "sleeperId": "1029"
+  },
+  "nick vigil|2019|type:trade|john/zach": {
+    "sleeperId": "3254"
+  },
+  "nkeal harry|2019|type:trade|john/zach": {
+    "sleeperId": "5878"
+  },
+  "nkeal harry|2020|type:trade|mitch": {
+    "sleeperId": "5878"
+  },
+  "nkeal harry|2020|type:trade|schex": {
+    "sleeperId": "5878"
+  },
+  "nyheim hines": {
+    "sleeperId": "5347"
+  },
+  "nyheim hines|2019|type:trade|james/charles": {
+    "sleeperId": "5347"
+  },
+  "nyheim hines|2020|type:cut|schexes": {
+    "sleeperId": "5347"
+  },
+  "nyheim hines|2022|type:trade|keyon": {
+    "sleeperId": "5347"
+  },
+  "nyheim hines|2022|type:trade|schex": {
+    "sleeperId": "5347"
+  },
+  "odell beckham|2016|type:trade|john/zach": {
+    "sleeperId": "2078"
+  },
+  "odell beckham|2017|type:trade|john/zach": {
+    "sleeperId": "2078"
+  },
+  "odell beckham|2018|type:trade|schex": {
+    "sleeperId": "2078"
+  },
+  "odell beckham|2019|type:trade|john/zach": {
+    "sleeperId": "2078"
+  },
+  "odell beckham|2019|type:trade|mitch": {
+    "sleeperId": "2078"
+  },
+  "olabisi johnson": {
+    "sleeperId": "6088"
+  },
+  "olabisi johnson|2021|type:cut|koci/mueller": {
+    "sleeperId": "6088"
+  },
+  "olindo mare|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Olindo Mare"
+  },
+  "olindo mare|2011|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Olindo Mare"
+  },
+  "oshiomogho atogwe|2011|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Oshiomogho Atogwe"
+  },
+  "owa odighizuwa|2016|type:cut|brett": {
+    "sleeperId": "2379"
+  },
+  "owen daniels|2008|type:trade|schex": {
+    "sleeperId": "64"
+  },
+  "owen daniels|2009|type:trade|daniel": {
+    "sleeperId": "64"
+  },
+  "owen daniels|2014|type:trade|quinn": {
+    "sleeperId": "64"
+  },
+  "paris lenon|2011|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Paris Lenon"
+  },
+  "pat angerer|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Pat Angerer"
+  },
+  "pat angerer|2013|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Pat Angerer"
+  },
+  "pat chung|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Pat Chung"
+  },
+  "pat chung|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Pat Chung"
+  },
+  "patrick crayton|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Patrick Crayton"
+  },
+  "patrick mahomes|2019|type:trade|schex": {
+    "sleeperId": "4046"
+  },
+  "patrick onwuasor|2020|type:trade|john/zach": {
+    "sleeperId": "3680"
+  },
+  "patrick peterson|2012|type:trade|charles": {
+    "sleeperId": "972"
+  },
+  "patrick turner|2010|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Patrick Turner"
+  },
+  "paul posluszny|2015|type:trade|quinn": {
+    "sleeperId": "160"
+  },
+  "percy harvin|2009|type:trade|patrick": {
+    "sleeperId": "429"
+  },
+  "percy harvin|2009|type:trade|syed": {
+    "sleeperId": "429"
+  },
+  "perry riley|2012|type:trade|john": {
+    "sleeperId": "733"
+  },
+  "peyton barber|2019|type:trade|quinn": {
+    "sleeperId": "3594"
+  },
+  "peyton hillis|2010|type:trade|jake/luke": {
+    "sleeperId": "660"
+  },
+  "peyton manning|2009|type:trade|john": {
+    "sleeperId": "294"
+  },
+  "peyton manning|2015|type:trade|daniel": {
+    "sleeperId": "294"
+  },
+  "pharoh cooper|2017|type:trade|john/zach": {
+    "sleeperId": "3278"
+  },
+  "philip rivers|2008|type:trade|john": {
+    "sleeperId": "331"
+  },
+  "philip rivers|2013|type:trade|schex": {
+    "sleeperId": "331"
+  },
+  "philip rivers|2018|type:trade|schex": {
+    "sleeperId": "331"
+  },
+  "philip rivers|2019|type:trade|trevor": {
+    "sleeperId": "331"
+  },
+  "phillip lindsay|2020|type:trade|schex": {
+    "sleeperId": "5170"
+  },
+  "phillip walker": {
+    "sleeperId": "4335"
+  },
+  "pierre garcon|2013|type:trade|koci/mueller": {
+    "sleeperId": "269"
+  },
+  "pierre garcon|2016|type:trade|trevor": {
+    "sleeperId": "269"
+  },
+  "pj dawson|2015|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "P.J. Dawson"
+  },
+  "preston williams|2019|type:trade|syed/kuan": {
+    "sleeperId": "6148"
+  },
+  "quentin mikell|2012|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Quentin Mikell"
+  },
+  "quinn godfrey|2012|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Quinn Godfrey"
+  },
+  "quinn scott|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Quinn Scott"
+  },
+  "quinn tillman|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Quinn Tillman"
+  },
+  "quinn tillman|2013|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Quinn Tillman"
+  },
+  "quinn woodson|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Quinn Woodson"
+  },
+  "quinn woodson|2013|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Quinn Woodson"
+  },
+  "quintin mikell|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Quintin Mikell"
+  },
+  "raheem mostert|2018|type:trade|patrick": {
+    "sleeperId": "2749"
+  },
+  "raheem mostert|2020|type:trade|keyon": {
+    "sleeperId": "2749"
+  },
+  "ramses barden|2009|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Ramses Barden"
+  },
+  "ramses barden|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Ramses Barden"
+  },
+  "randall cobb|2011|type:trade|syed": {
+    "sleeperId": "928"
+  },
+  "randall cobb|2013|type:trade|john": {
+    "sleeperId": "928"
+  },
+  "randall cobb|2014|type:trade|schex": {
+    "sleeperId": "928"
+  },
+  "randall cobb|2015|type:trade|keyon": {
+    "sleeperId": "928"
+  },
+  "randy moss|2013|type:cut|schexes": {
+    "sleeperId": null,
+    "name": "Randy Moss"
+  },
+  "rashaan evans|2019|type:trade|quinn": {
+    "sleeperId": "4978"
+  },
+  "rashad jennings|2012|type:trade|keyon": {
+    "sleeperId": "380"
+  },
+  "rashied davis|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Rashied Davis"
+  },
+  "ray edwards|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Ray Edwards"
+  },
+  "rayshawn jenkins|2020|type:trade|mitch": {
+    "sleeperId": "4180"
+  },
+  "reggie bush|2008|type:trade|john": {
+    "sleeperId": "179"
+  },
+  "reggie nelson|2012|type:trade|schex": {
+    "sleeperId": "704"
+  },
+  "reggie wayne|2009|type:trade|syed": {
+    "sleeperId": "194"
+  },
+  "reggie wayne|2012|type:trade|daniel": {
+    "sleeperId": "194"
+  },
+  "reggie wayne|2013|type:trade|syed": {
+    "sleeperId": "194"
+  },
+  "richard seymour|2009|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Richard Seymour"
+  },
+  "richard seymour|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Richard Seymour"
+  },
+  "ricky williams|2011|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Ricky Williams"
+  },
+  "riley cooper|2014|type:trade|schex": {
+    "sleeperId": "582"
+  },
+  "rob bironas|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Rob Bironas"
+  },
+  "rob bironas|2011|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Rob Bironas"
+  },
+  "rob bironas|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Rob Bironas"
+  },
+  "rob gronkowski|2015|type:trade|quinn": {
+    "sleeperId": "515"
+  },
+  "rob gronkowski|2016|type:trade|john/zach": {
+    "sleeperId": "515"
+  },
+  "rob gronkowski|2017|type:trade|mitch": {
+    "sleeperId": "515"
+  },
+  "rob gronkowski|2017|type:trade|quinn": {
+    "sleeperId": "515"
+  },
+  "rob gronkowski|2018|type:trade|daniel": {
+    "sleeperId": "515"
+  },
+  "rob gronkowski|2018|type:trade|syed/terence": {
+    "sleeperId": "515"
+  },
+  "rob gronkowski|2020|type:trade|james/charles": {
+    "sleeperId": "515"
+  },
+  "rob kelley|2018|type:trade|quinn": {
+    "sleeperId": "3657"
+  },
+  "robert griffin|2013|type:trade|jake/luke": {
+    "sleeperId": "1169"
+  },
+  "robert kelley|2016|type:cut|quinn": {
+    "sleeperId": "3657"
+  },
+  "robert turbin|2014|type:trade|patrick": {
+    "sleeperId": "1232"
+  },
+  "robert woods|2019|type:trade|mitch": {
+    "sleeperId": "1352"
+  },
+  "rock cartwright|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Rock Cartwright"
+  },
+  "rod smith|2018|type:cut|luke": {
+    "sleeperId": "2892"
+  },
+  "roddy white|2015|type:trade|quinn": {
+    "sleeperId": "4"
+  },
+  "roman harper|2012|type:trade|keyon": {
+    "sleeperId": "26"
+  },
+  "ronald curry|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Ronald Curry"
+  },
+  "ronald jones": {
+    "sleeperId": "5052"
+  },
+  "ronald jones|2018|type:draft|mitch": {
+    "sleeperId": "5052"
+  },
+  "ronald jones|2018|type:trade|schex": {
+    "sleeperId": "5052"
+  },
+  "ronald jones|2019|type:trade|mitch": {
+    "sleeperId": "5052"
+  },
+  "ronald jones|2019|type:trade|quinn": {
+    "sleeperId": "5052"
+  },
+  "ronald jones|2020|type:trade|keyon": {
+    "sleeperId": "5052"
+  },
+  "ronald jones|2022|type:trade|trevor": {
+    "sleeperId": "5052"
+  },
+  "ronnie brown|2008|type:trade|john": {
+    "sleeperId": "258"
+  },
+  "ronnie brown|2009|type:trade|syed": {
+    "sleeperId": "258"
+  },
+  "ronnie harrison|2019|type:trade|syed/kuan": {
+    "sleeperId": "5025"
+  },
+  "ronnie hillman|2013|type:trade|pat/quinn": {
+    "sleeperId": "1123"
+  },
+  "ronnie hillman|2015|type:trade|daniel": {
+    "sleeperId": "1123"
+  },
+  "roscoe parrish|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Roscoe Parrish"
+  },
+  "roy finch|2014|type:draft|koci/mueller": {
+    "sleeperId": null,
+    "name": "Roy Finch"
+  },
+  "roy williams|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Roy Williams"
+  },
+  "roy williams|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Roy Williams"
+  },
+  "russell wilson|2015|type:trade|trevor": {
+    "sleeperId": "1234"
+  },
+  "russell wilson|2018|type:trade|keyon": {
+    "sleeperId": "1234"
+  },
+  "russell wilson|2019|type:trade|trevor": {
+    "sleeperId": "1234"
+  },
+  "russell wilson|2021|type:trade|luke": {
+    "sleeperId": "1234"
+  },
+  "ryan denney|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Ryan Denney"
+  },
+  "ryan fitzpatrick|2015|type:trade|keyon": {
+    "sleeperId": "333"
+  },
+  "ryan fitzpatrick|2017|type:trade|quinn": {
+    "sleeperId": "333"
+  },
+  "ryan longwell|2010|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Ryan Longwell"
+  },
+  "ryan mallett|2014|type:trade|james": {
+    "sleeperId": "810"
+  },
+  "ryan moats|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Ryan Moats"
+  },
+  "ryan mouton|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Ryan Mouton"
+  },
+  "ryan tannehill|2015|type:trade|koci/mueller": {
+    "sleeperId": "1049"
+  },
+  "ryan torain|2011|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Ryan Torain"
+  },
+  "ryan torain|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Ryan Torain"
+  },
+  "ryan williams|2011|type:trade|syed": {
+    "sleeperId": "974"
+  },
+  "ryan williams|2013|type:trade|pat/quinn": {
+    "sleeperId": "974"
+  },
+  "sage rosenfels|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Sage Rosenfels"
+  },
+  "sam aiken|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Sam Aiken"
+  },
+  "sam bradford|2011|type:trade|syed": {
+    "sleeperId": "621"
+  },
+  "sam bradford|2014|type:trade|schex": {
+    "sleeperId": "621"
+  },
+  "sam bradford|2015|type:trade|john/zach": {
+    "sleeperId": "621"
+  },
+  "sam darnold|2019|type:trade|keyon": {
+    "sleeperId": "4943"
+  },
+  "sam darnold|2020|type:trade|luke": {
+    "sleeperId": "4943"
+  },
+  "sam darnold|2020|type:trade|trevor": {
+    "sleeperId": "4943"
+  },
+  "sammie stroughter|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Sammie Stroughter"
+  },
+  "sammy morris|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Sammy Morris"
+  },
+  "sammy morris|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Sammy Morris"
+  },
+  "sammy watkins|2014|type:trade|patrick": {
+    "sleeperId": "1817"
+  },
+  "sammy watkins|2017|type:trade|john/zach": {
+    "sleeperId": "1817"
+  },
+  "sammy watkins|2018|type:trade|koci/mueller": {
+    "sleeperId": "1817"
+  },
+  "santana moss|2009|type:trade|john": {
+    "sleeperId": "69"
+  },
+  "saquon barkley|2019|type:trade|keyon": {
+    "sleeperId": "4866"
+  },
+  "saquon barkley|2020|type:trade|luke": {
+    "sleeperId": "4866"
+  },
+  "scotty mcgee|2010|type:draft|trevor": {
+    "sleeperId": null,
+    "name": "Scotty McGee"
+  },
+  "sean lee|2012|type:trade|john": {
+    "sleeperId": "576"
+  },
+  "shaquil barrett|2019|type:trade|trevor": {
+    "sleeperId": "1999"
+  },
+  "shaun hill|2010|type:trade|schexes": {
+    "sleeperId": "686"
+  },
+  "shaun hill|2012|type:trade|charles": {
+    "sleeperId": "686"
+  },
+  "shawne merriman|2010|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Shawne Merriman"
+  },
+  "spencer ware|2016|type:trade|keyon": {
+    "sleeperId": "1601"
+  },
+  "spencer ware|2016|type:trade|syed/terence": {
+    "sleeperId": "1601"
+  },
+  "spencer ware|2018|type:trade|keyon": {
+    "sleeperId": "1601"
+  },
+  "stafon johnson|2010|type:draft|john": {
+    "sleeperId": null,
+    "name": "Stafon Johnson"
+  },
+  "stefon diggs|2019|type:trade|trevor": {
+    "sleeperId": "2449"
+  },
+  "stephen cooper|2009|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Stephen Cooper"
+  },
+  "stephen gostkowski|2014|type:trade|koci/mueller": {
+    "sleeperId": "110"
+  },
+  "stephen nicholas|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Stephen Nicholas"
+  },
+  "steve breaston|2012|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Steve Breaston"
+  },
+  "steve slaton|2012|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Steve Slaton"
+  },
+  "steve smith|2010|type:cut|keyon": {
+    "sleeperId": "169"
+  },
+  "steve smith|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Steve Smith"
+  },
+  "steve smith|2013|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Steve Smith (STL)"
+  },
+  "steven jackson|2009|type:trade|james": {
+    "sleeperId": "57"
+  },
+  "steven jackson|2012|type:trade|daniel": {
+    "sleeperId": "57"
+  },
+  "steven jackson|2014|type:trade|keyon": {
+    "sleeperId": "57"
+  },
+  "stewart bradley|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Stewart Bradley"
+  },
+  "tavon austin|2013|type:trade|pat/quinn": {
+    "sleeperId": "1567"
+  },
+  "tavon austin|2017|type:trade|quinn": {
+    "sleeperId": "1567"
+  },
+  "taylor price|2010|type:draft|james": {
+    "sleeperId": null,
+    "name": "Taylor Price"
+  },
+  "teddy bridgewater|2015|type:trade|schex/jeff": {
+    "sleeperId": "2152"
+  },
+  "teddy bridgewater|2019|type:trade|mitch": {
+    "sleeperId": "2152"
+  },
+  "teddy bridgewater|2020|type:trade|keyon": {
+    "sleeperId": "2152"
+  },
+  "telvin smith|2018|type:trade|mitch": {
+    "sleeperId": "1995"
+  },
+  "terrance williams|2014|type:trade|syed": {
+    "sleeperId": "1490"
+  },
+  "terrell owens|2009|type:trade|james": {
+    "sleeperId": null,
+    "name": "Terrell Owens"
+  },
+  "terrell thomas|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Terrell Thomas"
+  },
+  "terrell thomas|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Terrell Thomas"
+  },
+  "terrence mcgee|2008|type:trade|koci": {
+    "sleeperId": null,
+    "name": "Terrence McGee"
+  },
+  "tevin coleman|2017|type:trade|syed/terence": {
+    "sleeperId": "2378"
+  },
+  "tevin coleman|2019|type:trade|keyon": {
+    "sleeperId": "2378"
+  },
+  "tevin coleman|2020|type:trade|schex": {
+    "sleeperId": "2378"
+  },
+  "theo riddick|2018|type:trade|quinn": {
+    "sleeperId": "1517"
+  },
+  "thomas decoud|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Thomas DeCoud"
+  },
+  "thomas jones|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Thomas Jones"
+  },
+  "thomas rawls|2016|type:trade|quinn": {
+    "sleeperId": "2585"
+  },
+  "tim hightower|2016|type:trade|trevor": {
+    "sleeperId": "83"
+  },
+  "tim tebow|2011|type:trade|syed": {
+    "sleeperId": "559"
+  },
+  "tiquan underwood|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Tiquan Underwood"
+  },
+  "titus young|2011|type:draft|john": {
+    "sleeperId": null,
+    "name": "Titus Young"
+  },
+  "tj houshmandzadeh|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "T.J. Houshmandzadeh"
+  },
+  "tj yeldon|2018|type:trade|mitch": {
+    "sleeperId": "2341"
+  },
+  "toby gerhart|2010|type:trade|james": {
+    "sleeperId": "604"
+  },
+  "todd gurley|2017|type:trade|patrick": {
+    "sleeperId": "2315"
+  },
+  "todd gurley|2019|type:trade|schex": {
+    "sleeperId": "2315"
+  },
+  "todd gurley|2020|type:trade|brett": {
+    "sleeperId": "2315"
+  },
+  "todd heap|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Todd Heap"
+  },
+  "tom brady|2008|type:trade|koci": {
+    "sleeperId": "167"
+  },
+  "tom brady|2010|type:trade|patrick": {
+    "sleeperId": "167"
+  },
+  "tom brady|2013|type:trade|john": {
+    "sleeperId": "167"
+  },
+  "tom brady|2014|type:trade|koci/mueller": {
+    "sleeperId": "167"
+  },
+  "tom brady|2021|type:trade|keyon": {
+    "sleeperId": "167"
+  },
+  "tommy kelly|2012|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Tommy Kelly"
+  },
+  "tony gonzalez|2012|type:trade|koci": {
+    "sleeperId": null,
+    "name": "Tony Gonzalez"
+  },
+  "tony jefferson|2017|type:trade|quinn": {
+    "sleeperId": "1686"
+  },
+  "tony romo|2012|type:trade|schex": {
+    "sleeperId": "142"
+  },
+  "tony romo|2013|type:trade|syed": {
+    "sleeperId": "142"
+  },
+  "tony romo|2016|type:trade|syed/terence": {
+    "sleeperId": "142"
+  },
+  "travis benjamin|2015|type:trade|keyon": {
+    "sleeperId": "1077"
+  },
+  "travis kelce|2020|type:trade|john/zach": {
+    "sleeperId": "1466"
+  },
+  "travis kelce|2021|type:trade|keyon": {
+    "sleeperId": "1466"
+  },
+  "travis kelce|2021|type:trade|mitch": {
+    "sleeperId": "1466"
+  },
+  "trayveon williams|2019|type:trade|syed/kuan": {
+    "sleeperId": "6144"
+  },
+  "tremaine edmunds|2018|type:trade|mitch": {
+    "sleeperId": "4968"
+  },
+  "tremaine edmunds|2020|type:trade|john/zach": {
+    "sleeperId": "4968"
+  },
+  "trenton cannon|2018|type:trade|schex": {
+    "sleeperId": "5123"
+  },
+  "trevor siemian|2016|type:trade|keyon": {
+    "sleeperId": "2549"
+  },
+  "troy niklas|2015|type:trade|syed/terence": {
+    "sleeperId": "2245"
+  },
+  "ty hilton|2017|type:trade|quinn": {
+    "sleeperId": "1110"
+  },
+  "ty hilton|2017|type:trade|schex/jeff": {
+    "sleeperId": "1110"
+  },
+  "ty hilton|2018|type:trade|daniel": {
+    "sleeperId": "1110"
+  },
+  "ty hilton|2018|type:trade|mitch": {
+    "sleeperId": "1110"
+  },
+  "ty hilton|2019|type:trade|schex": {
+    "sleeperId": "1110"
+  },
+  "ty montgomery|2019|type:trade|quinn": {
+    "sleeperId": "2399"
+  },
+  "tyler boyd|2016|type:trade|mitch": {
+    "sleeperId": "3225"
+  },
+  "tyler boyd|2019|type:trade|keyon": {
+    "sleeperId": "3225"
+  },
+  "tyler eifert|2019|type:trade|keyon": {
+    "sleeperId": "1388"
+  },
+  "tyler lockett|2020|type:trade|schex": {
+    "sleeperId": "2374"
+  },
+  "tyler wilson|2013|type:draft|pat/quinn": {
+    "sleeperId": null,
+    "name": "Tyler Wilson"
+  },
+  "tyreek hill|2016|type:trade|syed/terence": {
+    "sleeperId": "3321"
+  },
+  "tyreek hill|2018|type:trade|keyon": {
+    "sleeperId": "3321"
+  },
+  "tyreek hill|2021|type:trade|jason": {
+    "sleeperId": "3321"
+  },
+  "tyrell williams|2019|type:trade|trevor": {
+    "sleeperId": "2583"
+  },
+  "vernon davis|2013|type:trade|syed": {
+    "sleeperId": "200"
+  },
+  "vick ballard|2013|type:trade|john": {
+    "sleeperId": "1106"
+  },
+  "vincent jackson|2012|type:trade|syed": {
+    "sleeperId": "128"
+  },
+  "vontaze burfict|2015|type:trade|syed/terence": {
+    "sleeperId": "1064"
+  },
+  "wendell smallwood|2017|type:trade|john/zach": {
+    "sleeperId": "3309"
+  },
+  "wes welker|2009|type:trade|patrick": {
+    "sleeperId": "177"
+  },
+  "wes welker|2013|type:trade|syed": {
+    "sleeperId": "177"
+  },
+  "wes welker|2014|type:trade|james": {
+    "sleeperId": "177"
+  },
+  "whitney mercilus|2019|type:trade|brett/luke": {
+    "sleeperId": "1103"
+  },
+  "whitney mercilus|2019|type:trade|keyon": {
+    "sleeperId": "1103"
+  },
+  "will dissly|2019|type:trade|schex": {
+    "sleeperId": "5010"
+  },
+  "will fuller": {
+    "sleeperId": "3157"
+  },
+  "will fuller|2016|type:trade|patrick": {
+    "sleeperId": "3157"
+  },
+  "will fuller|2020|type:trade|mitch": {
+    "sleeperId": "3157"
+  },
+  "will fuller|2021|type:cut|mitch": {
+    "sleeperId": "3157"
+  },
+  "will smith|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Will Smith"
+  },
+  "will smith|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Will Smith"
+  },
+  "william powell|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "William Powell"
+  },
+  "willie parker|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Willie Parker"
+  },
+  "yeremiah bell|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Yeremiah Bell"
+  },
+  "zac stacy|2014|type:trade|john/zach": {
+    "sleeperId": "1573"
+  },
+  "zach ertz|2020|type:trade|john/zach": {
+    "sleeperId": "1339"
+  },
+  "zach ertz|2020|type:trade|keyon": {
+    "sleeperId": "1339"
+  },
+  "zach mettenberger|2016|type:trade|trevor": {
+    "sleeperId": "1935"
+  },
+  "zach miller|2009|type:cut|keyon": {
+    "sleeperId": "171"
+  },
+  "zach miller|2011|type:cut|luke": {
+    "sleeperId": "171"
+  },
+  "zach miller|2012|type:cut|anthony": {
+    "sleeperId": "171"
+  },
+  "zach miller|2013|type:cut|koci/mueller": {
+    "sleeperId": "171"
+  },
+  "zach miller|2017|type:cut|anthony": {
+    "sleeperId": "749"
+  },
+  "zach pascal|2019|type:trade|schex": {
+    "sleeperId": "4319"
+  },
+  "zach sudfeld|2013|type:trade|syed": {
+    "sleeperId": "1654"
+  },
+  "zay jones|2018|type:trade|schex": {
+    "sleeperId": "4080"
+  }
 }
