@@ -485,7 +485,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3734,,Ronald Curry,WR,FA,2010
 8417,Daniel,Ronnie Brown,RB,2010,2011,$65
 8469,,Roscoe Parrish,WR,FA,2010
-5532,Trevor,Roy E. Williams,WR,2010,2011,$15
+5532,Trevor,Roy Williams,WR,2010,2011,$15
 12698,,Roy Miller,DL,FA,2010
 3589,,Ryan Denney,DL,FA,2010
 8664,Keyon,Ryan Fitzpatrick,QB,FA,2010,$10
