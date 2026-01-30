@@ -13,6 +13,7 @@
  *   docker compose run --rm -it web node data/seed/auction.js 2025
  *   docker compose run --rm -it web node data/seed/auction.js 2025 --dry-run
  *   docker compose run --rm -it web node data/seed/auction.js 2025 --dry-run --skip-ambiguous
+ *   docker compose run --rm -it web node data/seed/auction.js 2025 --auto-historical
  */
 
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
@@ -114,9 +115,10 @@ async function run() {
 	var year = parseInt(args.find(function(a) { return !a.startsWith('--'); }), 10);
 	var dryRun = args.includes('--dry-run');
 	var skipAmbiguous = args.includes('--skip-ambiguous');
+	var autoHistorical = args.includes('--auto-historical');
 	
 	if (!year || isNaN(year)) {
-		console.log('Usage: node data/seed/auction.js <year> [--dry-run] [--skip-ambiguous]');
+		console.log('Usage: node data/seed/auction.js <year> [--dry-run] [--skip-ambiguous] [--auto-historical]');
 		process.exit(1);
 	}
 	
@@ -251,6 +253,11 @@ async function run() {
 	for (var i = 0; i < newContracts.length; i++) {
 		var c = newContracts[i];
 		
+		// Skip rows with no owner (free agents)
+		if (!c.owner || c.owner.trim() === '') {
+			continue;
+		}
+		
 		console.log('--- ' + c.player + ' (' + c.owner + ') ---');
 		
 		// Build context with franchise for strong keys
@@ -277,7 +284,9 @@ async function run() {
 				position: c.position,
 				Player: Player,
 				rl: skipAmbiguous ? null : rl,
-				playerCache: playersByNormalizedName
+				playerCache: playersByNormalizedName,
+				autoHistorical: autoHistorical,
+				dryRun: dryRun
 			});
 			
 			if (result.action === 'quit') {
@@ -322,6 +331,13 @@ async function run() {
 		
 		var startYear = parseInt(c.start, 10);
 		var endYear = parseInt(c.end, 10);
+		
+		// Skip rows with invalid years
+		if (isNaN(startYear) || isNaN(endYear)) {
+			console.log('  ✗ Invalid years (start=' + c.start + ', end=' + c.end + '), skipping');
+			stats.errors.push('Invalid years for ' + c.player + ' (start=' + c.start + ', end=' + c.end + ')');
+			continue;
+		}
 		
 		// Check for existing transactions
 		var existingAuction = await Transaction.findOne({
