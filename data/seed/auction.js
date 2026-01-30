@@ -81,7 +81,9 @@ function makeTimestamp(dateStr, hours, mins, secs) {
 }
 
 // Build reverse lookup for owner names
+// Maps year -> ownerName -> franchiseId
 var ownerToFranchiseByYear = {};
+
 Object.keys(PSO.franchiseNames).forEach(function(franchiseId) {
 	var yearMap = PSO.franchiseNames[franchiseId];
 	Object.keys(yearMap).forEach(function(year) {
@@ -96,9 +98,11 @@ Object.keys(PSO.franchiseNames).forEach(function(franchiseId) {
 function getFranchiseId(ownerName, season) {
 	if (!ownerName) return null;
 	var name = ownerName.trim();
+	// Try exact match for the season
 	if (ownerToFranchiseByYear[season] && ownerToFranchiseByYear[season][name]) {
 		return ownerToFranchiseByYear[season][name];
 	}
+	// Fallback to franchiseIds (current aliases)
 	if (PSO.franchiseIds[name]) {
 		return PSO.franchiseIds[name];
 	}
@@ -130,19 +134,21 @@ async function run() {
 	var lines = content.trim().split('\n');
 	var header = lines[0].split(',');
 	
-	// Parse CSV
+	// Parse CSV (format: ID,Owner,Name,Position,Start,End,Salary)
 	var contracts = [];
 	for (var i = 1; i < lines.length; i++) {
 		var cols = lines[i].split(',');
-		if (cols.length < 6) continue;
+		if (cols.length < 7) continue;
 		
+		var espnId = cols[0].trim();
 		contracts.push({
-			owner: cols[0].trim(),
-			player: cols[1].trim(),
-			position: cols[2].trim(),
-			start: cols[3].trim(),
-			end: cols[4].trim(),
-			salary: parseInt(cols[5].replace('$', '').trim(), 10)
+			espnId: espnId !== '-1' ? espnId : null,
+			owner: cols[1].trim(),
+			player: cols[2].trim(),
+			position: cols[3].trim(),
+			start: cols[4].trim(),
+			end: cols[5].trim(),
+			salary: parseInt(cols[6].replace('$', '').trim(), 10)
 		});
 	}
 	
@@ -219,6 +225,22 @@ async function run() {
 		playersByNormalizedName[norm].push(p);
 	});
 	
+	// Build ESPN ID → Player lookup from Sleeper data
+	var sleeperDataPath = path.join(__dirname, '../../public/data/sleeper-data.json');
+	var sleeperData = JSON.parse(fs.readFileSync(sleeperDataPath, 'utf8'));
+	var playerByEspnId = {};
+	Object.values(sleeperData).forEach(function(sp) {
+		if (sp.espn_id) {
+			// Find the Player document with this sleeperId
+			var player = allPlayers.find(function(p) { return p.sleeperId === sp.player_id; });
+			if (player) {
+				playerByEspnId[String(sp.espn_id)] = player;
+			}
+		}
+	});
+	console.log('Built ESPN ID lookup with ' + Object.keys(playerByEspnId).length + ' entries');
+	console.log('');
+	
 	// Create readline interface for prompts
 	var readline = require('readline');
 	var rl = readline.createInterface({
@@ -234,37 +256,49 @@ async function run() {
 		// Build context with franchise for strong keys
 		var context = { year: year, type: 'auction', franchise: c.owner };
 		
-		// Get candidates by normalized name
-		var normalizedName = normalizeForMatch(c.player);
-		var candidates = playersByNormalizedName[normalizedName] || [];
+		var playerResult = null;
+		var resultAction = null;
 		
-		// Use unified prompt
-		var result = await resolver.promptForPlayer({
-			name: c.player,
-			context: context,
-			candidates: candidates,
-			position: c.position,
-			Player: Player,
-			rl: skipAmbiguous ? null : rl,
-			playerCache: playersByNormalizedName
-		});
-		
-		if (result.action === 'quit') {
-			console.log('\nQuitting...');
-			rl.close();
-			await mongoose.disconnect();
-			process.exit(130);
+		// Try ESPN ID lookup first (for historical data with IDs)
+		if (c.espnId && playerByEspnId[c.espnId]) {
+			playerResult = playerByEspnId[c.espnId];
+			resultAction = 'matched';
+			console.log('  → ' + playerResult.name + ' (via ESPN ID)');
+		} else {
+			// Get candidates by normalized name
+			var normalizedName = normalizeForMatch(c.player);
+			var candidates = playersByNormalizedName[normalizedName] || [];
+			
+			// Use unified prompt
+			var result = await resolver.promptForPlayer({
+				name: c.player,
+				context: context,
+				candidates: candidates,
+				position: c.position,
+				Player: Player,
+				rl: skipAmbiguous ? null : rl,
+				playerCache: playersByNormalizedName
+			});
+			
+			if (result.action === 'quit') {
+				console.log('\nQuitting...');
+				rl.close();
+				await mongoose.disconnect();
+				process.exit(130);
+			}
+			
+			if (result.action === 'skipped' || !result.player) {
+				stats.errors.push('Skipped: ' + c.player);
+				continue;
+			}
+			
+			playerResult = result.player;
+			resultAction = result.action;
 		}
 		
-		if (result.action === 'skipped' || !result.player) {
-			stats.errors.push('Skipped: ' + c.player);
-			continue;
-		}
-		
-		var playerResult = result.player;
-		if (result.action === 'matched') {
-			console.log('  → ' + playerResult.name);
-		} else if (result.action === 'created') {
+		if (resultAction === 'matched') {
+			// Already logged for ESPN ID matches
+		} else if (resultAction === 'created') {
 			console.log('  + Created: ' + playerResult.name);
 		}
 		

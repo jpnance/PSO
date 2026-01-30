@@ -285,7 +285,7 @@ echo ""
 
 # Step 12: Seed auction/contract transactions (interactive)
 echo "=== Step 12: Seeding auction transactions (interactive) ==="
-for year in 2020 2021 2022 2023 2024 2025; do
+for year in 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025; do
     echo "--- Auction year: $year ---"
     if [ "$DRY_RUN" = true ]; then
         echo "[dry-run] docker compose run --rm web node data/seed/auction.js $year"

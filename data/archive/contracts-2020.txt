@@ -1,389 +1,389 @@
-Owner,Name,Position,Start,End,Salary
-Luke,A.J. Brown,WR,2019,2021,$16
-James/Charles,A.J. Green (CIN),WR,2020,2021,$51
-Brett,Aaron Donald,DL,2020,2022,$4
-Trevor,Aaron Jones,RB,2020,2020,$195
-Trevor,Aaron Rodgers,QB,2020,2021,$120
-Trevor,Adam Thielen,WR,2020,2021,$138
-Quinn,Adam Trautman,TE,2020,2022,$1
-Patrick,Adrian Peterson,RB,2020,2020,$21
-Brett,AJ Dillon,RB,2020,2022,$7
-James/Charles,Alexander Mattison,RB,2019,2021,$13
-Mitch,Allen Lazard,WR,2020,2022,$40
-Schex,Allen Robinson II,WR,2020,2022,$135
-Koci/Mueller,Alshon Jeffery,WR,2020,2022,$1
-John/Zach,Alvin Kamara,RB,2020,2022,$215
-Terence,Amari Cooper,WR,2020,2021,$160
-Mitch,Andrew Luck,QB,2020,2022,$1
-Koci/Mueller,Andy Dalton,QB,2020,2022,$1
-Patrick,Andy Isabella,WR,2019,2021,$4
-Quinn,Anthony Gordon,QB,2020,2022,$1
-Luke,Anthony McFarland Jr.,RB,2020,2022,$13
-Luke,Anthony Miller,WR,2018,2020,$9
-Patrick,Anthony Walker,LB,2020,2020,$1
-Mitch,Antoine Winfield Jr.,DB,2020,2022,$1
-Luke,Antonio Gandy-Golden,WR,2020,2022,$8
-Luke,Antonio Gibson,RB/WR,2020,2022,$13
-Terence,Auden Tate,WR,2020,2022,$1
-Koci/Mueller,Austin Ekeler,RB,2018,2020,$12
-Trevor,Austin Hooper,TE,2019,2021,$3
-Mitch,Baker Mayfield,QB,2018,2020,$28
-Quinn,Ben Roethlisberger,QB,2020,2020,$105
-Patrick,Benardrick McKinney,LB,2020,2020,$1
-Terence,Benny Snell Jr.,RB,2019,2021,$4
-Patrick,Blake Jarwin,TE,2020,2022,$1
-Keyon,Blake Martinez,LB,2018,2020,$9
-James/Charles,Bobby Wagner,LB,2020,2021,$21
-Luke,Boston Scott,RB,2020,2022,$15
-James/Charles,Bradley Chubb,LB,2018,2020,$1
-Schex,Brandin Cooks,WR,2020,2022,$50
-Luke,Brandon Aiyuk,WR,2020,2022,$8
-Schex,Breshad Perriman,WR,2020,2022,$7
-Quinn,Brian Burns,LB,2019,2021,$1
-Mitch,Brian Hill,RB,2020,2022,$10
-Terence,Bryan Edwards,WR,2020,2022,$8
-Terence,Bryce Love,RB,2019,2021,$1
-Quinn,Bryce Perkins,QB,2020,2022,$1
-Keyon,Budda Baker,DB,2020,2020,$22
-Brett,Calais Campbell,DL,2019,2020,$7
-Mitch,Calvin Ridley,WR,2018,2020,$18
-James/Charles,Cam Akers,RB,2020,2022,$25
-Brett,Cam Newton,QB,2020,2021,$89
-Koci/Mueller,Cameron Jordan,DL,2020,2020,$4
-Trevor,Carlos Dunlap,DL,2020,2021,$2
-Quinn,Carlos Hyde,RB,2020,2020,$7
-Mitch,Carson Wentz,QB,2019,2021,$180
-John/Zach,CeeDee Lamb,WR,2020,2022,$16
-Keyon,Chase Claypool,WR,2020,2022,$4
-Schex,Chase Daniel,QB,2020,2020,$1
-Luke,Chase Edmonds,RB,2018,2020,$7
-Mitch,Chase Young,DL,2020,2022,$1
-Quinn,Chris Carson,RB,2020,2021,$111
-Brett,Chris Godwin,WR,2019,2021,$110
-Keyon,Chris Herndon,TE,2019,2021,$3
-Koci/Mueller,Chris Thompson (JAX),RB,2019,2021,$6
-James/Charles,Christian Kirk,WR,2018,2020,$9
-Quinn,Christian Kirksey,LB,2020,2022,$3
-Koci/Mueller,Christian McCaffrey,RB,2020,2020,$365
-Trevor,Clelin Ferrell,DL,2019,2021,$1
-Keyon,Clyde Edwards-Helaire,RB,2020,2022,$25
-Brett,Cole Kmet,TE,2020,2022,$2
-Quinn,Collin Johnson,WR,2020,2022,$1
-Luke,Colt McCoy,QB,2019,2021,$1
-Trevor,Cooper Kupp,WR,2020,2020,$160
-Trevor,Cordarrelle Patterson,WR,2019,2020,$2
-Schex,Corey Davis,WR,2020,2022,$2
-Schex,Cory Littleton,LB,2018,2020,$1
-John/Zach,Courtland Sutton,WR,2018,2020,$9
-Brett,Curtis Samuel,WR,2020,2021,$28
-John/Zach,D'Andre Swift,RB,2020,2022,$25
-Koci/Mueller,Dak Prescott,QB,2019,2021,$107
-John/Zach,Dallas Goedert,TE,2018,2020,$4
-Koci/Mueller,Dalton Keene (NE),TE,2020,2022,$1
-Patrick,Dalvin Cook,RB,2020,2021,$265
-James/Charles,Damien Harris,RB,2019,2021,$7
-Quinn,Damien Williams,RB,2020,2022,$20
-Keyon,Dan Arnold,TE,2020,2022,$1
-Luke,Daniel Jones,QB,2019,2021,$19
-James/Charles,Danielle Hunter,DL,2020,2020,$42
-Patrick,Danny Trevathan,LB,2020,2020,$1
-Quinn,Dante Pettis,WR,2018,2020,$5
-Schex,Darius Leonard,LB,2018,2020,$1
-Luke,Darius Slayton,WR,2020,2022,$25
-Keyon,Darnell Mooney,WR,2020,2022,$1
-Terence,Darnell Savage,DB,2019,2021,$1
-Mitch,Darrel Williams,RB,2020,2022,$8
-James/Charles,Darrell Henderson Jr.,RB,2019,2021,$13
-Schex,Darren Waller,TE,2019,2021,$3
-Terence,Darrynton Evans,RB,2020,2022,$7
-Keyon,Davante Adams,WR,2020,2020,$190
-Patrick,David Johnson (HOU),RB,2020,2021,$96
-Mitch,David Montgomery,RB,2019,2021,$25
-Patrick,Dawson Knox,TE,2019,2021,$2
-Keyon,DeAndre Hopkins,WR,2020,2022,$175
-Patrick,DeAndre Washington,RB,2020,2022,$1
-Koci/Mueller,Dede Westbrook,WR,2020,2022,$2
-Brett,Deebo Samuel,WR,2019,2021,$8
-Terence,DeeJay Dallas,RB,2020,2022,$4
-Quinn,DeForest Buckner,DL,2020,2022,$1
-Koci/Mueller,Deion Jones,LB,2020,2022,$10
-James/Charles,DeMarcus Lawrence,DL,2018,2020,$5
-Quinn,Demario Davis,LB,2018,2020,$3
-Schex,Denzel Mims,WR,2020,2022,$4
-John/Zach,Denzel Ward,DB,2018,2020,$1
-Luke,Deon Cain,WR,2019,2021,$1
-Schex,Derek Carr,QB,2020,2022,$38
-James/Charles,Derrick Henry,RB,2020,2021,$255
-Brett,Derwin James Jr.,DB,2018,2020,$1
-Patrick,DeSean Jackson,WR,2020,2020,$8
-Brett,Deshaun Watson,QB,2020,2022,$220
-James/Charles,DeVante Parker,WR,2018,2020,$11
-Koci/Mueller,Devin Asiasi,TE,2020,2022,$1
-Terence,Devin Bush,LB,2019,2021,$1
-Brett,Devin Duvernay,WR,2020,2021,$2
-Quinn,Devin Funchess,WR,2020,2020,$1
-Schex,Devin Singletary,RB,2019,2021,$13
-Mitch,Devin White,LB,2019,2021,$1
-Schex,Dexter Williams,RB,2019,2021,$4
-Trevor,Dion Lewis,RB,2020,2020,$2
-Keyon,Diontae Johnson,WR,2019,2021,$2
-Patrick,DJ Chark Jr.,WR,2018,2020,$5
-John/Zach,DJ Moore,WR,2018,2020,$9
-Patrick,DK Metcalf,WR,2019,2021,$16
-John/Zach,Drew Brees,QB,2020,2020,$120
-Keyon,Drew Lock,QB,2019,2021,$3
-Brett,Duke Johnson,RB,2019,2020,$45
-James/Charles,Dwayne Haskins Jr.,QB,2019,2021,$38
-Brett,Ed Oliver,DL,2019,2021,$1
-Trevor,Emmanuel Sanders,WR,2020,2021,$15
-Terence,Eno Benjamin,RB,2020,2022,$2
-Koci/Mueller,Equanimeous St. Brown,WR,2020,2022,$1
-Patrick,Eric Ebron,TE,2020,2022,$1
-Patrick,Eric Kendricks,LB,2020,2020,$1
-James/Charles,Evan Engram,TE,2020,2021,$40
-Patrick,Everson Griffen,DL,2020,2020,$1
-Luke,Ezekiel Elliott,RB,2019,2021,$290
-Patrick,Frank Gore,RB,2020,2020,$6
-Keyon,Fred Warner,LB,2019,2021,$1
-Keyon,Gabriel Davis,WR,2020,2022,$1
-Koci/Mueller,Gardner Minshew II,QB,2019,2021,$3
-Terence,George Kittle,TE,2020,2021,$135
-Luke,Germaine Pratt,LB,2019,2021,$1
-Schex,Giovani Bernard,RB,2020,2022,$4
-Patrick,Golden Tate,WR,2019,2021,$20
-Trevor,Greg Zuerlein,K,2018,2020,$2
-Koci/Mueller,Gus Edwards,RB,2019,2021,$2
-Patrick,Ha Ha Clinton-Dix,DB,2020,2020,$1
-Trevor,Harrison Butker,K,2019,2021,$3
-Keyon,Harrison Smith,DB,2020,2021,$3
-Luke,Hayden Hurst,TE,2020,2022,$16
-John/Zach,Henry Ruggs III,WR,2020,2022,$8
-Schex,Hunter Henry,TE,2018,2020,$6
-Patrick,Hunter Renfrow,WR,2019,2021,$8
-Koci/Mueller,Ian Thomas,TE,2020,2022,$2
-James/Charles,Irv Smith Jr.,TE,2019,2021,$2
-Quinn,Isaiah Coulter,WR,2020,2020,$1
-James/Charles,Isaiah Simmons,LB,2020,2022,$1
-Brett,Ito Smith,RB,2019,2020,$24
-Terence,J.D. McKissic,RB,2020,2022,$1
-Luke,J.J. Watt,DL,2019,2021,$10
-Terence,J.K. Dobbins,RB,2020,2022,$25
-Mitch,Jabrill Peppers,DB,2020,2022,$5
-Terence,Jace Sternberger,TE,2019,2021,$1
-James/Charles,Jack Doyle,TE,2020,2022,$3
-Trevor,Jacob Eason,QB,2020,2022,$2
-Brett,Jacoby Brissett,QB,2019,2021,$11
-Mitch,Jadeveon Clowney,DL,2019,2021,$1
-Luke,Jahlani Tavai,LB,2019,2021,$1
-Quinn,Jake Elliott,K,2020,2020,$1
-Patrick,Jake Luton,QB,2020,2022,$2
-Terence,Jalen Hurts,QB,2020,2022,$8
-Terence,Jalen Reagor,WR,2020,2022,$16
-Luke,Jamaal Williams,RB,2020,2022,$5
-Brett,Jamal Adams,DB,2019,2021,$15
-Luke,Jameis Winston,QB,2020,2022,$7
-Terence,James Conner,RB,2020,2020,$105
-Quinn,James Morgan,QB,2020,2022,$1
-Koci/Mueller,James Proche,WR,2020,2022,$1
-James/Charles,James Washington,WR,2018,2020,$9
-Brett,James White,RB,2020,2021,$53
-Quinn,Jamison Crowder,WR,2020,2021,$17
-Schex,JaMycal Hasty,RB,2020,2022,$1
-Brett,Jared Cook,TE,2019,2020,$7
-Mitch,Jared Goff,QB,2019,2021,$125
-Koci/Mueller,Jarrad Davis,LB,2020,2022,$1
-Terence,Jarrett Stidham,QB,2019,2021,$3
-Quinn,Jarvis Landry,WR,2020,2020,$70
-Koci/Mueller,Jason Huntley,RB,2020,2022,$1
-Patrick,Jason Myers,K,2020,2020,$1
-Quinn,Jauan Jennings,WR,2020,2020,$1
-Keyon,Jaylon Smith,LB,2019,2021,$17
-Schex,Jayon Brown,LB,2020,2022,$1
-Brett,Jeremy Chinn,DB,2020,2022,$1
-Schex,Jerick McKinnon,RB,2020,2022,$5
-John/Zach,Jerome Baker,LB,2018,2020,$1
-Mitch,Jerry Jeudy,WR,2020,2022,$16
-Patrick,Jessie Bates III,DB,2020,2020,$1
-Quinn,Jimmy Garoppolo,QB,2020,2022,$75
-Luke,Jimmy Graham,TE,2019,2021,$10
-Luke,JJ Arcega-Whiteside,WR,2019,2021,$8
-Keyon,Joe Burrow,QB,2020,2022,$32
-Keyon,Joe Mixon,RB,2020,2022,$160
-Koci/Mueller,Joe Reed,WR,2020,2022,$1
-Koci/Mueller,Joe Schobert,LB,2020,2022,$13
-Trevor,Joey Bosa,DL,2020,2022,$15
-Koci/Mueller,John Brown,WR,2020,2022,$15
-Keyon,John Hightower,WR,2020,2022,$1
-James/Charles,John Johnson III,DB,2019,2021,$15
-Quinn,John Ross III,WR,2020,2020,$18
-Quinn,Johnathan Abram,DB,2020,2022,$1
-John/Zach,Jonathan Taylor,RB,2020,2022,$25
-Koci/Mueller,Jonnu Smith,TE,2020,2022,$7
-James/Charles,Jordan Hicks,LB,2020,2020,$10
-Mitch,Jordan Howard,RB,2020,2020,$37
-Luke,Jordan Love,QB,2020,2022,$16
-James/Charles,Jordan Poyer,DB,2020,2022,$3
-Luke,Jordan Wilkins,RB,2019,2021,$1
-John/Zach,Josh Allen (BUF),QB,2018,2020,$14
-Terence,Josh Allen (JAX),DL,2019,2021,$1
-Trevor,Josh Jacobs,RB,2019,2021,$25
-Schex,Josh Reynolds,WR,2020,2022,$1
-Koci/Mueller,Joshua Dobbs,QB,2020,2020,$1
-James/Charles,Joshua Kelley,RB,2020,2022,$4
-Mitch,Josiah Deguara,TE,2020,2022,$1
-Brett,Juan Thornhill,DB,2019,2021,$1
-Terence,JuJu Smith-Schuster,WR,2020,2020,$133
-James/Charles,Julian Edelman,WR,2020,2021,$31
-Terence,Julio Jones,WR,2020,2021,$160
-Terence,Justice Hill,RB,2020,2022,$1
-Terence,Justin Herbert,QB,2020,2022,$32
-James/Charles,Justin Jackson,RB,2019,2020,$25
-James/Charles,Justin Jefferson,WR,2020,2022,$16
-Koci/Mueller,Justin Simmons,DB,2020,2022,$2
-Luke,Justin Tucker,K,2018,2020,$3
-John/Zach,Kareem Hunt,RB,2020,2022,$42
-Brett,Ke'Shawn Vaughn,RB,2020,2021,$13
-Schex,Keanu Neal,DB,2020,2022,$1
-Brett,Keenan Allen,WR,2020,2022,$65
-Koci/Mueller,Kendrick Bourne,WR,2020,2022,$1
-Trevor,Kenneth Murray,LB,2020,2022,$1
-Schex,Kenny Golladay,WR,2020,2022,$185
-Terence,Kenny Stills,WR,2019,2020,$13
-Terence,Kenyan Drake,RB,2019,2020,$70
-Mitch,Kerryon Johnson,RB,2018,2020,$25
-Luke,Kevin Byard,DB,2018,2020,$1
-Patrick,Kirk Cousins,QB,2018,2020,$100
-Trevor,KJ Hamler,WR,2020,2022,$4
-James/Charles,Kwon Alexander,LB,2019,2021,$6
-Trevor,Kyle Fuller,DB,2020,2022,$1
-Trevor,Kyle Rudolph,TE,2019,2021,$2
-Patrick,Kyler Murray,QB,2019,2021,$38
-Keyon,La'Mical Perine,RB,2020,2022,$4
-Schex,Lamar Jackson,QB,2018,2020,$14
-Schex,Landon Collins,DB,2019,2021,$9
-Schex,Larry Fitzgerald,WR,2020,2020,$2
-Schex,Latavius Murray,RB,2020,2022,$14
-Luke,Laviska Shenault Jr.,WR,2020,2022,$8
-Terence,Lavonte David,LB,2020,2022,$1
-Trevor,Le'Veon Bell,RB,2020,2021,$92
-Luke,Leighton Vander Esch,LB,2018,2020,$1
-James/Charles,Leonard Fournette,RB,2020,2020,$105
-Patrick,LeSean McCoy,RB,2020,2020,$8
-Mitch,Logan Wilson,LB,2020,2022,$1
-Brett,Lynn Bowden Jr.,RB,2020,2021,$7
-Mitch,Malcolm Brown,RB,2019,2020,$28
-Brett,Malcolm Perry,RB/WR,2020,2021,$1
-Schex,Malik Harrison,LB,2020,2022,$1
-John/Zach,Mark Andrews,TE,2018,2020,$1
-Schex,Mark Ingram II,RB,2020,2020,$93
-Trevor,Marlon Humphrey,DB,2020,2022,$1
-Quinn,Marlon Mack,RB,2020,2022,$29
-Patrick,Marqise Lee,WR,2020,2022,$1
-Trevor,Marquez Valdes-Scantling,WR,2018,2020,$2
-James/Charles,Marquise Brown,WR,2019,2021,$16
-James/Charles,Marvin Jones Jr.,WR,2020,2021,$37
-Quinn,Matt Breida,RB,2018,2020,$7
-Brett,Matt Gay,K,2019,2020,$1
-Terence,Matt Prater,K,2019,2021,$1
-Patrick,Matt Ryan,QB,2018,2020,$70
-Schex,Matthew Stafford,QB,2020,2021,$114
-Schex,Maxx Crosby,DL,2020,2022,$1
-Terence,Mecole Hardman,WR,2019,2021,$8
-Brett,Melvin Gordon III,RB,2019,2021,$171
-Schex,Micah Kiser,LB,2020,2022,$1
-Keyon,Michael Badgley,K,2020,2020,$1
-Keyon,Michael Gallup,WR,2018,2020,$9
-James/Charles,Michael Pittman Jr.,WR,2020,2022,$8
-Patrick,Michael Thomas (NO),WR,2019,2020,$300
-Mitch,Michael Warren II,RB,2020,2022,$1
-Mitch,Mike Boone,RB,2019,2021,$9
-Mitch,Mike Evans,WR,2018,2020,$150
-Keyon,Mike Gesicki,TE,2018,2020,$7
-Mitch,Mike Williams (LAC),WR,2020,2022,$10
-James/Charles,Miles Boykin,WR,2019,2021,$4
-Keyon,Miles Sanders,RB,2019,2021,$25
-John/Zach,Minkah Fitzpatrick,DB,2018,2020,$1
-Koci/Mueller,Mitchell Trubisky,QB,2020,2022,$5
-Patrick,Mohamed Sanu,WR,2020,2022,$1
-Keyon,Myles Garrett,DL,2020,2022,$9
-Schex,N'Keal Harry,WR,2019,2021,$16
-Luke,Nick Bosa,DL,2019,2021,$1
-John/Zach,Nick Chubb,RB,2018,2020,$25
-Luke,Nick Foles,QB,2020,2022,$15
-Terence,Nick Mullens,QB,2019,2020,$5
-Brett,Noah Fant,TE,2019,2021,$5
-Mitch,O.J. Howard,TE,2020,2022,$3
-John/Zach,Odell Beckham Jr.,WR,2019,2020,$275
-Koci/Mueller,Olabisi Johnson,WR,2020,2022,$1
-Brett,Parris Campbell,WR,2019,2021,$16
-Keyon,Patrick Mahomes II,QB,2020,2020,$390
-John/Zach,Patrick Onwuasor,LB,2019,2021,$1
-Mitch,Patrick Queen,LB,2020,2022,$1
-Terence,Philip Rivers,QB,2020,2020,$48
-Patrick,Phillip Lindsay,RB,2018,2020,$1
-Luke,Preston Williams,WR,2019,2021,$2
-Brett,Quintez Cephus,WR,2020,2021,$1
-Schex,Raheem Mostert,RB,2020,2020,$77
-Brett,Randall Cobb,WR,2019,2020,$6
-Terence,Rashaad Penny,RB,2020,2022,$1
-Koci/Mueller,Rashaan Evans,LB,2020,2022,$1
-Brett,Rashan Gary,LB,2019,2020,$1
-Quinn,Raymond Calais,RB,2020,2020,$1
-Koci/Mueller,Reggie Bonnafon,RB,2020,2020,$1
-James/Charles,Rob Gronkowski,TE,2019,2021,$1
-James/Charles,Robbie Gould,K,2020,2020,$3
-Trevor,Robby Anderson,WR,2020,2021,$3
-Quinn,Robert Woods,WR,2020,2021,$95
-Koci/Mueller,Ronald Jones II,RB,2020,2022,$71
-Brett,Roquan Smith,LB,2018,2020,$1
-Trevor,Royce Freeman,RB,2018,2020,$25
-Patrick,Russell Gage,WR,2020,2022,$1
-Terence,Russell Wilson,QB,2020,2021,$225
-Brett,Ryan Finley,QB,2019,2021,$3
-Trevor,Ryan Fitzpatrick,QB,2020,2021,$5
-James/Charles,Ryan Tannehill,QB,2020,2021,$105
-Brett,Ryquell Armstead,RB,2019,2021,$7
-Trevor,Sam Darnold,QB,2018,2020,$28
-Koci/Mueller,Sammy Watkins,WR,2020,2022,$9
-Keyon,Saquon Barkley,RB,2018,2020,$25
-Trevor,Shaq Thompson,LB,2020,2022,$3
-John/Zach,Sony Michel,RB,2018,2020,$25
-Trevor,Stefon Diggs,WR,2018,2020,$75
-Patrick,Sterling Shepard,WR,2019,2021,$42
-Keyon,Steven Sims Jr.,WR,2020,2022,$27
-Trevor,T.J. Hockenson,TE,2019,2021,$5
-Luke,T.J. Logan,RB,2019,2021,$2
-Quinn,T.J. Watt,LB,2020,2022,$3
-Koci/Mueller,T.Y. Hilton,WR,2020,2020,$61
-Quinn,Tarik Cohen,RB,2020,2021,$20
-Terence,Taylor Rapp,DB,2019,2021,$1
-Koci/Mueller,Taysom Hill,QB,2019,2021,$7
-Keyon,Teddy Bridgewater,QB,2018,2020,$15
-Terence,Tee Higgins,WR,2020,2022,$8
-Patrick,Terry McLaurin,WR,2019,2021,$4
-Mitch,Tevin Coleman,RB,2020,2020,$22
-Quinn,Todd Gurley II,RB,2020,2021,$84
-James/Charles,Tom Brady,QB,2020,2020,$120
-Koci/Mueller,Tony Pollard,RB,2019,2021,$7
-Trevor,Tracy Walker,DB,2020,2022,$6
-Mitch,Travis Kelce,TE,2019,2020,$200
-Luke,Trayveon Williams,RB,2019,2021,$1
-Quinn,Tre'Quan Smith,WR,2018,2020,$9
-Mitch,Tremaine Edmunds,LB,2018,2020,$1
-Brett,Tua Tagovailoa,QB,2020,2022,$32
-John/Zach,Tyler Boyd,WR,2019,2021,$100
-Schex,Tyler Higbee,TE,2020,2022,$8
-Schex,Tyler Johnson,WR,2020,2022,$2
-Quinn,Tyler Lockett,WR,2018,2020,$56
-Keyon,Tyreek Hill,WR,2018,2020,$145
-Trevor,Tyrell Williams,WR,2020,2021,$1
-Quinn,Tyrod Taylor,QB,2020,2022,$8
-Schex,Van Jefferson Jr.,WR,2020,2022,$2
-Schex,Wil Lutz,K,2019,2020,$2
-John/Zach,Will Fuller V,WR,2019,2021,$60
-Keyon,Willie Gay Jr.,LB,2020,2022,$1
-Mitch,Xavier McKinney,DB,2020,2022,$1
-Luke,Zach Cunningham,LB,2020,2022,$4
-Quinn,Zach Ertz,TE,2020,2020,$105
-Luke,Zack Moss,RB,2020,2022,$13
-Koci/Mueller,Zane Gonzalez,K,2020,2022,$1
+ID,Owner,Name,Position,Start,End,Salary
+-1,Luke,A.J. Brown,WR,2019,2021,$16
+-1,James/Charles,A.J. Green (CIN),WR,2020,2021,$51
+-1,Brett,Aaron Donald,DL,2020,2022,$4
+-1,Trevor,Aaron Jones,RB,2020,2020,$195
+-1,Trevor,Aaron Rodgers,QB,2020,2021,$120
+-1,Trevor,Adam Thielen,WR,2020,2021,$138
+-1,Quinn,Adam Trautman,TE,2020,2022,$1
+-1,Patrick,Adrian Peterson,RB,2020,2020,$21
+-1,Brett,AJ Dillon,RB,2020,2022,$7
+-1,James/Charles,Alexander Mattison,RB,2019,2021,$13
+-1,Mitch,Allen Lazard,WR,2020,2022,$40
+-1,Schex,Allen Robinson II,WR,2020,2022,$135
+-1,Koci/Mueller,Alshon Jeffery,WR,2020,2022,$1
+-1,John/Zach,Alvin Kamara,RB,2020,2022,$215
+-1,Terence,Amari Cooper,WR,2020,2021,$160
+-1,Mitch,Andrew Luck,QB,2020,2022,$1
+-1,Koci/Mueller,Andy Dalton,QB,2020,2022,$1
+-1,Patrick,Andy Isabella,WR,2019,2021,$4
+-1,Quinn,Anthony Gordon,QB,2020,2022,$1
+-1,Luke,Anthony McFarland Jr.,RB,2020,2022,$13
+-1,Luke,Anthony Miller,WR,2018,2020,$9
+-1,Patrick,Anthony Walker,LB,2020,2020,$1
+-1,Mitch,Antoine Winfield Jr.,DB,2020,2022,$1
+-1,Luke,Antonio Gandy-Golden,WR,2020,2022,$8
+-1,Luke,Antonio Gibson,RB/WR,2020,2022,$13
+-1,Terence,Auden Tate,WR,2020,2022,$1
+-1,Koci/Mueller,Austin Ekeler,RB,2018,2020,$12
+-1,Trevor,Austin Hooper,TE,2019,2021,$3
+-1,Mitch,Baker Mayfield,QB,2018,2020,$28
+-1,Quinn,Ben Roethlisberger,QB,2020,2020,$105
+-1,Patrick,Benardrick McKinney,LB,2020,2020,$1
+-1,Terence,Benny Snell Jr.,RB,2019,2021,$4
+-1,Patrick,Blake Jarwin,TE,2020,2022,$1
+-1,Keyon,Blake Martinez,LB,2018,2020,$9
+-1,James/Charles,Bobby Wagner,LB,2020,2021,$21
+-1,Luke,Boston Scott,RB,2020,2022,$15
+-1,James/Charles,Bradley Chubb,LB,2018,2020,$1
+-1,Schex,Brandin Cooks,WR,2020,2022,$50
+-1,Luke,Brandon Aiyuk,WR,2020,2022,$8
+-1,Schex,Breshad Perriman,WR,2020,2022,$7
+-1,Quinn,Brian Burns,LB,2019,2021,$1
+-1,Mitch,Brian Hill,RB,2020,2022,$10
+-1,Terence,Bryan Edwards,WR,2020,2022,$8
+-1,Terence,Bryce Love,RB,2019,2021,$1
+-1,Quinn,Bryce Perkins,QB,2020,2022,$1
+-1,Keyon,Budda Baker,DB,2020,2020,$22
+-1,Brett,Calais Campbell,DL,2019,2020,$7
+-1,Mitch,Calvin Ridley,WR,2018,2020,$18
+-1,James/Charles,Cam Akers,RB,2020,2022,$25
+-1,Brett,Cam Newton,QB,2020,2021,$89
+-1,Koci/Mueller,Cameron Jordan,DL,2020,2020,$4
+-1,Trevor,Carlos Dunlap,DL,2020,2021,$2
+-1,Quinn,Carlos Hyde,RB,2020,2020,$7
+-1,Mitch,Carson Wentz,QB,2019,2021,$180
+-1,John/Zach,CeeDee Lamb,WR,2020,2022,$16
+-1,Keyon,Chase Claypool,WR,2020,2022,$4
+-1,Schex,Chase Daniel,QB,2020,2020,$1
+-1,Luke,Chase Edmonds,RB,2018,2020,$7
+-1,Mitch,Chase Young,DL,2020,2022,$1
+-1,Quinn,Chris Carson,RB,2020,2021,$111
+-1,Brett,Chris Godwin,WR,2019,2021,$110
+-1,Keyon,Chris Herndon,TE,2019,2021,$3
+-1,Koci/Mueller,Chris Thompson (JAX),RB,2019,2021,$6
+-1,James/Charles,Christian Kirk,WR,2018,2020,$9
+-1,Quinn,Christian Kirksey,LB,2020,2022,$3
+-1,Koci/Mueller,Christian McCaffrey,RB,2020,2020,$365
+-1,Trevor,Clelin Ferrell,DL,2019,2021,$1
+-1,Keyon,Clyde Edwards-Helaire,RB,2020,2022,$25
+-1,Brett,Cole Kmet,TE,2020,2022,$2
+-1,Quinn,Collin Johnson,WR,2020,2022,$1
+-1,Luke,Colt McCoy,QB,2019,2021,$1
+-1,Trevor,Cooper Kupp,WR,2020,2020,$160
+-1,Trevor,Cordarrelle Patterson,WR,2019,2020,$2
+-1,Schex,Corey Davis,WR,2020,2022,$2
+-1,Schex,Cory Littleton,LB,2018,2020,$1
+-1,John/Zach,Courtland Sutton,WR,2018,2020,$9
+-1,Brett,Curtis Samuel,WR,2020,2021,$28
+-1,John/Zach,D'Andre Swift,RB,2020,2022,$25
+-1,Koci/Mueller,Dak Prescott,QB,2019,2021,$107
+-1,John/Zach,Dallas Goedert,TE,2018,2020,$4
+-1,Koci/Mueller,Dalton Keene (NE),TE,2020,2022,$1
+-1,Patrick,Dalvin Cook,RB,2020,2021,$265
+-1,James/Charles,Damien Harris,RB,2019,2021,$7
+-1,Quinn,Damien Williams,RB,2020,2022,$20
+-1,Keyon,Dan Arnold,TE,2020,2022,$1
+-1,Luke,Daniel Jones,QB,2019,2021,$19
+-1,James/Charles,Danielle Hunter,DL,2020,2020,$42
+-1,Patrick,Danny Trevathan,LB,2020,2020,$1
+-1,Quinn,Dante Pettis,WR,2018,2020,$5
+-1,Schex,Darius Leonard,LB,2018,2020,$1
+-1,Luke,Darius Slayton,WR,2020,2022,$25
+-1,Keyon,Darnell Mooney,WR,2020,2022,$1
+-1,Terence,Darnell Savage,DB,2019,2021,$1
+-1,Mitch,Darrel Williams,RB,2020,2022,$8
+-1,James/Charles,Darrell Henderson Jr.,RB,2019,2021,$13
+-1,Schex,Darren Waller,TE,2019,2021,$3
+-1,Terence,Darrynton Evans,RB,2020,2022,$7
+-1,Keyon,Davante Adams,WR,2020,2020,$190
+-1,Patrick,David Johnson (HOU),RB,2020,2021,$96
+-1,Mitch,David Montgomery,RB,2019,2021,$25
+-1,Patrick,Dawson Knox,TE,2019,2021,$2
+-1,Keyon,DeAndre Hopkins,WR,2020,2022,$175
+-1,Patrick,DeAndre Washington,RB,2020,2022,$1
+-1,Koci/Mueller,Dede Westbrook,WR,2020,2022,$2
+-1,Brett,Deebo Samuel,WR,2019,2021,$8
+-1,Terence,DeeJay Dallas,RB,2020,2022,$4
+-1,Quinn,DeForest Buckner,DL,2020,2022,$1
+-1,Koci/Mueller,Deion Jones,LB,2020,2022,$10
+-1,James/Charles,DeMarcus Lawrence,DL,2018,2020,$5
+-1,Quinn,Demario Davis,LB,2018,2020,$3
+-1,Schex,Denzel Mims,WR,2020,2022,$4
+-1,John/Zach,Denzel Ward,DB,2018,2020,$1
+-1,Luke,Deon Cain,WR,2019,2021,$1
+-1,Schex,Derek Carr,QB,2020,2022,$38
+-1,James/Charles,Derrick Henry,RB,2020,2021,$255
+-1,Brett,Derwin James Jr.,DB,2018,2020,$1
+-1,Patrick,DeSean Jackson,WR,2020,2020,$8
+-1,Brett,Deshaun Watson,QB,2020,2022,$220
+-1,James/Charles,DeVante Parker,WR,2018,2020,$11
+-1,Koci/Mueller,Devin Asiasi,TE,2020,2022,$1
+-1,Terence,Devin Bush,LB,2019,2021,$1
+-1,Brett,Devin Duvernay,WR,2020,2021,$2
+-1,Quinn,Devin Funchess,WR,2020,2020,$1
+-1,Schex,Devin Singletary,RB,2019,2021,$13
+-1,Mitch,Devin White,LB,2019,2021,$1
+-1,Schex,Dexter Williams,RB,2019,2021,$4
+-1,Trevor,Dion Lewis,RB,2020,2020,$2
+-1,Keyon,Diontae Johnson,WR,2019,2021,$2
+-1,Patrick,DJ Chark Jr.,WR,2018,2020,$5
+-1,John/Zach,DJ Moore,WR,2018,2020,$9
+-1,Patrick,DK Metcalf,WR,2019,2021,$16
+-1,John/Zach,Drew Brees,QB,2020,2020,$120
+-1,Keyon,Drew Lock,QB,2019,2021,$3
+-1,Brett,Duke Johnson,RB,2019,2020,$45
+-1,James/Charles,Dwayne Haskins Jr.,QB,2019,2021,$38
+-1,Brett,Ed Oliver,DL,2019,2021,$1
+-1,Trevor,Emmanuel Sanders,WR,2020,2021,$15
+-1,Terence,Eno Benjamin,RB,2020,2022,$2
+-1,Koci/Mueller,Equanimeous St. Brown,WR,2020,2022,$1
+-1,Patrick,Eric Ebron,TE,2020,2022,$1
+-1,Patrick,Eric Kendricks,LB,2020,2020,$1
+-1,James/Charles,Evan Engram,TE,2020,2021,$40
+-1,Patrick,Everson Griffen,DL,2020,2020,$1
+-1,Luke,Ezekiel Elliott,RB,2019,2021,$290
+-1,Patrick,Frank Gore,RB,2020,2020,$6
+-1,Keyon,Fred Warner,LB,2019,2021,$1
+-1,Keyon,Gabriel Davis,WR,2020,2022,$1
+-1,Koci/Mueller,Gardner Minshew II,QB,2019,2021,$3
+-1,Terence,George Kittle,TE,2020,2021,$135
+-1,Luke,Germaine Pratt,LB,2019,2021,$1
+-1,Schex,Giovani Bernard,RB,2020,2022,$4
+-1,Patrick,Golden Tate,WR,2019,2021,$20
+-1,Trevor,Greg Zuerlein,K,2018,2020,$2
+-1,Koci/Mueller,Gus Edwards,RB,2019,2021,$2
+-1,Patrick,Ha Ha Clinton-Dix,DB,2020,2020,$1
+-1,Trevor,Harrison Butker,K,2019,2021,$3
+-1,Keyon,Harrison Smith,DB,2020,2021,$3
+-1,Luke,Hayden Hurst,TE,2020,2022,$16
+-1,John/Zach,Henry Ruggs III,WR,2020,2022,$8
+-1,Schex,Hunter Henry,TE,2018,2020,$6
+-1,Patrick,Hunter Renfrow,WR,2019,2021,$8
+-1,Koci/Mueller,Ian Thomas,TE,2020,2022,$2
+-1,James/Charles,Irv Smith Jr.,TE,2019,2021,$2
+-1,Quinn,Isaiah Coulter,WR,2020,2020,$1
+-1,James/Charles,Isaiah Simmons,LB,2020,2022,$1
+-1,Brett,Ito Smith,RB,2019,2020,$24
+-1,Terence,J.D. McKissic,RB,2020,2022,$1
+-1,Luke,J.J. Watt,DL,2019,2021,$10
+-1,Terence,J.K. Dobbins,RB,2020,2022,$25
+-1,Mitch,Jabrill Peppers,DB,2020,2022,$5
+-1,Terence,Jace Sternberger,TE,2019,2021,$1
+-1,James/Charles,Jack Doyle,TE,2020,2022,$3
+-1,Trevor,Jacob Eason,QB,2020,2022,$2
+-1,Brett,Jacoby Brissett,QB,2019,2021,$11
+-1,Mitch,Jadeveon Clowney,DL,2019,2021,$1
+-1,Luke,Jahlani Tavai,LB,2019,2021,$1
+-1,Quinn,Jake Elliott,K,2020,2020,$1
+-1,Patrick,Jake Luton,QB,2020,2022,$2
+-1,Terence,Jalen Hurts,QB,2020,2022,$8
+-1,Terence,Jalen Reagor,WR,2020,2022,$16
+-1,Luke,Jamaal Williams,RB,2020,2022,$5
+-1,Brett,Jamal Adams,DB,2019,2021,$15
+-1,Luke,Jameis Winston,QB,2020,2022,$7
+-1,Terence,James Conner,RB,2020,2020,$105
+-1,Quinn,James Morgan,QB,2020,2022,$1
+-1,Koci/Mueller,James Proche,WR,2020,2022,$1
+-1,James/Charles,James Washington,WR,2018,2020,$9
+-1,Brett,James White,RB,2020,2021,$53
+-1,Quinn,Jamison Crowder,WR,2020,2021,$17
+-1,Schex,JaMycal Hasty,RB,2020,2022,$1
+-1,Brett,Jared Cook,TE,2019,2020,$7
+-1,Mitch,Jared Goff,QB,2019,2021,$125
+-1,Koci/Mueller,Jarrad Davis,LB,2020,2022,$1
+-1,Terence,Jarrett Stidham,QB,2019,2021,$3
+-1,Quinn,Jarvis Landry,WR,2020,2020,$70
+-1,Koci/Mueller,Jason Huntley,RB,2020,2022,$1
+-1,Patrick,Jason Myers,K,2020,2020,$1
+-1,Quinn,Jauan Jennings,WR,2020,2020,$1
+-1,Keyon,Jaylon Smith,LB,2019,2021,$17
+-1,Schex,Jayon Brown,LB,2020,2022,$1
+-1,Brett,Jeremy Chinn,DB,2020,2022,$1
+-1,Schex,Jerick McKinnon,RB,2020,2022,$5
+-1,John/Zach,Jerome Baker,LB,2018,2020,$1
+-1,Mitch,Jerry Jeudy,WR,2020,2022,$16
+-1,Patrick,Jessie Bates III,DB,2020,2020,$1
+-1,Quinn,Jimmy Garoppolo,QB,2020,2022,$75
+-1,Luke,Jimmy Graham,TE,2019,2021,$10
+-1,Luke,JJ Arcega-Whiteside,WR,2019,2021,$8
+-1,Keyon,Joe Burrow,QB,2020,2022,$32
+-1,Keyon,Joe Mixon,RB,2020,2022,$160
+-1,Koci/Mueller,Joe Reed,WR,2020,2022,$1
+-1,Koci/Mueller,Joe Schobert,LB,2020,2022,$13
+-1,Trevor,Joey Bosa,DL,2020,2022,$15
+-1,Koci/Mueller,John Brown,WR,2020,2022,$15
+-1,Keyon,John Hightower,WR,2020,2022,$1
+-1,James/Charles,John Johnson III,DB,2019,2021,$15
+-1,Quinn,John Ross III,WR,2020,2020,$18
+-1,Quinn,Johnathan Abram,DB,2020,2022,$1
+-1,John/Zach,Jonathan Taylor,RB,2020,2022,$25
+-1,Koci/Mueller,Jonnu Smith,TE,2020,2022,$7
+-1,James/Charles,Jordan Hicks,LB,2020,2020,$10
+-1,Mitch,Jordan Howard,RB,2020,2020,$37
+-1,Luke,Jordan Love,QB,2020,2022,$16
+-1,James/Charles,Jordan Poyer,DB,2020,2022,$3
+-1,Luke,Jordan Wilkins,RB,2019,2021,$1
+-1,John/Zach,Josh Allen (BUF),QB,2018,2020,$14
+-1,Terence,Josh Allen (JAX),DL,2019,2021,$1
+-1,Trevor,Josh Jacobs,RB,2019,2021,$25
+-1,Schex,Josh Reynolds,WR,2020,2022,$1
+-1,Koci/Mueller,Joshua Dobbs,QB,2020,2020,$1
+-1,James/Charles,Joshua Kelley,RB,2020,2022,$4
+-1,Mitch,Josiah Deguara,TE,2020,2022,$1
+-1,Brett,Juan Thornhill,DB,2019,2021,$1
+-1,Terence,JuJu Smith-Schuster,WR,2020,2020,$133
+-1,James/Charles,Julian Edelman,WR,2020,2021,$31
+-1,Terence,Julio Jones,WR,2020,2021,$160
+-1,Terence,Justice Hill,RB,2020,2022,$1
+-1,Terence,Justin Herbert,QB,2020,2022,$32
+-1,James/Charles,Justin Jackson,RB,2019,2020,$25
+-1,James/Charles,Justin Jefferson,WR,2020,2022,$16
+-1,Koci/Mueller,Justin Simmons,DB,2020,2022,$2
+-1,Luke,Justin Tucker,K,2018,2020,$3
+-1,John/Zach,Kareem Hunt,RB,2020,2022,$42
+-1,Brett,Ke'Shawn Vaughn,RB,2020,2021,$13
+-1,Schex,Keanu Neal,DB,2020,2022,$1
+-1,Brett,Keenan Allen,WR,2020,2022,$65
+-1,Koci/Mueller,Kendrick Bourne,WR,2020,2022,$1
+-1,Trevor,Kenneth Murray,LB,2020,2022,$1
+-1,Schex,Kenny Golladay,WR,2020,2022,$185
+-1,Terence,Kenny Stills,WR,2019,2020,$13
+-1,Terence,Kenyan Drake,RB,2019,2020,$70
+-1,Mitch,Kerryon Johnson,RB,2018,2020,$25
+-1,Luke,Kevin Byard,DB,2018,2020,$1
+-1,Patrick,Kirk Cousins,QB,2018,2020,$100
+-1,Trevor,KJ Hamler,WR,2020,2022,$4
+-1,James/Charles,Kwon Alexander,LB,2019,2021,$6
+-1,Trevor,Kyle Fuller,DB,2020,2022,$1
+-1,Trevor,Kyle Rudolph,TE,2019,2021,$2
+-1,Patrick,Kyler Murray,QB,2019,2021,$38
+-1,Keyon,La'Mical Perine,RB,2020,2022,$4
+-1,Schex,Lamar Jackson,QB,2018,2020,$14
+-1,Schex,Landon Collins,DB,2019,2021,$9
+-1,Schex,Larry Fitzgerald,WR,2020,2020,$2
+-1,Schex,Latavius Murray,RB,2020,2022,$14
+-1,Luke,Laviska Shenault Jr.,WR,2020,2022,$8
+-1,Terence,Lavonte David,LB,2020,2022,$1
+-1,Trevor,Le'Veon Bell,RB,2020,2021,$92
+-1,Luke,Leighton Vander Esch,LB,2018,2020,$1
+-1,James/Charles,Leonard Fournette,RB,2020,2020,$105
+-1,Patrick,LeSean McCoy,RB,2020,2020,$8
+-1,Mitch,Logan Wilson,LB,2020,2022,$1
+-1,Brett,Lynn Bowden Jr.,RB,2020,2021,$7
+-1,Mitch,Malcolm Brown,RB,2019,2020,$28
+-1,Brett,Malcolm Perry,RB/WR,2020,2021,$1
+-1,Schex,Malik Harrison,LB,2020,2022,$1
+-1,John/Zach,Mark Andrews,TE,2018,2020,$1
+-1,Schex,Mark Ingram II,RB,2020,2020,$93
+-1,Trevor,Marlon Humphrey,DB,2020,2022,$1
+-1,Quinn,Marlon Mack,RB,2020,2022,$29
+-1,Patrick,Marqise Lee,WR,2020,2022,$1
+-1,Trevor,Marquez Valdes-Scantling,WR,2018,2020,$2
+-1,James/Charles,Marquise Brown,WR,2019,2021,$16
+-1,James/Charles,Marvin Jones Jr.,WR,2020,2021,$37
+-1,Quinn,Matt Breida,RB,2018,2020,$7
+-1,Brett,Matt Gay,K,2019,2020,$1
+-1,Terence,Matt Prater,K,2019,2021,$1
+-1,Patrick,Matt Ryan,QB,2018,2020,$70
+-1,Schex,Matthew Stafford,QB,2020,2021,$114
+-1,Schex,Maxx Crosby,DL,2020,2022,$1
+-1,Terence,Mecole Hardman,WR,2019,2021,$8
+-1,Brett,Melvin Gordon III,RB,2019,2021,$171
+-1,Schex,Micah Kiser,LB,2020,2022,$1
+-1,Keyon,Michael Badgley,K,2020,2020,$1
+-1,Keyon,Michael Gallup,WR,2018,2020,$9
+-1,James/Charles,Michael Pittman Jr.,WR,2020,2022,$8
+-1,Patrick,Michael Thomas (NO),WR,2019,2020,$300
+-1,Mitch,Michael Warren II,RB,2020,2022,$1
+-1,Mitch,Mike Boone,RB,2019,2021,$9
+-1,Mitch,Mike Evans,WR,2018,2020,$150
+-1,Keyon,Mike Gesicki,TE,2018,2020,$7
+-1,Mitch,Mike Williams (LAC),WR,2020,2022,$10
+-1,James/Charles,Miles Boykin,WR,2019,2021,$4
+-1,Keyon,Miles Sanders,RB,2019,2021,$25
+-1,John/Zach,Minkah Fitzpatrick,DB,2018,2020,$1
+-1,Koci/Mueller,Mitchell Trubisky,QB,2020,2022,$5
+-1,Patrick,Mohamed Sanu,WR,2020,2022,$1
+-1,Keyon,Myles Garrett,DL,2020,2022,$9
+-1,Schex,N'Keal Harry,WR,2019,2021,$16
+-1,Luke,Nick Bosa,DL,2019,2021,$1
+-1,John/Zach,Nick Chubb,RB,2018,2020,$25
+-1,Luke,Nick Foles,QB,2020,2022,$15
+-1,Terence,Nick Mullens,QB,2019,2020,$5
+-1,Brett,Noah Fant,TE,2019,2021,$5
+-1,Mitch,O.J. Howard,TE,2020,2022,$3
+-1,John/Zach,Odell Beckham Jr.,WR,2019,2020,$275
+-1,Koci/Mueller,Olabisi Johnson,WR,2020,2022,$1
+-1,Brett,Parris Campbell,WR,2019,2021,$16
+-1,Keyon,Patrick Mahomes II,QB,2020,2020,$390
+-1,John/Zach,Patrick Onwuasor,LB,2019,2021,$1
+-1,Mitch,Patrick Queen,LB,2020,2022,$1
+-1,Terence,Philip Rivers,QB,2020,2020,$48
+-1,Patrick,Phillip Lindsay,RB,2018,2020,$1
+-1,Luke,Preston Williams,WR,2019,2021,$2
+-1,Brett,Quintez Cephus,WR,2020,2021,$1
+-1,Schex,Raheem Mostert,RB,2020,2020,$77
+-1,Brett,Randall Cobb,WR,2019,2020,$6
+-1,Terence,Rashaad Penny,RB,2020,2022,$1
+-1,Koci/Mueller,Rashaan Evans,LB,2020,2022,$1
+-1,Brett,Rashan Gary,LB,2019,2020,$1
+-1,Quinn,Raymond Calais,RB,2020,2020,$1
+-1,Koci/Mueller,Reggie Bonnafon,RB,2020,2020,$1
+-1,James/Charles,Rob Gronkowski,TE,2019,2021,$1
+-1,James/Charles,Robbie Gould,K,2020,2020,$3
+-1,Trevor,Robby Anderson,WR,2020,2021,$3
+-1,Quinn,Robert Woods,WR,2020,2021,$95
+-1,Koci/Mueller,Ronald Jones II,RB,2020,2022,$71
+-1,Brett,Roquan Smith,LB,2018,2020,$1
+-1,Trevor,Royce Freeman,RB,2018,2020,$25
+-1,Patrick,Russell Gage,WR,2020,2022,$1
+-1,Terence,Russell Wilson,QB,2020,2021,$225
+-1,Brett,Ryan Finley,QB,2019,2021,$3
+-1,Trevor,Ryan Fitzpatrick,QB,2020,2021,$5
+-1,James/Charles,Ryan Tannehill,QB,2020,2021,$105
+-1,Brett,Ryquell Armstead,RB,2019,2021,$7
+-1,Trevor,Sam Darnold,QB,2018,2020,$28
+-1,Koci/Mueller,Sammy Watkins,WR,2020,2022,$9
+-1,Keyon,Saquon Barkley,RB,2018,2020,$25
+-1,Trevor,Shaq Thompson,LB,2020,2022,$3
+-1,John/Zach,Sony Michel,RB,2018,2020,$25
+-1,Trevor,Stefon Diggs,WR,2018,2020,$75
+-1,Patrick,Sterling Shepard,WR,2019,2021,$42
+-1,Keyon,Steven Sims Jr.,WR,2020,2022,$27
+-1,Trevor,T.J. Hockenson,TE,2019,2021,$5
+-1,Luke,T.J. Logan,RB,2019,2021,$2
+-1,Quinn,T.J. Watt,LB,2020,2022,$3
+-1,Koci/Mueller,T.Y. Hilton,WR,2020,2020,$61
+-1,Quinn,Tarik Cohen,RB,2020,2021,$20
+-1,Terence,Taylor Rapp,DB,2019,2021,$1
+-1,Koci/Mueller,Taysom Hill,QB,2019,2021,$7
+-1,Keyon,Teddy Bridgewater,QB,2018,2020,$15
+-1,Terence,Tee Higgins,WR,2020,2022,$8
+-1,Patrick,Terry McLaurin,WR,2019,2021,$4
+-1,Mitch,Tevin Coleman,RB,2020,2020,$22
+-1,Quinn,Todd Gurley II,RB,2020,2021,$84
+-1,James/Charles,Tom Brady,QB,2020,2020,$120
+-1,Koci/Mueller,Tony Pollard,RB,2019,2021,$7
+-1,Trevor,Tracy Walker,DB,2020,2022,$6
+-1,Mitch,Travis Kelce,TE,2019,2020,$200
+-1,Luke,Trayveon Williams,RB,2019,2021,$1
+-1,Quinn,Tre'Quan Smith,WR,2018,2020,$9
+-1,Mitch,Tremaine Edmunds,LB,2018,2020,$1
+-1,Brett,Tua Tagovailoa,QB,2020,2022,$32
+-1,John/Zach,Tyler Boyd,WR,2019,2021,$100
+-1,Schex,Tyler Higbee,TE,2020,2022,$8
+-1,Schex,Tyler Johnson,WR,2020,2022,$2
+-1,Quinn,Tyler Lockett,WR,2018,2020,$56
+-1,Keyon,Tyreek Hill,WR,2018,2020,$145
+-1,Trevor,Tyrell Williams,WR,2020,2021,$1
+-1,Quinn,Tyrod Taylor,QB,2020,2022,$8
+-1,Schex,Van Jefferson Jr.,WR,2020,2022,$2
+-1,Schex,Wil Lutz,K,2019,2020,$2
+-1,John/Zach,Will Fuller V,WR,2019,2021,$60
+-1,Keyon,Willie Gay Jr.,LB,2020,2022,$1
+-1,Mitch,Xavier McKinney,DB,2020,2022,$1
+-1,Luke,Zach Cunningham,LB,2020,2022,$4
+-1,Quinn,Zach Ertz,TE,2020,2020,$105
+-1,Luke,Zack Moss,RB,2020,2022,$13
+-1,Koci/Mueller,Zane Gonzalez,K,2020,2022,$1
