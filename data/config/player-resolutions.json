@@ -26,6 +26,7 @@
     "marcus williams",
     "matt colburn",
     "michael bennett",
+    "michael thomas",
     "mike hughes",
     "mike williams",
     "myles white",
@@ -2655,10 +2656,40 @@
     "sleeperId": null,
     "name": "Michael Jenkins"
   },
+  "michael thomas|2016|type:auction|brett/luke": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2016|type:auction|quinn": {
+    "sleeperId": "3652"
+  },
+  "michael thomas|2016|type:cut|quinn": {
+    "sleeperId": "3652"
+  },
+  "michael thomas|2016|type:draft|brett/luke": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2016|type:draft|quinn": {
+    "sleeperId": "3652"
+  },
+  "michael thomas|2019|type:auction|quinn": {
+    "sleeperId": "3199"
+  },
   "michael thomas|2019|type:trade|quinn": {
     "sleeperId": "3199"
   },
   "michael thomas|2020|type:trade|patrick": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2021|type:auction|patrick": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2023|type:auction|patrick": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2023|type:cut|patrick": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2024|type:cut|patrick": {
     "sleeperId": "3199"
   },
   "michael turner|2012|type:cut|patrick": {
