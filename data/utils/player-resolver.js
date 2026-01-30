@@ -332,6 +332,8 @@ async function promptForPlayer(options) {
 	var Player = options.Player;
 	var rl = options.rl;
 	var playerCache = options.playerCache; // Optional: seeder's in-memory cache to update
+	var autoHistorical = options.autoHistorical; // Auto-create historical player if no candidates
+	var dryRun = options.dryRun; // Skip database writes
 	
 	// Helper to update seeder's cache when creating historical players
 	function addToCache(player) {
@@ -365,9 +367,13 @@ async function promptForPlayer(options) {
 		}
 		// Cached resolution exists but Player was deleted (e.g., by reset) - recreate it
 		historical = new Player({ name: cached.name, sleeperId: null });
-		await historical.save();
-		addToCache(historical);
-		console.log('  ✓ Recreated historical: ' + cached.name);
+		if (!dryRun) {
+			await historical.save();
+			addToCache(historical);
+			console.log('  ✓ Recreated historical: ' + cached.name);
+		} else {
+			console.log('  [dry-run] Would recreate historical: ' + cached.name);
+		}
 		return { player: historical, action: 'created' };
 	}
 	
@@ -376,7 +382,9 @@ async function promptForPlayer(options) {
 	if (position && position !== 'FA') {
 		var positions = position.split('/');
 		var positionFiltered = candidates.filter(function(c) {
-			return c.positions && c.positions.some(function(p) {
+			// Include players with no position data (e.g., historical players)
+			if (!c.positions || c.positions.length === 0) return true;
+			return c.positions.some(function(p) {
 				return positions.includes(p);
 			});
 		});
@@ -421,6 +429,23 @@ async function promptForPlayer(options) {
 	// Check for automatic resolution (single non-ambiguous match)
 	if (filteredCandidates.length === 1 && !isAmbiguous(normalized)) {
 		return { player: filteredCandidates[0], action: 'matched' };
+	}
+	
+	// Auto-create historical player if no candidates and autoHistorical is enabled
+	if (autoHistorical && filteredCandidates.length === 0) {
+		// Strip parenthetical hints for display name (keep original capitalization)
+		var displayName = name.replace(/\s*\([^)]+\)$/, '');
+		
+		var historical = new Player({ name: displayName, sleeperId: null });
+		if (!dryRun) {
+			await historical.save();
+			addToCache(historical);
+			addResolution(name, null, displayName, context);
+			console.log('  + Auto-created historical: ' + displayName);
+		} else {
+			console.log('  [dry-run] Would auto-create historical: ' + displayName);
+		}
+		return { player: historical, action: 'created' };
 	}
 	
 	// Need to prompt - but if no rl, skip instead
@@ -491,21 +516,28 @@ async function promptForPlayer(options) {
 		var existing = await Player.findOne({ name: displayName, sleeperId: null });
 		if (existing) {
 			console.log('  Using existing historical player: ' + displayName);
-			addResolution(name, null, displayName, context);
-			saveResolutions();
+			if (!dryRun) {
+				addResolution(name, null, displayName, context);
+				saveResolutions();
+			}
 			return { player: existing, action: 'matched' };
 		}
 		
 		// Create new historical player
-		var newPlayer = await Player.create({
+		var newPlayer = new Player({
 			name: displayName,
 			positions: position ? position.split('/') : [],
 			sleeperId: null
 		});
-		addToCache(newPlayer);
-		console.log('  Created historical player: ' + displayName);
-		addResolution(name, null, displayName, context);
-		saveResolutions();
+		if (!dryRun) {
+			await newPlayer.save();
+			addToCache(newPlayer);
+			console.log('  Created historical player: ' + displayName);
+			addResolution(name, null, displayName, context);
+			saveResolutions();
+		} else {
+			console.log('  [dry-run] Would create historical player: ' + displayName);
+		}
 		return { player: newPlayer, action: 'created' };
 	}
 	
@@ -516,8 +548,10 @@ async function promptForPlayer(options) {
 		var player = await Player.findOne({ sleeperId: sleeperId });
 		if (player) {
 			console.log('  → ' + player.name + (isGlobalAlias ? ' (global alias)' : ''));
-			addResolution(name, sleeperId, null, isGlobalAlias ? null : context);
-			saveResolutions();
+			if (!dryRun) {
+				addResolution(name, sleeperId, null, isGlobalAlias ? null : context);
+				saveResolutions();
+			}
 			return { player: player, action: 'matched' };
 		} else {
 			console.log('  ✗ No player found with Sleeper ID: ' + sleeperId);
@@ -533,8 +567,12 @@ async function promptForPlayer(options) {
 	if (selection >= 1 && selection <= filteredCandidates.length) {
 		var selectedPlayer = filteredCandidates[selection - 1];
 		console.log('  → ' + selectedPlayer.name + (isGlobalAlias ? ' (global alias)' : ''));
-		addResolution(name, selectedPlayer.sleeperId, null, isGlobalAlias ? null : context);
-		saveResolutions();
+		if (!dryRun) {
+			// For historical players (no sleeperId), pass their name to avoid storing the hint
+			var resolvedName = selectedPlayer.sleeperId ? null : selectedPlayer.name;
+			addResolution(name, selectedPlayer.sleeperId, resolvedName, isGlobalAlias ? null : context);
+			saveResolutions();
+		}
 		return { player: selectedPlayer, action: 'matched' };
 	}
 	
