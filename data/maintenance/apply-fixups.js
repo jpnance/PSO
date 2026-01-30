@@ -94,6 +94,30 @@ function saveFixups() {
 	fs.writeFileSync(fixupsPath, JSON.stringify(fixups, null, '\t'));
 }
 
+// Convert Eastern Time to UTC
+// DST runs from 2nd Sunday of March to 1st Sunday of November
+function etToUtc(year, month, day, hours, mins) {
+	// Find 2nd Sunday of March (DST start)
+	var marchFirst = new Date(Date.UTC(year, 2, 1));
+	var marchFirstDay = marchFirst.getUTCDay();
+	var dstStartDay = 8 + (7 - marchFirstDay) % 7; // 2nd Sunday
+	var dstStart = Date.UTC(year, 2, dstStartDay, 7, 0); // 2am ET = 7am UTC
+	
+	// Find 1st Sunday of November (DST end)
+	var novFirst = new Date(Date.UTC(year, 10, 1));
+	var novFirstDay = novFirst.getUTCDay();
+	var dstEndDay = 1 + (7 - novFirstDay) % 7; // 1st Sunday
+	var dstEnd = Date.UTC(year, 10, dstEndDay, 6, 0); // 2am ET = 6am UTC (still in EDT)
+	
+	// Create date in UTC as if it were ET
+	var utcAsEt = Date.UTC(year, month, day, hours, mins, 0);
+	
+	// Determine offset: EDT (UTC-4) or EST (UTC-5)
+	var offset = (utcAsEt >= dstStart && utcAsEt < dstEnd) ? 4 : 5;
+	
+	return new Date(utcAsEt + offset * 60 * 60 * 1000);
+}
+
 function fakeRequest(body, params) {
 	return { body: body || {}, params: params || {}, query: {} };
 }
@@ -822,6 +846,48 @@ async function run() {
 						console.log('    ✓ Done');
 					}
 				}
+			}
+		}
+		console.log('');
+	}
+
+	// =========================================================================
+	// Cut Timestamps
+	// =========================================================================
+	if (fixups.cutTimestamps && fixups.cutTimestamps.length > 0) {
+		console.log('=== Cut Timestamps ===');
+		
+		for (var i = 0; i < fixups.cutTimestamps.length; i++) {
+			var ctf = fixups.cutTimestamps[i];
+			
+			var cut = await Transaction.findOne({ type: 'fa', fixupRef: ctf.fixupRef });
+			if (!cut) {
+				console.log('  ✗ Cut with fixupRef=' + ctf.fixupRef + ' not found');
+				errors.push('Cut fixupRef=' + ctf.fixupRef + ' not found');
+				continue;
+			}
+			
+			// Parse the timestamp
+			var parts = ctf.timestamp.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);
+			if (!parts) {
+				console.log('  ✗ Invalid timestamp format for fixupRef=' + ctf.fixupRef);
+				errors.push('Invalid timestamp for fixupRef=' + ctf.fixupRef);
+				continue;
+			}
+			
+			var year = parseInt(parts[1], 10);
+			var month = parseInt(parts[2], 10) - 1;
+			var day = parseInt(parts[3], 10);
+			var hours = parseInt(parts[4], 10);
+			var mins = parseInt(parts[5], 10);
+			var newTimestamp = etToUtc(year, month, day, hours, mins);
+			
+			console.log('  ' + ctf.fixupRef + ' → ' + newTimestamp.toISOString().slice(0, 16) + ' UTC (from ' + ctf.timestamp + ' ET)');
+			
+			if (!dryRun) {
+				cut.timestamp = newTimestamp;
+				await cut.save();
+				console.log('    ✓ Done');
 			}
 		}
 		console.log('');

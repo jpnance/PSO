@@ -128,6 +128,7 @@ module.exports = function(app) {
 	
 	// Cut timestamp management (require login + admin)
 	app.get('/admin/cuts', requireLogin, requireAdmin, adminCuts.listCuts);
+	app.post('/admin/cuts/bulk', requireLogin, requireAdmin, adminCuts.bulkGenerateFixups);
 	app.get('/admin/cuts/:id', requireLogin, requireAdmin, adminCuts.editCutForm);
 	app.post('/admin/cuts/:id', requireLogin, requireAdmin, adminCuts.editCut);
 	app.post('/admin/cuts/:id/auto-fix', requireLogin, requireAdmin, adminCuts.autoFixCut);

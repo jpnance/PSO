@@ -47,9 +47,17 @@ async function analyzeCut(cut, playerTxns) {
 	};
 }
 
+// Check if a timestamp is the placeholder Jan 15 noon UTC
+function isPlaceholderTimestamp(timestamp) {
+	return timestamp.getUTCMonth() === 0 && 
+		timestamp.getUTCDate() === 15 && 
+		timestamp.getUTCHours() === 12 &&
+		timestamp.getUTCMinutes() === 0;
+}
+
 // GET /admin/cuts - list cuts needing review
 async function listCuts(request, response) {
-	var filter = request.query.filter || 'impossible'; // impossible, suspicious, all
+	var filter = request.query.filter || 'impossible'; // impossible, suspicious, placeholder, all
 	var yearFilter = request.query.year ? parseInt(request.query.year, 10) : null;
 	var page = Math.max(1, parseInt(request.query.page, 10) || 1);
 	var perPage = 50;
@@ -63,10 +71,11 @@ async function listCuts(request, response) {
 	}
 	
 	// Get all cuts matching the basic filter
+	var sortOrder = filter === 'placeholder' ? { fixupRef: 1 } : { timestamp: -1 };
 	var allCuts = await Transaction.find(query)
 		.populate('drops.playerId', 'name positions')
 		.populate('franchiseId', 'rosterId')
-		.sort({ timestamp: -1 })
+		.sort(sortOrder)
 		.lean();
 	
 	// Get unique years for filter dropdown
@@ -99,10 +108,12 @@ async function listCuts(request, response) {
 		}).sort({ timestamp: 1 }).lean();
 		
 		var analysis = await analyzeCut(cut, playerTxns);
+		var hasPlaceholder = isPlaceholderTimestamp(cut.timestamp);
 		
 		// Apply filter
 		if (filter === 'impossible' && !analysis.isImpossible) continue;
 		if (filter === 'suspicious' && !analysis.isSuspicious && !analysis.isImpossible) continue;
+		if (filter === 'placeholder' && !hasPlaceholder) continue;
 		
 		var franchiseName = await getDisplayName(cut.franchiseId._id, cut.timestamp.getFullYear());
 		
@@ -114,22 +125,34 @@ async function listCuts(request, response) {
 			timestamp: cut.timestamp,
 			cutYear: cut.timestamp.getFullYear(),
 			buyOuts: dropInfo ? dropInfo.buyOuts : [],
-			analysis: analysis
+			salary: dropInfo ? dropInfo.salary : null,
+			startYear: dropInfo ? dropInfo.startYear : null,
+			endYear: dropInfo ? dropInfo.endYear : null,
+			analysis: analysis,
+			hasPlaceholder: hasPlaceholder,
+			fixupRef: cut.fixupRef
 		});
+	}
+	
+	// Paginate (skip if year filter is applied)
+	var totalPages, displayCuts;
+	if (yearFilter) {
+		totalPages = 1;
+		displayCuts = analyzedCuts;
+	} else {
+		totalPages = Math.ceil(analyzedCuts.length / perPage);
+		displayCuts = analyzedCuts.slice((page - 1) * perPage, page * perPage);
 	}
 	
 	// Stats
 	var stats = {
 		total: allCuts.length,
-		showing: analyzedCuts.length
+		filtered: analyzedCuts.length,
+		showing: displayCuts.length
 	};
 	
-	// Paginate
-	var totalPages = Math.ceil(analyzedCuts.length / perPage);
-	var paginatedCuts = analyzedCuts.slice((page - 1) * perPage, page * perPage);
-	
 	response.render('admin-cuts', {
-		cuts: paginatedCuts,
+		cuts: displayCuts,
 		stats: stats,
 		filter: filter,
 		yearFilter: yearFilter,
@@ -310,9 +333,65 @@ async function autoFixCut(request, response) {
 	response.redirect('/admin/cuts/' + cutId + '?saved=1&auto-fixed=1');
 }
 
+// POST /admin/cuts/bulk - generate fixups for multiple cuts
+async function bulkGenerateFixups(request, response) {
+	var body = request.body;
+	var cutIds = body.cutIds;
+	var timestamp = body.timestamp;
+	
+	if (!cutIds || !Array.isArray(cutIds) || cutIds.length === 0) {
+		return response.status(400).json({ error: 'No cuts selected' });
+	}
+	
+	if (!timestamp) {
+		return response.status(400).json({ error: 'No timestamp provided' });
+	}
+	
+	// Parse and validate timestamp format
+	var parts = timestamp.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);
+	if (!parts) {
+		return response.status(400).json({ error: 'Invalid timestamp format' });
+	}
+	
+	// Build fixups array
+	var fixups = [];
+	var errors = [];
+	
+	for (var i = 0; i < cutIds.length; i++) {
+		var cut = await Transaction.findById(cutIds[i])
+			.populate('drops.playerId', 'name')
+			.lean();
+		
+		if (!cut || cut.type !== 'fa') {
+			errors.push('Cut ' + cutIds[i] + ' not found or not an FA transaction');
+			continue;
+		}
+		
+		if (!cut.fixupRef) {
+			var playerName = cut.drops && cut.drops[0] && cut.drops[0].playerId 
+				? cut.drops[0].playerId.name 
+				: 'unknown';
+			errors.push('Cut for ' + playerName + ' has no fixupRef');
+			continue;
+		}
+		
+		fixups.push({
+			fixupRef: cut.fixupRef,
+			timestamp: timestamp
+		});
+	}
+	
+	response.json({ 
+		success: true, 
+		fixups: fixups,
+		errors: errors.length > 0 ? errors : undefined
+	});
+}
+
 module.exports = {
 	listCuts: listCuts,
 	editCutForm: editCutForm,
 	editCut: editCut,
-	autoFixCut: autoFixCut
+	autoFixCut: autoFixCut,
+	bulkGenerateFixups: bulkGenerateFixups
 };

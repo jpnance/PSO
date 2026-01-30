@@ -14,7 +14,7 @@ block content
 		h1.mb-4 Cut Timestamp Review
 		
 		p.text-muted.mb-4
-			| Cuts imported from spreadsheets have placeholder timestamps (Jan 1 of the cut year).
+			| Cuts imported from spreadsheets have placeholder timestamps (Jan 15 of the cut year).
 			| This tool helps identify and fix cuts with incorrect ordering.
 		
 		//- Filters
@@ -24,7 +24,8 @@ block content
 					label.small.text-muted Filter
 					select.form-control(name='filter')
 						option(value='impossible' selected=(filter === 'impossible')) Impossible (cut before draft)
-						option(value='suspicious' selected=(filter === 'suspicious')) Suspicious (cut before trade/pickup)
+						option(value='suspicious' selected=(filter === 'suspicious')) Suspicious (cut before trade/auction)
+						option(value='placeholder' selected=(filter === 'placeholder')) Placeholder (unhandled)
 						option(value='all' selected=(filter === 'all')) All snapshot cuts
 				div.col-auto
 					label.small.text-muted Year
@@ -38,14 +39,38 @@ block content
 		
 		//- Stats
 		div.admin-cuts__stats.mb-3
-			span.badge.badge-secondary= stats.showing + ' shown'
+			span.badge.badge-secondary= stats.filtered + ' matching'
+			if stats.filtered !== stats.showing
+				span.text-muted.ml-2 (showing #{stats.showing} on this page)
 			span.text-muted.ml-2 of #{stats.total} total snapshot cuts
+		
+		//- Bulk edit controls (shown for placeholder filter)
+		if filter === 'placeholder' && cuts.length > 0
+			.card.mb-3
+				.card-body.py-2
+					.form-inline
+						label.mr-2
+							input#selectAll(type='checkbox')
+							|  Select All
+						.ml-auto
+							label.mr-2.small Set selected to (ET):
+							input#bulkTimestamp.form-control.form-control-sm.mr-2(type='datetime-local' style='width: 200px')
+							button#bulkGenerate.btn.btn-sm.btn-primary(type='button' disabled) Generate Fixups
+							span#bulkStatus.ml-2.small.text-muted
+			#fixupsOutput.mb-3(style='display: none')
+				.d-flex.justify-content-between.align-items-center.mb-2
+					label.mb-0 Generated Fixups (copy to fixups.json → cutTimestamps)
+					button#copyFixups.btn.btn-sm.btn-outline-secondary Copy to Clipboard
+				textarea#fixupsJson.form-control(rows='10' readonly style='font-family: monospace; font-size: 12px')
 		
 		//- Results table
 		if cuts.length > 0
 			table.table.table-sm.admin-cuts__table
 				thead
 					tr
+						if filter === 'placeholder'
+							th(style='width: 30px')
+							th Ref
 						th Player
 						th Cut By
 						th Current Date
@@ -54,16 +79,22 @@ block content
 				tbody
 					each cut in cuts
 						tr(class=cut.analysis.isImpossible ? 'table-danger' : (cut.analysis.isSuspicious ? 'table-warning' : ''))
+							if filter === 'placeholder'
+								td
+									input.cut-checkbox(type='checkbox' data-cut-id=cut._id)
+								td.text-muted.small= cut.fixupRef || '—'
 							td
 								a(href='/players/' + cut.player._id)= cut.player.name
 								if cut.player.positions && cut.player.positions.length
 									|  
 									+positionBadge(cut.player.positions)
+								if cut.salary
+									span.text-muted.small.ml-2 #{formatMoney(cut.salary)} · #{formatContractYears(cut.startYear, cut.endYear)}
 							td= cut.franchiseName
 							td
 								span.admin-cuts__date= formatDateISO(cut.timestamp)
-								if cut.timestamp.getDate() === 1 && cut.timestamp.getMonth() === 0
-									span.badge.badge-warning.ml-1 Jan 1
+								if cut.hasPlaceholder
+									span.badge.badge-warning.ml-1 Jan 15
 							td
 								if cut.analysis.isImpossible
 									span.text-danger
@@ -71,8 +102,6 @@ block content
 										| Cut before draft
 								else if cut.analysis.hasTradeAfter
 									span.text-warning Cut before trade
-								else if cut.analysis.hasPickupAfter
-									span.text-warning Cut before pickup
 								else if cut.analysis.hasAuctionAfter
 									span.text-warning Cut before auction
 								else
@@ -96,3 +125,80 @@ block content
 		else
 			div.alert.alert-info
 				| No cuts match the current filter.
+
+block scripts
+	if filter === 'placeholder'
+		script.
+			(function() {
+				var selectAll = document.getElementById('selectAll');
+				var bulkTimestamp = document.getElementById('bulkTimestamp');
+				var bulkGenerate = document.getElementById('bulkGenerate');
+				var bulkStatus = document.getElementById('bulkStatus');
+				var checkboxes = document.querySelectorAll('.cut-checkbox');
+				var fixupsOutput = document.getElementById('fixupsOutput');
+				var fixupsJson = document.getElementById('fixupsJson');
+				var copyFixups = document.getElementById('copyFixups');
+				
+				function updateButtonState() {
+					var selected = document.querySelectorAll('.cut-checkbox:checked').length;
+					var hasTimestamp = bulkTimestamp.value.length > 0;
+					bulkGenerate.disabled = selected === 0 || !hasTimestamp;
+					bulkStatus.textContent = selected > 0 ? selected + ' selected' : '';
+				}
+				
+				selectAll.addEventListener('change', function() {
+					checkboxes.forEach(function(cb) { cb.checked = selectAll.checked; });
+					updateButtonState();
+				});
+				
+				checkboxes.forEach(function(cb) {
+					cb.addEventListener('change', updateButtonState);
+				});
+				
+				bulkTimestamp.addEventListener('change', updateButtonState);
+				
+				copyFixups.addEventListener('click', function() {
+					fixupsJson.select();
+					document.execCommand('copy');
+					copyFixups.textContent = 'Copied!';
+					setTimeout(function() { copyFixups.textContent = 'Copy to Clipboard'; }, 2000);
+				});
+				
+				bulkGenerate.addEventListener('click', function() {
+					var selected = Array.from(document.querySelectorAll('.cut-checkbox:checked'))
+						.map(function(cb) { return cb.dataset.cutId; });
+					
+					if (selected.length === 0) return;
+					
+					bulkGenerate.disabled = true;
+					bulkStatus.textContent = 'Generating...';
+					
+					fetch('/admin/cuts/bulk', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							cutIds: selected,
+							timestamp: bulkTimestamp.value
+						})
+					})
+					.then(function(res) { return res.json(); })
+					.then(function(data) {
+						if (data.success) {
+							bulkStatus.textContent = 'Generated ' + data.fixups.length + ' fixups';
+							fixupsJson.value = JSON.stringify(data.fixups, null, '\t');
+							fixupsOutput.style.display = 'block';
+							if (data.errors && data.errors.length > 0) {
+								bulkStatus.textContent += ' (' + data.errors.length + ' errors)';
+								console.warn('Fixup errors:', data.errors);
+							}
+						} else {
+							bulkStatus.textContent = 'Error: ' + data.error;
+						}
+						bulkGenerate.disabled = false;
+					})
+					.catch(function(err) {
+						bulkStatus.textContent = 'Error: ' + err.message;
+						bulkGenerate.disabled = false;
+					});
+				});
+			})();

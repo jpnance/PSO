@@ -262,5 +262,212 @@
 		{ "tradeId": 274, "player": "Dee Ford", "startYear": null, "endYear": 2018 },
 		{ "tradeId": 276, "player": "Raheem Mostert", "startYear": null, "endYear": 2018 },
 		{ "tradeId": 278, "player": "Malcolm Brown", "startYear": null, "endYear": 2018 }
+	],
+
+	"cutTimestamps":[
+		{
+			"fixupRef": 3283,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3284,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3285,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3286,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3287,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3288,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3289,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3290,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3291,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3292,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3293,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3294,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3295,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3296,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3297,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3298,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3299,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3300,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3301,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3302,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3303,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3304,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3305,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3306,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3307,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3308,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3309,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3310,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3311,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3312,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3313,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3314,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3315,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3316,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3317,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3318,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3319,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3320,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3321,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3322,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3324,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3325,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3326,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3327,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3328,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3329,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3330,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3331,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3332,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3333,
+			"timestamp": "2025-08-17T23:59"
+		},
+		{
+			"fixupRef": 3455,
+			"timestamp": "2025-08-17T23:59"
+		}
 	]
 }
