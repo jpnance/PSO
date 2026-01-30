@@ -269,7 +269,7 @@ async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 		console.log('\nQuitting...');
 		rl.close();
 		await mongoose.disconnect();
-		process.exit(0);
+		process.exit(130); // 130 = interrupted by Ctrl+C convention
 	}
 	
 	if (result.action === 'skipped' || !result.player) {

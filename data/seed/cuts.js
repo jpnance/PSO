@@ -482,7 +482,7 @@ async function resolvePlayer(cut, autoHistoricalThreshold) {
 		rl.close();
 		resolver.save();
 		await mongoose.disconnect();
-		process.exit(0);
+		process.exit(130);
 	}
 	
 	if (result.action === 'skipped' || !result.player) {

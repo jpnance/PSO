@@ -18,6 +18,9 @@
 
 set -e
 
+# Trap Ctrl+C and exit immediately
+trap 'echo ""; echo "Aborted by user."; exit 130' INT
+
 # Load specific vars from .env (can't source directly due to JSON values)
 if [ -f .env ]; then
     GOOGLE_API_KEY=$(grep '^GOOGLE_API_KEY=' .env | cut -d'=' -f2)

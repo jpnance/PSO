@@ -47,7 +47,7 @@ async function findPlayer(name, positions, rosterInfo) {
 		rl.close();
 		resolver.save();
 		await mongoose.disconnect();
-		process.exit(0);
+		process.exit(130);
 	}
 	
 	return result.player;
