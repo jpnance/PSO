@@ -23,13 +23,6 @@ if [ -f .env ]; then
     GOOGLE_API_KEY=$(grep '^GOOGLE_API_KEY=' .env | cut -d'=' -f2)
 fi
 
-# Use "docker compose" on macOS (Docker Desktop), "docker-compose" on Linux
-if [ "$(uname)" = "Darwin" ]; then
-    DOCKER_COMPOSE="docker compose"
-else
-    DOCKER_COMPOSE="docker-compose"
-fi
-
 DRY_RUN=false
 if [ "$1" = "--dry-run" ]; then
     DRY_RUN=true
@@ -81,7 +74,7 @@ if docker ps --format '{{.Names}}' | grep -q "pso-mongo"; then
 else
     echo ""
     echo "ERROR: pso-mongo container is not running"
-    echo "  Start it with: $DOCKER_COMPOSE up -d"
+    echo "  Start it with: docker compose up -d"
     PREFLIGHT_FAILED=true
 fi
 
@@ -188,45 +181,45 @@ echo ""
 # Step 1: Seed league config
 echo "=== Step 1: Seeding league config ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/league-config.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/league-config.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/league-config.js
+    docker compose run --rm web node data/seed/league-config.js
 fi
 echo ""
 
 # Step 2: Seed entities (franchises, people, regimes)
 echo "=== Step 2: Seeding entities ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/entities.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/entities.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/entities.js
+    docker compose run --rm web node data/seed/entities.js
 fi
 echo ""
 
 # Step 3: Sync players from Sleeper
 echo "=== Step 3: Syncing players from Sleeper ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/maintenance/sync-players.js"
+    echo "[dry-run] docker compose run --rm web node data/maintenance/sync-players.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/maintenance/sync-players.js
+    docker compose run --rm web node data/maintenance/sync-players.js
 fi
 echo ""
 
 # Step 4: Seed contracts (interactive)
 echo "=== Step 4: Seeding contracts (interactive) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/contracts.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/contracts.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/contracts.js
+    docker compose run --rm web node data/seed/contracts.js
 fi
 echo ""
 
 # Step 5: Seed picks
 echo "=== Step 5: Seeding picks ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/picks.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/picks.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/picks.js
+    docker compose run --rm web node data/seed/picks.js
 fi
 echo ""
 
@@ -234,27 +227,27 @@ echo ""
 # Must run before trades so rookie contract heuristic has draft data available
 echo "=== Step 6: Seeding draft selections (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/draft-selections.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/draft-selections.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/draft-selections.js
+    docker compose run --rm web node data/seed/draft-selections.js
 fi
 echo ""
 
 # Step 7: Seed trades (interactive, needs network)
 echo "=== Step 7: Seeding trades (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/trades.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/trades.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/trades.js
+    docker compose run --rm web node data/seed/trades.js
 fi
 echo ""
 
 # Step 8: Seed cuts (interactive, needs network)
 echo "=== Step 8: Seeding cuts (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/cuts.js --auto-historical-before=2016"
+    echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/cuts.js --auto-historical-before=2016
+    docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016
 fi
 echo ""
 
@@ -263,36 +256,36 @@ echo ""
 # and ambiguous contracts are flagged with the `ambiguous` field on trade players.
 echo "=== Step 9: Seeding budgets ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/budgets.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/budgets.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/seed/budgets.js
+    docker compose run --rm web node data/seed/budgets.js
 fi
 echo ""
 
 # Step 10: Apply manual fixups (trade edits now trigger budget recalculation)
 echo "=== Step 10: Applying manual fixups ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/maintenance/apply-fixups.js"
+    echo "[dry-run] docker compose run --rm web node data/maintenance/apply-fixups.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/maintenance/apply-fixups.js
+    docker compose run --rm web node data/maintenance/apply-fixups.js
 fi
 echo ""
 
 # Step 11: Compute season data (playoff seeds, results)
 echo "=== Step 11: Computing season data ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/analysis/seasons.js"
+    echo "[dry-run] docker compose run --rm web node data/analysis/seasons.js"
 else
-    $DOCKER_COMPOSE run --rm web node data/analysis/seasons.js
+    docker compose run --rm web node data/analysis/seasons.js
 fi
 echo ""
 
 # Step 12: Seed auction/contract transactions (interactive)
 echo "=== Step 12: Seeding auction transactions (interactive) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/auction.js 2025"
+    echo "[dry-run] docker compose run --rm web node data/seed/auction.js 2025"
 else
-    $DOCKER_COMPOSE run --rm -it web node data/seed/auction.js 2025
+    docker compose run --rm -it web node data/seed/auction.js 2025
 fi
 echo ""
 
