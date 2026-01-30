@@ -264,8 +264,64 @@ async function run() {
 		if (!playerResult) {
 			if (candidates.length === 0) {
 				console.log('  ✗ No player found: ' + c.player);
-				stats.errors.push('No player found: ' + c.player);
-				continue;
+				
+				if (skipAmbiguous) {
+					stats.errors.push('No player found: ' + c.player);
+					continue;
+				}
+				
+				// Prompt for alternative name
+				var altName = await prompt('  Enter alternative name (or press Enter to skip): ');
+				altName = altName.trim();
+				
+				if (altName) {
+					var altNormalized = normalizeForMatch(altName);
+					var altCandidates = playersByNormalizedName[altNormalized] || [];
+					
+					if (altCandidates.length === 1) {
+						playerResult = altCandidates[0];
+						console.log('  → Found: ' + playerResult.name);
+						// Save resolution
+						if (playerResult.sleeperId) {
+							resolver.addResolution(resolverName, playerResult.sleeperId, null, context);
+						} else {
+							resolver.addResolution(resolverName, null, playerResult.name, context);
+						}
+						resolver.save();
+					} else if (altCandidates.length > 1) {
+						console.log('  Multiple matches for ' + altName + ':');
+						for (var k = 0; k < altCandidates.length; k++) {
+							var ac = altCandidates[k];
+							var aDetails = [
+								ac.name,
+								ac.team || 'FA',
+								(ac.positions || []).join('/'),
+								ac.college || '?',
+								ac.rookieYear ? 'Rookie ' + ac.rookieYear : '',
+								ac.active ? 'Active' : 'Inactive'
+							].filter(Boolean).join(' | ');
+							console.log('    ' + (k + 1) + ') ' + aDetails);
+						}
+						var aAnswer = await prompt('  Select (1-' + altCandidates.length + '): ');
+						var aSelection = parseInt(aAnswer, 10);
+						if (aSelection >= 1 && aSelection <= altCandidates.length) {
+							playerResult = altCandidates[aSelection - 1];
+							if (playerResult.sleeperId) {
+								resolver.addResolution(resolverName, playerResult.sleeperId, null, context);
+							} else {
+								resolver.addResolution(resolverName, null, playerResult.name, context);
+							}
+							resolver.save();
+						}
+					} else {
+						console.log('  ✗ Still no match for: ' + altName);
+					}
+				}
+				
+				if (!playerResult) {
+					stats.errors.push('No player found: ' + c.player);
+					continue;
+				}
 			} else if (candidates.length === 1) {
 				playerResult = candidates[0];
 			} else {
