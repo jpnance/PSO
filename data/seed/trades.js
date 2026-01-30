@@ -21,27 +21,20 @@ var resolver = require('../utils/player-resolver');
 
 var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
 
-// Build ESPN ID → Sleeper player lookup
-var espnToSleeper = {};
+// Build ESPN ID → Sleeper ID lookup
+var espnToSleeperId = {};
 sleeperData.forEach(function(p) {
 	if (p.espn_id) {
-		espnToSleeper[String(p.espn_id)] = p;
+		espnToSleeperId[String(p.espn_id)] = p.player_id;
 	}
 });
-console.log('Loaded', Object.keys(espnToSleeper).length, 'ESPN ID mappings from Sleeper data');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-function prompt(question) {
-	return new Promise(function(resolve) {
-		rl.question(question, resolve);
-	});
-}
+// Global readline interface and player lookup
+var rl = null;
+var playersByNormalizedName = {};
+var playersBySleeperId = {};
 
 // ============================================
 // Contract parsing with heuristics
@@ -559,354 +552,42 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, 
 	var name = decodeHtmlEntities(rawName);
 	
 	// Try ESPN ID first - this is unambiguous
-	if (espnId && espnToSleeper[espnId]) {
-		var sleeperPlayer = espnToSleeper[espnId];
-		var player = await Player.findOne({ sleeperId: sleeperPlayer.player_id });
+	if (espnId && espnToSleeperId[espnId]) {
+		var sleeperId = espnToSleeperId[espnId];
+		var player = playersBySleeperId[sleeperId];
 		if (player) {
-			// Cache this resolution for future runs
-			resolver.addResolution(name, sleeperPlayer.player_id, null, contextInfo);
+			resolver.addResolution(name, sleeperId, null, contextInfo);
+			resolver.save();
 			return player._id;
-		}
-		var newPlayer = await Player.create({
-			name: sleeperPlayer.full_name,
-			sleeperId: sleeperPlayer.player_id,
-			positions: sleeperPlayer.fantasy_positions || []
-		});
-		resolver.addResolution(name, sleeperPlayer.player_id, null, contextInfo);
-		return newPlayer._id;
-	}
-	
-	var cached = resolver.lookup(name, contextInfo);
-	
-	if (cached && !cached.ambiguous && cached.sleeperId) {
-		var player = await Player.findOne({ sleeperId: cached.sleeperId });
-		if (player) {
-			return player._id;
-		}
-		var sleeperPlayer = sleeperData.find(function(p) { return p.player_id === cached.sleeperId; });
-		if (sleeperPlayer) {
-			var newPlayer = await Player.create({
-				name: sleeperPlayer.full_name,
-				sleeperId: cached.sleeperId,
-				positions: sleeperPlayer.fantasy_positions || []
-			});
-			return newPlayer._id;
 		}
 	}
 	
-	if (cached && !cached.ambiguous && cached.sleeperId === null && cached.name) {
-		var player = await Player.findOne({ sleeperId: null, name: cached.name });
-		if (player) {
-			return player._id;
-		}
-		var newPlayer = await Player.create({
-			name: cached.name,
-			sleeperId: null,
-			positions: []
-		});
-		return newPlayer._id;
-	}
+	// Get candidates from DB lookup
+	var normalizedName = resolver.normalizePlayerName(name);
+	var candidates = playersByNormalizedName[normalizedName] || [];
 	
-	var sleeperSearchName = name
-		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')  // Strip ordinals/suffixes
-		.replace(/[\. '-]/g, '')
-		.toLowerCase();
-	
-	var matches = sleeperData.filter(function(p) {
-		return p.search_full_name === sleeperSearchName;
+	// Use unified prompt
+	var result = await resolver.promptForPlayer({
+		name: name,
+		context: contextInfo,
+		candidates: candidates,
+		Player: Player,
+		rl: rl
 	});
 	
-	if (matches.length === 1 && !cached) {
-		resolver.addResolution(name, matches[0].player_id);
-		
-		var player = await Player.findOne({ sleeperId: matches[0].player_id });
-		if (player) {
-			return player._id;
-		}
-		var newPlayer = await Player.create({
-			name: matches[0].full_name,
-			sleeperId: matches[0].player_id,
-			positions: matches[0].fantasy_positions || []
-		});
-		return newPlayer._id;
+	if (result.action === 'quit') {
+		console.log('\nQuitting...');
+		rl.close();
+		resolver.save();
+		await mongoose.disconnect();
+		process.exit(0);
 	}
 	
-	var existing = await Player.findOne({ sleeperId: null, name: name });
-	if (existing && !cached) {
-		resolver.addResolution(name, null, name);
-		return existing._id;
-	}
-
-	if (matches.length > 1 || (cached && cached.ambiguous)) {
-		var displayMatches = matches;
-		
-		if (cached && cached.ambiguous) {
-			displayMatches = sleeperData.filter(function(p) {
-				return p.search_full_name === sleeperSearchName;
-			});
-		}
-		
-		displayMatches.sort(function(a, b) {
-			var aActive = a.active ? 0 : 1;
-			var bActive = b.active ? 0 : 1;
-			if (aActive !== bActive) return aActive - bActive;
-			
-			var aTeam = a.team ? 0 : 1;
-			var bTeam = b.team ? 0 : 1;
-			return aTeam - bTeam;
-		});
-		
-		console.log('\n⚠️  ' + (cached && cached.ambiguous ? 'Ambiguous name: ' : 'Multiple matches for: ') + name);
-		console.log('   Trade context: ' + tradeContext);
-		if (tradeUrl) console.log('   WordPress: ' + tradeUrl);
-		displayMatches.forEach(function(m, i) {
-			var details = [
-				m.full_name,
-				m.team || 'FA',
-				(m.fantasy_positions || []).join('/'),
-				m.college || '?',
-				m.years_exp != null ? '~' + (2025 - m.years_exp) : '',
-				m.active ? 'Active' : 'Inactive',
-				'ID: ' + m.player_id
-			].filter(Boolean).join(' | ');
-			console.log('  ' + (i + 1) + ') ' + details);
-		});
-		console.log('  0) Create as historical player (none of the above)');
-		console.log('  s) Skip this player for now');
-
-		var choice = await prompt('Select option: ');
-		
-		if (choice.toLowerCase() === 's') {
-			console.log('  Skipped - will need manual resolution later');
-			return null;
-		}
-		
-		var idx = parseInt(choice);
-
-		if (idx > 0 && idx <= displayMatches.length) {
-			var selected = displayMatches[idx - 1];
-			resolver.addResolution(name, selected.player_id, null, contextInfo);
-			
-			var existingPlayer = await Player.findOne({ sleeperId: selected.player_id });
-			if (existingPlayer) {
-				return existingPlayer._id;
-			}
-			var newPlayer = await Player.create({
-				name: selected.full_name,
-				sleeperId: selected.player_id,
-				positions: selected.fantasy_positions || []
-			});
-			return newPlayer._id;
-		}
-	}
-
-	if (matches.length === 0 && !cached) {
-		var nameParts = name.split(' ');
-		var firstName = nameParts[0].toLowerCase();
-		var lastName = nameParts.slice(1).join(' ');
-		
-		if (nicknames[firstName] && lastName) {
-			var altFirstName = nicknames[firstName].charAt(0).toUpperCase() + nicknames[firstName].slice(1);
-			var altFullName = altFirstName + ' ' + lastName;
-			var altSearchName = altFullName
-				.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')
-				.replace(/[\. '-]/g, '').toLowerCase();
-			
-			var altMatches = sleeperData.filter(function(p) {
-				return p.search_full_name === altSearchName;
-			});
-			
-			if (altMatches.length > 0) {
-				console.log('\n⚠️  No matches for "' + name + '", but found matches for "' + altFullName + '":');
-				console.log('   Trade context: ' + tradeContext);
-				if (tradeUrl) console.log('   WordPress: ' + tradeUrl);
-				altMatches.forEach(function(m, i) {
-					var details = [
-						m.full_name,
-						m.team || 'FA',
-						(m.fantasy_positions || []).join('/'),
-						m.college || '?',
-						m.years_exp != null ? '~' + (2025 - m.years_exp) : '',
-						'ID: ' + m.player_id
-					].filter(Boolean).join(' | ');
-					console.log('  ' + (i + 1) + ') ' + details);
-				});
-				console.log('  0) None of these');
-				console.log('  s) Skip this player for now');
-				
-				var altChoice = await prompt('Select option: ');
-				
-				if (altChoice.toLowerCase() === 's') {
-					console.log('  Skipped - will need manual resolution later');
-					return null;
-				}
-				
-				var altIdx = parseInt(altChoice);
-				
-				if (altIdx > 0 && altIdx <= altMatches.length) {
-					var selected = altMatches[altIdx - 1];
-					resolver.addResolution(name, selected.player_id, null, contextInfo);
-					
-					var existingPlayer = await Player.findOne({ sleeperId: selected.player_id });
-					if (existingPlayer) {
-						return existingPlayer._id;
-					}
-					var newPlayer = await Player.create({
-						name: selected.full_name,
-						sleeperId: selected.player_id,
-						positions: selected.fantasy_positions || []
-					});
-					return newPlayer._id;
-				}
-			}
-		}
-		
-		console.log('\n⚠️  No Sleeper matches for: ' + name);
-		console.log('   Trade context: ' + tradeContext);
-		if (tradeUrl) console.log('   WordPress: ' + tradeUrl);
-		console.log('  1) Create as historical player');
-		console.log('  2) Search by different name');
-		console.log('  3) Enter Sleeper ID manually');
-		console.log('  s) Skip this player for now');
-
-		var choice = await prompt('Select option: ');
-
-		if (choice.toLowerCase() === 's') {
-			console.log('  Skipped - will need manual resolution later');
-			return null;
-		}
-
-		if (choice === '2') {
-			var altName = await prompt('Enter alternate name to search: ');
-			var altSearchName = altName
-				.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')
-				.replace(/[\. '-]/g, '').toLowerCase();
-			var altMatches = sleeperData.filter(function(p) {
-				return p.search_full_name === altSearchName;
-			});
-
-			if (altMatches.length === 1) {
-				var selected = altMatches[0];
-				resolver.addResolution(name, selected.player_id, null, contextInfo);
-				
-				var existingPlayer = await Player.findOne({ sleeperId: selected.player_id });
-				if (existingPlayer) {
-					return existingPlayer._id;
-				}
-				var newPlayer = await Player.create({
-					name: selected.full_name,
-					sleeperId: selected.player_id,
-					positions: selected.fantasy_positions || []
-				});
-				return newPlayer._id;
-			} else if (altMatches.length > 1) {
-				console.log('Multiple matches for "' + altName + '":');
-				altMatches.forEach(function(m, i) {
-					var college = m.college || '?';
-					var year = m.years_exp != null ? '~' + (2025 - m.years_exp) : '';
-					console.log('  ' + (i + 1) + ') ' + m.full_name + ' | ' + (m.team || 'FA') + ' | ' + college + ' | ' + year + ' | ID: ' + m.player_id);
-				});
-				var subChoice = await prompt('Select (0 to skip): ');
-				var subIdx = parseInt(subChoice);
-				if (subIdx > 0 && subIdx <= altMatches.length) {
-					var selected = altMatches[subIdx - 1];
-					resolver.addResolution(name, selected.player_id, null, contextInfo);
-					
-					var existingPlayer = await Player.findOne({ sleeperId: selected.player_id });
-					if (existingPlayer) {
-						return existingPlayer._id;
-					}
-					var newPlayer = await Player.create({
-						name: selected.full_name,
-						sleeperId: selected.player_id,
-						positions: selected.fantasy_positions || []
-					});
-					return newPlayer._id;
-				}
-			} else {
-				console.log('No matches for "' + altName + '"');
-			}
-		} else if (choice === '3') {
-			var sleeperId = await prompt('Enter Sleeper ID: ');
-			if (sleeperId.trim()) {
-				resolver.addResolution(name, sleeperId.trim(), null, contextInfo);
-				
-				var existingPlayer = await Player.findOne({ sleeperId: sleeperId.trim() });
-				if (existingPlayer) {
-					return existingPlayer._id;
-				}
-				var sleeperPlayer = sleeperData.find(function(p) {
-					return p.player_id === sleeperId.trim();
-				});
-				var newPlayer = await Player.create({
-					name: sleeperPlayer ? sleeperPlayer.full_name : name,
-					sleeperId: sleeperId.trim(),
-					positions: sleeperPlayer ? sleeperPlayer.fantasy_positions || [] : []
-				});
-				return newPlayer._id;
-			}
-		}
-	}
-
-	var confirmCreate = await prompt('  Create "' + name + '" as historical player? (y/n): ');
-	if (confirmCreate.toLowerCase() !== 'y') {
-		console.log('  Skipped.');
+	if (result.action === 'skipped' || !result.player) {
 		return null;
 	}
 	
-	var resolverSearchName = resolver.normalizePlayerName(name);
-	var existingHistoricals = await Player.find({ sleeperId: null }).lean();
-	var matchingHistoricals = existingHistoricals.filter(function(p) {
-		return resolver.normalizePlayerName(p.name) === resolverSearchName;
-	});
-	
-	if (matchingHistoricals.length > 0) {
-		console.log('\n  Existing historical player(s) with this name:');
-		matchingHistoricals.forEach(function(p, i) {
-			console.log('    ' + (i + 1) + ') ' + p.name + ' (ID: ' + p._id + ')');
-		});
-		console.log('    0) Create NEW historical player (different person)');
-		console.log('    s) Skip this player for now');
-		
-		var histChoice = await prompt('  Select option: ');
-		
-		if (histChoice.toLowerCase() === 's') {
-			console.log('  Skipped - will need manual resolution later');
-			return null;
-		}
-		
-		var histIdx = parseInt(histChoice);
-		
-		if (histIdx > 0 && histIdx <= matchingHistoricals.length) {
-			var selected = matchingHistoricals[histIdx - 1];
-			resolver.addResolution(name, null, selected.name, contextInfo);
-			return selected._id;
-		}
-	}
-	
-	var displayName = name;
-	var cleanedName = name.replace(/\s+(Jr\.?|Sr\.?|III|II|IV|V)$/i, '').trim();
-	if (cleanedName !== name) {
-		displayName = cleanedName;
-		console.log('  (Stripped ordinal: "' + name + '" → "' + displayName + '")');
-	}
-	
-	var customName = await prompt('  Display name (Enter for "' + displayName + '"): ');
-	if (customName.trim()) {
-		displayName = customName.trim();
-	}
-	
-	console.log('  Creating historical player: ' + displayName);
-	
-	resolver.addResolution(name, null, displayName, contextInfo);
-	
-	var newPlayer = await Player.create({
-		name: displayName,
-		sleeperId: null,
-		positions: []
-	});
-
-	return newPlayer._id;
+	return result.player._id;
 }
 
 // ============================================
@@ -915,7 +596,28 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, 
 
 async function seed() {
 	console.log('Importing trade history from WordPress...\n');
-	console.log('Loaded', resolver.count(), 'cached player resolutions\n');
+	console.log('Loaded', resolver.count(), 'cached player resolutions');
+	console.log('Loaded', Object.keys(espnToSleeperId).length, 'ESPN ID mappings from Sleeper data\n');
+
+	// Create readline interface
+	rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout
+	});
+
+	// Load all players and build lookups
+	var allPlayers = await Player.find({});
+	allPlayers.forEach(function(p) {
+		var normalized = resolver.normalizePlayerName(p.name);
+		if (!playersByNormalizedName[normalized]) {
+			playersByNormalizedName[normalized] = [];
+		}
+		playersByNormalizedName[normalized].push(p);
+		if (p.sleeperId) {
+			playersBySleeperId[p.sleeperId] = p;
+		}
+	});
+	console.log('Loaded', allPlayers.length, 'players from database');
 
 	var clearExisting = process.argv.includes('--clear');
 	if (clearExisting) {
@@ -1024,7 +726,7 @@ async function seed() {
 				var player = p.receives.players[k];
 				var tradeContext = 'Trade #' + trade.tradeNumber + ' (' + new Date(trade.timestamp).toISOString().split('T')[0] + ') - ' + p.owner + ' receives';
 				var tradeUrl = trade.url;
-				var contextInfo = { year: tradeYear, franchise: p.owner.toLowerCase() };
+				var contextInfo = { year: tradeYear, type: 'trade', franchise: p.owner };
 				
 				var playerId = await findOrCreatePlayer(player.name, tradeContext, contextInfo, tradeUrl, player.espnId);
 

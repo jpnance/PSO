@@ -9,22 +9,13 @@ var Transaction = require('../../models/Transaction');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
 
-var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
-
 var sheetLink = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Cuts';
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-function prompt(question) {
-	return new Promise(function(resolve) {
-		rl.question(question, resolve);
-	});
-}
+// Global readline interface and player lookup
+var rl = null;
+var playersByNormalizedName = {};
 
 // Nickname expansions for matching
 var nicknameMap = {
@@ -418,205 +409,109 @@ async function analyzeCuts(rows) {
 	return { cuts, stats, wouldCreateHistorical, ambiguousNames };
 }
 
-// Resolve a player - may prompt interactively or auto-create historical
-async function resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThisRun) {
-	var result = findSleeperMatch(cut.name, cut.position, cut.hint, cut.rawName);
+// Resolve a player using unified prompt
+async function resolvePlayer(cut, autoHistoricalThreshold) {
+	var context = {
+		year: cut.cutYear,
+		type: 'cut',
+		franchise: cut.owner
+	};
 	
-	// Already cached with Sleeper ID
-	if (result.type === 'cached') {
-		var player = await Player.findOne({ sleeperId: result.sleeperId });
-		return { type: 'cached', sleeperId: result.sleeperId, playerId: player?._id };
+	// Use the name with hint if present (for unique resolution)
+	var lookupName = cut.hint ? cut.rawName : cut.name;
+	var normalizedName = resolver.normalizePlayerName(lookupName);
+	var candidates = playersByNormalizedName[normalizedName] || [];
+	
+	// Also try without hint if no candidates found
+	if (candidates.length === 0 && cut.hint) {
+		var plainNormalized = resolver.normalizePlayerName(cut.name);
+		candidates = playersByNormalizedName[plainNormalized] || [];
 	}
 	
-	// Already marked as historical - look up by name
-	if (result.type === 'historical') {
-		var player = await Player.findOne({ name: result.name, sleeperId: null });
-		if (player) {
-			// Add position if not already present
-			if (cut.position && (!player.positions || !player.positions.includes(cut.position))) {
-				player.positions = player.positions || [];
-				player.positions.push(cut.position);
-				await player.save();
-			}
-			return { type: 'historical', playerId: player._id };
+	// For auto-historical threshold, skip prompting for old cuts with no candidates
+	if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold) {
+		// Check cache first
+		var cached = resolver.lookup(lookupName, context);
+		if (cached && cached.sleeperId) {
+			var player = await Player.findOne({ sleeperId: cached.sleeperId });
+			if (player) return { playerId: player._id };
 		}
-		// Historical player not found in DB - need to create
-		// Fall through to not-found handling
-		result = { type: 'not-found', hint: cut.hint };
-	}
-	
-	// Check if we already created this historical player earlier in this run
-	var histKey = cut.name.toLowerCase() + '|' + cut.position;
-	if (createdHistoricalThisRun && createdHistoricalThisRun[histKey]) {
-		return { type: 'already-created', playerId: createdHistoricalThisRun[histKey] };
-	}
-	
-	// Exact match - cache and return
-	if (result.type === 'exact' || result.type === 'exact-no-pos' || result.type === 'hint-match' || result.type === 'nickname') {
-		// Use rawName if there's a hint, so "Mike Williams (TB)" saves as "mike williams tb"
-		var resolutionName = cut.hint ? cut.rawName : cut.name;
-		resolver.addResolution(resolutionName, result.sleeperId);
-		return result;
-	}
-	
-	// Not found - check if we should auto-create historical
-	if (result.type === 'not-found') {
-		if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold) {
-			// First check if a historical player with this name already exists
-			var existingHistorical = await Player.findOne({ name: cut.name, sleeperId: null });
-			if (existingHistorical) {
-				// Add position if not already present
-				if (cut.position && (!existingHistorical.positions || !existingHistorical.positions.includes(cut.position))) {
-					existingHistorical.positions = existingHistorical.positions || [];
-					existingHistorical.positions.push(cut.position);
-					await existingHistorical.save();
-					console.log('  Added position to existing historical: ' + cut.name + ' [' + existingHistorical.positions.join('/') + ']');
-				}
-				var resolutionName = cut.hint ? cut.rawName : cut.name;
-				resolver.addResolution(resolutionName, null, cut.name);
-				return { type: 'found-historical', playerId: existingHistorical._id };
+		if (cached && cached.name) {
+			var player = await Player.findOne({ name: cached.name, sleeperId: null });
+			if (player) return { playerId: player._id };
+		}
+		
+		// Single non-ambiguous match
+		if (candidates.length === 1 && !resolver.isAmbiguous(normalizedName)) {
+			return { playerId: candidates[0]._id };
+		}
+		
+		// No match - auto-create historical
+		if (candidates.length === 0) {
+			var existing = await Player.findOne({ name: cut.name, sleeperId: null });
+			if (existing) {
+				resolver.addResolution(lookupName, null, cut.name, context);
+				resolver.save();
+				return { playerId: existing._id };
 			}
 			
-			// Auto-create historical player
-			console.log('  Auto-creating historical: ' + cut.name + ' (' + cut.position + ', ' + cut.cutYear + ')');
+			console.log('  Auto-creating historical: ' + cut.name + ' (' + cut.position + ')');
 			var player = await Player.create({
 				name: cut.name,
-				positions: [cut.position],
+				positions: cut.position ? [cut.position] : [],
 				sleeperId: null
 			});
-			var resolutionName = cut.hint ? cut.rawName : cut.name;
-			resolver.addResolution(resolutionName, null, cut.name);
-			
-			// Track so we don't create again this run
-			if (createdHistoricalThisRun) {
-				createdHistoricalThisRun[histKey] = player._id;
-			}
-			
-			return { type: 'auto-historical', playerId: player._id };
-		}
-		
-		// Need to prompt
-		console.log('\n⚠️  No Sleeper match for: ' + cut.name + ' (' + cut.position + ', cut ' + cut.cutYear + ')');
-		if (cut.hint) console.log('   Hint from spreadsheet: ' + cut.hint);
-		
-		var choice = await prompt('Enter Sleeper ID, or press Enter to create historical: ');
-		
-		if (choice.trim()) {
-			var sleeperId = choice.trim();
-			var resolutionName = cut.hint ? cut.rawName : cut.name;
-			resolver.addResolution(resolutionName, sleeperId);
-			var player = await Player.findOne({ sleeperId: sleeperId });
-			return { type: 'manual', sleeperId: sleeperId, playerId: player?._id };
-		} else {
-			// Create historical
-			var displayName = await prompt('Display name (Enter for "' + cut.name + '"): ');
-			displayName = displayName.trim() || cut.name;
-			
-			// Check if a historical player with this name already exists
-			var existingHistorical = await Player.findOne({ name: displayName, sleeperId: null });
-			if (existingHistorical) {
-				// Add position if not already present
-				if (cut.position && (!existingHistorical.positions || !existingHistorical.positions.includes(cut.position))) {
-					existingHistorical.positions = existingHistorical.positions || [];
-					existingHistorical.positions.push(cut.position);
-					await existingHistorical.save();
-					console.log('  Added position to existing historical: ' + displayName + ' [' + existingHistorical.positions.join('/') + ']');
-				} else {
-					console.log('  Using existing historical: ' + displayName);
-				}
-				var resolutionName = cut.hint ? cut.rawName : cut.name;
-				resolver.addResolution(resolutionName, null, displayName);
-				return { type: 'found-historical', playerId: existingHistorical._id };
-			}
-			
-			var player = await Player.create({
-				name: displayName,
-				positions: [cut.position],
-				sleeperId: null
-			});
-			var resolutionName = cut.hint ? cut.rawName : cut.name;
-			resolver.addResolution(resolutionName, null, displayName);
-			
-			// Track so we don't create again this run
-			if (createdHistoricalThisRun) {
-				createdHistoricalThisRun[histKey] = player._id;
-			}
-			
-			return { type: 'created-historical', playerId: player._id };
+			resolver.addResolution(lookupName, null, cut.name, context);
+			resolver.save();
+			return { playerId: player._id };
 		}
 	}
 	
-	// Ambiguous - need to prompt
-	if (result.type === 'ambiguous') {
-		console.log('\n⚠️  Ambiguous: ' + cut.name + ' (' + cut.position + ', cut ' + cut.cutYear + ')');
-		if (cut.hint) console.log('   Hint from spreadsheet: ' + cut.hint);
-		
-		result.matches.forEach(function(m, i) {
-			var details = [
-				m.full_name,
-				m.team || 'FA',
-				(m.fantasy_positions || []).join('/'),
-				m.college || '?',
-				m.years_exp != null ? '~' + (2025 - m.years_exp) : ''
-			].filter(Boolean).join(' | ');
-			console.log('  ' + (i + 1) + ') ' + details);
-		});
-		console.log('  0) Create historical player');
-		
-		var choice = await prompt('Select option: ');
-		var idx = parseInt(choice);
-		
-		if (idx === 0 || isNaN(idx) || idx > result.matches.length) {
-			// Create historical
-			var displayName = await prompt('Display name (Enter for "' + cut.name + '"): ');
-			displayName = displayName.trim() || cut.name;
-			
-			// Check if a historical player with this name already exists
-			var existingHistorical = await Player.findOne({ name: displayName, sleeperId: null });
-			if (existingHistorical) {
-				// Add position if not already present
-				if (cut.position && (!existingHistorical.positions || !existingHistorical.positions.includes(cut.position))) {
-					existingHistorical.positions = existingHistorical.positions || [];
-					existingHistorical.positions.push(cut.position);
-					await existingHistorical.save();
-					console.log('  Added position to existing historical: ' + displayName + ' [' + existingHistorical.positions.join('/') + ']');
-				} else {
-					console.log('  Using existing historical: ' + displayName);
-				}
-				var resolutionName = cut.hint ? cut.rawName : cut.name;
-				resolver.addResolution(resolutionName, null, displayName);
-				return { type: 'found-historical', playerId: existingHistorical._id };
-			}
-			
-			var player = await Player.create({
-				name: displayName,
-				positions: [cut.position],
-				sleeperId: null
-			});
-			var resolutionName = cut.hint ? cut.rawName : cut.name;
-			resolver.addResolution(resolutionName, null, displayName);
-			
-			// Track so we don't create again this run
-			if (createdHistoricalThisRun) {
-				createdHistoricalThisRun[histKey] = player._id;
-			}
-			
-			return { type: 'created-historical', playerId: player._id };
-		}
-		
-		var sleeperId = result.matches[idx - 1].player_id;
-		var resolutionName = cut.hint ? cut.rawName : cut.name;
-		resolver.addResolution(resolutionName, sleeperId);
-		var player = await Player.findOne({ sleeperId: sleeperId });
-		return { type: 'disambiguated', sleeperId: sleeperId, playerId: player?._id };
+	// Use unified prompt
+	var result = await resolver.promptForPlayer({
+		name: lookupName,
+		context: context,
+		candidates: candidates,
+		position: cut.position,
+		Player: Player,
+		rl: rl
+	});
+	
+	if (result.action === 'quit') {
+		console.log('\nQuitting...');
+		rl.close();
+		resolver.save();
+		await mongoose.disconnect();
+		process.exit(0);
 	}
 	
-	return result;
+	if (result.action === 'skipped' || !result.player) {
+		return { playerId: null };
+	}
+	
+	return { playerId: result.player._id };
 }
 
 async function run() {
 	console.log('Fetching cuts data from spreadsheet...');
 	console.log('Loaded', resolver.count(), 'cached player resolutions');
+	
+	// Create readline interface
+	rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout
+	});
+	
+	// Load all players and build lookup
+	var allPlayers = await Player.find({});
+	allPlayers.forEach(function(p) {
+		var normalized = resolver.normalizePlayerName(p.name);
+		if (!playersByNormalizedName[normalized]) {
+			playersByNormalizedName[normalized] = [];
+		}
+		playersByNormalizedName[normalized].push(p);
+	});
+	console.log('Loaded', allPlayers.length, 'players from database');
 	
 	var rows = await fetchCutsData();
 	
@@ -662,7 +557,6 @@ async function run() {
 	var created = 0;
 	var skipped = 0;
 	var errors = [];
-	var createdHistoricalThisRun = {};  // Track historical players created this run
 	var fixupRefCounter = 1;  // Sequential ID for fixup targeting
 	
 	for (var i = 0; i < analysis.cuts.length; i++) {
@@ -684,7 +578,7 @@ async function run() {
 		}
 		
 		// Resolve player
-		var resolution = await resolvePlayer(cut, autoHistoricalThreshold, createdHistoricalThisRun);
+		var resolution = await resolvePlayer(cut, autoHistoricalThreshold);
 		
 		var playerId = resolution.playerId;
 		if (!playerId && resolution.sleeperId) {

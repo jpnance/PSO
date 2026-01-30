@@ -9,156 +9,48 @@ var Player = require('../../models/Player');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
 
-var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
-
 var sheetLink = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Rostered';
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-function prompt(question) {
-	return new Promise(function(resolve) {
-		rl.question(question, resolve);
-	});
-}
+// Global readline interface and player lookup
+var rl = null;
+var playersByNormalizedName = {};
 
 // Map owner display names to rosterId (1-12)
 function getSleeperRosterId(ownerName) {
 	return PSO.franchiseIds[ownerName];
 }
 
-// Match player name to Sleeper ID, with resolver cache and interactive disambiguation
-// rosterInfo contains context from the spreadsheet (owner, salary, etc.)
-async function findSleeperPlayerId(name, positions, rosterInfo) {
-	// Build context for resolver
+// Find player using unified prompt
+async function findPlayer(name, positions, rosterInfo) {
 	var context = {
-		position: positions[0],
-		franchise: rosterInfo.owner.toLowerCase()
+		year: PSO.season,
+		type: 'contract',
+		franchise: rosterInfo.owner
 	};
 	
-	// Check resolver cache first
-	var cached = resolver.lookup(name, context);
+	var normalizedName = resolver.normalizePlayerName(name);
+	var candidates = playersByNormalizedName[normalizedName] || [];
 	
-	if (cached && !cached.ambiguous && cached.sleeperId) {
-		// Found cached resolution
-		return cached.sleeperId;
-	}
-	
-	if (cached && !cached.ambiguous && cached.sleeperId === null) {
-		// Cached as historical player - skip for contracts (they should be current players)
-		console.log('⚠️  ' + name + ' is cached as historical, skipping');
-		return null;
-	}
-	
-	// Need to search Sleeper data
-	var searchName = name
-		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')  // Strip ordinals/suffixes
-		.replace(/[\. '-]/g, '').toLowerCase();
-	
-	var matches = sleeperData.filter(function(p) {
-		return p.search_full_name === searchName &&
-			p.fantasy_positions &&
-			p.fantasy_positions.includes(positions[0]);
+	var result = await resolver.promptForPlayer({
+		name: name,
+		context: context,
+		candidates: candidates,
+		position: positions.join('/'),
+		Player: Player,
+		rl: rl
 	});
 	
-	if (matches.length === 1 && !cached) {
-		// Single match and not marked ambiguous - cache it and return
-		resolver.addResolution(name, matches[0].player_id);
-		return matches[0].player_id;
+	if (result.action === 'quit') {
+		console.log('\nQuitting...');
+		rl.close();
+		resolver.save();
+		await mongoose.disconnect();
+		process.exit(0);
 	}
 	
-	if (matches.length === 0) {
-		// Try broader search without position filter
-		matches = sleeperData.filter(function(p) {
-			return p.search_full_name === searchName;
-		});
-	}
-	
-	// Show context from spreadsheet
-	var sheetContext = [
-		'Owner: ' + rosterInfo.owner,
-		rosterInfo.salary ? '$' + rosterInfo.salary : null,
-		rosterInfo.start && rosterInfo.end ? rosterInfo.start + '-' + rosterInfo.end : null
-	].filter(Boolean).join(', ');
-	
-	if (matches.length === 0) {
-		console.log('\n⚠️  No matches found for: ' + name + ' (' + positions.join('/') + ')');
-		console.log('   Spreadsheet: ' + sheetContext);
-		var manual = await prompt('Enter Sleeper ID manually (or press Enter to skip): ');
-		var sleeperId = manual.trim() || null;
-		
-		if (sleeperId) {
-			resolver.addResolution(name, sleeperId, null, context);
-		}
-		
-		return sleeperId;
-	}
-	
-	if (matches.length > 1 || (cached && cached.ambiguous)) {
-		// Multiple matches or marked as ambiguous - show ALL players with this name
-		var displayMatches = matches;
-		
-		if (cached && cached.ambiguous) {
-			// For ambiguous names, show all matches regardless of position
-			displayMatches = sleeperData.filter(function(p) {
-				return p.search_full_name === searchName;
-			});
-		}
-		
-		// Sort candidates: position match first, then active, then on a team
-		var targetPosition = positions[0];
-		displayMatches.sort(function(a, b) {
-			// Position match is most important
-			var aPos = (a.fantasy_positions || []).includes(targetPosition) ? 0 : 1;
-			var bPos = (b.fantasy_positions || []).includes(targetPosition) ? 0 : 1;
-			if (aPos !== bPos) return aPos - bPos;
-			
-			// Active players before inactive
-			var aActive = a.active ? 0 : 1;
-			var bActive = b.active ? 0 : 1;
-			if (aActive !== bActive) return aActive - bActive;
-			
-			// On a team before free agents
-			var aTeam = a.team ? 0 : 1;
-			var bTeam = b.team ? 0 : 1;
-			return aTeam - bTeam;
-		});
-		
-		console.log('\n⚠️  ' + (cached && cached.ambiguous ? 'Ambiguous name: ' : 'Multiple matches for: ') + name + ' (' + positions.join('/') + ')');
-		console.log('   Spreadsheet: ' + sheetContext);
-		displayMatches.forEach(function(m, i) {
-			var details = [
-				m.full_name,
-				m.team || 'FA',
-				(m.fantasy_positions || []).join('/'),
-				m.college || '?',
-				m.years_exp != null ? '~' + (2025 - m.years_exp) : '',
-				m.status || 'Unknown',
-				'ID: ' + m.player_id
-			].filter(Boolean).join(' | ');
-			console.log('  ' + (i + 1) + ') ' + details);
-		});
-		console.log('  0) Skip this player');
-		
-		var choice = await prompt('Select option: ');
-		var idx = parseInt(choice);
-		
-		if (idx === 0 || isNaN(idx) || idx > displayMatches.length) {
-			return null;
-		}
-		
-		var sleeperId = displayMatches[idx - 1].player_id;
-		resolver.addResolution(name, sleeperId, null, context);
-		return sleeperId;
-	}
-	
-	// Single match found
-	resolver.addResolution(name, matches[0].player_id);
-	return matches[0].player_id;
+	return result.player;
 }
 
 async function fetchRosteredPlayers() {
@@ -196,6 +88,23 @@ async function fetchRosteredPlayers() {
 async function seed() {
 	console.log('Seeding contracts from spreadsheet...\n');
 	console.log('Loaded', resolver.count(), 'cached player resolutions');
+
+	// Create readline interface
+	rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout
+	});
+
+	// Load all players and build lookup
+	var allPlayers = await Player.find({});
+	allPlayers.forEach(function(p) {
+		var normalized = resolver.normalizePlayerName(p.name);
+		if (!playersByNormalizedName[normalized]) {
+			playersByNormalizedName[normalized] = [];
+		}
+		playersByNormalizedName[normalized].push(p);
+	});
+	console.log('Loaded', allPlayers.length, 'players from database');
 
 	var clearExisting = process.argv.includes('--clear');
 	if (clearExisting) {
@@ -238,17 +147,10 @@ async function seed() {
 			continue;
 		}
 
-		// Find player by Sleeper ID (may prompt interactively)
-		var sleeperId = await findSleeperPlayerId(rp.name, rp.positions, rp);
-		if (!sleeperId) {
-			errors.push({ player: rp.name, reason: 'Could not match to Sleeper player' });
-			skipped++;
-			continue;
-		}
-
-		var player = await Player.findOne({ sleeperId: sleeperId });
+		// Find player using unified prompt
+		var player = await findPlayer(rp.name, rp.positions, rp);
 		if (!player) {
-			errors.push({ player: rp.name, reason: 'Sleeper ID ' + sleeperId + ' not in Player collection' });
+			errors.push({ player: rp.name, reason: 'Could not match to player' });
 			skipped++;
 			continue;
 		}

@@ -233,9 +233,6 @@
   "aaron jones": {
     "sleeperId": "4199"
   },
-  "aaron jones|2021|brett": {
-    "sleeperId": "4199"
-  },
   "aaron kampman": {
     "sleeperId": null,
     "name": "Aaron Kampman"
@@ -272,15 +269,6 @@
     "sleeperId": "7668"
   },
   "aaron rodgers": {
-    "sleeperId": "96"
-  },
-  "aaron rodgers|2015|john/zach": {
-    "sleeperId": "96"
-  },
-  "aaron rodgers|2015|quinn": {
-    "sleeperId": "96"
-  },
-  "aaron rodgers|2016|syed/terence": {
     "sleeperId": "96"
   },
   "aaron ross": {
@@ -341,9 +329,6 @@
     "sleeperId": "11492"
   },
   "ace sanders": {
-    "sleeperId": "1450"
-  },
-  "ace sanders|2013|koci/mueller": {
     "sleeperId": "1450"
   },
   "adairius barnes": {
@@ -476,15 +461,6 @@
   "adrian peterson": {
     "sleeperId": "184"
   },
-  "adrian peterson|2011|schexes": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2014|quinn": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2016|john/zach": {
-    "sleeperId": "184"
-  },
   "adrian phillips": {
     "sleeperId": "2287"
   },
@@ -507,9 +483,6 @@
     "sleeperId": "4124"
   },
   "ahmad bradshaw": {
-    "sleeperId": "78"
-  },
-  "ahmad bradshaw|2013|john": {
     "sleeperId": "78"
   },
   "ahmad brooks": {
@@ -574,12 +547,6 @@
   "aj brown": {
     "sleeperId": "5859"
   },
-  "aj brown|2019|syed/kuan": {
-    "sleeperId": "5859"
-  },
-  "aj brown|2020|keyon": {
-    "sleeperId": "5859"
-  },
   "aj cruz": {
     "sleeperId": "2701"
   },
@@ -606,15 +573,6 @@
     "sleeperId": "830"
   },
   "aj green cin": {
-    "sleeperId": "830"
-  },
-  "aj green|2016|john/zach": {
-    "sleeperId": "830"
-  },
-  "aj green|2017|patrick": {
-    "sleeperId": "830"
-  },
-  "aj green|2018|john/zach": {
     "sleeperId": "830"
   },
   "aj hawk": {
@@ -645,9 +603,6 @@
     "sleeperId": "1547"
   },
   "aj mccarron": {
-    "sleeperId": "1895"
-  },
-  "aj mccarron|2018|john/zach": {
     "sleeperId": "1895"
   },
   "aj moore": {
@@ -933,18 +888,6 @@
   "alex smith": {
     "sleeperId": "268"
   },
-  "alex smith|2014|quinn": {
-    "sleeperId": "268"
-  },
-  "alex smith|2015|john/zach": {
-    "sleeperId": "268"
-  },
-  "alex smith|2017|quinn": {
-    "sleeperId": "268"
-  },
-  "alex smith|2018|james/charles": {
-    "sleeperId": "268"
-  },
   "alex tanney": {
     "sleeperId": "1262"
   },
@@ -985,19 +928,10 @@
   "alfred blue": {
     "sleeperId": "1944"
   },
-  "alfred blue|2014|daniel": {
-    "sleeperId": "1944"
-  },
   "alfred collins": {
     "sleeperId": "12590"
   },
   "alfred morris": {
-    "sleeperId": "1170"
-  },
-  "alfred morris|2012|syed": {
-    "sleeperId": "1170"
-  },
-  "alfred morris|2016|schex/jeff": {
     "sleeperId": "1170"
   },
   "alfy hill": {
@@ -1051,21 +985,6 @@
   "allen robinson": {
     "sleeperId": "1992"
   },
-  "allen robinson|2017|james/charles": {
-    "sleeperId": "1992"
-  },
-  "allen robinson|2017|schex/jeff": {
-    "sleeperId": "1992"
-  },
-  "allen robinson|2019|schex": {
-    "sleeperId": "1992"
-  },
-  "allen robinson|2020|mitch": {
-    "sleeperId": "1992"
-  },
-  "allen robinson|2021|keyon": {
-    "sleeperId": "1992"
-  },
   "allen rossum": {
     "sleeperId": null,
     "name": "Allen Rossum"
@@ -1106,9 +1025,6 @@
   "alshon jeffery": {
     "sleeperId": "1149"
   },
-  "alshon jeffery|2015|koci/mueller": {
-    "sleeperId": "1149"
-  },
   "alstevis squirewell": {
     "sleeperId": "3811"
   },
@@ -1125,12 +1041,6 @@
     "sleeperId": "5172"
   },
   "alvin kamara": {
-    "sleeperId": "4035"
-  },
-  "alvin kamara|2019|john/zach": {
-    "sleeperId": "4035"
-  },
-  "alvin kamara|2021|jason": {
     "sleeperId": "4035"
   },
   "amani bledsoe": {
@@ -1161,15 +1071,6 @@
     "sleeperId": "5686"
   },
   "amari cooper": {
-    "sleeperId": "2309"
-  },
-  "amari cooper|2016|schex/jeff": {
-    "sleeperId": "2309"
-  },
-  "amari cooper|2017|syed/terence": {
-    "sleeperId": "2309"
-  },
-  "amari cooper|2019|patrick": {
     "sleeperId": "2309"
   },
   "amari gainer": {
@@ -1262,18 +1163,6 @@
   "andre johnson": {
     "sleeperId": "92"
   },
-  "andre johnson|2009|koci": {
-    "sleeperId": "92"
-  },
-  "andre johnson|2011|patrick": {
-    "sleeperId": "92"
-  },
-  "andre johnson|2014|koci/mueller": {
-    "sleeperId": "92"
-  },
-  "andre johnson|2015|daniel": {
-    "sleeperId": "92"
-  },
   "andre jones": {
     "sleeperId": "11041"
   },
@@ -1290,9 +1179,6 @@
     "sleeperId": "4669"
   },
   "andre roberts": {
-    "sleeperId": "627"
-  },
-  "andre roberts|2014|john/zach": {
     "sleeperId": "627"
   },
   "andre sam": {
@@ -1370,9 +1256,6 @@
   "andrew luck": {
     "sleeperId": "1111"
   },
-  "andrew luck|2017|quinn": {
-    "sleeperId": "1111"
-  },
   "andrew mevis": {
     "sleeperId": "8775"
   },
@@ -1445,13 +1328,7 @@
   "andy dalton": {
     "sleeperId": "829"
   },
-  "andy dalton|2011|keyon": {
-    "sleeperId": "829"
-  },
   "andy isabella": {
-    "sleeperId": "5915"
-  },
-  "andy isabella|2020|schex": {
     "sleeperId": "5915"
   },
   "andy janovich": {
@@ -1602,9 +1479,6 @@
   "anthony miller": {
     "sleeperId": "5013"
   },
-  "anthony miller|2019|syed/kuan": {
-    "sleeperId": "5013"
-  },
   "anthony montalvo": {
     "sleeperId": "11392"
   },
@@ -1699,12 +1573,6 @@
   "antoine winfield": {
     "sleeperId": "6888"
   },
-  "antoine winfield|2020|schex": {
-    "sleeperId": "6888"
-  },
-  "antoine winfield|2021|mitch": {
-    "sleeperId": "6888"
-  },
   "antone exum": {
     "sleeperId": "2156"
   },
@@ -1718,12 +1586,6 @@
     "sleeperId": "1928"
   },
   "antonio brown": {
-    "sleeperId": "536"
-  },
-  "antonio brown|2016|schex/jeff": {
-    "sleeperId": "536"
-  },
-  "antonio brown|2018|keyon": {
     "sleeperId": "536"
   },
   "antonio bryant": {
@@ -1743,9 +1605,6 @@
     "sleeperId": "6906"
   },
   "antonio gates": {
-    "sleeperId": "322"
-  },
-  "antonio gates|2009|schexes": {
     "sleeperId": "322"
   },
   "antonio gibson": {
@@ -1840,9 +1699,6 @@
     "sleeperId": "5067"
   },
   "arian foster": {
-    "sleeperId": "669"
-  },
-  "arian foster|2012|daniel": {
     "sleeperId": "669"
   },
   "arian smith": {
@@ -2029,12 +1885,6 @@
   "austin ekeler": {
     "sleeperId": "4663"
   },
-  "austin ekeler|2020|john/zach": {
-    "sleeperId": "4663"
-  },
-  "austin ekeler|2020|schex": {
-    "sleeperId": "4663"
-  },
   "austin exford": {
     "sleeperId": "6309"
   },
@@ -2137,9 +1987,6 @@
   "avery williamson": {
     "sleeperId": "1940"
   },
-  "avery williamson|2018|trevor": {
-    "sleeperId": "1940"
-  },
   "avery young": {
     "sleeperId": "11177"
   },
@@ -2189,12 +2036,6 @@
     "sleeperId": "8157"
   },
   "baker mayfield": {
-    "sleeperId": "4892"
-  },
-  "baker mayfield|2019|mitch": {
-    "sleeperId": "4892"
-  },
-  "baker mayfield|2020|john/zach": {
     "sleeperId": "4892"
   },
   "bam bradley": {
@@ -2359,12 +2200,6 @@
   "ben roethlisberger": {
     "sleeperId": "138"
   },
-  "ben roethlisberger|2012|james": {
-    "sleeperId": "138"
-  },
-  "ben roethlisberger|2018|koci/mueller": {
-    "sleeperId": "138"
-  },
   "ben sauls": {
     "sleeperId": "13066"
   },
@@ -2381,12 +2216,6 @@
     "sleeperId": "8850"
   },
   "ben tate": {
-    "sleeperId": "1004"
-  },
-  "ben tate|2011|koci": {
-    "sleeperId": "1004"
-  },
-  "ben tate|2012|daniel": {
     "sleeperId": "1004"
   },
   "ben vansumeren": {
@@ -2484,10 +2313,6 @@
   },
   "bernardick mckinney": {
     "sleeperId": "2348"
-  },
-  "bernardrick mckinney|2015": {
-    "sleeperId": null,
-    "name": "Bernardrick McKinney"
   },
   "bernhard seikovits": {
     "sleeperId": "8033"
@@ -2627,9 +2452,6 @@
   "blair walsh": {
     "sleeperId": "1214"
   },
-  "blair walsh|2017|mitch": {
-    "sleeperId": "1214"
-  },
   "blake annen": {
     "sleeperId": "1790"
   },
@@ -2637,12 +2459,6 @@
     "sleeperId": "2422"
   },
   "blake bortles": {
-    "sleeperId": "1979"
-  },
-  "blake bortles|2017|keyon": {
-    "sleeperId": "1979"
-  },
-  "blake bortles|2017|quinn": {
     "sleeperId": "1979"
   },
   "blake cashman": {
@@ -2744,19 +2560,10 @@
   "bobby rainey": {
     "sleeperId": "1059"
   },
-  "bobby rainey|2014|mitch": {
-    "sleeperId": "1059"
-  },
-  "bobby rainey|2015|quinn": {
-    "sleeperId": "1059"
-  },
   "bobby richardson": {
     "sleeperId": "2850"
   },
   "bobby wagner": {
-    "sleeperId": "1233"
-  },
-  "bobby wagner|2018|syed/terence": {
     "sleeperId": "1233"
   },
   "bobo wilson": {
@@ -2905,15 +2712,6 @@
     "sleeperId": "3785"
   },
   "brandin cooks": {
-    "sleeperId": "2197"
-  },
-  "brandin cooks|2019|john/zach": {
-    "sleeperId": "2197"
-  },
-  "brandin cooks|2019|keyon": {
-    "sleeperId": "2197"
-  },
-  "brandin cooks|2020|quinn": {
     "sleeperId": "2197"
   },
   "brandin dandridge": {
@@ -3067,9 +2865,6 @@
   "brandon lloyd": {
     "sleeperId": "386"
   },
-  "brandon lloyd|2010|koci": {
-    "sleeperId": "386"
-  },
   "brandon marshall den": {
     "sleeperId": "1118"
   },
@@ -3080,15 +2875,6 @@
     "sleeperId": "1118"
   },
   "brandon marshall sea": {
-    "sleeperId": "648"
-  },
-  "brandon marshall|2008|john": {
-    "sleeperId": "648"
-  },
-  "brandon marshall|2014|daniel": {
-    "sleeperId": "648"
-  },
-  "brandon marshall|2015|quinn": {
     "sleeperId": "648"
   },
   "brandon matterson": {
@@ -3335,9 +3121,6 @@
   "brett hundley": {
     "sleeperId": "2450"
   },
-  "brett hundley|2017|mitch": {
-    "sleeperId": "2450"
-  },
   "brett maher": {
     "sleeperId": "4958"
   },
@@ -3408,13 +3191,7 @@
   "brian hill": {
     "sleeperId": "4187"
   },
-  "brian hill|2020|schex": {
-    "sleeperId": "4187"
-  },
   "brian hoyer": {
-    "sleeperId": "345"
-  },
-  "brian hoyer|2014|trevor": {
     "sleeperId": "345"
   },
   "brian johnson": {
@@ -3546,9 +3323,6 @@
   "brock osweiler": {
     "sleeperId": "1126"
   },
-  "brock osweiler|2015|syed/terence": {
-    "sleeperId": "1126"
-  },
   "brock purdy": {
     "sleeperId": "8183"
   },
@@ -3677,9 +3451,6 @@
     "sleeperId": "5787"
   },
   "bryce brown": {
-    "sleeperId": "1026"
-  },
-  "bryce brown|2014|schex": {
     "sleeperId": "1026"
   },
   "bryce callahan": {
@@ -3820,9 +3591,6 @@
   "budda baker": {
     "sleeperId": "4081"
   },
-  "budda baker|2020|keyon": {
-    "sleeperId": "4081"
-  },
   "buddha jones": {
     "sleeperId": "12258"
   },
@@ -3877,9 +3645,6 @@
   "byron young": {
     "sleeperId": "10917"
   },
-  "byron young|dl|schexes": {
-    "sleeperId": "10917"
-  },
   "cade brewer": {
     "sleeperId": "8433"
   },
@@ -3927,9 +3692,6 @@
     "sleeperId": "2020"
   },
   "calais campbell": {
-    "sleeperId": "125"
-  },
-  "calais campbell|2013|syed": {
     "sleeperId": "125"
   },
   "cale garrett": {
@@ -4037,15 +3799,6 @@
   "calvin ridley": {
     "sleeperId": "4981"
   },
-  "calvin ridley|2020|john/zach": {
-    "sleeperId": "4981"
-  },
-  "calvin ridley|2020|schex": {
-    "sleeperId": "4981"
-  },
-  "calvin ridley|2021|luke": {
-    "sleeperId": "4981"
-  },
   "calvin taylor": {
     "sleeperId": "7214"
   },
@@ -4106,9 +3859,6 @@
   "cam newton": {
     "sleeperId": "954"
   },
-  "cam newton|2018|brett/luke": {
-    "sleeperId": "954"
-  },
   "cam phillips": {
     "sleeperId": "5625"
   },
@@ -4161,12 +3911,6 @@
     "sleeperId": "2662"
   },
   "cameron brate": {
-    "sleeperId": "2214"
-  },
-  "cameron brate|2017|mitch": {
-    "sleeperId": "2214"
-  },
-  "cameron brate|2017|quinn": {
     "sleeperId": "2214"
   },
   "cameron clear": {
@@ -4274,9 +4018,6 @@
   "cardale jones": {
     "sleeperId": "3210"
   },
-  "cardale jones|2016|jake/luke": {
-    "sleeperId": "3210"
-  },
   "carey spear": {
     "sleeperId": "1804"
   },
@@ -4322,9 +4063,6 @@
   "carlos dunlap": {
     "sleeperId": "529"
   },
-  "carlos dunlap|2013|trevor": {
-    "sleeperId": "529"
-  },
   "carlos fields": {
     "sleeperId": "2032"
   },
@@ -4332,12 +4070,6 @@
     "sleeperId": "4108"
   },
   "carlos hyde": {
-    "sleeperId": "2257"
-  },
-  "carlos hyde|2017|james/charles": {
-    "sleeperId": "2257"
-  },
-  "carlos hyde|2017|schex/jeff": {
     "sleeperId": "2257"
   },
   "carlos thompson": {
@@ -4382,15 +4114,6 @@
   "carson palmer": {
     "sleeperId": "91"
   },
-  "carson palmer|2009|jake/luke": {
-    "sleeperId": "91"
-  },
-  "carson palmer|2016|john/zach": {
-    "sleeperId": "91"
-  },
-  "carson palmer|2017|schex/jeff": {
-    "sleeperId": "91"
-  },
   "carson schwesinger": {
     "sleeperId": "12578"
   },
@@ -4407,18 +4130,6 @@
     "sleeperId": "8781"
   },
   "carson wentz": {
-    "sleeperId": "3161"
-  },
-  "carson wentz|2017|mitch": {
-    "sleeperId": "3161"
-  },
-  "carson wentz|2018|daniel": {
-    "sleeperId": "3161"
-  },
-  "carson wentz|2018|john/zach": {
-    "sleeperId": "3161"
-  },
-  "carson wentz|2019|mitch": {
     "sleeperId": "3161"
   },
   "carson williams": {
@@ -4443,15 +4154,6 @@
     "sleeperId": "7376"
   },
   "case keenum": {
-    "sleeperId": "1737"
-  },
-  "case keenum|2016|james": {
-    "sleeperId": "1737"
-  },
-  "case keenum|2016|quinn": {
-    "sleeperId": "1737"
-  },
-  "case keenum|2018|schex": {
     "sleeperId": "1737"
   },
   "casey bauman": {
@@ -4568,16 +4270,10 @@
   "chad greenway": {
     "sleeperId": "249"
   },
-  "chad greenway|2012|schex": {
-    "sleeperId": "249"
-  },
   "chad hansen": {
     "sleeperId": "4175"
   },
   "chad henne": {
-    "sleeperId": "89"
-  },
-  "chad henne|2014|john": {
     "sleeperId": "89"
   },
   "chad kanoff": {
@@ -4696,9 +4392,6 @@
   "charles johnson min": {
     "sleeperId": "37"
   },
-  "charles johnson|2011|daniel": {
-    "sleeperId": "37"
-  },
   "charles jones": {
     "sleeperId": "6591"
   },
@@ -4725,9 +4418,6 @@
     "sleeperId": "3263"
   },
   "charles tillman": {
-    "sleeperId": "185"
-  },
-  "charles tillman|2012|koci": {
     "sleeperId": "185"
   },
   "charles walker": {
@@ -4794,9 +4484,6 @@
   "chase claypool": {
     "sleeperId": "6886"
   },
-  "chase claypool|2020|keyon": {
-    "sleeperId": "6886"
-  },
   "chase coffman": {
     "sleeperId": "352"
   },
@@ -4810,12 +4497,6 @@
     "sleeperId": "2272"
   },
   "chase edmonds": {
-    "sleeperId": "5000"
-  },
-  "chase edmonds|2020|keyon": {
-    "sleeperId": "5000"
-  },
-  "chase edmonds|2020|luke": {
     "sleeperId": "5000"
   },
   "chase ford": {
@@ -4915,9 +4596,6 @@
   "chigoziem okonkwo": {
     "sleeperId": "8210"
   },
-  "chigoziem okonkwo|2023": {
-    "sleeperId": "8210"
-  },
   "chimdi chekwa": {
     "sleeperId": "884"
   },
@@ -4980,9 +4658,6 @@
     "name": "Chris Carr"
   },
   "chris carson": {
-    "sleeperId": "4273"
-  },
-  "chris carson|2020|james/charles": {
     "sleeperId": "4273"
   },
   "chris carter": {
@@ -5053,9 +4728,6 @@
   "chris givens": {
     "sleeperId": "1201"
   },
-  "chris givens|2013|john": {
-    "sleeperId": "1201"
-  },
   "chris godwin": {
     "sleeperId": "4037"
   },
@@ -5100,9 +4772,6 @@
   "chris ivory": {
     "sleeperId": "717"
   },
-  "chris ivory|2015|trevor": {
-    "sleeperId": "717"
-  },
   "chris jackson": {
     "sleeperId": "7150"
   },
@@ -5114,9 +4783,6 @@
     "sleeperId": "272"
   },
   "chris johnson nyj": {
-    "sleeperId": "272"
-  },
-  "chris johnson|2012|schex": {
     "sleeperId": "272"
   },
   "chris jones": {
@@ -5361,12 +5027,6 @@
   "christian mccaffrey": {
     "sleeperId": "4034"
   },
-  "christian mccaffrey|2018|koci/mueller": {
-    "sleeperId": "4034"
-  },
-  "christian mccaffrey|2020|john/zach": {
-    "sleeperId": "4034"
-  },
   "christian mccarroll": {
     "sleeperId": "12445"
   },
@@ -5377,12 +5037,6 @@
     "sleeperId": "11205"
   },
   "christian ponder": {
-    "sleeperId": "941"
-  },
-  "christian ponder|2012|james": {
-    "sleeperId": "941"
-  },
-  "christian ponder|2012|schex": {
     "sleeperId": "941"
   },
   "christian powell": {
@@ -5493,9 +5147,6 @@
   "cj beathard": {
     "sleeperId": "4127"
   },
-  "cj beathard|2018|keyon": {
-    "sleeperId": "4127"
-  },
   "cj board": {
     "sleeperId": "4344"
   },
@@ -5583,9 +5234,6 @@
   "cj uzomah": {
     "sleeperId": "2460"
   },
-  "cj uzomah|2018|daniel": {
-    "sleeperId": "2460"
-  },
   "cj verdell": {
     "sleeperId": "8187"
   },
@@ -5670,9 +5318,6 @@
   "cliff avril": {
     "sleeperId": "170"
   },
-  "cliff avril|2016|quinn": {
-    "sleeperId": "170"
-  },
   "cliff matthews": {
     "sleeperId": "948"
   },
@@ -5753,9 +5398,6 @@
   "cody latimer": {
     "sleeperId": "2004"
   },
-  "cody latimer|2014|james": {
-    "sleeperId": "2004"
-  },
   "cody lindenberg": {
     "sleeperId": "12722"
   },
@@ -5793,9 +5435,6 @@
     "sleeperId": "10952"
   },
   "cole beasley": {
-    "sleeperId": "1144"
-  },
-  "cole beasley|2018|quinn": {
     "sleeperId": "1144"
   },
   "cole beck": {
@@ -5876,9 +5515,6 @@
   "colin kaepernick": {
     "sleeperId": "980"
   },
-  "colin kaepernick|2015|quinn": {
-    "sleeperId": "980"
-  },
   "colin lockett": {
     "sleeperId": "1894"
   },
@@ -5920,9 +5556,6 @@
     "sleeperId": "760"
   },
   "colt mccoy": {
-    "sleeperId": "533"
-  },
-  "colt mccoy|2014|koci/mueller": {
     "sleeperId": "533"
   },
   "colton dowell": {
@@ -6045,9 +5678,6 @@
   "corey coleman": {
     "sleeperId": "3177"
   },
-  "corey coleman|2018|schex": {
-    "sleeperId": "3177"
-  },
   "corey crawford": {
     "sleeperId": "2646"
   },
@@ -6055,9 +5685,6 @@
     "sleeperId": "12090"
   },
   "corey davis": {
-    "sleeperId": "4036"
-  },
-  "corey davis|2018|schex": {
     "sleeperId": "4036"
   },
   "corey fuller": {
@@ -6305,12 +5932,6 @@
   "curtis samuel": {
     "sleeperId": "4082"
   },
-  "curtis samuel|2019|keyon": {
-    "sleeperId": "4082"
-  },
-  "curtis samuel|2020|brett/luke": {
-    "sleeperId": "4082"
-  },
   "curtis weaver": {
     "sleeperId": "6854"
   },
@@ -6369,9 +5990,6 @@
     "sleeperId": "12998"
   },
   "dak prescott": {
-    "sleeperId": "3294"
-  },
-  "dak prescott|2019|koci/mueller": {
     "sleeperId": "3294"
   },
   "dakari monroe": {
@@ -6509,19 +6127,10 @@
   "damien harris": {
     "sleeperId": "5890"
   },
-  "damien harris|2019|james/charles": {
-    "sleeperId": "5890"
-  },
   "damien martinez": {
     "sleeperId": "12462"
   },
   "damien williams": {
-    "sleeperId": "1833"
-  },
-  "damien williams|2019|keyon": {
-    "sleeperId": "1833"
-  },
-  "damien williams|2019|mitch": {
     "sleeperId": "1833"
   },
   "damien wilson": {
@@ -6740,9 +6349,6 @@
   "daniel jones": {
     "sleeperId": "5870"
   },
-  "daniel jones|2021|schex": {
-    "sleeperId": "5870"
-  },
   "daniel joseph": {
     "sleeperId": "8906"
   },
@@ -6773,12 +6379,6 @@
   "daniel thomas": {
     "sleeperId": "806"
   },
-  "daniel thomas|2011": {
-    "sleeperId": "806"
-  },
-  "daniel thomas|2011|john": {
-    "sleeperId": "806"
-  },
   "daniel williams": {
     "sleeperId": "4829"
   },
@@ -6788,9 +6388,6 @@
   "danielle hunter": {
     "sleeperId": "2393"
   },
-  "danielle hunter|2019|schex": {
-    "sleeperId": "2393"
-  },
   "dannell ellerbe": {
     "sleeperId": "480"
   },
@@ -6798,15 +6395,6 @@
     "sleeperId": "12339"
   },
   "danny amendola": {
-    "sleeperId": "491"
-  },
-  "danny amendola|2014|patrick": {
-    "sleeperId": "491"
-  },
-  "danny amendola|2017|john/zach": {
-    "sleeperId": "491"
-  },
-  "danny amendola|2018|trevor": {
     "sleeperId": "491"
   },
   "danny anthrop": {
@@ -6853,9 +6441,6 @@
     "name": "Danny Ware"
   },
   "danny woodhead": {
-    "sleeperId": "735"
-  },
-  "danny woodhead|2011|syed": {
     "sleeperId": "735"
   },
   "danorris searcy": {
@@ -7088,9 +6673,6 @@
   "darnell mooney": {
     "sleeperId": "7090"
   },
-  "darnell mooney|2020|james/charles": {
-    "sleeperId": "7090"
-  },
   "darnell sankey": {
     "sleeperId": "3912"
   },
@@ -7128,12 +6710,6 @@
     "sleeperId": "4323"
   },
   "darrell henderson": {
-    "sleeperId": "5916"
-  },
-  "darrell henderson|2020|james/charles": {
-    "sleeperId": "5916"
-  },
-  "darrell henderson|2021|trevor": {
     "sleeperId": "5916"
   },
   "darrell luter": {
@@ -7177,12 +6753,6 @@
     "sleeperId": "3794"
   },
   "darren mcfadden": {
-    "sleeperId": "326"
-  },
-  "darren mcfadden|2012|syed": {
-    "sleeperId": "326"
-  },
-  "darren mcfadden|2013|schex": {
     "sleeperId": "326"
   },
   "darren sproles": {
@@ -7254,16 +6824,10 @@
   "darrynton evans": {
     "sleeperId": "7064"
   },
-  "darrynton evans|2021|schex": {
-    "sleeperId": "7064"
-  },
   "darvin kidsy": {
     "sleeperId": "5722"
   },
   "darwin thompson": {
-    "sleeperId": "6178"
-  },
-  "darwin thompson|2020|mitch": {
     "sleeperId": "6178"
   },
   "daryl porter": {
@@ -7273,12 +6837,6 @@
     "sleeperId": "1265"
   },
   "daryl smith": {
-    "sleeperId": "211"
-  },
-  "daryl smith|2014|koci/mueller": {
-    "sleeperId": "211"
-  },
-  "daryl smith|2015|james": {
     "sleeperId": "211"
   },
   "daryl virgies": {
@@ -7324,21 +6882,6 @@
     "sleeperId": "5102"
   },
   "davante adams": {
-    "sleeperId": "2133"
-  },
-  "davante adams|2015|mitch": {
-    "sleeperId": "2133"
-  },
-  "davante adams|2016|trevor": {
-    "sleeperId": "2133"
-  },
-  "davante adams|2018|syed/terence": {
-    "sleeperId": "2133"
-  },
-  "davante adams|2019|schex": {
-    "sleeperId": "2133"
-  },
-  "davante adams|2020|keyon": {
     "sleeperId": "2133"
   },
   "davante davis": {
@@ -7431,18 +6974,6 @@
   "david johnson hou": {
     "sleeperId": "2391"
   },
-  "david johnson|2015": {
-    "sleeperId": "2391"
-  },
-  "david johnson|2017|schex/jeff": {
-    "sleeperId": "2391"
-  },
-  "david johnson|2018|daniel": {
-    "sleeperId": "2391"
-  },
-  "david johnson|2018|syed/terence": {
-    "sleeperId": "2391"
-  },
   "david johnson|2020|type:auction|patrick": {
     "sleeperId": "2391"
   },
@@ -7480,9 +7011,6 @@
     "sleeperId": "3628"
   },
   "david montgomery": {
-    "sleeperId": "5892"
-  },
-  "david montgomery|2021|schex": {
     "sleeperId": "5892"
   },
   "david moore": {
@@ -7716,15 +7244,6 @@
   "deandre hopkins": {
     "sleeperId": "1426"
   },
-  "deandre hopkins|2016|keyon": {
-    "sleeperId": "1426"
-  },
-  "deandre hopkins|2016|syed/terence": {
-    "sleeperId": "1426"
-  },
-  "deandre hopkins|2019|koci/mueller": {
-    "sleeperId": "1426"
-  },
   "deandre houstoncarson": {
     "sleeperId": "3341"
   },
@@ -7824,15 +7343,6 @@
   "dede westbrook": {
     "sleeperId": "4146"
   },
-  "dede westbrook|2018|patrick": {
-    "sleeperId": "4146"
-  },
-  "dede westbrook|2019|keyon": {
-    "sleeperId": "4146"
-  },
-  "dede westbrook|2020|schex": {
-    "sleeperId": "4146"
-  },
   "dedrick mills": {
     "sleeperId": "7893"
   },
@@ -7849,9 +7359,6 @@
     "sleeperId": "7612"
   },
   "dee ford": {
-    "sleeperId": "2015"
-  },
-  "dee ford|2018|trevor": {
     "sleeperId": "2015"
   },
   "dee liner": {
@@ -7934,12 +7441,6 @@
   "delanie walker": {
     "sleeperId": "284"
   },
-  "delanie walker|2017|keyon": {
-    "sleeperId": "284"
-  },
-  "delanie walker|2018|mitch": {
-    "sleeperId": "284"
-  },
   "delano hill": {
     "sleeperId": "4141"
   },
@@ -7981,18 +7482,6 @@
     "sleeperId": "11050"
   },
   "demarco murray": {
-    "sleeperId": "904"
-  },
-  "demarco murray|2011|james": {
-    "sleeperId": "904"
-  },
-  "demarco murray|2014|syed": {
-    "sleeperId": "904"
-  },
-  "demarco murray|2015|john": {
-    "sleeperId": "904"
-  },
-  "demarco murray|2015|quinn": {
     "sleeperId": "904"
   },
   "demarcus ayers": {
@@ -8046,34 +7535,10 @@
   "demaryius thomas": {
     "sleeperId": "560"
   },
-  "demaryius thomas|2012|schex": {
-    "sleeperId": "560"
-  },
-  "demaryius thomas|2014|syed": {
-    "sleeperId": "560"
-  },
-  "demaryius thomas|2014|trevor": {
-    "sleeperId": "560"
-  },
-  "demaryius thomas|2015|koci/mueller": {
-    "sleeperId": "560"
-  },
-  "demaryius thomas|2017|schex/jeff": {
-    "sleeperId": "560"
-  },
-  "demaryius thomas|2018|daniel": {
-    "sleeperId": "560"
-  },
   "demeco roland": {
     "sleeperId": "13140"
   },
   "demeco ryans": {
-    "sleeperId": "220"
-  },
-  "demeco ryans|2009|patrick": {
-    "sleeperId": "220"
-  },
-  "demeco ryans|2013|schex": {
     "sleeperId": "220"
   },
   "demeer blankumsee": {
@@ -8139,9 +7604,6 @@
   "denard robinson": {
     "sleeperId": "1449"
   },
-  "denard robinson|2014|syed": {
-    "sleeperId": "1449"
-  },
   "denarius moore": {
     "sleeperId": "887"
   },
@@ -8168,12 +7630,6 @@
     "sleeperId": "3727"
   },
   "dennis pitta": {
-    "sleeperId": "527"
-  },
-  "dennis pitta|2012|keyon": {
-    "sleeperId": "527"
-  },
-  "dennis pitta|2014|quinn": {
     "sleeperId": "527"
   },
   "denzel burke": {
@@ -8213,9 +7669,6 @@
     "sleeperId": "456"
   },
   "deon cain": {
-    "sleeperId": "5101"
-  },
-  "deon cain|2019|syed/kuan": {
     "sleeperId": "5101"
   },
   "deon hollins": {
@@ -8297,15 +7750,6 @@
     "sleeperId": "4065"
   },
   "derek carr": {
-    "sleeperId": "2028"
-  },
-  "derek carr|2014|daniel": {
-    "sleeperId": "2028"
-  },
-  "derek carr|2016|james": {
-    "sleeperId": "2028"
-  },
-  "derek carr|2020|schex": {
     "sleeperId": "2028"
   },
   "derek carrier": {
@@ -8405,12 +7849,6 @@
   "derrick henry": {
     "sleeperId": "3198"
   },
-  "derrick henry|2019|syed/kuan": {
-    "sleeperId": "3198"
-  },
-  "derrick henry|2019|trevor": {
-    "sleeperId": "3198"
-  },
   "derrick hopkins": {
     "sleeperId": "1869"
   },
@@ -8471,9 +7909,6 @@
   "derrius guice": {
     "sleeperId": "4949"
   },
-  "derrius guice|2019|keyon": {
-    "sleeperId": "4949"
-  },
   "derron smith": {
     "sleeperId": "2498"
   },
@@ -8489,15 +7924,6 @@
   "desean jackson": {
     "sleeperId": "147"
   },
-  "desean jackson|2014|patrick": {
-    "sleeperId": "147"
-  },
-  "desean jackson|2018|schex": {
-    "sleeperId": "147"
-  },
-  "desean jackson|2019|schex": {
-    "sleeperId": "147"
-  },
   "desean smith": {
     "sleeperId": "4940"
   },
@@ -8511,12 +7937,6 @@
     "sleeperId": "12121"
   },
   "deshaun watson": {
-    "sleeperId": "4017"
-  },
-  "deshaun watson|2019|quinn": {
-    "sleeperId": "4017"
-  },
-  "deshaun watson|2020|brett/luke": {
     "sleeperId": "4017"
   },
   "deshawn gaddie": {
@@ -8568,9 +7988,6 @@
     "sleeperId": "13021"
   },
   "desmond king": {
-    "sleeperId": "4216"
-  },
-  "desmond king|2018|syed/terence": {
     "sleeperId": "4216"
   },
   "desmond little": {
@@ -8625,9 +8042,6 @@
     "sleeperId": "4244"
   },
   "devante parker": {
-    "sleeperId": "2319"
-  },
-  "devante parker|2019|james/charles": {
     "sleeperId": "2319"
   },
   "devaroe lawrence": {
@@ -8740,9 +8154,6 @@
   "devin singletary": {
     "sleeperId": "6130"
   },
-  "devin singletary|2020|mitch": {
-    "sleeperId": "6130"
-  },
   "devin smith": {
     "sleeperId": "1783"
   },
@@ -8757,15 +8168,6 @@
     "name": "Devin Thomas"
   },
   "devin white": {
-    "sleeperId": "6119"
-  },
-  "devin white|2019|keyon": {
-    "sleeperId": "6119"
-  },
-  "devin white|2019|mitch": {
-    "sleeperId": "6119"
-  },
-  "devin white|2021|schex": {
     "sleeperId": "6119"
   },
   "devine ozigbo": {
@@ -8826,18 +8228,6 @@
     "sleeperId": "12830"
   },
   "devonta freeman": {
-    "sleeperId": "2168"
-  },
-  "devonta freeman|2016|john/zach": {
-    "sleeperId": "2168"
-  },
-  "devonta freeman|2017|john/zach": {
-    "sleeperId": "2168"
-  },
-  "devonta freeman|2018|keyon": {
-    "sleeperId": "2168"
-  },
-  "devonta freeman|2019|trevor": {
     "sleeperId": "2168"
   },
   "devonta gloverwright": {
@@ -8921,9 +8311,6 @@
   "dez bryant": {
     "sleeperId": "574"
   },
-  "dez bryant|2016|james": {
-    "sleeperId": "574"
-  },
   "dez fitzpatrick": {
     "sleeperId": "7729"
   },
@@ -8984,12 +8371,6 @@
   "dion lewis": {
     "sleeperId": "788"
   },
-  "dion lewis|2016|syed/terence": {
-    "sleeperId": "788"
-  },
-  "dion lewis|2018|schex": {
-    "sleeperId": "788"
-  },
   "dion novil": {
     "sleeperId": "8738"
   },
@@ -8997,9 +8378,6 @@
     "sleeperId": "1357"
   },
   "diontae johnson": {
-    "sleeperId": "5937"
-  },
-  "diontae johnson|2020|schex": {
     "sleeperId": "5937"
   },
   "diontae spencer": {
@@ -9066,24 +8444,6 @@
     "sleeperId": "6453"
   },
   "dj moore": {
-    "sleeperId": "4983"
-  },
-  "dj moore|2018": {
-    "sleeperId": "4983"
-  },
-  "dj moore|2022|keyon": {
-    "sleeperId": "4983"
-  },
-  "dj moore|2022|quinn": {
-    "sleeperId": "4983"
-  },
-  "dj moore|2024|justin": {
-    "sleeperId": "4983"
-  },
-  "dj moore|2024|quinn": {
-    "sleeperId": "4983"
-  },
-  "dj moore|wr|jason": {
     "sleeperId": "4983"
   },
   "dj pettway": {
@@ -9244,9 +8604,6 @@
     "sleeperId": "1355"
   },
   "donald brown": {
-    "sleeperId": "377"
-  },
-  "donald brown|2010|patrick": {
     "sleeperId": "377"
   },
   "donald butler": {
@@ -9471,12 +8828,6 @@
   "doug martin": {
     "sleeperId": "1195"
   },
-  "doug martin|2013|john": {
-    "sleeperId": "1195"
-  },
-  "doug martin|2017|schex/jeff": {
-    "sleeperId": "1195"
-  },
   "doug mcneil": {
     "sleeperId": "2615"
   },
@@ -9559,21 +8910,6 @@
   "drew brees": {
     "sleeperId": "289"
   },
-  "drew brees|2008|jeff": {
-    "sleeperId": "289"
-  },
-  "drew brees|2014|syed": {
-    "sleeperId": "289"
-  },
-  "drew brees|2015|keyon": {
-    "sleeperId": "289"
-  },
-  "drew brees|2018|mitch": {
-    "sleeperId": "289"
-  },
-  "drew brees|2019|koci/mueller": {
-    "sleeperId": "289"
-  },
   "drew davis": {
     "sleeperId": null,
     "name": "Drew Davis"
@@ -9596,9 +8932,6 @@
   "drew lock": {
     "sleeperId": "5854"
   },
-  "drew lock|2019|keyon": {
-    "sleeperId": "5854"
-  },
   "drew morgan": {
     "sleeperId": "4396"
   },
@@ -9615,9 +8948,6 @@
     "sleeperId": "10929"
   },
   "drew stanton": {
-    "sleeperId": "181"
-  },
-  "drew stanton|2017|schex/jeff": {
     "sleeperId": "181"
   },
   "drew white": {
@@ -9654,12 +8984,6 @@
     "sleeperId": "1278"
   },
   "duke johnson": {
-    "sleeperId": "2382"
-  },
-  "duke johnson|2015|john/zach": {
-    "sleeperId": "2382"
-  },
-  "duke johnson|2016|keyon": {
     "sleeperId": "2382"
   },
   "duke riley": {
@@ -9738,9 +9062,6 @@
     "sleeperId": "1105"
   },
   "dwayne bowe": {
-    "sleeperId": "286"
-  },
-  "dwayne bowe|2012|daniel": {
     "sleeperId": "286"
   },
   "dwayne eskridge": {
@@ -9860,9 +9181,6 @@
   "earl thomas": {
     "sleeperId": "643"
   },
-  "earl thomas|2013|schex": {
-    "sleeperId": "643"
-  },
   "earl wolff": {
     "sleeperId": "1344"
   },
@@ -9940,19 +9258,10 @@
   "eddie lacy": {
     "sleeperId": "1527"
   },
-  "eddie lacy|2014|daniel": {
-    "sleeperId": "1527"
-  },
-  "eddie lacy|2016|mitch": {
-    "sleeperId": "1527"
-  },
   "eddie pleasant": {
     "sleeperId": "1326"
   },
   "eddie royal": {
-    "sleeperId": "297"
-  },
-  "eddie royal|2008|patrick": {
     "sleeperId": "297"
   },
   "eddie vanderdoes": {
@@ -10058,18 +9367,6 @@
   "eli manning": {
     "sleeperId": "188"
   },
-  "eli manning|2008|john": {
-    "sleeperId": "188"
-  },
-  "eli manning|2009|syed": {
-    "sleeperId": "188"
-  },
-  "eli manning|2015|schex/jeff": {
-    "sleeperId": "188"
-  },
-  "eli manning|2018|trevor": {
-    "sleeperId": "188"
-  },
   "eli mencer": {
     "sleeperId": "7431"
   },
@@ -10164,12 +9461,6 @@
     "sleeperId": "4263"
   },
   "elijah mitchell": {
-    "sleeperId": "7561"
-  },
-  "elijah mitchell|2021": {
-    "sleeperId": "7561"
-  },
-  "elijah mitchell|2022|koci/mueller": {
     "sleeperId": "7561"
   },
   "elijah molden": {
@@ -10314,21 +9605,6 @@
   "emmanuel sanders": {
     "sleeperId": "538"
   },
-  "emmanuel sanders|2015|koci/mueller": {
-    "sleeperId": "538"
-  },
-  "emmanuel sanders|2016|koci/mueller": {
-    "sleeperId": "538"
-  },
-  "emmanuel sanders|2016|syed/terence": {
-    "sleeperId": "538"
-  },
-  "emmanuel sanders|2017|john/zach": {
-    "sleeperId": "538"
-  },
-  "emmanuel sanders|2018|koci/mueller": {
-    "sleeperId": "538"
-  },
   "emmanuel smith": {
     "sleeperId": "5149"
   },
@@ -10365,16 +9641,10 @@
   "eric decker": {
     "sleeperId": "558"
   },
-  "eric decker|2012|syed": {
-    "sleeperId": "558"
-  },
   "eric dungey": {
     "sleeperId": "6443"
   },
   "eric ebron": {
-    "sleeperId": "2118"
-  },
-  "eric ebron|2017|keyon": {
     "sleeperId": "2118"
   },
   "eric frohnapfel": {
@@ -10555,9 +9825,6 @@
   "evan engram": {
     "sleeperId": "4066"
   },
-  "evan engram|2020|keyon": {
-    "sleeperId": "4066"
-  },
   "evan foster": {
     "sleeperId": "7501"
   },
@@ -10620,15 +9887,6 @@
     "sleeperId": "4734"
   },
   "ezekiel elliott": {
-    "sleeperId": "3164"
-  },
-  "ezekiel elliott|2020|keyon": {
-    "sleeperId": "3164"
-  },
-  "ezekiel elliott|2021|jason": {
-    "sleeperId": "3164"
-  },
-  "ezekiel elliott|2021|luke": {
     "sleeperId": "3164"
   },
   "ezekiel turner": {
@@ -10757,18 +10015,6 @@
   "frank gore": {
     "sleeperId": "232"
   },
-  "frank gore|2010|schexes": {
-    "sleeperId": "232"
-  },
-  "frank gore|2014|mitch": {
-    "sleeperId": "232"
-  },
-  "frank gore|2016|john/zach": {
-    "sleeperId": "232"
-  },
-  "frank gore|2017|quinn": {
-    "sleeperId": "232"
-  },
   "frank herron": {
     "sleeperId": "5660"
   },
@@ -10809,15 +10055,6 @@
     "sleeperId": "98"
   },
   "fred jackson": {
-    "sleeperId": "228"
-  },
-  "fred jackson|2014|keyon": {
-    "sleeperId": "228"
-  },
-  "fred jackson|2014|schex": {
-    "sleeperId": "228"
-  },
-  "fred jackson|2014|syed": {
     "sleeperId": "228"
   },
   "fred ross": {
@@ -11016,9 +10253,6 @@
   "gavin escobar": {
     "sleeperId": "1485"
   },
-  "gavin escobar|2013|syed": {
-    "sleeperId": "1485"
-  },
   "gavin hardison": {
     "sleeperId": "12149"
   },
@@ -11091,15 +10325,6 @@
   "george kittle": {
     "sleeperId": "4217"
   },
-  "george kittle|2017|daniel": {
-    "sleeperId": "4217"
-  },
-  "george kittle|2019|quinn": {
-    "sleeperId": "4217"
-  },
-  "george kittle|2021|keyon": {
-    "sleeperId": "4217"
-  },
   "george obinna": {
     "sleeperId": "7247"
   },
@@ -11160,9 +10385,6 @@
   "germaine pratt": {
     "sleeperId": "5894"
   },
-  "germaine pratt|2019|syed/kuan": {
-    "sleeperId": "5894"
-  },
   "germone hopper": {
     "sleeperId": "4827"
   },
@@ -11209,15 +10431,6 @@
   "giovani bernard": {
     "sleeperId": "1386"
   },
-  "giovani bernard|2018|mitch": {
-    "sleeperId": "1386"
-  },
-  "giovani bernard|2020|keyon": {
-    "sleeperId": "1386"
-  },
-  "giovani bernard|2021|mitch": {
-    "sleeperId": "1386"
-  },
   "giovanni ricci": {
     "sleeperId": "7216"
   },
@@ -11254,9 +10467,6 @@
   "golden tate": {
     "sleeperId": "642"
   },
-  "golden tate|2016|keyon": {
-    "sleeperId": "642"
-  },
   "gordon hill": {
     "sleeperId": "2663"
   },
@@ -11267,9 +10477,6 @@
     "sleeperId": "8095"
   },
   "graham gano": {
-    "sleeperId": "503"
-  },
-  "graham gano|2010|trevor": {
     "sleeperId": "503"
   },
   "graham harrell": {
@@ -11370,9 +10577,6 @@
   "greg olsen": {
     "sleeperId": "58"
   },
-  "greg olsen|2016|schex/jeff": {
-    "sleeperId": "58"
-  },
   "greg orton": {
     "sleeperId": "1763"
   },
@@ -11470,15 +10674,6 @@
     "sleeperId": "5886"
   },
   "hakeem nicks": {
-    "sleeperId": "474"
-  },
-  "hakeem nicks|2011|john": {
-    "sleeperId": "474"
-  },
-  "hakeem nicks|2012|schex": {
-    "sleeperId": "474"
-  },
-  "hakeem nicks|2013|jake/luke": {
     "sleeperId": "474"
   },
   "hakeem valles": {
@@ -11640,9 +10835,6 @@
   "henry ruggs": {
     "sleeperId": "6789"
   },
-  "henry ruggs|2020|koci/mueller": {
-    "sleeperId": "6789"
-  },
   "henry tootoo": {
     "sleeperId": "10970"
   },
@@ -11702,15 +10894,6 @@
     "sleeperId": "4625"
   },
   "hunter henry": {
-    "sleeperId": "3214"
-  },
-  "hunter henry|2016|keyon": {
-    "sleeperId": "3214"
-  },
-  "hunter henry|2018|schex": {
-    "sleeperId": "3214"
-  },
-  "hunter henry|2020|patrick": {
     "sleeperId": "3214"
   },
   "hunter kampmoyer": {
@@ -12360,9 +11543,6 @@
   "jacoby jones": {
     "sleeperId": "203"
   },
-  "jacoby jones|2011|trevor": {
-    "sleeperId": "203"
-  },
   "jacoby stevens": {
     "sleeperId": "7779"
   },
@@ -12392,9 +11572,6 @@
     "sleeperId": "1773"
   },
   "jacquizz rodgers": {
-    "sleeperId": "949"
-  },
-  "jacquizz rodgers|2012|syed": {
     "sleeperId": "949"
   },
   "jacub panasiuk": {
@@ -12445,9 +11622,6 @@
   "jaelen strong": {
     "sleeperId": "2375"
   },
-  "jaelen strong|2015|daniel": {
-    "sleeperId": "2375"
-  },
   "jaelon acklin": {
     "sleeperId": "5140"
   },
@@ -12479,9 +11653,6 @@
     "sleeperId": "13195"
   },
   "jahlani tavai": {
-    "sleeperId": "6179"
-  },
-  "jahlani tavai|2019|syed/kuan": {
     "sleeperId": "6179"
   },
   "jahleel addae": {
@@ -12518,12 +11689,6 @@
     "sleeperId": "8735"
   },
   "jairus byrd": {
-    "sleeperId": "332"
-  },
-  "jairus byrd|2013|daniel": {
-    "sleeperId": "332"
-  },
-  "jairus byrd|2013|syed": {
     "sleeperId": "332"
   },
   "jaivon heiligh": {
@@ -12789,9 +11954,6 @@
   "jalen reagor": {
     "sleeperId": "6798"
   },
-  "jalen reagor|2021|schex": {
-    "sleeperId": "6798"
-  },
   "jalen redmond": {
     "sleeperId": "11328"
   },
@@ -12886,21 +12048,6 @@
     "sleeperId": "11703"
   },
   "jamaal charles": {
-    "sleeperId": "323"
-  },
-  "jamaal charles|2011|john": {
-    "sleeperId": "323"
-  },
-  "jamaal charles|2011|syed": {
-    "sleeperId": "323"
-  },
-  "jamaal charles|2013|koci/mueller": {
-    "sleeperId": "323"
-  },
-  "jamaal charles|2014|koci/mueller": {
-    "sleeperId": "323"
-  },
-  "jamaal charles|2014|quinn": {
     "sleeperId": "323"
   },
   "jamaal jones": {
@@ -13013,24 +12160,6 @@
   "jameis winston": {
     "sleeperId": "2306"
   },
-  "jameis winston|2018|keyon": {
-    "sleeperId": "2306"
-  },
-  "jameis winston|2018|mitch": {
-    "sleeperId": "2306"
-  },
-  "jameis winston|2018|quinn": {
-    "sleeperId": "2306"
-  },
-  "jameis winston|2018|schex": {
-    "sleeperId": "2306"
-  },
-  "jameis winston|2019|mitch": {
-    "sleeperId": "2306"
-  },
-  "jameis winston|2019|quinn": {
-    "sleeperId": "2306"
-  },
   "jamel dean": {
     "sleeperId": "5946"
   },
@@ -13114,9 +12243,6 @@
   "james harrison": {
     "sleeperId": "48"
   },
-  "james harrison|2008|schex": {
-    "sleeperId": "48"
-  },
   "james hearns": {
     "sleeperId": "5496"
   },
@@ -13130,9 +12256,6 @@
     "sleeperId": "253"
   },
   "james laurinaitis": {
-    "sleeperId": "453"
-  },
-  "james laurinaitis|2009|jake/luke": {
     "sleeperId": "453"
   },
   "james lockhart": {
@@ -13180,9 +12303,6 @@
   "james robinson": {
     "sleeperId": "6955"
   },
-  "james robinson|2020|patrick": {
-    "sleeperId": "6955"
-  },
   "james ross": {
     "sleeperId": "3885"
   },
@@ -13211,9 +12331,6 @@
     "sleeperId": "5024"
   },
   "james white": {
-    "sleeperId": "1848"
-  },
-  "james white|2019|james/charles": {
     "sleeperId": "1848"
   },
   "james wiggins": {
@@ -13274,9 +12391,6 @@
     "sleeperId": "6524"
   },
   "jamison crowder": {
-    "sleeperId": "2410"
-  },
-  "jamison crowder|2019|james/charles": {
     "sleeperId": "2410"
   },
   "jamiyus pittman": {
@@ -13378,9 +12492,6 @@
   "jared cook": {
     "sleeperId": "367"
   },
-  "jared cook|2013|koci/mueller": {
-    "sleeperId": "367"
-  },
   "jared crick": {
     "sleeperId": "1100"
   },
@@ -13388,18 +12499,6 @@
     "sleeperId": "3462"
   },
   "jared goff": {
-    "sleeperId": "3163"
-  },
-  "jared goff|2017|john/zach": {
-    "sleeperId": "3163"
-  },
-  "jared goff|2018|schex": {
-    "sleeperId": "3163"
-  },
-  "jared goff|2019|mitch": {
-    "sleeperId": "3163"
-  },
-  "jared goff|2019|quinn": {
     "sleeperId": "3163"
   },
   "jared goldwire": {
@@ -13580,9 +12679,6 @@
   "jason babin": {
     "sleeperId": "668"
   },
-  "jason babin|2012|john": {
-    "sleeperId": "668"
-  },
   "jason bean": {
     "sleeperId": "12190"
   },
@@ -13684,12 +12780,6 @@
     "sleeperId": "753"
   },
   "jason witten": {
-    "sleeperId": "23"
-  },
-  "jason witten|2017|john/zach": {
-    "sleeperId": "23"
-  },
-  "jason witten|2019|keyon": {
     "sleeperId": "23"
   },
   "jasper brinkley": {
@@ -13819,9 +12909,6 @@
   "jay cutler": {
     "sleeperId": "416"
   },
-  "jay cutler|2014|james": {
-    "sleeperId": "416"
-  },
   "jay feely": {
     "sleeperId": "692"
   },
@@ -13924,12 +13011,6 @@
   "jaylen samuels": {
     "sleeperId": "5107"
   },
-  "jaylen samuels|2019|keyon": {
-    "sleeperId": "5107"
-  },
-  "jaylen samuels|2019|patrick": {
-    "sleeperId": "5107"
-  },
   "jaylen smith": {
     "sleeperId": "6155"
   },
@@ -13997,9 +13078,6 @@
     "sleeperId": "7191"
   },
   "jaylon smith": {
-    "sleeperId": "3167"
-  },
-  "jaylon smith|2019|keyon": {
     "sleeperId": "3167"
   },
   "jaylon whitemcclain": {
@@ -14154,9 +13232,6 @@
   "jeff wilson": {
     "sleeperId": "5284"
   },
-  "jeff wilson|2020|schex": {
-    "sleeperId": "5284"
-  },
   "jeffery simmons": {
     "sleeperId": "6125"
   },
@@ -14295,9 +13370,6 @@
   "jeremy hill": {
     "sleeperId": "1892"
   },
-  "jeremy hill|2016|james": {
-    "sleeperId": "1892"
-  },
   "jeremy kelley": {
     "sleeperId": "1432"
   },
@@ -14317,9 +13389,6 @@
     "sleeperId": "11404"
   },
   "jeremy maclin": {
-    "sleeperId": "411"
-  },
-  "jeremy maclin|2015|mitch": {
     "sleeperId": "411"
   },
   "jeremy mcnichols": {
@@ -14357,9 +13426,6 @@
     "sleeperId": "2920"
   },
   "jerick mckinnon": {
-    "sleeperId": "2161"
-  },
-  "jerick mckinnon|2018|mitch": {
     "sleeperId": "2161"
   },
   "jerious norwood": {
@@ -14439,9 +13505,6 @@
   "jerod mayo": {
     "sleeperId": "27"
   },
-  "jerod mayo|2014|schex": {
-    "sleeperId": "27"
-  },
   "jerome baker": {
     "sleeperId": "5056"
   },
@@ -14471,9 +13534,6 @@
     "sleeperId": "4328"
   },
   "jerome simpson": {
-    "sleeperId": "321"
-  },
-  "jerome simpson|2013|keyon": {
     "sleeperId": "321"
   },
   "jerome smith": {
@@ -14541,9 +13601,6 @@
     "sleeperId": "7889"
   },
   "jerry jeudy": {
-    "sleeperId": "6783"
-  },
-  "jerry jeudy|2021|trevor": {
     "sleeperId": "6783"
   },
   "jerry lovelocke": {
@@ -14657,28 +13714,13 @@
   "jimmy clausen": {
     "sleeperId": "611"
   },
-  "jimmy clausen|2010|john": {
-    "sleeperId": "611"
-  },
   "jimmy gaines": {
     "sleeperId": "1810"
   },
   "jimmy garoppolo": {
     "sleeperId": "1837"
   },
-  "jimmy garoppolo|2018|patrick": {
-    "sleeperId": "1837"
-  },
-  "jimmy garoppolo|2020|quinn": {
-    "sleeperId": "1837"
-  },
   "jimmy graham": {
-    "sleeperId": "616"
-  },
-  "jimmy graham|2013|schex": {
-    "sleeperId": "616"
-  },
-  "jimmy graham|2014|trevor": {
     "sleeperId": "616"
   },
   "jimmy hall": {
@@ -14766,9 +13808,6 @@
   "jj watt": {
     "sleeperId": "856"
   },
-  "jj watt|2018|syed/terence": {
-    "sleeperId": "856"
-  },
   "jj weaver": {
     "sleeperId": "13239"
   },
@@ -14835,9 +13874,6 @@
   "joe flacco": {
     "sleeperId": "19"
   },
-  "joe flacco|2015|brett/luke": {
-    "sleeperId": "19"
-  },
   "joe forson": {
     "sleeperId": "6677"
   },
@@ -14877,22 +13913,10 @@
   "joe mcknight": {
     "sleeperId": "523"
   },
-  "joe mcknight|2012|schex": {
-    "sleeperId": "523"
-  },
   "joe milton": {
     "sleeperId": "11557"
   },
   "joe mixon": {
-    "sleeperId": "4018"
-  },
-  "joe mixon|2018|mitch": {
-    "sleeperId": "4018"
-  },
-  "joe mixon|2019|keyon": {
-    "sleeperId": "4018"
-  },
-  "joe mixon|2019|syed/kuan": {
     "sleeperId": "4018"
   },
   "joe morgan": {
@@ -14941,9 +13965,6 @@
   "joe williams": {
     "sleeperId": "4042"
   },
-  "joe williams|2017|schex/jeff": {
-    "sleeperId": "4042"
-  },
   "joejuan williams": {
     "sleeperId": "6127"
   },
@@ -14986,15 +14007,6 @@
   "joey bosa": {
     "sleeperId": "3156"
   },
-  "joey bosa|2016|jake/luke": {
-    "sleeperId": "3156"
-  },
-  "joey bosa|2018|keyon": {
-    "sleeperId": "3156"
-  },
-  "joey bosa|2019|john/zach": {
-    "sleeperId": "3156"
-  },
   "joey galloway": {
     "sleeperId": null,
     "name": "Joey Galloway"
@@ -15034,12 +14046,6 @@
     "sleeperId": "7331"
   },
   "john brown": {
-    "sleeperId": "2238"
-  },
-  "john brown|2019|keyon": {
-    "sleeperId": "2238"
-  },
-  "john brown|2019|koci/mueller": {
     "sleeperId": "2238"
   },
   "john bullock": {
@@ -15193,9 +14199,6 @@
   "john ross": {
     "sleeperId": "4038"
   },
-  "john ross|2019|brett/luke": {
-    "sleeperId": "4038"
-  },
   "john samuel shenker": {
     "sleeperId": "11467"
   },
@@ -15289,9 +14292,6 @@
   "johnny manziel": {
     "sleeperId": "1907"
   },
-  "johnny manziel|2014|john/zach": {
-    "sleeperId": "1907"
-  },
   "johnny maxey": {
     "sleeperId": "3553"
   },
@@ -15320,12 +14320,6 @@
     "sleeperId": "1557"
   },
   "joique bell": {
-    "sleeperId": "736"
-  },
-  "joique bell|2014|syed": {
-    "sleeperId": "736"
-  },
-  "joique bell|2015|quinn": {
     "sleeperId": "736"
   },
   "jojo domann": {
@@ -15402,15 +14396,6 @@
     "sleeperId": "7344"
   },
   "jonas gray": {
-    "sleeperId": "1698"
-  },
-  "jonas gray|2015|keyon": {
-    "sleeperId": "1698"
-  },
-  "jonas gray|2015|koci/mueller": {
-    "sleeperId": "1698"
-  },
-  "jonas gray|2015|syed": {
     "sleeperId": "1698"
   },
   "jonas griffith": {
@@ -15526,19 +14511,10 @@
   "jonathan stewart": {
     "sleeperId": "218"
   },
-  "jonathan stewart|2015|quinn": {
-    "sleeperId": "218"
-  },
-  "jonathan stewart|2016|schex/jeff": {
-    "sleeperId": "218"
-  },
   "jonathan sutherland": {
     "sleeperId": "11250"
   },
   "jonathan taylor": {
-    "sleeperId": "6813"
-  },
-  "jonathan taylor|2020|schex": {
     "sleeperId": "6813"
   },
   "jonathan vilma": {
@@ -15573,9 +14549,6 @@
     "sleeperId": "2934"
   },
   "jonnu smith": {
-    "sleeperId": "4144"
-  },
-  "jonnu smith|2018|john/zach": {
     "sleeperId": "4144"
   },
   "jonte green": {
@@ -15683,9 +14656,6 @@
   "jordan hicks": {
     "sleeperId": "2389"
   },
-  "jordan hicks|2020|james/charles": {
-    "sleeperId": "2389"
-  },
   "jordan hill": {
     "sleeperId": "1756"
   },
@@ -15693,9 +14663,6 @@
     "sleeperId": "6749"
   },
   "jordan howard": {
-    "sleeperId": "3306"
-  },
-  "jordan howard|2017|keyon": {
     "sleeperId": "3306"
   },
   "jordan howden": {
@@ -15806,15 +14773,6 @@
   "jordan reed": {
     "sleeperId": "1500"
   },
-  "jordan reed|2013|john": {
-    "sleeperId": "1500"
-  },
-  "jordan reed|2016|koci/mueller": {
-    "sleeperId": "1500"
-  },
-  "jordan reed|2019|james/charles": {
-    "sleeperId": "1500"
-  },
   "jordan richards": {
     "sleeperId": "2369"
   },
@@ -15903,9 +14861,6 @@
   "jordan wilkins": {
     "sleeperId": "5100"
   },
-  "jordan wilkins|2020|schex": {
-    "sleeperId": "5100"
-  },
   "jordan williams": {
     "sleeperId": "2630"
   },
@@ -15934,12 +14889,6 @@
     "sleeperId": "7919"
   },
   "jordy nelson": {
-    "sleeperId": "175"
-  },
-  "jordy nelson|2013|syed": {
-    "sleeperId": "175"
-  },
-  "jordy nelson|2015|koci/mueller": {
     "sleeperId": "175"
   },
   "jordyn brooks": {
@@ -15988,9 +14937,6 @@
   "joseph randle": {
     "sleeperId": "1487"
   },
-  "joseph randle|2015|schex/jeff": {
-    "sleeperId": "1487"
-  },
   "joseph scates": {
     "sleeperId": "12222"
   },
@@ -16008,12 +14954,6 @@
   },
   "josh allen": {
     "sleeperId": "4984"
-  },
-  "josh allen|2018|john/zach": {
-    "sleeperId": "4984"
-  },
-  "josh allen|2019": {
-    "sleeperId": "5840"
   },
   "josh aubrey": {
     "sleeperId": "1396"
@@ -16048,16 +14988,10 @@
   "josh boyce": {
     "sleeperId": "1362"
   },
-  "josh boyce|2013|syed": {
-    "sleeperId": "1362"
-  },
   "josh boyd": {
     "sleeperId": "1523"
   },
   "josh brown": {
-    "sleeperId": "102"
-  },
-  "josh brown|2015|james": {
     "sleeperId": "102"
   },
   "josh bush": {
@@ -16096,9 +15030,6 @@
   "josh doctson": {
     "sleeperId": "3178"
   },
-  "josh doctson|2017|mitch": {
-    "sleeperId": "3178"
-  },
   "josh downs": {
     "sleeperId": "9500"
   },
@@ -16123,9 +15054,6 @@
   "josh freeman": {
     "sleeperId": "448"
   },
-  "josh freeman|2013|koci": {
-    "sleeperId": "448"
-  },
   "josh fuga": {
     "sleeperId": "12802"
   },
@@ -16136,18 +15064,6 @@
     "sleeperId": "6754"
   },
   "josh gordon": {
-    "sleeperId": "1244"
-  },
-  "josh gordon|2012|syed": {
-    "sleeperId": "1244"
-  },
-  "josh gordon|2014|keyon": {
-    "sleeperId": "1244"
-  },
-  "josh gordon|2018|schex": {
-    "sleeperId": "1244"
-  },
-  "josh gordon|2019|trevor": {
     "sleeperId": "1244"
   },
   "josh gordy": {
@@ -16198,9 +15114,6 @@
   "josh johnson": {
     "sleeperId": "260"
   },
-  "josh johnson|qb|quinn": {
-    "sleeperId": "260"
-  },
   "josh jones": {
     "sleeperId": "4109"
   },
@@ -16214,12 +15127,6 @@
     "sleeperId": "2833"
   },
   "josh lambo": {
-    "sleeperId": "2671"
-  },
-  "josh lambo|2019|keyon": {
-    "sleeperId": "2671"
-  },
-  "josh lambo|2019|syed/kuan": {
     "sleeperId": "2671"
   },
   "josh lenz": {
@@ -16249,15 +15156,6 @@
   "josh mccown": {
     "sleeperId": "208"
   },
-  "josh mccown|2014|koci/mueller": {
-    "sleeperId": "208"
-  },
-  "josh mccown|2017|keyon": {
-    "sleeperId": "208"
-  },
-  "josh mccown|2017|mitch": {
-    "sleeperId": "208"
-  },
   "josh mcnary": {
     "sleeperId": "1762"
   },
@@ -16265,9 +15163,6 @@
     "sleeperId": "12979"
   },
   "josh morgan": {
-    "sleeperId": "222"
-  },
-  "josh morgan|2013|daniel": {
     "sleeperId": "222"
   },
   "josh newton": {
@@ -16312,16 +15207,10 @@
   "josh reynolds": {
     "sleeperId": "4171"
   },
-  "josh reynolds|2021|jason": {
-    "sleeperId": "4171"
-  },
   "josh robinson": {
     "sleeperId": "1254"
   },
   "josh rosen": {
-    "sleeperId": "4863"
-  },
-  "josh rosen|2019|brett/luke": {
     "sleeperId": "4863"
   },
   "josh ross": {
@@ -16382,9 +15271,6 @@
     "sleeperId": "12787"
   },
   "josh wilson": {
-    "sleeperId": "700"
-  },
-  "josh wilson|2009|patrick": {
     "sleeperId": "700"
   },
   "josh woodrum": {
@@ -16602,12 +15488,6 @@
   "julian edelman": {
     "sleeperId": "344"
   },
-  "julian edelman|2018|brett/luke": {
-    "sleeperId": "344"
-  },
-  "julian edelman|2019|keyon": {
-    "sleeperId": "344"
-  },
   "julian fleming": {
     "sleeperId": "13108"
   },
@@ -16642,18 +15522,6 @@
     "sleeperId": "3772"
   },
   "julio jones": {
-    "sleeperId": "947"
-  },
-  "julio jones|2014|daniel": {
-    "sleeperId": "947"
-  },
-  "julio jones|2016|syed/terence": {
-    "sleeperId": "947"
-  },
-  "julio jones|2017|koci/mueller": {
-    "sleeperId": "947"
-  },
-  "julio jones|2019|koci/mueller": {
     "sleeperId": "947"
   },
   "julius chestnut": {
@@ -16750,9 +15618,6 @@
   "justin blackmon": {
     "sleeperId": "1114"
   },
-  "justin blackmon|2012|jake/luke": {
-    "sleeperId": "1114"
-  },
   "justin blazek": {
     "sleeperId": "12209"
   },
@@ -16796,9 +15661,6 @@
   "justin forsett": {
     "sleeperId": "458"
   },
-  "justin forsett|2009|syed": {
-    "sleeperId": "458"
-  },
   "justin gage": {
     "sleeperId": null,
     "name": "Justin Gage"
@@ -16821,9 +15683,6 @@
   "justin hardy": {
     "sleeperId": "2412"
   },
-  "justin hardy|2017|john/zach": {
-    "sleeperId": "2412"
-  },
   "justin herbert": {
     "sleeperId": "6797"
   },
@@ -16841,15 +15700,6 @@
   },
   "justin hunter": {
     "sleeperId": "1418"
-  },
-  "justin hunter|2014|mitch": {
-    "sleeperId": "1418"
-  },
-  "justin hunter|2015|quinn": {
-    "sleeperId": "1418"
-  },
-  "justin hunter|2015|syed": {
-    "sleeperId": "604"
   },
   "justin jackson": {
     "sleeperId": "5131"
@@ -17011,9 +15861,6 @@
     "sleeperId": "11419"
   },
   "kadeem carey": {
-    "sleeperId": "2104"
-  },
-  "kadeem carey|2014|john/zach": {
     "sleeperId": "2104"
   },
   "kaden davis": {
@@ -17255,9 +16102,6 @@
   "kareem hunt": {
     "sleeperId": "4098"
   },
-  "kareem hunt|2019|john/zach": {
-    "sleeperId": "4098"
-  },
   "kareem jackson": {
     "sleeperId": "544"
   },
@@ -17286,9 +16130,6 @@
     "sleeperId": "646"
   },
   "karlos williams": {
-    "sleeperId": "2458"
-  },
-  "karlos williams|2015|john/zach": {
     "sleeperId": "2458"
   },
   "karter schult": {
@@ -17366,9 +16207,6 @@
   "keanu neal": {
     "sleeperId": "3181"
   },
-  "keanu neal|2019|james/charles": {
-    "sleeperId": "3181"
-  },
   "keaontay ingram": {
     "sleeperId": "8221"
   },
@@ -17406,15 +16244,6 @@
     "sleeperId": "1648"
   },
   "keenan allen": {
-    "sleeperId": "1479"
-  },
-  "keenan allen|2017|patrick": {
-    "sleeperId": "1479"
-  },
-  "keenan allen|2019|syed/kuan": {
-    "sleeperId": "1479"
-  },
-  "keenan allen|2019|trevor": {
     "sleeperId": "1479"
   },
   "keenan garber": {
@@ -17605,12 +16434,6 @@
   "kelvin benjamin": {
     "sleeperId": "2182"
   },
-  "kelvin benjamin|2015|schex/jeff": {
-    "sleeperId": "2182"
-  },
-  "kelvin benjamin|2018|syed/terence": {
-    "sleeperId": "2182"
-  },
   "kelvin harmon": {
     "sleeperId": "5884"
   },
@@ -17686,12 +16509,6 @@
   "kendall hunter": {
     "sleeperId": "978"
   },
-  "kendall hunter|2011|daniel": {
-    "sleeperId": "978"
-  },
-  "kendall hunter|2013|keyon": {
-    "sleeperId": "978"
-  },
   "kendall james": {
     "sleeperId": "2159"
   },
@@ -17722,9 +16539,6 @@
   "kendall wright": {
     "sleeperId": "1097"
   },
-  "kendall wright|2014|schex": {
-    "sleeperId": "1097"
-  },
   "kendarin ray": {
     "sleeperId": "12338"
   },
@@ -17747,9 +16561,6 @@
     "sleeperId": "3052"
   },
   "kendrick lewis": {
-    "sleeperId": "713"
-  },
-  "kendrick lewis|2014|daniel": {
     "sleeperId": "713"
   },
   "kendrick norton": {
@@ -17783,9 +16594,6 @@
     "sleeperId": "2253"
   },
   "kenneth dixon": {
-    "sleeperId": "3208"
-  },
-  "kenneth dixon|2016|keyon": {
     "sleeperId": "3208"
   },
   "kenneth durden": {
@@ -17824,21 +16632,6 @@
   "kenneth walker": {
     "sleeperId": "8151"
   },
-  "kenneth walker|2022|justin": {
-    "sleeperId": "8151"
-  },
-  "kenneth walker|2025|jason": {
-    "sleeperId": "8151"
-  },
-  "kenneth walker|2025|justin": {
-    "sleeperId": "8151"
-  },
-  "kenneth walker|2025|luke": {
-    "sleeperId": "8151"
-  },
-  "kenneth walker|rb|luke": {
-    "sleeperId": "8151"
-  },
   "kenny anunike": {
     "sleeperId": "1998"
   },
@@ -17864,12 +16657,6 @@
     "sleeperId": "12391"
   },
   "kenny golladay": {
-    "sleeperId": "4131"
-  },
-  "kenny golladay|2018|schex": {
-    "sleeperId": "4131"
-  },
-  "kenny golladay|2021|jason": {
     "sleeperId": "4131"
   },
   "kenny hilliard": {
@@ -18004,9 +16791,6 @@
   "keshawn martin": {
     "sleeperId": "1102"
   },
-  "keshawn martin|2014|quinn": {
-    "sleeperId": "1102"
-  },
   "keshawn vaughn": {
     "sleeperId": "6885"
   },
@@ -18042,9 +16826,6 @@
     "sleeperId": "1007"
   },
   "kevin byard": {
-    "sleeperId": "3233"
-  },
-  "kevin byard|2019|syed/kuan": {
     "sleeperId": "3233"
   },
   "kevin cone": {
@@ -18330,12 +17111,6 @@
   "kirk cousins": {
     "sleeperId": "1166"
   },
-  "kirk cousins|2014|brett/luke": {
-    "sleeperId": "1166"
-  },
-  "kirk cousins|2016|patrick": {
-    "sleeperId": "1166"
-  },
   "kirk merritt": {
     "sleeperId": "7351"
   },
@@ -18557,9 +17332,6 @@
   "kwon alexander": {
     "sleeperId": "2429"
   },
-  "kwon alexander|2019|james/charles": {
-    "sleeperId": "2429"
-  },
   "kyahva tezino": {
     "sleeperId": "7494"
   },
@@ -18573,9 +17345,6 @@
     "sleeperId": "7489"
   },
   "kyle allen": {
-    "sleeperId": "5127"
-  },
-  "kyle allen|2019|john/zach": {
     "sleeperId": "5127"
   },
   "kyle arrington": {
@@ -18635,9 +17404,6 @@
   "kyle orton": {
     "sleeperId": "388"
   },
-  "kyle orton|2010|keyon": {
-    "sleeperId": "388"
-  },
   "kyle peko": {
     "sleeperId": "3633"
   },
@@ -18692,9 +17458,6 @@
   },
   "kyle williams": {
     "sleeperId": "94"
-  },
-  "kyle williams|wr|mike": {
-    "sleeperId": "12547"
   },
   "kyle wilson": {
     "sleeperId": "524"
@@ -18829,9 +17592,6 @@
   "lamar jackson": {
     "sleeperId": "4881"
   },
-  "lamar jackson|qb|jason": {
-    "sleeperId": "4881"
-  },
   "lamar jordan": {
     "sleeperId": "5239"
   },
@@ -18839,15 +17599,6 @@
     "sleeperId": "3608"
   },
   "lamar miller": {
-    "sleeperId": "1048"
-  },
-  "lamar miller|2015|koci/mueller": {
-    "sleeperId": "1048"
-  },
-  "lamar miller|2016|daniel": {
-    "sleeperId": "1048"
-  },
-  "lamar miller|2017|quinn": {
     "sleeperId": "1048"
   },
   "lamarcus brutus": {
@@ -18866,9 +17617,6 @@
     "sleeperId": "22"
   },
   "lamical perine": {
-    "sleeperId": "6908"
-  },
-  "lamical perine|2020|schex": {
     "sleeperId": "6908"
   },
   "lamichael james": {
@@ -19001,21 +17749,6 @@
   "larry fitzgerald": {
     "sleeperId": "223"
   },
-  "larry fitzgerald|2009|koci": {
-    "sleeperId": "223"
-  },
-  "larry fitzgerald|2011|patrick": {
-    "sleeperId": "223"
-  },
-  "larry fitzgerald|2014|daniel": {
-    "sleeperId": "223"
-  },
-  "larry fitzgerald|2017|keyon": {
-    "sleeperId": "223"
-  },
-  "larry fitzgerald|2018|schex": {
-    "sleeperId": "223"
-  },
   "larry foote": {
     "sleeperId": null,
     "name": "Larry Foote"
@@ -19054,15 +17787,6 @@
     "sleeperId": "11473"
   },
   "latavius murray": {
-    "sleeperId": "1476"
-  },
-  "latavius murray|2014|keyon": {
-    "sleeperId": "1476"
-  },
-  "latavius murray|2020|john/zach": {
-    "sleeperId": "1476"
-  },
-  "latavius murray|2020|schex": {
     "sleeperId": "1476"
   },
   "lathan ransom": {
@@ -19120,9 +17844,6 @@
   "lavonte david": {
     "sleeperId": "1192"
   },
-  "lavonte david|2014|schex": {
-    "sleeperId": "1192"
-  },
   "lawrance toafili": {
     "sleeperId": "13242"
   },
@@ -19151,12 +17872,6 @@
     "sleeperId": "3644"
   },
   "lawrence timmons": {
-    "sleeperId": "298"
-  },
-  "lawrence timmons|2013|daniel": {
-    "sleeperId": "298"
-  },
-  "lawrence timmons|2014|schex": {
     "sleeperId": "298"
   },
   "lawrence tynes": {
@@ -19200,12 +17915,6 @@
   "legarrette blount": {
     "sleeperId": "730"
   },
-  "legarrette blount|2010|patrick": {
-    "sleeperId": "730"
-  },
-  "legarrette blount|2014|koci/mueller": {
-    "sleeperId": "730"
-  },
   "legedu naanee": {
     "sleeperId": null,
     "name": "Legedu Naanee"
@@ -19217,9 +17926,6 @@
     "sleeperId": "7964"
   },
   "leighton vander esch": {
-    "sleeperId": "4980"
-  },
-  "leighton vander esch|2019|syed/kuan": {
     "sleeperId": "4980"
   },
   "leki fotu": {
@@ -19289,9 +17995,6 @@
   "leonard fournette": {
     "sleeperId": "3969"
   },
-  "leonard fournette|2019|james/charles": {
-    "sleeperId": "3969"
-  },
   "leonard hankerson": {
     "sleeperId": "914"
   },
@@ -19310,9 +18013,6 @@
   "leonte carroo": {
     "sleeperId": "3253"
   },
-  "leonte carroo|2017|john/zach": {
-    "sleeperId": "3253"
-  },
   "lequint allen": {
     "sleeperId": "12544"
   },
@@ -19326,15 +18026,6 @@
     "sleeperId": "8660"
   },
   "lesean mccoy": {
-    "sleeperId": "676"
-  },
-  "lesean mccoy|2014|schex": {
-    "sleeperId": "676"
-  },
-  "lesean mccoy|2015|john/zach": {
-    "sleeperId": "676"
-  },
-  "lesean mccoy|2017|patrick": {
     "sleeperId": "676"
   },
   "leshaun sims": {
@@ -19360,27 +18051,6 @@
     "sleeperId": "12111"
   },
   "leveon bell": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2014|koci/mueller": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2014|schex": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2015|syed/terence": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2016|schex/jeff": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2017|quinn": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2018|daniel": {
-    "sleeperId": "1408"
-  },
-  "leveon bell|2019|quinn": {
     "sleeperId": "1408"
   },
   "levern jacobs": {
@@ -19558,9 +18228,6 @@
   "lorenzo taliaferro": {
     "sleeperId": "1880"
   },
-  "lorenzo taliaferro|2014|john/zach": {
-    "sleeperId": "1880"
-  },
   "lou young": {
     "sleeperId": "2013"
   },
@@ -19649,18 +18316,6 @@
     "sleeperId": "12803"
   },
   "luke kuechly": {
-    "sleeperId": "1181"
-  },
-  "luke kuechly|2017|mitch": {
-    "sleeperId": "1181"
-  },
-  "luke kuechly|2017|quinn": {
-    "sleeperId": "1181"
-  },
-  "luke kuechly|2018|brett/luke": {
-    "sleeperId": "1181"
-  },
-  "luke kuechly|2019|keyon": {
     "sleeperId": "1181"
   },
   "luke lachey": {
@@ -19816,9 +18471,6 @@
   "malcolm brown": {
     "sleeperId": "2588"
   },
-  "malcolm brown|2018|brett/luke": {
-    "sleeperId": "2588"
-  },
   "malcolm butler": {
     "sleeperId": "1834"
   },
@@ -19848,9 +18500,6 @@
     "sleeperId": "4392"
   },
   "malcolm mitchell": {
-    "sleeperId": "3273"
-  },
-  "malcolm mitchell|2016|koci/mueller": {
     "sleeperId": "3273"
   },
   "malcolm perry": {
@@ -20028,9 +18677,6 @@
   "marcedes lewis": {
     "sleeperId": "111"
   },
-  "marcedes lewis|2010|john": {
-    "sleeperId": "111"
-  },
   "marcel dabo": {
     "sleeperId": "8837"
   },
@@ -20038,9 +18684,6 @@
     "sleeperId": "1985"
   },
   "marcel reece": {
-    "sleeperId": "126"
-  },
-  "marcel reece|2013|john": {
     "sleeperId": "126"
   },
   "marcel reese": {
@@ -20171,9 +18814,6 @@
   "marcus murphy": {
     "sleeperId": "2529"
   },
-  "marcus murphy|2018|schex": {
-    "sleeperId": "2529"
-  },
   "marcus peters": {
     "sleeperId": "2323"
   },
@@ -20290,9 +18930,6 @@
   "mark barron": {
     "sleeperId": "1255"
   },
-  "mark barron|2017|schex/jeff": {
-    "sleeperId": "1255"
-  },
   "mark chapman": {
     "sleeperId": "5776"
   },
@@ -20310,18 +18947,6 @@
     "sleeperId": "909"
   },
   "mark ingram": {
-    "sleeperId": "956"
-  },
-  "mark ingram|2012|james": {
-    "sleeperId": "956"
-  },
-  "mark ingram|2017|schex/jeff": {
-    "sleeperId": "956"
-  },
-  "mark ingram|2018|brett/luke": {
-    "sleeperId": "956"
-  },
-  "mark ingram|2019|keyon": {
     "sleeperId": "956"
   },
   "mark mclaurin": {
@@ -20349,9 +18974,6 @@
     "sleeperId": "8525"
   },
   "mark sanchez": {
-    "sleeperId": "350"
-  },
-  "mark sanchez|2014|patrick": {
     "sleeperId": "350"
   },
   "mark thompson": {
@@ -20405,9 +19027,6 @@
   "marlon brown": {
     "sleeperId": "1675"
   },
-  "marlon brown|2014|trevor": {
-    "sleeperId": "1675"
-  },
   "marlon character": {
     "sleeperId": "7999"
   },
@@ -20438,9 +19057,6 @@
   "marqise lee": {
     "sleeperId": "1987"
   },
-  "marqise lee|2017|keyon": {
-    "sleeperId": "1987"
-  },
   "marquan mccall": {
     "sleeperId": "8357"
   },
@@ -20457,15 +19073,6 @@
     "sleeperId": "4212"
   },
   "marques colston": {
-    "sleeperId": "201"
-  },
-  "marques colston|2011|trevor": {
-    "sleeperId": "201"
-  },
-  "marques colston|2012|syed": {
-    "sleeperId": "201"
-  },
-  "marques colston|2013|daniel": {
     "sleeperId": "201"
   },
   "marques sigle": {
@@ -20531,16 +19138,10 @@
   "marquise brown": {
     "sleeperId": "5848"
   },
-  "marquise brown|2019|james/charles": {
-    "sleeperId": "5848"
-  },
   "marquise copeland": {
     "sleeperId": "6390"
   },
   "marquise goodwin": {
-    "sleeperId": "1346"
-  },
-  "marquise goodwin|2018|schex": {
     "sleeperId": "1346"
   },
   "marquise robinson": {
@@ -20574,15 +19175,6 @@
     "sleeperId": "11581"
   },
   "marshawn lynch": {
-    "sleeperId": "745"
-  },
-  "marshawn lynch|2012|charles": {
-    "sleeperId": "745"
-  },
-  "marshawn lynch|2015|keyon": {
-    "sleeperId": "745"
-  },
-  "marshawn lynch|2017|mitch": {
     "sleeperId": "745"
   },
   "marshon lattimore": {
@@ -20630,9 +19222,6 @@
   "marvin jones": {
     "sleeperId": "1067"
   },
-  "marvin jones|2017|schex/jeff": {
-    "sleeperId": "1067"
-  },
   "marvin mims": {
     "sleeperId": "9494"
   },
@@ -20652,9 +19241,6 @@
     "sleeperId": "12318"
   },
   "mason crosby": {
-    "sleeperId": "59"
-  },
-  "mason crosby|2014|quinn": {
     "sleeperId": "59"
   },
   "mason fairchild": {
@@ -20727,9 +19313,6 @@
   "matt asiata": {
     "sleeperId": "936"
   },
-  "matt asiata|2014|schex": {
-    "sleeperId": "936"
-  },
   "matt barkley": {
     "sleeperId": "1338"
   },
@@ -20739,13 +19322,7 @@
   "matt breida": {
     "sleeperId": "4455"
   },
-  "matt breida|2019|quinn": {
-    "sleeperId": "4455"
-  },
   "matt bryant": {
-    "sleeperId": "127"
-  },
-  "matt bryant|2017|patrick": {
     "sleeperId": "127"
   },
   "matt bushman": {
@@ -20787,15 +19364,6 @@
   "matt forte": {
     "sleeperId": "103"
   },
-  "matt forte|2014|patrick": {
-    "sleeperId": "103"
-  },
-  "matt forte|2016|john/zach": {
-    "sleeperId": "103"
-  },
-  "matt forte|2017|mitch": {
-    "sleeperId": "103"
-  },
   "matt galambos": {
     "sleeperId": "4724"
   },
@@ -20827,12 +19395,6 @@
     "sleeperId": "2400"
   },
   "matt judon": {
-    "sleeperId": "3303"
-  },
-  "matt judon|2022": {
-    "sleeperId": "3303"
-  },
-  "matt judon|2022|luke": {
     "sleeperId": "3303"
   },
   "matt lacosse": {
@@ -20869,9 +19431,6 @@
   "matt moore": {
     "sleeperId": "233"
   },
-  "matt moore|2019|schex": {
-    "sleeperId": "233"
-  },
   "matt nelson": {
     "sleeperId": "6633"
   },
@@ -20879,12 +19438,6 @@
     "sleeperId": "17"
   },
   "matt ryan": {
-    "sleeperId": "24"
-  },
-  "matt ryan|2017|syed/terence": {
-    "sleeperId": "24"
-  },
-  "matt ryan|2019|patrick": {
     "sleeperId": "24"
   },
   "matt schaub": {
@@ -20959,24 +19512,6 @@
   "matthew stafford": {
     "sleeperId": "421"
   },
-  "matthew stafford|2012|charles": {
-    "sleeperId": "421"
-  },
-  "matthew stafford|2014|schex": {
-    "sleeperId": "421"
-  },
-  "matthew stafford|2015|patrick": {
-    "sleeperId": "421"
-  },
-  "matthew stafford|2018|brett/luke": {
-    "sleeperId": "421"
-  },
-  "matthew stafford|2019|schex": {
-    "sleeperId": "421"
-  },
-  "matthew stafford|2021|luke": {
-    "sleeperId": "421"
-  },
   "matthew thomas": {
     "sleeperId": "5605"
   },
@@ -21011,15 +19546,6 @@
     "sleeperId": "5002"
   },
   "maurice jonesdrew": {
-    "sleeperId": "293"
-  },
-  "maurice jonesdrew|2011|trevor": {
-    "sleeperId": "293"
-  },
-  "maurice jonesdrew|2012|keyon": {
-    "sleeperId": "293"
-  },
-  "maurice jonesdrew|2013|daniel": {
     "sleeperId": "293"
   },
   "maurice smith": {
@@ -21136,12 +19662,6 @@
   "melvin gordon": {
     "sleeperId": "2320"
   },
-  "melvin gordon|2016|patrick": {
-    "sleeperId": "2320"
-  },
-  "melvin gordon|2019|syed/kuan": {
-    "sleeperId": "2320"
-  },
   "melvin ingram": {
     "sleeperId": "1141"
   },
@@ -21189,9 +19709,6 @@
     "sleeperId": "1525"
   },
   "micah kiser": {
-    "sleeperId": "5074"
-  },
-  "micah kiser|2021|john/zach": {
     "sleeperId": "5074"
   },
   "micah mcfadden": {
@@ -21255,9 +19772,6 @@
   "michael carter": {
     "sleeperId": "7607"
   },
-  "michael carter|rb|jason": {
-    "sleeperId": "7607"
-  },
   "michael cirino": {
     "sleeperId": "5743"
   },
@@ -21312,22 +19826,10 @@
   "michael floyd": {
     "sleeperId": "1219"
   },
-  "michael floyd|2012|syed": {
-    "sleeperId": "1219"
-  },
-  "michael floyd|2013|keyon": {
-    "sleeperId": "1219"
-  },
   "michael ford": {
     "sleeperId": "1503"
   },
   "michael gallup": {
-    "sleeperId": "5038"
-  },
-  "michael gallup|2019|keyon": {
-    "sleeperId": "5038"
-  },
-  "michael gallup|2020|luke": {
     "sleeperId": "5038"
   },
   "michael griffin": {
@@ -21448,12 +19950,6 @@
   "michael thomas no": {
     "sleeperId": "3199"
   },
-  "michael thomas|2019|quinn": {
-    "sleeperId": "3199"
-  },
-  "michael thomas|2020|patrick": {
-    "sleeperId": "3199"
-  },
   "michael turner": {
     "sleeperId": null,
     "name": "Michael Turner"
@@ -21542,9 +20038,6 @@
   "mike davis": {
     "sleeperId": "2431"
   },
-  "mike davis|2020|john/zach": {
-    "sleeperId": "2431"
-  },
   "mike devito": {
     "sleeperId": "231"
   },
@@ -21560,31 +20053,13 @@
   "mike evans": {
     "sleeperId": "2216"
   },
-  "mike evans|2017|quinn": {
-    "sleeperId": "2216"
-  },
-  "mike evans|2018|keyon": {
-    "sleeperId": "2216"
-  },
-  "mike evans|2019|mitch": {
-    "sleeperId": "2216"
-  },
-  "mike evans|2020|schex": {
-    "sleeperId": "2216"
-  },
   "mike ford": {
     "sleeperId": "5691"
   },
   "mike gesicki": {
     "sleeperId": "4993"
   },
-  "mike gesicki|2019|keyon": {
-    "sleeperId": "4993"
-  },
   "mike gillislee": {
-    "sleeperId": "1353"
-  },
-  "mike gillislee|2017|john/zach": {
     "sleeperId": "1353"
   },
   "mike glennon": {
@@ -21712,9 +20187,6 @@
   "mike tolbert": {
     "sleeperId": "182"
   },
-  "mike tolbert|2010|jake/luke": {
-    "sleeperId": "182"
-  },
   "mike tyson": {
     "sleeperId": "4276"
   },
@@ -21725,9 +20197,6 @@
     "sleeperId": "392"
   },
   "mike wallace": {
-    "sleeperId": "365"
-  },
-  "mike wallace|2018|quinn": {
     "sleeperId": "365"
   },
   "mike weber": {
@@ -21749,25 +20218,10 @@
   "mike williams tb": {
     "sleeperId": "748"
   },
-  "mike williams|2010": {
-    "sleeperId": "748"
-  },
-  "mike williams|2017": {
-    "sleeperId": "4068"
-  },
   "mike williams|2020|type:auction|mitch": {
     "sleeperId": "4068"
   },
-  "mike williams|2023": {
-    "sleeperId": "4068"
-  },
-  "mike williams|2023|koci/mueller": {
-    "sleeperId": "4068"
-  },
   "mike williams|2023|type:auction|james/charles": {
-    "sleeperId": "4068"
-  },
-  "mike williams|2024|brett": {
     "sleeperId": "4068"
   },
   "mikel jones": {
@@ -21810,9 +20264,6 @@
   "miles sanders": {
     "sleeperId": "6151"
   },
-  "miles sanders|2019|keyon": {
-    "sleeperId": "6151"
-  },
   "miles shuler": {
     "sleeperId": "3858"
   },
@@ -21850,9 +20301,6 @@
     "sleeperId": "11068"
   },
   "mitch trubisky": {
-    "sleeperId": "3976"
-  },
-  "mitch trubisky|2023": {
     "sleeperId": "3976"
   },
   "mitch unrein": {
@@ -21949,12 +20397,6 @@
   "montee ball": {
     "sleeperId": "1454"
   },
-  "montee ball|2014|mitch": {
-    "sleeperId": "1454"
-  },
-  "montee ball|2015|daniel": {
-    "sleeperId": "1454"
-  },
   "montell garner": {
     "sleeperId": "2809"
   },
@@ -22004,9 +20446,6 @@
     "sleeperId": "6586"
   },
   "morgan burnett": {
-    "sleeperId": "597"
-  },
-  "morgan burnett|2012|john": {
     "sleeperId": "597"
   },
   "morgan fox": {
@@ -22101,9 +20540,6 @@
     "sleeperId": "5568"
   },
   "myles jack": {
-    "sleeperId": "3166"
-  },
-  "myles jack|2018|schex": {
     "sleeperId": "3166"
   },
   "myles jones": {
@@ -22310,12 +20746,6 @@
   "nathan peterman": {
     "sleeperId": "4183"
   },
-  "nathan peterman|2018|john/zach": {
-    "sleeperId": "4183"
-  },
-  "nathan peterman|2018|koci/mueller": {
-    "sleeperId": "4183"
-  },
   "nathan pickering": {
     "sleeperId": "12411"
   },
@@ -22344,12 +20774,6 @@
     "sleeperId": "11481"
   },
   "navorro bowman": {
-    "sleeperId": "632"
-  },
-  "navorro bowman|2012|koci": {
-    "sleeperId": "632"
-  },
-  "navorro bowman|2014|koci/mueller": {
     "sleeperId": "632"
   },
   "nayquan wright": {
@@ -22516,9 +20940,6 @@
   "nick foles": {
     "sleeperId": "1029"
   },
-  "nick foles|2020|trevor": {
-    "sleeperId": "1029"
-  },
   "nick folk": {
     "sleeperId": "650"
   },
@@ -22645,9 +21066,6 @@
   "nick vigil": {
     "sleeperId": "3254"
   },
-  "nick vigil|2019|john/zach": {
-    "sleeperId": "3254"
-  },
   "nick vogel": {
     "sleeperId": "7201"
   },
@@ -22730,15 +21148,6 @@
     "sleeperId": "5393"
   },
   "nkeal harry": {
-    "sleeperId": "5878"
-  },
-  "nkeal harry|2019|john/zach": {
-    "sleeperId": "5878"
-  },
-  "nkeal harry|2020|mitch": {
-    "sleeperId": "5878"
-  },
-  "nkeal harry|2020|schex": {
     "sleeperId": "5878"
   },
   "nnamdi madubuike": {
@@ -22831,9 +21240,6 @@
   "nyheim hines": {
     "sleeperId": "5347"
   },
-  "nyheim hines|2019|james/charles": {
-    "sleeperId": "5347"
-  },
   "nyheim millerhines": {
     "sleeperId": "5347"
   },
@@ -22859,21 +21265,6 @@
     "sleeperId": "7626"
   },
   "odell beckham": {
-    "sleeperId": "2078"
-  },
-  "odell beckham|2016|john/zach": {
-    "sleeperId": "2078"
-  },
-  "odell beckham|2017|john/zach": {
-    "sleeperId": "2078"
-  },
-  "odell beckham|2018|schex": {
-    "sleeperId": "2078"
-  },
-  "odell beckham|2019|john/zach": {
-    "sleeperId": "2078"
-  },
-  "odell beckham|2019|mitch": {
     "sleeperId": "2078"
   },
   "odonnell fortune": {
@@ -23034,15 +21425,6 @@
   "owen daniels": {
     "sleeperId": "64"
   },
-  "owen daniels|2008|schex": {
-    "sleeperId": "64"
-  },
-  "owen daniels|2009|daniel": {
-    "sleeperId": "64"
-  },
-  "owen daniels|2014|quinn": {
-    "sleeperId": "64"
-  },
   "owen obasuyi": {
     "sleeperId": "5522"
   },
@@ -23178,9 +21560,6 @@
   "patrick mahomes": {
     "sleeperId": "4046"
   },
-  "patrick mahomes|2019|schex": {
-    "sleeperId": "4046"
-  },
   "patrick mcmorris": {
     "sleeperId": "11797"
   },
@@ -23199,13 +21578,7 @@
   "patrick onwuasor": {
     "sleeperId": "3680"
   },
-  "patrick onwuasor|2020|john/zach": {
-    "sleeperId": "3680"
-  },
   "patrick peterson": {
-    "sleeperId": "972"
-  },
-  "patrick peterson|2012|charles": {
     "sleeperId": "972"
   },
   "patrick queen": {
@@ -23266,9 +21639,6 @@
   "paul posluszny": {
     "sleeperId": "160"
   },
-  "paul posluszny|2015|quinn": {
-    "sleeperId": "160"
-  },
   "paul quessenberry": {
     "sleeperId": "7499"
   },
@@ -23320,12 +21690,6 @@
   "percy harvin": {
     "sleeperId": "429"
   },
-  "percy harvin|2009|patrick": {
-    "sleeperId": "429"
-  },
-  "percy harvin|2009|syed": {
-    "sleeperId": "429"
-  },
   "pernell mcphee": {
     "sleeperId": "823"
   },
@@ -23336,9 +21700,6 @@
     "sleeperId": "557"
   },
   "perry riley": {
-    "sleeperId": "733"
-  },
-  "perry riley|2012|john": {
     "sleeperId": "733"
   },
   "pete guerriero": {
@@ -23362,25 +21723,13 @@
   "peyton barber": {
     "sleeperId": "3594"
   },
-  "peyton barber|2019|quinn": {
-    "sleeperId": "3594"
-  },
   "peyton hendershot": {
     "sleeperId": "8197"
   },
   "peyton hillis": {
     "sleeperId": "660"
   },
-  "peyton hillis|2010|jake/luke": {
-    "sleeperId": "660"
-  },
   "peyton manning": {
-    "sleeperId": "294"
-  },
-  "peyton manning|2009|john": {
-    "sleeperId": "294"
-  },
-  "peyton manning|2015|daniel": {
     "sleeperId": "294"
   },
   "peyton thompson": {
@@ -23396,9 +21745,6 @@
     "sleeperId": "5280"
   },
   "pharoh cooper": {
-    "sleeperId": "3278"
-  },
-  "pharoh cooper|2017|john/zach": {
     "sleeperId": "3278"
   },
   "phazahn odom": {
@@ -23434,18 +21780,6 @@
   "philip rivers": {
     "sleeperId": "331"
   },
-  "philip rivers|2008|john": {
-    "sleeperId": "331"
-  },
-  "philip rivers|2013|schex": {
-    "sleeperId": "331"
-  },
-  "philip rivers|2018|schex": {
-    "sleeperId": "331"
-  },
-  "philip rivers|2019|trevor": {
-    "sleeperId": "331"
-  },
   "philip wheeler": {
     "sleeperId": "191"
   },
@@ -23468,9 +21802,6 @@
     "sleeperId": "1010"
   },
   "phillip lindsay": {
-    "sleeperId": "5170"
-  },
-  "phillip lindsay|2020|schex": {
     "sleeperId": "5170"
   },
   "phillip sims": {
@@ -23498,12 +21829,6 @@
     "sleeperId": "1902"
   },
   "pierre garcon": {
-    "sleeperId": "269"
-  },
-  "pierre garcon|2013|koci/mueller": {
-    "sleeperId": "269"
-  },
-  "pierre garcon|2016|trevor": {
     "sleeperId": "269"
   },
   "pierre strong": {
@@ -23586,9 +21911,6 @@
     "sleeperId": "2343"
   },
   "preston williams": {
-    "sleeperId": "6148"
-  },
-  "preston williams|2019|syed/kuan": {
     "sleeperId": "6148"
   },
   "prince amukamara": {
@@ -23870,12 +22192,6 @@
   "raheem mostert": {
     "sleeperId": "2749"
   },
-  "raheem mostert|2018|patrick": {
-    "sleeperId": "2749"
-  },
-  "raheem mostert|2020|keyon": {
-    "sleeperId": "2749"
-  },
   "raheim sanders": {
     "sleeperId": "12472"
   },
@@ -23937,18 +22253,6 @@
   "randall cobb": {
     "sleeperId": "928"
   },
-  "randall cobb|2011|syed": {
-    "sleeperId": "928"
-  },
-  "randall cobb|2013|john": {
-    "sleeperId": "928"
-  },
-  "randall cobb|2014|schex": {
-    "sleeperId": "928"
-  },
-  "randall cobb|2015|keyon": {
-    "sleeperId": "928"
-  },
   "randall evans": {
     "sleeperId": "2497"
   },
@@ -24007,9 +22311,6 @@
   "rashaan evans": {
     "sleeperId": "4978"
   },
-  "rashaan evans|2019|quinn": {
-    "sleeperId": "4978"
-  },
   "rashaan gaulden": {
     "sleeperId": "5050"
   },
@@ -24023,9 +22324,6 @@
     "sleeperId": "2442"
   },
   "rashad jennings": {
-    "sleeperId": "380"
-  },
-  "rashad jennings|2012|keyon": {
     "sleeperId": "380"
   },
   "rashad johnson": {
@@ -24210,9 +22508,6 @@
   "rayshawn jenkins": {
     "sleeperId": "4180"
   },
-  "rayshawn jenkins|2020|mitch": {
-    "sleeperId": "4180"
-  },
   "rayuan lane": {
     "sleeperId": "12702"
   },
@@ -24258,9 +22553,6 @@
   "reggie bush": {
     "sleeperId": "179"
   },
-  "reggie bush|2008|john": {
-    "sleeperId": "179"
-  },
   "reggie corbin": {
     "sleeperId": "6978"
   },
@@ -24294,9 +22586,6 @@
   "reggie nelson": {
     "sleeperId": "704"
   },
-  "reggie nelson|2012|schex": {
-    "sleeperId": "704"
-  },
   "reggie porter": {
     "sleeperId": "4766"
   },
@@ -24313,15 +22602,6 @@
     "sleeperId": "694"
   },
   "reggie wayne": {
-    "sleeperId": "194"
-  },
-  "reggie wayne|2009|syed": {
-    "sleeperId": "194"
-  },
-  "reggie wayne|2012|daniel": {
-    "sleeperId": "194"
-  },
-  "reggie wayne|2013|syed": {
     "sleeperId": "194"
   },
   "reggie white": {
@@ -24506,9 +22786,6 @@
   "riley cooper": {
     "sleeperId": "582"
   },
-  "riley cooper|2014|schex": {
-    "sleeperId": "582"
-  },
   "riley ferguson": {
     "sleeperId": "5270"
   },
@@ -24594,34 +22871,10 @@
   "rob gronkowski": {
     "sleeperId": "515"
   },
-  "rob gronkowski|2015|quinn": {
-    "sleeperId": "515"
-  },
-  "rob gronkowski|2016|john/zach": {
-    "sleeperId": "515"
-  },
-  "rob gronkowski|2017|mitch": {
-    "sleeperId": "515"
-  },
-  "rob gronkowski|2017|quinn": {
-    "sleeperId": "515"
-  },
-  "rob gronkowski|2018|daniel": {
-    "sleeperId": "515"
-  },
-  "rob gronkowski|2018|syed/terence": {
-    "sleeperId": "515"
-  },
-  "rob gronkowski|2020|james/charles": {
-    "sleeperId": "515"
-  },
   "rob housler": {
     "sleeperId": "971"
   },
   "rob kelley": {
-    "sleeperId": "3657"
-  },
-  "rob kelley|2018|quinn": {
     "sleeperId": "3657"
   },
   "rob ninkovich": {
@@ -24631,9 +22884,6 @@
     "sleeperId": "6574"
   },
   "robbie anderson": {
-    "sleeperId": "3423"
-  },
-  "robbie anderson|2022": {
     "sleeperId": "3423"
   },
   "robbie chosen": {
@@ -24679,9 +22929,6 @@
     "sleeperId": "1090"
   },
   "robert griffin": {
-    "sleeperId": "1169"
-  },
-  "robert griffin|2013|jake/luke": {
     "sleeperId": "1169"
   },
   "robert herron": {
@@ -24759,9 +23006,6 @@
   "robert turbin": {
     "sleeperId": "1232"
   },
-  "robert turbin|2014|patrick": {
-    "sleeperId": "1232"
-  },
   "robert wheelwright": {
     "sleeperId": "4790"
   },
@@ -24769,9 +23013,6 @@
     "sleeperId": "6893"
   },
   "robert woods": {
-    "sleeperId": "1352"
-  },
-  "robert woods|2019|mitch": {
     "sleeperId": "1352"
   },
   "roberto aguayo": {
@@ -24812,9 +23053,6 @@
     "sleeperId": "7795"
   },
   "roddy white": {
-    "sleeperId": "4"
-  },
-  "roddy white|2015|quinn": {
     "sleeperId": "4"
   },
   "roderic teamer": {
@@ -24904,9 +23142,6 @@
   "roman harper": {
     "sleeperId": "26"
   },
-  "roman harper|2012|keyon": {
-    "sleeperId": "26"
-  },
   "roman parodie": {
     "sleeperId": "12796"
   },
@@ -24965,18 +23200,6 @@
   "ronald jones": {
     "sleeperId": "4955"
   },
-  "ronald jones|2018|schex": {
-    "sleeperId": "5052"
-  },
-  "ronald jones|2019|mitch": {
-    "sleeperId": "5052"
-  },
-  "ronald jones|2019|quinn": {
-    "sleeperId": "5052"
-  },
-  "ronald jones|2020|keyon": {
-    "sleeperId": "5052"
-  },
   "ronald martin": {
     "sleeperId": "2612"
   },
@@ -25010,28 +23233,13 @@
   "ronnie brown": {
     "sleeperId": "258"
   },
-  "ronnie brown|2008|john": {
-    "sleeperId": "258"
-  },
-  "ronnie brown|2009|syed": {
-    "sleeperId": "258"
-  },
   "ronnie harrison": {
-    "sleeperId": "5025"
-  },
-  "ronnie harrison|2019|syed/kuan": {
     "sleeperId": "5025"
   },
   "ronnie hickman": {
     "sleeperId": "11352"
   },
   "ronnie hillman": {
-    "sleeperId": "1123"
-  },
-  "ronnie hillman|2013|pat/quinn": {
-    "sleeperId": "1123"
-  },
-  "ronnie hillman|2015|daniel": {
     "sleeperId": "1123"
   },
   "ronnie perkins": {
@@ -25163,18 +23371,6 @@
   "russell wilson": {
     "sleeperId": "1234"
   },
-  "russell wilson|2015|trevor": {
-    "sleeperId": "1234"
-  },
-  "russell wilson|2018|keyon": {
-    "sleeperId": "1234"
-  },
-  "russell wilson|2019|trevor": {
-    "sleeperId": "1234"
-  },
-  "russell wilson|2021|luke": {
-    "sleeperId": "1234"
-  },
   "ryan anderson": {
     "sleeperId": "4097"
   },
@@ -25222,12 +23418,6 @@
     "sleeperId": "12961"
   },
   "ryan fitzpatrick": {
-    "sleeperId": "333"
-  },
-  "ryan fitzpatrick|2015|keyon": {
-    "sleeperId": "333"
-  },
-  "ryan fitzpatrick|2017|quinn": {
     "sleeperId": "333"
   },
   "ryan flournoy": {
@@ -25280,9 +23470,6 @@
     "sleeperId": "3506"
   },
   "ryan mallett": {
-    "sleeperId": "810"
-  },
-  "ryan mallett|2014|james": {
     "sleeperId": "810"
   },
   "ryan mathews": {
@@ -25365,9 +23552,6 @@
   "ryan tannehill": {
     "sleeperId": "1049"
   },
-  "ryan tannehill|2015|koci/mueller": {
-    "sleeperId": "1049"
-  },
   "ryan taylor": {
     "sleeperId": "934"
   },
@@ -25385,12 +23569,6 @@
     "sleeperId": "2150"
   },
   "ryan williams": {
-    "sleeperId": "974"
-  },
-  "ryan williams|2011|syed": {
-    "sleeperId": "974"
-  },
-  "ryan williams|2013|pat/quinn": {
     "sleeperId": "974"
   },
   "ryan willis": {
@@ -25473,15 +23651,6 @@
   "sam bradford": {
     "sleeperId": "621"
   },
-  "sam bradford|2011|syed": {
-    "sleeperId": "621"
-  },
-  "sam bradford|2014|schex": {
-    "sleeperId": "621"
-  },
-  "sam bradford|2015|john/zach": {
-    "sleeperId": "621"
-  },
   "sam brown": {
     "sleeperId": "3854"
   },
@@ -25489,15 +23658,6 @@
     "sleeperId": "4730"
   },
   "sam darnold": {
-    "sleeperId": "4943"
-  },
-  "sam darnold|2019|keyon": {
-    "sleeperId": "4943"
-  },
-  "sam darnold|2020|luke": {
-    "sleeperId": "4943"
-  },
-  "sam darnold|2020|trevor": {
     "sleeperId": "4943"
   },
   "sam eguavoen": {
@@ -25604,15 +23764,6 @@
   "sammy watkins": {
     "sleeperId": "1817"
   },
-  "sammy watkins|2014|patrick": {
-    "sleeperId": "1817"
-  },
-  "sammy watkins|2017|john/zach": {
-    "sleeperId": "1817"
-  },
-  "sammy watkins|2018|koci/mueller": {
-    "sleeperId": "1817"
-  },
   "samori toure": {
     "sleeperId": "8235"
   },
@@ -25640,9 +23791,6 @@
   "santana moss": {
     "sleeperId": "69"
   },
-  "santana moss|2009|john": {
-    "sleeperId": "69"
-  },
   "santonio holmes": {
     "sleeperId": "651"
   },
@@ -25653,12 +23801,6 @@
     "sleeperId": "6013"
   },
   "saquon barkley": {
-    "sleeperId": "4866"
-  },
-  "saquon barkley|2019|keyon": {
-    "sleeperId": "4866"
-  },
-  "saquon barkley|2020|luke": {
     "sleeperId": "4866"
   },
   "saqwan edwards": {
@@ -25744,9 +23886,6 @@
     "sleeperId": "3228"
   },
   "sean lee": {
-    "sleeperId": "576"
-  },
-  "sean lee|2012|john": {
     "sleeperId": "576"
   },
   "sean lissemore": {
@@ -26007,9 +24146,6 @@
   "shaquil barrett": {
     "sleeperId": "1999"
   },
-  "shaquil barrett|2019|trevor": {
-    "sleeperId": "1999"
-  },
   "shaquill griffin": {
     "sleeperId": "4140"
   },
@@ -26056,12 +24192,6 @@
     "sleeperId": "913"
   },
   "shaun hill": {
-    "sleeperId": "686"
-  },
-  "shaun hill|2010|schexes": {
-    "sleeperId": "686"
-  },
-  "shaun hill|2012|charles": {
     "sleeperId": "686"
   },
   "shaun jolly": {
@@ -26389,15 +24519,6 @@
   "spencer ware": {
     "sleeperId": "1601"
   },
-  "spencer ware|2016|keyon": {
-    "sleeperId": "1601"
-  },
-  "spencer ware|2016|syed/terence": {
-    "sleeperId": "1601"
-  },
-  "spencer ware|2018|keyon": {
-    "sleeperId": "1601"
-  },
   "stacy coley": {
     "sleeperId": "4254"
   },
@@ -26453,9 +24574,6 @@
   "stefon diggs": {
     "sleeperId": "2449"
   },
-  "stefon diggs|2019|trevor": {
-    "sleeperId": "2449"
-  },
   "stefon johnson": {
     "sleeperId": null,
     "name": "Stefon Johnson"
@@ -26489,9 +24607,6 @@
     "sleeperId": "12756"
   },
   "stephen gostkowski": {
-    "sleeperId": "110"
-  },
-  "stephen gostkowski|2014|koci/mueller": {
     "sleeperId": "110"
   },
   "stephen guidry": {
@@ -26625,15 +24740,6 @@
     "sleeperId": "775"
   },
   "steven jackson": {
-    "sleeperId": "57"
-  },
-  "steven jackson|2009|james": {
-    "sleeperId": "57"
-  },
-  "steven jackson|2012|daniel": {
-    "sleeperId": "57"
-  },
-  "steven jackson|2014|keyon": {
     "sleeperId": "57"
   },
   "steven johnson": {
@@ -27003,12 +25109,6 @@
   "tavon austin": {
     "sleeperId": "1567"
   },
-  "tavon austin|2013|pat/quinn": {
-    "sleeperId": "1567"
-  },
-  "tavon austin|2017|quinn": {
-    "sleeperId": "1567"
-  },
   "tavon wilson": {
     "sleeperId": "1039"
   },
@@ -27130,15 +25230,6 @@
   "teddy bridgewater": {
     "sleeperId": "2152"
   },
-  "teddy bridgewater|2015|schex/jeff": {
-    "sleeperId": "2152"
-  },
-  "teddy bridgewater|2019|mitch": {
-    "sleeperId": "2152"
-  },
-  "teddy bridgewater|2020|keyon": {
-    "sleeperId": "2152"
-  },
   "teddy williams": {
     "sleeperId": "781"
   },
@@ -27161,9 +25252,6 @@
     "sleeperId": "11802"
   },
   "telvin smith": {
-    "sleeperId": "1995"
-  },
-  "telvin smith|2018|mitch": {
     "sleeperId": "1995"
   },
   "temarrick hemingway": {
@@ -27227,9 +25315,6 @@
     "sleeperId": "1912"
   },
   "terrance williams": {
-    "sleeperId": "1490"
-  },
-  "terrance williams|2014|syed": {
     "sleeperId": "1490"
   },
   "terrel bernard": {
@@ -27361,15 +25446,6 @@
   "tevin coleman": {
     "sleeperId": "2378"
   },
-  "tevin coleman|2017|syed/terence": {
-    "sleeperId": "2378"
-  },
-  "tevin coleman|2019|keyon": {
-    "sleeperId": "2378"
-  },
-  "tevin coleman|2020|schex": {
-    "sleeperId": "2378"
-  },
   "tevin floyd": {
     "sleeperId": "4769"
   },
@@ -27430,9 +25506,6 @@
   "theo riddick": {
     "sleeperId": "1517"
   },
-  "theo riddick|2018|quinn": {
-    "sleeperId": "1517"
-  },
   "theo wease": {
     "sleeperId": "12860"
   },
@@ -27489,9 +25562,6 @@
   "thomas rawls": {
     "sleeperId": "2585"
   },
-  "thomas rawls|2016|quinn": {
-    "sleeperId": "2585"
-  },
   "thomas rush": {
     "sleeperId": "11094"
   },
@@ -27534,9 +25604,6 @@
   "tim hightower": {
     "sleeperId": "83"
   },
-  "tim hightower|2016|trevor": {
-    "sleeperId": "83"
-  },
   "tim jennings": {
     "sleeperId": "683"
   },
@@ -27559,9 +25626,6 @@
     "sleeperId": "12691"
   },
   "tim tebow": {
-    "sleeperId": "559"
-  },
-  "tim tebow|2011|syed": {
     "sleeperId": "559"
   },
   "tim ward": {
@@ -27735,9 +25799,6 @@
   "tj yeldon": {
     "sleeperId": "2341"
   },
-  "tj yeldon|2018|mitch": {
-    "sleeperId": "2341"
-  },
   "tk mclendon": {
     "sleeperId": "11096"
   },
@@ -27756,9 +25817,6 @@
   "toby gerhart": {
     "sleeperId": "604"
   },
-  "toby gerhart|2010|james": {
-    "sleeperId": "604"
-  },
   "toby johnson": {
     "sleeperId": "2816"
   },
@@ -27771,15 +25829,6 @@
   "todd gurley": {
     "sleeperId": "2315"
   },
-  "todd gurley|2017|patrick": {
-    "sleeperId": "2315"
-  },
-  "todd gurley|2019|schex": {
-    "sleeperId": "2315"
-  },
-  "todd gurley|2020|brett": {
-    "sleeperId": "2315"
-  },
   "todd heap": {
     "sleeperId": null,
     "name": "Todd Heap"
@@ -27788,21 +25837,6 @@
     "sleeperId": "2734"
   },
   "tom brady": {
-    "sleeperId": "167"
-  },
-  "tom brady|2008|koci": {
-    "sleeperId": "167"
-  },
-  "tom brady|2010|patrick": {
-    "sleeperId": "167"
-  },
-  "tom brady|2013|john": {
-    "sleeperId": "167"
-  },
-  "tom brady|2014|koci/mueller": {
-    "sleeperId": "167"
-  },
-  "tom brady|2021|keyon": {
     "sleeperId": "167"
   },
   "tom flacco": {
@@ -27912,9 +25946,6 @@
   "tony jefferson": {
     "sleeperId": "1686"
   },
-  "tony jefferson|2017|quinn": {
-    "sleeperId": "1686"
-  },
   "tony jerodeddie": {
     "sleeperId": "1331"
   },
@@ -27943,15 +25974,6 @@
     "sleeperId": "5967"
   },
   "tony romo": {
-    "sleeperId": "142"
-  },
-  "tony romo|2012|schex": {
-    "sleeperId": "142"
-  },
-  "tony romo|2013|syed": {
-    "sleeperId": "142"
-  },
-  "tony romo|2016|syed/terence": {
     "sleeperId": "142"
   },
   "tony scheffler": {
@@ -28071,9 +26093,6 @@
   "travis benjamin": {
     "sleeperId": "1077"
   },
-  "travis benjamin|2015|keyon": {
-    "sleeperId": "1077"
-  },
   "travis blackshear": {
     "sleeperId": "12272"
   },
@@ -28114,15 +26133,6 @@
     "sleeperId": "7454"
   },
   "travis kelce": {
-    "sleeperId": "1466"
-  },
-  "travis kelce|2020|john/zach": {
-    "sleeperId": "1466"
-  },
-  "travis kelce|2021|keyon": {
-    "sleeperId": "1466"
-  },
-  "travis kelce|2021|mitch": {
     "sleeperId": "1466"
   },
   "travis koontz": {
@@ -28174,9 +26184,6 @@
     "sleeperId": "6506"
   },
   "trayveon williams": {
-    "sleeperId": "6144"
-  },
-  "trayveon williams|2019|syed/kuan": {
     "sleeperId": "6144"
   },
   "trayvon henderson": {
@@ -28296,12 +26303,6 @@
   "tremaine edmunds": {
     "sleeperId": "4968"
   },
-  "tremaine edmunds|2018|mitch": {
-    "sleeperId": "4968"
-  },
-  "tremaine edmunds|2020|john/zach": {
-    "sleeperId": "4968"
-  },
   "tremon morrisbrash": {
     "sleeperId": "11875"
   },
@@ -28339,9 +26340,6 @@
     "sleeperId": "4218"
   },
   "trenton cannon": {
-    "sleeperId": "5123"
-  },
-  "trenton cannon|2018|schex": {
     "sleeperId": "5123"
   },
   "trenton irwin": {
@@ -28483,9 +26481,6 @@
     "sleeperId": "2825"
   },
   "trevor siemian": {
-    "sleeperId": "2549"
-  },
-  "trevor siemian|2016|keyon": {
     "sleeperId": "2549"
   },
   "trevor williams": {
@@ -28665,9 +26660,6 @@
   "troy niklas": {
     "sleeperId": "2245"
   },
-  "troy niklas|2015|syed/terence": {
-    "sleeperId": "2245"
-  },
   "troy polamalu": {
     "sleeperId": "6777"
   },
@@ -28755,21 +26747,6 @@
   "ty hilton": {
     "sleeperId": "1110"
   },
-  "ty hilton|2017|quinn": {
-    "sleeperId": "1110"
-  },
-  "ty hilton|2017|schex/jeff": {
-    "sleeperId": "1110"
-  },
-  "ty hilton|2018|daniel": {
-    "sleeperId": "1110"
-  },
-  "ty hilton|2018|mitch": {
-    "sleeperId": "1110"
-  },
-  "ty hilton|2019|schex": {
-    "sleeperId": "1110"
-  },
   "ty james": {
     "sleeperId": "11906"
   },
@@ -28783,9 +26760,6 @@
     "sleeperId": "2614"
   },
   "ty montgomery": {
-    "sleeperId": "2399"
-  },
-  "ty montgomery|2019|quinn": {
     "sleeperId": "2399"
   },
   "ty okada": {
@@ -28860,12 +26834,6 @@
   "tyler boyd": {
     "sleeperId": "3225"
   },
-  "tyler boyd|2016|mitch": {
-    "sleeperId": "3225"
-  },
-  "tyler boyd|2019|keyon": {
-    "sleeperId": "3225"
-  },
   "tyler bray": {
     "sleeperId": "1612"
   },
@@ -28885,9 +26853,6 @@
     "sleeperId": "5251"
   },
   "tyler eifert": {
-    "sleeperId": "1388"
-  },
-  "tyler eifert|2019|keyon": {
     "sleeperId": "1388"
   },
   "tyler ervin": {
@@ -28948,9 +26913,6 @@
     "sleeperId": "5483"
   },
   "tyler lockett": {
-    "sleeperId": "2374"
-  },
-  "tyler lockett|2020|schex": {
     "sleeperId": "2374"
   },
   "tyler loop": {
@@ -29086,15 +27048,6 @@
   "tyreek hill": {
     "sleeperId": "3321"
   },
-  "tyreek hill|2016|syed/terence": {
-    "sleeperId": "3321"
-  },
-  "tyreek hill|2018|keyon": {
-    "sleeperId": "3321"
-  },
-  "tyreek hill|2021|jason": {
-    "sleeperId": "3321"
-  },
   "tyreek johnson": {
     "sleeperId": "12053"
   },
@@ -29132,9 +27085,6 @@
     "sleeperId": "6391"
   },
   "tyrell williams": {
-    "sleeperId": "2583"
-  },
-  "tyrell williams|2019|trevor": {
     "sleeperId": "2583"
   },
   "tyreque jones": {
@@ -29320,9 +27270,6 @@
   "vernon davis": {
     "sleeperId": "200"
   },
-  "vernon davis|2013|syed": {
-    "sleeperId": "200"
-  },
   "vernon hargreaves": {
     "sleeperId": "3194"
   },
@@ -29345,9 +27292,6 @@
     "sleeperId": "2313"
   },
   "vick ballard": {
-    "sleeperId": "1106"
-  },
-  "vick ballard|2013|john": {
     "sleeperId": "1106"
   },
   "victor bolden": {
@@ -29393,9 +27337,6 @@
     "sleeperId": "8284"
   },
   "vincent jackson": {
-    "sleeperId": "128"
-  },
-  "vincent jackson|2012|syed": {
     "sleeperId": "128"
   },
   "vincent rey": {
@@ -29447,9 +27388,6 @@
     "sleeperId": "3623"
   },
   "vontaze burfict": {
-    "sleeperId": "1064"
-  },
-  "vontaze burfict|2015|syed/terence": {
     "sleeperId": "1064"
   },
   "vosean joseph": {
@@ -29518,9 +27456,6 @@
   "wendell smallwood": {
     "sleeperId": "3309"
   },
-  "wendell smallwood|2017|john/zach": {
-    "sleeperId": "3309"
-  },
   "wes hills": {
     "sleeperId": "6115"
   },
@@ -29536,15 +27471,6 @@
   "wes welker": {
     "sleeperId": "177"
   },
-  "wes welker|2009|patrick": {
-    "sleeperId": "177"
-  },
-  "wes welker|2013|syed": {
-    "sleeperId": "177"
-  },
-  "wes welker|2014|james": {
-    "sleeperId": "177"
-  },
   "wesley steiner": {
     "sleeperId": "13192"
   },
@@ -29552,12 +27478,6 @@
     "sleeperId": "210"
   },
   "whitney mercilus": {
-    "sleeperId": "1103"
-  },
-  "whitney mercilus|2019|brett/luke": {
-    "sleeperId": "1103"
-  },
-  "whitney mercilus|2019|keyon": {
     "sleeperId": "1103"
   },
   "whitney richardson": {
@@ -29596,16 +27516,7 @@
   "will dissly": {
     "sleeperId": "5010"
   },
-  "will dissly|2019|schex": {
-    "sleeperId": "5010"
-  },
   "will fuller": {
-    "sleeperId": "3157"
-  },
-  "will fuller|2016|patrick": {
-    "sleeperId": "3157"
-  },
-  "will fuller|2020|mitch": {
     "sleeperId": "3157"
   },
   "will grier": {
@@ -29960,9 +27871,6 @@
   "zac stacy": {
     "sleeperId": "1573"
   },
-  "zac stacy|2014|john/zach": {
-    "sleeperId": "1573"
-  },
   "zacch pickens": {
     "sleeperId": "10924"
   },
@@ -29991,12 +27899,6 @@
     "sleeperId": "2962"
   },
   "zach ertz": {
-    "sleeperId": "1339"
-  },
-  "zach ertz|2020|john/zach": {
-    "sleeperId": "1339"
-  },
-  "zach ertz|2020|keyon": {
     "sleeperId": "1339"
   },
   "zach evans": {
@@ -30041,9 +27943,6 @@
   "zach mettenberger": {
     "sleeperId": "1935"
   },
-  "zach mettenberger|2016|trevor": {
-    "sleeperId": "1935"
-  },
   "zach miller": {
     "sleeperId": "171"
   },
@@ -30071,16 +27970,10 @@
   "zach pascal": {
     "sleeperId": "4319"
   },
-  "zach pascal|2019|schex": {
-    "sleeperId": "4319"
-  },
   "zach sieler": {
     "sleeperId": "5297"
   },
   "zach sudfeld": {
-    "sleeperId": "1654"
-  },
-  "zach sudfeld|2013|syed": {
     "sleeperId": "1654"
   },
   "zach terrell": {
@@ -30186,9 +28079,6 @@
     "sleeperId": "9997"
   },
   "zay jones": {
-    "sleeperId": "4080"
-  },
-  "zay jones|2018|schex": {
     "sleeperId": "4080"
   },
   "zay malone": {

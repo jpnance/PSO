@@ -282,11 +282,14 @@ echo ""
 
 # Step 12: Seed auction/contract transactions (interactive)
 echo "=== Step 12: Seeding auction transactions (interactive) ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] docker compose run --rm web node data/seed/auction.js 2025"
-else
-    docker compose run --rm -it web node data/seed/auction.js 2025
-fi
+for year in 2020 2021 2022 2023 2024 2025; do
+    echo "--- Auction year: $year ---"
+    if [ "$DRY_RUN" = true ]; then
+        echo "[dry-run] docker compose run --rm web node data/seed/auction.js $year"
+    else
+        docker compose run --rm -it web node data/seed/auction.js $year
+    fi
+done
 echo ""
 
 echo "=== Done! ==="
