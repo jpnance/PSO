@@ -228,20 +228,20 @@ exports.playerDetail = async function(request, response) {
 					entry.draftSeason = new Date(t.timestamp).getFullYear();
 					break;
 					
-				case 'auction-ufa':
-					entry.description = 'Won at auction by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-					entry.salary = t.winningBid;
-					break;
-					
-				case 'auction-rfa-matched':
-					entry.description = 'RFA matched by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-					entry.salary = t.winningBid;
-					break;
-					
-				case 'auction-rfa-unmatched':
-					entry.description = 'RFA not matched, signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-					entry.salary = t.winningBid;
-					break;
+			case 'auction-ufa':
+				entry.description = 'Won at auction by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				entry.salary = t.salary;
+				break;
+				
+			case 'auction-rfa-matched':
+				entry.description = 'RFA matched by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				entry.salary = t.salary;
+				break;
+				
+			case 'auction-rfa-unmatched':
+				entry.description = 'RFA not matched, signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				entry.salary = t.salary;
+				break;
 					
 				case 'contract':
 					entry.description = 'Contract set by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);

@@ -104,6 +104,18 @@ block content
 												= formatMoney(entry.salary)
 												if entry.endYear
 													|  · #{formatContractYears(entry.startYear, entry.endYear)}
+									else if entry.type === 'auction-ufa' || entry.type === 'auction-rfa-matched' || entry.type === 'auction-rfa-unmatched'
+										span= entry.description
+										if entry.salary
+											br
+											span.player-timeline__salary= formatMoney(entry.salary)
+									else if entry.type === 'contract'
+										span= entry.description
+										if entry.salary && entry.startYear && entry.endYear
+											br
+											span.player-timeline__salary
+												= formatMoney(entry.salary)
+												|  · #{formatContractYears(entry.startYear, entry.endYear)}
 									else
 										span= entry.description
 										if entry.salary
