@@ -3351,20 +3351,8 @@
     "sleeperId": null,
     "name": "Steve Slaton"
   },
-  "steve smith|2008|type:auction|john": {
-    "sleeperId": null,
-    "name": "Steve Smith (NYG)"
-  },
   "steve smith|2010|type:cut|keyon": {
     "sleeperId": "169"
-  },
-  "steve smith|2011|type:cut|mike": {
-    "sleeperId": null,
-    "name": "Steve Smith"
-  },
-  "steve smith|2013|type:cut|jason": {
-    "sleeperId": null,
-    "name": "Steve Smith (STL)"
   },
   "steven jackson|2009|type:trade|james": {
     "sleeperId": "57"
