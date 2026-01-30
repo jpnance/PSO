@@ -287,6 +287,15 @@ else
 fi
 echo ""
 
+# Step 12: Seed auction/contract transactions (interactive)
+echo "=== Step 12: Seeding auction transactions (interactive) ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] $DOCKER_COMPOSE run --rm web node data/seed/auction.js 2025"
+else
+    $DOCKER_COMPOSE run --rm -it web node data/seed/auction.js 2025
+fi
+echo ""
+
 echo "=== Done! ==="
 echo ""
 echo "If any interactive scripts prompted for new player resolutions,"
