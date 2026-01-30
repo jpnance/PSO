@@ -227,9 +227,9 @@ echo ""
 # Must run before trades so rookie contract heuristic has draft data available
 echo "=== Step 6: Seeding draft selections (interactive, needs network) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] docker compose run --rm web node data/seed/draft-selections.js"
+    echo "[dry-run] docker compose run --rm web node data/seed/draft-selections.js --auto-historical-before=2016"
 else
-    docker compose run --rm web node data/seed/draft-selections.js
+    docker compose run --rm -it web node data/seed/draft-selections.js --auto-historical-before=2016
 fi
 echo ""
 

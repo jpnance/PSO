@@ -5,6 +5,7 @@
  * Usage:
  *   docker compose run --rm -it web node data/seed/draft-selections.js
  *   docker compose run --rm -it web node data/seed/draft-selections.js --clear
+ *   docker compose run --rm -it web node data/seed/draft-selections.js --auto-historical-before=2016
  */
 
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
@@ -28,6 +29,18 @@ var mainSheetBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZt
 
 // Global readline interface for prompts
 var rl = null;
+var autoHistoricalThreshold = null;
+
+// Parse --auto-historical-before=YEAR flag
+function getAutoHistoricalThreshold() {
+	var flag = process.argv.find(function(arg) {
+		return arg.startsWith('--auto-historical-before=');
+	});
+	if (flag) {
+		return parseInt(flag.split('=')[1]);
+	}
+	return null;
+}
 
 // Build reverse lookup for owner names
 var ownerToFranchiseByYear = {};
@@ -200,6 +213,49 @@ async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 		}
 	}
 	
+	// For old drafts, auto-create historical players without prompting
+	if (autoHistoricalThreshold && draftYear < autoHistoricalThreshold) {
+		// Check cache first
+		var cached = resolver.lookup(playerName, context);
+		if (cached && cached.sleeperId) {
+			var player = await Player.findOne({ sleeperId: cached.sleeperId });
+			if (player) return player._id;
+		}
+		if (cached && cached.name) {
+			var player = await Player.findOne({ name: cached.name, sleeperId: null });
+			if (player) return player._id;
+		}
+		
+		// Single non-ambiguous match
+		if (candidates.length === 1 && !resolver.isAmbiguous(normalizedName)) {
+			return candidates[0]._id;
+		}
+		
+		// No match - auto-create historical
+		if (candidates.length === 0) {
+			var existing = await Player.findOne({ name: playerName, sleeperId: null });
+			if (existing) {
+				resolver.addResolution(playerName, null, playerName, context);
+				resolver.save();
+				return existing._id;
+			}
+			
+			console.log('  Auto-creating historical: ' + playerName + ' (' + draftYear + ')');
+			var player = await Player.create({
+				name: playerName,
+				positions: [],
+				sleeperId: null
+			});
+			resolver.addResolution(playerName, null, playerName, context);
+			resolver.save();
+			return player._id;
+		}
+		
+		// Multiple candidates but below threshold - skip with warning
+		console.log('  ⚠️ Ambiguous (skipping): ' + playerName + ' (' + candidates.length + ' candidates)');
+		return null;
+	}
+	
 	// Use unified prompt
 	var result = await resolver.promptForPlayer({
 		name: playerName,
@@ -281,6 +337,12 @@ async function seed() {
 		input: process.stdin,
 		output: process.stdout
 	});
+
+	// Check for auto-historical threshold
+	autoHistoricalThreshold = getAutoHistoricalThreshold();
+	if (autoHistoricalThreshold) {
+		console.log('Auto-creating historical players for drafts before ' + autoHistoricalThreshold + '\n');
+	}
 
 	// Load all players and build lookup
 	console.log('Loading players from database...');
