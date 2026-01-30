@@ -163,13 +163,22 @@ function findSleeperMatches(name, draftYear) {
 		});
 	}
 	
-	// Filter by years_exp if multiple matches
+	// Filter by rookie year if multiple matches
 	if (matches.length > 1) {
-		var expFiltered = matches.filter(function(m) {
-			return m.years_exp !== undefined && Math.abs(m.years_exp - expectedYearsExp) <= 1;
+		// First try metadata.rookie_year (reliable, exact match)
+		var rookieFiltered = matches.filter(function(m) {
+			return m.metadata && m.metadata.rookie_year && parseInt(m.metadata.rookie_year) === draftYear;
 		});
-		if (expFiltered.length >= 1) {
-			matches = expFiltered;
+		if (rookieFiltered.length >= 1) {
+			matches = rookieFiltered;
+		} else {
+			// Fall back to years_exp filtering (less reliable, allow ±1)
+			var expFiltered = matches.filter(function(m) {
+				return m.years_exp !== undefined && Math.abs(m.years_exp - expectedYearsExp) <= 1;
+			});
+			if (expFiltered.length >= 1) {
+				matches = expFiltered;
+			}
 		}
 	}
 	
@@ -226,13 +235,33 @@ async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 			if (player) return player._id;
 		}
 		
+		// Apply same filtering as promptForPlayer: rookie year proximity
+		var filteredCandidates = candidates;
+		
+		// Filter by rookie year - for drafts, player must be a rookie
+		// Reliable rookieYear: exact match (100% reliable)
+		// Estimated rookieYear: allow ±2 window
+		if (filteredCandidates.length > 1) {
+			var plausible = filteredCandidates.filter(function(c) {
+				if (c.rookieYear) {
+					return c.rookieYear === draftYear;
+				} else if (c.estimatedRookieYear) {
+					return Math.abs(c.estimatedRookieYear - draftYear) <= 2;
+				}
+				return true; // No data, keep as candidate
+			});
+			if (plausible.length > 0 && plausible.length < filteredCandidates.length) {
+				filteredCandidates = plausible;
+			}
+		}
+		
 		// Single non-ambiguous match
-		if (candidates.length === 1 && !resolver.isAmbiguous(normalizedName)) {
-			return candidates[0]._id;
+		if (filteredCandidates.length === 1 && !resolver.isAmbiguous(normalizedName)) {
+			return filteredCandidates[0]._id;
 		}
 		
 		// No match - auto-create historical
-		if (candidates.length === 0) {
+		if (filteredCandidates.length === 0) {
 			var existing = await Player.findOne({ name: playerName, sleeperId: null });
 			if (existing) {
 				resolver.addResolution(playerName, null, playerName, context);
@@ -246,14 +275,17 @@ async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 				positions: [],
 				sleeperId: null
 			});
+			// Add to in-memory cache so subsequent lookups find it
+			if (!playersByNormalizedName[normalizedName]) {
+				playersByNormalizedName[normalizedName] = [];
+			}
+			playersByNormalizedName[normalizedName].push(player);
 			resolver.addResolution(playerName, null, playerName, context);
 			resolver.save();
 			return player._id;
 		}
 		
-		// Multiple candidates but below threshold - skip with warning
-		console.log('  ⚠️ Ambiguous (skipping): ' + playerName + ' (' + candidates.length + ' candidates)');
-		return null;
+		// Multiple candidates but below threshold - fall through to unified prompt
 	}
 	
 	// Use unified prompt
@@ -262,7 +294,8 @@ async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 		context: context,
 		candidates: candidates,
 		Player: Player,
-		rl: rl
+		rl: rl,
+		playerCache: playersByNormalizedName
 	});
 	
 	if (result.action === 'quit') {

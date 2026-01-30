@@ -31,11 +31,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 // Normalize player name for matching
 function normalizeForMatch(name) {
-	return name
-		.replace(/['\-\.]/g, '')
-		.replace(/\s+/g, ' ')
-		.trim()
-		.toLowerCase();
+	return resolver.normalizePlayerName(name);
 }
 
 // Key dates by year (from doc/summer-meetings.txt)
@@ -249,7 +245,8 @@ async function run() {
 			candidates: candidates,
 			position: c.position,
 			Player: Player,
-			rl: skipAmbiguous ? null : rl
+			rl: skipAmbiguous ? null : rl,
+			playerCache: playersByNormalizedName
 		});
 		
 		if (result.action === 'quit') {

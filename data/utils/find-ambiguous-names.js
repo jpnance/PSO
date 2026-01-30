@@ -46,7 +46,8 @@ sleeperData.forEach(function(player) {
 		name: player.full_name,
 		team: player.team || 'FA',
 		position: (player.fantasy_positions || []).join('/'),
-		yearsExp: player.years_exp,
+		rookieYear: player.metadata && player.metadata.rookie_year ? parseInt(player.metadata.rookie_year) : null,
+		birthDate: player.birth_date,
 		active: player.active
 	});
 });
@@ -73,12 +74,24 @@ duplicates.sort(function(a, b) {
 console.log('=== Ambiguous Names in Sleeper Data ===\n');
 console.log('Found', duplicates.length, 'names with multiple players\n');
 
+function getRookieYearDisplay(p) {
+	if (p.rookieYear && p.rookieYear > 1990) {
+		return String(p.rookieYear);
+	}
+	if (p.birthDate) {
+		var birthYear = parseInt(p.birthDate.split('-')[0]);
+		if (birthYear > 1950) {
+			return '~' + (birthYear + 23);
+		}
+	}
+	return '?';
+}
+
 duplicates.forEach(function(dup) {
 	console.log(dup.normalizedName + ' (' + dup.count + ' players):');
 	dup.players.forEach(function(p) {
 		var status = p.active ? '' : ' [inactive]';
-		var draftYear = p.yearsExp !== undefined ? (2025 - p.yearsExp) : '?';
-		console.log('  ' + p.id + ' - ' + p.name + ' (' + p.position + ', ' + p.team + ', ~' + draftYear + ')' + status);
+		console.log('  ' + p.id + ' - ' + p.name + ' (' + p.position + ', ' + p.team + ', ' + getRookieYearDisplay(p) + ')' + status);
 	});
 	console.log('');
 });

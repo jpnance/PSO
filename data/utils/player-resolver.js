@@ -99,9 +99,10 @@ function buildContextKey(normalizedName, context) {
 
 /**
  * Look up a player name in the resolutions cache.
+ * Tries progressively less specific context keys.
  * 
  * @param {string} name - Player name (will be normalized)
- * @param {Object} [context] - Optional context { year, position, franchise, pick }
+ * @param {Object} [context] - Optional context { year, type, franchise }
  * @returns {Object|null} - { sleeperId: string|null, name?: string } or null if not found
  *                          Returns { ambiguous: true } if name is in ambiguous list without any cached resolution
  */
@@ -109,11 +110,29 @@ function lookup(name, context) {
 	var normalized = normalizePlayerName(name);
 	var res = loadResolutions();
 
-	// Try context-specific key first (if context provided)
+	// Try progressively less specific context keys
 	if (context) {
-		var contextKey = buildContextKey(normalized, context);
-		if (contextKey && res[contextKey]) {
-			return res[contextKey];
+		// 1. Full context: name|year|type|franchise
+		var fullKey = buildContextKey(normalized, context);
+		if (fullKey && res[fullKey]) {
+			return res[fullKey];
+		}
+		
+		// 2. Without franchise: name|year|type
+		if (context.franchise) {
+			var noFranchise = { year: context.year, type: context.type };
+			var noFranchiseKey = buildContextKey(normalized, noFranchise);
+			if (noFranchiseKey && res[noFranchiseKey]) {
+				return res[noFranchiseKey];
+			}
+		}
+		
+		// 3. Just year: name|year
+		if (context.year) {
+			var yearOnlyKey = normalized + '|' + context.year;
+			if (res[yearOnlyKey]) {
+				return res[yearOnlyKey];
+			}
 		}
 	}
 
@@ -256,15 +275,28 @@ function formatContext(context) {
 
 /**
  * Order candidates by likelihood given context.
- * Prefers: rookieYear matching context year, active players, higher searchRank.
+ * Prefers: exact rookieYear match, closer estimatedRookieYear, active players, higher searchRank.
  */
 function orderCandidates(candidates, context) {
 	return candidates.slice().sort(function(a, b) {
-		// Prefer rookieYear matching context year
 		if (context && context.year) {
+			// First: prefer exact rookieYear match (reliable data)
 			var aRookieMatch = a.rookieYear === context.year ? 1 : 0;
 			var bRookieMatch = b.rookieYear === context.year ? 1 : 0;
 			if (aRookieMatch !== bRookieMatch) return bRookieMatch - aRookieMatch;
+			
+			// Second: prefer closer estimatedRookieYear (for ordering, not auto-resolution)
+			var aEstimated = a.estimatedRookieYear || a.rookieYear;
+			var bEstimated = b.estimatedRookieYear || b.rookieYear;
+			if (aEstimated && bEstimated) {
+				var aDist = Math.abs(aEstimated - context.year);
+				var bDist = Math.abs(bEstimated - context.year);
+				if (aDist !== bDist) return aDist - bDist;
+			} else if (aEstimated) {
+				return -1; // a has estimate, b doesn't - prefer a
+			} else if (bEstimated) {
+				return 1; // b has estimate, a doesn't - prefer b
+			}
 		}
 		
 		// Prefer active players
@@ -289,6 +321,7 @@ function orderCandidates(candidates, context) {
  * @param {string} [options.position] - Position from source data (for display)
  * @param {Object} options.Player - Mongoose Player model (for creating historical)
  * @param {Object} [options.rl] - Existing readline interface (if null and prompt needed, will skip)
+ * @param {Object} [options.playerCache] - Seeder's in-memory cache to update when creating historical players
  * @returns {Promise<Object>} - { player: Player document or null, action: 'matched'|'created'|'skipped'|'quit' }
  */
 async function promptForPlayer(options) {
@@ -298,6 +331,15 @@ async function promptForPlayer(options) {
 	var position = options.position;
 	var Player = options.Player;
 	var rl = options.rl;
+	var playerCache = options.playerCache; // Optional: seeder's in-memory cache to update
+	
+	// Helper to update seeder's cache when creating historical players
+	function addToCache(player) {
+		if (!playerCache) return;
+		var norm = normalizePlayerName(player.name);
+		if (!playerCache[norm]) playerCache[norm] = [];
+		playerCache[norm].push(player);
+	}
 	
 	var normalized = normalizePlayerName(name);
 	
@@ -315,12 +357,18 @@ async function promptForPlayer(options) {
 			return { player: dbPlayer, action: 'matched' };
 		}
 	}
-	if (cached && cached.name) {
-		// Historical player - find by name
+	if (cached && cached.name && !cached.sleeperId) {
+		// Historical player - find or create by name
 		var historical = await Player.findOne({ name: cached.name, sleeperId: null });
 		if (historical) {
 			return { player: historical, action: 'matched' };
 		}
+		// Cached resolution exists but Player was deleted (e.g., by reset) - recreate it
+		historical = new Player({ name: cached.name, sleeperId: null });
+		await historical.save();
+		addToCache(historical);
+		console.log('  ✓ Recreated historical: ' + cached.name);
+		return { player: historical, action: 'created' };
 	}
 	
 	// Filter candidates by position if we have position data
@@ -334,6 +382,36 @@ async function promptForPlayer(options) {
 		});
 		if (positionFiltered.length > 0) {
 			filteredCandidates = positionFiltered;
+		}
+	}
+	
+	// Filter by rookie year plausibility if we have context year
+	if (context && context.year && filteredCandidates.length > 1) {
+		var plausible = filteredCandidates.filter(function(c) {
+			if (context.type === 'draft') {
+				// For drafts, player must be a rookie
+				if (c.rookieYear) {
+					// Reliable: exact match
+					return c.rookieYear === context.year;
+				} else if (c.estimatedRookieYear) {
+					// Estimated: allow ±2 window
+					return Math.abs(c.estimatedRookieYear - context.year) <= 2;
+				}
+			} else {
+				// For trades/cuts/etc, player just needs to have existed by then
+				if (c.rookieYear) {
+					// Reliable: exact check
+					return c.rookieYear <= context.year;
+				} else if (c.estimatedRookieYear) {
+					// Estimated: allow margin
+					return c.estimatedRookieYear <= context.year + 2;
+				}
+			}
+			return true; // No data, keep as candidate
+		});
+		// Only apply filter if it narrows down (but doesn't eliminate all)
+		if (plausible.length > 0 && plausible.length < filteredCandidates.length) {
+			filteredCandidates = plausible;
 		}
 	}
 	
@@ -365,11 +443,16 @@ async function promptForPlayer(options) {
 		console.log('Candidates:');
 		for (var i = 0; i < filteredCandidates.length; i++) {
 			var c = filteredCandidates[i];
+			var rookieYearDisplay = c.rookieYear 
+				? String(c.rookieYear) 
+				: (c.estimatedRookieYear ? '~' + c.estimatedRookieYear : '?');
+			var idDisplay = c.sleeperId ? '#' + c.sleeperId : '(historical)';
 			var details = [
 				c.name,
 				(c.positions || []).join('/'),
+				rookieYearDisplay,
 				c.college || '?',
-				'#' + c.sleeperId
+				idDisplay
 			].join(' | ');
 			console.log('  ' + (i + 1) + ') ' + details);
 		}
@@ -382,6 +465,7 @@ async function promptForPlayer(options) {
 	optionsText.push('s to skip');
 	optionsText.push('q to quit');
 	console.log('Options: ' + optionsText.join(', '));
+	console.log('        (add ! suffix to save as global alias, e.g. 1! or #5916!)');
 	
 	var answer = await prompt(rl, 'Selection: ');
 	answer = answer.trim();
@@ -398,8 +482,10 @@ async function promptForPlayer(options) {
 	
 	// Handle historical
 	if (answer.toLowerCase() === 'h') {
-		var displayName = await prompt(rl, 'Display name [' + name + ']: ');
-		displayName = displayName.trim() || name;
+		// Strip hint parenthetical from default name (e.g., "Steve Smith (PHI)" → "Steve Smith")
+		var cleanName = name.replace(/\s*\([^)]+\)$/, '');
+		var displayName = await prompt(rl, 'Display name [' + cleanName + ']: ');
+		displayName = displayName.trim() || cleanName;
 		
 		// Check for existing historical player
 		var existing = await Player.findOne({ name: displayName, sleeperId: null });
@@ -416,6 +502,7 @@ async function promptForPlayer(options) {
 			positions: position ? position.split('/') : [],
 			sleeperId: null
 		});
+		addToCache(newPlayer);
 		console.log('  Created historical player: ' + displayName);
 		addResolution(name, null, displayName, context);
 		saveResolutions();
@@ -424,11 +511,12 @@ async function promptForPlayer(options) {
 	
 	// Handle Sleeper ID
 	if (answer.startsWith('#')) {
-		var sleeperId = answer.slice(1);
+		var isGlobalAlias = answer.endsWith('!');
+		var sleeperId = isGlobalAlias ? answer.slice(1, -1) : answer.slice(1);
 		var player = await Player.findOne({ sleeperId: sleeperId });
 		if (player) {
-			console.log('  → ' + player.name);
-			addResolution(name, sleeperId, null, context);
+			console.log('  → ' + player.name + (isGlobalAlias ? ' (global alias)' : ''));
+			addResolution(name, sleeperId, null, isGlobalAlias ? null : context);
 			saveResolutions();
 			return { player: player, action: 'matched' };
 		} else {
@@ -439,10 +527,13 @@ async function promptForPlayer(options) {
 	}
 	
 	// Handle numeric selection
-	var selection = parseInt(answer, 10);
+	var isGlobalAlias = answer.endsWith('!');
+	var selectionStr = isGlobalAlias ? answer.slice(0, -1) : answer;
+	var selection = parseInt(selectionStr, 10);
 	if (selection >= 1 && selection <= filteredCandidates.length) {
 		var selectedPlayer = filteredCandidates[selection - 1];
-		addResolution(name, selectedPlayer.sleeperId, null, context);
+		console.log('  → ' + selectedPlayer.name + (isGlobalAlias ? ' (global alias)' : ''));
+		addResolution(name, selectedPlayer.sleeperId, null, isGlobalAlias ? null : context);
 		saveResolutions();
 		return { player: selectedPlayer, action: 'matched' };
 	}

@@ -39,6 +39,20 @@ function findSleeperCandidates(name) {
 	}).slice(0, 10); // Limit to 10
 }
 
+// Display rookie year: reliable (no prefix) or estimated with ~
+function getRookieYearDisplay(p) {
+	if (p.metadata && p.metadata.rookie_year && parseInt(p.metadata.rookie_year) > 1990) {
+		return String(p.metadata.rookie_year);
+	}
+	if (p.birth_date) {
+		var birthYear = parseInt(p.birth_date.split('-')[0]);
+		if (birthYear > 1950) {
+			return '~' + (birthYear + 23);
+		}
+	}
+	return '?';
+}
+
 async function main() {
 	console.log('=== Player Resolver Playground ===\n');
 	console.log('Loaded', resolver.count(), 'cached resolutions');
@@ -69,9 +83,9 @@ async function main() {
 				candidates.forEach(function(p, i) {
 					var pos = (p.fantasy_positions || []).join('/');
 					var team = p.team || 'FA';
-					var exp = p.years_exp !== undefined ? (2025 - p.years_exp) : '?';
+					var rookieYear = getRookieYearDisplay(p);
 					var college = p.college || '?';
-					console.log('    ' + (i + 1) + ') ' + p.player_id + ' - ' + p.full_name + ' (' + pos + ', ' + team + ', ~' + exp + ', ' + college + ')');
+					console.log('    ' + (i + 1) + ') ' + p.player_id + ' - ' + p.full_name + ' (' + pos + ', ' + team + ', ' + rookieYear + ', ' + college + ')');
 				});
 			}
 			
@@ -105,9 +119,9 @@ async function main() {
 				candidates.forEach(function(p, i) {
 					var pos = (p.fantasy_positions || []).join('/');
 					var team = p.team || 'FA';
-					var exp = p.years_exp !== undefined ? (2025 - p.years_exp) : '?';
+					var rookieYear = getRookieYearDisplay(p);
 					var college = p.college || '?';
-					console.log('    ' + (i + 1) + ') ' + p.player_id + ' - ' + p.full_name + ' (' + pos + ', ' + team + ', ~' + exp + ', ' + college + ')');
+					console.log('    ' + (i + 1) + ') ' + p.player_id + ' - ' + p.full_name + ' (' + pos + ', ' + team + ', ' + rookieYear + ', ' + college + ')');
 				});
 				
 				var pick = await askQuestion('\n  Pick a number, "h" for historical, or Enter to skip: ');

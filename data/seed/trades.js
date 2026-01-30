@@ -572,7 +572,8 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, 
 		context: contextInfo,
 		candidates: candidates,
 		Player: Player,
-		rl: rl
+		rl: rl,
+		playerCache: playersByNormalizedName
 	});
 	
 	if (result.action === 'quit') {

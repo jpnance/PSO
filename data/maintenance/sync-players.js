@@ -2,7 +2,7 @@
  * Sync players from Sleeper data.
  * 
  * This script can be run repeatedly to keep Player documents in sync with Sleeper:
- * - Updates name, positions, college, rookieYear, active, team, searchRank for existing players (by sleeperId)
+ * - Updates name, positions, college, rookieYear, estimatedRookieYear, active, team, searchRank for existing players (by sleeperId)
  * - Creates new players that don't exist yet
  * - Does NOT touch historical players (those without sleeperId)
  * - Does NOT overwrite the `notes` field (manual data)
@@ -31,12 +31,34 @@ function hasRelevantPosition(player) {
 	});
 }
 
+/**
+ * Get reliable rookie year from Sleeper metadata (42% coverage).
+ * Returns null if not available - do NOT fall back to estimates.
+ */
 function getRookieYear(player) {
-	// Try metadata first
 	if (player.metadata && player.metadata.rookie_year) {
-		return parseInt(player.metadata.rookie_year, 10);
+		var year = parseInt(player.metadata.rookie_year, 10);
+		// Filter out invalid values (e.g., 0)
+		if (year > 1990) {
+			return year;
+		}
 	}
-	// Fall back to calculating from years_exp
+	return null;
+}
+
+/**
+ * Estimate rookie year from birth_date (preferred) or years_exp (fallback).
+ * 98% accurate within 2 years when using birth_date + 23.
+ */
+function getEstimatedRookieYear(player) {
+	// Prefer birth_date + 23 (35% exact, 98% within 2 years)
+	if (player.birth_date) {
+		var birthYear = parseInt(player.birth_date.split('-')[0], 10);
+		if (birthYear > 1950) {
+			return birthYear + 23;
+		}
+	}
+	// Fall back to years_exp calculation (less reliable)
 	if (player.years_exp !== undefined && player.years_exp !== null) {
 		return new Date().getFullYear() - player.years_exp;
 	}
@@ -82,6 +104,7 @@ async function sync() {
 						positions: p.fantasy_positions || [],
 						college: p.college || null,
 						rookieYear: getRookieYear(p),
+						estimatedRookieYear: getEstimatedRookieYear(p),
 						active: p.active || false,
 						team: p.team || null,
 						searchRank: p.search_rank || null

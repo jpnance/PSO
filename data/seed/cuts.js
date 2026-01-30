@@ -158,93 +158,52 @@ function computeBuyOuts(salary, startYear, endYear, cutYear) {
 	return buyOuts;
 }
 
-// Find player in Sleeper data (returns match info, doesn't create anything)
-function findSleeperMatch(name, position, hint, rawName) {
-	var searchName = name
-		.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '')  // Strip ordinals/suffixes
-		.replace(/[\. '-]/g, '').toLowerCase();
+// Find player match for analysis (uses DB player lookup)
+function findPlayerMatch(name, position, hint, rawName) {
+	var lookupName = hint ? rawName : name;
+	var normalizedName = resolver.normalizePlayerName(lookupName);
 	
 	// Check resolver cache first
-	// If there's a hint, try the raw name (with hint) first and DON'T fall back to plain name
-	if (hint && rawName) {
-		var cachedWithHint = resolver.lookup(rawName, { position: position });
-		if (cachedWithHint && !cachedWithHint.ambiguous) {
-			return {
-				type: cachedWithHint.sleeperId ? 'cached' : 'historical',
-				sleeperId: cachedWithHint.sleeperId,
-				name: cachedWithHint.name
-			};
-		}
-		// Hint exists but no resolution for hinted name - treat as ambiguous, don't fall back
-	} else {
-		// No hint - check plain name
-		var cached = resolver.lookup(name, { position: position });
-		if (cached && !cached.ambiguous) {
-			return {
-				type: cached.sleeperId ? 'cached' : 'historical',
-				sleeperId: cached.sleeperId,
-				name: cached.name
-			};
-		}
+	var cached = resolver.lookup(lookupName, { position: position });
+	if (cached && !cached.ambiguous) {
+		return {
+			type: cached.sleeperId ? 'cached' : 'historical',
+			sleeperId: cached.sleeperId,
+			name: cached.name
+		};
 	}
 	
-	// If there's a hint, this name is implicitly ambiguous
-	var implicitlyAmbiguous = !!hint;
+	// Get candidates from DB lookup
+	var candidates = playersByNormalizedName[normalizedName] || [];
 	
-	// Search Sleeper data
-	var matches = sleeperData.filter(function(p) {
-		return p.search_full_name === searchName;
+	// Also try without hint if no candidates
+	if (candidates.length === 0 && hint) {
+		var plainNormalized = resolver.normalizePlayerName(name);
+		candidates = playersByNormalizedName[plainNormalized] || [];
+	}
+	
+	// Filter by position
+	var positionMatches = candidates.filter(function(p) {
+		return p.positions && p.positions.includes(position);
 	});
 	
-	// Filter by position if we have matches
-	var positionMatches = matches.filter(function(p) {
-		return p.fantasy_positions && p.fantasy_positions.includes(position);
-	});
+	// Check if ambiguous
+	var isAmbiguous = resolver.isAmbiguous(normalizedName) || !!hint;
 	
-	// If hint is a team abbreviation, filter/prioritize by team
-	if (hint && positionMatches.length > 1) {
-		var teamMatches = positionMatches.filter(function(p) {
-			return p.team === hint;
-		});
-		if (teamMatches.length === 1) {
-			return { type: 'hint-match', sleeperId: teamMatches[0].player_id, player: teamMatches[0], hint: hint };
-		}
+	if (positionMatches.length === 1 && !isAmbiguous) {
+		return { type: 'exact', playerId: positionMatches[0]._id };
 	}
 	
-	if (positionMatches.length === 1 && !cached && !implicitlyAmbiguous) {
-		return { type: 'exact', sleeperId: positionMatches[0].player_id, player: positionMatches[0] };
+	if (positionMatches.length > 1 || isAmbiguous) {
+		return { type: 'ambiguous', matches: positionMatches, hint: hint };
 	}
 	
-	if (positionMatches.length > 1 || (cached && cached.ambiguous) || implicitlyAmbiguous) {
-		return { type: 'ambiguous', matches: positionMatches.length > 0 ? positionMatches : matches, hint: hint };
+	if (candidates.length === 1 && !isAmbiguous) {
+		return { type: 'exact-no-pos', playerId: candidates[0]._id };
 	}
 	
-	if (matches.length === 1) {
-		return { type: 'exact-no-pos', sleeperId: matches[0].player_id, player: matches[0] };
-	}
-	
-	if (matches.length > 1) {
-		return { type: 'ambiguous', matches: matches, hint: hint };
-	}
-	
-	// Try nickname expansion
-	var parts = name.toLowerCase().split(' ');
-	var firstName = parts[0];
-	var expandedFirst = nicknameMap[firstName];
-	
-	if (expandedFirst) {
-		var expandedSearchName = (expandedFirst + parts.slice(1).join('')).replace(/[\. '-]/g, '');
-		var expandedMatches = sleeperData.filter(function(p) {
-			return p.search_full_name === expandedSearchName;
-		});
-		
-		if (expandedMatches.length === 1) {
-			return { type: 'nickname', sleeperId: expandedMatches[0].player_id, player: expandedMatches[0], expandedName: expandedFirst + ' ' + parts.slice(1).join(' ') };
-		}
-		
-		if (expandedMatches.length > 1) {
-			return { type: 'ambiguous', matches: expandedMatches, hint: hint };
-		}
+	if (candidates.length > 1) {
+		return { type: 'ambiguous', matches: candidates, hint: hint };
 	}
 	
 	// No match found
@@ -312,7 +271,7 @@ async function analyzeCuts(rows) {
 	
 	for (var i = 0; i < cuts.length; i++) {
 		var cut = cuts[i];
-		var result = findSleeperMatch(cut.name, cut.position, cut.hint, cut.rawName);
+		var result = findPlayerMatch(cut.name, cut.position, cut.hint, cut.rawName);
 		
 		switch (result.type) {
 			case 'cached':
@@ -474,7 +433,8 @@ async function resolvePlayer(cut, autoHistoricalThreshold) {
 		candidates: candidates,
 		position: cut.position,
 		Player: Player,
-		rl: rl
+		rl: rl,
+		playerCache: playersByNormalizedName
 	});
 	
 	if (result.action === 'quit') {

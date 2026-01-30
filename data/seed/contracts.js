@@ -39,7 +39,8 @@ async function findPlayer(name, positions, rosterInfo) {
 		candidates: candidates,
 		position: positions.join('/'),
 		Player: Player,
-		rl: rl
+		rl: rl,
+		playerCache: playersByNormalizedName
 	});
 	
 	if (result.action === 'quit') {

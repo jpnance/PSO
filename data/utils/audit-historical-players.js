@@ -127,12 +127,21 @@ async function audit() {
 		}
 		
 		result.matches.forEach(function(m, j) {
+			var rookieYear;
+			if (m.metadata && m.metadata.rookie_year && parseInt(m.metadata.rookie_year) > 1990) {
+				rookieYear = String(m.metadata.rookie_year);
+			} else if (m.birth_date) {
+				var birthYear = parseInt(m.birth_date.split('-')[0]);
+				if (birthYear > 1950) {
+					rookieYear = '~' + (birthYear + 23);
+				}
+			}
 			var details = [
 				m.full_name,
 				m.team || 'FA',
 				(m.fantasy_positions || []).join('/'),
 				m.college || '?',
-				m.years_exp != null ? '~' + (2025 - m.years_exp) : '',
+				rookieYear,
 				m.active ? 'Active' : 'Inactive',
 				'ID: ' + m.player_id
 			].filter(Boolean).join(' | ');
