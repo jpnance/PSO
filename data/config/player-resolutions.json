@@ -95,6 +95,9 @@
   "adrian peterson|2016|type:trade|john/zach": {
     "sleeperId": "184"
   },
+  "adrian peterson|2020|type:auction|patrick": {
+    "sleeperId": "184"
+  },
   "adrian peterson|2021|type:trade|jason": {
     "sleeperId": "184"
   },
@@ -583,6 +586,9 @@
     "sleeperId": null,
     "name": "Chaz Schilens"
   },
+  "chigoziem okonkwo": {
+    "sleeperId": "8210"
+  },
   "chris carr|2009|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Chris Carr"
@@ -638,6 +644,9 @@
     "sleeperId": "3558"
   },
   "chris jones|2019|type:cut|anthony": {
+    "sleeperId": "3558"
+  },
+  "chris jones|2023|type:auction|mike": {
     "sleeperId": "3558"
   },
   "chris perry|2009|type:cut|keyon": {
@@ -776,6 +785,9 @@
     "sleeperId": null,
     "name": "Da'Rel Scott"
   },
+  "darius leonard": {
+    "sleeperId": "4990"
+  },
   "darius reynaud|2013|type:cut|patrick": {
     "sleeperId": null,
     "name": "Darius Reynaud"
@@ -857,6 +869,12 @@
     "sleeperId": "2391"
   },
   "david johnson|2018|type:trade|syed/terence": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2020|type:auction|patrick": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2021|type:auction|patrick": {
     "sleeperId": "2391"
   },
   "david johnson|2021|type:cut|patrick": {
@@ -1175,6 +1193,9 @@
   "dwayne bowe|2012|type:trade|daniel": {
     "sleeperId": "286"
   },
+  "dwayne eskridge": {
+    "sleeperId": "7612"
+  },
   "earl thomas|2013|type:trade|schex": {
     "sleeperId": "643"
   },
@@ -1295,6 +1316,9 @@
   "fred jackson|2014|type:trade|syed": {
     "sleeperId": "228"
   },
+  "gabriel davis": {
+    "sleeperId": "6943"
+  },
   "garrett wolfe|2010|type:cut|jason": {
     "sleeperId": null,
     "name": "Garrett Wolfe"
@@ -1348,6 +1372,9 @@
   "greg olsen|2016|type:trade|schex/jeff": {
     "sleeperId": "58"
   },
+  "gregory rousseau": {
+    "sleeperId": "7627"
+  },
   "hakeem nicks|2011|type:trade|john": {
     "sleeperId": "474"
   },
@@ -1363,6 +1390,9 @@
   "hines ward|2011|type:cut|patrick": {
     "sleeperId": null,
     "name": "Hines Ward"
+  },
+  "hollywood brown": {
+    "sleeperId": "5848"
   },
   "hollywood brown|2024|type:cut|anthony": {
     "sleeperId": "5848"
@@ -1555,6 +1585,9 @@
   },
   "jaylon smith|2019|type:trade|keyon": {
     "sleeperId": "3167"
+  },
+  "jayson oweh": {
+    "sleeperId": "7626"
   },
   "jeff demps|2013|type:cut|anthony": {
     "sleeperId": null,
@@ -1832,6 +1865,9 @@
   "josh morgan|2013|type:trade|daniel": {
     "sleeperId": "222"
   },
+  "josh palmer": {
+    "sleeperId": "7670"
+  },
   "josh reynolds|2021|type:trade|jason": {
     "sleeperId": "4171"
   },
@@ -2038,6 +2074,9 @@
   "kyle vanden bosch|2010|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Kyle Vanden Bosch"
+  },
+  "kyle williams|2025|type:auction|mike": {
+    "sleeperId": "12547"
   },
   "kyle williams|2025|type:contract|mike": {
     "sleeperId": "12547"
@@ -2416,6 +2455,9 @@
   "matt forte|2017|type:trade|mitch": {
     "sleeperId": "103"
   },
+  "matt judon": {
+    "sleeperId": "3303"
+  },
   "matt judon|2022|type:trade|luke": {
     "sleeperId": "3303"
   },
@@ -2596,6 +2638,12 @@
   "mike williams|2017|type:draft|mitch": {
     "sleeperId": "4068"
   },
+  "mike williams|2020|type:auction|mitch": {
+    "sleeperId": "4068"
+  },
+  "mike williams|2023|type:auction|james/charles": {
+    "sleeperId": "4068"
+  },
   "mike williams|2023|type:trade|koci/mueller": {
     "sleeperId": "4068"
   },
@@ -2611,6 +2659,9 @@
   },
   "miles sanders|2019|type:trade|keyon": {
     "sleeperId": "6151"
+  },
+  "mitch trubisky": {
+    "sleeperId": "3976"
   },
   "montario hardesty|2010|type:draft|daniel": {
     "sleeperId": null,
@@ -3003,6 +3054,12 @@
   },
   "rob kelley|2018|type:trade|quinn": {
     "sleeperId": "3657"
+  },
+  "robbie anderson": {
+    "sleeperId": "3423"
+  },
+  "robby anderson": {
+    "sleeperId": "3423"
   },
   "robert griffin|2013|type:trade|jake/luke": {
     "sleeperId": "1169"
