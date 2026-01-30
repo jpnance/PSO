@@ -364,6 +364,10 @@
   "blake bortles|2017|type:trade|quinn": {
     "sleeperId": "1979"
   },
+  "bobby engram|2008|type:auction|trevor": {
+    "sleeperId": null,
+    "name": "Bobby Engram"
+  },
   "bobby rainey|2014|type:trade|mitch": {
     "sleeperId": "1059"
   },
@@ -541,6 +545,10 @@
   "chad ochocinco|2009|type:trade|james": {
     "sleeperId": null,
     "name": "Chad Ochocinco"
+  },
+  "chad pennington|2008|type:auction|john": {
+    "sleeperId": null,
+    "name": "Chad Pennington"
   },
   "chansi stuckey|2009|type:cut|anthony": {
     "sleeperId": null,
@@ -1316,6 +1324,10 @@
   "fred jackson|2014|type:trade|syed": {
     "sleeperId": "228"
   },
+  "fred taylor|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Fred Taylor"
+  },
   "gabriel davis": {
     "sleeperId": "6943"
   },
@@ -1477,6 +1489,10 @@
   "jamaal quinn|2011|type:cut|luke": {
     "sleeperId": null,
     "name": "Jamaal Quinn"
+  },
+  "jamal lewis|2008|type:auction|syed": {
+    "sleeperId": null,
+    "name": "Jamal Lewis"
   },
   "jamarcus russell|2009|type:cut|koci/mueller": {
     "sleeperId": null,
@@ -2022,6 +2038,14 @@
   "kenny golladay|2021|type:trade|jason": {
     "sleeperId": "4131"
   },
+  "kenny watson|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Kenny Watson"
+  },
+  "kerry rhodes|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Kerry Rhodes"
+  },
   "keshawn martin|2014|type:trade|quinn": {
     "sleeperId": "1102"
   },
@@ -2352,6 +2376,10 @@
   },
   "marcus murphy|2018|type:trade|schex": {
     "sleeperId": "2529"
+  },
+  "marcus trufant|2008|type:auction|trevor": {
+    "sleeperId": null,
+    "name": "Marcus Trufant"
   },
   "marcus williams|2022|type:cut|koci/mueller": {
     "sleeperId": "4091"
@@ -2687,6 +2715,10 @@
     "sleeperId": null,
     "name": "Nate Burleson"
   },
+  "nate clements|2008|type:auction|trevor": {
+    "sleeperId": null,
+    "name": "Nate Clements"
+  },
   "nate freese|2014|type:cut|justin": {
     "sleeperId": null,
     "name": "Nate Freese"
@@ -2907,6 +2939,10 @@
     "sleeperId": null,
     "name": "P.J. Dawson"
   },
+  "plaxico burress|2008|type:auction|john": {
+    "sleeperId": null,
+    "name": "Plaxico Burress"
+  },
   "preston williams|2019|type:trade|syed/kuan": {
     "sleeperId": "6148"
   },
@@ -3003,6 +3039,10 @@
   },
   "reggie wayne|2013|type:trade|syed": {
     "sleeperId": "194"
+  },
+  "reggie williams|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Reggie Williams"
   },
   "richard seymour|2009|type:cut|justin": {
     "sleeperId": null,
@@ -3141,6 +3181,10 @@
   "roy williams|2011|type:cut|mike": {
     "sleeperId": null,
     "name": "Roy Williams"
+  },
+  "rudi johnson|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Rudi Johnson"
   },
   "russell wilson|2015|type:trade|trevor": {
     "sleeperId": "1234"
@@ -3306,6 +3350,10 @@
   "steve slaton|2012|type:cut|mike": {
     "sleeperId": null,
     "name": "Steve Slaton"
+  },
+  "steve smith|2008|type:auction|john": {
+    "sleeperId": null,
+    "name": "Steve Smith (NYG)"
   },
   "steve smith|2010|type:cut|keyon": {
     "sleeperId": "169"
@@ -3595,6 +3643,10 @@
   "will smith|2010|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Will Smith"
+  },
+  "will witherspoon|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Will Witherspoon"
   },
   "william powell|2012|type:cut|anthony": {
     "sleeperId": null,
