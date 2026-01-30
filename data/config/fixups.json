@@ -47,7 +47,7 @@
 		{ "name": "Jon Baldwin", "positions": ["WR"] },
 		{ "name": "Charles Scott", "positions": ["RB"] },
 		{ "name": "Scotty McGee", "positions": ["DB"] },
-		{ "name": "Mike Williams", "college": "USC" }
+		{ "name": "Mike Williams", "college": "USC", "positions": ["WR"] }
 	],
 
 	"tradeContractCorrections": [
