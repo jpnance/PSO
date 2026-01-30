@@ -1,0 +1,49 @@
+# 2008 Cuts - Reconstructed from 2009 Auction Logs
+# 
+# These cuts were identified by searching the 2009 auction chat logs
+# (auction2009.txt, auction2009-2.txt) for "(cut)" annotations and
+# "was cut" / "no RFA" mentions.
+#
+# Format: Owner,Player,Position,EspnId,Contract,Salary,Source
+# 
+# Generated: 2026-01-28
+
+Owner,Player,Position,EspnId,Contract,Salary,Source
+Patrick,Carson Palmer,QB,4459,2008-2010,$100,"he was cut so no RFA"
+Schexes,Chad Johnson,WR,2584,2008-2010,$97,"he was cut so no RFA (as Ochocinco)"
+Schexes,Dallas Clark,TE,4482,2008-2010,$43,"(cut)"
+Daniel,Antonio Gates,TE,5362,2008-2010,$130,"cut so no RFA"
+Schexes,Marques Colston,WR,9838,2008-2010,$117,"colston was cut so no RFA"
+Trevor,Lee Evans,WR,5538,2008-2010,$59,"(cut)"
+Trevor,Lofa Tatupu,LB,8459,2008-2010,$12,"(cut)"
+Trevor,Chris Chambers,WR,2600,2008-2010,$3,"(cut)"
+Trevor,Aaron Kampman,DL,3684,2008-2010,$1,"(cut)"
+Koci,Matt Leinart,QB,9596,2008-2010,$18,"(cut)"
+Jeff,Hines Ward,WR,1494,2008-2010,$9,"hines was cut"
+Daniel,Drew Bennett,WR,2898,2008-2010,$1,"he was cut"
+John,Steve Smith (NYG),WR,10495,2008-2010,$20,"(cut)"
+Koci,Ted Ginn,WR,10453,2008-2009,$70,"ginn was cut so no RFA"
+Keyon,Terrell Owens,WR,1056,2008-2009,$156,"TO was cut"
+James,Anthony Gonzalez,WR,10476,2008-2009,$20,"(cut)"
+Schexes,Marshawn Lynch,RB,10456,2008-2009,$176,"(cut list)"
+Koci,Devin Hester,WR,9643,2008-2009,$60,"(cut)"
+
+# Summary by owner:
+# - Trevor:   4 cuts (Evans, Tatupu, Chambers, Kampman)
+# - Schexes:  4 cuts (Chad Johnson, Dallas Clark, Colston, Marshawn Lynch)
+# - Koci:     3 cuts (Leinart, Ginn, Hester)
+# - Daniel:   2 cuts (Gates, Bennett)
+# - John:     1 cut (Steve Smith NYG)
+# - Patrick:  1 cut (Carson Palmer)
+# - Jeff:     1 cut (Hines Ward)
+# - Keyon:    1 cut (TO)
+# - James:    1 cut (Anthony Gonzalez)
+#
+# Note: Players with 2008-2009 contracts may have expired naturally rather
+# than being cut mid-contract, but they were still mentioned as "(cut)" in
+# the auction logs, possibly indicating they were cut before the contract
+# expired (e.g., in-season or early offseason).
+#
+# Note: This list is likely incomplete. Only players explicitly mentioned
+# as "cut" or "no RFA" in the auction logs are included. Other cuts may
+# have occurred without being noted in the chat.
