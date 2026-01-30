@@ -26,16 +26,8 @@ mongoose.connect(process.env.MONGODB_URI);
 var pastDraftsSheetBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1O0iyyKdniwP-oVvBTwlgxJRYs_WhMsypHGBDB8AO2lM/values/';
 var mainSheetBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/';
 
-var rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-function prompt(question) {
-	return new Promise(function(resolve) {
-		rl.question(question, resolve);
-	});
-}
+// Global readline interface for prompts
+var rl = null;
 
 // Build reverse lookup for owner names
 var ownerToFranchiseByYear = {};
@@ -178,170 +170,57 @@ function findSleeperMatches(name, draftYear) {
 	return matches;
 }
 
+// Player lookup by normalized name (populated in seed())
+var playersByNormalizedName = {};
+
 async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 	var normalizedName = resolver.normalizePlayerName(playerName);
 	var context = { 
 		year: draftYear, 
 		type: 'draft',
-		pickNumber: pickInfo.pickNumber
+		franchise: pickInfo.currentOwner
 	};
 	
-	// Check resolver cache first
-	var cached = resolver.lookup(normalizedName, context);
+	// Get candidates from DB lookup
+	var candidates = playersByNormalizedName[normalizedName] || [];
 	
-	if (cached && cached.sleeperId) {
-		// Found Sleeper ID in cache
-		var player = await Player.findOne({ sleeperId: cached.sleeperId });
-		if (player) {
-			return player._id;
-		}
-		// Player not in DB yet - create from Sleeper data
-		var sleeperPlayer = sleeperData.find(function(p) { return p.player_id === cached.sleeperId; });
-		if (sleeperPlayer) {
-			player = await Player.create({
-				sleeperId: cached.sleeperId,
-				name: sleeperPlayer.full_name,
-				positions: sleeperPlayer.fantasy_positions || []
-			});
-			return player._id;
-		}
-	}
-	
-	if (cached && cached.name && !cached.sleeperId) {
-		// Historical player in cache
-		var player = await Player.findOne({ name: cached.name, sleeperId: null });
-		if (player) {
-			return player._id;
-		}
-		// Create historical player
-		player = await Player.create({
-			sleeperId: null,
-			name: cached.name,
-			positions: []
+	// Also try Sleeper data matches for additional candidates
+	var sleeperMatches = findSleeperMatches(playerName, draftYear);
+	for (var i = 0; i < sleeperMatches.length; i++) {
+		var m = sleeperMatches[i];
+		var alreadyInCandidates = candidates.some(function(c) {
+			return c.sleeperId === m.player_id;
 		});
-		console.log('  Created historical player:', cached.name);
-		return player._id;
-	}
-	
-	// Check for ambiguous name
-	if (cached && cached.ambiguous) {
-		console.log('\n⚠️ Ambiguous name: ' + playerName);
-		console.log('  Draft context: ' + draftYear + ' R' + pickInfo.round + ' #' + pickInfo.pickNumber);
-	}
-	
-	// Search Sleeper data
-	var matches = findSleeperMatches(playerName, draftYear);
-	
-	if (matches.length === 1 && !cached?.ambiguous) {
-		// Single match - use it
-		var m = matches[0];
-		var player = await Player.findOne({ sleeperId: m.player_id });
-		if (!player) {
-			player = await Player.create({
-				sleeperId: m.player_id,
-				name: m.full_name,
-				positions: m.fantasy_positions || []
-			});
+		if (!alreadyInCandidates) {
+			// Check if in DB
+			var dbPlayer = await Player.findOne({ sleeperId: m.player_id });
+			if (dbPlayer) {
+				candidates.push(dbPlayer);
+			}
 		}
-		// Save resolution for future
-		resolver.addResolution(normalizedName, m.player_id, null, context);
-		resolver.save();
-		return player._id;
 	}
 	
-	// Need interactive resolution
-	if (!cached?.ambiguous) {
-		console.log('\n⚠️ No unique match for: ' + playerName);
-		console.log('  Draft context: ' + draftYear + ' R' + pickInfo.round + ' #' + pickInfo.pickNumber);
-	}
-	
-	if (matches.length > 0) {
-		console.log('  Candidates:');
-		matches.forEach(function(m, i) {
-			var details = [
-				m.full_name,
-				m.team || 'FA',
-				(m.fantasy_positions || []).join('/'),
-				m.college || '?',
-				m.years_exp != null ? '~' + (2025 - m.years_exp) : '',
-				m.active ? 'Active' : 'Inactive',
-				'ID: ' + m.player_id
-			].filter(Boolean).join(' | ');
-			console.log('    ' + (i + 1) + ') ' + details);
-		});
-	}
-	
-	// Check for existing historical player
-	var existingHistorical = await Player.findOne({ 
-		name: { $regex: new RegExp('^' + normalizedName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') },
-		sleeperId: null 
+	// Use unified prompt
+	var result = await resolver.promptForPlayer({
+		name: playerName,
+		context: context,
+		candidates: candidates,
+		Player: Player,
+		rl: rl
 	});
 	
-	if (existingHistorical) {
-		console.log('    H) Use existing historical: ' + existingHistorical.name);
+	if (result.action === 'quit') {
+		console.log('\nQuitting...');
+		rl.close();
+		await mongoose.disconnect();
+		process.exit(0);
 	}
 	
-	console.log('    0) Create as NEW historical player');
-	console.log('    S) Skip this player');
-	
-	var choice = await prompt('  Select option: ');
-	
-	if (choice.toLowerCase() === 's') {
+	if (result.action === 'skipped' || !result.player) {
 		return null;
 	}
 	
-	if (choice.toLowerCase() === 'h' && existingHistorical) {
-		resolver.addResolution(normalizedName, null, existingHistorical.name, context);
-		resolver.save();
-		return existingHistorical._id;
-	}
-	
-	var idx = parseInt(choice);
-	
-	if (idx > 0 && idx <= matches.length) {
-		var selected = matches[idx - 1];
-		var player = await Player.findOne({ sleeperId: selected.player_id });
-		if (!player) {
-			player = await Player.create({
-				sleeperId: selected.player_id,
-				name: selected.full_name,
-				positions: selected.fantasy_positions || []
-			});
-		}
-		resolver.addResolution(normalizedName, selected.player_id, null, context);
-		resolver.save();
-		return player._id;
-	}
-	
-	if (idx === 0) {
-		// Create historical player - use original name with proper casing
-		var displayName = playerName.replace(/\s+(III|II|IV|V|Jr\.|Sr\.)$/i, '').trim();
-		var nameChoice = await prompt('  Enter display name (or press Enter for "' + displayName + '"): ');
-		if (nameChoice.trim()) {
-			displayName = nameChoice.trim();
-		}
-		
-		// Check if historical player with this name already exists
-		var existing = await Player.findOne({ name: displayName, sleeperId: null });
-		if (existing) {
-			console.log('  Using existing historical player: ' + displayName);
-			resolver.addResolution(normalizedName, null, displayName, context);
-			resolver.save();
-			return existing._id;
-		}
-		
-		var player = await Player.create({
-			sleeperId: null,
-			name: displayName,
-			positions: []
-		});
-		console.log('  Created historical player: ' + displayName);
-		resolver.addResolution(normalizedName, null, displayName, context);
-		resolver.save();
-		return player._id;
-	}
-	
-	return null;
+	return result.player._id;
 }
 
 async function fetchDraftData(season, apiKey, useMainSheet) {
@@ -396,6 +275,24 @@ async function seed() {
 	}
 
 	console.log('Seeding draft selections from Google Sheets...\n');
+
+	// Create readline interface
+	rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout
+	});
+
+	// Load all players and build lookup
+	console.log('Loading players from database...');
+	var allPlayers = await Player.find({});
+	allPlayers.forEach(function(p) {
+		var normalized = resolver.normalizePlayerName(p.name);
+		if (!playersByNormalizedName[normalized]) {
+			playersByNormalizedName[normalized] = [];
+		}
+		playersByNormalizedName[normalized].push(p);
+	});
+	console.log('Loaded ' + allPlayers.length + ' players\n');
 
 	var clearExisting = process.argv.includes('--clear');
 	if (clearExisting) {

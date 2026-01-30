@@ -4912,6 +4912,9 @@
   "chigozie anusiem": {
     "sleeperId": "11938"
   },
+  "chigoziem okonkwo": {
+    "sleeperId": "8210"
+  },
   "chigoziem okonkwo|2023": {
     "sleeperId": "8210"
   },
@@ -7438,6 +7441,12 @@
     "sleeperId": "2391"
   },
   "david johnson|2018|syed/terence": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2020|type:auction|patrick": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2021|type:auction|patrick": {
     "sleeperId": "2391"
   },
   "david jones": {
@@ -20817,6 +20826,9 @@
   "matt jones": {
     "sleeperId": "2400"
   },
+  "matt judon": {
+    "sleeperId": "3303"
+  },
   "matt judon|2022": {
     "sleeperId": "3303"
   },
@@ -21743,10 +21755,16 @@
   "mike williams|2017": {
     "sleeperId": "4068"
   },
+  "mike williams|2020|type:auction|mitch": {
+    "sleeperId": "4068"
+  },
   "mike williams|2023": {
     "sleeperId": "4068"
   },
   "mike williams|2023|koci/mueller": {
+    "sleeperId": "4068"
+  },
+  "mike williams|2023|type:auction|james/charles": {
     "sleeperId": "4068"
   },
   "mike williams|2024|brett": {
@@ -21830,6 +21848,9 @@
   },
   "mitch tinsley": {
     "sleeperId": "11068"
+  },
+  "mitch trubisky": {
+    "sleeperId": "3976"
   },
   "mitch trubisky|2023": {
     "sleeperId": "3976"
@@ -26601,8 +26622,7 @@
     "sleeperId": "11487"
   },
   "steven hauschka": {
-    "sleeperId": null,
-    "name": "Steven Hauschka"
+    "sleeperId": "775"
   },
   "steven jackson": {
     "sleeperId": "57"

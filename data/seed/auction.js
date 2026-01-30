@@ -109,17 +109,6 @@ function getFranchiseId(ownerName, season) {
 	return null;
 }
 
-var rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-function prompt(question) {
-	return new Promise(function(resolve) {
-		rl.question(question, resolve);
-	});
-}
-
 async function run() {
 	var args = process.argv.slice(2);
 	var year = parseInt(args.find(function(a) { return !a.startsWith('--'); }), 10);
@@ -234,136 +223,52 @@ async function run() {
 		playersByNormalizedName[norm].push(p);
 	});
 	
+	// Create readline interface for prompts
+	var readline = require('readline');
+	var rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout
+	});
+	
 	for (var i = 0; i < newContracts.length; i++) {
 		var c = newContracts[i];
 		
 		console.log('--- ' + c.player + ' (' + c.owner + ') ---');
 		
-		// Resolve player by name
+		// Build context with franchise for strong keys
+		var context = { year: year, type: 'auction', franchise: c.owner };
+		
+		// Get candidates by normalized name
 		var normalizedName = normalizeForMatch(c.player);
-		var resolverName = resolver.normalizePlayerName(c.player);
-		var context = { year: year, type: 'auction' };
 		var candidates = playersByNormalizedName[normalizedName] || [];
 		
-		var playerResult = null;
+		// Use unified prompt
+		var result = await resolver.promptForPlayer({
+			name: c.player,
+			context: context,
+			candidates: candidates,
+			position: c.position,
+			Player: Player,
+			rl: skipAmbiguous ? null : rl
+		});
 		
-		// Check resolver cache first
-		var cached = resolver.lookup(resolverName, context);
-		if (cached && cached.sleeperId) {
-			playerResult = allPlayers.find(function(p) { return p.sleeperId === cached.sleeperId; });
-			if (playerResult) {
-				console.log('  (cached: ' + playerResult.name + ')');
-			}
-		} else if (cached && cached.name) {
-			playerResult = allPlayers.find(function(p) { return p.name === cached.name; });
-			if (playerResult) {
-				console.log('  (cached: ' + playerResult.name + ')');
-			}
+		if (result.action === 'quit') {
+			console.log('\nQuitting...');
+			rl.close();
+			await mongoose.disconnect();
+			process.exit(0);
 		}
 		
-		if (!playerResult) {
-			if (candidates.length === 0) {
-				console.log('  ✗ No player found: ' + c.player);
-				
-				if (skipAmbiguous) {
-					stats.errors.push('No player found: ' + c.player);
-					continue;
-				}
-				
-				// Prompt for alternative name
-				var altName = await prompt('  Enter alternative name (or press Enter to skip): ');
-				altName = altName.trim();
-				
-				if (altName) {
-					var altNormalized = normalizeForMatch(altName);
-					var altCandidates = playersByNormalizedName[altNormalized] || [];
-					
-					if (altCandidates.length === 1) {
-						playerResult = altCandidates[0];
-						console.log('  → Found: ' + playerResult.name);
-						// Save resolution
-						if (playerResult.sleeperId) {
-							resolver.addResolution(resolverName, playerResult.sleeperId, null, context);
-						} else {
-							resolver.addResolution(resolverName, null, playerResult.name, context);
-						}
-						resolver.save();
-					} else if (altCandidates.length > 1) {
-						console.log('  Multiple matches for ' + altName + ':');
-						for (var k = 0; k < altCandidates.length; k++) {
-							var ac = altCandidates[k];
-							var aDetails = [
-								ac.name,
-								ac.team || 'FA',
-								(ac.positions || []).join('/'),
-								ac.college || '?',
-								ac.rookieYear ? 'Rookie ' + ac.rookieYear : '',
-								ac.active ? 'Active' : 'Inactive'
-							].filter(Boolean).join(' | ');
-							console.log('    ' + (k + 1) + ') ' + aDetails);
-						}
-						var aAnswer = await prompt('  Select (1-' + altCandidates.length + '): ');
-						var aSelection = parseInt(aAnswer, 10);
-						if (aSelection >= 1 && aSelection <= altCandidates.length) {
-							playerResult = altCandidates[aSelection - 1];
-							if (playerResult.sleeperId) {
-								resolver.addResolution(resolverName, playerResult.sleeperId, null, context);
-							} else {
-								resolver.addResolution(resolverName, null, playerResult.name, context);
-							}
-							resolver.save();
-						}
-					} else {
-						console.log('  ✗ Still no match for: ' + altName);
-					}
-				}
-				
-				if (!playerResult) {
-					stats.errors.push('No player found: ' + c.player);
-					continue;
-				}
-			} else if (candidates.length === 1) {
-				playerResult = candidates[0];
-			} else {
-				// Multiple matches - disambiguate
-				console.log('  Multiple matches for ' + c.player + ':');
-				for (var j = 0; j < candidates.length; j++) {
-					var cand = candidates[j];
-					var details = [
-						cand.name,
-						cand.team || 'FA',
-						(cand.positions || []).join('/'),
-						cand.college || '?',
-						cand.rookieYear ? 'Rookie ' + cand.rookieYear : '',
-						cand.active ? 'Active' : 'Inactive'
-					].filter(Boolean).join(' | ');
-					console.log('    ' + (j + 1) + ') ' + details);
-				}
-				
-				if (skipAmbiguous) {
-					console.log('  → Skipping (ambiguous)');
-					stats.errors.push('Ambiguous: ' + c.player);
-					continue;
-				}
-				
-				var answer = await prompt('  Select (1-' + candidates.length + '): ');
-				var selection = parseInt(answer, 10);
-				if (selection >= 1 && selection <= candidates.length) {
-					playerResult = candidates[selection - 1];
-					// Save resolution for future runs
-					if (playerResult.sleeperId) {
-						resolver.addResolution(resolverName, playerResult.sleeperId, null, context);
-					} else {
-						resolver.addResolution(resolverName, null, playerResult.name, context);
-					}
-					resolver.save();
-					console.log('  → Saved resolution');
-				} else {
-					console.log('  ✗ Invalid selection');
-					stats.errors.push('Invalid selection for: ' + c.player);
-					continue;
-				}
-			}
+		if (result.action === 'skipped' || !result.player) {
+			stats.errors.push('Skipped: ' + c.player);
+			continue;
+		}
+		
+		var playerResult = result.player;
+		if (result.action === 'matched') {
+			console.log('  → ' + playerResult.name);
+		} else if (result.action === 'created') {
+			console.log('  + Created: ' + playerResult.name);
 		}
 		
 		var playerId = playerResult._id;
