@@ -44,7 +44,7 @@
 	"playerCorrections": [
 		{ "name": "Tony Gonzalez", "positions": ["TE"] },
 		{ "name": "J.T. O'Sullivan", "positions": ["QB"] },
-		{ "name": "Jon Baldwin", "positions": ["WR"] },
+		{ "name": "Jonathan Baldwin", "positions": ["WR"] },
 		{ "name": "Charles Scott", "positions": ["RB"] },
 		{ "name": "Scotty McGee", "positions": ["DB"] },
 		{ "name": "Mike Williams", "college": "USC", "positions": ["WR"] }

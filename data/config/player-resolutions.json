@@ -335,6 +335,9 @@
   "ben tate|2012|type:trade|daniel": {
     "sleeperId": "1004"
   },
+  "benjamin cunningham": {
+    "sleeperId": "1564"
+  },
   "bernard berrian|2009|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Bernard Berrian"
@@ -779,6 +782,9 @@
   "dane sanzenbacher|2011|type:draft|jake/luke": {
     "sleeperId": null,
     "name": "Dane Sanzenbacher"
+  },
+  "daniel herron": {
+    "sleeperId": "1307"
   },
   "daniel herron|2016|type:cut|justin": {
     "sleeperId": "1307"
@@ -1816,6 +1822,10 @@
   "joique bell|2015|type:trade|quinn": {
     "sleeperId": "736"
   },
+  "jon baldwin": {
+    "sleeperId": null,
+    "name": "Jonathan Baldwin"
+  },
   "jon baldwin|2011|type:draft|daniel": {
     "sleeperId": null,
     "name": "Jon Baldwin"
@@ -1831,6 +1841,10 @@
   },
   "jonas gray|2015|type:trade|syed": {
     "sleeperId": "1698"
+  },
+  "jonathan baldwin|2011|type:draft|daniel": {
+    "sleeperId": null,
+    "name": "Jonathan Baldwin"
   },
   "jonathan dwyer|2010|type:draft|james": {
     "sleeperId": null,
@@ -2946,6 +2960,9 @@
     "sleeperId": null,
     "name": "Oshiomogho Atogwe"
   },
+  "owa odighizuwa": {
+    "sleeperId": "2379"
+  },
   "owa odighizuwa|2016|type:cut|brett": {
     "sleeperId": "2379"
   },
@@ -3495,6 +3512,9 @@
   "steve smith|2013|type:cut|jason": {
     "sleeperId": null,
     "name": "Steve Smith"
+  },
+  "steven hauschka": {
+    "sleeperId": "775"
   },
   "steven jackson|2009|type:trade|james": {
     "sleeperId": "57"
