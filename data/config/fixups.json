@@ -52,7 +52,6 @@
 
 	"tradeContractCorrections": [
 		{ "tradeId": 10, "player": "Eli Manning", "startYear": 2008, "endYear": 2010 },
-		{ "tradeId": 13, "player": "Austin Collie", "startYear": 2010, "endYear": 2010 },
 		{ "tradeId": 14, "player": "Larry Fitzgerald", "startYear": 2008, "endYear": 2010 },
 		{ "tradeId": 14, "player": "Andre Johnson", "startYear": 2008, "endYear": 2010 },
 		{ "tradeId": 14, "player": "Ray Rice", "startYear": 2008, "endYear": 2010 },
