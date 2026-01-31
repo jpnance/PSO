@@ -1,0 +1,221 @@
+PSO Seeding Architecture
+=========================
+
+This document provides an overview of the database seeding system for the PSO
+fantasy football application. It's intended to help orient developers who need
+to understand, debug, or refactor the seeding process.
+
+
+OVERVIEW
+--------
+
+The seeding system populates the database with historical data from multiple
+sources spanning 2008-present. The main orchestration script is:
+
+    data/maintenance/reset-migration.sh
+
+This script drops migration collections and runs seeders in a specific order.
+
+
+DATA SOURCES
+------------
+
+1. Sleeper API (players, current rosters)
+   - Fetched by: runts/sleeper
+   - Stored in: public/data/sleeper-data.json
+   - Contains: player metadata, ESPN IDs, rookie years, positions
+
+2. WordPress API (trades)
+   - Fetched by: data/seed/trades.js
+   - Source: thedynastyleague.wordpress.com
+   - Contains: trade posts with player contracts, cash, picks
+
+3. Google Sheets (cuts, current contracts)
+   - Fetched by: data/seed/cuts.js, data/seed/contracts.js
+   - Contains: spreadsheet snapshots of roster/contract data
+
+4. Local archive files (historical contracts, auctions)
+   - Location: data/archive/
+   - Files: contracts-YEAR.txt (2008-2025), auction logs, dynasty XML
+   - Processed by: data/seed/auction.js
+
+5. Fixups and resolutions (manual corrections)
+   - data/config/fixups.json - trade amendments, player corrections
+   - data/config/player-resolutions.json - player name disambiguation cache
+   - data/config/sleeper-fixups-YEAR.json - Sleeper import corrections
+
+
+SEEDING ORDER (from reset-migration.sh)
+---------------------------------------
+
+Step 0:  Sleeper data fetch (if stale)
+Step 1:  league-config.js      - League configuration
+Step 2:  entities.js           - Franchises, people, regimes
+Step 3:  sync-players.js       - Create Player documents from Sleeper data
+Step 4:  contracts.js          - Current year contracts (Google Sheets)
+Step 5:  picks.js              - Draft pick ownership
+Step 6:  draft-selections.js   - Historical draft picks (Google Sheets)
+Step 7:  trades.js             - All trades (WordPress API)
+Step 8:  cuts.js               - All cuts (Google Sheets)
+Step 9:  budgets.js            - Calculate budget impacts from transactions
+Step 10: apply-fixups.js       - Apply manual corrections from fixups.json
+Step 11: seasons.js            - Compute playoff seeds and results
+Step 12: auction.js            - Historical contracts (per-year, 2008-2025)
+
+
+KEY COMPONENTS
+--------------
+
+Player Resolution (data/utils/player-resolver.js)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Central utility for matching player names to Player documents. Features:
+- Name normalization (strips suffixes like Jr., III, parenthetical hints)
+- Candidate filtering by position and rookie year plausibility
+- Interactive prompts for ambiguous names
+- Resolution caching in player-resolutions.json
+- Historical player creation for players not in Sleeper
+
+Key concepts:
+- "Historical player": A Player document with sleeperId: null
+- "Context": Year, type (trade/draft/auction/cut), franchise
+- "_ambiguous" list: Names that always require manual disambiguation
+- rookieYear vs estimatedRookieYear: Reliable vs calculated values
+
+Contract Parsing (data/seed/trades.js: parseContract)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parses contract strings like "2009", "09/11", "2010-2012" from trade posts.
+Uses heuristics based on trade date to infer startYear when only endYear given.
+
+Rookie Contract Heuristic (data/seed/trades.js)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+For players drafted in our league, attempts to infer that a single-year
+contract string refers to a rookie deal (startYear = draftYear).
+
+
+KNOWN ISSUES / TECHNICAL DEBT
+-----------------------------
+
+1. Fixups can override correct parsing
+   - apply-fixups.js runs late and may contain stale corrections
+   - Example: Austin Collie Trade #13 has a fixup setting 2010-2010, but
+     the correct parsing now produces 2009-2009
+   - Need to audit tradeContractCorrections in fixups.json
+
+2. Auction.js runs last but creates historical data
+   - Other seeders (trades, cuts) may have already tried to infer contracts
+   - Ordering creates potential for duplicate or conflicting data
+
+3. Multiple places store corrections
+   - fixups.json (trade/player corrections)
+   - player-resolutions.json (name disambiguation)
+   - contracts-YEAR.txt files (manually edited)
+   - sleeper-fixups-YEAR.json files
+   - Unclear when to use which
+
+4. Inference heuristics are scattered
+   - trades.js: parseContract(), rookie contract heuristic
+   - cuts.js: contract inference
+   - auction.js: contract parsing, ESPN ID matching
+   - player-resolver.js: candidate filtering
+
+5. Historical data quality varies
+   - 2008-2011: Sparse, reconstructed from auction logs and XML snapshots
+   - 2012-2019: Better coverage from spreadsheets
+   - 2020+: Complete data from Sleeper/Fantrax
+
+
+SEEDER SCRIPTS SUMMARY
+----------------------
+
+data/seed/league-config.js
+  Creates LeagueConfig document with season dates and league settings.
+
+data/seed/entities.js
+  Creates Franchise, Person, and Regime documents from config/pso.js.
+
+data/maintenance/sync-players.js
+  Syncs Player documents from sleeper-data.json. Sets rookieYear and
+  estimatedRookieYear fields.
+
+data/seed/contracts.js
+  Fetches current-year contracts from Google Sheets. Creates Contract
+  documents for active rosters.
+
+data/seed/picks.js
+  Creates Pick documents for draft pick ownership.
+
+data/seed/draft-selections.js
+  Fetches draft results from Google Sheets (2008-present). Creates
+  draft-select Transaction documents. Uses --auto-historical-before flag
+  to auto-create historical players for early years.
+
+data/seed/trades.js
+  Fetches trade posts from WordPress API. Parses HTML to extract players,
+  contracts, picks, cash. Creates trade Transaction documents. Has
+  parseContract() for interpreting contract strings and a rookie contract
+  heuristic.
+
+data/seed/cuts.js
+  Fetches cut data from Google Sheets. Creates fa (free agency) Transaction
+  documents for roster drops with buyout calculations.
+
+data/seed/budgets.js
+  Calculates Budget documents from all transactions. Computes cap space
+  by season for each franchise.
+
+data/maintenance/apply-fixups.js
+  Applies manual corrections from fixups.json. Handles trade amendments,
+  contract corrections, player corrections, Sleeper import linking.
+
+data/analysis/seasons.js
+  Computes Season documents with playoff seeds and results from Game data.
+
+data/seed/auction.js
+  Processes contracts-YEAR.txt files (2008-2025). Creates auction-ufa
+  Transaction documents for historical contracts. Uses ESPN ID matching
+  when available, falls back to player-resolver.
+
+
+COMMAND-LINE FLAGS
+------------------
+
+--dry-run
+  Most seeders support this. Prevents database writes.
+
+--auto-historical-before=YEAR
+  Used by draft-selections.js. Auto-creates historical players for
+  drafts before the specified year when no Sleeper match exists.
+
+--auto-historical
+  Used by auction.js. Auto-creates historical players when no match found.
+
+--skip-ambiguous
+  Skips players that would require interactive disambiguation.
+
+--clear
+  Some seeders support this to clear existing data before seeding.
+
+
+USEFUL QUERIES
+--------------
+
+# Check for duplicate transactions
+db.transactions.aggregate([
+  { $group: { _id: { type: "$type", playerId: "$playerId", startYear: "$startYear" }, count: { $sum: 1 } } },
+  { $match: { count: { $gt: 1 } } }
+])
+
+# Find transactions for a player
+db.transactions.find({ playerId: ObjectId("...") }).sort({ timestamp: 1 })
+
+# Check a specific trade
+db.transactions.findOne({ type: "trade", tradeId: 13 })
+
+
+FILES OF INTEREST
+-----------------
+
+config/pso.js              - Franchise names by year, league configuration
+data/config/fixups.json    - Manual corrections (audit tradeContractCorrections!)
+data/config/player-resolutions.json - Player disambiguation cache
+data/archive/              - Historical contract files, auction logs, XML data
