@@ -267,11 +267,22 @@ async function run() {
 		var resultAction = null;
 		
 		// Try ESPN ID lookup first (for historical data with IDs)
+		// But verify name matches - old ESPN IDs don't always match Sleeper's ESPN ID mappings
 		if (c.espnId && playerByEspnId[c.espnId]) {
-			playerResult = playerByEspnId[c.espnId];
-			resultAction = 'matched';
-			console.log('  → ' + playerResult.name + ' (via ESPN ID)');
-		} else {
+			var espnMatch = playerByEspnId[c.espnId];
+			var inputNorm = normalizeForMatch(c.player);
+			var matchNorm = normalizeForMatch(espnMatch.name);
+			
+			if (inputNorm === matchNorm) {
+				playerResult = espnMatch;
+				resultAction = 'matched';
+				console.log('  → ' + playerResult.name + ' (via ESPN ID)');
+			} else {
+				console.log('  ✗ ESPN ID mismatch: "' + c.player + '" vs "' + espnMatch.name + '" - falling back to name');
+			}
+		}
+		
+		if (!playerResult) {
 			// Get candidates by normalized name
 			var normalizedName = normalizeForMatch(c.player);
 			var candidates = playersByNormalizedName[normalizedName] || [];
