@@ -1,23 +1,36 @@
 # Fantrax Transaction Data
 
-This directory stores transaction data exported from Fantrax for the 2020 and 2021 seasons.
+This directory stores transaction data from Fantrax for the 2020 and 2021 seasons.
 
-## Expected Files
+## Files
 
-- `transactions-2020.json` - All transactions from the 2020 Fantrax season
-- `transactions-2021.json` - All transactions from the 2021 Fantrax season
+- `transactions-2020.json` - All transactions from the 2020 Fantrax season (554 transactions, 739 rows)
+- `transactions-2021.json` - All transactions from the 2021 Fantrax season (739 transactions, 910 rows)
 
 ## How to Export from Fantrax
 
+The data comes from Fantrax's internal XHR API, not the CSV export (which lacks transaction grouping).
+
 1. Log in to Fantrax and navigate to the league's transaction history
-2. Export the data (format TBD based on available export options)
-3. Save the file here with the appropriate name
+2. Open browser DevTools → Network tab
+3. Filter for XHR requests
+4. Paginate through results (or hack the `maxResultsPerPage` parameter)
+5. Copy the JSON response and save here
+
+The response structure is:
+```
+responses[0].data.table.rows[]  - array of player movements
+```
+
+Each row has a `txSetId` field that groups related movements (e.g., a claim + corresponding drop form one transaction).
 
 ## Data Format
 
-The parser expects JSON data with transactions. The exact format will be determined
-once we have sample data. The parser at `data/facts/fantrax-facts.js` includes
-placeholder parsing logic that will be updated accordingly.
+The parser at `data/facts/fantrax-facts.js` expects this XHR JSON format and:
+- Groups rows by `txSetId` into unified transactions
+- Extracts player info from `scorer` object
+- Extracts owner/date/week/bid from `cells` array
+- Produces output similar to the Sleeper parser (with `adds` and `drops` arrays)
 
 ## Cross-referencing
 
