@@ -6,6 +6,35 @@ fantasy football application. It's intended to help orient developers who need
 to understand, debug, or refactor the seeding process.
 
 
+NEW: CONSTRAINT-BASED DATA RECONSTRUCTION
+-----------------------------------------
+
+A new architecture has been implemented that separates facts from inference:
+
+  data/facts/         - Parsers that extract raw facts (no interpretation)
+  data/inference/     - Constraint checking and inference engine
+
+Run the pipeline to analyze data quality:
+
+  ./runts/inference-pipeline --local      # Quick local analysis
+  ./runts/inference-pipeline              # Full analysis (requires network)
+
+Run all tests:
+
+  node tests/run-all.js
+
+Key modules:
+  - data/facts/trade-facts.js     - Parse WordPress trade posts
+  - data/facts/snapshot-facts.js  - Parse contracts-YEAR.txt files
+  - data/facts/sleeper-facts.js   - Parse Sleeper transaction JSON
+  - data/facts/fantrax-facts.js   - Parse Fantrax data (2020-2021)
+  - data/inference/constraints.js - Constraint validation
+  - data/inference/contract-term.js - Contract term inference with confidence
+  - data/inference/ambiguity.js   - Ambiguity tracking and resolution
+
+See data/facts/README.md and the plan document for architecture details.
+
+
 OVERVIEW
 --------
 
@@ -97,8 +126,8 @@ KNOWN ISSUES / TECHNICAL DEBT
 
 1. Fixups can override correct parsing
    - apply-fixups.js runs late and may contain stale corrections
-   - Example: Austin Collie Trade #13 has a fixup setting 2010-2010, but
-     the correct parsing now produces 2009-2009
+   - Example: Austin Collie Trade #13 had a fixup setting 2010-2010, but
+     that was an impossible contract given that trade's timestamp
    - Need to audit tradeContractCorrections in fixups.json
 
 2. Auction.js runs last but creates historical data

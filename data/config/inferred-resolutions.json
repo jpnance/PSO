@@ -1,0 +1,32 @@
+{
+	"contractTerms": [
+		{
+			"player": "Eli Manning",
+			"tradeId": 10,
+			"startYear": 2008,
+			"endYear": 2010,
+			"reason": "Test resolution"
+		},
+		{
+			"player": "Test Player",
+			"tradeId": 1,
+			"startYear": 2021,
+			"endYear": 2023,
+			"reason": "Updated"
+		},
+		{
+			"player": "Josh Allen",
+			"tradeId": 50,
+			"startYear": 2020,
+			"endYear": 2022,
+			"reason": "Different"
+		}
+	],
+	"playerIdentities": [],
+	"transactionTimings": [],
+	"faTransactions": [],
+	"_meta": {
+		"version": 1,
+		"lastModified": "2026-02-01T06:57:45.970Z"
+	}
+}

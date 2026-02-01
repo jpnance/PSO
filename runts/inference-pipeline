@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Run the constraint-based data reconstruction pipeline.
+#
+# Usage:
+#   ./runts/inference-pipeline              # Full run (requires network)
+#   ./runts/inference-pipeline --local      # Skip network calls
+#   ./runts/inference-pipeline --show-ambiguities  # Show ambiguity report
+#
+
+docker compose run --rm web node data/inference/pipeline.js "$@"
