@@ -31,9 +31,9 @@ async function loadAllFacts(options) {
 	
 	// Load snapshots (local files, synchronous)
 	console.log('  Loading snapshots...');
-	var snapshotYears = facts.snapshots.getAvailableYears();
+	var snapshotInfo = facts.snapshots.getAvailableYears();
 	result.snapshots = facts.snapshots.loadAll();
-	console.log('    Found ' + result.snapshots.length + ' contracts across ' + snapshotYears.length + ' years');
+	console.log('    Found ' + result.snapshots.length + ' contracts across ' + snapshotInfo.years.length + ' years');
 	
 	// Load Sleeper transactions (local files, synchronous)
 	console.log('  Loading Sleeper transactions...');
