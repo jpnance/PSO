@@ -253,8 +253,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Donovan Wilson,DB,FA,2024,
 -1,Patrick,Dont'e Thornton,WR,2025,2027,$4
 -1,,Dontayvion Wicks,WR,FA,2025,
--1,Dorian Thompson-Robinson
--1,QB,FA,2024,
+-1,,Dorian Thompson-Robinson,QB,FA,2024,
 -1,,Dorian Williams,LB,FA,2024,
 -1,Mike,Drake London,WR,2025,2025,$185
 -1,Patrick,Drake Maye,QB,2024,2026,$40
@@ -431,8 +430,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Jeff Wilson,RB,FA,2024,
 -1,Quinn,Jeffery Simmons,DL,FA,2025,$3
 -1,,Jelani Woods,TE,FA,2023,
--1,Jeremiah Owusu-Koramoah
--1,LB,FA,2024,
+-1,,Jeremiah Owusu-Koramoah,LB,FA,2024,
 -1,Justin,Jeremy Chinn,LB/DB,2025,2025,$3
 -1,,Jeremy McNichols,RB,FA,2025,
 -1,,Jerick McKinnon,RB,2023,2023,

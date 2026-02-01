@@ -166,9 +166,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Keyon,DK Metcalf,WR,2022,2024,$100
 -1,Jason,Donovan Peoples-Jones,WR,2021,2023,$1
 -1,Mike,Dontayvion Wicks,WR,2023,2025,$1
--1,Luke,
--1,Dorian Thompson-Robinson
--1,QB,2023,2025,$2
+-1,Luke,Dorian Thompson-Robinson,QB,2023,2025,$2
 -1,Keyon,Drake London,WR,2022,2024,$16
 -1,Justin,Dre Greenlaw,LB,2023,2025,$6
 -1,Koci/Mueller,Drew Lock,QB,2023,2025,$1
@@ -272,9 +270,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Mike,Jeff Wilson,RB,2023,2023,$10
 -1,Brett,Jeffery Simmons,DL,FA,2023,$1
 -1,,Jelani Woods,TE,FA,2023,
--1,Patrick,
--1,Jeremiah Owusu-Koramoah
--1,LB,FA,2023,$1
+-1,Patrick,Jeremiah Owusu-Koramoah,LB,FA,2023,$1
 -1,Brett,Jeremy Chinn,DB/LB,2023,2024,$2
 -1,Keyon,Jerick McKinnon,RB,2023,2023,$16
 -1,Brett,Jerome Baker,LB,FA,2023,$1

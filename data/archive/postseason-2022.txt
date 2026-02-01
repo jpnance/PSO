@@ -245,9 +245,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Mitch/Mike,Jaylen Warren,RB,FA,2022,$2
 -1,Mitch/Mike,Jeff Wilson,RB,2022,2022,$3
 -1,James/Charles,Jelani Woods,TE,2022,2024,$1
--1,Brett,
--1,Jeremiah Owusu-Koramoah
--1,LB,2021,2022,$1
+-1,Brett,Jeremiah Owusu-Koramoah,LB,2021,2022,$1
 -1,Brett,Jeremy Chinn,DB/LB,2020,2022,$1
 -1,Quinn,Jerick McKinnon,RB,FA,2022,$25
 -1,Trevor,Jermaine Johnson,DL/LB,2022,2024,$1

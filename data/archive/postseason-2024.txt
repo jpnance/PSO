@@ -216,9 +216,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Donovan Peoples-Jones,WR,FA,2023,
 -1,Koci/Mueller,Donovan Wilson,DB,FA,2024,$1
 -1,Mitch,Dontayvion Wicks,WR,2023,2025,$1
--1,Luke,
--1,Dorian Thompson-Robinson
--1,QB,FA,2024,$3
+-1,Luke,Dorian Thompson-Robinson,QB,FA,2024,$3
 -1,Mitch,Dorian Williams,LB,FA,2024,$1
 -1,Keyon,Drake London,WR,2022,2024,$16
 -1,Patrick,Drake Maye,QB,2024,2026,$40
@@ -363,9 +361,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Jeff Wilson,RB,FA,2024,
 -1,,Jeffery Simmons,DL,FA,2023,
 -1,,Jelani Woods,TE,FA,2023,
--1,Brett,
--1,Jeremiah Owusu-Koramoah
--1,LB,2024,2025,$1
+-1,Brett,Jeremiah Owusu-Koramoah,LB,2024,2025,$1
 -1,Brett,Jeremy Chinn,LB/DB,2023,2024,$2
 -1,Patrick,Jeremy McNichols,RB,FA,2024,$1
 -1,,Jerick McKinnon,RB,2023,2023,

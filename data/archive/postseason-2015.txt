@@ -169,9 +169,7 @@ ID,Owner,Name,Position,Start,End,Salary
 13215,James,Dez Bryant,WR,2013,2015,$185
 17553,James,Dezmin Lewis,WR,2015,2017,$2
 14198,Schex,Dion Lewis,RB,FA,2015,$1
-11250,John/Zach,
-Dominique Rodgers-Cromartie
-DB,FA,2015,$1
+11250,John/Zach,Dominique Rodgers-Cromartie,DB,FA,2015,$1
 14933,,Dont'a Hightower,LB,FA,2015,
 16791,Daniel,Donte Moncrief,WR,2014,2016,$5
 9594,John/Zach,Donte Whitner,DB,FA,2015,$1
