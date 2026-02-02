@@ -69,6 +69,7 @@ var transactionSchema = new Schema({
 			'auction-ufa',
 			'auction-rfa-matched',
 			'auction-rfa-unmatched',
+			'rfa-rights-conversion',  // contract expired, RFA rights conveyed to franchise
 			'contract'
 		],
 		required: true

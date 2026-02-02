@@ -67,7 +67,7 @@ block content
 					h5.text-muted.mb-3 Transaction History
 					div.player-timeline
 						each entry in history
-							- var iconClass = { trade: 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', contract: 'fa-file-text-o' }[entry.type] || 'fa-circle'
+							- var iconClass = { trade: 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', 'rfa-rights-conversion': 'fa-refresh', contract: 'fa-file-text-o' }[entry.type] || 'fa-circle'
 							div.player-timeline__entry
 								div.player-timeline__icon
 									i.fa(class=iconClass)
@@ -109,6 +109,12 @@ block content
 										if entry.salary
 											br
 											span.player-timeline__salary= formatMoney(entry.salary)
+									else if entry.type === 'rfa-rights-conversion'
+										span= entry.description
+										if entry.salary && entry.startYear && entry.endYear
+											br
+											span.player-timeline__contract-expired
+												| Expired: #{formatMoney(entry.salary)} · #{formatContractYears(entry.startYear, entry.endYear)}
 									else if entry.type === 'contract'
 										span= entry.description
 										if entry.salary && entry.startYear && entry.endYear

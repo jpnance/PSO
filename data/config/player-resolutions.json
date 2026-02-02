@@ -21,6 +21,7 @@
     "jacobi francis",
     "joe horn",
     "john lovett",
+    "josh allen",
     "kevin white",
     "lwal uguak",
     "marcus williams",
@@ -1955,7 +1956,55 @@
   "joseph randle|2015|type:trade|schex/jeff": {
     "sleeperId": "1487"
   },
+  "josh allen|2018|type:auction|john/zach": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2018|type:draft|koci/mueller": {
+    "sleeperId": "4984"
+  },
   "josh allen|2018|type:trade|john/zach": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2019|type:auction|terence": {
+    "sleeperId": "5840"
+  },
+  "josh allen|2021|type:auction|luke": {
+    "sleeperId": "5840"
+  },
+  "josh allen|2021|type:auction|quinn": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2021|type:trade|jason": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2022|type:auction|mitch/mike": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2022|type:cut|luke": {
+    "sleeperId": "5840"
+  },
+  "josh allen|2022|type:trade|mitch/mike": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2023|type:auction|jason": {
+    "sleeperId": "5840"
+  },
+  "josh allen|2023|type:trade|mike": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2024|type:auction|koci/mueller": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2024|type:trade|quinn": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2025|type:auction|patrick": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2025|type:contract|schexes": {
+    "sleeperId": "4984"
+  },
+  "josh allen|2025|type:trade|schexes": {
     "sleeperId": "4984"
   },
   "josh boyce|2013|type:trade|syed": {

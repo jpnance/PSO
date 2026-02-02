@@ -242,6 +242,13 @@ exports.playerDetail = async function(request, response) {
 				entry.description = 'RFA not matched, signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 				entry.salary = t.salary;
 				break;
+				
+			case 'rfa-rights-conversion':
+				entry.description = 'RFA rights retained by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				entry.salary = t.salary;
+				entry.startYear = t.startYear;
+				entry.endYear = t.endYear;
+				break;
 					
 				case 'contract':
 					entry.description = 'Contract set by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
