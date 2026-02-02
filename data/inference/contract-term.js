@@ -95,10 +95,29 @@ function parseContractString(contractStr, context) {
 	var dueDate = contractDueDates[seasonYear] || new Date(seasonYear + '-08-21');
 	var isBeforeContractsDue = date < dueDate;
 	
-	// === Pattern: FA/unsigned/franchise (no contract) ===
+	// === Pattern: FA (free agent pickup, contract ends this season) ===
 	var lowerContract = contractStr.toLowerCase();
-	if (lowerContract === 'fa' || lowerContract === 'unsigned' || lowerContract === 'franchise') {
-		result.reason = 'Explicitly marked as ' + contractStr;
+	if (lowerContract === 'fa') {
+		result.startYear = null;
+		result.endYear = seasonYear;
+		result.confidence = Confidence.CERTAIN;
+		result.reason = 'Explicitly marked as FA';
+		return result;
+	}
+	
+	// === Pattern: unsigned (rookie pre-contract due date, no term assigned yet) ===
+	// Both null - start year is implicit from trade date, end year TBD by acquiring owner
+	if (lowerContract === 'unsigned') {
+		result.startYear = null;
+		result.endYear = null;
+		result.confidence = Confidence.CERTAIN;
+		result.reason = 'Explicitly unsigned (contract to be assigned by acquiring owner)';
+		return result;
+	}
+	
+	// === Pattern: franchise (franchise tag, rare) ===
+	if (lowerContract === 'franchise') {
+		result.reason = 'Explicitly marked as franchise tagged';
 		return result;
 	}
 	
@@ -164,15 +183,16 @@ function parseContractString(contractStr, context) {
 		return result;
 	}
 	
-	// === Pattern: Single year with -U suffix "2021-U" (UFA) ===
+	// === Pattern: Single year with -U suffix "2019-U" (UFA = 1-year ending this season, no RFA rights) ===
+	// Could be either FA/{year} or {year}/{year} - needs snapshot to confirm start year
 	var yearUMatch = contractStr.match(/^(\d{2,4})-U$/i);
 	if (yearUMatch) {
 		var yearStr = yearUMatch[1];
 		var endYear = yearStr.length === 2 ? parseInt('20' + yearStr) : parseInt(yearStr);
+		result.startYear = null; // Unknown until confirmed by snapshot
 		result.endYear = endYear;
-		result.startYear = Math.min(seasonYear, endYear);
 		result.confidence = Confidence.AMBIGUOUS;
-		result.reason = 'UFA suffix, contract length unknown';
+		result.reason = 'UFA suffix, start year needs snapshot confirmation';
 		return result;
 	}
 	
@@ -234,11 +254,16 @@ function enhanceWithSnapshots(inference, playerName, snapshotFacts) {
 	}
 	
 	// Normalize player name for matching
-	var normalizedName = playerName.toLowerCase().replace(/[^a-z]/g, '');
+	// Strip parenthetical suffixes like "(ARI)" before normalizing
+	function normalizeName(name) {
+		return name.replace(/\s*\([^)]+\)\s*$/, '').toLowerCase().replace(/[^a-z]/g, '');
+	}
+	
+	var normalizedName = normalizeName(playerName);
 	
 	// Find matching snapshots
 	var matches = snapshotFacts.filter(function(s) {
-		var snapshotName = s.playerName.toLowerCase().replace(/[^a-z]/g, '');
+		var snapshotName = normalizeName(s.playerName);
 		return snapshotName === normalizedName;
 	});
 	
@@ -252,15 +277,136 @@ function enhanceWithSnapshots(inference, playerName, snapshotFacts) {
 			return s.endYear === inference.endYear;
 		});
 		
-		if (confirming && confirming.startYear !== null) {
-			// Snapshot has explicit start year
+		// Snapshot confirms if it has matching endYear
+		// startYear can be null (FA contract) or a number - both are valid
+		if (confirming && confirming.endYear !== undefined) {
 			return {
-				startYear: confirming.startYear,
+				startYear: confirming.startYear, // null for FA, number for regular
 				endYear: confirming.endYear,
 				confidence: Confidence.CERTAIN,
 				reason: 'Confirmed by ' + confirming.season + ' snapshot'
 			};
 		}
+	}
+	
+	return inference;
+}
+
+/**
+ * Enhance inference using cuts data.
+ * If a player was cut with explicit contract terms matching our endYear,
+ * we can confirm the contract.
+ * 
+ * @param {object} inference - Result from parseContractString
+ * @param {string} playerName - Player's name
+ * @param {Array} cutFacts - All cut facts
+ * @returns {object} Enhanced inference with potentially better confidence
+ */
+function enhanceWithCuts(inference, playerName, cutFacts) {
+	if (inference.confidence === Confidence.CERTAIN) {
+		return inference;
+	}
+	
+	if (!cutFacts || cutFacts.length === 0) {
+		return inference;
+	}
+	
+	// Normalize player name (strip parenthetical suffixes like "(ARI)")
+	function normalizeName(name) {
+		return name.replace(/\s*\([^)]+\)\s*$/, '').toLowerCase().replace(/[^a-z]/g, '');
+	}
+	
+	var normalizedName = normalizeName(playerName);
+	
+	// Find matching cuts
+	var matches = cutFacts.filter(function(c) {
+		if (!c.name) return false;
+		var cutName = normalizeName(c.name);
+		return cutName === normalizedName;
+	});
+	
+	if (matches.length === 0) {
+		return inference;
+	}
+	
+	// If we have an endYear, look for a cut that confirms the contract
+	if (inference.endYear) {
+		var confirming = matches.find(function(c) {
+			return c.endYear === inference.endYear;
+		});
+		
+		// Cut confirms if it has matching endYear
+		if (confirming && confirming.endYear !== undefined) {
+			return {
+				startYear: confirming.startYear, // null for FA, number for regular
+				endYear: confirming.endYear,
+				confidence: Confidence.CERTAIN,
+				reason: 'Confirmed by ' + confirming.cutYear + ' cut'
+			};
+		}
+	}
+	
+	return inference;
+}
+
+/**
+ * Enhance inference using pre-season roster data.
+ * If a player was traded mid-season with a single year notation,
+ * and they weren't rostered at season start, they must be an FA pickup.
+ * 
+ * @param {object} inference - Result from parseContractString
+ * @param {string} playerName - Player's name
+ * @param {Date} transactionDate - Date of transaction
+ * @param {Array} preseasonRoster - Pre-season roster snapshots (contracts-YEAR.txt data)
+ * @returns {object} Enhanced inference with potentially better confidence
+ */
+function enhanceWithPreseasonRoster(inference, playerName, transactionDate, preseasonRoster) {
+	if (inference.confidence === Confidence.CERTAIN) {
+		return inference;
+	}
+	
+	if (!preseasonRoster || preseasonRoster.length === 0) {
+		return inference;
+	}
+	
+	if (!inference.endYear) {
+		return inference;
+	}
+	
+	// Only applies to mid-season trades where endYear matches the season
+	var seasonYear = getSeasonYear(transactionDate);
+	if (inference.endYear !== seasonYear) {
+		return inference;
+	}
+	
+	// Check if trade is mid-season (after season starts)
+	var seasonStart = seasonStartDates[seasonYear];
+	if (!seasonStart || transactionDate < seasonStart) {
+		return inference;
+	}
+	
+	// Normalize player name (strip parenthetical suffixes like "(ARI)")
+	function normalizeName(name) {
+		return name.replace(/\s*\([^)]+\)\s*$/, '').toLowerCase().replace(/[^a-z]/g, '');
+	}
+	
+	var normalizedName = normalizeName(playerName);
+	
+	// Check if player was rostered at season start (has an owner in preseason data)
+	var wasRostered = preseasonRoster.some(function(p) {
+		if (!p.owner) return false; // Skip FA pool entries
+		var rosterName = normalizeName(p.playerName);
+		return rosterName === normalizedName;
+	});
+	
+	if (!wasRostered) {
+		// Player wasn't rostered at season start, must be FA pickup
+		return {
+			startYear: null,
+			endYear: inference.endYear,
+			confidence: Confidence.CERTAIN,
+			reason: 'Not rostered at ' + seasonYear + ' season start (FA pickup)'
+		};
 	}
 	
 	return inference;
@@ -287,12 +433,16 @@ function enhanceWithDraft(inference, playerName, salary, transactionDate, draftF
 		return inference;
 	}
 	
-	// Normalize player name
-	var normalizedName = playerName.toLowerCase().replace(/[^a-z]/g, '');
+	// Normalize player name (strip parenthetical suffixes like "(ARI)")
+	function normalizeName(name) {
+		return name.replace(/\s*\([^)]+\)\s*$/, '').toLowerCase().replace(/[^a-z]/g, '');
+	}
+	
+	var normalizedName = normalizeName(playerName);
 	
 	// Find draft record
 	var draftRecord = draftFacts.find(function(d) {
-		var draftName = d.playerName.toLowerCase().replace(/[^a-z]/g, '');
+		var draftName = normalizeName(d.playerName);
 		return draftName === normalizedName;
 	});
 	
@@ -358,7 +508,22 @@ function infer(contractStr, context) {
 		result = enhanceWithSnapshots(result, context.playerName, context.snapshots);
 	}
 	
-	// Step 3: Enhance with draft data
+	// Step 3: Enhance with cuts data
+	if (context.playerName && context.cuts) {
+		result = enhanceWithCuts(result, context.playerName, context.cuts);
+	}
+	
+	// Step 4: Enhance with pre-season roster data (FA inference)
+	if (context.playerName && context.preseasonRoster && context.date) {
+		result = enhanceWithPreseasonRoster(
+			result,
+			context.playerName,
+			context.date,
+			context.preseasonRoster
+		);
+	}
+	
+	// Step 5: Enhance with draft data
 	if (context.playerName && context.drafts && context.date) {
 		result = enhanceWithDraft(
 			result, 
@@ -376,13 +541,26 @@ function infer(contractStr, context) {
  * Batch infer contract terms for all players in trade facts.
  * 
  * @param {Array} tradeFacts - Trade facts with raw contract strings
- * @param {object} context - Context with snapshots and drafts
+ * @param {object} context - Context with snapshots, cuts, drafts, and preseasonRosters
  * @returns {Array} Trade facts with inferred contract terms added
  */
 function inferTradeContracts(tradeFacts, context) {
 	context = context || {};
 	
+	// Group preseason rosters by season for efficient lookup
+	var preseasonByYear = {};
+	if (context.preseasonRosters) {
+		context.preseasonRosters.forEach(function(p) {
+			if (!preseasonByYear[p.season]) preseasonByYear[p.season] = [];
+			preseasonByYear[p.season].push(p);
+		});
+	}
+	
 	return tradeFacts.map(function(trade) {
+		// Get preseason roster for this trade's season
+		var tradeSeasonYear = getSeasonYear(trade.date);
+		var preseasonRoster = preseasonByYear[tradeSeasonYear] || [];
+		
 		var enhancedParties = trade.parties.map(function(party) {
 			var enhancedPlayers = party.players.map(function(player) {
 				var inference = infer(player.contractStr, {
@@ -390,6 +568,8 @@ function inferTradeContracts(tradeFacts, context) {
 					playerName: player.name,
 					salary: player.salary,
 					snapshots: context.snapshots,
+					cuts: context.cuts,
+					preseasonRoster: preseasonRoster,
 					drafts: context.drafts
 				});
 				
@@ -449,6 +629,8 @@ module.exports = {
 	getSeasonYear: getSeasonYear,
 	parseContractString: parseContractString,
 	enhanceWithSnapshots: enhanceWithSnapshots,
+	enhanceWithCuts: enhanceWithCuts,
+	enhanceWithPreseasonRoster: enhanceWithPreseasonRoster,
 	enhanceWithDraft: enhanceWithDraft,
 	
 	// High-level API

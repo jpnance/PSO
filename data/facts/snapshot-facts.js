@@ -145,17 +145,92 @@ function loadSeasonAll(season, options) {
 }
 
 /**
+ * Load extracted-all.csv which contains early-year data from various spreadsheets.
+ * Only includes entries with owner attribution.
+ * 
+ * CSV format: Source,Year,EspnId,Owner,Name,Position,Start,End,Salary
+ * 
+ * @returns {Array} Array of snapshot facts from extracted-all.csv
+ */
+function loadExtractedAll() {
+	var filepath = path.join(ARCHIVE_DIR, 'extracted-all.csv');
+	
+	if (!fs.existsSync(filepath)) {
+		return [];
+	}
+	
+	var content = fs.readFileSync(filepath, 'utf8');
+	var lines = content.trim().split('\n');
+	var contracts = [];
+	
+	// Skip header row
+	for (var i = 1; i < lines.length; i++) {
+		var line = lines[i];
+		if (!line.trim()) continue;
+		
+		var cols = line.split(',');
+		if (cols.length < 9) continue;
+		
+		var source = cols[0].trim();
+		var year = parseInt(cols[1].trim());
+		var espnId = cols[2].trim();
+		var owner = cols[3].trim();
+		var playerName = cols[4].trim();
+		var position = cols[5].trim();
+		var startStr = cols[6].trim();
+		var endStr = cols[7].trim();
+		var salaryStr = cols[8].trim();
+		
+		// Skip entries without owner (can't use for disambiguation)
+		if (!owner) continue;
+		
+		// Skip if no year
+		if (isNaN(year)) continue;
+		
+		// Parse years
+		var startYear = null;
+		if (startStr && startStr.toUpperCase() !== 'FA') {
+			startYear = parseInt(startStr);
+			if (isNaN(startYear)) startYear = null;
+		}
+		
+		var endYear = parseInt(endStr);
+		if (isNaN(endYear)) endYear = null;
+		
+		// Parse salary
+		var salary = parseInt(salaryStr.replace(/[$,]/g, ''));
+		if (isNaN(salary)) salary = null;
+		
+		contracts.push({
+			season: year,
+			espnId: espnId || null,
+			owner: owner,
+			playerName: playerName,
+			position: position,
+			startYear: startYear,
+			endYear: endYear,
+			salary: salary,
+			source: 'extracted:' + source
+		});
+	}
+	
+	return contracts;
+}
+
+/**
  * Load all available snapshot facts from all sources.
  * 
  * @param {number} startYear - First year to load (default 2008)
  * @param {number} endYear - Last year to load (default current year)
- * @param {object} options - { includePostseason: boolean (default true) }
+ * @param {object} options - { includePostseason: boolean (default true), includeExtracted: boolean (default true) }
  * @returns {Array} Array of all snapshot facts
  */
 function loadAll(startYear, endYear, options) {
 	startYear = startYear || 2008;
 	endYear = endYear || new Date().getFullYear();
-	options = options || { includePostseason: true };
+	options = options || { includePostseason: true, includeExtracted: true };
+	if (options.includePostseason === undefined) options.includePostseason = true;
+	if (options.includeExtracted === undefined) options.includeExtracted = true;
 	
 	var allContracts = [];
 	var info = getAvailableYears();
@@ -170,6 +245,14 @@ function loadAll(startYear, endYear, options) {
 			var postseason = loadPostseason(year);
 			allContracts = allContracts.concat(postseason);
 		}
+	}
+	
+	// Load extracted-all.csv if requested (filtered to year range)
+	if (options.includeExtracted) {
+		var extracted = loadExtractedAll().filter(function(c) {
+			return c.season >= startYear && c.season <= endYear;
+		});
+		allContracts = allContracts.concat(extracted);
 	}
 	
 	return allContracts;
@@ -373,6 +456,7 @@ module.exports = {
 	loadSeason: loadSeason,
 	loadPostseason: loadPostseason,
 	loadSeasonAll: loadSeasonAll,
+	loadExtractedAll: loadExtractedAll,
 	loadAll: loadAll,
 	getAvailableYears: getAvailableYears,
 	groupBySeason: groupBySeason,

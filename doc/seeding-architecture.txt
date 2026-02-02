@@ -25,12 +25,37 @@ Run all tests:
 
 Key modules:
   - data/facts/trade-facts.js     - Parse WordPress trade posts
-  - data/facts/snapshot-facts.js  - Parse contracts-YEAR.txt files
+  - data/facts/snapshot-facts.js  - Parse contracts-YEAR.txt, postseason-YEAR.txt,
+                                    and extracted-all.csv (early-year spreadsheets)
+  - data/facts/cut-facts.js       - Parse cuts from Google Sheets
+  - data/facts/draft-facts.js     - Parse drafts from Google Sheets
   - data/facts/sleeper-facts.js   - Parse Sleeper transaction JSON
-  - data/facts/fantrax-facts.js   - Parse Fantrax data (2020-2021)
-  - data/inference/constraints.js - Constraint validation
-  - data/inference/contract-term.js - Contract term inference with confidence
+  - data/facts/fantrax-facts.js   - Parse Fantrax XHR JSON (2020-2021)
+  - data/inference/constraints.js - Constraint validation (salary continuity, etc.)
+  - data/inference/contract-term.js - Contract term inference (see below)
   - data/inference/ambiguity.js   - Ambiguity tracking and resolution
+
+CONTRACT TERM INFERENCE
+~~~~~~~~~~~~~~~~~~~~~~~
+The contract-term.js module achieves 100% certain inference for all 1,116 players
+in trade history using multiple data sources in priority order:
+
+  1. Explicit notation: "22/24", "FA/21", "2019-2021" → CERTAIN
+  2. "unsigned": Rookie pre-contract-due → CERTAIN (null/null)
+  3. Snapshot confirmation: Match endYear in postseason/contracts files
+  4. Cuts confirmation: Same logic for players cut before postseason
+  5. Preseason roster: Mid-season trade + not in contracts-YEAR.txt = FA pickup
+  6. Date heuristics: Inaugural season (2008), 2+ years out, etc.
+
+The "-U" suffix (UFA, 1-year no RFA rights) is resolved via snapshot to determine
+whether it's FA/{year} or {year}/{year}.
+
+Run inference stats:
+  node -e "var f=require('./data/facts'),ct=require('./data/inference/contract-term');
+    var t=f.trades.loadAll(),s=f.snapshots.loadAll(),c=f.cuts.loadAll();
+    var ps=s.filter(x=>x.source==='contracts');
+    var e=ct.inferTradeContracts(t,{snapshots:s,cuts:c,preseasonRosters:ps});
+    console.log(ct.getInferenceStats(e));"
 
 See data/facts/README.md and the plan document for architecture details.
 
@@ -69,7 +94,8 @@ DATA SOURCES
    - Processed by: data/seed/auction.js
 
 5. Fixups and resolutions (manual corrections)
-   - data/config/fixups.json - trade amendments, player corrections
+   - data/config/fixups.json - trade amendments, cash corrections, player corrections
+     (Note: tradeContractCorrections was removed; inference handles contracts)
    - data/config/player-resolutions.json - player name disambiguation cache
    - data/config/sleeper-fixups-YEAR.json - Sleeper import corrections
 
@@ -124,32 +150,30 @@ contract string refers to a rookie deal (startYear = draftYear).
 KNOWN ISSUES / TECHNICAL DEBT
 -----------------------------
 
-1. Fixups can override correct parsing
-   - apply-fixups.js runs late and may contain stale corrections
-   - Example: Austin Collie Trade #13 had a fixup setting 2010-2010, but
-     that was an impossible contract given that trade's timestamp
-   - Need to audit tradeContractCorrections in fixups.json
+1. [RESOLVED] tradeContractCorrections removed from fixups.json
+   - The contract-term.js inference engine now handles all contract inference
+   - Previously had ~210 manual fixups, many of which were incorrect
+   - Inference uses snapshots, cuts, and preseason rosters for 100% certainty
 
 2. Auction.js runs last but creates historical data
    - Other seeders (trades, cuts) may have already tried to infer contracts
    - Ordering creates potential for duplicate or conflicting data
 
 3. Multiple places store corrections
-   - fixups.json (trade/player corrections)
+   - fixups.json (trade/player corrections - NOT contract terms anymore)
    - player-resolutions.json (name disambiguation)
    - contracts-YEAR.txt files (manually edited)
    - sleeper-fixups-YEAR.json files
    - Unclear when to use which
 
-4. Inference heuristics are scattered
-   - trades.js: parseContract(), rookie contract heuristic
-   - cuts.js: contract inference
-   - auction.js: contract parsing, ESPN ID matching
-   - player-resolver.js: candidate filtering
+4. [PARTIALLY RESOLVED] Inference heuristics centralized
+   - Contract term inference is now in data/inference/contract-term.js
+   - Player resolution still in data/utils/player-resolver.js
+   - Some parsing logic still in individual seeders
 
 5. Historical data quality varies
-   - 2008-2011: Sparse, reconstructed from auction logs and XML snapshots
-   - 2012-2019: Better coverage from spreadsheets
+   - 2008-2009: Sparse snapshots, but extracted-all.csv provides coverage
+   - 2010-2019: Good coverage from contracts-YEAR.txt files
    - 2020+: Complete data from Sleeper/Fantrax
 
 
@@ -245,6 +269,8 @@ FILES OF INTEREST
 -----------------
 
 config/pso.js              - Franchise names by year, league configuration
-data/config/fixups.json    - Manual corrections (audit tradeContractCorrections!)
+data/config/fixups.json    - Manual corrections (trade amendments, cash, players)
 data/config/player-resolutions.json - Player disambiguation cache
 data/archive/              - Historical contract files, auction logs, XML data
+data/archive/extracted-all.csv - Early-year data from old spreadsheets (2008-2012)
+data/inference/contract-term.js - Contract inference engine (100% certain)

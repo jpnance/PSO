@@ -83,10 +83,21 @@ test('parseContractString: FA/21 notation', function() {
 	assertEqual(result.confidence, Confidence.CERTAIN);
 });
 
-test('parseContractString: FA returns null values', function() {
-	var result = contractTerm.parseContractString('FA', { date: new Date() });
+test('parseContractString: FA returns certain with null start and season end', function() {
+	var result = contractTerm.parseContractString('FA', { date: new Date('2024-10-15') });
+	assertEqual(result.startYear, null);
+	assertEqual(result.endYear, 2024);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+});
+
+test('parseContractString: unsigned is certain with null/null', function() {
+	// Unsigned means rookie pre-contract-due, acquiring owner assigns term
+	// Both null - start year implicit from trade date, end year TBD
+	var result = contractTerm.parseContractString('unsigned', { date: new Date('2024-08-25') });
 	assertEqual(result.startYear, null);
 	assertEqual(result.endYear, null);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+	assertTrue(result.reason.indexOf('unsigned') >= 0);
 });
 
 // === parseContractString Tests - Single Year Heuristics ===
@@ -129,10 +140,13 @@ test('parseContractString: RFA suffix 2+ years out', function() {
 	assertEqual(result.confidence, Confidence.INFERRED);
 });
 
-test('parseContractString: UFA suffix is ambiguous', function() {
+test('parseContractString: UFA suffix is ambiguous without snapshot', function() {
+	// -U means 1-year ending this season, no RFA rights
+	// Could be FA/2024 or 2024/2024 - needs snapshot to confirm
 	var result = contractTerm.parseContractString('2024-U', { date: new Date('2024-09-15') });
 	assertEqual(result.endYear, 2024);
 	assertEqual(result.confidence, Confidence.AMBIGUOUS);
+	assertTrue(result.reason.indexOf('snapshot') >= 0);
 });
 
 // === enhanceWithSnapshots Tests ===
@@ -187,6 +201,161 @@ test('enhanceWithSnapshots: no change if no matching snapshot', function() {
 	];
 	
 	var result = contractTerm.enhanceWithSnapshots(inference, 'Josh Allen', snapshots);
+	
+	assertEqual(result.confidence, Confidence.AMBIGUOUS);
+});
+
+test('enhanceWithSnapshots: confirms FA contract (null startYear)', function() {
+	// -U suffix case: could be FA/2019 or 2019/2019
+	// Snapshot shows FA (null startYear) - should confirm
+	var inference = {
+		startYear: null,
+		endYear: 2019,
+		confidence: Confidence.AMBIGUOUS,
+		reason: 'UFA suffix'
+	};
+	
+	var snapshots = [
+		{ playerName: 'Zach Pascal', season: 2019, startYear: null, endYear: 2019, salary: 11 }
+	];
+	
+	var result = contractTerm.enhanceWithSnapshots(inference, 'Zach Pascal', snapshots);
+	
+	assertEqual(result.startYear, null);
+	assertEqual(result.endYear, 2019);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+});
+
+test('enhanceWithSnapshots: matches player with parenthetical suffix', function() {
+	// Trade has "David Johnson", snapshot has "David Johnson (ARI)"
+	var inference = {
+		startYear: null,
+		endYear: 2018,
+		confidence: Confidence.AMBIGUOUS,
+		reason: 'Test'
+	};
+	
+	var snapshots = [
+		{ playerName: 'David Johnson (ARI)', season: 2018, startYear: 2018, endYear: 2018, salary: 270 }
+	];
+	
+	var result = contractTerm.enhanceWithSnapshots(inference, 'David Johnson', snapshots);
+	
+	assertEqual(result.startYear, 2018);
+	assertEqual(result.endYear, 2018);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+});
+
+// === enhanceWithCuts Tests ===
+
+test('enhanceWithCuts: confirms FA contract from cut data', function() {
+	var inference = {
+		startYear: null,
+		endYear: 2018,
+		confidence: Confidence.AMBIGUOUS,
+		reason: 'Test'
+	};
+	
+	var cuts = [
+		{ name: 'Malcolm Brown', cutYear: 2018, startYear: null, endYear: 2018, salary: 1 }
+	];
+	
+	var result = contractTerm.enhanceWithCuts(inference, 'Malcolm Brown', cuts);
+	
+	assertEqual(result.startYear, null);
+	assertEqual(result.endYear, 2018);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+});
+
+test('enhanceWithCuts: no change if already certain', function() {
+	var inference = {
+		startYear: 2020,
+		endYear: 2022,
+		confidence: Confidence.CERTAIN,
+		reason: 'Original'
+	};
+	
+	var cuts = [
+		{ name: 'Some Player', cutYear: 2021, startYear: null, endYear: 2021, salary: 5 }
+	];
+	
+	var result = contractTerm.enhanceWithCuts(inference, 'Some Player', cuts);
+	
+	assertEqual(result.startYear, 2020);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+	assertEqual(result.reason, 'Original');
+});
+
+// === enhanceWithPreseasonRoster Tests ===
+
+test('enhanceWithPreseasonRoster: not rostered at season start = FA', function() {
+	// Carlos Dunlap traded mid-2013, not in contracts-2013.txt
+	var inference = {
+		startYear: 2013,
+		endYear: 2013,
+		confidence: Confidence.AMBIGUOUS,
+		reason: 'Single year'
+	};
+	
+	// Empty preseason roster (player not found)
+	var preseasonRoster = [
+		{ playerName: 'Other Player', owner: 'Schex', season: 2013, startYear: 2013, endYear: 2015 }
+	];
+	
+	var result = contractTerm.enhanceWithPreseasonRoster(
+		inference,
+		'Carlos Dunlap',
+		new Date('2013-11-14'), // mid-season
+		preseasonRoster
+	);
+	
+	assertEqual(result.startYear, null);
+	assertEqual(result.endYear, 2013);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+	assertTrue(result.reason.indexOf('FA') >= 0 || result.reason.indexOf('Not rostered') >= 0);
+});
+
+test('enhanceWithPreseasonRoster: rostered player unchanged', function() {
+	var inference = {
+		startYear: 2013,
+		endYear: 2013,
+		confidence: Confidence.AMBIGUOUS,
+		reason: 'Single year'
+	};
+	
+	// Player IS in preseason roster
+	var preseasonRoster = [
+		{ playerName: 'Tom Brady', owner: 'Schex', season: 2013, startYear: 2012, endYear: 2014 }
+	];
+	
+	var result = contractTerm.enhanceWithPreseasonRoster(
+		inference,
+		'Tom Brady',
+		new Date('2013-11-14'),
+		preseasonRoster
+	);
+	
+	// Should remain ambiguous since we can't determine from this alone
+	assertEqual(result.confidence, Confidence.AMBIGUOUS);
+});
+
+test('enhanceWithPreseasonRoster: pre-season trade unchanged', function() {
+	var inference = {
+		startYear: 2013,
+		endYear: 2013,
+		confidence: Confidence.AMBIGUOUS,
+		reason: 'Single year'
+	};
+	
+	var preseasonRoster = [];
+	
+	// Trade before season starts - doesn't apply
+	var result = contractTerm.enhanceWithPreseasonRoster(
+		inference,
+		'Some Player',
+		new Date('2013-08-15'), // before season start
+		preseasonRoster
+	);
 	
 	assertEqual(result.confidence, Confidence.AMBIGUOUS);
 });
@@ -311,6 +480,43 @@ test('regression: Trade #50 Vincent Jackson 2011-2013', function() {
 	
 	assertEqual(result.endYear, 2013);
 	assertEqual(result.startYear, 2011);
+});
+
+test('regression: 2019-U suffix resolves via snapshot', function() {
+	// Drew Brees traded with 2019-U, snapshot shows 2019/2019 (not FA)
+	var snapshots = [
+		{ playerName: 'Drew Brees', season: 2019, startYear: 2019, endYear: 2019, salary: 110 }
+	];
+	
+	var result = contractTerm.infer('2019-U', {
+		date: new Date('2019-11-07'),
+		playerName: 'Drew Brees',
+		salary: 110,
+		snapshots: snapshots
+	});
+	
+	assertEqual(result.startYear, 2019);
+	assertEqual(result.endYear, 2019);
+	assertEqual(result.confidence, Confidence.CERTAIN);
+});
+
+test('regression: mid-season $1 trade confirmed as FA via cuts', function() {
+	// Will Dissly traded mid-2019 with "2019", cut shows FA/2019
+	var cuts = [
+		{ name: 'Will Dissly', cutYear: 2019, startYear: null, endYear: 2019, salary: 4 }
+	];
+	
+	var result = contractTerm.infer('2019', {
+		date: new Date('2019-09-24'),
+		playerName: 'Will Dissly',
+		salary: 4,
+		snapshots: [],
+		cuts: cuts
+	});
+	
+	assertEqual(result.startYear, null);
+	assertEqual(result.endYear, 2019);
+	assertEqual(result.confidence, Confidence.CERTAIN);
 });
 
 // === Summary ===
