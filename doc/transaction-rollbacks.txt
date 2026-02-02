@@ -1,0 +1,217 @@
+# Transaction Rollbacks and Commissioner Actions
+
+This document records investigated commissioner actions across the Fantrax (2020-2021)
+and Sleeper (2022+) eras. These transactions were flagged by the suspicious transaction
+detection in `data/facts/fantrax-facts.js` and `data/facts/sleeper-facts.js`.
+
+## Background
+
+Commissioner actions in transaction logs can indicate:
+1. **Rollbacks** — Reversing an illegal FAAB claim (player was locked, insufficient budget, etc.)
+2. **Illegal bid corrections** — Awarding player to second-highest legal bidder
+3. **Trade facilitation** — Dropping a player to make room for incoming trade assets
+4. **Manual assist** — Helping an owner with a roster move they couldn't complete themselves
+
+In Fantrax, almost all in-season commissioner actions are suspicious because trades
+were processed separately (via WordPress). In Sleeper, many commissioner actions are
+legitimate trade processing, so we filter those out.
+
+## Detection Methodology
+
+The detection system assigns confidence levels:
+- `reversal_pair` — Commissioner add and drop within 5 minutes for same roster (highest confidence)
+- `rollback_likely` — Owner add within 72h followed by commissioner drop (or vice versa)
+- `trade_facilitation` — Owner was involved in a trade within 72h before or 24h after
+- `manual_assist` — No recent owner activity or trades for affected players
+
+The `reversal_pair` is the most confident indicator — it represents a coordinated swap
+where both the add and drop are commissioner actions done together. A `rollback_likely`
+is a simpler case where we see an owner action followed by a commissioner reversal.
+
+## Confirmed Rollbacks (14 total)
+
+### Fantrax Era (2020-2021)
+
+#### September 21, 2020 — Early Season FAAB Configuration Issue
+Multiple owners placed bids on players who had already played. Fantrax was not properly
+configured to lock players after their games in the first weeks of the season.
+
+| Owner | Illegal Claim | Dropped For | 
+|-------|--------------|-------------|
+| James | David Njoku (TE) | Kenny Stills (WR) |
+| Mitch | Myles Gaskin (RB) | Jordan Howard (RB) |
+| Keyon | Keelan Cole (WR) | Greg Olsen (TE) |
+
+#### September 28, 2020 — Same FAAB Configuration Issue
+
+| Owner | Illegal Claim | Dropped For |
+|-------|--------------|-------------|
+| Jason | Mo Alie-Cox (TE) | Jalen Richard (RB) |
+| Jason | Carl Lawson (DL) | Trey Flowers (DL) |
+
+#### November 7, 2020 — Chase Daniel Rollback
+Chat log: "So an error in the waiver system has suddenly removed $2 from my budget and
+now Pat is claiming I did not win Chase Daniel! COUNT ALL THE FAAB!"
+
+| Owner | Illegal Claim | Restored |
+|-------|--------------|----------|
+| Mitch | Chase Daniel (QB) | Ben DiNucci (QB) |
+
+#### November 16, 2020 — Austin Walter Rollback
+Mitch tried to swap Coulter for Walter, but Walter had already played. Rolled back,
+then Mitch successfully made the same swap 3 days later.
+
+| Owner | Illegal Claim | Restored |
+|-------|--------------|----------|
+| Mitch | Austin Walter (RB) | Isaiah Coulter (WR) |
+
+#### December 10, 2020 — Hewitt/Akins Situation (Illegal Bid)
+Schex placed an $18 bid for Neville Hewitt but didn't have $18 in FAAB budget.
+The player was awarded to Keyon, who had the second-highest legal bid ($3).
+Troy Hill was restored to Schex since his drop (to make room for Hewitt) was voided.
+
+| Action | Player | Owner |
+|--------|--------|-------|
+| Schex wins auction (illegal) | Neville Hewitt | Schex |
+| Schex self-drops | Neville Hewitt | Schex |
+| Commissioner awards | Neville Hewitt | Keyon ($3 bid) |
+| Commissioner restores | Troy Hill | Schex |
+| Commissioner drops | Jordan Akins | Keyon (to make room) |
+
+#### December 19, 2020 — Marcus Mariota Rollback
+Chat log: "@Trevor that marcus mariota claim is illegal because he's already played
+this week. it can't be made until thursday"
+
+| Owner | Illegal Claim |
+|-------|--------------|
+| Trevor | Marcus Mariota (QB) |
+
+### Sleeper Era (2022-2025)
+
+#### November 11, 2022 — Gano/Zuerlein Swap (Roster 11)
+Graham Gano was illegally claimed (had played Thursday night), reversed to Zuerlein.
+
+| Action | Player |
+|--------|--------|
+| Owner claims | Graham Gano (K) |
+| Commissioner drops | Graham Gano (K) |
+| Commissioner adds | Greg Zuerlein (K) |
+
+#### November 5, 2023 — Sanders/Renfrow Swap (Roster 11)
+Jason Sanders was illegally claimed (had played Saturday), reversed to Renfrow.
+
+| Action | Player |
+|--------|--------|
+| Owner claims | Jason Sanders (K) |
+| Commissioner drops | Jason Sanders (K) |
+| Commissioner adds | Hunter Renfrow (WR) |
+
+#### October 10, 2024 — JuJu/McFadden Rollback (Roster 4/2)
+JuJu Smith-Schuster was illegally claimed by Roster 4. Player was given to Roster 2
+(who had the next valid bid), and McFadden was restored to Roster 4.
+
+| Action | Player | Roster |
+|--------|--------|--------|
+| Roster 4 claims (illegal) | JuJu Smith-Schuster (WR) | 4 |
+| Commissioner drops | JuJu Smith-Schuster (WR) | from 4 |
+| Commissioner adds | JuJu Smith-Schuster (WR) | to 2 |
+| Commissioner adds | Micah McFadden (LB) | to 4 |
+| Commissioner drops | Ryan Flournoy (WR) | from 2 |
+
+#### November 6, 2025 — Branch/Dillon Swap (Roster 11)
+Brian Branch was illegally claimed, reversed to A.J. Dillon.
+
+| Action | Player |
+|--------|--------|
+| Owner claims | Brian Branch (DB) |
+| Commissioner drops | Brian Branch (DB) |
+| Commissioner adds | A.J. Dillon (RB) |
+
+## Confirmed Non-Rollbacks
+
+### Illegal Bid Corrections (Player Awarded to Second Bidder)
+
+These are commissioner actions where an illegal bid was caught, and the player was
+awarded to the next highest legal bidder. Not rollbacks — the receiving owner did
+nothing wrong.
+
+| Date | Beneficiary | Player | Reason |
+|------|-------------|--------|--------|
+| Oct 14, 2021 | Brett | Geno Smith (QB) | Mitch's $20 bid was illegal (miscalculated cash recovery from Will Fuller trade) |
+| Dec 12, 2021 | Mitch | Alex Collins (RB) | Charles tried to reclaim Collins within a week of dropping him (against rules) |
+
+### Trade Facilitation
+
+These commissioner drops were flagged but are actually drops to make room for
+incoming trade assets. The system now correctly identifies these by checking for
+trades within 72h before or 24h after the commissioner action.
+
+**Fantrax Era (18 identified):**
+- Oct 7, 2020: Jason dropped Jack Doyle (trade with Mitch: sent Carson)
+- Oct 7, 2020: John dropped Jeffery Simmons, Stephon Gilmore (trade with Mitch: got Edmunds + Mayfield + Kelce for Fuller)
+- Oct 30, 2020: Schex dropped Landon Collins, Devine Ozigbo (trade with Mitch)
+- Nov 5, 2020: John dropped Shaquill Griffin, Denzel Ward
+- Nov 11, 2020: Syed dropped Greg Olsen
+- Oct 11, 2021: Luke dropped Maxx Williams (trade with Brett: got Aaron Jones)
+- Oct 30, 2021: Brett dropped Malcolm Perry; Keyon added Boston Scott
+- Nov 5, 2021: Keyon dropped Younghoe Koo
+- Nov 8, 2021: Jason dropped J.J. Watt
+- Nov 9, 2021: Keyon dropped Jacob Harris, Khari Willis, Drew Lock
+- Nov 10, 2021: Mitch dropped Montez Sweat; Koci dropped Rodrigo Blankenship (trade with Schex: got Collins + Jones for Prescott)
+
+**Sleeper Era (70 identified):**
+Commissioner drops that occur within 72h of the owner being in a trade are classified
+as trade facilitation. Examples include Cameron Dicker drops (Oct 23 & Nov 6, 2024).
+
+### Preseason/Test
+
+| Date | Owner | Player | Reason |
+|------|-------|--------|--------|
+| Sep 8, 2021 | Patrick | Malcolm Butler | Preseason testing |
+
+## Detection Scripts
+
+To regenerate this analysis:
+
+```bash
+# Sleeper commissioner actions by confidence
+node -e "
+var s = require('./data/facts/sleeper-facts');
+var actions = s.findCommissionerActions(s.loadAll());
+var counts = {};
+actions.forEach(function(a) { counts[a.confidence] = (counts[a.confidence] || 0) + 1; });
+console.log(counts);
+"
+
+# Fantrax commissioner actions by confidence  
+node -e "
+var f = require('./data/facts/fantrax-facts');
+var actions = f.findCommissionerActions(f.loadAll());
+var counts = {};
+actions.forEach(function(a) { counts[a.confidence] = (counts[a.confidence] || 0) + 1; });
+console.log(counts);
+"
+
+# List remaining manual_assist (uninvestigated)
+node -e "
+var f = require('./data/facts/fantrax-facts');
+var actions = f.findCommissionerActions(f.loadAll());
+actions.filter(function(a) { return a.confidence === 'manual_assist'; })
+  .forEach(function(a) { 
+    console.log(a.timestamp.toISOString().slice(0,10), a.owner, 
+      a.context.map(function(c) { return c.player; }).join(', ')); 
+  });
+"
+```
+
+## Summary Statistics
+
+After investigation, all Fantrax commissioner actions are accounted for:
+- **Rollbacks (reversal_pair + rollback_likely):** 8 transactions (14 player movements)
+- **Trade facilitation:** 18 player movements
+- **Illegal bid corrections:** 2 transactions (awarded to second bidder, not rollbacks)
+- **Preseason test:** 1 transaction
+
+Sleeper commissioner actions:
+- **Rollbacks (reversal_pair):** 4 transactions (confirmed)
+- **Trade facilitation:** 70 player movements (auto-detected)

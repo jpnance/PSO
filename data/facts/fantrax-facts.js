@@ -109,8 +109,8 @@ function parseDate(dateStr) {
 	try {
 		// Remove day name prefix
 		var cleaned = dateStr.replace(/^[A-Za-z]+\s+/, '');
-		// Parse "Dec 23, 2020, 8:05PM"
-		var match = cleaned.match(/([A-Za-z]+)\s+(\d+),\s+(\d+),\s+(\d+):(\d+)(AM|PM)/i);
+		// Parse "Dec 23, 2020, 8:05PM" or "Dec 23, 2020, 8:05:30 PM" (with seconds)
+		var match = cleaned.match(/([A-Za-z]+)\s+(\d+),\s+(\d+),\s+(\d+):(\d+)(?::\d+)?\s*(AM|PM)/i);
 		if (!match) return null;
 		
 		var months = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, 
@@ -133,6 +133,23 @@ function parseDate(dateStr) {
 }
 
 /**
+ * Parse the actual processed date from a toolTip string.
+ * Format: "<b>Processed</b> Thu Dec 10, 2020, 12:43:59 PM<br/><b>Created</b>..."
+ * 
+ * @param {string} toolTip - HTML tooltip string
+ * @returns {Date|null} Parsed processed date or null
+ */
+function parseProcessedDate(toolTip) {
+	if (!toolTip) return null;
+	
+	// Extract the processed date from the HTML
+	var match = toolTip.match(/<b>Processed<\/b>\s*([^<]+)/i);
+	if (!match) return null;
+	
+	return parseDate(match[1].trim());
+}
+
+/**
  * Extract cell value by key from a row's cells array.
  * 
  * @param {Array} cells - Array of cell objects
@@ -143,6 +160,18 @@ function getCellValue(cells, key) {
 	if (!cells) return null;
 	var cell = cells.find(function(c) { return c.key === key; });
 	return cell ? cell.content : null;
+}
+
+/**
+ * Extract cell object by key from a row's cells array.
+ * 
+ * @param {Array} cells - Array of cell objects
+ * @param {string} key - Cell key to find
+ * @returns {object|null} Cell object or null
+ */
+function getCell(cells, key) {
+	if (!cells) return null;
+	return cells.find(function(c) { return c.key === key; }) || null;
 }
 
 /**
@@ -158,6 +187,19 @@ function parseRow(row) {
 	var teamCell = cells.find(function(c) { return c.key === 'team'; });
 	var franchiseTeam = teamCell ? teamCell.content : null;
 	var teamId = teamCell ? teamCell.teamId : null;
+	
+	// Check for commissioner execution and get actual processed date
+	var dateCell = getCell(cells, 'date');
+	var isCommissioner = dateCell && dateCell.icon === 'COMMISSIONER';
+	var commissionerNote = dateCell ? dateCell.iconToolTip : null;
+	
+	// For commissioner actions, use the actual processed date from toolTip
+	// (the content date is often backdated to game lock time)
+	var dateStr = dateCell ? dateCell.content : null;
+	var processedDate = null;
+	if (isCommissioner && dateCell && dateCell.toolTip) {
+		processedDate = parseProcessedDate(dateCell.toolTip);
+	}
 	
 	return {
 		txSetId: row.txSetId,
@@ -186,7 +228,10 @@ function parseRow(row) {
 		bid: getCellValue(cells, 'bid'),
 		priority: getCellValue(cells, 'priority'),
 		week: getCellValue(cells, 'week'),
-		dateStr: getCellValue(cells, 'date'),
+		dateStr: dateStr,
+		processedDate: processedDate,  // Actual date for commissioner actions
+		isCommissioner: isCommissioner,
+		commissionerNote: commissionerNote,
 		
 		// Raw for debugging
 		_raw: row
@@ -226,11 +271,18 @@ function groupByTxSetId(rows, season) {
 		var bid = null;
 		var executed = true;
 		var claimType = null;
+		var isCommissioner = false;
+		var commissionerNote = null;
 		
 		group.forEach(function(row) {
 			// Collect common transaction info from any row
-			if (!timestamp && row.dateStr) {
-				timestamp = parseDate(row.dateStr);
+			// For commissioner actions, prefer the actual processedDate over the backdated content
+			if (!timestamp) {
+				if (row.processedDate) {
+					timestamp = row.processedDate;
+				} else if (row.dateStr) {
+					timestamp = parseDate(row.dateStr);
+				}
 			}
 			if (!week && row.week) {
 				week = parseInt(row.week) || null;
@@ -246,6 +298,10 @@ function groupByTxSetId(rows, season) {
 			}
 			if (row.executed === false) {
 				executed = false;
+			}
+			if (row.isCommissioner) {
+				isCommissioner = true;
+				commissionerNote = row.commissionerNote;
 			}
 			
 			// Build player movement
@@ -291,6 +347,8 @@ function groupByTxSetId(rows, season) {
 			franchiseTeam: franchiseTeam,
 			franchiseTeamId: franchiseTeamId,
 			executed: executed,
+			isCommissioner: isCommissioner,
+			commissionerNote: commissionerNote,
 			adds: adds,
 			drops: drops,
 			bid: bid,
@@ -496,7 +554,7 @@ function filterPreFaab(transactions) {
 
 /**
  * Find suspicious transactions (potential rollbacks).
- * An add followed shortly by a drop of the same player could be a rollback.
+ * A rollback is: owner claim followed by commissioner drop of the same player.
  * 
  * @param {Array} transactions - Array of transaction facts
  * @param {object} options - { maxHours: 48 }
@@ -513,16 +571,20 @@ function findSuspiciousTransactions(transactions, options) {
 		return a.timestamp - b.timestamp;
 	});
 	
-	// Look for add-then-drop of same player by same owner within short time
+	// Look for owner add followed by commissioner drop of same player
 	sorted.forEach(function(tx, i) {
 		if (!tx.adds || tx.adds.length === 0) return;
+		// Skip if the add was commissioner-executed (not an owner action)
+		if (tx.isCommissioner) return;
 		
 		tx.adds.forEach(function(add) {
-			// Look ahead for matching drop
+			// Look ahead for matching commissioner drop
 			for (var j = i + 1; j < sorted.length && j < i + 50; j++) {
 				var other = sorted[j];
 				if (!other.drops) continue;
 				if (other.owner !== tx.owner) continue;
+				// Must be a commissioner action to count as rollback
+				if (!other.isCommissioner) continue;
 				
 				var matchingDrop = other.drops.find(function(d) {
 					return d.playerName === add.playerName;
@@ -532,9 +594,10 @@ function findSuspiciousTransactions(transactions, options) {
 					var hours = (other.timestamp - tx.timestamp) / (1000 * 60 * 60);
 					if (hours >= 0 && hours < options.maxHours) {
 						suspicious.push({
-							type: 'quick-turnaround',
+							type: 'rollback',
 							player: add.playerName,
 							playerId: add.playerId,
+							positions: add.positions,
 							addTransaction: tx,
 							dropTransaction: other,
 							hours: Math.round(hours)
@@ -547,6 +610,283 @@ function findSuspiciousTransactions(transactions, options) {
 	});
 	
 	return suspicious;
+}
+
+/**
+ * Confidence levels for flagged commissioner actions.
+ */
+var Confidence = {
+	ROLLBACK_LIKELY: 'rollback_likely',           // Owner add followed by commissioner drop within 72h
+	REVERSAL_PAIR: 'reversal_pair',               // Commissioner drop + add within 5 minutes (swap)
+	TRADE_FACILITATION: 'trade_facilitation',     // Roster was involved in a trade within 72h
+	MANUAL_ASSIST: 'manual_assist',               // Standalone action, no recent owner activity
+	UNKNOWN: 'unknown'                            // Has context but doesn't fit other patterns
+};
+
+/**
+ * Load trades for a specific season.
+ * 
+ * @param {number} season - Season year (e.g., 2020)
+ * @returns {Array} Array of parsed trade facts
+ */
+function loadTrades(season) {
+	var filePath = path.join(FANTRAX_DIR, 'trades-' + season + '.json');
+	
+	if (!fs.existsSync(filePath)) {
+		return [];
+	}
+	
+	var raw = fs.readFileSync(filePath, 'utf8');
+	var data = JSON.parse(raw);
+	
+	// Extract rows from XHR response
+	var rows = [];
+	if (data.responses && data.responses[0] && data.responses[0].data && data.responses[0].data.table) {
+		rows = data.responses[0].data.table.rows || [];
+	}
+	
+	// Group by txSetId
+	var groups = {};
+	rows.forEach(function(row) {
+		var txSetId = row.txSetId;
+		if (!groups[txSetId]) {
+			groups[txSetId] = [];
+		}
+		groups[txSetId].push(row);
+	});
+	
+	// Parse each trade group
+	var trades = [];
+	Object.keys(groups).forEach(function(txSetId) {
+		var group = groups[txSetId];
+		var timestamp = null;
+		var processedDate = null;
+		var week = null;
+		var parties = {};  // owner -> { sends: [], receives: [] }
+		
+		group.forEach(function(row) {
+			var fromCell = getCell(row.cells, 'from');
+			var toCell = getCell(row.cells, 'to');
+			var dateCell = getCell(row.cells, 'date');
+			var weekCell = getCell(row.cells, 'week');
+			
+			// Get timestamp from first row with date
+			if (!timestamp && dateCell && dateCell.content && dateCell.content.length > 5) {
+				timestamp = parseDate(dateCell.content);
+				if (dateCell.toolTip) {
+					processedDate = parseProcessedDate(dateCell.toolTip);
+				}
+			}
+			
+			if (!week && weekCell) {
+				week = parseInt(weekCell.content, 10) || null;
+			}
+			
+			var fromOwner = fromCell ? extractOwner(fromCell.content) : null;
+			var toOwner = toCell ? extractOwner(toCell.content) : null;
+			var fromTeamId = fromCell ? fromCell.teamId : null;
+			var toTeamId = toCell ? toCell.teamId : null;
+			
+			var player = {
+				playerId: row.scorer ? row.scorer.scorerId : null,
+				playerName: row.scorer ? row.scorer.name : null,
+				positions: row.scorer ? row.scorer.posShortNames : null
+			};
+			
+			// Track what each owner sends/receives
+			if (fromOwner) {
+				if (!parties[fromOwner]) {
+					parties[fromOwner] = { sends: [], receives: [], teamId: fromTeamId };
+				}
+				parties[fromOwner].sends.push(player);
+			}
+			if (toOwner) {
+				if (!parties[toOwner]) {
+					parties[toOwner] = { sends: [], receives: [], teamId: toTeamId };
+				}
+				parties[toOwner].receives.push(player);
+			}
+		});
+		
+		trades.push({
+			transactionId: txSetId,
+			type: 'trade',
+			season: season,
+			timestamp: processedDate || timestamp,
+			week: week,
+			parties: parties,
+			owners: Object.keys(parties)
+		});
+	});
+	
+	return trades;
+}
+
+/**
+ * Load all trades from all available seasons.
+ * 
+ * @returns {Array} Array of all trade facts
+ */
+function loadAllTrades() {
+	var allTrades = [];
+	[2020, 2021].forEach(function(season) {
+		allTrades = allTrades.concat(loadTrades(season));
+	});
+	return allTrades;
+}
+
+/**
+ * Find all in-season commissioner transactions with confidence indicators.
+ * Every commissioner action during the season is flagged in Fantrax.
+ * 
+ * @param {Array} transactions - Array of transaction facts
+ * @param {Array} [trades] - Optional array of trade facts (loaded automatically if not provided)
+ * @returns {Array} Array of flagged commissioner actions with confidence
+ */
+function findCommissionerActions(transactions, trades) {
+	var WINDOW_HOURS = 72;
+	
+	// Load trades if not provided
+	if (!trades) {
+		trades = loadAllTrades();
+	}
+	
+	// Filter to real FAAB (in-season) and commissioner actions
+	var inSeason = filterRealFaab(transactions);
+	var commissionerTxs = inSeason.filter(function(tx) {
+		return tx.isCommissioner;
+	});
+	
+	// Sort all non-commissioner transactions by timestamp for context lookup
+	var sorted = inSeason.filter(function(tx) {
+		return !tx.isCommissioner;
+	}).sort(function(a, b) {
+		if (!a.timestamp) return 1;
+		if (!b.timestamp) return -1;
+		return a.timestamp - b.timestamp;
+	});
+	
+	// For each commissioner transaction, find context and assign confidence
+	return commissionerTxs.map(function(tx) {
+		var affectedPlayers = [];
+		
+		// Collect all players in this transaction
+		(tx.adds || []).forEach(function(p) {
+			affectedPlayers.push({ name: p.playerName, id: p.playerId, positions: p.positions, action: 'add' });
+		});
+		(tx.drops || []).forEach(function(p) {
+			affectedPlayers.push({ name: p.playerName, id: p.playerId, positions: p.positions, action: 'drop' });
+		});
+		
+		// Find recent transactions for each affected player (within 72h window)
+		var context = affectedPlayers.map(function(player) {
+			var recentTxs = sorted.filter(function(otherTx) {
+				if (otherTx.transactionId === tx.transactionId) return false;
+				if (!otherTx.timestamp || !tx.timestamp) return false;
+				var hoursDiff = (tx.timestamp - otherTx.timestamp) / (1000 * 60 * 60);
+				if (hoursDiff < 0 || hoursDiff > WINDOW_HOURS) return false;
+				
+				var inAdds = (otherTx.adds || []).some(function(p) { return p.playerName === player.name; });
+				var inDrops = (otherTx.drops || []).some(function(p) { return p.playerName === player.name; });
+				return inAdds || inDrops;
+			});
+			
+			return {
+				player: player.name,
+				playerId: player.id,
+				positions: player.positions,
+				commissionerAction: player.action,
+				recentTransactions: recentTxs.map(function(t) {
+					var playerAction = null;
+					if ((t.adds || []).some(function(p) { return p.playerName === player.name; })) {
+						playerAction = 'added';
+					} else if ((t.drops || []).some(function(p) { return p.playerName === player.name; })) {
+						playerAction = 'dropped';
+					}
+					var hoursDiff = Math.round((tx.timestamp - t.timestamp) / (1000 * 60 * 60));
+					return {
+						transactionId: t.transactionId,
+						timestamp: t.timestamp,
+						owner: t.owner,
+						playerAction: playerAction,
+						isCommissioner: t.isCommissioner,
+						hoursAgo: hoursDiff
+					};
+				})
+			};
+		});
+		
+		// Determine confidence level
+		var owner = tx.owner;
+		var confidence = Confidence.UNKNOWN;
+		var confidenceReason = null;
+		
+		// Check for reversal pair (commissioner actions within 5 minutes for same owner)
+		var hasMatchingSwap = commissionerTxs.some(function(other) {
+			if (other.transactionId === tx.transactionId) return false;
+			if (other.owner !== owner) return false;
+			
+			var timeDiff = Math.abs(tx.timestamp - other.timestamp) / (1000 * 60);
+			if (timeDiff > 5) return false;
+			
+			// Complementary actions (one adds, other drops)
+			var thisHasAdds = tx.adds && tx.adds.length > 0 && (!tx.drops || tx.drops.length === 0);
+			var thisHasDrops = tx.drops && tx.drops.length > 0 && (!tx.adds || tx.adds.length === 0);
+			var otherHasAdds = other.adds && other.adds.length > 0 && (!other.drops || other.drops.length === 0);
+			var otherHasDrops = other.drops && other.drops.length > 0 && (!other.adds || other.adds.length === 0);
+			
+			return (thisHasAdds && otherHasDrops) || (thisHasDrops && otherHasAdds);
+		});
+		
+		if (hasMatchingSwap) {
+			confidence = Confidence.REVERSAL_PAIR;
+			confidenceReason = 'Commissioner add and drop at same time (swap/rollback)';
+		} else {
+			// Check for rollback pattern: owner action reversed by commissioner
+			var hasReversalPattern = context.some(function(c) {
+				return c.recentTransactions.some(function(t) {
+					if (t.isCommissioner) return false;
+					if (c.commissionerAction === 'drop' && t.playerAction === 'added') return true;
+					if (c.commissionerAction === 'add' && t.playerAction === 'dropped') return true;
+					return false;
+				});
+			});
+			
+			if (hasReversalPattern) {
+				confidence = Confidence.ROLLBACK_LIKELY;
+				confidenceReason = 'Owner transaction reversed by commissioner';
+			} else {
+				// Check for trade facilitation: was this owner in a trade within 72h before or 24h after?
+				var FORWARD_WINDOW_HOURS = 24;
+				var recentTrade = trades.find(function(trade) {
+					if (!trade.timestamp || !tx.timestamp) return false;
+					var hoursDiff = (tx.timestamp - trade.timestamp) / (1000 * 60 * 60);
+					if (hoursDiff < -FORWARD_WINDOW_HOURS || hoursDiff > WINDOW_HOURS) return false;
+					return trade.owners.indexOf(owner) >= 0;
+				});
+				
+				if (recentTrade) {
+					confidence = Confidence.TRADE_FACILITATION;
+					confidenceReason = 'Owner was involved in a trade within 72h';
+				} else if (context.every(function(c) { return c.recentTransactions.length === 0; })) {
+					confidence = Confidence.MANUAL_ASSIST;
+					confidenceReason = 'No recent owner activity for affected players';
+				}
+			}
+		}
+		
+		return {
+			transactionId: tx.transactionId,
+			timestamp: tx.timestamp,
+			owner: tx.owner,
+			commissionerNote: tx.commissionerNote,
+			adds: tx.adds,
+			drops: tx.drops,
+			context: context,
+			confidence: confidence,
+			confidenceReason: confidenceReason
+		};
+	});
 }
 
 /**
@@ -590,18 +930,23 @@ function getSummary(transactions) {
 module.exports = {
 	// Constants
 	faabOpenDates: faabOpenDates,
+	Confidence: Confidence,
 	
 	// Core parsing
 	parseJSON: parseJSON,
 	parseRow: parseRow,
 	groupByTxSetId: groupByTxSetId,
 	parseDate: parseDate,
+	parseProcessedDate: parseProcessedDate,
 	extractOwner: extractOwner,
 	getCellValue: getCellValue,
+	getCell: getCell,
 	
 	// Loading
 	loadSeason: loadSeason,
 	loadAll: loadAll,
+	loadTrades: loadTrades,
+	loadAllTrades: loadAllTrades,
 	checkAvailability: checkAvailability,
 	
 	// Filtering
@@ -616,5 +961,6 @@ module.exports = {
 	
 	// Analysis
 	findSuspiciousTransactions: findSuspiciousTransactions,
+	findCommissionerActions: findCommissionerActions,
 	getSummary: getSummary
 };

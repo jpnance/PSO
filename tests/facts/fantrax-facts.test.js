@@ -1,5 +1,5 @@
 /**
- * Unit tests for Fantrax facts parser (CSV format).
+ * Unit tests for Fantrax facts parser (XHR JSON format).
  * 
  * Usage: node tests/facts/fantrax-facts.test.js
  */
@@ -34,26 +34,6 @@ function assertTrue(condition, msg) {
 		throw new Error(msg || 'Expected true but got false');
 	}
 }
-
-// === CSV Parsing Tests ===
-
-test('parseCSVLine: handles quoted fields', function() {
-	var line = '"Marcus Mariota","LV","QB","Drop","(Trevor) Team","","1"';
-	var fields = fantraxFacts.parseCSVLine(line);
-	
-	assertEqual(fields[0], 'Marcus Mariota');
-	assertEqual(fields[1], 'LV');
-	assertEqual(fields[3], 'Drop');
-	assertEqual(fields[4], '(Trevor) Team');
-});
-
-test('parseCSVLine: handles empty fields', function() {
-	var line = '"Player","Team","","Drop","Team","","1"';
-	var fields = fantraxFacts.parseCSVLine(line);
-	
-	assertEqual(fields[2], '');
-	assertEqual(fields[5], '');
-});
 
 // === Owner Extraction Tests ===
 
@@ -91,42 +71,32 @@ test('parseDate: handles AM times', function() {
 	assertEqual(date.getUTCHours(), 17); // 9 AM PST = 5 PM UTC
 });
 
+test('parseDate: handles time with seconds', function() {
+	var date = fantraxFacts.parseDate('Thu Dec 10, 2020, 12:43:59 PM');
+	
+	assertTrue(date instanceof Date);
+	assertEqual(date.getUTCFullYear(), 2020);
+	assertEqual(date.getUTCMonth(), 11); // December
+});
+
 test('parseDate: returns null for invalid', function() {
 	assertEqual(fantraxFacts.parseDate('invalid'), null);
 	assertEqual(fantraxFacts.parseDate(''), null);
 	assertEqual(fantraxFacts.parseDate(null), null);
 });
 
-// === Full CSV Parsing Tests ===
-
-test('parseCSV: parses transaction rows', function() {
-	var csv = '"Player","Team","Position","Type","Team","Bid","Pr","Grp/Max","Date (PST)","Week"\n' +
-	          '"Marcus Mariota","LV","QB","Drop","(Trevor) The Greenbay Packers","","1","1/99","Wed Dec 23, 2020, 8:05PM","16"';
+test('parseProcessedDate: extracts from toolTip HTML', function() {
+	var toolTip = '<b>Processed</b> Thu Dec 10, 2020, 12:43:59 PM<br/><b>Created</b> Thu Dec 10, 2020, 12:43:59 PM';
+	var date = fantraxFacts.parseProcessedDate(toolTip);
 	
-	var transactions = fantraxFacts.parseCSV(2020, csv);
-	
-	assertEqual(transactions.length, 1);
-	assertEqual(transactions[0].playerName, 'Marcus Mariota');
-	assertEqual(transactions[0].type, 'Drop');
-	assertEqual(transactions[0].owner, 'Trevor');
-	assertEqual(transactions[0].position, 'QB');
-	assertEqual(transactions[0].week, 16);
-	assertEqual(transactions[0].season, 2020);
-});
-
-test('parseCSV: parses bid amounts', function() {
-	var csv = '"Player","Team","Position","Type","Team","Bid","Pr","Grp/Max","Date (PST)","Week"\n' +
-	          '"Salvon Ahmed","MIA","RB","Claim","(Keyon) Team","1.00","1","1/99","Sat Dec 19, 2020, 9:00AM","15"';
-	
-	var transactions = fantraxFacts.parseCSV(2020, csv);
-	
-	assertEqual(transactions[0].type, 'Claim');
-	assertEqual(transactions[0].bid, 1.00);
+	assertTrue(date instanceof Date);
+	assertEqual(date.getUTCFullYear(), 2020);
+	assertEqual(date.getUTCMonth(), 11);
 });
 
 // === Real Data Tests ===
 
-test('checkAvailability: detects CSV files', function() {
+test('checkAvailability: detects JSON files', function() {
 	var result = fantraxFacts.checkAvailability();
 	
 	assertTrue(result.available, 'Should find Fantrax data');
@@ -141,6 +111,17 @@ test('loadSeason: loads real 2020 data', function() {
 	assertEqual(transactions[0].season, 2020);
 });
 
+test('loadSeason: transactions have grouped structure', function() {
+	var transactions = fantraxFacts.loadSeason(2020);
+	var tx = transactions[0];
+	
+	assertTrue(tx.transactionId !== undefined, 'Should have transactionId');
+	assertTrue(tx.type !== undefined, 'Should have type');
+	assertTrue(Array.isArray(tx.adds), 'Should have adds array');
+	assertTrue(Array.isArray(tx.drops), 'Should have drops array');
+	assertTrue(tx.owner !== undefined, 'Should have owner');
+});
+
 test('loadAll: loads both seasons', function() {
 	var transactions = fantraxFacts.loadAll();
 	
@@ -151,20 +132,32 @@ test('loadAll: loads both seasons', function() {
 	assertTrue(has2020 && has2021, 'Should have both seasons');
 });
 
-test('getClaims: filters to claims only', function() {
+test('getWaivers: filters to waiver transactions', function() {
+	var transactions = fantraxFacts.loadSeason(2020);
+	var waivers = fantraxFacts.getWaivers(transactions);
+	
+	assertTrue(waivers.length > 0, 'Should have waivers');
+	assertTrue(waivers.every(function(t) { return t.type === 'waiver'; }), 'All should be waivers');
+	// Waiver = has both adds and drops
+	assertTrue(waivers.every(function(t) { 
+		return t.adds.length > 0 && t.drops.length > 0; 
+	}), 'Waivers should have both adds and drops');
+});
+
+test('getClaims: filters to claim-only transactions', function() {
 	var transactions = fantraxFacts.loadSeason(2020);
 	var claims = fantraxFacts.getClaims(transactions);
 	
 	assertTrue(claims.length > 0, 'Should have claims');
-	assertTrue(claims.every(function(t) { return t.type === 'Claim'; }), 'All should be claims');
+	assertTrue(claims.every(function(t) { return t.type === 'claim'; }), 'All should be claims');
 });
 
-test('getDrops: filters to drops only', function() {
+test('getDrops: filters to drop-only transactions', function() {
 	var transactions = fantraxFacts.loadSeason(2020);
 	var drops = fantraxFacts.getDrops(transactions);
 	
 	assertTrue(drops.length > 0, 'Should have drops');
-	assertTrue(drops.every(function(t) { return t.type === 'Drop'; }), 'All should be drops');
+	assertTrue(drops.every(function(t) { return t.type === 'drop'; }), 'All should be drops');
 });
 
 test('getSummary: returns correct stats', function() {
@@ -172,20 +165,21 @@ test('getSummary: returns correct stats', function() {
 	var summary = fantraxFacts.getSummary(transactions);
 	
 	assertTrue(summary.total > 1000);
-	assertTrue(summary.byType.Claim > 0);
-	assertTrue(summary.byType.Drop > 0);
+	assertTrue(summary.totalAdds > 0, 'Should have adds count');
+	assertTrue(summary.totalDrops > 0, 'Should have drops count');
 	assertTrue(Object.keys(summary.byOwner).length > 5, 'Should have multiple owners');
+	assertEqual(summary.unknownOwner, 0, 'Should have no unknown owners');
 });
 
-test('findSuspiciousTransactions: finds potential rollbacks', function() {
+test('findCommissionerActions: finds in-season commissioner transactions', function() {
 	var transactions = fantraxFacts.loadAll();
-	var suspicious = fantraxFacts.findSuspiciousTransactions(transactions);
+	var actions = fantraxFacts.findCommissionerActions(transactions);
 	
-	// Just verify structure, there may or may not be suspicious ones
-	assertTrue(Array.isArray(suspicious));
-	if (suspicious.length > 0) {
-		assertTrue(suspicious[0].claim !== undefined);
-		assertTrue(suspicious[0].drop !== undefined);
+	assertTrue(Array.isArray(actions));
+	assertTrue(actions.length > 0, 'Should find some commissioner actions');
+	if (actions.length > 0) {
+		assertTrue(actions[0].context !== undefined, 'Should have context');
+		assertTrue(Array.isArray(actions[0].context), 'Context should be array');
 	}
 });
 
