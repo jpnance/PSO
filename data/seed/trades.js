@@ -19,7 +19,38 @@ var Player = require('../../models/Player');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
 
+// Inference engine integration
+var facts = require('../facts');
+var contractTermInference = require('../inference/contract-term');
+
 var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
+
+// Inference context (loaded once at startup)
+var inferenceContext = null;
+
+/**
+ * Load inference context data (snapshots, cuts, preseason rosters).
+ * Called once at startup before processing trades.
+ */
+function loadInferenceContext() {
+	if (inferenceContext) return inferenceContext;
+	
+	console.log('Loading inference context...');
+	var snapshots = facts.snapshots.loadAll();
+	var cuts = facts.cuts.checkAvailability() ? facts.cuts.loadAll() : [];
+	var preseasonRosters = snapshots.filter(function(s) {
+		return s.source === 'contracts';
+	});
+	
+	inferenceContext = {
+		snapshots: snapshots,
+		cuts: cuts,
+		preseasonRosters: preseasonRosters
+	};
+	
+	console.log('  Loaded ' + snapshots.length + ' snapshots, ' + cuts.length + ' cuts');
+	return inferenceContext;
+}
 
 // Build ESPN ID → Sleeper ID lookup
 var espnToSleeperId = {};
@@ -123,119 +154,44 @@ var seasonStartDates = {
 };
 
 /**
- * Parse a contract string and apply heuristics to determine start/end years.
+ * Parse a contract string using the inference engine.
  * Returns { startYear, endYear, ambiguous }
  * 
+ * Uses snapshots, cuts, and preseason roster data to achieve high-confidence inference.
+ * 
  * @param {string} contractStr - The contract notation (e.g., "2019", "2019/2021", "FA", "2019-R", "2019-U")
- * @param {number} salary - The player's salary (used for high-salary heuristic)
+ * @param {string} playerName - The player's name (for snapshot/cuts matching)
+ * @param {number} salary - The player's salary
  * @param {Date} tradeDate - The date of the trade
  */
-function parseContract(contractStr, salary, tradeDate) {
+function parseContract(contractStr, playerName, salary, tradeDate) {
 	var result = { startYear: null, endYear: null, ambiguous: false };
 	
 	if (!contractStr) return result;
 	
-	contractStr = contractStr.trim();
-	// Use season year (a trade before this year's auction is in the previous season)
-	var seasonYear = getSeasonYear(tradeDate);
-	// Use per-year contract due date, fall back to August 21 for unknown years
-	var dueDate = contractDueDates[seasonYear] || new Date(seasonYear + '-08-21');
-	var isBeforeContractsDue = tradeDate < dueDate;
+	// Ensure inference context is loaded
+	var ctx = loadInferenceContext();
 	
-	// Check for FA/unsigned/franchise - no contract
-	var lowerContract = contractStr.toLowerCase();
-	if (lowerContract === 'fa' || lowerContract === 'unsigned' || lowerContract === 'franchise') {
-		return result; // startYear and endYear stay null
-	}
+	// Get preseason roster for this trade's season
+	var seasonYear = contractTermInference.getSeasonYear(tradeDate);
+	var preseasonRoster = ctx.preseasonRosters.filter(function(p) {
+		return p.season === seasonYear;
+	});
 	
-	// Check for year range: "2019/21" or "2019/2021" or "19/21"
-	var rangeMatch = contractStr.match(/^(\d{2,4})\/(\d{2,4})$/);
-	if (rangeMatch) {
-		var start = rangeMatch[1];
-		var end = rangeMatch[2];
-		result.startYear = start.length === 2 ? parseInt('20' + start) : parseInt(start);
-		result.endYear = end.length === 2 ? parseInt('20' + end) : parseInt(end);
-		return result; // Explicit range, not ambiguous
-	}
+	// Run inference
+	var inference = contractTermInference.infer(contractStr, {
+		date: tradeDate,
+		playerName: playerName,
+		salary: salary,
+		snapshots: ctx.snapshots,
+		cuts: ctx.cuts,
+		preseasonRoster: preseasonRoster
+	});
 	
-	// Check for FA/year range: "FA/21" or "FA/2021"
-	var faRangeMatch = contractStr.match(/^FA\/(\d{2,4})$/i);
-	if (faRangeMatch) {
-		var end = faRangeMatch[1];
-		result.startYear = null; // FA pickup
-		result.endYear = end.length === 2 ? parseInt('20' + end) : parseInt(end);
-		return result; // Explicit FA notation, not ambiguous
-	}
+	result.startYear = inference.startYear;
+	result.endYear = inference.endYear;
+	result.ambiguous = (inference.confidence === 'ambiguous');
 	
-	// Check for single year with -R suffix: "2021-R" (Restricted Free Agent = multi-year)
-	var yearRMatch = contractStr.match(/^(\d{2,4})-R$/i);
-	if (yearRMatch) {
-		var year = yearRMatch[1];
-		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
-		result.endYear = endYear;
-		
-		// -R means multi-year contract (RFA status). Apply date-based heuristics.
-		if (seasonYear === 2008 && endYear > 2008) {
-			result.startYear = 2008;
-		} else if (seasonYear <= endYear - 2) {
-			result.startYear = endYear - 2;
-		} else if (seasonYear === endYear - 1 && isBeforeContractsDue) {
-			result.startYear = endYear - 2;
-		} else if (seasonYear === 2009 && endYear === 2009 && isBeforeContractsDue) {
-			result.startYear = 2008;
-		} else {
-			// Can't determine if 2-year or 3-year, but we know it's multi-year
-			// Default to minimum possible (seasonYear) since contract must cover trade date
-			result.startYear = Math.min(seasonYear, endYear);
-			result.ambiguous = true;
-		}
-		return result;
-	}
-	
-	// Check for single year with -U suffix: "2021-U" (Unrestricted Free Agent)
-	var yearUMatch = contractStr.match(/^(\d{2,4})-U$/i);
-	if (yearUMatch) {
-		var year = yearUMatch[1];
-		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
-		result.endYear = endYear;
-		
-		// -U means UFA. Can't determine contract length from notation alone.
-		// Default to minimum possible (seasonYear) since contract must cover trade date
-		result.startYear = Math.min(seasonYear, endYear);
-		result.ambiguous = true;
-		return result;
-	}
-	
-	// Check for single year: "2010" or "10"
-	var singleYearMatch = contractStr.match(/^(\d{2,4})$/);
-	if (singleYearMatch) {
-		var year = singleYearMatch[1];
-		var endYear = year.length === 2 ? parseInt('20' + year) : parseInt(year);
-		result.endYear = endYear;
-		
-		// Apply heuristics to determine startYear
-		if (seasonYear === 2008 && endYear > 2008) {
-			result.startYear = 2008;
-		} else if (seasonYear <= endYear - 2) {
-			// Trade 2+ years before contract ends = definitely 3-year contract
-			result.startYear = endYear - 2;
-		} else if (seasonYear === endYear - 1 && isBeforeContractsDue) {
-			// Trade 1 year before end, before contracts due = 3-year contract
-			result.startYear = endYear - 2;
-		} else if (seasonYear === 2009 && endYear === 2009 && isBeforeContractsDue) {
-			// Special case: league started 2008
-			result.startYear = 2008;
-		} else {
-			// Can't determine - could be 1-year auction, FA pickup, or final year of multi-year deal
-			// Default to minimum possible (seasonYear) since contract must cover trade date
-			result.startYear = Math.min(seasonYear, endYear);
-			result.ambiguous = true;
-		}
-		return result;
-	}
-	
-	// Unknown format - mark as ambiguous
-	result.ambiguous = true;
 	return result;
 }
 
@@ -308,9 +264,10 @@ function parseTradeContent(html, tradeDate) {
 				// Extract href separately since it could be anywhere in the tag
 				var hrefMatch = item.match(/<a[^>]*\shref="([^"]*)"[^>]*>/);
 				var href = hrefMatch ? hrefMatch[1] : null;
+				var playerName = playerMatch[1].trim();
 				var contractStr = playerMatch[3].trim();
 				var salary = parseInt(playerMatch[2].replace('$', ''));
-				var contract = parseContract(contractStr, salary, tradeDate);
+				var contract = parseContract(contractStr, playerName, salary, tradeDate);
 
 				// Try to extract ESPN ID from the href
 				// Patterns: /nfl/player/_/id/12345/name or /nfl/players/profile?playerId=12345
@@ -323,7 +280,7 @@ function parseTradeContent(html, tradeDate) {
 				}
 
 				party.receives.players.push({
-					name: playerMatch[1].trim(),
+					name: playerName,
 					espnId: espnId,
 					salary: salary,
 					startYear: contract.startYear,
@@ -336,12 +293,13 @@ function parseTradeContent(html, tradeDate) {
 			// Player without link (plain text)
 			var plainPlayerMatch = item.match(/<li>\s*([A-Za-z][A-Za-z\.\s'-]+[A-Za-z])\s*\((\$?\d+),?\s*([^)]+)\)/);
 			if (plainPlayerMatch) {
+				var playerName = plainPlayerMatch[1].trim();
 				var contractStr = plainPlayerMatch[3].trim();
 				var salary = parseInt(plainPlayerMatch[2].replace('$', ''));
-				var contract = parseContract(contractStr, salary, tradeDate);
+				var contract = parseContract(contractStr, playerName, salary, tradeDate);
 
 				party.receives.players.push({
-					name: plainPlayerMatch[1].trim(),
+					name: playerName,
 					salary: salary,
 					startYear: contract.startYear,
 					endYear: contract.endYear,
