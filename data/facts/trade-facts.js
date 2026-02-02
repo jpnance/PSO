@@ -3,10 +3,16 @@
  * 
  * Extracts raw facts from WordPress trade posts without inference.
  * Contract strings are preserved as-is (e.g., "2019", "09/11", "FA").
+ * Supports both network fetching and local cache loading.
  */
 
+var fs = require('fs');
+var path = require('path');
 var request = require('superagent');
 var PSO = require('../../config/pso.js');
+
+// Local cache directory
+var TRADES_DIR = path.join(__dirname, '../trades');
 
 // Decode common HTML entities
 function decodeHtmlEntities(str) {
@@ -265,9 +271,81 @@ function getContractStrings(tradeFacts) {
 		.sort(function(a, b) { return b.count - a.count; });
 }
 
+/**
+ * Check if local trades cache exists.
+ * 
+ * @returns {boolean} True if cache file exists
+ */
+function checkAvailability() {
+	var cacheFile = path.join(TRADES_DIR, 'trades.json');
+	return fs.existsSync(cacheFile);
+}
+
+/**
+ * Load trades data from local cache.
+ * 
+ * @returns {Array} Array of trade facts from cache, or empty array if not cached
+ */
+function loadAll() {
+	var cacheFile = path.join(TRADES_DIR, 'trades.json');
+	
+	if (!fs.existsSync(cacheFile)) {
+		return [];
+	}
+	
+	var raw = fs.readFileSync(cacheFile, 'utf8');
+	var trades = JSON.parse(raw);
+	
+	// Convert date strings back to Date objects
+	trades.forEach(function(trade) {
+		if (trade.date) {
+			trade.date = new Date(trade.date);
+		}
+	});
+	
+	return trades;
+}
+
+/**
+ * Save trades data to local cache.
+ * 
+ * @param {Array} tradeFacts - Array of trade facts to save
+ */
+function saveCache(tradeFacts) {
+	var cacheFile = path.join(TRADES_DIR, 'trades.json');
+	
+	// Ensure directory exists
+	if (!fs.existsSync(TRADES_DIR)) {
+		fs.mkdirSync(TRADES_DIR, { recursive: true });
+	}
+	
+	fs.writeFileSync(cacheFile, JSON.stringify(tradeFacts, null, 2));
+}
+
+/**
+ * Fetch all trades and save to local cache.
+ * 
+ * @returns {Promise<Array>} Array of all trade facts
+ */
+async function fetchAndCache() {
+	var trades = await fetchAll();
+	saveCache(trades);
+	console.log('    Cached ' + trades.length + ' trades to ' + path.join(TRADES_DIR, 'trades.json'));
+	return trades;
+}
+
 module.exports = {
+	// Network fetching
 	parseTradeContent: parseTradeContent,
 	fetchAll: fetchAll,
+	fetchAndCache: fetchAndCache,
+	
+	// Local cache
+	checkAvailability: checkAvailability,
+	loadAll: loadAll,
+	saveCache: saveCache,
+	
+	// Analysis
 	getContractStrings: getContractStrings,
 	decodeHtmlEntities: decodeHtmlEntities,
 	extractEspnId: extractEspnId

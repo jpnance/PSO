@@ -2,11 +2,17 @@
  * Cut Facts Parser
  * 
  * Extracts raw facts from Google Sheets cuts data without inference.
+ * Supports both network fetching and local cache loading.
  */
 
+var fs = require('fs');
+var path = require('path');
 var request = require('superagent');
 
 var SHEET_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Cuts';
+
+// Local cache directory
+var CUTS_DIR = path.join(__dirname, '../cuts');
 
 /**
  * Parse a player name that may contain a disambiguation hint.
@@ -144,10 +150,74 @@ function getSummary(cutFacts) {
 	};
 }
 
+/**
+ * Check if local cuts cache exists.
+ * 
+ * @returns {boolean} True if cache file exists
+ */
+function checkAvailability() {
+	var cacheFile = path.join(CUTS_DIR, 'cuts.json');
+	return fs.existsSync(cacheFile);
+}
+
+/**
+ * Load cuts data from local cache.
+ * 
+ * @returns {Array} Array of cut facts from cache, or empty array if not cached
+ */
+function loadAll() {
+	var cacheFile = path.join(CUTS_DIR, 'cuts.json');
+	
+	if (!fs.existsSync(cacheFile)) {
+		return [];
+	}
+	
+	var raw = fs.readFileSync(cacheFile, 'utf8');
+	return JSON.parse(raw);
+}
+
+/**
+ * Save cuts data to local cache.
+ * 
+ * @param {Array} cutFacts - Array of cut facts to save
+ */
+function saveCache(cutFacts) {
+	var cacheFile = path.join(CUTS_DIR, 'cuts.json');
+	
+	// Ensure directory exists
+	if (!fs.existsSync(CUTS_DIR)) {
+		fs.mkdirSync(CUTS_DIR, { recursive: true });
+	}
+	
+	fs.writeFileSync(cacheFile, JSON.stringify(cutFacts, null, 2));
+}
+
+/**
+ * Fetch all cuts and save to local cache.
+ * 
+ * @param {string} apiKey - Google API key
+ * @returns {Promise<Array>} Array of all cut facts
+ */
+async function fetchAndCache(apiKey) {
+	var cuts = await fetchAll(apiKey);
+	saveCache(cuts);
+	console.log('    Cached ' + cuts.length + ' cuts to ' + path.join(CUTS_DIR, 'cuts.json'));
+	return cuts;
+}
+
 module.exports = {
+	// Network fetching
 	parseNameWithHint: parseNameWithHint,
 	parseCutsSheet: parseCutsSheet,
 	fetchAll: fetchAll,
+	fetchAndCache: fetchAndCache,
+	
+	// Local cache
+	checkAvailability: checkAvailability,
+	loadAll: loadAll,
+	saveCache: saveCache,
+	
+	// Analysis
 	groupByYear: groupByYear,
 	getSummary: getSummary
 };

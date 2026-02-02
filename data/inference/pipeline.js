@@ -6,6 +6,8 @@
  * into the seeding process.
  */
 
+require('dotenv').config();
+
 var facts = require('../facts');
 var inference = require('./index');
 
@@ -51,34 +53,46 @@ async function loadAllFacts(options) {
 		console.log('    Not available (provide data in data/fantrax/)');
 	}
 	
-	// Load trades from WordPress (async, requires network)
-	if (!options.skipNetwork) {
+	// Load trades - try local cache first, then network
+	if (facts.trades.checkAvailability()) {
+		console.log('  Loading trades from local cache...');
+		result.trades = facts.trades.loadAll();
+		console.log('    Found ' + result.trades.length + ' trades');
+	} else if (!options.skipNetwork) {
 		console.log('  Fetching trades from WordPress...');
 		try {
-			result.trades = await facts.trades.fetchAll();
+			result.trades = await facts.trades.fetchAndCache();
 			console.log('    Found ' + result.trades.length + ' trades');
 		} catch (err) {
 			console.log('    Error fetching trades:', err.message);
 		}
 	}
 	
-	// Load cuts from Google Sheets (async, requires network + API key)
-	if (!options.skipNetwork && options.apiKey) {
+	// Load cuts - try local cache first, then network
+	if (facts.cuts.checkAvailability()) {
+		console.log('  Loading cuts from local cache...');
+		result.cuts = facts.cuts.loadAll();
+		console.log('    Found ' + result.cuts.length + ' cuts');
+	} else if (!options.skipNetwork && options.apiKey) {
 		console.log('  Fetching cuts from Google Sheets...');
 		try {
-			result.cuts = await facts.cuts.fetchAll(options.apiKey);
+			result.cuts = await facts.cuts.fetchAndCache(options.apiKey);
 			console.log('    Found ' + result.cuts.length + ' cuts');
 		} catch (err) {
 			console.log('    Error fetching cuts:', err.message);
 		}
 	}
 	
-	// Load drafts from Google Sheets (async, requires network + API key)
-	if (!options.skipNetwork && options.apiKey) {
+	// Load drafts - try local cache first, then network
+	if (facts.drafts.checkAvailability()) {
+		console.log('  Loading drafts from local cache...');
+		result.drafts = facts.drafts.loadAll();
+		console.log('    Found ' + result.drafts.length + ' draft picks');
+	} else if (!options.skipNetwork && options.apiKey) {
 		console.log('  Fetching drafts from Google Sheets...');
 		try {
 			var currentYear = new Date().getFullYear();
-			result.drafts = await facts.drafts.fetchAll(options.apiKey, currentYear);
+			result.drafts = await facts.drafts.fetchAndCache(options.apiKey, currentYear);
 			console.log('    Found ' + result.drafts.length + ' draft picks');
 		} catch (err) {
 			console.log('    Error fetching drafts:', err.message);
