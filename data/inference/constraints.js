@@ -21,6 +21,12 @@
 // A player's salary should not change during a contract term.
 // If we see the same player at different salaries in the same
 // contract period, something is wrong.
+//
+// EXCEPTION: 2008→2009 salary changes are ignored due to a
+// historical salary escalation rule (5% per year) that was
+// removed after the first season. Some owners applied escalation
+// differently, resulting in inconsistent data that is not worth
+// correcting.
 // ============================================================
 
 /**
@@ -32,17 +38,17 @@
 function salaryContinuity(snapshotFacts) {
 	var violations = [];
 	
-	// Group by player name (normalized)
-	var byPlayer = {};
+	// Group by player name AND owner (different owners can have different salaries)
+	var byPlayerOwner = {};
 	snapshotFacts.forEach(function(s) {
-		var name = s.playerName.toLowerCase();
-		if (!byPlayer[name]) byPlayer[name] = [];
-		byPlayer[name].push(s);
+		var key = s.playerName.toLowerCase() + '|' + (s.owner || '').toLowerCase();
+		if (!byPlayerOwner[key]) byPlayerOwner[key] = [];
+		byPlayerOwner[key].push(s);
 	});
 	
-	// Check each player's history
-	Object.keys(byPlayer).forEach(function(name) {
-		var contracts = byPlayer[name].sort(function(a, b) {
+	// Check each player/owner combination's history
+	Object.keys(byPlayerOwner).forEach(function(key) {
+		var contracts = byPlayerOwner[key].sort(function(a, b) {
 			return a.season - b.season;
 		});
 		
@@ -50,6 +56,11 @@ function salaryContinuity(snapshotFacts) {
 		for (var i = 0; i < contracts.length - 1; i++) {
 			var current = contracts[i];
 			var next = contracts[i + 1];
+			
+			// Skip 2008→2009 transitions (historical escalation rule anomaly)
+			if (current.season === 2008 && next.season === 2009) {
+				continue;
+			}
 			
 			// If both are within the same contract term (overlapping years)
 			// and have different salaries, that's a violation
@@ -64,6 +75,7 @@ function salaryContinuity(snapshotFacts) {
 					facts: [current, next],
 					context: {
 						player: current.playerName,
+						owner: current.owner,
 						contractTerm: current.startYear + '-' + current.endYear,
 						salaries: [current.salary, next.salary]
 					}
