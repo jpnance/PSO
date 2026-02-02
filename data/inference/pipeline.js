@@ -137,9 +137,16 @@ function checkConstraints(allFacts) {
 function inferContractTerms(allFacts) {
 	console.log('Inferring contract terms...\n');
 	
+	// Get preseason rosters (contracts-YEAR.txt files) for FA inference
+	var preseasonRosters = allFacts.snapshots.filter(function(s) {
+		return s.source === 'contracts';
+	});
+	
 	// Run inference on trades
 	var enhancedTrades = inference.contractTerm.inferTradeContracts(allFacts.trades, {
 		snapshots: allFacts.snapshots,
+		cuts: allFacts.cuts,
+		preseasonRosters: preseasonRosters,
 		drafts: allFacts.drafts
 	});
 	
