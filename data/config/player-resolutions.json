@@ -102,6 +102,9 @@
   "adrian peterson|2020|type:auction|patrick": {
     "sleeperId": "184"
   },
+  "adrian peterson|2021|type:fa|luke": {
+    "sleeperId": "184"
+  },
   "adrian peterson|2021|type:trade|jason": {
     "sleeperId": "184"
   },
@@ -136,6 +139,9 @@
     "sleeperId": "830"
   },
   "aj johnson|2021|type:cut|mitch": {
+    "sleeperId": "5822"
+  },
+  "aj johnson|2021|type:fa|mitch": {
     "sleeperId": "5822"
   },
   "aj mccarron|2018|type:trade|john/zach": {
@@ -679,6 +685,9 @@
   "chris jones|2019|type:cut|anthony": {
     "sleeperId": "3558"
   },
+  "chris jones|2020|type:fa|koci": {
+    "sleeperId": "3558"
+  },
   "chris jones|2023|type:auction|mike": {
     "sleeperId": "3558"
   },
@@ -701,6 +710,9 @@
   },
   "christian ponder|2012|type:trade|schex": {
     "sleeperId": "941"
+  },
+  "christopher herndon": {
+    "sleeperId": "5009"
   },
   "cj beathard|2018|type:trade|keyon": {
     "sleeperId": "4127"
@@ -1672,6 +1684,9 @@
   "jeff wilson|2020|type:trade|schex": {
     "sleeperId": "5284"
   },
+  "jeffery wilson": {
+    "sleeperId": "5284"
+  },
   "jeffrey simmons|2020|type:cut|justin": {
     "sleeperId": "6125"
   },
@@ -1831,6 +1846,9 @@
     "name": "Jon Baldwin"
   },
   "jon cooper|2021|type:cut|jason": {
+    "sleeperId": "7765"
+  },
+  "jon cooper|2021|type:fa|jason": {
     "sleeperId": "7765"
   },
   "jonas gray|2015|type:trade|keyon": {
@@ -3426,6 +3444,9 @@
   },
   "saquon barkley|2020|type:trade|luke": {
     "sleeperId": "4866"
+  },
+  "scott miller": {
+    "sleeperId": "6290"
   },
   "scotty mcgee|2010|type:draft|trevor": {
     "sleeperId": null,

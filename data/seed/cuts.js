@@ -553,10 +553,13 @@ async function run() {
 		}
 		
 		// Create FA transaction (drop only)
+		// Timestamp convention: 12:00:33 AM ET (midnight) for cuts with imprecise timing
+		// Uses Jan 15 in the cut year (dead period) as placeholder date
+		// ET is UTC-5 (EST), so midnight ET = 05:00 UTC
 		try {
 			await Transaction.create({
 				type: 'fa',
-				timestamp: new Date(Date.UTC(cut.cutYear, 0, 15, 12, 0, 0)), // Jan 15 noon UTC - placeholder date in dead period
+				timestamp: new Date(Date.UTC(cut.cutYear, 0, 15, 5, 0, 33)),
 				source: 'snapshot',
 				franchiseId: franchiseId,
 				adds: [],

@@ -126,18 +126,34 @@ module.exports.fantraxAbbreviations = {
 };
 
 module.exports.fantraxIds = {
-	'mkljbisnkkyr33yl': 1, // Patrick
-	'urd756b0kkyr33yw': 2, // Koci/Mueller
-	'dqvvynv8kkyr33yo': 3, // Luke
-	'8cdt5li1kkyr33z7': 4, // John/Zach
-	'ygmwf6pvkkyr33yu': 5, // Trevor
-	'u6hbpnznkkyr33z5': 6, // Keyon
-	'xc5epmazkkyr33z2': 7, // Brett
-	'qsikxu5lkkyr33yq': 8, // Jason
-	'mr9o4eonkkyr33yy': 9, // James/Charles
-	'ps1ipdlgkkyr33ys': 10, // Schex
-	'hsdnqwgykkyr33yj': 11, // Quinn
-	'218fvvbwkkyr33z0': 12 // Mitch
+	2020: {
+		'motju5wmk7xr9dlz': 1, // (pat) Crucifictorious Maids
+		'6u9bwy3ik7xrer9z': 2, // KoMu: Ladies&Gents, the Fabulous Staches
+		'hfyfddwck7xrera2': 3, // (Luke) The Folksmen
+		'hgfqy84rk7xrera0': 4, // Figrin J'OHN and the Modal Nodes
+		'alzk1h56k7xrer9w': 5, // (Trevor) The Greenbay Packers
+		'134ej04vk7xrer9y': 6, // (Keyon) Quon T. Hill and the Zits
+		'n5ozy8wjk7xrer9m': 7, // Cap'n Geech & The Shrimp Shaq Shooters
+		'fzqz34xuk7xrer9p': 8, // (TMAN) Dr Teeth and The Electric Mayhem
+		'erk30j3lk7xrer9s': 9, // (REYN) Sex Bob-omb and the City
+		'bmj6dbebk7xrer9v': 10, // (SCHX) Onederlic Life to Live
+		'a1p22t32k7xrer9u': 11, // (QTM) Tyler Dethklokett
+		'vt5py28ck7xrer9r': 12, // Kelce and the Kickers (MITCH)
+	},
+	2021: {
+		'mkljbisnkkyr33yl': 1, // Patrick
+		'urd756b0kkyr33yw': 2, // Koci/Mueller
+		'dqvvynv8kkyr33yo': 3, // Luke
+		'8cdt5li1kkyr33z7': 4, // John/Zach
+		'ygmwf6pvkkyr33yu': 5, // Trevor
+		'u6hbpnznkkyr33z5': 6, // Keyon
+		'xc5epmazkkyr33z2': 7, // Brett
+		'qsikxu5lkkyr33yq': 8, // Jason
+		'mr9o4eonkkyr33yy': 9, // James/Charles
+		'ps1ipdlgkkyr33ys': 10, // Schex
+		'hsdnqwgykkyr33yj': 11, // Quinn
+		'218fvvbwkkyr33z0': 12 // Mitch
+	}
 };
 
 module.exports.sheetsBudgetCells = {

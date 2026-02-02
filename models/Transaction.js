@@ -76,7 +76,7 @@ var transactionSchema = new Schema({
 	timestamp: { type: Date, required: true },
 	source: {
 		type: String,
-		enum: ['wordpress', 'sleeper', 'manual', 'snapshot'],
+		enum: ['wordpress', 'sleeper', 'fantrax', 'manual', 'snapshot'],
 		required: true
 	},
 

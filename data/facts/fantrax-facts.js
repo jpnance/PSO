@@ -90,7 +90,7 @@ function extractOwner(teamName) {
 		return 'John';
 	}
 	if (lowerName.indexOf('geech') >= 0 || lowerName.indexOf('shrimp shaq') >= 0) {
-		return 'Syed'; // Cap'n Geech was Syed's team
+		return 'Luke'; // Cap'n Geech was Syed's team name, but Luke took over in 2020
 	}
 	
 	return null;
@@ -879,6 +879,7 @@ function findCommissionerActions(transactions, trades) {
 			transactionId: tx.transactionId,
 			timestamp: tx.timestamp,
 			owner: tx.owner,
+			franchiseTeamId: tx.franchiseTeamId,
 			commissionerNote: tx.commissionerNote,
 			adds: tx.adds,
 			drops: tx.drops,
