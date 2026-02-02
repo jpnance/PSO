@@ -5,255 +5,108 @@
 		"newDisplayName": "Nam",
 		"effectiveSeason": 2026
 	},
-
 	"seasonRollover": {
 		"draftOrder": {
-			"12": 1,
-			"7": 2,
 			"1": 3,
+			"2": 11,
 			"3": 4,
-			"10": 5,
+			"4": 8,
 			"5": 6,
 			"6": 7,
-			"4": 8,
-			"9": 9,
+			"7": 2,
 			"8": 10,
-			"2": 11,
-			"11": 12
+			"9": 9,
+			"10": 5,
+			"11": 12,
+			"12": 1
 		},
 		"dateOverrides": {
 			"nflDraft": "2026-04-23"
 		}
 	},
-
 	"tradeAmendments": [
-		{ "tradeId": 34, "notes": "The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder." },
-		{ "tradeId": 36, "notes": "The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder." },
-		{ "tradeId": 37, "notes": "The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively." },
-		{ "tradeId": 94, "notes": "The origins of all four picks in this trade are self-explanatory: none of them had been traded until this deal was made." },
-		{ "tradeId": 299, "notes": "Brett/Luke originally owned both RFA rights; Koci/Mueller originally owned the future 2nd and 3rd; Schex originally owned the 3.04 and 3.11." },
-		{ "tradeId": 331, "notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back." },
-		{ "tradeId": 485, "notes": "Schex originally owned both Khalil Herbert and Montrell Washington; Justin originally owned Dallas Goedert. Keyon did not give up an asset in this trade." }
+		{
+			"tradeId": 34,
+			"notes": "The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder."
+		},
+		{
+			"tradeId": 36,
+			"notes": "The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder."
+		},
+		{
+			"tradeId": 37,
+			"notes": "The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively."
+		},
+		{
+			"tradeId": 94,
+			"notes": "The origins of all four picks in this trade are self-explanatory: none of them had been traded until this deal was made."
+		},
+		{
+			"tradeId": 299,
+			"notes": "Brett/Luke originally owned both RFA rights; Koci/Mueller originally owned the future 2nd and 3rd; Schex originally owned the 3.04 and 3.11."
+		},
+		{
+			"tradeId": 331,
+			"notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back."
+		},
+		{
+			"tradeId": 485,
+			"notes": "Schex originally owned both Khalil Herbert and Montrell Washington; Justin originally owned Dallas Goedert. Keyon did not give up an asset in this trade."
+		}
 	],
-
 	"tradeCashCorrections": [
-		{ "tradeId": 688, "party": 0, "cash": 0, "remove": true, "notes": "The agreed-to version of this trade moved $15 from Schexes to Patrick in 2025. That transaction was never carried out on the spreadsheet, though, and the error was not noticed by anyone until over a year later." },
-		{ "tradeId": 600, "party": 1, "cash": 0, "season": 2026, "notes": "The agreed-to version of this trade moved the $20 from Keyon to Mitch in 2025, not 2026. The transaction was incorrectly carried out on the spreadsheet and not noticed by anyone until nearly two years later." }
+		{
+			"tradeId": 688,
+			"party": 0,
+			"cash": 0,
+			"remove": true,
+			"notes": "The agreed-to version of this trade moved $15 from Schexes to Patrick in 2025. That transaction was never carried out on the spreadsheet, though, and the error was not noticed by anyone until over a year later."
+		},
+		{
+			"tradeId": 600,
+			"party": 1,
+			"cash": 0,
+			"season": 2026,
+			"notes": "The agreed-to version of this trade moved the $20 from Keyon to Mitch in 2025, not 2026. The transaction was incorrectly carried out on the spreadsheet and not noticed by anyone until nearly two years later."
+		}
 	],
-
 	"playerCorrections": [
-		{ "name": "Tony Gonzalez", "positions": ["TE"] },
-		{ "name": "J.T. O'Sullivan", "positions": ["QB"] },
-		{ "name": "Jonathan Baldwin", "positions": ["WR"] },
-		{ "name": "Charles Scott", "positions": ["RB"] },
-		{ "name": "Scotty McGee", "positions": ["DB"] },
-		{ "name": "Mike Williams", "college": "USC", "positions": ["WR"] }
-	],
-
-	"cutTimestamps":[
 		{
-			"fixupRef": 3283,
-			"timestamp": "2025-08-17T23:59"
+			"name": "Tony Gonzalez",
+			"positions": [
+				"TE"
+			]
 		},
 		{
-			"fixupRef": 3284,
-			"timestamp": "2025-08-17T23:59"
+			"name": "J.T. O'Sullivan",
+			"positions": [
+				"QB"
+			]
 		},
 		{
-			"fixupRef": 3285,
-			"timestamp": "2025-08-17T23:59"
+			"name": "Jonathan Baldwin",
+			"positions": [
+				"WR"
+			]
 		},
 		{
-			"fixupRef": 3286,
-			"timestamp": "2025-08-17T23:59"
+			"name": "Charles Scott",
+			"positions": [
+				"RB"
+			]
 		},
 		{
-			"fixupRef": 3287,
-			"timestamp": "2025-08-17T23:59"
+			"name": "Scotty McGee",
+			"positions": [
+				"DB"
+			]
 		},
 		{
-			"fixupRef": 3288,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3289,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3290,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3291,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3292,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3293,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3294,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3295,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3296,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3297,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3298,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3299,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3300,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3301,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3302,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3303,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3304,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3305,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3306,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3307,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3308,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3309,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3310,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3311,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3312,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3313,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3314,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3315,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3316,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3317,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3318,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3319,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3320,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3321,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3322,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3324,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3325,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3326,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3327,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3328,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3329,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3330,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3331,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3332,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3333,
-			"timestamp": "2025-08-17T23:59"
-		},
-		{
-			"fixupRef": 3455,
-			"timestamp": "2025-08-17T23:59"
+			"name": "Mike Williams",
+			"college": "USC",
+			"positions": [
+				"WR"
+			]
 		}
 	]
 }
