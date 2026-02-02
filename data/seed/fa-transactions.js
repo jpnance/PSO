@@ -85,12 +85,70 @@ function loadFixups() {
 
 var fixupsIgnored = loadFixups();
 
+// Trade facilitation fixups - maps transactionId to tradeId
+var TRADE_FACILITATION_FIXUPS_PATH = path.join(CONFIG_DIR, 'trade-facilitation-fixups.json');
+var tradeFacilitationFixups = {};
+var tradeFacilitationFixupsModified = false;
+
+function loadTradeFacilitationFixups() {
+	if (fs.existsSync(TRADE_FACILITATION_FIXUPS_PATH)) {
+		try {
+			tradeFacilitationFixups = JSON.parse(fs.readFileSync(TRADE_FACILITATION_FIXUPS_PATH, 'utf8'));
+		} catch (e) {
+			console.warn('Warning: Could not load trade-facilitation-fixups.json:', e.message);
+		}
+	}
+}
+
+function saveTradeFacilitationFixups() {
+	if (tradeFacilitationFixupsModified) {
+		fs.writeFileSync(TRADE_FACILITATION_FIXUPS_PATH, JSON.stringify(tradeFacilitationFixups, null, 2));
+		console.log('Saved trade facilitation fixups');
+	}
+}
+
+loadTradeFacilitationFixups();
+
 // Global state
 var rl = null;
 var playersByNormalizedName = {};
 var playersBySleeperId = {};
 var franchiseByRosterId = {};
 var franchiseByOwnerName = {};
+var allTrades = [];  // For trade facilitation lookup
+var allTradesById = {};  // For quick lookup by _id
+var allRegimes = [];  // For regime name lookup
+var allPlayers = {};  // For player name lookup by _id
+
+/**
+ * Get the regime name for a franchise at a given date.
+ * Finds the regime whose tenure covers this franchise and season.
+ */
+function getRegimeName(franchiseId, date) {
+	if (!franchiseId) return null;
+	var season = date.getFullYear();
+	var franchiseIdStr = franchiseId.toString();
+	
+	var regime = allRegimes.find(function(r) {
+		if (!r.tenures) return false;
+		return r.tenures.some(function(t) {
+			if (!t.franchiseId) return false;
+			if (t.franchiseId.toString() !== franchiseIdStr) return false;
+			if (t.startSeason > season) return false;
+			if (t.endSeason !== null && t.endSeason < season) return false;
+			return true;
+		});
+	});
+	return regime ? regime.displayName : null;
+}
+
+/**
+ * Get player full name from a player ID.
+ */
+function getPlayerName(playerId) {
+	var player = allPlayers[playerId.toString()];
+	return player ? player.name : '?';
+}
 
 // Sleeper data for ID mapping
 var sleeperData = {};
@@ -105,7 +163,6 @@ try {
  */
 var SKIP_CONFIDENCE = [
 	'rollback_likely',
-	'trade_facilitation',
 	'reversal_pair'
 ];
 
@@ -113,9 +170,193 @@ var SKIP_CONFIDENCE = [
  * Confidence levels that indicate a commissioner transaction should be imported.
  */
 var IMPORT_CONFIDENCE = [
-	'manual_assist'
-	// 'unknown' - could add this if we trust the algorithm catches all bad ones
+	'manual_assist',
+	'trade_facilitation'
 ];
+
+var TRADE_WINDOW_HOURS = 56;
+
+// Track drops linked to trades during this session
+// Key: tradeId (WordPress ID), Value: count of drops linked
+var dropsLinkedToTrade = {};
+
+/**
+ * Find candidate trades that a commissioner action might have facilitated.
+ * Returns array of trades that match by franchise + timestamp + net players received.
+ */
+function findCandidateTrades(franchiseId, timestamp) {
+	var franchiseIdStr = franchiseId.toString();
+	
+	return allTrades.filter(function(trade) {
+		// Check if this franchise was a party to the trade
+		var party = trade.parties.find(function(p) {
+			return p.franchiseId.toString() === franchiseIdStr;
+		});
+		if (!party) return false;
+		
+		// Check if within window
+		var diff = Math.abs(timestamp - trade.timestamp) / (1000 * 60 * 60);
+		if (diff > TRADE_WINDOW_HOURS) return false;
+		
+		// Check net players received > 0 (they need to drop to make room)
+		var received = (party.receives.players || []).length;
+		var otherParty = trade.parties.find(function(p) {
+			return p.franchiseId.toString() !== franchiseIdStr;
+		});
+		var ourSent = otherParty ? (otherParty.receives.players || []).length : 0;
+		var netReceived = received - ourSent;
+		
+		// Subtract drops already linked to this trade for this franchise
+		var linkKey = trade.tradeId + ':' + franchiseIdStr;
+		var alreadyLinked = dropsLinkedToTrade[linkKey] || 0;
+		var remainingNeed = netReceived - alreadyLinked;
+		
+		return remainingNeed > 0;
+	});
+}
+
+/**
+ * Prompt user to select which trade a drop facilitated.
+ */
+function promptForTrade(tx, candidates, franchiseId, franchiseName) {
+	return new Promise(function(resolve) {
+		if (!rl) {
+			// No readline, return error
+			var tradeIds = candidates.map(function(t) { return t.tradeId; }).join(', ');
+			resolve({ error: 'Multiple trades found: #' + tradeIds });
+			return;
+		}
+		
+		var franchiseIdStr = franchiseId.toString();
+		
+		var playerName = tx.drops && tx.drops[0] ? tx.drops[0].playerName : 'Unknown player';
+		var dropDate = tx.timestamp.toISOString().slice(0, 10);
+		var dropTime = tx.timestamp.toISOString().slice(11, 16);
+		
+		console.log('');
+		console.log('═══════════════════════════════════════════════════════════════════════════════');
+		console.log('TRADE FACILITATION: ' + playerName + ' dropped by ' + franchiseName);
+		console.log('Drop timestamp: ' + dropDate + ' ' + dropTime);
+		console.log('───────────────────────────────────────────────────────────────────────────────');
+		console.log('Which trade did this drop facilitate?');
+		console.log('');
+		
+		candidates.forEach(function(trade, idx) {
+			var tradeDate = trade.timestamp.toISOString().slice(0, 10);
+			var tradeTime = trade.timestamp.toISOString().slice(11, 16);
+			var diffHours = Math.abs(tx.timestamp - trade.timestamp) / (1000 * 60 * 60);
+			
+			// Get trade parties with regime names
+			var partyDescriptions = trade.parties.map(function(p) {
+				var regimeName = getRegimeName(p.franchiseId, trade.timestamp);
+				if (!regimeName) {
+					var f = Object.keys(franchiseByRosterId).find(function(rid) {
+						return franchiseByRosterId[rid].toString() === p.franchiseId.toString();
+					});
+					regimeName = f ? PSO.franchises[f] : 'Unknown';
+				}
+				
+				// Get player full names this party received
+				var receivedPlayers = (p.receives.players || []).map(function(pl) {
+					return getPlayerName(pl.playerId);
+				});
+				
+				if (receivedPlayers.length > 0) {
+					return regimeName + ': ' + receivedPlayers.join(', ');
+				}
+				return regimeName + ': Nothing';
+			});
+			
+			console.log('  [' + (idx + 1) + '] Trade #' + trade.tradeId + ' - ' + tradeDate + ' ' + tradeTime + ' (' + diffHours.toFixed(1) + 'h apart)');
+			partyDescriptions.forEach(function(desc) {
+				console.log('      ' + desc);
+			});
+		});
+		
+		console.log('');
+		console.log('  [0] None of these (import drop without trade link)');
+		console.log('  [q] Quit');
+		console.log('');
+		
+		rl.question('Select trade [1-' + candidates.length + ', 0, q]: ', function(answer) {
+			answer = answer.trim().toLowerCase();
+			
+			if (answer === 'q') {
+				resolve({ quit: true });
+				return;
+			}
+			
+			var selection = parseInt(answer, 10);
+			
+			if (selection === 0) {
+				// Save fixup with null trade
+				tradeFacilitationFixups[tx.transactionId] = null;
+				tradeFacilitationFixupsModified = true;
+				console.log('  → No trade link (saved)');
+				resolve({ tradeId: null });
+				return;
+			}
+			
+			if (selection >= 1 && selection <= candidates.length) {
+				var selectedTrade = candidates[selection - 1];
+				// Save fixup
+				tradeFacilitationFixups[tx.transactionId] = selectedTrade.tradeId;
+				tradeFacilitationFixupsModified = true;
+				// Track this link to reduce remaining need for this trade
+				var linkKey = selectedTrade.tradeId + ':' + franchiseIdStr;
+				dropsLinkedToTrade[linkKey] = (dropsLinkedToTrade[linkKey] || 0) + 1;
+				console.log('  → Trade #' + selectedTrade.tradeId + ' (saved)');
+				resolve({ tradeId: selectedTrade._id });
+				return;
+			}
+			
+			console.log('  Invalid selection. Skipping for now.');
+			var tradeIds = candidates.map(function(t) { return t.tradeId; }).join(', ');
+			resolve({ error: 'Multiple trades found: #' + tradeIds });
+		});
+	});
+}
+
+/**
+ * Find the trade that a commissioner action facilitated.
+ * Checks fixups first, then prompts if ambiguous.
+ */
+async function findFacilitatedTrade(tx, franchiseId, franchiseName) {
+	// Check fixups first
+	if (tx.transactionId && tradeFacilitationFixups.hasOwnProperty(tx.transactionId)) {
+		var fixedTradeId = tradeFacilitationFixups[tx.transactionId];
+		if (fixedTradeId === null) {
+			return { tradeId: null };
+		}
+		// Look up the trade by tradeId
+		var fixedTrade = allTrades.find(function(t) { return t.tradeId === fixedTradeId; });
+		if (fixedTrade) {
+			// Track this link to reduce remaining need for this trade
+			var linkKey = fixedTradeId + ':' + franchiseId.toString();
+			dropsLinkedToTrade[linkKey] = (dropsLinkedToTrade[linkKey] || 0) + 1;
+		}
+		return { tradeId: fixedTrade ? fixedTrade._id : null };
+	}
+	
+	var candidates = findCandidateTrades(franchiseId, tx.timestamp);
+	
+	// Zero candidates: likely misclassified, import without trade link
+	if (candidates.length === 0) {
+		return { tradeId: null };
+	}
+	
+	// Single candidate: auto-link
+	if (candidates.length === 1) {
+		var linkedTrade = candidates[0];
+		// Track this link to reduce remaining need for this trade
+		var linkKey = linkedTrade.tradeId + ':' + franchiseId.toString();
+		dropsLinkedToTrade[linkKey] = (dropsLinkedToTrade[linkKey] || 0) + 1;
+		return { tradeId: linkedTrade._id };
+	}
+	
+	// Multiple candidates: prompt
+	return await promptForTrade(tx, candidates, franchiseId, franchiseName);
+}
 
 /**
  * Parse command line arguments.
@@ -446,6 +687,21 @@ async function convertTransaction(tx) {
 		return { errors: errors };
 	}
 	
+	// Look up facilitated trade if this is a trade_facilitation transaction
+	var facilitatedTradeId = null;
+	if (tx.confidence === 'trade_facilitation') {
+		var regimeName = getRegimeName(franchiseId, tx.timestamp) || franchiseContext;
+		var tradeResult = await findFacilitatedTrade(tx, franchiseId, regimeName);
+		if (tradeResult.quit) {
+			throw new Error('User quit');
+		}
+		if (tradeResult.error) {
+			errors.push('Trade facilitation lookup failed: ' + tradeResult.error);
+		} else {
+			facilitatedTradeId = tradeResult.tradeId;
+		}
+	}
+	
 	return {
 		type: 'fa',
 		timestamp: tx.timestamp,
@@ -453,6 +709,7 @@ async function convertTransaction(tx) {
 		franchiseId: franchiseId,
 		adds: adds,
 		drops: drops,
+		facilitatedTradeId: facilitatedTradeId,
 		errors: errors.length > 0 ? errors : null
 	};
 }
@@ -473,8 +730,8 @@ async function run() {
 	});
 	
 	// Load all players
-	var allPlayers = await Player.find({});
-	allPlayers.forEach(function(p) {
+	var playersArray = await Player.find({});
+	playersArray.forEach(function(p) {
 		var normalized = resolver.normalizePlayerName(p.name);
 		if (!playersByNormalizedName[normalized]) {
 			playersByNormalizedName[normalized] = [];
@@ -484,8 +741,11 @@ async function run() {
 		if (p.sleeperId) {
 			playersBySleeperId[p.sleeperId] = p;
 		}
+		
+		// Also populate global lookup by _id
+		allPlayers[p._id.toString()] = p;
 	});
-	console.log('Loaded', allPlayers.length, 'players from database');
+	console.log('Loaded', playersArray.length, 'players from database');
 	
 	// Load franchises
 	var franchises = await Franchise.find({});
@@ -506,8 +766,8 @@ async function run() {
 	
 	// Build additional mappings from Regime display names
 	// This handles names like "Schex" -> Schexes franchise, etc.
-	var regimes = await Regime.find({});
-	regimes.forEach(function(regime) {
+	allRegimes = await Regime.find({});
+	allRegimes.forEach(function(regime) {
 		var regimeLower = regime.displayName.toLowerCase();
 		// Map to the CURRENT tenure's franchise (most recent)
 		var currentTenure = regime.tenures.find(function(t) { return t.endSeason === null; });
@@ -517,6 +777,10 @@ async function run() {
 	});
 	console.log('  Built', Object.keys(franchiseByOwnerName).length, 'owner name mappings');
 	console.log('Loaded', franchises.length, 'franchises');
+	
+	// Load trades for facilitation lookup
+	allTrades = await Transaction.find({ type: 'trade' });
+	console.log('Loaded', allTrades.length, 'trades for facilitation lookup');
 	
 	// Load transactions from facts
 	var transactions = [];
@@ -575,9 +839,9 @@ async function run() {
 	console.log('\nTransaction breakdown:');
 	console.log('  Regular FA (waiver/free_agent):', stats.regularFA, '-> IMPORT');
 	console.log('  Commissioner - manual_assist:', stats.commissionerManualAssist, '-> IMPORT');
+	console.log('  Commissioner - trade_facilitation:', stats.commissionerTradeFacilitation, '-> IMPORT');
 	console.log('  Fixup ignored:', stats.fixupIgnored, '-> SKIP');
 	console.log('  Commissioner - rollback_likely:', stats.commissionerRollback, '-> SKIP');
-	console.log('  Commissioner - trade_facilitation:', stats.commissionerTradeFacilitation, '-> SKIP');
 	console.log('  Commissioner - reversal_pair:', stats.commissionerReversalPair, '-> SKIP');
 	console.log('  Commissioner - unknown:', stats.commissionerUnknown, '-> SKIP (review separately)');
 	
@@ -630,14 +894,18 @@ async function run() {
 				continue;
 			}
 			
-			await Transaction.create({
+			var txData = {
 				type: record.type,
 				timestamp: record.timestamp,
 				source: record.source,
 				franchiseId: record.franchiseId,
 				adds: record.adds,
 				drops: record.drops
-			});
+			};
+			if (record.facilitatedTradeId) {
+				txData.facilitatedTradeId = record.facilitatedTradeId;
+			}
+			await Transaction.create(txData);
 			
 			created++;
 			
@@ -667,8 +935,9 @@ async function run() {
 		}
 	}
 	
-	// Save resolutions
+	// Save resolutions and fixups
 	resolver.save();
+	saveTradeFacilitationFixups();
 	
 	console.log('\nDone!');
 	console.log('  Created:', created);
