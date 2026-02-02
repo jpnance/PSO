@@ -81,6 +81,21 @@
     "sleeperId": null,
     "name": "Adewale Ogunleye"
   },
+  "adrian peterson|2008|type:rfa-conversion|trevor": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2009|type:rfa-conversion|trevor": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2010|type:rfa-conversion|john": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2011|type:rfa-conversion|keyon": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2011|type:rfa-conversion|schexes": {
+    "sleeperId": "184"
+  },
   "adrian peterson|2011|type:trade|schexes": {
     "sleeperId": "184"
   },
@@ -90,10 +105,19 @@
   "adrian peterson|2014|type:trade|quinn": {
     "sleeperId": "184"
   },
+  "adrian peterson|2015|type:rfa-conversion|keyon": {
+    "sleeperId": "184"
+  },
   "adrian peterson|2016|type:cut|keyon": {
     "sleeperId": "184"
   },
   "adrian peterson|2016|type:trade|john/zach": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2017|type:rfa-conversion|trevor": {
+    "sleeperId": "184"
+  },
+  "adrian peterson|2018|type:rfa-conversion|trevor": {
     "sleeperId": "184"
   },
   "adrian peterson|2019|type:auction|patrick": {
@@ -578,6 +602,9 @@
   "charles johnson|2011|type:trade|daniel": {
     "sleeperId": "37"
   },
+  "charles johnson|2013|type:rfa-conversion|daniel": {
+    "sleeperId": "37"
+  },
   "charles johnson|2014|type:cut|jason": {
     "sleeperId": "37"
   },
@@ -689,6 +716,9 @@
     "sleeperId": "3558"
   },
   "chris jones|2023|type:auction|mike": {
+    "sleeperId": "3558"
+  },
+  "chris jones|2024|type:rfa-conversion|mike": {
     "sleeperId": "3558"
   },
   "chris perry|2009|type:cut|keyon": {
@@ -913,10 +943,16 @@
   "david johnson|2015|type:auction|syed/terence": {
     "sleeperId": "2391"
   },
+  "david johnson|2017|type:rfa-conversion|schex/jeff": {
+    "sleeperId": "2391"
+  },
   "david johnson|2017|type:trade|schex/jeff": {
     "sleeperId": "2391"
   },
   "david johnson|2018|type:auction|schex": {
+    "sleeperId": "2391"
+  },
+  "david johnson|2018|type:rfa-conversion|syed/terence": {
     "sleeperId": "2391"
   },
   "david johnson|2018|type:trade|daniel": {
@@ -2659,6 +2695,9 @@
   "michael bennett|2015|type:cut|patrick": {
     "sleeperId": "495"
   },
+  "michael bennett|2017|type:rfa-conversion|trevor": {
+    "sleeperId": "495"
+  },
   "michael bush|2013|type:cut|brett": {
     "sleeperId": null,
     "name": "Michael Bush"
@@ -2703,10 +2742,16 @@
   "michael thomas|2016|type:draft|quinn": {
     "sleeperId": "3652"
   },
+  "michael thomas|2018|type:rfa-conversion|brett/luke": {
+    "sleeperId": "3199"
+  },
   "michael thomas|2019|type:auction|quinn": {
     "sleeperId": "3199"
   },
   "michael thomas|2019|type:trade|quinn": {
+    "sleeperId": "3199"
+  },
+  "michael thomas|2020|type:rfa-conversion|patrick": {
     "sleeperId": "3199"
   },
   "michael thomas|2020|type:trade|patrick": {
@@ -2793,6 +2838,9 @@
     "sleeperId": null,
     "name": "Mike Williams"
   },
+  "mike williams|2012|type:rfa-conversion|koci": {
+    "sleeperId": "748"
+  },
   "mike williams|2014|type:cut|brett": {
     "sleeperId": "748"
   },
@@ -2805,7 +2853,13 @@
   "mike williams|2017|type:draft|mitch": {
     "sleeperId": "4068"
   },
+  "mike williams|2019|type:rfa-conversion|mitch": {
+    "sleeperId": "4068"
+  },
   "mike williams|2020|type:auction|mitch": {
+    "sleeperId": "4068"
+  },
+  "mike williams|2022|type:rfa-conversion|mitch/mike": {
     "sleeperId": "4068"
   },
   "mike williams|2023|type:auction|james/charles": {
@@ -3319,6 +3373,10 @@
     "sleeperId": null,
     "name": "Roscoe Parrish"
   },
+  "roy e williams|2009|type:rfa-conversion|trevor": {
+    "sleeperId": null,
+    "name": "Roy E. Williams"
+  },
   "roy finch|2014|type:draft|koci/mueller": {
     "sleeperId": null,
     "name": "Roy Finch"
@@ -3515,6 +3573,10 @@
     "sleeperId": null,
     "name": "Steve Smith"
   },
+  "steve smith|2009|type:rfa-conversion|trevor": {
+    "sleeperId": null,
+    "name": "Steve Smith"
+  },
   "steve smith|2010|type:auction|trevor": {
     "sleeperId": null,
     "name": "Steve Smith"
@@ -3522,17 +3584,35 @@
   "steve smith|2010|type:cut|keyon": {
     "sleeperId": "169"
   },
+  "steve smith|2010|type:rfa-conversion|trevor": {
+    "sleeperId": "169"
+  },
   "steve smith|2011|type:cut|mike": {
     "sleeperId": null,
     "name": "Steve Smith"
+  },
+  "steve smith|2011|type:rfa-conversion|trevor": {
+    "sleeperId": "169"
   },
   "steve smith|2012|type:auction|daniel": {
     "sleeperId": null,
     "name": "Steve Smith"
   },
+  "steve smith|2012|type:rfa-conversion|keyon": {
+    "sleeperId": "169"
+  },
   "steve smith|2013|type:cut|jason": {
     "sleeperId": null,
     "name": "Steve Smith"
+  },
+  "steve smith|2013|type:rfa-conversion|john": {
+    "sleeperId": "169"
+  },
+  "steve smith|2015|type:rfa-conversion|daniel": {
+    "sleeperId": "169"
+  },
+  "steve smith|2016|type:rfa-conversion|brett/luke": {
+    "sleeperId": "169"
   },
   "steven hauschka": {
     "sleeperId": "775"
@@ -3545,6 +3625,10 @@
   },
   "steven jackson|2014|type:trade|keyon": {
     "sleeperId": "57"
+  },
+  "stevie johnson|2015|type:rfa-conversion|trevor": {
+    "sleeperId": null,
+    "name": "Stevie Johnson"
   },
   "stewart bradley|2011|type:cut|patrick": {
     "sleeperId": null,
