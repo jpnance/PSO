@@ -245,19 +245,28 @@ else
 fi
 echo ""
 
-# Step 8: Seed cuts (interactive, needs network)
-echo "=== Step 8: Seeding cuts (interactive, needs network) ==="
+# Step 8: Seed FA transactions from Sleeper/Fantrax (interactive for trade facilitation)
+echo "=== Step 8: Seeding FA transactions (interactive) ==="
 if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
+    echo "[dry-run] docker compose run --rm web node data/seed/fa-transactions.js"
 else
-    docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016
+    docker compose run --rm -it web node data/seed/fa-transactions.js
 fi
 echo ""
 
-# Step 9: Seed budgets (calculated from contracts, trades, cuts)
+# Step 9: Seed cuts (enriches FA drops + creates offseason cuts)
+echo "=== Step 9: Seeding cuts ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
+else
+    docker compose run --rm -it web node data/seed/cuts.js --auto-historical-before=2016
+fi
+echo ""
+
+# Step 10: Seed budgets (calculated from contracts, trades, cuts)
 # Note: addLegacyTradeNotes.js was removed - heuristics are now in seedTrades.js
 # and ambiguous contracts are flagged with the `ambiguous` field on trade players.
-echo "=== Step 9: Seeding budgets ==="
+echo "=== Step 10: Seeding budgets ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/budgets.js"
 else
@@ -265,8 +274,8 @@ else
 fi
 echo ""
 
-# Step 10: Apply manual fixups (trade edits now trigger budget recalculation)
-echo "=== Step 10: Applying manual fixups ==="
+# Step 11: Apply manual fixups (trade edits now trigger budget recalculation)
+echo "=== Step 11: Applying manual fixups ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/maintenance/apply-fixups.js"
 else
@@ -274,8 +283,8 @@ else
 fi
 echo ""
 
-# Step 11: Compute season data (playoff seeds, results)
-echo "=== Step 11: Computing season data ==="
+# Step 12: Compute season data (playoff seeds, results)
+echo "=== Step 12: Computing season data ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/analysis/seasons.js"
 else
@@ -283,8 +292,8 @@ else
 fi
 echo ""
 
-# Step 12: Seed auction/contract transactions (interactive)
-echo "=== Step 12: Seeding auction transactions (interactive) ==="
+# Step 13: Seed auction/contract transactions (interactive)
+echo "=== Step 13: Seeding auction transactions (interactive) ==="
 for year in 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025; do
     echo "--- Auction year: $year ---"
     # Use --auto-historical for early years (many players won't be in Sleeper)

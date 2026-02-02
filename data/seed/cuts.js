@@ -1,6 +1,21 @@
+/**
+ * Seed cut transactions from the pre-extracted cuts.json file.
+ * 
+ * For cuts with existing FA drops in the database (from Sleeper/Fantrax),
+ * enriches those drops with contract data (salary, term, buyouts).
+ * 
+ * For cuts without matching FA drops (offseason cuts, pre-2020 era),
+ * creates new cut-only transactions.
+ * 
+ * Usage:
+ *   docker compose run --rm -it web node data/seed/cuts.js
+ *   docker compose run --rm -it web node data/seed/cuts.js --dry-run
+ *   docker compose run --rm -it web node data/seed/cuts.js --auto-historical-before=2016
+ *   docker compose run --rm -it web node data/seed/cuts.js --year=2024
+ */
+
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
-var request = require('superagent');
 var readline = require('readline');
 
 var Player = require('../../models/Player');
@@ -9,143 +24,115 @@ var Transaction = require('../../models/Transaction');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
 
-var sheetLink = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Cuts';
-
 mongoose.connect(process.env.MONGODB_URI);
 
-// Global readline interface and player lookup
-var rl = null;
-var playersByNormalizedName = {};
-
-// Nickname expansions for matching
-var nicknameMap = {
-	'matt': 'matthew',
-	'mike': 'michael',
-	'rob': 'robert',
-	'bob': 'robert',
-	'bobby': 'robert',
-	'will': 'william',
-	'bill': 'william',
-	'billy': 'william',
-	'jim': 'james',
-	'jimmy': 'james',
-	'joe': 'joseph',
-	'joey': 'joseph',
-	'dan': 'daniel',
-	'danny': 'daniel',
-	'dave': 'david',
-	'chris': 'christopher',
-	'alex': 'alexander',
-	'nick': 'nicholas',
-	'tony': 'anthony',
-	'tom': 'thomas',
-	'tommy': 'thomas',
-	'steve': 'steven',
-	'stevie': 'steven',
-	'ben': 'benjamin',
-	'benny': 'benjamin',
-	'ted': 'theodore',
-	'teddy': 'theodore',
-	'sam': 'samuel',
-	'sammy': 'samuel',
-	'jake': 'jacob',
-	'zach': 'zachary',
-	'zack': 'zachary',
-	'josh': 'joshua',
-	'drew': 'andrew',
-	'andy': 'andrew',
-	'rich': 'richard',
-	'rick': 'richard',
-	'dick': 'richard',
-	'ed': 'edward',
-	'eddie': 'edward',
-	'pat': 'patrick',
-	'ken': 'kenneth',
-	'kenny': 'kenneth',
-	'greg': 'gregory',
-	'jeff': 'jeffrey',
-	'jon': 'jonathan',
-	'johnny': 'john',
-	'charlie': 'charles',
-	'chuck': 'charles',
-	'larry': 'lawrence',
-	'fred': 'frederick',
-	'freddy': 'frederick',
-	'frank': 'francis',
-	'frankie': 'francis',
-	'ron': 'ronald',
-	'ronnie': 'ronald',
-	'ray': 'raymond',
-	'wes': 'wesley',
-	'gabe': 'gabriel',
-	'manny': 'manuel',
-	'cj': 'c.j.',
-	'dj': 'd.j.',
-	'tj': 't.j.',
-	'aj': 'a.j.',
-	'jj': 'j.j.',
-	'pj': 'p.j.',
-	'rj': 'r.j.',
-	'bj': 'b.j.',
-	'kj': 'k.j.'
+// Auction dates (cut day is approximately one week before)
+var AUCTION_DATES = {
+	2008: new Date('2008-08-18'),
+	2009: new Date('2009-08-16'),
+	2010: new Date('2010-08-22'),
+	2011: new Date('2011-08-20'),
+	2012: new Date('2012-08-25'),
+	2013: new Date('2013-08-24'),
+	2014: new Date('2014-08-23'),
+	2015: new Date('2015-08-29'),
+	2016: new Date('2016-08-20'),
+	2017: new Date('2017-08-19'),
+	2018: new Date('2018-08-25'),
+	2019: new Date('2019-08-24'),
+	2020: new Date('2020-08-29'),
+	2021: new Date('2021-08-28'),
+	2022: new Date('2022-08-27'),
+	2023: new Date('2023-08-26'),
+	2024: new Date('2024-08-24'),
+	2025: new Date('2025-08-23')
 };
 
-function getSleeperRosterId(ownerName) {
-	return PSO.franchiseIds[ownerName];
+/**
+ * Get the conventional cut day timestamp for a given year.
+ * Cut day is one week before the auction, at 12:00:33 AM ET (midnight with :33 for imprecise).
+ */
+function getCutDayTimestamp(year) {
+	var auctionDate = AUCTION_DATES[year];
+	if (auctionDate) {
+		// One week before auction
+		var cutDay = new Date(auctionDate);
+		cutDay.setDate(cutDay.getDate() - 7);
+		// Set to 12:00:33 AM ET (05:00:33 UTC)
+		return new Date(Date.UTC(cutDay.getFullYear(), cutDay.getMonth(), cutDay.getDate(), 5, 0, 33));
+	}
+	// Fallback: mid-August
+	return new Date(Date.UTC(year, 7, 15, 5, 0, 33));
 }
 
-// Parse --auto-historical-before=YEAR flag
-function getAutoHistoricalThreshold() {
-	var flag = process.argv.find(function(arg) {
-		return arg.startsWith('--auto-historical-before=');
-	});
-	if (flag) {
-		return parseInt(flag.split('=')[1]);
-	}
-	return null;
-}
+// Global state
+var rl = null;
+var playersByNormalizedName = {};
+var franchiseByRosterId = {};
+var autoHistoricalThreshold = null;
 
-// Parse names with disambiguation hints like "Brandon Marshall (DEN)"
-function parseNameWithHint(rawName) {
-	var match = rawName.match(/^(.+?)\s*\(([^)]+)\)$/);
-	if (match) {
-		return {
-			name: match[1].trim(),
-			hint: match[2].trim(),
-			raw: rawName
-		};
-	}
-	return {
-		name: rawName,
-		hint: null,
-		raw: rawName
+/**
+ * Parse command line arguments.
+ */
+function parseArgs() {
+	var args = {
+		dryRun: process.argv.includes('--dry-run'),
+		clear: process.argv.includes('--clear'),
+		yearStart: null,
+		yearEnd: null,
+		autoHistoricalBefore: null
 	};
+	
+	// Single year filter
+	var yearArg = process.argv.find(function(a) { return a.startsWith('--year='); });
+	if (yearArg) {
+		var year = parseInt(yearArg.split('=')[1]);
+		args.yearStart = year;
+		args.yearEnd = year;
+	}
+	
+	// Auto-historical threshold
+	var autoHistArg = process.argv.find(function(a) { return a.startsWith('--auto-historical-before='); });
+	if (autoHistArg) {
+		args.autoHistoricalBefore = parseInt(autoHistArg.split('=')[1]);
+	}
+	
+	return args;
 }
 
-async function fetchCutsData() {
-	var response = await request
-		.get(sheetLink)
-		.query({ alt: 'json', key: process.env.GOOGLE_API_KEY });
-
-	var dataJson = JSON.parse(response.text);
-	return dataJson.values;
+/**
+ * Load cuts from the JSON file (extracted from Sheets).
+ */
+function loadCuts(yearStart, yearEnd) {
+	var allCuts = require('../cuts/cuts.json');
+	
+	if (yearStart === null && yearEnd === null) {
+		return allCuts;
+	}
+	
+	return allCuts.filter(function(c) {
+		if (yearStart !== null && c.cutYear < yearStart) return false;
+		if (yearEnd !== null && c.cutYear > yearEnd) return false;
+		return true;
+	});
 }
 
-// Compute buy-outs for a cut
-// Contract years get 60%/30%/15% for year 1/2/3 of contract
-// Only years >= cutYear incur buy-outs (prior years were paid as salary)
+/**
+ * Compute buy-outs for a cut.
+ * Contract years get 60%/30%/15% for year 1/2/3 of contract.
+ * Only years >= cutYear incur buy-outs.
+ */
 function computeBuyOuts(salary, startYear, endYear, cutYear) {
 	var buyOuts = [];
 	var percentages = [0.60, 0.30, 0.15];
 	
-	// For FA contracts (single year), startYear === endYear
 	if (startYear === null) {
 		startYear = endYear;
 	}
 	
 	for (var year = startYear; year <= endYear; year++) {
-		var contractYearIndex = year - startYear; // 0, 1, or 2
-		if (contractYearIndex >= percentages.length) break; // Max 3 years
+		var contractYearIndex = year - startYear;
+		if (contractYearIndex >= percentages.length) break;
 		
 		if (year >= cutYear) {
 			var amount = Math.ceil(salary * percentages[contractYearIndex]);
@@ -158,225 +145,17 @@ function computeBuyOuts(salary, startYear, endYear, cutYear) {
 	return buyOuts;
 }
 
-// Find player match for analysis (uses DB player lookup)
-function findPlayerMatch(name, position, hint, rawName) {
-	var lookupName = hint ? rawName : name;
-	var normalizedName = resolver.normalizePlayerName(lookupName);
-	
-	// Check resolver cache first
-	var cached = resolver.lookup(lookupName, { position: position });
-	if (cached && !cached.ambiguous) {
-		return {
-			type: cached.sleeperId ? 'cached' : 'historical',
-			sleeperId: cached.sleeperId,
-			name: cached.name
-		};
-	}
-	
-	// Get candidates from DB lookup
-	var candidates = playersByNormalizedName[normalizedName] || [];
-	
-	// Also try without hint if no candidates
-	if (candidates.length === 0 && hint) {
-		var plainNormalized = resolver.normalizePlayerName(name);
-		candidates = playersByNormalizedName[plainNormalized] || [];
-	}
-	
-	// Filter by position
-	var positionMatches = candidates.filter(function(p) {
-		return p.positions && p.positions.includes(position);
-	});
-	
-	// Check if ambiguous
-	var isAmbiguous = resolver.isAmbiguous(normalizedName) || !!hint;
-	
-	if (positionMatches.length === 1 && !isAmbiguous) {
-		return { type: 'exact', playerId: positionMatches[0]._id };
-	}
-	
-	if (positionMatches.length > 1 || isAmbiguous) {
-		return { type: 'ambiguous', matches: positionMatches, hint: hint };
-	}
-	
-	if (candidates.length === 1 && !isAmbiguous) {
-		return { type: 'exact-no-pos', playerId: candidates[0]._id };
-	}
-	
-	if (candidates.length > 1) {
-		return { type: 'ambiguous', matches: candidates, hint: hint };
-	}
-	
-	// No match found
-	return { type: 'not-found', hint: hint };
-}
-
-async function analyzeCuts(rows) {
-	console.log('\nAnalyzing cuts data...\n');
-	
-	// Skip first 2 header rows
-	var cuts = [];
-	
-	for (var i = 2; i < rows.length; i++) {
-		var row = rows[i];
-		
-		// Skip empty rows
-		if (!row[1]) continue;
-		
-		// Parse columns:
-		// 0: Owner, 1: Name, 2: Position, 3: Start, 4: End, 5: Last (salary), 6: Cut year
-		var owner = row[0];
-		var rawName = row[1];
-		var parsed = parseNameWithHint(rawName);
-		var position = row[2];
-		var startYear = row[3] === 'FA' ? null : parseInt(row[3]);
-		var endYear = parseInt(row[4]);
-		var salary = parseInt((row[5] || '').replace(/[$,]/g, '')) || 0;
-		var cutYear = parseInt(row[6]);
-		
-		// Compute buy-outs
-		var buyOuts = computeBuyOuts(salary, startYear, endYear, cutYear);
-		
-		cuts.push({
-			owner: owner,
-			rawName: rawName,
-			name: parsed.name,
-			hint: parsed.hint,
-			position: position,
-			startYear: startYear,
-			endYear: endYear,
-			salary: salary,
-			cutYear: cutYear,
-			buyOuts: buyOuts
-		});
-	}
-	
-	console.log('Total cuts found:', cuts.length);
-	console.log('Year range:', cuts[0]?.cutYear, '-', cuts[cuts.length - 1]?.cutYear);
-	
-	// Analyze each cut
-	var stats = {
-		cached: 0,
-		historical: 0,
-		exact: 0,
-		hintMatch: 0,
-		nickname: 0,
-		ambiguous: 0,
-		notFound: 0
-	};
-	
-	var wouldCreateHistorical = [];
-	var ambiguousNames = [];
-	var seenHistorical = {};  // Track unique historical players
-	var seenAmbiguous = {};   // Track unique ambiguous names
-	
-	for (var i = 0; i < cuts.length; i++) {
-		var cut = cuts[i];
-		var result = findPlayerMatch(cut.name, cut.position, cut.hint, cut.rawName);
-		
-		switch (result.type) {
-			case 'cached':
-				stats.cached++;
-				break;
-			case 'historical':
-				stats.historical++;
-				break;
-			case 'exact':
-			case 'exact-no-pos':
-				stats.exact++;
-				break;
-			case 'hint-match':
-				stats.hintMatch++;
-				break;
-			case 'nickname':
-				stats.nickname++;
-				break;
-			case 'ambiguous':
-				stats.ambiguous++;
-				var ambigKey = cut.name + '|' + cut.position;
-				if (!seenAmbiguous[ambigKey]) {
-					seenAmbiguous[ambigKey] = true;
-					ambiguousNames.push({
-						name: cut.name,
-						hint: cut.hint,
-						position: cut.position,
-						year: cut.cutYear,
-						matchCount: result.matches ? result.matches.length : 0
-					});
-				}
-				break;
-			case 'not-found':
-				stats.notFound++;
-				var histKey = cut.name + '|' + cut.position;
-				if (!seenHistorical[histKey]) {
-					seenHistorical[histKey] = true;
-					wouldCreateHistorical.push({
-						name: cut.name,
-						hint: cut.hint,
-						position: cut.position,
-						year: cut.cutYear,
-						owner: cut.owner
-					});
-				}
-				break;
-		}
-	}
-	
-	console.log('\n--- Resolution Summary ---');
-	console.log('Already cached (resolved):', stats.cached);
-	console.log('Already marked historical:', stats.historical);
-	console.log('Exact Sleeper match:', stats.exact);
-	console.log('Hint-based match:', stats.hintMatch);
-	console.log('Nickname expansion match:', stats.nickname);
-	console.log('Ambiguous (need prompt):', stats.ambiguous, '(' + ambiguousNames.length + ' unique)');
-	console.log('Not found (would create historical):', stats.notFound, '(' + wouldCreateHistorical.length + ' unique)');
-	
-	if (process.argv.includes('--dry-run')) {
-		if (wouldCreateHistorical.length > 0) {
-			// Group by year
-			var byYear = {};
-			wouldCreateHistorical.forEach(function(p) {
-				if (!byYear[p.year]) byYear[p.year] = [];
-				byYear[p.year].push(p);
-			});
-			
-			var years = Object.keys(byYear).map(Number).sort(function(a, b) { return b - a; }); // newest first
-			
-			console.log('\n--- Not Found by Year (' + wouldCreateHistorical.length + ' unique) ---');
-			years.forEach(function(year) {
-				console.log('  ' + year + ': ' + byYear[year].length);
-			});
-			
-			console.log('\n--- Would Create Historical Players (newest first) ---');
-			years.forEach(function(year) {
-				console.log('\n  ' + year + ':');
-				byYear[year].forEach(function(p) {
-					var hintStr = p.hint ? ' [hint: ' + p.hint + ']' : '';
-					console.log('    ' + p.name + ' (' + p.position + ')' + hintStr);
-				});
-			});
-		}
-		
-		if (ambiguousNames.length > 0) {
-			console.log('\n--- Ambiguous Names (need prompt) (' + ambiguousNames.length + ' unique) ---');
-			ambiguousNames.forEach(function(p) {
-				var hintStr = p.hint ? ' [hint: ' + p.hint + ']' : '';
-				console.log('  ' + p.name + ' (' + p.position + ') - ' + p.matchCount + ' matches' + hintStr);
-			});
-		}
-	}
-	
-	return { cuts, stats, wouldCreateHistorical, ambiguousNames };
-}
-
-// Resolve a player using unified prompt
-async function resolvePlayer(cut, autoHistoricalThreshold) {
+/**
+ * Resolve a player using the unified prompt system.
+ * Supports auto-historical creation for old years.
+ */
+async function resolvePlayer(cut) {
 	var context = {
 		year: cut.cutYear,
 		type: 'cut',
 		franchise: cut.owner
 	};
 	
-	// Use the name with hint if present (for unique resolution)
 	var lookupName = cut.hint ? cut.rawName : cut.name;
 	var normalizedName = resolver.normalizePlayerName(lookupName);
 	var candidates = playersByNormalizedName[normalizedName] || [];
@@ -387,73 +166,122 @@ async function resolvePlayer(cut, autoHistoricalThreshold) {
 		candidates = playersByNormalizedName[plainNormalized] || [];
 	}
 	
-	// For auto-historical threshold, skip prompting for old cuts with no candidates
-	if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold) {
-		// Check cache first
-		var cached = resolver.lookup(lookupName, context);
-		if (cached && cached.sleeperId) {
-			var player = await Player.findOne({ sleeperId: cached.sleeperId });
-			if (player) return { playerId: player._id };
-		}
-		if (cached && cached.name) {
-			var player = await Player.findOne({ name: cached.name, sleeperId: null });
-			if (player) return { playerId: player._id };
-		}
-		
-		// Single non-ambiguous match
-		if (candidates.length === 1 && !resolver.isAmbiguous(normalizedName)) {
-			return { playerId: candidates[0]._id };
-		}
-		
-		// No match - auto-create historical
-		if (candidates.length === 0) {
-			var existing = await Player.findOne({ name: cut.name, sleeperId: null });
-			if (existing) {
-				resolver.addResolution(lookupName, null, cut.name, context);
-				resolver.save();
-				return { playerId: existing._id };
-			}
-			
-			console.log('  Auto-creating historical: ' + cut.name + ' (' + cut.position + ')');
-			var player = await Player.create({
-				name: cut.name,
-				positions: cut.position ? [cut.position] : [],
-				sleeperId: null
-			});
+	// Check cache first
+	var cached = resolver.lookup(lookupName, context);
+	if (cached && cached.sleeperId) {
+		var player = await Player.findOne({ sleeperId: cached.sleeperId });
+		if (player) return { playerId: player._id };
+	}
+	if (cached && cached.name) {
+		var player = await Player.findOne({ name: cached.name, sleeperId: null });
+		if (player) return { playerId: player._id };
+	}
+	
+	// Single non-ambiguous match
+	if (candidates.length === 1 && !resolver.isAmbiguous(normalizedName)) {
+		return { playerId: candidates[0]._id };
+	}
+	
+	// Auto-historical for old years with no candidates
+	if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold && candidates.length === 0) {
+		// Check if historical player already exists
+		var existing = await Player.findOne({ name: cut.name, sleeperId: null });
+		if (existing) {
 			resolver.addResolution(lookupName, null, cut.name, context);
-			resolver.save();
-			return { playerId: player._id };
+			return { playerId: existing._id };
+		}
+		
+		// Create historical player
+		console.log('  Auto-creating historical: ' + cut.name + ' (' + cut.position + ')');
+		var player = await Player.create({
+			name: cut.name,
+			positions: cut.position ? [cut.position] : [],
+			sleeperId: null
+		});
+		
+		// Add to cache for future lookups
+		if (!playersByNormalizedName[normalizedName]) {
+			playersByNormalizedName[normalizedName] = [];
+		}
+		playersByNormalizedName[normalizedName].push(player);
+		
+		resolver.addResolution(lookupName, null, cut.name, context);
+		return { playerId: player._id };
+	}
+	
+	// Need interactive resolution
+	if (candidates.length > 1 || candidates.length === 0 || resolver.isAmbiguous(normalizedName)) {
+		var result = await resolver.promptForPlayer({
+			name: lookupName,
+			context: context,
+			candidates: candidates,
+			position: cut.position,
+			Player: Player,
+			rl: rl,
+			playerCache: playersByNormalizedName,
+			autoHistorical: autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold
+		});
+		
+		if (result.action === 'quit') {
+			throw new Error('User quit');
+		}
+		
+		if (result.player) {
+			return { playerId: result.player._id };
 		}
 	}
 	
-	// Use unified prompt
-	var result = await resolver.promptForPlayer({
-		name: lookupName,
-		context: context,
-		candidates: candidates,
-		position: cut.position,
-		Player: Player,
-		rl: rl,
-		playerCache: playersByNormalizedName
-	});
-	
-	if (result.action === 'quit') {
-		console.log('\nQuitting...');
-		rl.close();
-		resolver.save();
-		await mongoose.disconnect();
-		process.exit(130);
-	}
-	
-	if (result.action === 'skipped' || !result.player) {
-		return { playerId: null };
-	}
-	
-	return { playerId: result.player._id };
+	return { playerId: null };
 }
 
+/**
+ * Find a matching FA drop in the database.
+ * Match by: playerId + franchiseId + year (drop timestamp year = cutYear)
+ */
+async function findMatchingDrop(playerId, franchiseId, cutYear) {
+	// Find FA transactions with drops for this player+franchise in this year
+	var yearStart = new Date(Date.UTC(cutYear, 0, 1));
+	var yearEnd = new Date(Date.UTC(cutYear + 1, 0, 1));
+	
+	var txs = await Transaction.find({
+		type: 'fa',
+		franchiseId: franchiseId,
+		'drops.playerId': playerId,
+		timestamp: { $gte: yearStart, $lt: yearEnd }
+	});
+	
+	if (txs.length === 0) {
+		return null;
+	}
+	
+	if (txs.length === 1) {
+		return txs[0];
+	}
+	
+	// Multiple matches - return the one with the latest timestamp
+	txs.sort(function(a, b) { return b.timestamp - a.timestamp; });
+	return txs[0];
+}
+
+/**
+ * Main run function.
+ */
 async function run() {
-	console.log('Fetching cuts data from spreadsheet...');
+	var args = parseArgs();
+	autoHistoricalThreshold = args.autoHistoricalBefore;
+	
+	console.log('Seeding cuts from Sheets data');
+	if (args.yearStart || args.yearEnd) {
+		console.log('Years:', args.yearStart || 'all', '-', args.yearEnd || 'all');
+	} else {
+		console.log('Years: all');
+	}
+	if (args.autoHistoricalBefore) {
+		console.log('Auto-creating historical players for cuts before', args.autoHistoricalBefore);
+	}
+	if (args.dryRun) console.log('[DRY RUN]');
+	console.log('');
+	
 	console.log('Loaded', resolver.count(), 'cached player resolutions');
 	
 	// Create readline interface
@@ -473,57 +301,42 @@ async function run() {
 	});
 	console.log('Loaded', allPlayers.length, 'players from database');
 	
-	var rows = await fetchCutsData();
-	
-	// Show first few rows to understand format
-	if (process.argv.includes('--show-format')) {
-		console.log('\n--- First 20 rows ---');
-		rows.slice(0, 20).forEach(function(row, i) {
-			console.log(i + ':', JSON.stringify(row));
-		});
-		rl.close();
-		process.exit(0);
-	}
-	
-	var analysis = await analyzeCuts(rows);
-	
-	// If just dry-run, exit here
-	if (process.argv.includes('--dry-run')) {
-		rl.close();
-		process.exit(0);
-	}
-	
-	// Actual seeding
-	var autoHistoricalThreshold = getAutoHistoricalThreshold();
-	if (autoHistoricalThreshold) {
-		console.log('\nAuto-creating historical players for cuts before ' + autoHistoricalThreshold);
-	}
-	
-	var clearExisting = process.argv.includes('--clear');
-	if (clearExisting) {
-		console.log('Clearing existing FA cut transactions...');
-		await Transaction.deleteMany({ type: 'fa', adds: { $size: 0 } });
-	}
-	
 	// Load franchises
 	var franchises = await Franchise.find({});
-	var franchiseByRosterId = {};
 	franchises.forEach(function(f) {
-		franchiseByRosterId[f.rosterId] = f._id;
+		if (f.rosterId) {
+			franchiseByRosterId[f.rosterId] = f._id;
+		}
 	});
+	console.log('Loaded', franchises.length, 'franchises');
 	
-	console.log('\nProcessing ' + analysis.cuts.length + ' cuts...\n');
+	// Load cuts
+	var cuts = loadCuts(args.yearStart, args.yearEnd);
+	console.log('Loaded', cuts.length, 'cuts from Sheets');
+	console.log('');
 	
+	// Clear existing if requested
+	if (args.clear && !args.dryRun) {
+		console.log('Clearing existing snapshot-sourced FA transactions...');
+		var deleted = await Transaction.deleteMany({ type: 'fa', source: 'snapshot' });
+		console.log('  Deleted', deleted.deletedCount, 'transactions');
+		console.log('');
+	}
+	
+	// Stats
+	var enriched = 0;
 	var created = 0;
 	var skipped = 0;
 	var errors = [];
-	var fixupRefCounter = 1;  // Sequential ID for fixup targeting
 	
-	for (var i = 0; i < analysis.cuts.length; i++) {
-		var cut = analysis.cuts[i];
+	for (var i = 0; i < cuts.length; i++) {
+		var cut = cuts[i];
 		
-		// Find franchise
-		var rosterId = getSleeperRosterId(cut.owner);
+		// Compute buy-outs
+		var buyOuts = computeBuyOuts(cut.salary, cut.startYear, cut.endYear, cut.cutYear);
+		
+		// Resolve franchise
+		var rosterId = PSO.franchiseIds[cut.owner];
 		if (!rosterId) {
 			errors.push({ player: cut.name, reason: 'Unknown owner: ' + cut.owner });
 			skipped++;
@@ -538,52 +351,71 @@ async function run() {
 		}
 		
 		// Resolve player
-		var resolution = await resolvePlayer(cut, autoHistoricalThreshold);
-		
-		var playerId = resolution.playerId;
-		if (!playerId && resolution.sleeperId) {
-			var player = await Player.findOne({ sleeperId: resolution.sleeperId });
-			playerId = player?._id;
+		var resolution;
+		try {
+			resolution = await resolvePlayer(cut);
+		} catch (err) {
+			if (err.message === 'User quit') {
+				console.log('\nQuitting...');
+				break;
+			}
+			throw err;
 		}
 		
-		if (!playerId) {
+		if (!resolution.playerId) {
 			errors.push({ player: cut.name, reason: 'Could not resolve player' });
 			skipped++;
 			continue;
 		}
 		
-		// Create FA transaction (drop only)
-		// Timestamp convention: 12:00:33 AM ET (midnight) for cuts with imprecise timing
-		// Uses Jan 15 in the cut year (dead period) as placeholder date
-		// ET is UTC-5 (EST), so midnight ET = 05:00 UTC
-		try {
-			await Transaction.create({
-				type: 'fa',
-				timestamp: new Date(Date.UTC(cut.cutYear, 0, 15, 5, 0, 33)),
-				source: 'snapshot',
-				franchiseId: franchiseId,
-				adds: [],
-				drops: [{
-					playerId: playerId,
-					salary: cut.salary,
-					startYear: cut.startYear,
-					endYear: cut.endYear,
-					buyOuts: cut.buyOuts
-				}],
-				fixupRef: fixupRefCounter++
+		var playerId = resolution.playerId;
+		
+		// Try to find matching FA drop (only for years with platform data)
+		var matchingTx = null;
+		if (cut.cutYear >= 2020) {
+			matchingTx = await findMatchingDrop(playerId, franchiseId, cut.cutYear);
+		}
+		
+		if (matchingTx) {
+			// Enrich the existing drop with contract info
+			var dropIndex = matchingTx.drops.findIndex(function(d) {
+				return d.playerId.toString() === playerId.toString();
 			});
-			created++;
-		} catch (err) {
-			if (err.code === 11000) {
-				skipped++;
-			} else {
-				throw err;
+			
+			if (dropIndex >= 0) {
+				if (!args.dryRun) {
+					matchingTx.drops[dropIndex].salary = cut.salary;
+					matchingTx.drops[dropIndex].startYear = cut.startYear;
+					matchingTx.drops[dropIndex].endYear = cut.endYear;
+					matchingTx.drops[dropIndex].buyOuts = buyOuts;
+					await matchingTx.save();
+				}
+				enriched++;
 			}
+		} else {
+			// Create new cut-only transaction with cut day timestamp
+			if (!args.dryRun) {
+				await Transaction.create({
+					type: 'fa',
+					timestamp: getCutDayTimestamp(cut.cutYear),
+					source: 'snapshot',
+					franchiseId: franchiseId,
+					adds: [],
+					drops: [{
+						playerId: playerId,
+						salary: cut.salary,
+						startYear: cut.startYear,
+						endYear: cut.endYear,
+						buyOuts: buyOuts
+					}]
+				});
+			}
+			created++;
 		}
 		
 		// Progress
 		if ((i + 1) % 100 === 0) {
-			console.log('  Processed ' + (i + 1) + '/' + analysis.cuts.length + '...');
+			console.log('  Processed', i + 1, '/', cuts.length, '...');
 		}
 	}
 	
@@ -591,11 +423,12 @@ async function run() {
 	resolver.save();
 	
 	console.log('\nDone!');
-	console.log('  Created:', created);
+	console.log('  Enriched existing drops:', enriched);
+	console.log('  Created new cut transactions:', created);
 	console.log('  Skipped:', skipped);
 	
 	if (errors.length > 0) {
-		console.log('\nErrors:');
+		console.log('\nErrors (first 20):');
 		errors.slice(0, 20).forEach(function(e) {
 			console.log('  -', e.player + ':', e.reason);
 		});
@@ -609,7 +442,7 @@ async function run() {
 }
 
 run().catch(function(err) {
-	rl.close();
 	console.error('Error:', err);
+	if (rl) rl.close();
 	process.exit(1);
 });
