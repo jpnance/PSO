@@ -16,7 +16,8 @@ var salaries = {
 	'2012': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 1, 'QB': 25, 'RB': 25, 'TE': 7, 'WR': 16 },
 	'2011': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 2, 'QB': 25, 'RB': 25, 'TE': 3, 'WR': 26 },
 	'2010': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 2, 'QB': 24, 'RB': 28, 'TE': 4, 'WR': 15 },
-	'2009': { 'DB': 13, 'DL': 14, 'K': 3, 'LB': 14, 'QB': 125, 'RB': 271, 'TE': 53, 'WR': 138 }
+	// 2009 values are averages of top 10 salaries at each position (from rookies.php)
+	'2009': { 'DB': 12.4, 'DL': 13.4, 'K': 2.2, 'LB': 14, 'QB': 124.5, 'RB': 270.2, 'TE': 53, 'WR': 137.3 }
 };
 
 var seasons = Object.keys(salaries).sort((a, b) => b - a);
