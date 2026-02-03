@@ -4,6 +4,13 @@ include mixins
 block title
 	+title(regimeName + ' ' + season, 'Schedule', 'Franchises')
 
+block og_meta
+	- var record = seasonSummary ? seasonSummary.wins + '-' + seasonSummary.losses : ''
+	- var description = record ? regimeName + ' went ' + record + ' in ' + season : season + ' schedule for ' + regimeName
+	meta(property='og:title' content=regimeName + ' ' + season)
+	meta(property='og:description' content=description)
+	meta(property='og:image' content='https://thedynastyleague.com/images/the-gang-slop-og.jpg')
+
 block styles
 	link(rel='stylesheet' href='/css/components.css')
 	link(rel='stylesheet' href='/css/standings.css')

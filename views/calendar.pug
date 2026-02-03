@@ -4,6 +4,12 @@ include mixins
 block title
 	+title('League Calendar')
 
+block og_meta
+	- var description = nextEvent ? 'Next up: ' + nextEvent.name + ' on ' + nextEvent.shortDate : 'Upcoming league events and deadlines'
+	meta(property='og:title' content='League Calendar')
+	meta(property='og:description' content=description)
+	meta(property='og:image' content='https://thedynastyleague.com/images/the-gang-slop-og.jpg')
+
 block styles
 	link(rel='stylesheet' href='/css/calendar.css')
 

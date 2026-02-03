@@ -4,6 +4,13 @@ include mixins
 block title
 	+title(franchise.displayName, 'Franchises')
 
+block og_meta
+	- var regimeName = franchise.regimes && franchise.regimes[0] ? franchise.regimes[0].displayName : franchise.displayName
+	- var description = 'Roster, budget, and history for ' + regimeName
+	meta(property='og:title' content=franchise.displayName)
+	meta(property='og:description' content=description)
+	meta(property='og:image' content='https://thedynastyleague.com/images/the-gang-slop-og.jpg')
+
 block styles
 	link(rel='stylesheet' href='/css/league.css')
 	link(rel='stylesheet' href='/css/positions.css')

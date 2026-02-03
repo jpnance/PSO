@@ -4,6 +4,24 @@ include mixins
 block title
 	+title(player.name, 'Players')
 
+block og_meta
+	- var posDisplay = player.positions && player.positions.length ? player.positions.join('/') : ''
+	-
+		var contractText = '';
+		if (contract) {
+			if (contract.isRfa) {
+				contractText = 'RFA rights held by ' + contract.franchiseName;
+			} else {
+				contractText = formatMoney(contract.salary) + ' · ' + formatContractYears(contract.startYear, contract.endYear) + ' · ' + contract.franchiseName;
+			}
+		} else {
+			contractText = 'UFA';
+		}
+		var description = posDisplay ? posDisplay + ' · ' + contractText : contractText;
+	meta(property='og:title' content=player.name)
+	meta(property='og:description' content=description)
+	meta(property='og:image' content='https://thedynastyleague.com/images/the-gang-slop-og.jpg')
+
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')

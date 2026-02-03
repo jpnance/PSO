@@ -4,6 +4,11 @@ include mixins
 block title
 	+title('Trade Machine')
 
+block og_meta
+	meta(property='og:title' content='Trade Machine')
+	meta(property='og:description' content='Build and propose trades between franchises')
+	meta(property='og:image' content='https://thedynastyleague.com/images/mainframe.jpg')
+
 block styles
 	link(rel='stylesheet' href='/css/trade.css')
 	link(rel='stylesheet' href='/css/positions.css')

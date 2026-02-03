@@ -4,6 +4,12 @@ include mixins
 block title
 	+title(season + ' Draft Board')
 
+block og_meta
+	meta(property='og:title' content=season + ' Rookie Draft')
+	meta(property='og:description' content='Rookie draft results for the ' + season + ' season')
+	meta(property='og:image' content='https://thedynastyleague.com/images/draft-board.jpg')
+	meta(property='og:url' content='https://thedynastyleague.com/draft/' + season)
+
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/components.css')
