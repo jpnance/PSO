@@ -7,6 +7,7 @@ var Transaction = require('../models/Transaction');
 var { sortedPositions } = require('../helpers/view');
 
 // First-round rookie salaries by year and position
+// 2009 uses averages of top 10 salaries (from rookies.php)
 var rookieSalaries = {
 	'2026': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 40, 'RB': 20, 'TE': 11, 'WR': 17 },
 	'2025': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 44, 'RB': 21, 'TE': 9, 'WR': 16 },
@@ -24,7 +25,9 @@ var rookieSalaries = {
 	'2013': { 'DB': 2, 'DL': 3, 'K': 1, 'LB': 2, 'QB': 17, 'RB': 26, 'TE': 18, 'WR': 18 },
 	'2012': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 1, 'QB': 25, 'RB': 25, 'TE': 7, 'WR': 16 },
 	'2011': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 2, 'QB': 25, 'RB': 25, 'TE': 3, 'WR': 26 },
-	'2010': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 2, 'QB': 24, 'RB': 28, 'TE': 4, 'WR': 15 }
+	'2010': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 2, 'QB': 24, 'RB': 28, 'TE': 4, 'WR': 15 },
+	// 2009 values are averages of top 10 salaries at each position (from rookies.php)
+	'2009': { 'DB': 12.4, 'DL': 13.4, 'K': 2.2, 'LB': 14, 'QB': 124.5, 'RB': 270.2, 'TE': 53, 'WR': 137.3 }
 };
 
 // Calculate rookie salary for a given season, round, and positions
@@ -41,7 +44,14 @@ function getRookieSalary(season, round, positions) {
 	}
 	
 	if (maxBase === 0) return null;
-	return Math.ceil(maxBase / Math.pow(2, round - 1));
+	
+	// 2009 uses linear decay: 100% in round 1 down to 10% in round 10
+	// 2010+ uses exponential halving: value / 2^(round-1)
+	if (season <= 2009) {
+		return Math.ceil(maxBase * (11 - round) / 10);
+	} else {
+		return Math.ceil(maxBase / Math.pow(2, round - 1));
+	}
 }
 
 // Map positions to groups for color coding (uses primary position)
@@ -177,9 +187,9 @@ async function draftBoard(request, response) {
 	// Quick access pills: current season and next 2
 	var quickSeasons = [currentSeason, currentSeason + 1, currentSeason + 2];
 	
-	// Past drafts dropdown: all drafts from 2010 to currentSeason - 1
+	// Past drafts dropdown: all drafts from 2009 to currentSeason - 1
 	var pastSeasons = [];
-	for (var y = currentSeason - 1; y >= 2010; y--) {
+	for (var y = currentSeason - 1; y >= 2009; y--) {
 		pastSeasons.push(y);
 	}
 	
