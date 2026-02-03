@@ -1,37 +1,46 @@
-# What Are Those?
+# Archive
 
-Files here are relics from the past that have been unearthed and are believed to contribute context to the early days of PSO but have not yet been parsed. Eventually, they may become part of `doc/`.
+Historical data files organized by purpose.
 
-## Inventory
+## Directory Structure
 
-### Auction Chat Logs
-- `auction2008.txt` — IRC log from the founding auction draft (Aug 18-19, 2008)
-- `auction2009.txt`, `auction2009-2.txt` — Chat logs from the 2009 auction (shows RFA matching in action)
+### `snapshots/`
+**Actively parsed by the facts engine.** These files are read by `data/facts/snapshot-facts.js` and other seeders.
 
-### XML Contract Snapshots
-- `xml/dynastyData.xml` — 2008 opening day: team-based structure with rosters and contracts
-- `xml/backupDynastyData.xml` — Same as above, appears to be a backup copy
-- `xml/oldDynastyData.xml` — 2008 flat player list (no positions, no team assignments)
-- `xml/newDynastyData.xml` — 2008 flat player list with positions added
-- `xml/newDynastyData2.xml` — Same as above
-- `dynastyData.xml` (root) — 2009 snapshot: includes FA pickups and 2009 rookie class
+- `contracts-YYYY.txt` — Post-season roster snapshots (CSV: ID, Owner, Player, Position, Start, End, Salary)
+- `postseason-YYYY.txt` — Additional post-season snapshots
+- `extracted-all.csv` — Aggregated data from early-year spreadsheets and XML files
+- `nfl-draft-2009.txt` — NFL draft results used to infer the 2009 PSO rookie draft
 
-### HTML Snapshots
-- `results.html` — Complete 2008 auction results (all 297 picks with owner, price, position)
-- `cash.html` — Budget tracking page from the 2008 auction
-- Per-owner roster snapshots: `schex.html`, `koci.html`, `daniel.html`, `james.html`, `jeff.html`, `john.html`, `keyon.html`, `patrick.html`, `syed.html`, `trevor.html`
-- `rookies.html` — Unknown context (possibly rookie draft or eligible rookies list)
+### `sources/`
+**Raw source material kept for provenance.** Not directly parsed by the app, but used to generate the snapshot files.
 
-### Spreadsheets
-- `dynasty.xls`, `teams.xls`, `PSO Spreadsheet.xls` — Excel files (not yet examined)
+- `excel/` — Original spreadsheets (dynasty.xls, PSO Spreadsheet.xls, teams.xls)
+- `html/` — Web page snapshots from 2008-2009 (auction results, owner rosters, rookies.html/php)
+- `xml/` — XML contract snapshots from 2008-2009 with ESPN player IDs
+- `logs/` — Auction chat logs (auction2008.txt, auction2009.txt, auction2009-2.txt)
 
-### Other
+### `scripts/`
+**One-time extraction utilities.** Used to parse source files and generate snapshot CSVs.
+
+- `extract-all.js` — Extracts data from all source files into extracted-all.csv
+- `generate-contracts.js` — Generates contracts CSV from XML files
+- `parse-xml-contracts.js` — Analyzes XML files to identify player contracts
+- `peek-excel.js` — Utility to examine Excel file contents
+
+### `legacy/`
+**Superseded or unclear files.** Kept for reference but not actively used.
+
+- `contracts-2008-old.txt`, `contracts-2009-old.txt` — Earlier versions of contract snapshots
+- `contracts.txt` — Simple player:years format (purpose unclear)
+- `contract-history.txt` — Historical contract data (used by legacy auction-historical.js)
 - `basic.txt` — Large file, unknown contents
-- `contracts.txt` — Simple player:years format (possibly contract lengths)
+- `koci.txt` — Unknown context
+- `cuts-2008-reconstructed.txt` — Attempted reconstruction of 2008 cuts
 
-## What We Know
+## Historical Context
 
-The XML files contain **player IDs** that appear to be from ESPN or MFL circa 2008. These IDs could potentially be used to reconcile with external data sources.
+The XML files contain **player IDs** from ESPN circa 2008. These IDs appear in the snapshot CSVs.
 
 **Original Team Names (2008):**
 1. Melrose Place Schwingers
@@ -44,18 +53,3 @@ The XML files contain **player IDs** that appear to be from ESPN or MFL circa 20
 8. Gossip Girl Jenny Humphrey
 9. Team Reynolds
 10. Cliff Barnes Losers
-
-## Parser Script
-
-`parse-xml-contracts.js` extracts all contracts from all XML files and groups them by player ID. Run with:
-
-```bash
-node data/archive/parse-xml-contracts.js
-```
-
-This identifies 386 unique player IDs and 174 players with multiple distinct contracts (showing evolution from 2008 → 2009).
-
-## Known Issues
-
-- Minor salary discrepancies between team-based and flat XML files for some 2008 contracts
-- Some player name spelling variations (e.g., "Chad Ochocinco" vs "Chad Johnson", "Aaron Schobel" vs "Aaron Schoebel")

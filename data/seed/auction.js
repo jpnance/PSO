@@ -126,7 +126,7 @@ async function run() {
 	console.log('');
 	
 	// Load contract file
-	var contractsPath = path.join(__dirname, '../archive/contracts-' + year + '.txt');
+	var contractsPath = path.join(__dirname, '../archive/snapshots/contracts-' + year + '.txt');
 	if (!fs.existsSync(contractsPath)) {
 		console.log('File not found: ' + contractsPath);
 		process.exit(1);

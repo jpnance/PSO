@@ -72,7 +72,7 @@ function getRosterId(ownerName) {
 
 // Load NFL draft for 2009
 function loadNflDraft() {
-	var filepath = __dirname + '/../archive/nfl-draft-2009.txt';
+	var filepath = __dirname + '/../archive/snapshots/nfl-draft-2009.txt';
 	if (!fs.existsSync(filepath)) {
 		console.error('NFL draft file not found:', filepath);
 		return {};

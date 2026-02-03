@@ -8,7 +8,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var ARCHIVE_DIR = path.join(__dirname, '../archive');
+var ARCHIVE_DIR = path.join(__dirname, '../archive/snapshots');
 
 /**
  * Parse a contracts CSV file into raw facts.

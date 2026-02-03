@@ -15,7 +15,7 @@ var Player = require('../../models/Player');
 var snapshotFacts = require('../facts/snapshot-facts');
 var cutFacts = require('../facts/cut-facts');
 
-var ARCHIVE_DIR = path.join(__dirname, '../archive');
+var ARCHIVE_DIR = path.join(__dirname, '../archive/snapshots');
 
 /**
  * Load position data from free agent entries (no owner) in contract files.

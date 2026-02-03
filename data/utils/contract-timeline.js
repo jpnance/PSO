@@ -23,7 +23,7 @@ for (var i = 0; i < args.length; i++) {
 	}
 }
 
-var filePath = path.join(__dirname, '../archive/contract-history.txt');
+var filePath = path.join(__dirname, '../archive/legacy/contract-history.txt');
 var content = fs.readFileSync(filePath, 'utf8');
 var lines = content.split('\n');
 

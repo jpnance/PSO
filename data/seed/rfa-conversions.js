@@ -29,7 +29,7 @@ var resolver = require('../utils/player-resolver');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var ARCHIVE_DIR = path.join(__dirname, '../archive');
+var ARCHIVE_DIR = path.join(__dirname, '../archive/snapshots');
 
 // RFA conversion date convention: January 15 at 12:00:33 PM ET
 // The :33 seconds indicates imprecise timing
