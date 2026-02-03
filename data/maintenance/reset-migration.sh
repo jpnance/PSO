@@ -319,6 +319,15 @@ for year in 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 202
 done
 echo ""
 
+# Step 15: Backfill positions for historical players
+echo "=== Step 15: Backfilling positions ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/maintenance/backfill-positions.js"
+else
+    docker compose run --rm web node data/maintenance/backfill-positions.js
+fi
+echo ""
+
 echo "=== Done! ==="
 echo ""
 echo "If any interactive scripts prompted for new player resolutions,"

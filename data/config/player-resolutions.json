@@ -48,6 +48,10 @@
     "sleeperId": null,
     "name": "Aaron Brown"
   },
+  "aaron curry|2009|type:draft|john": {
+    "sleeperId": null,
+    "name": "Aaron Curry"
+  },
   "aaron curry|2010|type:cut|justin": {
     "sleeperId": null,
     "name": "Aaron Curry"
@@ -58,6 +62,10 @@
   "aaron kampman|2011|type:cut|patrick": {
     "sleeperId": null,
     "name": "Aaron Kampman"
+  },
+  "aaron maybin|2009|type:draft|schexes": {
+    "sleeperId": null,
+    "name": "Aaron Maybin"
   },
   "aaron maybin|2010|type:cut|anthony": {
     "sleeperId": null,
@@ -349,6 +357,10 @@
   "barrett ruud|2012|type:cut|mike": {
     "sleeperId": null,
     "name": "Barrett Ruud"
+  },
+  "beanie wells|2009|type:draft|jake/luke": {
+    "sleeperId": null,
+    "name": "Beanie Wells"
   },
   "beanie wells|2012|type:cut|quinn": {
     "sleeperId": null,
@@ -938,6 +950,10 @@
     "name": "David Akers"
   },
   "david buehler|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "David Buehler"
+  },
+  "david buehler|2009|type:draft|luke": {
     "sleeperId": null,
     "name": "David Buehler"
   },
@@ -2934,6 +2950,10 @@
     "sleeperId": "3976"
   },
   "mohamed massaquoi|2009|type:auction|john": {
+    "sleeperId": null,
+    "name": "Mohamed Massaquoi"
+  },
+  "mohamed massaquoi|2009|type:draft|john": {
     "sleeperId": null,
     "name": "Mohamed Massaquoi"
   },

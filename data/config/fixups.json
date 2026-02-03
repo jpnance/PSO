@@ -69,44 +69,5 @@
 			"season": 2026,
 			"notes": "The agreed-to version of this trade moved the $20 from Keyon to Mitch in 2025, not 2026. The transaction was incorrectly carried out on the spreadsheet and not noticed by anyone until nearly two years later."
 		}
-	],
-	"playerCorrections": [
-		{
-			"name": "Tony Gonzalez",
-			"positions": [
-				"TE"
-			]
-		},
-		{
-			"name": "J.T. O'Sullivan",
-			"positions": [
-				"QB"
-			]
-		},
-		{
-			"name": "Jonathan Baldwin",
-			"positions": [
-				"WR"
-			]
-		},
-		{
-			"name": "Charles Scott",
-			"positions": [
-				"RB"
-			]
-		},
-		{
-			"name": "Scotty McGee",
-			"positions": [
-				"DB"
-			]
-		},
-		{
-			"name": "Mike Williams",
-			"college": "USC",
-			"positions": [
-				"WR"
-			]
-		}
 	]
 }
