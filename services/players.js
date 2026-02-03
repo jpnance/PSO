@@ -8,13 +8,19 @@ var transactionService = require('./transaction');
 
 exports.playerDetail = async function(request, response) {
 	try {
-		var playerId = request.params.id;
+		var slug = request.params.slug;
+		var players = await Player.findBySlug(slug);
 		
-		// Get player and config
-		var player = await Player.findById(playerId).lean();
-		if (!player) {
+		if (players.length === 0) {
 			return response.status(404).render('player-not-found');
 		}
+		
+		if (players.length > 1) {
+			return renderDisambiguation(request, response, slug, players);
+		}
+		
+		var player = players[0];
+		var playerId = player._id.toString();
 		
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
@@ -278,3 +284,96 @@ exports.playerDetail = async function(request, response) {
 		response.status(500).send('Error loading player');
 	}
 };
+
+// Render disambiguation page when multiple players share the same slug
+async function renderDisambiguation(request, response, slug, players) {
+	// Enrich players with contract info for better disambiguation
+	var Contract = require('../models/Contract');
+	var Regime = require('../models/Regime');
+	
+	var playerIds = players.map(function(p) { return p._id; });
+	var contracts = await Contract.find({ playerId: { $in: playerIds } })
+		.populate('franchiseId')
+		.lean();
+	
+	// Get regimes for franchise names
+	var regimes = await Regime.find({}).lean();
+	
+	function getCurrentRegimeName(franchiseId) {
+		for (var regime of regimes) {
+			for (var tenure of regime.tenures) {
+				if (tenure.franchiseId.toString() === franchiseId.toString() && tenure.endSeason === null) {
+					return regime.displayName;
+				}
+			}
+		}
+		return 'Unknown';
+	}
+	
+	// Build contract lookup by playerId
+	var contractByPlayer = {};
+	contracts.forEach(function(c) {
+		contractByPlayer[c.playerId.toString()] = c;
+	});
+	
+	// Enrich each player with disambiguation details
+	var enrichedPlayers = players.map(function(p) {
+		var contract = contractByPlayer[p._id.toString()];
+		var details = [];
+		
+		// Positions
+		if (p.positions && p.positions.length > 0) {
+			details.push(p.positions.join('/'));
+		}
+		
+		// Current team
+		if (p.team) {
+			details.push(p.team);
+		}
+		
+		// College
+		if (p.college) {
+			details.push(p.college);
+		}
+		
+		// Rookie year (if we have it)
+		if (p.rookieYear) {
+			details.push('drafted ' + p.rookieYear);
+		} else if (p.estimatedRookieYear) {
+			details.push('~' + p.estimatedRookieYear);
+		}
+		
+		// Contract status
+		var status = 'Free Agent';
+		if (contract) {
+			if (contract.salary === null) {
+				status = 'RFA rights: ' + getCurrentRegimeName(contract.franchiseId._id);
+			} else {
+				status = getCurrentRegimeName(contract.franchiseId._id);
+			}
+		}
+		
+		return {
+			_id: p._id,
+			name: p.name,
+			slug: p.slug,
+			positions: p.positions,
+			details: details.join(' · '),
+			status: status,
+			active: p.active
+		};
+	});
+	
+	// Sort: active players first, then by details
+	enrichedPlayers.sort(function(a, b) {
+		if (a.active !== b.active) return b.active ? 1 : -1;
+		return a.details.localeCompare(b.details);
+	});
+	
+	response.render('player-disambiguation', {
+		activePage: 'player',
+		slug: slug,
+		displayName: players[0].name,
+		players: enrichedPlayers
+	});
+}

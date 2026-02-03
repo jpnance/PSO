@@ -79,7 +79,7 @@ module.exports = function(app) {
 	
 	app.get('/rfa', freeAgents.rfa);
 	
-	app.get('/players/:id', players.playerDetail);
+	app.get('/players/:slug', players.playerDetail);
 
 	app.get('/components', (req, res) => res.render('components'));
 	

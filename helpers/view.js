@@ -1027,6 +1027,16 @@ function formatTime(d) {
 	return time + ' ET';
 }
 
+/**
+ * Generate URL path for a player
+ * @param {Object} player - player object with slug
+ * @returns {string} e.g. "/players/josh-allen"
+ */
+function playerUrl(player) {
+	if (!player || !player.slug) return '/players';
+	return '/players/' + player.slug;
+}
+
 module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
@@ -1053,5 +1063,6 @@ module.exports = {
 	tradeOgDescription: tradeOgDescription,
 	tradeOgPlainEnglish: tradeOgPlainEnglish,
 	formatPickNumber: formatPickHelpers.formatPickNumber,
+	playerUrl: playerUrl,
 	POSITION_ORDER: POSITION_ORDER
 };

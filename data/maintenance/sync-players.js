@@ -31,6 +31,18 @@ function hasRelevantPosition(player) {
 	});
 }
 
+// Generate URL-friendly slug from name (same logic as Player model)
+function generateSlug(name) {
+	if (!name) return null;
+	return name
+		.toLowerCase()
+		.replace(/['']/g, '')
+		.replace(/[^a-z0-9\s-]/g, '')
+		.replace(/\s+/g, '-')
+		.replace(/-+/g, '-')
+		.replace(/^-|-$/g, '');
+}
+
 /**
  * Get reliable rookie year from Sleeper metadata (42% coverage).
  * Returns null if not available - do NOT fall back to estimates.
@@ -101,6 +113,7 @@ async function sync() {
 					$set: {
 						sleeperId: p.player_id,
 						name: p.full_name,
+						slug: generateSlug(p.full_name),
 						positions: p.fantasy_positions || [],
 						college: p.college || null,
 						rookieYear: getRookieYear(p),
