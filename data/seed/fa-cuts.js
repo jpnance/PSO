@@ -1,18 +1,18 @@
 /**
- * Seed FA Pickups from Snapshot Differences
+ * Seed FA Pickups from Cuts Data
  * 
- * For 2014-2019, compares contracts-YYYY.txt (post-auction state) to
- * postseason-YYYY.txt (end-of-season state) to find FA acquisitions.
+ * For players cut with FA contracts (startYear = null), if they weren't on
+ * that owner's preseason roster and weren't traded in, they must have been
+ * an FA pickup that season.
  * 
- * A player is inferred as an FA pickup if:
- *   1. They appear in postseason with an owner and startYear=null (FA contract)
- *   2. They weren't on that owner's roster in the pre-season snapshot
- *   3. They weren't acquired via trade during the season
+ * This complements fa-snapshot.js by catching FA pickups that were cut before
+ * the postseason snapshot was taken.
  * 
  * Usage:
- *   node data/seed/fa-snapshot.js [--clear] [--dry-run] [--year=YYYY]
+ *   node data/seed/fa-cuts.js [--clear] [--dry-run] [--year=YYYY]
  */
 
+var readline = require('readline');
 var mongoose = require('mongoose');
 var Player = require('../../models/Player');
 var Franchise = require('../../models/Franchise');
@@ -20,16 +20,59 @@ var Transaction = require('../../models/Transaction');
 var Regime = require('../../models/Regime');
 var snapshotFacts = require('../facts/snapshot-facts');
 var tradeFacts = require('../facts/trade-facts');
+var cutFacts = require('../facts/cut-facts');
 var resolver = require('../utils/player-resolver');
 
-var readline = require('readline');
-
-var FIRST_YEAR = 2014;
+var FIRST_YEAR = 2009;
 var LAST_YEAR = 2019;
 
 // Global state for player resolution
 var playersByNormalizedName = {};
 var rl = null;
+
+/**
+ * Get Labor Day for a given year (first Monday of September)
+ */
+function getLaborDay(year) {
+	var sept1 = new Date(year, 8, 1);
+	var dayOfWeek = sept1.getDay();
+	var daysToMonday = dayOfWeek === 0 ? 1 : (dayOfWeek === 1 ? 0 : 8 - dayOfWeek);
+	return new Date(year, 8, 1 + daysToMonday);
+}
+
+/**
+ * Get first Thursday after Labor Day
+ */
+function getFirstThursdayAfterLaborDay(year) {
+	var laborDay = getLaborDay(year);
+	var daysToThursday = (4 - laborDay.getDay() + 7) % 7 || 7;
+	return new Date(year, 8, laborDay.getDate() + daysToThursday);
+}
+
+/**
+ * Get conventional FA timestamp: first Thursday after Labor Day, 12:00:33 ET
+ */
+function getConventionalFaTimestamp(year) {
+	var firstThursday = getFirstThursdayAfterLaborDay(year);
+	// September is during DST, so ET = UTC-4
+	return new Date(Date.UTC(
+		firstThursday.getFullYear(),
+		firstThursday.getMonth(),
+		firstThursday.getDate(),
+		16, 0, 33  // 12:00:33 ET during DST = 16:00:33 UTC
+	));
+}
+
+/**
+ * Normalize owner name for comparison
+ */
+function normalizeOwner(owner) {
+	if (!owner) return null;
+	return owner.toLowerCase().replace(/\s+/g, '');
+}
+
+// Owner mapping helpers are provided by cutFacts module
+// (cuts sheet uses 2025 regime names regardless of the cut year)
 
 /**
  * Build player lookup cache
@@ -46,7 +89,7 @@ async function buildPlayerCache() {
 }
 
 /**
- * Resolve a player by name, auto-creating historical players if needed
+ * Resolve a player by name
  */
 async function resolvePlayer(playerName, context, season, position) {
 	var normalizedName = resolver.normalizePlayerName(playerName);
@@ -128,48 +171,6 @@ async function resolvePlayer(playerName, context, season, position) {
 }
 
 /**
- * Get Labor Day for a given year (first Monday of September)
- */
-function getLaborDay(year) {
-	var sept1 = new Date(year, 8, 1);
-	var dayOfWeek = sept1.getDay();
-	var daysToMonday = dayOfWeek === 0 ? 1 : (dayOfWeek === 1 ? 0 : 8 - dayOfWeek);
-	return new Date(year, 8, 1 + daysToMonday);
-}
-
-/**
- * Get first Thursday after Labor Day
- */
-function getFirstThursdayAfterLaborDay(year) {
-	var laborDay = getLaborDay(year);
-	var daysToThursday = (4 - laborDay.getDay() + 7) % 7 || 7;
-	return new Date(year, 8, laborDay.getDate() + daysToThursday);
-}
-
-/**
- * Get conventional FA timestamp: first Thursday after Labor Day, 12:00:33 ET
- * 
- * September is during DST, so ET = UTC-4
- */
-function getConventionalFaTimestamp(year) {
-	var firstThursday = getFirstThursdayAfterLaborDay(year);
-	return new Date(Date.UTC(
-		firstThursday.getFullYear(),
-		firstThursday.getMonth(),
-		firstThursday.getDate(),
-		16, 0, 33  // 12:00:33 ET during DST = 16:00:33 UTC
-	));
-}
-
-/**
- * Normalize owner name for comparison
- */
-function normalizeOwner(owner) {
-	if (!owner) return null;
-	return owner.toLowerCase().replace(/\s+/g, '');
-}
-
-/**
  * Build a set of players traded to each owner during a season
  */
 function getTradedInPlayers(trades, season) {
@@ -195,97 +196,45 @@ function getTradedInPlayers(trades, season) {
 }
 
 /**
- * Build a map of owner name -> franchise ID for a given season
- * Uses the regime that was in charge of each franchise that season
+ * Infer FA pickups from cuts for a single season
  */
-function buildOwnerMap(regimes, franchises, season) {
-	var ownerToFranchise = {};
-	
-	// For each franchise, find who owned it in this season
-	franchises.forEach(function(franchise) {
-		// Find the regime with a tenure for this franchise in this season
-		for (var i = 0; i < regimes.length; i++) {
-			var regime = regimes[i];
-			for (var j = 0; j < regime.tenures.length; j++) {
-				var tenure = regime.tenures[j];
-				if (tenure.franchiseId.equals(franchise._id) &&
-					tenure.startSeason <= season &&
-					(tenure.endSeason === null || tenure.endSeason >= season)) {
-					// Map display name to franchise
-					ownerToFranchise[regime.displayName.toLowerCase()] = franchise._id;
-					
-					// Also map individual parts of slash-separated names
-					var parts = regime.displayName.split('/');
-					parts.forEach(function(part) {
-						ownerToFranchise[part.toLowerCase().trim()] = franchise._id;
-					});
-				}
-			}
-		}
-	});
-	
-	return ownerToFranchise;
-}
-
-/**
- * Get franchise ID for an owner name in a given season
- */
-function getFranchiseId(ownerName, ownerMap) {
-	if (!ownerName) return null;
-	return ownerMap[ownerName.toLowerCase()] || null;
-}
-
-/**
- * Infer FA pickups for a single season
- */
-function inferFaPickups(season, allTrades) {
-	var preseason = snapshotFacts.loadSeason(season);
-	var postseason = snapshotFacts.loadPostseason(season);
-	
-	if (postseason.length === 0) {
-		return [];
-	}
-	
-	// Build pre-season roster map: owner -> Set of player names
-	var preseasonRosters = {};
-	preseason.forEach(function(c) {
-		if (!c.owner) return;
-		var ownerKey = normalizeOwner(c.owner);
-		if (!preseasonRosters[ownerKey]) preseasonRosters[ownerKey] = new Set();
-		preseasonRosters[ownerKey].add(c.playerName.toLowerCase());
-	});
-	
-	// Get players traded in during the season
+function inferFaPickupsFromCuts(season, allCuts, allTrades, preseasonRosters, postseasonPlayers) {
 	var tradedIn = getTradedInPlayers(allTrades, season);
 	
-	// Find FA pickups in postseason
 	var faPickups = [];
 	
-	postseason.forEach(function(c) {
-		// Must have owner and be an FA contract (startYear = null)
-		if (!c.owner || c.startYear !== null) return;
+	allCuts.forEach(function(cut) {
+		// Must be from this year with an FA contract
+		if (cut.cutYear !== season) return;
+		if (cut.startYear !== null) return;  // Only FA contracts
+		if (!cut.owner || !cut.name) return;
 		
-		var ownerKey = normalizeOwner(c.owner);
-		var playerKey = c.playerName.toLowerCase();
+		var ownerKey = normalizeOwner(cut.owner);
+		var playerKey = cut.name.toLowerCase();
 		
-		// Check if player was already on this owner's pre-season roster
+		// Skip if player was on this owner's preseason roster
 		if (preseasonRosters[ownerKey] && preseasonRosters[ownerKey].has(playerKey)) {
 			return;
 		}
 		
-		// Check if player was traded in
+		// Skip if player was traded in
 		if (tradedIn[ownerKey] && tradedIn[ownerKey].has(playerKey)) {
+			return;
+		}
+		
+		// Skip if this player is in the postseason snapshot for this owner
+		// (they would be caught by fa-snapshot.js instead)
+		if (postseasonPlayers[ownerKey] && postseasonPlayers[ownerKey].has(playerKey)) {
 			return;
 		}
 		
 		faPickups.push({
 			season: season,
-			owner: c.owner,
-			playerName: c.playerName,
-			position: c.position,
-			salary: c.salary,
-			endYear: c.endYear,
-			espnId: c.espnId
+			owner: cut.owner,
+			playerName: cut.name,
+			position: cut.position,
+			salary: cut.salary,
+			endYear: cut.endYear
 		});
 	});
 	
@@ -315,48 +264,73 @@ async function run() {
 		output: process.stdout
 	});
 	
-	// Load regimes and franchises for owner -> franchise mapping
+	// Load regimes and franchises
 	var regimes = await Regime.find({}).lean();
 	var franchises = await Franchise.find({}).lean();
 	
-	// Load all trades once
+	// Load all data
+	var allCuts = cutFacts.loadAll();
 	var allTrades = tradeFacts.loadAll();
+	
+	console.log('Loaded ' + allCuts.length + ' cuts');
+	console.log('');
 	
 	var startYear = targetYear || FIRST_YEAR;
 	var endYear = targetYear || LAST_YEAR;
 	
-	// Clear existing snapshot-sourced FA transactions if requested
+	// Clear existing if requested
 	if (clearFirst && !dryRun) {
 		var clearQuery = {
 			type: 'fa',
-			source: 'snapshot',
+			source: 'cuts',
 			timestamp: {
 				$gte: new Date(startYear + '-01-01'),
 				$lt: new Date((endYear + 1) + '-01-01')
 			}
 		};
 		var deleted = await Transaction.deleteMany(clearQuery);
-		console.log('Cleared ' + deleted.deletedCount + ' existing snapshot FA transactions\n');
+		console.log('Cleared ' + deleted.deletedCount + ' existing cuts-based FA transactions\n');
 	}
 	
 	var totalCreated = 0;
 	var totalSkipped = 0;
 	var totalErrors = 0;
+	
+	// Build owner map once (cuts sheet uses 2025 regime names for all years)
+	var ownerMap = cutFacts.buildOwnerMap(regimes, franchises);
+	
 	var userQuit = false;
 	
 	for (var year = startYear; year <= endYear; year++) {
 		if (userQuit) break;
-		var pickups = inferFaPickups(year, allTrades);
+		// Build preseason rosters
+		var preseason = snapshotFacts.loadSeason(year);
+		var preseasonRosters = {};
+		preseason.forEach(function(c) {
+			if (!c.owner) return;
+			var ownerKey = normalizeOwner(c.owner);
+			if (!preseasonRosters[ownerKey]) preseasonRosters[ownerKey] = new Set();
+			preseasonRosters[ownerKey].add(c.playerName.toLowerCase());
+		});
+		
+		// Build postseason player set (to avoid duplicating fa-snapshot.js)
+		var postseason = snapshotFacts.loadPostseason(year);
+		var postseasonPlayers = {};
+		postseason.forEach(function(c) {
+			if (!c.owner || c.startYear !== null) return;  // Only FA contracts
+			var ownerKey = normalizeOwner(c.owner);
+			if (!postseasonPlayers[ownerKey]) postseasonPlayers[ownerKey] = new Set();
+			postseasonPlayers[ownerKey].add(c.playerName.toLowerCase());
+		});
+		
+		var pickups = inferFaPickupsFromCuts(year, allCuts, allTrades, preseasonRosters, postseasonPlayers);
 		
 		if (pickups.length === 0) {
-			console.log(year + ': No postseason data or no FA pickups');
+			console.log(year + ': No FA pickups inferred from cuts');
 			continue;
 		}
 		
-		console.log(year + ': ' + pickups.length + ' FA pickups inferred');
-		
-		// Build owner -> franchise map for this season
-		var ownerMap = buildOwnerMap(regimes, franchises, year);
+		console.log(year + ': ' + pickups.length + ' FA pickups inferred from cuts');
 		
 		var timestamp = getConventionalFaTimestamp(year);
 		var yearCreated = 0;
@@ -382,7 +356,7 @@ async function run() {
 			}
 			
 			// Get franchise
-			var franchiseId = getFranchiseId(pickup.owner, ownerMap);
+			var franchiseId = cutFacts.getFranchiseId(pickup.owner, ownerMap);
 			if (!franchiseId) {
 				console.log('  ✗ Could not find franchise for: ' + pickup.owner + ' in ' + year);
 				totalErrors++;
@@ -399,9 +373,9 @@ async function run() {
 						playerId: player._id,
 						franchiseId: franchiseId,
 						timestamp: timestamp,
-						source: 'snapshot',
+						source: 'cuts',  // Different source to distinguish from snapshot-based
 						salary: pickup.salary || null,
-						startYear: null,  // FA contracts have no start year
+						startYear: null,
 						endYear: pickup.endYear || year
 					});
 					yearCreated++;

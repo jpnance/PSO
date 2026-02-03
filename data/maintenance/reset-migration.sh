@@ -281,6 +281,16 @@ else
 fi
 echo ""
 
+# Step 10c: Seed FA pickups from cuts data (2009-2019)
+# These are players picked up and cut within the same season (before postseason snapshot)
+echo "=== Step 10c: Seeding FA pickups from cuts ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/fa-cuts.js"
+else
+    docker compose run --rm web node data/seed/fa-cuts.js
+fi
+echo ""
+
 # Step 11: Seed budgets (calculated from contracts, trades, cuts)
 # Note: addLegacyTradeNotes.js was removed - heuristics are now in seedTrades.js
 # and ambiguous contracts are flagged with the `ambiguous` field on trade players.

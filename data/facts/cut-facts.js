@@ -3,6 +3,10 @@
  * 
  * Extracts raw facts from Google Sheets cuts data without inference.
  * Supports both network fetching and local cache loading.
+ * 
+ * NAMING CONVENTION: The cuts sheet uses 2025 regime display names for owners
+ * (e.g., "Justin", "Jason", "Anthony") regardless of what year the cut occurred.
+ * Consumers should map these to franchise IDs using the 2025 regime lookup.
  */
 
 var fs = require('fs');
@@ -205,6 +209,52 @@ async function fetchAndCache(apiKey) {
 	return cuts;
 }
 
+/**
+ * Build an owner name -> franchise ID map using 2025 regime names.
+ * This handles the naming convention used in the cuts sheet.
+ * 
+ * @param {Array} regimes - Regime documents (with tenures)
+ * @param {Array} franchises - Franchise documents
+ * @returns {Object} Map of lowercase owner name -> franchise ObjectId
+ */
+function buildOwnerMap(regimes, franchises) {
+	var ownerToFranchise = {};
+	
+	franchises.forEach(function(franchise) {
+		for (var i = 0; i < regimes.length; i++) {
+			var regime = regimes[i];
+			for (var j = 0; j < regime.tenures.length; j++) {
+				var tenure = regime.tenures[j];
+				// Use 2025 as the reference year for cuts sheet naming
+				if (tenure.franchiseId.equals(franchise._id) &&
+					tenure.startSeason <= 2025 &&
+					(tenure.endSeason === null || tenure.endSeason >= 2025)) {
+					ownerToFranchise[regime.displayName.toLowerCase()] = franchise._id;
+					// Also add individual names from partnerships (e.g., "Koci/Mueller" -> "koci", "mueller")
+					var parts = regime.displayName.split('/');
+					parts.forEach(function(part) {
+						ownerToFranchise[part.toLowerCase().trim()] = franchise._id;
+					});
+				}
+			}
+		}
+	});
+	
+	return ownerToFranchise;
+}
+
+/**
+ * Get franchise ID for an owner name using the cuts naming convention.
+ * 
+ * @param {string} ownerName - Owner name from cuts sheet
+ * @param {Object} ownerMap - Map from buildOwnerMap()
+ * @returns {ObjectId|null} Franchise ID or null if not found
+ */
+function getFranchiseId(ownerName, ownerMap) {
+	if (!ownerName) return null;
+	return ownerMap[ownerName.toLowerCase()] || null;
+}
+
 module.exports = {
 	// Network fetching
 	parseNameWithHint: parseNameWithHint,
@@ -219,5 +269,9 @@ module.exports = {
 	
 	// Analysis
 	groupByYear: groupByYear,
-	getSummary: getSummary
+	getSummary: getSummary,
+	
+	// Owner mapping (cuts sheet uses 2025 regime names)
+	buildOwnerMap: buildOwnerMap,
+	getFranchiseId: getFranchiseId
 };
