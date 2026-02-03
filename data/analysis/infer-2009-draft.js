@@ -12,16 +12,16 @@ var fs = require('fs');
 var path = require('path');
 var facts = require('../facts');
 
-// 2009 rookie salaries from rookies.js
-var FIRST_ROUND_SALARIES = {
-	'DB': 13,
-	'DL': 14,
-	'K': 3,
+// 2009 rookie salaries - averages of top 10 salaries at each position (from rookies.php)
+var POSITION_AVERAGES = {
+	'DB': 12.4,
+	'DL': 13.4,
+	'K': 2.2,
 	'LB': 14,
-	'QB': 125,
-	'RB': 271,
+	'QB': 124.5,
+	'RB': 270.2,
 	'TE': 53,
-	'WR': 138
+	'WR': 137.3
 };
 
 // 2009 PSO draft order (same order every round, not snake)
@@ -44,12 +44,12 @@ function computeSalary(firstRoundValue, round) {
 function buildSalaryToRound() {
 	var lookup = {};
 	
-	Object.keys(FIRST_ROUND_SALARIES).forEach(function(pos) {
+	Object.keys(POSITION_AVERAGES).forEach(function(pos) {
 		lookup[pos] = {};
-		var firstRound = FIRST_ROUND_SALARIES[pos];
+		var avg = POSITION_AVERAGES[pos];
 		
 		for (var round = 1; round <= 10; round++) {
-			var salary = computeSalary(firstRound, round);
+			var salary = computeSalary(avg, round);
 			lookup[pos][salary] = round;
 		}
 	});
@@ -226,10 +226,10 @@ function run() {
 	console.log('---------|-------|-------|-------|-------|-------');
 	
 	['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'].forEach(function(pos) {
-		var r1 = FIRST_ROUND_SALARIES[pos];
+		var avg = POSITION_AVERAGES[pos];
 		var row = pos.padEnd(8) + ' | ';
 		for (var r = 1; r <= 5; r++) {
-			row += ('$' + computeSalary(r1, r)).padEnd(5) + ' | ';
+			row += ('$' + computeSalary(avg, r)).padEnd(5) + ' | ';
 		}
 		console.log(row);
 	});
