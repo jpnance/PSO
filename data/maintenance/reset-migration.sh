@@ -272,6 +272,15 @@ else
 fi
 echo ""
 
+# Step 10b: Seed FA pickups from snapshot diffs (2014-2019)
+echo "=== Step 10b: Seeding FA pickups from snapshots ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/fa-snapshot.js"
+else
+    docker compose run --rm web node data/seed/fa-snapshot.js
+fi
+echo ""
+
 # Step 11: Seed budgets (calculated from contracts, trades, cuts)
 # Note: addLegacyTradeNotes.js was removed - heuristics are now in seedTrades.js
 # and ambiguous contracts are flagged with the `ambiguous` field on trade players.

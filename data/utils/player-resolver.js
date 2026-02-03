@@ -239,6 +239,32 @@ function count() {
 }
 
 /**
+ * Find all resolutions that match a normalized name (including context-specific ones).
+ * 
+ * @param {string} normalizedName - The normalized player name
+ * @returns {Array} Array of { key, resolution } objects
+ */
+function findRelatedResolutions(normalizedName) {
+	loadResolutions();
+	var related = [];
+	
+	Object.keys(resolutions).forEach(function(key) {
+		if (key === '_ambiguous') return;
+		
+		// Check if this key starts with the normalized name
+		// Keys are like: "rodsmith" or "rodsmith|2016|type:trade|schex"
+		if (key === normalizedName || key.startsWith(normalizedName + '|')) {
+			related.push({
+				key: key,
+				resolution: resolutions[key]
+			});
+		}
+	});
+	
+	return related;
+}
+
+/**
  * Create a readline interface for prompting.
  */
 function createPromptInterface() {
@@ -462,7 +488,26 @@ async function promptForPlayer(options) {
 	console.log('Resolving: "' + name + '"' + (position ? ' (' + position + ')' : ''));
 	console.log('Context: ' + formatContext(context));
 	
+	// Show any existing resolutions for this normalized name
+	var relatedResolutions = findRelatedResolutions(normalized);
+	if (relatedResolutions.length > 0) {
+		console.log('');
+		console.log('Existing resolutions for "' + normalized + '":');
+		relatedResolutions.forEach(function(r) {
+			var desc;
+			if (r.resolution.sleeperId) {
+				desc = 'Sleeper #' + r.resolution.sleeperId;
+			} else if (r.resolution.name) {
+				desc = 'historical: ' + r.resolution.name;
+			} else {
+				desc = '(unknown)';
+			}
+			console.log('  ' + r.key + ' -> ' + desc);
+		});
+	}
+	
 	if (filteredCandidates.length === 0) {
+		console.log('');
 		console.log('No candidates found.');
 	} else {
 		console.log('Candidates:');

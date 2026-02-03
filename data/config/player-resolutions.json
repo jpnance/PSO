@@ -621,6 +621,9 @@
   "charles johnson|2014|type:cut|jason": {
     "sleeperId": "37"
   },
+  "charles johnson|2014|type:fa|koci/mueller": {
+    "sleeperId": "1530"
+  },
   "charles johnson|2016|type:cut|koci/mueller": {
     "sleeperId": "1530"
   },
@@ -1239,6 +1242,9 @@
   "dominique franks|2010|type:draft|patrick": {
     "sleeperId": null,
     "name": "Dominique Franks"
+  },
+  "don xzaviar jackson": {
+    "sleeperId": "3722"
   },
   "donald brown|2010|type:trade|patrick": {
     "sleeperId": "377"
@@ -1917,6 +1923,9 @@
     "sleeperId": null,
     "name": "Jonathan Baldwin"
   },
+  "jonathan bostic": {
+    "sleeperId": "1507"
+  },
   "jonathan dwyer|2010|type:draft|james": {
     "sleeperId": null,
     "name": "Jonathan Dwyer"
@@ -2261,6 +2270,9 @@
     "sleeperId": "2312"
   },
   "kevin white|2016|type:cut|schexes": {
+    "sleeperId": "2312"
+  },
+  "kevin white|2016|type:fa|patrick": {
     "sleeperId": "2312"
   },
   "kevin white|2017|type:auction|patrick": {
@@ -2623,6 +2635,9 @@
   },
   "marlon brown|2014|type:trade|trevor": {
     "sleeperId": "1675"
+  },
+  "marqise goodwin": {
+    "sleeperId": "1346"
   },
   "marqise goodwin|2016|type:cut|luke": {
     "sleeperId": "1346"
@@ -3389,6 +3404,9 @@
     "sleeperId": null,
     "name": "Rock Cartwright"
   },
+  "rod smith|2017|type:fa|syed/terence": {
+    "sleeperId": "2892"
+  },
   "rod smith|2018|type:cut|luke": {
     "sleeperId": "2892"
   },
@@ -4019,6 +4037,9 @@
   },
   "zach sudfeld|2013|type:trade|syed": {
     "sleeperId": "1654"
+  },
+  "zachary orr": {
+    "sleeperId": "1877"
   },
   "zay jones|2018|type:trade|schex": {
     "sleeperId": "4080"
