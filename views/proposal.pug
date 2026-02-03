@@ -5,7 +5,7 @@ block title
 	+title('Trade Proposal')
 
 block og_meta
-	- var ogImage = ['accepted', 'executed'].includes(proposal.status) ? '/images/handshake.jpg' : '/images/handfake.jpg'
+	- var ogImage = ['accepted', 'executed'].includes(proposal.status) ? '/images/og/handshake.jpg' : '/images/og/handfake.jpg'
 	meta(property='og:title' content=tradeOgTitle(parties, { status: proposal.status, auctionSeason: auctionSeason, tradeYear: tradeYear }))
 	meta(property='og:description' content=tradeOgPlainEnglish(parties, { auctionSeason: auctionSeason, tradeYear: tradeYear, status: proposal.status }))
 	meta(property='og:image' content='https://thedynastyleague.com' + ogImage)

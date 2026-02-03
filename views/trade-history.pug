@@ -13,12 +13,12 @@ block og_meta
 		- var ogTitle = 'Trade #' + tradeNumber + ': ' + tradeOgTitle(trade.parties, { status: 'executed', auctionSeason: trade.auctionSeason, tradeYear: trade.tradeYear })
 		meta(property='og:title' content=ogTitle)
 		meta(property='og:description' content=tradeOgPlainEnglish(trade.parties, { auctionSeason: trade.auctionSeason, tradeYear: trade.tradeYear, status: 'executed' }))
-		meta(property='og:image' content='https://thedynastyleague.com/images/handshake.jpg')
+		meta(property='og:image' content='https://thedynastyleague.com/images/og/handshake.jpg')
 		meta(property='og:url' content='https://thedynastyleague.com/trades/' + tradeNumber)
 	else
 		meta(property='og:title' content='Trade History — Primetime Soap Operas')
 		meta(property='og:description' content='Extra since ’08')
-		meta(property='og:image' content='https://thedynastyleague.com/images/handshake.jpg')
+		meta(property='og:image' content='https://thedynastyleague.com/images/og/handshake.jpg')
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
