@@ -25,7 +25,7 @@ exports.rfa = async function(request, response) {
 	try {
 		// Get all RFA contracts (salary === null)
 		var rfaContracts = await Contract.find({ salary: null })
-			.populate('playerId', 'name positions team')
+			.populate('playerId', 'name slug positions team')
 			.populate('franchiseId')
 			.lean();
 		
@@ -50,6 +50,7 @@ exports.rfa = async function(request, response) {
 				return {
 					_id: c.playerId._id,
 					name: c.playerId.name,
+					slug: c.playerId.slug,
 					positions: c.playerId.positions || [],
 					team: c.playerId.team,
 					franchise: franchiseId ? franchiseDisplayNames[franchiseId] || 'Unknown' : 'Unknown',

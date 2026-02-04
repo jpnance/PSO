@@ -337,6 +337,7 @@ async function getFranchise(franchiseId, currentSeason) {
 			return {
 				_id: c.playerId ? c.playerId._id : null,
 				name: c.playerId ? c.playerId.name : 'Unknown',
+				slug: c.playerId ? c.playerId.slug : null,
 				positions: c.playerId ? c.playerId.positions : [],
 				salary: salary,
 				startYear: startYear,
@@ -359,6 +360,7 @@ async function getFranchise(franchiseId, currentSeason) {
 			return {
 				_id: c.playerId ? c.playerId._id : null,
 				name: c.playerId ? c.playerId.name : 'Unknown',
+				slug: c.playerId ? c.playerId.slug : null,
 				positions: c.playerId ? c.playerId.positions : [],
 				salary: null
 			};

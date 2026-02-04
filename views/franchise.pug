@@ -225,7 +225,7 @@ block content
 										- var buyout = player.salary - player.recoverable
 										- var detailText = formatMoney(player.salary) + ' · ' + formatContractYears(player.startYear, player.endYear)
 										div.player-chip-wrapper(data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false' data-recoverable=player.recoverable data-buyout=buyout)
-											+playerChip({ name: player.name, positions: player.positions, detail: detailText, href: '/players/' + player._id })
+											+playerChip({ name: player.name, positions: player.positions, detail: detailText, href: '/players/' + player.slug })
 						
 						//- OLD ROSTER CARDS (commented out for reference)
 						//- each posKey in positionKeys
@@ -263,7 +263,7 @@ block content
 							div.franchise-roster-cards__rfa-section
 								div.player-chip-grid
 									each player in franchise.rfaRights
-										+playerChip({ name: player.name, positions: player.positions, detail: 'RFA Rights', variant: 'rfa', href: '/players/' + player._id })
+										+playerChip({ name: player.name, positions: player.positions, detail: 'RFA Rights', variant: 'rfa', href: '/players/' + player.slug })
 			
 			div.col-lg-4
 				div.card.mb-4

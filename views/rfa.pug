@@ -23,4 +23,4 @@ block content
 			each posKey in positionKeys
 				div.player-chip-grid.player-chip-grid--constrained.mb-3
 					each player in playersByPosition[posKey]
-						+playerChip({ name: player.name, positions: player.positions, detail: player.franchise, href: '/players/' + player._id })
+						+playerChip({ name: player.name, positions: player.positions, detail: player.franchise, href: '/players/' + player.slug })
