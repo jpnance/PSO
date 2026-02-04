@@ -48,6 +48,10 @@
     "sleeperId": null,
     "name": "Aaron Brown"
   },
+  "aaron brown|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Aaron Brown"
+  },
   "aaron curry|2009|type:draft|john": {
     "sleeperId": null,
     "name": "Aaron Curry"
@@ -155,6 +159,10 @@
     "sleeperId": null,
     "name": "Ahman Green"
   },
+  "ahman green|2009|type:fa|anthony": {
+    "sleeperId": null,
+    "name": "Ahman Green"
+  },
   "aj brown|2019|type:trade|syed/kuan": {
     "sleeperId": "5859"
   },
@@ -187,6 +195,10 @@
     "sleeperId": null,
     "name": "Akeem Jordan"
   },
+  "akeem jordan|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Akeem Jordan"
+  },
   "akwasi owusuansah|2010|type:draft|john": {
     "sleeperId": null,
     "name": "Akwasi Owusu-Ansah"
@@ -216,6 +228,10 @@
     "sleeperId": "268"
   },
   "alfonso smith|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Alfonso Smith"
+  },
+  "alfonso smith|2011|type:fa|patrick": {
     "sleeperId": null,
     "name": "Alfonso Smith"
   },
@@ -331,6 +347,10 @@
     "sleeperId": null,
     "name": "Antwan Odom"
   },
+  "antwan odom|2009|type:fa|koci/mueller": {
+    "sleeperId": null,
+    "name": "Antwan Odom"
+  },
   "arian foster|2012|type:trade|daniel": {
     "sleeperId": "669"
   },
@@ -354,6 +374,10 @@
     "sleeperId": "4892"
   },
   "baron batch|2012|type:cut|quinn": {
+    "sleeperId": null,
+    "name": "Baron Batch"
+  },
+  "baron batch|2012|type:fa|quinn": {
     "sleeperId": null,
     "name": "Baron Batch"
   },
@@ -392,7 +416,15 @@
     "sleeperId": null,
     "name": "Bernard Berrian"
   },
+  "bernard berrian|2010|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Bernard Berrian"
+  },
   "bernard pollard|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Bernard Pollard"
+  },
+  "bernard pollard|2012|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Bernard Pollard"
   },
@@ -455,6 +487,10 @@
     "sleeperId": null,
     "name": "Brandon Jackson"
   },
+  "brandon jackson|2010|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Brandon Jackson"
+  },
   "brandon jackson|2013|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Brandon Jackson"
@@ -512,6 +548,10 @@
     "name": "Bryant Johnson"
   },
   "bryant johnson|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Bryant Johnson"
+  },
+  "bryant johnson|2009|type:fa|patrick": {
     "sleeperId": null,
     "name": "Bryant Johnson"
   },
@@ -615,6 +655,10 @@
     "sleeperId": null,
     "name": "Chansi Stuckey"
   },
+  "chansi stuckey|2009|type:fa|anthony": {
+    "sleeperId": null,
+    "name": "Chansi Stuckey"
+  },
   "charles johnson|2011|type:trade|daniel": {
     "sleeperId": "37"
   },
@@ -644,6 +688,10 @@
     "sleeperId": "185"
   },
   "charlie batch|2012|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Charlie Batch"
+  },
+  "charlie batch|2012|type:fa|luke": {
     "sleeperId": null,
     "name": "Charlie Batch"
   },
@@ -679,6 +727,10 @@
     "sleeperId": null,
     "name": "Chris Carr"
   },
+  "chris carr|2010|type:fa|keyon": {
+    "sleeperId": null,
+    "name": "Chris Carr"
+  },
   "chris carson|2020|type:trade|james/charles": {
     "sleeperId": "4273"
   },
@@ -711,6 +763,10 @@
     "sleeperId": null,
     "name": "Chris Hope"
   },
+  "chris hope|2009|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Chris Hope"
+  },
   "chris hope|2011|type:cut|justin": {
     "sleeperId": null,
     "name": "Chris Hope"
@@ -723,6 +779,10 @@
     "sleeperId": "717"
   },
   "chris jennings|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Chris Jennings"
+  },
+  "chris jennings|2009|type:fa|patrick": {
     "sleeperId": null,
     "name": "Chris Jennings"
   },
@@ -790,7 +850,15 @@
     "sleeperId": null,
     "name": "Clifton Smith"
   },
+  "clifton smith|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Clifton Smith"
+  },
   "clint session|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Clint Session"
+  },
+  "clint session|2010|type:fa|jason": {
     "sleeperId": null,
     "name": "Clint Session"
   },
@@ -820,7 +888,15 @@
     "sleeperId": null,
     "name": "Correll Buckhalter"
   },
+  "correll buckhalter|2010|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Correll Buckhalter"
+  },
   "curtis painter|2011|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Curtis Painter"
+  },
+  "curtis painter|2011|type:fa|patrick": {
     "sleeperId": null,
     "name": "Curtis Painter"
   },
@@ -843,6 +919,10 @@
     "sleeperId": "1833"
   },
   "dan connor|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Dan Connor"
+  },
+  "dan connor|2010|type:fa|jason": {
     "sleeperId": null,
     "name": "Dan Connor"
   },
@@ -892,6 +972,10 @@
     "sleeperId": null,
     "name": "Da'Rel Scott"
   },
+  "darel scott|2013|type:fa|anthony": {
+    "sleeperId": null,
+    "name": "Da'Rel Scott"
+  },
   "darius leonard": {
     "sleeperId": "4990"
   },
@@ -909,6 +993,10 @@
     "sleeperId": "5916"
   },
   "darren howard|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Darren Howard"
+  },
+  "darren howard|2009|type:fa|brett": {
     "sleeperId": null,
     "name": "Darren Howard"
   },
@@ -949,11 +1037,19 @@
     "sleeperId": null,
     "name": "Dave Ball"
   },
+  "dave ball|2010|type:fa|jason": {
+    "sleeperId": null,
+    "name": "Dave Ball"
+  },
   "david akers|2010|type:cut|justin": {
     "sleeperId": null,
     "name": "David Akers"
   },
   "david akers|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "David Akers"
+  },
+  "david akers|2010|type:fa|justin": {
     "sleeperId": null,
     "name": "David Akers"
   },
@@ -1025,6 +1121,10 @@
     "name": "Dawan Landry"
   },
   "dawan landry|2014|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Dawan Landry"
+  },
+  "dawan landry|2014|type:fa|daniel": {
     "sleeperId": null,
     "name": "Dawan Landry"
   },
@@ -1110,6 +1210,10 @@
     "sleeperId": null,
     "name": "Dennis Northcutt"
   },
+  "dennis northcutt|2009|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Dennis Northcutt"
+  },
   "dennis pitta|2012|type:trade|keyon": {
     "sleeperId": "527"
   },
@@ -1135,6 +1239,10 @@
     "sleeperId": null,
     "name": "Derek Stanley"
   },
+  "derek stanley|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Derek Stanley"
+  },
   "derrick henry|2019|type:trade|syed/kuan": {
     "sleeperId": "3198"
   },
@@ -1150,6 +1258,10 @@
     "name": "Derrick Ward"
   },
   "derrick ward|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Derrick Ward"
+  },
+  "derrick ward|2011|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Derrick Ward"
   },
@@ -1182,6 +1294,10 @@
     "sleeperId": "2319"
   },
   "devery henderson|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Devery Henderson"
+  },
+  "devery henderson|2010|type:fa|patrick": {
     "sleeperId": null,
     "name": "Devery Henderson"
   },
@@ -1270,6 +1386,10 @@
     "sleeperId": null,
     "name": "Donald Jones"
   },
+  "donald jones|2011|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Donald Jones"
+  },
   "donald jones|2012|type:cut|justin": {
     "sleeperId": null,
     "name": "Donald Jones"
@@ -1311,6 +1431,10 @@
     "sleeperId": null,
     "name": "Drew Davis"
   },
+  "drew davis|2013|type:fa|justin": {
+    "sleeperId": null,
+    "name": "Drew Davis"
+  },
   "drew lock|2019|type:trade|keyon": {
     "sleeperId": "5854"
   },
@@ -1348,6 +1472,10 @@
     "sleeperId": null,
     "name": "Earnest Graham"
   },
+  "earnest graham|2011|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Earnest Graham"
+  },
   "eddie lacy|2014|type:trade|daniel": {
     "sleeperId": "1527"
   },
@@ -1358,6 +1486,10 @@
     "sleeperId": "297"
   },
   "ej henderson|2010|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "E.J. Henderson"
+  },
+  "ej henderson|2010|type:fa|patrick": {
     "sleeperId": null,
     "name": "E.J. Henderson"
   },
@@ -1415,6 +1547,10 @@
     "sleeperId": "4066"
   },
   "evan moore|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Evan Moore"
+  },
+  "evan moore|2010|type:fa|justin": {
     "sleeperId": null,
     "name": "Evan Moore"
   },
@@ -1558,6 +1694,10 @@
     "sleeperId": null,
     "name": "Isaac Redman"
   },
+  "isaac redman|2011|type:fa|anthony": {
+    "sleeperId": null,
+    "name": "Isaac Redman"
+  },
   "isaac redman|2013|type:cut|mike": {
     "sleeperId": null,
     "name": "Isaac Redman"
@@ -1570,6 +1710,10 @@
     "sleeperId": null,
     "name": "Jabar Gaffney"
   },
+  "jabar gaffney|2011|type:fa|koci/mueller": {
+    "sleeperId": null,
+    "name": "Jabar Gaffney"
+  },
   "jabar gaffney|2012|type:cut|justin": {
     "sleeperId": null,
     "name": "Jabar Gaffney"
@@ -1578,6 +1722,10 @@
     "sleeperId": "203"
   },
   "jacquian williams|2014|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Jacquian Williams"
+  },
+  "jacquian williams|2014|type:fa|jason": {
     "sleeperId": null,
     "name": "Jacquian Williams"
   },
@@ -1723,6 +1871,10 @@
     "sleeperId": null,
     "name": "Javon Ringer"
   },
+  "javon ringer|2011|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Javon Ringer"
+  },
   "javon ringer|2013|type:cut|patrick": {
     "sleeperId": null,
     "name": "Javon Ringer"
@@ -1753,6 +1905,10 @@
     "sleeperId": null,
     "name": "Jeff Reed"
   },
+  "jeff reed|2009|type:fa|anthony": {
+    "sleeperId": null,
+    "name": "Jeff Reed"
+  },
   "jeff wilson|2020|type:trade|schex": {
     "sleeperId": "5284"
   },
@@ -1773,6 +1929,10 @@
     "name": "Jeremy Shockey"
   },
   "jeremy shockey|2011|type:cut|mike": {
+    "sleeperId": null,
+    "name": "Jeremy Shockey"
+  },
+  "jeremy shockey|2011|type:fa|anthony": {
     "sleeperId": null,
     "name": "Jeremy Shockey"
   },
@@ -1845,6 +2005,10 @@
     "sleeperId": null,
     "name": "Joe Nedney"
   },
+  "joe nedney|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Joe Nedney"
+  },
   "joe tryon": {
     "sleeperId": "7625"
   },
@@ -1878,6 +2042,10 @@
     "sleeperId": "2238"
   },
   "john kasay|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "John Kasay"
+  },
+  "john kasay|2010|type:fa|jason": {
     "sleeperId": null,
     "name": "John Kasay"
   },
@@ -2179,10 +2347,18 @@
     "sleeperId": null,
     "name": "Kamerion Wimbley"
   },
+  "kamerion wimbley|2012|type:fa|justin": {
+    "sleeperId": null,
+    "name": "Kamerion Wimbley"
+  },
   "kamren curl": {
     "sleeperId": "7136"
   },
   "kareem huggins|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Kareem Huggins"
+  },
+  "kareem huggins|2010|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Kareem Huggins"
   },
@@ -2277,6 +2453,10 @@
     "sleeperId": null,
     "name": "Kevin Faulk"
   },
+  "kevin faulk|2011|type:fa|justin": {
+    "sleeperId": null,
+    "name": "Kevin Faulk"
+  },
   "kevin white|2015|type:auction|james": {
     "sleeperId": "2312"
   },
@@ -2322,6 +2502,10 @@
     "sleeperId": null,
     "name": "Kregg Lumpkin"
   },
+  "kregg lumpkin|2011|type:fa|koci/mueller": {
+    "sleeperId": null,
+    "name": "Kregg Lumpkin"
+  },
   "kwon alexander|2019|type:trade|james/charles": {
     "sleeperId": "2429"
   },
@@ -2332,6 +2516,10 @@
     "sleeperId": "388"
   },
   "kyle vanden bosch|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Kyle Vanden Bosch"
+  },
+  "kyle vanden bosch|2010|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Kyle Vanden Bosch"
   },
@@ -2401,6 +2589,10 @@
     "sleeperId": null,
     "name": "LaRon Landry"
   },
+  "laron landry|2013|type:fa|justin": {
+    "sleeperId": null,
+    "name": "LaRon Landry"
+  },
   "laron landry|2014|type:cut|patrick": {
     "sleeperId": null,
     "name": "LaRon Landry"
@@ -2421,6 +2613,10 @@
     "sleeperId": "223"
   },
   "larry foote|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Larry Foote"
+  },
+  "larry foote|2012|type:fa|anthony": {
     "sleeperId": null,
     "name": "Larry Foote"
   },
@@ -2449,7 +2645,15 @@
     "sleeperId": null,
     "name": "Laurence Maroney"
   },
+  "laurence maroney|2010|type:fa|koci/mueller": {
+    "sleeperId": null,
+    "name": "Laurence Maroney"
+  },
   "laurent robinson|2010|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Laurent Robinson"
+  },
+  "laurent robinson|2010|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Laurent Robinson"
   },
@@ -2471,6 +2675,10 @@
     "sleeperId": "298"
   },
   "lawrence tynes|2010|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Lawrence Tynes"
+  },
+  "lawrence tynes|2010|type:fa|luke": {
     "sleeperId": null,
     "name": "Lawrence Tynes"
   },
@@ -2563,6 +2771,10 @@
     "sleeperId": null,
     "name": "London Fletcher"
   },
+  "london fletcher|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "London Fletcher"
+  },
   "london fletcher|2012|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "London Fletcher"
@@ -2603,6 +2815,10 @@
     "sleeperId": "126"
   },
   "marcel reese|2015|type:cut|keyon": {
+    "sleeperId": null,
+    "name": "Marcel Reese"
+  },
+  "marcel reese|2015|type:fa|keyon": {
     "sleeperId": null,
     "name": "Marcel Reese"
   },
@@ -2700,6 +2916,10 @@
     "sleeperId": null,
     "name": "Mathias Kiwanuka"
   },
+  "mathias kiwanuka|2009|type:fa|jason": {
+    "sleeperId": null,
+    "name": "Mathias Kiwanuka"
+  },
   "mathias kiwanuka|2010|type:cut|justin": {
     "sleeperId": null,
     "name": "Mathias Kiwanuka"
@@ -2736,6 +2956,10 @@
     "sleeperId": null,
     "name": "Matt McGloin"
   },
+  "matt mcgloin|2015|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Matt McGloin"
+  },
   "matt moore|2019|type:trade|schex": {
     "sleeperId": "233"
   },
@@ -2746,6 +2970,10 @@
     "sleeperId": "24"
   },
   "matt slater|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Matt Slater"
+  },
+  "matt slater|2009|type:fa|luke": {
     "sleeperId": null,
     "name": "Matt Slater"
   },
@@ -2783,6 +3011,10 @@
     "sleeperId": "2320"
   },
   "mewelde moore|2009|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Mewelde Moore"
+  },
+  "mewelde moore|2009|type:fa|justin": {
     "sleeperId": null,
     "name": "Mewelde Moore"
   },
@@ -2828,6 +3060,10 @@
     "sleeperId": "5038"
   },
   "michael jenkins|2011|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Michael Jenkins"
+  },
+  "michael jenkins|2011|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Michael Jenkins"
   },
@@ -2910,7 +3146,15 @@
     "sleeperId": null,
     "name": "Mike Goodson"
   },
+  "mike goodson|2013|type:fa|brett": {
+    "sleeperId": null,
+    "name": "Mike Goodson"
+  },
   "mike mitchell|2013|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Mike Mitchell"
+  },
+  "mike mitchell|2013|type:fa|luke": {
     "sleeperId": null,
     "name": "Mike Mitchell"
   },
@@ -3013,6 +3257,10 @@
     "sleeperId": null,
     "name": "Muhsin Muhammad"
   },
+  "muhsin muhammad|2009|type:fa|schexes": {
+    "sleeperId": null,
+    "name": "Muhsin Muhammad"
+  },
   "myles jack|2018|type:trade|schex": {
     "sleeperId": "3166"
   },
@@ -3025,6 +3273,10 @@
     "name": "Nate Clements"
   },
   "nate freese|2014|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Nate Freese"
+  },
+  "nate freese|2014|type:fa|justin": {
     "sleeperId": null,
     "name": "Nate Freese"
   },
@@ -3066,6 +3318,10 @@
     "name": "Neil Rackers"
   },
   "neil rackers|2009|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Neil Rackers"
+  },
+  "neil rackers|2009|type:fa|anthony": {
     "sleeperId": null,
     "name": "Neil Rackers"
   },
@@ -3132,6 +3388,10 @@
     "sleeperId": null,
     "name": "Olindo Mare"
   },
+  "olindo mare|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Olindo Mare"
+  },
   "olindo mare|2011|type:cut|jason": {
     "sleeperId": null,
     "name": "Olindo Mare"
@@ -3159,6 +3419,10 @@
     "sleeperId": null,
     "name": "Paris Lenon"
   },
+  "paris lenon|2011|type:fa|keyon": {
+    "sleeperId": null,
+    "name": "Paris Lenon"
+  },
   "pat angerer|2012|type:cut|anthony": {
     "sleeperId": null,
     "name": "Pat Angerer"
@@ -3167,7 +3431,15 @@
     "sleeperId": null,
     "name": "Pat Angerer"
   },
+  "pat angerer|2013|type:fa|justin": {
+    "sleeperId": null,
+    "name": "Pat Angerer"
+  },
   "pat chung|2010|type:cut|jason": {
+    "sleeperId": null,
+    "name": "Pat Chung"
+  },
+  "pat chung|2010|type:fa|jason": {
     "sleeperId": null,
     "name": "Pat Chung"
   },
@@ -3262,11 +3534,19 @@
     "sleeperId": null,
     "name": "Quinn Godfrey"
   },
+  "quinn godfrey|2012|type:fa|patrick": {
+    "sleeperId": null,
+    "name": "Quinn Godfrey"
+  },
   "quinn scott|2010|type:cut|jason": {
     "sleeperId": null,
     "name": "Quinn Scott"
   },
   "quinn tillman|2011|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Quinn Tillman"
+  },
+  "quinn tillman|2011|type:fa|justin": {
     "sleeperId": null,
     "name": "Quinn Tillman"
   },
@@ -3278,11 +3558,19 @@
     "sleeperId": null,
     "name": "Quinn Woodson"
   },
+  "quinn woodson|2012|type:fa|anthony": {
+    "sleeperId": null,
+    "name": "Quinn Woodson"
+  },
   "quinn woodson|2013|type:cut|brett": {
     "sleeperId": null,
     "name": "Quinn Woodson"
   },
   "quintin mikell|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Quintin Mikell"
+  },
+  "quintin mikell|2011|type:fa|luke": {
     "sleeperId": null,
     "name": "Quintin Mikell"
   },
@@ -3297,6 +3585,10 @@
     "name": "Ramses Barden"
   },
   "ramses barden|2012|type:cut|koci/mueller": {
+    "sleeperId": null,
+    "name": "Ramses Barden"
+  },
+  "ramses barden|2012|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Ramses Barden"
   },
@@ -3356,6 +3648,10 @@
     "sleeperId": null,
     "name": "Richard Seymour"
   },
+  "richard seymour|2009|type:fa|justin": {
+    "sleeperId": null,
+    "name": "Richard Seymour"
+  },
   "richard seymour|2011|type:cut|justin": {
     "sleeperId": null,
     "name": "Richard Seymour"
@@ -3368,6 +3664,10 @@
     "sleeperId": "582"
   },
   "rob bironas|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Rob Bironas"
+  },
+  "rob bironas|2009|type:fa|anthony": {
     "sleeperId": null,
     "name": "Rob Bironas"
   },
@@ -3425,6 +3725,10 @@
     "sleeperId": "1352"
   },
   "rock cartwright|2009|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Rock Cartwright"
+  },
+  "rock cartwright|2009|type:fa|anthony": {
     "sleeperId": null,
     "name": "Rock Cartwright"
   },
@@ -3487,6 +3791,10 @@
     "sleeperId": null,
     "name": "Roscoe Parrish"
   },
+  "roscoe parrish|2010|type:fa|justin": {
+    "sleeperId": null,
+    "name": "Roscoe Parrish"
+  },
   "roy e williams|2009|type:rfa-conversion|trevor": {
     "sleeperId": null,
     "name": "Roy E. Williams"
@@ -3523,6 +3831,10 @@
     "sleeperId": null,
     "name": "Ryan Denney"
   },
+  "ryan denney|2009|type:fa|brett": {
+    "sleeperId": null,
+    "name": "Ryan Denney"
+  },
   "ryan fitzpatrick|2015|type:trade|keyon": {
     "sleeperId": "333"
   },
@@ -3540,7 +3852,15 @@
     "sleeperId": null,
     "name": "Ryan Moats"
   },
+  "ryan moats|2009|type:fa|brett": {
+    "sleeperId": null,
+    "name": "Ryan Moats"
+  },
   "ryan mouton|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Ryan Mouton"
+  },
+  "ryan mouton|2009|type:fa|luke": {
     "sleeperId": null,
     "name": "Ryan Mouton"
   },
@@ -3555,6 +3875,10 @@
     "sleeperId": null,
     "name": "Ryan Torain"
   },
+  "ryan torain|2011|type:fa|koci/mueller": {
+    "sleeperId": null,
+    "name": "Ryan Torain"
+  },
   "ryan williams|2011|type:trade|syed": {
     "sleeperId": "974"
   },
@@ -3566,6 +3890,10 @@
     "name": "Sage Rosenfels"
   },
   "sam aiken|2009|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Sam Aiken"
+  },
+  "sam aiken|2009|type:fa|luke": {
     "sleeperId": null,
     "name": "Sam Aiken"
   },
@@ -3596,6 +3924,10 @@
     "name": "Sammy Morris"
   },
   "sammy morris|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Sammy Morris"
+  },
+  "sammy morris|2009|type:fa|patrick": {
     "sleeperId": null,
     "name": "Sammy Morris"
   },
@@ -3664,10 +3996,18 @@
     "sleeperId": null,
     "name": "Stephen Cooper"
   },
+  "stephen cooper|2009|type:fa|jason": {
+    "sleeperId": null,
+    "name": "Stephen Cooper"
+  },
   "stephen gostkowski|2014|type:trade|koci/mueller": {
     "sleeperId": "110"
   },
   "stephen nicholas|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "Stephen Nicholas"
+  },
+  "stephen nicholas|2012|type:fa|anthony": {
     "sleeperId": null,
     "name": "Stephen Nicholas"
   },
@@ -3784,6 +4124,10 @@
     "sleeperId": null,
     "name": "Terrell Thomas"
   },
+  "terrell thomas|2010|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Terrell Thomas"
+  },
   "terrell thomas|2011|type:cut|mike": {
     "sleeperId": null,
     "name": "Terrell Thomas"
@@ -3808,7 +4152,15 @@
     "sleeperId": null,
     "name": "Thomas DeCoud"
   },
+  "thomas decoud|2009|type:fa|luke": {
+    "sleeperId": null,
+    "name": "Thomas DeCoud"
+  },
   "thomas jones|2011|type:cut|luke": {
+    "sleeperId": null,
+    "name": "Thomas Jones"
+  },
+  "thomas jones|2011|type:fa|luke": {
     "sleeperId": null,
     "name": "Thomas Jones"
   },
@@ -3822,6 +4174,10 @@
     "sleeperId": "559"
   },
   "tiquan underwood|2010|type:cut|justin": {
+    "sleeperId": null,
+    "name": "Tiquan Underwood"
+  },
+  "tiquan underwood|2010|type:fa|justin": {
     "sleeperId": null,
     "name": "Tiquan Underwood"
   },
@@ -4012,6 +4368,10 @@
     "sleeperId": null,
     "name": "Will Smith"
   },
+  "will smith|2009|type:fa|koci/mueller": {
+    "sleeperId": null,
+    "name": "Will Smith"
+  },
   "will smith|2010|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Will Smith"
@@ -4021,6 +4381,10 @@
     "name": "Will Witherspoon"
   },
   "william powell|2012|type:cut|anthony": {
+    "sleeperId": null,
+    "name": "William Powell"
+  },
+  "william powell|2012|type:fa|anthony": {
     "sleeperId": null,
     "name": "William Powell"
   },
