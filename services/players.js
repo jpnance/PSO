@@ -20,6 +20,13 @@ exports.playerDetail = async function(request, response) {
 		}
 		
 		var player = players[0];
+		var canonicalSlug = player.slugs && player.slugs[0];
+		
+		// If this was a prefix match (not exact), redirect to canonical slug
+		if (canonicalSlug && !player.slugs.includes(slug)) {
+			return response.redirect('/players/' + canonicalSlug);
+		}
+		
 		var playerId = player._id.toString();
 		
 		var config = await LeagueConfig.findById('pso');
@@ -111,6 +118,7 @@ exports.playerDetail = async function(request, response) {
 			]
 		})
 			.populate('franchiseId')
+			.populate('fromFranchiseId')
 			.populate('playerId', 'name')
 			.populate('facilitatedTradeId', 'tradeId')
 			.sort({ timestamp: -1 })
@@ -233,6 +241,16 @@ exports.playerDetail = async function(request, response) {
 					entry.salary = t.salary;
 					entry.draftSeason = new Date(t.timestamp).getFullYear();
 					break;
+			
+			case 'expansion-draft-select':
+				var fromRegime = t.fromFranchiseId ? getRegimeForFranchise(t.fromFranchiseId._id || t.fromFranchiseId, t.timestamp) : '?';
+				var toRegime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				entry.description = 'Expansion draft: ' + fromRegime + ' → ' + toRegime;
+				entry.salary = t.salary;
+				entry.startYear = t.startYear;
+				entry.endYear = t.endYear;
+				entry.rfaRights = t.rfaRights;
+				break;
 					
 			case 'auction-ufa':
 				entry.description = 'Won at auction by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
