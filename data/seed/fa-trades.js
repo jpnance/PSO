@@ -10,15 +10,21 @@
  *   node data/seed/fa-trades.js [--dry-run] [--year=YYYY]
  */
 
+var readline = require('readline');
 var mongoose = require('mongoose');
 var Player = require('../../models/Player');
 var Franchise = require('../../models/Franchise');
 var Transaction = require('../../models/Transaction');
 var Regime = require('../../models/Regime');
 var tradeFacts = require('../facts/trade-facts');
+var resolver = require('../utils/player-resolver');
 
 var FIRST_YEAR = 2008;
 var LAST_YEAR = 2019;
+
+// Global state
+var rl = null;
+var playersByNormalizedName = {};
 
 /**
  * Get conventional FA timestamp: shortly before the trade
@@ -99,16 +105,27 @@ async function run() {
 		console.log('=== DRY RUN MODE ===\n');
 	}
 	
+	// Set up readline for interactive resolution
+	if (!dryRun) {
+		rl = readline.createInterface({
+			input: process.stdin,
+			output: process.stdout
+		});
+	}
+	
 	await mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongo:27017/pso');
 	
 	var regimes = await Regime.find({}).lean();
 	var franchises = await Franchise.find({}).lean();
 	var players = await Player.find({}).lean();
 	
-	// Build player lookup by name
-	var playerByName = {};
+	// Build player lookup by normalized name (array per name for ambiguity handling)
 	players.forEach(function(p) {
-		playerByName[p.name.toLowerCase()] = p;
+		var normalized = resolver.normalizePlayerName(p.name);
+		if (!playersByNormalizedName[normalized]) {
+			playersByNormalizedName[normalized] = [];
+		}
+		playersByNormalizedName[normalized].push(p);
 	});
 	
 	// Load all trade facts (fetch from WordPress if cache doesn't exist)
@@ -160,34 +177,42 @@ async function run() {
 				for (var k = 0; k < receivingParty.players.length; k++) {
 					var player = receivingParty.players[k];
 					
-					// Only care about FA contracts (no startYear in contractStr like "2017" not "2016/2017")
-					// Exclude "unsigned" - those are auction wins, not FA pickups
-					var contractStr = player.contractStr || '';
-					var isUnsigned = contractStr.toLowerCase() === 'unsigned';
-					var isFaContract = !isUnsigned && !contractStr.includes('/') && !contractStr.includes('-');
+					// Resolve the player with context-specific key
+					var context = { 
+						year: year, 
+						type: 'fa-trade', 
+						trade: trade.tradeId || trade.tradeNumber,
+						franchise: givingParty.owner 
+					};
 					
-					if (!isFaContract) continue;
+					var result = await resolver.promptForPlayer({
+						name: player.name,
+						context: context,
+						candidates: playersByNormalizedName[resolver.normalizePlayerName(player.name)] || [],
+						Player: Player,
+						rl: rl,
+						playerCache: playersByNormalizedName
+					});
 					
-					// Find the player in our database
-					var dbPlayer = playerByName[player.name.toLowerCase()];
+					if (result.action === 'quit') {
+						console.log('\nUser quit. Exiting...');
+						if (rl) rl.close();
+						await mongoose.disconnect();
+						return;
+					}
+					
+					var dbPlayer = result.player;
 					if (!dbPlayer) {
-						// Try to find by partial match
-						var found = players.find(function(p) {
-							return p.name.toLowerCase() === player.name.toLowerCase();
-						});
-						if (!found) {
-							totalSkipped++;
-							continue;
-						}
-						dbPlayer = found;
+						totalSkipped++;
+						continue;
 					}
 					
 					// Check if giving party has prior acquisition
 					var hasPrior = await hasPriorAcquisition(givingFranchiseId, dbPlayer._id, trade.date);
 					
 					if (!hasPrior) {
-						// Parse contract end year from contract string
-						var contractEndYear = parseInt(contractStr) || year;
+						// Contract end year is the trade year (FA contracts expire end of season)
+						var contractEndYear = year;
 						
 						if (dryRun) {
 							console.log('  Would create FA: ' + player.name + ' -> ' + givingParty.owner + ' (before trade ' + trade.tradeId + ')');
@@ -228,6 +253,7 @@ async function run() {
 	console.log('Created: ' + totalCreated);
 	console.log('Skipped: ' + totalSkipped);
 	
+	if (rl) rl.close();
 	await mongoose.disconnect();
 }
 

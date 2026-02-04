@@ -208,6 +208,25 @@ async function run() {
 				player = posMatch || candidates[0];
 			}
 			
+			// Auto-create for historical years (before 2016)
+			if (!player && candidates.length === 0 && year < 2016) {
+				var existing = await Player.findOne({ name: cut.name, sleeperId: null });
+				if (existing) {
+					player = existing;
+					if (!playersByName[normalized]) playersByName[normalized] = [];
+					playersByName[normalized].push(existing);
+				} else {
+					console.log('  Auto-creating historical: ' + cut.name + ' [' + (cut.position || '?') + ']');
+					player = await Player.create({
+						name: cut.name,
+						positions: cut.position ? [cut.position] : [],
+						sleeperId: null
+					});
+					if (!playersByName[normalized]) playersByName[normalized] = [];
+					playersByName[normalized].push(player);
+				}
+			}
+			
 			if (!player) {
 				console.log('  ✗ Could not find player: ' + cut.name);
 				totalSkipped++;

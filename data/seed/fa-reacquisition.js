@@ -231,6 +231,28 @@ async function run() {
 				player = posMatch || candidates[0];
 			}
 			
+			// Auto-create for historical years (before 2016)
+			if (!player && candidates.length === 0 && year < 2016) {
+				// Check if player exists with exact name
+				var existing = await Player.findOne({ name: contract.playerName, sleeperId: null });
+				if (existing) {
+					player = existing;
+					// Add to cache
+					if (!playersByName[normalized]) playersByName[normalized] = [];
+					playersByName[normalized].push(existing);
+				} else {
+					console.log('  Auto-creating historical: ' + contract.playerName + ' [' + (contract.position || '?') + ']');
+					player = await Player.create({
+						name: contract.playerName,
+						positions: contract.position ? [contract.position] : [],
+						sleeperId: null
+					});
+					// Add to cache
+					if (!playersByName[normalized]) playersByName[normalized] = [];
+					playersByName[normalized].push(player);
+				}
+			}
+			
 			if (!player) {
 				console.log('  ✗ Could not find player: ' + contract.playerName);
 				totalSkipped++;
