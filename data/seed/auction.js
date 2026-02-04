@@ -177,6 +177,38 @@ async function run() {
 		franchiseById[f.rosterId] = f._id;
 	});
 	
+	// Load trades to find unsigned players traded before signing
+	// If Owner A wins a player at auction, trades them unsigned to Owner B,
+	// and Owner B signs them, the contract snapshot shows Owner B
+	// but we want to credit Owner A for the auction win
+	var tradeFacts = require('../facts/trade-facts');
+	var allTrades = tradeFacts.checkAvailability() ? tradeFacts.loadAll() : [];
+	
+	// Build map: playerName (lowercase) -> original owner who traded away an unsigned player
+	var unsignedTradedBy = {};
+	allTrades.forEach(function(trade) {
+		if (trade.date.getFullYear() !== year) return;
+		if (trade.parties.length !== 2) return;
+		
+		trade.parties.forEach(function(receivingParty, idx) {
+			var givingParty = trade.parties[idx === 0 ? 1 : 0];
+			receivingParty.players.forEach(function(player) {
+				// Only care about unsigned players
+				if (player.contractStr !== 'unsigned') return;
+				
+				var key = player.name.toLowerCase();
+				if (!unsignedTradedBy[key]) {
+					unsignedTradedBy[key] = givingParty.owner;
+				}
+			});
+		});
+	});
+	
+	if (Object.keys(unsignedTradedBy).length > 0) {
+		console.log('Found ' + Object.keys(unsignedTradedBy).length + ' unsigned players traded this year');
+		console.log('');
+	}
+	
 	// Get existing draft picks for this year (to identify rookies)
 	var draftPicks = await Transaction.find({
 		type: 'draft-select',
@@ -325,15 +357,26 @@ async function run() {
 		var playerId = playerResult._id;
 		var isRookie = rookiePlayerIds.has(playerId.toString());
 		
-		// Resolve franchise
+		// Resolve current owner (for contract)
 		var rosterId = getFranchiseId(c.owner, year);
 		if (!rosterId) {
 			console.log('  ✗ Could not resolve franchise: ' + c.owner);
 			stats.errors.push('Could not resolve franchise: ' + c.owner + ' for ' + c.player);
 			continue;
 		}
-		
 		var franchiseId = franchiseById[rosterId];
+		
+		// Check if this player was traded while unsigned - if so, auction goes to original owner
+		var auctionFranchiseId = franchiseId;
+		var playerKey = c.player.toLowerCase();
+		if (unsignedTradedBy[playerKey]) {
+			var originalOwner = unsignedTradedBy[playerKey];
+			console.log('  → Player was traded unsigned from ' + originalOwner + ' to ' + c.owner);
+			var originalRosterId = getFranchiseId(originalOwner, year);
+			if (originalRosterId && franchiseById[originalRosterId]) {
+				auctionFranchiseId = franchiseById[originalRosterId];
+			}
+		}
 		if (!franchiseId) {
 			console.log('  ✗ No franchise found for rosterId: ' + rosterId);
 			stats.errors.push('No franchise for rosterId ' + rosterId);
@@ -377,14 +420,15 @@ async function run() {
 			console.log('  → Auction already exists (skipping)');
 			stats.skippedExisting++;
 		} else {
-			console.log('  + auction-ufa: ' + playerResult.name + ' → ' + c.owner);
+			var auctionOwnerName = unsignedTradedBy[playerKey] || c.owner;
+			console.log('  + auction-ufa: ' + playerResult.name + ' → ' + auctionOwnerName);
 			
 			if (!dryRun) {
 				await Transaction.create({
 					type: 'auction-ufa',
 					timestamp: auctionTimestamp,
 					source: 'snapshot',
-					franchiseId: franchiseId,
+					franchiseId: auctionFranchiseId,
 					playerId: playerId,
 					salary: c.salary
 				});

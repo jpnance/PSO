@@ -161,8 +161,10 @@ async function run() {
 					var player = receivingParty.players[k];
 					
 					// Only care about FA contracts (no startYear in contractStr like "2017" not "2016/2017")
+					// Exclude "unsigned" - those are auction wins, not FA pickups
 					var contractStr = player.contractStr || '';
-					var isFaContract = !contractStr.includes('/') && !contractStr.includes('-');
+					var isUnsigned = contractStr.toLowerCase() === 'unsigned';
+					var isFaContract = !isUnsigned && !contractStr.includes('/') && !contractStr.includes('-');
 					
 					if (!isFaContract) continue;
 					
