@@ -12,8 +12,12 @@
 var fs = require('fs');
 var path = require('path');
 var request = require('superagent');
+var mongoose = require('mongoose');
 
 var SHEET_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1nas3AqWZtCu_UZIV77Jgxd9oriF1NQjzSjFWW86eong/values/Cuts';
+
+// Models for franchise resolution (lazy-loaded)
+var Franchise, Regime;
 
 // Local cache directory
 var CUTS_DIR = path.join(__dirname, '../cuts');
@@ -198,12 +202,51 @@ function saveCache(cutFacts) {
 
 /**
  * Fetch all cuts and save to local cache.
+ * Enriches cuts with franchiseId by resolving owner names using 2025 regime lookup.
  * 
  * @param {string} apiKey - Google API key
+ * @param {object} options - Options { skipFranchiseResolution: boolean }
  * @returns {Promise<Array>} Array of all cut facts
  */
-async function fetchAndCache(apiKey) {
+async function fetchAndCache(apiKey, options) {
+	options = options || {};
 	var cuts = await fetchAll(apiKey);
+	
+	// Resolve owner names to franchise IDs
+	if (!options.skipFranchiseResolution) {
+		// Lazy-load models
+		if (!Franchise) Franchise = require('../../models/Franchise');
+		if (!Regime) Regime = require('../../models/Regime');
+		
+		// Ensure database connection
+		if (mongoose.connection.readyState !== 1) {
+			throw new Error('Database connection required for franchise resolution. Connect to MongoDB before calling fetchAndCache.');
+		}
+		
+		var franchises = await Franchise.find({}).lean();
+		var regimes = await Regime.find({}).lean();
+		var ownerMap = buildOwnerMap(regimes, franchises);
+		
+		var resolved = 0;
+		var unresolved = [];
+		
+		cuts.forEach(function(cut) {
+			var franchiseId = getFranchiseId(cut.owner, ownerMap);
+			if (franchiseId) {
+				cut.franchiseId = franchiseId.toString();
+				resolved++;
+			} else if (cut.owner) {
+				unresolved.push(cut.owner);
+			}
+		});
+		
+		console.log('    Resolved ' + resolved + ' cuts to franchise IDs');
+		if (unresolved.length > 0) {
+			var unique = [...new Set(unresolved)];
+			console.log('    Could not resolve owners: ' + unique.join(', '));
+		}
+	}
+	
 	saveCache(cuts);
 	console.log('    Cached ' + cuts.length + ' cuts to ' + path.join(CUTS_DIR, 'cuts.json'));
 	return cuts;

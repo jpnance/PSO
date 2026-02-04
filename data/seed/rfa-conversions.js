@@ -31,12 +31,12 @@ mongoose.connect(process.env.MONGODB_URI);
 
 var ARCHIVE_DIR = path.join(__dirname, '../archive/snapshots');
 
-// RFA conversion date convention: January 15 at 12:00:33 PM ET
-// The :33 seconds indicates imprecise timing
+// RFA conversion date convention: January 15 at 12:00:00 PM ET
 // January 15 is definitively in the offseason
+// Uses :00 seconds since this is a defined convention, not an uncertain inference
 function getRfaConversionTimestamp(year) {
-	// Jan 15 at 12:00:33 ET = Jan 15 at 17:00:33 UTC (EST, no DST in Jan)
-	return new Date(Date.UTC(year + 1, 0, 15, 17, 0, 33));
+	// Jan 15 at 12:00:00 ET = Jan 15 at 17:00:00 UTC (EST, no DST in Jan)
+	return new Date(Date.UTC(year + 1, 0, 15, 17, 0, 0));
 }
 
 // Build owner -> franchiseId lookup for a given year

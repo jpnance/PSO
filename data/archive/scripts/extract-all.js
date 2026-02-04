@@ -219,13 +219,15 @@ function parseTeamsXls() {
         var data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
         
         // Map sheet names to owner names
+        // Note: The "Luke" sheet in teams.xls is actually Jeff's franchise in 2008
+        // (Jake/Luke didn't take over until 2009)
         var ownerMap = {
             'Patrick': 'Patrick',
             'Syed': 'Syed', 
             'Daniel': 'Daniel',
             'John': 'John',
             'Koci': 'Koci',
-            'Luke': 'Luke',
+            'Luke': 'Jeff',  // Jeff owned this franchise in 2008
             'James': 'James',
             'Trevor': 'Trevor',
             'Keyon': 'Keyon',

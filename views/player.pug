@@ -144,6 +144,8 @@ block content
 										span= entry.description
 										if entry.salary
 											span.player-timeline__salary= formatMoney(entry.salary)
+									- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
+								if !isInferred
 									div.player-timeline__date= formatDateMedium(entry.timestamp)
 				else
 					p.text-muted No transaction history found.

@@ -68,7 +68,8 @@ var IN_SEASON_BOUNDARY = {
 
 /**
  * Get the conventional cut day timestamp for a given year.
- * Cut day is one week before the auction, at 12:00:33 AM ET (midnight with :33 for imprecise).
+ * Cut day is one week before the auction, at 12:00:00 AM ET (midnight).
+ * Uses :00 seconds since this is a known date, not an uncertain inference.
  */
 function getCutDayTimestamp(year) {
 	var auctionDate = AUCTION_DATES[year];
@@ -76,11 +77,12 @@ function getCutDayTimestamp(year) {
 		// One week before auction
 		var cutDay = new Date(auctionDate);
 		cutDay.setDate(cutDay.getDate() - 7);
-		// Set to 12:00:33 AM ET (05:00:33 UTC)
-		return new Date(Date.UTC(cutDay.getFullYear(), cutDay.getMonth(), cutDay.getDate(), 5, 0, 33));
+		// Set to 12:00:00 AM ET (05:00:00 UTC in EST, 04:00:00 UTC in EDT)
+		// August is EDT (UTC-4)
+		return new Date(Date.UTC(cutDay.getFullYear(), cutDay.getMonth(), cutDay.getDate(), 4, 0, 0));
 	}
 	// Fallback: mid-August
-	return new Date(Date.UTC(year, 7, 15, 5, 0, 33));
+	return new Date(Date.UTC(year, 7, 15, 4, 0, 0));
 }
 
 /**

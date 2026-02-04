@@ -28,17 +28,17 @@ function parseContractsFile(season, content) {
 		var line = lines[i];
 		if (!line.trim()) continue;
 		
-		// Parse CSV (simple split - no quoted fields in this format)
-		var cols = line.split(',');
+		// Parse CSV using quote-aware parser (handles names like "Ted Ginn, Jr.")
+		var cols = parseCSVLine(line);
 		if (cols.length < 7) continue;
 		
-		var espnId = cols[0].trim();
-		var owner = cols[1].trim();
-		var playerName = cols[2].trim();
-		var position = cols[3].trim();
-		var startStr = cols[4].trim();
-		var endStr = cols[5].trim();
-		var salaryStr = cols[6].trim();
+		var espnId = cols[0];
+		var owner = cols[1];
+		var playerName = cols[2];
+		var position = cols[3];
+		var startStr = cols[4];
+		var endStr = cols[5];
+		var salaryStr = cols[6];
 		
 		// Skip empty owner (free agents listed at bottom)
 		if (!owner) continue;
@@ -145,6 +145,32 @@ function loadSeasonAll(season, options) {
 }
 
 /**
+ * Parse a CSV line handling quoted fields.
+ * Handles fields like: "Ted Ginn, Jr." where comma is inside quotes.
+ */
+function parseCSVLine(line) {
+	var fields = [];
+	var current = '';
+	var inQuotes = false;
+	
+	for (var i = 0; i < line.length; i++) {
+		var char = line[i];
+		
+		if (char === '"') {
+			inQuotes = !inQuotes;
+		} else if (char === ',' && !inQuotes) {
+			fields.push(current.trim());
+			current = '';
+		} else {
+			current += char;
+		}
+	}
+	fields.push(current.trim());
+	
+	return fields;
+}
+
+/**
  * Load extracted-all.csv which contains early-year data from various spreadsheets.
  * Only includes entries with owner attribution.
  * 
@@ -168,18 +194,18 @@ function loadExtractedAll() {
 		var line = lines[i];
 		if (!line.trim()) continue;
 		
-		var cols = line.split(',');
+		var cols = parseCSVLine(line);
 		if (cols.length < 9) continue;
 		
-		var source = cols[0].trim();
-		var year = parseInt(cols[1].trim());
-		var espnId = cols[2].trim();
-		var owner = cols[3].trim();
-		var playerName = cols[4].trim();
-		var position = cols[5].trim();
-		var startStr = cols[6].trim();
-		var endStr = cols[7].trim();
-		var salaryStr = cols[8].trim();
+		var source = cols[0];
+		var year = parseInt(cols[1]);
+		var espnId = cols[2];
+		var owner = cols[3];
+		var playerName = cols[4];
+		var position = cols[5];
+		var startStr = cols[6];
+		var endStr = cols[7];
+		var salaryStr = cols[8];
 		
 		// Skip entries without owner (can't use for disambiguation)
 		if (!owner) continue;
@@ -452,6 +478,7 @@ function findPlayerOwnership(ownershipFacts, playerName) {
 }
 
 module.exports = {
+	parseCSVLine: parseCSVLine,
 	parseContractsFile: parseContractsFile,
 	loadSeason: loadSeason,
 	loadPostseason: loadPostseason,

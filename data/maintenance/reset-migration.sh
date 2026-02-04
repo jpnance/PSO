@@ -272,6 +272,15 @@ else
 fi
 echo ""
 
+# Step 10a: Seed FA pickups from extracted-all.csv (2008)
+echo "=== Step 10a: Seeding FA pickups from extracted data (2008) ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/fa-extracted.js"
+else
+    docker compose run --rm -it web node data/seed/fa-extracted.js
+fi
+echo ""
+
 # Step 10b: Seed FA reacquisitions (players picked up after someone else cut them)
 echo "=== Step 10b: Seeding FA reacquisitions ==="
 if [ "$DRY_RUN" = true ]; then
@@ -298,6 +307,16 @@ if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
 else
     docker compose run --rm -it web node data/seed/cuts.js --auto-historical-before=2016
+fi
+echo ""
+
+# Step 10e: Infer cuts from snapshot changes (2009 offseason)
+# Catches cuts not recorded in the spreadsheet by comparing year-over-year contracts
+echo "=== Step 10e: Inferring cuts from snapshots ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/infer-cuts.js"
+else
+    docker compose run --rm -it web node data/seed/infer-cuts.js
 fi
 echo ""
 

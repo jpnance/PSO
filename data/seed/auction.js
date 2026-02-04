@@ -6,7 +6,7 @@
  *   - Create contract transaction with salary and years
  * 
  * Timestamps:
- *   - Auction wins: 9:00:33 AM ET on auction day
+ *   - Auction wins: 9:00:00 AM ET on auction day
  *   - Contract signings: 12:00:00 PM ET on contract due date
  * 
  * Usage:
@@ -27,6 +27,7 @@ var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
+var snapshotFacts = require('../facts/snapshot-facts');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -193,23 +194,24 @@ async function run() {
 	
 	var content = fs.readFileSync(contractsPath, 'utf8');
 	var lines = content.trim().split('\n');
-	var header = lines[0].split(',');
+	var header = snapshotFacts.parseCSVLine(lines[0]);
 	
 	// Parse CSV (format: ID,Owner,Name,Position,Start,End,Salary)
+	// Uses parseCSVLine to handle quoted fields like "Ted Ginn, Jr."
 	var contracts = [];
 	for (var i = 1; i < lines.length; i++) {
-		var cols = lines[i].split(',');
+		var cols = snapshotFacts.parseCSVLine(lines[i]);
 		if (cols.length < 7) continue;
 		
-		var espnId = cols[0].trim();
+		var espnId = cols[0];
 		contracts.push({
 			espnId: espnId !== '-1' ? espnId : null,
-			owner: cols[1].trim(),
-			player: cols[2].trim(),
-			position: cols[3].trim(),
-			start: cols[4].trim(),
-			end: cols[5].trim(),
-			salary: parseInt(cols[6].replace('$', '').trim(), 10)
+			owner: cols[1],
+			player: cols[2],
+			position: cols[3],
+			start: cols[4],
+			end: cols[5],
+			salary: parseInt(cols[6].replace('$', ''), 10)
 		});
 	}
 	
@@ -304,7 +306,7 @@ async function run() {
 	};
 	
 	// Timestamps
-	var auctionTimestamp = makeTimestamp(auctionDate, 9, 0, 33); // 9:00:33 AM ET
+	var auctionTimestamp = makeTimestamp(auctionDate, 9, 0, 0); // 9:00:00 AM ET
 	var contractTimestamp = makeTimestamp(contractDueDate, 12, 0, 0); // 12:00:00 PM ET
 	
 	// Load all players for matching

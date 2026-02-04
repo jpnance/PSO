@@ -96,7 +96,7 @@ var AUCTION_DATES = {
 };
 
 /**
- * Get auction timestamp for a year (9:00:33 AM ET on auction day)
+ * Get auction timestamp for a year (9:00:00 AM ET on auction day)
  */
 function getAuctionTimestamp(year) {
 	var dateStr = AUCTION_DATES[year];
@@ -108,8 +108,8 @@ function getAuctionTimestamp(year) {
 	var d = parseInt(parts[2]);
 	
 	// August is during DST, so ET = UTC-4
-	// 9:00:33 AM ET = 13:00:33 UTC
-	return new Date(Date.UTC(y, m, d, 13, 0, 33));
+	// 9:00:00 AM ET = 13:00:00 UTC
+	return new Date(Date.UTC(y, m, d, 13, 0, 0));
 }
 
 /**

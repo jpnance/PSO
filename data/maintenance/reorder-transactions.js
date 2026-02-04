@@ -293,6 +293,157 @@ function compareTransactions(a, b, playerId, playerName, cutsOrderMap, faSequenc
 }
 
 /**
+ * Get the franchise that receives a player in a trade
+ */
+function getTradeReceiver(txn, playerId) {
+	var pid = playerId.toString();
+	if (txn.type !== 'trade' || !txn.parties) return null;
+	
+	for (var i = 0; i < txn.parties.length; i++) {
+		var party = txn.parties[i];
+		if (party.receives && party.receives.players) {
+			var hasPlayer = party.receives.players.some(function(pl) {
+				return pl.playerId && pl.playerId.toString() === pid;
+			});
+			if (hasPlayer) {
+				return party.franchiseId ? party.franchiseId.toString() : null;
+			}
+		}
+	}
+	return null;
+}
+
+/**
+ * Fix cross-day ownership violations.
+ * 
+ * Walks through transactions and ensures that:
+ * - A franchise must acquire a player before disposing of them
+ * - If a disposal happens before the acquisition, move the disposal to after the acquisition
+ * 
+ * Only adjusts :33 (inferred) timestamps.
+ */
+function fixOwnershipViolations(transactions, playerId, playerName, regimes, verbose) {
+	if (transactions.length <= 1) return [];
+	
+	var updates = [];
+	var currentOwner = null;
+	var ownershipHistory = []; // { franchiseId, acquiredAt, acquiredVia }
+	
+	// First pass: build ownership timeline from authoritative transactions
+	for (var i = 0; i < transactions.length; i++) {
+		var txn = transactions[i];
+		var isInferred = isInferredTimestamp(txn.timestamp);
+		
+		// Skip inferred transactions in first pass - we're building the authoritative timeline
+		if (isInferred) continue;
+		
+		var franchiseId = null;
+		
+		// Check acquisition
+		if (isAcquisition(txn, playerId)) {
+			if (txn.type === 'trade') {
+				franchiseId = getTradeReceiver(txn, playerId);
+			} else if (txn.franchiseId) {
+				franchiseId = txn.franchiseId.toString();
+			}
+			
+			if (franchiseId) {
+				ownershipHistory.push({
+					franchiseId: franchiseId,
+					acquiredAt: txn.timestamp,
+					acquiredVia: txn
+				});
+			}
+		}
+	}
+	
+	// Second pass: check inferred transactions against ownership timeline
+	for (var i = 0; i < transactions.length; i++) {
+		var txn = transactions[i];
+		
+		if (!isInferredTimestamp(txn.timestamp)) continue;
+		if (!isDisposal(txn, playerId)) continue;
+		
+		// This is an inferred disposal - who is doing the disposing?
+		var disposerFranchiseId = getTransactionFranchise(txn, playerId);
+		if (!disposerFranchiseId) continue;
+		
+		// Find when this franchise acquired the player (from authoritative sources)
+		var acquisition = null;
+		for (var j = 0; j < ownershipHistory.length; j++) {
+			if (ownershipHistory[j].franchiseId === disposerFranchiseId) {
+				acquisition = ownershipHistory[j];
+				break;
+			}
+		}
+		
+		if (!acquisition) continue; // No authoritative acquisition found
+		
+		// Check if the disposal is before the acquisition
+		if (txn.timestamp.getTime() < acquisition.acquiredAt.getTime()) {
+			// Violation! Move disposal to just after acquisition
+			var newTime = new Date(acquisition.acquiredAt.getTime() + MINUTE_MS);
+			newTime.setUTCSeconds(33);
+			newTime.setUTCMilliseconds(0);
+			
+			var year = txn.timestamp.getFullYear();
+			
+			if (verbose) {
+				console.log('  Ownership violation: ' + txn.type + ' by ' + 
+					getRegimeName(regimes, disposerFranchiseId, year) + 
+					' on ' + txn.timestamp.toISOString() + 
+					' but acquired via ' + acquisition.acquiredVia.type + 
+					' on ' + acquisition.acquiredAt.toISOString());
+			}
+			
+			updates.push({
+				txn: txn,
+				oldTime: txn.timestamp,
+				newTime: newTime,
+				reason: 'ownership-violation'
+			});
+		}
+	}
+	
+	// Also check inferred acquisitions (FA pickups) that should follow a disposal
+	for (var i = 0; i < transactions.length; i++) {
+		var txn = transactions[i];
+		
+		if (!isInferredTimestamp(txn.timestamp)) continue;
+		if (!isAcquisition(txn, playerId)) continue;
+		if (txn.type !== 'fa') continue; // Only FA pickups need this check
+		
+		var acquirerFranchiseId = getTransactionFranchise(txn, playerId);
+		if (!acquirerFranchiseId) continue;
+		
+		// This FA pickup should come after someone else's disposal
+		// Find the matching disposal we might have moved
+		var matchingUpdate = updates.find(function(u) {
+			var disposerFranchiseId = getTransactionFranchise(u.txn, playerId);
+			return disposerFranchiseId !== acquirerFranchiseId && 
+				u.txn.type === 'fa' && 
+				isDisposal(u.txn, playerId);
+		});
+		
+		if (matchingUpdate && txn.timestamp.getTime() <= matchingUpdate.newTime.getTime()) {
+			// Move this pickup to after the disposal
+			var newTime = new Date(matchingUpdate.newTime.getTime() + MINUTE_MS);
+			newTime.setUTCSeconds(33);
+			newTime.setUTCMilliseconds(0);
+			
+			updates.push({
+				txn: txn,
+				oldTime: txn.timestamp,
+				newTime: newTime,
+				reason: 'follows-disposal'
+			});
+		}
+	}
+	
+	return updates;
+}
+
+/**
  * Reorder transactions for a single player
  * Only reorders transactions within the same day, preserving cross-day ordering.
  */
@@ -452,9 +603,12 @@ async function run() {
 	
 	console.log('Checking transaction order for ' + Object.keys(txnsByPlayer).length + ' players...\n');
 	
-	var totalUpdates = 0;
+	var totalOwnershipFixes = 0;
+	var totalSameDayFixes = 0;
 	var playersFixed = 0;
 	
+	// Phase 1: Fix cross-day ownership violations
+	console.log('Phase 1: Fixing cross-day ownership violations...');
 	for (var playerId in txnsByPlayer) {
 		var playerTxns = txnsByPlayer[playerId];
 		var playerName = playerNames[playerId] || 'Unknown';
@@ -464,15 +618,58 @@ async function run() {
 			return a.timestamp.getTime() - b.timestamp.getTime();
 		});
 		
-		var updates = reorderPlayerTransactions(playerTxns, playerId, playerName, cutsOrderMap, regimes, verbose);
+		var ownershipUpdates = fixOwnershipViolations(playerTxns, playerId, playerName, regimes, verbose);
 		
-		if (updates.length > 0) {
-			playersFixed++;
-			totalUpdates += updates.length;
+		if (ownershipUpdates.length > 0) {
+			totalOwnershipFixes += ownershipUpdates.length;
 			
 			if (verbose || dryRun) {
-				console.log(playerName + ': ' + updates.length + ' timestamp adjustments');
-				updates.forEach(function(u) {
+				console.log(playerName + ': ' + ownershipUpdates.length + ' ownership violations');
+				ownershipUpdates.forEach(function(u) {
+					var year = u.oldTime.getFullYear();
+					var fname = getRegimeName(regimes, u.txn.franchiseId, year);
+					console.log('  ' + u.txn.type + ' (' + fname + '): ' + 
+						u.oldTime.toISOString() + ' → ' + u.newTime.toISOString() +
+						' [' + u.reason + ']');
+				});
+			}
+			
+			if (!dryRun) {
+				for (var i = 0; i < ownershipUpdates.length; i++) {
+					var u = ownershipUpdates[i];
+					await Transaction.updateOne(
+						{ _id: u.txn._id },
+						{ $set: { timestamp: u.newTime } }
+					);
+					// Update our in-memory copy too for phase 2
+					u.txn.timestamp = u.newTime;
+				}
+			}
+		}
+	}
+	
+	console.log('Phase 1 complete: ' + totalOwnershipFixes + ' ownership fixes\n');
+	
+	// Phase 2: Fix same-day ordering issues
+	console.log('Phase 2: Fixing same-day ordering issues...');
+	for (var playerId in txnsByPlayer) {
+		var playerTxns = txnsByPlayer[playerId];
+		var playerName = playerNames[playerId] || 'Unknown';
+		
+		// Re-sort after phase 1 updates
+		playerTxns.sort(function(a, b) {
+			return a.timestamp.getTime() - b.timestamp.getTime();
+		});
+		
+		var sameDayUpdates = reorderPlayerTransactions(playerTxns, playerId, playerName, cutsOrderMap, regimes, verbose);
+		
+		if (sameDayUpdates.length > 0) {
+			playersFixed++;
+			totalSameDayFixes += sameDayUpdates.length;
+			
+			if (verbose || dryRun) {
+				console.log(playerName + ': ' + sameDayUpdates.length + ' same-day adjustments');
+				sameDayUpdates.forEach(function(u) {
 					var year = u.oldTime.getFullYear();
 					var fname = getRegimeName(regimes, u.txn.franchiseId, year);
 					console.log('  ' + u.txn.type + ' (' + fname + '): ' + 
@@ -481,8 +678,8 @@ async function run() {
 			}
 			
 			if (!dryRun) {
-				for (var i = 0; i < updates.length; i++) {
-					var u = updates[i];
+				for (var i = 0; i < sameDayUpdates.length; i++) {
+					var u = sameDayUpdates[i];
 					await Transaction.updateOne(
 						{ _id: u.txn._id },
 						{ $set: { timestamp: u.newTime } }
@@ -493,8 +690,9 @@ async function run() {
 	}
 	
 	console.log('\n=== Summary ===');
-	console.log('Players with reordering: ' + playersFixed);
-	console.log('Total timestamp adjustments: ' + totalUpdates);
+	console.log('Ownership violation fixes: ' + totalOwnershipFixes);
+	console.log('Same-day ordering fixes: ' + totalSameDayFixes);
+	console.log('Total adjustments: ' + (totalOwnershipFixes + totalSameDayFixes));
 	
 	await mongoose.disconnect();
 }
