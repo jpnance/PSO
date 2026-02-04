@@ -1,4 +1,4 @@
-Libre Para Luchar Por Amor
+Patrick
 QB 	Kirk Cousins
 RB 	Melvin Gordon
 RB 	Todd Gurley
@@ -35,7 +35,7 @@ BE 	Terrance West
 BE 	Trey Flowers
 BE 	Antonio Gates
 
-Go frick your self, San Diego
+Koci/Mueller
 QB 	Andy Dalton
 RB 	Theo Riddick
 RB 	Darren McFadden
@@ -72,7 +72,7 @@ BE 	Mitchell Trubisky
 BE 	Pierre Garcon
 BE 	Rodney Adams
 
-I don't speak Telenovela
+Syed/Terence
 QB 	Aaron Rodgers
 RB 	David Johnson
 RB 	Ezekiel Elliott
@@ -109,7 +109,7 @@ BE 	Ty Montgomery
 BE 	Tyrell Williams
 BE 	Zach Cunningham
 
-Devonta Go To Pleasure Town
+John/Zach
 QB 	Blake Bortles
 RB 	Lamar Miller
 RB 	Danny Woodhead
@@ -133,7 +133,7 @@ BE 	Danny Amendola
 BE 	Leonte Carroo
 BE 	Pharoh Cooper
 
-Everyday I'm Russellin'
+Trevor
 QB 	Marcus Mariota
 RB 	Bilal Powell
 RB 	C.J. Prosise
@@ -167,7 +167,7 @@ BE 	Tom Brady
 BE 	Vic Beasley Jr.
 BE 	Zach Brown
 
-Hunter Hearst Henry
+Keyon
 QB 	Philip Rivers
 RB 	Duke Johnson Jr.
 RB 	Kenneth Dixon
@@ -203,7 +203,7 @@ BE 	Reuben Foster
 BE 	Taywan Taylor
 BE 	Tony Jefferson
 
-San Diego Super Chargers
+Brett/Luke
 QB 	Tyrod Taylor
 RB 	DeMarco Murray
 RB 	Thomas Rawls
@@ -234,7 +234,7 @@ BE 	Robert Kelley
 BE 	Taco Charlton
 BE 	Takkarist McKinley
 
-SAVAGE LEVEL TEN!!
+Daniel
 QB 	Matt Ryan
 RB 	Kenyan Drake
 RB 	Tyler Ervin
@@ -271,7 +271,7 @@ BE 	Tom Savage
 BE 	Tyler Eifert
 BE 	De'Angelo Henderson
 
-Smells Like Big Foot's Richard
+James/Charles
 QB 	EJ Manuel
 RB 	Mark Ingram
 RB 	Derrick Henry
@@ -307,7 +307,7 @@ BE 	Ryan Tannehill
 BE 	Tre'Davious White
 BE 	Wayne Gallman
 
-The Bad Manning Punted Baxter
+Schex/Jeff
 QB 	Jared Goff
 RB 	Jay Ajayi
 RB 	Paul Perkins
@@ -344,7 +344,7 @@ BE 	Spencer Ware
 BE 	T.J. Watt
 BE 	Tim Hightower
 
-The Young and The Wrestlers
+Quinn
 QB 	Carson Wentz
 RB 	Jordan Howard
 RB 	Ameer Abdullah
@@ -381,7 +381,7 @@ BE 	Emmanuel Sanders
 BE 	Sammy Watkins
 BE 	Mike Gillislee
 
-As The nWo Turns
+Mitch
 QB 	Andrew Luck
 RB 	DeAndre Washington
 RB 	Damien Williams
