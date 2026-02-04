@@ -119,8 +119,8 @@ function parseContractsFile(filePath) {
 		var endStr = parts[5].trim();
 		var salaryStr = parts[6].trim();
 		
-		// Skip free agents
-		if (!owner || startStr === 'FA') continue;
+		// Skip unowned players (free agents in the pool)
+		if (!owner) continue;
 		
 		var startYear = startStr ? parseInt(startStr, 10) : null;
 		var endYear = endStr ? parseInt(endStr, 10) : null;

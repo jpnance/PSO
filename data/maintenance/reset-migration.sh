@@ -282,9 +282,18 @@ else
 fi
 echo ""
 
-# Step 10c: Seed FA pickups from cuts data (2009-2019)
+# Step 10c: Seed FA reacquisitions (players picked up after someone else cut them)
+echo "=== Step 10c: Seeding FA reacquisitions ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/fa-reacquisition.js"
+else
+    docker compose run --rm web node data/seed/fa-reacquisition.js
+fi
+echo ""
+
+# Step 10d: Seed FA pickups from cuts data (2009-2019)
 # These are players picked up and cut within the same season (before postseason snapshot)
-echo "=== Step 10c: Seeding FA pickups from cuts ==="
+echo "=== Step 10d: Seeding FA pickups from cuts ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/fa-cuts.js"
 else
@@ -292,9 +301,9 @@ else
 fi
 echo ""
 
-# Step 10d: Seed cuts (enriches FA drops + creates offseason/in-season cuts)
+# Step 10e: Seed cuts (enriches FA drops + creates offseason/in-season cuts)
 # Must run AFTER FA pickups so timestamps can be cross-referenced
-echo "=== Step 10d: Seeding cuts ==="
+echo "=== Step 10e: Seeding cuts ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
 else
@@ -349,12 +358,39 @@ for year in 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 202
 done
 echo ""
 
+# Step 14b: Seed auction wins from cuts data (players cut with same-year contracts)
+echo "=== Step 14b: Seeding auction wins from cuts ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/auction-cuts.js"
+else
+    docker compose run --rm web node data/seed/auction-cuts.js
+fi
+echo ""
+
+# Step 14c: Seed RFA rights conversions (contracts expiring into RFA rights)
+echo "=== Step 14c: Seeding RFA rights conversions ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/rfa-conversions.js"
+else
+    docker compose run --rm web node data/seed/rfa-conversions.js
+fi
+echo ""
+
 # Step 15: Backfill positions for historical players
 echo "=== Step 15: Backfilling positions ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/maintenance/backfill-positions.js"
 else
     docker compose run --rm web node data/maintenance/backfill-positions.js
+fi
+echo ""
+
+# Step 16: Reorder transactions for logical consistency
+echo "=== Step 16: Reordering transactions ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/maintenance/reorder-transactions.js"
+else
+    docker compose run --rm web node data/maintenance/reorder-transactions.js
 fi
 echo ""
 
