@@ -435,8 +435,11 @@ async function run() {
 			var player = await resolvePlayer(cut.playerName, context, cutYear, cut.position, skipAmbiguous);
 			
 			if (player && player.quit) {
-				userQuit = true;
-				break;
+				console.log('\nQuitting...');
+				resolver.save();
+				if (rl) rl.close();
+				await mongoose.disconnect();
+				process.exit(130); // 130 = interrupted by Ctrl+C convention
 			}
 			
 			if (!player) {

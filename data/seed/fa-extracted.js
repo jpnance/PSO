@@ -275,10 +275,11 @@ async function run() {
 	}
 	
 	// Clear existing extracted-sourced FA transactions if requested
+	// Note: These use 'snapshot' source since extracted data comes from snapshot sources
 	if (clearFirst && !dryRun) {
 		var clearQuery = {
 			type: 'fa',
-			source: 'extracted'
+			source: 'snapshot'
 		};
 		if (targetYear) {
 			clearQuery.timestamp = {
@@ -327,9 +328,11 @@ async function run() {
 			
 			// User requested quit
 			if (player && player.quit) {
-				console.log('\nUser quit. Saving progress...');
-				userQuit = true;
-				break;
+				console.log('\nQuitting...');
+				resolver.save();
+				if (rl) rl.close();
+				await mongoose.disconnect();
+				process.exit(130); // 130 = interrupted by Ctrl+C convention
 			}
 			
 			if (!player) {
@@ -371,7 +374,7 @@ async function run() {
 						type: 'fa',
 						franchiseId: franchiseId,
 						timestamp: timestamp,
-						source: 'extracted',
+						source: 'snapshot',
 						adds: [{
 							playerId: player._id,
 							salary: entry.salary || null,
