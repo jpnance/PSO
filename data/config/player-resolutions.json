@@ -127,6 +127,9 @@
   "adrian peterson|2016|type:cut|keyon": {
     "sleeperId": "184"
   },
+  "adrian peterson|2016|type:fa|john/zach": {
+    "sleeperId": "184"
+  },
   "adrian peterson|2016|type:trade|john/zach": {
     "sleeperId": "184"
   },
@@ -595,6 +598,9 @@
   "camryn bynum": {
     "sleeperId": "7715"
   },
+  "cardale jones|2016|type:trade|brett/luke": {
+    "sleeperId": "3210"
+  },
   "cardale jones|2016|type:trade|jake/luke": {
     "sleeperId": "3210"
   },
@@ -901,6 +907,9 @@
     "name": "Curtis Painter"
   },
   "curtis samuel|2019|type:trade|keyon": {
+    "sleeperId": "4082"
+  },
+  "curtis samuel|2020|type:trade|brett": {
     "sleeperId": "4082"
   },
   "curtis samuel|2020|type:trade|brett/luke": {
@@ -1282,6 +1291,9 @@
     "sleeperId": "147"
   },
   "deshaun watson|2019|type:trade|quinn": {
+    "sleeperId": "4017"
+  },
+  "deshaun watson|2020|type:trade|brett": {
     "sleeperId": "4017"
   },
   "deshaun watson|2020|type:trade|brett/luke": {
@@ -1744,7 +1756,7 @@
   "jairus byrd|2013|type:trade|syed": {
     "sleeperId": "332"
   },
-  "jake delhomme|2008|type:trade|schex": {
+  "jake delhomme": {
     "sleeperId": null,
     "name": "Jake Delhomme"
   },
@@ -1813,6 +1825,9 @@
     "name": "James Hardy"
   },
   "james harrison|2008|type:trade|schex": {
+    "sleeperId": "48"
+  },
+  "james harrison|2008|type:trade|schexes": {
     "sleeperId": "48"
   },
   "james laurinaitis|2009|type:trade|jake/luke": {
@@ -2017,6 +2032,9 @@
   },
   "joe williams|2017|type:trade|schex/jeff": {
     "sleeperId": "4042"
+  },
+  "joey bosa|2016|type:trade|brett/luke": {
+    "sleeperId": "3156"
   },
   "joey bosa|2016|type:trade|jake/luke": {
     "sleeperId": "3156"
@@ -3407,6 +3425,9 @@
     "sleeperId": "2379"
   },
   "owen daniels|2008|type:trade|schex": {
+    "sleeperId": "64"
+  },
+  "owen daniels|2008|type:trade|schexes": {
     "sleeperId": "64"
   },
   "owen daniels|2009|type:trade|daniel": {

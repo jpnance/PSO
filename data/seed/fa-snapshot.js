@@ -179,6 +179,7 @@ function getTradedInPlayers(trades, season) {
 		var tradeYear = trade.date.getFullYear();
 		if (tradeYear !== season) return;
 		
+		// In trade facts (from WordPress), each party lists what they RECEIVE
 		trade.parties.forEach(function(party) {
 			var owner = party.owner;
 			if (!owner) return;
