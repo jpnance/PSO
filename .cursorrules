@@ -363,6 +363,47 @@ Visit `/components` to see a live showcase of all mixins and design tokens.
 
 ## Data Notes
 
+### Regime Lookups
+
+Franchises have owners that change over time. The `Regime` model tracks ownership via a `tenures` array:
+
+```javascript
+{
+  displayName: "Patrick",
+  tenures: [
+    { franchiseId: ObjectId("..."), startSeason: 2008, endSeason: 2011 },
+    { franchiseId: ObjectId("..."), startSeason: 2014, endSeason: null }
+  ]
+}
+```
+
+**To find who owned a franchise in a given season:**
+```javascript
+function getHistoricalRegime(regimes, franchiseId, season) {
+  var regime = regimes.find(function(r) {
+    return r.tenures && r.tenures.some(function(t) {
+      return t.franchiseId.toString() === franchiseId.toString() &&
+        t.startSeason <= season &&
+        (t.endSeason === null || t.endSeason >= season);
+    });
+  });
+  return regime ? regime.displayName : null;
+}
+```
+
+**Common pitfalls:**
+- Don't assume `regime.franchiseId` exists at the top level — it's inside `tenures[]`
+- Don't assume `startYear`/`endYear` — the fields are `startSeason`/`endSeason`
+- Owner names in historical data (cuts sheet, snapshots) may use 2025 regime names regardless of the actual year
+
+### Trade Facts Structure
+
+WordPress trade posts list what each party **receives**. In `trade-facts.js`:
+- `trade.parties[i].players` = players that party i **receives**
+- `trade.parties[i].cash` = cash that party i **receives**
+
+In a 2-party trade, if party A receives player X, then party B gave player X.
+
 ### Game Types
 The `Game` model has a `type` field with these values:
 - `regular` — Regular season games (weeks 1-15)
