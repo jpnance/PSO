@@ -8,7 +8,7 @@ else
 		each result in players
 			if result.status === 'rostered'
 				//- Rostered player - link to player page
-				a.search-result(href='/players/' + result._id)
+				a.search-result(href='/players/' + result.slug)
 					div.search-result-main
 						span.search-result-name= result.name
 						+positionBadge(result.positions)
@@ -18,7 +18,7 @@ else
 							span.search-result-contract  · #{result.contractDisplay}
 			else if result.status === 'rfa'
 				//- RFA - link to player page
-				a.search-result.search-result-rfa(href='/players/' + result._id)
+				a.search-result.search-result-rfa(href='/players/' + result.slug)
 					div.search-result-main
 						span.search-result-name= result.name
 						+positionBadge(result.positions)
@@ -27,7 +27,7 @@ else
 						span.search-result-contract  · RFA
 			else
 				//- Unrestricted free agent - link to player page
-				a.search-result.search-result-ufa(href='/players/' + result._id)
+				a.search-result.search-result-ufa(href='/players/' + result.slug)
 					div.search-result-main
 						span.search-result-name= result.name
 						+positionBadge(result.positions)
