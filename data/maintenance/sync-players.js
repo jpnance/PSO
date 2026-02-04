@@ -31,8 +31,10 @@ function hasRelevantPosition(player) {
 	});
 }
 
-// Generate URL-friendly slug from name (same logic as Player model)
-function generateSlug(name) {
+var crypto = require('crypto');
+
+// Generate URL-friendly base slug from name
+function generateBaseSlug(name) {
 	if (!name) return null;
 	return name
 		.toLowerCase()
@@ -41,6 +43,20 @@ function generateSlug(name) {
 		.replace(/\s+/g, '-')
 		.replace(/-+/g, '-')
 		.replace(/^-|-$/g, '');
+}
+
+// Generate 4-char hash
+function generateHash(str) {
+	if (!str) return null;
+	return crypto.createHash('md5').update(str).digest('hex').substring(0, 4);
+}
+
+// Generate unique slug: base-slug + 4-char hash of sleeperId
+function generateUniqueSlug(name, sleeperId) {
+	var baseSlug = generateBaseSlug(name);
+	if (!baseSlug) return null;
+	var hash = generateHash(sleeperId);
+	return baseSlug + '-' + hash;
 }
 
 /**
@@ -106,24 +122,36 @@ async function sync() {
 			continue;
 		}
 
+		var uniqueSlug = generateUniqueSlug(p.full_name, p.player_id);
+		
+		// Use aggregation pipeline update to prepend new slug if not already present
+		// This keeps old slugs for backwards compatibility while making current name primary
 		operations.push({
 			updateOne: {
 				filter: { sleeperId: p.player_id },
-				update: {
-					$set: {
-						sleeperId: p.player_id,
-						name: p.full_name,
-						slug: generateSlug(p.full_name),
-						positions: p.fantasy_positions || [],
-						college: p.college || null,
-						rookieYear: getRookieYear(p),
-						estimatedRookieYear: getEstimatedRookieYear(p),
-						active: p.active || false,
-						team: p.team || null,
-						searchRank: p.search_rank || null
+				update: [
+					{
+						$set: {
+							sleeperId: p.player_id,
+							name: p.full_name,
+							positions: p.fantasy_positions || [],
+							college: p.college || null,
+							rookieYear: getRookieYear(p),
+							estimatedRookieYear: getEstimatedRookieYear(p),
+							active: p.active || false,
+							team: p.team || null,
+							searchRank: p.search_rank || null,
+							// Prepend new slug if not already in array, otherwise keep array as-is
+							slugs: {
+								$cond: {
+									if: { $in: [uniqueSlug, { $ifNull: ['$slugs', []] }] },
+									then: '$slugs',
+									else: { $concatArrays: [[uniqueSlug], { $ifNull: ['$slugs', []] }] }
+								}
+							}
+						}
 					}
-					// Note: `notes` is NOT included, so it won't be overwritten
-				},
+				],
 				upsert: true
 			}
 		});

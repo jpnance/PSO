@@ -47,15 +47,15 @@ exports.rfa = async function(request, response) {
 			.filter(function(c) { return c.playerId; })
 			.map(function(c) {
 				var franchiseId = c.franchiseId ? c.franchiseId._id.toString() : null;
-				return {
-					_id: c.playerId._id,
-					name: c.playerId.name,
-					slug: c.playerId.slug,
-					positions: c.playerId.positions || [],
-					team: c.playerId.team,
-					franchise: franchiseId ? franchiseDisplayNames[franchiseId] || 'Unknown' : 'Unknown',
-					franchiseRosterId: c.franchiseId ? c.franchiseId.rosterId : null
-				};
+			return {
+				_id: c.playerId._id,
+				name: c.playerId.name,
+				slug: c.playerId.slugs && c.playerId.slugs[0],
+				positions: c.playerId.positions || [],
+				team: c.playerId.team,
+				franchise: franchiseId ? franchiseDisplayNames[franchiseId] || 'Unknown' : 'Unknown',
+				franchiseRosterId: c.franchiseId ? c.franchiseId.rosterId : null
+			};
 			})
 			.sort(function(a, b) {
 				// Sort by position, then by name

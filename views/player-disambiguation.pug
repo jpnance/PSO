@@ -16,7 +16,7 @@ block content
 		
 		div.list-group
 			each player in players
-				a.list-group-item.list-group-item-action.d-flex.align-items-center(href='/players/' + player._id)
+				a.list-group-item.list-group-item-action.d-flex.align-items-center(href='/players/' + player.slug)
 					div.mr-3
 						+positionBadge(player.positions)
 					div.flex-grow-1

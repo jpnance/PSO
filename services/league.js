@@ -334,19 +334,19 @@ async function getFranchise(franchiseId, currentSeason) {
 				return salary - buyOut;
 			}
 			
-			return {
-				_id: c.playerId ? c.playerId._id : null,
-				name: c.playerId ? c.playerId.name : 'Unknown',
-				slug: c.playerId ? c.playerId.slug : null,
-				positions: c.playerId ? c.playerId.positions : [],
-				salary: salary,
-				startYear: startYear,
-				endYear: endYear,
-				yearsLeft: yearsLeft,
-				recoverable: getRecoverable(currentSeason),
-				recoverable1: getRecoverable(currentSeason + 1),
-				recoverable2: getRecoverable(currentSeason + 2)
-			};
+		return {
+			_id: c.playerId ? c.playerId._id : null,
+			name: c.playerId ? c.playerId.name : 'Unknown',
+			slug: c.playerId && c.playerId.slugs ? c.playerId.slugs[0] : null,
+			positions: c.playerId ? c.playerId.positions : [],
+			salary: salary,
+			startYear: startYear,
+			endYear: endYear,
+			yearsLeft: yearsLeft,
+			recoverable: getRecoverable(currentSeason),
+			recoverable1: getRecoverable(currentSeason + 1),
+			recoverable2: getRecoverable(currentSeason + 2)
+		};
 		})
 		.sort(function(a, b) {
 			var posA = getPositionIndex(a.positions);
@@ -357,13 +357,13 @@ async function getFranchise(franchiseId, currentSeason) {
 	
 	var rfaRights = rfaContracts
 		.map(function(c) {
-			return {
-				_id: c.playerId ? c.playerId._id : null,
-				name: c.playerId ? c.playerId.name : 'Unknown',
-				slug: c.playerId ? c.playerId.slug : null,
-				positions: c.playerId ? c.playerId.positions : [],
-				salary: null
-			};
+		return {
+			_id: c.playerId ? c.playerId._id : null,
+			name: c.playerId ? c.playerId.name : 'Unknown',
+			slug: c.playerId && c.playerId.slugs ? c.playerId.slugs[0] : null,
+			positions: c.playerId ? c.playerId.positions : [],
+			salary: null
+		};
 		})
 		.sort(function(a, b) {
 			var posA = getPositionIndex(a.positions);
@@ -965,46 +965,46 @@ async function search(request, response) {
 				var regime = regimeByFranchise[contract.franchiseId.toString()];
 				var franchise = franchiseById[contract.franchiseId.toString()];
 				
-				return {
-					type: 'player',
-					_id: player._id,
-					name: player.name,
-					slug: player.slug,
-					positions: player.positions || [],
-					franchiseId: franchise ? franchise.rosterId : null,
-					franchiseName: regime ? regime.displayName : 'Unknown',
-					contractDisplay: formatContractDisplay(contract.salary, contract.startYear, contract.endYear),
-					status: 'rostered'
-				};
+			return {
+				type: 'player',
+				_id: player._id,
+				name: player.name,
+				slug: player.slugs ? player.slugs[0] : null,
+				positions: player.positions || [],
+				franchiseId: franchise ? franchise.rosterId : null,
+				franchiseName: regime ? regime.displayName : 'Unknown',
+				contractDisplay: formatContractDisplay(contract.salary, contract.startYear, contract.endYear),
+				status: 'rostered'
+			};
 			} else if (contract && contract.salary === null) {
 				// Player is an RFA (contract exists but salary is null)
 				var regime = regimeByFranchise[contract.franchiseId.toString()];
 				var franchise = franchiseById[contract.franchiseId.toString()];
 				
-				return {
-					type: 'player',
-					_id: player._id,
-					name: player.name,
-					slug: player.slug,
-					positions: player.positions || [],
-					franchiseId: franchise ? franchise.rosterId : null,
-					franchiseName: regime ? regime.displayName : 'Unknown',
-					contractDisplay: null,
-					status: 'rfa'
-				};
+			return {
+				type: 'player',
+				_id: player._id,
+				name: player.name,
+				slug: player.slugs ? player.slugs[0] : null,
+				positions: player.positions || [],
+				franchiseId: franchise ? franchise.rosterId : null,
+				franchiseName: regime ? regime.displayName : 'Unknown',
+				contractDisplay: null,
+				status: 'rfa'
+			};
 			} else {
 				// Player is an unrestricted free agent (no contract)
-				return {
-					type: 'player',
-					_id: player._id,
-					name: player.name,
-					slug: player.slug,
-					positions: player.positions || [],
-					franchiseId: null,
-					franchiseName: null,
-					contractDisplay: null,
-					status: 'ufa'
-				};
+			return {
+				type: 'player',
+				_id: player._id,
+				name: player.name,
+				slug: player.slugs ? player.slugs[0] : null,
+				positions: player.positions || [],
+				franchiseId: null,
+				franchiseName: null,
+				contractDisplay: null,
+				status: 'ufa'
+			};
 			}
 		});
 		

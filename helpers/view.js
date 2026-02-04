@@ -1029,12 +1029,12 @@ function formatTime(d) {
 
 /**
  * Generate URL path for a player
- * @param {Object} player - player object with slug
- * @returns {string} e.g. "/players/josh-allen"
+ * @param {Object} player - player object with slugs array
+ * @returns {string} e.g. "/players/josh-allen-a3f2"
  */
 function playerUrl(player) {
-	if (!player || !player.slug) return '/players';
-	return '/players/' + player.slug;
+	if (!player || !player.slugs || player.slugs.length === 0) return '/players';
+	return '/players/' + player.slugs[0];
 }
 
 module.exports = {

@@ -356,7 +356,7 @@ async function renderDisambiguation(request, response, slug, players) {
 		return {
 			_id: p._id,
 			name: p.name,
-			slug: p.slug,
+			slug: p.slugs ? p.slugs[0] : null,
 			positions: p.positions,
 			details: details.join(' · '),
 			status: status,
