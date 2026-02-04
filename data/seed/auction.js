@@ -30,6 +30,65 @@ var resolver = require('../utils/player-resolver');
 
 mongoose.connect(process.env.MONGODB_URI);
 
+/**
+ * Find who holds RFA rights for a player at auction time.
+ * Returns { holderId, conversionTx } or null if no RFA rights exist.
+ * 
+ * RFA rights are only valid for the immediately following auction.
+ * Conversion happens Jan 15 of year Y, auction is Aug of year Y.
+ * So we only look for conversions from the same calendar year.
+ */
+async function findRfaHolder(playerId, auctionTimestamp) {
+	var auctionYear = auctionTimestamp.getUTCFullYear();
+	
+	// Find rfa-rights-conversion for this player from this calendar year
+	var conversion = await Transaction.findOne({
+		type: 'rfa-rights-conversion',
+		playerId: playerId,
+		timestamp: {
+			$gte: new Date(Date.UTC(auctionYear, 0, 1)),
+			$lt: auctionTimestamp
+		}
+	}).sort({ timestamp: -1 });
+	
+	if (!conversion) {
+		return null;
+	}
+	
+	// Start with the franchise that received RFA rights
+	var currentHolder = conversion.franchiseId;
+	
+	// Look for trades that transferred these RFA rights after conversion but before auction
+	var trades = await Transaction.find({
+		type: 'trade',
+		'parties.receives.rfaRights.playerId': playerId,
+		timestamp: {
+			$gt: conversion.timestamp,
+			$lt: auctionTimestamp
+		}
+	}).sort({ timestamp: 1 });
+	
+	// Trace through each trade
+	for (var i = 0; i < trades.length; i++) {
+		var trade = trades[i];
+		for (var j = 0; j < trade.parties.length; j++) {
+			var party = trade.parties[j];
+			var hasRfaRights = party.receives.rfaRights && party.receives.rfaRights.some(function(r) {
+				return r.playerId.toString() === playerId.toString();
+			});
+			if (hasRfaRights) {
+				currentHolder = party.franchiseId;
+				break;
+			}
+		}
+	}
+	
+	return {
+		holderId: currentHolder,
+		conversionTx: conversion
+	};
+}
+
 // Normalize player name for matching
 function normalizeForMatch(name) {
 	return resolver.normalizePlayerName(name);
@@ -421,17 +480,39 @@ async function run() {
 			stats.skippedExisting++;
 		} else {
 			var auctionOwnerName = unsignedTradedBy[playerKey] || c.owner;
-			console.log('  + auction-ufa: ' + playerResult.name + ' → ' + auctionOwnerName);
+			
+			// Determine auction type: check for RFA rights
+			var rfaInfo = await findRfaHolder(playerId, auctionTimestamp);
+			var auctionType = 'auction-ufa';
+			var rfaHolderId = null;
+			
+			if (rfaInfo) {
+				rfaHolderId = rfaInfo.holderId;
+				if (rfaInfo.holderId.toString() === auctionFranchiseId.toString()) {
+					auctionType = 'auction-rfa-matched';
+				} else {
+					auctionType = 'auction-rfa-unmatched';
+				}
+			}
+			
+			console.log('  + ' + auctionType + ': ' + playerResult.name + ' → ' + auctionOwnerName);
 			
 			if (!dryRun) {
-				await Transaction.create({
-					type: 'auction-ufa',
+				var txData = {
+					type: auctionType,
 					timestamp: auctionTimestamp,
 					source: 'snapshot',
 					franchiseId: auctionFranchiseId,
 					playerId: playerId,
 					salary: c.salary
-				});
+				};
+				
+				// For RFA auctions, track the RFA holder
+				if (rfaHolderId) {
+					txData.rfaHolderId = rfaHolderId;
+				}
+				
+				await Transaction.create(txData);
 			}
 			stats.auctionCreated++;
 		}
