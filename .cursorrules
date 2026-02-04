@@ -404,6 +404,30 @@ WordPress trade posts list what each party **receives**. In `trade-facts.js`:
 
 In a 2-party trade, if party A receives player X, then party B gave player X.
 
+### Player Name Resolution
+
+When matching player names from external sources (trades, cuts, snapshots) to the database, always use the player resolver (`data/utils/player-resolver.js`):
+
+```javascript
+var resolver = require('../utils/player-resolver');
+
+// Normalize names to strip suffixes (Jr., III, II, V, etc.)
+var normalized = resolver.normalizePlayerName('Odell Beckham Jr.'); // -> 'odell beckham'
+
+// Build lookup maps using normalized names
+var playerByName = {};
+players.forEach(function(p) {
+  playerByName[resolver.normalizePlayerName(p.name)] = p;
+});
+
+// Look up using normalized input
+var dbPlayer = playerByName[resolver.normalizePlayerName(tradeName)];
+```
+
+For ambiguous matches or missing players, the resolver supports interactive disambiguation with `player-resolutions.json`.
+
+**Never match player names with raw `.toLowerCase()` comparisons** — external sources use inconsistent naming (suffixes, nicknames, typos).
+
 ### Game Types
 The `Game` model has a `type` field with these values:
 - `regular` — Regular season games (weeks 1-15)
