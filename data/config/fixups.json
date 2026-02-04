@@ -50,8 +50,24 @@
 			"notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back."
 		},
 		{
+			"tradeId": 360,
+			"notes": "This trade was originally agreed to by the Brett/Luke regime; it predates Luke's departure to take over the Syed/Kuan franchise."
+		},
+		{
+			"tradeId": 367,
+			"notes": "This trade was originally agreed to by the Brett/Luke regime; it predates Luke's departure to take over the Syed/Kuan franchise."
+		},
+		{
+			"tradeId": 372,
+			"notes": "This trade was originally agreed to by the Syed/Kuan regime; it predates their departure from the league (and Luke's assumption of their franchise) a few weeks later."
+		},
+		{
 			"tradeId": 485,
 			"notes": "Schex originally owned both Khalil Herbert and Montrell Washington; Justin originally owned Dallas Goedert. Keyon did not give up an asset in this trade."
+		},
+		{
+			"tradeId": 527,
+			"notes": "This trade was originally agreed to by the Mitch/Mike regime; Mike would take over Trevor's franchise a few days later."
 		}
 	],
 	"tradeCashCorrections": [
