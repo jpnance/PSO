@@ -370,13 +370,15 @@ async function run() {
 				try {
 					await Transaction.create({
 						type: 'fa',
-						playerId: player._id,
 						franchiseId: franchiseId,
 						timestamp: timestamp,
-						source: 'cuts',  // Different source to distinguish from snapshot-based
-						salary: pickup.salary || null,
-						startYear: null,
-						endYear: pickup.endYear || year
+						source: 'cuts',
+						adds: [{
+							playerId: player._id,
+							salary: pickup.salary || null,
+							startYear: null,
+							endYear: pickup.endYear || year
+						}]
 					});
 					yearCreated++;
 				} catch (err) {

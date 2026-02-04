@@ -263,17 +263,8 @@ else
 fi
 echo ""
 
-# Step 10: Seed cuts (enriches FA drops + creates offseason cuts)
-echo "=== Step 10: Seeding cuts ==="
-if [ "$DRY_RUN" = true ]; then
-    echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
-else
-    docker compose run --rm -it web node data/seed/cuts.js --auto-historical-before=2016
-fi
-echo ""
-
-# Step 10b: Seed FA pickups from snapshot diffs (2014-2019)
-echo "=== Step 10b: Seeding FA pickups from snapshots ==="
+# Step 10: Seed FA pickups from snapshot diffs (2014-2019)
+echo "=== Step 10: Seeding FA pickups from snapshots ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/fa-snapshot.js"
 else
@@ -281,13 +272,23 @@ else
 fi
 echo ""
 
-# Step 10c: Seed FA pickups from cuts data (2009-2019)
+# Step 10b: Seed FA pickups from cuts data (2009-2019)
 # These are players picked up and cut within the same season (before postseason snapshot)
-echo "=== Step 10c: Seeding FA pickups from cuts ==="
+echo "=== Step 10b: Seeding FA pickups from cuts ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/fa-cuts.js"
 else
     docker compose run --rm web node data/seed/fa-cuts.js
+fi
+echo ""
+
+# Step 10c: Seed cuts (enriches FA drops + creates offseason/in-season cuts)
+# Must run AFTER FA pickups so timestamps can be cross-referenced
+echo "=== Step 10c: Seeding cuts ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/cuts.js --auto-historical-before=2016"
+else
+    docker compose run --rm -it web node data/seed/cuts.js --auto-historical-before=2016
 fi
 echo ""
 

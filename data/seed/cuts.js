@@ -48,6 +48,24 @@ var AUCTION_DATES = {
 	2025: new Date('2025-08-23')
 };
 
+// First in-season cut row (1-indexed) for historical years.
+// Cuts before this row are offseason (cut day timestamp).
+// Cuts at or after this row are in-season (late-season timestamp).
+// 0 means all cuts are in-season for that year.
+var IN_SEASON_BOUNDARY = {
+	2009: 0,
+	2010: 41,
+	2011: 31,
+	2012: 39,
+	2013: 35,
+	2014: 42, // Celek/Bray still on Schex's team suggests he held on cut day
+	2015: 30, // Kenbrell Thompkins not in Daniel's contracts email
+	2016: 59,
+	2017: 33,
+	2018: 42,
+	2019: 58
+};
+
 /**
  * Get the conventional cut day timestamp for a given year.
  * Cut day is one week before the auction, at 12:00:33 AM ET (midnight with :33 for imprecise).
@@ -63,6 +81,49 @@ function getCutDayTimestamp(year) {
 	}
 	// Fallback: mid-August
 	return new Date(Date.UTC(year, 7, 15, 5, 0, 33));
+}
+
+/**
+ * Get the conventional late-season timestamp for in-season cuts.
+ * Uses December 15 at 12:00:33 PM ET as a conventional date.
+ */
+function getLateSeasonTimestamp(year) {
+	// December 15 at 12:00:33 PM ET (17:00:33 UTC, EST not DST)
+	return new Date(Date.UTC(year, 11, 15, 17, 0, 33));
+}
+
+/**
+ * Get timestamp just before a given date (same day, but at midnight ET).
+ * Used for cuts that must precede an FA pickup.
+ */
+function getTimestampJustBefore(date) {
+	// Same day at 00:00:33 ET
+	// If date is in DST (Apr-Nov), ET = UTC-4, so 04:00:33 UTC
+	// If date is in EST (Nov-Mar), ET = UTC-5, so 05:00:33 UTC
+	// September is DST
+	var d = new Date(date);
+	return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 4, 0, 33));
+}
+
+/**
+ * Check if a cut row is in-season based on the boundary.
+ * @param {number} year - The cut year
+ * @param {number} rowIndex - 0-based row index within the year's cuts
+ * @returns {boolean} True if in-season, false if offseason
+ */
+function isInSeasonCut(year, rowIndex) {
+	var boundary = IN_SEASON_BOUNDARY[year];
+	if (boundary === undefined) {
+		// Years not in the boundary list (2020+) use modern data sources
+		// that have accurate timestamps, so this shouldn't be called
+		return false;
+	}
+	if (boundary === 0) {
+		// All cuts are in-season
+		return true;
+	}
+	// boundary is 1-indexed, rowIndex is 0-indexed
+	return rowIndex >= (boundary - 1);
 }
 
 // Global state
@@ -313,6 +374,31 @@ async function run() {
 	// Load cuts
 	var cuts = loadCuts(args.yearStart, args.yearEnd);
 	console.log('Loaded', cuts.length, 'cuts from Sheets');
+	
+	// Load FA pickups for timestamp cross-referencing
+	// Build a map: playerId -> [{ franchiseId, timestamp }]
+	var faPickups = await Transaction.find({
+		type: 'fa',
+		'adds.0': { $exists: true }  // Has at least one add (pickup)
+	}).populate('adds.playerId', 'name');
+	
+	var faPickupsByPlayer = {};
+	faPickups.forEach(function(tx) {
+		tx.adds.forEach(function(add) {
+			if (!add.playerId) return;
+			var playerId = add.playerId._id.toString();
+			var year = tx.timestamp.getFullYear();
+			var key = playerId + '|' + year;
+			if (!faPickupsByPlayer[key]) {
+				faPickupsByPlayer[key] = [];
+			}
+			faPickupsByPlayer[key].push({
+				franchiseId: tx.franchiseId.toString(),
+				timestamp: tx.timestamp
+			});
+		});
+	});
+	console.log('Loaded FA pickups for', Object.keys(faPickupsByPlayer).length, 'player-years');
 	console.log('');
 	
 	// Clear existing if requested
@@ -329,8 +415,20 @@ async function run() {
 	var skipped = 0;
 	var errors = [];
 	
+	// Track row index within each year for boundary detection
+	var currentYear = null;
+	var rowInYear = 0;
+	
 	for (var i = 0; i < cuts.length; i++) {
 		var cut = cuts[i];
+		
+		// Track row within year (increment first, so rowInYear is 0-indexed position)
+		if (cut.cutYear !== currentYear) {
+			currentYear = cut.cutYear;
+			rowInYear = 0;
+		} else {
+			rowInYear++;
+		}
 		
 		// Compute buy-outs
 		var buyOuts = computeBuyOuts(cut.salary, cut.startYear, cut.endYear, cut.cutYear);
@@ -393,11 +491,37 @@ async function run() {
 				enriched++;
 			}
 		} else {
-			// Create new cut-only transaction with cut day timestamp
+			// Determine timestamp based on in-season boundary and FA pickup cross-reference
+			var timestamp;
+			if (!isInSeasonCut(cut.cutYear, rowInYear)) {
+				// Offseason cut: use cut day
+				timestamp = getCutDayTimestamp(cut.cutYear);
+			} else {
+				// In-season cut: check for FA pickup by a different owner
+				var faKey = playerId.toString() + '|' + cut.cutYear;
+				var pickups = faPickupsByPlayer[faKey] || [];
+				var franchiseIdStr = franchiseId.toString();
+				
+				// Find a pickup by a DIFFERENT owner
+				var pickupByOther = pickups.find(function(p) {
+					return p.franchiseId !== franchiseIdStr;
+				});
+				
+				if (pickupByOther) {
+					// This cut enabled an FA pickup by someone else
+					// Timestamp just before the pickup
+					timestamp = getTimestampJustBefore(pickupByOther.timestamp);
+				} else {
+					// No pickup by another owner, use late season
+					timestamp = getLateSeasonTimestamp(cut.cutYear);
+				}
+			}
+			
+			// Create new cut-only transaction
 			if (!args.dryRun) {
 				await Transaction.create({
 					type: 'fa',
-					timestamp: getCutDayTimestamp(cut.cutYear),
+					timestamp: timestamp,
 					source: 'snapshot',
 					franchiseId: franchiseId,
 					adds: [],

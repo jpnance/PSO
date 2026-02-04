@@ -100,6 +100,7 @@ BE Matt Jones
 BE Robert Griffin
 BE T.J. Yeldon
 BE Terrance Williams
+BE Trey Williams
 BE Ty Montgomery
 BE Virgil Green
 BE Zach Zenner
@@ -254,7 +255,6 @@ BE Scott Chandler
 BE Shaq Thompson
 BE Stefon Diggs
 BE Tony Romo
-BE Trey Williams
 
 
 Daniel

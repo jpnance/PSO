@@ -396,13 +396,15 @@ async function run() {
 				try {
 					await Transaction.create({
 						type: 'fa',
-						playerId: player._id,
 						franchiseId: franchiseId,
 						timestamp: timestamp,
 						source: 'snapshot',
-						salary: pickup.salary || null,
-						startYear: null,  // FA contracts have no start year
-						endYear: pickup.endYear || year
+						adds: [{
+							playerId: player._id,
+							salary: pickup.salary || null,
+							startYear: null,
+							endYear: pickup.endYear || year
+						}]
 					});
 					yearCreated++;
 				} catch (err) {

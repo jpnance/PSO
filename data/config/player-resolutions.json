@@ -667,6 +667,10 @@
   "chigoziem okonkwo": {
     "sleeperId": "8210"
   },
+  "chris borland|2014|type:fa|schex": {
+    "sleeperId": null,
+    "name": "Chris Borland"
+  },
   "chris carr|2009|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Chris Carr"
@@ -2086,6 +2090,10 @@
   "josh morgan|2013|type:trade|daniel": {
     "sleeperId": "222"
   },
+  "josh normal|2015|type:fa|trevor": {
+    "sleeperId": null,
+    "name": "Josh Normal"
+  },
   "josh palmer": {
     "sleeperId": "7670"
   },
@@ -2295,6 +2303,10 @@
   },
   "kevin white|2018|type:cut|patrick": {
     "sleeperId": "2312"
+  },
+  "keywynn williams|2014|type:fa|schex": {
+    "sleeperId": null,
+    "name": "Keywynn Williams"
   },
   "kirk cousins|2014|type:trade|brett/luke": {
     "sleeperId": "1166"
