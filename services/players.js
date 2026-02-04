@@ -242,14 +242,13 @@ exports.playerDetail = async function(request, response) {
 					entry.draftSeason = new Date(t.timestamp).getFullYear();
 					break;
 			
+			case 'expansion-draft-protect':
+				entry.description = 'Protected from expansion draft by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				break;
+			
 			case 'expansion-draft-select':
-				var fromRegime = t.fromFranchiseId ? getRegimeForFranchise(t.fromFranchiseId._id || t.fromFranchiseId, t.timestamp) : '?';
 				var toRegime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				entry.description = 'Expansion draft: ' + fromRegime + ' → ' + toRegime;
-				entry.salary = t.salary;
-				entry.startYear = t.startYear;
-				entry.endYear = t.endYear;
-				entry.rfaRights = t.rfaRights;
+				entry.description = 'Selected in expansion draft by ' + toRegime;
 				break;
 					
 			case 'auction-ufa':

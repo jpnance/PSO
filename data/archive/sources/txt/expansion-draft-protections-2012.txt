@@ -1,0 +1,13 @@
+# 2012 Expansion Draft Protections
+# Format: Franchise (Franchise ID): Player1, Player2, Player3 (RFA)
+
+Patrick (1): Tom Brady (RFA), Larry Fitzgerald (RFA), Marshawn Lynch, Darrius Heyward-Bey
+Koci (2): Ryan Fitzpatrick, Denarius Moore, Darren Sproles, Ben Tate
+Syed (3): Eli Manning, Joe Flacco, Ryan Mathews, Sam Bradford
+John (4): Darren McFadden, Willis McGahee, Alex Smith, Vincent Jackson
+Trevor (5): Cam Newton, A.J. Green, Rob Gronkowski, Reggie Bush
+Keyon (6): Jordy Nelson, Aaron Hernandez, Greg Jennings, Andy Dalton
+Jake/Luke (7): Philip Rivers, LeSean McCoy, Jimmy Graham, Mark Sanchez
+Daniel (8): Matt Ryan, Josh Freeman, Matt Forte, Roddy White
+James (9): Dez Bryant, Julio Jones, DeMarco Murray, Drew Brees (RFA)
+Schex (10): Ben Roethlisberger, Calvin Johnson, Christian Ponder, Adrian Peterson

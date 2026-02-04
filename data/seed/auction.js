@@ -38,13 +38,20 @@ mongoose.connect(process.env.MONGODB_URI);
  * RFA rights are only valid for the immediately following auction.
  * Conversion happens Jan 15 of year Y, auction is Aug of year Y.
  * So we only look for conversions from the same calendar year.
+ * 
+ * RFA rights can come from:
+ *   - rfa-rights-conversion (contract expired)
+ *   - expansion-draft-select with rfaRights: true
  */
 async function findRfaHolder(playerId, auctionTimestamp) {
 	var auctionYear = auctionTimestamp.getUTCFullYear();
 	
-	// Find rfa-rights-conversion for this player from this calendar year
+	// Find rfa-rights-conversion or expansion-draft-select with rfaRights for this player
 	var conversion = await Transaction.findOne({
-		type: 'rfa-rights-conversion',
+		$or: [
+			{ type: 'rfa-rights-conversion' },
+			{ type: 'expansion-draft-select', rfaRights: true }
+		],
 		playerId: playerId,
 		timestamp: {
 			$gte: new Date(Date.UTC(auctionYear, 0, 1)),

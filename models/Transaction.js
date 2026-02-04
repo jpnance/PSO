@@ -66,6 +66,8 @@ var transactionSchema = new Schema({
 			'fa',  // unified free agent transaction (replaces fa-pickup and fa-cut)
 			'draft-select',
 			'draft-pass',
+			'expansion-draft-protect',  // 2012 expansion draft protection
+			'expansion-draft-select',   // 2012 expansion draft selection
 			'auction-ufa',
 			'auction-rfa-matched',
 			'auction-rfa-unmatched',
@@ -101,6 +103,12 @@ var transactionSchema = new Schema({
 
 	// Draft fields
 	pickId: { type: Schema.Types.ObjectId, ref: 'Pick' },
+
+	// Expansion draft fields
+	fromFranchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise' },  // original owner in expansion draft
+	round: { type: Number },  // expansion draft round
+	pick: { type: Number },   // expansion draft overall pick
+	rfaRights: { type: Boolean },  // true if expansion draft selection was RFA rights only
 
 	// Auction fields
 	winningBid: { type: Number },

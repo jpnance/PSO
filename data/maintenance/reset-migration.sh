@@ -349,6 +349,24 @@ else
 fi
 echo ""
 
+# Step 13b: Seed 2012 Expansion Draft Protections
+echo "=== Step 13b: Seeding 2012 Expansion Draft Protections ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/expansion-draft-protections-2012.js"
+else
+    docker compose run --rm web node data/seed/expansion-draft-protections-2012.js
+fi
+echo ""
+
+# Step 13c: Seed 2012 Expansion Draft Selections
+echo "=== Step 13c: Seeding 2012 Expansion Draft Selections ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/expansion-draft-2012.js"
+else
+    docker compose run --rm web node data/seed/expansion-draft-2012.js
+fi
+echo ""
+
 # Step 14: Seed RFA rights conversions (contracts expiring into RFA rights)
 # Must run BEFORE auctions so we can detect RFA status at auction time
 echo "=== Step 14: Seeding RFA rights conversions ==="
