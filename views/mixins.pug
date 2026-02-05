@@ -18,8 +18,6 @@ mixin timelineSalary(entry, opts)
 mixin timelineEntry(entry)
 	- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
 	- var categoryClass = transactionCategory(entry.type)
-	if entry.showYearDivider && entry.year
-		div.player-timeline__year= entry.year
 	div.player-timeline__entry(class=categoryClass)
 		div.player-timeline__icon
 			i.fa(class=transactionIcon(entry.type))
@@ -43,6 +41,8 @@ mixin timelineEntry(entry)
 						a(href='/draft/' + entry.draftSeason) Drafted by #{entry.regime}
 					else
 						span Drafted by #{entry.regime}
+					if entry.pickNumber
+						span.player-timeline__pick  · Pick #{formatPickNumber(entry.pickNumber, entry.teamsPerRound)}
 					+timelineSalary(entry)
 				else if entry.type === 'fa-cut'
 					span Cut by #{entry.regime}

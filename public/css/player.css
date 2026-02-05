@@ -105,25 +105,6 @@
 	color: #007bff;
 }
 
-/* Timeline section header */
-.player-timeline-header {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	margin-bottom: 1rem;
-	color: #666;
-	font-size: 0.85rem;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-}
-
-.player-timeline-header::after {
-	content: '';
-	flex: 1;
-	height: 1px;
-	background: #dee2e6;
-}
-
 /* Timeline */
 .player-timeline {
 	/* Simple list, no connecting lines */
@@ -172,6 +153,16 @@
 	padding-top: 0;
 }
 
+/* Empty year - no transactions that year */
+.player-timeline__year--empty {
+	font-weight: 400;
+	color: #adb5bd;
+}
+
+.player-timeline__year--empty::after {
+	background: #f1f3f5;
+}
+
 .player-timeline__content {
 	flex: 1;
 	min-width: 0;
@@ -209,6 +200,11 @@
 	font-size: 0.85rem;
 	font-style: italic;
 	font-variant-numeric: tabular-nums;
+}
+
+.player-timeline__pick {
+	color: #666;
+	font-size: 0.9rem;
 }
 
 .player-timeline__date {

@@ -81,11 +81,13 @@ block content
 								| Cut Player
 				
 				//- Transaction history
-				if history.length > 0
-					div.player-timeline-header Transaction History
+				if timeline && timeline.length > 0
 					div.player-timeline
-						each entry in history
-							+timelineEntry(entry)
+						each item in timeline
+							if item.isYearDivider
+								div.player-timeline__year(class=item.empty ? 'player-timeline__year--empty' : '')= item.year
+							else
+								+timelineEntry(item)
 				else
 					p.text-muted No transaction history found.
 		

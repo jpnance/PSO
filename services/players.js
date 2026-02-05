@@ -121,6 +121,7 @@ exports.playerDetail = async function(request, response) {
 			.populate('fromFranchiseId')
 			.populate('playerId', 'name')
 			.populate('facilitatedTradeId', 'tradeId')
+			.populate('pickId', 'pickNumber round season originalFranchiseId')
 			.sort({ timestamp: -1 })
 			.lean();
 		
@@ -246,6 +247,12 @@ exports.playerDetail = async function(request, response) {
 					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 					entry.salary = t.salary;
 					entry.draftSeason = new Date(t.timestamp).getFullYear();
+					if (t.pickId) {
+						entry.pickNumber = t.pickId.pickNumber;
+						entry.pickRound = t.pickId.round;
+						// 10 teams before 2012 expansion, 12 after
+						entry.teamsPerRound = entry.draftSeason <= 2011 ? 10 : 12;
+					}
 					break;
 			
 				case 'expansion-draft-protect':
@@ -289,11 +296,34 @@ exports.playerDetail = async function(request, response) {
 			return entry;
 		});
 		
+		// Build timeline with year dividers (including empty years)
+		var timeline = [];
+		var currentYear = null;
+		
+		for (var i = 0; i < history.length; i++) {
+			var entry = history[i];
+			var entryYear = entry.year;
+			
+			if (entryYear && entryYear !== currentYear) {
+				// Insert dividers for any skipped years (going backwards in time)
+				if (currentYear !== null) {
+					for (var y = currentYear - 1; y > entryYear; y--) {
+						timeline.push({ isYearDivider: true, year: y, empty: true });
+					}
+				}
+				// Add divider for this year
+				timeline.push({ isYearDivider: true, year: entryYear, empty: false });
+				currentYear = entryYear;
+			}
+			
+			timeline.push(entry);
+		}
+		
 		response.render('player', {
 			activePage: 'player',
 			player: player,
 			contract: contractInfo,
-			history: history,
+			timeline: timeline,
 			isOwner: isOwner,
 			canCut: canCut,
 			canTrade: canTrade
