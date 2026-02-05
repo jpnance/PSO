@@ -314,11 +314,13 @@ Use these standardized layout patterns for consistent page structure.
 
 ### Layout Types
 
-| Layout | Container | Use For |
-|--------|-----------|---------|
-| **Full-width** | `.container-fluid.py-4` | Dashboard pages with cards/grids (league, franchises, standings, schedule) |
-| **Narrow** | `.container.py-4` | Focused single-purpose pages (proposal, calendar, rfa, jaguar) |
+| Layout | Container | When to Use |
+|--------|-----------|-------------|
+| **Standard** | `.container.py-4` | Most pages — content has a natural max-width |
+| **Wide** | `.container-fluid.py-4` | Multi-column grids that benefit from horizontal expansion |
 | **Hero** | Hero section + `.container.py-4` | Entity detail pages (player, franchise) |
+
+**Standard** is the default. Use **Wide** only when you have multiple independent columns that should expand with the viewport (e.g., league dashboard with card widgets, franchises grid, schedule with games + standings sidebar).
 
 ### Hero Pattern
 
@@ -348,14 +350,11 @@ Hero CSS conventions:
 Use `.page-header` for consistent page titles:
 
 ```pug
-//- Standard left-aligned header
 div.page-header
   h1 Page Title
-
-//- Centered header (for dashboard/overview pages)
-div.page-header.page-header--centered
-  h1 League Overview
 ```
+
+The centered variant (`.page-header--centered`) is reserved for the main League Overview page only.
 
 ### Page Navigation Pattern
 
@@ -369,43 +368,19 @@ div.page-nav.mb-4
 ```
 
 Multiple navs can be placed in the same `.page-nav` container:
+
 ```pug
 div.page-nav.mb-4
   +sequentialNav({ items: allSeasons, current: season, urlPattern: '/schedule/', urlSuffix: '/' + week })
   +sequentialNav({ items: weekNumbers, current: week, urlPattern: '/schedule/' + season + '/' })
 ```
 
-### Content Width Patterns
-
-Use these column classes for main content:
-- **Narrow** (trades, proposals): `.col-md-7.col-xl-5`
-- **Medium** (standings tables): `.col-lg-10.col-xl-8`
-- **With sidebar**: `.col-lg-8` main + `.col-lg-4` sidebar
-
 ### Complete Layout Examples
 
 ```pug
-//- Full-width dashboard page
-block content
-  div.container-fluid.py-4
-    div.page-header.page-header--centered
-      h1 League Overview
-    div.row
-      div.col-md-6.col-lg-4.mb-4
-        //- Cards...
-
-//- Narrow focused page
+//- Standard page (most pages)
 block content
   div.container.py-4
-    div.page-header
-      h1 Trade Proposal
-    div.row
-      div.col-md-7.col-xl-5
-        //- Content...
-
-//- Full-width with navigation
-block content
-  div.container-fluid.py-4
     div.page-header
       h1 #{season} Standings
     div.page-nav.mb-4
@@ -414,7 +389,17 @@ block content
       div.col-lg-10.col-xl-8
         //- Content...
 
-//- Hero page
+//- Wide page (multi-column grids)
+block content
+  div.container-fluid.py-4
+    div.page-header
+      h1 Franchises
+    div.row
+      each franchise in franchises
+        div.col-md-6.col-lg-4.col-xl-3.mb-4
+          +franchiseCard(franchise)
+
+//- Hero page (entity detail)
 block content
   div.player-hero
     div.container
@@ -428,9 +413,10 @@ block content
 ### Avoid
 
 - Using `.mb-4` on h1 directly — use `.page-header` wrapper instead
-- Custom header wrapper classes like `.standings__header` — use `.page-header`
-- Custom nav wrapper classes like `.schedule__nav` — use `.page-nav`
+- Custom header wrapper classes — use `.page-header`
+- Custom nav wrapper classes — use `.page-nav`
 - Inconsistent padding (`.py-3` vs `.py-4`) — always use `.py-4`
+- Using `.container-fluid` when content constrains itself with columns anyway
 
 ### Avoid
 

@@ -41,7 +41,7 @@ block content
 			div.alert.alert-info No games found for this week.
 		else
 			div.row
-				div.col-lg-5.col-xl-3
+				div.col-lg-5.col-xl-4
 					//- Games list
 					div.schedule__games
 						-
@@ -61,7 +61,7 @@ block content
 				
 				//- Stats and Standings
 				if standingsData && standingsData.standings && standingsData.standings.length > 0
-					div.col-lg-7.col-xl-6
+					div.col-lg-7.col-xl-8
 						//- Weekly stats summary
 						if schedule.stats
 							div.card.mb-3
@@ -112,7 +112,7 @@ block content
 				
 				//- Final standings for playoffs view
 				else if finalStandingsData && finalStandingsData.standings && finalStandingsData.standings.length > 0
-					div.col-lg-7.col-xl-6
+					div.col-lg-7.col-xl-8
 						div.card
 							div.card-header
 								| Final Standings

@@ -6,9 +6,7 @@
 	opacity: 1;
 }
 
-.container {
-	max-width: 700px;
-}
+/* Calendar content uses Bootstrap's natural container width */
 
 
 /* Next Event Banner */

@@ -1,9 +1,6 @@
 /* Rules page styles */
 
-/* Constrain content width for readability */
-.container {
-	max-width: 800px;
-}
+/* Rules content uses Bootstrap's natural container width */
 
 /* Section spacing */
 .rules-section {
