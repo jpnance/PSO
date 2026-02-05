@@ -124,11 +124,18 @@
 	color: #888;
 }
 
-/* Transaction type colors - applied to entry so icon and border inherit */
-.player-timeline__entry--acquisition { color: var(--asset-player); }
-.player-timeline__entry--departure { color: #dc3545; }
-.player-timeline__entry--auction { color: var(--asset-cash); }
-.player-timeline__entry--admin { color: #6c757d; }
+/* Transaction type colors - icon and border accent by category */
+.player-timeline__entry--acquisition .player-timeline__icon { color: var(--asset-player); }
+.player-timeline__entry--acquisition .player-timeline__content { border-left-color: var(--asset-player); }
+
+.player-timeline__entry--departure .player-timeline__icon { color: var(--color-danger); }
+.player-timeline__entry--departure .player-timeline__content { border-left-color: var(--color-danger); }
+
+.player-timeline__entry--auction .player-timeline__icon { color: var(--asset-cash); }
+.player-timeline__entry--auction .player-timeline__content { border-left-color: var(--asset-cash); }
+
+.player-timeline__entry--admin .player-timeline__icon { color: #adb5bd; }
+.player-timeline__entry--admin .player-timeline__content { border-left-color: #adb5bd; }
 
 /* Year divider */
 .player-timeline__year {
@@ -166,8 +173,7 @@
 	flex: 1;
 	min-width: 0;
 	padding-left: 0.5rem;
-	border-left: 1px solid currentColor;
-	color: #212529;  /* Reset text to dark */
+	border-left: 1px solid #dee2e6;
 }
 
 .player-timeline__main {
