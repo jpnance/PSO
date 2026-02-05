@@ -1059,6 +1059,22 @@ function transactionIcon(type) {
 	return icons[type] || 'fa-circle';
 }
 
+/**
+ * Get CSS modifier class for transaction category (for icon coloring)
+ * @param {string} type - transaction type
+ * @returns {string} CSS modifier class
+ */
+function transactionCategory(type) {
+	var acquisitions = ['draft-select', 'fa-pickup', 'trade', 'expansion-draft-select'];
+	var departures = ['fa-cut'];
+	var auctions = ['auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'];
+	
+	if (acquisitions.includes(type)) return 'player-timeline__entry--acquisition';
+	if (departures.includes(type)) return 'player-timeline__entry--departure';
+	if (auctions.includes(type)) return 'player-timeline__entry--auction';
+	return 'player-timeline__entry--admin';
+}
+
 module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
@@ -1087,5 +1103,6 @@ module.exports = {
 	formatPickNumber: formatPickHelpers.formatPickNumber,
 	playerUrl: playerUrl,
 	transactionIcon: transactionIcon,
+	transactionCategory: transactionCategory,
 	POSITION_ORDER: POSITION_ORDER
 };

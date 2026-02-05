@@ -156,11 +156,19 @@ exports.playerDetail = async function(request, response) {
 		}
 		
 		// Build structured transaction list (templates handle display)
-		var history = transactions.map(function(t) {
+		var history = transactions.map(function(t, index, arr) {
+			// Get year for this entry and check if it differs from previous
+			var entryYear = t.timestamp ? new Date(t.timestamp).getFullYear() : null;
+			var prevYear = (index > 0 && arr[index - 1].timestamp) 
+				? new Date(arr[index - 1].timestamp).getFullYear() 
+				: null;
+			var showYearDivider = (index === 0) || (entryYear !== prevYear);
 			var entry = {
 				type: t.type,
 				timestamp: t.timestamp,
-				notes: t.notes
+				notes: t.notes,
+				year: entryYear,
+				showYearDivider: showYearDivider
 			};
 			
 			switch (t.type) {
