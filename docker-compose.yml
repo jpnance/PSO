@@ -40,17 +40,6 @@ services:
     command: sh -c "crontab /app/etc/crontab && crond -f"
     stop_grace_period: 2s
 
-  scuttlebot:
-    container_name: pso-scuttlebot
-    restart: unless-stopped
-    profiles:
-      - main
-    image: node:22-alpine
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: node tools/bots/scuttlebot.js
-
 volumes:
   pso-data:
     name: pso-data
