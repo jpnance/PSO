@@ -261,7 +261,8 @@ async function findOrCreatePlayer(playerName, draftYear, pickInfo) {
 		}
 		
 		// No match - auto-create historical
-		if (filteredCandidates.length === 0) {
+		// Skip if there's already a cached resolution (don't overwrite manual fixes)
+		if (filteredCandidates.length === 0 && !cached) {
 			var existing = await Player.findOne({ name: playerName, sleeperId: null });
 			if (existing) {
 				resolver.addResolution(playerName, null, playerName, context);

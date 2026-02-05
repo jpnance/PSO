@@ -84,7 +84,8 @@ async function resolvePlayer(playerName, context, season, position, skipAmbiguou
 	}
 	
 	// Auto-create historical for early years
-	if (candidates.length === 0 && season < 2016) {
+	// Skip if there's already a cached resolution (don't overwrite manual fixes)
+	if (candidates.length === 0 && season < 2016 && !cached) {
 		var existing = await Player.findOne({ name: playerName, sleeperId: null });
 		if (existing) {
 			resolver.addResolution(playerName, null, playerName, context);

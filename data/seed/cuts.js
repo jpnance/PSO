@@ -246,7 +246,8 @@ async function resolvePlayer(cut) {
 	}
 	
 	// Auto-historical for old years with no candidates
-	if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold && candidates.length === 0) {
+	// Skip if there's already a cached resolution (don't overwrite manual fixes)
+	if (autoHistoricalThreshold && cut.cutYear < autoHistoricalThreshold && candidates.length === 0 && !cached) {
 		// Check if historical player already exists
 		var existing = await Player.findOne({ name: cut.name, sleeperId: null });
 		if (existing) {

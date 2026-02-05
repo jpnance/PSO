@@ -404,10 +404,19 @@ else
 fi
 echo ""
 
-# Step 14d: Seed FA pickups from trades (2008-2019)
+# Step 14d: Seed 2008 auction wins from extracted-all.csv (fills gaps from results.html)
+echo "=== Step 14d: Seeding 2008 auction from extracted-all.csv ==="
+if [ "$DRY_RUN" = true ]; then
+    echo "[dry-run] docker compose run --rm web node data/seed/auction-results.js"
+else
+    docker compose run --rm web node data/seed/auction-results.js
+fi
+echo ""
+
+# Step 14e: Seed FA pickups from trades (2008-2019)
 # Players picked up as FA and then traded away before postseason snapshot
 # Must run AFTER auction so hasPriorAcquisition finds auction wins
-echo "=== Step 14d: Seeding FA pickups from trades ==="
+echo "=== Step 14e: Seeding FA pickups from trades ==="
 if [ "$DRY_RUN" = true ]; then
     echo "[dry-run] docker compose run --rm web node data/seed/fa-trades.js"
 else
