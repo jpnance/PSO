@@ -345,7 +345,7 @@ block content
 														else
 															= ordinal(pick.round)
 															if pick.originalOwner
-																span.picks-pill__from= ' (' + pick.originalOwner + ')'
+																span.picks-pill__from= ' · ' + pick.originalOwner
 										if latePicks.length
 											div.picks-group.picks-group--late
 												each pick in latePicks
@@ -355,7 +355,7 @@ block content
 														else
 															= ordinal(pick.round)
 															if pick.originalOwner
-																span.picks-pill__from= ' (' + pick.originalOwner + ')'
+																span.picks-pill__from= ' · ' + pick.originalOwner
 						else
 							p.text-muted.mb-0 No picks data
 				
