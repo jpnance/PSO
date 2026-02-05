@@ -1037,6 +1037,28 @@ function playerUrl(player) {
 	return '/players/' + player.slugs[0];
 }
 
+/**
+ * Get Font Awesome icon class for a transaction type
+ * @param {string} type - transaction type
+ * @returns {string} Font Awesome class name
+ */
+function transactionIcon(type) {
+	var icons = {
+		'trade': 'fa-exchange',
+		'fa-pickup': 'fa-plus',
+		'fa-cut': 'fa-scissors',
+		'draft-select': 'fa-graduation-cap',
+		'expansion-draft-protect': 'fa-shield',
+		'expansion-draft-select': 'fa-users',
+		'auction-ufa': 'fa-gavel',
+		'auction-rfa-matched': 'fa-gavel',
+		'auction-rfa-unmatched': 'fa-gavel',
+		'rfa-rights-conversion': 'fa-refresh',
+		'contract': 'fa-file-text-o'
+	};
+	return icons[type] || 'fa-circle';
+}
+
 module.exports = {
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
@@ -1064,5 +1086,6 @@ module.exports = {
 	tradeOgPlainEnglish: tradeOgPlainEnglish,
 	formatPickNumber: formatPickHelpers.formatPickNumber,
 	playerUrl: playerUrl,
+	transactionIcon: transactionIcon,
 	POSITION_ORDER: POSITION_ORDER
 };

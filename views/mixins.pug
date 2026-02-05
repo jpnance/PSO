@@ -1,5 +1,87 @@
 //- Shared Pug mixins for PSO views
 
+//- Timeline salary/contract display for player transaction history
+//- Usage: +timelineSalary(entry) or +timelineSalary(entry, { prefix: 'Expired:', expired: true })
+mixin timelineSalary(entry, opts)
+	- var options = opts || {}
+	if entry.salary
+		br
+		span(class=options.expired ? 'player-timeline__contract-expired' : 'player-timeline__salary')
+			if options.prefix
+				| #{options.prefix} 
+			= formatMoney(entry.salary)
+			if entry.endYear
+				|  · #{formatContractYears(entry.startYear, entry.endYear)}
+
+//- Player timeline entry - renders a single transaction in the player history
+//- Usage: +timelineEntry(entry)
+mixin timelineEntry(entry)
+	- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
+	div.player-timeline__entry
+		div.player-timeline__icon
+			i.fa(class=transactionIcon(entry.type))
+		div.player-timeline__content
+			div.player-timeline__main
+				if entry.type === 'trade'
+					if entry.tradeId
+						a(href='/trades/' + entry.tradeId)
+							if entry.fromRegime && entry.toRegime
+								| #{entry.fromRegime} → #{entry.toRegime}
+							else
+								| Traded
+					else
+						span
+							if entry.fromRegime && entry.toRegime
+								| #{entry.fromRegime} → #{entry.toRegime}
+							else
+								| Traded
+				else if entry.type === 'draft-select'
+					if entry.draftSeason
+						a(href='/draft/' + entry.draftSeason) Drafted by #{entry.regime}
+					else
+						span Drafted by #{entry.regime}
+					+timelineSalary(entry)
+				else if entry.type === 'fa-cut'
+					span Cut by #{entry.regime}
+					if entry.facilitatedTradeId
+						|  for 
+						a(href='/trades/' + entry.facilitatedTradeId) Trade ##{entry.facilitatedTradeId}
+					+timelineSalary(entry)
+					if entry.buyOuts && entry.buyOuts.length > 0
+						span.text-muted.ml-2.small
+							| (buyout: 
+							each bo, idx in entry.buyOuts
+								if idx > 0
+									| , 
+								| #{formatMoney(bo.amount)} in #{bo.season}
+							| )
+				else if entry.type === 'fa-pickup'
+					span Signed by #{entry.regime}
+					+timelineSalary(entry)
+				else if entry.type === 'expansion-draft-protect'
+					span Protected from expansion draft by #{entry.regime}
+				else if entry.type === 'expansion-draft-select'
+					span Selected in expansion draft by #{entry.regime}
+				else if entry.type === 'auction-ufa'
+					span Won at auction by #{entry.regime}
+					+timelineSalary(entry)
+				else if entry.type === 'auction-rfa-matched'
+					span RFA matched by #{entry.regime}
+					+timelineSalary(entry)
+				else if entry.type === 'auction-rfa-unmatched'
+					span RFA not matched, signed by #{entry.regime}
+					+timelineSalary(entry)
+				else if entry.type === 'rfa-rights-conversion'
+					span RFA rights retained by #{entry.regime}
+					+timelineSalary(entry, { prefix: 'Expired:', expired: true })
+				else if entry.type === 'contract'
+					span Contract set by #{entry.regime}
+					+timelineSalary(entry)
+				else
+					span= entry.type
+			if !isInferred
+				div.player-timeline__date= formatDateMedium(entry.timestamp)
+
 //- Title breadcrumbs
 //- Usage: +title('Page Name') → "Page Name « Primetime Soap Operas"
 //- Usage: +title('Sub Page', 'Section') → "Sub Page « Section « Primetime Soap Operas"
