@@ -849,6 +849,11 @@ a.player-chip:hover {
 	height: 14px;
 	background: #ececec;
 	border-radius: 2px;
+	transition: transform 0.1s ease;
+}
+
+a.season-tile:hover {
+	transform: scale(1.2);
 }
 
 .season-tile--champ {
