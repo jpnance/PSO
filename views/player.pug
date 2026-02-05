@@ -86,71 +86,96 @@ block content
 					div.player-timeline
 						each entry in history
 							- var iconClass = { trade: 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'expansion-draft-protect': 'fa-shield', 'expansion-draft-select': 'fa-users', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', 'rfa-rights-conversion': 'fa-refresh', contract: 'fa-file-text-o' }[entry.type] || 'fa-circle'
+							- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
 							div.player-timeline__entry
 								div.player-timeline__icon
 									i.fa(class=iconClass)
 								div.player-timeline__content
 									div.player-timeline__main
-									if entry.type === 'trade' && entry.tradeId
-										a(href='/trades/' + entry.tradeId)= entry.description
-									else if entry.type === 'draft-select' && entry.draftSeason
-										a(href='/draft/' + entry.draftSeason)= entry.description
-									else if entry.type === 'fa-cut'
-										span= entry.description
-										if entry.facilitatedTradeId
-											|  for 
-											a(href='/trades/' + entry.facilitatedTradeId) Trade ##{entry.facilitatedTradeId}
-										if entry.salary
-											br
-											span.player-timeline__salary
-												= formatMoney(entry.salary)
-												if entry.endYear
+										if entry.type === 'trade'
+											if entry.tradeId
+												a(href='/trades/' + entry.tradeId)
+													if entry.fromRegime && entry.toRegime
+														| #{entry.fromRegime} → #{entry.toRegime}
+													else
+														| Traded
+											else
+												span
+													if entry.fromRegime && entry.toRegime
+														| #{entry.fromRegime} → #{entry.toRegime}
+													else
+														| Traded
+										else if entry.type === 'draft-select'
+											if entry.draftSeason
+												a(href='/draft/' + entry.draftSeason) Drafted by #{entry.regime}
+											else
+												span Drafted by #{entry.regime}
+											if entry.salary
+												br
+												span.player-timeline__salary= formatMoney(entry.salary)
+										else if entry.type === 'fa-cut'
+											span Cut by #{entry.regime}
+											if entry.facilitatedTradeId
+												|  for 
+												a(href='/trades/' + entry.facilitatedTradeId) Trade ##{entry.facilitatedTradeId}
+											if entry.salary
+												br
+												span.player-timeline__salary
+													= formatMoney(entry.salary)
+													if entry.endYear
+														|  · #{formatContractYears(entry.startYear, entry.endYear)}
+												if entry.buyOuts && entry.buyOuts.length > 0
+													span.text-muted.ml-2.small
+														| (buyout: 
+														each bo, idx in entry.buyOuts
+															if idx > 0
+																| , 
+															| #{formatMoney(bo.amount)} in #{bo.season}
+														| )
+										else if entry.type === 'fa-pickup'
+											span Signed by #{entry.regime}
+											if entry.salary
+												br
+												span.player-timeline__salary
+													= formatMoney(entry.salary)
+													if entry.endYear
+														|  · #{formatContractYears(entry.startYear, entry.endYear)}
+										else if entry.type === 'expansion-draft-protect'
+											span Protected from expansion draft by #{entry.regime}
+										else if entry.type === 'expansion-draft-select'
+											span Selected in expansion draft by #{entry.regime}
+										else if entry.type === 'auction-ufa'
+											span Won at auction by #{entry.regime}
+											if entry.salary
+												br
+												span.player-timeline__salary= formatMoney(entry.salary)
+										else if entry.type === 'auction-rfa-matched'
+											span RFA matched by #{entry.regime}
+											if entry.salary
+												br
+												span.player-timeline__salary= formatMoney(entry.salary)
+										else if entry.type === 'auction-rfa-unmatched'
+											span RFA not matched, signed by #{entry.regime}
+											if entry.salary
+												br
+												span.player-timeline__salary= formatMoney(entry.salary)
+										else if entry.type === 'rfa-rights-conversion'
+											span RFA rights retained by #{entry.regime}
+											if entry.salary && entry.startYear && entry.endYear
+												br
+												span.player-timeline__contract-expired
+													| Expired: #{formatMoney(entry.salary)} · #{formatContractYears(entry.startYear, entry.endYear)}
+										else if entry.type === 'contract'
+											span Contract set by #{entry.regime}
+											if entry.salary && entry.startYear && entry.endYear
+												br
+												span.player-timeline__salary
+													= formatMoney(entry.salary)
 													|  · #{formatContractYears(entry.startYear, entry.endYear)}
-											if entry.buyOuts && entry.buyOuts.length > 0
-												span.text-muted.ml-2.small
-													| (buyout: 
-													each bo, idx in entry.buyOuts
-														if idx > 0
-															| , 
-														| #{formatMoney(bo.amount)} in #{bo.season}
-													| )
-									else if entry.type === 'fa-pickup'
-										span= entry.description
-										if entry.salary
-											br
-											span.player-timeline__salary
-												= formatMoney(entry.salary)
-												if entry.endYear
-													|  · #{formatContractYears(entry.startYear, entry.endYear)}
-									else if entry.type === 'expansion-draft-protect'
-										span= entry.description
-									else if entry.type === 'expansion-draft-select'
-										span= entry.description
-									else if entry.type === 'auction-ufa' || entry.type === 'auction-rfa-matched' || entry.type === 'auction-rfa-unmatched'
-										span= entry.description
-										if entry.salary
-											br
-											span.player-timeline__salary= formatMoney(entry.salary)
-									else if entry.type === 'rfa-rights-conversion'
-										span= entry.description
-										if entry.salary && entry.startYear && entry.endYear
-											br
-											span.player-timeline__contract-expired
-												| Expired: #{formatMoney(entry.salary)} · #{formatContractYears(entry.startYear, entry.endYear)}
-									else if entry.type === 'contract'
-										span= entry.description
-										if entry.salary && entry.startYear && entry.endYear
-											br
-											span.player-timeline__salary
-												= formatMoney(entry.salary)
-												|  · #{formatContractYears(entry.startYear, entry.endYear)}
-									else
-										span= entry.description
-										if entry.salary
-											span.player-timeline__salary= formatMoney(entry.salary)
-									- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
-								if !isInferred
-									div.player-timeline__date= formatDateMedium(entry.timestamp)
+										else
+											span= entry.type
+									if !isInferred
+										div.player-timeline__date= formatDateMedium(entry.timestamp)
 				else
 					p.text-muted No transaction history found.
 		

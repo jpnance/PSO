@@ -155,7 +155,7 @@ exports.playerDetail = async function(request, response) {
 			return 'Unknown';
 		}
 		
-		// Build display-friendly transaction list
+		// Build structured transaction list (templates handle display)
 		var history = transactions.map(function(t) {
 			var entry = {
 				type: t.type,
@@ -183,11 +183,9 @@ exports.playerDetail = async function(request, response) {
 							}
 						});
 					}
-					entry.description = 'Traded';
 					if (sendingParty && receivingParty) {
-						entry.from = getRegimeForFranchise(sendingParty.franchiseId, t.timestamp);
-						entry.to = getRegimeForFranchise(receivingParty.franchiseId, t.timestamp);
-						entry.description = entry.from + ' → ' + entry.to;
+						entry.fromRegime = getRegimeForFranchise(sendingParty.franchiseId, t.timestamp);
+						entry.toRegime = getRegimeForFranchise(receivingParty.franchiseId, t.timestamp);
 					}
 					entry.tradeId = t.tradeId;
 					break;
@@ -207,7 +205,7 @@ exports.playerDetail = async function(request, response) {
 							return d.playerId && d.playerId.toString() === playerId;
 						});
 						entry.type = 'fa-cut';  // Display type for UI
-						entry.description = 'Cut by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+						entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 						if (t.facilitatedTradeId) {
 							entry.facilitatedTradeId = t.facilitatedTradeId.tradeId;
 						}
@@ -227,7 +225,7 @@ exports.playerDetail = async function(request, response) {
 							return a.playerId && a.playerId.toString() === playerId;
 						});
 						entry.type = 'fa-pickup';  // Display type for UI
-						entry.description = 'Signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+						entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 						entry.salary = addEntry.salary;
 						if (addEntry.startYear || addEntry.endYear) {
 							entry.startYear = addEntry.startYear;
@@ -237,51 +235,47 @@ exports.playerDetail = async function(request, response) {
 					break;
 					
 				case 'draft-select':
-					entry.description = 'Drafted by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 					entry.salary = t.salary;
 					entry.draftSeason = new Date(t.timestamp).getFullYear();
 					break;
 			
-			case 'expansion-draft-protect':
-				entry.description = 'Protected from expansion draft by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				break;
+				case 'expansion-draft-protect':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					break;
 			
-			case 'expansion-draft-select':
-				var toRegime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				entry.description = 'Selected in expansion draft by ' + toRegime;
-				break;
+				case 'expansion-draft-select':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					break;
 					
-			case 'auction-ufa':
-				entry.description = 'Won at auction by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				entry.salary = t.salary;
-				break;
+				case 'auction-ufa':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					entry.salary = t.salary;
+					break;
 				
-			case 'auction-rfa-matched':
-				entry.description = 'RFA matched by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				entry.salary = t.salary;
-				break;
+				case 'auction-rfa-matched':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					entry.salary = t.salary;
+					break;
 				
-			case 'auction-rfa-unmatched':
-				entry.description = 'RFA not matched, signed by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				entry.salary = t.salary;
-				break;
+				case 'auction-rfa-unmatched':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					entry.salary = t.salary;
+					break;
 				
-			case 'rfa-rights-conversion':
-				entry.description = 'RFA rights retained by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
-				entry.salary = t.salary;
-				entry.startYear = t.startYear;
-				entry.endYear = t.endYear;
-				break;
-					
-				case 'contract':
-					entry.description = 'Contract set by ' + getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+				case 'rfa-rights-conversion':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
 					entry.salary = t.salary;
 					entry.startYear = t.startYear;
 					entry.endYear = t.endYear;
 					break;
 					
-				default:
-					entry.description = t.type;
+				case 'contract':
+					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					entry.salary = t.salary;
+					entry.startYear = t.startYear;
+					entry.endYear = t.endYear;
+					break;
 			}
 			
 			return entry;
