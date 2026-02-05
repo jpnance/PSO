@@ -10,6 +10,7 @@ block og_meta
 	meta(property='og:image' content='https://thedynastyleague.com/images/og/constitution.jpg')
 
 block styles
+	link(rel='stylesheet' href='/css/components.css')
 	link(rel='stylesheet' href='/css/rules.css')
 
 block content
@@ -19,12 +20,12 @@ block content
 
 		div.row
 			div.col-lg-10.col-xl-8
-				section.rules-section
+				section.rules__section
 					h2#rosters Rosters
 					ul
 						li Each team may carry a maximum of 35 players on their roster at any time.
 
-				section.rules-section
+				section.rules__section
 					h2#salary-cap Salary Cap
 					ul
 						li The default salary cap is $1,000.
@@ -33,25 +34,54 @@ block content
 						li The LM will make a good-faith effort to prevent transactions which result in salary cap violations, and to notify owners if their roster figures to exceed the cap in the next season.
 						li The LM retains sole discretion as to whether to impose a penalty for a violation.
 
-				section.rules-section
+				section.rules__section
 					h2#drafts Draft & Auction
 					p Each year, we conduct a draft for incoming rookies and a free agent auction for everyone else.
 
 					h3 Rookie Draft
 					p The rookie draft is a standings-based draft for incoming rookies. The order of the slots in each round is based on the standings from the prior season:
-					ul.rules-draft-order
-						li 5th place selects first
-						li 6th place selects second
-						li 7th place selects third
-						li 8th place selects fourth
-						li 9th place selects fifth
-						li 10th place selects sixth
-						li 11th place selects seventh
-						li 12th place selects eighth
-						li 3rd place selects ninth
-						li 4th place selects tenth
-						li 2nd place selects eleventh
-						li 1st place selects twelfth
+					table.data-table.data-table--bordered
+						thead
+							tr
+								th Pick
+								th Standing
+						tbody
+							tr
+								td 1st
+								td 5th place
+							tr
+								td 2nd
+								td 6th place
+							tr
+								td 3rd
+								td 7th place
+							tr
+								td 4th
+								td 8th place
+							tr
+								td 5th
+								td 9th place
+							tr
+								td 6th
+								td 10th place
+							tr
+								td 7th
+								td 11th place
+							tr
+								td 8th
+								td 12th place
+							tr
+								td 9th
+								td 3rd place
+							tr
+								td 10th
+								td 4th place
+							tr
+								td 11th
+								td 2nd place
+							tr
+								td 12th
+								td 1st place
 
 					p The ten-round rookie draft is similar in structure to the NFL Supplemental Draft.
 					ul
@@ -66,7 +96,7 @@ block content
 					h3 Free Agent Auction
 					p The free agent auction is an auction for all remaining free agents (including undrafted rookies), with nomination order determined randomly, alphabetically, or however is otherwise convenient. The free agent auction also includes simulations of restricted free agency (defined below).
 
-				section.rules-section
+				section.rules__section
 					h2#contracts Contracts
 					ul
 						li Players acquired in either the draft or the auction will be assigned a 1-year, 2-year, or 3-year contract term by their owners.
@@ -76,7 +106,7 @@ block content
 						li Players acquired through free agency during the season may only be signed to end-of-year contracts.
 						li A contract year is completed on the final day of the fantasy league championship game.
 
-				section.rules-section
+				section.rules__section
 					h2#rfa Restricted Free Agency
 					ul
 						li If a player who was previously given a 2-year or 3-year contract is owned when his contract expires, he is considered to be a Restricted Free Agent (RFA) at the next Free Agent Draft.
@@ -86,12 +116,11 @@ block content
 						li The right to restricted free agency for a player is inseparable from the player himself, though an RFA may be traded during the offseason in the usual fashion.
 						li Any player who is no longer serving out a contract and not an RFA is an Unrestricted Free Agent (UFA).
 
-				section.rules-section
+				section.rules__section
 					h2#adds Adds
 					ul
 						li Players not acquired by draft, auction, or trade are considered free agents (FAs).
-						li FAs must be acquired by winning them at silent auction using cash left over from prior acquisitions (draft, auction, trades, etc.) and any cash that would become available in the event of releasing another player as a result of acquiring the FA.
-						li.rules-example For example, a team with no available cash could place a $5 bid on a player if the team would simultaneously recover $5 (or more) by buying out a member of their roster.
+						li FAs must be acquired by winning them at silent auction using cash left over from prior acquisitions (draft, auction, trades, etc.) and any cash that would become available in the event of releasing another player as a result of acquiring the FA — e.g., a team with no available cash could place a $5 bid on a player if the team would simultaneously recover $5 (or more) by buying out a member of their roster.
 						li Bids for these auctions may be placed at any time during the week, as Sleeper allows.
 						li These auctions will run on Thursdays, Fridays, Saturdays, Sundays, and Mondays at 12pm ET each day.
 						li The minimum bid is $1.
@@ -101,11 +130,11 @@ block content
 						li An FA won in this way will retain a salary equivalent to the highest bid and may only be given an end-of-year contract (i.e. he may not be assigned a multi-year contract).
 						li The tiebreaker order at the beginning of every season will be randomized.
 
-				section.rules-section
+				section.rules__section
 					h2#drops Drops and Buy-outs
 					p When a player is dropped, they must be bought out of each year remaining on their contract.
 					
-					table.table.table-bordered.rules-buyout-table
+					table.data-table.data-table--bordered
 						thead
 							tr
 								th Contract Year
@@ -125,18 +154,17 @@ block content
 								td 15%
 
 					ul
-						li The buy-out will be assessed for each year over the remaining life of the contract.
-						li.rules-example For example, if an owner drops a second-year player signed to a three-year contract, they will have to pay a 30% buy-out for the remainder of the second year, and a 15% buy-out for the third year.
+						li The buy-out will be assessed for each year over the remaining life of the contract — e.g., if an owner drops a second-year player signed to a three-year contract, they will have to pay a 30% buy-out for the remainder of the second year, and a 15% buy-out for the third year.
 						li Money used for buy-outs cannot be recovered.
 						li Non-integer buy-out amounts will always be rounded up to the next dollar.
-						li.rules-note Note that, as a result, no portion of a $1 salary can ever be recoverable for the year in which the player is dropped.
+						li.rules__note Note that, as a result, no portion of a $1 salary can ever be recoverable for the year in which the player is dropped.
 						li The non-buy-out portion of the player's contract, if such a portion exists, returns to the owner's cash reserves.
 						li The player then becomes an FA and can only join a new team through daily free agency auction or offseason draft.
 						li An owner who drops a player may not bid on him until seven days after the drop occurs.
 
 					p Use the #[a(href='/sunk') Sunk Cost Calculator] to determine buy-out amounts.
 
-				section.rules-section
+				section.rules__section
 					h2#trades Trades
 					ul
 						li The trade deadline is 9pm ET on the Wednesday in between Weeks 9 and 10 during the NFL season.
@@ -148,7 +176,7 @@ block content
 						li The notion of a player's RFA rights may not be traded as an asset separate from the player himself.
 						li Vetoes of trades may occur at the LM's exclusive discretion but will only be used in cases where, in the LM's good-faith judgment, at least one owner involved does not genuinely believe that they are improving their team for the present or for the future.
 
-				section.rules-section
+				section.rules__section
 					h2#tiebreakers Tiebreakers
 					p The regular season standings will be ranked in order of winning percentage.
 					p If there are any teams tied on winning percentage, this will be the procedure used to break the tie:
@@ -160,14 +188,14 @@ block content
 								li If the H2H ranking reveals that there are no further ties (i.e. all of the teams have different winning percentages against each other), the H2H ranking is accepted as the tiebreaker.
 								li If the H2H ranking reveals that some, but not all, of the teams are still tied with each other, we restart this procedure at Step 1 for each subdivided group of still-tied teams.
 
-				section.rules-section
+				section.rules__section
 					h2#playoffs Playoffs
 					ul
 						li The top four teams at the end of the regular season (subject to the tiebreaker system described above) advance to the playoffs.
 						li The top team at the end of the regular season is allowed to choose which of the other three playoff qualifiers will be their semifinal opponent.
 						li That selection will be due by a reasonable time before the first playoff fantasy week starts, as specified by the LM in an email to the top seed.
 
-				section.rules-section
+				section.rules__section
 					h2#prizes Prizes
 					ul
 						li The annual entry fee is $100 for each franchise.
@@ -178,7 +206,7 @@ block content
 								li The cost of the new plaque for the league trophy (around $15)
 						li The prize for first place at the end of the season is 60% of the purse; the prize for second place is 30% of the purse; the prize for third place is 10% of the purse.
 
-				section.rules-section
+				section.rules__section
 					h2#miscellaneous Miscellaneous Notes
 					ul
 						li Rules not covered specifically in this document are assumed to be shown on Sleeper's website. This document seeks only to describe things that differ in our league versus what Sleeper natively supports and also to clarify certain things for convenience.

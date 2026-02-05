@@ -777,6 +777,68 @@ a.player-chip:hover {
 }
 
 /* ========================================
+   Data Table Component
+   ======================================== */
+/* General-purpose styled table for simple data display */
+
+.data-table {
+	width: auto;
+	font-size: 0.875rem;
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+}
+
+.data-table th,
+.data-table td {
+	padding: 0.4rem 0.75rem;
+}
+
+.data-table thead th {
+	background-color: #f8f9fa;
+	font-weight: 600;
+	font-size: 0.75rem;
+	color: #495057;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	border-bottom: 2px solid #dee2e6;
+}
+
+.data-table tbody td {
+	border-bottom: 1px solid #eee;
+}
+
+/* Bordered variant */
+.data-table--bordered th,
+.data-table--bordered td {
+	border: 1px solid #dee2e6;
+}
+
+.data-table--bordered thead th {
+	border-bottom-width: 2px;
+}
+
+.data-table--bordered tbody tr:nth-child(odd) td {
+	background-color: #fcfcfc;
+}
+
+/* Numeric cells - right-align and use tabular figures */
+.data-table td[data-type="number"],
+.data-table .data-table__num {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Compact variant */
+.data-table--compact th,
+.data-table--compact td {
+	padding: 0.25rem 0.5rem;
+}
+
+.data-table--compact {
+	font-size: 0.8rem;
+}
+
+/* ========================================
    Season Tile Component
    ======================================== */
 /* Small square tiles indicating season results (playoff finish) */

@@ -361,6 +361,51 @@ block content
 				each party in sampleParties
 					+tradeParty(party)
 
+		//- Data Table
+		div.component-section
+			h2 Data Table
+			code.usage table.data-table
+			p General-purpose styled table. Default has minimal borders (bottom only).
+			table.data-table
+				thead
+					tr
+						th Round
+						th QB
+						th RB
+						th WR
+				tbody
+					tr
+						td 1st
+						td $45
+						td $38
+						td $32
+					tr
+						td 2nd
+						td $23
+						td $19
+						td $16
+					tr
+						td 3rd
+						td $12
+						td $10
+						td $8
+			p.mt-3 Bordered variant:
+			table.data-table.data-table--bordered
+				thead
+					tr
+						th Pick
+						th Standing
+				tbody
+					tr
+						td 1st
+						td 5th place
+					tr
+						td 2nd
+						td 6th place
+					tr
+						td 3rd
+						td 7th place
+
 		//- Budget Impact Table
 		div.component-section
 			h2 +budgetImpactTable(budgetImpact)

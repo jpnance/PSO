@@ -224,6 +224,24 @@ Options:
 +tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
 ```
 
+### Data Table
+General-purpose styled table (CSS class, not a mixin):
+```pug
+table.data-table
+  thead
+    tr
+      th Column 1
+      th Column 2
+  tbody
+    tr
+      td Value 1
+      td Value 2
+```
+Variants:
+- `.data-table--bordered` — full cell borders with alternating row colors
+- `.data-table--compact` — smaller padding and font size
+- Add `.data-table__num` to cells for right-aligned tabular numbers
+
 ### Budget Impact Table
 ```pug
 +budgetImpactTable([

@@ -1,90 +1,74 @@
-/* Rules page styles */
-
-/* Rules content uses Bootstrap's natural container width */
+/* Rules page styles (BEM: rules block) */
 
 /* Section spacing */
-.rules-section {
-	margin-bottom: 2.5rem;
-	padding-bottom: 2.5rem;
-	border-bottom: 1px solid var(--border-light);
+.rules__section {
+	margin-bottom: 2rem;
 }
 
-.rules-section:last-child {
+.rules__section:last-child {
 	margin-bottom: 0;
-	padding-bottom: 0;
-	border-bottom: none;
 }
 
-.rules-section h2 {
-	margin-bottom: 1rem;
-}
-
-.rules-section h3 {
-	margin-top: 1.5rem;
+/* Section headings */
+.rules__section h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #2c3e50;
 	margin-bottom: 0.75rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #e9ecef;
 }
 
-.rules-section p {
-	margin-bottom: 0.75rem;
-}
-
-.rules-section ul,
-.rules-section ol {
-	margin-bottom: 1rem;
-}
-
-.rules-section li {
+.rules__section h3 {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #495057;
+	margin-top: 1.25rem;
 	margin-bottom: 0.5rem;
 }
 
-.rules-section ul ul,
-.rules-section ol ul {
-	margin-top: 0.5rem;
+/* Paragraphs */
+.rules__section p {
 	margin-bottom: 0.5rem;
+	line-height: 1.6;
 }
 
-/* Draft order list with two columns on larger screens */
-.rules-draft-order {
-	column-count: 2;
-	column-gap: 2rem;
-	max-width: 500px;
+/* Lists */
+.rules__section ul,
+.rules__section ol {
+	margin-bottom: 0.75rem;
+	padding-left: 1.25rem;
 }
 
-@media (max-width: 576px) {
-	.rules-draft-order {
-		column-count: 1;
-	}
+.rules__section li {
+	margin-bottom: 0.35rem;
+	line-height: 1.5;
 }
 
-/* Examples and notes - styled distinctively */
-.rules-example {
-	background-color: #f8f9fa;
-	padding: 0.5rem 0.75rem;
-	border-left: 3px solid var(--color-info);
-	margin-left: 0;
-	font-style: italic;
+.rules__section li:last-child {
+	margin-bottom: 0;
 }
 
-.rules-note {
+/* Nested lists */
+.rules__section ul ul,
+.rules__section ol ul,
+.rules__section ul ol,
+.rules__section ol ol {
+	margin-top: 0.35rem;
+	margin-bottom: 0.25rem;
+}
+
+/* Notes */
+.rules__note {
 	color: var(--text-secondary);
 	font-size: 0.9rem;
 }
 
-/* Buy-out table */
-.rules-buyout-table {
-	max-width: 400px;
-	margin-bottom: 1rem;
-}
-
-.rules-buyout-table th {
-	background-color: #f8f9fa;
-}
-
-/* Links within rules */
-.rules-section a {
+/* Links */
+.rules__section a {
 	color: var(--color-info);
 }
 
-.rules-section a:hover {
+.rules__section a:hover {
 	text-decoration: underline;
 }
