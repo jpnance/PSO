@@ -68,9 +68,9 @@
 }
 
 .admin-cuts__timeline-entry--current .admin-cuts__timeline-icon {
-	border-color: #007bff;
+	border-color: var(--color-link);
 	background: #e7f3ff;
-	color: #007bff;
+	color: var(--color-link);
 }
 
 .admin-cuts__timeline-content {

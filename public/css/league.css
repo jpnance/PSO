@@ -12,15 +12,6 @@
 	background-color: #6c757d;
 }
 
-nav a {
-	color: #007bff;
-	text-decoration: none;
-}
-
-nav a:hover {
-	text-decoration: underline;
-}
-
 /* Draft picks - hide borders except between rounds */
 .picks-table tbody tr td {
 	border-top: none;
@@ -166,8 +157,8 @@ nav a:hover {
 }
 
 .calendar-widget__event--next::before {
-	background: #007bff;
-	border-color: #007bff;
+	background: var(--color-link);
+	border-color: var(--color-link);
 }
 
 .calendar-widget__event-inner {
@@ -183,7 +174,7 @@ nav a:hover {
 
 .calendar-widget__event--next .calendar-widget__event-name {
 	font-weight: 600;
-	color: #007bff;
+	color: var(--color-link);
 }
 
 .calendar-widget__event-when {
@@ -197,7 +188,7 @@ nav a:hover {
 }
 
 .calendar-widget__event--next .calendar-widget__event-relative {
-	color: #007bff;
+	color: var(--color-link);
 }
 
 .calendar-widget__event-date {

@@ -56,7 +56,7 @@
 }
 
 .franchise-schedule__opponent-link:hover {
-	color: #007bff;
+	color: var(--color-link);
 	text-decoration: underline;
 }
 

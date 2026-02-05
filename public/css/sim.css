@@ -3,7 +3,7 @@ table th {
 }
 
 span.finishes {
-	color: #007bff;
+	color: var(--color-link);
 	cursor: pointer;
 }
 

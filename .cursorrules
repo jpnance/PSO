@@ -467,7 +467,8 @@ Use these instead of hardcoded colors:
 - Statuses: hypothetical, pending, accepted, rejected, canceled, expired, executed
 
 ### UI Colors
-- `--color-success`, `--color-danger`, `--color-warning`, `--color-info`, `--color-disabled`
+- `--color-link`, `--color-link-hover` — primary link/accent color (#4a90d9)
+- `--color-success`, `--color-danger`, `--color-warning`, `--color-info`
 - `--border-light`, `--border-muted`
 - `--text-muted`, `--text-secondary`, `--text-tertiary`
 

@@ -64,7 +64,11 @@
 	--color-success: #28a745;
 	--color-danger: #dc3545;
 	--color-warning: #ffc107;
-	--color-info: #17a2b8;
+	--color-info: #4a90d9;
+	
+	/* Link colors */
+	--color-link: #4a90d9;
+	--color-link-hover: #3a7bc8;
 	
 	/* Trophy/championship colors */
 	--trophy-gold: #ffd700;
@@ -120,6 +124,17 @@ h3 { font-size: 1.25rem; }
 	h1 { font-size: 2rem; }
 	h2 { font-size: 1.5rem; }
 	h3 { font-size: 1.25rem; }
+}
+
+/* Base link styling */
+a {
+	color: var(--color-link);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+	text-decoration: underline;
 }
 
 /* ========================================

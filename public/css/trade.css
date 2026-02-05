@@ -29,7 +29,7 @@
 }
 
 .trade-machine .form-check-input:checked + .form-check-label {
-	color: #007bff;
+	color: var(--color-link);
 }
 
 /* Select dropdown font size */
@@ -265,7 +265,7 @@
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background-color: #007bff;
+	background-color: var(--color-link);
 	color: white;
 	font-size: 1.25rem;
 	font-weight: 600;

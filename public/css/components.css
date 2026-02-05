@@ -305,7 +305,7 @@ a.player-chip:hover {
 .seq-nav__dropdown:focus,
 .seq-nav__jump:focus {
 	outline: none;
-	border-color: #007bff;
+	border-color: var(--color-link);
 }
 
 .seq-nav__jump {
@@ -313,8 +313,8 @@ a.player-chip:hover {
 }
 
 .seq-nav__jump--active {
-	background: #007bff;
-	border-color: #007bff;
+	background: var(--color-link);
+	border-color: var(--color-link);
 	color: white;
 }
 
@@ -337,7 +337,7 @@ a.player-chip:hover {
 }
 
 .seq-nav__pill--active {
-	background: #007bff;
+	background: var(--color-link);
 	color: white;
 	font-weight: 500;
 }
@@ -451,7 +451,7 @@ a.player-chip:hover {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.65rem 0.75rem;
-	color: #5a7a94;
+	color: var(--color-link);
 	text-decoration: none;
 	font-weight: 500;
 	font-size: 0.875rem;
@@ -462,7 +462,7 @@ a.player-chip:hover {
 .card-footer-link:hover {
 	background: #e9ecef;
 	text-decoration: none;
-	color: #4a6a84;
+	color: var(--color-link-hover);
 }
 
 /* Budget impact summary - combined view at bottom of trade details */

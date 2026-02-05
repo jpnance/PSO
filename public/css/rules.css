@@ -64,11 +64,3 @@
 	font-size: 0.9rem;
 }
 
-/* Links */
-.rules__section a {
-	color: var(--color-info);
-}
-
-.rules__section a:hover {
-	text-decoration: underline;
-}
