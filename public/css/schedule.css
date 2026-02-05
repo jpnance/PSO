@@ -1,26 +1,5 @@
 /* Schedule Page Styles */
 
-.schedule__header {
-	margin-bottom: 0.5rem;
-}
-
-.schedule__header h1 {
-	margin-bottom: 0;
-}
-
-/* Combined season and week navigation */
-.schedule__nav {
-	display: flex;
-	align-items: center;
-	gap: 1.5rem;
-}
-
-@media (max-width: 575px) {
-	.schedule__nav {
-		justify-content: space-between;
-	}
-}
-
 /* Weekly stats */
 .schedule__stat {
 	text-align: center;

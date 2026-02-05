@@ -102,3 +102,61 @@ body {
 	color: var(--card-header-text);
 	border-bottom-color: var(--card-header-bg);
 }
+
+/* ========================================
+   Base Typography
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+	color: #343a40;
+}
+
+/* Heading scale - ensures proper hierarchy */
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+@media (min-width: 576px) {
+	h1 { font-size: 2rem; }
+	h2 { font-size: 1.5rem; }
+	h3 { font-size: 1.25rem; }
+}
+
+/* ========================================
+   Page Header - consistent page title pattern
+   ======================================== */
+
+.page-header {
+	margin-bottom: 1rem;
+}
+
+.page-header h1 {
+	margin-bottom: 0;
+}
+
+/* Centered variant for dashboard/overview pages */
+.page-header--centered {
+	text-align: center;
+}
+
+.page-header--centered h1 {
+	margin-bottom: 1rem;
+}
+
+/* With navigation below title */
+.page-header + .page-nav {
+	margin-bottom: 1.5rem;
+}
+
+.page-nav {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+@media (max-width: 575px) {
+	.page-nav {
+		gap: 0.75rem;
+	}
+}

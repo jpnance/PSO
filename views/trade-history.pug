@@ -28,7 +28,8 @@ block styles
 block content
 	div.container.py-4
 		if singleTrade
-			h1.mb-4: a.trade-history__title-link(href="/trades/" + tradeNumber) Trade ##{tradeNumber}
+			div.page-header
+				h1: a.trade-history__title-link(href="/trades/" + tradeNumber) Trade ##{tradeNumber}
 			
 			div.row
 				div.col-md-7.col-xl-5
@@ -55,9 +56,10 @@ block content
 			- var hasAnyFilter = filterPeople.length > 0 || filterRegimes.length > 0 || filterFranchises.length > 0
 			- var baseQuery = buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes)
 				
-				h1.mb-4 Trade History
+				div.page-header
+				h1 Trade History
 				
-				div.row
+			div.row
 					//- SIDEBAR (appears second in DOM, but first visually on lg+)
 					div#filter-sidebar.col-lg-4.order-lg-2.mb-lg-0
 						//- Mobile: collapsible toggle

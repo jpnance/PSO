@@ -20,11 +20,11 @@ block styles
 
 block content
 	div.container-fluid.py-4
-		div.schedule__header
+		div.page-header
 			h1 #{season} Schedule
 		
 		//- Season and week navigation
-		.schedule__nav.mb-4
+		div.page-nav.mb-4
 			-
 				var allSeasons = olderSeasons.slice().reverse().concat(quickSeasons)
 				var seasonUrlSuffix = '/' + week

@@ -16,9 +16,10 @@ block styles
 	link(rel='stylesheet' href='/css/draft-board.css')
 
 block content
-	div.container-fluid.py-3
-		div.draft-board__header
+	div.container-fluid.py-4
+		div.page-header
 			h1 #{season} Draft Board
+		div.page-nav.mb-4
 			-
 				var allSeasons = pastSeasons.slice().reverse().concat(quickSeasons)
 			+sequentialNav({ items: allSeasons, current: season, quickItems: quickSeasons, jumpLabel: 'Past Drafts', urlPattern: '/draft/' })

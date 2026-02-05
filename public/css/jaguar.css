@@ -1,14 +1,5 @@
 /* Jaguar Chart page styles */
 
-/* Header with title and season nav */
-.jaguar__header {
-	margin-bottom: 1rem;
-}
-
-.jaguar__header h1 {
-	margin: 0 0 0.5rem 0;
-}
-
 /* Owner cards grid */
 .owner-grid {
 	display: grid;

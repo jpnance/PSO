@@ -1,13 +1,5 @@
 /* Rookies page styles (BEM) */
 
-.rookies__header {
-	margin-bottom: 1rem;
-}
-
-.rookies__header h1 {
-	margin: 0 0 0.5rem 0;
-}
-
 .rookies-table {
 	font-size: 0.9rem;
 	width: auto;

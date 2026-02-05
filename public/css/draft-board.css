@@ -1,13 +1,5 @@
 /* Draft board page styles (BEM) */
 
-.draft-board__header {
-	margin-bottom: 1rem;
-}
-
-.draft-board__header h1 {
-	margin: 0 0 0.5rem 0;
-}
-
 .draft-board__rounds {
 	display: flex;
 	flex-wrap: wrap;

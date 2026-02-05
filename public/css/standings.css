@@ -1,13 +1,5 @@
 /* Standings Page Layout */
 
-.standings__header {
-	margin-bottom: 0.5rem;
-}
-
-.standings__header h1 {
-	margin: 0;
-}
-
 .standings__status {
 	display: flex;
 	align-items: center;

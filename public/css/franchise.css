@@ -143,6 +143,12 @@ a.franchise-roster-cards__name:hover {
    Franchise Hero (top of page)
    ======================================== */
 
+.franchise-hero {
+    padding: 1.5rem 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
 .franchise-hero__layout {
     display: flex;
     justify-content: space-between;

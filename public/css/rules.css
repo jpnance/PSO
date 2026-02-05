@@ -1,39 +1,28 @@
 /* Rules page styles */
 
-.rules-container {
+/* Constrain content width for readability */
+.container {
 	max-width: 800px;
-	margin: 0 auto;
-	background: #fff;
-	padding: 2rem;
-	border-radius: 8px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 576px) {
-	.rules-container {
-		padding: 1rem;
-		border-radius: 0;
-		box-shadow: none;
-	}
-}
-
+/* Section spacing */
 .rules-section {
-	margin-bottom: 2rem;
+	margin-bottom: 2.5rem;
+	padding-bottom: 2.5rem;
+	border-bottom: 1px solid var(--border-light);
 }
 
 .rules-section:last-child {
 	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
 .rules-section h2 {
-	color: #333;
 	margin-bottom: 1rem;
-	padding-bottom: 0.5rem;
-	border-bottom: 2px solid var(--color-info);
 }
 
 .rules-section h3 {
-	color: #444;
 	margin-top: 1.5rem;
 	margin-bottom: 0.75rem;
 }

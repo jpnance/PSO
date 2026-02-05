@@ -1,23 +1,5 @@
 /* Franchise Schedule Page Styles */
 
-.franchise-schedule__header {
-	margin-bottom: 0.5rem;
-}
-
-.franchise-schedule__header h1 {
-	margin-bottom: 0;
-}
-
-.franchise-schedule__header h1 a {
-	color: inherit;
-	text-decoration: none;
-}
-
-.franchise-schedule__header h1 a:hover {
-	text-decoration: underline;
-}
-
-
 /* Stats display */
 .franchise-schedule__stats {
 	display: flex;

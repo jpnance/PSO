@@ -308,6 +308,130 @@ Use BEM naming to scope styles and prevent class name collisions:
 
 Page-specific CSS files follow the template name: `proposal.pug` → `proposal.css`, `admin-players.pug` → `admin-players.css`, etc.
 
+## Page Layouts
+
+Use these standardized layout patterns for consistent page structure.
+
+### Layout Types
+
+| Layout | Container | Use For |
+|--------|-----------|---------|
+| **Full-width** | `.container-fluid.py-4` | Dashboard pages with cards/grids (league, franchises, standings, schedule) |
+| **Narrow** | `.container.py-4` | Focused single-purpose pages (proposal, calendar, rfa, jaguar) |
+| **Hero** | Hero section + `.container.py-4` | Entity detail pages (player, franchise) |
+
+### Hero Pattern
+
+For entity detail pages (player, franchise), use a hero section outside the main content container:
+
+```pug
+//- Hero section (outside main container)
+div.player-hero(class='player-hero--' + primaryPos)
+  div.container
+    div.player-hero__layout
+      //- Hero content (badge, name, meta)
+
+//- Main content (separate container with padding)
+div.container.py-4
+  div.row
+    //- Page content
+```
+
+Hero CSS conventions:
+- `padding: 1.5rem 0` — vertical padding
+- `margin-bottom: 0` — let the following container's `py-4` handle spacing
+- `border-bottom` — visual separator (3px colored for player, 1px subtle for franchise)
+- Hero h1 inherits base typography (2rem desktop / 1.75rem mobile)
+
+### Page Header Pattern
+
+Use `.page-header` for consistent page titles:
+
+```pug
+//- Standard left-aligned header
+div.page-header
+  h1 Page Title
+
+//- Centered header (for dashboard/overview pages)
+div.page-header.page-header--centered
+  h1 League Overview
+```
+
+### Page Navigation Pattern
+
+When a page has season/week navigation below the title, use `.page-nav`:
+
+```pug
+div.page-header
+  h1 #{season} Standings
+div.page-nav.mb-4
+  +sequentialNav({ items: allSeasons, current: season, urlPattern: '/standings/' })
+```
+
+Multiple navs can be placed in the same `.page-nav` container:
+```pug
+div.page-nav.mb-4
+  +sequentialNav({ items: allSeasons, current: season, urlPattern: '/schedule/', urlSuffix: '/' + week })
+  +sequentialNav({ items: weekNumbers, current: week, urlPattern: '/schedule/' + season + '/' })
+```
+
+### Content Width Patterns
+
+Use these column classes for main content:
+- **Narrow** (trades, proposals): `.col-md-7.col-xl-5`
+- **Medium** (standings tables): `.col-lg-10.col-xl-8`
+- **With sidebar**: `.col-lg-8` main + `.col-lg-4` sidebar
+
+### Complete Layout Examples
+
+```pug
+//- Full-width dashboard page
+block content
+  div.container-fluid.py-4
+    div.page-header.page-header--centered
+      h1 League Overview
+    div.row
+      div.col-md-6.col-lg-4.mb-4
+        //- Cards...
+
+//- Narrow focused page
+block content
+  div.container.py-4
+    div.page-header
+      h1 Trade Proposal
+    div.row
+      div.col-md-7.col-xl-5
+        //- Content...
+
+//- Full-width with navigation
+block content
+  div.container-fluid.py-4
+    div.page-header
+      h1 #{season} Standings
+    div.page-nav.mb-4
+      +sequentialNav(...)
+    div.row
+      div.col-lg-10.col-xl-8
+        //- Content...
+
+//- Hero page
+block content
+  div.player-hero
+    div.container
+      //- Hero content...
+  div.container.py-4
+    div.row
+      div.col-lg-7
+        //- Main content...
+```
+
+### Avoid
+
+- Using `.mb-4` on h1 directly — use `.page-header` wrapper instead
+- Custom header wrapper classes like `.standings__header` — use `.page-header`
+- Custom nav wrapper classes like `.schedule__nav` — use `.page-nav`
+- Inconsistent padding (`.py-3` vs `.py-4`) — always use `.py-4`
+
 ### Avoid
 
 - Inline `style.` blocks in templates (extract to CSS files)

@@ -34,7 +34,8 @@ block content
 		+alertBanner('danger', 'fa-exclamation-circle', '')
 
 	div.container.py-4.trade-machine
-		h1.mb-4= isProcessingMode ? 'Process Trade' : 'Trade Machine'
+		div.page-header
+			h1= isProcessingMode ? 'Process Trade' : 'Trade Machine'
 
 		div.row
 			//- Franchise Selection Card
