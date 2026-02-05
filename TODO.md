@@ -122,6 +122,7 @@
 - [x] Clean up directory structure
 - [ ] Refactor formatContractDisplay to handle RFA rights and unsigned cases (remove || 0 coercion and manual checks)
 - [ ] Add generic error pages (404, 500, etc.)
+- [ ] Remove `?test-share=1` dev-only query param from proposal view
 - [ ] Consider E2E testing with Playwright
 - [x] Add sandbox message banner to league config seed
 - [ ] Investigate upgrading Bootstrap 4 → 5 (gap utilities, updated components, breaking changes?)

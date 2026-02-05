@@ -60,10 +60,18 @@ block content
 									|  #{tradesDisabledReason}
 						if proposal.status === 'pending' && !proposal.acceptanceWindowStart
 							+alertBanner('warning', 'fa-refresh', 'The acceptance window expired. Accept again to restart the clock.').mb-3
-						if proposal.status === 'accepted'
-							+alertBanner('success', 'fa-check-circle').mb-3
-								strong All parties have accepted!
-								|  This trade is now waiting for commissioner approval.
+						if proposal.status === 'accepted' || forceShowShareScreen
+							if proposal.status === 'accepted'
+								+alertBanner('success', 'fa-check-circle').mb-3
+									strong All parties have accepted!
+									|  This trade is now waiting for commissioner approval.
+									if isParty
+										br
+										a.share-modal-trigger(href='#') Share the news →
+							if forceShowShareScreen && proposal.status !== 'accepted'
+								+alertBanner('info', 'fa-flask').mb-3
+									| Dev mode: 
+									a.share-modal-trigger(href='#') Open share modal
 						if proposal.status === 'rejected'
 							+alertBanner('danger', 'fa-times-circle').mb-3
 								| This proposal was rejected.
@@ -142,6 +150,27 @@ block content
 									button.btn.btn-outline-danger.cancel-btn
 										i.fa.fa-times.mr-1
 										| Discard
+
+		//- Share Trade Modal
+		div#share-modal.modal.fade(tabindex='-1' role='dialog')
+			div.modal-dialog.modal-dialog-centered(role='document')
+				div.modal-content
+					div.modal-header.bg-success
+						h5.modal-title.text-white Trade Accepted
+						button.close(type='button' data-dismiss='modal' aria-label='Close')
+							i.fa.fa-times.text-white
+					div.modal-body.text-center
+						p.text-muted.mb-3 How bold is this deal?
+						div.share-modal__grid
+							div.share-modal__option
+								button.share-modal__image-btn.share-image-btn(type='button' data-image-url='/images/trade-alert.png')
+									img.share-modal__preview(src='/images/trade-alert.png' alt='Trade Alert')
+							div.share-modal__option
+								button.share-modal__image-btn.share-image-btn(type='button' data-image-url='/images/trade-alert-lite.png')
+									img.share-modal__preview(src='/images/trade-alert-lite.png' alt='Trade Alert Lite')
+							div.share-modal__option.share-modal__option--full
+								button.share-modal__text-btn.share-btn(type='button' data-copy-text='TRADE ❗️ ALERT')
+									span.share-modal__text-preview TRADE ❗️ ALERT
 
 block scripts
 	script.
@@ -239,13 +268,74 @@ block scripts
 			}, 2000);
 		});
 		
+		// Share trade buttons (copy text to clipboard)
+		$(document).on('click', '.share-btn', function() {
+			var text = $(this).data('copy-text');
+			var $btn = $(this);
+			
+			navigator.clipboard.writeText(text).then(function() {
+				$btn.addClass('copied');
+				setTimeout(function() { $btn.removeClass('copied'); }, 2000);
+			}).catch(function() {
+				// Fallback for older browsers
+				var $temp = $('<input>');
+				$('body').append($temp);
+				$temp.val(text).select();
+				document.execCommand('copy');
+				$temp.remove();
+				$btn.addClass('copied');
+				setTimeout(function() { $btn.removeClass('copied'); }, 2000);
+			});
+		});
+		
 		$('.accept-btn').on('click', function() {
 			var restore = startLoading($(this));
 			$.post('/proposals/' + proposalId + '/accept')
-				.done(function() { location.reload(); })
+				.done(function(data) {
+					if (data.showShareScreen) {
+						// Show the share modal, reload when closed
+						$('#share-modal').modal('show');
+						$('#share-modal').one('hidden.bs.modal', function() {
+							location.reload();
+						});
+					} else {
+						location.reload();
+					}
+				})
 				.fail(function(xhr) {
 					restore();
 					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
+				});
+		});
+		
+		// Open share modal from link
+		$('.share-modal-trigger').on('click', function(e) {
+			e.preventDefault();
+			$('#share-modal').modal('show');
+		});
+		
+		// Copy PNG image to clipboard
+		$('.share-image-btn').on('click', function() {
+			var $btn = $(this);
+			var imageUrl = $btn.data('image-url');
+			
+			$btn.addClass('loading');
+			
+			fetch(imageUrl)
+				.then(function(response) { return response.blob(); })
+				.then(function(blob) {
+					return navigator.clipboard.write([
+						new ClipboardItem({ 'image/png': blob })
+					]);
+				})
+				.then(function() {
+					$btn.removeClass('loading').addClass('copied');
+					setTimeout(function() { $btn.removeClass('copied'); }, 2000);
+				})
+				.catch(function(err) {
+					console.error('Clipboard write failed:', err);
+					$btn.removeClass('loading');
+					alert('Could not copy image. Try right-click > Copy Image instead.');
 				});
 		});
 		

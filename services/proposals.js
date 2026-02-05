@@ -10,6 +10,7 @@ var Transaction = require('../models/Transaction');
 var Proposal = require('../models/Proposal');
 var transactionService = require('./transaction');
 var budgetHelper = require('../helpers/budget');
+var notifications = require('../helpers/notifications');
 var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
@@ -511,7 +512,11 @@ async function submitTrade(request, response) {
 					warnings: result.warnings || []
 				});
 			} else {
-				// Trade executed
+				// Trade executed - announce to the league
+				notifications.postToLeague(
+					'https://thedynastyleague.com/trades/' + result.transaction.tradeId
+				);
+				
 				response.json({
 					success: true,
 					tradeId: result.transaction.tradeId,
@@ -1000,11 +1005,14 @@ async function viewProposal(request, response) {
 			hardCapActive: hardCapActive
 		});
 		
+		// Dev mode: allow forcing the share screen via query param
+		var forceShowShareScreen = process.env.NODE_ENV !== 'production' && request.query['test-share'] === '1';
+		
 		response.render('proposal', {
 			proposal: proposal,
 			parties: partiesDisplay,
 			isCreator: isCreator,
-			isParty: isParty,
+			isParty: isParty || forceShowShareScreen,
 			userParty: userParty,
 			userHasAccepted: userParty ? userParty.accepted : false,
 			acceptanceWindowActive: acceptanceWindowActive,
@@ -1016,7 +1024,8 @@ async function viewProposal(request, response) {
 			currentSeason: currentSeason,
 			auctionSeason: auctionSeason,
 			tradeYear: new Date(proposal.createdAt).getFullYear(),
-			activePage: 'proposals'
+			activePage: 'proposals',
+			forceShowShareScreen: forceShowShareScreen
 		});
 	} catch (err) {
 		console.error('viewProposal error:', err);
@@ -1287,9 +1296,17 @@ async function acceptProposal(request, response) {
 		
 		await proposal.save();
 		
+		// If trade is now fully accepted, alert the commissioner
+		if (proposal.status === 'accepted') {
+			notifications.alertCommissioner(
+				'Trade accepted! https://thedynastyleague.com/admin/proposals'
+			);
+		}
+		
 		response.json({ 
 			success: true,
 			allAccepted: proposal.status === 'accepted',
+			showShareScreen: proposal.status === 'accepted',
 			acceptanceWindowRemaining: proposal.getAcceptanceWindowRemaining()
 		});
 	} catch (err) {
@@ -1621,6 +1638,11 @@ async function approveProposal(request, response) {
 			proposal.status = 'executed';
 			proposal.executedTransactionId = result.transaction._id;
 			await proposal.save();
+			
+			// Announce to the league
+			notifications.postToLeague(
+				'https://thedynastyleague.com/trades/' + result.transaction.tradeId
+			);
 			
 			response.json({
 				success: true,
