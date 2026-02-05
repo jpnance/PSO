@@ -290,10 +290,9 @@ Include in `block styles` as needed:
 ```pug
 block styles
   link(rel='stylesheet' href='/css/positions.css')   //- for +positionBadge
-  link(rel='stylesheet' href='/css/components.css')  //- for +matchup, +standingsTable, +sequentialNav, status badges, trade assets, card footer links
 ```
 
-Note: `design-tokens.css` is already included globally via layout.pug.
+Note: `design-tokens.css` and `components.css` are already included globally via layout.pug.
 
 ## CSS Conventions
 
