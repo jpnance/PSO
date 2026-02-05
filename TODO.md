@@ -52,7 +52,7 @@
 - [ ] **Proposal drops** — allow trade creator to specify their drop upfront as part of the proposal (separate FA transaction with `facilitatedTradeId` when executed)
 - [ ] Improve commissioner trade approval screen (currently bare-bones)
 - [ ] Figure out how to deal with locked players in trades
-- [ ] Figure out a data backfill strategy to get more past transactions into the system
+- [x] Figure out a data backfill strategy to get more past transactions into the system
 - [ ] **Auto-execute trades toggle** — `LeagueConfig.autoExecuteTrades` flag to skip commissioner approval
 - [ ] **Transaction rollbacks** — ability to undo executed trades (see details below)
 
@@ -88,18 +88,20 @@
 *Nice to have, no hard deadline*
 
 ### Historical Data Reconstruction
-- [ ] Parse `data/archive/` files to reconstruct early league history (2008-2009)
-  - XML files have contract snapshots with player IDs, salaries, and team assignments
-  - Auction chat logs have the full bidding record from founding draft
-  - `results.html` has complete 2008 auction picks in order
-  - Could seed historical contracts into the database for complete league timeline
-  - See `data/archive/README.md` for full inventory and `parse-xml-contracts.js` for initial parsing
+- [x] Parse `data/archive/` files to reconstruct early league history (2008-2019)
+  - Contract snapshots seeded via `fa-snapshot.js`
+  - Cuts ledger seeded via `cuts.js` with refined timestamps
+  - FA reacquisitions inferred via `fa-reacquisition.js`
+  - Auction wins inferred via `auction.js` and `auction-cuts.js` (including 2008 founding auction)
+  - RFA conversions seeded via `rfa-conversions.js`
+  - 2012 expansion draft seeded via `expansion-draft-2012.js` (protections + selections)
+  - Trade history parsed from WordPress via `trade-facts.js`
 
 ### Information & Content
 - [ ] Bring the rules document over to the website
 - [ ] General transaction log
 - [ ] Season overview page
-- [ ] Player cards - click into to see player details and transaction history
+- [x] Player cards - click into to see player details and transaction history
 - [ ] Tool for owners to query past results
 - [ ] League Hall of Fame
 
