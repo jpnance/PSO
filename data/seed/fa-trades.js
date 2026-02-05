@@ -128,14 +128,12 @@ async function run() {
 		playersByNormalizedName[normalized].push(p);
 	});
 	
-	// Load all trade facts (fetch from WordPress if cache doesn't exist)
-	var allTrades;
-	if (tradeFacts.checkAvailability()) {
-		allTrades = tradeFacts.loadAll();
-	} else {
-		console.log('Trade cache not found, fetching from WordPress...');
-		allTrades = await tradeFacts.fetchAndCache();
+	// Load all trade facts from trades.json (the canonical source)
+	if (!tradeFacts.checkAvailability()) {
+		console.error('ERROR: trades.json not found. This file is the canonical source for trade data.');
+		process.exit(1);
 	}
+	var allTrades = tradeFacts.loadAll();
 	
 	var startYear = targetYear || FIRST_YEAR;
 	var endYear = targetYear || LAST_YEAR;

@@ -26,60 +26,60 @@
 	},
 	"tradeAmendments": [
 		{
-			"tradeId": 34,
+			"tradeId": 35,
 			"notes": "The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder."
 		},
 		{
-			"tradeId": 36,
+			"tradeId": 37,
 			"notes": "The agreed-to version of this trade attached the following condition to the 4th round draft pick: conditionally upgrades to a 3rd round draft pick should John win a 2011 playoff game. John didn't make the playoffs so it remained a 4th rounder."
 		},
 		{
-			"tradeId": 37,
+			"tradeId": 38,
 			"notes": "The agreed-to version of this trade attached the following condition to the 2nd round draft pick: conditionally downgrades to a 3rd round draft pick should Patrick win a 2011 playoff game. It also attached the following condition to the 3rd round draft pick: conditionally downgrades to a 4th round draft pick should John win a 2011 playoff game. Patrick lost in the semifinals and John didn't make the playoffs so the picks remained 2nd and 3rd rounders, respectively."
 		},
 		{
-			"tradeId": 94,
+			"tradeId": 95,
 			"notes": "The origins of all four picks in this trade are self-explanatory: none of them had been traded until this deal was made."
 		},
 		{
-			"tradeId": 299,
+			"tradeId": 300,
 			"notes": "Brett/Luke originally owned both RFA rights; Koci/Mueller originally owned the future 2nd and 3rd; Schex originally owned the 3.04 and 3.11."
 		},
 		{
-			"tradeId": 331,
+			"tradeId": 332,
 			"notes": "The 2022 picks involved in this trade should not have been available to Quinn to trade in 2019. It was erroneously approved by the commissioner but not definitively ruled a mistake until it was seen as too late to roll back."
 		},
 		{
-			"tradeId": 360,
+			"tradeId": 361,
 			"notes": "This trade was originally agreed to by the Brett/Luke regime; it predates Luke's departure to take over the Syed/Kuan franchise."
 		},
 		{
-			"tradeId": 367,
+			"tradeId": 368,
 			"notes": "This trade was originally agreed to by the Brett/Luke regime; it predates Luke's departure to take over the Syed/Kuan franchise."
 		},
 		{
-			"tradeId": 372,
+			"tradeId": 373,
 			"notes": "This trade was originally agreed to by the Syed/Kuan regime; it predates their departure from the league (and Luke's assumption of their franchise) a few weeks later."
 		},
 		{
-			"tradeId": 485,
+			"tradeId": 486,
 			"notes": "Schex originally owned both Khalil Herbert and Montrell Washington; Justin originally owned Dallas Goedert. Keyon did not give up an asset in this trade."
 		},
 		{
-			"tradeId": 527,
+			"tradeId": 528,
 			"notes": "This trade was originally agreed to by the Mitch/Mike regime; Mike would take over Trevor's franchise a few days later."
 		}
 	],
 	"tradeCashCorrections": [
 		{
-			"tradeId": 688,
+			"tradeId": 689,
 			"party": 0,
 			"cash": 0,
 			"remove": true,
 			"notes": "The agreed-to version of this trade moved $15 from Schexes to Patrick in 2025. That transaction was never carried out on the spreadsheet, though, and the error was not noticed by anyone until over a year later."
 		},
 		{
-			"tradeId": 600,
+			"tradeId": 601,
 			"party": 1,
 			"cash": 0,
 			"season": 2026,

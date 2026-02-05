@@ -418,6 +418,10 @@
     "sleeperId": null,
     "name": "Antonio Bryant"
   },
+  "antonio bryant|2009|type:trade|keyon": {
+    "sleeperId": null,
+    "name": "Antonio Bryant"
+  },
   "antonio bryant|2010|type:cut|keyon": {
     "sleeperId": null,
     "name": "Antonio Bryant"
@@ -1661,6 +1665,9 @@
   "donald lee|2008|type:fa|luke": {
     "sleeperId": null,
     "name": "Donald Lee"
+  },
+  "donnie avery|2009|type:trade|koci": {
+    "sleeperId": "104"
   },
   "donovan mcnabb|2009|type:trade|patrick": {
     "sleeperId": null,

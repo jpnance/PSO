@@ -1,6 +1,5 @@
 /**
- * Seed trades from WordPress into the database.
- * Fetches trade posts directly from WordPress API.
+ * Seed trades from trades.json into the database.
  * Uses the player resolver for matching and interactive disambiguation.
  * 
  * Usage:
@@ -11,7 +10,6 @@
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
 var readline = require('readline');
-var request = require('superagent');
 
 var Transaction = require('../../models/Transaction');
 var Franchise = require('../../models/Franchise');
@@ -19,8 +17,9 @@ var Player = require('../../models/Player');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
 
-// Inference engine integration
+// Facts and inference engine integration
 var facts = require('../facts');
+var tradeFacts = require('../facts/trade-facts');
 var contractTermInference = require('../inference/contract-term');
 
 var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
@@ -195,227 +194,6 @@ function parseContract(contractStr, playerName, salary, tradeDate) {
 	return result;
 }
 
-// ============================================
-// WordPress fetching and parsing (from parseTradeHistory.js)
-// ============================================
-
-async function fetchAllTrades() {
-	var allTrades = [];
-	var page = 1;
-	var hasMore = true;
-
-	while (hasMore) {
-		console.log('Fetching page', page, '...');
-
-		var response = await request
-			.get('https://public-api.wordpress.com/rest/v1.1/sites/thedynastyleague.wordpress.com/posts')
-			.query({ category: 'trades', number: 100, page: page });
-
-		var posts = response.body.posts;
-
-		if (posts.length === 0) {
-			hasMore = false;
-		}
-		else {
-			allTrades = allTrades.concat(posts);
-			page++;
-		}
-	}
-
-	console.log('Fetched', allTrades.length, 'trades total\n');
-	return allTrades;
-}
-
-function parseTradeContent(html, tradeDate) {
-	var trade = {
-		parties: []
-	};
-
-	// Split by <strong> tags to find each party's section
-	var sections = html.split(/<strong>/);
-
-	for (var i = 1; i < sections.length; i++) {
-		var section = sections[i];
-
-		// Extract owner name (everything before </strong>)
-		var ownerMatch = section.match(/^([^<]+)<\/strong>/);
-		if (!ownerMatch) continue;
-
-		var ownerName = ownerMatch[1].trim();
-		var party = {
-			owner: ownerName,
-			franchiseId: PSO.franchiseIds[ownerName] || null,
-			receives: {
-				players: [],
-				picks: [],
-				cash: []
-			}
-		};
-
-		// Extract list items
-		var listItems = section.match(/<li>.*?<\/li>/g) || [];
-
-		for (var j = 0; j < listItems.length; j++) {
-			var item = listItems[j];
-
-			// Player with link: <a href="...">Player Name</a> ($salary, start/end) or ($salary, year)
-			var playerMatch = item.match(/<a[^>]*>([^<]+)<\/a>\s*\((\$?\d+),?\s*([^)]+)\)/);
-			if (playerMatch) {
-				// Extract href separately since it could be anywhere in the tag
-				var hrefMatch = item.match(/<a[^>]*\shref="([^"]*)"[^>]*>/);
-				var href = hrefMatch ? hrefMatch[1] : null;
-				var playerName = playerMatch[1].trim();
-				var contractStr = playerMatch[3].trim();
-				var salary = parseInt(playerMatch[2].replace('$', ''));
-				var contract = parseContract(contractStr, playerName, salary, tradeDate);
-
-				// Try to extract ESPN ID from the href
-				// Patterns: /nfl/player/_/id/12345/name or /nfl/players/profile?playerId=12345
-				var espnId = null;
-				if (href) {
-					var espnIdMatch = href.match(/\/id\/(\d+)\//) || href.match(/playerId=(\d+)/);
-					if (espnIdMatch) {
-						espnId = espnIdMatch[1];
-					}
-				}
-
-				party.receives.players.push({
-					name: playerName,
-					espnId: espnId,
-					salary: salary,
-					startYear: contract.startYear,
-					endYear: contract.endYear,
-					ambiguous: contract.ambiguous
-				});
-				continue;
-			}
-
-			// Player without link (plain text)
-			var plainPlayerMatch = item.match(/<li>\s*([A-Za-z][A-Za-z\.\s'-]+[A-Za-z])\s*\((\$?\d+),?\s*([^)]+)\)/);
-			if (plainPlayerMatch) {
-				var playerName = plainPlayerMatch[1].trim();
-				var contractStr = plainPlayerMatch[3].trim();
-				var salary = parseInt(plainPlayerMatch[2].replace('$', ''));
-				var contract = parseContract(contractStr, playerName, salary, tradeDate);
-
-				party.receives.players.push({
-					name: playerName,
-					salary: salary,
-					startYear: contract.startYear,
-					endYear: contract.endYear,
-					ambiguous: contract.ambiguous
-				});
-				continue;
-			}
-
-			// Cash: $X from Owner in Year
-			var cashMatch = item.match(/\$(\d+)\s+from\s+([^\s]+(?:\/[^\s]+)?)\s+in\s+(\d+)/i);
-			if (cashMatch) {
-				party.receives.cash.push({
-					amount: parseInt(cashMatch[1]),
-					fromOwner: cashMatch[2],
-					season: parseInt(cashMatch[3])
-				});
-				continue;
-			}
-
-			// Cash without "from" (old format): $X in Year
-			var cashNoFromMatch = item.match(/\$(\d+)\s+in\s+(\d+)/i);
-			if (cashNoFromMatch) {
-				party.receives.cash.push({
-					amount: parseInt(cashNoFromMatch[1]),
-					fromOwner: null,
-					season: parseInt(cashNoFromMatch[2])
-				});
-				continue;
-			}
-
-			// Pick: Xth round [draft] pick from Owner in Year
-			var pickMatch = item.match(/(\d+)(?:st|nd|rd|th)\s+round\s+(?:draft\s+)?pick\s+from\s+([^\s(]+(?:\/[^\s(]+)?)\s+in\s+(\d+)/i);
-			if (pickMatch) {
-				party.receives.picks.push({
-					round: parseInt(pickMatch[1]),
-					fromOwner: pickMatch[2],
-					season: parseInt(pickMatch[3])
-				});
-				continue;
-			}
-
-			// Pick with "via" notation
-			var pickViaMatch = item.match(/(\d+)(?:st|nd|rd|th)\s+round\s+(?:draft\s+)?pick\s+from\s+([^\s(]+(?:\/[^\s(]+)?)\s*\(via\s+([^)]+)\)\s+in\s+(\d+)/i);
-			if (pickViaMatch) {
-				party.receives.picks.push({
-					round: parseInt(pickViaMatch[1]),
-					fromOwner: pickViaMatch[2],
-					viaOwner: pickViaMatch[3],
-					season: parseInt(pickViaMatch[4])
-				});
-				continue;
-			}
-
-			// Pick with year before via
-			var pickYearBeforeViaMatch = item.match(/(\d+)(?:st|nd|rd|th)\s+round\s+(?:draft\s+)?pick\s+from\s+([^\s(]+(?:\/[^\s(]+)?)\s+in\s+(\d+)\s*\(via\s+([^)]+)\)/i);
-			if (pickYearBeforeViaMatch) {
-				party.receives.picks.push({
-					round: parseInt(pickYearBeforeViaMatch[1]),
-					fromOwner: pickYearBeforeViaMatch[2],
-					season: parseInt(pickYearBeforeViaMatch[3]),
-					viaOwner: pickYearBeforeViaMatch[4]
-				});
-				continue;
-			}
-
-			// Old format pick without year
-			var pickNoYearViaMatch = item.match(/(\d+)(?:st|nd|rd|th)\s+round\s+(?:draft\s+)?pick\s+from\s+([^\s(]+(?:\/[^\s(]+)?)\s*\(via\s+([^)]+)\)$/i);
-			if (pickNoYearViaMatch) {
-				party.receives.picks.push({
-					round: parseInt(pickNoYearViaMatch[1]),
-					fromOwner: pickNoYearViaMatch[2],
-					viaOwner: pickNoYearViaMatch[3],
-					season: null
-				});
-				continue;
-			}
-
-			// RFA rights
-			var rfaMatch = item.match(/<a[^>]*>([^<]+)<\/a>\s*\(RFA rights\)/i) || item.match(/<li>\s*([A-Za-z][A-Za-z\.\s'&#;0-9-]+[A-Za-z])\s*\(RFA rights\)/i);
-			if (rfaMatch) {
-				// Extract ESPN ID from href if present
-				var rfaHrefMatch = item.match(/<a[^>]*\shref="([^"]*)"[^>]*>/);
-				var rfaHref = rfaHrefMatch ? rfaHrefMatch[1] : null;
-				var rfaEspnId = null;
-				if (rfaHref) {
-					var rfaEspnIdMatch = rfaHref.match(/\/id\/(\d+)\//) || rfaHref.match(/playerId=(\d+)/);
-					if (rfaEspnIdMatch) {
-						rfaEspnId = rfaEspnIdMatch[1];
-					}
-				}
-
-				party.receives.players.push({
-					name: rfaMatch[1].trim().replace(/&#8217;/g, "'"),
-					espnId: rfaEspnId,
-					rfaRights: true,
-					salary: null,
-					startYear: null,
-					endYear: null
-				});
-				continue;
-			}
-
-			// Nothing: explicitly traded nothing
-			if (item.match(/Nothing/i)) {
-				continue;
-			}
-
-			// Unrecognized item
-			console.log('Unrecognized trade item:', item.replace(/<[^>]+>/g, ''));
-		}
-
-		trade.parties.push(party);
-	}
-
-	return trade;
-}
 
 // ============================================
 // Player resolution helpers
@@ -554,7 +332,7 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, 
 // ============================================
 
 async function seed() {
-	console.log('Importing trade history from WordPress...\n');
+	console.log('Importing trade history from trades.json...\n');
 	console.log('Loaded', resolver.count(), 'cached player resolutions');
 	console.log('Loaded', Object.keys(espnToSleeperId).length, 'ESPN ID mappings from Sleeper data\n');
 
@@ -587,25 +365,61 @@ async function seed() {
 		await Player.deleteMany({ sleeperId: null });
 	}
 
-	// Fetch trades from WordPress
-	var posts = await fetchAllTrades();
+	// Load trades from trades.json
+	var rawTrades = tradeFacts.loadAll();
+	console.log('Loaded', rawTrades.length, 'trades from trades.json\n');
 	
-	// Parse all trades
-	var tradeHistory = [];
-	for (var i = 0; i < posts.length; i++) {
-		var post = posts[i];
-		var tradeNumberMatch = post.title.match(/Trade #(\d+)/);
-		var tradeNumber = tradeNumberMatch ? parseInt(tradeNumberMatch[1]) : null;
-		var tradeDate = new Date(post.date);
-
-		var parsed = parseTradeContent(post.content, tradeDate);
-		parsed.tradeNumber = tradeNumber;
-		parsed.timestamp = tradeDate;
-		parsed.tradeId = tradeNumber;
-		parsed.url = post.URL;
-
-		tradeHistory.push(parsed);
-	}
+	// Convert trades.json format to the format expected by the rest of this script
+	// trades.json has: party.players, party.picks, party.cash, party.rfaRights
+	// We need: party.receives.players, party.receives.picks, party.receives.cash
+	// Also run contract inference on contractStr
+	var tradeHistory = rawTrades.map(function(trade) {
+		var tradeDate = trade.date instanceof Date ? trade.date : new Date(trade.date);
+		
+		var convertedParties = trade.parties.map(function(party) {
+			// Convert players and run contract inference
+			var convertedPlayers = (party.players || []).map(function(player) {
+				var contract = parseContract(player.contractStr, player.name, player.salary, tradeDate);
+				return {
+					name: player.name,
+					espnId: player.espnId,
+					salary: player.salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear,
+					ambiguous: contract.ambiguous
+				};
+			});
+			
+			// Convert RFA rights
+			var convertedRfaRights = (party.rfaRights || []).map(function(rfa) {
+				return {
+					name: rfa.name,
+					espnId: rfa.espnId,
+					rfaRights: true,
+					salary: null,
+					startYear: null,
+					endYear: null
+				};
+			});
+			
+			return {
+				owner: party.owner,
+				receives: {
+					players: convertedPlayers.concat(convertedRfaRights),
+					picks: party.picks || [],
+					cash: party.cash || []
+				}
+			};
+		});
+		
+		return {
+			tradeNumber: trade.tradeId,
+			tradeId: trade.tradeId,
+			timestamp: tradeDate,
+			url: trade.url,
+			parties: convertedParties
+		};
+	});
 
 	// Sort by trade number
 	tradeHistory.sort(function(a, b) { return a.tradeNumber - b.tradeNumber; });

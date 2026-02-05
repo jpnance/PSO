@@ -53,19 +53,13 @@ async function loadAllFacts(options) {
 		console.log('    Not available (provide data in data/fantrax/)');
 	}
 	
-	// Load trades - try local cache first, then network
+	// Load trades from trades.json (the canonical source)
 	if (facts.trades.checkAvailability()) {
-		console.log('  Loading trades from local cache...');
+		console.log('  Loading trades from trades.json...');
 		result.trades = facts.trades.loadAll();
 		console.log('    Found ' + result.trades.length + ' trades');
-	} else if (!options.skipNetwork) {
-		console.log('  Fetching trades from WordPress...');
-		try {
-			result.trades = await facts.trades.fetchAndCache();
-			console.log('    Found ' + result.trades.length + ' trades');
-		} catch (err) {
-			console.log('    Error fetching trades:', err.message);
-		}
+	} else {
+		console.log('  WARNING: trades.json not found');
 	}
 	
 	// Load cuts - try local cache first, then network

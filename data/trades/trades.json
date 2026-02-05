@@ -330,6 +330,53 @@
   },
   {
     "tradeId": 9,
+    "date": "2009-08-31T00:00:00.000Z",
+    "url": null,
+    "parties": [
+      {
+        "owner": "Koci",
+        "players": [
+          {
+            "name": "Dustin Keller",
+            "espnId": "11264",
+            "salary": 5,
+            "contractStr": "unsigned"
+          },
+          {
+            "name": "Donnie Avery",
+            "espnId": "11267",
+            "salary": 3,
+            "contractStr": "08/10"
+          }
+        ],
+        "picks": [],
+        "cash": [],
+        "rfaRights": []
+      },
+      {
+        "owner": "Keyon",
+        "players": [
+          {
+            "name": "Marc Bulger",
+            "espnId": "2299",
+            "salary": 3,
+            "contractStr": "unsigned"
+          },
+          {
+            "name": "Antonio Bryant",
+            "espnId": "3591",
+            "salary": 38,
+            "contractStr": "unsigned"
+          }
+        ],
+        "picks": [],
+        "cash": [],
+        "rfaRights": []
+      }
+    ]
+  },
+  {
+    "tradeId": 10,
     "date": "2009-10-07T02:36:39.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/10/06/trade-9/",
     "parties": [
@@ -362,7 +409,7 @@
     ]
   },
   {
-    "tradeId": 10,
+    "tradeId": 11,
     "date": "2009-10-16T22:11:03.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/10/16/trade-10/",
     "parties": [
@@ -409,7 +456,7 @@
     ]
   },
   {
-    "tradeId": 11,
+    "tradeId": 12,
     "date": "2009-10-21T22:44:45.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/10/21/trade-11/",
     "parties": [
@@ -450,7 +497,7 @@
     ]
   },
   {
-    "tradeId": 12,
+    "tradeId": 13,
     "date": "2009-10-22T01:24:52.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/10/21/trade-12/",
     "parties": [
@@ -503,7 +550,7 @@
     ]
   },
   {
-    "tradeId": 13,
+    "tradeId": 14,
     "date": "2009-11-18T23:51:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/11/18/trade-13/",
     "parties": [
@@ -563,7 +610,7 @@
     ]
   },
   {
-    "tradeId": 14,
+    "tradeId": 15,
     "date": "2009-11-19T20:41:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/11/19/trade-14/",
     "parties": [
@@ -633,7 +680,7 @@
     ]
   },
   {
-    "tradeId": 15,
+    "tradeId": 16,
     "date": "2009-12-30T22:10:59.000Z",
     "url": "https://thedynastyleague.wordpress.com/2009/12/30/trade-15/",
     "parties": [
@@ -679,7 +726,7 @@
     ]
   },
   {
-    "tradeId": 16,
+    "tradeId": 17,
     "date": "2010-08-22T04:00:32.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/08/21/trade-16/",
     "parties": [
@@ -719,7 +766,7 @@
     ]
   },
   {
-    "tradeId": 17,
+    "tradeId": 18,
     "date": "2010-10-26T16:20:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/10/26/trade-17/",
     "parties": [
@@ -754,7 +801,7 @@
     ]
   },
   {
-    "tradeId": 18,
+    "tradeId": 19,
     "date": "2010-11-13T02:00:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/11/12/trade-18/",
     "parties": [
@@ -824,7 +871,7 @@
     ]
   },
   {
-    "tradeId": 19,
+    "tradeId": 20,
     "date": "2010-11-15T19:01:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/11/15/trade-19/",
     "parties": [
@@ -858,7 +905,7 @@
     ]
   },
   {
-    "tradeId": 20,
+    "tradeId": 21,
     "date": "2010-11-16T18:26:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/11/16/trade-20/",
     "parties": [
@@ -893,7 +940,7 @@
     ]
   },
   {
-    "tradeId": 21,
+    "tradeId": 22,
     "date": "2010-11-24T14:08:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/11/24/trade-21/",
     "parties": [
@@ -934,7 +981,7 @@
     ]
   },
   {
-    "tradeId": 22,
+    "tradeId": 23,
     "date": "2010-11-24T16:47:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/11/24/trade-22/",
     "parties": [
@@ -981,7 +1028,7 @@
     ]
   },
   {
-    "tradeId": 23,
+    "tradeId": 24,
     "date": "2010-11-24T16:59:50.000Z",
     "url": "https://thedynastyleague.wordpress.com/2010/11/24/trade-23/",
     "parties": [
@@ -1016,7 +1063,7 @@
     ]
   },
   {
-    "tradeId": 24,
+    "tradeId": 25,
     "date": "2011-08-18T03:21:41.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/17/trade-24/",
     "parties": [
@@ -1075,7 +1122,7 @@
     ]
   },
   {
-    "tradeId": 25,
+    "tradeId": 26,
     "date": "2011-08-20T16:48:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-25/",
     "parties": [
@@ -1116,7 +1163,7 @@
     ]
   },
   {
-    "tradeId": 26,
+    "tradeId": 27,
     "date": "2011-08-20T17:02:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-26/",
     "parties": [
@@ -1180,7 +1227,7 @@
     ]
   },
   {
-    "tradeId": 27,
+    "tradeId": 28,
     "date": "2011-08-20T17:05:33.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-27/",
     "parties": [
@@ -1213,7 +1260,7 @@
     ]
   },
   {
-    "tradeId": 28,
+    "tradeId": 29,
     "date": "2011-08-20T17:06:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-28/",
     "parties": [
@@ -1290,7 +1337,7 @@
     ]
   },
   {
-    "tradeId": 29,
+    "tradeId": 30,
     "date": "2011-08-20T20:39:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-29/",
     "parties": [
@@ -1343,7 +1390,7 @@
     ]
   },
   {
-    "tradeId": 30,
+    "tradeId": 31,
     "date": "2011-08-20T22:23:46.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-30/",
     "parties": [
@@ -1377,7 +1424,7 @@
     ]
   },
   {
-    "tradeId": 31,
+    "tradeId": 32,
     "date": "2011-08-20T23:15:15.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-31/",
     "parties": [
@@ -1411,7 +1458,7 @@
     ]
   },
   {
-    "tradeId": 32,
+    "tradeId": 33,
     "date": "2011-08-21T00:23:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/20/trade-32/",
     "parties": [
@@ -1464,7 +1511,7 @@
     ]
   },
   {
-    "tradeId": 33,
+    "tradeId": 34,
     "date": "2011-08-28T13:47:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/08/28/trade-33/",
     "parties": [
@@ -1511,7 +1558,7 @@
     ]
   },
   {
-    "tradeId": 34,
+    "tradeId": 35,
     "date": "2011-10-19T17:14:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/10/19/trade-34/",
     "parties": [
@@ -1565,7 +1612,7 @@
     ]
   },
   {
-    "tradeId": 35,
+    "tradeId": 36,
     "date": "2011-10-20T22:34:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/10/20/trade-35/",
     "parties": [
@@ -1619,7 +1666,7 @@
     ]
   },
   {
-    "tradeId": 36,
+    "tradeId": 37,
     "date": "2011-10-22T19:45:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/10/22/trade-36/",
     "parties": [
@@ -1692,7 +1739,7 @@
     ]
   },
   {
-    "tradeId": 37,
+    "tradeId": 38,
     "date": "2011-10-31T17:16:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2011/10/31/trade-37/",
     "parties": [
@@ -1753,7 +1800,7 @@
     ]
   },
   {
-    "tradeId": 38,
+    "tradeId": 39,
     "date": "2012-08-09T22:28:25.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/09/trade-38/",
     "parties": [
@@ -1787,7 +1834,7 @@
     ]
   },
   {
-    "tradeId": 39,
+    "tradeId": 40,
     "date": "2012-08-09T22:45:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/09/trade-39/",
     "parties": [
@@ -1840,7 +1887,7 @@
     ]
   },
   {
-    "tradeId": 40,
+    "tradeId": 41,
     "date": "2012-08-11T02:04:31.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/10/trade-40/",
     "parties": [
@@ -1937,7 +1984,7 @@
     ]
   },
   {
-    "tradeId": 41,
+    "tradeId": 42,
     "date": "2012-08-22T02:27:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/21/trade-41/",
     "parties": [
@@ -2037,7 +2084,7 @@
     ]
   },
   {
-    "tradeId": 42,
+    "tradeId": 43,
     "date": "2012-08-24T00:44:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/23/trade-42/",
     "parties": [
@@ -2071,7 +2118,7 @@
     ]
   },
   {
-    "tradeId": 43,
+    "tradeId": 44,
     "date": "2012-08-24T00:45:59.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/23/trade-43/",
     "parties": [
@@ -2105,7 +2152,7 @@
     ]
   },
   {
-    "tradeId": 44,
+    "tradeId": 45,
     "date": "2012-08-25T23:04:28.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/25/trade-44/",
     "parties": [
@@ -2151,7 +2198,7 @@
     ]
   },
   {
-    "tradeId": 45,
+    "tradeId": 46,
     "date": "2012-08-26T01:09:11.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/25/trade-45/",
     "parties": [
@@ -2198,7 +2245,7 @@
     ]
   },
   {
-    "tradeId": 46,
+    "tradeId": 47,
     "date": "2012-08-26T01:38:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/25/trade-46/",
     "parties": [
@@ -2238,7 +2285,7 @@
     ]
   },
   {
-    "tradeId": 47,
+    "tradeId": 48,
     "date": "2012-08-27T15:48:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/27/trade-47/",
     "parties": [
@@ -2279,7 +2326,7 @@
     ]
   },
   {
-    "tradeId": 48,
+    "tradeId": 49,
     "date": "2012-08-27T19:09:44.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/08/27/trade-48/",
     "parties": [
@@ -2326,7 +2373,7 @@
     ]
   },
   {
-    "tradeId": 49,
+    "tradeId": 50,
     "date": "2012-09-21T00:00:21.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/09/20/trade-49/",
     "parties": [
@@ -2367,7 +2414,7 @@
     ]
   },
   {
-    "tradeId": 50,
+    "tradeId": 51,
     "date": "2012-10-05T20:17:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/05/trade-50/",
     "parties": [
@@ -2426,7 +2473,7 @@
     ]
   },
   {
-    "tradeId": 51,
+    "tradeId": 52,
     "date": "2012-10-06T18:16:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/06/trade-51/",
     "parties": [
@@ -2479,7 +2526,7 @@
     ]
   },
   {
-    "tradeId": 52,
+    "tradeId": 53,
     "date": "2012-10-10T15:35:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/10/trade-52/",
     "parties": [
@@ -2532,7 +2579,7 @@
     ]
   },
   {
-    "tradeId": 53,
+    "tradeId": 54,
     "date": "2012-10-13T02:14:38.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/12/trade-53/",
     "parties": [
@@ -2579,7 +2626,7 @@
     ]
   },
   {
-    "tradeId": 54,
+    "tradeId": 55,
     "date": "2012-10-15T23:02:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/15/trade-54/",
     "parties": [
@@ -2627,7 +2674,7 @@
     ]
   },
   {
-    "tradeId": 55,
+    "tradeId": 56,
     "date": "2012-10-16T02:28:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/15/trade-55/",
     "parties": [
@@ -2686,7 +2733,7 @@
     ]
   },
   {
-    "tradeId": 56,
+    "tradeId": 57,
     "date": "2012-10-23T18:54:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/23/trade-56/",
     "parties": [
@@ -2720,7 +2767,7 @@
     ]
   },
   {
-    "tradeId": 57,
+    "tradeId": 58,
     "date": "2012-10-25T14:26:36.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/10/25/trade-57/",
     "parties": [
@@ -2786,7 +2833,7 @@
     ]
   },
   {
-    "tradeId": 58,
+    "tradeId": 59,
     "date": "2012-11-02T16:31:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/11/02/trade-58/",
     "parties": [
@@ -2840,7 +2887,7 @@
     ]
   },
   {
-    "tradeId": 59,
+    "tradeId": 60,
     "date": "2012-11-09T23:07:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/11/09/trade-59/",
     "parties": [
@@ -2880,7 +2927,7 @@
     ]
   },
   {
-    "tradeId": 60,
+    "tradeId": 61,
     "date": "2012-11-15T22:45:50.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/11/15/trade-60/",
     "parties": [
@@ -2933,7 +2980,7 @@
     ]
   },
   {
-    "tradeId": 61,
+    "tradeId": 62,
     "date": "2012-11-15T23:01:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/11/15/trade-61/",
     "parties": [
@@ -2986,7 +3033,7 @@
     ]
   },
   {
-    "tradeId": 62,
+    "tradeId": 63,
     "date": "2012-11-21T16:58:53.000Z",
     "url": "https://thedynastyleague.wordpress.com/2012/11/21/trade-62/",
     "parties": [
@@ -3032,7 +3079,7 @@
     ]
   },
   {
-    "tradeId": 63,
+    "tradeId": 64,
     "date": "2013-08-02T00:17:38.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/01/trade-63/",
     "parties": [
@@ -3073,7 +3120,7 @@
     ]
   },
   {
-    "tradeId": 64,
+    "tradeId": 65,
     "date": "2013-08-08T17:14:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/08/trade-64/",
     "parties": [
@@ -3108,7 +3155,7 @@
     ]
   },
   {
-    "tradeId": 65,
+    "tradeId": 66,
     "date": "2013-08-14T22:07:47.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/14/trade-65/",
     "parties": [
@@ -3155,7 +3202,7 @@
     ]
   },
   {
-    "tradeId": 66,
+    "tradeId": 67,
     "date": "2013-08-16T15:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/16/trade-66/",
     "parties": [
@@ -3195,7 +3242,7 @@
     ]
   },
   {
-    "tradeId": 67,
+    "tradeId": 68,
     "date": "2013-08-24T15:27:54.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/24/trade-67/",
     "parties": [
@@ -3229,7 +3276,7 @@
     ]
   },
   {
-    "tradeId": 68,
+    "tradeId": 69,
     "date": "2013-08-24T19:39:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/24/trade-68/",
     "parties": [
@@ -3271,7 +3318,7 @@
     ]
   },
   {
-    "tradeId": 69,
+    "tradeId": 70,
     "date": "2013-08-24T20:39:41.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/24/trade-69/",
     "parties": [
@@ -3317,7 +3364,7 @@
     ]
   },
   {
-    "tradeId": 70,
+    "tradeId": 71,
     "date": "2013-08-24T20:42:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/24/trade-70/",
     "parties": [
@@ -3351,7 +3398,7 @@
     ]
   },
   {
-    "tradeId": 71,
+    "tradeId": 72,
     "date": "2013-08-24T22:12:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/24/trade-71/",
     "parties": [
@@ -3392,7 +3439,7 @@
     ]
   },
   {
-    "tradeId": 72,
+    "tradeId": 73,
     "date": "2013-08-30T17:14:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/08/30/trade-72/",
     "parties": [
@@ -3483,7 +3530,7 @@
     ]
   },
   {
-    "tradeId": 73,
+    "tradeId": 74,
     "date": "2013-10-23T00:02:47.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/10/22/trade-73/",
     "parties": [
@@ -3524,7 +3571,7 @@
     ]
   },
   {
-    "tradeId": 74,
+    "tradeId": 75,
     "date": "2013-10-25T03:28:28.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/10/24/trade-74/",
     "parties": [
@@ -3603,7 +3650,7 @@
     ]
   },
   {
-    "tradeId": 75,
+    "tradeId": 76,
     "date": "2013-11-06T16:54:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/06/trade-75/",
     "parties": [
@@ -3681,7 +3728,7 @@
     ]
   },
   {
-    "tradeId": 76,
+    "tradeId": 77,
     "date": "2013-11-08T15:06:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/08/trade-76/",
     "parties": [
@@ -3777,7 +3824,7 @@
     ]
   },
   {
-    "tradeId": 77,
+    "tradeId": 78,
     "date": "2013-11-10T16:01:12.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/10/trade-77/",
     "parties": [
@@ -3824,7 +3871,7 @@
     ]
   },
   {
-    "tradeId": 78,
+    "tradeId": 79,
     "date": "2013-11-12T19:02:45.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/12/trade-78/",
     "parties": [
@@ -3870,7 +3917,7 @@
     ]
   },
   {
-    "tradeId": 79,
+    "tradeId": 80,
     "date": "2013-11-14T03:15:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/13/trade-79/",
     "parties": [
@@ -3910,7 +3957,7 @@
     ]
   },
   {
-    "tradeId": 80,
+    "tradeId": 81,
     "date": "2013-11-14T22:08:50.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/14/trade-80/",
     "parties": [
@@ -3957,7 +4004,7 @@
     ]
   },
   {
-    "tradeId": 81,
+    "tradeId": 82,
     "date": "2013-11-20T01:23:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/19/trade-81/",
     "parties": [
@@ -3997,7 +4044,7 @@
     ]
   },
   {
-    "tradeId": 82,
+    "tradeId": 83,
     "date": "2013-11-20T16:12:14.000Z",
     "url": "https://thedynastyleague.wordpress.com/2013/11/20/trade-82/",
     "parties": [
@@ -4030,7 +4077,7 @@
     ]
   },
   {
-    "tradeId": 83,
+    "tradeId": 84,
     "date": "2014-08-21T16:26:58.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/21/trade-83/",
     "parties": [
@@ -4065,7 +4112,7 @@
     ]
   },
   {
-    "tradeId": 84,
+    "tradeId": 85,
     "date": "2014-08-21T18:43:50.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/21/trade-84/",
     "parties": [
@@ -4106,7 +4153,7 @@
     ]
   },
   {
-    "tradeId": 85,
+    "tradeId": 86,
     "date": "2014-08-22T18:46:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/22/trade-85/",
     "parties": [
@@ -4141,7 +4188,7 @@
     ]
   },
   {
-    "tradeId": 86,
+    "tradeId": 87,
     "date": "2014-08-23T17:05:58.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-86/",
     "parties": [
@@ -4175,7 +4222,7 @@
     ]
   },
   {
-    "tradeId": 87,
+    "tradeId": 88,
     "date": "2014-08-23T20:23:13.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-87/",
     "parties": [
@@ -4207,7 +4254,7 @@
     ]
   },
   {
-    "tradeId": 88,
+    "tradeId": 89,
     "date": "2014-08-23T20:33:50.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-88/",
     "parties": [
@@ -4239,7 +4286,7 @@
     ]
   },
   {
-    "tradeId": 89,
+    "tradeId": 90,
     "date": "2014-08-23T20:37:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-89/",
     "parties": [
@@ -4273,7 +4320,7 @@
     ]
   },
   {
-    "tradeId": 90,
+    "tradeId": 91,
     "date": "2014-08-23T21:08:41.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-90/",
     "parties": [
@@ -4307,7 +4354,7 @@
     ]
   },
   {
-    "tradeId": 91,
+    "tradeId": 92,
     "date": "2014-08-23T22:10:23.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-91/",
     "parties": [
@@ -4348,7 +4395,7 @@
     ]
   },
   {
-    "tradeId": 92,
+    "tradeId": 93,
     "date": "2014-08-23T23:05:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-92/",
     "parties": [
@@ -4395,7 +4442,7 @@
     ]
   },
   {
-    "tradeId": 93,
+    "tradeId": 94,
     "date": "2014-08-23T23:52:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-93/",
     "parties": [
@@ -4423,7 +4470,7 @@
     ]
   },
   {
-    "tradeId": 94,
+    "tradeId": 95,
     "date": "2014-08-24T06:47:55.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/23/trade-94/",
     "parties": [
@@ -4486,7 +4533,7 @@
     ]
   },
   {
-    "tradeId": 95,
+    "tradeId": 96,
     "date": "2014-08-26T17:08:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/26/trade-95/",
     "parties": [
@@ -4527,7 +4574,7 @@
     ]
   },
   {
-    "tradeId": 96,
+    "tradeId": 97,
     "date": "2014-08-26T19:14:45.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/08/26/trade-96/",
     "parties": [
@@ -4592,7 +4639,7 @@
     ]
   },
   {
-    "tradeId": 97,
+    "tradeId": 98,
     "date": "2014-09-25T17:59:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/09/25/trade-97/",
     "parties": [
@@ -4659,7 +4706,7 @@
     ]
   },
   {
-    "tradeId": 98,
+    "tradeId": 99,
     "date": "2014-09-30T14:25:13.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/09/30/trade-98/",
     "parties": [
@@ -4694,7 +4741,7 @@
     ]
   },
   {
-    "tradeId": 99,
+    "tradeId": 100,
     "date": "2014-10-03T17:03:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/03/trade-99/",
     "parties": [
@@ -4759,7 +4806,7 @@
     ]
   },
   {
-    "tradeId": 100,
+    "tradeId": 101,
     "date": "2014-10-03T17:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/03/trade-100/",
     "parties": [
@@ -4794,7 +4841,7 @@
     ]
   },
   {
-    "tradeId": 101,
+    "tradeId": 102,
     "date": "2014-10-03T18:19:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/03/trade-101/",
     "parties": [
@@ -4841,7 +4888,7 @@
     ]
   },
   {
-    "tradeId": 102,
+    "tradeId": 103,
     "date": "2014-10-07T16:32:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/07/trade-102/",
     "parties": [
@@ -4888,7 +4935,7 @@
     ]
   },
   {
-    "tradeId": 103,
+    "tradeId": 104,
     "date": "2014-10-07T17:43:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/07/trade-103/",
     "parties": [
@@ -4942,7 +4989,7 @@
     ]
   },
   {
-    "tradeId": 104,
+    "tradeId": 105,
     "date": "2014-10-08T21:33:15.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/08/trade-104/",
     "parties": [
@@ -5026,7 +5073,7 @@
     ]
   },
   {
-    "tradeId": 105,
+    "tradeId": 106,
     "date": "2014-10-09T02:48:55.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/08/trade-105/",
     "parties": [
@@ -5073,7 +5120,7 @@
     ]
   },
   {
-    "tradeId": 106,
+    "tradeId": 107,
     "date": "2014-10-09T18:35:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/09/trade-106/",
     "parties": [
@@ -5127,7 +5174,7 @@
     ]
   },
   {
-    "tradeId": 107,
+    "tradeId": 108,
     "date": "2014-10-10T14:30:41.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/10/trade-107/",
     "parties": [
@@ -5167,7 +5214,7 @@
     ]
   },
   {
-    "tradeId": 108,
+    "tradeId": 109,
     "date": "2014-10-16T22:09:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/16/trade-108/",
     "parties": [
@@ -5208,7 +5255,7 @@
     ]
   },
   {
-    "tradeId": 109,
+    "tradeId": 110,
     "date": "2014-10-23T19:29:33.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/23/trade-109/",
     "parties": [
@@ -5267,7 +5314,7 @@
     ]
   },
   {
-    "tradeId": 110,
+    "tradeId": 111,
     "date": "2014-10-25T17:10:58.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/25/trade-110/",
     "parties": [
@@ -5313,7 +5360,7 @@
     ]
   },
   {
-    "tradeId": 111,
+    "tradeId": 112,
     "date": "2014-10-28T17:13:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/28/trade-111/",
     "parties": [
@@ -5360,7 +5407,7 @@
     ]
   },
   {
-    "tradeId": 112,
+    "tradeId": 113,
     "date": "2014-10-29T20:15:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/29/trade-112/",
     "parties": [
@@ -5427,7 +5474,7 @@
     ]
   },
   {
-    "tradeId": 113,
+    "tradeId": 114,
     "date": "2014-10-30T14:00:29.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/10/30/trade-113/",
     "parties": [
@@ -5493,7 +5540,7 @@
     ]
   },
   {
-    "tradeId": 114,
+    "tradeId": 115,
     "date": "2014-11-06T21:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/11/06/trade-114/",
     "parties": [
@@ -5553,7 +5600,7 @@
     ]
   },
   {
-    "tradeId": 115,
+    "tradeId": 116,
     "date": "2014-11-06T21:33:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/11/06/trade-115/",
     "parties": [
@@ -5594,7 +5641,7 @@
     ]
   },
   {
-    "tradeId": 116,
+    "tradeId": 117,
     "date": "2014-11-08T01:01:12.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/11/07/trade-116/",
     "parties": [
@@ -5648,7 +5695,7 @@
     ]
   },
   {
-    "tradeId": 117,
+    "tradeId": 118,
     "date": "2014-11-19T17:28:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/11/19/trade-117/",
     "parties": [
@@ -5681,7 +5728,7 @@
     ]
   },
   {
-    "tradeId": 118,
+    "tradeId": 119,
     "date": "2014-11-20T16:30:59.000Z",
     "url": "https://thedynastyleague.wordpress.com/2014/11/20/trade-118/",
     "parties": [
@@ -5734,7 +5781,7 @@
     ]
   },
   {
-    "tradeId": 119,
+    "tradeId": 120,
     "date": "2015-02-21T16:07:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/02/21/trade-119/",
     "parties": [
@@ -5769,7 +5816,7 @@
     ]
   },
   {
-    "tradeId": 120,
+    "tradeId": 121,
     "date": "2015-03-10T21:26:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/03/10/trade-120/",
     "parties": [
@@ -5829,7 +5876,7 @@
     ]
   },
   {
-    "tradeId": 121,
+    "tradeId": 122,
     "date": "2015-03-21T18:39:13.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/03/21/trade-121/",
     "parties": [
@@ -5866,7 +5913,7 @@
     ]
   },
   {
-    "tradeId": 122,
+    "tradeId": 123,
     "date": "2015-08-19T15:31:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/19/trade-122/",
     "parties": [
@@ -5912,7 +5959,7 @@
     ]
   },
   {
-    "tradeId": 123,
+    "tradeId": 124,
     "date": "2015-08-19T16:04:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/19/trade-123/",
     "parties": [
@@ -5952,7 +5999,7 @@
     ]
   },
   {
-    "tradeId": 124,
+    "tradeId": 125,
     "date": "2015-08-20T02:11:36.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/19/trade-124/",
     "parties": [
@@ -6014,7 +6061,7 @@
     ]
   },
   {
-    "tradeId": 125,
+    "tradeId": 126,
     "date": "2015-08-24T18:35:47.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/24/trade-125/",
     "parties": [
@@ -6057,7 +6104,7 @@
     ]
   },
   {
-    "tradeId": 126,
+    "tradeId": 127,
     "date": "2015-08-25T20:44:47.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/25/trade-126/",
     "parties": [
@@ -6107,7 +6154,7 @@
     ]
   },
   {
-    "tradeId": 127,
+    "tradeId": 128,
     "date": "2015-08-26T21:39:25.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/26/trade-127/",
     "parties": [
@@ -6139,7 +6186,7 @@
     ]
   },
   {
-    "tradeId": 128,
+    "tradeId": 129,
     "date": "2015-08-28T21:58:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/28/trade-128/",
     "parties": [
@@ -6171,7 +6218,7 @@
     ]
   },
   {
-    "tradeId": 129,
+    "tradeId": 130,
     "date": "2015-08-28T22:35:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/28/trade-129/",
     "parties": [
@@ -6203,7 +6250,7 @@
     ]
   },
   {
-    "tradeId": 130,
+    "tradeId": 131,
     "date": "2015-08-28T22:44:26.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/28/trade-130/",
     "parties": [
@@ -6235,7 +6282,7 @@
     ]
   },
   {
-    "tradeId": 131,
+    "tradeId": 132,
     "date": "2015-08-29T18:47:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/29/trade-131/",
     "parties": [
@@ -6287,7 +6334,7 @@
     ]
   },
   {
-    "tradeId": 132,
+    "tradeId": 133,
     "date": "2015-08-29T20:02:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/29/trade-132/",
     "parties": [
@@ -6341,7 +6388,7 @@
     ]
   },
   {
-    "tradeId": 133,
+    "tradeId": 134,
     "date": "2015-08-29T21:41:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/29/trade-133/",
     "parties": [
@@ -6374,7 +6421,7 @@
     ]
   },
   {
-    "tradeId": 134,
+    "tradeId": 135,
     "date": "2015-08-29T22:04:09.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/29/trade-134/",
     "parties": [
@@ -6408,7 +6455,7 @@
     ]
   },
   {
-    "tradeId": 135,
+    "tradeId": 136,
     "date": "2015-08-29T22:59:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/29/trade-135/",
     "parties": [
@@ -6448,7 +6495,7 @@
     ]
   },
   {
-    "tradeId": 136,
+    "tradeId": 137,
     "date": "2015-08-30T00:27:11.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/08/29/trade-136/",
     "parties": [
@@ -6520,7 +6567,7 @@
     ]
   },
   {
-    "tradeId": 137,
+    "tradeId": 138,
     "date": "2015-09-01T21:07:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/09/01/trade-137/",
     "parties": [
@@ -6572,7 +6619,7 @@
     ]
   },
   {
-    "tradeId": 138,
+    "tradeId": 139,
     "date": "2015-09-08T21:47:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/09/08/trade-138/",
     "parties": [
@@ -6613,7 +6660,7 @@
     ]
   },
   {
-    "tradeId": 139,
+    "tradeId": 140,
     "date": "2015-09-15T16:52:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/09/15/trade-139/",
     "parties": [
@@ -6673,7 +6720,7 @@
     ]
   },
   {
-    "tradeId": 140,
+    "tradeId": 141,
     "date": "2015-09-25T21:27:53.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/09/25/trade-140/",
     "parties": [
@@ -6715,7 +6762,7 @@
     ]
   },
   {
-    "tradeId": 141,
+    "tradeId": 142,
     "date": "2015-10-04T01:40:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/10/03/trade-141/",
     "parties": [
@@ -6768,7 +6815,7 @@
     ]
   },
   {
-    "tradeId": 142,
+    "tradeId": 143,
     "date": "2015-10-11T14:50:11.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/10/11/trade-142/",
     "parties": [
@@ -6808,7 +6855,7 @@
     ]
   },
   {
-    "tradeId": 143,
+    "tradeId": 144,
     "date": "2015-10-15T15:50:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/10/15/trade-143/",
     "parties": [
@@ -6854,7 +6901,7 @@
     ]
   },
   {
-    "tradeId": 144,
+    "tradeId": 145,
     "date": "2015-10-22T16:39:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/10/22/trade-144/",
     "parties": [
@@ -6888,7 +6935,7 @@
     ]
   },
   {
-    "tradeId": 145,
+    "tradeId": 146,
     "date": "2015-11-04T18:29:54.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/11/04/trade-145/",
     "parties": [
@@ -6942,7 +6989,7 @@
     ]
   },
   {
-    "tradeId": 146,
+    "tradeId": 147,
     "date": "2015-11-17T22:14:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/11/17/trade-146/",
     "parties": [
@@ -6995,7 +7042,7 @@
     ]
   },
   {
-    "tradeId": 147,
+    "tradeId": 148,
     "date": "2015-11-19T17:21:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/11/19/trade-147/",
     "parties": [
@@ -7042,7 +7089,7 @@
     ]
   },
   {
-    "tradeId": 148,
+    "tradeId": 149,
     "date": "2015-11-23T17:20:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2015/11/23/trade-148/",
     "parties": [
@@ -7075,7 +7122,7 @@
     ]
   },
   {
-    "tradeId": 149,
+    "tradeId": 150,
     "date": "2016-03-01T16:58:29.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/03/01/trade-149/",
     "parties": [
@@ -7109,7 +7156,7 @@
     ]
   },
   {
-    "tradeId": 150,
+    "tradeId": 151,
     "date": "2016-08-05T22:52:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/05/trade-150/",
     "parties": [
@@ -7148,7 +7195,7 @@
     ]
   },
   {
-    "tradeId": 151,
+    "tradeId": 152,
     "date": "2016-08-09T22:28:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/09/trade-151/",
     "parties": [
@@ -7187,7 +7234,7 @@
     ]
   },
   {
-    "tradeId": 152,
+    "tradeId": 153,
     "date": "2016-08-13T00:03:47.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/12/trade-152/",
     "parties": [
@@ -7220,7 +7267,7 @@
     ]
   },
   {
-    "tradeId": 153,
+    "tradeId": 154,
     "date": "2016-08-16T20:13:59.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/16/trade-153/",
     "parties": [
@@ -7255,7 +7302,7 @@
     ]
   },
   {
-    "tradeId": 154,
+    "tradeId": 155,
     "date": "2016-08-18T20:19:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/18/trade-154/",
     "parties": [
@@ -7312,7 +7359,7 @@
     ]
   },
   {
-    "tradeId": 155,
+    "tradeId": 156,
     "date": "2016-08-19T15:17:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/19/trade-155/",
     "parties": [
@@ -7350,7 +7397,7 @@
     ]
   },
   {
-    "tradeId": 156,
+    "tradeId": 157,
     "date": "2016-08-19T22:59:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/19/trade-156/",
     "parties": [
@@ -7395,7 +7442,7 @@
     ]
   },
   {
-    "tradeId": 157,
+    "tradeId": 158,
     "date": "2016-08-20T15:27:31.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-157/",
     "parties": [
@@ -7432,7 +7479,7 @@
     ]
   },
   {
-    "tradeId": 158,
+    "tradeId": 159,
     "date": "2016-08-20T15:28:22.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-158/",
     "parties": [
@@ -7502,7 +7549,7 @@
     ]
   },
   {
-    "tradeId": 159,
+    "tradeId": 160,
     "date": "2016-08-20T15:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-159/",
     "parties": [
@@ -7536,7 +7583,7 @@
     ]
   },
   {
-    "tradeId": 160,
+    "tradeId": 161,
     "date": "2016-08-20T17:25:29.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-160/",
     "parties": [
@@ -7570,7 +7617,7 @@
     ]
   },
   {
-    "tradeId": 161,
+    "tradeId": 162,
     "date": "2016-08-20T17:34:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-161/",
     "parties": [
@@ -7646,7 +7693,7 @@
     ]
   },
   {
-    "tradeId": 162,
+    "tradeId": 163,
     "date": "2016-08-20T17:45:09.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-162/",
     "parties": [
@@ -7680,7 +7727,7 @@
     ]
   },
   {
-    "tradeId": 163,
+    "tradeId": 164,
     "date": "2016-08-20T21:29:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-163/",
     "parties": [
@@ -7733,7 +7780,7 @@
     ]
   },
   {
-    "tradeId": 164,
+    "tradeId": 165,
     "date": "2016-08-20T21:49:58.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-164/",
     "parties": [
@@ -7766,7 +7813,7 @@
     ]
   },
   {
-    "tradeId": 165,
+    "tradeId": 166,
     "date": "2016-08-20T22:15:09.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-165/",
     "parties": [
@@ -7813,7 +7860,7 @@
     ]
   },
   {
-    "tradeId": 166,
+    "tradeId": 167,
     "date": "2016-08-20T23:42:26.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-166/",
     "parties": [
@@ -7846,7 +7893,7 @@
     ]
   },
   {
-    "tradeId": 167,
+    "tradeId": 168,
     "date": "2016-08-21T00:38:21.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/20/trade-167/",
     "parties": [
@@ -7874,7 +7921,7 @@
     ]
   },
   {
-    "tradeId": 168,
+    "tradeId": 169,
     "date": "2016-08-30T18:30:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/08/30/trade-168/",
     "parties": [
@@ -7935,7 +7982,7 @@
     ]
   },
   {
-    "tradeId": 169,
+    "tradeId": 170,
     "date": "2016-10-19T00:16:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/10/18/trade-169/",
     "parties": [
@@ -7982,7 +8029,7 @@
     ]
   },
   {
-    "tradeId": 170,
+    "tradeId": 171,
     "date": "2016-10-26T22:55:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/10/26/trade-170/",
     "parties": [
@@ -8022,7 +8069,7 @@
     ]
   },
   {
-    "tradeId": 171,
+    "tradeId": 172,
     "date": "2016-10-30T15:59:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/10/30/trade-171/",
     "parties": [
@@ -8063,7 +8110,7 @@
     ]
   },
   {
-    "tradeId": 172,
+    "tradeId": 173,
     "date": "2016-10-31T17:52:28.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/10/31/trade-172/",
     "parties": [
@@ -8195,7 +8242,7 @@
     ]
   },
   {
-    "tradeId": 173,
+    "tradeId": 174,
     "date": "2016-11-01T17:52:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/01/trade-173/",
     "parties": [
@@ -8249,7 +8296,7 @@
     ]
   },
   {
-    "tradeId": 174,
+    "tradeId": 175,
     "date": "2016-11-01T23:59:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/01/trade-174/",
     "parties": [
@@ -8297,7 +8344,7 @@
     ]
   },
   {
-    "tradeId": 175,
+    "tradeId": 176,
     "date": "2016-11-14T19:06:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/14/trade-175/",
     "parties": [
@@ -8337,7 +8384,7 @@
     ]
   },
   {
-    "tradeId": 176,
+    "tradeId": 177,
     "date": "2016-11-15T22:38:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/15/trade-176/",
     "parties": [
@@ -8396,7 +8443,7 @@
     ]
   },
   {
-    "tradeId": 177,
+    "tradeId": 178,
     "date": "2016-11-16T05:19:55.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/15/trade-177/",
     "parties": [
@@ -8444,7 +8491,7 @@
     ]
   },
   {
-    "tradeId": 178,
+    "tradeId": 179,
     "date": "2016-11-17T14:29:59.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/17/trade-178/",
     "parties": [
@@ -8484,7 +8531,7 @@
     ]
   },
   {
-    "tradeId": 179,
+    "tradeId": 180,
     "date": "2016-11-18T23:27:12.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/18/trade-179/",
     "parties": [
@@ -8543,7 +8590,7 @@
     ]
   },
   {
-    "tradeId": 180,
+    "tradeId": 181,
     "date": "2016-11-19T22:14:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/19/trade-180/",
     "parties": [
@@ -8590,7 +8637,7 @@
     ]
   },
   {
-    "tradeId": 181,
+    "tradeId": 182,
     "date": "2016-11-22T15:35:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/22/trade-181/",
     "parties": [
@@ -8631,7 +8678,7 @@
     ]
   },
   {
-    "tradeId": 182,
+    "tradeId": 183,
     "date": "2016-11-23T16:31:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/23/trade-182/",
     "parties": [
@@ -8690,7 +8737,7 @@
     ]
   },
   {
-    "tradeId": 183,
+    "tradeId": 184,
     "date": "2016-11-23T17:03:21.000Z",
     "url": "https://thedynastyleague.wordpress.com/2016/11/23/trade-183/",
     "parties": [
@@ -8743,7 +8790,7 @@
     ]
   },
   {
-    "tradeId": 184,
+    "tradeId": 185,
     "date": "2017-08-04T21:47:22.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/04/trade-184/",
     "parties": [
@@ -8784,7 +8831,7 @@
     ]
   },
   {
-    "tradeId": 185,
+    "tradeId": 186,
     "date": "2017-08-04T23:04:52.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/04/trade-185/",
     "parties": [
@@ -8825,7 +8872,7 @@
     ]
   },
   {
-    "tradeId": 186,
+    "tradeId": 187,
     "date": "2017-08-07T15:59:54.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/07/trade-186/",
     "parties": [
@@ -8860,7 +8907,7 @@
     ]
   },
   {
-    "tradeId": 187,
+    "tradeId": 188,
     "date": "2017-08-09T02:13:11.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/08/trade-187/",
     "parties": [
@@ -8892,7 +8939,7 @@
     ]
   },
   {
-    "tradeId": 188,
+    "tradeId": 189,
     "date": "2017-08-09T21:00:42.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/09/trade-188/",
     "parties": [
@@ -8933,7 +8980,7 @@
     ]
   },
   {
-    "tradeId": 189,
+    "tradeId": 190,
     "date": "2017-08-11T19:46:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/11/trade-189/",
     "parties": [
@@ -8966,7 +9013,7 @@
     ]
   },
   {
-    "tradeId": 190,
+    "tradeId": 191,
     "date": "2017-08-11T21:41:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/11/trade-190/",
     "parties": [
@@ -8999,7 +9046,7 @@
     ]
   },
   {
-    "tradeId": 191,
+    "tradeId": 192,
     "date": "2017-08-11T22:07:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/11/trade-191/",
     "parties": [
@@ -9032,7 +9079,7 @@
     ]
   },
   {
-    "tradeId": 192,
+    "tradeId": 193,
     "date": "2017-08-11T22:26:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/11/trade-192/",
     "parties": [
@@ -9075,7 +9122,7 @@
     ]
   },
   {
-    "tradeId": 193,
+    "tradeId": 194,
     "date": "2017-08-11T23:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/11/trade-193/",
     "parties": [
@@ -9116,7 +9163,7 @@
     ]
   },
   {
-    "tradeId": 194,
+    "tradeId": 195,
     "date": "2017-08-11T23:56:36.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/11/trade-194/",
     "parties": [
@@ -9149,7 +9196,7 @@
     ]
   },
   {
-    "tradeId": 195,
+    "tradeId": 196,
     "date": "2017-08-14T17:42:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/14/trade-195/",
     "parties": [
@@ -9196,7 +9243,7 @@
     ]
   },
   {
-    "tradeId": 196,
+    "tradeId": 197,
     "date": "2017-08-15T19:48:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/15/trade-196/",
     "parties": [
@@ -9237,7 +9284,7 @@
     ]
   },
   {
-    "tradeId": 197,
+    "tradeId": 198,
     "date": "2017-08-16T03:35:11.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/15/trade-197/",
     "parties": [
@@ -9283,7 +9330,7 @@
     ]
   },
   {
-    "tradeId": 198,
+    "tradeId": 199,
     "date": "2017-08-19T07:51:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-198/",
     "parties": [
@@ -9319,7 +9366,7 @@
     ]
   },
   {
-    "tradeId": 199,
+    "tradeId": 200,
     "date": "2017-08-19T18:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-199/",
     "parties": [
@@ -9353,7 +9400,7 @@
     ]
   },
   {
-    "tradeId": 200,
+    "tradeId": 201,
     "date": "2017-08-19T18:56:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-200/",
     "parties": [
@@ -9387,7 +9434,7 @@
     ]
   },
   {
-    "tradeId": 201,
+    "tradeId": 202,
     "date": "2017-08-19T19:03:54.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-201/",
     "parties": [
@@ -9421,7 +9468,7 @@
     ]
   },
   {
-    "tradeId": 202,
+    "tradeId": 203,
     "date": "2017-08-19T19:08:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-202/",
     "parties": [
@@ -9491,7 +9538,7 @@
     ]
   },
   {
-    "tradeId": 203,
+    "tradeId": 204,
     "date": "2017-08-19T19:18:14.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-203/",
     "parties": [
@@ -9561,7 +9608,7 @@
     ]
   },
   {
-    "tradeId": 204,
+    "tradeId": 205,
     "date": "2017-08-19T21:44:29.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-204/",
     "parties": [
@@ -9698,7 +9745,7 @@
     ]
   },
   {
-    "tradeId": 205,
+    "tradeId": 206,
     "date": "2017-08-19T21:53:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-205/",
     "parties": [
@@ -9732,7 +9779,7 @@
     ]
   },
   {
-    "tradeId": 206,
+    "tradeId": 207,
     "date": "2017-08-19T22:35:46.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-206/",
     "parties": [
@@ -9766,7 +9813,7 @@
     ]
   },
   {
-    "tradeId": 207,
+    "tradeId": 208,
     "date": "2017-08-20T00:01:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-207/",
     "parties": [
@@ -9799,7 +9846,7 @@
     ]
   },
   {
-    "tradeId": 208,
+    "tradeId": 209,
     "date": "2017-08-20T00:31:14.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/19/trade-208/",
     "parties": [
@@ -9858,7 +9905,7 @@
     ]
   },
   {
-    "tradeId": 209,
+    "tradeId": 210,
     "date": "2017-08-23T19:16:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/23/trade-209/",
     "parties": [
@@ -9892,7 +9939,7 @@
     ]
   },
   {
-    "tradeId": 210,
+    "tradeId": 211,
     "date": "2017-08-28T17:49:46.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/28/trade-210/",
     "parties": [
@@ -9933,7 +9980,7 @@
     ]
   },
   {
-    "tradeId": 211,
+    "tradeId": 212,
     "date": "2017-08-28T19:03:21.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/08/28/trade-211/",
     "parties": [
@@ -9980,7 +10027,7 @@
     ]
   },
   {
-    "tradeId": 212,
+    "tradeId": 213,
     "date": "2017-09-07T16:48:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/09/07/trade-212/",
     "parties": [
@@ -10014,7 +10061,7 @@
     ]
   },
   {
-    "tradeId": 213,
+    "tradeId": 214,
     "date": "2017-09-11T18:05:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/09/11/trade-213/",
     "parties": [
@@ -10048,7 +10095,7 @@
     ]
   },
   {
-    "tradeId": 214,
+    "tradeId": 215,
     "date": "2017-09-14T15:12:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/09/14/trade-214/",
     "parties": [
@@ -10089,7 +10136,7 @@
     ]
   },
   {
-    "tradeId": 215,
+    "tradeId": 216,
     "date": "2017-09-26T17:44:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/09/26/trade-215/",
     "parties": [
@@ -10136,7 +10183,7 @@
     ]
   },
   {
-    "tradeId": 216,
+    "tradeId": 217,
     "date": "2017-09-28T15:38:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/09/28/trade-216/",
     "parties": [
@@ -10177,7 +10224,7 @@
     ]
   },
   {
-    "tradeId": 217,
+    "tradeId": 218,
     "date": "2017-10-04T15:43:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/04/trade-217/",
     "parties": [
@@ -10242,7 +10289,7 @@
     ]
   },
   {
-    "tradeId": 218,
+    "tradeId": 219,
     "date": "2017-10-04T23:07:12.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/04/trade-218/",
     "parties": [
@@ -10289,7 +10336,7 @@
     ]
   },
   {
-    "tradeId": 219,
+    "tradeId": 220,
     "date": "2017-10-15T14:42:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/15/trade-219/",
     "parties": [
@@ -10330,7 +10377,7 @@
     ]
   },
   {
-    "tradeId": 220,
+    "tradeId": 221,
     "date": "2017-10-18T04:09:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/17/trade-220/",
     "parties": [
@@ -10384,7 +10431,7 @@
     ]
   },
   {
-    "tradeId": 221,
+    "tradeId": 222,
     "date": "2017-10-26T19:14:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/26/trade-221/",
     "parties": [
@@ -10419,7 +10466,7 @@
     ]
   },
   {
-    "tradeId": 222,
+    "tradeId": 223,
     "date": "2017-10-26T19:42:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/26/trade-222/",
     "parties": [
@@ -10447,7 +10494,7 @@
     ]
   },
   {
-    "tradeId": 223,
+    "tradeId": 224,
     "date": "2017-10-27T17:37:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/27/trade-223/",
     "parties": [
@@ -10495,7 +10542,7 @@
     ]
   },
   {
-    "tradeId": 224,
+    "tradeId": 225,
     "date": "2017-10-29T15:57:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/10/29/trade-224/",
     "parties": [
@@ -10548,7 +10595,7 @@
     ]
   },
   {
-    "tradeId": 225,
+    "tradeId": 226,
     "date": "2017-11-03T21:19:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/03/trade-225/",
     "parties": [
@@ -10595,7 +10642,7 @@
     ]
   },
   {
-    "tradeId": 226,
+    "tradeId": 227,
     "date": "2017-11-05T15:07:39.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/05/trade-226/",
     "parties": [
@@ -10642,7 +10689,7 @@
     ]
   },
   {
-    "tradeId": 227,
+    "tradeId": 228,
     "date": "2017-11-07T19:13:19.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/07/trade-227/",
     "parties": [
@@ -10676,7 +10723,7 @@
     ]
   },
   {
-    "tradeId": 228,
+    "tradeId": 229,
     "date": "2017-11-15T22:05:36.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/15/trade-228/",
     "parties": [
@@ -10723,7 +10770,7 @@
     ]
   },
   {
-    "tradeId": 229,
+    "tradeId": 230,
     "date": "2017-11-20T21:27:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/20/trade-229/",
     "parties": [
@@ -10764,7 +10811,7 @@
     ]
   },
   {
-    "tradeId": 230,
+    "tradeId": 231,
     "date": "2017-11-21T22:48:03.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/21/trade-230/",
     "parties": [
@@ -10812,7 +10859,7 @@
     ]
   },
   {
-    "tradeId": 231,
+    "tradeId": 232,
     "date": "2017-11-22T01:55:35.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/21/trade-231/",
     "parties": [
@@ -10852,7 +10899,7 @@
     ]
   },
   {
-    "tradeId": 232,
+    "tradeId": 233,
     "date": "2017-11-22T02:49:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/21/trade-232/",
     "parties": [
@@ -10900,7 +10947,7 @@
     ]
   },
   {
-    "tradeId": 233,
+    "tradeId": 234,
     "date": "2017-11-22T16:21:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/22/trade-233/",
     "parties": [
@@ -10940,7 +10987,7 @@
     ]
   },
   {
-    "tradeId": 234,
+    "tradeId": 235,
     "date": "2017-11-22T16:47:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2017/11/22/trade-234/",
     "parties": [
@@ -10980,7 +11027,7 @@
     ]
   },
   {
-    "tradeId": 235,
+    "tradeId": 236,
     "date": "2018-07-26T23:33:12.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/07/26/trade-235/",
     "parties": [
@@ -11026,7 +11073,7 @@
     ]
   },
   {
-    "tradeId": 236,
+    "tradeId": 237,
     "date": "2018-07-27T19:58:53.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/07/27/trade-236/",
     "parties": [
@@ -11057,7 +11104,7 @@
     ]
   },
   {
-    "tradeId": 237,
+    "tradeId": 238,
     "date": "2018-07-30T15:09:25.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/07/30/trade-237/",
     "parties": [
@@ -11126,7 +11173,7 @@
     ]
   },
   {
-    "tradeId": 238,
+    "tradeId": 239,
     "date": "2018-08-01T15:13:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/01/trade-238/",
     "parties": [
@@ -11167,7 +11214,7 @@
     ]
   },
   {
-    "tradeId": 239,
+    "tradeId": 240,
     "date": "2018-08-02T17:04:58.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/02/trade-239/",
     "parties": [
@@ -11214,7 +11261,7 @@
     ]
   },
   {
-    "tradeId": 240,
+    "tradeId": 241,
     "date": "2018-08-02T17:14:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/02/trade-240/",
     "parties": [
@@ -11260,7 +11307,7 @@
     ]
   },
   {
-    "tradeId": 241,
+    "tradeId": 242,
     "date": "2018-08-02T21:13:31.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/02/trade-241/",
     "parties": [
@@ -11294,7 +11341,7 @@
     ]
   },
   {
-    "tradeId": 242,
+    "tradeId": 243,
     "date": "2018-08-03T19:36:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/03/trade-242/",
     "parties": [
@@ -11331,7 +11378,7 @@
     ]
   },
   {
-    "tradeId": 243,
+    "tradeId": 244,
     "date": "2018-08-06T21:27:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/06/trade-243/",
     "parties": [
@@ -11366,7 +11413,7 @@
     ]
   },
   {
-    "tradeId": 244,
+    "tradeId": 245,
     "date": "2018-08-08T19:42:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/08/trade-244/",
     "parties": [
@@ -11400,7 +11447,7 @@
     ]
   },
   {
-    "tradeId": 245,
+    "tradeId": 246,
     "date": "2018-08-08T19:55:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/08/trade-245/",
     "parties": [
@@ -11439,7 +11486,7 @@
     ]
   },
   {
-    "tradeId": 246,
+    "tradeId": 247,
     "date": "2018-08-09T14:54:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/09/trade-246/",
     "parties": [
@@ -11517,7 +11564,7 @@
     ]
   },
   {
-    "tradeId": 247,
+    "tradeId": 248,
     "date": "2018-08-10T22:11:33.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/10/trade-247/",
     "parties": [
@@ -11548,7 +11595,7 @@
     ]
   },
   {
-    "tradeId": 248,
+    "tradeId": 249,
     "date": "2018-08-12T12:38:01.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/12/trade-248/",
     "parties": [
@@ -11580,7 +11627,7 @@
     ]
   },
   {
-    "tradeId": 249,
+    "tradeId": 250,
     "date": "2018-08-17T03:06:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/16/trade-249/",
     "parties": [
@@ -11620,7 +11667,7 @@
     ]
   },
   {
-    "tradeId": 250,
+    "tradeId": 251,
     "date": "2018-08-19T03:24:03.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/18/trade-250/",
     "parties": [
@@ -11668,7 +11715,7 @@
     ]
   },
   {
-    "tradeId": 251,
+    "tradeId": 252,
     "date": "2018-08-25T18:11:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-251/",
     "parties": [
@@ -11738,7 +11785,7 @@
     ]
   },
   {
-    "tradeId": 252,
+    "tradeId": 253,
     "date": "2018-08-25T18:24:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-252/",
     "parties": [
@@ -11772,7 +11819,7 @@
     ]
   },
   {
-    "tradeId": 253,
+    "tradeId": 254,
     "date": "2018-08-25T18:29:14.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-253/",
     "parties": [
@@ -11836,7 +11883,7 @@
     ]
   },
   {
-    "tradeId": 254,
+    "tradeId": 255,
     "date": "2018-08-25T18:30:42.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-254/",
     "parties": [
@@ -11894,7 +11941,7 @@
     ]
   },
   {
-    "tradeId": 255,
+    "tradeId": 256,
     "date": "2018-08-25T21:07:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-255/",
     "parties": [
@@ -11928,7 +11975,7 @@
     ]
   },
   {
-    "tradeId": 256,
+    "tradeId": 257,
     "date": "2018-08-25T21:44:13.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-256/",
     "parties": [
@@ -11987,7 +12034,7 @@
     ]
   },
   {
-    "tradeId": 257,
+    "tradeId": 258,
     "date": "2018-08-25T23:02:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-257/",
     "parties": [
@@ -12020,7 +12067,7 @@
     ]
   },
   {
-    "tradeId": 258,
+    "tradeId": 259,
     "date": "2018-08-26T00:12:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-258/",
     "parties": [
@@ -12061,7 +12108,7 @@
     ]
   },
   {
-    "tradeId": 259,
+    "tradeId": 260,
     "date": "2018-08-26T00:16:54.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-259/",
     "parties": [
@@ -12094,7 +12141,7 @@
     ]
   },
   {
-    "tradeId": 260,
+    "tradeId": 261,
     "date": "2018-08-26T00:24:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-260/",
     "parties": [
@@ -12127,7 +12174,7 @@
     ]
   },
   {
-    "tradeId": 261,
+    "tradeId": 262,
     "date": "2018-08-26T00:28:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-261/",
     "parties": [
@@ -12160,7 +12207,7 @@
     ]
   },
   {
-    "tradeId": 262,
+    "tradeId": 263,
     "date": "2018-08-26T00:31:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/25/trade-262/",
     "parties": [
@@ -12193,7 +12240,7 @@
     ]
   },
   {
-    "tradeId": 263,
+    "tradeId": 264,
     "date": "2018-08-31T21:04:23.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/08/31/trade-263/",
     "parties": [
@@ -12241,7 +12288,7 @@
     ]
   },
   {
-    "tradeId": 264,
+    "tradeId": 265,
     "date": "2018-09-11T15:26:45.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/09/11/trade-264/",
     "parties": [
@@ -12276,7 +12323,7 @@
     ]
   },
   {
-    "tradeId": 265,
+    "tradeId": 266,
     "date": "2018-10-03T13:11:31.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/03/trade-265/",
     "parties": [
@@ -12336,7 +12383,7 @@
     ]
   },
   {
-    "tradeId": 266,
+    "tradeId": 267,
     "date": "2018-10-11T22:04:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/11/trade-266/",
     "parties": [
@@ -12383,7 +12430,7 @@
     ]
   },
   {
-    "tradeId": 267,
+    "tradeId": 268,
     "date": "2018-10-17T13:44:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/17/trade-267/",
     "parties": [
@@ -12424,7 +12471,7 @@
     ]
   },
   {
-    "tradeId": 268,
+    "tradeId": 269,
     "date": "2018-10-24T01:04:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/23/trade-268/",
     "parties": [
@@ -12478,7 +12525,7 @@
     ]
   },
   {
-    "tradeId": 269,
+    "tradeId": 270,
     "date": "2018-10-24T22:10:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/24/trade-269/",
     "parties": [
@@ -12513,7 +12560,7 @@
     ]
   },
   {
-    "tradeId": 270,
+    "tradeId": 271,
     "date": "2018-10-28T14:01:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/28/trade-270/",
     "parties": [
@@ -12554,7 +12601,7 @@
     ]
   },
   {
-    "tradeId": 271,
+    "tradeId": 272,
     "date": "2018-10-30T21:14:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/10/30/trade-271/",
     "parties": [
@@ -12595,7 +12642,7 @@
     ]
   },
   {
-    "tradeId": 272,
+    "tradeId": 273,
     "date": "2018-11-02T21:16:03.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/02/trade-272/",
     "parties": [
@@ -12641,7 +12688,7 @@
     ]
   },
   {
-    "tradeId": 273,
+    "tradeId": 274,
     "date": "2018-11-07T15:26:25.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/07/trade-273/",
     "parties": [
@@ -12683,7 +12730,7 @@
     ]
   },
   {
-    "tradeId": 274,
+    "tradeId": 275,
     "date": "2018-11-07T15:51:03.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/07/trade-274/",
     "parties": [
@@ -12742,7 +12789,7 @@
     ]
   },
   {
-    "tradeId": 275,
+    "tradeId": 276,
     "date": "2018-11-08T04:09:26.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/07/trade-275/",
     "parties": [
@@ -12796,7 +12843,7 @@
     ]
   },
   {
-    "tradeId": 276,
+    "tradeId": 277,
     "date": "2018-11-08T04:33:22.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/07/trade-276/",
     "parties": [
@@ -12862,7 +12909,7 @@
     ]
   },
   {
-    "tradeId": 277,
+    "tradeId": 278,
     "date": "2018-11-13T15:45:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/13/trade-277/",
     "parties": [
@@ -12909,7 +12956,7 @@
     ]
   },
   {
-    "tradeId": 278,
+    "tradeId": 279,
     "date": "2018-11-13T16:16:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/13/trade-278/",
     "parties": [
@@ -12950,7 +12997,7 @@
     ]
   },
   {
-    "tradeId": 279,
+    "tradeId": 280,
     "date": "2018-11-13T19:14:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/13/trade-279/",
     "parties": [
@@ -12990,7 +13037,7 @@
     ]
   },
   {
-    "tradeId": 280,
+    "tradeId": 281,
     "date": "2018-11-15T14:53:32.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/15/trade-280/",
     "parties": [
@@ -13062,7 +13109,7 @@
     ]
   },
   {
-    "tradeId": 281,
+    "tradeId": 282,
     "date": "2018-11-20T17:19:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/20/trade-281/",
     "parties": [
@@ -13115,7 +13162,7 @@
     ]
   },
   {
-    "tradeId": 282,
+    "tradeId": 283,
     "date": "2018-11-20T22:25:01.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/20/trade-282/",
     "parties": [
@@ -13155,7 +13202,7 @@
     ]
   },
   {
-    "tradeId": 283,
+    "tradeId": 284,
     "date": "2018-11-21T01:32:42.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/20/trade-283/",
     "parties": [
@@ -13208,7 +13255,7 @@
     ]
   },
   {
-    "tradeId": 284,
+    "tradeId": 285,
     "date": "2018-11-21T02:26:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/20/trade-284/",
     "parties": [
@@ -13255,7 +13302,7 @@
     ]
   },
   {
-    "tradeId": 285,
+    "tradeId": 286,
     "date": "2018-11-21T03:20:44.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/20/trade-285/",
     "parties": [
@@ -13314,7 +13361,7 @@
     ]
   },
   {
-    "tradeId": 286,
+    "tradeId": 287,
     "date": "2018-11-21T16:08:22.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/21/trade-286/",
     "parties": [
@@ -13355,7 +13402,7 @@
     ]
   },
   {
-    "tradeId": 287,
+    "tradeId": 288,
     "date": "2018-11-21T16:55:23.000Z",
     "url": "https://thedynastyleague.wordpress.com/2018/11/21/trade-287/",
     "parties": [
@@ -13395,7 +13442,7 @@
     ]
   },
   {
-    "tradeId": 288,
+    "tradeId": 289,
     "date": "2019-08-14T16:54:01.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/14/trade-288/",
     "parties": [
@@ -13435,7 +13482,7 @@
     ]
   },
   {
-    "tradeId": 289,
+    "tradeId": 290,
     "date": "2019-08-16T01:24:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/15/trade-289/",
     "parties": [
@@ -13470,7 +13517,7 @@
     ]
   },
   {
-    "tradeId": 290,
+    "tradeId": 291,
     "date": "2019-08-17T19:36:14.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/17/trade-290/",
     "parties": [
@@ -13507,7 +13554,7 @@
     ]
   },
   {
-    "tradeId": 291,
+    "tradeId": 292,
     "date": "2019-08-18T00:08:19.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/17/trade-291/",
     "parties": [
@@ -13542,7 +13589,7 @@
     ]
   },
   {
-    "tradeId": 292,
+    "tradeId": 293,
     "date": "2019-08-19T01:13:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/18/trade-292/",
     "parties": [
@@ -13575,7 +13622,7 @@
     ]
   },
   {
-    "tradeId": 293,
+    "tradeId": 294,
     "date": "2019-08-19T20:15:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/19/trade-293/",
     "parties": [
@@ -13614,7 +13661,7 @@
     ]
   },
   {
-    "tradeId": 294,
+    "tradeId": 295,
     "date": "2019-08-20T00:55:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/19/trade-294/",
     "parties": [
@@ -13648,7 +13695,7 @@
     ]
   },
   {
-    "tradeId": 295,
+    "tradeId": 296,
     "date": "2019-08-21T16:26:26.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/21/trade-295/",
     "parties": [
@@ -13681,7 +13728,7 @@
     ]
   },
   {
-    "tradeId": 296,
+    "tradeId": 297,
     "date": "2019-08-22T18:51:57.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/22/trade-296/",
     "parties": [
@@ -13713,7 +13760,7 @@
     ]
   },
   {
-    "tradeId": 297,
+    "tradeId": 298,
     "date": "2019-08-23T01:41:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/22/trade-297/",
     "parties": [
@@ -13753,7 +13800,7 @@
     ]
   },
   {
-    "tradeId": 298,
+    "tradeId": 299,
     "date": "2019-08-23T18:26:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/23/trade-298/",
     "parties": [
@@ -13784,7 +13831,7 @@
     ]
   },
   {
-    "tradeId": 299,
+    "tradeId": 300,
     "date": "2019-08-24T00:09:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/23/trade-299/",
     "parties": [
@@ -13848,7 +13895,7 @@
     ]
   },
   {
-    "tradeId": 300,
+    "tradeId": 301,
     "date": "2019-08-24T15:45:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-300/",
     "parties": [
@@ -13882,7 +13929,7 @@
     ]
   },
   {
-    "tradeId": 301,
+    "tradeId": 302,
     "date": "2019-08-24T15:56:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-301/",
     "parties": [
@@ -13923,7 +13970,7 @@
     ]
   },
   {
-    "tradeId": 302,
+    "tradeId": 303,
     "date": "2019-08-24T15:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-302/",
     "parties": [
@@ -13964,7 +14011,7 @@
     ]
   },
   {
-    "tradeId": 303,
+    "tradeId": 304,
     "date": "2019-08-24T16:11:11.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-303/",
     "parties": [
@@ -14095,7 +14142,7 @@
     ]
   },
   {
-    "tradeId": 304,
+    "tradeId": 305,
     "date": "2019-08-24T16:28:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-304/",
     "parties": [
@@ -14136,7 +14183,7 @@
     ]
   },
   {
-    "tradeId": 305,
+    "tradeId": 306,
     "date": "2019-08-24T17:13:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-305/",
     "parties": [
@@ -14170,7 +14217,7 @@
     ]
   },
   {
-    "tradeId": 306,
+    "tradeId": 307,
     "date": "2019-08-24T18:27:21.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-306/",
     "parties": [
@@ -14211,7 +14258,7 @@
     ]
   },
   {
-    "tradeId": 307,
+    "tradeId": 308,
     "date": "2019-08-24T18:31:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-307/",
     "parties": [
@@ -14250,7 +14297,7 @@
     ]
   },
   {
-    "tradeId": 308,
+    "tradeId": 309,
     "date": "2019-08-24T19:18:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-308/",
     "parties": [
@@ -14278,7 +14325,7 @@
     ]
   },
   {
-    "tradeId": 309,
+    "tradeId": 310,
     "date": "2019-08-24T19:23:51.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-309/",
     "parties": [
@@ -14312,7 +14359,7 @@
     ]
   },
   {
-    "tradeId": 310,
+    "tradeId": 311,
     "date": "2019-08-24T19:41:39.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-310/",
     "parties": [
@@ -14345,7 +14392,7 @@
     ]
   },
   {
-    "tradeId": 311,
+    "tradeId": 312,
     "date": "2019-08-24T19:42:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-311/",
     "parties": [
@@ -14386,7 +14433,7 @@
     ]
   },
   {
-    "tradeId": 312,
+    "tradeId": 313,
     "date": "2019-08-24T19:46:59.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-312/",
     "parties": [
@@ -14419,7 +14466,7 @@
     ]
   },
   {
-    "tradeId": 313,
+    "tradeId": 314,
     "date": "2019-08-24T19:48:34.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-313/",
     "parties": [
@@ -14452,7 +14499,7 @@
     ]
   },
   {
-    "tradeId": 314,
+    "tradeId": 315,
     "date": "2019-08-24T19:58:50.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-314/",
     "parties": [
@@ -14487,7 +14534,7 @@
     ]
   },
   {
-    "tradeId": 315,
+    "tradeId": 316,
     "date": "2019-08-24T20:11:53.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-315/",
     "parties": [
@@ -14528,7 +14575,7 @@
     ]
   },
   {
-    "tradeId": 316,
+    "tradeId": 317,
     "date": "2019-08-24T20:21:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-316/",
     "parties": [
@@ -14561,7 +14608,7 @@
     ]
   },
   {
-    "tradeId": 317,
+    "tradeId": 318,
     "date": "2019-08-24T21:27:06.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-317/",
     "parties": [
@@ -14594,7 +14641,7 @@
     ]
   },
   {
-    "tradeId": 318,
+    "tradeId": 319,
     "date": "2019-08-24T22:26:38.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/08/24/trade-318/",
     "parties": [
@@ -14628,7 +14675,7 @@
     ]
   },
   {
-    "tradeId": 319,
+    "tradeId": 320,
     "date": "2019-09-04T16:56:27.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/09/04/trade-319/",
     "parties": [
@@ -14669,7 +14716,7 @@
     ]
   },
   {
-    "tradeId": 320,
+    "tradeId": 321,
     "date": "2019-09-09T16:43:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/09/09/trade-320/",
     "parties": [
@@ -14716,7 +14763,7 @@
     ]
   },
   {
-    "tradeId": 321,
+    "tradeId": 322,
     "date": "2019-09-09T17:07:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/09/09/trade-321/",
     "parties": [
@@ -14770,7 +14817,7 @@
     ]
   },
   {
-    "tradeId": 322,
+    "tradeId": 323,
     "date": "2019-09-17T18:01:12.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/09/17/trade-322/",
     "parties": [
@@ -14817,7 +14864,7 @@
     ]
   },
   {
-    "tradeId": 323,
+    "tradeId": 324,
     "date": "2019-09-24T01:42:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/09/23/trade-323/",
     "parties": [
@@ -14884,7 +14931,7 @@
     ]
   },
   {
-    "tradeId": 324,
+    "tradeId": 325,
     "date": "2019-09-24T02:11:04.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/09/23/trade-324/",
     "parties": [
@@ -14973,7 +15020,7 @@
     ]
   },
   {
-    "tradeId": 325,
+    "tradeId": 326,
     "date": "2019-10-02T15:38:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/02/trade-325/",
     "parties": [
@@ -15031,7 +15078,7 @@
     ]
   },
   {
-    "tradeId": 326,
+    "tradeId": 327,
     "date": "2019-10-02T16:57:53.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/02/trade-326/",
     "parties": [
@@ -15084,7 +15131,7 @@
     ]
   },
   {
-    "tradeId": 327,
+    "tradeId": 328,
     "date": "2019-10-03T01:00:46.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/02/trade-327/",
     "parties": [
@@ -15138,7 +15185,7 @@
     ]
   },
   {
-    "tradeId": 328,
+    "tradeId": 329,
     "date": "2019-10-03T15:58:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/03/trade-328/",
     "parties": [
@@ -15171,7 +15218,7 @@
     ]
   },
   {
-    "tradeId": 329,
+    "tradeId": 330,
     "date": "2019-10-09T21:16:42.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/09/trade-329/",
     "parties": [
@@ -15199,7 +15246,7 @@
     ]
   },
   {
-    "tradeId": 330,
+    "tradeId": 331,
     "date": "2019-10-11T02:18:25.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/10/trade-330/",
     "parties": [
@@ -15247,7 +15294,7 @@
     ]
   },
   {
-    "tradeId": 331,
+    "tradeId": 332,
     "date": "2019-10-11T16:13:52.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/11/trade-331/",
     "parties": [
@@ -15318,7 +15365,7 @@
     ]
   },
   {
-    "tradeId": 332,
+    "tradeId": 333,
     "date": "2019-10-15T14:48:33.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/15/trade-332/",
     "parties": [
@@ -15377,7 +15424,7 @@
     ]
   },
   {
-    "tradeId": 333,
+    "tradeId": 334,
     "date": "2019-10-19T15:05:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/19/trade-333/",
     "parties": [
@@ -15410,7 +15457,7 @@
     ]
   },
   {
-    "tradeId": 334,
+    "tradeId": 335,
     "date": "2019-10-19T16:18:35.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/19/trade-334/",
     "parties": [
@@ -15443,7 +15490,7 @@
     ]
   },
   {
-    "tradeId": 335,
+    "tradeId": 336,
     "date": "2019-10-21T14:46:15.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/21/trade-335/",
     "parties": [
@@ -15496,7 +15543,7 @@
     ]
   },
   {
-    "tradeId": 336,
+    "tradeId": 337,
     "date": "2019-10-27T14:32:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/27/trade-336/",
     "parties": [
@@ -15598,7 +15645,7 @@
     ]
   },
   {
-    "tradeId": 337,
+    "tradeId": 338,
     "date": "2019-10-29T15:00:19.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/29/trade-337/",
     "parties": [
@@ -15639,7 +15686,7 @@
     ]
   },
   {
-    "tradeId": 338,
+    "tradeId": 339,
     "date": "2019-10-29T17:44:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/29/trade-338/",
     "parties": [
@@ -15686,7 +15733,7 @@
     ]
   },
   {
-    "tradeId": 339,
+    "tradeId": 340,
     "date": "2019-10-31T23:07:10.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/31/trade-339/",
     "parties": [
@@ -15733,7 +15780,7 @@
     ]
   },
   {
-    "tradeId": 340,
+    "tradeId": 341,
     "date": "2019-10-31T23:12:54.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/10/31/trade-340/",
     "parties": [
@@ -15766,7 +15813,7 @@
     ]
   },
   {
-    "tradeId": 341,
+    "tradeId": 342,
     "date": "2019-11-01T21:02:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/01/trade-341/",
     "parties": [
@@ -15813,7 +15860,7 @@
     ]
   },
   {
-    "tradeId": 342,
+    "tradeId": 343,
     "date": "2019-11-03T14:12:01.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/03/trade-342/",
     "parties": [
@@ -15860,7 +15907,7 @@
     ]
   },
   {
-    "tradeId": 343,
+    "tradeId": 344,
     "date": "2019-11-06T12:20:32.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/06/trade-343/",
     "parties": [
@@ -15907,7 +15954,7 @@
     ]
   },
   {
-    "tradeId": 344,
+    "tradeId": 345,
     "date": "2019-11-07T16:52:02.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/07/trade-344/",
     "parties": [
@@ -15948,7 +15995,7 @@
     ]
   },
   {
-    "tradeId": 345,
+    "tradeId": 346,
     "date": "2019-11-07T19:12:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/07/trade-345/",
     "parties": [
@@ -16012,7 +16059,7 @@
     ]
   },
   {
-    "tradeId": 346,
+    "tradeId": 347,
     "date": "2019-11-10T17:38:45.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/10/trade-346/",
     "parties": [
@@ -16060,7 +16107,7 @@
     ]
   },
   {
-    "tradeId": 347,
+    "tradeId": 348,
     "date": "2019-11-12T17:39:17.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-347/",
     "parties": [
@@ -16107,7 +16154,7 @@
     ]
   },
   {
-    "tradeId": 348,
+    "tradeId": 349,
     "date": "2019-11-12T17:57:44.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-348/",
     "parties": [
@@ -16154,7 +16201,7 @@
     ]
   },
   {
-    "tradeId": 349,
+    "tradeId": 350,
     "date": "2019-11-12T20:45:43.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-349/",
     "parties": [
@@ -16232,7 +16279,7 @@
     ]
   },
   {
-    "tradeId": 350,
+    "tradeId": 351,
     "date": "2019-11-12T21:25:18.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-350/",
     "parties": [
@@ -16279,7 +16326,7 @@
     ]
   },
   {
-    "tradeId": 351,
+    "tradeId": 352,
     "date": "2019-11-13T00:19:46.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-351/",
     "parties": [
@@ -16326,7 +16373,7 @@
     ]
   },
   {
-    "tradeId": 352,
+    "tradeId": 353,
     "date": "2019-11-13T00:35:01.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-352/",
     "parties": [
@@ -16384,7 +16431,7 @@
     ]
   },
   {
-    "tradeId": 353,
+    "tradeId": 354,
     "date": "2019-11-13T00:37:01.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-353/",
     "parties": [
@@ -16425,7 +16472,7 @@
     ]
   },
   {
-    "tradeId": 354,
+    "tradeId": 355,
     "date": "2019-11-13T01:56:36.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/12/trade-354/",
     "parties": [
@@ -16460,7 +16507,7 @@
     ]
   },
   {
-    "tradeId": 355,
+    "tradeId": 356,
     "date": "2019-11-13T15:50:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/13/trade-355/",
     "parties": [
@@ -16568,7 +16615,7 @@
     ]
   },
   {
-    "tradeId": 356,
+    "tradeId": 357,
     "date": "2019-11-13T16:25:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/13/trade-356/",
     "parties": [
@@ -16615,7 +16662,7 @@
     ]
   },
   {
-    "tradeId": 357,
+    "tradeId": 358,
     "date": "2019-11-13T17:04:05.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/13/trade-357/",
     "parties": [
@@ -16655,7 +16702,7 @@
     ]
   },
   {
-    "tradeId": 358,
+    "tradeId": 359,
     "date": "2019-11-13T19:17:20.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/13/trade-358/",
     "parties": [
@@ -16695,7 +16742,7 @@
     ]
   },
   {
-    "tradeId": 359,
+    "tradeId": 360,
     "date": "2019-11-13T19:42:39.000Z",
     "url": "https://thedynastyleague.wordpress.com/2019/11/13/trade-359/",
     "parties": [
@@ -16736,7 +16783,7 @@
     ]
   },
   {
-    "tradeId": 360,
+    "tradeId": 361,
     "date": "2020-03-20T17:56:40.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/03/20/trade-360/",
     "parties": [
@@ -16767,7 +16814,7 @@
     ]
   },
   {
-    "tradeId": 361,
+    "tradeId": 362,
     "date": "2020-08-15T15:38:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/15/trade-361/",
     "parties": [
@@ -16808,7 +16855,7 @@
     ]
   },
   {
-    "tradeId": 362,
+    "tradeId": 363,
     "date": "2020-08-19T14:38:49.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/19/trade-362/",
     "parties": [
@@ -16852,7 +16899,7 @@
     ]
   },
   {
-    "tradeId": 363,
+    "tradeId": 364,
     "date": "2020-08-19T20:05:37.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/19/trade-363/",
     "parties": [
@@ -16886,7 +16933,7 @@
     ]
   },
   {
-    "tradeId": 364,
+    "tradeId": 365,
     "date": "2020-08-20T18:53:08.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/20/trade-364/",
     "parties": [
@@ -16914,7 +16961,7 @@
     ]
   },
   {
-    "tradeId": 365,
+    "tradeId": 366,
     "date": "2020-08-25T17:14:36.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/25/trade-365/",
     "parties": [
@@ -16949,7 +16996,7 @@
     ]
   },
   {
-    "tradeId": 366,
+    "tradeId": 367,
     "date": "2020-08-28T21:07:23.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/28/trade-366/",
     "parties": [
@@ -16981,7 +17028,7 @@
     ]
   },
   {
-    "tradeId": 367,
+    "tradeId": 368,
     "date": "2020-08-28T21:35:24.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/28/trade-367/",
     "parties": [
@@ -17018,7 +17065,7 @@
     ]
   },
   {
-    "tradeId": 368,
+    "tradeId": 369,
     "date": "2020-08-29T16:52:29.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/29/trade-368/",
     "parties": [
@@ -17050,7 +17097,7 @@
     ]
   },
   {
-    "tradeId": 369,
+    "tradeId": 370,
     "date": "2020-08-29T17:15:14.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/29/trade-369/",
     "parties": [
@@ -17089,7 +17136,7 @@
     ]
   },
   {
-    "tradeId": 370,
+    "tradeId": 371,
     "date": "2020-08-29T17:39:16.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/29/trade-370/",
     "parties": [
@@ -17121,7 +17168,7 @@
     ]
   },
   {
-    "tradeId": 371,
+    "tradeId": 372,
     "date": "2020-08-29T18:03:22.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/29/trade-371/",
     "parties": [
@@ -17153,7 +17200,7 @@
     ]
   },
   {
-    "tradeId": 372,
+    "tradeId": 373,
     "date": "2020-08-29T18:34:42.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/29/trade-372/",
     "parties": [
@@ -17185,7 +17232,7 @@
     ]
   },
   {
-    "tradeId": 373,
+    "tradeId": 374,
     "date": "2020-08-29T18:35:07.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/29/trade-373/",
     "parties": [
@@ -17217,7 +17264,7 @@
     ]
   },
   {
-    "tradeId": 374,
+    "tradeId": 375,
     "date": "2020-08-31T15:06:44.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/31/trade-374/",
     "parties": [
@@ -17258,7 +17305,7 @@
     ]
   },
   {
-    "tradeId": 375,
+    "tradeId": 376,
     "date": "2020-08-31T15:16:48.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/08/31/trade-375/",
     "parties": [
@@ -17293,7 +17340,7 @@
     ]
   },
   {
-    "tradeId": 376,
+    "tradeId": 377,
     "date": "2020-09-06T01:45:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/09/05/trade-376/",
     "parties": [
@@ -17328,7 +17375,7 @@
     ]
   },
   {
-    "tradeId": 377,
+    "tradeId": 378,
     "date": "2020-09-25T18:45:30.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/09/25/trade-377/",
     "parties": [
@@ -17369,7 +17416,7 @@
     ]
   },
   {
-    "tradeId": 378,
+    "tradeId": 379,
     "date": "2020-10-07T19:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/07/trade-378/",
     "parties": [
@@ -17421,7 +17468,7 @@
     ]
   },
   {
-    "tradeId": 379,
+    "tradeId": 380,
     "date": "2020-10-07T21:33:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/07/trade-379/",
     "parties": [
@@ -17499,7 +17546,7 @@
     ]
   },
   {
-    "tradeId": 380,
+    "tradeId": 381,
     "date": "2020-10-07T21:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/07/trade-380/",
     "parties": [
@@ -17540,7 +17587,7 @@
     ]
   },
   {
-    "tradeId": 381,
+    "tradeId": 382,
     "date": "2020-10-14T20:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/14/trade-381/",
     "parties": [
@@ -17606,7 +17653,7 @@
     ]
   },
   {
-    "tradeId": 382,
+    "tradeId": 383,
     "date": "2020-10-21T01:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/20/trade-382/",
     "parties": [
@@ -17672,7 +17719,7 @@
     ]
   },
   {
-    "tradeId": 383,
+    "tradeId": 384,
     "date": "2020-10-21T14:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/21/trade-383/",
     "parties": [
@@ -17710,7 +17757,7 @@
     ]
   },
   {
-    "tradeId": 384,
+    "tradeId": 385,
     "date": "2020-10-27T16:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/27/trade-384/",
     "parties": [
@@ -17751,7 +17798,7 @@
     ]
   },
   {
-    "tradeId": 385,
+    "tradeId": 386,
     "date": "2020-10-30T14:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/10/30/trade-385/",
     "parties": [
@@ -17804,7 +17851,7 @@
     ]
   },
   {
-    "tradeId": 386,
+    "tradeId": 387,
     "date": "2020-11-05T03:28:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/04/trade-386/",
     "parties": [
@@ -17870,7 +17917,7 @@
     ]
   },
   {
-    "tradeId": 387,
+    "tradeId": 388,
     "date": "2020-11-09T20:15:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/09/trade-387/",
     "parties": [
@@ -17916,7 +17963,7 @@
     ]
   },
   {
-    "tradeId": 388,
+    "tradeId": 389,
     "date": "2020-11-10T18:10:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/10/trade-388/",
     "parties": [
@@ -17969,7 +18016,7 @@
     ]
   },
   {
-    "tradeId": 389,
+    "tradeId": 390,
     "date": "2020-11-10T18:18:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/10/trade-389/",
     "parties": [
@@ -18036,7 +18083,7 @@
     ]
   },
   {
-    "tradeId": 390,
+    "tradeId": 391,
     "date": "2020-11-11T15:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/11/trade-390/",
     "parties": [
@@ -18096,7 +18143,7 @@
     ]
   },
   {
-    "tradeId": 391,
+    "tradeId": 392,
     "date": "2020-11-11T16:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/11/trade-391/",
     "parties": [
@@ -18155,7 +18202,7 @@
     ]
   },
   {
-    "tradeId": 392,
+    "tradeId": 393,
     "date": "2020-11-11T17:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2020/11/11/trade-392/",
     "parties": [
@@ -18208,7 +18255,7 @@
     ]
   },
   {
-    "tradeId": 393,
+    "tradeId": 394,
     "date": "2021-02-09T21:55:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/02/09/trade-393/",
     "parties": [
@@ -18249,7 +18296,7 @@
     ]
   },
   {
-    "tradeId": 394,
+    "tradeId": 395,
     "date": "2021-03-31T01:19:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/03/30/trade-394/",
     "parties": [
@@ -18289,7 +18336,7 @@
     ]
   },
   {
-    "tradeId": 395,
+    "tradeId": 396,
     "date": "2021-04-04T20:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/04/04/trade-395/",
     "parties": [
@@ -18450,7 +18497,7 @@
     ]
   },
   {
-    "tradeId": 396,
+    "tradeId": 397,
     "date": "2021-04-06T16:08:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/04/06/trade-396/",
     "parties": [
@@ -18483,7 +18530,7 @@
     ]
   },
   {
-    "tradeId": 397,
+    "tradeId": 398,
     "date": "2021-05-20T18:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/05/20/trade-397/",
     "parties": [
@@ -18542,7 +18589,7 @@
     ]
   },
   {
-    "tradeId": 398,
+    "tradeId": 399,
     "date": "2021-07-15T13:19:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/07/15/trade-398/",
     "parties": [
@@ -18597,7 +18644,7 @@
     ]
   },
   {
-    "tradeId": 399,
+    "tradeId": 400,
     "date": "2021-07-15T15:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/07/15/trade-399/",
     "parties": [
@@ -18635,7 +18682,7 @@
     ]
   },
   {
-    "tradeId": 400,
+    "tradeId": 401,
     "date": "2021-07-20T17:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/07/20/trade-400/",
     "parties": [
@@ -18670,7 +18717,7 @@
     ]
   },
   {
-    "tradeId": 401,
+    "tradeId": 402,
     "date": "2021-07-28T02:05:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/07/27/trade-401/",
     "parties": [
@@ -18711,7 +18758,7 @@
     ]
   },
   {
-    "tradeId": 402,
+    "tradeId": 403,
     "date": "2021-07-28T02:08:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/07/27/trade-402/",
     "parties": [
@@ -18753,7 +18800,7 @@
     ]
   },
   {
-    "tradeId": 403,
+    "tradeId": 404,
     "date": "2021-08-03T00:28:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/02/trade-403/",
     "parties": [
@@ -18811,7 +18858,7 @@
     ]
   },
   {
-    "tradeId": 404,
+    "tradeId": 405,
     "date": "2021-08-06T14:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/06/trade-404/",
     "parties": [
@@ -18858,7 +18905,7 @@
     ]
   },
   {
-    "tradeId": 405,
+    "tradeId": 406,
     "date": "2021-08-08T23:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/08/trade-405/",
     "parties": [
@@ -18890,7 +18937,7 @@
     ]
   },
   {
-    "tradeId": 406,
+    "tradeId": 407,
     "date": "2021-08-14T20:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/14/trade-406/",
     "parties": [
@@ -18937,7 +18984,7 @@
     ]
   },
   {
-    "tradeId": 407,
+    "tradeId": 408,
     "date": "2021-08-15T20:06:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/15/trade-407/",
     "parties": [
@@ -18984,7 +19031,7 @@
     ]
   },
   {
-    "tradeId": 408,
+    "tradeId": 409,
     "date": "2021-08-16T21:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/16/trade-408/",
     "parties": [
@@ -19043,7 +19090,7 @@
     ]
   },
   {
-    "tradeId": 409,
+    "tradeId": 410,
     "date": "2021-08-16T22:03:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/16/trade-409/",
     "parties": [
@@ -19084,7 +19131,7 @@
     ]
   },
   {
-    "tradeId": 410,
+    "tradeId": 411,
     "date": "2021-08-16T22:46:56.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/16/trade-410/",
     "parties": [
@@ -19125,7 +19172,7 @@
     ]
   },
   {
-    "tradeId": 411,
+    "tradeId": 412,
     "date": "2021-08-27T15:11:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/27/trade-411/",
     "parties": [
@@ -19153,7 +19200,7 @@
     ]
   },
   {
-    "tradeId": 412,
+    "tradeId": 413,
     "date": "2021-08-28T17:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-412/",
     "parties": [
@@ -19187,7 +19234,7 @@
     ]
   },
   {
-    "tradeId": 413,
+    "tradeId": 414,
     "date": "2021-08-28T17:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-413/",
     "parties": [
@@ -19226,7 +19273,7 @@
     ]
   },
   {
-    "tradeId": 414,
+    "tradeId": 415,
     "date": "2021-08-28T18:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-414/",
     "parties": [
@@ -19265,7 +19312,7 @@
     ]
   },
   {
-    "tradeId": 415,
+    "tradeId": 416,
     "date": "2021-08-28T18:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-415/",
     "parties": [
@@ -19299,7 +19346,7 @@
     ]
   },
   {
-    "tradeId": 416,
+    "tradeId": 417,
     "date": "2021-08-28T20:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-416/",
     "parties": [
@@ -19332,7 +19379,7 @@
     ]
   },
   {
-    "tradeId": 417,
+    "tradeId": 418,
     "date": "2021-08-28T21:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-417/",
     "parties": [
@@ -19365,7 +19412,7 @@
     ]
   },
   {
-    "tradeId": 418,
+    "tradeId": 419,
     "date": "2021-08-28T21:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/08/28/trade-418/",
     "parties": [
@@ -19398,7 +19445,7 @@
     ]
   },
   {
-    "tradeId": 419,
+    "tradeId": 420,
     "date": "2021-09-06T19:21:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/09/06/trade-419/",
     "parties": [
@@ -19432,7 +19479,7 @@
     ]
   },
   {
-    "tradeId": 420,
+    "tradeId": 421,
     "date": "2021-09-29T19:57:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/09/29/trade-420/",
     "parties": [
@@ -19473,7 +19520,7 @@
     ]
   },
   {
-    "tradeId": 421,
+    "tradeId": 422,
     "date": "2021-10-02T04:22:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/01/trade-421/",
     "parties": [
@@ -19538,7 +19585,7 @@
     ]
   },
   {
-    "tradeId": 422,
+    "tradeId": 423,
     "date": "2021-10-11T01:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/10/trade-422/",
     "parties": [
@@ -19591,7 +19638,7 @@
     ]
   },
   {
-    "tradeId": 423,
+    "tradeId": 424,
     "date": "2021-10-11T02:15:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/10/trade-423/",
     "parties": [
@@ -19643,7 +19690,7 @@
     ]
   },
   {
-    "tradeId": 424,
+    "tradeId": 425,
     "date": "2021-10-11T02:38:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/10/trade-424/",
     "parties": [
@@ -19703,7 +19750,7 @@
     ]
   },
   {
-    "tradeId": 425,
+    "tradeId": 426,
     "date": "2021-10-11T15:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/11/trade-425/",
     "parties": [
@@ -19744,7 +19791,7 @@
     ]
   },
   {
-    "tradeId": 426,
+    "tradeId": 427,
     "date": "2021-10-14T19:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/14/trade-426/",
     "parties": [
@@ -19816,7 +19863,7 @@
     ]
   },
   {
-    "tradeId": 427,
+    "tradeId": 428,
     "date": "2021-10-17T18:29:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/17/trade-427/",
     "parties": [
@@ -19870,7 +19917,7 @@
     ]
   },
   {
-    "tradeId": 428,
+    "tradeId": 429,
     "date": "2021-10-27T18:54:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/27/trade-428/",
     "parties": [
@@ -19918,7 +19965,7 @@
     ]
   },
   {
-    "tradeId": 429,
+    "tradeId": 430,
     "date": "2021-10-29T16:38:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/10/29/trade-429/",
     "parties": [
@@ -19957,7 +20004,7 @@
     ]
   },
   {
-    "tradeId": 430,
+    "tradeId": 431,
     "date": "2021-11-02T21:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/02/trade-430/",
     "parties": [
@@ -19998,7 +20045,7 @@
     ]
   },
   {
-    "tradeId": 431,
+    "tradeId": 432,
     "date": "2021-11-05T14:21:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/05/trade-431/",
     "parties": [
@@ -20039,7 +20086,7 @@
     ]
   },
   {
-    "tradeId": 432,
+    "tradeId": 433,
     "date": "2021-11-05T21:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/05/trade-432/",
     "parties": [
@@ -20085,7 +20132,7 @@
     ]
   },
   {
-    "tradeId": 433,
+    "tradeId": 434,
     "date": "2021-11-08T23:23:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/08/trade-433/",
     "parties": [
@@ -20132,7 +20179,7 @@
     ]
   },
   {
-    "tradeId": 434,
+    "tradeId": 435,
     "date": "2021-11-09T03:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/08/trade-434/",
     "parties": [
@@ -20205,7 +20252,7 @@
     ]
   },
   {
-    "tradeId": 435,
+    "tradeId": 436,
     "date": "2021-11-09T13:28:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-435/",
     "parties": [
@@ -20239,7 +20286,7 @@
     ]
   },
   {
-    "tradeId": 436,
+    "tradeId": 437,
     "date": "2021-11-09T18:26:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-436/",
     "parties": [
@@ -20317,7 +20364,7 @@
     ]
   },
   {
-    "tradeId": 437,
+    "tradeId": 438,
     "date": "2021-11-09T19:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-437/",
     "parties": [
@@ -20370,7 +20417,7 @@
     ]
   },
   {
-    "tradeId": 438,
+    "tradeId": 439,
     "date": "2021-11-09T20:16:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-438/",
     "parties": [
@@ -20423,7 +20470,7 @@
     ]
   },
   {
-    "tradeId": 439,
+    "tradeId": 440,
     "date": "2021-11-10T01:05:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-439/",
     "parties": [
@@ -20483,7 +20530,7 @@
     ]
   },
   {
-    "tradeId": 440,
+    "tradeId": 441,
     "date": "2021-11-10T01:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-440/",
     "parties": [
@@ -20543,7 +20590,7 @@
     ]
   },
   {
-    "tradeId": 441,
+    "tradeId": 442,
     "date": "2021-11-10T01:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/09/trade-441/",
     "parties": [
@@ -20601,7 +20648,7 @@
     ]
   },
   {
-    "tradeId": 442,
+    "tradeId": 443,
     "date": "2021-11-10T18:24:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2021/11/10/trade-442/",
     "parties": [
@@ -20665,7 +20712,7 @@
     ]
   },
   {
-    "tradeId": 443,
+    "tradeId": 444,
     "date": "2022-04-05T15:29:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/05/trade-443/",
     "parties": [
@@ -20703,7 +20750,7 @@
     ]
   },
   {
-    "tradeId": 444,
+    "tradeId": 445,
     "date": "2022-04-07T21:18:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/07/trade-444/",
     "parties": [
@@ -20751,7 +20798,7 @@
     ]
   },
   {
-    "tradeId": 445,
+    "tradeId": 446,
     "date": "2022-04-22T02:41:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/21/trade-445/",
     "parties": [
@@ -20805,7 +20852,7 @@
     ]
   },
   {
-    "tradeId": 446,
+    "tradeId": 447,
     "date": "2022-04-22T02:46:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/21/trade-446/",
     "parties": [
@@ -20854,7 +20901,7 @@
     ]
   },
   {
-    "tradeId": 447,
+    "tradeId": 448,
     "date": "2022-04-22T03:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/21/trade-447/",
     "parties": [
@@ -20886,7 +20933,7 @@
     ]
   },
   {
-    "tradeId": 448,
+    "tradeId": 449,
     "date": "2022-04-23T16:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/23/trade-448/",
     "parties": [
@@ -20921,7 +20968,7 @@
     ]
   },
   {
-    "tradeId": 449,
+    "tradeId": 450,
     "date": "2022-04-29T03:03:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/04/28/trade-449/",
     "parties": [
@@ -20956,7 +21003,7 @@
     ]
   },
   {
-    "tradeId": 450,
+    "tradeId": 451,
     "date": "2022-05-08T14:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/05/08/trade-450/",
     "parties": [
@@ -21008,7 +21055,7 @@
     ]
   },
   {
-    "tradeId": 451,
+    "tradeId": 452,
     "date": "2022-05-10T23:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/05/10/trade-451/",
     "parties": [
@@ -21049,7 +21096,7 @@
     ]
   },
   {
-    "tradeId": 452,
+    "tradeId": 453,
     "date": "2022-07-23T01:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/07/22/trade-452/",
     "parties": [
@@ -21088,7 +21135,7 @@
     ]
   },
   {
-    "tradeId": 453,
+    "tradeId": 454,
     "date": "2022-08-03T11:12:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/03/trade-453/",
     "parties": [
@@ -21121,7 +21168,7 @@
     ]
   },
   {
-    "tradeId": 454,
+    "tradeId": 455,
     "date": "2022-08-03T11:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/03/trade-454/",
     "parties": [
@@ -21156,7 +21203,7 @@
     ]
   },
   {
-    "tradeId": 455,
+    "tradeId": 456,
     "date": "2022-08-03T14:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/03/trade-455/",
     "parties": [
@@ -21189,7 +21236,7 @@
     ]
   },
   {
-    "tradeId": 456,
+    "tradeId": 457,
     "date": "2022-08-04T01:10:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/03/trade-456/",
     "parties": [
@@ -21242,7 +21289,7 @@
     ]
   },
   {
-    "tradeId": 457,
+    "tradeId": 458,
     "date": "2022-08-12T03:05:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/11/trade-457/",
     "parties": [
@@ -21283,7 +21330,7 @@
     ]
   },
   {
-    "tradeId": 458,
+    "tradeId": 459,
     "date": "2022-08-12T15:24:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/12/trade-458/",
     "parties": [
@@ -21316,7 +21363,7 @@
     ]
   },
   {
-    "tradeId": 459,
+    "tradeId": 460,
     "date": "2022-08-13T03:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/12/trade-459/",
     "parties": [
@@ -21357,7 +21404,7 @@
     ]
   },
   {
-    "tradeId": 460,
+    "tradeId": 461,
     "date": "2022-08-13T03:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/12/trade-460/",
     "parties": [
@@ -21396,7 +21443,7 @@
     ]
   },
   {
-    "tradeId": 461,
+    "tradeId": 462,
     "date": "2022-08-13T13:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/13/trade-461/",
     "parties": [
@@ -21437,7 +21484,7 @@
     ]
   },
   {
-    "tradeId": 462,
+    "tradeId": 463,
     "date": "2022-08-13T14:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/13/trade-462/",
     "parties": [
@@ -21478,7 +21525,7 @@
     ]
   },
   {
-    "tradeId": 463,
+    "tradeId": 464,
     "date": "2022-08-18T23:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/18/trade-463/",
     "parties": [
@@ -21518,7 +21565,7 @@
     ]
   },
   {
-    "tradeId": 464,
+    "tradeId": 465,
     "date": "2022-08-26T18:25:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/26/trade-464/",
     "parties": [
@@ -21559,7 +21606,7 @@
     ]
   },
   {
-    "tradeId": 465,
+    "tradeId": 466,
     "date": "2022-08-26T19:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/26/trade-465/",
     "parties": [
@@ -21600,7 +21647,7 @@
     ]
   },
   {
-    "tradeId": 466,
+    "tradeId": 467,
     "date": "2022-08-26T21:41:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/26/trade-466/",
     "parties": [
@@ -21639,7 +21686,7 @@
     ]
   },
   {
-    "tradeId": 467,
+    "tradeId": 468,
     "date": "2022-08-26T22:22:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/26/trade-467/",
     "parties": [
@@ -21687,7 +21734,7 @@
     ]
   },
   {
-    "tradeId": 468,
+    "tradeId": 469,
     "date": "2022-08-27T13:08:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-468/",
     "parties": [
@@ -21726,7 +21773,7 @@
     ]
   },
   {
-    "tradeId": 469,
+    "tradeId": 470,
     "date": "2022-08-27T14:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-469/",
     "parties": [
@@ -21760,7 +21807,7 @@
     ]
   },
   {
-    "tradeId": 470,
+    "tradeId": 471,
     "date": "2022-08-27T14:53:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-470/",
     "parties": [
@@ -21794,7 +21841,7 @@
     ]
   },
   {
-    "tradeId": 471,
+    "tradeId": 472,
     "date": "2022-08-27T15:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-471/",
     "parties": [
@@ -21835,7 +21882,7 @@
     ]
   },
   {
-    "tradeId": 472,
+    "tradeId": 473,
     "date": "2022-08-27T15:17:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-472/",
     "parties": [
@@ -21874,7 +21921,7 @@
     ]
   },
   {
-    "tradeId": 473,
+    "tradeId": 474,
     "date": "2022-08-27T16:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-473/",
     "parties": [
@@ -21909,7 +21956,7 @@
     ]
   },
   {
-    "tradeId": 474,
+    "tradeId": 475,
     "date": "2022-08-27T17:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-474/",
     "parties": [
@@ -21956,7 +22003,7 @@
     ]
   },
   {
-    "tradeId": 475,
+    "tradeId": 476,
     "date": "2022-08-27T17:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-475/",
     "parties": [
@@ -21990,7 +22037,7 @@
     ]
   },
   {
-    "tradeId": 476,
+    "tradeId": 477,
     "date": "2022-08-27T17:53:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-476/",
     "parties": [
@@ -22031,7 +22078,7 @@
     ]
   },
   {
-    "tradeId": 477,
+    "tradeId": 478,
     "date": "2022-08-27T18:06:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-477/",
     "parties": [
@@ -22072,7 +22119,7 @@
     ]
   },
   {
-    "tradeId": 478,
+    "tradeId": 479,
     "date": "2022-08-27T18:08:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-478/",
     "parties": [
@@ -22106,7 +22153,7 @@
     ]
   },
   {
-    "tradeId": 479,
+    "tradeId": 480,
     "date": "2022-08-27T18:18:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-479/",
     "parties": [
@@ -22212,7 +22259,7 @@
     ]
   },
   {
-    "tradeId": 480,
+    "tradeId": 481,
     "date": "2022-08-27T18:21:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-480/",
     "parties": [
@@ -22246,7 +22293,7 @@
     ]
   },
   {
-    "tradeId": 481,
+    "tradeId": 482,
     "date": "2022-08-27T18:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-481/",
     "parties": [
@@ -22280,7 +22327,7 @@
     ]
   },
   {
-    "tradeId": 482,
+    "tradeId": 483,
     "date": "2022-08-27T18:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-482/",
     "parties": [
@@ -22314,7 +22361,7 @@
     ]
   },
   {
-    "tradeId": 483,
+    "tradeId": 484,
     "date": "2022-08-27T20:23:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-483/",
     "parties": [
@@ -22353,7 +22400,7 @@
     ]
   },
   {
-    "tradeId": 484,
+    "tradeId": 485,
     "date": "2022-08-27T20:27:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-484/",
     "parties": [
@@ -22387,7 +22434,7 @@
     ]
   },
   {
-    "tradeId": 485,
+    "tradeId": 486,
     "date": "2022-08-27T21:34:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-485/",
     "parties": [
@@ -22448,7 +22495,7 @@
     ]
   },
   {
-    "tradeId": 486,
+    "tradeId": 487,
     "date": "2022-08-27T22:26:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-486/",
     "parties": [
@@ -22482,7 +22529,7 @@
     ]
   },
   {
-    "tradeId": 487,
+    "tradeId": 488,
     "date": "2022-08-27T23:11:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-487/",
     "parties": [
@@ -22517,7 +22564,7 @@
     ]
   },
   {
-    "tradeId": 488,
+    "tradeId": 489,
     "date": "2022-08-27T23:15:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-488/",
     "parties": [
@@ -22571,7 +22618,7 @@
     ]
   },
   {
-    "tradeId": 489,
+    "tradeId": 490,
     "date": "2022-08-27T23:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/27/trade-489/",
     "parties": [
@@ -22605,7 +22652,7 @@
     ]
   },
   {
-    "tradeId": 490,
+    "tradeId": 491,
     "date": "2022-08-28T17:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/08/28/trade-490/",
     "parties": [
@@ -22664,7 +22711,7 @@
     ]
   },
   {
-    "tradeId": 491,
+    "tradeId": 492,
     "date": "2022-09-20T15:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/09/20/trade-491/",
     "parties": [
@@ -22712,7 +22759,7 @@
     ]
   },
   {
-    "tradeId": 492,
+    "tradeId": 493,
     "date": "2022-10-07T14:23:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/07/trade-492/",
     "parties": [
@@ -22770,7 +22817,7 @@
     ]
   },
   {
-    "tradeId": 493,
+    "tradeId": 494,
     "date": "2022-10-10T20:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/10/trade-493/",
     "parties": [
@@ -22810,7 +22857,7 @@
     ]
   },
   {
-    "tradeId": 494,
+    "tradeId": 495,
     "date": "2022-10-11T17:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/11/trade-494/",
     "parties": [
@@ -22851,7 +22898,7 @@
     ]
   },
   {
-    "tradeId": 495,
+    "tradeId": 496,
     "date": "2022-10-18T17:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/18/trade-495/",
     "parties": [
@@ -22898,7 +22945,7 @@
     ]
   },
   {
-    "tradeId": 496,
+    "tradeId": 497,
     "date": "2022-10-20T19:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/20/trade-496/",
     "parties": [
@@ -22982,7 +23029,7 @@
     ]
   },
   {
-    "tradeId": 497,
+    "tradeId": 498,
     "date": "2022-10-20T22:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/20/trade-497/",
     "parties": [
@@ -23036,7 +23083,7 @@
     ]
   },
   {
-    "tradeId": 498,
+    "tradeId": 499,
     "date": "2022-10-21T02:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/20/trade-498/",
     "parties": [
@@ -23088,7 +23135,7 @@
     ]
   },
   {
-    "tradeId": 499,
+    "tradeId": 500,
     "date": "2022-10-26T01:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/25/trade-499/",
     "parties": [
@@ -23136,7 +23183,7 @@
     ]
   },
   {
-    "tradeId": 500,
+    "tradeId": 501,
     "date": "2022-10-26T01:50:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/25/trade-500/",
     "parties": [
@@ -23190,7 +23237,7 @@
     ]
   },
   {
-    "tradeId": 501,
+    "tradeId": 502,
     "date": "2022-10-28T14:12:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/28/trade-501/",
     "parties": [
@@ -23231,7 +23278,7 @@
     ]
   },
   {
-    "tradeId": 502,
+    "tradeId": 503,
     "date": "2022-10-30T16:20:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/10/30/trade-502/",
     "parties": [
@@ -23271,7 +23318,7 @@
     ]
   },
   {
-    "tradeId": 503,
+    "tradeId": 504,
     "date": "2022-11-01T07:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/01/trade-503/",
     "parties": [
@@ -23343,7 +23390,7 @@
     ]
   },
   {
-    "tradeId": 504,
+    "tradeId": 505,
     "date": "2022-11-02T01:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/01/trade-504/",
     "parties": [
@@ -23390,7 +23437,7 @@
     ]
   },
   {
-    "tradeId": 505,
+    "tradeId": 506,
     "date": "2022-11-02T14:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-505/",
     "parties": [
@@ -23480,7 +23527,7 @@
     ]
   },
   {
-    "tradeId": 506,
+    "tradeId": 507,
     "date": "2022-11-02T16:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-506/",
     "parties": [
@@ -23513,7 +23560,7 @@
     ]
   },
   {
-    "tradeId": 507,
+    "tradeId": 508,
     "date": "2022-11-02T20:33:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-507/",
     "parties": [
@@ -23585,7 +23632,7 @@
     ]
   },
   {
-    "tradeId": 508,
+    "tradeId": 509,
     "date": "2022-11-02T22:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-508/",
     "parties": [
@@ -23681,7 +23728,7 @@
     ]
   },
   {
-    "tradeId": 509,
+    "tradeId": 510,
     "date": "2022-11-02T23:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-509/",
     "parties": [
@@ -23728,7 +23775,7 @@
     ]
   },
   {
-    "tradeId": 510,
+    "tradeId": 511,
     "date": "2022-11-03T00:22:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-510/",
     "parties": [
@@ -23769,7 +23816,7 @@
     ]
   },
   {
-    "tradeId": 511,
+    "tradeId": 512,
     "date": "2022-11-03T01:23:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/02/trade-511/",
     "parties": [
@@ -23809,7 +23856,7 @@
     ]
   },
   {
-    "tradeId": 512,
+    "tradeId": 513,
     "date": "2022-11-03T16:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/03/trade-512/",
     "parties": [
@@ -23868,7 +23915,7 @@
     ]
   },
   {
-    "tradeId": 513,
+    "tradeId": 514,
     "date": "2022-11-03T17:47:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/03/trade-513/",
     "parties": [
@@ -23915,7 +23962,7 @@
     ]
   },
   {
-    "tradeId": 514,
+    "tradeId": 515,
     "date": "2022-11-03T21:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/03/trade-514/",
     "parties": [
@@ -23963,7 +24010,7 @@
     ]
   },
   {
-    "tradeId": 515,
+    "tradeId": 516,
     "date": "2022-11-03T21:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/03/trade-515/",
     "parties": [
@@ -24051,7 +24098,7 @@
     ]
   },
   {
-    "tradeId": 516,
+    "tradeId": 517,
     "date": "2022-11-06T13:09:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/06/trade-516/",
     "parties": [
@@ -24097,7 +24144,7 @@
     ]
   },
   {
-    "tradeId": 517,
+    "tradeId": 518,
     "date": "2022-11-06T15:47:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/06/trade-517/",
     "parties": [
@@ -24130,7 +24177,7 @@
     ]
   },
   {
-    "tradeId": 518,
+    "tradeId": 519,
     "date": "2022-11-08T16:16:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/08/trade-518/",
     "parties": [
@@ -24183,7 +24230,7 @@
     ]
   },
   {
-    "tradeId": 519,
+    "tradeId": 520,
     "date": "2022-11-09T15:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-519/",
     "parties": [
@@ -24230,7 +24277,7 @@
     ]
   },
   {
-    "tradeId": 520,
+    "tradeId": 521,
     "date": "2022-11-09T20:15:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-520/",
     "parties": [
@@ -24271,7 +24318,7 @@
     ]
   },
   {
-    "tradeId": 521,
+    "tradeId": 522,
     "date": "2022-11-09T22:12:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-521/",
     "parties": [
@@ -24312,7 +24359,7 @@
     ]
   },
   {
-    "tradeId": 522,
+    "tradeId": 523,
     "date": "2022-11-09T23:47:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-522/",
     "parties": [
@@ -24347,7 +24394,7 @@
     ]
   },
   {
-    "tradeId": 523,
+    "tradeId": 524,
     "date": "2022-11-10T01:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-523/",
     "parties": [
@@ -24406,7 +24453,7 @@
     ]
   },
   {
-    "tradeId": 524,
+    "tradeId": 525,
     "date": "2022-11-10T01:55:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-524/",
     "parties": [
@@ -24446,7 +24493,7 @@
     ]
   },
   {
-    "tradeId": 525,
+    "tradeId": 526,
     "date": "2022-11-10T01:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2022/11/09/trade-525/",
     "parties": [
@@ -24487,7 +24534,7 @@
     ]
   },
   {
-    "tradeId": 526,
+    "tradeId": 527,
     "date": "2023-04-01T01:54:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/03/31/trade-526/",
     "parties": [
@@ -24528,7 +24575,7 @@
     ]
   },
   {
-    "tradeId": 527,
+    "tradeId": 528,
     "date": "2023-05-21T00:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/05/20/trade-527/",
     "parties": [
@@ -24559,7 +24606,7 @@
     ]
   },
   {
-    "tradeId": 528,
+    "tradeId": 529,
     "date": "2023-05-24T17:22:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/05/24/trade-528/",
     "parties": [
@@ -24600,7 +24647,7 @@
     ]
   },
   {
-    "tradeId": 529,
+    "tradeId": 530,
     "date": "2023-05-24T18:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/05/24/trade-529/",
     "parties": [
@@ -24639,7 +24686,7 @@
     ]
   },
   {
-    "tradeId": 530,
+    "tradeId": 531,
     "date": "2023-05-29T01:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/05/28/trade-530/",
     "parties": [
@@ -24674,7 +24721,7 @@
     ]
   },
   {
-    "tradeId": 531,
+    "tradeId": 532,
     "date": "2023-06-03T21:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/06/03/trade-531/",
     "parties": [
@@ -24713,7 +24760,7 @@
     ]
   },
   {
-    "tradeId": 532,
+    "tradeId": 533,
     "date": "2023-06-14T16:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/06/14/trade-532/",
     "parties": [
@@ -24766,7 +24813,7 @@
     ]
   },
   {
-    "tradeId": 533,
+    "tradeId": 534,
     "date": "2023-07-03T00:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/07/02/trade-533/",
     "parties": [
@@ -24811,7 +24858,7 @@
     ]
   },
   {
-    "tradeId": 534,
+    "tradeId": 535,
     "date": "2023-07-04T21:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/07/04/trade-534/",
     "parties": [
@@ -24852,7 +24899,7 @@
     ]
   },
   {
-    "tradeId": 535,
+    "tradeId": 536,
     "date": "2023-07-29T15:17:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/07/29/trade-535/",
     "parties": [
@@ -24886,7 +24933,7 @@
     ]
   },
   {
-    "tradeId": 536,
+    "tradeId": 537,
     "date": "2023-07-29T16:14:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/07/29/trade-536/",
     "parties": [
@@ -24933,7 +24980,7 @@
     ]
   },
   {
-    "tradeId": 537,
+    "tradeId": 538,
     "date": "2023-07-31T00:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/07/30/trade-537/",
     "parties": [
@@ -24964,7 +25011,7 @@
     ]
   },
   {
-    "tradeId": 538,
+    "tradeId": 539,
     "date": "2023-08-01T18:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/01/trade-538/",
     "parties": [
@@ -25002,7 +25049,7 @@
     ]
   },
   {
-    "tradeId": 539,
+    "tradeId": 540,
     "date": "2023-08-05T03:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/04/trade-539/",
     "parties": [
@@ -25042,7 +25089,7 @@
     ]
   },
   {
-    "tradeId": 540,
+    "tradeId": 541,
     "date": "2023-08-11T02:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/10/trade-540/",
     "parties": [
@@ -25101,7 +25148,7 @@
     ]
   },
   {
-    "tradeId": 541,
+    "tradeId": 542,
     "date": "2023-08-13T17:25:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/13/trade-541/",
     "parties": [
@@ -25160,7 +25207,7 @@
     ]
   },
   {
-    "tradeId": 542,
+    "tradeId": 543,
     "date": "2023-08-18T16:24:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/18/trade-542/",
     "parties": [
@@ -25201,7 +25248,7 @@
     ]
   },
   {
-    "tradeId": 543,
+    "tradeId": 544,
     "date": "2023-08-18T17:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/18/trade-543/",
     "parties": [
@@ -25242,7 +25289,7 @@
     ]
   },
   {
-    "tradeId": 544,
+    "tradeId": 545,
     "date": "2023-08-19T13:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/19/trade-544/",
     "parties": [
@@ -25284,7 +25331,7 @@
     ]
   },
   {
-    "tradeId": 545,
+    "tradeId": 546,
     "date": "2023-08-20T19:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/20/trade-545/",
     "parties": [
@@ -25329,7 +25376,7 @@
     ]
   },
   {
-    "tradeId": 546,
+    "tradeId": 547,
     "date": "2023-08-25T03:23:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/24/trade-546/",
     "parties": [
@@ -25361,7 +25408,7 @@
     ]
   },
   {
-    "tradeId": 547,
+    "tradeId": 548,
     "date": "2023-08-25T04:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/24/trade-547/",
     "parties": [
@@ -25395,7 +25442,7 @@
     ]
   },
   {
-    "tradeId": 548,
+    "tradeId": 549,
     "date": "2023-08-25T05:38:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/24/trade-548/",
     "parties": [
@@ -25449,7 +25496,7 @@
     ]
   },
   {
-    "tradeId": 549,
+    "tradeId": 550,
     "date": "2023-08-25T14:57:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/25/trade-549/",
     "parties": [
@@ -25484,7 +25531,7 @@
     ]
   },
   {
-    "tradeId": 550,
+    "tradeId": 551,
     "date": "2023-08-25T20:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/25/trade-550/",
     "parties": [
@@ -25517,7 +25564,7 @@
     ]
   },
   {
-    "tradeId": 551,
+    "tradeId": 552,
     "date": "2023-08-25T22:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/25/trade-551/",
     "parties": [
@@ -25554,7 +25601,7 @@
     ]
   },
   {
-    "tradeId": 552,
+    "tradeId": 553,
     "date": "2023-08-25T23:18:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/25/trade-552/",
     "parties": [
@@ -25595,7 +25642,7 @@
     ]
   },
   {
-    "tradeId": 553,
+    "tradeId": 554,
     "date": "2023-08-26T03:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/25/trade-553/",
     "parties": [
@@ -25629,7 +25676,7 @@
     ]
   },
   {
-    "tradeId": 554,
+    "tradeId": 555,
     "date": "2023-08-26T15:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-554/",
     "parties": [
@@ -25670,7 +25717,7 @@
     ]
   },
   {
-    "tradeId": 555,
+    "tradeId": 556,
     "date": "2023-08-26T16:11:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-555/",
     "parties": [
@@ -25734,7 +25781,7 @@
     ]
   },
   {
-    "tradeId": 556,
+    "tradeId": 557,
     "date": "2023-08-26T16:29:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-556/",
     "parties": [
@@ -25768,7 +25815,7 @@
     ]
   },
   {
-    "tradeId": 557,
+    "tradeId": 558,
     "date": "2023-08-26T16:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-557/",
     "parties": [
@@ -25802,7 +25849,7 @@
     ]
   },
   {
-    "tradeId": 558,
+    "tradeId": 559,
     "date": "2023-08-26T16:50:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-558/",
     "parties": [
@@ -25836,7 +25883,7 @@
     ]
   },
   {
-    "tradeId": 559,
+    "tradeId": 560,
     "date": "2023-08-26T19:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-559/",
     "parties": [
@@ -25869,7 +25916,7 @@
     ]
   },
   {
-    "tradeId": 560,
+    "tradeId": 561,
     "date": "2023-08-26T21:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-560/",
     "parties": [
@@ -25916,7 +25963,7 @@
     ]
   },
   {
-    "tradeId": 561,
+    "tradeId": 562,
     "date": "2023-08-26T21:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-561/",
     "parties": [
@@ -25950,7 +25997,7 @@
     ]
   },
   {
-    "tradeId": 562,
+    "tradeId": 563,
     "date": "2023-08-26T22:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-562/",
     "parties": [
@@ -25984,7 +26031,7 @@
     ]
   },
   {
-    "tradeId": 563,
+    "tradeId": 564,
     "date": "2023-08-26T22:14:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-563/",
     "parties": [
@@ -26012,7 +26059,7 @@
     ]
   },
   {
-    "tradeId": 564,
+    "tradeId": 565,
     "date": "2023-08-26T22:50:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-564/",
     "parties": [
@@ -26046,7 +26093,7 @@
     ]
   },
   {
-    "tradeId": 565,
+    "tradeId": 566,
     "date": "2023-08-26T23:06:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-565/",
     "parties": [
@@ -26074,7 +26121,7 @@
     ]
   },
   {
-    "tradeId": 566,
+    "tradeId": 567,
     "date": "2023-08-26T23:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-566/",
     "parties": [
@@ -26107,7 +26154,7 @@
     ]
   },
   {
-    "tradeId": 567,
+    "tradeId": 568,
     "date": "2023-08-27T00:38:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-567/",
     "parties": [
@@ -26149,7 +26196,7 @@
     ]
   },
   {
-    "tradeId": 568,
+    "tradeId": 569,
     "date": "2023-08-27T04:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/08/26/trade-568/",
     "parties": [
@@ -26184,7 +26231,7 @@
     ]
   },
   {
-    "tradeId": 569,
+    "tradeId": 570,
     "date": "2023-09-02T15:10:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/09/02/trade-569/",
     "parties": [
@@ -26232,7 +26279,7 @@
     ]
   },
   {
-    "tradeId": 570,
+    "tradeId": 571,
     "date": "2023-09-04T17:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/09/04/trade-570/",
     "parties": [
@@ -26285,7 +26332,7 @@
     ]
   },
   {
-    "tradeId": 571,
+    "tradeId": 572,
     "date": "2023-09-16T21:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/09/16/trade-571/",
     "parties": [
@@ -26326,7 +26373,7 @@
     ]
   },
   {
-    "tradeId": 572,
+    "tradeId": 573,
     "date": "2023-09-21T22:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/09/21/trade-572/",
     "parties": [
@@ -26373,7 +26420,7 @@
     ]
   },
   {
-    "tradeId": 573,
+    "tradeId": 574,
     "date": "2023-09-27T15:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/09/27/trade-573/",
     "parties": [
@@ -26433,7 +26480,7 @@
     ]
   },
   {
-    "tradeId": 574,
+    "tradeId": 575,
     "date": "2023-09-30T21:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/09/30/trade-574/",
     "parties": [
@@ -26474,7 +26521,7 @@
     ]
   },
   {
-    "tradeId": 575,
+    "tradeId": 576,
     "date": "2023-10-03T07:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/03/trade-575/",
     "parties": [
@@ -26515,7 +26562,7 @@
     ]
   },
   {
-    "tradeId": 576,
+    "tradeId": 577,
     "date": "2023-10-06T03:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/05/trade-576/",
     "parties": [
@@ -26562,7 +26609,7 @@
     ]
   },
   {
-    "tradeId": 577,
+    "tradeId": 578,
     "date": "2023-10-06T21:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/06/trade-577/",
     "parties": [
@@ -26595,7 +26642,7 @@
     ]
   },
   {
-    "tradeId": 578,
+    "tradeId": 579,
     "date": "2023-10-12T22:15:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/12/trade-578/",
     "parties": [
@@ -26661,7 +26708,7 @@
     ]
   },
   {
-    "tradeId": 579,
+    "tradeId": 580,
     "date": "2023-10-17T07:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/17/trade-579/",
     "parties": [
@@ -26714,7 +26761,7 @@
     ]
   },
   {
-    "tradeId": 580,
+    "tradeId": 581,
     "date": "2023-10-27T23:55:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/27/trade-580/",
     "parties": [
@@ -26755,7 +26802,7 @@
     ]
   },
   {
-    "tradeId": 581,
+    "tradeId": 582,
     "date": "2023-10-28T21:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/28/trade-581/",
     "parties": [
@@ -26821,7 +26868,7 @@
     ]
   },
   {
-    "tradeId": 582,
+    "tradeId": 583,
     "date": "2023-10-29T16:19:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/29/trade-582/",
     "parties": [
@@ -26881,7 +26928,7 @@
     ]
   },
   {
-    "tradeId": 583,
+    "tradeId": 584,
     "date": "2023-10-31T07:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/31/trade-583/",
     "parties": [
@@ -26941,7 +26988,7 @@
     ]
   },
   {
-    "tradeId": 584,
+    "tradeId": 585,
     "date": "2023-10-31T13:25:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/10/31/trade-584/",
     "parties": [
@@ -27006,7 +27053,7 @@
     ]
   },
   {
-    "tradeId": 585,
+    "tradeId": 586,
     "date": "2023-11-03T20:27:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/03/trade-585/",
     "parties": [
@@ -27060,7 +27107,7 @@
     ]
   },
   {
-    "tradeId": 586,
+    "tradeId": 587,
     "date": "2023-11-03T20:29:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/03/trade-586/",
     "parties": [
@@ -27100,7 +27147,7 @@
     ]
   },
   {
-    "tradeId": 587,
+    "tradeId": 588,
     "date": "2023-11-05T14:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/05/trade-587/",
     "parties": [
@@ -27165,7 +27212,7 @@
     ]
   },
   {
-    "tradeId": 588,
+    "tradeId": 589,
     "date": "2023-11-06T14:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/06/trade-588/",
     "parties": [
@@ -27206,7 +27253,7 @@
     ]
   },
   {
-    "tradeId": 589,
+    "tradeId": 590,
     "date": "2023-11-06T14:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/06/trade-589/",
     "parties": [
@@ -27246,7 +27293,7 @@
     ]
   },
   {
-    "tradeId": 590,
+    "tradeId": 591,
     "date": "2023-11-07T00:12:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/06/trade-590/",
     "parties": [
@@ -27293,7 +27340,7 @@
     ]
   },
   {
-    "tradeId": 591,
+    "tradeId": 592,
     "date": "2023-11-07T01:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/06/trade-591/",
     "parties": [
@@ -27357,7 +27404,7 @@
     ]
   },
   {
-    "tradeId": 592,
+    "tradeId": 593,
     "date": "2023-11-07T18:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/07/trade-592/",
     "parties": [
@@ -27397,7 +27444,7 @@
     ]
   },
   {
-    "tradeId": 593,
+    "tradeId": 594,
     "date": "2023-11-07T19:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/07/trade-593/",
     "parties": [
@@ -27437,7 +27484,7 @@
     ]
   },
   {
-    "tradeId": 594,
+    "tradeId": 595,
     "date": "2023-11-08T19:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/08/trade-594/",
     "parties": [
@@ -27477,7 +27524,7 @@
     ]
   },
   {
-    "tradeId": 595,
+    "tradeId": 596,
     "date": "2023-11-08T19:11:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/08/trade-595/",
     "parties": [
@@ -27541,7 +27588,7 @@
     ]
   },
   {
-    "tradeId": 596,
+    "tradeId": 597,
     "date": "2023-11-08T19:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/08/trade-596/",
     "parties": [
@@ -27588,7 +27635,7 @@
     ]
   },
   {
-    "tradeId": 597,
+    "tradeId": 598,
     "date": "2023-11-08T23:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/08/trade-597/",
     "parties": [
@@ -27628,7 +27675,7 @@
     ]
   },
   {
-    "tradeId": 598,
+    "tradeId": 599,
     "date": "2023-11-08T23:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/08/trade-598/",
     "parties": [
@@ -27681,7 +27728,7 @@
     ]
   },
   {
-    "tradeId": 599,
+    "tradeId": 600,
     "date": "2023-11-09T00:53:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2023/11/08/trade-599/",
     "parties": [
@@ -27715,7 +27762,7 @@
     ]
   },
   {
-    "tradeId": 600,
+    "tradeId": 601,
     "date": "2024-02-15T23:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/02/15/trade-600/",
     "parties": [
@@ -27761,7 +27808,7 @@
     ]
   },
   {
-    "tradeId": 601,
+    "tradeId": 602,
     "date": "2024-03-24T01:10:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/03/23/trade-601/",
     "parties": [
@@ -27843,7 +27890,7 @@
     ]
   },
   {
-    "tradeId": 602,
+    "tradeId": 603,
     "date": "2024-04-28T00:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/04/27/trade-602/",
     "parties": [
@@ -27896,7 +27943,7 @@
     ]
   },
   {
-    "tradeId": 603,
+    "tradeId": 604,
     "date": "2024-05-04T05:03:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/05/03/trade-603/",
     "parties": [
@@ -27931,7 +27978,7 @@
     ]
   },
   {
-    "tradeId": 604,
+    "tradeId": 605,
     "date": "2024-05-13T02:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/05/12/trade-604/",
     "parties": [
@@ -27965,7 +28012,7 @@
     ]
   },
   {
-    "tradeId": 605,
+    "tradeId": 606,
     "date": "2024-05-13T23:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/05/13/trade-605/",
     "parties": [
@@ -28041,7 +28088,7 @@
     ]
   },
   {
-    "tradeId": 606,
+    "tradeId": 607,
     "date": "2024-05-16T01:03:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/05/15/trade-606/",
     "parties": [
@@ -28082,7 +28129,7 @@
     ]
   },
   {
-    "tradeId": 607,
+    "tradeId": 608,
     "date": "2024-05-21T01:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/05/20/trade-607/",
     "parties": [
@@ -28220,7 +28267,7 @@
     ]
   },
   {
-    "tradeId": 608,
+    "tradeId": 609,
     "date": "2024-06-07T15:05:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/06/07/trade-608/",
     "parties": [
@@ -28255,7 +28302,7 @@
     ]
   },
   {
-    "tradeId": 609,
+    "tradeId": 610,
     "date": "2024-06-09T20:27:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/06/09/trade-609/",
     "parties": [
@@ -28301,7 +28348,7 @@
     ]
   },
   {
-    "tradeId": 610,
+    "tradeId": 611,
     "date": "2024-07-20T21:57:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/07/20/trade-610/",
     "parties": [
@@ -28347,7 +28394,7 @@
     ]
   },
   {
-    "tradeId": 611,
+    "tradeId": 612,
     "date": "2024-08-09T20:38:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/09/trade-611/",
     "parties": [
@@ -28393,7 +28440,7 @@
     ]
   },
   {
-    "tradeId": 612,
+    "tradeId": 613,
     "date": "2024-08-09T23:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/09/trade-612/",
     "parties": [
@@ -28427,7 +28474,7 @@
     ]
   },
   {
-    "tradeId": 613,
+    "tradeId": 614,
     "date": "2024-08-10T03:12:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/09/trade-613/",
     "parties": [
@@ -28475,7 +28522,7 @@
     ]
   },
   {
-    "tradeId": 614,
+    "tradeId": 615,
     "date": "2024-08-11T02:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/10/trade-614/",
     "parties": [
@@ -28509,7 +28556,7 @@
     ]
   },
   {
-    "tradeId": 615,
+    "tradeId": 616,
     "date": "2024-08-11T04:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/10/trade-615/",
     "parties": [
@@ -28543,7 +28590,7 @@
     ]
   },
   {
-    "tradeId": 616,
+    "tradeId": 617,
     "date": "2024-08-11T16:26:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/11/trade-616/",
     "parties": [
@@ -28584,7 +28631,7 @@
     ]
   },
   {
-    "tradeId": 617,
+    "tradeId": 618,
     "date": "2024-08-11T18:27:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/11/trade-617/",
     "parties": [
@@ -28632,7 +28679,7 @@
     ]
   },
   {
-    "tradeId": 618,
+    "tradeId": 619,
     "date": "2024-08-15T23:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/15/trade-618/",
     "parties": [
@@ -28667,7 +28714,7 @@
     ]
   },
   {
-    "tradeId": 619,
+    "tradeId": 620,
     "date": "2024-08-16T13:27:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/16/trade-619/",
     "parties": [
@@ -28701,7 +28748,7 @@
     ]
   },
   {
-    "tradeId": 620,
+    "tradeId": 621,
     "date": "2024-08-17T19:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/17/trade-620/",
     "parties": [
@@ -28739,7 +28786,7 @@
     ]
   },
   {
-    "tradeId": 621,
+    "tradeId": 622,
     "date": "2024-08-17T20:38:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/17/trade-621/",
     "parties": [
@@ -28773,7 +28820,7 @@
     ]
   },
   {
-    "tradeId": 622,
+    "tradeId": 623,
     "date": "2024-08-18T15:55:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/18/trade-622/",
     "parties": [
@@ -28831,7 +28878,7 @@
     ]
   },
   {
-    "tradeId": 623,
+    "tradeId": 624,
     "date": "2024-08-18T20:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/18/trade-623/",
     "parties": [
@@ -28866,7 +28913,7 @@
     ]
   },
   {
-    "tradeId": 624,
+    "tradeId": 625,
     "date": "2024-08-23T01:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/22/trade-624/",
     "parties": [
@@ -28912,7 +28959,7 @@
     ]
   },
   {
-    "tradeId": 625,
+    "tradeId": 626,
     "date": "2024-08-23T01:33:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/22/trade-625/",
     "parties": [
@@ -28953,7 +29000,7 @@
     ]
   },
   {
-    "tradeId": 626,
+    "tradeId": 627,
     "date": "2024-08-23T01:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/22/trade-626/",
     "parties": [
@@ -28986,7 +29033,7 @@
     ]
   },
   {
-    "tradeId": 627,
+    "tradeId": 628,
     "date": "2024-08-23T01:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/22/trade-627/",
     "parties": [
@@ -29027,7 +29074,7 @@
     ]
   },
   {
-    "tradeId": 628,
+    "tradeId": 629,
     "date": "2024-08-23T16:16:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/23/trade-628/",
     "parties": [
@@ -29066,7 +29113,7 @@
     ]
   },
   {
-    "tradeId": 629,
+    "tradeId": 630,
     "date": "2024-08-23T21:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/23/trade-629/",
     "parties": [
@@ -29101,7 +29148,7 @@
     ]
   },
   {
-    "tradeId": 630,
+    "tradeId": 631,
     "date": "2024-08-23T22:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/23/trade-630/",
     "parties": [
@@ -29153,7 +29200,7 @@
     ]
   },
   {
-    "tradeId": 631,
+    "tradeId": 632,
     "date": "2024-08-23T22:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/23/trade-631/",
     "parties": [
@@ -29185,7 +29232,7 @@
     ]
   },
   {
-    "tradeId": 632,
+    "tradeId": 633,
     "date": "2024-08-23T22:41:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/23/trade-632/",
     "parties": [
@@ -29226,7 +29273,7 @@
     ]
   },
   {
-    "tradeId": 633,
+    "tradeId": 634,
     "date": "2024-08-24T06:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/23/trade-633/",
     "parties": [
@@ -29258,7 +29305,7 @@
     ]
   },
   {
-    "tradeId": 634,
+    "tradeId": 635,
     "date": "2024-08-24T14:47:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-634/",
     "parties": [
@@ -29295,7 +29342,7 @@
     ]
   },
   {
-    "tradeId": 635,
+    "tradeId": 636,
     "date": "2024-08-24T14:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-635/",
     "parties": [
@@ -29332,7 +29379,7 @@
     ]
   },
   {
-    "tradeId": 636,
+    "tradeId": 637,
     "date": "2024-08-24T15:05:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-636/",
     "parties": [
@@ -29373,7 +29420,7 @@
     ]
   },
   {
-    "tradeId": 637,
+    "tradeId": 638,
     "date": "2024-08-24T15:25:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-637/",
     "parties": [
@@ -29420,7 +29467,7 @@
     ]
   },
   {
-    "tradeId": 638,
+    "tradeId": 639,
     "date": "2024-08-24T15:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-638/",
     "parties": [
@@ -29454,7 +29501,7 @@
     ]
   },
   {
-    "tradeId": 639,
+    "tradeId": 640,
     "date": "2024-08-24T15:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-639/",
     "parties": [
@@ -29494,7 +29541,7 @@
     ]
   },
   {
-    "tradeId": 640,
+    "tradeId": 641,
     "date": "2024-08-24T15:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-640/",
     "parties": [
@@ -29528,7 +29575,7 @@
     ]
   },
   {
-    "tradeId": 641,
+    "tradeId": 642,
     "date": "2024-08-24T15:55:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-641/",
     "parties": [
@@ -29562,7 +29609,7 @@
     ]
   },
   {
-    "tradeId": 642,
+    "tradeId": 643,
     "date": "2024-08-24T16:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-642/",
     "parties": [
@@ -29596,7 +29643,7 @@
     ]
   },
   {
-    "tradeId": 643,
+    "tradeId": 644,
     "date": "2024-08-24T16:28:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-643/",
     "parties": [
@@ -29630,7 +29677,7 @@
     ]
   },
   {
-    "tradeId": 644,
+    "tradeId": 645,
     "date": "2024-08-24T16:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-644/",
     "parties": [
@@ -29664,7 +29711,7 @@
     ]
   },
   {
-    "tradeId": 645,
+    "tradeId": 646,
     "date": "2024-08-24T16:33:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-645/",
     "parties": [
@@ -29698,7 +29745,7 @@
     ]
   },
   {
-    "tradeId": 646,
+    "tradeId": 647,
     "date": "2024-08-24T16:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-646/",
     "parties": [
@@ -29732,7 +29779,7 @@
     ]
   },
   {
-    "tradeId": 647,
+    "tradeId": 648,
     "date": "2024-08-24T16:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-647/",
     "parties": [
@@ -29778,7 +29825,7 @@
     ]
   },
   {
-    "tradeId": 648,
+    "tradeId": 649,
     "date": "2024-08-24T16:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-648/",
     "parties": [
@@ -29812,7 +29859,7 @@
     ]
   },
   {
-    "tradeId": 649,
+    "tradeId": 650,
     "date": "2024-08-24T16:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-649/",
     "parties": [
@@ -29846,7 +29893,7 @@
     ]
   },
   {
-    "tradeId": 650,
+    "tradeId": 651,
     "date": "2024-08-24T17:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-650/",
     "parties": [
@@ -29890,7 +29937,7 @@
     ]
   },
   {
-    "tradeId": 651,
+    "tradeId": 652,
     "date": "2024-08-24T17:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-651/",
     "parties": [
@@ -29922,7 +29969,7 @@
     ]
   },
   {
-    "tradeId": 652,
+    "tradeId": 653,
     "date": "2024-08-24T18:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-652/",
     "parties": [
@@ -29956,7 +30003,7 @@
     ]
   },
   {
-    "tradeId": 653,
+    "tradeId": 654,
     "date": "2024-08-24T19:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-653/",
     "parties": [
@@ -29988,7 +30035,7 @@
     ]
   },
   {
-    "tradeId": 654,
+    "tradeId": 655,
     "date": "2024-08-24T19:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-654/",
     "parties": [
@@ -30020,7 +30067,7 @@
     ]
   },
   {
-    "tradeId": 655,
+    "tradeId": 656,
     "date": "2024-08-24T20:15:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-655/",
     "parties": [
@@ -30068,7 +30115,7 @@
     ]
   },
   {
-    "tradeId": 656,
+    "tradeId": 657,
     "date": "2024-08-24T20:17:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-656/",
     "parties": [
@@ -30101,7 +30148,7 @@
     ]
   },
   {
-    "tradeId": 657,
+    "tradeId": 658,
     "date": "2024-08-24T20:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-657/",
     "parties": [
@@ -30141,7 +30188,7 @@
     ]
   },
   {
-    "tradeId": 658,
+    "tradeId": 659,
     "date": "2024-08-24T21:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-658/",
     "parties": [
@@ -30188,7 +30235,7 @@
     ]
   },
   {
-    "tradeId": 659,
+    "tradeId": 660,
     "date": "2024-08-24T21:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-659/",
     "parties": [
@@ -30230,7 +30277,7 @@
     ]
   },
   {
-    "tradeId": 660,
+    "tradeId": 661,
     "date": "2024-08-24T21:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-660/",
     "parties": [
@@ -30265,7 +30312,7 @@
     ]
   },
   {
-    "tradeId": 661,
+    "tradeId": 662,
     "date": "2024-08-24T22:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-661/",
     "parties": [
@@ -30298,7 +30345,7 @@
     ]
   },
   {
-    "tradeId": 662,
+    "tradeId": 663,
     "date": "2024-08-24T22:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-662/",
     "parties": [
@@ -30332,7 +30379,7 @@
     ]
   },
   {
-    "tradeId": 663,
+    "tradeId": 664,
     "date": "2024-08-24T22:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-663/",
     "parties": [
@@ -30372,7 +30419,7 @@
     ]
   },
   {
-    "tradeId": 664,
+    "tradeId": 665,
     "date": "2024-08-24T22:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-664/",
     "parties": [
@@ -30413,7 +30460,7 @@
     ]
   },
   {
-    "tradeId": 665,
+    "tradeId": 666,
     "date": "2024-08-24T23:19:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-665/",
     "parties": [
@@ -30461,7 +30508,7 @@
     ]
   },
   {
-    "tradeId": 666,
+    "tradeId": 667,
     "date": "2024-08-24T23:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-666/",
     "parties": [
@@ -30500,7 +30547,7 @@
     ]
   },
   {
-    "tradeId": 667,
+    "tradeId": 668,
     "date": "2024-08-24T23:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-667/",
     "parties": [
@@ -30533,7 +30580,7 @@
     ]
   },
   {
-    "tradeId": 668,
+    "tradeId": 669,
     "date": "2024-08-25T00:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/24/trade-668/",
     "parties": [
@@ -30566,7 +30613,7 @@
     ]
   },
   {
-    "tradeId": 669,
+    "tradeId": 670,
     "date": "2024-08-29T01:29:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/08/28/trade-669/",
     "parties": [
@@ -30613,7 +30660,7 @@
     ]
   },
   {
-    "tradeId": 670,
+    "tradeId": 671,
     "date": "2024-09-20T15:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/09/20/trade-670/",
     "parties": [
@@ -30677,7 +30724,7 @@
     ]
   },
   {
-    "tradeId": 671,
+    "tradeId": 672,
     "date": "2024-10-08T18:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/08/trade-671/",
     "parties": [
@@ -30730,7 +30777,7 @@
     ]
   },
   {
-    "tradeId": 672,
+    "tradeId": 673,
     "date": "2024-10-10T11:19:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/10/trade-672/",
     "parties": [
@@ -30778,7 +30825,7 @@
     ]
   },
   {
-    "tradeId": 673,
+    "tradeId": 674,
     "date": "2024-10-12T03:21:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/11/trade-673/",
     "parties": [
@@ -30833,7 +30880,7 @@
     ]
   },
   {
-    "tradeId": 674,
+    "tradeId": 675,
     "date": "2024-10-12T21:26:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/12/trade-674/",
     "parties": [
@@ -30887,7 +30934,7 @@
     ]
   },
   {
-    "tradeId": 675,
+    "tradeId": 676,
     "date": "2024-10-15T13:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/15/trade-675/",
     "parties": [
@@ -30928,7 +30975,7 @@
     ]
   },
   {
-    "tradeId": 676,
+    "tradeId": 677,
     "date": "2024-10-15T13:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/15/trade-676/",
     "parties": [
@@ -30976,7 +31023,7 @@
     ]
   },
   {
-    "tradeId": 677,
+    "tradeId": 678,
     "date": "2024-10-20T16:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/20/trade-677/",
     "parties": [
@@ -31040,7 +31087,7 @@
     ]
   },
   {
-    "tradeId": 678,
+    "tradeId": 679,
     "date": "2024-10-23T00:11:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/22/trade-678/",
     "parties": [
@@ -31087,7 +31134,7 @@
     ]
   },
   {
-    "tradeId": 679,
+    "tradeId": 680,
     "date": "2024-10-23T16:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/23/trade-679/",
     "parties": [
@@ -31127,7 +31174,7 @@
     ]
   },
   {
-    "tradeId": 680,
+    "tradeId": 681,
     "date": "2024-10-23T16:08:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/23/trade-680/",
     "parties": [
@@ -31174,7 +31221,7 @@
     ]
   },
   {
-    "tradeId": 681,
+    "tradeId": 682,
     "date": "2024-10-23T16:26:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/23/trade-681/",
     "parties": [
@@ -31215,7 +31262,7 @@
     ]
   },
   {
-    "tradeId": 682,
+    "tradeId": 683,
     "date": "2024-10-23T23:34:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/23/trade-682/",
     "parties": [
@@ -31267,7 +31314,7 @@
     ]
   },
   {
-    "tradeId": 683,
+    "tradeId": 684,
     "date": "2024-10-26T02:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/10/25/trade-683/",
     "parties": [
@@ -31327,7 +31374,7 @@
     ]
   },
   {
-    "tradeId": 684,
+    "tradeId": 685,
     "date": "2024-11-03T17:41:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/03/trade-684/",
     "parties": [
@@ -31393,7 +31440,7 @@
     ]
   },
   {
-    "tradeId": 685,
+    "tradeId": 686,
     "date": "2024-11-04T14:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/04/trade-685/",
     "parties": [
@@ -31434,7 +31481,7 @@
     ]
   },
   {
-    "tradeId": 686,
+    "tradeId": 687,
     "date": "2024-11-04T14:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/04/trade-686/",
     "parties": [
@@ -31504,7 +31551,7 @@
     ]
   },
   {
-    "tradeId": 687,
+    "tradeId": 688,
     "date": "2024-11-04T16:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/04/trade-687/",
     "parties": [
@@ -31557,7 +31604,7 @@
     ]
   },
   {
-    "tradeId": 688,
+    "tradeId": 689,
     "date": "2024-11-06T19:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-688/",
     "parties": [
@@ -31648,7 +31695,7 @@
     ]
   },
   {
-    "tradeId": 689,
+    "tradeId": 690,
     "date": "2024-11-06T20:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-689/",
     "parties": [
@@ -31693,7 +31740,7 @@
     ]
   },
   {
-    "tradeId": 690,
+    "tradeId": 691,
     "date": "2024-11-06T22:07:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-690/",
     "parties": [
@@ -31739,7 +31786,7 @@
     ]
   },
   {
-    "tradeId": 691,
+    "tradeId": 692,
     "date": "2024-11-06T23:46:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-691/",
     "parties": [
@@ -31791,7 +31838,7 @@
     ]
   },
   {
-    "tradeId": 692,
+    "tradeId": 693,
     "date": "2024-11-07T01:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-692/",
     "parties": [
@@ -31838,7 +31885,7 @@
     ]
   },
   {
-    "tradeId": 693,
+    "tradeId": 694,
     "date": "2024-11-07T01:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-693/",
     "parties": [
@@ -31878,7 +31925,7 @@
     ]
   },
   {
-    "tradeId": 694,
+    "tradeId": 695,
     "date": "2024-11-07T01:50:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-694/",
     "parties": [
@@ -31925,7 +31972,7 @@
     ]
   },
   {
-    "tradeId": 695,
+    "tradeId": 696,
     "date": "2024-11-07T02:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2024/11/06/trade-695/",
     "parties": [
@@ -31970,7 +32017,7 @@
     ]
   },
   {
-    "tradeId": 696,
+    "tradeId": 697,
     "date": "2025-02-15T04:36:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/02/14/trade-696/",
     "parties": [
@@ -32001,7 +32048,7 @@
     ]
   },
   {
-    "tradeId": 697,
+    "tradeId": 698,
     "date": "2025-03-17T03:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/03/16/trade-697/",
     "parties": [
@@ -32035,7 +32082,7 @@
     ]
   },
   {
-    "tradeId": 698,
+    "tradeId": 699,
     "date": "2025-05-03T13:59:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/05/03/trade-698/",
     "parties": [
@@ -32090,7 +32137,7 @@
     ]
   },
   {
-    "tradeId": 699,
+    "tradeId": 700,
     "date": "2025-05-06T03:27:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/05/05/trade-699/",
     "parties": [
@@ -32150,7 +32197,7 @@
     ]
   },
   {
-    "tradeId": 700,
+    "tradeId": 701,
     "date": "2025-05-18T03:24:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/05/17/trade-700/",
     "parties": [
@@ -32183,7 +32230,7 @@
     ]
   },
   {
-    "tradeId": 701,
+    "tradeId": 702,
     "date": "2025-06-20T20:30:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/06/20/trade-701/",
     "parties": [
@@ -32224,7 +32271,7 @@
     ]
   },
   {
-    "tradeId": 702,
+    "tradeId": 703,
     "date": "2025-08-13T23:06:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/13/trade-702/",
     "parties": [
@@ -32282,7 +32329,7 @@
     ]
   },
   {
-    "tradeId": 703,
+    "tradeId": 704,
     "date": "2025-08-14T01:53:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/13/trade-703/",
     "parties": [
@@ -32324,7 +32371,7 @@
     ]
   },
   {
-    "tradeId": 704,
+    "tradeId": 705,
     "date": "2025-08-14T13:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/14/trade-704/",
     "parties": [
@@ -32358,7 +32405,7 @@
     ]
   },
   {
-    "tradeId": 705,
+    "tradeId": 706,
     "date": "2025-08-14T13:54:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/14/trade-705/",
     "parties": [
@@ -32410,7 +32457,7 @@
     ]
   },
   {
-    "tradeId": 706,
+    "tradeId": 707,
     "date": "2025-08-14T14:20:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/14/trade-706/",
     "parties": [
@@ -32443,7 +32490,7 @@
     ]
   },
   {
-    "tradeId": 707,
+    "tradeId": 708,
     "date": "2025-08-15T14:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/15/trade-707/",
     "parties": [
@@ -32484,7 +32531,7 @@
     ]
   },
   {
-    "tradeId": 708,
+    "tradeId": 709,
     "date": "2025-08-16T13:11:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/16/trade-708/",
     "parties": [
@@ -32523,7 +32570,7 @@
     ]
   },
   {
-    "tradeId": 709,
+    "tradeId": 710,
     "date": "2025-08-17T03:43:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/16/trade-709/",
     "parties": [
@@ -32564,7 +32611,7 @@
     ]
   },
   {
-    "tradeId": 710,
+    "tradeId": 711,
     "date": "2025-08-17T20:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/17/trade-710/",
     "parties": [
@@ -32598,7 +32645,7 @@
     ]
   },
   {
-    "tradeId": 711,
+    "tradeId": 712,
     "date": "2025-08-17T22:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/17/trade-711/",
     "parties": [
@@ -32632,7 +32679,7 @@
     ]
   },
   {
-    "tradeId": 712,
+    "tradeId": 713,
     "date": "2025-08-18T00:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/17/trade-712/",
     "parties": [
@@ -32667,7 +32714,7 @@
     ]
   },
   {
-    "tradeId": 713,
+    "tradeId": 714,
     "date": "2025-08-18T19:26:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/18/trade-713/",
     "parties": [
@@ -32701,7 +32748,7 @@
     ]
   },
   {
-    "tradeId": 714,
+    "tradeId": 715,
     "date": "2025-08-18T20:29:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/18/trade-714/",
     "parties": [
@@ -32748,7 +32795,7 @@
     ]
   },
   {
-    "tradeId": 715,
+    "tradeId": 716,
     "date": "2025-08-19T02:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/18/trade-715/",
     "parties": [
@@ -32780,7 +32827,7 @@
     ]
   },
   {
-    "tradeId": 716,
+    "tradeId": 717,
     "date": "2025-08-20T21:20:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/20/trade-716/",
     "parties": [
@@ -32839,7 +32886,7 @@
     ]
   },
   {
-    "tradeId": 717,
+    "tradeId": 718,
     "date": "2025-08-21T18:49:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/21/trade-717/",
     "parties": [
@@ -32886,7 +32933,7 @@
     ]
   },
   {
-    "tradeId": 718,
+    "tradeId": 719,
     "date": "2025-08-21T21:57:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/21/trade-718/",
     "parties": [
@@ -32927,7 +32974,7 @@
     ]
   },
   {
-    "tradeId": 719,
+    "tradeId": 720,
     "date": "2025-08-22T03:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/21/trade-719/",
     "parties": [
@@ -32960,7 +33007,7 @@
     ]
   },
   {
-    "tradeId": 720,
+    "tradeId": 721,
     "date": "2025-08-22T17:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-720/",
     "parties": [
@@ -33001,7 +33048,7 @@
     ]
   },
   {
-    "tradeId": 721,
+    "tradeId": 722,
     "date": "2025-08-22T20:22:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-721/",
     "parties": [
@@ -33061,7 +33108,7 @@
     ]
   },
   {
-    "tradeId": 722,
+    "tradeId": 723,
     "date": "2025-08-22T20:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-722/",
     "parties": [
@@ -33096,7 +33143,7 @@
     ]
   },
   {
-    "tradeId": 723,
+    "tradeId": 724,
     "date": "2025-08-22T20:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-723/",
     "parties": [
@@ -33137,7 +33184,7 @@
     ]
   },
   {
-    "tradeId": 724,
+    "tradeId": 725,
     "date": "2025-08-22T21:37:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-724/",
     "parties": [
@@ -33197,7 +33244,7 @@
     ]
   },
   {
-    "tradeId": 725,
+    "tradeId": 726,
     "date": "2025-08-22T22:09:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-725/",
     "parties": [
@@ -33236,7 +33283,7 @@
     ]
   },
   {
-    "tradeId": 726,
+    "tradeId": 727,
     "date": "2025-08-22T23:09:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-726/",
     "parties": [
@@ -33277,7 +33324,7 @@
     ]
   },
   {
-    "tradeId": 727,
+    "tradeId": 728,
     "date": "2025-08-22T23:31:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-727/",
     "parties": [
@@ -33311,7 +33358,7 @@
     ]
   },
   {
-    "tradeId": 728,
+    "tradeId": 729,
     "date": "2025-08-23T05:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/22/trade-728/",
     "parties": [
@@ -33354,7 +33401,7 @@
     ]
   },
   {
-    "tradeId": 729,
+    "tradeId": 730,
     "date": "2025-08-23T15:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-729/",
     "parties": [
@@ -33388,7 +33435,7 @@
     ]
   },
   {
-    "tradeId": 730,
+    "tradeId": 731,
     "date": "2025-08-23T15:45:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-730/",
     "parties": [
@@ -33422,7 +33469,7 @@
     ]
   },
   {
-    "tradeId": 731,
+    "tradeId": 732,
     "date": "2025-08-23T15:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-731/",
     "parties": [
@@ -33463,7 +33510,7 @@
     ]
   },
   {
-    "tradeId": 732,
+    "tradeId": 733,
     "date": "2025-08-23T16:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-732/",
     "parties": [
@@ -33497,7 +33544,7 @@
     ]
   },
   {
-    "tradeId": 733,
+    "tradeId": 734,
     "date": "2025-08-23T17:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-733/",
     "parties": [
@@ -33531,7 +33578,7 @@
     ]
   },
   {
-    "tradeId": 734,
+    "tradeId": 735,
     "date": "2025-08-23T17:42:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-734/",
     "parties": [
@@ -33563,7 +33610,7 @@
     ]
   },
   {
-    "tradeId": 735,
+    "tradeId": 736,
     "date": "2025-08-23T17:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-735/",
     "parties": [
@@ -33602,7 +33649,7 @@
     ]
   },
   {
-    "tradeId": 736,
+    "tradeId": 737,
     "date": "2025-08-23T18:32:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-736/",
     "parties": [
@@ -33630,7 +33677,7 @@
     ]
   },
   {
-    "tradeId": 737,
+    "tradeId": 738,
     "date": "2025-08-23T20:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-737/",
     "parties": [
@@ -33665,7 +33712,7 @@
     ]
   },
   {
-    "tradeId": 738,
+    "tradeId": 739,
     "date": "2025-08-23T20:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-738/",
     "parties": [
@@ -33700,7 +33747,7 @@
     ]
   },
   {
-    "tradeId": 739,
+    "tradeId": 740,
     "date": "2025-08-23T21:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-739/",
     "parties": [
@@ -33733,7 +33780,7 @@
     ]
   },
   {
-    "tradeId": 740,
+    "tradeId": 741,
     "date": "2025-08-23T21:14:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-740/",
     "parties": [
@@ -33773,7 +33820,7 @@
     ]
   },
   {
-    "tradeId": 741,
+    "tradeId": 742,
     "date": "2025-08-23T21:23:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-741/",
     "parties": [
@@ -33807,7 +33854,7 @@
     ]
   },
   {
-    "tradeId": 742,
+    "tradeId": 743,
     "date": "2025-08-23T21:30:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-742/",
     "parties": [
@@ -33841,7 +33888,7 @@
     ]
   },
   {
-    "tradeId": 743,
+    "tradeId": 744,
     "date": "2025-08-23T21:47:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-743/",
     "parties": [
@@ -33874,7 +33921,7 @@
     ]
   },
   {
-    "tradeId": 744,
+    "tradeId": 745,
     "date": "2025-08-23T22:03:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/23/trade-744/",
     "parties": [
@@ -33907,7 +33954,7 @@
     ]
   },
   {
-    "tradeId": 745,
+    "tradeId": 746,
     "date": "2025-08-29T23:52:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/29/trade-745/",
     "parties": [
@@ -33961,7 +34008,7 @@
     ]
   },
   {
-    "tradeId": 746,
+    "tradeId": 747,
     "date": "2025-08-31T01:28:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/30/trade-746/",
     "parties": [
@@ -34002,7 +34049,7 @@
     ]
   },
   {
-    "tradeId": 747,
+    "tradeId": 748,
     "date": "2025-08-31T15:56:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/08/31/trade-747/",
     "parties": [
@@ -34043,7 +34090,7 @@
     ]
   },
   {
-    "tradeId": 748,
+    "tradeId": 749,
     "date": "2025-09-27T02:46:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/09/26/trade-748/",
     "parties": [
@@ -34084,7 +34131,7 @@
     ]
   },
   {
-    "tradeId": 749,
+    "tradeId": 750,
     "date": "2025-09-27T16:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/09/27/trade-749/",
     "parties": [
@@ -34143,7 +34190,7 @@
     ]
   },
   {
-    "tradeId": 750,
+    "tradeId": 751,
     "date": "2025-09-28T13:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/09/28/trade-750/",
     "parties": [
@@ -34203,7 +34250,7 @@
     ]
   },
   {
-    "tradeId": 751,
+    "tradeId": 752,
     "date": "2025-09-30T16:50:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/09/30/trade-751/",
     "parties": [
@@ -34244,7 +34291,7 @@
     ]
   },
   {
-    "tradeId": 752,
+    "tradeId": 753,
     "date": "2025-10-01T15:16:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/01/trade-752/",
     "parties": [
@@ -34315,7 +34362,7 @@
     ]
   },
   {
-    "tradeId": 753,
+    "tradeId": 754,
     "date": "2025-10-09T21:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/09/trade-753/",
     "parties": [
@@ -34381,7 +34428,7 @@
     ]
   },
   {
-    "tradeId": 754,
+    "tradeId": 755,
     "date": "2025-10-10T14:35:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/10/trade-754/",
     "parties": [
@@ -34429,7 +34476,7 @@
     ]
   },
   {
-    "tradeId": 755,
+    "tradeId": 756,
     "date": "2025-10-11T11:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/11/trade-755/",
     "parties": [
@@ -34488,7 +34535,7 @@
     ]
   },
   {
-    "tradeId": 756,
+    "tradeId": 757,
     "date": "2025-10-12T03:44:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/11/trade-756/",
     "parties": [
@@ -34540,7 +34587,7 @@
     ]
   },
   {
-    "tradeId": 757,
+    "tradeId": 758,
     "date": "2025-10-15T20:18:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/15/trade-757/",
     "parties": [
@@ -34612,7 +34659,7 @@
     ]
   },
   {
-    "tradeId": 758,
+    "tradeId": 759,
     "date": "2025-10-16T23:16:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/16/trade-758/",
     "parties": [
@@ -34666,7 +34713,7 @@
     ]
   },
   {
-    "tradeId": 759,
+    "tradeId": 760,
     "date": "2025-10-17T01:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/16/trade-759/",
     "parties": [
@@ -34738,7 +34785,7 @@
     ]
   },
   {
-    "tradeId": 760,
+    "tradeId": 761,
     "date": "2025-10-22T18:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/22/trade-760/",
     "parties": [
@@ -34785,7 +34832,7 @@
     ]
   },
   {
-    "tradeId": 761,
+    "tradeId": 762,
     "date": "2025-10-23T04:03:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/22/trade-761/",
     "parties": [
@@ -34844,7 +34891,7 @@
     ]
   },
   {
-    "tradeId": 762,
+    "tradeId": 763,
     "date": "2025-10-23T20:40:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/23/trade-762/",
     "parties": [
@@ -34910,7 +34957,7 @@
     ]
   },
   {
-    "tradeId": 763,
+    "tradeId": 764,
     "date": "2025-10-25T14:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/25/trade-763/",
     "parties": [
@@ -34970,7 +35017,7 @@
     ]
   },
   {
-    "tradeId": 764,
+    "tradeId": 765,
     "date": "2025-10-29T21:13:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/29/trade-764/",
     "parties": [
@@ -35017,7 +35064,7 @@
     ]
   },
   {
-    "tradeId": 765,
+    "tradeId": 766,
     "date": "2025-10-30T15:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/30/trade-765/",
     "parties": [
@@ -35058,7 +35105,7 @@
     ]
   },
   {
-    "tradeId": 766,
+    "tradeId": 767,
     "date": "2025-10-31T00:39:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/30/trade-766/",
     "parties": [
@@ -35111,7 +35158,7 @@
     ]
   },
   {
-    "tradeId": 767,
+    "tradeId": 768,
     "date": "2025-10-31T07:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/31/trade-767/",
     "parties": [
@@ -35170,7 +35217,7 @@
     ]
   },
   {
-    "tradeId": 768,
+    "tradeId": 769,
     "date": "2025-10-31T07:02:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/31/trade-768/",
     "parties": [
@@ -35236,7 +35283,7 @@
     ]
   },
   {
-    "tradeId": 769,
+    "tradeId": 770,
     "date": "2025-10-31T23:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/10/31/trade-769/",
     "parties": [
@@ -35300,7 +35347,7 @@
     ]
   },
   {
-    "tradeId": 770,
+    "tradeId": 771,
     "date": "2025-11-01T21:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/01/trade-770/",
     "parties": [
@@ -35341,7 +35388,7 @@
     ]
   },
   {
-    "tradeId": 771,
+    "tradeId": 772,
     "date": "2025-11-01T22:19:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/01/trade-771/",
     "parties": [
@@ -35396,7 +35443,7 @@
     ]
   },
   {
-    "tradeId": 772,
+    "tradeId": 773,
     "date": "2025-11-05T02:51:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/04/trade-772/",
     "parties": [
@@ -35449,7 +35496,7 @@
     ]
   },
   {
-    "tradeId": 773,
+    "tradeId": 774,
     "date": "2025-11-05T04:18:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/04/trade-773/",
     "parties": [
@@ -35509,7 +35556,7 @@
     ]
   },
   {
-    "tradeId": 774,
+    "tradeId": 775,
     "date": "2025-11-05T16:10:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-774/",
     "parties": [
@@ -35563,7 +35610,7 @@
     ]
   },
   {
-    "tradeId": 775,
+    "tradeId": 776,
     "date": "2025-11-05T17:01:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-775/",
     "parties": [
@@ -35603,7 +35650,7 @@
     ]
   },
   {
-    "tradeId": 776,
+    "tradeId": 777,
     "date": "2025-11-05T20:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-776/",
     "parties": [
@@ -35643,7 +35690,7 @@
     ]
   },
   {
-    "tradeId": 777,
+    "tradeId": 778,
     "date": "2025-11-05T20:48:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-777/",
     "parties": [
@@ -35707,7 +35754,7 @@
     ]
   },
   {
-    "tradeId": 778,
+    "tradeId": 779,
     "date": "2025-11-05T21:58:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-778/",
     "parties": [
@@ -35772,7 +35819,7 @@
     ]
   },
   {
-    "tradeId": 779,
+    "tradeId": 780,
     "date": "2025-11-06T00:22:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-779/",
     "parties": [
@@ -35813,7 +35860,7 @@
     ]
   },
   {
-    "tradeId": 780,
+    "tradeId": 781,
     "date": "2025-11-06T01:00:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-780/",
     "parties": [
@@ -35872,7 +35919,7 @@
     ]
   },
   {
-    "tradeId": 781,
+    "tradeId": 782,
     "date": "2025-11-06T01:04:00.000Z",
     "url": "https://thedynastyleague.wordpress.com/2025/11/05/trade-781/",
     "parties": [
