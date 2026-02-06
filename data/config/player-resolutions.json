@@ -1,7 +1,6 @@
 {
   "_ambiguous": [
     "adarius taylor",
-    "adrian peterson",
     "anthony johnson",
     "brandon williams",
     "byron young",
@@ -53,6 +52,10 @@
     "sleeperId": null,
     "name": "Aaron Brown"
   },
+  "aaron curry|2009|type:auction|john": {
+    "sleeperId": null,
+    "name": "Aaron Curry"
+  },
   "aaron curry|2009|type:draft|john": {
     "sleeperId": null,
     "name": "Aaron Curry"
@@ -71,6 +74,10 @@
   "aaron kampman|2011|type:cut|patrick": {
     "sleeperId": null,
     "name": "Aaron Kampman"
+  },
+  "aaron maybin|2009|type:auction|schexes": {
+    "sleeperId": null,
+    "name": "Aaron Maybin"
   },
   "aaron maybin|2009|type:draft|schexes": {
     "sleeperId": null,
@@ -126,85 +133,7 @@
     "sleeperId": null,
     "name": "Adewale Ogunleye"
   },
-  "adrian peterson|2008|type:auction|trevor": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2008|type:rfa-conversion|trevor": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2009|type:rfa-conversion|trevor": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2010|type:rfa-conversion|john": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2011|type:fa-trade|keyon": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2011|type:rfa-conversion|keyon": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2011|type:rfa-conversion|schexes": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2011|type:trade|schexes": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2014|type:cut|quinn": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2014|type:fa-trade|schex": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2014|type:rfa-conversion|keyon": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2014|type:trade|quinn": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2015|type:rfa-conversion|keyon": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2016|type:cut|keyon": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2016|type:fa-trade|daniel": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2016|type:fa|john/zach": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2016|type:rfa-conversion|john/zach": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2016|type:trade|john/zach": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2017|type:rfa-conversion|trevor": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2018|type:rfa-conversion|trevor": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2019|type:auction|patrick": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2019|type:contract-expiry|patrick": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2020|type:auction|patrick": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2020|type:contract-expiry|patrick": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2021|type:contract-expiry|jason": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2021|type:fa|luke": {
-    "sleeperId": "184"
-  },
-  "adrian peterson|2021|type:trade|jason": {
+  "adrian peterson": {
     "sleeperId": "184"
   },
   "adrian wilson|2008|type:auction|keyon": {
@@ -551,6 +480,10 @@
     "sleeperId": null,
     "name": "Barrett Ruud"
   },
+  "beanie wells|2009|type:auction|jake/luke": {
+    "sleeperId": null,
+    "name": "Beanie Wells"
+  },
   "beanie wells|2009|type:draft|jake/luke": {
     "sleeperId": null,
     "name": "Beanie Wells"
@@ -618,6 +551,10 @@
     "sleeperId": null,
     "name": "Bernard Pollard"
   },
+  "bernard scott|2009|type:cut|patrick": {
+    "sleeperId": null,
+    "name": "Bernard Scott"
+  },
   "bernard scott|2010|type:trade|patrick": {
     "sleeperId": null,
     "name": "Bernard Scott"
@@ -671,6 +608,10 @@
   },
   "bobby wagner|2018|type:trade|syed/terence": {
     "sleeperId": "1233"
+  },
+  "bradie james|2009|type:auction|schexes": {
+    "sleeperId": null,
+    "name": "Bradie James"
   },
   "bradie james|2010|type:cut|anthony": {
     "sleeperId": null,
@@ -772,6 +713,10 @@
   "brian westbrook|2010|type:cut|brett": {
     "sleeperId": null,
     "name": "Brian Westbrook"
+  },
+  "brian witherspoon|2009|type:auction|schexes": {
+    "sleeperId": null,
+    "name": "Brian Witherspoon"
   },
   "brian witherspoon|2009|type:cut|anthony": {
     "sleeperId": null,
@@ -996,6 +941,10 @@
   },
   "chase edmonds|2020|type:trade|luke": {
     "sleeperId": "5000"
+  },
+  "chaz schilens|2009|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Chaz Schilens"
   },
   "chaz schilens|2009|type:cut|koci/mueller": {
     "sleeperId": null,
@@ -1360,6 +1309,10 @@
   "danny amendola|2018|type:trade|trevor": {
     "sleeperId": "491"
   },
+  "danny ware|2009|type:auction|syed": {
+    "sleeperId": null,
+    "name": "Danny Ware"
+  },
   "danny ware|2009|type:cut|luke": {
     "sleeperId": null,
     "name": "Danny Ware"
@@ -1483,6 +1436,10 @@
   "david akers|2013|type:cut|justin": {
     "sleeperId": null,
     "name": "David Akers"
+  },
+  "david buehler|2009|type:auction|jake/luke": {
+    "sleeperId": null,
+    "name": "David Buehler"
   },
   "david buehler|2009|type:cut|brett": {
     "sleeperId": null,
@@ -1738,6 +1695,10 @@
   "derrick ward|2011|type:fa|koci/mueller": {
     "sleeperId": null,
     "name": "Derrick Ward"
+  },
+  "derrick williams|2009|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Derrick Williams"
   },
   "derrick williams|2010|type:cut|koci/mueller": {
     "sleeperId": null,
@@ -2286,6 +2247,10 @@
   "graham gano|2010|type:trade|trevor": {
     "sleeperId": "503"
   },
+  "greg camarillo|2009|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Greg Camarillo"
+  },
   "greg camarillo|2010|type:cut|patrick": {
     "sleeperId": null,
     "name": "Greg Camarillo"
@@ -2505,6 +2470,10 @@
   "jameis winston|2019|type:trade|quinn": {
     "sleeperId": "2306"
   },
+  "james davis|2009|type:auction|koci": {
+    "sleeperId": null,
+    "name": "James Davis"
+  },
   "james davis|2010|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "James Davis"
@@ -2573,6 +2542,10 @@
   "jared goff|2019|type:trade|quinn": {
     "sleeperId": "3163"
   },
+  "jarett dillard|2009|type:contract|jake/luke": {
+    "sleeperId": null,
+    "name": "Jarett Dillard"
+  },
   "jarett dillard|2009|type:cut|brett": {
     "sleeperId": null,
     "name": "Jarett Dillard"
@@ -2580,6 +2553,10 @@
   "jarett dillard|2009|type:draft|jake/luke": {
     "sleeperId": null,
     "name": "Jarett Dillard"
+  },
+  "jarret dillard|2009|type:auction|jake/luke": {
+    "sleeperId": null,
+    "name": "h"
   },
   "jason babin|2012|type:trade|john": {
     "sleeperId": "668"
@@ -2601,6 +2578,10 @@
   "javarris james|2010|type:rfa-conversion|syed": {
     "sleeperId": null,
     "name": "Javarris James"
+  },
+  "javon ringer|2009|type:auction|keyon": {
+    "sleeperId": null,
+    "name": "Javon Ringer"
   },
   "javon ringer|2009|type:cut|keyon": {
     "sleeperId": null,
@@ -2724,6 +2705,10 @@
   },
   "jerod mayo|2014|type:trade|schex": {
     "sleeperId": "27"
+  },
+  "jerome harrison|2009|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Jerome Harrison"
   },
   "jerome harrison|2011|type:cut|koci/mueller": {
     "sleeperId": null,
@@ -3153,6 +3138,10 @@
     "sleeperId": null,
     "name": "J.T. O'Sullivan"
   },
+  "juaquin iglesias|2009|type:auction|james": {
+    "sleeperId": null,
+    "name": "Juaquin Iglesias"
+  },
   "juaquin iglesias|2010|type:cut|schexes": {
     "sleeperId": null,
     "name": "Juaquin Iglesias"
@@ -3208,6 +3197,10 @@
   },
   "justin forsett|2009|type:trade|syed": {
     "sleeperId": "458"
+  },
+  "justin gage|2009|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Justin Gage"
   },
   "justin gage|2010|type:cut|koci/mueller": {
     "sleeperId": null,
@@ -3851,6 +3844,10 @@
   },
   "malcolm brown|2018|type:trade|brett/luke": {
     "sleeperId": "2588"
+  },
+  "malcolm kelly|2009|type:auction|daniel": {
+    "sleeperId": null,
+    "name": "Malcolm Kelly"
   },
   "malcolm kelly|2009|type:cut|jason": {
     "sleeperId": null,
@@ -4676,6 +4673,10 @@
   "patrick peterson|2012|type:trade|charles": {
     "sleeperId": "972"
   },
+  "patrick turner|2009|type:auction|keyon": {
+    "sleeperId": null,
+    "name": "Patrick Turner"
+  },
   "patrick turner|2010|type:cut|keyon": {
     "sleeperId": null,
     "name": "Patrick Turner"
@@ -4815,6 +4816,10 @@
   },
   "raheem mostert|2020|type:trade|keyon": {
     "sleeperId": "2749"
+  },
+  "ramses barden|2009|type:auction|keyon": {
+    "sleeperId": null,
+    "name": "Ramses Barden"
   },
   "ramses barden|2009|type:cut|keyon": {
     "sleeperId": null,
@@ -5236,6 +5241,10 @@
   "sam darnold|2020|type:trade|trevor": {
     "sleeperId": "4943"
   },
+  "sammie stroughter|2009|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Sammie Stroughter"
+  },
   "sammie stroughter|2010|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Sammie Stroughter"
@@ -5416,7 +5425,17 @@
     "sleeperId": null,
     "name": "Steve Smith"
   },
+  "steve smith|2009|type:auction|keyon": {
+    "sleeperId": "169"
+  },
   "steve smith|2009|type:auction|trevor": {
+    "sleeperId": null,
+    "name": "Steve Smith"
+  },
+  "steve smith|2009|type:contract|keyon": {
+    "sleeperId": "169"
+  },
+  "steve smith|2009|type:contract|trevor": {
     "sleeperId": null,
     "name": "Steve Smith"
   },
@@ -5804,6 +5823,10 @@
     "name": "Vernand Morency"
   },
   "vernand morency|2008|type:auction|daniel": {
+    "sleeperId": null,
+    "name": "Vernand Morency"
+  },
+  "vernand morency|2009|type:cut|daniel": {
     "sleeperId": null,
     "name": "Vernand Morency"
   },
