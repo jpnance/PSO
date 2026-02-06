@@ -62,8 +62,46 @@ function loadDrafts() {
 }
 
 /**
+ * Load trades
+ * Returns: { espnId: [{ tradeId, year, toOwner }, ...] }
+ */
+function loadTrades() {
+	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
+	var map = {};
+	
+	trades.forEach(function(trade) {
+		var year = new Date(trade.date).getFullYear();
+		
+		trade.parties.forEach(function(party) {
+			(party.players || []).forEach(function(player) {
+				if (!player.espnId) return;
+				
+				if (!map[player.espnId]) {
+					map[player.espnId] = [];
+				}
+				map[player.espnId].push({
+					tradeId: trade.tradeId,
+					year: year,
+					date: trade.date,
+					toOwner: party.owner
+				});
+			});
+		});
+	});
+	
+	// Sort each player's trades by date
+	Object.keys(map).forEach(function(espnId) {
+		map[espnId].sort(function(a, b) {
+			return new Date(a.date) - new Date(b.date);
+		});
+	});
+	
+	return map;
+}
+
+/**
  * Parse all contract snapshots
- * Returns: { espnId: { name, positions, firstSeen: { year, owner, salary, startYear, endYear } } }
+ * Returns: { espnId: { name, positions, appearances: [{ year, owner, salary, startYear, endYear }, ...] } }
  */
 function parseSnapshots() {
 	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
@@ -101,30 +139,23 @@ function parseSnapshots() {
 			// Split position on / if needed
 			var positionList = position ? position.split('/') : [];
 			
+			var appearance = {
+				year: year,
+				owner: owner,
+				salary: salary,
+				startYear: startYear,
+				endYear: endYear
+			};
+			
 			if (!players[espnId]) {
 				players[espnId] = {
 					espnId: espnId,
 					name: name,
 					positions: positionList.slice(),
-					firstSeen: {
-						year: year,
-						owner: owner,
-						salary: salary,
-						startYear: startYear,
-						endYear: endYear
-					}
+					appearances: [appearance]
 				};
 			} else {
-				// Track earliest appearance
-				if (year < players[espnId].firstSeen.year) {
-					players[espnId].firstSeen = {
-						year: year,
-						owner: owner,
-						salary: salary,
-						startYear: startYear,
-						endYear: endYear
-					};
-				}
+				players[espnId].appearances.push(appearance);
 				// Merge positions (avoid duplicates)
 				positionList.forEach(function(pos) {
 					if (pos && !players[espnId].positions.includes(pos)) {
@@ -135,68 +166,180 @@ function parseSnapshots() {
 		}
 	});
 	
+	// Sort appearances by year for each player
+	Object.keys(players).forEach(function(espnId) {
+		players[espnId].appearances.sort(function(a, b) {
+			return a.year - b.year;
+		});
+	});
+	
 	return players;
 }
 
 /**
- * Determine the earliest transaction type for a player
+ * Helper to format 2-digit year
  */
-function determineEarliestTransaction(player, sleeperMap, draftsMap) {
-	var firstSeen = player.firstSeen;
-	var year = firstSeen.year;
-	var startYear = firstSeen.startYear;
-	var endYear = firstSeen.endYear;
-	var salary = firstSeen.salary;
-	var owner = firstSeen.owner;
+function yy(year) {
+	if (year === null) return 'FA';
+	return String(year % 100).padStart(2, '0');
+}
+
+/**
+ * Find a trade that explains an owner change
+ */
+function findTrade(espnId, fromYear, toOwner, tradesMap) {
+	var trades = tradesMap[espnId];
+	if (!trades) return null;
 	
-	// Helper to format 2-digit year
-	function yy(year) {
-		if (year === null) return 'FA';
-		return String(year % 100).padStart(2, '0');
+	// Look for a trade to this owner around this time
+	for (var i = 0; i < trades.length; i++) {
+		var trade = trades[i];
+		// Trade should be in the year before or same year as the appearance
+		if (trade.year >= fromYear - 1 && trade.year <= fromYear) {
+			// Check if owner matches (case-insensitive, handle regime name variations)
+			if (trade.toOwner.toLowerCase() === toOwner.toLowerCase()) {
+				return trade;
+			}
+			// Handle regime transitions (e.g., "Koci" -> "Koci/Mueller")
+			if (toOwner.toLowerCase().includes(trade.toOwner.toLowerCase()) ||
+				trade.toOwner.toLowerCase().includes(toOwner.toLowerCase())) {
+				return trade;
+			}
+		}
 	}
+	return null;
+}
+
+/**
+ * Generate all transactions for a player by walking their contract history
+ */
+function generatePlayerTransactions(player, draftsMap, tradesMap) {
+	var transactions = [];
+	var appearances = player.appearances;
+	
+	if (appearances.length === 0) return transactions;
+	
+	var prevAppearance = null;
+	var prevContractKey = null;  // "startYear|endYear" to detect contract changes
+	
+	for (var i = 0; i < appearances.length; i++) {
+		var app = appearances[i];
+		var contractKey = (app.startYear || 'FA') + '|' + app.endYear;
+		
+		if (i === 0) {
+			// First appearance - determine entry transaction
+			var tx = determineEntryTransaction(player, app, draftsMap);
+			transactions.push(tx);
+			prevContractKey = contractKey;
+			prevAppearance = app;
+			continue;
+		}
+		
+		// Check for gaps (player not rostered in between)
+		var yearGap = app.year - prevAppearance.year;
+		if (yearGap > 1) {
+			// Gap detected - player was cut at some point
+			transactions.push({
+				year: prevAppearance.year,
+				type: 'cut',
+				line: '  ' + yy(prevAppearance.year) + ' cut'
+			});
+		}
+		
+		// Check for contract changes
+		if (contractKey !== prevContractKey) {
+			// New contract
+			if (app.startYear === null) {
+				// FA pickup
+				transactions.push({
+					year: app.year,
+					type: 'fa',
+					line: '  ' + yy(app.year) + ' fa ' + app.owner + ' $' + app.salary + ' FA/' + yy(app.endYear)
+				});
+			} else if (app.startYear === app.year) {
+				// New contract starting this year - auction
+				transactions.push({
+					year: app.year,
+					type: 'auction',
+					line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+				});
+			} else if (app.startYear > prevAppearance.year) {
+				// Contract started after last appearance - auction in startYear
+				transactions.push({
+					year: app.startYear,
+					type: 'auction',
+					line: '  ' + yy(app.startYear) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+				});
+			}
+		} else if (app.owner !== prevAppearance.owner) {
+			// Same contract but different owner - look for trade
+			var trade = findTrade(player.espnId, app.year, app.owner, tradesMap);
+			if (trade) {
+				transactions.push({
+					year: trade.year,
+					type: 'trade',
+					line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + app.owner
+				});
+			} else {
+				transactions.push({
+					year: app.year,
+					type: 'unknown',
+					line: '  ' + yy(app.year) + ' unknown ' + app.owner + '  # owner changed, no trade found'
+				});
+			}
+		}
+		
+		prevContractKey = contractKey;
+		prevAppearance = app;
+	}
+	
+	return transactions;
+}
+
+/**
+ * Determine the entry transaction for a player's first appearance
+ */
+function determineEntryTransaction(player, app, draftsMap) {
+	var year = app.year;
+	var startYear = app.startYear;
+	var endYear = app.endYear;
+	var salary = app.salary;
+	var owner = app.owner;
 	
 	// Check if player was drafted
 	var draftKey = player.name.toLowerCase() + '|' + startYear;
 	var draftInfo = draftsMap[draftKey];
 	
-	// Determine transaction type based on contract characteristics
-	var txType;
-	var txDetails;
-	
 	if (draftInfo) {
 		// We have draft data for this player
-		// pickNumber is overall pick, convert to pick-in-round assuming 10-team league
 		var pickInRound = ((draftInfo.pick - 1) % 10) + 1;
-		txType = 'draft';
-		txDetails = draftInfo.owner + ' ' + draftInfo.round + '.' + String(pickInRound).padStart(2, '0');
-		// Use the draft year, not the snapshot year
-		year = draftInfo.season;
+		return {
+			year: draftInfo.season,
+			type: 'draft',
+			line: '  ' + yy(draftInfo.season) + ' draft ' + draftInfo.owner + ' ' + draftInfo.round + '.' + String(pickInRound).padStart(2, '0')
+		};
 	} else if (startYear === null) {
 		// FA contract - picked up as free agent
-		txType = 'fa';
-		txDetails = owner + ' $' + salary + ' FA/' + yy(endYear);
-	} else if (startYear === year) {
-		// Contract starts this year - auction
-		txType = 'auction';
-		txDetails = owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear);
-	} else if (startYear < year) {
-		// Contract started before first snapshot - must be auction from startYear
-		txType = 'auction';
-		txDetails = owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear);
-		year = startYear;  // Use the contract start year
+		return {
+			year: year,
+			type: 'fa',
+			line: '  ' + yy(year) + ' fa ' + owner + ' $' + salary + ' FA/' + yy(endYear)
+		};
+	} else if (startYear <= year) {
+		// Contract started this year or before - auction from startYear
+		return {
+			year: startYear,
+			type: 'auction',
+			line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+		};
 	} else {
 		// startYear > year - shouldn't happen, but default to auction
-		txType = 'auction';
-		txDetails = owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear);
+		return {
+			year: startYear,
+			type: 'auction',
+			line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+		};
 	}
-	
-	// Format the year
-	var yearStr = String(year % 100).padStart(2, '0');
-	
-	return {
-		year: year,
-		line: '  ' + yearStr + ' ' + txType + ' ' + txDetails
-	};
 }
 
 /**
@@ -233,6 +376,10 @@ function generateDSL() {
 	console.log('Loading draft data...');
 	var draftsMap = loadDrafts();
 	console.log('  ' + Object.keys(draftsMap).length + ' draft picks\n');
+	
+	console.log('Loading trades...');
+	var tradesMap = loadTrades();
+	console.log('  ' + Object.keys(tradesMap).length + ' players with trades\n');
 	
 	console.log('Parsing snapshots...');
 	var players = parseSnapshots();
@@ -289,10 +436,12 @@ function generateDSL() {
 	espnIds.forEach(function(espnId) {
 		var player = players[espnId];
 		var header = formatHeader(player, sleeperMap);
-		var tx = determineEarliestTransaction(player, sleeperMap, draftsMap);
+		var transactions = generatePlayerTransactions(player, draftsMap);
 		
 		lines.push(header);
-		lines.push(tx.line);
+		transactions.forEach(function(tx) {
+			lines.push(tx.line);
+		});
 		lines.push('');
 	});
 	
