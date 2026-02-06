@@ -281,6 +281,15 @@ function walkPlayerChain(player, transactions) {
 			}
 		}
 		
+		// Validate auction transactions have salary (winningBid)
+		if (effect.type.startsWith('auction-') && !tx.winningBid) {
+			issues.push({
+				timestamp: tx.timestamp,
+				message: 'Auction transaction missing winningBid',
+				transaction: tx
+			});
+		}
+		
 		// Calculate new state
 		var newState;
 		if (typeof transition.result === 'function') {

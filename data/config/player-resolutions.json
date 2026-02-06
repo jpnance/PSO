@@ -907,17 +907,17 @@
   "chad henne|2014|type:trade|john": {
     "sleeperId": "89"
   },
+  "chad johnson": {
+    "sleeperId": null,
+    "name": "Chad Johnson"
+  },
   "chad johnson|2008|type:auction|schexes": {
     "sleeperId": null,
     "name": "Chad Johnson"
   },
-  "chad johnson|2009|type:cut|schexes": {
+  "chad ochocinco": {
     "sleeperId": null,
     "name": "Chad Johnson"
-  },
-  "chad ochocinco|2009|type:trade|james": {
-    "sleeperId": null,
-    "name": "Chad Ochocinco"
   },
   "chad pennington|2008|type:auction|john": {
     "sleeperId": null,
@@ -1562,17 +1562,13 @@
     "sleeperId": null,
     "name": "David Wilson"
   },
-  "davone bess|2009|type:cut|koci/mueller": {
+  "davone bess|2008|type:fa|koci": {
     "sleeperId": null,
     "name": "Davone Bess"
   },
-  "davone bess|2009|type:rfa-conversion|koci": {
+  "davonne bess": {
     "sleeperId": null,
     "name": "Davone Bess"
-  },
-  "davonne bess|2008|type:fa|koci": {
-    "sleeperId": null,
-    "name": "Davonne Bess"
   },
   "dawan landry|2010|type:rfa-conversion|daniel": {
     "sleeperId": null,
