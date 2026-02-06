@@ -224,7 +224,7 @@ ID,Owner,Name,Position,Start,End,Salary
 622,John,Michael Hoomanawanui,TE,2010,2012,$1
 461,John,Michael Vick,QB,2011,2013,$185
 -1,John,Mike Goodson,RB,2011,2013,$1
-3652,John,Mike Thomas,WR,2010,2011,$14
+-1,John,Mike Thomas,WR,2010,2011,$14
 -1,John,Mohamed Massaquoi,WR,2009,2011,$14
 -1,John,Nate Kaeding,K,2011,2013,$1
 168,John,Nick Novak,K,FA,2011,$1
