@@ -317,7 +317,7 @@ ID,Owner,Player,Position,Start,End,Salary
 -1,Jason,Nick Chubb,RB,2024,2026,$80
 -1,Mitch,Nick Mullens,QB,2024,2024,$1
 -1,Keyon,Nico Collins,WR,2024,2026,$85
--1,Quinn,Nyheim Hines,RB,2023,2025,$1
+-1,Quinn,Nyheim Miller-Hines,RB,2023,2025,$1
 -1,Brett,Pat Freiermuth,TE,2024,2024,$10
 -1,Patrick,Patrick Mahomes,QB,2024,2024,$350
 -1,Mitch,Patrick Queen,LB,2024,2026,$3

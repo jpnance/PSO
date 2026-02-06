@@ -173,7 +173,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Dan Bailey,K,FA,2020,
 -1,John/Zach,Daniel Carlson,K,FA,2020,$1
 -1,Luke,Daniel Jones,QB,2019,2021,$19
--1,Keyon,Daniel Sorenson,DB,FA,2020,$2
+-1,Keyon,Daniel Sorensen,DB,FA,2020,$2
 -1,,Danielle Hunter,DL,FA,2020,
 -1,,Danny Amendola,WR,FA,2020,
 -1,,Danny Trevathan,LB,FA,2020,
@@ -551,7 +551,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Mitch,Nick Mullens,QB,FA,2020,$8
 -1,,Nick Vigil,LB,FA,2020,
 -1,Brett,Noah Fant,TE,2019,2021,$5
--1,Keyon,Nyheim Hines,RB,FA,2020,$2
+-1,Keyon,Nyheim Miller-Hines,RB,FA,2020,$2
 -1,Mitch,O.J. Howard,TE,2020,2022,$3
 -1,,Odell Beckham Jr.,WR,FA,2020,
 -1,Koci/Mueller,Olabisi Johnson,WR,2020,2022,$1
@@ -705,10 +705,10 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Whitney Mercilus,LB,FA,2020,
 -1,Schex,Wil Lutz,K,2019,2020,$2
 -1,,Will Dissly,TE,FA,2020,
--1,Mitch,Will Fuller V,WR,2019,2021,$60
+-1,Mitch,William Fuller,WR,2019,2021,$60
 -1,,Will Grier,QB,FA,2020,
 -1,Keyon,Willie Gay Jr.,LB,2020,2022,$1
--1,,Willie Snead IV,WR,FA,2020,
+-1,,Willie Snead,WR,FA,2020,
 -1,Mitch,Xavier McKinney,DB,2020,2022,$1
 -1,Mitch,Yannick Ngakoue,DL,FA,2020,$2
 -1,Terence,Younghoe Koo,K,FA,2020,$1

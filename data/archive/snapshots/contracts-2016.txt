@@ -46,7 +46,7 @@ ID,Owner,Name,Position,Start,End,Salary
 12576,Mitch,Brandon LaFell,WR,2016,2016,$5
 15002,Trevor,Brandon Marshall (DEN),LB,2015,2017,$3
 9705,Trevor,Brandon Marshall (NYJ),WR,2015,2016,$67
-17171,Trevor,Brandon McManus,K,2016,2018,$2
+16339,Trevor,Brandon McManus,K,2016,2018,$2
 17864,Brett/Luke,Braxton Miller,WR,2016,2018,$5
 17674,Patrick,Breshad Perriman,WR,2016,2018,$3
 14879,Syed/Terence,Brock Osweiler,QB,2014,2016,$1
@@ -55,7 +55,7 @@ ID,Owner,Name,Position,Start,End,Salary
 16720,Brett/Luke,C.J. Mosley (BAL),LB,2014,2016,$1
 17869,Trevor,C.J. Prosise,RB,2016,2018,$13
 13203,Trevor,C.J. Spiller,RB,2016,2016,$1
-17172,Keyon,Cairo Santos,K,2016,2016,$1
+17427,Keyon,Cairo Santos,K,2016,2016,$1
 13994,James,Cam Newton,QB,2016,2018,$341
 17704,Schex/Jeff,Cameron Artis-Payne,RB,2016,2018,$4
 17911,Quinn,Cardale Jones,QB,2016,2016,$2
@@ -64,13 +64,13 @@ ID,Owner,Name,Position,Start,End,Salary
 4459,Keyon,Carson Palmer,QB,2014,2016,$42
 17795,Quinn,Carson Wentz,QB,2016,2018,$8
 15168,Brett/Luke,Case Keenum,QB,2016,2016,$6
-17169,John/Zach,Chandler Catanzaro,K,2016,2018,$3
+16976,John/Zach,Chandler Catanzaro,K,2016,2018,$3
 14927,Patrick,Chandler Jones,DL,2015,2017,$11
 17384,Quinn,Charcandrick West,RB,2016,2016,$12
 15885,Syed/Terence,Charles Johnson (MIN),WR,2016,2018,$3
 16749,Schex/Jeff,Charles Sims,RB,2014,2016,$12
 17994,Quinn,Charone Peake,WR,2016,2018,$1
-17175,Trevor,Chris Boswell,K,2016,2016,$2
+17372,Trevor,Chris Boswell,K,2016,2016,$2
 17638,Trevor,Chris Conley,WR,2015,2017,$5
 13587,Trevor,Chris Ivory,RB,2016,2016,$43
 11258,Mitch,Chris Johnson,RB,2016,2016,$3
@@ -79,7 +79,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17836,Trevor,Christian Hackenberg,QB,2016,2018,$4
 15855,Mitch,Christine Michael,RB,2016,2016,$25
 11326,Quinn,Cliff Avril,DL,2016,2016,$2
-17475,Daniel,Clive Walford,TE,2015,2017,$2
+2512593,Daniel,Clive Walford,TE,2015,2017,$2
 14900,Quinn,Coby Fleener,TE,2016,2018,$30
 17872,Patrick,Cody Kessler,QB,2016,2018,$8
 16793,Trevor,Cody Latimer,WR,2016,2016,$4
@@ -139,7 +139,7 @@ ID,Owner,Name,Position,Start,End,Salary
 13295,Syed/Terence,Emmanuel Sanders,WR,2014,2016,$35
 13271,Patrick,Eric Decker,WR,2015,2017,$30
 16732,John/Zach,Eric Ebron,TE,2014,2016,$14
-17452,Mitch,Eric Kendricks,LB,2015,2016,$1
+2510863,Mitch,Eric Kendricks,LB,2015,2016,$1
 10481,Koci/Mueller,Eric Weddle,DB,2016,2018,$2
 13373,Syed/Terence,Everson Griffen,DL,2016,2018,$5
 15785,Brett/Luke,Ezekiel Ansah,DL,2014,2016,$1
@@ -165,7 +165,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17798,Trevor,Jalen Ramsey,DB,2016,2018,$1
 18077,Brett/Luke,Jalin Marshall,WR,2016,2018,$1
 11307,Daniel,Jamaal Charles,RB,2016,2016,$208
-17399,Mitch,Jameis Winston,QB,2015,2017,$24
+2969939,Mitch,Jameis Winston,QB,2015,2017,$24
 12454,Daniel,James Laurinaitis,LB,2015,2017,$4
 13214,Keyon,James Starks,RB,2014,2016,$2
 15830,Schex/Jeff,Jamie Collins,LB,2016,2018,$9
@@ -255,7 +255,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17888,Syed/Terence,Malcolm Mitchell,WR,2016,2018,$9
 14214,Keyon,Malcolm Smith,LB,2016,2016,$9
 17610,Trevor,Marcus Mariota,QB,2015,2017,$24
-17486,Schex/Jeff,Marcus Murphy,RB,2015,2017,$1
+2514123,Schex/Jeff,Marcus Murphy,RB,2015,2017,$1
 17633,Trevor,Marcus Peters,DB,2016,2018,$1
 9587,Trevor,Mario Williams,DL,2014,2016,$1
 14932,Quinn,Mark Barron,LB,2016,2016,$2
@@ -348,7 +348,7 @@ ID,Owner,Name,Position,Start,End,Salary
 15786,Schex/Jeff,Tavon Austin,WR,2016,2018,$97
 10453,Koci/Mueller,Ted Ginn Jr.,WR,2016,2018,$18
 16728,Schex/Jeff,Teddy Bridgewater,QB,2014,2016,$19
-17159,Trevor,Telvin Smith,LB,2014,2016,$1
+16891,Trevor,Telvin Smith,LB,2014,2016,$1
 15878,Syed/Terence,Terrance Williams,WR,2015,2017,$3
 14851,James,Terrelle Pryor,WR,2016,2018,$25
 17689,John/Zach,Tevin Coleman,RB,2015,2017,$27
@@ -382,7 +382,7 @@ ID,Owner,Name,Position,Start,End,Salary
 15246,Patrick,Vontaze Burfict,LB,2016,2018,$10
 17921,Mitch,Wendell Smallwood,RB,2016,2018,$7
 17809,John/Zach,Will Fuller,WR,2016,2018,$9
-17184,John/Zach,Willie Snead,WR,2016,2018,$21
+17258,John/Zach,Willie Snead,WR,2016,2018,$21
 15835,Patrick,Zach Ertz,TE,2016,2018,$18
 16814,Trevor,Zach Mettenberger,QB,2014,2016,$2
 12699,Schex/Jeff,Zach Miller,TE,2016,2018,$1

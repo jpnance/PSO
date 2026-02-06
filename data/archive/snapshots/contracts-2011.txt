@@ -281,7 +281,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1716,Syed,David Akers,K,2011,2011,$1
 9619,Jake/Luke,DeMeco Ryans,LB,2011,2012,$1
 11315,Schexes,Early Doucet,WR,2010,2011,$17
-14209,Jake/Luke,Edmund Gates,WR,2011,2013,$1
+14209,Jake/Luke,Clyde Gates,WR,2011,2013,$1
 10475,Jake/Luke,Greg Olsen,TE,2009,2011,$35
 14043,Jake/Luke,Jaiquawn Jarrett,DB,2011,2013,$1
 12454,Jake/Luke,James Laurinaitis,LB,2009,2011,$9

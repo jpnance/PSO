@@ -7,7 +7,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17756,,Adam Humphries,WR,FA,2018,
 8421,,Adam Jones,DB,FA,2018,
 18276,Syed/Terence,Adam Shaheen,TE,2017,2019,$1
-17178,Koci/Mueller,Adam Thielen,WR,2017,2019,$7
+16460,Koci/Mueller,Adam Thielen,WR,2017,2019,$7
 1097,,Adam Vinatieri,K,FA,2018,
 18305,Syed/Terence,Adoree' Jackson,DB,2017,2019,$1
 13965,Syed/Terence,Adrian Clayborn,DL,2018,2018,$1
@@ -40,7 +40,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17937,,Andy Janovich,RB,FA,2018,
 4512,,Anquan Boldin,WR,FA,2018,
 16711,,Anthony Barr,LB,FA,2018,
-17158,Patrick,Anthony Hitchens,LB,2018,2018,$1
+16883,Patrick,Anthony Hitchens,LB,2018,2018,$1
 18610,Keyon,Anthony Miller,WR,2018,2020,$9
 17960,,Anthony Zettel,DL,FA,2018,
 9793,,Antoine Bethea,DB,FA,2018,
@@ -85,7 +85,7 @@ ID,Owner,Name,Position,Start,End,Salary
 12576,,Brandon LaFell,WR,FA,2018,
 15002,Trevor,Brandon Marshall (DEN),LB,2018,2020,$4
 9705,,Brandon Marshall (NYG),WR,FA,2018,
-17171,Trevor,Brandon McManus,K,2016,2018,$2
+16339,Trevor,Brandon McManus,K,2016,2018,$2
 -1,Koci/Mueller,Brandon Powell,WR,2018,2020,$2
 12597,,Brandon Tate,WR,FA,2018,
 18768,Brett/Luke,Braxton Berrios,WR,2018,2018,$1
@@ -110,7 +110,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17869,Trevor,C.J. Prosise,RB,2016,2018,$13
 13203,,C.J. Spiller,RB,FA,2018,
 17564,,C.J. Uzomah,TE,FA,2018,
-17172,,Cairo Santos,K,FA,2018,
+17427,,Cairo Santos,K,FA,2018,
 11284,Trevor,Calais Campbell,DL,2017,2018,$7
 15918,,Caleb Sturgis,K,FA,2018,
 10447,,Calvin Johnson,WR,FA,2018,
@@ -134,7 +134,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11291,Brett/Luke,Chad Henne,QB,2018,2018,$1
 18205,Trevor,Chad Kelly,QB,2018,2020,$8
 18169,,Chad Williams,WR,FA,2018,
-17169,John/Zach,Chandler Catanzaro,K,2016,2018,$3
+16976,John/Zach,Chandler Catanzaro,K,2016,2018,$3
 14927,Daniel,Chandler Jones,DL,2018,2018,$12
 17384,,Charcandrick West,RB,FA,2018,
 14145,Daniel,Charles Clay,TE,2017,2019,$1
@@ -144,7 +144,7 @@ ID,Owner,Name,Position,Start,End,Salary
 12471,,Chase Daniel,QB,FA,2018,
 18693,Syed/Terence,Chase Edmonds,RB,2018,2020,$7
 18089,,Chester Rogers,WR,FA,2018,
-17175,James/Charles,Chris Boswell,K,2018,2018,$1
+17372,James/Charles,Chris Boswell,K,2018,2018,$1
 18341,Koci/Mueller,Chris Carson,RB,2017,2019,$3
 17638,,Chris Conley,WR,FA,2018,
 18272,Brett/Luke,Chris Godwin,WR,2017,2018,$5
@@ -161,7 +161,7 @@ ID,Owner,Name,Position,Start,End,Salary
 18279,Daniel,Christian McCaffrey,RB,2017,2019,$24
 15855,,Christine Michael,RB,FA,2018,
 11326,,Cliff Avril,DL,FA,2018,
-17475,,Clive Walford,TE,FA,2018,
+2512593,,Clive Walford,TE,FA,2018,
 14900,,Coby Fleener,TE,FA,2018,
 17872,,Cody Kessler,QB,FA,2018,
 16793,,Cody Latimer,WR,FA,2018,
@@ -199,7 +199,7 @@ ID,Owner,Name,Position,Start,End,Salary
 15380,,Damon Harrison,DL,FA,2018,
 14322,,Dan Bailey,K,FA,2018,
 11688,,Dan Carpenter,K,FA,2018,
-17326,,Daniel Sorenson,DB,FA,2018,
+17259,,Daniel Sorensen,DB,FA,2018,
 17680,James/Charles,Danielle Hunter,DL,2017,2019,$5
 11674,John/Zach,Danny Amendola,WR,2016,2018,$5
 15074,Patrick,Danny Trevathan,LB,2018,2018,$4
@@ -297,7 +297,7 @@ ID,Owner,Name,Position,Start,End,Salary
 13252,,Eric Berry,DB,FA,2018,
 13271,,Eric Decker,WR,FA,2018,
 16732,James/Charles,Eric Ebron,TE,2017,2019,$18
-17452,Mitch,Eric Kendricks,LB,2018,2018,$8
+2510863,Mitch,Eric Kendricks,LB,2018,2018,$8
 10481,Koci/Mueller,Eric Weddle,DB,2016,2018,$2
 18382,Patrick,Evan Engram,TE,2017,2019,$5
 13373,Patrick,Everson Griffen,DL,2018,2018,$1
@@ -353,7 +353,7 @@ ID,Owner,Name,Position,Start,End,Salary
 18362,Daniel,Jamaal Williams,RB,2017,2019,$12
 18220,Brett/Luke,Jamal Adams,DB,2017,2018,$1
 18228,Syed/Terence,Jamal Agnew,DB,2018,2020,$1
-17399,Quinn,Jameis Winston,QB,2018,2018,$125
+2969939,Quinn,Jameis Winston,QB,2018,2018,$125
 18236,Daniel,James Conner,RB,2017,2019,$6
 12454,,James Laurinaitis,LB,FA,2018,
 13214,,James Starks,RB,FA,2018,
@@ -368,7 +368,7 @@ ID,Owner,Name,Position,Start,End,Salary
 18190,Mitch,Jarrad Davis,LB,2017,2019,$1
 16790,Daniel,Jarvis Landry,WR,2017,2019,$60
 12691,,Jason McCourty,DB,FA,2018,
-17438,,Jason Myers,K,FA,2018,
+2473037,,Jason Myers,K,FA,2018,
 13256,,Jason Pierre-Paul,DL,FA,2018,
 4527,,Jason Witten,TE,FA,2018,
 17936,Koci/Mueller,Jatavis Brown,LB,2017,2019,$1
@@ -445,7 +445,7 @@ ID,Owner,Name,Position,Start,End,Salary
 18690,John/Zach,Kalen Ballage,RB,2018,2020,$7
 13336,,Kam Chancellor,DB,FA,2018,
 14583,,Kamar Aiken,WR,FA,2018,
-17141,,Kapri Bibbs,RB,FA,2018,
+16969,,Kapri Bibbs,RB,FA,2018,
 18225,Keyon,Kareem Hunt,RB,2017,2019,$24
 17804,,Karl Joseph,DB,FA,2018,
 5558,,Karlos Dansby,LB,FA,2018,
@@ -522,7 +522,7 @@ ID,Owner,Name,Position,Start,End,Salary
 15888,,Marcus Cooper,DB,FA,2018,
 18576,Quinn,Marcus Davenport,DL,2018,2018,$1
 17610,Koci/Mueller,Marcus Mariota,QB,2018,2020,$150
-17486,,Marcus Murphy,RB,FA,2018,
+2514123,,Marcus Murphy,RB,FA,2018,
 17633,,Marcus Peters,DB,FA,2018,
 9587,,Mario Williams,DL,FA,2018,
 18645,John/Zach,Mark Andrews,TE,2018,2020,$1
@@ -598,7 +598,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17866,,Nick Vigil,LB,FA,2018,
 15075,,Nigel Bradham,LB,FA,2018,
 17826,Brett/Luke,Noah Spence,DL,2016,2018,$1
-18663,Quinn,Nyheim Hines,RB,2018,2020,$7
+18663,Quinn,Nyheim Miller-Hines,RB,2018,2020,$7
 18322,Brett/Luke,O.J. Howard,TE,2017,2019,$9
 16733,Keyon,Odell Beckham Jr.,WR,2018,2018,$275
 14982,,Olivier Vernon,DL,FA,2018,
@@ -664,7 +664,7 @@ ID,Owner,Name,Position,Start,End,Salary
 14911,,Rueben Randle,WR,FA,2018,
 14881,Keyon,Russell Wilson,QB,2018,2018,$220
 8664,Brett/Luke,Ryan Fitzpatrick,QB,2018,2018,$3
-17179,,Ryan Grant,WR,FA,2018,
+16845,,Ryan Grant,WR,FA,2018,
 15887,,Ryan Griffin,TE,FA,2018,
 13973,,Ryan Kerrigan,DL,FA,2018,
 14037,,Ryan Mallett,QB,FA,2018,
@@ -717,11 +717,11 @@ ID,Owner,Name,Position,Start,End,Salary
 15911,,Tavarres King,WR,FA,2018,
 15786,Patrick,Tavon Austin,RB/WR,2018,2020,$1
 14977,,Tavon Wilson,DB,FA,2018,
-17177,,Taylor Gabriel,WR,FA,2018,
+17437,,Taylor Gabriel,WR,FA,2018,
 18224,Keyon,Taywan Taylor,WR,2017,2019,$5
 10453,Koci/Mueller,Ted Ginn Jr.,WR,2016,2018,$18
 16728,John/Zach,Teddy Bridgewater,QB,2018,2020,$15
-17159,Schex,Telvin Smith,LB,2018,2018,$17
+16891,Schex,Telvin Smith,LB,2018,2018,$17
 16783,,Terrance West,RB,FA,2018,
 15878,,Terrance Williams,WR,FA,2018,
 18586,Koci/Mueller,Terrell Edmunds,DB,2018,2020,$1
@@ -754,7 +754,7 @@ ID,Owner,Name,Position,Start,End,Salary
 18008,,Trevone Boykin,QB,FA,2018,
 17928,,Trevor Davis,WR,FA,2018,
 17455,,Trevor Siemian,QB,FA,2018,
-17195,Keyon,Trey Burton,TE,2018,2020,$19
+16974,Keyon,Trey Burton,TE,2018,2020,$19
 17559,Patrick,Trey Flowers,DL,2017,2019,$1
 18086,,Troymaine Pope,RB,FA,2018,
 14989,,Trumaine Johnson,DB,FA,2018,
@@ -787,8 +787,8 @@ ID,Owner,Name,Position,Start,End,Salary
 14936,,Whitney Mercilus,LB,FA,2018,
 18104,Schex,Wil Lutz,K,2018,2018,$1
 17264,,Will Compton,LB,FA,2018,
-17809,Patrick,Will Fuller V,WR,2016,2018,$9
-17184,,Willie Snead,WR,FA,2018,
+17809,Patrick,William Fuller,WR,2016,2018,$9
+17258,,Willie Snead,WR,FA,2018,
 17852,,Yannick Ngakoue,DL,FA,2018,
 18452,,Younghoe Koo,K,FA,2018,
 14973,Trevor,Zach Brown,LB,2017,2018,$10

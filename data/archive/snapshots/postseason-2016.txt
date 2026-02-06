@@ -4,7 +4,7 @@ ID,Owner,Name,Position,Start,End,Salary
 8439,Syed/Terence,Aaron Rodgers,QB,2016,2018,$270
 17756,Syed/Terence,Adam Humphries,WR,FA,2016,$1
 8421,Patrick,Adam Jones,DB,2015,2017,$10
-17178,Syed/Terence,Adam Thielen,WR,FA,2016,$1
+16460,Syed/Terence,Adam Thielen,WR,FA,2016,$1
 1097,Daniel,Adam Vinatieri,K,2016,2016,$2
 13965,,Adrian Clayborn,DL,FA,2016,
 10452,John/Zach,Adrian Peterson,RB,FA,2016,$5
@@ -61,7 +61,7 @@ ID,Owner,Name,Position,Start,End,Salary
 12576,Mitch,Brandon LaFell,WR,2016,2016,$5
 15002,Trevor,Brandon Marshall (DEN),LB,2015,2017,$3
 9705,Trevor,Brandon Marshall (NYJ),WR,2015,2016,$67
-17171,Trevor,Brandon McManus,K,2016,2018,$2
+16339,Trevor,Brandon McManus,K,2016,2018,$2
 12597,Quinn,Brandon Tate,WR,FA,2016,$2
 17864,Brett/Luke,Braxton Miller,WR,2016,2018,$5
 17674,Patrick,Breshad Perriman,WR,2016,2018,$3
@@ -78,7 +78,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17869,Trevor,C.J. Prosise,RB,2016,2018,$13
 13203,Trevor,C.J. Spiller,RB,2016,2016,$1
 17564,,C.J. Uzomah,TE,FA,2016,
-17172,James,Cairo Santos,K,FA,2016,$1
+17427,James,Cairo Santos,K,FA,2016,$1
 11284,Syed/Terence,Calais Campbell,DL,FA,2016,$2
 15918,Schex/Jeff,Caleb Sturgis,K,FA,2016,$1
 13994,James,Cam Newton,QB,2016,2018,$341
@@ -94,7 +94,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17795,Quinn,Carson Wentz,QB,2016,2018,$8
 15168,James,Case Keenum,QB,2016,2016,$6
 14966,Daniel,Casey Hayward,DB,FA,2016,$1
-17169,John/Zach,Chandler Catanzaro,K,2016,2018,$3
+16976,John/Zach,Chandler Catanzaro,K,2016,2018,$3
 14927,Patrick,Chandler Jones,DL,2015,2017,$11
 17384,,Charcandrick West,RB,FA,2016,
 14145,James,Charles Clay,TE,FA,2016,$1
@@ -103,7 +103,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17994,Quinn,Charone Peake,WR,2016,2018,$1
 12471,,Chase Daniel,QB,FA,2016,
 18089,,Chester Rogers,WR,FA,2016,
-17175,Trevor,Chris Boswell,K,2016,2016,$2
+17372,Trevor,Chris Boswell,K,2016,2016,$2
 17638,Trevor,Chris Conley,WR,2015,2017,$5
 14402,Mitch,Chris Hogan,WR,FA,2016,$5
 13587,Trevor,Chris Ivory,RB,2016,2016,$43
@@ -114,7 +114,7 @@ ID,Owner,Name,Position,Start,End,Salary
 16767,Mitch,Christian Kirksey,LB,FA,2016,$5
 15855,Mitch,Christine Michael,RB,2016,2016,$25
 11326,Quinn,Cliff Avril,DL,2016,2016,$2
-17475,,Clive Walford,TE,FA,2016,
+2512593,,Clive Walford,TE,FA,2016,
 14900,Quinn,Coby Fleener,TE,2016,2018,$30
 17872,Patrick,Cody Kessler,QB,2016,2018,$8
 16793,,Cody Latimer,WR,FA,2016,
@@ -201,7 +201,7 @@ ID,Owner,Name,Position,Start,End,Salary
 13295,Koci/Mueller,Emmanuel Sanders,WR,2014,2016,$35
 13271,Patrick,Eric Decker,WR,2015,2017,$30
 16732,John/Zach,Eric Ebron,TE,2014,2016,$14
-17452,Mitch,Eric Kendricks,LB,2015,2016,$1
+2510863,Mitch,Eric Kendricks,LB,2015,2016,$1
 10481,Koci/Mueller,Eric Weddle,DB,2016,2018,$2
 13373,Syed/Terence,Everson Griffen,DL,2016,2018,$5
 15785,Brett/Luke,Ezekiel Ansah,DL,2014,2016,$1
@@ -234,7 +234,7 @@ ID,Owner,Name,Position,Start,End,Salary
 18079,James,Jalen Richard,RB,FA,2016,$10
 18077,Brett/Luke,Jalin Marshall,WR,2016,2018,$1
 11307,Daniel,Jamaal Charles,RB,2016,2016,$208
-17399,Mitch,Jameis Winston,QB,2015,2017,$24
+2969939,Mitch,Jameis Winston,QB,2015,2017,$24
 12454,,James Laurinaitis,LB,FA,2016,
 13214,Keyon,James Starks,RB,2014,2016,$2
 16913,Daniel,James White,RB,FA,2016,$24
@@ -293,7 +293,7 @@ ID,Owner,Name,Position,Start,End,Salary
 16942,Koci/Mueller,Ka'Deem Carey,RB,2015,2017,$1
 13336,,Kam Chancellor,DB,FA,2016,
 14583,Syed/Terence,Kamar Aiken,WR,2015,2017,$1
-17141,,Kapri Bibbs,RB,FA,2016,
+16969,,Kapri Bibbs,RB,FA,2016,
 17804,Mitch,Karl Joseph,DB,2016,2018,$1
 5558,Koci/Mueller,Karlos Dansby,LB,2016,2018,$3
 17605,,Karlos Williams,RB,FA,2016,
@@ -349,7 +349,7 @@ ID,Owner,Name,Position,Start,End,Salary
 13992,,Marcell Dareus,DL,FA,2016,
 15888,,Marcus Cooper,DB,FA,2016,
 17610,Trevor,Marcus Mariota,QB,2015,2017,$24
-17486,,Marcus Murphy,RB,FA,2016,
+2514123,,Marcus Murphy,RB,FA,2016,
 17633,Trevor,Marcus Peters,DB,2016,2018,$1
 9587,,Mario Williams,DL,FA,2016,
 14932,Quinn,Mark Barron,LB,2016,2016,$2
@@ -483,10 +483,10 @@ ID,Owner,Name,Position,Start,End,Salary
 15070,Keyon,Tahir Whitehead,LB,FA,2016,$1
 17912,Keyon,Tajae Sharpe,WR,2016,2018,$5
 15786,Schex/Jeff,Tavon Austin,WR,2016,2018,$97
-17177,James,Taylor Gabriel,WR,FA,2016,$1
+17437,James,Taylor Gabriel,WR,FA,2016,$1
 10453,Koci/Mueller,Ted Ginn Jr.,WR,2016,2018,$18
 16728,Brett/Luke,Teddy Bridgewater,QB,FA,2016,$4
-17159,Trevor,Telvin Smith,LB,2014,2016,$1
+16891,Trevor,Telvin Smith,LB,2014,2016,$1
 16783,Patrick,Terrance West,RB,FA,2016,$12
 15878,Daniel,Terrance Williams,WR,FA,2016,$3
 14851,James,Terrelle Pryor,WR,2016,2018,$25
@@ -536,8 +536,8 @@ ID,Owner,Name,Position,Start,End,Salary
 14936,,Whitney Mercilus,LB,FA,2016,
 18104,Keyon,Wil Lutz,K,FA,2016,$1
 17264,,Will Compton,LB,FA,2016,
-17809,Patrick,Will Fuller V,WR,2016,2018,$9
-17184,Keyon,Willie Snead,WR,2016,2018,$21
+17809,Patrick,William Fuller,WR,2016,2018,$9
+17258,Keyon,Willie Snead,WR,2016,2018,$21
 17852,,Yannick Ngakoue,DL,FA,2016,
 14973,John/Zach,Zach Brown,LB,FA,2016,$3
 15835,Patrick,Zach Ertz,TE,2016,2018,$18

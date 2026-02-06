@@ -32,7 +32,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4512,Quinn,Anquan Boldin,WR,2014,2014,$20
 16711,Quinn,Anthony Barr,LB,2014,2014,$1
 13212,Quinn,Anthony Dixon,RB,FA,2014,$10
-17158,,Anthony Hitchens,LB,FA,2014
+16883,,Anthony Hitchens,LB,FA,2014
 11261,Keyon,Antoine Cason,DB,FA,2014,$1
 13158,Keyon,Antone Smith,RB,FA,2014,$2
 13934,Mitch,Antonio Brown,WR,2014,2015,$165
@@ -91,7 +91,7 @@ ID,Owner,Name,Position,Start,End,Salary
 14184,John/Zach,Cecil Shorts,WR,2013,2015,$39
 9603,Syed,Chad Greenway,LB,FA,2014,$10
 11291,John/Zach,Chad Henne,QB,2013,2015,$10
-17169,James,Chandler Catanzaro,K,FA,2014,$1
+16976,James,Chandler Catanzaro,K,FA,2014,$1
 14927,Patrick,Chandler Jones,DL,2012,2014,$1
 14145,Schex,Charles Clay,TE,2014,2014,$15
 16749,Schex,Charles Sims,RB,2014,2016,$12
@@ -186,7 +186,7 @@ ID,Owner,Name,Position,Start,End,Salary
 15785,Brett/Luke,Ezekiel Ansah,DL,2014,2016,$1
 14941,,Fletcher Cox,DL,FA,2014
 8479,James,Frank Gore,RB,2014,2014,$100
-17181,,Frankie Hammond,WR,FA,2014
+16260,,Frankie Hammond,WR,FA,2014
 10195,Keyon,Fred Jackson,RB,2014,2014,$50
 16809,,Garrett Gilbert,QB,FA,2014
 13371,Brett/Luke,Garrett Graham,TE,2014,2015,$1
@@ -232,7 +232,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4527,Patrick,Jason Witten,TE,2014,2014,$50
 9597,James,Jay Cutler,QB,2012,2014,$55
 15985,Schex,Jelani Jenkins,LB,FA,2014,$5
-17137,Syed,Jeff Janis,WR,2014,2016,$2
+16960,Syed,Jeff Janis,WR,2014,2016,$2
 16803,Mitch,Jeremy Hill,RB,2014,2016,$24
 14151,John/Zach,Jeremy Kerley,WR,2013,2015,$1
 12579,Schex,Jeremy Maclin,WR,2013,2015,$7
@@ -407,7 +407,7 @@ ID,Owner,Name,Position,Start,End,Salary
 14009,,Rob Housler,TE,FA,2014
 9721,Brett/Luke,Rob Ninkovich,DL,2014,2014,$8
 14875,Brett/Luke,Robert Griffin III,QB,2012,2014,$25
-17144,Syed,Robert Herron,WR,2014,2016,$2
+16903,Syed,Robert Herron,WR,2014,2016,$2
 13984,John/Zach,Robert Quinn,DL,2012,2014,$3
 14894,Patrick,Robert Turbin,RB,FA,2014,$2
 15880,Quinn,Robert Woods,WR,2013,2015,$9
@@ -456,7 +456,7 @@ ID,Owner,Name,Position,Start,End,Salary
 15786,Patrick,Tavon Austin,WR,2013,2015,$18
 10453,Koci/Mueller,Ted Ginn,WR,2014,2016,$1
 16728,Quinn,Teddy Bridgewater,QB,2014,2016,$19
-17159,Trevor,Telvin Smith,LB,2014,2016,$1
+16891,Trevor,Telvin Smith,LB,2014,2016,$1
 16783,Quinn,Terrance West,RB,2014,2016,$12
 15878,Syed,Terrance Williams,WR,2013,2014,$5
 8429,,Thomas Davis,LB,FA,2014

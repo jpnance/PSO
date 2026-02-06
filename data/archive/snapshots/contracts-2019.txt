@@ -222,7 +222,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Patrick,Dan Bailey,K,2019,2019,$1
 -1,,Dan Carpenter,K,FA,2018
 -1,Syed/Kuan,Daniel Jones,QB,2019,2021,$19
--1,,Daniel Sorenson,DB,FA,2018
+-1,,Daniel Sorensen,DB,FA,2018
 -1,Schex,Danielle Hunter,DL,2017,2019,$5
 -1,,Danny Amendola,WR,FA,2019
 -1,Mitch,Danny Trevathan,LB,2019,2019,$2
@@ -706,7 +706,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Nigel Bradham,LB,FA,2018
 -1,Brett/Luke,Noah Fant,TE,2019,2021,$5
 -1,,Noah Spence,DL,FA,2018
--1,James/Charles,Nyheim Hines,RB,2018,2020,$7
+-1,James/Charles,Nyheim Miller-Hines,RB,2018,2020,$7
 -1,Brett/Luke,O.J. Howard,TE,2017,2019,$9
 -1,Mitch,Odell Beckham Jr.,WR,2019,2020,$275
 -1,,Olivier Vernon,DL,FA,2018
@@ -924,9 +924,9 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Schex,Wil Lutz,K,2019,2020,$2
 -1,,Will Compton,LB,FA,2018
 -1,,Will Dissly,TE,FA,2018
--1,John/Zach,Will Fuller V,WR,2019,2021,$60
+-1,John/Zach,William Fuller,WR,2019,2021,$60
 -1,Terence,Will Grier,QB,2019,2021,$3
--1,Schex,Willie Snead IV,WR,2019,2021,$1
+-1,Schex,Willie Snead,WR,2019,2021,$1
 -1,,Yannick Ngakoue,DL,FA,2018
 -1,,Younghoe Koo,K,FA,2018
 -1,,Zach Brown,LB,FA,2019

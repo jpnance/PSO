@@ -650,7 +650,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Noah Gray,TE,FA,2024,
 -1,,Noah Sewell,LB,FA,2025,
 -1,,Nolan Smith,DL/LB,FA,2023,
--1,,Nyheim Hines,RB,FA,2024,
+-1,,Nyheim Miller-Hines,RB,FA,2024,
 -1,,Odafe Oweh,DL/LB,FA,2023,
 -1,,Odell Beckham,WR,FA,2023,
 -1,,Olamide Zaccheaus,WR,FA,2025,

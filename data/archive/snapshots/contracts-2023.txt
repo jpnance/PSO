@@ -312,7 +312,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Koci/Mueller,Nico Collins,WR,2021,2023,$4
 -1,Mike,Noah Fant,TE,2022,2023,$7
 -1,Mike,Nolan Smith,DL/LB,2023,2025,$1
--1,Quinn,Nyheim Hines,RB,2023,2025,$1
+-1,Quinn,Nyheim Miller-Hines,RB,2023,2025,$1
 -1,Mike,Odafe Oweh,DL/LB,2021,2023,$1
 -1,Keyon,Odell Beckham,WR,2022,2024,$9
 -1,Patrick,Parris Campbell,WR,2022,2024,$5

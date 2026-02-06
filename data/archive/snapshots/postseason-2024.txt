@@ -551,7 +551,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Noah Fant,TE,FA,2023,
 -1,Anthony,Noah Gray,TE,FA,2024,$4
 -1,,Nolan Smith,DL/LB,FA,2023,
--1,,Nyheim Hines,RB,FA,2024,
+-1,,Nyheim Miller-Hines,RB,FA,2024,
 -1,,Odafe Oweh,DL/LB,FA,2023,
 -1,,Odell Beckham,WR,FA,2023,
 -1,,Olamide Zaccheaus,WR,FA,2024,

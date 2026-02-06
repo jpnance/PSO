@@ -380,7 +380,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Quinn,Tyrod Taylor,QB,2020,2022,$8
 -1,Schex,Van Jefferson Jr.,WR,2020,2022,$2
 -1,Schex,Wil Lutz,K,2019,2020,$2
--1,John/Zach,Will Fuller V,WR,2019,2021,$60
+-1,John/Zach,William Fuller,WR,2019,2021,$60
 -1,Keyon,Willie Gay Jr.,LB,2020,2022,$1
 -1,Mitch,Xavier McKinney,DB,2020,2022,$1
 -1,Luke,Zach Cunningham,LB,2020,2022,$4
