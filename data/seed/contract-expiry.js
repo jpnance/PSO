@@ -1,18 +1,19 @@
 /**
- * Seed RFA rights conversion transactions from historical data.
+ * Seed contract expiry transactions from historical data.
  * 
- * RFA eligibility rules:
- *   - 2008-2018: Any expiring contract conveys RFA rights
- *   - 2019+: Only 2-3 year contracts convey RFA rights
+ * Contract expiry rules (2019+ only):
+ *   - 1-year contracts and FA contracts do NOT convey RFA rights
+ *   - These contracts simply expire, player becomes UFA
+ * 
+ * Pre-2019: All contracts conveyed RFA rights, so no contract-expiry needed.
  * 
  * Data sources:
- *   - postseason-YEAR.txt (2014+): End-of-season roster snapshots
- *   - contracts-YEAR.txt + cuts/trades (pre-2014): Infer from absence of release
+ *   - postseason-YEAR.txt: End-of-season roster snapshots
  * 
  * Usage:
- *   docker compose run --rm -it web node data/seed/rfa-conversions.js
- *   docker compose run --rm -it web node data/seed/rfa-conversions.js --year=2024
- *   docker compose run --rm -it web node data/seed/rfa-conversions.js --dry-run
+ *   docker compose run --rm -it web node data/seed/contract-expiry.js
+ *   docker compose run --rm -it web node data/seed/contract-expiry.js --year=2024
+ *   docker compose run --rm -it web node data/seed/contract-expiry.js --dry-run
  */
 
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
@@ -26,18 +27,16 @@ var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
-var tradeFacts = require('../facts/trade-facts');
 
 mongoose.connect(process.env.MONGODB_URI);
 
 var ARCHIVE_DIR = path.join(__dirname, '../archive/snapshots');
 
-// RFA conversion date convention: January 15 at 12:00:00 PM ET
-// January 15 is definitively in the offseason
-// Uses :00 seconds since this is a defined convention, not an uncertain inference
-function getRfaConversionTimestamp(year) {
-	// Jan 15 at 12:00:00 ET = Jan 15 at 17:00:00 UTC (EST, no DST in Jan)
-	return new Date(Date.UTC(year + 1, 0, 15, 17, 0, 0));
+// Contract expiry date convention: January 15 at 12:00:01 PM ET
+// Same day as RFA conversion but 1 second later for ordering
+function getContractExpiryTimestamp(year) {
+	// Jan 15 at 12:00:01 ET = Jan 15 at 17:00:01 UTC
+	return new Date(Date.UTC(year + 1, 0, 15, 17, 0, 1));
 }
 
 // Build owner -> franchiseId lookup for a given year
@@ -75,27 +74,26 @@ function getRosterId(ownerName, season) {
 }
 
 /**
- * Check if a contract qualifies for RFA rights conversion.
+ * Check if a contract expires without RFA rights (becomes UFA).
+ * Only applies to 2019+ seasons.
  */
-function qualifiesForRfa(startYear, endYear, season) {
+function expiresWithoutRfa(startYear, endYear, season) {
 	// Must have valid endYear matching the season
 	if (!endYear || isNaN(endYear) || endYear !== season) return false;
+	
+	// Pre-2019: All contracts had RFA rights
+	if (season < 2019) return false;
 	
 	// Calculate contract length
 	var contractLength = (startYear && !isNaN(startYear) && endYear) ? (endYear - startYear + 1) : 1;
 	
-	if (season <= 2018) {
-		// 2008-2018: Any expiring contract
-		return true;
-	} else {
-		// 2019+: Only 2-3 year contracts
-		return contractLength >= 2 && contractLength <= 3;
-	}
+	// 2019+: 2-3 year contracts get RFA; 1-year and 4+ year do not
+	// FA contracts (no startYear) also do not get RFA
+	return contractLength < 2 || contractLength > 3;
 }
 
 /**
  * Parse a contracts/postseason file.
- * Returns array of { owner, name, position, startYear, endYear, salary }
  */
 function parseContractsFile(filePath) {
 	if (!fs.existsSync(filePath)) {
@@ -106,7 +104,7 @@ function parseContractsFile(filePath) {
 	var lines = content.split('\n');
 	var contracts = [];
 	
-	for (var i = 1; i < lines.length; i++) {  // Skip header
+	for (var i = 1; i < lines.length; i++) {
 		var line = lines[i].trim();
 		if (!line) continue;
 		
@@ -120,14 +118,13 @@ function parseContractsFile(filePath) {
 		var endStr = parts[5].trim();
 		var salaryStr = parts[6].trim();
 		
-		// Skip unowned players (free agents in the pool)
+		// Skip unowned players
 		if (!owner) continue;
 		
 		var startYear = startStr ? parseInt(startStr, 10) : null;
 		var endYear = endStr ? parseInt(endStr, 10) : null;
 		var salary = salaryStr ? parseInt(salaryStr.replace('$', ''), 10) : null;
 		
-		// Convert NaN to null
 		if (isNaN(startYear)) startYear = null;
 		if (isNaN(endYear)) endYear = null;
 		if (isNaN(salary)) salary = null;
@@ -146,92 +143,19 @@ function parseContractsFile(filePath) {
 }
 
 /**
- * Find RFA-eligible contracts from a postseason file.
+ * Find contracts that expire without RFA rights.
  */
-function findRfaEligible(contracts, season) {
-	var eligible = [];
+function findExpiringWithoutRfa(contracts, season) {
+	var expiring = [];
 	
 	for (var i = 0; i < contracts.length; i++) {
 		var c = contracts[i];
-		if (qualifiesForRfa(c.startYear, c.endYear, season)) {
-			eligible.push(c);
+		if (expiresWithoutRfa(c.startYear, c.endYear, season)) {
+			expiring.push(c);
 		}
 	}
 	
-	return eligible;
-}
-
-/**
- * Apply trade corrections to contract ownership.
- * 
- * For years without postseason snapshots (2008-2013), the contracts file
- * represents preseason state. If a player with an expiring contract was
- * traded mid-season, RFA rights should go to the receiving franchise.
- * 
- * @param {Array} contracts - Array of contract objects with owner, name, endYear
- * @param {number} season - The season year
- * @returns {Array} Updated contracts with corrected owners
- */
-function applyTradeCorrections(contracts, season) {
-	if (!tradeFacts.checkAvailability()) {
-		console.log('  (trade facts not available, skipping corrections)');
-		return contracts;
-	}
-	
-	var allTrades = tradeFacts.loadAll();
-	
-	// Filter to trades in this season
-	var seasonTrades = allTrades.filter(function(trade) {
-		return trade.date && trade.date.getFullYear() === season;
-	});
-	
-	if (seasonTrades.length === 0) {
-		return contracts;
-	}
-	
-	// Build map: normalized player name -> final owner for expiring contracts
-	// Process trades chronologically to get final owner
-	var expiringOwnerMap = {};
-	
-	seasonTrades.sort(function(a, b) {
-		return a.date - b.date;
-	});
-	
-	seasonTrades.forEach(function(trade) {
-		if (trade.parties.length !== 2) return;
-		
-		trade.parties.forEach(function(receivingParty, idx) {
-			receivingParty.players.forEach(function(player) {
-				// Check if this is an expiring contract for this season
-				// contractStr is like "2008" for a contract ending in 2008
-				var contractEnd = parseInt(player.contractStr, 10);
-				if (isNaN(contractEnd)) return;
-				if (contractEnd !== season) return;
-				
-				// This player was traded with an expiring contract
-				var normalizedName = resolver.normalizePlayerName(player.name);
-				expiringOwnerMap[normalizedName] = receivingParty.owner;
-			});
-		});
-	});
-	
-	var corrections = Object.keys(expiringOwnerMap).length;
-	if (corrections > 0) {
-		console.log('  Found ' + corrections + ' expiring-contract players traded mid-season');
-	}
-	
-	// Apply corrections to contracts
-	return contracts.map(function(c) {
-		var normalizedName = resolver.normalizePlayerName(c.name);
-		if (expiringOwnerMap[normalizedName]) {
-			var newOwner = expiringOwnerMap[normalizedName];
-			if (newOwner !== c.owner) {
-				console.log('    ' + c.name + ': ' + c.owner + ' → ' + newOwner);
-				return Object.assign({}, c, { owner: newOwner });
-			}
-		}
-		return c;
-	});
+	return expiring;
 }
 
 // Global state
@@ -245,7 +169,7 @@ var franchiseByRosterId = {};
 async function resolvePlayer(contract, season) {
 	var context = {
 		year: season,
-		type: 'rfa-conversion',
+		type: 'contract-expiry',
 		franchise: contract.owner
 	};
 	
@@ -277,8 +201,7 @@ async function resolvePlayer(contract, season) {
 			position: contract.position,
 			Player: Player,
 			rl: rl,
-			playerCache: playersByNormalizedName,
-			autoHistorical: season < 2016
+			playerCache: playersByNormalizedName
 		});
 		
 		if (result.action === 'quit') {
@@ -317,11 +240,11 @@ function parseArgs() {
 async function run() {
 	var args = parseArgs();
 	
-	console.log('Seeding RFA rights conversion transactions');
+	console.log('Seeding contract expiry transactions (non-RFA)');
 	if (args.year) {
 		console.log('Year:', args.year);
 	} else {
-		console.log('Years: 2008 - 2024');
+		console.log('Years: 2019 - 2024 (rule only applies 2019+)');
 	}
 	if (args.dryRun) console.log('[DRY RUN]');
 	console.log('');
@@ -358,11 +281,11 @@ async function run() {
 	
 	// Clear existing if requested
 	if (args.clear && !args.dryRun) {
-		console.log('Clearing existing RFA conversion transactions...');
-		var query = { type: 'rfa-rights-conversion' };
+		console.log('Clearing existing contract-expiry transactions...');
+		var query = { type: 'contract-expiry' };
 		if (args.year) {
-			var yearStart = getRfaConversionTimestamp(args.year - 1);
-			var yearEnd = getRfaConversionTimestamp(args.year);
+			var yearStart = getContractExpiryTimestamp(args.year - 1);
+			var yearEnd = getContractExpiryTimestamp(args.year);
 			query.timestamp = { $gt: yearStart, $lte: yearEnd };
 		}
 		var deleted = await Transaction.deleteMany(query);
@@ -370,9 +293,12 @@ async function run() {
 		console.log('');
 	}
 	
-	// Determine years to process
-	var startYear = args.year || 2008;
-	var endYear = args.year || 2024;  // Last completed season
+	// Determine years to process (only 2019+)
+	var startYear = args.year || 2019;
+	var endYear = args.year || 2024;
+	
+	// Enforce 2019+ rule
+	if (startYear < 2019) startYear = 2019;
 	
 	var stats = {
 		created: 0,
@@ -383,41 +309,27 @@ async function run() {
 	for (var season = startYear; season <= endYear; season++) {
 		console.log('=== Season', season, '===');
 		
-		// Try postseason file first, then contracts file
 		var postseasonPath = path.join(ARCHIVE_DIR, 'postseason-' + season + '.txt');
-		var contractsPath = path.join(ARCHIVE_DIR, 'contracts-' + season + '.txt');
-		
 		var contracts = parseContractsFile(postseasonPath);
-		var source = 'postseason';
 		
 		if (!contracts) {
-			contracts = parseContractsFile(contractsPath);
-			source = 'contracts';
-		}
-		
-		if (!contracts) {
-			console.log('  No data file found, skipping');
+			console.log('  No postseason file found, skipping');
 			continue;
 		}
 		
-		console.log('  Using', source + '-' + season + '.txt');
+		console.log('  Using postseason-' + season + '.txt');
 		
-		// For contracts files (preseason snapshots), apply trade corrections
-		// to account for mid-season trades of expiring-contract players
-		if (source === 'contracts') {
-			contracts = applyTradeCorrections(contracts, season);
-		}
+		// Find expiring contracts without RFA
+		var expiring = findExpiringWithoutRfa(contracts, season);
+		console.log('  Found', expiring.length, 'contracts expiring without RFA');
 		
-		// Find RFA-eligible contracts
-		var eligible = findRfaEligible(contracts, season);
-		console.log('  Found', eligible.length, 'RFA-eligible expiring contracts');
+		if (expiring.length === 0) continue;
 		
-		if (eligible.length === 0) continue;
+		var timestamp = getContractExpiryTimestamp(season);
+		var createdThisSeason = 0;
 		
-		var timestamp = getRfaConversionTimestamp(season);
-		
-		for (var i = 0; i < eligible.length; i++) {
-			var contract = eligible[i];
+		for (var i = 0; i < expiring.length; i++) {
+			var contract = expiring[i];
 			
 			// Resolve franchise
 			var rosterId = getRosterId(contract.owner, season);
@@ -451,7 +363,7 @@ async function run() {
 			
 			// Check for existing transaction
 			var existing = await Transaction.findOne({
-				type: 'rfa-rights-conversion',
+				type: 'contract-expiry',
 				playerId: resolution.playerId,
 				timestamp: timestamp
 			});
@@ -464,14 +376,13 @@ async function run() {
 			// Create transaction
 			if (!args.dryRun) {
 				var txData = {
-					type: 'rfa-rights-conversion',
+					type: 'contract-expiry',
 					timestamp: timestamp,
 					source: 'snapshot',
 					franchiseId: franchiseId,
 					playerId: resolution.playerId
 				};
 				
-				// Only include numeric values (avoid NaN)
 				if (contract.salary && !isNaN(contract.salary)) {
 					txData.salary = contract.salary;
 				}
@@ -486,9 +397,10 @@ async function run() {
 			}
 			
 			stats.created++;
+			createdThisSeason++;
 		}
 		
-		console.log('  Created:', stats.created, '(this season)');
+		console.log('  Created:', createdThisSeason);
 	}
 	
 	// Save resolutions

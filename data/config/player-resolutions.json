@@ -1380,6 +1380,10 @@
     "sleeperId": null,
     "name": "David Buehler"
   },
+  "david buehler|2009|type:draft|jake/luke": {
+    "sleeperId": null,
+    "name": "David Buehler"
+  },
   "david buehler|2009|type:draft|luke": {
     "sleeperId": null,
     "name": "David Buehler"
@@ -2391,6 +2395,10 @@
     "sleeperId": "3163"
   },
   "jarett dillard|2009|type:cut|brett": {
+    "sleeperId": null,
+    "name": "Jarett Dillard"
+  },
+  "jarett dillard|2009|type:draft|jake/luke": {
     "sleeperId": null,
     "name": "Jarett Dillard"
   },
