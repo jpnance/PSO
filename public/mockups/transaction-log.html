@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Log — PSO</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/design-tokens.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/positions.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <style>
+        body {
+            background-color: #f5f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Mockup banner */
+        .mockup-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+        }
+        .mockup-banner strong {
+            font-weight: 600;
+        }
+        
+        /* Transaction log layout */
+        .txn-log {
+            padding: 1.5rem;
+            padding-bottom: 4rem; /* Space for mockup banner */
+        }
+        
+        .txn-log__header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .txn-log__title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+            color: #212529;
+        }
+        
+        .txn-log__subtitle {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        
+        /* Filter panel */
+        .txn-filter {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .txn-filter__row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        
+        .txn-filter__group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        
+        .txn-filter__label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6c757d;
+        }
+        
+        .txn-filter__select {
+            padding: 0.4rem 2rem 0.4rem 0.65rem;
+            font-size: 0.875rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .txn-filter__btn {
+            padding: 0.4rem 1rem;
+            font-size: 0.875rem;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .txn-filter__btn:hover {
+            background: #0b5ed7;
+        }
+        
+        .txn-filter__clear {
+            font-size: 0.8rem;
+            color: #6c757d;
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+        
+        .txn-filter__clear:hover {
+            color: #dc3545;
+            text-decoration: underline;
+        }
+        
+        /* Type badges */
+        .txn-type-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .txn-type-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.15s;
+        }
+        
+        .txn-type-badge:hover {
+            opacity: 0.85;
+        }
+        
+        .txn-type-badge--trade { background: #e7f1ff; color: #004085; }
+        .txn-type-badge--trade.active { background: #b8daff; border-color: #004085; }
+        
+        .txn-type-badge--fa-pickup { background: #d4edda; color: #155724; }
+        .txn-type-badge--fa-pickup.active { background: #a3d9b1; border-color: #155724; }
+        
+        .txn-type-badge--fa-cut { background: #f8d7da; color: #721c24; }
+        .txn-type-badge--fa-cut.active { background: #f1b0b7; border-color: #721c24; }
+        
+        .txn-type-badge--draft-select { background: #fff3cd; color: #856404; }
+        .txn-type-badge--draft-select.active { background: #ffe69c; border-color: #856404; }
+        
+        .txn-type-badge--draft-pass { background: #e2e3e5; color: #383d41; }
+        .txn-type-badge--draft-pass.active { background: #c6c7c9; border-color: #383d41; }
+        
+        .txn-type-badge--auction { background: #e2d5f7; color: #3d1e6d; }
+        .txn-type-badge--auction.active { background: #c9b5ed; border-color: #3d1e6d; }
+        
+        .txn-type-badge--contract { background: #d1ecf1; color: #0c5460; }
+        .txn-type-badge--contract.active { background: #a2d9e1; border-color: #0c5460; }
+        
+        /* Timeline */
+        .txn-timeline {
+            position: relative;
+        }
+        
+        .txn-date-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .txn-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+        
+        /* Transaction card */
+        .txn-card {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            transition: box-shadow 0.15s;
+        }
+        
+        .txn-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .txn-card__main {
+            display: flex;
+            align-items: stretch;
+        }
+        
+        .txn-card__type {
+            width: 4px;
+            flex-shrink: 0;
+        }
+        
+        .txn-card__type--trade { background: #0d6efd; }
+        .txn-card__type--fa-pickup { background: #198754; }
+        .txn-card__type--fa-cut { background: #dc3545; }
+        .txn-card__type--draft-select { background: #ffc107; }
+        .txn-card__type--draft-pass { background: #6c757d; }
+        .txn-card__type--auction { background: #6f42c1; }
+        .txn-card__type--contract { background: #17a2b8; }
+        
+        .txn-card__content {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 0;
+        }
+        
+        .txn-card__icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .txn-card__icon--trade { background: #e7f1ff; color: #0d6efd; }
+        .txn-card__icon--fa-pickup { background: #d4edda; color: #198754; }
+        .txn-card__icon--fa-cut { background: #f8d7da; color: #dc3545; }
+        .txn-card__icon--draft-select { background: #fff3cd; color: #856404; }
+        .txn-card__icon--draft-pass { background: #e2e3e5; color: #6c757d; }
+        .txn-card__icon--auction { background: #e2d5f7; color: #6f42c1; }
+        .txn-card__icon--contract { background: #d1ecf1; color: #17a2b8; }
+        
+        .txn-card__body {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .txn-card__headline {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #212529;
+            margin: 0 0 0.15rem;
+        }
+        
+        .txn-card__headline a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .txn-card__headline a:hover {
+            text-decoration: underline;
+        }
+        
+        .txn-card__details {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin: 0;
+        }
+        
+        .txn-card__meta {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .txn-card__time {
+            font-size: 0.75rem;
+            color: #adb5bd;
+        }
+        
+        .txn-card__franchise {
+            font-size: 0.8rem;
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        /* Position badge (matches existing) */
+        .position-badge {
+            display: inline-block;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 0.25rem;
+            vertical-align: middle;
+        }
+        
+        .pos-QB { background: var(--pos-qb-bg); color: var(--pos-qb-text); border: 1px solid var(--pos-qb-text); }
+        .pos-RB { background: var(--pos-rb-bg); color: var(--pos-rb-text); border: 1px solid var(--pos-rb-text); }
+        .pos-WR { background: var(--pos-wr-bg); color: var(--pos-wr-text); border: 1px solid var(--pos-wr-text); }
+        .pos-TE { background: var(--pos-te-bg); color: var(--pos-te-text); border: 1px solid var(--pos-te-text); }
+        .pos-DL, .pos-LB, .pos-DB { background: var(--pos-idp-bg); color: var(--pos-idp-text); border: 1px solid var(--pos-idp-text); }
+        .pos-K { background: var(--pos-k-bg); color: var(--pos-k-text); border: 1px solid var(--pos-k-text); }
+        
+        /* Money styling */
+        .money { font-weight: 600; }
+        .money--positive { color: #198754; }
+        .money--negative { color: #dc3545; }
+        
+        /* Trade card expanded view */
+        .txn-card--trade .txn-card__headline {
+            cursor: pointer;
+        }
+        
+        .txn-card__expand {
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            padding: 0.75rem 1rem;
+            display: none;
+        }
+        
+        .txn-card__expand.show {
+            display: block;
+        }
+        
+        .txn-card__parties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .txn-party {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .txn-party__name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.35rem;
+            color: #212529;
+        }
+        
+        .txn-party__assets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+        
+        .txn-party__assets li {
+            padding: 0.15rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .txn-party__assets i {
+            width: 14px;
+            text-align: center;
+            font-size: 0.7rem;
+        }
+        
+        .txn-party__assets .fa-user { color: var(--asset-player); }
+        .txn-party__assets .fa-ticket { color: var(--asset-pick); }
+        .txn-party__assets .fa-dollar { color: var(--asset-cash); }
+        
+        /* Pagination */
+        .txn-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .txn-pagination__btn {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background: white;
+            color: #495057;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .txn-pagination__btn:hover {
+            background: #f8f9fa;
+            border-color: #adb5bd;
+            text-decoration: none;
+            color: #212529;
+        }
+        
+        .txn-pagination__btn--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .txn-pagination__info {
+            font-size: 0.8rem;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            padding: 0 0.5rem;
+        }
+        
+        /* Empty state */
+        .txn-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #6c757d;
+        }
+        
+        .txn-empty i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .txn-card__content {
+                flex-wrap: wrap;
+            }
+            
+            .txn-card__meta {
+                width: 100%;
+                text-align: left;
+                margin-top: 0.5rem;
+                padding-top: 0.5rem;
+                border-top: 1px solid #eee;
+            }
+            
+            .txn-filter__row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .txn-filter__group {
+                width: 100%;
+            }
+            
+            .txn-filter__select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-brand">
+            <button class="hamburger" id="sidebarToggle" type="button" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a href="/" style="color: inherit; text-decoration: none;">
+                <h1>
+                    <span class="d-none d-md-inline">Primetime Soap Operas</span>
+                    <span class="d-md-none">PSO</span>
+                </h1>
+            </a>
+        </div>
+        
+        <!-- Search Bar (desktop) -->
+        <div class="topbar-search" id="searchContainer">
+            <i class="fa fa-search search-icon"></i>
+            <input id="searchInput" type="text" placeholder="Search players, franchises, trades..." autocomplete="off">
+            <kbd>/</kbd>
+        </div>
+        
+        <!-- Mobile search button -->
+        <button class="mobile-search-btn" id="mobileSearchBtn" type="button" aria-label="Search">
+            <i class="fa fa-search"></i>
+        </button>
+        
+        <!-- User menu -->
+        <a class="topbar-user" href="/login">
+            <i class="fa fa-sign-in mr-2"></i>
+            Log In
+        </a>
+    </header>
+    
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Sidebar -->
+    <nav class="nav-sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <!-- Mobile Search -->
+            <div class="sidebar-mobile-search d-lg-none">
+                <div class="mobile-search-wrapper">
+                    <i class="fa fa-search"></i>
+                    <input id="mobileSearchInput" type="text" placeholder="Search...">
+                </div>
+            </div>
+            
+            <!-- Primary Section -->
+            <div class="sidebar-primary">
+                <a class="sidebar-link" href="/league">
+                    <i class="fa fa-home"></i>
+                    League Overview
+                </a>
+                <a class="sidebar-link" href="#">
+                    <i class="fa fa-calendar"></i>
+                    Schedule
+                    <span class="badge badge-secondary">Soon</span>
+                </a>
+                <a class="sidebar-link" href="#">
+                    <i class="fa fa-gavel"></i>
+                    FAAB
+                    <span class="badge badge-secondary">Soon</span>
+                </a>
+                <a class="sidebar-link" href="#">
+                    <i class="fa fa-trophy"></i>
+                    Standings
+                    <span class="badge badge-secondary">Soon</span>
+                </a>
+                <a class="sidebar-link" href="/trade-machine">
+                    <i class="fa fa-exchange"></i>
+                    Trade Machine
+                </a>
+            </div>
+            
+            <!-- All Franchises -->
+            <div class="sidebar-section">
+                <button class="sidebar-toggle" type="button" data-toggle="collapse" data-target="#franchisesMenu" aria-expanded="false">
+                    <i class="fa fa-shield"></i>
+                    All Franchises
+                    <i class="fa fa-chevron-down toggle-icon"></i>
+                </button>
+                <div id="franchisesMenu" class="collapse franchise-list">
+                    <a class="sidebar-link" href="#">Colby</a>
+                    <a class="sidebar-link" href="#">Daniel</a>
+                    <a class="sidebar-link" href="#">James</a>
+                    <a class="sidebar-link" href="#">Jeff</a>
+                    <a class="sidebar-link" href="#">John</a>
+                    <a class="sidebar-link" href="#">Keyon</a>
+                    <a class="sidebar-link" href="#">Koci</a>
+                    <a class="sidebar-link" href="#">Patrick</a>
+                    <a class="sidebar-link" href="#">Schex</a>
+                    <a class="sidebar-link" href="#">Syed</a>
+                    <a class="sidebar-link" href="#">Trevor</a>
+                    <a class="sidebar-link" href="#">Weems</a>
+                </div>
+            </div>
+            
+            <!-- History & Results -->
+            <div class="sidebar-section">
+                <button class="sidebar-toggle" type="button" data-toggle="collapse" data-target="#historyMenu" aria-expanded="true">
+                    <i class="fa fa-history"></i>
+                    History & Results
+                    <i class="fa fa-chevron-down toggle-icon"></i>
+                </button>
+                <div id="historyMenu" class="collapse show sidebar-submenu">
+                    <a class="sidebar-link" href="#">
+                        <i class="fa fa-calendar-check-o"></i>
+                        History
+                        <span class="badge badge-secondary">Soon</span>
+                    </a>
+                    <a class="sidebar-link" href="/trades">
+                        <i class="fa fa-exchange"></i>
+                        Trade History
+                    </a>
+                    <a class="sidebar-link active" href="/transactions">
+                        <i class="fa fa-list-alt"></i>
+                        Transaction Log
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        <i class="fa fa-users"></i>
+                        Head-to-Head
+                        <span class="badge badge-secondary">Soon</span>
+                    </a>
+                    <a class="sidebar-link" href="/jaguar">
+                        <i class="fa fa-paw"></i>
+                        Jaguar Chart
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Draft & Auction -->
+            <div class="sidebar-section">
+                <button class="sidebar-toggle" type="button" data-toggle="collapse" data-target="#draftMenu" aria-expanded="false">
+                    <i class="fa fa-list-ol"></i>
+                    Draft & Auction
+                    <i class="fa fa-chevron-down toggle-icon"></i>
+                </button>
+                <div id="draftMenu" class="collapse sidebar-submenu">
+                    <a class="sidebar-link" href="/rookies">
+                        <i class="fa fa-graduation-cap"></i>
+                        Rookie Salaries
+                    </a>
+                    <a class="sidebar-link" href="/draft">
+                        <i class="fa fa-list-ol"></i>
+                        Rookie Draft
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        <i class="fa fa-money"></i>
+                        Free Agent Auction
+                        <span class="badge badge-secondary">Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Tools -->
+            <div class="sidebar-section">
+                <button class="sidebar-toggle" type="button" data-toggle="collapse" data-target="#toolsMenu" aria-expanded="false">
+                    <i class="fa fa-wrench"></i>
+                    Tools
+                    <i class="fa fa-chevron-down toggle-icon"></i>
+                </button>
+                <div id="toolsMenu" class="collapse sidebar-submenu">
+                    <a class="sidebar-link" href="#">
+                        <i class="fa fa-random"></i>
+                        Simulator
+                        <span class="badge badge-secondary">Soon</span>
+                    </a>
+                    <a class="sidebar-link" href="/sunk">
+                        <i class="fa fa-calculator"></i>
+                        Sunk Cost Calculator
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Resources -->
+            <div class="sidebar-section">
+                <button class="sidebar-toggle" type="button" data-toggle="collapse" data-target="#resourcesMenu" aria-expanded="false">
+                    <i class="fa fa-bookmark"></i>
+                    Resources
+                    <i class="fa fa-chevron-down toggle-icon"></i>
+                </button>
+                <div id="resourcesMenu" class="collapse sidebar-submenu">
+                    <a class="sidebar-link" href="/calendar">
+                        <i class="fa fa-calendar-o"></i>
+                        Calendar
+                    </a>
+                    <a class="sidebar-link" href="#">
+                        <i class="fa fa-book"></i>
+                        Rules
+                        <span class="badge badge-secondary">Soon</span>
+                    </a>
+                    <a class="sidebar-link" href="https://thedynastyleague.wordpress.com/" target="_blank">
+                        <i class="fa fa-rss"></i>
+                        Blog
+                        <i class="fa fa-external-link external-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="txn-log">
+            <div class="txn-log__header">
+                <h1 class="txn-log__title">Transaction Log</h1>
+                <span class="txn-log__subtitle">All roster moves in one place</span>
+            </div>
+            
+            <!-- Filter Panel -->
+            <div class="txn-filter">
+                <div class="txn-filter__row">
+                    <div class="txn-filter__group">
+                        <label class="txn-filter__label">Franchise</label>
+                        <select class="txn-filter__select">
+                            <option value="">All Franchises</option>
+                            <option value="1">Schex</option>
+                            <option value="2">Koci</option>
+                            <option value="3">James</option>
+                            <option value="4">Jeff</option>
+                            <option value="5">Colby</option>
+                        </select>
+                    </div>
+                    
+                    <div class="txn-filter__group">
+                        <label class="txn-filter__label">Season</label>
+                        <select class="txn-filter__select">
+                            <option value="">All Seasons</option>
+                            <option value="2025" selected>2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    
+                    <div class="txn-filter__group">
+                        <label class="txn-filter__label">Player</label>
+                        <input type="text" class="txn-filter__select" placeholder="Search player..." style="width: 160px;">
+                    </div>
+                    
+                    <button class="txn-filter__btn">
+                        <i class="fa fa-filter"></i> Apply
+                    </button>
+                    <a href="#" class="txn-filter__clear">Clear</a>
+                </div>
+                
+                <!-- Type quick filters -->
+                <div class="txn-type-badges">
+                    <span class="txn-type-badge txn-type-badge--trade active">Trades</span>
+                    <span class="txn-type-badge txn-type-badge--fa-pickup active">Pickups</span>
+                    <span class="txn-type-badge txn-type-badge--fa-cut active">Cuts</span>
+                    <span class="txn-type-badge txn-type-badge--draft-select active">Draft Picks</span>
+                    <span class="txn-type-badge txn-type-badge--draft-pass">Passes</span>
+                    <span class="txn-type-badge txn-type-badge--auction active">Auction</span>
+                    <span class="txn-type-badge txn-type-badge--contract active">Contracts</span>
+                </div>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="txn-timeline">
+                
+                <!-- Date group -->
+                <div class="txn-date-group">
+                    <div class="txn-date">January 10, 2025</div>
+                    
+                    <!-- Trade card -->
+                    <div class="txn-card txn-card--trade">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--trade"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--trade">
+                                    <i class="fa fa-exchange"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        <a href="/trades/847">Trade #847</a> — Schex ↔ Koci
+                                    </p>
+                                    <p class="txn-card__details">
+                                        Josh Allen <span class="position-badge pos-QB">QB</span> + 2nd round pick ↔ $500 + 2025 1st
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__time">3:45 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Expanded trade details (toggle with JS) -->
+                        <div class="txn-card__expand">
+                            <div class="txn-card__parties">
+                                <div class="txn-party">
+                                    <div class="txn-party__name">Koci receives:</div>
+                                    <ul class="txn-party__assets">
+                                        <li><i class="fa fa-user"></i> Josh Allen <span class="position-badge pos-QB">QB</span> ($850, 22/26)</li>
+                                        <li><i class="fa fa-ticket"></i> 2nd round pick in 2025 (Schex)</li>
+                                    </ul>
+                                </div>
+                                <div class="txn-party">
+                                    <div class="txn-party__name">Schex receives:</div>
+                                    <ul class="txn-party__assets">
+                                        <li><i class="fa fa-dollar"></i> $500 in 2025</li>
+                                        <li><i class="fa fa-ticket"></i> 1st round pick in 2025 (Koci)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FA Pickup -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--fa-pickup"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--fa-pickup">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        FA Pickup — Chase Brown <span class="position-badge pos-RB">RB</span>
+                                    </p>
+                                    <p class="txn-card__details">
+                                        <span class="money">$5</span> • 1-year deal
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">James</div>
+                                    <div class="txn-card__time">1:22 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Another date group -->
+                <div class="txn-date-group">
+                    <div class="txn-date">January 9, 2025</div>
+                    
+                    <!-- Cut -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--fa-cut"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--fa-cut">
+                                    <i class="fa fa-scissors"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        Cut — DeAndre Hopkins <span class="position-badge pos-WR">WR</span>
+                                    </p>
+                                    <p class="txn-card__details">
+                                        <span class="money money--negative">-$180</span> buyout in 2025
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">Jeff</div>
+                                    <div class="txn-card__time">6:15 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contract -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--contract"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--contract">
+                                    <i class="fa fa-file-text-o"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        Contract — Ja'Marr Chase <span class="position-badge pos-WR">WR</span>
+                                    </p>
+                                    <p class="txn-card__details">
+                                        <span class="money">$650</span> • 3-year extension (25/27)
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">Colby</div>
+                                    <div class="txn-card__time">4:30 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Auction example -->
+                <div class="txn-date-group">
+                    <div class="txn-date">August 15, 2024</div>
+                    
+                    <!-- Auction UFA -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--auction"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--auction">
+                                    <i class="fa fa-gavel"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        Auction — Saquon Barkley <span class="position-badge pos-RB">RB</span>
+                                    </p>
+                                    <p class="txn-card__details">
+                                        <span class="money">$425</span> winning bid
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">Schex</div>
+                                    <div class="txn-card__time">8:45 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RFA matched -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--auction"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--auction">
+                                    <i class="fa fa-gavel"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        RFA Matched — Garrett Wilson <span class="position-badge pos-WR">WR</span>
+                                    </p>
+                                    <p class="txn-card__details">
+                                        <span class="money">$380</span> matched • Original bid from James
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">Koci</div>
+                                    <div class="txn-card__time">8:30 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Draft example -->
+                <div class="txn-date-group">
+                    <div class="txn-date">May 1, 2024</div>
+                    
+                    <!-- Draft selection -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--draft-select"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--draft-select">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        Pick 1.03 — Marvin Harrison Jr <span class="position-badge pos-WR">WR</span>
+                                    </p>
+                                    <p class="txn-card__details">
+                                        <span class="money">$125</span> rookie contract (24/26)
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">Colby</div>
+                                    <div class="txn-card__time">7:05 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Draft pass -->
+                    <div class="txn-card">
+                        <div class="txn-card__main">
+                            <div class="txn-card__type txn-card__type--draft-pass"></div>
+                            <div class="txn-card__content">
+                                <div class="txn-card__icon txn-card__icon--draft-pass">
+                                    <i class="fa fa-ban"></i>
+                                </div>
+                                <div class="txn-card__body">
+                                    <p class="txn-card__headline">
+                                        Pick 3.07 — Passed
+                                    </p>
+                                    <p class="txn-card__details">
+                                        Original pick from Jeff
+                                    </p>
+                                </div>
+                                <div class="txn-card__meta">
+                                    <div class="txn-card__franchise">Schex</div>
+                                    <div class="txn-card__time">8:45 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Pagination -->
+            <div class="txn-pagination">
+                <a href="#" class="txn-pagination__btn txn-pagination__btn--disabled">
+                    <i class="fa fa-chevron-left"></i> Older
+                </a>
+                <span class="txn-pagination__info">Showing 1-10 of 847</span>
+                <a href="#" class="txn-pagination__btn">
+                    Newer <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+            
+        </div>
+    </main>
+    
+    <!-- Mockup Banner -->
+    <div class="mockup-banner">
+        <strong>🎨 MOCKUP</strong> — This is a design preview for the transaction log feature. No functionality yet.
+    </div>
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        (function() {
+            // Mobile sidebar toggle
+            var hamburger = document.getElementById('sidebarToggle');
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+
+            hamburger.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('open');
+            });
+
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+            });
+
+            // Close sidebar when clicking a link (mobile)
+            var sidebarLinks = document.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 992) {
+                        sidebar.classList.remove('open');
+                        overlay.classList.remove('open');
+                    }
+                });
+            });
+        })();
+        
+        // Toggle trade expansion
+        document.querySelectorAll('.txn-card--trade .txn-card__headline').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'A') {
+                    var card = this.closest('.txn-card');
+                    var expand = card.querySelector('.txn-card__expand');
+                    if (expand) {
+                        expand.classList.toggle('show');
+                    }
+                }
+            });
+        });
+        
+        // Toggle type badges
+        document.querySelectorAll('.txn-type-badge').forEach(function(badge) {
+            badge.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
