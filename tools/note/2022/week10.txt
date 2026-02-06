@@ -41,9 +41,9 @@ Week 9 Recaps
 		Pat projection: WHICH_TEAM (RIGHTWRONG); Charles prediction: WHICH_TEAM (RIGHTWRONG)
 	Jason defeats James/Charles, 151.82 to 93.00
 		Jason
-			Patrick offered Chuba Hubbard and JaMycal Hasty
+			Patrick offered Chuba Hubbard and Jamycal Hasty
 			Charles selected Chuba Hubbard (0.00)
-			Patrick received JaMycal Hasty (1.10)
+			Patrick received Jamycal Hasty (1.10)
 			Jason to 7-2 (.745/.921/.569)
 			Next three: Quinn, Brett, Mitch/Mike
 		James/Charles

@@ -188,7 +188,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5024,James/Charles,James Washington,WR,2018,2020,$9
 1848,Brett,James White,RB,2020,2021,$53
 2410,Quinn,Jamison Crowder,WR,2020,2021,$17
-6996,Schex,JaMycal Hasty,RB,2020,2022,$1
+6996,Schex,Jamycal Hasty,RB,2020,2022,$1
 367,Brett,Jared Cook,TE,2019,2020,$7
 3163,Mitch,Jared Goff,QB,2019,2021,$125
 4067,Koci/Mueller,Jarrad Davis,LB,2020,2022,$1

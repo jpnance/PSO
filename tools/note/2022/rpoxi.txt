@@ -47,7 +47,7 @@ Kyle Pitts,1,1,0,1,0,0,0
 Taysom Hill,1,0,1,0,1,0,0
 Elijah Moore,1,0,1,0,1,0,0
 Chuba Hubbard,2,2,0,1,1,0,0
-JaMycal Hasty,1,0,1,1,0,0,0
+Jamycal Hasty,1,0,1,1,0,0,0
 Terrace Marshall,1,1,0,1,0,0,0
 Russell Gage,1,0,1,0,1,0,0
 Damien Harris,1,1,0,0,1,0,0

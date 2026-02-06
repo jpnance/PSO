@@ -240,7 +240,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1364,Patrick,Jamie Collins,LB,2021,2021,$1
 7634,Schex,Jamin Davis,LB,2021,2023,$1
 2410,Quinn,Jamison Crowder,WR,2020,2021,$17
-6996,,JaMycal Hasty,RB,FA,2021,
+6996,,Jamycal Hasty,RB,FA,2021,
 367,Jason,Jared Cook,TE,2021,2021,$7
 3163,Quinn,Jared Goff,QB,2021,2023,$64
 7537,Koci/Mueller,Jaret Patterson,RB,2021,2023,$1

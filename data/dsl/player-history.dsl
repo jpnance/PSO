@@ -4565,7 +4565,7 @@ Jamison Crowder | WR | sleeper:2410
   19 trade 289 -> James/Charles
   20 auction Quinn $17 20/21
 
-JaMycal Hasty | RB | sleeper:6996
+Jamycal Hasty | RB | sleeper:6996
   20 draft Schex 6.02
 
 Janoris Jenkins | DB | sleeper:1203
