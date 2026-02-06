@@ -4837,10 +4837,22 @@
   "ryan fitzpatrick|2017|type:trade|quinn": {
     "sleeperId": "333"
   },
+  "ryan griffin|2015|type:cut|mike": {
+    "sleeperId": "1425"
+  },
+  "ryan griffin|2016|type:fa|john/zach": {
+    "sleeperId": "1425"
+  },
   "ryan griffin|2016|type:rfa-conversion|john/zach": {
     "sleeperId": "1425"
   },
   "ryan griffin|2019|type:contract-expiry|quinn": {
+    "sleeperId": "1550"
+  },
+  "ryan griffin|2019|type:cut|quinn": {
+    "sleeperId": "1425"
+  },
+  "ryan griffin|2019|type:fa|quinn": {
     "sleeperId": "1550"
   },
   "ryan longwell|2010|type:cut|anthony": {
