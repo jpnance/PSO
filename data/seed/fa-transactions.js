@@ -433,11 +433,16 @@ function loadFantraxTransactions(year) {
 			tx.factSource = 'fantrax';
 		});
 		
-		// Get regular waiver transactions (non-commissioner claim + drop)
+		// Get regular waiver transactions (claim + drop in one transaction)
 		var waiverTx = fantraxFacts.getWaivers(raw);
 		waiverTx = fantraxFacts.filterRealFaab(waiverTx);
 		// Filter out commissioner waivers - they'll be analyzed separately
 		waiverTx = waiverTx.filter(function(tx) { return !tx.isCommissioner; });
+		
+		// Get standalone claims (pickup without drop)
+		var claimTx = fantraxFacts.getClaims(raw);
+		claimTx = fantraxFacts.filterRealFaab(claimTx);
+		claimTx = claimTx.filter(function(tx) { return !tx.isCommissioner; });
 		
 		// Get commissioner actions with confidence analysis
 		var commissionerTx = fantraxFacts.findCommissionerActions(raw);
@@ -448,6 +453,7 @@ function loadFantraxTransactions(year) {
 		});
 		
 		allTx = allTx.concat(waiverTx);
+		allTx = allTx.concat(claimTx);
 		allTx = allTx.concat(commissionerTx);
 	});
 	
@@ -507,8 +513,8 @@ function shouldImport(tx) {
 		return false;
 	}
 	
-	// Import regular FA transactions (waiver, free_agent)
-	return tx.type === 'waiver' || tx.type === 'free_agent';
+	// Import regular FA transactions (waiver, free_agent, claim)
+	return tx.type === 'waiver' || tx.type === 'free_agent' || tx.type === 'claim';
 }
 
 /**
