@@ -71,7 +71,9 @@ var transactionSchema = new Schema({
 			'auction-ufa',
 			'auction-rfa-matched',
 			'auction-rfa-unmatched',
-			'rfa-rights-conversion',  // contract expired, RFA rights conveyed to franchise
+			'rfa-rights-conversion',  // contract expired, RFA rights conveyed to franchise (2-3 year contracts)
+			'rfa-rights-lapsed',      // RFA rights expired (player not brought up at auction)
+			'contract-expiry',        // contract expired, player becomes UFA (1-year or FA contracts)
 			'contract'
 		],
 		required: true

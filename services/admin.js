@@ -221,6 +221,9 @@ async function advanceSeason(request, response) {
 	var rfaConverted = 0;
 	var ufaDeleted = 0;
 	
+	// RFA/contract-expiry timestamp: January 15 at 12:00:00 ET
+	var expiryTimestamp = new Date(Date.UTC(newSeason, 0, 15, 17, 0, 0));
+	
 	for (var i = 0; i < expiringContracts.length; i++) {
 		var contract = expiringContracts[i];
 		
@@ -229,13 +232,37 @@ async function advanceSeason(request, response) {
 			: 1;
 		
 		if (contractLength >= 2 && contractLength <= 3) {
-			// Convert to RFA rights
+			// Convert to RFA rights - create transaction record
+			await Transaction.create({
+				type: 'rfa-rights-conversion',
+				timestamp: expiryTimestamp,
+				source: 'manual',
+				franchiseId: contract.franchiseId,
+				playerId: contract.playerId,
+				salary: contract.salary,
+				startYear: contract.startYear,
+				endYear: contract.endYear
+			});
+			
+			// Update contract to RFA-only state
 			contract.salary = null;
 			contract.startYear = null;
 			contract.endYear = null;
 			await contract.save();
 			rfaConverted++;
 		} else {
+			// Contract expires without RFA - create transaction record
+			await Transaction.create({
+				type: 'contract-expiry',
+				timestamp: new Date(expiryTimestamp.getTime() + 1000), // 1 second later for ordering
+				source: 'manual',
+				franchiseId: contract.franchiseId,
+				playerId: contract.playerId,
+				salary: contract.salary,
+				startYear: contract.startYear,
+				endYear: contract.endYear
+			});
+			
 			// Delete contract (player becomes UFA)
 			await Contract.deleteOne({ _id: contract._id });
 			ufaDeleted++;
