@@ -9,6 +9,7 @@ var admin = require('./services/admin');
 var adminPlayers = require('./services/admin-players');
 var adminTrades = require('./services/admin-trades');
 var adminCuts = require('./services/admin-cuts');
+var adminPeople = require('./services/admin-people');
 var sleeperImport = require('./services/sleeper-import');
 var draft = require('./services/draft');
 var trades = require('./services/trades');
@@ -18,6 +19,7 @@ var rookies = require('./services/rookies');
 var freeAgents = require('./services/free-agents');
 var players = require('./services/players');
 var auth = require('./services/auth');
+var debug = require('./services/debug');
 var { requireLogin, requireAdmin } = require('./middleware/auth');
 
 // Middleware to prevent caching of dynamic partials
@@ -102,6 +104,9 @@ module.exports = function(app) {
 	app.get('/scuttlebot', scuttlebot.prompt);
 	app.post('/scuttlebot/message', scuttlebot.postMessage);
 	
+	// Debug routes (require admin)
+	app.get('/debug/rosters', requireLogin, requireAdmin, debug.rostersPage);
+	
 	// Admin routes (require login + admin)
 	app.get('/admin', requireLogin, requireAdmin, admin.configPage);
 	app.post('/admin/config', requireLogin, requireAdmin, admin.updateConfig);
@@ -132,6 +137,11 @@ module.exports = function(app) {
 	app.get('/admin/cuts/:id', requireLogin, requireAdmin, adminCuts.editCutForm);
 	app.post('/admin/cuts/:id', requireLogin, requireAdmin, adminCuts.editCut);
 	app.post('/admin/cuts/:id/auto-fix', requireLogin, requireAdmin, adminCuts.autoFixCut);
+	
+	// People management (require login + admin)
+	app.get('/admin/people', requireLogin, requireAdmin, adminPeople.listPeople);
+	app.get('/admin/people/:id', requireLogin, requireAdmin, adminPeople.editPersonForm);
+	app.post('/admin/people/:id', requireLogin, requireAdmin, adminPeople.editPerson);
 	
 	// Sleeper transaction import (require login + admin)
 	app.get('/admin/sleeper-import', requireLogin, requireAdmin, sleeperImport.importForm);

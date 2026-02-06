@@ -2,7 +2,7 @@
  * Sync players from Sleeper data.
  * 
  * This script can be run repeatedly to keep Player documents in sync with Sleeper:
- * - Updates name, positions, college, rookieYear, estimatedRookieYear, active, team, searchRank for existing players (by sleeperId)
+ * - Updates name, positions, college, rookieYear, estimatedRookieYear, birthday, active, team, searchRank for existing players (by sleeperId)
  * - Creates new players that don't exist yet
  * - Does NOT touch historical players (those without sleeperId)
  * - Does NOT overwrite the `notes` field (manual data)
@@ -93,6 +93,21 @@ function getEstimatedRookieYear(player) {
 	return null;
 }
 
+/**
+ * Extract birthday in MM-DD format from Sleeper birth_date (YYYY-MM-DD).
+ * Returns null if not available.
+ */
+function getBirthday(player) {
+	if (player.birth_date) {
+		// birth_date format: "YYYY-MM-DD"
+		var parts = player.birth_date.split('-');
+		if (parts.length === 3) {
+			return parts[1] + '-' + parts[2]; // "MM-DD"
+		}
+	}
+	return null;
+}
+
 async function sync() {
 	console.log('Syncing players from Sleeper data...\n');
 
@@ -138,6 +153,7 @@ async function sync() {
 							college: p.college || null,
 							rookieYear: getRookieYear(p),
 							estimatedRookieYear: getEstimatedRookieYear(p),
+							birthday: getBirthday(p),
 							active: p.active || false,
 							team: p.team || null,
 							searchRank: p.search_rank || null,

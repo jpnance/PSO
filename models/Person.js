@@ -5,7 +5,8 @@ var personSchema = new Schema({
 	name: { type: String, required: true },
 	sleeperUserId: { type: String, default: null },
 	email: { type: String, default: null },
-	username: { type: String, default: null }
+	username: { type: String, default: null },
+	birthday: { type: String, default: null } // Format: "MM-DD"
 });
 
 personSchema.index({ name: 1 }, { unique: true });

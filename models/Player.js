@@ -11,6 +11,7 @@ var playerSchema = new Schema({
 	college: { type: String, default: null },
 	rookieYear: { type: Number, default: null }, // From metadata.rookie_year only (reliable, ~42% coverage)
 	estimatedRookieYear: { type: Number, default: null }, // From birth_date+23 or years_exp (less reliable, ~90% coverage)
+	birthday: { type: String, default: null }, // Format: "MM-DD" from Sleeper birth_date
 	active: { type: Boolean, default: false },
 	team: { type: String, default: null },
 	searchRank: { type: Number, default: null },

@@ -1,0 +1,44 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('People', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/league.css')
+
+block content
+	div.container.py-4
+		h1.mb-4 People
+		
+		p.text-muted.mb-4 Manage owner information including birthdays for the birthday widget.
+		
+		table.table.table-sm
+			thead.thead-light
+				tr
+					th Name
+					th Birthday
+					th Regimes
+					th Status
+			tbody
+				each person in people
+					tr
+						td
+							a(href='/admin/people/' + person._id)= person.name
+						td
+							if person.birthday
+								code= person.birthday
+							else
+								span.text-muted —
+						td
+							if person.regimeNames
+								= person.regimeNames
+							else
+								span.text-muted —
+						td
+							if person.isActiveOwner
+								span.badge.badge-success Active Owner
+							else if person.regimeNames
+								span.badge.badge-secondary Former Owner
+							else
+								span.text-muted —

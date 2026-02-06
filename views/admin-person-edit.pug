@@ -1,0 +1,109 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Edit ' + person.name, 'People', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/league.css')
+
+block content
+	div.container.py-4
+		if query.saved
+			div.alert.alert-success.alert-dismissible.fade.show
+				strong Saved!
+				|  Person updated successfully.
+				button.close(type='button' data-dismiss='alert') &times;
+		
+		h1.mb-4= person.name
+		
+		div.row
+			div.col-lg-8
+				div.card.mb-4
+					div.card-header
+						strong Edit Person
+					div.card-body
+						form(method='POST' action='/admin/people/' + person._id)
+							div.form-group
+								label(for='name') Name
+								input#name.form-control(
+									type='text'
+									name='name'
+									value=person.name
+									required
+								)
+							
+							div.form-group
+								label(for='birthday') Birthday
+								input#birthday.form-control(
+									type='text'
+									name='birthday'
+									value=person.birthday || ''
+									placeholder='MM-DD (e.g., 09-17 for September 17)'
+									pattern='\\d{2}-\\d{2}'
+								)
+								small.form-text.text-muted Format: MM-DD (month-day)
+							
+							div.form-group
+								label(for='email') Email
+								input#email.form-control(
+									type='email'
+									name='email'
+									value=person.email || ''
+									placeholder='Optional'
+								)
+							
+							div.form-group
+								label(for='sleeperUserId') Sleeper User ID
+								input#sleeperUserId.form-control(
+									type='text'
+									name='sleeperUserId'
+									value=person.sleeperUserId || ''
+									placeholder='Optional'
+								)
+							
+							div.d-flex.justify-content-between
+								button.btn.btn-primary(type='submit') Save Changes
+								a.btn.btn-secondary(href='/admin/people') Cancel
+			
+			div.col-lg-4
+				div.card.mb-4
+					div.card-header
+						strong Person Info
+					div.card-body
+						dl.mb-0
+							dt ID
+							dd: code= person._id
+							dt Username
+							dd
+								if person.username
+									code= person.username
+								else
+									span.text-muted Not set
+				
+				if regimes && regimes.length
+					div.card.mb-4
+						div.card-header
+							strong Regimes
+							span.badge.badge-secondary.ml-2= regimes.length
+						ul.list-group.list-group-flush
+							each regime in regimes
+								li.list-group-item.d-flex.justify-content-between.align-items-center
+									= regime.displayName
+									each tenure in regime.tenures
+										if tenure.endSeason === null
+											span.badge.badge-success Active
+										else
+											span.badge.badge-secondary= tenure.startSeason + '-' + tenure.endSeason
+				
+				if championships && championships.length
+					div.card.mb-4.border-warning
+						div.card-header.bg-warning
+							i.fa.fa-trophy.mr-1
+							strong Championships
+							span.badge.badge-light.ml-2= championships.length
+						ul.list-group.list-group-flush
+							each chip in championships
+								li.list-group-item
+									= chip.season
+									span.text-muted.ml-2 (#{chip.regimeName})
