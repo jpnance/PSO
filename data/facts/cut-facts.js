@@ -202,7 +202,7 @@ function saveCache(cutFacts) {
 
 /**
  * Fetch all cuts and save to local cache.
- * Enriches cuts with franchiseId by resolving owner names using 2025 regime lookup.
+ * Enriches cuts with rosterId by resolving owner names using 2025 regime lookup.
  * 
  * @param {string} apiKey - Google API key
  * @param {object} options - Options { skipFranchiseResolution: boolean }
@@ -212,7 +212,7 @@ async function fetchAndCache(apiKey, options) {
 	options = options || {};
 	var cuts = await fetchAll(apiKey);
 	
-	// Resolve owner names to franchise IDs
+	// Resolve owner names to roster IDs (stable 1-12)
 	if (!options.skipFranchiseResolution) {
 		// Lazy-load models
 		if (!Franchise) Franchise = require('../../models/Franchise');
@@ -231,16 +231,16 @@ async function fetchAndCache(apiKey, options) {
 		var unresolved = [];
 		
 		cuts.forEach(function(cut) {
-			var franchiseId = getFranchiseId(cut.owner, ownerMap);
-			if (franchiseId) {
-				cut.franchiseId = franchiseId.toString();
+			var rosterId = getRosterId(cut.owner, ownerMap);
+			if (rosterId) {
+				cut.rosterId = rosterId;
 				resolved++;
 			} else if (cut.owner) {
 				unresolved.push(cut.owner);
 			}
 		});
 		
-		console.log('    Resolved ' + resolved + ' cuts to franchise IDs');
+		console.log('    Resolved ' + resolved + ' cuts to roster IDs');
 		if (unresolved.length > 0) {
 			var unique = [...new Set(unresolved)];
 			console.log('    Could not resolve owners: ' + unique.join(', '));
@@ -253,15 +253,15 @@ async function fetchAndCache(apiKey, options) {
 }
 
 /**
- * Build an owner name -> franchise ID map using 2025 regime names.
+ * Build an owner name -> rosterId map using 2025 regime names.
  * This handles the naming convention used in the cuts sheet.
  * 
  * @param {Array} regimes - Regime documents (with tenures)
  * @param {Array} franchises - Franchise documents
- * @returns {Object} Map of lowercase owner name -> franchise ObjectId
+ * @returns {Object} Map of lowercase owner name -> rosterId (1-12)
  */
 function buildOwnerMap(regimes, franchises) {
-	var ownerToFranchise = {};
+	var ownerToRosterId = {};
 	
 	franchises.forEach(function(franchise) {
 		for (var i = 0; i < regimes.length; i++) {
@@ -272,30 +272,45 @@ function buildOwnerMap(regimes, franchises) {
 				if (tenure.franchiseId.equals(franchise._id) &&
 					tenure.startSeason <= 2025 &&
 					(tenure.endSeason === null || tenure.endSeason >= 2025)) {
-					ownerToFranchise[regime.displayName.toLowerCase()] = franchise._id;
+					ownerToRosterId[regime.displayName.toLowerCase()] = franchise.rosterId;
 					// Also add individual names from partnerships (e.g., "Koci/Mueller" -> "koci", "mueller")
 					var parts = regime.displayName.split('/');
 					parts.forEach(function(part) {
-						ownerToFranchise[part.toLowerCase().trim()] = franchise._id;
+						ownerToRosterId[part.toLowerCase().trim()] = franchise.rosterId;
 					});
 				}
 			}
 		}
 	});
 	
-	return ownerToFranchise;
+	return ownerToRosterId;
 }
 
 /**
- * Get franchise ID for an owner name using the cuts naming convention.
+ * Get roster ID for an owner name using the cuts naming convention.
  * 
  * @param {string} ownerName - Owner name from cuts sheet
  * @param {Object} ownerMap - Map from buildOwnerMap()
- * @returns {ObjectId|null} Franchise ID or null if not found
+ * @returns {number|null} Roster ID (1-12) or null if not found
  */
-function getFranchiseId(ownerName, ownerMap) {
+function getRosterId(ownerName, ownerMap) {
 	if (!ownerName) return null;
 	return ownerMap[ownerName.toLowerCase()] || null;
+}
+
+/**
+ * Build a rosterId -> franchise ObjectId map.
+ * Useful for consumers that need to convert rosterId to ObjectId for database operations.
+ * 
+ * @param {Array} franchises - Franchise documents from Franchise.find({})
+ * @returns {Object} Map of rosterId (1-12) -> franchise ObjectId
+ */
+function buildRosterIdToFranchiseMap(franchises) {
+	var map = {};
+	franchises.forEach(function(f) {
+		map[f.rosterId] = f._id;
+	});
+	return map;
 }
 
 module.exports = {
@@ -316,5 +331,6 @@ module.exports = {
 	
 	// Owner mapping (cuts sheet uses 2025 regime names)
 	buildOwnerMap: buildOwnerMap,
-	getFranchiseId: getFranchiseId
+	getRosterId: getRosterId,
+	buildRosterIdToFranchiseMap: buildRosterIdToFranchiseMap
 };

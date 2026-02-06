@@ -534,6 +534,10 @@
   "benjamin cunningham": {
     "sleeperId": "1564"
   },
+  "bernard berrian|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Bernard Berrian"
+  },
   "bernard berrian|2009|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Bernard Berrian"
@@ -663,6 +667,10 @@
   },
   "brandon marshall|2015|type:trade|quinn": {
     "sleeperId": "648"
+  },
+  "braylon edwards|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Braylon Edwards"
   },
   "braylon edwards|2008|type:rfa-conversion|koci": {
     "sleeperId": null,
@@ -1595,6 +1603,10 @@
   "derrick henry|2019|type:trade|trevor": {
     "sleeperId": "3198"
   },
+  "derrick mason|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Derrick Mason"
+  },
   "derrick mason|2008|type:rfa-conversion|patrick": {
     "sleeperId": null,
     "name": "Derrick Mason"
@@ -1683,6 +1695,10 @@
   },
   "devin smith|2015|type:draft|john/zach": {
     "sleeperId": "2342"
+  },
+  "devin thomas|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Devin Thomas"
   },
   "devin thomas|2009|type:cut|koci/mueller": {
     "sleeperId": null,
@@ -2963,6 +2979,10 @@
   "justin blackmon|2012|type:trade|jake/luke": {
     "sleeperId": "1114"
   },
+  "justin fargas|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Justin Fargas"
+  },
   "justin fargas|2008|type:rfa-conversion|patrick": {
     "sleeperId": null,
     "name": "Justin Fargas"
@@ -4130,6 +4150,10 @@
     "sleeperId": null,
     "name": "Nate Freese"
   },
+  "nate kaeding|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Nate Kaeding"
+  },
   "nate kaeding|2010|type:cut|koci/mueller": {
     "sleeperId": null,
     "name": "Nate Kaeding"
@@ -4327,6 +4351,10 @@
   "pat chung|2011|type:rfa-conversion|john": {
     "sleeperId": null,
     "name": "Pat Chung"
+  },
+  "patrick crayton|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Patrick Crayton"
   },
   "patrick crayton|2009|type:rfa-conversion|patrick": {
     "sleeperId": null,
@@ -4686,6 +4714,10 @@
   },
   "roman harper|2012|type:trade|keyon": {
     "sleeperId": "26"
+  },
+  "ronald curry|2008|type:auction|patrick": {
+    "sleeperId": null,
+    "name": "Ronald Curry"
   },
   "ronald curry|2008|type:rfa-conversion|patrick": {
     "sleeperId": null,
