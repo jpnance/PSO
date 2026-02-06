@@ -1,8 +1,8 @@
 /**
- * Player State Machine - Traverse and Infer
+ * Player State Machine - Validate and Fix
  * 
  * Walks each player's transaction chain chronologically, tracking state
- * and identifying gaps where transactions need to be inferred.
+ * and identifying gaps where transitions are invalid.
  * 
  * States:
  *   - available: in free agent pool
@@ -10,10 +10,10 @@
  *   - rfa-held: RFA rights held by a franchise (not rostered)
  * 
  * Usage:
- *   node data/analysis/player-chains.js --report
- *   node data/analysis/player-chains.js --player="Patrick Mahomes"
- *   node data/analysis/player-chains.js --infer --dry-run
- *   node data/analysis/player-chains.js --infer
+ *   node data/analysis/player-chains.js --report           # Report issues
+ *   node data/analysis/player-chains.js --player="Name"    # Debug single player
+ *   node data/analysis/player-chains.js --fix --dry-run    # Preview fixes
+ *   node data/analysis/player-chains.js --fix              # Insert unknown transactions
  */
 
 require('dotenv').config();
@@ -87,6 +87,14 @@ var TRANSITIONS = {
 	'rfa-rights-lapsed': {
 		valid: [STATES.RFA_HELD], // RFA rights not exercised
 		result: STATES.AVAILABLE
+	},
+	'rfa-unknown': {
+		valid: [STATES.AVAILABLE], // Player was cut, RFA status unknown (pre-2014)
+		result: STATES.AVAILABLE   // Stays available - we don't know what happened
+	},
+	'unknown': {
+		valid: [STATES.AVAILABLE, STATES.ROSTERED, STATES.RFA_HELD], // Can transition from any state
+		result: 'dynamic' // Result depends on what's needed next
 	},
 	
 	// Trades: can happen while rostered or rfa-held
@@ -319,6 +327,84 @@ function walkPlayerChain(player, transactions) {
 }
 
 // =============================================================================
+// Fix Mode - Insert unknown transactions to fill gaps
+// =============================================================================
+
+/**
+ * Determine what state is required for a transaction to be valid.
+ */
+function getRequiredState(txType, direction) {
+	if (txType === 'fa') {
+		return direction === 'to' ? STATES.AVAILABLE : STATES.ROSTERED;
+	}
+	
+	var transition = TRANSITIONS[txType];
+	if (!transition || !transition.valid || transition.valid === 'dynamic') {
+		return null;
+	}
+	
+	// Return the first valid state (most common case)
+	return transition.valid[0];
+}
+
+/**
+ * Fix a player's chain by inserting unknown transactions.
+ * Returns array of unknown transactions to create.
+ */
+function fixPlayerChain(player, transactions) {
+	var state = STATES.AVAILABLE;
+	var franchiseId = null;
+	var fixes = [];
+	
+	for (var i = 0; i < transactions.length; i++) {
+		var tx = transactions[i];
+		var effect = getTransactionEffect(tx, player._id);
+		
+		if (!effect) continue;
+		
+		var transition = TRANSITIONS[effect.type];
+		if (!transition) continue;
+		
+		// Determine required state for this transaction
+		var requiredState = getRequiredState(effect.type, effect.direction);
+		
+		if (requiredState && state !== requiredState) {
+			// Need to insert unknown to bridge the gap
+			// Timestamp slightly before the transaction
+			var fixTimestamp = new Date(tx.timestamp.getTime() - 1000);
+			
+			fixes.push({
+				type: 'unknown',
+				timestamp: fixTimestamp,
+				source: 'snapshot',
+				playerId: player._id,
+				franchiseId: effect.franchiseId, // Best guess
+				notes: 'Auto-inserted: ' + state + ' → ' + requiredState + ' (before ' + effect.type + ')'
+			});
+			
+			state = requiredState;
+		}
+		
+		// Calculate new state (simplified - just track what we can)
+		if (effect.type === 'fa') {
+			state = effect.direction === 'to' ? STATES.ROSTERED : STATES.AVAILABLE;
+			franchiseId = effect.direction === 'to' ? effect.franchiseId : null;
+		} else if (transition.result && transition.result !== 'dynamic') {
+			if (typeof transition.result === 'function') {
+				state = transition.result(tx, player._id, state);
+			} else {
+				state = transition.result;
+			}
+			if (effect.direction === 'to') {
+				franchiseId = effect.franchiseId;
+			}
+		}
+	}
+	
+	return fixes;
+}
+
+// =============================================================================
 // Main
 // =============================================================================
 
@@ -327,6 +413,8 @@ async function run() {
 	
 	var args = process.argv.slice(2);
 	var reportMode = args.includes('--report');
+	var fixMode = args.includes('--fix');
+	var dryRun = args.includes('--dry-run');
 	var playerArg = args.find(function(a) { return a.startsWith('--player='); });
 	var targetPlayer = playerArg ? playerArg.split('=')[1] : null;
 	
@@ -353,6 +441,7 @@ async function run() {
 	var invalidCount = 0;
 	var issuesByType = {};
 	var examples = [];
+	var allFixes = [];
 	
 	for (var i = 0; i < playerIds.length; i++) {
 		var playerId = playerIds[i];
@@ -381,6 +470,15 @@ async function run() {
 					});
 				}
 			});
+			
+			// In fix mode, generate fixes for this player
+			if (fixMode) {
+				var fixes = fixPlayerChain(player, transactions);
+				fixes.forEach(function(fix) {
+					fix.playerName = player.name;
+					allFixes.push(fix);
+				});
+			}
 		}
 		
 		if (targetPlayer) {
@@ -420,9 +518,35 @@ async function run() {
 					' (' + ex.issue.timestamp.toISOString().slice(0, 10) + ')');
 			});
 		}
+		
+		// Fix mode - create unknown transactions
+		if (fixMode && allFixes.length > 0) {
+			console.log('\n=== Fix Mode ===');
+			console.log('Fixes to create:', allFixes.length);
+			
+			if (dryRun) {
+				console.log('[DRY RUN] Would create:');
+				allFixes.slice(0, 20).forEach(function(fix) {
+					console.log('  ' + fix.playerName + ': ' + fix.notes);
+				});
+				if (allFixes.length > 20) {
+					console.log('  ... and', allFixes.length - 20, 'more');
+				}
+			} else {
+				var created = 0;
+				for (var j = 0; j < allFixes.length; j++) {
+					var fix = allFixes[j];
+					delete fix.playerName; // Remove display-only field
+					await Transaction.create(fix);
+					created++;
+				}
+				console.log('Created', created, 'unknown transactions');
+			}
+		}
 	}
 	
 	await mongoose.disconnect();
+	process.exit(invalidCount > 0 && !fixMode ? 1 : 0);
 }
 
 run().catch(function(err) {

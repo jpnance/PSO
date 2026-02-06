@@ -73,6 +73,8 @@ var transactionSchema = new Schema({
 			'auction-rfa-unmatched',
 			'rfa-rights-conversion',  // contract expired, RFA rights conveyed to franchise (2-3 year contracts)
 			'rfa-rights-lapsed',      // RFA rights expired (player not brought up at auction)
+			'rfa-unknown',            // player was cut mid-season, end-of-season status unknown (pre-2014)
+			'unknown',                // gap in data - we know the player ended up somewhere but not how
 			'contract-expiry',        // contract expired, player becomes UFA (1-year or FA contracts)
 			'contract'
 		],

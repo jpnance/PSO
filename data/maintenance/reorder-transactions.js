@@ -146,6 +146,7 @@ function getTransactionFranchise(txn, playerId) {
 function buildCutsOrderMap(regimes, franchises) {
 	var allCuts = cutFacts.loadAll();
 	var ownerMap = cutFacts.buildOwnerMap(regimes, franchises);
+	var rosterIdToFranchise = cutFacts.buildRosterIdToFranchiseMap(franchises);
 	
 	var orderMap = {};
 	var yearCounts = {};
@@ -157,7 +158,8 @@ function buildCutsOrderMap(regimes, franchises) {
 			yearCounts[year] = 0;
 		}
 		
-		var franchiseId = cutFacts.getFranchiseId(cut.owner, ownerMap);
+		var rosterId = cutFacts.getRosterId(cut.owner, ownerMap);
+		var franchiseId = rosterId ? rosterIdToFranchise[rosterId] : null;
 		if (!franchiseId) return;
 		
 		var key = cut.name.toLowerCase() + '|' + franchiseId.toString();
