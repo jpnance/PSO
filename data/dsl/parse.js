@@ -41,6 +41,12 @@ var PATTERNS = {
 	// YY trade NUMBER -> OWNER
 	trade: /^(\d{2})\s+trade\s+(\d+)\s+->\s+(\S+)$/,
 	
+	// YY expansion OWNER from ORIGINAL_OWNER
+	expansion: /^(\d{2})\s+expansion\s+(\S+)\s+from\s+(\S+)$/,
+	
+	// YY expansion-protect OWNER [(RFA)]
+	expansionProtect: /^(\d{2})\s+expansion-protect\s+(\S+)(?:\s+\(RFA\))?$/,
+	
 	// YY cut
 	cut: /^(\d{2})\s+cut$/,
 	
@@ -185,6 +191,27 @@ function parseTransaction(line, lineNum) {
 			season: toFullYear(match[1]),
 			tradeId: parseInt(match[2]),
 			owner: match[3],
+			line: lineNum
+		};
+	}
+	
+	// expansion
+	if ((match = line.match(PATTERNS.expansion))) {
+		return {
+			type: 'expansion',
+			season: toFullYear(match[1]),
+			owner: match[2],
+			fromOwner: match[3],
+			line: lineNum
+		};
+	}
+	
+	// expansion-protect
+	if ((match = line.match(PATTERNS.expansionProtect))) {
+		return {
+			type: 'expansion-protect',
+			season: toFullYear(match[1]),
+			owner: match[2],
 			line: lineNum
 		};
 	}

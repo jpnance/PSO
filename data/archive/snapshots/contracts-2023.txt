@@ -38,7 +38,7 @@ ID,Owner,Name,Position,Start,End,Salary
 8183,Keyon,Brock Purdy,QB,2023,2024,$88
 9228,Keyon,Bryce Young,QB,2023,2025,$30
 4081,Schex,Budda Baker,DB,2022,2024,$6
--1,Quinn,C.J. Gardner-Johnson,DB,2023,2023,$1
+5893,Quinn,C.J. Gardner-Johnson,DB,2023,2023,$1
 743,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
 9758,Brett,C.J. Stroud,QB,2023,2025,$30
 8111,Justin,Cade Otton,TE,2022,2024,$1
@@ -215,7 +215,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6770,Mike,Joe Burrow,QB,2023,2024,$355
 4018,Jason,Joe Mixon,RB,2023,2024,$95
 3156,Schex,Joey Bosa,DL,2023,2023,$5
--1,Brett,Joey Porter,DB,2023,2024,$1
+10913,Brett,Joey Porter,DB,2023,2024,$1
 8147,Jason,John Metchie,WR,2022,2024,$1
 10225,Patrick,Jonathan Mingo,WR,2023,2025,$8
 6813,Schex,Jonathan Taylor,RB,2023,2024,$198
@@ -350,7 +350,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4866,Quinn,Saquon Barkley,RB,2021,2023,$245
 8290,Brett,Sauce Gardner,DB,2022,2023,$1
 9506,Schex,Sean Tucker,RB,2023,2025,$4
--1,Patrick,Shaq Thompson,LB,2023,2023,$1
+2330,Patrick,Shaq Thompson,LB,2023,2023,$1
 4990,Schex,Shaquille Leonard,LB,2023,2025,$2
 8168,Mitch,Skyy Moore,WR,2022,2024,$16
 2449,Quinn,Stefon Diggs,WR,2023,2024,$180

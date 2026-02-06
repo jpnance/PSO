@@ -13,95 +13,104 @@
 
 var fs = require('fs');
 var path = require('path');
-var { execSync } = require('child_process');
 
 var DSL_FILE = path.join(__dirname, 'player-history.dsl');
 var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
-var CUTS_FILE = path.join(__dirname, '../cuts/cuts.json');
-var SLEEPER_FILE = path.join(__dirname, '../../public/data/sleeper-data.json');
 var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
 
-/**
- * Load Sleeper data (ESPN ID -> Sleeper ID mapping)
- */
-function loadSleeperMap() {
-	var cmd = 'jq -r \'to_entries[] | select(.value.espn_id != null) | "\\(.value.espn_id)\\t\\(.key)\\t\\(.value.full_name)"\' ' + SLEEPER_FILE;
-	var output = execSync(cmd, { encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
-	
-	var map = {};
-	output.trim().split('\n').forEach(function(line) {
-		var parts = line.split('\t');
-		if (parts.length >= 3) {
-			map[parts[0]] = { sleeperId: parts[1], name: parts[2] };
-		}
-	});
-	return map;
-}
 
 /**
  * Load draft picks
- * Returns: { "playerName|season": { round, pick, owner } }
+ * Returns: { bySleeperId: {...}, byName: {...} }
  */
 function loadDrafts() {
 	var drafts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
-	var map = {};
+	var bySleeperId = {};
+	var byName = {};
 	
 	drafts.forEach(function(d) {
-		// Key by normalized name + season
-		var key = d.playerName.toLowerCase() + '|' + d.season;
-		map[key] = {
+		var entry = {
 			season: d.season,
 			round: d.round,
 			pick: d.pickNumber,
 			owner: d.owner
 		};
+		
+		// Key by sleeperId + season if available
+		if (d.sleeperId) {
+			var key = d.sleeperId + '|' + d.season;
+			bySleeperId[key] = entry;
+		}
+		
+		// Also key by name + season as fallback
+		var nameKey = d.playerName.toLowerCase() + '|' + d.season;
+		byName[nameKey] = entry;
 	});
 	
-	return map;
+	return { bySleeperId: bySleeperId, byName: byName };
 }
 
 /**
  * Load trades
- * Returns: { espnId: [{ tradeId, year, toOwner }, ...] }
+ * Returns: { bySleeperId: {...}, byName: {...} }
  */
 function loadTrades() {
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
-	var map = {};
+	var bySleeperId = {};
+	var byName = {};
 	
 	trades.forEach(function(trade) {
 		var year = new Date(trade.date).getFullYear();
 		
 		trade.parties.forEach(function(party) {
 			(party.players || []).forEach(function(player) {
-				if (!player.espnId) return;
-				
-				if (!map[player.espnId]) {
-					map[player.espnId] = [];
-				}
-				map[player.espnId].push({
+				var entry = {
 					tradeId: trade.tradeId,
 					year: year,
 					date: trade.date,
 					toOwner: party.owner
-				});
+				};
+				
+				// Track sleeperId in entry for filtering
+			entry.sleeperId = player.sleeperId || null;
+			
+			if (player.sleeperId) {
+				if (!bySleeperId[player.sleeperId]) {
+					bySleeperId[player.sleeperId] = [];
+				}
+				bySleeperId[player.sleeperId].push(entry);
+			}
+			
+			// Add all to byName (will filter by sleeperId at lookup time)
+			if (player.name) {
+				var nameKey = player.name.toLowerCase();
+				if (!byName[nameKey]) {
+					byName[nameKey] = [];
+				}
+				byName[nameKey].push(entry);
+			}
 			});
 		});
 	});
 	
-	// Sort each player's trades by date
-	Object.keys(map).forEach(function(espnId) {
-		map[espnId].sort(function(a, b) {
+	// Sort by date
+	function sortByDate(arr) {
+		arr.sort(function(a, b) {
 			return new Date(a.date) - new Date(b.date);
 		});
-	});
+	}
 	
-	return map;
+	Object.keys(bySleeperId).forEach(function(k) { sortByDate(bySleeperId[k]); });
+	Object.keys(byName).forEach(function(k) { sortByDate(byName[k]); });
+	
+	return { bySleeperId: bySleeperId, byName: byName };
 }
 
 /**
  * Parse all contract snapshots
- * Returns: { espnId: { name, positions, appearances: [{ year, owner, salary, startYear, endYear }, ...] } }
+ * Snapshots now have Sleeper IDs in the ID column (or -1 for historical)
+ * Returns: { sleeperId: { name, positions, appearances: [...] } }
  */
 function parseSnapshots() {
 	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
@@ -120,7 +129,7 @@ function parseSnapshots() {
 			var parts = lines[i].split(',');
 			if (parts.length < 7) continue;
 			
-			var espnId = parts[0];
+			var id = parts[0];  // Now Sleeper ID (or -1 for historical)
 			var owner = parts[1];
 			var name = parts[2];
 			var position = parts[3];
@@ -130,11 +139,26 @@ function parseSnapshots() {
 			var salary = salaryStr ? parseInt(salaryStr) : 1;
 			if (isNaN(salary)) salary = 1;
 			
-			// Skip placeholder IDs
-			if (!espnId || espnId === '-1' || espnId === '') continue;
+			// Skip empty IDs
+			if (!id || id === '') continue;
 			
 			// Skip unrostered players (no owner)
 			if (!owner) continue;
+			
+			// Strip team hints like "(NO)" for consistent keying
+			var baseName = name.replace(/\s*\([^)]+\)\s*$/, '').trim();
+			
+			// Determine player key:
+			// - Valid Sleeper ID: use directly
+			// - Historical (-1): use name-based key
+			var playerKey;
+			var sleeperId = null;
+			if (id !== '-1') {
+				playerKey = id;
+				sleeperId = id;
+			} else {
+				playerKey = 'historical:' + baseName.toLowerCase();
+			}
 			
 			// Split position on / if needed
 			var positionList = position ? position.split('/') : [];
@@ -147,30 +171,81 @@ function parseSnapshots() {
 				endYear: endYear
 			};
 			
-			if (!players[espnId]) {
-				players[espnId] = {
-					espnId: espnId,
+			if (!players[playerKey]) {
+				players[playerKey] = {
+					sleeperId: sleeperId,
 					name: name,
+					baseName: baseName,
 					positions: positionList.slice(),
-					appearances: [appearance]
+					appearances: [appearance],
+					nameVariants: [name]
 				};
 			} else {
-				players[espnId].appearances.push(appearance);
+				players[playerKey].appearances.push(appearance);
 				// Merge positions (avoid duplicates)
 				positionList.forEach(function(pos) {
-					if (pos && !players[espnId].positions.includes(pos)) {
-						players[espnId].positions.push(pos);
+					if (pos && !players[playerKey].positions.includes(pos)) {
+						players[playerKey].positions.push(pos);
 					}
+				});
+				// Track name variants
+				if (!players[playerKey].nameVariants.includes(name)) {
+					players[playerKey].nameVariants.push(name);
+				}
+			}
+		}
+	});
+	
+	// Check for name collisions (multiple different players merged into same key)
+	var collisions = [];
+	Object.keys(players).forEach(function(key) {
+		var player = players[key];
+		if (key.startsWith('name:') && player.nameVariants.length > 1) {
+			// Check if variants are actually different players (not just team hints)
+			var uniqueBaseNames = [];
+			player.nameVariants.forEach(function(v) {
+				var base = v.replace(/\s*\([^)]+\)\s*$/, '').trim().toLowerCase();
+				if (!uniqueBaseNames.includes(base)) {
+					uniqueBaseNames.push(base);
+				}
+			});
+			if (uniqueBaseNames.length > 1) {
+				collisions.push({
+					key: key,
+					variants: player.nameVariants
 				});
 			}
 		}
 	});
 	
-	// Sort appearances by year for each player
-	Object.keys(players).forEach(function(espnId) {
-		players[espnId].appearances.sort(function(a, b) {
+	if (collisions.length > 0) {
+		console.log('\n=== NAME COLLISIONS DETECTED ===');
+		collisions.forEach(function(c) {
+			console.log('  ' + c.key + ': ' + c.variants.join(', '));
+		});
+		console.log('These players may be incorrectly merged. Add ESPN IDs or disambiguate in snapshots.\n');
+	}
+	
+	// Sort appearances by year and dedupe (keep last per year - reflects post-trade state)
+	Object.keys(players).forEach(function(key) {
+		var appearances = players[key].appearances;
+		appearances.sort(function(a, b) {
 			return a.year - b.year;
 		});
+		
+		// Dedupe by year - keep last appearance for each year
+		var deduped = [];
+		var lastYear = null;
+		for (var i = 0; i < appearances.length; i++) {
+			if (appearances[i].year === lastYear) {
+				// Same year - replace previous with this one
+				deduped[deduped.length - 1] = appearances[i];
+			} else {
+				deduped.push(appearances[i]);
+				lastYear = appearances[i].year;
+			}
+		}
+		players[key].appearances = deduped;
 	});
 	
 	return players;
@@ -185,10 +260,163 @@ function yy(year) {
 }
 
 /**
+ * Build regime transitions from franchiseNames config
+ * Returns: { "oldName|newName": transitionYear }
+ */
+var PSO = require('../../config/pso.js');
+
+function buildRegimeTransitions() {
+	var transitions = {};
+	
+	Object.keys(PSO.franchiseNames).forEach(function(franchiseId) {
+		var yearMap = PSO.franchiseNames[franchiseId];
+		var years = Object.keys(yearMap).map(Number).sort(function(a, b) { return a - b; });
+		
+		for (var i = 1; i < years.length; i++) {
+			var prevYear = years[i - 1];
+			var currYear = years[i];
+			var prevName = yearMap[prevYear];
+			var currName = yearMap[currYear];
+			
+			if (prevName !== currName) {
+				var key = prevName.toLowerCase() + '|' + currName.toLowerCase();
+				transitions[key] = currYear;
+			}
+		}
+	});
+	
+	return transitions;
+}
+
+var REGIME_TRANSITIONS = buildRegimeTransitions();
+
+var EXPANSION_DRAFT_FILE = path.join(__dirname, '../archive/sources/txt/expansion-draft-2012.txt');
+var EXPANSION_PROTECTIONS_FILE = path.join(__dirname, '../archive/sources/txt/expansion-draft-protections-2012.txt');
+
+/**
+ * Load 2012 expansion draft selections
+ * Returns: { "playerName": { toOwner, fromOwner, pick, round } }
+ */
+function loadExpansionSelections() {
+	var content = fs.readFileSync(EXPANSION_DRAFT_FILE, 'utf8');
+	var lines = content.trim().split('\n');
+	var selections = {};
+	
+	// Skip header
+	for (var i = 1; i < lines.length; i++) {
+		var parts = lines[i].split(',');
+		if (parts.length < 5) continue;
+		
+		var pick = parseInt(parts[0]);
+		var round = parseInt(parts[1]);
+		var toOwner = parts[2].trim();
+		var playerName = parts[3].trim();
+		var fromOwner = parts[4].trim();
+		
+		selections[playerName.toLowerCase()] = {
+			toOwner: toOwner,
+			fromOwner: fromOwner,
+			pick: pick,
+			round: round
+		};
+	}
+	
+	return selections;
+}
+
+/**
+ * Load 2012 expansion draft protections
+ * Returns: { "playerName": { owner, isRfa } }
+ */
+function loadExpansionProtections() {
+	var content = fs.readFileSync(EXPANSION_PROTECTIONS_FILE, 'utf8');
+	var lines = content.trim().split('\n');
+	var protections = {};
+	
+	for (var i = 0; i < lines.length; i++) {
+		var line = lines[i].trim();
+		if (!line || line.startsWith('#')) continue;
+		
+		// Format: Owner (ID): Player1, Player2 (RFA), Player3, Player4
+		var match = line.match(/^([^(]+)\s*\(\d+\):\s*(.+)$/);
+		if (!match) continue;
+		
+		var owner = match[1].trim();
+		var playersStr = match[2];
+		
+		// Split by comma and parse each player
+		var players = playersStr.split(',');
+		for (var j = 0; j < players.length; j++) {
+			var playerStr = players[j].trim();
+			var isRfa = playerStr.includes('(RFA)');
+			var playerName = playerStr.replace(/\s*\(RFA\)\s*/g, '').trim();
+			
+			protections[playerName.toLowerCase()] = {
+				owner: owner,
+				isRfa: isRfa
+			};
+		}
+	}
+	
+	return protections;
+}
+
+var EXPANSION_SELECTIONS_2012 = loadExpansionSelections();
+var EXPANSION_PROTECTIONS_2012 = loadExpansionProtections();
+
+/**
+ * Check if an owner change is just a regime transition (same franchise)
+ */
+function isRegimeTransition(oldOwner, newOwner, oldYear, newYear) {
+	var key = oldOwner.toLowerCase() + '|' + newOwner.toLowerCase();
+	var transitionYear = REGIME_TRANSITIONS[key];
+	
+	if (transitionYear && newYear >= transitionYear) {
+		return true;
+	}
+	
+	return false;
+}
+
+/**
+ * Check if two regime names are the same franchise (via transition)
+ */
+function sameRegime(owner1, owner2, year) {
+	if (owner1.toLowerCase() === owner2.toLowerCase()) return true;
+	
+	// Check if there's a regime transition between them
+	var key1 = owner1.toLowerCase() + '|' + owner2.toLowerCase();
+	var key2 = owner2.toLowerCase() + '|' + owner1.toLowerCase();
+	
+	if (REGIME_TRANSITIONS[key1] && REGIME_TRANSITIONS[key1] <= year) return true;
+	if (REGIME_TRANSITIONS[key2] && REGIME_TRANSITIONS[key2] <= year) return true;
+	
+	// Handle partial matches (Koci vs Koci/Mueller)
+	if (owner1.toLowerCase().includes(owner2.toLowerCase()) ||
+		owner2.toLowerCase().includes(owner1.toLowerCase())) {
+		return true;
+	}
+	
+	return false;
+}
+
+/**
  * Find a trade that explains an owner change
  */
-function findTrade(espnId, fromYear, toOwner, tradesMap) {
-	var trades = tradesMap[espnId];
+function findTrade(sleeperId, playerName, fromYear, toOwner, tradesMap) {
+	// Try by Sleeper ID first
+	var trades = tradesMap.bySleeperId[sleeperId];
+	
+	// Fallback to name if no Sleeper ID match
+	if (!trades && playerName) {
+		// Strip team hints like "(NO)" from name
+		var baseName = playerName.replace(/\s*\([^)]+\)\s*$/, '').trim();
+		trades = tradesMap.byName[playerName.toLowerCase()];
+		if (!trades) {
+			trades = tradesMap.byName[baseName.toLowerCase()];
+		}
+	}
+	
 	if (!trades) return null;
 	
 	// Look for a trade to this owner around this time
@@ -196,13 +424,8 @@ function findTrade(espnId, fromYear, toOwner, tradesMap) {
 		var trade = trades[i];
 		// Trade should be in the year before or same year as the appearance
 		if (trade.year >= fromYear - 1 && trade.year <= fromYear) {
-			// Check if owner matches (case-insensitive, handle regime name variations)
-			if (trade.toOwner.toLowerCase() === toOwner.toLowerCase()) {
-				return trade;
-			}
-			// Handle regime transitions (e.g., "Koci" -> "Koci/Mueller")
-			if (toOwner.toLowerCase().includes(trade.toOwner.toLowerCase()) ||
-				trade.toOwner.toLowerCase().includes(toOwner.toLowerCase())) {
+			// Check if owner matches (considering regime transitions)
+			if (sameRegime(trade.toOwner, toOwner, fromYear)) {
 				return trade;
 			}
 		}
@@ -246,8 +469,28 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 			});
 		}
 		
-		// Check for contract changes
-		if (contractKey !== prevContractKey) {
+		// Check for expansion draft (2012) - before other checks
+		// If player was selected in expansion draft and now appears on expansion team
+		var expansionPick = EXPANSION_SELECTIONS_2012[player.name.toLowerCase()];
+		var isExpansionPick = expansionPick && app.year === 2012 && 
+			sameRegime(app.owner, expansionPick.toOwner, 2012) &&
+			sameRegime(prevAppearance.owner, expansionPick.fromOwner, 2011);
+		
+		if (isExpansionPick) {
+			transactions.push({
+				year: 2012,
+				type: 'expansion',
+				line: '  12 expansion ' + expansionPick.toOwner + ' from ' + expansionPick.fromOwner
+			});
+			// If contract also changed, add the auction after
+			if (contractKey !== prevContractKey && app.startYear === app.year) {
+				transactions.push({
+					year: app.year,
+					type: 'auction',
+					line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+				});
+			}
+		} else if (contractKey !== prevContractKey) {
 			// New contract
 			if (app.startYear === null) {
 				// FA pickup
@@ -272,19 +515,40 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 				});
 			}
 		} else if (app.owner !== prevAppearance.owner) {
-			// Same contract but different owner - look for trade
-			var trade = findTrade(player.espnId, app.year, app.owner, tradesMap);
-			if (trade) {
-				transactions.push({
-					year: trade.year,
-					type: 'trade',
-					line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + app.owner
-				});
+			// Same contract but different owner
+			// Check if this is just a regime transition (same franchise, name changed)
+			if (isRegimeTransition(prevAppearance.owner, app.owner, prevAppearance.year, app.year)) {
+				// Skip - not a real ownership change
 			} else {
+				// Look for trade
+				var trade = findTrade(player.sleeperId, player.name, app.year, app.owner, tradesMap);
+				if (trade) {
+					transactions.push({
+						year: trade.year,
+						type: 'trade',
+						line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
+					});
+				} else {
+					transactions.push({
+						year: app.year,
+						type: 'unknown',
+						line: '  ' + yy(app.year) + ' unknown ' + app.owner + '  # owner changed, no trade found'
+					});
+				}
+			}
+		}
+		
+		// Check for expansion protection (2012)
+		// Add if player was protected and still with same owner in 2012
+		var protection = EXPANSION_PROTECTIONS_2012[player.name.toLowerCase()];
+		if (protection && app.year === 2012 && sameRegime(app.owner, protection.owner, 2012)) {
+			// Only add if we haven't already added a protection for this player
+			var hasProtection = transactions.some(function(t) { return t.type === 'expansion-protect'; });
+			if (!hasProtection) {
 				transactions.push({
-					year: app.year,
-					type: 'unknown',
-					line: '  ' + yy(app.year) + ' unknown ' + app.owner + '  # owner changed, no trade found'
+					year: 2012,
+					type: 'expansion-protect',
+					line: '  12 expansion-protect ' + protection.owner + (protection.isRfa ? ' (RFA)' : '')
 				});
 			}
 		}
@@ -292,6 +556,52 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 		prevContractKey = contractKey;
 		prevAppearance = app;
 	}
+	
+	// Add expansion pick if player was selected (unconditionally)
+	var expansionPick = EXPANSION_SELECTIONS_2012[player.name.toLowerCase()];
+	if (!expansionPick) {
+		// Try base name without team hints
+		var baseName = player.name.replace(/\s*\([^)]+\)\s*$/, '').trim();
+		expansionPick = EXPANSION_SELECTIONS_2012[baseName.toLowerCase()];
+	}
+	if (expansionPick) {
+		var hasExpansion = transactions.some(function(t) { return t.type === 'expansion'; });
+		if (!hasExpansion) {
+			transactions.push({
+				year: 2012,
+				type: 'expansion',
+				line: '  12 expansion ' + expansionPick.toOwner + ' from ' + expansionPick.fromOwner
+			});
+		}
+	}
+	
+	// Add all trades for this player from trades.json
+	// Get trades by sleeperId if available, otherwise by name (for historical players only)
+	var playerTrades = [];
+	if (player.sleeperId) {
+		playerTrades = tradesMap.bySleeperId[player.sleeperId] || [];
+	} else {
+		// Historical player - match trades by name that also have sleeperId: null
+		var baseName = player.name.replace(/\s*\([^)]+\)\s*$/, '').trim();
+		var nameTrades = tradesMap.byName[player.name.toLowerCase()] || 
+		                 tradesMap.byName[baseName.toLowerCase()] || [];
+		playerTrades = nameTrades.filter(function(t) { return t.sleeperId === null; });
+	}
+	playerTrades.forEach(function(trade) {
+		var hasTrade = transactions.some(function(t) { 
+			return t.type === 'trade' && t.line.includes('trade ' + trade.tradeId + ' '); 
+		});
+		if (!hasTrade) {
+			transactions.push({
+				year: trade.year,
+				type: 'trade',
+				line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
+			});
+		}
+	});
+	
+	// Sort transactions by year
+	transactions.sort(function(a, b) { return a.year - b.year; });
 	
 	return transactions;
 }
@@ -306,9 +616,16 @@ function determineEntryTransaction(player, app, draftsMap) {
 	var salary = app.salary;
 	var owner = app.owner;
 	
-	// Check if player was drafted
-	var draftKey = player.name.toLowerCase() + '|' + startYear;
-	var draftInfo = draftsMap[draftKey];
+	// Check if player was drafted - try sleeperId first, then name
+	var draftInfo = null;
+	if (player.sleeperId && startYear) {
+		var sleeperKey = player.sleeperId + '|' + startYear;
+		draftInfo = draftsMap.bySleeperId[sleeperKey];
+	}
+	if (!draftInfo && startYear) {
+		var nameKey = player.baseName.toLowerCase() + '|' + startYear;
+		draftInfo = draftsMap.byName[nameKey];
+	}
 	
 	if (draftInfo) {
 		// We have draft data for this player
@@ -345,20 +662,14 @@ function determineEntryTransaction(player, app, draftsMap) {
 /**
  * Format player header
  */
-function formatHeader(player, sleeperMap) {
+function formatHeader(player) {
 	var parts = [player.name, player.positions.join('/')];
 	
 	// Add Sleeper ID if available
-	var sleeperInfo = sleeperMap[player.espnId];
-	if (sleeperInfo) {
-		parts.push('sleeper:' + sleeperInfo.sleeperId);
-	}
-	
-	// Add ESPN ID
-	parts.push('espn:' + player.espnId);
-	
-	// Mark as historical if not in Sleeper
-	if (!sleeperInfo) {
+	if (player.sleeperId) {
+		parts.push('sleeper:' + player.sleeperId);
+	} else {
+		// Mark as historical if not in Sleeper
 		parts.push('historical');
 	}
 	
@@ -369,25 +680,21 @@ function formatHeader(player, sleeperMap) {
  * Generate DSL content
  */
 function generateDSL() {
-	console.log('Loading Sleeper data...');
-	var sleeperMap = loadSleeperMap();
-	console.log('  ' + Object.keys(sleeperMap).length + ' players with ESPN IDs\n');
-	
 	console.log('Loading draft data...');
 	var draftsMap = loadDrafts();
-	console.log('  ' + Object.keys(draftsMap).length + ' draft picks\n');
+	console.log('  ' + Object.keys(draftsMap.bySleeperId).length + ' by Sleeper ID, ' + Object.keys(draftsMap.byName).length + ' by name\n');
 	
 	console.log('Loading trades...');
 	var tradesMap = loadTrades();
-	console.log('  ' + Object.keys(tradesMap).length + ' players with trades\n');
+	console.log('  ' + Object.keys(tradesMap.bySleeperId).length + ' by Sleeper ID, ' + Object.keys(tradesMap.byName).length + ' by name\n');
 	
 	console.log('Parsing snapshots...');
 	var players = parseSnapshots();
-	var espnIds = Object.keys(players);
-	console.log('  ' + espnIds.length + ' players found\n');
+	var playerKeys = Object.keys(players);
+	console.log('  ' + playerKeys.length + ' players found\n');
 	
 	// Sort players by name
-	espnIds.sort(function(a, b) {
+	playerKeys.sort(function(a, b) {
 		return players[a].name.localeCompare(players[b].name);
 	});
 	
@@ -433,10 +740,10 @@ function generateDSL() {
 	lines.push('');
 	
 	// Generate player entries
-	espnIds.forEach(function(espnId) {
-		var player = players[espnId];
-		var header = formatHeader(player, sleeperMap);
-		var transactions = generatePlayerTransactions(player, draftsMap);
+	playerKeys.forEach(function(key) {
+		var player = players[key];
+		var header = formatHeader(player);
+		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap);
 		
 		lines.push(header);
 		transactions.forEach(function(tx) {
