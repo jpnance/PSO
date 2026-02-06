@@ -27,12 +27,11 @@ var resolver = require('../utils/player-resolver');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-// First Thursday of October 2008, 12:00:33 ET (EDT = UTC-4)
-var MIDSEASON_TIMESTAMP = new Date(Date.UTC(2008, 9, 2, 16, 0, 33));
-
-// Drops happen 1 second before pickups to ensure correct ordering
-var DROP_TIMESTAMP = new Date(MIDSEASON_TIMESTAMP.getTime() - 1000);
-var PICKUP_TIMESTAMP = MIDSEASON_TIMESTAMP;
+// First Thursday of October 2008, 12:00 ET (EDT = UTC-4)
+// Inferred transactions use :33 seconds convention
+// Drops at 12:00:33, pickups at 12:01:33 to maintain ordering
+var DROP_TIMESTAMP = new Date(Date.UTC(2008, 9, 2, 16, 0, 33));
+var PICKUP_TIMESTAMP = new Date(Date.UTC(2008, 9, 2, 16, 1, 33));
 
 var RESULTS_PATH = path.join(__dirname, '../archive/sources/html/results.html');
 var EXTRACTED_PATH = path.join(__dirname, '../archive/snapshots/extracted-all.csv');
@@ -237,7 +236,8 @@ async function run() {
 	dryRun = process.argv.includes('--dry-run');
 	
 	console.log('=== 2008 Midseason FA Seeder ===');
-	console.log('Timestamp:', MIDSEASON_TIMESTAMP.toISOString());
+	console.log('Drop timestamp:', DROP_TIMESTAMP.toISOString());
+	console.log('Pickup timestamp:', PICKUP_TIMESTAMP.toISOString());
 	if (dryRun) console.log('[DRY RUN]');
 	console.log('');
 	

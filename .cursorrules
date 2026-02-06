@@ -556,6 +556,21 @@ For ambiguous matches or missing players, the resolver supports interactive disa
 
 **Never match player names with raw `.toLowerCase()` comparisons** — external sources use inconsistent naming (suffixes, nicknames, typos).
 
+### Inferred Transaction Timestamps
+
+When seeding historical data, transactions fall into two categories:
+
+1. **Known timestamps** — From WordPress posts, Sleeper API, etc. Use the actual timestamp.
+2. **Inferred transactions** — Cuts, FA pickups, RFA conversions deduced from snapshots.
+
+**Inferred transactions always use :33 seconds** as a conventional marker. This makes them easily identifiable in the database.
+
+When multiple inferred transactions need ordering (e.g., drops before pickups), advance to the next minute but keep :33 seconds:
+- Drops: `2008-10-02T16:00:33Z`
+- Pickups: `2008-10-02T16:01:33Z`
+
+Never use :34, :35, etc. — always :33, and increment the minute for ordering.
+
 ### Game Types
 The `Game` model has a `type` field with these values:
 - `regular` — Regular season games (weeks 1-15)
