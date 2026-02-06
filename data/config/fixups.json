@@ -26,6 +26,10 @@
 	},
 	"tradeAmendments": [
 		{
+			"tradeId": 9,
+			"notes": "This trade was properly agreed to and processed but never got posted to the blog until February 5, 2026."
+		},
+		{
 			"tradeId": 35,
 			"notes": "The agreed-to version of this trade attached the following condition to the 3rd round draft pick: conditionally upgrades to a 2nd round draft pick should Patrick win a 2011 playoff game. Patrick lost in the semifinals so it remained a 3rd rounder."
 		},
