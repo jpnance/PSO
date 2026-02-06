@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Seed 2008 season transactions
+
+# Use -it only if we have a TTY
+if [ -t 0 ]; then
+  docker compose run --rm -it web node data/seed/season-2008.js "$@"
+else
+  docker compose run --rm web node data/seed/season-2008.js "$@"
+fi

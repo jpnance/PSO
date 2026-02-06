@@ -32,8 +32,9 @@ var rosterState = new RosterState();
 // 2008 auction was August 18, 2008 (9:00 AM ET = 13:00 UTC)
 var AUCTION_TIMESTAMP = new Date(Date.UTC(2008, 7, 18, 13, 0, 0));
 
-// Contract due date was August 24, 2008 (12:00 PM ET = 16:00 UTC)
-var CONTRACT_TIMESTAMP = new Date(Date.UTC(2008, 7, 24, 16, 0, 0));
+// Contract due date was August 24, 2008
+// Use end of day to ensure auction-period trades (which have real timestamps) come before contracts
+var CONTRACT_TIMESTAMP = new Date(Date.UTC(2008, 7, 24, 23, 59, 59));
 
 var RESULTS_PATH = path.join(__dirname, '../archive/sources/html/results.html');
 var SNAPSHOT_PATH = path.join(__dirname, '../archive/snapshots/contracts-2008.txt');

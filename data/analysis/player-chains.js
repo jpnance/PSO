@@ -111,7 +111,8 @@ async function getPlayerTransactions(playerId) {
 		$or: [
 			{ playerId: playerId },
 			{ 'adds.playerId': playerId },
-			{ 'drops.playerId': playerId }
+			{ 'drops.playerId': playerId },
+			{ 'parties.receives.players.playerId': playerId }
 		]
 	}).sort({ timestamp: 1 }).lean();
 	
@@ -263,6 +264,21 @@ function walkPlayerChain(player, transactions) {
 				actual: state,
 				transaction: tx
 			});
+		}
+		
+		// For trades, verify the player is moving to a DIFFERENT franchise
+		if (effect.type === 'trade' && effect.direction === 'to') {
+			var receivingFranchiseId = effect.franchiseId ? effect.franchiseId.toString() : null;
+			var currentFranchiseId = franchiseId ? franchiseId.toString() : null;
+			
+			if (receivingFranchiseId && currentFranchiseId && receivingFranchiseId === currentFranchiseId) {
+				issues.push({
+					timestamp: tx.timestamp,
+					message: 'Trade to same franchise: player already rostered here',
+					actual: state,
+					transaction: tx
+				});
+			}
 		}
 		
 		// Calculate new state

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Nuke and rebuild the database from scratch
+# 
+# Usage:
+#   runt seed-fresh                    # Full nuke and rebuild
+#   runt seed-fresh --skip-clear       # Rebuild without clearing first
+#   runt seed-fresh --validate-only    # Just validate existing data
+
+# Use -it only if we have a TTY
+if [ -t 0 ]; then
+  docker compose run --rm -it web node data/seed "$@"
+else
+  docker compose run --rm web node data/seed "$@"
+fi

@@ -47,33 +47,52 @@ function loadTrades() {
 }
 
 /**
- * Parse contract string like "2010", "2008", "FA", "unsigned".
- * Returns { startYear, endYear } or null if ambiguous.
+ * Look up a player's current contract from existing transactions.
+ * This is the chronological state - what we've already tracked.
+ * 
+ * Returns { salary, startYear, endYear } or null if not found.
  */
-function parseContractStr(contractStr, salary, tradeYear) {
-	if (!contractStr || contractStr === 'unsigned') {
-		// Pre-auction trade or unresolved
-		return { startYear: null, endYear: null, ambiguous: true };
+async function getPlayerContractState(playerId, beforeDate) {
+	// Find the most recent transaction that established this player's contract
+	// This could be: auction-ufa, contract, fa (pickup), rfa-conversion, draft-select
+	
+	var contractTxn = await Transaction.findOne({
+		playerId: playerId,
+		type: { $in: ['auction-ufa', 'contract', 'rfa-conversion', 'draft-select'] },
+		timestamp: { $lt: beforeDate }
+	}).sort({ timestamp: -1 });
+	
+	if (contractTxn) {
+		return {
+			salary: contractTxn.salary,
+			startYear: contractTxn.startYear,
+			endYear: contractTxn.endYear,
+			source: contractTxn.type
+		};
 	}
 	
-	if (contractStr === 'FA') {
-		// FA contract - single year
-		return { startYear: tradeYear, endYear: tradeYear, ambiguous: false };
+	// Check FA pickups (contract info is in the adds array)
+	var faTxn = await Transaction.findOne({
+		type: 'fa',
+		'adds.playerId': playerId,
+		timestamp: { $lt: beforeDate }
+	}).sort({ timestamp: -1 });
+	
+	if (faTxn) {
+		var add = faTxn.adds.find(function(a) {
+			return a.playerId && a.playerId.toString() === playerId.toString();
+		});
+		if (add) {
+			return {
+				salary: add.salary,
+				startYear: add.startYear,
+				endYear: add.endYear,
+				source: 'fa'
+			};
+		}
 	}
 	
-	// Parse end year (e.g., "2010")
-	var endYear = parseInt(contractStr);
-	if (isNaN(endYear)) {
-		return { startYear: null, endYear: null, ambiguous: true };
-	}
-	
-	// Infer start year based on salary and end year
-	// 1-year contracts: FA pickup style
-	// 2-3 year contracts: auction style
-	// We can't always know, so mark as potentially ambiguous
-	var startYear = tradeYear; // Best guess
-	
-	return { startYear: startYear, endYear: endYear, ambiguous: true };
+	return null;
 }
 
 /**
@@ -181,15 +200,60 @@ async function buildParties(trade) {
 			};
 			
 			var player = await resolvePlayer(playerData, context);
-			var contractInfo = parseContractStr(playerData.contractStr, playerData.salary, 2008);
+			var tradeDate = new Date(trade.date);
+			
+			// Look up player's contract from chronological state (source of truth)
+			var trackedContract = await getPlayerContractState(player._id, tradeDate);
+			
+			// Get pre-computed contract from trades.json (for validation)
+			var expectedContract = playerData.contract || {};
+			
+			// Determine contract info to use
+			var salary, startYear, endYear;
+			
+			if (trackedContract) {
+				// Use tracked state as source of truth
+				salary = trackedContract.salary;
+				startYear = trackedContract.startYear;
+				endYear = trackedContract.endYear;
+				
+				// Validate against expected contract from trades.json
+				var mismatch = false;
+				
+				// Compare start years (null === null is a match for FA contracts)
+				if (expectedContract.start !== startYear) {
+					mismatch = true;
+				}
+				if (expectedContract.end !== undefined && expectedContract.end !== endYear) {
+					mismatch = true;
+				}
+				if (playerData.salary !== undefined && playerData.salary !== salary) {
+					mismatch = true;
+				}
+				
+				if (mismatch) {
+					console.log('  WARNING: Contract mismatch for ' + playerData.name);
+					console.log('    Tracked state: $' + salary + ' (' + startYear + '/' + endYear + ') from ' + trackedContract.source);
+					console.log('    trades.json:   $' + playerData.salary + ' (' + expectedContract.start + '/' + expectedContract.end + ')');
+				}
+			} else {
+				// No tracked state - use trades.json as fallback (e.g., Trade 1 before auction)
+				salary = playerData.salary;
+				startYear = expectedContract.start;
+				endYear = expectedContract.end;
+				
+				if (trade.tradeId > 1) {
+					// After Trade 1, we should have tracked state
+					console.log('  WARNING: No tracked contract for ' + playerData.name + ' - using trades.json');
+				}
+			}
 			
 			party.receives.players.push({
 				playerId: player._id,
-				salary: playerData.salary,
-				startYear: contractInfo.startYear,
-				endYear: contractInfo.endYear,
-				rfaRights: false,
-				ambiguous: contractInfo.ambiguous
+				salary: salary,
+				startYear: startYear,
+				endYear: endYear,
+				rfaRights: false
 			});
 		}
 		

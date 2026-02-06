@@ -377,16 +377,17 @@ async function seed() {
 		var tradeDate = trade.date instanceof Date ? trade.date : new Date(trade.date);
 		
 		var convertedParties = trade.parties.map(function(party) {
-			// Convert players and run contract inference
+			// Convert players - use pre-computed contract data from trades.json
 			var convertedPlayers = (party.players || []).map(function(player) {
-				var contract = parseContract(player.contractStr, player.name, player.salary, tradeDate);
+				// Use pre-computed contract field if available, fall back to runtime inference
+				var contract = player.contract || parseContract(player.contractStr, player.name, player.salary, tradeDate);
 				return {
 					name: player.name,
 					espnId: player.espnId,
 					salary: player.salary,
-					startYear: contract.startYear,
-					endYear: contract.endYear,
-					ambiguous: contract.ambiguous
+					startYear: contract.start !== undefined ? contract.start : contract.startYear,
+					endYear: contract.end !== undefined ? contract.end : contract.endYear,
+					ambiguous: contract.source === 'ambiguous'
 				};
 			});
 			
