@@ -1,13 +1,16 @@
 /**
- * Seed 2008 trade transactions.
+ * Seed 2009 trade transactions.
  * 
- * These are the first 6 trades in league history.
- * Trade 1 is pre-auction (Aug 19) - mostly a historical record.
- * Trades 2-6 happened during the 2008 season after the auction.
+ * Supports period filtering:
+ *   --period=offseason  Trade 7 (July 29, before auction)
+ *   --period=auction    Trades 8-9 (Aug 23, Aug 31 - before contracts)
+ *   --period=inseason   Trades 10-16 (Oct-Dec, after contracts)
  * 
  * Usage:
- *   docker compose run --rm -it web node data/seed/trades-2008.js
- *   docker compose run --rm -it web node data/seed/trades-2008.js --dry-run
+ *   docker compose run --rm -it web node data/seed/trades-2009.js --period=offseason
+ *   docker compose run --rm -it web node data/seed/trades-2009.js --period=auction
+ *   docker compose run --rm -it web node data/seed/trades-2009.js --period=inseason
+ *   docker compose run --rm -it web node data/seed/trades-2009.js --dry-run --period=all
  */
 
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
@@ -26,6 +29,10 @@ mongoose.connect(process.env.MONGODB_URI);
 
 var TRADES_PATH = path.join(__dirname, '../trades/trades.json');
 
+// 2009 dates from summer-meetings.txt
+var AUCTION_DATE = new Date('2009-08-16');
+var CONTRACT_DUE_DATE = new Date('2009-09-02');
+
 // Global state
 var rl = null;
 var playersByNormalizedName = {};
@@ -34,16 +41,33 @@ var positionByEspnId = {};
 var franchiseByOwnerName = {};
 var franchiseIdByOwnerName = {};
 var dryRun = false;
+var period = 'all';
 
 /**
- * Load 2008 trades from trades.json.
+ * Load 2009 trades from trades.json, filtered by period.
  */
 function loadTrades() {
 	var content = fs.readFileSync(TRADES_PATH, 'utf8');
 	var allTrades = JSON.parse(content);
 	
 	return allTrades.filter(function(t) {
-		return t.date && t.date.startsWith('2008');
+		if (!t.date || !t.date.startsWith('2009')) return false;
+		
+		var tradeDate = new Date(t.date);
+		
+		if (period === 'offseason') {
+			// Before auction
+			return tradeDate < AUCTION_DATE;
+		} else if (period === 'auction') {
+			// Between auction and contract due date
+			return tradeDate >= AUCTION_DATE && tradeDate < CONTRACT_DUE_DATE;
+		} else if (period === 'inseason') {
+			// After contract due date
+			return tradeDate >= CONTRACT_DUE_DATE;
+		}
+		
+		// period === 'all'
+		return true;
 	});
 }
 
@@ -198,7 +222,7 @@ async function buildParties(trade) {
 		for (var j = 0; j < partyData.players.length; j++) {
 			var playerData = partyData.players[j];
 			var context = {
-				year: 2008,
+				year: 2009,
 				type: 'trade',
 				tradeId: trade.tradeId,
 				franchise: partyData.owner
@@ -324,8 +348,15 @@ async function buildParties(trade) {
 async function run() {
 	dryRun = process.argv.includes('--dry-run');
 	
-	console.log('=== 2008 Trades Seeder ===');
+	// Parse period argument
+	var periodArg = process.argv.find(function(a) { return a.startsWith('--period='); });
+	if (periodArg) {
+		period = periodArg.split('=')[1];
+	}
+	
+	console.log('=== 2009 Trades Seeder ===');
 	if (dryRun) console.log('[DRY RUN]');
+	console.log('Period:', period);
 	console.log('');
 	
 	// Load player resolutions
@@ -348,8 +379,8 @@ async function run() {
 	});
 	console.log('Loaded', allPlayers.length, 'players from database');
 	
-	// Build ESPN ID index from 2008 snapshot
-	var snapshotPath = path.join(__dirname, '../archive/snapshots/contracts-2008.txt');
+	// Build ESPN ID index from 2009 snapshot
+	var snapshotPath = path.join(__dirname, '../archive/snapshots/contracts-2009.txt');
 	var snapshotContent = fs.readFileSync(snapshotPath, 'utf8');
 	var snapshotLines = snapshotContent.trim().split('\n');
 	
@@ -373,33 +404,33 @@ async function run() {
 	}
 	console.log('Indexed', Object.keys(playersByEspnId).length, 'players by ESPN ID');
 	
-	// Load franchise mappings for 2008 via regimes
+	// Load franchise mappings for 2009 via regimes
 	var regimes = await Regime.find({});
 	var franchises = await Franchise.find({});
 	
 	regimes.forEach(function(r) {
 		var tenure = r.tenures.find(function(t) {
-			return t.startSeason <= 2008 && (t.endSeason === null || t.endSeason >= 2008);
+			return t.startSeason <= 2009 && (t.endSeason === null || t.endSeason >= 2009);
 		});
 		if (tenure) {
 			franchiseIdByOwnerName[r.displayName] = tenure.franchiseId;
 		}
 	});
-	console.log('Loaded', Object.keys(franchiseIdByOwnerName).length, 'franchise mappings for 2008');
+	console.log('Loaded', Object.keys(franchiseIdByOwnerName).length, 'franchise mappings for 2009');
 	
 	// Load trades
 	var trades = loadTrades();
-	console.log('Found', trades.length, 'trades in 2008');
+	console.log('Found', trades.length, 'trades for period:', period);
 	console.log('');
 	
-	// Check for existing 2008 trade transactions
+	// Check for existing 2009 trade transactions in this period
 	var existingTrades = await Transaction.countDocuments({
 		type: 'trade',
 		tradeId: { $in: trades.map(function(t) { return t.tradeId; }) }
 	});
 	
 	if (existingTrades > 0) {
-		console.log('Found', existingTrades, 'existing 2008 trade transactions.');
+		console.log('Found', existingTrades, 'existing 2009 trade transactions.');
 		var answer = await new Promise(function(resolve) {
 			rl.question('Clear them and re-seed? [y/N] ', resolve);
 		});

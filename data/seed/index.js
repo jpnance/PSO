@@ -51,10 +51,9 @@ process.argv.forEach(function(arg) {
 
 // Available season seeders
 var SEASON_SEEDERS = {
-	2008: 'data/seed/season-2008.js'
-	// Future seasons will be added here:
-	// 2009: 'data/seed/season-2009.js',
-	// etc.
+	2008: 'data/seed/season-2008.js',
+	2009: 'data/seed/season-2009.js'
+	// Future seasons will be added here
 };
 
 /**

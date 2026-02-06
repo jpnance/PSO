@@ -301,6 +301,9 @@ async function run() {
 	// Build owner map once (cuts sheet uses 2025 regime names for all years)
 	var ownerMap = cutFacts.buildOwnerMap(regimes, franchises);
 	
+	// Build rosterId -> franchiseId map
+	var rosterIdToFranchise = cutFacts.buildRosterIdToFranchiseMap(franchises);
+	
 	var userQuit = false;
 	
 	for (var year = startYear; year <= endYear; year++) {
@@ -358,7 +361,8 @@ async function run() {
 			}
 			
 			// Get franchise
-			var franchiseId = cutFacts.getFranchiseId(pickup.owner, ownerMap);
+			var rosterId = cutFacts.getRosterId(pickup.owner, ownerMap);
+			var franchiseId = rosterId ? rosterIdToFranchise[rosterId] : null;
 			if (!franchiseId) {
 				console.log('  ✗ Could not find franchise for: ' + pickup.owner + ' in ' + year);
 				totalErrors++;

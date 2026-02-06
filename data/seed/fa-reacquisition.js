@@ -126,8 +126,11 @@ async function run() {
 		playersByName[key].push(p);
 	});
 	
-	// Build owner map (2025 regime names -> franchise IDs)
+	// Build owner map (2025 regime names -> rosterId)
 	var ownerMap = buildOwnerMap(regimes, franchises);
+	
+	// Build rosterId -> franchiseId map
+	var rosterIdToFranchise = cutFacts.buildRosterIdToFranchiseMap(franchises);
 	
 	// Also build map from historical owner names to franchise IDs
 	var historicalOwnerMap = {};
@@ -165,7 +168,8 @@ async function run() {
 		var cutBy = {};
 		yearCuts.forEach(function(c) {
 			var key = c.name.toLowerCase();
-			var franchiseId = cutFacts.getFranchiseId(c.owner, ownerMap);
+			var rosterId = cutFacts.getRosterId(c.owner, ownerMap);
+			var franchiseId = rosterId ? rosterIdToFranchise[rosterId] : null;
 			if (!cutBy[key]) cutBy[key] = [];
 			cutBy[key].push({ owner: c.owner, franchiseId: franchiseId });
 		});

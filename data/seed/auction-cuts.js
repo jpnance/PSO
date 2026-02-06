@@ -188,8 +188,11 @@ async function run() {
 		playersByName[key].push(p);
 	});
 	
-	// Build owner map (2025 regime names -> franchise IDs)
+	// Build owner map (2025 regime names -> rosterId)
 	var ownerMap = buildOwnerMap(regimes, franchises);
+	
+	// Build rosterId -> franchiseId map
+	var rosterIdToFranchise = cutFacts.buildRosterIdToFranchiseMap(franchises);
 	
 	// Load all data
 	var allCuts = cutFacts.loadAll();
@@ -245,7 +248,8 @@ async function run() {
 			var cut = missingAuctions[i];
 			
 			// Get franchise ID for the cutter
-			var franchiseId = cutFacts.getFranchiseId(cut.owner, ownerMap);
+			var rosterId = cutFacts.getRosterId(cut.owner, ownerMap);
+			var franchiseId = rosterId ? rosterIdToFranchise[rosterId] : null;
 			if (!franchiseId) {
 				console.log('  ✗ Could not find franchise for: ' + cut.owner);
 				totalSkipped++;
