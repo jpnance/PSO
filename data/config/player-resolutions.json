@@ -38,6 +38,7 @@
     "robert burns",
     "rodney smith",
     "ronald jones",
+    "ryan griffin",
     "sergio bailey",
     "steve smith",
     "tony washington",
@@ -1788,6 +1789,9 @@
   "dominique franks|2010|type:draft|patrick": {
     "sleeperId": null,
     "name": "Dominique Franks"
+  },
+  "don jackson": {
+    "sleeperId": "3722"
   },
   "don xzaviar jackson": {
     "sleeperId": "3722"
@@ -4779,9 +4783,9 @@
     "sleeperId": null,
     "name": "Roscoe Parrish"
   },
-  "roy e williams|2009|type:rfa-conversion|trevor": {
+  "roy e williams": {
     "sleeperId": null,
-    "name": "Roy E. Williams"
+    "name": "Roy Williams"
   },
   "roy finch|2014|type:draft|koci/mueller": {
     "sleeperId": null,
@@ -4832,6 +4836,12 @@
   },
   "ryan fitzpatrick|2017|type:trade|quinn": {
     "sleeperId": "333"
+  },
+  "ryan griffin|2016|type:rfa-conversion|john/zach": {
+    "sleeperId": "1425"
+  },
+  "ryan griffin|2019|type:contract-expiry|quinn": {
+    "sleeperId": "1550"
   },
   "ryan longwell|2010|type:cut|anthony": {
     "sleeperId": null,
@@ -5132,9 +5142,8 @@
   "steven jackson|2014|type:trade|keyon": {
     "sleeperId": "57"
   },
-  "stevie johnson|2015|type:rfa-conversion|trevor": {
-    "sleeperId": null,
-    "name": "Stevie Johnson"
+  "stevie johnson": {
+    "sleeperId": 108
   },
   "stewart bradley|2011|type:cut|patrick": {
     "sleeperId": null,
