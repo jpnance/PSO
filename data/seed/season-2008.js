@@ -89,7 +89,10 @@ async function run() {
 	// Step 4: Seed trades (after FA - some traded players were FA pickups first)
 	runSeeder('Trades', 'data/seed/trades-2008.js');
 	
-	// Step 5: Validate
+	// Step 5: Seed RFA rights conveyance (end of season)
+	runSeeder('RFA Rights', 'data/seed/rfa-2008.js');
+	
+	// Step 6: Validate
 	var valid = runValidator();
 	
 	console.log('========================================');
