@@ -1,0 +1,17 @@
+Pick,Round,Owner,Player,Original Owner
+1,1,Mitch,Brandon Lloyd,Koci
+2,1,Charles,Jake Locker,Koci
+3,2,Charles,Matt Schaub,Daniel
+4,2,Mitch,Jermaine Gresham,Keyon
+5,3,Mitch,LeGarrette Blount,Patrick
+6,3,Charles,Percy Harvin,Patrick
+7,4,Charles,Malcom Floyd,Keyon
+8,4,Mitch,Peyton Manning,Trevor
+9,5,Mitch,DeMarcus Ware,James
+10,5,Charles,Jason Pierre-Paul,Jake/Luke
+11,6,Charles,Stevan Ridley,Syed
+12,6,Mitch,Eric Decker,James
+13,7,Mitch,Chris Johnson,Trevor
+14,7,Charles,Jamaal Charles,John
+15,8,Charles,Titus Young,John
+16,8,Mitch,Frank Gore,Daniel
