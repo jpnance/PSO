@@ -3149,6 +3149,10 @@
   "josh wilson|2009|type:trade|patrick": {
     "sleeperId": "700"
   },
+  "jt osullivan|2008|type:fa|schexes": {
+    "sleeperId": null,
+    "name": "J.T. O'Sullivan"
+  },
   "jt osullivan|2008|type:trade|keyon": {
     "sleeperId": null,
     "name": "J.T. O'Sullivan"
@@ -3452,6 +3456,10 @@
   },
   "kirk cousins|2016|type:trade|patrick": {
     "sleeperId": "1166"
+  },
+  "kirk morrison|2008|type:fa|schexes": {
+    "sleeperId": null,
+    "name": "Kirk Morrison"
   },
   "kirk morrison|2008|type:trade|patrick": {
     "sleeperId": null,

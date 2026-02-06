@@ -83,11 +83,11 @@ async function run() {
 	// Step 2: Seed auction and contracts
 	runSeeder('Auction & Contracts', 'data/seed/auction-2008.js');
 	
-	// Step 3: Seed trades
-	runSeeder('Trades', 'data/seed/trades-2008.js');
-	
-	// Step 4: Seed FA activity
+	// Step 3: Seed FA activity (before trades - FA pickups happen before mid-season trades)
 	runSeeder('Free Agent Activity', 'data/seed/fa-2008.js');
+	
+	// Step 4: Seed trades (after FA - some traded players were FA pickups first)
+	runSeeder('Trades', 'data/seed/trades-2008.js');
 	
 	// Step 5: Validate
 	var valid = runValidator();

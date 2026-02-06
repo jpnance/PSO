@@ -30,6 +30,7 @@ var TRADES_PATH = path.join(__dirname, '../trades/trades.json');
 var rl = null;
 var playersByNormalizedName = {};
 var playersByEspnId = {};
+var positionByEspnId = {};
 var franchiseByOwnerName = {};
 var franchiseIdByOwnerName = {};
 var dryRun = false;
@@ -126,15 +127,19 @@ async function resolvePlayer(playerData, context) {
 	
 	// No candidates - create historical player
 	if (candidates.length === 0) {
-		console.log('  Creating historical player: ' + playerData.name);
+		// Look up position from snapshot if we have ESPN ID
+		var position = playerData.espnId ? positionByEspnId[playerData.espnId] : null;
+		var positions = position ? [position] : [];
+		
+		console.log('  Creating historical player: ' + playerData.name + (position ? ' (' + position + ')' : ''));
 		
 		if (dryRun) {
-			return { _id: 'dry-run-id', name: playerData.name, positions: [] };
+			return { _id: 'dry-run-id', name: playerData.name, positions: positions };
 		}
 		
 		var player = await Player.create({
 			name: playerData.name,
-			positions: [],
+			positions: positions,
 			sleeperId: null
 		});
 		
@@ -352,12 +357,17 @@ async function run() {
 		var parts = snapshotLines[i].split(',');
 		var espnId = parts[0];
 		var name = parts[2];
+		var position = parts[3];
 		
 		if (espnId && name) {
 			var normalized = resolver.normalizePlayerName(name);
 			var candidates = playersByNormalizedName[normalized];
 			if (candidates && candidates.length === 1) {
 				playersByEspnId[espnId] = candidates[0];
+			}
+			// Also store position for historical player creation
+			if (position) {
+				positionByEspnId[espnId] = position;
 			}
 		}
 	}
