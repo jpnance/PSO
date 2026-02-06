@@ -27,7 +27,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2649,Patrick,Rudi Johnson,RB,2008,2008,$16
 2578,Patrick,Reggie Wayne,WR,2008,2009,$115
 5549,Koci,Steven Jackson,RB,2008,2008,$331
-10453,Koci,"Ted Ginn, Jr.",WR,2008,2009,$70
+10453,Koci,Ted Ginn,WR,2008,2009,$70
 8418,Koci,Braylon Edwards,WR,2008,2008,$161
 5590,Koci,Nate Kaeding,K,2008,2010,$1
 4569,Koci,Terrence McGee,DB,2008,2008,$76
@@ -139,7 +139,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5645,Daniel,Ernest Wilford,WR,2008,2010,$1
 11287,Daniel,Limas Sweed,WR,2008,2010,$3
 2898,Daniel,Drew Bennett,WR,2008,2010,$1
-8487,Daniel,Vernand Morcency,RB,2008,2010,$1
+8487,Daniel,Vernand Morency,RB,2008,2010,$1
 10507,Daniel,Brandon Jackson,RB,2008,2010,$1
 1432,Daniel,Ahman Green,RB,2008,2010,$1
 2767,Daniel,Chris Taylor,RB,2008,2010,$1

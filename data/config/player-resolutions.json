@@ -97,6 +97,10 @@
     "sleeperId": null,
     "name": "Aaron Schobel"
   },
+  "aaron schoebel|2008|type:auction|keyon": {
+    "sleeperId": null,
+    "name": "Aaron Schoebel"
+  },
   "ace sanders|2013|type:trade|koci/mueller": {
     "sleeperId": "1450"
   },
@@ -105,6 +109,10 @@
   },
   "adarius taylor|2018|type:fa|anthony": {
     "sleeperId": "2190"
+  },
+  "addai joseph|2008|type:auction|syed": {
+    "sleeperId": null,
+    "name": "Addai, Joseph"
   },
   "adewale ogunleye|2008|type:auction|jeff": {
     "sleeperId": null,
@@ -1375,6 +1383,10 @@
     "sleeperId": null,
     "name": "Da'Rel Scott"
   },
+  "darelle revis|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Darelle Revis"
+  },
   "darius leonard": {
     "sleeperId": "4990"
   },
@@ -1855,7 +1867,7 @@
   },
   "dj hackett|2008|type:auction|james": {
     "sleeperId": null,
-    "name": "D.J. Hackett"
+    "name": "DJ Hackett"
   },
   "dj hackett|2008|type:rfa-conversion|james": {
     "sleeperId": null,
@@ -1951,7 +1963,7 @@
   },
   "donte stallworth|2008|type:auction|jeff": {
     "sleeperId": null,
-    "name": "Donte' Stallworth"
+    "name": "Donte Stallworth"
   },
   "donte stallworth|2008|type:rfa-conversion|jeff": {
     "sleeperId": null,
@@ -2172,6 +2184,10 @@
   },
   "ezekiel elliott|2021|type:trade|luke": {
     "sleeperId": "3164"
+  },
+  "folk nick|2008|type:auction|keyon": {
+    "sleeperId": null,
+    "name": "Folk, Nick"
   },
   "foye oluokun": {
     "sleeperId": "5332"
@@ -4557,6 +4573,10 @@
     "sleeperId": null,
     "name": "Oshiomogho Atogwe"
   },
+  "osi umeniyora|2008|type:auction|koci": {
+    "sleeperId": null,
+    "name": "Osi Umeniyora"
+  },
   "owa odighizuwa": {
     "sleeperId": "2379"
   },
@@ -4663,6 +4683,10 @@
   },
   "perry riley|2012|type:trade|john": {
     "sleeperId": "733"
+  },
+  "peterson adrian|2008|type:auction|trevor": {
+    "sleeperId": null,
+    "name": "Peterson, Adrian"
   },
   "peyton barber|2019|type:trade|quinn": {
     "sleeperId": "3594"
@@ -5293,6 +5317,10 @@
     "sleeperId": null,
     "name": "Shawne Merriman"
   },
+  "smith steve|2008|type:auction|keyon": {
+    "sleeperId": null,
+    "name": "Smith, Steve"
+  },
   "spencer johnson|2010|type:rfa-conversion|james": {
     "sleeperId": null,
     "name": "Spencer Johnson"
@@ -5477,6 +5505,10 @@
   "telvin smith|2018|type:trade|mitch": {
     "sleeperId": "1995"
   },
+  "terence mcgee|2008|type:auction|jeff": {
+    "sleeperId": null,
+    "name": "Terence McGee"
+  },
   "terrance williams|2014|type:trade|syed": {
     "sleeperId": "1490"
   },
@@ -5499,6 +5531,10 @@
   "terrell thomas|2011|type:cut|mike": {
     "sleeperId": null,
     "name": "Terrell Thomas"
+  },
+  "terrence mcgee|2008|type:auction|jeff": {
+    "sleeperId": null,
+    "name": "Terrence McGee"
   },
   "terrence mcgee|2008|type:auction|koci": {
     "sleeperId": null,
@@ -5756,6 +5792,10 @@
     "name": "Vernand Morcency"
   },
   "vernand morcency|2009|type:cut|daniel": {
+    "sleeperId": null,
+    "name": "Vernand Morency"
+  },
+  "vernand morency|2008|type:auction|daniel": {
     "sleeperId": null,
     "name": "Vernand Morency"
   },

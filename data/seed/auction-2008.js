@@ -1,8 +1,11 @@
 /**
  * Seed 2008 initial auction transactions.
  * 
- * This is the founding auction - all players start from available state.
- * No RFA rights exist yet, so all acquisitions are auction-ufa.
+ * Uses two sources:
+ * - results.html: who won each player at auction (auction-ufa transactions)
+ * - contracts-2008.txt: who signed each player (contract transactions)
+ * 
+ * These differ for players traded before contracts were due (e.g., McGee).
  * 
  * Usage:
  *   docker compose run --rm -it web node data/seed/auction-2008.js
@@ -19,85 +22,101 @@ var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var Regime = require('../../models/Regime');
 var Transaction = require('../../models/Transaction');
-var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
 var RosterState = require('../utils/roster-state');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-// Roster state tracker - builds up as we process
 var rosterState = new RosterState();
 
-// 2008 auction was August 18, 2008
-// Auction timestamp: 9:00 AM ET = 13:00 UTC (EDT, UTC-4)
+// 2008 auction was August 18, 2008 (9:00 AM ET = 13:00 UTC)
 var AUCTION_TIMESTAMP = new Date(Date.UTC(2008, 7, 18, 13, 0, 0));
 
-// Contract due date was August 24, 2008
-// Contract timestamp: 12:00 PM ET = 16:00 UTC (EDT, UTC-4)
+// Contract due date was August 24, 2008 (12:00 PM ET = 16:00 UTC)
 var CONTRACT_TIMESTAMP = new Date(Date.UTC(2008, 7, 24, 16, 0, 0));
 
+var RESULTS_PATH = path.join(__dirname, '../archive/sources/html/results.html');
 var SNAPSHOT_PATH = path.join(__dirname, '../archive/snapshots/contracts-2008.txt');
 
-// Global state
 var rl = null;
 var playersByNormalizedName = {};
 var franchiseByOwnerName = {};
 var dryRun = false;
 
 /**
- * Parse the 2008 snapshot CSV.
- * Format: ID,Owner,Name,Position,Start,End,Salary
+ * Normalize name for matching auction to contract.
+ * Unlike resolver.normalizePlayerName, this KEEPS team suffixes like (CAR), (NYG)
+ * since they're used for disambiguation.
  */
-function loadSnapshot() {
-	var content = fs.readFileSync(SNAPSHOT_PATH, 'utf8');
-	var lines = content.trim().split('\n');
+function normalizeForMatching(name) {
+	if (!name) return '';
+	return name
+		.replace(/&#8217;/g, "'")
+		.replace(/\s+(III|II|IV|V|Jr\.|Jr|Sr\.)$/i, '')
+		.replace(/[^\w\s()]/g, '')
+		.replace(/\s+/g, ' ')
+		.trim()
+		.toLowerCase();
+}
+
+/**
+ * Parse auction results from results.html.
+ * Returns array of { name, position, owner, price }
+ */
+function loadAuctionResults() {
+	var html = fs.readFileSync(RESULTS_PATH, 'utf8');
+	var rows = html.match(/<tr>[\s\S]*?<\/tr>/g) || [];
 	var results = [];
 	
-	for (var i = 1; i < lines.length; i++) { // Skip header
-		var line = lines[i];
-		var parts = parseCSVLine(line);
-		if (parts.length < 7) continue;
+	for (var i = 0; i < rows.length; i++) {
+		var row = rows[i];
+		var cells = row.match(/<td>([\s\S]*?)<\/td>/g) || [];
+		if (cells.length < 6) continue;
 		
-		results.push({
-			espnId: parts[0],
-			owner: parts[1],
-			name: parts[2],
-			position: parts[3],
-			startYear: parseInt(parts[4]) || 2008,
-			endYear: parseInt(parts[5]) || 2008,
-			salary: parseInt(parts[6].replace('$', '')) || 0
-		});
+		// Extract cell contents, stripping HTML tags
+		var name = cells[1].replace(/<[^>]*>/g, '').trim();
+		var position = cells[2].replace(/<[^>]*>/g, '').trim();
+		var owner = cells[4].replace(/<[^>]*>/g, '').trim();
+		var price = parseInt(cells[5].replace(/<[^>]*>/g, '').replace('$', '').trim()) || 0;
+		
+		if (name && owner && price > 0) {
+			results.push({ name: name, position: position, owner: owner, price: price });
+		}
 	}
 	
 	return results;
 }
 
 /**
- * Parse a CSV line handling quoted fields.
+ * Parse contract snapshot from contracts-2008.txt.
+ * Returns map of normalized name -> { owner, startYear, endYear, salary }
  */
-function parseCSVLine(line) {
-	var result = [];
-	var current = '';
-	var inQuotes = false;
+function loadContracts() {
+	var content = fs.readFileSync(SNAPSHOT_PATH, 'utf8');
+	var lines = content.trim().split('\n');
+	var contracts = {};
 	
-	for (var i = 0; i < line.length; i++) {
-		var char = line[i];
-		if (char === '"') {
-			inQuotes = !inQuotes;
-		} else if (char === ',' && !inQuotes) {
-			result.push(current.trim());
-			current = '';
-		} else {
-			current += char;
-		}
+	for (var i = 1; i < lines.length; i++) {
+		var parts = lines[i].split(',');
+		if (parts.length < 7) continue;
+		
+		var name = parts[2].trim();
+		var normalized = normalizeForMatching(name);
+		
+		contracts[normalized] = {
+			name: name,
+			owner: parts[1].trim(),
+			startYear: parseInt(parts[4]) || 2008,
+			endYear: parseInt(parts[5]) || 2008,
+			salary: parseInt(parts[6].replace('$', '')) || 0
+		};
 	}
-	result.push(current.trim());
-	return result;
+	
+	return contracts;
 }
 
 /**
  * Resolve a player to a database Player document.
- * Uses the resolver with position hints, creates historical players if needed.
  */
 async function resolvePlayer(entry) {
 	var context = {
@@ -140,9 +159,8 @@ async function resolvePlayer(entry) {
 		}
 	}
 	
-	// Need interactive resolution or auto-create historical
+	// No candidates - create historical player
 	if (candidates.length === 0) {
-		// No candidates - create historical player
 		console.log('  Creating historical player: ' + entry.name + ' (' + entry.position + ')');
 		
 		if (dryRun) {
@@ -155,19 +173,16 @@ async function resolvePlayer(entry) {
 			sleeperId: null
 		});
 		
-		// Add to cache
 		if (!playersByNormalizedName[normalizedName]) {
 			playersByNormalizedName[normalizedName] = [];
 		}
 		playersByNormalizedName[normalizedName].push(player);
 		
-		// Save resolution
 		resolver.addResolution(entry.name, null, entry.name, context);
-		
 		return player;
 	}
 	
-	// Multiple candidates or ambiguous - prompt
+	// Multiple candidates - prompt
 	var result = await resolver.promptForPlayer({
 		name: entry.name,
 		context: context,
@@ -186,9 +201,6 @@ async function resolvePlayer(entry) {
 	return result.player;
 }
 
-/**
- * Main run function.
- */
 async function run() {
 	dryRun = process.argv.includes('--dry-run');
 	
@@ -197,10 +209,8 @@ async function run() {
 	if (dryRun) console.log('[DRY RUN]');
 	console.log('');
 	
-	// Load player resolutions
 	console.log('Loaded', resolver.count(), 'cached player resolutions');
 	
-	// Create readline interface for prompts
 	rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout
@@ -217,10 +227,9 @@ async function run() {
 	});
 	console.log('Loaded', allPlayers.length, 'players from database');
 	
-	// Load franchise mappings for 2008 via regimes
+	// Load franchise mappings for 2008
 	var regimes = await Regime.find({});
 	regimes.forEach(function(r) {
-		// Find tenure active in 2008
 		var tenure = r.tenures.find(function(t) {
 			return t.startSeason <= 2008 && (t.endSeason === null || t.endSeason >= 2008);
 		});
@@ -230,12 +239,14 @@ async function run() {
 	});
 	console.log('Loaded', Object.keys(franchiseByOwnerName).length, 'franchise mappings for 2008');
 	
-	// Load snapshot
-	var snapshot = loadSnapshot();
-	console.log('Loaded', snapshot.length, 'players from 2008 snapshot');
+	// Load auction results and contracts
+	var auctionResults = loadAuctionResults();
+	var contracts = loadContracts();
+	console.log('Loaded', auctionResults.length, 'auction results from results.html');
+	console.log('Loaded', Object.keys(contracts).length, 'contracts from snapshot');
 	console.log('');
 	
-	// Check for existing 2008 auction/contract transactions
+	// Check for existing transactions
 	var existingAuction = await Transaction.countDocuments({
 		type: 'auction-ufa',
 		timestamp: AUCTION_TIMESTAMP
@@ -244,9 +255,8 @@ async function run() {
 		type: 'contract',
 		timestamp: CONTRACT_TIMESTAMP
 	});
-	var existing = existingAuction + existingContract;
 	
-	if (existing > 0) {
+	if (existingAuction + existingContract > 0) {
 		console.log('Found', existingAuction, 'auction +', existingContract, 'contract transactions from 2008.');
 		var answer = await new Promise(function(resolve) {
 			rl.question('Clear them and re-seed? [y/N] ', resolve);
@@ -269,24 +279,40 @@ async function run() {
 		}
 	}
 	
-	// Process each player
-	var created = 0;
+	// Process each auction result
+	var auctionCount = 0;
+	var contractCount = 0;
 	var errors = [];
 	
-	for (var i = 0; i < snapshot.length; i++) {
-		var entry = snapshot[i];
+	for (var i = 0; i < auctionResults.length; i++) {
+		var auction = auctionResults[i];
+		var matchingKey = normalizeForMatching(auction.name);
 		
-		// Resolve franchise
-		var franchiseId = franchiseByOwnerName[entry.owner];
-		if (!franchiseId) {
-			errors.push({ player: entry.name, reason: 'Unknown owner: ' + entry.owner });
+		// Get contract info (may be different owner if traded before deadline)
+		var contract = contracts[matchingKey];
+		if (!contract) {
+			errors.push({ player: auction.name, reason: 'No contract found in snapshot' });
+			continue;
+		}
+		
+		// Resolve franchise for auction winner
+		var auctionFranchiseId = franchiseByOwnerName[auction.owner];
+		if (!auctionFranchiseId) {
+			errors.push({ player: auction.name, reason: 'Unknown auction owner: ' + auction.owner });
+			continue;
+		}
+		
+		// Resolve franchise for contract holder
+		var contractFranchiseId = franchiseByOwnerName[contract.owner];
+		if (!contractFranchiseId) {
+			errors.push({ player: auction.name, reason: 'Unknown contract owner: ' + contract.owner });
 			continue;
 		}
 		
 		// Resolve player
 		var player;
 		try {
-			player = await resolvePlayer(entry);
+			player = await resolvePlayer(auction);
 		} catch (err) {
 			if (err.message === 'User quit') {
 				console.log('\nQuitting...');
@@ -296,61 +322,63 @@ async function run() {
 		}
 		
 		if (!player) {
-			errors.push({ player: entry.name, reason: 'Could not resolve player' });
+			errors.push({ player: auction.name, reason: 'Could not resolve player' });
 			continue;
 		}
 		
-		// Create auction-ufa transaction (acquisition event)
+		// Log if auction winner differs from contract holder
+		if (auction.owner !== contract.owner) {
+			console.log('  ' + auction.name + ': auctioned to ' + auction.owner + ', signed by ' + contract.owner);
+		}
+		
+		// Create auction-ufa transaction (to auction winner)
 		if (!dryRun) {
 			await Transaction.create({
 				type: 'auction-ufa',
 				timestamp: AUCTION_TIMESTAMP,
 				source: 'snapshot',
-				franchiseId: franchiseId,
+				franchiseId: auctionFranchiseId,
 				playerId: player._id,
-				winningBid: entry.salary
+				winningBid: auction.price
 			});
-			
-			// Create contract transaction (terms)
+		}
+		auctionCount++;
+		
+		// Create contract transaction (to contract holder)
+		if (!dryRun) {
 			await Transaction.create({
 				type: 'contract',
 				timestamp: CONTRACT_TIMESTAMP,
 				source: 'snapshot',
-				franchiseId: franchiseId,
+				franchiseId: contractFranchiseId,
 				playerId: player._id,
-				salary: entry.salary,
-				startYear: entry.startYear,
-				endYear: entry.endYear
+				salary: contract.salary,
+				startYear: contract.startYear,
+				endYear: contract.endYear
 			});
 		}
+		contractCount++;
 		
-		// Record in roster state (for future resolution)
-		rosterState.acquire(player._id, player.name, franchiseId);
+		// Record in roster state (auction winner initially has player)
+		rosterState.acquire(player._id, player.name, auctionFranchiseId);
 		
-		created++;
-		
-		// Progress
 		if ((i + 1) % 50 === 0) {
-			console.log('  Processed', i + 1, '/', snapshot.length, '...');
+			console.log('  Processed', i + 1, '/', auctionResults.length, '...');
 		}
 	}
 	
-	// Save resolutions
 	resolver.save();
 	
 	console.log('');
 	console.log('=== Done ===');
-	console.log('Created:', created, 'players');
-	console.log('  auction-ufa:', created);
-	console.log('  contract:', created);
+	console.log('Created:', auctionCount, 'auction-ufa transactions');
+	console.log('Created:', contractCount, 'contract transactions');
 	
-	// Show roster state
 	var stats = rosterState.getStats();
 	console.log('');
 	console.log('Roster state after 2008 auction:');
 	console.log('  Total players tracked:', stats.total);
 	console.log('  Rostered:', stats.rostered);
-	console.log('  Available:', stats.available);
 	
 	if (errors.length > 0) {
 		console.log('');
