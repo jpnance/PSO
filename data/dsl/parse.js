@@ -23,8 +23,8 @@ var PATTERNS = {
 	// Header: Name | Position(s) | [sleeper:ID] [| espn:ID] [| historical]
 	// Parsed manually due to optional fields
 	
-	// YY auction OWNER $SALARY YY/YY
-	auction: /^(\d{2})\s+auction\s+(\S+)\s+\$(\d+)\s+(\d{2}|\w+)\/(\d{2})$/,
+	// YY auction OWNER $SALARY [YY/YY]
+	auction: /^(\d{2})\s+auction\s+(\S+)\s+\$(\d+)(?:\s+(\d{2}|\w+)\/(\d{2}))?$/,
 	
 	// YY auction-rfa-matched OWNER $SALARY YY/YY
 	auctionRfaMatched: /^(\d{2})\s+auction-rfa-matched\s+(\S+)\s+\$(\d+)\s+(\d{2}|\w+)\/(\d{2})$/,

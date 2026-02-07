@@ -108,6 +108,73 @@ function loadTrades() {
 }
 
 /**
+ * Load unsigned player trades
+ * Returns map: sleeperId|name -> [{tradeId, date, year, sender, receiver}]
+ */
+function loadUnsignedTrades() {
+	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
+	var result = { bySleeperId: {}, byName: {} };
+	
+	// Special case: Trade 486 is 3-party, Schex sent Montrell Washington to Keyon
+	var SPECIAL_SENDERS = {
+		'486|Montrell Washington': 'Schex'
+	};
+	
+	trades.forEach(function(trade) {
+		var year = new Date(trade.date).getFullYear();
+		var parties = trade.parties;
+		
+		parties.forEach(function(party, partyIndex) {
+			(party.players || []).forEach(function(player) {
+				// Only care about unsigned players
+				if (player.contractStr !== 'unsigned' && player.contract && player.contract.start !== null) {
+					return;
+				}
+				
+				var receiver = party.owner;
+				var sender;
+				
+				// Check special cases first
+				var specialKey = trade.tradeId + '|' + player.name;
+				if (SPECIAL_SENDERS[specialKey]) {
+					sender = SPECIAL_SENDERS[specialKey];
+				} else if (parties.length === 2) {
+					// Two-party trade: sender is the other party
+					sender = parties[1 - partyIndex].owner;
+				} else {
+					// Multi-party trade without special case - can't determine sender
+					console.warn('Warning: Cannot determine sender for ' + player.name + ' in trade ' + trade.tradeId);
+					return;
+				}
+				
+				var entry = {
+					tradeId: trade.tradeId,
+					date: trade.date,
+					year: year,
+					sender: sender,
+					receiver: receiver
+				};
+				
+				if (player.sleeperId) {
+					if (!result.bySleeperId[player.sleeperId]) {
+						result.bySleeperId[player.sleeperId] = [];
+					}
+					result.bySleeperId[player.sleeperId].push(entry);
+				}
+				
+				var nameKey = player.name.toLowerCase();
+				if (!result.byName[nameKey]) {
+					result.byName[nameKey] = [];
+				}
+				result.byName[nameKey].push(entry);
+			});
+		});
+	});
+	
+	return result;
+}
+
+/**
  * Parse all contract snapshots
  * Snapshots now have Sleeper IDs in the ID column (or -1 for historical)
  * Returns: { sleeperId: { name, positions, appearances: [...] } }
@@ -434,9 +501,32 @@ function findTrade(sleeperId, playerName, fromYear, toOwner, tradesMap) {
 }
 
 /**
+ * Find unsigned trade for a player before a given date
+ */
+function findUnsignedTradeBefore(player, beforeDate, unsignedTrades) {
+	var trades = [];
+	if (player.sleeperId) {
+		trades = unsignedTrades.bySleeperId[player.sleeperId] || [];
+	}
+	if (trades.length === 0) {
+		var nameKey = player.name.toLowerCase().replace(/\s*\([^)]+\)\s*$/, '').trim();
+		trades = unsignedTrades.byName[nameKey] || [];
+	}
+	
+	// Find trades before the given date
+	for (var i = 0; i < trades.length; i++) {
+		var trade = trades[i];
+		if (new Date(trade.date) < new Date(beforeDate)) {
+			return trade;
+		}
+	}
+	return null;
+}
+
+/**
  * Generate all transactions for a player by walking their contract history
  */
-function generatePlayerTransactions(player, draftsMap, tradesMap) {
+function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades) {
 	var transactions = [];
 	var appearances = player.appearances;
 	
@@ -450,9 +540,9 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 		var contractKey = (app.startYear || 'FA') + '|' + app.endYear;
 		
 		if (i === 0) {
-			// First appearance - determine entry transaction
-			var tx = determineEntryTransaction(player, app, draftsMap);
-			transactions.push(tx);
+			// First appearance - determine entry transaction(s)
+			var entryTxs = determineEntryTransaction(player, app, draftsMap, unsignedTrades);
+			entryTxs.forEach(function(tx) { transactions.push(tx); });
 			prevContractKey = contractKey;
 			prevAppearance = app;
 			continue;
@@ -501,18 +591,52 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 				});
 			} else if (app.startYear === app.year) {
 				// New contract starting this year - auction
-				transactions.push({
-					year: app.year,
-					type: 'auction',
-					line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
-				});
+				// Check if player was traded unsigned
+				var unsignedTrade = findUnsignedTradeToOwner(player, app.owner, app.startYear, unsignedTrades);
+				if (unsignedTrade) {
+					var contractDate = new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString();
+					transactions.push({
+						year: app.year,
+						type: 'auction',
+						line: '  ' + yy(app.year) + ' auction ' + unsignedTrade.sender + ' $' + app.salary
+					});
+					transactions.push({
+						year: app.year,
+						date: contractDate,
+						type: 'contract',
+						line: '  ' + yy(app.year) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+					});
+				} else {
+					transactions.push({
+						year: app.year,
+						type: 'auction',
+						line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+					});
+				}
 			} else if (app.startYear > prevAppearance.year) {
 				// Contract started after last appearance - auction in startYear
-				transactions.push({
-					year: app.startYear,
-					type: 'auction',
-					line: '  ' + yy(app.startYear) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
-				});
+				// Check if player was traded unsigned
+				var unsignedTrade = findUnsignedTradeToOwner(player, app.owner, app.startYear, unsignedTrades);
+				if (unsignedTrade) {
+					var contractDate = new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString();
+					transactions.push({
+						year: app.startYear,
+						type: 'auction',
+						line: '  ' + yy(app.startYear) + ' auction ' + unsignedTrade.sender + ' $' + app.salary
+					});
+					transactions.push({
+						year: app.startYear,
+						date: contractDate,
+						type: 'contract',
+						line: '  ' + yy(app.startYear) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+					});
+				} else {
+					transactions.push({
+						year: app.startYear,
+						type: 'auction',
+						line: '  ' + yy(app.startYear) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+					});
+				}
 			}
 		} else if (app.owner !== prevAppearance.owner) {
 			// Same contract but different owner
@@ -525,6 +649,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 				if (trade) {
 					transactions.push({
 						year: trade.year,
+						date: trade.date,
 						type: 'trade',
 						line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
 					});
@@ -594,22 +719,32 @@ function generatePlayerTransactions(player, draftsMap, tradesMap) {
 		if (!hasTrade) {
 			transactions.push({
 				year: trade.year,
+				date: trade.date,
 				type: 'trade',
 				line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
 			});
 		}
 	});
 	
-	// Sort transactions by year
-	transactions.sort(function(a, b) { return a.year - b.year; });
+	// Sort transactions by year, then by date (for trades)
+	transactions.sort(function(a, b) {
+		if (a.year !== b.year) return a.year - b.year;
+		// Within same year, sort by date if available
+		if (a.date && b.date) return new Date(a.date) - new Date(b.date);
+		// Trades with dates come after non-dated transactions
+		if (a.date) return 1;
+		if (b.date) return -1;
+		return 0;
+	});
 	
 	return transactions;
 }
 
 /**
- * Determine the entry transaction for a player's first appearance
+ * Determine the entry transaction(s) for a player's first appearance
+ * Returns array of transactions (usually 1, but can be more for unsigned trades)
  */
-function determineEntryTransaction(player, app, draftsMap) {
+function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 	var year = app.year;
 	var startYear = app.startYear;
 	var endYear = app.endYear;
@@ -630,33 +765,92 @@ function determineEntryTransaction(player, app, draftsMap) {
 	if (draftInfo) {
 		// We have draft data for this player
 		var pickInRound = ((draftInfo.pick - 1) % 10) + 1;
-		return {
+		var results = [{
 			year: draftInfo.season,
 			type: 'draft',
 			line: '  ' + yy(draftInfo.season) + ' draft ' + draftInfo.owner + ' ' + draftInfo.round + '.' + String(pickInRound).padStart(2, '0')
-		};
+		}];
+		
+		// Check if drafted player was traded unsigned before signing
+		// If so, add a contract line (trade will be added by normal trade logic)
+		if (startYear && draftInfo.owner !== owner) {
+			var unsignedTrade = findUnsignedTradeToOwner(player, owner, startYear, unsignedTrades);
+			if (unsignedTrade) {
+				// Contract date is 1ms after trade to ensure proper sorting
+				var contractDate = new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString();
+				results.push({
+					year: startYear,
+					date: contractDate,
+					type: 'contract',
+					line: '  ' + yy(startYear) + ' contract $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+				});
+			}
+		}
+		return results;
 	} else if (startYear === null) {
 		// FA contract - picked up as free agent
-		return {
+		return [{
 			year: year,
 			type: 'fa',
 			line: '  ' + yy(year) + ' fa ' + owner + ' $' + salary + ' FA/' + yy(endYear)
-		};
+		}];
 	} else if (startYear <= year) {
 		// Contract started this year or before - auction from startYear
-		return {
+		// Check if player was traded unsigned
+		var unsignedTrade = findUnsignedTradeToOwner(player, owner, startYear, unsignedTrades);
+		if (unsignedTrade) {
+			// Auction went to sender, contract to receiver (current owner)
+			// Contract date is 1ms after trade to ensure proper sorting
+			var contractDate = new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString();
+			return [
+				{
+					year: startYear,
+					type: 'auction',
+					line: '  ' + yy(startYear) + ' auction ' + unsignedTrade.sender + ' $' + salary
+				},
+				{
+					year: startYear,
+					date: contractDate,
+					type: 'contract',
+					line: '  ' + yy(startYear) + ' contract $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+				}
+			];
+		}
+		return [{
 			year: startYear,
 			type: 'auction',
 			line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
-		};
+		}];
 	} else {
 		// startYear > year - shouldn't happen, but default to auction
-		return {
+		return [{
 			year: startYear,
 			type: 'auction',
 			line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
-		};
+		}];
 	}
+}
+
+/**
+ * Find unsigned trade where player went to a specific owner in a specific year
+ */
+function findUnsignedTradeToOwner(player, toOwner, year, unsignedTrades) {
+	var trades = [];
+	if (player.sleeperId) {
+		trades = unsignedTrades.bySleeperId[player.sleeperId] || [];
+	}
+	if (trades.length === 0) {
+		var nameKey = player.name.toLowerCase().replace(/\s*\([^)]+\)\s*$/, '').trim();
+		trades = unsignedTrades.byName[nameKey] || [];
+	}
+	
+	for (var i = 0; i < trades.length; i++) {
+		var trade = trades[i];
+		if (trade.year === year && sameRegime(trade.receiver, toOwner, year)) {
+			return trade;
+		}
+	}
+	return null;
 }
 
 /**
@@ -686,7 +880,10 @@ function generateDSL() {
 	
 	console.log('Loading trades...');
 	var tradesMap = loadTrades();
-	console.log('  ' + Object.keys(tradesMap.bySleeperId).length + ' by Sleeper ID, ' + Object.keys(tradesMap.byName).length + ' by name\n');
+	console.log('  ' + Object.keys(tradesMap.bySleeperId).length + ' by Sleeper ID, ' + Object.keys(tradesMap.byName).length + ' by name');
+	
+	var unsignedTrades = loadUnsignedTrades();
+	console.log('  ' + Object.keys(unsignedTrades.bySleeperId).length + ' unsigned by Sleeper ID, ' + Object.keys(unsignedTrades.byName).length + ' unsigned by name\n');
 	
 	console.log('Parsing snapshots...');
 	var players = parseSnapshots();
@@ -743,7 +940,7 @@ function generateDSL() {
 	playerKeys.forEach(function(key) {
 		var player = players[key];
 		var header = formatHeader(player);
-		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap);
+		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades);
 		
 		lines.push(header);
 		transactions.forEach(function(tx) {
