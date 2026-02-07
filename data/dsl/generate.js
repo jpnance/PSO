@@ -30,6 +30,9 @@ function loadDrafts() {
 	var byName = {};
 	
 	drafts.forEach(function(d) {
+		// Skip passed picks (no player)
+		if (!d.playerName) return;
+		
 		var entry = {
 			season: d.season,
 			round: d.round,
@@ -763,7 +766,8 @@ function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 	
 	if (draftInfo) {
 		// We have draft data for this player
-		var pickInRound = ((draftInfo.pick - 1) % 10) + 1;
+		var teamsCount = draftInfo.season < 2012 ? 10 : 12;
+		var pickInRound = draftInfo.pick - (draftInfo.round - 1) * teamsCount;
 		var results = [{
 			year: draftInfo.season,
 			type: 'draft',

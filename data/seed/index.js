@@ -103,6 +103,14 @@ async function seedFromDSL() {
 	runScript('DSL Transactions', 'data/seed/from-dsl.js');
 }
 
+async function seedPicks() {
+	console.log('========================================');
+	console.log('       Seeding Picks');
+	console.log('========================================\n');
+	
+	runScript('Draft Picks', 'data/seed/picks-local.js', ['--clear']);
+}
+
 async function run() {
 	console.log('');
 	console.log('╔══════════════════════════════════════╗');
@@ -142,6 +150,9 @@ async function run() {
 	} else {
 		console.log('[Skipping foundation - using existing entities]\n');
 	}
+	
+	// Seed draft picks first (DSL needs them for linking)
+	await seedPicks();
 	
 	// Seed transactions from DSL
 	await seedFromDSL();

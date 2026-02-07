@@ -16,6 +16,7 @@ var fs = require('fs');
 var path = require('path');
 
 var Franchise = require('../../models/Franchise');
+var Pick = require('../../models/Pick');
 var Player = require('../../models/Player');
 var Regime = require('../../models/Regime');
 var Transaction = require('../../models/Transaction');
@@ -527,7 +528,23 @@ async function createTransaction(player, tx, currentOwner, txIndex) {
 			break;
 		
 		case 'draft':
-			// TODO: Link to Pick model if we have it
+			// Link to Pick model
+			if (tx.round && tx.pick) {
+				// Calculate overall pick number
+				// Pre-2012: 10 teams, 2012+: 12 teams
+				var teamsCount = tx.season < 2012 ? 10 : 12;
+				var overallPickNumber = (tx.round - 1) * teamsCount + tx.pick;
+				
+				var pick = await Pick.findOne({ 
+					season: tx.season, 
+					pickNumber: overallPickNumber 
+				});
+				
+				if (pick) {
+					doc.pickId = pick._id;
+					// We'll update Pick.transactionId after saving the Transaction
+				}
+			}
 			break;
 		
 		case 'fa':
@@ -578,6 +595,12 @@ async function createTransaction(player, tx, currentOwner, txIndex) {
 	
 	var created = await Transaction.create(doc);
 	stats.transactions++;
+	
+	// Update Pick's transactionId if this is a draft transaction
+	if (tx.type === 'draft' && doc.pickId) {
+		await Pick.updateOne({ _id: doc.pickId }, { transactionId: created._id });
+	}
+	
 	return created;
 }
 
