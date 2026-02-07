@@ -572,12 +572,17 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				type: 'expansion',
 				line: '  12 expansion ' + expansionPick.toOwner + ' from ' + expansionPick.fromOwner
 			});
-			// If contract also changed, add the auction after
+			// If contract also changed, add the auction + contract after
 			if (contractKey !== prevContractKey && app.startYear === app.year) {
 				transactions.push({
 					year: app.year,
 					type: 'auction',
-					line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+					line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary
+				});
+				transactions.push({
+					year: app.year,
+					type: 'contract',
+					line: '  ' + yy(app.year) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
 				});
 			}
 		} else if (contractKey !== prevContractKey) {
@@ -593,50 +598,44 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				// New contract starting this year - auction
 				// Check if player was traded unsigned
 				var unsignedTrade = findUnsignedTradeToOwner(player, app.owner, app.startYear, unsignedTrades);
-				if (unsignedTrade) {
-					var contractDate = new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString();
-					transactions.push({
-						year: app.year,
-						type: 'auction',
-						line: '  ' + yy(app.year) + ' auction ' + unsignedTrade.sender + ' $' + app.salary
-					});
-					transactions.push({
-						year: app.year,
-						date: contractDate,
-						type: 'contract',
-						line: '  ' + yy(app.year) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
-					});
-				} else {
-					transactions.push({
-						year: app.year,
-						type: 'auction',
-						line: '  ' + yy(app.year) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
-					});
-				}
+				var auctionOwner = unsignedTrade ? unsignedTrade.sender : app.owner;
+				var contractDate = unsignedTrade 
+					? new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString() 
+					: null;
+				
+				// Always generate separate auction + contract
+				transactions.push({
+					year: app.year,
+					type: 'auction',
+					line: '  ' + yy(app.year) + ' auction ' + auctionOwner + ' $' + app.salary
+				});
+				transactions.push({
+					year: app.year,
+					date: contractDate,
+					type: 'contract',
+					line: '  ' + yy(app.year) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+				});
 			} else if (app.startYear > prevAppearance.year) {
 				// Contract started after last appearance - auction in startYear
 				// Check if player was traded unsigned
 				var unsignedTrade = findUnsignedTradeToOwner(player, app.owner, app.startYear, unsignedTrades);
-				if (unsignedTrade) {
-					var contractDate = new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString();
-					transactions.push({
-						year: app.startYear,
-						type: 'auction',
-						line: '  ' + yy(app.startYear) + ' auction ' + unsignedTrade.sender + ' $' + app.salary
-					});
-					transactions.push({
-						year: app.startYear,
-						date: contractDate,
-						type: 'contract',
-						line: '  ' + yy(app.startYear) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
-					});
-				} else {
-					transactions.push({
-						year: app.startYear,
-						type: 'auction',
-						line: '  ' + yy(app.startYear) + ' auction ' + app.owner + ' $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
-					});
-				}
+				var auctionOwner = unsignedTrade ? unsignedTrade.sender : app.owner;
+				var contractDate = unsignedTrade 
+					? new Date(new Date(unsignedTrade.date).getTime() + 1).toISOString() 
+					: null;
+				
+				// Always generate separate auction + contract
+				transactions.push({
+					year: app.startYear,
+					type: 'auction',
+					line: '  ' + yy(app.startYear) + ' auction ' + auctionOwner + ' $' + app.salary
+				});
+				transactions.push({
+					year: app.startYear,
+					date: contractDate,
+					type: 'contract',
+					line: '  ' + yy(app.startYear) + ' contract $' + app.salary + ' ' + yy(app.startYear) + '/' + yy(app.endYear)
+				});
 			}
 		} else if (app.owner !== prevAppearance.owner) {
 			// Same contract but different owner
@@ -668,12 +667,12 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		var protection = EXPANSION_PROTECTIONS_2012[player.name.toLowerCase()];
 		if (protection && app.year === 2012 && sameRegime(app.owner, protection.owner, 2012)) {
 			// Only add if we haven't already added a protection for this player
-			var hasProtection = transactions.some(function(t) { return t.type === 'expansion-protect'; });
+			var hasProtection = transactions.some(function(t) { return t.type === 'protect'; });
 			if (!hasProtection) {
 				transactions.push({
 					year: 2012,
-					type: 'expansion-protect',
-					line: '  12 expansion-protect ' + protection.owner + (protection.isRfa ? ' (RFA)' : '')
+					type: 'protect',
+					line: '  12 protect ' + protection.owner + (protection.isRfa ? ' (RFA)' : '')
 				});
 			}
 		}
@@ -822,18 +821,33 @@ function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 				}
 			];
 		}
-		return [{
-			year: startYear,
-			type: 'auction',
-			line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
-		}];
+		// Always separate auction + contract
+		return [
+			{
+				year: startYear,
+				type: 'auction',
+				line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary
+			},
+			{
+				year: startYear,
+				type: 'contract',
+				line: '  ' + yy(startYear) + ' contract $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+			}
+		];
 	} else {
-		// startYear > year - shouldn't happen, but default to auction
-		return [{
-			year: startYear,
-			type: 'auction',
-			line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
-		}];
+		// startYear > year - shouldn't happen, but default to auction + contract
+		return [
+			{
+				year: startYear,
+				type: 'auction',
+				line: '  ' + yy(startYear) + ' auction ' + owner + ' $' + salary
+			},
+			{
+				year: startYear,
+				type: 'contract',
+				line: '  ' + yy(startYear) + ' contract $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+			}
+		];
 	}
 }
 

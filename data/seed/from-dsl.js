@@ -51,7 +51,7 @@ var PATTERNS = {
 	fa: /^(\d{2})\s+fa\s+(\S+)(?:\s+\$(\d+))?(?:\s+(\d{2}|\w+)\/(\d{2}))?$/,
 	trade: /^(\d{2})\s+trade\s+(\d+)\s+->\s+(\S+)$/,
 	expansion: /^(\d{2})\s+expansion\s+(\S+)\s+from\s+(\S+)$/,
-	expansionProtect: /^(\d{2})\s+expansion-protect\s+(\S+)(?:\s+\(RFA\))?$/,
+	protect: /^(\d{2})\s+protect\s+(\S+)(?:\s+\(RFA\))?$/,
 	cut: /^(\d{2})\s+cut$/,
 	contract: /^(\d{2})\s+contract(?:\s+\$(\d+))?\s+(\d{2}|\w+)\/(\d{2})$/,
 	rfa: /^(\d{2})\s+rfa$/,
@@ -171,10 +171,10 @@ function parseTransaction(line, lineNum) {
 		};
 	}
 	
-	// expansion-protect
-	if ((match = line.match(PATTERNS.expansionProtect))) {
+	// protect
+	if ((match = line.match(PATTERNS.protect))) {
 		return {
-			type: 'expansion-protect',
+			type: 'protect',
 			season: toFullYear(match[1]),
 			owner: match[2],
 			isRfa: line.includes('(RFA)')
@@ -428,7 +428,7 @@ function getTimestamp(tx, tradeData, txIndex) {
 			return new Date(Date.UTC(year, 11, 31, 12, 0, 0));
 		
 		case 'expansion':
-		case 'expansion-protect':
+		case 'protect':
 			// Expansion draft in August 2012
 			return new Date(Date.UTC(2012, 7, 15, 12, 0, 0));
 		
@@ -452,7 +452,7 @@ function mapTransactionType(dslType) {
 		case 'fa': return 'fa';
 		case 'trade': return 'trade';
 		case 'expansion': return 'expansion-draft-select';
-		case 'expansion-protect': return 'expansion-draft-protect';
+		case 'protect': return 'expansion-draft-protect';
 		case 'cut': return 'fa';  // Cut is an FA transaction with drops
 		case 'contract': return 'contract';
 		case 'rfa': return 'rfa-rights-conversion';
@@ -491,7 +491,7 @@ async function createTransaction(player, tx, currentOwner, txIndex) {
 	
 	// Some transactions require a franchise
 	var requiresFranchise = ['auction', 'auction-rfa-matched', 'auction-rfa-unmatched', 
-		'draft', 'fa', 'trade', 'expansion', 'expansion-protect', 'contract', 'unknown'].includes(tx.type);
+		'draft', 'fa', 'trade', 'expansion', 'protect', 'contract', 'unknown'].includes(tx.type);
 	
 	if (!franchiseId && requiresFranchise) {
 		stats.errors.push({ 
@@ -557,7 +557,7 @@ async function createTransaction(player, tx, currentOwner, txIndex) {
 			doc.fromFranchiseId = resolveFranchise(tx.fromOwner, tx.season);
 			break;
 		
-		case 'expansion-protect':
+		case 'protect':
 			doc.rfaRights = tx.isRfa;
 			break;
 		
