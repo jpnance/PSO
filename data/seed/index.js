@@ -2,20 +2,17 @@
  * Omnibus Seeder - Main entry point for database seeding.
  * 
  * This script orchestrates the full seeding process, building the database
- * chronologically from the league's founding in 2008 to present.
+ * from the player-history DSL file.
  * 
  * Usage:
  *   docker compose run --rm -it web node data/seed
- *   docker compose run --rm -it web node data/seed --from=2008
- *   docker compose run --rm -it web node data/seed --season=2008
  *   docker compose run --rm -it web node data/seed --foundation-only
  *   docker compose run --rm -it web node data/seed --validate-only
+ *   docker compose run --rm -it web node data/seed --skip-clear
  * 
  * Options:
  *   --foundation-only   Only seed entities (franchises, regimes, persons)
  *   --skip-foundation   Skip foundation seeding (use existing entities)
- *   --from=YEAR         Start seeding from this year (includes foundation)
- *   --season=YEAR       Only seed a specific season
  *   --skip-clear        Don't clear existing transactions before seeding
  *   --validate-only     Just run validation without seeding
  */
@@ -28,6 +25,7 @@ var path = require('path');
 
 var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
+var Contract = require('../../models/Contract');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -36,24 +34,7 @@ var args = {
 	foundationOnly: process.argv.includes('--foundation-only'),
 	validateOnly: process.argv.includes('--validate-only'),
 	skipClear: process.argv.includes('--skip-clear'),
-	skipFoundation: process.argv.includes('--skip-foundation'),
-	fromYear: null,
-	seasonYear: null
-};
-
-process.argv.forEach(function(arg) {
-	var fromMatch = arg.match(/^--from=(\d{4})$/);
-	if (fromMatch) args.fromYear = parseInt(fromMatch[1]);
-	
-	var seasonMatch = arg.match(/^--season=(\d{4})$/);
-	if (seasonMatch) args.seasonYear = parseInt(seasonMatch[1]);
-});
-
-// Available season seeders
-var SEASON_SEEDERS = {
-	2008: 'data/seed/season-2008.js',
-	2009: 'data/seed/season-2009.js'
-	// Future seasons will be added here
+	skipFoundation: process.argv.includes('--skip-foundation')
 };
 
 /**
@@ -63,6 +44,11 @@ async function clearAllTransactions() {
 	console.log('Clearing all transactions...');
 	var result = await Transaction.deleteMany({});
 	console.log('  Deleted', result.deletedCount, 'transactions');
+	
+	// Clear contracts (will be rebuilt from current state after seeding)
+	console.log('Clearing contracts...');
+	var contractResult = await Contract.deleteMany({});
+	console.log('  Deleted', contractResult.deletedCount, 'contracts');
 	
 	// Also clear historical players (those without sleeperId)
 	console.log('Clearing historical players...');
@@ -109,23 +95,12 @@ async function seedFoundation() {
 	runScript('Entities', 'data/seed/entities.js', ['--clear']);
 }
 
-async function seedSeason(year, skipClear) {
-	var seeder = SEASON_SEEDERS[year];
-	
-	if (!seeder) {
-		console.log('No seeder available for ' + year + '\n');
-		return false;
-	}
-	
+async function seedFromDSL() {
 	console.log('========================================');
-	console.log('       Seeding ' + year + ' Season');
+	console.log('       Seeding from DSL');
 	console.log('========================================\n');
 	
-	var extraArgs = [];
-	if (skipClear || args.skipClear) extraArgs.push('--skip-clear');
-	
-	runScript(year + ' Season', seeder, extraArgs);
-	return true;
+	runScript('DSL Transactions', 'data/seed/from-dsl.js');
 }
 
 async function run() {
@@ -142,13 +117,6 @@ async function run() {
 		process.exit(valid ? 0 : 1);
 	}
 	
-	// Single season mode
-	if (args.seasonYear) {
-		console.log('[Single season mode: ' + args.seasonYear + ']\n');
-		var success = await seedSeason(args.seasonYear, args.skipClear);
-		process.exit(success ? 0 : 1);
-	}
-	
 	// Foundation only mode
 	if (args.foundationOnly) {
 		console.log('[Foundation only mode]\n');
@@ -157,9 +125,8 @@ async function run() {
 		process.exit(0);
 	}
 	
-	// Full seeding (or from a specific year)
-	var startYear = args.fromYear || 2008;
-	console.log('[Full seeding from ' + startYear + ']\n');
+	// Full seeding
+	console.log('[Full seeding from DSL]\n');
 	
 	// Clear everything first (unless skipped)
 	if (!args.skipClear) {
@@ -176,17 +143,8 @@ async function run() {
 		console.log('[Skipping foundation - using existing entities]\n');
 	}
 	
-	// Seed each season (skip their individual clear since we already cleared)
-	var years = Object.keys(SEASON_SEEDERS).map(Number).sort();
-	var seededYears = [];
-	
-	for (var i = 0; i < years.length; i++) {
-		var year = years[i];
-		if (year >= startYear) {
-			await seedSeason(year, true); // true = skip clear
-			seededYears.push(year);
-		}
-	}
+	// Seed transactions from DSL
+	await seedFromDSL();
 	
 	// Final validation
 	var valid = runValidator();
@@ -194,8 +152,6 @@ async function run() {
 	console.log('========================================');
 	console.log('       Seeding Complete');
 	console.log('========================================\n');
-	console.log('Seeded seasons:', seededYears.join(', ') || 'none');
-	console.log('');
 	
 	if (!valid) {
 		console.log('WARNING: Validation found issues.\n');
