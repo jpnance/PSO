@@ -772,7 +772,6 @@ function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 		}];
 		
 		// Check if drafted player was traded unsigned before signing
-		// If so, add a contract line (trade will be added by normal trade logic)
 		if (startYear && draftInfo.owner !== owner) {
 			var unsignedTrade = findUnsignedTradeToOwner(player, owner, startYear, unsignedTrades);
 			if (unsignedTrade) {
@@ -785,6 +784,13 @@ function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 					line: '  ' + yy(startYear) + ' contract $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
 				});
 			}
+		} else if (startYear && endYear) {
+			// Player stayed with drafter - add contract line
+			results.push({
+				year: startYear,
+				type: 'contract',
+				line: '  ' + yy(startYear) + ' contract $' + salary + ' ' + yy(startYear) + '/' + yy(endYear)
+			});
 		}
 		return results;
 	} else if (startYear === null) {
