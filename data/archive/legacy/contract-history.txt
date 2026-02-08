@@ -90,7 +90,7 @@ ID,Owner,Name,Position,Start,End,Salary
 9634,,Cedric Griffin,DB,FA,2010
 9603,Keyon,Chad Greenway,LB,FA,2010,$2
 11291,Daniel,Chad Henne,QB,2010,2012,$15
-2584,Keyon,Chad Ochocinco,WR,2010,2010,$65
+2584,Keyon,Chad Johnson,WR,2010,2010,$65
 2149,,Chad Pennington,QB,FA,2010
 10678,,Chansi Stuckey,WR,FA,2010
 13450,,Charles Scott,RB,FA,2010
@@ -653,7 +653,7 @@ ID,Owner,Name,Position,Start,End,Salary
 9634,,Cedric Griffin,DB,FA,2010
 9603,Keyon,Chad Greenway,LB,FA,2010,$2
 11291,Daniel,Chad Henne,QB,2010,2012,$15
-2584,Keyon,Chad Ochocinco,WR,2010,2010,$65
+2584,Keyon,Chad Johnson,WR,2010,2010,$65
 2149,,Chad Pennington,QB,FA,2010
 10678,,Chansi Stuckey,WR,FA,2010
 10527,Koci,Charles Johnson,DL,FA,2010,$1
@@ -1550,7 +1550,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2579,Koci,Todd Heap,TE,2011,,$1
 2580,James,Drew Brees,QB,2011,,$145
 2582,,Kyle Vanden Bosch,DL,FA,2011
-2584,Keyon,Chad Ochocinco,WR,2011,,$30
+2584,Keyon,Chad Johnson,WR,2011,,$30
 2594,,Aaron Schobel,DL,FA,2011
 2600,,Chris Chambers,WR,FA,2011
 2622,Trevor,Steve Smith (CAR),WR,2011,,$35
@@ -2188,7 +2188,7 @@ ID,Owner,Name,Position,Start,End,Salary
 14181,,Casey Matthews,LB,FA,2011
 14184,,Cecil Shorts,WR,FA,2011
 9634,,Cedric Griffin,DB,FA,2011
-2584,,Chad Ochocinco,WR,FA,2011
+2584,,Chad Johnson,WR,FA,2011
 2149,,Chad Pennington,QB,FA,2011
 10678,,Chansi Stuckey,WR,FA,2011
 13450,,Charles Scott,RB,FA,2011

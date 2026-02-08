@@ -11,7 +11,7 @@ ID,Owner,Name,Position,Start,End,Salary
 954,Trevor,Cam Newton,QB,2011,2013,$13
 91,Trevor,Carson Palmer,QB,2011,2011,$1
 272,Trevor,Chris Johnson,RB,2011,2011,$278
--1,Trevor,D.J. Williams,LB,2010,2012,$11
+11989,Trevor,D.J. Williams,LB,2010,2012,$11
 -1,Trevor,Davone Bess,WR,2011,2011,$1
 988,Trevor,Doug Baldwin,WR,FA,2011,$1
 297,Trevor,Eddie Royal,WR,2011,2013,$1
@@ -31,7 +31,7 @@ ID,Owner,Name,Position,Start,End,Salary
 515,Trevor,Rob Gronkowski,TE,2010,2012,$1
 810,Trevor,Ryan Mallett,QB,2011,2013,$1
 610,Trevor,Sean Weatherspoon,LB,2010,2012,$1
-169,Trevor,Steve Smith,WR,2011,2011,$35
+890,Trevor,Steve Smith,WR,2011,2011,$35
 1020,Trevor,Terrelle Pryor,QB,2011,2013,$1
 500,Syed,Billy Cundiff,QB,FA,2011,$1
 454,Syed,Chris Ogbonnaya,RB,FA,2011,$20
@@ -224,7 +224,7 @@ ID,Owner,Name,Position,Start,End,Salary
 622,John,Michael Hoomanawanui,TE,2010,2012,$1
 461,John,Michael Vick,QB,2011,2013,$185
 -1,John,Mike Goodson,RB,2011,2013,$1
--1,John,Mike Thomas,WR,2010,2011,$14
+3652,John,Mike Thomas,WR,2010,2011,$14
 -1,John,Mohamed Massaquoi,WR,2009,2011,$14
 -1,John,Nate Kaeding,K,2011,2013,$1
 168,John,Nick Novak,K,FA,2011,$1
@@ -399,7 +399,7 @@ ID,Owner,Name,Position,Start,End,Salary
 790,Patrick,Casey Matthews,LB,2011,2013,$1
 866,Syed,Cecil Shorts,WR,2011,2013,$1
 -1,,Cedric Griffin,DB,FA,2011,
--1,Keyon,Chad Ochocinco,WR,2011,2011,$30
+-1,Keyon,Chad Johnson,WR,2011,2011,$30
 -1,,Chad Pennington,QB,FA,2011,
 -1,,Chansi Stuckey,WR,FA,2011,
 -1,,Charles Scott,RB,FA,2011,
@@ -672,7 +672,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Stefan Logan,RB,FA,2011,
 -1,,Stephen Cooper,LB,FA,2011,
 -1,,Steve Slaton,RB,FA,2011,
-169,,Steve Smith,WR,FA,2011,
+890,,Steve Smith,WR,FA,2011,
 775,,Stephen Hauschka,K,FA,2011,
 -1,Patrick,Stewart Bradley,LB,2010,2012,$2
 -1,,T.J. Houshmandzadeh,WR,FA,2011,

@@ -27,7 +27,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4139,Keyon,Amara Darboh,WR,2017,2019,$1
 2309,Schex/Jeff,Amari Cooper,WR,2015,2017,$17
 2359,Quinn,Ameer Abdullah,RB,2015,2017,$27
-1575,,Andre Ellington,RB,FA,2017,
+36,,Andre Ellington,RB,FA,2017,
 92,,Andre Johnson,WR,FA,2017,
 627,,Andre Roberts,WR,FA,2017,
 2088,,Andre Williams,RB,FA,2017,
@@ -357,7 +357,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3397,,Keith Marshall,RB,FA,2017,
 2182,Schex/Jeff,Kelvin Benjamin,WR,2017,2019,$60
 1542,,Kemal Ishmael,DB,FA,2017,
-1097,Mitch,Kendall Wright,WR,2017,2017,$1
+120,Mitch,Kendall Wright,WR,2017,2017,$1
 1546,,Kenjon Barner,RB,FA,2017,
 3208,Keyon,Kenneth Dixon,RB,2016,2018,$13
 3532,,Kenneth Farrow,RB,FA,2017,
@@ -505,7 +505,7 @@ ID,Owner,Name,Position,Start,End,Salary
 515,Quinn,Rob Gronkowski,TE,2016,2018,$200
 473,,Rob Ninkovich,DL,FA,2017,
 49,,Robbie Gould,K,FA,2017,
--1,Syed/Terence,Robby Anderson,WR,2017,2019,$2
+3423,Syed/Terence,Robby Anderson,WR,2017,2019,$2
 1169,,Robert Griffin,QB,FA,2017,
 -1,Brett/Luke,Robert Kelley,RB,2017,2017,$38
 3180,Brett/Luke,Robert Nkemdiche,DL,2016,2018,$1
@@ -548,7 +548,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2017,
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,,Stevan Ridley,RB,FA,2017,
-169,,Steve Smith,WR,FA,2017,
+890,,Steve Smith,WR,FA,2017,
 775,,Stephen Hauschka,K,FA,2017,
 535,Syed/Terence,T.J. Ward,DB,2017,2017,$2
 4070,Schex/Jeff,T.J. Watt,LB,2017,2019,$1
@@ -589,7 +589,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2099,,Trent Murphy,DL,FA,2017,
 3213,,Trevone Boykin,QB,FA,2017,
 3319,,Trevor Davis,WR,FA,2017,
-2549,Keyon,Trevor Siemian,QB,2016,2018,$1
+461,Keyon,Trevor Siemian,QB,2016,2018,$1
 2406,Patrick,Trey Flowers,DL,2017,2019,$1
 3934,,Troymaine Pope,RB,FA,2017,
 1204,,Trumaine Johnson,DB,FA,2017,

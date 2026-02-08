@@ -21,7 +21,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1149,James,Alshon Jeffery,WR,2012,2014,$16
 540,John/Zach,Alterraun Verner,DB,2014,2016,$1
 1116,,Andre Branch,DL,FA,2014,
-1575,Patrick,Andre Ellington,RB,2013,2015,$2
+36,Patrick,Andre Ellington,RB,2013,2015,$2
 940,Patrick,Andre Holmes,WR,FA,2014,$1
 92,Koci/Mueller,Andre Johnson,WR,2014,2014,$87
 627,John/Zach,Andre Roberts,WR,2013,2015,$3
@@ -318,7 +318,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1171,,Keenan Robinson,LB,FA,2014,
 2182,Mitch,Kelvin Benjamin,WR,2014,2016,$19
 1655,Daniel,Kenbrell Thompkins,WR,2014,2016,$2
-1097,Schex,Kendall Wright,WR,2012,2014,$8
+120,Schex,Kendall Wright,WR,2012,2014,$8
 713,Daniel,Kendrick Lewis,DB,FA,2014,$1
 366,Patrick,Kenny Britt,WR,2014,2016,$1
 1555,Daniel,Kenny Stills,WR,2013,2015,$9
@@ -485,7 +485,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1043,Mitch,Stephon Gilmore,DB,2012,2014,$1
 811,Quinn,Stevan Ridley,RB,2014,2016,$42
 108,Trevor,Steve Johnson,WR,2014,2015,$1
-169,Daniel,Steve Smith,WR,2014,2015,$12
+890,Daniel,Steve Smith,WR,2014,2015,$12
 775,Keyon,Stephen Hauschka,K,FA,2014,$1
 57,Keyon,Steven Jackson,RB,2014,2014,$27
 1986,James,Storm Johnson,RB,2014,2016,$3

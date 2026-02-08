@@ -463,7 +463,7 @@ Koci/Mueller	Brad Smith	WR	FA	2011	$2	2011		$0	$0	$0
 Koci/Mueller	Jabar Gaffney	WR	FA	2011	$4	2011		$0	$0	$0
 Koci/Mueller	Ryan Torain	RB	FA	2011	$10	2011		$0	$0	$0
 Koci/Mueller	Visanthe Shiancoe	TE	FA	2011	$11	2011		$0	$0	$0
-Keyon	Chad Ochocinco	WR	2011	2011	$30	2011		$0	$0	$0
+Keyon	Chad Johnson	WR	2011	2011	$30	2011		$0	$0	$0
 Luke	Brent Celek	TE	2010	2012	$27	2011		$0	$0	$0
 Anthony	Eric Weddle	DB	FA	2011	$3	2011		$0	$0	$0
 Anthony	Preston Parker	WR	FA	2011	$4	2011		$0	$0	$0

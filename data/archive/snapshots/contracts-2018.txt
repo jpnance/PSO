@@ -29,7 +29,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4139,,Amara Darboh,WR,FA,2018,
 2309,Mitch,Amari Cooper,WR,2018,2019,$100
 2359,,Ameer Abdullah,RB,FA,2018,
-1575,,Andre Ellington,RB,FA,2018,
+36,,Andre Ellington,RB,FA,2018,
 92,,Andre Johnson,WR,FA,2018,
 627,,Andre Roberts,WR,FA,2018,
 2088,,Andre Williams,RB,FA,2018,
@@ -206,7 +206,7 @@ ID,Owner,Name,Position,Start,End,Salary
 735,,Danny Woodhead,RB,FA,2018,
 2308,,Dante Fowler,DL,FA,2018,
 4992,Quinn,Dante Pettis,WR,2018,2020,$5
--1,Schex,Darius Leonard,LB,2018,2020,$1
+4990,Schex,Darius Leonard,LB,2018,2020,$1
 326,,Darren McFadden,RB,FA,2018,
 246,Brett/Luke,Darren Sproles,RB,2018,2018,$7
 3190,Brett/Luke,Darron Lee,LB,2018,2018,$1
@@ -460,7 +460,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2182,Syed/Terence,Kelvin Benjamin,WR,2017,2019,$60
 1542,,Kemal Ishmael,DB,FA,2018,
 5058,Brett/Luke,Kemoko Turay,DL,2018,2019,$1
-1097,,Kendall Wright,WR,FA,2018,
+120,,Kendall Wright,WR,FA,2018,
 4143,,Kendell Beckwith,LB,FA,2018,
 1546,,Kenjon Barner,RB,FA,2018,
 3208,Patrick,Kenneth Dixon,RB,2018,2020,$1
@@ -645,7 +645,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3657,Brett/Luke,Rob Kelley,RB,2018,2018,$20
 473,,Rob Ninkovich,DL,FA,2018,
 49,Mitch,Robbie Gould,K,2018,2018,$1
--1,Syed/Terence,Robby Anderson,WR,2017,2019,$2
+3423,Syed/Terence,Robby Anderson,WR,2017,2019,$2
 1169,,Robert Griffin,QB,FA,2018,
 3180,Brett/Luke,Robert Nkemdiche,DL,2016,2018,$1
 967,,Robert Quinn,DL,FA,2018,
@@ -704,7 +704,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2018,
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,,Stevan Ridley,RB,FA,2018,
-169,,Steve Smith,WR,FA,2018,
+890,,Steve Smith,WR,FA,2018,
 535,,T.J. Ward,DB,FA,2018,
 4070,Schex,T.J. Watt,LB,2017,2019,$1
 2341,Mitch,T.J. Yeldon,RB,2018,2018,$2
@@ -732,7 +732,7 @@ ID,Owner,Name,Position,Start,End,Salary
 187,,Thomas Davis,LB,FA,2018,
 2585,,Thomas Rawls,RB,FA,2018,
 83,,Tim Hightower,RB,FA,2018,
-4596,,Tion Green,RB,FA,2018,
+263,,Tion Green,RB,FA,2018,
 2029,,T.J. Carrie,DB,FA,2018,
 2121,,T.J. Jones,WR,FA,2018,
 2315,Brett/Luke,Todd Gurley,RB,2018,2018,$360
@@ -753,7 +753,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4218,Keyon,Trent Taylor,WR,2018,2020,$1
 3213,,Trevone Boykin,QB,FA,2018,
 3319,,Trevor Davis,WR,FA,2018,
-2549,,Trevor Siemian,QB,FA,2018,
+461,,Trevor Siemian,QB,FA,2018,
 1793,Keyon,Trey Burton,TE,2018,2020,$19
 2406,Patrick,Trey Flowers,DL,2017,2019,$1
 3934,,Troymaine Pope,RB,FA,2018,

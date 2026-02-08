@@ -2238,7 +2238,7 @@ Chad Kelly | QB | sleeper:4051
   18 auction Trevor $8
   18 contract $8 18/20
 
-Chad Ochocinco | WR | historical
+Chad Johnson | WR | historical
   09 auction Koci $79
   09 contract $79 09/09
   09 trade 15 -> James

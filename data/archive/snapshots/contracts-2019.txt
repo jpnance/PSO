@@ -162,7 +162,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4273,Koci/Mueller,Chris Carson,RB,2017,2019,$3
 2381,,Chris Conley,WR,FA,2018
 4037,Brett/Luke,Chris Godwin,WR,2019,2021,$110
-5009,Keyon,Chris Herndon,TE,2019,2021,$3
+239,Keyon,Chris Herndon,TE,2019,2021,$3
 1329,Terence,Chris Hogan,WR,2017,2019,$8
 717,Trevor,Chris Ivory,RB,2017,2019,$2
 272,,Chris Johnson,RB,FA,2018
@@ -311,7 +311,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1037,,Dont'a Hightower,LB,FA,2018
 5051,,Donte Jackson,DB,FA,2018
 1971,James/Charles,Donte Moncrief,WR,2019,2019,$40
-5536,Mitch,Dontrell Hilliard,RB,2019,2021,$3
+138,Mitch,Dontrell Hilliard,RB,2019,2021,$3
 2291,,Dontrelle Inman,WR,FA,2018
 2345,,Dorial Green-Beckham,WR,FA,2018
 988,,Doug Baldwin,WR,FA,2018
@@ -665,7 +665,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3199,,Michael Thomas,WR,FA,2018
 3199,Quinn,Michael Thomas,WR,2019,2020,$300
 1302,,Michael Wilhoite,LB,FA,2018
-5209,Mitch,Mike Boone,RB,2019,2021,$9
+142,Mitch,Mike Boone,RB,2019,2021,$9
 2431,Brett/Luke,Mike Davis,RB,2019,2020,$19
 2216,Syed/Kuan,Mike Evans,WR,2018,2020,$150
 4993,John/Zach,Mike Gesicki,TE,2018,2020,$7
@@ -759,7 +759,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3657,,Rob Kelley,RB,FA,2018
 473,,Rob Ninkovich,DL,FA,2018
 49,James/Charles,Robbie Gould,K,2019,2019,$1
--1,Syed/Kuan,Robby Anderson,WR,2017,2019,$2
+3423,Syed/Kuan,Robby Anderson,WR,2017,2019,$2
 5250,,Robert Foster,WR,FA,2019
 1169,Schex,Robert Griffin,QB,2019,2020,$1
 3180,,Robert Nkemdiche,DL,FA,2018
@@ -872,7 +872,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5974,Brett/Luke,Trace McSorley,QB,2019,2021,$1
 1185,,Travaris Cadet,RB,FA,2018
 1077,,Travis Benjamin,WR,FA,2018
-6012,Koci/Mueller,Travis Homer,RB,2019,2021,$1
+412,Koci/Mueller,Travis Homer,RB,2019,2021,$1
 1466,Mitch,Travis Kelce,TE,2019,2020,$200
 4644,,Travis Rudolph,WR,FA,2018
 6144,Trevor,Trayveon Williams,RB,2019,2021,$1

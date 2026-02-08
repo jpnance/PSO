@@ -60,7 +60,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6782,Mitch,Chase Young,DL,2020,2022,$1
 4273,Quinn,Chris Carson,RB,2020,2021,$111
 4037,Brett,Chris Godwin,WR,2019,2021,$110
-5009,Keyon,Chris Herndon,TE,2019,2021,$3
+239,Keyon,Chris Herndon,TE,2019,2021,$3
 4719,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
 4950,James/Charles,Christian Kirk,WR,2018,2020,$9
 1905,Quinn,Christian Kirksey,LB,2020,2022,$3
@@ -92,7 +92,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6149,Luke,Darius Slayton,WR,2020,2022,$25
 7090,Keyon,Darnell Mooney,WR,2020,2022,$1
 6210,Terence,Darnell Savage,DB,2019,2021,$1
-5549,Mitch,Darrel Williams,RB,2020,2022,$8
+57,Mitch,Darrel Williams,RB,2020,2022,$8
 5916,James/Charles,Darrell Henderson,RB,2019,2021,$13
 2505,Schex,Darren Waller,TE,2019,2021,$3
 7064,Terence,Darrynton Evans,RB,2020,2022,$7
@@ -296,7 +296,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6819,James/Charles,Michael Pittman,WR,2020,2022,$8
 3199,Patrick,Michael Thomas,WR,2019,2020,$300
 6992,Mitch,Michael Warren,RB,2020,2022,$1
-5209,Mitch,Mike Boone,RB,2019,2021,$9
+142,Mitch,Mike Boone,RB,2019,2021,$9
 2216,Mitch,Mike Evans,WR,2018,2020,$150
 4993,Keyon,Mike Gesicki,TE,2018,2020,$7
 4068,Mitch,Mike Williams,WR,2020,2022,$10
@@ -332,7 +332,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5162,Koci/Mueller,Reggie Bonnafon,RB,2020,2020,$1
 515,James/Charles,Rob Gronkowski,TE,2019,2021,$1
 49,James/Charles,Robbie Gould,K,2020,2020,$3
--1,Trevor,Robby Anderson,WR,2020,2021,$3
+3423,Trevor,Robby Anderson,WR,2020,2021,$3
 1352,Quinn,Robert Woods,WR,2020,2021,$95
 5052,Koci/Mueller,Ronald Jones,RB,2020,2022,$71
 4960,Brett,Roquan Smith,LB,2018,2020,$1
@@ -346,7 +346,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4943,Trevor,Sam Darnold,QB,2018,2020,$28
 1817,Koci/Mueller,Sammy Watkins,WR,2020,2022,$9
 4866,Keyon,Saquon Barkley,RB,2018,2020,$25
-2330,Trevor,Shaq Thompson,LB,2020,2022,$3
+167,Trevor,Shaq Thompson,LB,2020,2022,$3
 4962,John/Zach,Sony Michel,RB,2018,2020,$25
 2449,Trevor,Stefon Diggs,WR,2018,2020,$75
 3200,Patrick,Sterling Shepard,WR,2019,2021,$42

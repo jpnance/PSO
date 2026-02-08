@@ -92,7 +92,7 @@ ID,Owner,Name,Position,Start,End,Salary
 9634,,Cedric Griffin,DB,FA,2010
 9603,Keyon,Chad Greenway,LB,FA,2010,$2
 11291,Daniel,Chad Henne,QB,2010,2012,$15
-2584,Keyon,Chad Ochocinco,WR,2010,2010,$65
+2584,Keyon,Chad Johnson,WR,2010,2010,$65
 2149,,Chad Pennington,QB,FA,2010
 10678,,Chansi Stuckey,WR,FA,2010
 10527,Koci,Charles Johnson,DL,FA,2010,$1

@@ -220,7 +220,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1479,Mitch,Keenan Allen,WR,2016,2017,$110
 3397,Quinn,Keith Marshall,RB,2016,2016,$7
 2182,Schex/Jeff,Kelvin Benjamin,WR,2014,2016,$19
-1097,Patrick,Kendall Wright,WR,2016,2018,$2
+120,Patrick,Kendall Wright,WR,2016,2018,$2
 1546,Koci/Mueller,Kenjon Barner,RB,2016,2018,$18
 3208,Schex/Jeff,Kenneth Dixon,RB,2016,2018,$13
 3532,Koci/Mueller,Kenneth Farrow,RB,2016,2018,$4
@@ -340,7 +340,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,Trevor,Stephone Anthony,LB,2015,2017,$1
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,Schex/Jeff,Stevan Ridley,RB,2015,2017,$1
-169,Brett/Luke,Steve Smith,WR,2016,2016,$5
+890,Brett/Luke,Steve Smith,WR,2016,2016,$5
 775,Brett/Luke,Stephen Hauschka,K,2016,2016,$3
 2341,Syed/Terence,T.J. Yeldon,RB,2015,2017,$27
 1110,John/Zach,T.Y. Hilton,WR,2015,2017,$135
@@ -366,7 +366,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1077,John/Zach,Travis Benjamin,WR,2016,2018,$10
 1466,Mitch,Travis Kelce,TE,2016,2018,$30
 2544,Daniel,Tre McBride,WR,2015,2017,$2
-2549,Syed/Terence,Trevor Siemian,QB,2016,2018,$1
+461,Syed/Terence,Trevor Siemian,QB,2016,2018,$1
 2399,Syed/Terence,Ty Montgomery,WR,2015,2017,$9
 3225,Schex/Jeff,Tyler Boyd,WR,2016,2018,$17
 1388,Daniel,Tyler Eifert,TE,2016,2016,$25
@@ -381,7 +381,7 @@ ID,Owner,Name,Position,Start,End,Salary
 871,Syed/Terence,Von Miller,LB,2014,2016,$3
 1064,Patrick,Vontaze Burfict,LB,2016,2018,$10
 3309,Mitch,Wendell Smallwood,RB,2016,2018,$7
--1,John/Zach,Will Fuller,WR,2016,2018,$9
+3157,John/Zach,Will Fuller,WR,2016,2018,$9
 1911,John/Zach,Willie Snead,WR,2016,2018,$21
 1339,Patrick,Zach Ertz,TE,2016,2018,$18
 1935,Trevor,Zach Mettenberger,QB,2014,2016,$2
