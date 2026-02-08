@@ -259,7 +259,7 @@ ID,Owner,Name,Position,Start,End,Salary
 943,Trevor,Kyle Rudolph,TE,2019,2021,$2
 5849,Patrick,Kyler Murray,QB,2019,2021,$38
 6908,Keyon,La'Mical Perine,RB,2020,2022,$4
-6994,Schex,Lamar Jackson,QB,2018,2020,$14
+4881,Schex,Lamar Jackson,QB,2018,2020,$14
 2338,Schex,Landon Collins,DB,2019,2021,$9
 223,Schex,Larry Fitzgerald,WR,2020,2020,$2
 1476,Schex,Latavius Murray,RB,2020,2022,$14

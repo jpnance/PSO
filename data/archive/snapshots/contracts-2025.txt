@@ -258,7 +258,7 @@ ID,Owner,Player,Position,Start,End,Salary
 8150,Jason,Kyren Williams,RB,2023,2025,$6
 11635,Justin,Ladd McConkey,WR,2024,2026,$8
 11669,Anthony,Laiatu Latu,DL,2024,2026,$1
-6994,Jason,Lamar Jackson,QB,2023,2025,$275
+4881,Jason,Lamar Jackson,QB,2023,2025,$275
 1192,Mike,Lavonte David,LB,2025,2025,$1
 6880,Mike,Logan Wilson,LB,2023,2025,$5
 9481,Mitch,Luke Musgrave,TE,2025,2027,$1

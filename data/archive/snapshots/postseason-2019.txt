@@ -614,7 +614,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2130,,Kyle Van Noy,LB,FA,2018,
 5849,Patrick,Kyler Murray,QB,2019,2021,$38
 1139,,Ladarius Green,TE,FA,2018,
-6994,Schex,Lamar Jackson,QB,2018,2020,$14
+4881,Schex,Lamar Jackson,QB,2018,2020,$14
 1048,,Lamar Miller,RB,FA,2019,
 1284,,Lance Dunbar,RB,FA,2018,
 964,,Lance Kendricks,TE,FA,2018,

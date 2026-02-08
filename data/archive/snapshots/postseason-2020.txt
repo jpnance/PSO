@@ -461,7 +461,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5849,Patrick,Kyler Murray,QB,2019,2021,$38
 5348,,Kyzir White,LB,FA,2020,
 6908,Schex,La'Mical Perine,RB,2020,2022,$4
-6994,Schex,Lamar Jackson,QB,2018,2020,$14
+4881,Schex,Lamar Jackson,QB,2018,2020,$14
 1048,,Lamar Miller,RB,FA,2020,
 2338,,Landon Collins,DB,FA,2020,
 223,,Larry Fitzgerald,WR,FA,2020,
