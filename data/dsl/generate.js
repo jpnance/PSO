@@ -611,12 +611,24 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		
 		// Check for cuts between appearances using explicit cuts.json data
 		var cutsInGap = findCutsForPlayer(player, prevAppearance.year, app.year - 1, cutsMap);
+		var lastCutYear = null;
+		var lastCutOwner = null;
 		cutsInGap.forEach(function(cut) {
+			// If same year as previous cut, infer FA pickup between cuts
+			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
+				transactions.push({
+					year: cut.year,
+					type: 'fa',
+					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+				});
+			}
 			transactions.push({
 				year: cut.year,
 				type: 'cut',
-				line: '  ' + yy(cut.year) + ' cut'
+				line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 			});
+			lastCutYear = cut.year;
+			lastCutOwner = cut.owner;
 		});
 		
 		// Check for expansion draft (2012) - before other checks
@@ -789,17 +801,29 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	// Find cuts after the last appearance
 	var lastAppearance = appearances[appearances.length - 1];
 	var finalCuts = findCutsForPlayer(player, lastAppearance.year, 2099, cutsMap);
+	var lastFinalCutYear = null;
+	var lastFinalCutOwner = null;
 	finalCuts.forEach(function(cut) {
-		// Only add if not already added
+		// Check if this exact cut (year + owner) is already in transactions
 		var hasCut = transactions.some(function(t) { 
-			return t.type === 'cut' && t.year === cut.year; 
+			return t.type === 'cut' && t.year === cut.year && t.line.includes('# by ' + cut.owner);
 		});
 		if (!hasCut) {
+			// If same year as previous cut, infer FA pickup between cuts
+			if (cut.year === lastFinalCutYear && cut.owner !== lastFinalCutOwner) {
+				transactions.push({
+					year: cut.year,
+					type: 'fa',
+					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+				});
+			}
 			transactions.push({
 				year: cut.year,
 				type: 'cut',
-				line: '  ' + yy(cut.year) + ' cut'
+				line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 			});
+			lastFinalCutYear = cut.year;
+			lastFinalCutOwner = cut.owner;
 		}
 	});
 	
