@@ -34,7 +34,7 @@ ID,Owner,Player,Position,Start,End,Salary
 11576,Schexes,Braelon Allen,RB,2024,2026,$6
 2197,Schexes,Brandin Cooks,WR,2023,2024,$20
 6803,Mike,Brandon Aiyuk,WR,2023,2025,$50
-1108,Keyon,Jerrell Freeman,K,2024,2026,$7
+11533,Keyon,Brandon Aubrey,K,2024,2026,$7
 5121,Mike,Braxton Berrios,WR,2024,2024,$1
 8155,Koci/Mueller,Breece Hall,RB,2022,2024,$25
 11621,Koci/Mueller,Brenden Rice,WR,2024,2026,$1
@@ -180,7 +180,7 @@ ID,Owner,Player,Position,Start,End,Salary
 10215,Brett,Jake Haener,QB,2023,2024,$1
 10937,Mitch,Jake Moody,K,2023,2025,$1
 5947,Patrick,Jakobi Meyers,WR,2024,2026,$9
-269,Mike,Pierre Garcon,RB,2023,2025,$1
+11439,Mike,Jaleel McLaughlin,RB,2023,2025,$1
 10888,Luke,Jalen Carter,DL,2023,2025,$1
 6904,Koci/Mueller,Jalen Hurts,QB,2024,2024,$363
 11618,Justin,Jalen McMillan,WR,2024,2026,$2
@@ -217,8 +217,8 @@ ID,Owner,Player,Position,Start,End,Salary
 6770,Mike,Joe Burrow,QB,2023,2024,$355
 19,Keyon,Joe Flacco,QB,2024,2024,$2
 4018,Quinn,Joe Mixon,RB,2023,2024,$95
-242,Brett,Brent Grimes,DB,2023,2024,$1
-140,Mike,Erin Henderson,WR,2024,2026,$1
+10913,Brett,Joey Porter,DB,2023,2024,$1
+11636,Mike,Johnny Wilson,WR,2024,2026,$1
 10225,Patrick,Jonathan Mingo,WR,2023,2025,$8
 6813,Anthony,Jonathan Taylor,RB,2023,2024,$198
 11583,Keyon,Jonathon Brooks,RB,2024,2026,$23
@@ -392,7 +392,7 @@ ID,Owner,Player,Position,Start,End,Salary
 7042,Mitch,Tyler Bass,K,2023,2025,$1
 5133,Mike,Tyler Conklin,TE,2024,2024,$1
 2374,Mitch,Tyler Lockett,WR,2024,2024,$10
-491,Luke,Danny Amendola,DB,2024,2026,$1
+11674,Luke,Tyler Nubin,DB,2024,2026,$1
 9490,Patrick,Tyler Scott,WR,2023,2025,$4
 3321,Keyon,Tyreek Hill,WR,2024,2024,$200
 11655,Keyon,Tyrone Tracy,RB,2024,2026,$3

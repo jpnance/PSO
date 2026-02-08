@@ -107,7 +107,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,John,Plaxico Burress,WR,2008,2010,$62
 -1,John,Joey Galloway,WR,2008,2008,$45
 1118,John,Brandon Marshall,WR,2008,2010,$21
--1,John,Steve Smith,WR,2008,2010,$20
+169,John,Steve Smith,WR,2008,2010,$20
 -1,John,Steve Breaston,WR,FA,2008,$9
 -1,John,David Patten,WR,FA,2008,$1
 65,John,Domenik Hixon,WR,FA,2008,$1

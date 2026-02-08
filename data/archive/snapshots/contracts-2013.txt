@@ -13,7 +13,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1170,James,Alfred Morris,RB,2013,2015,$230
 1149,James,Alshon Jeffery,WR,2012,2014,$16
 -1,John,Andre Brown,RB,2013,2013,$60
-36,Pat/Quinn,Matt Hasselbeck,RB,2013,2015,$2
+1575,Pat/Quinn,Andre Ellington,RB,2013,2015,$2
 92,Trevor,Andre Johnson,WR,2013,2014,$105
 627,Schex,Andre Roberts,WR,2013,2015,$3
 1111,Mitch,Andrew Luck,QB,2012,2014,$25
@@ -245,7 +245,7 @@ ID,Owner,Name,Position,Start,End,Salary
 449,John,Kellen Winslow,TE,FA,2013,$15
 1655,Syed,Kenbrell Thompkins,WR,2013,2015,$18
 978,Syed,Kendall Hunter,RB,2013,2015,$1
-120,Charles,Adam Vinatieri,WR,2012,2014,$8
+1097,Charles,Kendall Wright,WR,2012,2014,$8
 1546,Keyon,Kenjon Barner,RB,2013,2015,$7
 366,Pat/Quinn,Kenny Britt,WR,2012,2014,$35
 1555,Daniel,Kenny Stills,WR,2013,2015,$9

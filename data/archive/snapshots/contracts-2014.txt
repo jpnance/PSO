@@ -21,7 +21,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1149,James,Alshon Jeffery,WR,2012,2014,$16
 540,John/Zach,Alterraun Verner,DB,2014,2016,$1
 1116,,Andre Branch,DL,FA,2014
-36,Patrick,Matt Hasselbeck,RB,2013,2015,$2
+1575,Patrick,Andre Ellington,RB,2013,2015,$2
 92,Koci/Mueller,Andre Johnson,WR,2014,2014,$87
 940,Patrick,Andre Holmes,WR,FA,2014,$1
 627,Schex,Andre Roberts,WR,2013,2015,$3
@@ -290,7 +290,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1171,Keyon,Keenan Robinson,LB,FA,2014,$1
 2182,Mitch,Kelvin Benjamin,WR,2014,2016,$19
 1655,Daniel,Kenbrell Thompkins,WR,2014,2016,$2
-120,Schex,Adam Vinatieri,WR,2012,2014,$8
+1097,Schex,Kendall Wright,WR,2012,2014,$8
 713,Daniel,Kendrick Lewis,DB,FA,2014,$1
 366,Patrick,Kenny Britt,WR,2014,2016,$1
 1555,Daniel,Kenny Stills,WR,2013,2015,$9

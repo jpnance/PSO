@@ -29,7 +29,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4139,,Amara Darboh,WR,FA,2018,
 2309,Mitch,Amari Cooper,WR,2018,2019,$100
 2359,,Ameer Abdullah,RB,FA,2018,
-36,,Matt Hasselbeck,RB,FA,2018,
+1575,,Andre Ellington,RB,FA,2018,
 92,,Andre Johnson,WR,FA,2018,
 627,,Andre Roberts,WR,FA,2018,
 2088,,Andre Williams,RB,FA,2018,
@@ -460,7 +460,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2182,Syed/Terence,Kelvin Benjamin,WR,2017,2019,$60
 1542,,Kemal Ishmael,DB,FA,2018,
 5058,Brett/Luke,Kemoko Turay,DL,2018,2019,$1
-120,,Adam Vinatieri,WR,FA,2018,
+1097,,Kendall Wright,WR,FA,2018,
 4143,,Kendell Beckwith,LB,FA,2018,
 1546,,Kenjon Barner,RB,FA,2018,
 3208,Patrick,Kenneth Dixon,RB,2018,2020,$1
@@ -732,7 +732,7 @@ ID,Owner,Name,Position,Start,End,Salary
 187,,Thomas Davis,LB,FA,2018,
 2585,,Thomas Rawls,RB,FA,2018,
 83,,Tim Hightower,RB,FA,2018,
-263,,Robert Mathis,RB,FA,2018,
+18542,,Tion Green,RB,FA,2018,
 2029,,T.J. Carrie,DB,FA,2018,
 2121,,T.J. Jones,WR,FA,2018,
 2315,Brett/Luke,Todd Gurley,RB,2018,2018,$360
@@ -753,7 +753,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4218,Keyon,Trent Taylor,WR,2018,2020,$1
 3213,,Trevone Boykin,QB,FA,2018,
 3319,,Trevor Davis,WR,FA,2018,
-461,,Michael Vick,QB,FA,2018,
+17455,,Trevor Siemian,QB,FA,2018,
 1793,Keyon,Trey Burton,TE,2018,2020,$19
 2406,Patrick,Trey Flowers,DL,2017,2019,$1
 3934,,Troymaine Pope,RB,FA,2018,

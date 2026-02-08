@@ -235,7 +235,7 @@ ID,Owner,Name,Position,Start,End,Salary
 328,Schex,Kellen Davis,TE,2012,2012,$6
 449,Koci,Kellen Winslow,TE,2011,2013,$11
 978,Daniel,Kendall Hunter,RB,2011,2013,$4
-120,Charles,Adam Vinatieri,WR,2012,2014,$8
+1097,Charles,Kendall Wright,WR,2012,2014,$8
 366,Pat/Quinn,Kenny Britt,WR,2012,2014,$35
 1102,Koci,Keshawn Martin,WR,2012,2014,$4
 278,Mitch,Kevin Kolb,QB,2012,2012,$13

@@ -2226,7 +2226,7 @@ Luke	Germaine Pratt	LB	2019	2021	$1	2020		$0	$0	$0
 Luke	Colt McCoy	QB	2019	2021	$1	2020		$0	$0	$0
 Patrick	Danny Trevathan	LB	2020	2020	$1	2020		$0	$0	$0
 Anthony	Larry Fitzgerald	WR	2020	2020	$2	2020		$0	$0	$0
-Jason	Josh Allen (JAX)	DL	2019	2021	$1	2020		$0	$0	$0
+Jason	Josh Hines-Allen	DL	2019	2021	$1	2020		$0	$0	$0
 Koci/Mueller	Chris Thompson (JAX)	RB	2019	2021	$6	2020		$0	$0	$0
 Brett	Brian Hoyer	QB	FA	2020	$2	2020		$0	$0	$0
 Schexes	B.J. Goodson	LB	FA	2020	$1	2020		$0	$0	$0
@@ -2743,7 +2743,7 @@ Luke	DeSean Jackson	WR	FA	2022	$1	2022		$0	$0	$0
 Jason	J.D. McKissic	RB	2020	2022	$1	2022		$0	$0	$0
 Keyon	Bradley Chubb	LB	FA	2022	$1	2022		$0	$0	$0
 Luke	Demarcus Robinson	WR	FA	2022	$1	2022		$0	$0	$0
-Luke	Josh Allen	DL	2021	2022	$1	2022		$0	$0	$0
+Luke	Josh Hines-Allen	DL	2021	2022	$1	2022		$0	$0	$0
 Jason	Hunter Henry	TE	2022	2024	$8	2022		$0	$0	$0
 Quinn	Marvin Jones	WR	2022	2022	$3	2022		$0	$0	$0
 Mike	Kyle Fuller	DB	2020	2022	$1	2022		$0	$0	$0

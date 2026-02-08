@@ -21,7 +21,7 @@ ID,Owner,Name,Position,Start,End,Salary
 540,,Alterraun Verner,DB,FA,2015,
 2309,Quinn,Amari Cooper,WR,2015,2017,$17
 2359,Quinn,Ameer Abdullah,RB,2015,2017,$27
-36,Patrick,Matt Hasselbeck,RB,2013,2015,$2
+1575,Patrick,Andre Ellington,RB,2013,2015,$2
 92,Daniel,Andre Johnson,WR,2015,2015,$110
 627,,Andre Roberts,WR,FA,2015,
 2088,Syed,Andre Williams,RB,2014,2016,$12
@@ -308,7 +308,7 @@ ID,Owner,Name,Position,Start,End,Salary
 799,,Kelvin Sheppard,LB,FA,2015,
 1655,,Kenbrell Thompkins,WR,FA,2015,
 1671,Syed,Kendall Gaskins,RB,FA,2015,$1
-120,Schex,Adam Vinatieri,WR,2015,2017,$6
+1097,Schex,Kendall Wright,WR,2015,2017,$6
 2465,,Kenny Bell,WR,FA,2015,
 366,,Kenny Britt,WR,FA,2015,
 2534,,Kenny Hilliard,RB,FA,2015,
@@ -465,7 +465,7 @@ ID,Owner,Name,Position,Start,End,Salary
 576,Schex,Sean Lee,LB,FA,2015,$1
 2328,,Shane Ray,DL,FA,2015,
 814,Syed,Shane Vereen,RB,2014,2016,$66
-167,Brett/Luke,Tom Brady,LB,2015,2017,$1
+17688,Brett/Luke,Shaq Thompson,LB,2015,2017,$1
 913,Syed,Shaun Draughn,RB,FA,2015,$1
 1150,Keyon,Shea McClellin,DL/LB,FA,2015,$3
 1475,,Sio Moore,LB,FA,2015,
