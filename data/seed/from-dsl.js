@@ -382,23 +382,45 @@ async function resolvePlayer(dslPlayer) {
 	return player;
 }
 
+// Owner name aliases for legacy data that uses variant names
+// Maps lowercase variant -> [regime names to try] with proper case
+var OWNER_ALIASES = {
+	'jason': ['James', 'James/Charles'],  // Typo in historical data
+	'luke': ['Brett/Luke', 'Jake/Luke'],
+	'brett': ['Brett/Luke'],
+	'anthony': ['Schex', 'Schex/Jeff', 'Schexes'],  // Franchise 10 historical owner
+	'schexes': ['Schex', 'Schex/Jeff', 'Schexes'],
+	'justin': ['John/Zach', 'John']  // Historical owner for franchise 4
+};
+
 function resolveFranchise(ownerName, year) {
-	// Try exact year first
-	var key = ownerName + '|' + year;
-	if (franchiseByOwnerAndYear[key]) {
-		return franchiseByOwnerAndYear[key];
+	var namesToTry = [ownerName];
+	var lowerName = ownerName.toLowerCase();
+	if (OWNER_ALIASES[lowerName]) {
+		namesToTry = namesToTry.concat(OWNER_ALIASES[lowerName]);
 	}
 	
-	// Try nearby years (for regime transitions, source data using old names, etc.)
-	for (var offset = 1; offset <= 3; offset++) {
-		var prevKey = ownerName + '|' + (year - offset);
-		if (franchiseByOwnerAndYear[prevKey]) {
-			return franchiseByOwnerAndYear[prevKey];
+	// Try each name variant
+	for (var ni = 0; ni < namesToTry.length; ni++) {
+		var name = namesToTry[ni];
+		
+		// Try exact year first
+		var key = name + '|' + year;
+		if (franchiseByOwnerAndYear[key]) {
+			return franchiseByOwnerAndYear[key];
 		}
 		
-		var nextKey = ownerName + '|' + (year + offset);
-		if (franchiseByOwnerAndYear[nextKey]) {
-			return franchiseByOwnerAndYear[nextKey];
+		// Try nearby years (for regime transitions, source data using old names, etc.)
+		for (var offset = 1; offset <= 3; offset++) {
+			var prevKey = name + '|' + (year - offset);
+			if (franchiseByOwnerAndYear[prevKey]) {
+				return franchiseByOwnerAndYear[prevKey];
+			}
+			
+			var nextKey = name + '|' + (year + offset);
+			if (franchiseByOwnerAndYear[nextKey]) {
+				return franchiseByOwnerAndYear[nextKey];
+			}
 		}
 	}
 	

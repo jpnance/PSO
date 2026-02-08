@@ -71,7 +71,10 @@ function loadCuts() {
 			owner: cut.owner,
 			name: cut.name,
 			position: cut.position,
-			sleeperId: cut.sleeperId || null
+			sleeperId: cut.sleeperId || null,
+			startYear: cut.startYear,
+			endYear: cut.endYear,
+			salary: cut.salary || 1
 		};
 		
 		if (cut.sleeperId) {
@@ -608,25 +611,52 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	
 	var prevAppearance = null;
 	var prevContractKey = null;  // "startYear|endYear" to detect contract changes
+	var processedCuts = new Set();  // Track cuts we've already processed (year:owner)
 	
 	for (var i = 0; i < appearances.length; i++) {
 		var app = appearances[i];
 		var contractKey = (app.startYear || 'FA') + '|' + app.endYear;
 		
 			if (i === 0) {
-			// Check for cuts BEFORE the first appearance (player picked up and cut mid-season before any snapshot)
-			var cutsBeforeFirst = findCutsForPlayer(player, 2008, app.year - 1, cutsMap);
-			var lastPreCutYear = null;
-			var lastPreCutOwner = null;
+			// Check for cuts BEFORE the first appearance
+			// If first appearance is FA, also include same-year cuts by OTHER owners (they cut, then current owner picked up)
+			var cutsBeforeFirstYear = app.startYear === null ? app.year : app.year - 1;
+			var cutsBeforeFirst = findCutsForPlayer(player, 2008, cutsBeforeFirstYear, cutsMap);
+			
+			// Filter to cuts by different owners if checking same year
+			if (cutsBeforeFirstYear === app.year) {
+				cutsBeforeFirst = cutsBeforeFirst.filter(function(cut) {
+					return !app.owner || !cut.owner || cut.owner.toLowerCase() !== app.owner.toLowerCase();
+				});
+			}
+			
 			cutsBeforeFirst.forEach(function(cut) {
-				// Infer FA pickup for this cut
-				if (cut.year === lastPreCutYear && cut.owner !== lastPreCutOwner) {
+				var cutKey = cut.year + ':' + cut.owner;
+				processedCuts.add(cutKey);
+				
+				// Generate entry transaction for this cut's owner (their auction/contract before cutting)
+				if (cut.startYear && cut.startYear === cut.year) {
+					// They had a contract starting this year - auction
+					transactions.push({
+						year: cut.startYear,
+						type: 'auction',
+						line: '  ' + yy(cut.startYear) + ' auction ' + cut.owner + ' $' + cut.salary
+					});
+					transactions.push({
+						year: cut.startYear,
+						type: 'contract',
+						line: '  ' + yy(cut.startYear) + ' contract $' + cut.salary + ' ' + yy(cut.startYear) + '/' + yy(cut.endYear)
+					});
+				} else if (cut.startYear === null) {
+					// They picked up as FA
 					transactions.push({
 						year: cut.year,
 						type: 'fa',
 						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
 					});
 				} else {
+					// Contract started before cut year - just show the cut (auction was in a prior year)
+					// For now, infer FA pickup since we don't have the original auction
 					transactions.push({
 						year: cut.year,
 						type: 'fa',
@@ -638,8 +668,6 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 					type: 'cut',
 					line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 				});
-				lastPreCutYear = cut.year;
-				lastPreCutOwner = cut.owner;
 			});
 			
 			// First appearance - determine entry transaction(s)
@@ -655,6 +683,11 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		var lastCutYear = null;
 		var lastCutOwner = null;
 		cutsInGap.forEach(function(cut) {
+			// Skip if already processed
+			var cutKey = cut.year + ':' + cut.owner;
+			if (processedCuts.has(cutKey)) return;
+			processedCuts.add(cutKey);
+			
 			// Determine if we need an FA pickup before this cut
 			// - If cut is after prev contract ended, player was FA and needed pickup
 			// - If same year as previous cut but different owner, need FA pickup
@@ -872,6 +905,11 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	var lastFinalCutYear = null;
 	var lastFinalCutOwner = null;
 	finalCuts.forEach(function(cut) {
+		// Skip if already processed
+		var cutKey = cut.year + ':' + cut.owner;
+		if (processedCuts.has(cutKey)) return;
+		processedCuts.add(cutKey);
+		
 		// Always infer FA pickup before a cut (someone had to pick them up to cut them)
 		// Skip only if this is consecutive with the same owner (already on roster)
 		if (lastFinalCutYear === null || cut.year !== lastFinalCutYear || cut.owner !== lastFinalCutOwner) {
