@@ -1157,6 +1157,49 @@ function generateDSL() {
 		cutsOnlyCount++;
 	});
 	
+	// Also add players from cuts.json who have no sleeperId and no snapshot appearances
+	var processedNames = new Set();
+	Object.keys(cutsMap.byName).forEach(function(nameKey) {
+		var cuts = cutsMap.byName[nameKey];
+		if (!cuts || cuts.length === 0) return;
+		
+		// Skip if any of these cuts have a sleeperId (already handled above)
+		if (cuts.some(function(c) { return c.sleeperId; })) return;
+		
+		// Skip if player exists in DSL by name
+		var playerName = cuts[0].name;
+		var nameExists = playerEntries.some(function(p) {
+			return p.name.toLowerCase() === playerName.toLowerCase();
+		});
+		if (nameExists) return;
+		if (processedNames.has(nameKey)) return;
+		processedNames.add(nameKey);
+		
+		var position = cuts[0].position || 'Unknown';
+		var entryLines = [playerName + ' | ' + position + ' | historical'];
+		
+		cuts.sort(function(a, b) { return a.year - b.year; });
+		
+		var lastCutYear = null;
+		var lastCutOwner = null;
+		cuts.forEach(function(cut) {
+			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+			} else if (lastCutYear === null || cut.year > lastCutYear) {
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+			}
+			entryLines.push('  ' + yy(cut.year) + ' cut # by ' + cut.owner);
+			lastCutYear = cut.year;
+			lastCutOwner = cut.owner;
+		});
+		
+		playerEntries.push({
+			name: playerName,
+			lines: entryLines
+		});
+		cutsOnlyCount++;
+	});
+	
 	if (cutsOnlyCount > 0) {
 		console.log('  Added ' + cutsOnlyCount + ' players from cuts.json (not in snapshots)');
 	}
