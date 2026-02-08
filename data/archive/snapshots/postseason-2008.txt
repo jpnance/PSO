@@ -136,7 +136,7 @@ ID,Owner,Name,Position,Start,End,Salary
 143,Koci,John Carlson,TE,FA,2008,$1
 111,Koci,Marcedes Lewis,TE,FA,2008,$1
 -1,Koci,Braylon Edwards,WR,2008,2008,$161
--1,Koci,"Ted Ginn, Jr.",WR,2008,2009,$70
+695,Koci,Ted Ginn,WR,2008,2009,$70
 279,Koci,Devin Hester,WR,2008,2009,$60
 -1,Koci,Bernard Berrian,WR,2008,2010,$3
 -1,Koci,Devin Thomas,WR,2008,2010,$3
