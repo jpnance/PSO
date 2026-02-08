@@ -20,6 +20,16 @@ This codebase is deployed but not yet battle-tested through a real fantasy seaso
 
 Treat this as shaping-phase code, not legacy code.
 
+## Data & Domain Modeling
+
+When working on data transformations, seeding scripts, or inference logic (especially in `data/dsl/`, `data/seed/`, `data/archive/`):
+
+- **Ask before inferring.** If the code needs to make assumptions about what data means (e.g., "what does an empty owner field imply?", "when should we generate an FA transaction?"), stop and ask the user to explain the business rules before implementing.
+
+- **Don't reverse-engineer domain logic from errors.** If running code produces unexpected results, that's often a sign the underlying rules weren't understood. Ask about the rules rather than patching symptoms.
+
+- **The user knows the league history.** This is a 15+ year fantasy league with complex ownership transitions, defunct franchises, and historical edge cases. The user can explain what *should* happen faster than the code can discover it.
+
 ## Development Workflow
 
 The app runs in Docker. Changes to Pug templates (`views/`) and static files (`public/`) are picked up automatically — no container restart needed. Only restart (`docker compose restart web`) when changing JavaScript files (routes, services, helpers, models).
