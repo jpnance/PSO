@@ -767,6 +767,23 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				}
 			} else if (app.startYear === app.year) {
 				// New contract starting this year - auction
+				// First check for offseason cut (cut in this year by prev owner before new contract)
+				var offseasonCutsThisYear = findCutsForPlayer(player, app.year, app.year, cutsMap);
+				offseasonCutsThisYear.forEach(function(cut) {
+					var cutKey = cut.year + ':' + cut.owner;
+					if (processedCuts.has(cutKey)) return;
+					
+					// Offseason cut should be by the previous owner (they cut, then player was re-signed)
+					if (sameRegime(cut.owner, prevAppearance.owner, cut.year)) {
+						processedCuts.add(cutKey);
+						transactions.push({
+							year: cut.year,
+							type: 'cut',
+							line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
+						});
+					}
+				});
+				
 				// Check if player was traded unsigned
 				var unsignedTrade = findUnsignedTradeToOwner(player, app.owner, app.startYear, unsignedTrades);
 				var auctionOwner = unsignedTrade ? unsignedTrade.sender : app.owner;
@@ -788,6 +805,23 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				});
 			} else if (app.startYear > prevAppearance.year) {
 				// Contract started after last appearance - auction in startYear
+				// First check for offseason cut (cut in startYear by prev owner before new contract)
+				var offseasonCuts = findCutsForPlayer(player, app.startYear, app.startYear, cutsMap);
+				offseasonCuts.forEach(function(cut) {
+					var cutKey = cut.year + ':' + cut.owner;
+					if (processedCuts.has(cutKey)) return;
+					
+					// Offseason cut should be by the previous owner (they cut, then player was re-signed)
+					if (sameRegime(cut.owner, prevAppearance.owner, cut.year)) {
+						processedCuts.add(cutKey);
+						transactions.push({
+							year: cut.year,
+							type: 'cut',
+							line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
+						});
+					}
+				});
+				
 				// Check if player was traded unsigned
 				var unsignedTrade = findUnsignedTradeToOwner(player, app.owner, app.startYear, unsignedTrades);
 				var auctionOwner = unsignedTrade ? unsignedTrade.sender : app.owner;
