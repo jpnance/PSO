@@ -10,7 +10,7 @@
 
 Owner,Player,Position,EspnId,Contract,Salary,Source
 Patrick,Carson Palmer,QB,4459,2008-2010,$100,"he was cut so no RFA"
-Schexes,Chad Johnson,WR,2584,2008-2010,$97,"he was cut so no RFA"
+Schexes,Chad Johnson,WR,-1,2008-2010,$97,"he was cut so no RFA"
 Schexes,Dallas Clark,TE,4482,2008-2010,$43,"(cut)"
 Daniel,Antonio Gates,TE,5362,2008-2010,$130,"cut so no RFA"
 Schexes,Marques Colston,WR,9838,2008-2010,$117,"colston was cut so no RFA"
