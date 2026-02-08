@@ -18,6 +18,7 @@ var DSL_FILE = path.join(__dirname, 'player-history.dsl');
 var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
+var CUTS_FILE = path.join(__dirname, '../cuts/cuts.json');
 
 
 /**
@@ -49,6 +50,42 @@ function loadDrafts() {
 		// Also key by name + season as fallback
 		var nameKey = d.playerName.toLowerCase() + '|' + d.season;
 		byName[nameKey] = entry;
+	});
+	
+	return { bySleeperId: bySleeperId, byName: byName };
+}
+
+/**
+ * Load cuts from cuts.json
+ * Returns: { bySleeperId: {...}, byName: {...} }
+ * Each key maps to an array of cuts (a player can be cut multiple times)
+ */
+function loadCuts() {
+	var cuts = JSON.parse(fs.readFileSync(CUTS_FILE, 'utf8'));
+	var bySleeperId = {};
+	var byName = {};
+	
+	cuts.forEach(function(cut) {
+		var entry = {
+			year: cut.cutYear,
+			owner: cut.owner,
+			name: cut.name,
+			sleeperId: cut.sleeperId || null
+		};
+		
+		if (cut.sleeperId) {
+			if (!bySleeperId[cut.sleeperId]) {
+				bySleeperId[cut.sleeperId] = [];
+			}
+			bySleeperId[cut.sleeperId].push(entry);
+		} else {
+			// Historical player - key by lowercase name
+			var nameKey = cut.name.toLowerCase();
+			if (!byName[nameKey]) {
+				byName[nameKey] = [];
+			}
+			byName[nameKey].push(entry);
+		}
 	});
 	
 	return { bySleeperId: bySleeperId, byName: byName };
@@ -527,9 +564,30 @@ function findUnsignedTradeBefore(player, beforeDate, unsignedTrades) {
 }
 
 /**
+ * Find cuts for a player in the given year range from cutsMap
+ */
+function findCutsForPlayer(player, fromYear, toYear, cutsMap) {
+	var cuts = [];
+	
+	if (player.sleeperId) {
+		cuts = cutsMap.bySleeperId[player.sleeperId] || [];
+	} else {
+		var nameKey = player.name.toLowerCase();
+		cuts = cutsMap.byName[nameKey] || [];
+	}
+	
+	// Filter to cuts in the year range
+	return cuts.filter(function(cut) {
+		return cut.year >= fromYear && cut.year <= toYear;
+	}).sort(function(a, b) {
+		return a.year - b.year;
+	});
+}
+
+/**
  * Generate all transactions for a player by walking their contract history
  */
-function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades) {
+function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap) {
 	var transactions = [];
 	var appearances = player.appearances;
 	
@@ -551,16 +609,15 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			continue;
 		}
 		
-		// Check for gaps (player not rostered in between)
-		var yearGap = app.year - prevAppearance.year;
-		if (yearGap > 1) {
-			// Gap detected - player was cut at some point
+		// Check for cuts between appearances using explicit cuts.json data
+		var cutsInGap = findCutsForPlayer(player, prevAppearance.year, app.year - 1, cutsMap);
+		cutsInGap.forEach(function(cut) {
 			transactions.push({
-				year: prevAppearance.year,
+				year: cut.year,
 				type: 'cut',
-				line: '  ' + yy(prevAppearance.year) + ' cut'
+				line: '  ' + yy(cut.year) + ' cut'
 			});
-		}
+		});
 		
 		// Check for expansion draft (2012) - before other checks
 		// If player was selected in expansion draft and now appears on expansion team
@@ -724,6 +781,24 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				date: trade.date,
 				type: 'trade',
 				line: '  ' + yy(trade.year) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
+			});
+		}
+	});
+	
+	// Add final cuts (player was cut and never returned)
+	// Find cuts after the last appearance
+	var lastAppearance = appearances[appearances.length - 1];
+	var finalCuts = findCutsForPlayer(player, lastAppearance.year, 2099, cutsMap);
+	finalCuts.forEach(function(cut) {
+		// Only add if not already added
+		var hasCut = transactions.some(function(t) { 
+			return t.type === 'cut' && t.year === cut.year; 
+		});
+		if (!hasCut) {
+			transactions.push({
+				year: cut.year,
+				type: 'cut',
+				line: '  ' + yy(cut.year) + ' cut'
 			});
 		}
 	});
@@ -909,6 +984,10 @@ function generateDSL() {
 	var unsignedTrades = loadUnsignedTrades();
 	console.log('  ' + Object.keys(unsignedTrades.bySleeperId).length + ' unsigned by Sleeper ID, ' + Object.keys(unsignedTrades.byName).length + ' unsigned by name\n');
 	
+	console.log('Loading cuts...');
+	var cutsMap = loadCuts();
+	console.log('  ' + Object.keys(cutsMap.bySleeperId).length + ' by Sleeper ID, ' + Object.keys(cutsMap.byName).length + ' by name (historical)\n');
+	
 	console.log('Parsing snapshots...');
 	var players = parseSnapshots();
 	var playerKeys = Object.keys(players);
@@ -964,7 +1043,7 @@ function generateDSL() {
 	playerKeys.forEach(function(key) {
 		var player = players[key];
 		var header = formatHeader(player);
-		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades);
+		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap);
 		
 		lines.push(header);
 		transactions.forEach(function(tx) {
