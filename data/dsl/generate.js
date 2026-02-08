@@ -221,13 +221,13 @@ function loadUnsignedTrades() {
  */
 function parseSnapshots() {
 	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
-		return f.match(/^contracts-\d{4}\.txt$/);
+		return f.match(/^(contracts|postseason)-\d{4}\.txt$/);
 	}).sort();
 	
 	var players = {};
 	
 	files.forEach(function(file) {
-		var year = parseInt(file.match(/contracts-(\d{4})\.txt/)[1]);
+		var year = parseInt(file.match(/-([\d]{4})\.txt/)[1]);
 		var content = fs.readFileSync(path.join(SNAPSHOTS_DIR, file), 'utf8');
 		var lines = content.trim().split('\n');
 		
@@ -248,9 +248,6 @@ function parseSnapshots() {
 			
 			// Skip empty IDs
 			if (!id || id === '') continue;
-			
-			// Skip unrostered players (no owner)
-			if (!owner) continue;
 			
 			// Strip team hints like "(NO)" for consistent keying
 			var baseName = name.replace(/\s*\([^)]+\)\s*$/, '').trim();

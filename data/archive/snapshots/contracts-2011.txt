@@ -31,7 +31,7 @@ ID,Owner,Name,Position,Start,End,Salary
 515,Trevor,Rob Gronkowski,TE,2010,2012,$1
 810,Trevor,Ryan Mallett,QB,2011,2013,$1
 610,Trevor,Sean Weatherspoon,LB,2010,2012,$1
-890,Trevor,Steve Smith,WR,2011,2011,$35
+890,Trevor,Stefen Wisniewski,WR,2011,2011,$35
 1020,Trevor,Terrelle Pryor,QB,2011,2013,$1
 500,Syed,Billy Cundiff,QB,FA,2011,$1
 454,Syed,Chris Ogbonnaya,RB,FA,2011,$20
@@ -672,7 +672,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Stefan Logan,RB,FA,2011,
 -1,,Stephen Cooper,LB,FA,2011,
 -1,,Steve Slaton,RB,FA,2011,
-890,,Steve Smith,WR,FA,2011,
+890,,Stefen Wisniewski,WR,FA,2011,
 775,,Stephen Hauschka,K,FA,2011,
 -1,Patrick,Stewart Bradley,LB,2010,2012,$2
 -1,,T.J. Houshmandzadeh,WR,FA,2011,

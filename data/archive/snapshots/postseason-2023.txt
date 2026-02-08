@@ -39,7 +39,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4967,Keyon,Bradley Chubb,LB,FA,2023,$1
 2197,James/Charles,Brandin Cooks,WR,2023,2024,$20
 6803,Mike,Brandon Aiyuk,WR,2023,2025,$50
-1108,Schex,Brandon Aubrey,K,FA,2023,$2
+1108,Schex,Jerrell Freeman,K,FA,2023,$2
 1433,Quinn,Brandon McManus,K,FA,2023,$1
 5695,Mike,Brandon Powell,WR,FA,2023,$1
 5121,,Braxton Berrios,WR,FA,2023,
@@ -56,7 +56,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4081,Schex,Budda Baker,DB,2022,2024,$6
 10917,,Byron Young,LB,FA,2023,
 4127,Justin,C.J. Beathard,QB,FA,2023,$22
-74,,C.J. Gardner-Johnson,DB,FA,2023,
+74,,Mike Adams,DB,FA,2023,
 743,,C.J. Mosley,LB,FA,2023,
 9758,Brett,C.J. Stroud,QB,2023,2025,$30
 8111,Justin,Cade Otton,TE,2022,2024,$1
@@ -116,7 +116,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5095,Jason,Daniel Carlson,K,2023,2025,$2
 5870,Justin,Daniel Jones,QB,2022,2024,$60
 2393,Mike,Danielle Hunter,DL,2023,2023,$1
-188,,Darious Williams,DB,FA,2023,
+188,,Eli Manning,DB,FA,2023,
 6149,Quinn,Darius Slayton,WR,2023,2025,$3
 7090,Keyon,Darnell Mooney,WR,2023,2025,$2
 9479,Justin,Darnell Washington,TE,2023,2025,$1
@@ -240,7 +240,7 @@ ID,Owner,Name,Position,Start,End,Salary
 10215,Brett,Jake Haener,QB,2023,2024,$1
 10937,Mitch,Jake Moody,K,2023,2025,$1
 5947,Patrick,Jakobi Meyers,WR,2021,2023,$11
-269,Schex,Jaleel McLaughlin,RB,2023,2025,$1
+269,Schex,Pierre Garcon,RB,2023,2025,$1
 10888,Justin,Jalen Carter,DL,2023,2025,$1
 6421,Mitch,Jalen Guyton,WR,FA,2023,$21
 6904,Koci/Mueller,Jalen Hurts,QB,2023,2023,$360
@@ -283,7 +283,7 @@ ID,Owner,Name,Position,Start,End,Salary
 19,Luke,Joe Flacco,QB,FA,2023,$1
 4018,Keyon,Joe Mixon,RB,2023,2024,$95
 3156,,Joey Bosa,DL,FA,2023,
-242,Brett,Joey Porter,DB,2023,2024,$1
+242,Brett,Brent Grimes,DB,2023,2024,$1
 8147,,John Metchie,WR,FA,2023,
 10225,Patrick,Jonathan Mingo,WR,2023,2025,$8
 5520,Patrick,Jonathan Owens,DB,FA,2023,$1
@@ -291,7 +291,7 @@ ID,Owner,Name,Position,Start,End,Salary
 7765,Schex,Jonathon Cooper,DL,FA,2023,$1
 4144,,Jonnu Smith,TE,FA,2023,
 9756,Luke,Jordan Addison,WR,2023,2025,$16
-494,Mike,Jordan Battle,DB,FA,2023,$1
+494,Mike,Jason Trusnik,DB,FA,2023,$1
 8269,Brett,Jordan Davis,DL,2022,2023,$1
 2389,Mike,Jordan Hicks,LB,2023,2023,$1
 6804,James/Charles,Jordan Love,QB,2023,2024,$130
@@ -316,7 +316,7 @@ ID,Owner,Name,Position,Start,End,Salary
 7591,Schex,Justin Fields,QB,2021,2023,$29
 6797,,Justin Herbert,QB,FA,2023,
 6794,Schex,Justin Jefferson,WR,2023,2024,$250
--1,Mitch,Justin Madubuike,DL,FA,2023,$1
+6818,Mitch,Nnamdi Madubuike,DL,FA,2023,$1
 9489,Mike,Justin Shorter,WR,2023,2025,$1
 1264,Justin,Justin Tucker,K,2021,2023,$6
 5374,Luke,Justin Watson,WR,2023,2023,$1
@@ -476,7 +476,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4866,Mike,Saquon Barkley,RB,2021,2023,$245
 8290,Brett,Sauce Gardner,DB,2022,2023,$1
 9506,Schex,Sean Tucker,RB,2023,2025,$4
-167,,Shaq Thompson,LB,FA,2023,
+167,,Tom Brady,LB,FA,2023,
 4990,Schex,Shaquille Leonard,LB,2023,2025,$2
 8168,Mitch,Skyy Moore,WR,2022,2024,$16
 2449,Justin,Stefon Diggs,WR,2023,2024,$180
@@ -508,7 +508,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4968,James/Charles,Tremaine Edmunds,LB,FA,2023,$2
 6598,,Trenton Irwin,WR,FA,2023,
 7523,Justin,Trevor Lawrence,QB,2021,2023,$29
-461,Justin,Trevor Siemian,QB,FA,2023,$12
+461,Justin,Michael Vick,QB,FA,2023,$12
 4135,Jason,Trey Hendrickson,DL,2022,2024,$3
 7610,,Trey Lance,QB,FA,2023,
 8130,Jason,Trey McBride,TE,2022,2024,$2

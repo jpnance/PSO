@@ -21724,14 +21724,15 @@
   },
   {
     "owner": "Luke",
-    "name": "Rod Smith",
+    "name": "Rodney Smith",
     "hint": null,
     "position": "RB",
     "startYear": null,
     "endYear": 2018,
     "salary": 1,
     "cutYear": 2018,
-    "rosterId": 3
+    "rosterId": 3,
+    "sleeperId": 2892
   },
   {
     "owner": "Schexes",

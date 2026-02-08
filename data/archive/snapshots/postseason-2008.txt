@@ -47,7 +47,7 @@ ID,Owner,Name,Position,Start,End,Salary
 145,Syed,Rashard Mendenhall,RB,2008,2010,$55
 300,Syed,Willis McGahee,RB,2008,2010,$41
 -1,Syed,DeShaun Foster,RB,FA,2008,$1
-121,Syed,Le'Ron McClain,RB,FA,2008,$1
+121,Syed,LeRon McClain,RB,FA,2008,$1
 51,Syed,Anthony Fasano,TE,FA,2008,$1
 -1,Syed,Leonard Pope,TE,FA,2008,$1
 171,Syed,Zach Miller,TE,FA,2008,$1
@@ -88,7 +88,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,John,Oshiomogho Atogwe,DB,FA,2008,$1
 -1,John,Dewayne White,DL,FA,2008,$1
 256,John,Rian Lindell,K,FA,2008,$1
-10913,John,Joey Porter,LB,FA,2008,$1
+242,John,Brent Grimes,LB,FA,2008,$1
 331,John,Philip Rivers,QB,2008,2008,$38
 -1,John,Chad Pennington,QB,2008,2008,$25
 188,John,Eli Manning,QB,2008,2010,$22
@@ -113,7 +113,7 @@ ID,Owner,Name,Position,Start,End,Salary
 65,John,Domenik Hixon,WR,FA,2008,$1
 -1,John,Isaac Bruce,WR,FA,2008,$1
 270,John,Lance Moore,WR,FA,2008,$1
-12988,John,Matt Jones,WR,FA,2008,$1
+772,John,Ramon Humber,WR,FA,2008,$1
 -1,John,Muhsin Muhammad,WR,FA,2008,$1
 -1,Koci,Terrence McGee,DB,2008,2008,$76
 -1,Koci,Chris Carr,DB,FA,2008,$7
@@ -255,10 +255,10 @@ ID,Owner,Name,Position,Start,End,Salary
 315,Keyon,Dustin Keller,TE,FA,2008,$1
 -1,Keyon,L.J. Smith,TE,2008,2010,$1
 55,Keyon,Visanthe Shiancoe,TE,FA,2008,$1
-169,Keyon,Steve Smith,WR,2008,2010,$120
+890,Keyon,Stefen Wisniewski,WR,2008,2010,$120
 264,Keyon,Greg Jennings,WR,2008,2010,$32
 155,Keyon,Jerricho Cotchery,WR,2008,2010,$32
--1,Keyon,Marvin Harrison,WR,FA,2008,$8
+11628,Keyon,Marvin Harrison,WR,FA,2008,$8
 128,Keyon,Vincent Jackson,WR,2008,2010,$2
 104,Keyon,Donnie Avery,WR,2008,2010,$1
 700,Schexes,Josh Wilson,DB,FA,2008,$1

@@ -1839,7 +1839,7 @@ Patrick	Denzel Perryman	LB	FA	2018	$1	2018		$0	$0	$0
 Mitch	Shaq Thompson	LB	FA	2018	$1	2018		$0	$0	$0
 Mitch	Rashaan Evans	LB	2018	2020	$1	2018		$0	$0	$0
 Luke	Josh Reynolds	WR	FA	2018	$2	2018		$0	$0	$0
-Luke	Rod Smith	RB	FA	2018	$1	2018		$0	$0	$0
+Luke	Rodney Smith	RB	FA	2018	$1	2018		$0	$0	$0
 Schexes	Kenny Vaccaro	DB	2017	2019	$1	2018		$0	$0	$0
 Justin	AJ McCarron	QB	2016	2018	$1	2018		$0	$0	$0
 Patrick	Margus Hunt	DL	FA	2018	$1	2018		$0	$0	$0
