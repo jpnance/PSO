@@ -70,6 +70,7 @@ function loadCuts() {
 			year: cut.cutYear,
 			owner: cut.owner,
 			name: cut.name,
+			position: cut.position,
 			sleeperId: cut.sleeperId || null
 		};
 		
@@ -1060,15 +1061,81 @@ function generateDSL() {
 	lines.push('# =============================================================================');
 	lines.push('');
 	
-	// Generate player entries
+	// Collect all player entries (header + transactions)
+	var playerEntries = [];
+	
+	// Generate entries from snapshots
 	playerKeys.forEach(function(key) {
 		var player = players[key];
 		var header = formatHeader(player);
 		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap);
 		
-		lines.push(header);
+		var entryLines = [header];
 		transactions.forEach(function(tx) {
-			lines.push(tx.line);
+			entryLines.push(tx.line);
+		});
+		
+		playerEntries.push({
+			name: player.name,
+			lines: entryLines
+		});
+	});
+	
+	// Add players only in cuts.json (never in any snapshot)
+	var cutsOnlyCount = 0;
+	Object.keys(cutsMap.bySleeperId).forEach(function(sleeperId) {
+		// Skip if player already exists in DSL
+		if (players[sleeperId]) return;
+		
+		var cuts = cutsMap.bySleeperId[sleeperId];
+		if (!cuts || cuts.length === 0) return;
+		
+		// Use first cut for player info
+		var firstCut = cuts[0];
+		var name = firstCut.name;
+		var position = firstCut.position || 'Unknown';
+		
+		var entryLines = [name + ' | ' + position + ' | sleeper:' + sleeperId];
+		
+		// Sort cuts by year
+		cuts.sort(function(a, b) { return a.year - b.year; });
+		
+		// Generate FA pickups and cuts
+		var lastCutYear = null;
+		var lastCutOwner = null;
+		cuts.forEach(function(cut) {
+			// If same year as previous cut, infer FA pickup between cuts
+			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+			} else if (lastCutYear === null || cut.year > lastCutYear) {
+				// First cut or new year - add FA pickup
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+			}
+			entryLines.push('  ' + yy(cut.year) + ' cut # by ' + cut.owner);
+			lastCutYear = cut.year;
+			lastCutOwner = cut.owner;
+		});
+		
+		playerEntries.push({
+			name: name,
+			lines: entryLines
+		});
+		cutsOnlyCount++;
+	});
+	
+	if (cutsOnlyCount > 0) {
+		console.log('  Added ' + cutsOnlyCount + ' players from cuts.json (not in snapshots)');
+	}
+	
+	// Sort all entries by player name
+	playerEntries.sort(function(a, b) {
+		return a.name.localeCompare(b.name);
+	});
+	
+	// Output sorted entries
+	playerEntries.forEach(function(entry) {
+		entry.lines.forEach(function(line) {
+			lines.push(line);
 		});
 		lines.push('');
 	});

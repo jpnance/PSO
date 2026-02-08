@@ -66,7 +66,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1433,Brett,Brandon McManus,K,2025,2025,$1
 5695,,Brandon Powell,WR,FA,2023,
 7685,,Brandon Stephens,DB,FA,2024,
-356,Luke,Rey Maualuga,RB,2025,2027,$2
+12455,Luke,Brashard Smith,RB,2025,2027,$2
 5121,,Braxton Berrios,WR,FA,2024,
 11949,,Brayden Narveson,K,FA,2024,
 8155,Patrick,Breece Hall,RB,2025,2025,$95

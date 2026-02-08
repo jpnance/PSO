@@ -22,7 +22,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3433,,Alex Erickson,WR,FA,2020,
 7113,,Alex Highsmith,DL/LB,FA,2020,
 2617,James/Charles,Alex Singleton,LB,FA,2020,$2
-661,James/Charles,Alex Smith,QB,FA,2020,$4
+268,James/Charles,Alex Smith,QB,FA,2020,$4
 1262,,Alex Tanney,QB,FA,2020,
 5822,,Alexander Johnson,LB,FA,2020,
 5987,James/Charles,Alexander Mattison,RB,2019,2021,$13

@@ -33,7 +33,7 @@ ID,Owner,Player,Position,Start,End,Salary
 1108,Keyon,Jerrell Freeman,K,2024,2026,$7
 6911,Keyon,Brandon Jones,DB,2025,2025,$1
 1433,Brett,Brandon McManus,K,2025,2025,$1
-356,Luke,Rey Maualuga,RB,2025,2027,$2
+12455,Luke,Brashard Smith,RB,2025,2027,$2
 8155,Patrick,Breece Hall,RB,2025,2025,$95
 9480,Mitch,Brenton Strange,TE,2025,2027,$10
 10905,Luke,Brian Branch,DB,2023,2025,$1

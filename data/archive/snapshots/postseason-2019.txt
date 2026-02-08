@@ -24,7 +24,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3327,,Alex Collins,RB,FA,2019,
 3433,Terence,Alex Erickson,WR,FA,2019,$1
 1578,,Alex Okafor,DL,FA,2018,
-661,,Alex Smith,QB,FA,2019,
+268,,Alex Smith,QB,FA,2019,
 1262,Syed/Kuan,Alex Tanney,QB,FA,2019,$1
 5822,Keyon,Alexander Johnson,LB,FA,2019,$4
 5987,James/Charles,Alexander Mattison,RB,2019,2021,$13
