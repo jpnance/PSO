@@ -361,9 +361,25 @@ async function resolvePlayer(dslPlayer) {
 		return player;
 	}
 	
-	// Sleeper player not in database - this shouldn't happen if sync ran
-	console.log('  WARNING: Sleeper player not found:', dslPlayer.name, 'sleeperId:', dslPlayer.sleeperId);
-	return null;
+	// Sleeper player not in database - create it (likely retired/historical)
+	if (dryRun) {
+		return { _id: 'dry-run-' + dslPlayer.name, name: dslPlayer.name };
+	}
+	
+	console.log('  Creating retired Sleeper player:', dslPlayer.name, 'sleeperId:', dslPlayer.sleeperId);
+	var player = await Player.create({
+		name: dslPlayer.name,
+		positions: dslPlayer.positions,
+		sleeperId: dslPlayer.sleeperId
+	});
+	
+	playersBySleeperId[dslPlayer.sleeperId] = player;
+	if (!playersByName[key]) {
+		playersByName[key] = [];
+	}
+	playersByName[key].push(player);
+	
+	return player;
 }
 
 function resolveFranchise(ownerName, year) {

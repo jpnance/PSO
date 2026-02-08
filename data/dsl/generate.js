@@ -487,6 +487,9 @@ function isRegimeTransition(oldOwner, newOwner, oldYear, newYear) {
  * Check if two regime names are the same franchise (via transition)
  */
 function sameRegime(owner1, owner2, year) {
+	// Empty owner means no owner (FA) - never the same as any owner
+	if (!owner1 || !owner2) return false;
+	
 	if (owner1.toLowerCase() === owner2.toLowerCase()) return true;
 	
 	// Check if there's a regime transition between them
@@ -652,8 +655,30 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		var lastCutYear = null;
 		var lastCutOwner = null;
 		cutsInGap.forEach(function(cut) {
-			// If same year as previous cut, infer FA pickup between cuts
-			if (lastCutYear !== null && cut.year === lastCutYear) {
+			// Determine if we need an FA pickup before this cut
+			// - If cut is after prev contract ended, player was FA and needed pickup
+			// - If same year as previous cut but different owner, need FA pickup
+			// - If cut is during prev contract, no FA needed (already rostered)
+			var needsFA = false;
+			if (lastCutYear !== null && cut.year === lastCutYear && cut.owner !== lastCutOwner) {
+				// Same year, different owner - someone else picked them up
+				needsFA = true;
+			} else if (lastCutYear === null) {
+				// First cut in gap - check if it's after contract ended
+				var prevContractEnd = prevAppearance.endYear || prevAppearance.year;
+				if (cut.year > prevContractEnd) {
+					// Cut is after contract ended - they were FA, need pickup
+					needsFA = true;
+				} else if (!sameRegime(cut.owner, prevAppearance.owner, cut.year)) {
+					// Cut is during contract but by different owner - traded then cut, need FA
+					needsFA = true;
+				}
+			} else if (cut.year > lastCutYear) {
+				// New year after previous cut - need FA pickup
+				needsFA = true;
+			}
+			
+			if (needsFA) {
 				transactions.push({
 					year: cut.year,
 					type: 'fa',
@@ -698,12 +723,15 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		} else if (contractKey !== prevContractKey) {
 			// New contract
 			if (app.startYear === null) {
-				// FA pickup
-				transactions.push({
-					year: app.year,
-					type: 'fa',
-					line: '  ' + yy(app.year) + ' fa ' + app.owner + ' $' + app.salary + ' FA/' + yy(app.endYear)
-				});
+				// FA pickup - only generate if we know the owner
+				// FAs with empty owner (cut mid-season) will be handled by cuts logic
+				if (app.owner) {
+					transactions.push({
+						year: app.year,
+						type: 'fa',
+						line: '  ' + yy(app.year) + ' fa ' + app.owner + ' $' + app.salary + ' FA/' + yy(app.endYear)
+					});
+				}
 			} else if (app.startYear === app.year) {
 				// New contract starting this year - auction
 				// Check if player was traded unsigned
@@ -749,8 +777,10 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			}
 		} else if (app.owner !== prevAppearance.owner) {
 			// Same contract but different owner
-			// Check if this is just a regime transition (same franchise, name changed)
-			if (isRegimeTransition(prevAppearance.owner, app.owner, prevAppearance.year, app.year)) {
+			// Skip if either owner is empty (FA status - cuts logic handles this)
+			if (!app.owner || !prevAppearance.owner) {
+				// Skip - empty owner means player was cut/released
+			} else if (isRegimeTransition(prevAppearance.owner, app.owner, prevAppearance.year, app.year)) {
 				// Skip - not a real ownership change
 			} else {
 				// Look for trade
@@ -842,8 +872,9 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	var lastFinalCutYear = null;
 	var lastFinalCutOwner = null;
 	finalCuts.forEach(function(cut) {
-		// If same year as previous cut, infer FA pickup between cuts
-		if (lastFinalCutYear !== null && cut.year === lastFinalCutYear) {
+		// Always infer FA pickup before a cut (someone had to pick them up to cut them)
+		// Skip only if this is consecutive with the same owner (already on roster)
+		if (lastFinalCutYear === null || cut.year !== lastFinalCutYear || cut.owner !== lastFinalCutOwner) {
 			transactions.push({
 				year: cut.year,
 				type: 'fa',
@@ -929,6 +960,10 @@ function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 		return results;
 	} else if (startYear === null) {
 		// FA contract - picked up as free agent
+		// Skip if no owner (will be handled by cuts logic)
+		if (!owner) {
+			return [];
+		}
 		return [{
 			year: year,
 			type: 'fa',
@@ -936,6 +971,10 @@ function determineEntryTransaction(player, app, draftsMap, unsignedTrades) {
 		}];
 	} else if (startYear <= year) {
 		// Contract started this year or before - auction from startYear
+		// Skip if no owner (will be handled by cuts logic)
+		if (!owner) {
+			return [];
+		}
 		// Check if player was traded unsigned
 		var unsignedTrade = findUnsignedTradeToOwner(player, owner, startYear, unsignedTrades);
 		if (unsignedTrade) {
