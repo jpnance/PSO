@@ -569,9 +569,21 @@ function findCutsForPlayer(player, fromYear, toYear, cutsMap) {
 	
 	if (player.sleeperId) {
 		cuts = cutsMap.bySleeperId[player.sleeperId] || [];
-	} else {
-		var nameKey = player.name.toLowerCase();
-		cuts = cutsMap.byName[nameKey] || [];
+	}
+	
+	// Also check by name as fallback (for historical cuts without sleeperId)
+	var nameKey = player.name.toLowerCase();
+	var nameCuts = cutsMap.byName[nameKey] || [];
+	if (nameCuts.length > 0) {
+		// Merge, avoiding duplicates (same year + owner)
+		var seen = new Set(cuts.map(function(c) { return c.year + ':' + c.owner; }));
+		nameCuts.forEach(function(c) {
+			var key = c.year + ':' + c.owner;
+			if (!seen.has(key)) {
+				cuts.push(c);
+				seen.add(key);
+			}
+		});
 	}
 	
 	// Filter to cuts in the year range
@@ -598,7 +610,35 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		var app = appearances[i];
 		var contractKey = (app.startYear || 'FA') + '|' + app.endYear;
 		
-		if (i === 0) {
+			if (i === 0) {
+			// Check for cuts BEFORE the first appearance (player picked up and cut mid-season before any snapshot)
+			var cutsBeforeFirst = findCutsForPlayer(player, 2008, app.year - 1, cutsMap);
+			var lastPreCutYear = null;
+			var lastPreCutOwner = null;
+			cutsBeforeFirst.forEach(function(cut) {
+				// Infer FA pickup for this cut
+				if (cut.year === lastPreCutYear && cut.owner !== lastPreCutOwner) {
+					transactions.push({
+						year: cut.year,
+						type: 'fa',
+						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+					});
+				} else {
+					transactions.push({
+						year: cut.year,
+						type: 'fa',
+						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+					});
+				}
+				transactions.push({
+					year: cut.year,
+					type: 'cut',
+					line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
+				});
+				lastPreCutYear = cut.year;
+				lastPreCutOwner = cut.owner;
+			});
+			
 			// First appearance - determine entry transaction(s)
 			var entryTxs = determineEntryTransaction(player, app, draftsMap, unsignedTrades);
 			entryTxs.forEach(function(tx) { transactions.push(tx); });
@@ -613,7 +653,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		var lastCutOwner = null;
 		cutsInGap.forEach(function(cut) {
 			// If same year as previous cut, infer FA pickup between cuts
-			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
+			if (lastCutYear !== null && cut.year === lastCutYear) {
 				transactions.push({
 					year: cut.year,
 					type: 'fa',
@@ -802,27 +842,21 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	var lastFinalCutYear = null;
 	var lastFinalCutOwner = null;
 	finalCuts.forEach(function(cut) {
-		// Check if this exact cut (year + owner) is already in transactions
-		var hasCut = transactions.some(function(t) { 
-			return t.type === 'cut' && t.year === cut.year && t.line.includes('# by ' + cut.owner);
-		});
-		if (!hasCut) {
-			// If same year as previous cut, infer FA pickup between cuts
-			if (cut.year === lastFinalCutYear && cut.owner !== lastFinalCutOwner) {
-				transactions.push({
-					year: cut.year,
-					type: 'fa',
-					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
-				});
-			}
+		// If same year as previous cut, infer FA pickup between cuts
+		if (lastFinalCutYear !== null && cut.year === lastFinalCutYear) {
 			transactions.push({
 				year: cut.year,
-				type: 'cut',
-				line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
+				type: 'fa',
+				line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
 			});
-			lastFinalCutYear = cut.year;
-			lastFinalCutOwner = cut.owner;
 		}
+		transactions.push({
+			year: cut.year,
+			type: 'cut',
+			line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
+		});
+		lastFinalCutYear = cut.year;
+		lastFinalCutOwner = cut.owner;
 	});
 	
 	// Sort transactions by year, then by date (for trades)
