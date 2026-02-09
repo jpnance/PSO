@@ -49,7 +49,6 @@ BE Kevin Smith
 BE Patrick Willis
 BE JaMarcus Russell
 BE Brett Favre
-BE Marc Bulger
 BE Steven Jackson
 BE Darren Sproles
 BE Marshawn Lynch
@@ -58,8 +57,9 @@ BE Sammy Morris
 BE James Davis
 BE Jerome Harrison
 BE Chad Johnson
-BE Antonio Bryant
 BE Laveranues Coles
+BE Dustin Keller
+WR Donnie Avery
 BE Deon Butler
 BE Davone Bess
 BE Chaz Schilens
@@ -143,6 +143,7 @@ BE Johnnie Lee Higgins
 BE Steve Smith
 BE Bobby Engram
 BE Roy Williams
+BE Drew Bennett
 
 
 Keyon
@@ -150,7 +151,6 @@ QB Brady Quinn
 RB Chris Perry
 RB Chris Johnson
 RB/WR Vincent Jackson
-WR Donnie Avery
 WR/TE Greg Jennings
 TE L.J. Smith
 LB Jon Beason
@@ -173,8 +173,9 @@ BE Glen Coffee
 BE Javon Ringer
 BE Tony Gonzalez
 BE Visanthe Shiancoe
-BE Dustin Keller
 BE Devin Hester
+BE Antonio Bryant
+BE Marc Bulger
 BE Mark Clayton
 BE Ramses Barden
 BE Patrick Turner
