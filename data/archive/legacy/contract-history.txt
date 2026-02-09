@@ -127,7 +127,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11308,Daniel,Dan Connor,LB,FA,2010,$1
 9628,Patrick,Danieal Manning,DB,2010,2012,$2
 11674,Schexes,Danny Amendola,WR,2010,2010,$36
-10768,,Danny Ware,RB,FA,2010
+10768,,D.J. Ware,RB,FA,2010
 11788,John,Danny Woodhead,RB/WR,FA,2010,$4
 5589,,Darnell Dockett,DL,2010,2010
 13465,,Darrell Stuckey,DB,FA,2010
@@ -387,7 +387,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11122,James,Matt Prater,K,FA,2010,$1
 11237,Trevor,Matt Ryan,QB,2008,2010,$10
 5615,Daniel,Matt Schaub,QB,2008,2010,$37
-11387,,Matt Slater,WR,FA,2010
+11387,,Matthew Slater,WR,FA,2010
 12483,Schexes,Matthew Stafford,QB,2009,2011,$25
 9646,Schexes,Maurice Jones-Drew,RB,2008,2010,$142
 3582,,Maurice Morris,RB,FA,2010
@@ -428,7 +428,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4514,Trevor,Osi Umenyiora,DL,2009,2011,$4
 9684,Daniel,Owen Daniels,TE,2008,2010,$4
 4243,John,Paris Lenon,LB,FA,2010,$1
-12527,,Pat Chung,DB,FA,2010
+12527,,Patrick Chung,DB,FA,2010
 5741,Daniel,Patrick Crayton,WR,2010,2010,$10
 1782,,Patrick Kerney,DL,FA,2010
 12599,,Patrick Turner,WR,FA,2010
@@ -510,7 +510,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11323,Trevor,Steve Slaton,RB,2008,2010,$7
 2622,Trevor,Steve Smith (CAR),WR,2010,2010,$105
 10495,Trevor,Steve Smith (NYG),WR,2010,2011,$45
-11923,,Steven Hauschka,K,FA,2010
+11923,,Stephen Hauschka,K,FA,2010
 5549,James,Steven Jackson,RB,2010,2010,$200
 10531,Patrick,Stewart Bradley,LB,2010,2012,$2
 2753,,T.J. Houshmandzadeh,WR,FA,2010
@@ -692,7 +692,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11308,,Dan Connor,LB,FA,2010
 9628,Patrick,Danieal Manning,DB,2010,2012,$2
 11674,Schexes,Danny Amendola,WR,2010,2010,$36
-10768,,Danny Ware,RB,FA,2010
+10768,,D.J. Ware,RB,FA,2010
 11788,John,Danny Woodhead,RB/WR,FA,2010,$4
 5589,,Darnell Dockett,DL,2010,2010
 13465,,Darrell Stuckey,DB,FA,2010
@@ -961,7 +961,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11122,James,Matt Prater,K,FA,2010,$1
 11237,Trevor,Matt Ryan,QB,2008,2010,$10
 5615,Daniel,Matt Schaub,QB,2008,2010,$37
-11387,,Matt Slater,WR,FA,2010
+11387,,Matthew Slater,WR,FA,2010
 12483,Schexes,Matthew Stafford,QB,2009,2011,$25
 9646,Schexes,Maurice Jones-Drew,RB,2008,2010,$142
 3582,Koci,Maurice Morris,RB,FA,2010,$15
@@ -1003,7 +1003,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4514,Trevor,Osi Umenyiora,DL,2009,2011,$4
 9684,Daniel,Owen Daniels,TE,2008,2010,$4
 4243,John,Paris Lenon,LB,FA,2010,$1
-12527,,Pat Chung,DB,FA,2010
+12527,,Patrick Chung,DB,FA,2010
 5741,Daniel,Patrick Crayton,WR,2010,2010,$10
 1782,,Patrick Kerney,DL,FA,2010
 12599,,Patrick Turner,WR,FA,2010
@@ -1088,7 +1088,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11323,Trevor,Steve Slaton,RB,2008,2010,$7
 2622,Trevor,Steve Smith (CAR),WR,2010,2010,$105
 10495,Trevor,Steve Smith (NYG),WR,2010,2011,$45
-11923,,Steven Hauschka,K,FA,2010
+11923,,Stephen Hauschka,K,FA,2010
 5549,James,Steven Jackson,RB,2010,2010,$200
 10531,Patrick,Stewart Bradley,LB,2010,2012,$2
 2753,,T.J. Houshmandzadeh,WR,FA,2010
@@ -1140,7 +1140,7 @@ ID,Owner,Name,Position,Start,End,Salary
 
 === 2010 data ===
 ID,Owner,Name,Position,Start,End,Salary
--1,Trevor,A. J. Green,WR,2011,,$26
+-1,Trevor,A.J. Green,WR,2011,,$26
 -1,Trevor,Aaron Williams ,DB,2011,,$1
 -1,Keyon,Adrian Clayborn ,DL,2011,,$1
 -1,Syed,Akeem Ayers ,LB,2011,,$1
@@ -1168,7 +1168,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,John,Donte Whitner,DB,2011,,$1
 -1,John,Dwayne Harris ,WR,2011,,$13
 -1,Syed,Greg Little ,WR,2011,,$26
--1,John,J. J. Watt ,DL,2011,,$1
+-1,John,J.J. Watt ,DL,2011,,$1
 -1,Trevor,Jacquizz Rodgers ,RB,2011,,$2
 -1,Jake/Luke,Jaiquawn Jarrett ,DB,2011,,$1
 -1,Daniel,Jake Locker ,QB,2011,,$2
@@ -1267,7 +1267,7 @@ ID,Owner,Name,Position,Start,End,Salary
 10692,,Derek Stanley,WR,FA,2011
 10693,James,Ahmad Bradshaw,RB,2011,,$110
 10713,Schexes,Pierre Thomas,RB,2011,,$22
-10768,,Danny Ware,RB,FA,2011
+10768,,D.J. Ware,RB,FA,2011
 10770,,Eric Weems,WR,FA,2011
 10883,,Akeem Jordan,LB,FA,2011
 1097,,Adam Vinatieri,K,FA,2011
@@ -1317,7 +1317,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11362,Schexes,Ryan Torain,RB,2011,,$5
 11373,,Jacob Tamme,TE,FA,2011
 11383,Schexes,Tim Hightower,RB,2011,,$18
-11387,,Matt Slater,WR,FA,2011
+11387,,Matthew Slater,WR,FA,2011
 11390,,Dennis Dixon,QB,FA,2011
 11394,,Josh Johnson,QB,FA,2011
 11408,,Josh Morgan,WR,FA,2011
@@ -1339,7 +1339,7 @@ ID,Owner,Name,Position,Start,End,Salary
 11816,,Clifton Smith,RB,FA,2011
 11870,,Evan Moore,TE,FA,2011
 11909,,Brian Witherspoon,DB,FA,2011
-11923,,Steven Hauschka,K,FA,2011
+11923,,Stephen Hauschka,K,FA,2011
 11946,,Anthony Armstrong,WR,FA,2011
 12021,,Stefan Logan,RB,FA,2011
 1203,,Darren Sharper,DB,FA,2011
@@ -1375,7 +1375,7 @@ ID,Owner,Name,Position,Start,End,Salary
 12517,,Chris Ogbonnaya,RB,FA,2011
 12520,Schexes,Javon Ringer,RB,2011,,$1
 12525,Jake/Luke,Beanie Wells,RB,2009,2011,$55
-12527,John,Pat Chung,DB,2011,,$1
+12527,John,Patrick Chung,DB,2011,,$1
 12528,,Louis Delmas,DB,FA,2011
 12549,Patrick,Brandon Pettigrew,TE,2009,2011,$22
 12555,,Ramses Barden,WR,FA,2011
@@ -2284,7 +2284,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1494,,Hines Ward,WR,FA,2011
 10180,,Hiram Eugene,DB,FA,2011
 12898,,Isaac Redman,RB,FA,2011
-13979,,J. J. Watt,DL,FA,2011
+13979,,J.J. Watt,DL,FA,2011
 8458,,J.J. Arrington,RB,FA,2011
 3561,,Jabar Gaffney,WR,FA,2011
 11197,,Jackie Battle,RB,FA,2011
@@ -2390,7 +2390,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4333,,Matt Bryant,K,FA,2011
 9596,,Matt Leinart,QB,FA,2011
 11122,,Matt Prater,K,FA,2011
-11387,,Matt Slater,WR,FA,2011
+11387,,Matthew Slater,WR,FA,2011
 5644,,Mewelde Moore,RB,FA,2011
 10463,,Michael Griffin,DB,FA,2011
 5554,,Michael Jenkins,WR,FA,2011
@@ -2411,7 +2411,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1170,,Olindo Mare,K,FA,2011
 8480,,Oshiomogho Atogwe,DB,FA,2011
 4243,,Paris Lenon,LB,FA,2011
-12527,,Pat Chung,DB,FA,2011
+12527,,Patrick Chung,DB,FA,2011
 5741,,Patrick Crayton,WR,FA,2011
 1782,,Patrick Kerney,DL,FA,2011
 12599,,Patrick Turner,WR,FA,2011
@@ -2462,7 +2462,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4877,,Stephen Cooper,LB,FA,2011
 11323,,Steve Slaton,RB,FA,2011
 10495,,Steve Smith (PHI),WR,FA,2011
-11923,,Steven Hauschka,K,FA,2011
+11923,,Stephen Hauschka,K,FA,2011
 10531,,Stewart Bradley,LB,FA,2011
 2753,,T.J. Houshmandzadeh,WR,FA,2011
 13286,,Taylor Mays,DB,FA,2011
@@ -3823,7 +3823,7 @@ ID,Owner,Name,Position,Start,End,Salary
 14028,Quinn,Stevan Ridley,RB,2014,2016,$42
 11458,Trevor,Steve Johnson,WR,2014,2015,$1
 2622,Daniel,Steve Smith (BAL),WR,2014,2015,$12
-11923,,Steven Hauschka,K,FA,2014
+11923,,Stephen Hauschka,K,FA,2014
 5549,Syed,Steven Jackson,RB,2014,2014,$27
 16884,James,Storm Johnson,RB,2014,2016,$3
 17222,Koci/Mueller,T.J. Carrie,DB,2014,2016,$1
@@ -4246,7 +4246,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17588,Trevor,Stephone Anthony,LB,2015,2017,$1
 14028,Schex,Stevan Ridley,RB,2015,2017,$1
 2622,Daniel,Steve Smith Sr.,WR,2014,2015,$12
-11923,Brett/Luke,Steven Hauschka,K,2015,2015,$1
+11923,Brett/Luke,Stephen Hauschka,K,2015,2015,$1
 11458,Trevor,Stevie Johnson,WR,2014,2015,$1
 16884,James,Storm Johnson,RB,2014,2016,$3
 17222,Koci/Mueller,TJ Carrie,DB,2014,2016,$1
@@ -4630,7 +4630,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17827,Mitch,Sterling Shepard,WR,2016,2018,$17
 14028,Schex,Stevan Ridley,RB,2015,2017,$1
 2622,Brett/Luke,Steve Smith Sr.,WR,2016,2016,$5
-11923,Brett/Luke,Steven Hauschka,K,2016,2016,$3
+11923,Brett/Luke,Stephen Hauschka,K,2016,2016,$3
 17678,Syed,T.J. Yeldon,RB,2015,2017,$27
 14924,John/Zach,T.Y. Hilton,WR,2015,2017,$135
 17912,Keyon,Tajae Sharpe,WR,2016,2018,$5
@@ -5229,7 +5229,7 @@ ID,Owner,Name,Position,Start,End,Salary
 17827,Mitch,Sterling Shepard,WR,2016,2018,$17
 14028,,Stevan Ridley,RB,FA
 2622,,Steve Smith Sr.,WR,FA
-11923,,Steven Hauschka,K,FA
+11923,,Stephen Hauschka,K,FA
 13304,Syed/Terence,T.J. Ward,DB,2017,2017,$2
 18244,Schex/Jeff,T.J. Watt,LB,2017,2019,$1
 17678,Syed/Terence,T.J. Yeldon,RB,2015,2017,$27
