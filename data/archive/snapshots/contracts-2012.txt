@@ -389,8 +389,8 @@ ID,Owner,Name,Position,Start,End,Salary
 811,Charles,Stevan Ridley,RB,2011,2013,$25
 108,Schex,Steve Johnson,WR,2011,2013,$55
 -1,Trevor,Steve Slaton,RB,2012,2012,$1
-890,Keyon,Stefen Wisniewski,WR,2012,2012,$99
-890,Daniel,Stefen Wisniewski,WR,2012,2014,$1
+169,Keyon,Steve Smith,WR,2012,2012,$99
+-1,Daniel,Steve Smith,WR,2012,2014,$1
 57,James,Steven Jackson,RB,2012,2012,$135
 535,Jake/Luke,T.J. Ward,DB,2010,2012,$1
 857,Charles,T.J. Yates,QB,2012,2012,$14

@@ -704,7 +704,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2018,
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,,Stevan Ridley,RB,FA,2018,
-890,,Stefen Wisniewski,WR,FA,2018,
+169,,Steve Smith,WR,FA,2018,
 535,,T.J. Ward,DB,FA,2018,
 4070,Schex,T.J. Watt,LB,2017,2019,$1
 2341,Mitch,T.J. Yeldon,RB,2018,2018,$2

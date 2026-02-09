@@ -373,7 +373,7 @@ ID,Owner,Name,Position,Start,End,Salary
 110,Koci/Mueller,Stephen Gostkowski,K,2015,2017,$2
 2336,Trevor,Stephone Anthony,LB,2015,2017,$1
 811,Schex/Jeff,Stevan Ridley,RB,2015,2017,$1
-890,Daniel,Stefen Wisniewski,WR,2014,2015,$12
+169,Daniel,Steve Smith,WR,2014,2015,$12
 775,Brett/Luke,Stephen Hauschka,K,2015,2015,$1
 108,Trevor,Steve Johnson,WR,2014,2015,$1
 1986,James,Storm Johnson,RB,2014,2016,$3

@@ -404,7 +404,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1043,Mitch,Stephon Gilmore,DB,2012,2014,$1
 811,Charles,Stevan Ridley,RB,2011,2013,$25
 108,Schex,Steve Johnson,WR,2011,2013,$55
-890,John,Stefen Wisniewski,WR,2013,2013,$50
+169,John,Steve Smith,WR,2013,2013,$50
 57,Daniel,Steven Jackson,RB,2013,2015,$150
 1110,Jake/Luke,T.Y. Hilton,WR,2012,2014,$2
 154,Schex,Tarvaris Jackson,QB,2013,2015,$1
