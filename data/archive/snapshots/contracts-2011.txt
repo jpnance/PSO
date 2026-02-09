@@ -63,7 +63,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1020,Trevor,Terrelle Pryor,QB,2011,2013,$1
 -1,John,Titus Young,WR,2011,2013,$13
 826,Keyon,Torrey Smith,WR,2011,2011,$4
-891,Syed,Vincent Brown,WR,2011,2011,$1
+891,Syed,Vincent Brown,WR,2011,2013,$1
 871,John,Von Miller,LB,2011,2011,$1
 122,James,Miles Austin,WR,2010,2012,$125
 -1,,Hiram Eugene,DB,FA,2011,

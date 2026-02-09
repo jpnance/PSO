@@ -73,11 +73,11 @@ BE Andre Roberts
 
 
 Syed
+BE Vincent Brown
+BE Sam Bradford
 QB Joe Flacco
 RB Shonn Greene
 RB Ryan Mathews
-RB/WR Johnny Knox
-WR Marques Colston
 WR Hakeem Nicks
 WR/TE Zach Miller
 TE Brent Celek
@@ -87,13 +87,13 @@ DB Earl Thomas
 DP Rahim Moore
 DP Ndamukong Suh
 K David Akers
-BE Mike Thomas
 BE Dexter McCluster
 BE Mario Manningham
 BE Akeem Ayers
 BE Ryan Kerrigan
 BE Eli Manning
 BE Jamaal Charles
+WR Jordan Shipley
 BE Roy Helu
 BE Ryan Williams
 BE Stevan Ridley
@@ -110,6 +110,8 @@ BE Jerrel Jernigan
 
 
 John
+RB/WR Johnny Knox
+BE Mike Thomas
 QB Tim Tebow
 RB Darren McFadden
 RB Willis McGahee
@@ -121,10 +123,9 @@ TE Dennis Pitta
 LB Brian Cushing
 DL J.J. Watt
 DB Donte Whitner
-DP Pat Chung
+DP Patrick Chung
 DP Chris Hope
 K Nate Kaeding
-BE Sam Bradford
 BE Marcell Dareus
 BE Bruce Carter
 BE Desmond Bishop
@@ -146,11 +147,12 @@ BE Donald Driver
 
 
 Trevor
+BE Terrelle Pryor
 QB Peyton Manning
 RB Knowshon Moreno
 RB Chris Johnson
 RB/WR Maurice Jones-Drew
-WR Jordan Shipley
+WR Marques Colston
 WR Steve Smith
 WR/TE Kyle Rudolph
 TE Rob Gronkowski
@@ -216,6 +218,7 @@ BE Deion Branch
 
 
 Jake/Luke
+BE Dane Sanzenbacher
 QB Philip Rivers
 RB Beanie Wells
 RB LeSean McCoy
@@ -246,7 +249,7 @@ BE Jimmy Graham
 BE Luke Stocker
 BE Andre Johnson
 BE Josh Cribbs
-BE Edmund Gates
+BE Clyde Gates
 
 
 Daniel
