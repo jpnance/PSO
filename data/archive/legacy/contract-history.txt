@@ -2070,7 +2070,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1716,Jake/Luke,David Akers,K,FA,2011,$6
 9619,Jake/Luke,DeMeco Ryans,LB,2011,2012,$1
 11315,Jake/Luke,Early Doucet,WR,FA,2011,$4
-14209,Jake/Luke,Edmund Gates,WR,2011,2013,$1
+14209,Jake/Luke,Clyde Gates,WR,2011,2013,$1
 10475,Jake/Luke,Greg Olsen,TE,2009,2011,$35
 14043,Jake/Luke,Jaiquawn Jarrett,DB,2011,2013,$1
 12454,Jake/Luke,James Laurinaitis,LB,2009,2011,$9
