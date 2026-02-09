@@ -1141,71 +1141,71 @@ ID,Owner,Name,Position,Start,End,Salary
 === 2010 data ===
 ID,Owner,Name,Position,Start,End,Salary
 -1,Trevor,A.J. Green,WR,2011,,$26
--1,Trevor,Aaron Williams ,DB,2011,,$1
--1,Keyon,Adrian Clayborn ,DL,2011,,$1
--1,Syed,Akeem Ayers ,LB,2011,,$1
--1,Jake/Luke,Alex Green ,RB,2011,,$2
+-1,Trevor,Aaron Williams,DB,2011,,$1
+-1,Keyon,Adrian Clayborn,DL,2011,,$1
+-1,Syed,Akeem Ayers,LB,2011,,$1
+-1,Jake/Luke,Alex Green,RB,2011,,$2
 -1,Koci,Alex Henery,K,2011,,$1
--1,Schexes,Andy Dalton ,QB,2011,,$4
+-1,Schexes,Andy Dalton,QB,2011,,$4
 -1,Keyon,Antoine Cason,DB,2011,,$1
--1,Daniel,Austin Pettis ,WR,2011,,$1
--1,Keyon,Blaine Gabbert ,QB,2011,,$7
--1,John,Bruce Carter ,LB,2011,,$1
--1,Trevor,Cam Newton ,QB,2011,,$13
--1,Patrick,Casey Matthews ,LB,2011,,$1
--1,Syed,Cecil Shorts ,WR,2011,,$1
--1,James,Christian Ponder ,QB,2011,,$4
+-1,Daniel,Austin Pettis,WR,2011,,$1
+-1,Keyon,Blaine Gabbert,QB,2011,,$7
+-1,John,Bruce Carter,LB,2011,,$1
+-1,Trevor,Cam Newton,QB,2011,,$13
+-1,Patrick,Casey Matthews,LB,2011,,$1
+-1,Syed,Cecil Shorts,WR,2011,,$1
+-1,James,Christian Ponder,QB,2011,,$4
 -1,Jake/Luke,Clyde Gates,WR,2011,,$1
--1,Daniel,Colin Kaepernick ,QB,2011,,$4
--1,James,Colin McCarthy ,LB,2011,,$1
--1,Schexes,Da'Quan Bowers ,DL,2011,,$1
+-1,Daniel,Colin Kaepernick,QB,2011,,$4
+-1,James,Colin McCarthy,LB,2011,,$1
+-1,Schexes,Da'Quan Bowers,DL,2011,,$1
 -1,Jake/Luke,Dane Sanzenbacher,WR,2011,,$1
--1,Patrick,Daniel Thomas ,RB,2011,,$25
--1,Keyon,Delone Carter ,RB,2011,,$13
--1,James,DeMarco Murray ,RB,2011,,$7
--1,Koci,Denarius Moore ,WR,2011,,$13
+-1,Patrick,Daniel Thomas,RB,2011,,$25
+-1,Keyon,Delone Carter,RB,2011,,$13
+-1,James,DeMarco Murray,RB,2011,,$7
+-1,Koci,Denarius Moore,WR,2011,,$13
 -1,John,Desmond Bishop,LB,2011,,$1
 -1,John,Donte Whitner,DB,2011,,$1
--1,John,Dwayne Harris ,WR,2011,,$13
--1,Syed,Greg Little ,WR,2011,,$26
--1,John,J.J. Watt ,DL,2011,,$1
--1,Trevor,Jacquizz Rodgers ,RB,2011,,$2
--1,Jake/Luke,Jaiquawn Jarrett ,DB,2011,,$1
--1,Daniel,Jake Locker ,QB,2011,,$2
+-1,John,Dwayne Harris,WR,2011,,$13
+-1,Syed,Greg Little,WR,2011,,$26
+-1,John,J.J. Watt,DL,2011,,$1
+-1,Trevor,Jacquizz Rodgers,RB,2011,,$2
+-1,Jake/Luke,Jaiquawn Jarrett,DB,2011,,$1
+-1,Daniel,Jake Locker,QB,2011,,$2
 -1,John,Jared Cook,TE,2011,,$3
--1,Patrick,Jeremy Kerley ,WR,2011,,$1
--1,Syed,Jerrel Jernigan ,WR,2011,,$1
--1,Keyon,Jimmy Smith ,DB,2011,,$1
--1,Daniel,Jonathan Baldwin ,WR,2011,,$13
--1,Daniel,Jordan Cameron ,TE,2011,,$1
--1,James,Julio Jones ,WR,2011,,$26
--1,Koci,Kendall Hunter ,RB,2011,,$4
--1,Trevor,Kyle Rudolph ,TE,2011,,$1
--1,Daniel,Lance Kendricks ,TE,2011,,$1
--1,James,Leonard Hankerson ,WR,2011,,$13
--1,Jake/Luke,Luke Stocker ,TE,2011,,$1
--1,John,Marcell Dareus ,DL,2011,,$1
--1,Daniel,Mark Ingram ,RB,2011,,$25
--1,Daniel,Mason Foster ,LB,2011,,$1
--1,James,Mikel Leshoure ,RB,2011,,$7
--1,James,Nate Irving ,LB,2011,,$1
--1,Schexes,Patrick Peterson ,DB,2011,,$1
--1,Syed,Rahim Moore ,DB,2011,,$1
--1,Patrick,Randall Cobb ,WR,2011,,$13
--1,James,Rob Housler ,TE,2011,,$1
--1,James,Robert Quinn ,DL,2011,,$1
--1,Syed,Roy Helu ,RB,2011,,$25
--1,Syed,Ryan Kerrigan ,LB,2011,,$1
--1,Trevor,Ryan Mallett ,QB,2011,,$1
--1,Syed,Ryan Williams ,RB,2011,,$25
--1,Jake/Luke,Shane Vereen ,RB,2011,,$4
--1,Syed,Stevan Ridley ,RB,2011,,$25
+-1,Patrick,Jeremy Kerley,WR,2011,,$1
+-1,Syed,Jerrel Jernigan,WR,2011,,$1
+-1,Keyon,Jimmy Smith,DB,2011,,$1
+-1,Daniel,Jonathan Baldwin,WR,2011,,$13
+-1,Daniel,Jordan Cameron,TE,2011,,$1
+-1,James,Julio Jones,WR,2011,,$26
+-1,Koci,Kendall Hunter,RB,2011,,$4
+-1,Trevor,Kyle Rudolph,TE,2011,,$1
+-1,Daniel,Lance Kendricks,TE,2011,,$1
+-1,James,Leonard Hankerson,WR,2011,,$13
+-1,Jake/Luke,Luke Stocker,TE,2011,,$1
+-1,John,Marcell Dareus,DL,2011,,$1
+-1,Daniel,Mark Ingram,RB,2011,,$25
+-1,Daniel,Mason Foster,LB,2011,,$1
+-1,James,Mikel Leshoure,RB,2011,,$7
+-1,James,Nate Irving,LB,2011,,$1
+-1,Schexes,Patrick Peterson,DB,2011,,$1
+-1,Syed,Rahim Moore,DB,2011,,$1
+-1,Patrick,Randall Cobb,WR,2011,,$13
+-1,James,Rob Housler,TE,2011,,$1
+-1,James,Robert Quinn,DL,2011,,$1
+-1,Syed,Roy Helu,RB,2011,,$25
+-1,Syed,Ryan Kerrigan,LB,2011,,$1
+-1,Trevor,Ryan Mallett,QB,2011,,$1
+-1,Syed,Ryan Williams,RB,2011,,$25
+-1,Jake/Luke,Shane Vereen,RB,2011,,$4
+-1,Syed,Stevan Ridley,RB,2011,,$25
 -1,Schexes,Tarvaris Jackson,QB,2011,,$6
 -1,Trevor,Terrelle Pryor,QB,2011,,$1
--1,John,Titus Young ,WR,2011,,$13
--1,Keyon,Torrey Smith ,WR,2011,,$4
--1,Syed,Vincent Brown ,WR,2011,,$1
--1,John,Von Miller ,LB,2011,,$1
+-1,John,Titus Young,WR,2011,,$13
+-1,Keyon,Torrey Smith,WR,2011,,$4
+-1,Syed,Vincent Brown,WR,2011,,$1
+-1,John,Von Miller,LB,2011,,$1
 10147,James,Miles Austin,WR,2010,2012,$125
 10180,,Hiram Eugene,DB,FA,2011
 10195,Schexes,Fred Jackson,RB,2009,2011,$1
