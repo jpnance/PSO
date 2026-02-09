@@ -3,7 +3,6 @@ QB Tom Brady
 RB Darius Reynaud
 RB Maurice Jones-Drew
 RB/WR Darrius Heyward-Bey
-WR Pierre Garcon
 WR Emmanuel Sanders
 WR/TE Larry Fitzgerald
 TE Scott Chandler
@@ -34,18 +33,21 @@ BE Jacoby Jones
 BE Josh Gordon
 BE Travis Benjamin
 BE Josh Cribbs
+RB/WR Ronnie Hillman
 
 
 Koci/Mueller
+WR Pierre Garcon
+BE Ace Sanders
+RB Jamaal Charles
+TE Jared Cook
 QB Aaron Rodgers
 RB Darren Sproles
 RB Trent Richardson
-RB/WR Ronnie Hillman
 WR Lance Moore
 WR Denarius Moore
 WR/TE Torrey Smith
 TE Rob Housler
-OP Vick Ballard
 LB Derrick Johnson
 DL Jason Pierre-Paul
 DB Devin McCourty
@@ -58,7 +60,6 @@ BE Danny Amendola
 BE Michael Crabtree
 BE Brian Quick
 BE Keshawn Martin
-BE Chris Givens
 BE James Jones
 BE Charles Tillman
 BE Tyrann Mathieu
@@ -67,7 +68,6 @@ BE Josh Freeman
 BE Sam Bradford
 BE Vince Young
 BE Mike Glennon
-BE Ahmad Bradshaw
 BE Daniel Thomas
 BE Stepfan Taylor
 BE Latavius Murray
@@ -112,14 +112,15 @@ BE Tavarres King
 
 
 John
+OP Vick Ballard
+BE Ahmad Bradshaw
+BE Chris Givens
 QB Alex Smith
 RB Mike Goodson
-RB Jamaal Charles
 RB/WR Darren McFadden
 WR Steve Smith
 WR Cecil Shorts
 WR/TE Jermaine Gresham
-TE Jared Cook
 OP Michael Vick
 LB Sean Lee
 DL Robert Quinn
@@ -144,7 +145,6 @@ BE Brian Hartline
 BE Stephen Hill
 BE Aaron Dobson
 BE Markus Wheaton
-BE Ace Sanders
 BE Jeremy Kerley
 BE Josh Boyce
 
@@ -239,7 +239,7 @@ LB Luke Kuechly
 DL J.J. Watt
 DB Eric Berry
 DP Charles Woodson
-DP John Cyprien
+DP Johnathan Cyprien
 K Randy Bullock
 BE Bryce Brown
 BE Cyrus Gray
@@ -279,7 +279,6 @@ DP Whitney Mercilus
 DP Lawrence Timmons
 K Matt Prater
 BE Blaine Gabbert
-BE Fred Davis
 BE Jason McCourty
 BE Javier Arenas
 BE Chris Long
@@ -334,6 +333,7 @@ BE Dwayne Bowe
 
 
 Schex
+BE Fred Davis
 QB Robert Griffin III
 RB Adrian Peterson
 RB Joe McKnight
