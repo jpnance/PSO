@@ -143,7 +143,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4066,James/Charles,Evan Engram,TE,2020,2021,$40
 605,Patrick,Everson Griffen,DL,2020,2020,$1
 3164,Luke,Ezekiel Elliott,RB,2019,2021,$290
-11573,Patrick,Frank Gore,RB,2020,2020,$6
+232,Patrick,Frank Gore,RB,2020,2020,$6
 5041,Keyon,Fred Warner,LB,2019,2021,$1
 6943,Keyon,Gabe Davis,WR,2020,2022,$1
 6011,Koci/Mueller,Gardner Minshew,QB,2019,2021,$3

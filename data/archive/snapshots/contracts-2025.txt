@@ -253,7 +253,7 @@ ID,Owner,Player,Position,Start,End,Salary
 8339,Mitch,Kyle Hamilton,DB,2025,2025,$7
 12534,Keyon,Kyle Monangai,RB,2025,2027,$3
 7553,Koci/Mueller,Kyle Pitts,TE,2024,2026,$45
-638,Mike,Kyle Williams,WR,2025,2027,$8
+12547,Mike,Kyle Williams,WR,2025,2027,$8
 5849,Quinn,Kyler Murray,QB,2023,2025,$125
 8150,Jason,Kyren Williams,RB,2023,2025,$6
 11635,Justin,Ladd McConkey,WR,2024,2026,$8

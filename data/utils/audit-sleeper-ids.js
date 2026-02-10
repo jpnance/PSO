@@ -84,15 +84,19 @@ if (fs.existsSync(RESOLUTIONS_FILE)) {
 // Audit result tracking
 // ============================================================================
 
+var CURRENT_YEAR = 2025; // For calculating approximate rookie years
+var TIMELINE_TOLERANCE = 2; // Years of tolerance for timeline checks
+
 var results = {
 	mismatches: [],      // ID points to different name
 	notFound: [],        // ID not in Sleeper data
 	positionMismatch: [], // Position doesn't match
 	ambiguous: [],       // Name has multiple Sleeper IDs
+	timelineMismatch: [], // Ambiguous name with wrong career timeline
 	checked: 0
 };
 
-function checkPlayer(sleeperId, ourName, ourPosition, source) {
+function checkPlayer(sleeperId, ourName, ourPosition, source, contextYear) {
 	if (!sleeperId || sleeperId === '-1' || sleeperId === 'null' || sleeperId === '') {
 		return; // Skip historical/missing IDs
 	}
@@ -161,6 +165,39 @@ function checkPlayer(sleeperId, ourName, ourPosition, source) {
 			resolutionMatches: resolution ? resolution.sleeperId === sleeperId : null,
 			source: source
 		});
+		
+		// Timeline check for ambiguous names
+		// Only flag if context year is BEFORE the player's approximate rookie year
+		// (meaning they couldn't have been in the NFL at that time)
+		if (contextYear && sleeperPlayer.years_exp !== undefined) {
+			var approxRookieYear = CURRENT_YEAR - sleeperPlayer.years_exp;
+			
+			// Context year is before the player could have been active
+			if (contextYear < approxRookieYear - TIMELINE_TOLERANCE) {
+				// Check if there's another candidate who could have been active
+				var betterCandidate = ids.find(function(candidateId) {
+					if (candidateId === sleeperId) return false;
+					var candidate = sleeperData[candidateId];
+					if (!candidate || candidate.years_exp === undefined) return false;
+					var candidateRookieYear = CURRENT_YEAR - candidate.years_exp;
+					// This candidate could have been active in the context year
+					return contextYear >= candidateRookieYear - TIMELINE_TOLERANCE;
+				});
+				
+				if (betterCandidate) {
+					var betterPlayer = sleeperData[betterCandidate];
+					results.timelineMismatch.push({
+						sleeperId: sleeperId,
+						ourName: ourName,
+						contextYear: contextYear,
+						approxRookieYear: approxRookieYear,
+						betterCandidateId: betterCandidate,
+						betterCandidateRookieYear: CURRENT_YEAR - betterPlayer.years_exp,
+						source: source
+					});
+				}
+			}
+		}
 	}
 }
 
@@ -176,7 +213,10 @@ if (fs.existsSync(CUTS_FILE)) {
 	cuts.forEach(function(cut, idx) {
 		if (cut.sleeperId) {
 			cutCount++;
-			checkPlayer(cut.sleeperId, cut.name, cut.position, 'cuts.json:' + idx);
+			// Use startYear if available (more accurate - player had to be available then)
+			// Fall back to cutYear
+			var contextYear = cut.startYear || cut.cutYear;
+			checkPlayer(cut.sleeperId, cut.name, cut.position, 'cuts.json:' + idx, contextYear);
 		}
 	});
 	console.log('  ' + cutCount + ' players checked');
@@ -190,11 +230,13 @@ if (fs.existsSync(TRADES_FILE)) {
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
 	var tradePlayerCount = 0;
 	trades.forEach(function(trade) {
+		// Extract year from date (format: "YYYY-MM-DD" or similar)
+		var tradeYear = trade.date ? parseInt(trade.date.substring(0, 4), 10) : null;
 		trade.parties.forEach(function(party) {
 			(party.players || []).forEach(function(player) {
 				if (player.sleeperId) {
 					tradePlayerCount++;
-					checkPlayer(player.sleeperId, player.name, null, 'trades.json:trade' + trade.tradeId);
+					checkPlayer(player.sleeperId, player.name, null, 'trades.json:trade' + trade.tradeId, tradeYear);
 				}
 			});
 		});
@@ -212,7 +254,7 @@ if (fs.existsSync(DRAFTS_FILE)) {
 	drafts.forEach(function(draft) {
 		if (draft.sleeperId && draft.playerName) {
 			draftCount++;
-			checkPlayer(draft.sleeperId, draft.playerName, null, 'drafts.json:' + draft.season + ':' + draft.pickNumber);
+			checkPlayer(draft.sleeperId, draft.playerName, null, 'drafts.json:' + draft.season + ':' + draft.pickNumber, draft.season);
 		}
 	});
 	console.log('  ' + draftCount + ' players checked');
@@ -230,6 +272,10 @@ if (fs.existsSync(SNAPSHOTS_DIR)) {
 	
 	var snapshotPlayerCount = 0;
 	snapshotFiles.forEach(function(file) {
+		// Extract year from filename (e.g., "contracts-2015.txt" -> 2015)
+		var yearMatch = file.match(/(\d{4})/);
+		var snapshotYear = yearMatch ? parseInt(yearMatch[1], 10) : null;
+		
 		var filePath = path.join(SNAPSHOTS_DIR, file);
 		var content = fs.readFileSync(filePath, 'utf8');
 		var lines = content.trim().split('\n');
@@ -244,7 +290,7 @@ if (fs.existsSync(SNAPSHOTS_DIR)) {
 			
 			if (sleeperId && sleeperId !== '-1') {
 				snapshotPlayerCount++;
-				checkPlayer(sleeperId, name, position, file + ':' + (i + 1));
+				checkPlayer(sleeperId, name, position, file + ':' + (i + 1), snapshotYear);
 			}
 		}
 	});
@@ -302,6 +348,24 @@ if (results.positionMismatch.length > 0) {
 	console.log('');
 }
 
+// Timeline mismatches (ambiguous names with wrong career timeline)
+if (results.timelineMismatch.length > 0) {
+	console.log('TIMELINE MISMATCHES (' + results.timelineMismatch.length + '):');
+	console.log('-'.repeat(40));
+	// Dedupe by sleeperId + source
+	var seenTimeline = {};
+	results.timelineMismatch.forEach(function(m) {
+		var key = m.sleeperId + ':' + m.source;
+		if (seenTimeline[key]) return;
+		seenTimeline[key] = true;
+		console.log('  "' + m.ourName + '" (ID ' + m.sleeperId + ') in ' + m.contextYear);
+		console.log('    Our ID approx rookie year: ' + m.approxRookieYear + ' (off by ' + Math.abs(m.approxRookieYear - m.contextYear) + ' years)');
+		console.log('    Better candidate: ID ' + m.betterCandidateId + ' (approx rookie year: ' + m.betterCandidateRookieYear + ')');
+		console.log('    Source: ' + m.source);
+	});
+	console.log('');
+}
+
 // Ambiguous names (informational) - only show with --verbose
 var ambiguousByName = {};
 if (results.ambiguous.length > 0) {
@@ -350,12 +414,15 @@ if (results.ambiguous.length > 0) {
 console.log('='.repeat(60));
 console.log('SUMMARY');
 console.log('='.repeat(60));
-console.log('  Name mismatches:     ' + results.mismatches.length + (results.mismatches.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
-console.log('  IDs not found:       ' + results.notFound.length + (results.notFound.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
-console.log('  Position mismatches: ' + results.positionMismatch.length + (results.positionMismatch.length > 0 ? ' [review]' : ' ✓'));
-console.log('  Ambiguous names:     ' + Object.keys(ambiguousByName || {}).length + ' unique');
+console.log('  Name mismatches:      ' + results.mismatches.length + (results.mismatches.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  IDs not found:        ' + results.notFound.length + (results.notFound.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  Timeline mismatches:  ' + results.timelineMismatch.length + (results.timelineMismatch.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  Position mismatches:  ' + results.positionMismatch.length + (results.positionMismatch.length > 0 ? ' [review]' : ' ✓'));
+console.log('  Ambiguous names:      ' + Object.keys(ambiguousByName || {}).length + ' unique');
 
-if (results.mismatches.length === 0 && results.notFound.length === 0) {
+var hasCriticalIssues = results.mismatches.length > 0 || results.notFound.length > 0 || results.timelineMismatch.length > 0;
+
+if (!hasCriticalIssues) {
 	console.log('\n✓ All Sleeper IDs verified!');
 	process.exit(0);
 } else {

@@ -418,7 +418,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1106,Koci,Vick Ballard,RB,2012,2014,$13
 719,Keyon,Victor Cruz,WR,2012,2014,$100
 157,Schex,Vince Young,QB,2012,2012,$5
-749,,Zach Miller,TE,FA,2012,$1
+171,,Zach Miller,TE,FA,2012,$1
 891,Keyon,Vincent Brown,WR,2012,2014,$1
 128,John,Vincent Jackson,WR,2011,2013,$110
 871,Jake/Luke,Von Miller,LB,2012,2012,$22

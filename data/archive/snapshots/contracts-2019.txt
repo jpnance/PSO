@@ -353,7 +353,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1027,,Fletcher Cox,DL,FA,2018
 1709,,Fozzy Whittaker,RB,FA,2018
 2368,Keyon,Frank Clark,DL,2019,2021,$1
-11573,Mitch,Frank Gore,RB,2019,2019,$3
+232,Mitch,Frank Gore,RB,2019,2019,$3
 5041,Keyon,Fred Warner,LB,2019,2021,$1
 6011,Koci/Mueller,Gardner Minshew,QB,2019,2021,$3
 176,,Gary Barnidge,TE,FA,2018

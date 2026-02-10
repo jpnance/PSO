@@ -13,7 +13,7 @@ ID,Owner,Name,Position,Start,End,Salary
 739,Patrick,Trent Edwards,QB,2008,2008,$3
 389,Patrick,Matt Cassel,QB,FA,2008,$1
 654,Patrick,LaDainian Tomlinson,RB,2008,2008,$370
-11573,Patrick,Frank Gore,RB,2008,2010,$175
+232,Patrick,Frank Gore,RB,2008,2010,$175
 -1,Patrick,Rudi Johnson,RB,2008,2008,$16
 306,Patrick,DeAngelo Williams,RB,2008,2008,$3
 -1,Patrick,Fred Taylor,RB,2008,2008,$2

@@ -555,4 +555,4 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Syed,Willie Parker,RB,2010,2010,$1
 300,John,Willis McGahee,RB,2010,2012,$1
 -1,Koci,Yeremiah Bell,DB,2010,2012,$15
-749,Syed,Zach Miller,TE,2010,2012,$7
+171,Syed,Zach Miller,TE,2010,2012,$7
