@@ -143,6 +143,7 @@
 - [x] Unify homepage standings widget with full standings page patterns
 
 ### Misc Ideas
+- [ ] **Retroactive trade-facilitation linking UI** — Open a historical drop and link it to a trade after the fact (e.g., found in email that this cut was for Trade #X)
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
 - [ ] Consider having roles specific to PSO ("commish", "podcast host")
 - [ ] Bring PSO Show podcast notes to the website (`tools/note/` → web feature)
