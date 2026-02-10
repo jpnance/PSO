@@ -58,7 +58,7 @@ var IN_SEASON_BOUNDARY = {
 	2011: 30,
 	2012: 38,
 	2013: 35,
-	2014: 42, // Celek/Bray still on Schex's team suggests he held on cut day
+	2014: 41, // Celek/Bray still on Schex's team suggests he held on cut day
 	2015: 30, // Kenbrell Thompkins not in Daniel's contracts email
 	2016: 59,
 	2017: 33,
