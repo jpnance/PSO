@@ -143,7 +143,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1349,James,E.J. Manuel,QB,2013,2015,$17
 701,Jake/Luke,Ed Dickson,TE,2012,2013,$6
 1527,Mitch,Eddie Lacy,RB,2013,2015,$26
-297,,Eddie Royal,WR,2013,2013,$1
+297,,Eddie Royal,WR,FA,2013,$1
 188,Syed,Eli Manning,QB,2011,2013,$28
 31,Charles,Elvis Dumervil,DL,2012,2013,$5
 538,Pat/Quinn,Emmanuel Sanders,WR,2011,2013,$10
