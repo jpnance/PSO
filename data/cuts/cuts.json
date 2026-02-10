@@ -3903,7 +3903,7 @@
 		"salary": 1,
 		"cutYear": 2010,
 		"rosterId": 2,
-		"sleeperId": "337"
+		"sleeperId": "696"
 	},
 	{
 		"owner": "Patrick",
@@ -5906,7 +5906,7 @@
 		"salary": 1,
 		"cutYear": 2011,
 		"rosterId": 2,
-		"sleeperId": "337"
+		"sleeperId": "696"
 	},
 	{
 		"owner": "Koci",
@@ -8820,7 +8820,7 @@
 		"salary": 5,
 		"cutYear": 2013,
 		"rosterId": 5,
-		"sleeperId": "337",
+		"sleeperId": "696",
 		"offseason": true
 	},
 	{
@@ -8931,7 +8931,7 @@
 		"owner": "James",
 		"name": "Melvin Ingram",
 		"hint": null,
-		"position": "DE",
+		"position": "DL",
 		"startYear": 2012,
 		"endYear": 2014,
 		"salary": 1,

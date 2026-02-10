@@ -88,7 +88,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,John,Oshiomogho Atogwe,DB,FA,2008,$1
 -1,John,Dewayne White,DL,FA,2008,$1
 256,John,Rian Lindell,K,FA,2008,$1
-242,John,Brent Grimes,LB,FA,2008,$1
+693,John,Joey Porter,LB,FA,2008,$1
 331,John,Philip Rivers,QB,2008,2008,$38
 -1,John,Chad Pennington,QB,2008,2008,$25
 188,John,Eli Manning,QB,2008,2010,$22
@@ -113,7 +113,7 @@ ID,Owner,Name,Position,Start,End,Salary
 65,John,Domenik Hixon,WR,FA,2008,$1
 -1,John,Isaac Bruce,WR,FA,2008,$1
 270,John,Lance Moore,WR,FA,2008,$1
-772,John,Ramon Humber,WR,FA,2008,$1
+-1,John,Matt Jones,WR,FA,2008,$1
 -1,John,Muhsin Muhammad,WR,FA,2008,$1
 -1,Koci,Terrence McGee,DB,2008,2008,$76
 -1,Koci,Chris Carr,DB,FA,2008,$7
