@@ -334,7 +334,7 @@ async function run() {
 	var args = parseArgs();
 	autoHistoricalThreshold = args.autoHistoricalBefore;
 	
-	console.log('Seeding cuts from Sheets data');
+	console.log('Seeding cuts from cuts.json');
 	if (args.yearStart || args.yearEnd) {
 		console.log('Years:', args.yearStart || 'all', '-', args.yearEnd || 'all');
 	} else {
@@ -376,7 +376,7 @@ async function run() {
 	
 	// Load cuts
 	var cuts = loadCuts(args.yearStart, args.yearEnd);
-	console.log('Loaded', cuts.length, 'cuts from Sheets');
+	console.log('Loaded', cuts.length, 'cuts from cuts.json');
 	
 	// Load FA pickups for timestamp cross-referencing
 	// Build a map: playerId -> [{ franchiseId, timestamp }]
