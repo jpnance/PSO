@@ -194,7 +194,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6178,,Darwin Thompson,RB,FA,2020,
 2133,Keyon,Davante Adams,WR,2020,2020,$190
 6450,,David Blough,QB,FA,2020,
-362,Patrick,David Johnson,RB,2020,2021,$96
+2391,Patrick,David Johnson,RB,2020,2021,$96
 5892,Mitch,David Montgomery,RB,2019,2021,$25
 4274,,David Moore,WR,FA,2020,
 4033,,David Njoku,TE,FA,2020,

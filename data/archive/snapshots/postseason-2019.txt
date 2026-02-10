@@ -263,7 +263,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6450,Brett/Luke,David Blough,QB,FA,2019,$2
 3,,David Harris,LB,FA,2018,
 3040,,David Irving,DL,FA,2018,
-362,Trevor,David Johnson,RB,2019,2019,$286
+2391,Trevor,David Johnson,RB,2019,2019,$286
 5892,Mitch,David Montgomery,RB,2019,2021,$25
 4274,Mitch,David Moore,WR,2019,2019,$4
 4033,Keyon,David Njoku,TE,2017,2019,$9

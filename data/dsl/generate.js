@@ -1013,14 +1013,27 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		});
 	}
 	
-	// Sort transactions by year, then by date (for trades)
+	// Sort transactions by year, then by type priority, then by date
+	// Priority: draft/auction → contract → trade → fa → cut
+	var typePriority = {
+		'protect': 0,
+		'draft': 1,
+		'auction': 1,
+		'contract': 2,
+		'expansion': 3,
+		'trade': 4,
+		'fa': 5,
+		'cut': 6,
+		'unknown': 7
+	};
 	transactions.sort(function(a, b) {
 		if (a.year !== b.year) return a.year - b.year;
-		// Within same year, sort by date if available
+		// Sort by type priority first
+		var aPri = typePriority[a.type] !== undefined ? typePriority[a.type] : 10;
+		var bPri = typePriority[b.type] !== undefined ? typePriority[b.type] : 10;
+		if (aPri !== bPri) return aPri - bPri;
+		// Within same type, sort by date if available
 		if (a.date && b.date) return new Date(a.date) - new Date(b.date);
-		// Trades with dates come after non-dated transactions
-		if (a.date) return 1;
-		if (b.date) return -1;
 		return 0;
 	});
 	
