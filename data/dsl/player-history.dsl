@@ -17985,7 +17985,7 @@ Stefan Logan | RB | historical
   10 auction Syed $10
   10 contract $10 10/10
 
-Stefen Wisniewski | WR | historical
+Steve Smith | WR | historical
   08 auction Keyon $120
   08 contract $120 08/10
   09 cut # by Keyon

@@ -732,7 +732,7 @@ ID,Owner,Name,Position,Start,End,Salary
 187,,Thomas Davis,LB,FA,2018,
 2585,,Thomas Rawls,RB,FA,2018,
 83,,Tim Hightower,RB,FA,2018,
-18542,,Tion Green,RB,FA,2018,
+4596,,Tion Green,RB,FA,2018,
 2029,,T.J. Carrie,DB,FA,2018,
 2121,,T.J. Jones,WR,FA,2018,
 2315,Brett/Luke,Todd Gurley,RB,2018,2018,$360

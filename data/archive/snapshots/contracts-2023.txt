@@ -39,7 +39,7 @@ ID,Owner,Name,Position,Start,End,Salary
 9228,Keyon,Bryce Young,QB,2023,2025,$30
 4081,Schex,Budda Baker,DB,2022,2024,$6
 5893,Quinn,C.J. Gardner-Johnson,DB,2023,2023,$1
-743,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
+1875,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
 9758,Brett,C.J. Stroud,QB,2023,2025,$30
 8111,Justin,Cade Otton,TE,2022,2024,$1
 8258,James/Charles,Cade York,K,2022,2024,$1
@@ -131,7 +131,7 @@ ID,Owner,Name,Position,Start,End,Salary
 6056,Justin,Dre Greenlaw,LB,2023,2025,$6
 5854,Koci/Mueller,Drew Lock,QB,2023,2025,$1
 10929,Justin,Drew Sanders,DL/LB,2023,2025,$1
-4844,Koci/Mueller,Elijah Mitchell,RB,2021,2023,$2
+7561,Koci/Mueller,Elijah Mitchell,RB,2021,2023,$2
 7596,Justin,Elijah Moore,WR,2021,2023,$8
 10223,Mitch,Eric Gray,RB,2023,2025,$7
 2350,Mitch,Eric Kendricks,LB,2023,2023,$5
@@ -288,7 +288,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5991,Schex,Maxx Crosby,DL,2023,2025,$9
 5917,Quinn,Mecole Hardman,WR,2022,2024,$4
 7640,Justin,Micah Parsons,LB,2021,2023,$1
-7835,Quinn,Michael Carter,RB,2023,2025,$3
+7607,Quinn,Michael Carter,RB,2023,2025,$3
 5038,Quinn,Michael Gallup,WR,2023,2025,$4
 9482,Luke,Michael Mayer,TE,2023,2025,$7
 6819,Keyon,Michael Pittman,WR,2023,2025,$40

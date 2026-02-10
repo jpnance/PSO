@@ -240,7 +240,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1102,Koci,Keshawn Martin,WR,2012,2014,$4
 278,Mitch,Kevin Kolb,QB,2012,2012,$13
 405,,Kevin Ogletree,WR,FA,2012,$57
-2295,Schex,Kevin Smith,RB,2012,2012,$47
+-1,Schex,Kevin Smith,RB,2012,2012,$47
 1166,Schex,Kirk Cousins,QB,2012,2014,$2
 387,Charles,Knowshon Moreno,RB,2012,2012,$4
 498,Trevor,Kyle Arrington,DB,2012,2014,$1

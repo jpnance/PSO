@@ -618,7 +618,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2017,
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,,Stevan Ridley,RB,FA,2017,
-890,,Stefen Wisniewski,WR,FA,2017,
+169,,Steve Smith,WR,FA,2017,
 535,,T.J. Ward,DB,FA,2017,
 4070,Schex/Jeff,T.J. Watt,LB,2017,2019,$1
 2341,Mitch,T.J. Yeldon,RB,FA,2017,$4
@@ -645,7 +645,7 @@ ID,Owner,Name,Position,Start,End,Salary
 187,,Thomas Davis,LB,FA,2017,
 2585,Brett/Luke,Thomas Rawls,RB,2016,2017,$185
 83,,Tim Hightower,RB,FA,2017,
-18542,Keyon,Tion Green,RB,FA,2017,$3
+4596,Keyon,Tion Green,RB,FA,2017,$3
 2029,,T.J. Carrie,DB,FA,2017,
 2121,,T.J. Jones,WR,FA,2017,
 2315,Patrick,Todd Gurley,RB,2015,2017,$27

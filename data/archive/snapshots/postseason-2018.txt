@@ -154,7 +154,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4273,Koci/Mueller,Chris Carson,RB,2017,2019,$3
 2381,Keyon,Chris Conley,WR,FA,2018,$1
 4037,Brett/Luke,Chris Godwin,WR,2017,2018,$5
-18666,Mitch,Chris Herndon,TE,FA,2018,$1
+5009,Mitch,Chris Herndon,TE,FA,2018,$1
 1329,Daniel,Chris Hogan,WR,2017,2019,$8
 717,Trevor,Chris Ivory,RB,2017,2019,$2
 272,,Chris Johnson,RB,FA,2018,
@@ -217,7 +217,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2308,Brett/Luke,Dante Fowler,DL,FA,2018,$1
 4992,Quinn,Dante Pettis,WR,2018,2020,$5
 4990,Schex,Shaquille Leonard,LB,2018,2020,$1
-18854,Keyon,Darrel Williams,RB,FA,2018,$1
+5549,Keyon,Darrel Williams,RB,FA,2018,$1
 326,,Darren McFadden,RB,FA,2018,
 246,Koci/Mueller,Darren Sproles,RB,FA,2018,$24
 3190,Brett/Luke,Darron Lee,LB,2018,2018,$1
@@ -751,7 +751,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2018,
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,Daniel,Stevan Ridley,RB,FA,2018,$1
-890,,Stefen Wisniewski,WR,FA,2018,
+169,,Steve Smith,WR,FA,2018,
 4186,,T.J. Logan,RB,FA,2018,
 535,,T.J. Ward,DB,FA,2018,
 4070,James/Charles,T.J. Watt,LB,FA,2018,$8
@@ -782,7 +782,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2585,,Thomas Rawls,RB,FA,2018,
 83,,Tim Hightower,RB,FA,2018,
 4351,Keyon,Tim Patrick,WR,FA,2018,$3
-18542,,Tion Green,RB,FA,2018,
+4596,,Tion Green,RB,FA,2018,
 2029,,T.J. Carrie,DB,FA,2018,
 2121,,T.J. Jones,WR,FA,2018,
 2689,Trevor,Todd Davis,LB,FA,2018,$1

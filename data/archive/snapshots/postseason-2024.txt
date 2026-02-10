@@ -83,7 +83,7 @@ ID,Owner,Name,Position,Start,End,Salary
 10917,,Byron Young,DL/LB,FA,2023,
 4127,,C.J. Beathard,QB,FA,2023,
 5893,,C.J. Gardner-Johnson,DB,FA,2023,
-743,Mike,C.J. Mosley,LB,2024,2024,$4
+1875,Mike,C.J. Mosley,LB,2024,2024,$4
 9758,Brett,C.J. Stroud,QB,2023,2025,$30
 8111,Justin,Cade Otton,TE,2022,2024,$1
 11599,,Cade Stover,TE,FA,2024,
@@ -233,7 +233,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3369,,Elandon Roberts,LB,FA,2023,
 11114,,Elijah Dotson,RB,FA,2023,
 10231,,Elijah Higgins,TE,FA,2024,
-4844,,Elijah Mitchell,RB,FA,2024,
+7561,,Elijah Mitchell,RB,FA,2024,
 7596,Anthony,Elijah Moore,WR,2024,2026,$5
 11435,Mitch,Emanuel Wilson,RB,FA,2024,$3
 11199,,Emari Demercado,RB,FA,2023,
@@ -513,7 +513,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5917,Quinn,Mecole Hardman,WR,2022,2024,$4
 8396,,Micah McFadden,LB,FA,2024,
 7640,Quinn,Micah Parsons,DL/LB,2024,2025,$15
-7835,Quinn,Michael Carter,RB,2023,2025,$3
+7607,Quinn,Michael Carter,RB,2023,2025,$3
 5038,,Michael Gallup,WR,FA,2024,
 9482,,Michael Mayer,TE,FA,2024,
 11559,Luke,Michael Penix,QB,2024,2026,$40

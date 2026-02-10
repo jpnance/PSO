@@ -35,7 +35,7 @@ ID,Owner,Name,Position,Start,End,Salary
 7335,Quinn,Bryce Perkins,QB,2020,2022,$1
 4081,Schex,Budda Baker,DB,2022,2024,$6
 5199,Koci/Mueller,Byron Pringle,WR,2021,2023,$1
-743,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
+1875,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
 8111,Justin,Cade Otton,TE,2022,2024,$1
 8258,James/Charles,Cade York,K,2022,2024,$1
 8125,Jason,Calvin Austin,WR,2022,2024,$2
@@ -121,7 +121,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5536,Koci/Mueller,Dontrell Hilliard,RB,2022,2024,$1
 8112,Trevor,Drake London,WR,2022,2024,$16
 5854,Trevor,Drew Lock,QB,2022,2024,$15
-4844,Mitch/Mike,Elijah Mitchell,RB,2021,2023,$2
+7561,Mitch/Mike,Elijah Mitchell,RB,2021,2023,$2
 7596,Justin,Elijah Moore,WR,2021,2023,$8
 6951,Schex,Eno Benjamin,RB,2022,2024,$4
 2350,Jason,Eric Kendricks,LB,2021,2022,$3
@@ -281,7 +281,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2320,Luke,Melvin Gordon,RB,2022,2022,$75
 5074,Justin,Micah Kiser,LB,2020,2022,$1
 7640,Mitch/Mike,Micah Parsons,LB,2021,2023,$1
-7835,Keyon,Michael Carter,RB,2021,2023,$13
+7607,Keyon,Michael Carter,RB,2021,2023,$13
 5038,Mitch/Mike,Michael Gallup,WR,2021,2023,$28
 6819,James/Charles,Michael Pittman,WR,2020,2022,$8
 3199,Patrick,Michael Thomas,WR,2021,2023,$66

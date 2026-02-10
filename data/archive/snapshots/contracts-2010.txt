@@ -118,7 +118,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Correll Buckhalter,RB,FA,2010,
 61,,Cortland Finnegan,DB,FA,2010,
 137,Schexes,Curtis Lofton,LB,2010,2011,$4
-11989,Trevor,D.J. Williams,LB,2010,2012,$11
+-1,Trevor,D.J. Williams,LB,2010,2012,$11
 93,,D'Qwell Jackson,LB,FA,2010,
 5,Trevor,Dallas Clark,TE,2010,2010,$68
 541,Keyon,Damian Williams,WR,2010,2012,$2
@@ -252,7 +252,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Jason Hanson,K,FA,2010,
 720,Jake/Luke,Jason Pierre-Paul,DL,2010,2012,$1
 215,Keyon,Jason Snelling,RB,2010,2010,$5
-11040,,Jason Taylor,DL,FA,2010,
+-1,,Jason Taylor,DL,FA,2010,
 23,James,Jason Witten,TE,2008,2010,$134
 712,Koci,Javier Arenas,DB,2010,2012,$1
 -1,,Javon Ringer,RB,FA,2010,
@@ -321,7 +321,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Kevin Faulk,RB,FA,2010,
 278,John,Kevin Kolb,QB,2010,2011,$39
 405,,Kevin Ogletree,WR,FA,2010,
-2295,Koci,Kevin Smith,RB,2008,2010,$7
+-1,Koci,Kevin Smith,RB,2008,2010,$7
 72,Daniel,Kevin Walter,WR,2010,2010,$15
 -1,Syed,Kirk Morrison,LB,2010,2010,$5
 387,Trevor,Knowshon Moreno,RB,2009,2011,$28
@@ -398,7 +398,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Keyon,Michael Turner,RB,2010,2010,$175
 461,,Michael Vick,QB,FA,2010,
 504,,Micheal Spurlock,WR,FA,2010,
-5922,,Mike Bell,RB,FA,2010,
+-1,,Mike Bell,RB,FA,2010,
 -1,,Mike Hart,RB,FA,2010,
 658,,Mike Nugent,K,FA,2010,
 -1,,Mike Peterson,LB,FA,2010,
@@ -471,7 +471,7 @@ ID,Owner,Name,Position,Start,End,Salary
 689,,Roy Miller,DL,FA,2010,
 -1,,Ryan Denney,DL,FA,2010,
 333,,Ryan Fitzpatrick,QB,FA,2010,
-2093,Daniel,Ryan Grant,RB,2010,2010,$135
+-1,Daniel,Ryan Grant,RB,2010,2010,$135
 -1,Schexes,Ryan Longwell,K,2010,2010,$1
 571,Syed,Ryan Mathews,RB,2010,2012,$28
 -1,,Ryan Moats,RB,FA,2010,

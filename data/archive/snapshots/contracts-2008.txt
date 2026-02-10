@@ -40,7 +40,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Koci,Bernard Berrian,WR,2008,2010,$3
 -1,Koci,Devin Thomas,WR,2008,2010,$3
 96,Koci,Aaron Rodgers,QB,2008,2010,$6
-2295,Koci,Kevin Smith,RB,2008,2010,$6
+-1,Koci,Kevin Smith,RB,2008,2010,$6
 179,Koci,Reggie Bush,RB,2008,2010,$22
 648,Koci,Brandon Marshall,WR,2008,2010,$21
 3,Koci,David Harris,LB,2008,2008,$13
@@ -123,7 +123,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Jeff,Hines Ward,WR,2008,2010,$9
 -1,Jeff,Patrick Kerney,DL,2008,2008,$3
 -1,Daniel,JaMarcus Russell,QB,2008,2008,$60
-2093,Daniel,Ryan Grant,RB,2008,2008,$201
+-1,Daniel,Ryan Grant,RB,2008,2008,$201
 -1,Daniel,Marion Barber,RB,2008,2010,$185
 -1,Daniel,Torry Holt,WR,2008,2008,$92
 322,Daniel,Antonio Gates,TE,2008,2010,$130
@@ -199,7 +199,7 @@ ID,Owner,Name,Position,Start,End,Salary
 229,Schexes,Phil Dawson,K,2008,2008,$1
 -1,Keyon,Chester Taylor,RB,2008,2008,$3
 -1,Schexes,Early Doucet,WR,2008,2010,$4
-11040,Daniel,Jason Taylor,DL,2008,2008,$15
+-1,Daniel,Jason Taylor,DL,2008,2008,$15
 254,Koci,Darrelle Revis,DB,2008,2010,$2
 -1,Keyon,Sean Jones,DB,2008,2010,$2
 650,Keyon,Nick Folk,K,2008,2008,$7

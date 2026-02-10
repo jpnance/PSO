@@ -475,7 +475,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2016,
 3200,Mitch,Sterling Shepard,WR,2016,2018,$17
 811,,Stevan Ridley,RB,FA,2016,
-890,Brett/Luke,Stefen Wisniewski,WR,2016,2016,$5
+169,Brett/Luke,Steve Smith,WR,2016,2016,$5
 775,Brett/Luke,Stephen Hauschka,K,2016,2016,$3
 535,Keyon,T.J. Ward,DB,FA,2016,$5
 2341,Syed/Terence,T.J. Yeldon,RB,2015,2017,$27

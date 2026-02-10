@@ -73,7 +73,7 @@ ID,Owner,Name,Position,Start,End,Salary
 371,Patrick,Connor Barwin,DL,2009,2011,$5
 -1,Jake/Luke,Correll Buckhalter,RB,2009,2009,$9
 61,,Cortland Finnegan,DB,FA,2009,$1
-11989,,D.J. Williams,LB,FA,2009,$1
+-1,,D.J. Williams,LB,FA,2009,$1
 5,Trevor,Dallas Clark,TE,2009,2009,$67
 150,,Danieal Manning,DB,FA,2009,$1
 -1,Syed,Danny Ware,RB,2009,2011,$4
@@ -196,7 +196,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Schexes,Kevin Boss,TE,2009,2011,$1
 -1,Daniel,Kevin Curtis,WR,2009,2009,$9
 405,,Kevin Ogletree,WR,FA,2009,$1
-2295,Koci,Kevin Smith,RB,2008,2010,$7
+-1,Koci,Kevin Smith,RB,2008,2010,$7
 72,Syed,Kevin Walter,WR,2009,2011,$42
 387,Trevor,Knowshon Moreno,RB,2009,2011,$28
 -1,,Kris Brown,K,FA,2009,$1
@@ -248,7 +248,7 @@ ID,Owner,Name,Position,Start,End,Salary
 455,Patrick,Michael Crabtree,WR,2009,2011,$28
 -1,Keyon,Michael Turner,RB,2008,2009,$128
 461,Trevor,Michael Vick,QB,2009,2011,$5
-5922,,Mike Bell,RB,FA,2009,$1
+-1,,Mike Bell,RB,FA,2009,$1
 -1,,Mike Sims-Walker,WR,FA,2009,$1
 365,,Mike Wallace,WR,FA,2009,$1
 -1,John,Mohamed Massaquoi,WR,2009,2011,$14
@@ -289,7 +289,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Trevor,Roy Williams,WR,2008,2009,$105
 689,Patrick,Roy Miller,DL,2009,2009,$2
 -1,,Ryan Denney,DL,FA,2009,$1
-2093,Daniel,Ryan Grant,RB,2009,2009,$100
+-1,Daniel,Ryan Grant,RB,2009,2009,$100
 -1,,Ryan Longwell,K,FA,2009,$1
 -1,,Ryan Mouton,DB,FA,2009,$1
 391,John,Ryan Succop,K,2009,2011,$3

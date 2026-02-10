@@ -102,7 +102,7 @@ ID,Owner,Name,Position,Start,End,Salary
 583,,Brandon Graham,DL,FA,2018,
 613,,Brandon LaFell,WR,FA,2018,
 1118,,Brandon Marshall,LB,FA,2019,
-1118,,Brandon Marshall,WR,FA,2018,
+648,,Brandon Marshall,WR,FA,2018,
 1433,,Brandon McManus,K,FA,2019,
 5695,,Brandon Powell,WR,FA,2019,
 346,,Brandon Tate,WR,FA,2018,
@@ -129,7 +129,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1451,,C.J. Anderson,RB,FA,2019,
 4127,,C.J. Beathard,QB,FA,2018,
 1951,,C.J. Fiedorowicz,TE,FA,2018,
-743,,C.J. Mosley,LB,FA,2019,
+1875,,C.J. Mosley,LB,FA,2019,
 3204,,C.J. Prosise,RB,FA,2018,
 507,,C.J. Spiller,RB,FA,2018,
 2460,,C.J. Uzomah,TE,FA,2018,
@@ -179,8 +179,8 @@ ID,Owner,Name,Position,Start,End,Salary
 717,,Chris Ivory,RB,FA,2019,
 272,,Chris Johnson,RB,FA,2018,
 3558,,Chris Jones,DL,FA,2019,
-8548,,Chris Moore,WR,FA,2018,
-4719,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
+3269,,Chris Moore,WR,FA,2018,
+1502,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
 5587,,Chris Warren,RB,FA,2018,
 3168,,Christian Hackenberg,QB,FA,2018,
 2110,,Christian Jones,LB,FA,2018,
@@ -300,7 +300,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2028,James/Charles,Derek Carr,QB,2017,2019,$150
 1128,,Derek Wolfe,DL,FA,2018,
 3198,Trevor,Derrick Henry,RB,2019,2019,$125
-1842,,Derrick Johnson,LB,FA,2018,
+329,,Derrick Johnson,LB,FA,2018,
 732,,Derrick Morgan,DL,FA,2018,
 4949,Keyon,Derrius Guice,RB,2018,2020,$25
 4971,Brett/Luke,Derwin James,DB,2018,2020,$1
@@ -315,7 +315,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2346,,Devin Funchess,WR,FA,2019,
 518,,Devin McCourty,DB,FA,2018,
 6130,Schex,Devin Singletary,RB,2019,2021,$13
-1783,,Devin Smith,WR,FA,2019,
+2342,,Devin Smith,WR,FA,2019,
 6119,Mitch,Devin White,LB,2019,2021,$1
 6068,,Devine Ozigbo,RB,FA,2019,
 6595,,Devlin Hodges,QB,FA,2019,
@@ -518,7 +518,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1343,Patrick,Jordan Poyer,DB,2019,2019,$7
 1500,,Jordan Reed,TE,FA,2019,
 6167,Koci/Mueller,Jordan Scarlett,RB,2019,2021,$7
-5653,,Jordan Thomas,TE,FA,2018,
+5117,,Jordan Thomas,TE,FA,2018,
 5100,Syed/Kuan,Jordan Wilkins,RB,2019,2021,$1
 175,,Jordy Nelson,WR,FA,2018,
 5334,,Josey Jewell,LB,FA,2019,
@@ -531,7 +531,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1244,Trevor,Josh Gordon,WR,2019,2019,$55
 1777,Terence,Josh Hill,TE,FA,2019,$1
 5850,Trevor,Josh Jacobs,RB,2019,2021,$25
-1625,,Josh Johnson,QB,FA,2018,
+260,,Josh Johnson,QB,FA,2018,
 2671,Keyon,Josh Lambo,K,FA,2019,$1
 4160,,Josh Malone,WR,FA,2018,
 208,Syed/Kuan,Josh McCown,QB,FA,2019,$1
@@ -607,7 +607,7 @@ ID,Owner,Name,Position,Start,End,Salary
 581,,Kurt Coleman,DB,FA,2018,
 2429,James/Charles,Kwon Alexander,LB,2019,2021,$6
 5127,John/Zach,Kyle Allen,QB,FA,2019,$2
-4245,Trevor,Kyle Fuller,DB,FA,2019,$1
+2108,Trevor,Kyle Fuller,DB,FA,2019,$1
 1379,,Kyle Juszczyk,RB,FA,2018,
 4996,,Kyle Lauletta,QB,FA,2018,
 943,Trevor,Kyle Rudolph,TE,2019,2021,$2
@@ -649,7 +649,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5016,,Malik Jefferson,LB,FA,2018,
 1482,,Manti Te'o,LB,FA,2018,
 795,,Marcell Dareus,DL,FA,2018,
-11222,,Marcus Cooper,DB,FA,2018,
+1583,,Marcus Cooper,DB,FA,2018,
 4965,,Marcus Davenport,DL,FA,2018,
 3445,,Marcus Johnson,WR,FA,2018,
 2307,James/Charles,Marcus Mariota,QB,2019,2020,$30
@@ -658,7 +658,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2323,,Marcus Peters,DB,FA,2018,
 1392,,Margus Hunt,DL,FA,2018,
 922,,Mario Addison,LB,FA,2019,
-13001,,Mario Williams,DL,FA,2018,
+219,,Mario Williams,DL,FA,2018,
 5012,John/Zach,Mark Andrews,TE,2018,2020,$1
 1255,,Mark Barron,LB,FA,2018,
 956,Schex,Mark Ingram,RB,2019,2019,$110
@@ -688,7 +688,7 @@ ID,Owner,Name,Position,Start,End,Salary
 127,,Matt Bryant,K,FA,2019,
 103,,Matt Forte,RB,FA,2018,
 6083,Brett/Luke,Matt Gay,K,2019,2020,$1
-12988,,Matt Jones,RB,FA,2018,
+2400,,Matt Jones,RB,FA,2018,
 4191,James/Charles,Matt Milano,LB,FA,2019,$1
 233,Schex,Matt Moore,QB,FA,2019,$1
 17,Terence,Matt Prater,K,2019,2021,$1
@@ -879,7 +879,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2336,,Stephone Anthony,LB,FA,2018,
 3200,Patrick,Sterling Shepard,WR,2019,2021,$42
 811,,Stevan Ridley,RB,FA,2018,
-890,,Stefen Wisniewski,WR,FA,2018,
+169,,Steve Smith,WR,FA,2018,
 5844,Trevor,T.J. Hockenson,TE,2019,2021,$5
 4186,Syed/Kuan,T.J. Logan,RB,2019,2021,$2
 535,,T.J. Ward,DB,FA,2018,

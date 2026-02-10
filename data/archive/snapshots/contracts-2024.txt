@@ -48,7 +48,7 @@ ID,Owner,Player,Position,Start,End,Salary
 11584,Schexes,Bucky Irving,RB,2024,2026,$12
 4081,Anthony,Budda Baker,DB,2022,2024,$6
 11668,Anthony,Byron Murphy,DL,2024,2026,$1
-743,Mike,C.J. Mosley,LB,2024,2024,$4
+1875,Mike,C.J. Mosley,LB,2024,2024,$4
 9758,Brett,C.J. Stroud,QB,2023,2025,$30
 8111,Justin,Cade Otton,TE,2022,2024,$1
 11599,Luke,Cade Stover,TE,2024,2026,$1
@@ -296,7 +296,7 @@ ID,Owner,Player,Position,Start,End,Salary
 5991,Koci/Mueller,Maxx Crosby,DL,2023,2025,$9
 5917,Quinn,Mecole Hardman,WR,2022,2024,$4
 7640,Quinn,Micah Parsons,DL/LB,2024,2025,$15
-7835,Quinn,Michael Carter,RB,2023,2025,$3
+7607,Quinn,Michael Carter,RB,2023,2025,$3
 5038,Mike,Michael Gallup,WR,2023,2025,$4
 9482,Luke,Michael Mayer,TE,2023,2025,$7
 11559,Luke,Michael Penix,QB,2024,2026,$40

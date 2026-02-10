@@ -91,7 +91,7 @@ ID,Owner,Name,Position,Start,End,Salary
 10917,Schexes,Byron Young,DL/LB,FA,2025,$2
 4127,,C.J. Beathard,QB,FA,2023,
 5893,,C.J. Gardner-Johnson,DB,FA,2023,
-743,,C.J. Mosley,LB,2024,2024,
+1875,,C.J. Mosley,LB,2024,2024,
 9758,Brett,C.J. Stroud,QB,2023,2025,$30
 8111,Luke,Cade Otton,TE,2025,2026,$3
 11599,,Cade Stover,TE,FA,2024,
@@ -131,7 +131,7 @@ ID,Owner,Name,Position,Start,End,Salary
 7794,,Chris Evans,RB,FA,2023,
 4037,Keyon,Chris Godwin,WR,2025,2027,$26
 3558,,Chris Jones,DL,FA,2024,
-8548,,Chris Moore,WR,FA,2025,
+3269,,Chris Moore,WR,FA,2025,
 8413,,Chris Oladokun,QB,FA,2025,
 8144,Patrick,Chris Olave,WR,2025,2027,$60
 10219,Jason,Chris Rodriguez,RB,FA,2025,$1
@@ -276,7 +276,7 @@ ID,Owner,Name,Position,Start,End,Salary
 12521,Mike,Elijah Arroyo,TE,2025,2027,$2
 11114,,Elijah Dotson,RB,FA,2023,
 10231,,Elijah Higgins,TE,FA,2024,
-4844,,Elijah Mitchell,RB,FA,2025,
+7561,,Elijah Mitchell,RB,FA,2025,
 7596,,Elijah Moore,WR,FA,2025,
 11435,Schexes,Emanuel Wilson,RB,FA,2025,$1
 11199,Jason,Emari Demercado,RB,FA,2025,$3
@@ -340,7 +340,7 @@ ID,Owner,Name,Position,Start,End,Salary
 7133,,Isaiah Rodgers,DB,FA,2024,
 6781,,Isaiah Simmons,LB/DB,FA,2024,
 8153,,Isaiah Spiller,RB,FA,2023,
-3931,,Isaiah Williams,WR,FA,2025,
+11608,,Isaiah Williams,WR,FA,2025,
 8205,Mitch,Isiah Pacheco,RB,2025,2025,$71
 9227,,Israel Abanikanda,RB,FA,2023,
 11086,,Ivan Pace,LB,FA,2025,
@@ -475,7 +475,7 @@ ID,Owner,Name,Position,Start,End,Salary
 9500,Luke,Josh Downs,WR,2023,2025,$8
 5840,Brett,Josh Hines-Allen,DL/LB,2025,2026,$1
 5850,Schexes,Josh Jacobs,RB,2024,2025,$155
-1625,Quinn,Josh Johnson,QB,FA,2025,$10
+260,Quinn,Josh Johnson,QB,FA,2025,$10
 4171,,Josh Reynolds,WR,FA,2025,
 4999,Patrick,Josh Sweat,DL,FA,2025,$1
 10212,,Josh Whyle,TE,FA,2024,
@@ -607,7 +607,7 @@ ID,Owner,Name,Position,Start,End,Salary
 8396,,Micah McFadden,LB,FA,2025,
 7640,Jason,Micah Parsons,DL/LB,2025,2027,$15
 5230,,Michael Badgley,K,FA,2025,
-7835,Jason,Michael Carter,RB,FA,2025,$11
+7607,Jason,Michael Carter,RB,FA,2025,$11
 5038,,Michael Gallup,WR,FA,2024,
 9482,,Michael Mayer,TE,FA,2025,
 11559,Justin,Michael Penix,QB,2024,2026,$40

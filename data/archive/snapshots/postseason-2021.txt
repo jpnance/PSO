@@ -59,7 +59,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4081,Quinn,Budda Baker,DB,2021,2021,$24
 5199,Koci/Mueller,Byron Pringle,WR,2021,2023,$1
 4127,Brett,C.J. Beathard,QB,2021,2021,$1
-743,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
+1875,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
 2460,Luke,C.J. Uzomah,TE,FA,2021,$1
 4981,Patrick,Calvin Ridley,WR,2021,2022,$180
 6938,Koci/Mueller,Cam Akers,RB,2020,2022,$25
@@ -173,7 +173,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1348,Mitch,Dustin Hopkins,K,FA,2021,$1
 7587,,Dyami Brown,WR,FA,2021,
 3369,,Elandon Roberts,LB,FA,2021,
-4844,Mitch,Elijah Mitchell,RB,2021,2023,$2
+7561,Mitch,Elijah Mitchell,RB,2021,2023,$2
 7596,John/Zach,Elijah Moore,WR,2021,2023,$8
 6208,,Elliott Fry,K,FA,2021,
 3197,John/Zach,Emmanuel Ogbah,DL,FA,2021,$1
@@ -297,7 +297,7 @@ ID,Owner,Name,Position,Start,End,Salary
 821,Patrick,Josh Bynes,LB,FA,2021,$1
 1244,,Josh Gordon,WR,FA,2021,
 5850,Trevor,Josh Jacobs,RB,2019,2021,$25
-1625,,Josh Johnson,QB,FA,2021,
+260,,Josh Johnson,QB,FA,2021,
 7670,Keyon,Joshua Palmer,WR,2021,2023,$4
 4171,Quinn,Josh Reynolds,WR,FA,2021,$7
 7045,,Joshua Kelley,RB,FA,2021,
@@ -339,7 +339,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1166,John/Zach,Kirk Cousins,QB,2021,2021,$75
 7633,,Kwity Paye,DL,FA,2021,
 6872,,Kyle Dugger,DB,FA,2021,
-4245,Trevor,Kyle Fuller,DB,2020,2022,$1
+2108,Trevor,Kyle Fuller,DB,2020,2022,$1
 7553,Mitch,Kyle Pitts,TE,2021,2023,$5
 943,Trevor,Kyle Rudolph,TE,2019,2021,$2
 7605,Jason,Kyle Trask,QB,2021,2023,$4
@@ -394,7 +394,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5074,John/Zach,Micah Kiser,LB,2020,2022,$1
 7640,Mitch,Micah Parsons,LB,2021,2023,$1
 5230,,Michael Badgley,K,FA,2021,
-7835,Keyon,Michael Carter,RB,2021,2023,$13
+7607,Keyon,Michael Carter,RB,2021,2023,$13
 5038,Mitch,Michael Gallup,WR,2021,2023,$28
 6819,James/Charles,Michael Pittman,WR,2020,2022,$8
 3199,Patrick,Michael Thomas,WR,2021,2023,$66

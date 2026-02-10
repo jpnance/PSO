@@ -53,7 +53,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4081,Schex,Budda Baker,DB,2022,2024,$6
 5199,Koci/Mueller,Byron Pringle,WR,2021,2023,$1
 5893,Trevor,C.J. Gardner-Johnson,DB,FA,2022,$1
-743,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
+1875,Koci/Mueller,C.J. Mosley,LB,2021,2023,$2
 8111,Justin,Cade Otton,TE,2022,2024,$1
 8258,James/Charles,Cade York,K,2022,2024,$1
 7741,Quinn,Caleb Huntley,RB,FA,2022,$6
@@ -165,7 +165,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1366,,Duron Harmon,DB,FA,2022,
 1348,,Dustin Hopkins,K,FA,2022,
 4158,Justin,Eddie Jackson,DB,FA,2022,$1
-4844,Koci/Mueller,Elijah Mitchell,RB,2021,2023,$2
+7561,Koci/Mueller,Elijah Mitchell,RB,2021,2023,$2
 7596,Justin,Elijah Moore,WR,2021,2023,$8
 6951,Schex,Eno Benjamin,RB,2022,2024,$4
 2350,Jason,Eric Kendricks,LB,2021,2022,$3
@@ -274,7 +274,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4984,Mitch/Mike,Josh Allen,QB,2022,2023,$323
 5840,,Josh Hines-Allen,DL,FA,2022,
 5850,Trevor,Josh Jacobs,RB,2022,2022,$125
-1625,James/Charles,Josh Johnson,QB,FA,2022,$1
+260,James/Charles,Josh Johnson,QB,FA,2022,$1
 4171,Patrick,Josh Reynolds,WR,FA,2022,$1
 6921,Keyon,Joshua Uche,DL/LB,FA,2022,$10
 4179,,Joshua Dobbs,QB,FA,2022,
@@ -324,7 +324,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1166,Keyon,Kirk Cousins,QB,2022,2022,$160
 5127,Jason,Kyle Allen,QB,FA,2022,$5
 6872,,Kyle Dugger,DB,FA,2022,
-4245,,Kyle Fuller,DB,FA,2022,
+2108,,Kyle Fuller,DB,FA,2022,
 8339,Luke,Kyle Hamilton,DB,2022,2024,$1
 8171,Keyon,Kyle Philips,WR,2022,2024,$1
 7553,Mitch/Mike,Kyle Pitts,TE,2021,2023,$5
@@ -376,13 +376,13 @@ ID,Owner,Name,Position,Start,End,Salary
 5074,,Micah Kiser,LB,FA,2022,
 7640,Mitch/Mike,Micah Parsons,LB,2021,2023,$1
 5230,Justin,Michael Badgley,K,FA,2022,$1
-7835,Keyon,Michael Carter,RB,2021,2023,$13
+7607,Keyon,Michael Carter,RB,2021,2023,$13
 5038,Schex,Michael Gallup,WR,2021,2023,$28
 6819,Schex,Michael Pittman,WR,2020,2022,$8
 3199,Patrick,Michael Thomas,WR,2021,2023,$66
 5209,,Mike Boone,RB,FA,2022,
 2431,,Mike Davis,RB,FA,2022,
-12381,,Mike Edwards,DB,FA,2022,
+5959,,Mike Edwards,DB,FA,2022,
 2216,Quinn,Mike Evans,WR,2021,2022,$145
 4993,Brett,Mike Gesicki,TE,2021,2022,$30
 5089,Luke,Mike White,QB,FA,2022,$3

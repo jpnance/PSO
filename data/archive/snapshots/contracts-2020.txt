@@ -61,7 +61,7 @@ ID,Owner,Name,Position,Start,End,Salary
 4273,Quinn,Chris Carson,RB,2020,2021,$111
 4037,Brett,Chris Godwin,WR,2019,2021,$110
 5009,Keyon,Chris Herndon,TE,2019,2021,$3
-4719,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
+1502,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
 4950,James/Charles,Christian Kirk,WR,2018,2020,$9
 1905,Quinn,Christian Kirksey,LB,2020,2022,$3
 4034,Koci/Mueller,Christian McCaffrey,RB,2020,2020,$365

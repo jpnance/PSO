@@ -825,7 +825,7 @@
 	},
 	{
 		"owner": "Keyon",
-		"name": "Stefen Wisniewski",
+		"name": "Steve Smith",
 		"hint": null,
 		"position": "WR",
 		"startYear": 2008,
@@ -833,6 +833,7 @@
 		"salary": 120,
 		"cutYear": 2009,
 		"rosterId": 6,
+		"sleeperId": "169",
 		"note": "inferred from contract change",
 		"offseason": true
 	},
@@ -2907,7 +2908,7 @@
 		"salary": 135,
 		"cutYear": 2010,
 		"rosterId": 8,
-		"sleeperId": "2093"
+		"sleeperId": "-1"
 	},
 	{
 		"owner": "Patrick",
@@ -3426,7 +3427,7 @@
 		"salary": 7,
 		"cutYear": 2010,
 		"rosterId": 2,
-		"sleeperId": "2295"
+		"sleeperId": "-1"
 	},
 	{
 		"owner": "Schexes",
@@ -5406,7 +5407,7 @@
 		"salary": 19,
 		"cutYear": 2011,
 		"rosterId": 5,
-		"sleeperId": "13001"
+		"sleeperId": "219"
 	},
 	{
 		"owner": "Koci",
@@ -6421,7 +6422,7 @@
 		"salary": 65,
 		"cutYear": 2012,
 		"rosterId": 1,
-		"sleeperId": "2093",
+		"sleeperId": "-1",
 		"offseason": true
 	},
 	{
@@ -6560,7 +6561,7 @@
 		"salary": 11,
 		"cutYear": 2012,
 		"rosterId": 5,
-		"sleeperId": "11989",
+		"sleeperId": "-1",
 		"offseason": true
 	},
 	{
@@ -7573,7 +7574,7 @@
 		"salary": 47,
 		"cutYear": 2012,
 		"rosterId": 10,
-		"sleeperId": "2295"
+		"sleeperId": "-1"
 	},
 	{
 		"owner": "Daniel",
@@ -7679,7 +7680,7 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 5,
-		"sleeperId": "933"
+		"sleeperId": "-1"
 	},
 	{
 		"owner": "Charles",
@@ -7947,7 +7948,7 @@
 		"salary": 2,
 		"cutYear": 2012,
 		"rosterId": 1,
-		"sleeperId": "2093"
+		"sleeperId": "-1"
 	},
 	{
 		"owner": "Charles",
@@ -11553,7 +11554,7 @@
 		"salary": 9,
 		"cutYear": 2014,
 		"rosterId": 6,
-		"sleeperId": "1842"
+		"sleeperId": "329"
 	},
 	{
 		"owner": "Schex",
@@ -12460,7 +12461,7 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "4245"
+		"sleeperId": "2108"
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -15325,7 +15326,7 @@
 		"salary": 4,
 		"cutYear": 2015,
 		"rosterId": 3,
-		"sleeperId": "4719"
+		"sleeperId": "1502"
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15517,7 +15518,7 @@
 		"salary": 7,
 		"cutYear": 2015,
 		"rosterId": 6,
-		"sleeperId": "1254"
+		"sleeperId": "2506"
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -17375,7 +17376,7 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 8,
-		"sleeperId": "11222"
+		"sleeperId": "1583"
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -17507,7 +17508,7 @@
 		"salary": 5,
 		"cutYear": 2016,
 		"rosterId": 4,
-		"sleeperId": "1783"
+		"sleeperId": "2342"
 	},
 	{
 		"owner": "Keyon",
@@ -18179,7 +18180,7 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 5,
-		"sleeperId": "13001"
+		"sleeperId": "219"
 	},
 	{
 		"owner": "Trevor",
@@ -19711,7 +19712,7 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "1842"
+		"sleeperId": "329"
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -19747,7 +19748,7 @@
 		"salary": 30,
 		"cutYear": 2017,
 		"rosterId": 10,
-		"sleeperId": "1118"
+		"sleeperId": "648"
 	},
 	{
 		"owner": "Daniel",
@@ -22176,7 +22177,7 @@
 		"salary": 4,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "1118"
+		"sleeperId": "648"
 	},
 	{
 		"owner": "Quinn",
@@ -25281,7 +25282,7 @@
 		"salary": 5,
 		"cutYear": 2019,
 		"rosterId": 9,
-		"sleeperId": "1783"
+		"sleeperId": "2342"
 	},
 	{
 		"owner": "Syed/Kuan",
@@ -25461,7 +25462,7 @@
 		"salary": 5,
 		"cutYear": 2019,
 		"rosterId": 9,
-		"sleeperId": "743"
+		"sleeperId": "1875"
 	},
 	{
 		"owner": "Syed/Kuan",
@@ -27681,7 +27682,7 @@
 		"salary": 6,
 		"cutYear": 2020,
 		"rosterId": 2,
-		"sleeperId": "4719"
+		"sleeperId": "1502"
 	},
 	{
 		"owner": "Brett",
@@ -28029,7 +28030,7 @@
 		"salary": 1,
 		"cutYear": 2020,
 		"rosterId": 1,
-		"sleeperId": "327"
+		"sleeperId": "2147"
 	},
 	{
 		"owner": "James/Charles",
@@ -32025,7 +32026,7 @@
 		"salary": 3,
 		"cutYear": 2021,
 		"rosterId": 9,
-		"sleeperId": "1625"
+		"sleeperId": "260"
 	},
 	{
 		"owner": "Keyon",
@@ -33297,7 +33298,7 @@
 		"salary": 1,
 		"cutYear": 2022,
 		"rosterId": 1,
-		"sleeperId": "12381"
+		"sleeperId": "5959"
 	},
 	{
 		"owner": "Luke",
@@ -33909,7 +33910,7 @@
 		"salary": 1,
 		"cutYear": 2022,
 		"rosterId": 5,
-		"sleeperId": "4245"
+		"sleeperId": "2108"
 	},
 	{
 		"owner": "Mitch/Mike",
@@ -33921,7 +33922,7 @@
 		"salary": 2,
 		"cutYear": 2022,
 		"rosterId": 12,
-		"sleeperId": "12381"
+		"sleeperId": "5959"
 	},
 	{
 		"owner": "Keyon",
@@ -34773,7 +34774,7 @@
 		"salary": 13,
 		"cutYear": 2023,
 		"rosterId": 6,
-		"sleeperId": "7835"
+		"sleeperId": "7607"
 	},
 	{
 		"owner": "Schex",
@@ -37389,7 +37390,7 @@
 		"salary": 2,
 		"cutYear": 2023,
 		"rosterId": 2,
-		"sleeperId": "4844"
+		"sleeperId": "7561"
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -37401,7 +37402,7 @@
 		"salary": 2,
 		"cutYear": 2023,
 		"rosterId": 2,
-		"sleeperId": "743"
+		"sleeperId": "1875"
 	},
 	{
 		"owner": "Mike",
@@ -37941,7 +37942,7 @@
 		"salary": 12,
 		"cutYear": 2024,
 		"rosterId": 12,
-		"sleeperId": "4844"
+		"sleeperId": "7561"
 	},
 	{
 		"owner": "Mitch",
@@ -40605,7 +40606,7 @@
 		"salary": 3,
 		"cutYear": 2025,
 		"rosterId": 11,
-		"sleeperId": "7835"
+		"sleeperId": "7607"
 	},
 	{
 		"owner": "Quinn",
@@ -41769,7 +41770,7 @@
 		"salary": 5,
 		"cutYear": 2025,
 		"rosterId": 8,
-		"sleeperId": "4844"
+		"sleeperId": "7561"
 	},
 	{
 		"owner": "Anthony",
@@ -43017,7 +43018,7 @@
 		"salary": 1,
 		"cutYear": 2025,
 		"rosterId": 8,
-		"sleeperId": "3931"
+		"sleeperId": "11608"
 	},
 	{
 		"owner": "Schexes",

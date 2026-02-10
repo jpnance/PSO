@@ -119,7 +119,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1451,Terence,C.J. Anderson,RB,2019,2020,$13
 4127,,C.J. Beathard,QB,FA,2018
 1951,,C.J. Fiedorowicz,TE,FA,2018
-743,James/Charles,C.J. Mosley,LB,2017,2019,$5
+1875,James/Charles,C.J. Mosley,LB,2017,2019,$5
 3204,,C.J. Prosise,RB,FA,2018
 507,,C.J. Spiller,RB,FA,2018
 2460,,C.J. Uzomah,TE,FA,2018
@@ -168,7 +168,7 @@ ID,Owner,Name,Position,Start,End,Salary
 272,,Chris Johnson,RB,FA,2018
 3558,Schex,Chris Jones,DL,2019,2019,$1
 3269,,Chris Moore,WR,FA,2018
-4719,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
+1502,Koci/Mueller,Chris Thompson,RB,2019,2021,$6
 5587,,Chris Warren,RB,FA,2018
 3168,,Christian Hackenberg,QB,FA,2018
 2110,,Christian Jones,LB,FA,2018
