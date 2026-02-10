@@ -612,6 +612,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	var prevAppearance = null;
 	var prevContractKey = null;  // "startYear|endYear" to detect contract changes
 	var processedCuts = new Set();  // Track cuts we've already processed (year:owner)
+	var lastOwnedApp = null;  // Track the last appearance with an owner (not FA)
 	
 	for (var i = 0; i < appearances.length; i++) {
 		var app = appearances[i];
@@ -675,6 +676,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			entryTxs.forEach(function(tx) { transactions.push(tx); });
 			prevContractKey = contractKey;
 			prevAppearance = app;
+			if (app.owner) lastOwnedApp = app;
 			continue;
 		}
 		
@@ -682,6 +684,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		var cutsInGap = findCutsForPlayer(player, prevAppearance.year, app.year - 1, cutsMap);
 		var lastCutYear = null;
 		var lastCutOwner = null;
+		
 		cutsInGap.forEach(function(cut) {
 			// Skip if already processed
 			var cutKey = cut.year + ':' + cut.owner;
@@ -689,20 +692,22 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			processedCuts.add(cutKey);
 			
 			// Determine if we need an FA pickup before this cut
-			// - If cut is after prev contract ended, player was FA and needed pickup
+			// - Check against the last OWNED appearance (not just prevAppearance which might be FA)
+			// - If cut is after last owned contract ended, player was FA and needed pickup
 			// - If same year as previous cut but different owner, need FA pickup
-			// - If cut is during prev contract, no FA needed (already rostered)
+			// - If cut is during contract by same owner, no FA needed (already rostered)
 			var needsFA = false;
 			if (lastCutYear !== null && cut.year === lastCutYear && cut.owner !== lastCutOwner) {
 				// Same year, different owner - someone else picked them up
 				needsFA = true;
 			} else if (lastCutYear === null) {
-				// First cut in gap - check if it's after contract ended
-				var prevContractEnd = prevAppearance.endYear || prevAppearance.year;
-				if (cut.year > prevContractEnd) {
+				// First cut in gap - check against last owned appearance
+				var refAppearance = lastOwnedApp || prevAppearance;
+				var refContractEnd = refAppearance.endYear || refAppearance.year;
+				if (cut.year > refContractEnd) {
 					// Cut is after contract ended - they were FA, need pickup
 					needsFA = true;
-				} else if (!sameRegime(cut.owner, prevAppearance.owner, cut.year)) {
+				} else if (!sameRegime(cut.owner, refAppearance.owner, cut.year)) {
 					// Cut is during contract but by different owner - traded then cut, need FA
 					needsFA = true;
 				}
@@ -889,6 +894,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		
 		prevContractKey = contractKey;
 		prevAppearance = app;
+		if (app.owner) lastOwnedApp = app;
 	}
 	
 	// Add expansion pick if player was selected (unconditionally)
@@ -936,20 +942,53 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	});
 	
 	// Add final cuts (player was cut and never returned)
-	// Find cuts after the last appearance
-	var lastAppearance = appearances[appearances.length - 1];
-	var finalCuts = findCutsForPlayer(player, lastAppearance.year, 2099, cutsMap);
+	// Find the last OWNED appearance (not FA appearances which are results of cuts)
+	var lastOwnedAppearance = null;
+	for (var i = appearances.length - 1; i >= 0; i--) {
+		if (appearances[i].owner) {
+			lastOwnedAppearance = appearances[i];
+			break;
+		}
+	}
+	
+	// If no owned appearance found, skip final cuts processing
+	// (Player only appears as FA in snapshots - handled by cuts-only logic)
+	if (!lastOwnedAppearance) {
+		lastOwnedAppearance = appearances[appearances.length - 1];
+	}
+	
+	var finalCuts = findCutsForPlayer(player, lastOwnedAppearance.year, 2099, cutsMap);
 	var lastFinalCutYear = null;
 	var lastFinalCutOwner = null;
+	
 	finalCuts.forEach(function(cut) {
 		// Skip if already processed
 		var cutKey = cut.year + ':' + cut.owner;
 		if (processedCuts.has(cutKey)) return;
 		processedCuts.add(cutKey);
 		
-		// Always infer FA pickup before a cut (someone had to pick them up to cut them)
-		// Skip only if this is consecutive with the same owner (already on roster)
-		if (lastFinalCutYear === null || cut.year !== lastFinalCutYear || cut.owner !== lastFinalCutOwner) {
+		// Determine if we need an FA pickup before this cut
+		var needsFA = false;
+		if (lastFinalCutYear !== null && cut.year === lastFinalCutYear && cut.owner !== lastFinalCutOwner) {
+			// Same year, different owner - someone picked them up after previous cut
+			needsFA = true;
+		} else if (lastFinalCutYear === null) {
+			// First cut - check against last owned appearance
+			var lastContractEnd = lastOwnedAppearance.endYear || lastOwnedAppearance.year;
+			if (cut.year > lastContractEnd) {
+				// Cut is after contract ended - they were FA, need pickup
+				needsFA = true;
+			} else if (!sameRegime(cut.owner, lastOwnedAppearance.owner, cut.year)) {
+				// Cut is during contract but by different owner - traded then cut
+				needsFA = true;
+			}
+			// If same owner and within contract term, no FA needed (still rostered)
+		} else if (cut.year > lastFinalCutYear) {
+			// New year after previous cut - they were FA, need pickup
+			needsFA = true;
+		}
+		
+		if (needsFA) {
 			var faContract = cut.startYear === null 
 				? 'FA/' + yy(cut.endYear)
 				: yy(cut.startYear) + '/' + yy(cut.endYear);
