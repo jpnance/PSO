@@ -367,7 +367,7 @@ ID,Owner,Name,Position,Start,End,Salary
 576,Patrick,Sean Lee,LB,2015,2017,$3
 2328,Quinn,Shane Ray,DL,2015,2015,$1
 814,Syed/Terence,Shane Vereen,RB,2014,2016,$66
-17688,Brett/Luke,Shaq Thompson,LB,2015,2017,$1
+2330,Brett/Luke,Shaq Thompson,LB,2015,2017,$1
 1475,Quinn,Sio Moore,LB,2013,2015,$1
 2449,Brett/Luke,Stefon Diggs,WR,2015,2017,$3
 110,Koci/Mueller,Stephen Gostkowski,K,2015,2017,$2

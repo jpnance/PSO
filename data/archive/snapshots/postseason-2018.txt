@@ -733,7 +733,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3296,,Seth DeValve,TE,FA,2018,
 2039,,Seth Roberts,WR,FA,2018,
 814,,Shane Vereen,RB,FA,2018,
-17688,,Shaq Thompson,LB,FA,2018,
+2330,,Shaq Thompson,LB,FA,2018,
 913,,Shaun Draughn,RB,FA,2018,
 686,,Shaun Hill,QB,FA,2018,
 1395,Keyon,Shawn Williams,DB,FA,2018,$1
@@ -806,7 +806,7 @@ ID,Owner,Name,Position,Start,End,Salary
 5123,,Trenton Cannon,RB,FA,2018,
 3213,,Trevone Boykin,QB,FA,2018,
 3319,,Trevor Davis,WR,FA,2018,
-17455,,Trevor Siemian,QB,FA,2018,
+2549,,Trevor Siemian,QB,FA,2018,
 1793,Keyon,Trey Burton,TE,2018,2020,$19
 2406,Patrick,Trey Flowers,DL,2017,2019,$1
 3934,,Troymaine Pope,RB,FA,2018,

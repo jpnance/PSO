@@ -13424,19 +13424,6 @@
 	},
 	{
 		"owner": "Koci/Mueller",
-		"name": "Mychal Kendricks",
-		"hint": null,
-		"position": "LB",
-		"startYear": 2014,
-		"endYear": 2016,
-		"salary": 4,
-		"cutYear": 2015,
-		"rosterId": 2,
-		"sleeperId": "1032",
-		"offseason": true
-	},
-	{
-		"owner": "Koci/Mueller",
 		"name": "Stepfan Taylor",
 		"hint": null,
 		"position": "RB",
@@ -15695,7 +15682,7 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 2,
-		"sleeperId": "1595",
+		"sleeperId": "2721",
 		"offseason": true
 	},
 	{
@@ -18677,7 +18664,7 @@
 		"salary": 14,
 		"cutYear": 2017,
 		"rosterId": 3,
-		"sleeperId": "12988",
+		"sleeperId": "2400",
 		"offseason": true
 	},
 	{
@@ -18846,7 +18833,7 @@
 		"salary": 2,
 		"cutYear": 2017,
 		"rosterId": 12,
-		"sleeperId": "8548",
+		"sleeperId": "3269",
 		"offseason": true
 	},
 	{
@@ -23846,7 +23833,7 @@
 		"salary": 190,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "6876",
+		"sleeperId": "830",
 		"offseason": true
 	},
 	{
@@ -26302,7 +26289,7 @@
 		"salary": 120,
 		"cutYear": 2019,
 		"rosterId": 10,
-		"sleeperId": "6876"
+		"sleeperId": "830"
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -29806,7 +29793,7 @@
 		"salary": 51,
 		"cutYear": 2021,
 		"rosterId": 9,
-		"sleeperId": "6876"
+		"sleeperId": "830"
 	},
 	{
 		"owner": "James/Charles",
@@ -32806,7 +32793,7 @@
 		"salary": 2,
 		"cutYear": 2022,
 		"rosterId": 10,
-		"sleeperId": "6876"
+		"sleeperId": "830"
 	},
 	{
 		"owner": "Keyon",
@@ -42394,7 +42381,7 @@
 		"salary": 5,
 		"cutYear": 2025,
 		"rosterId": 10,
-		"sleeperId": "8548"
+		"sleeperId": "3269"
 	},
 	{
 		"owner": "Jason",
