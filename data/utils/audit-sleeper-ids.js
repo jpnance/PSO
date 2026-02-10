@@ -81,11 +81,34 @@ if (fs.existsSync(RESOLUTIONS_FILE)) {
 }
 
 // ============================================================================
-// Audit result tracking
+// Rookie year estimation (from sync-players.js)
 // ============================================================================
 
-var CURRENT_YEAR = 2025; // For calculating approximate rookie years
+var CURRENT_YEAR = new Date().getFullYear();
 var TIMELINE_TOLERANCE = 2; // Years of tolerance for timeline checks
+
+/**
+ * Estimate rookie year from birth_date (preferred) or years_exp (fallback).
+ * 98% accurate within 2 years when using birth_date + 23.
+ */
+function getEstimatedRookieYear(player) {
+	// Prefer birth_date + 23 (35% exact, 98% within 2 years)
+	if (player.birth_date) {
+		var birthYear = parseInt(player.birth_date.split('-')[0], 10);
+		if (birthYear > 1950) {
+			return birthYear + 23;
+		}
+	}
+	// Fall back to years_exp calculation (less reliable)
+	if (player.years_exp !== undefined && player.years_exp !== null) {
+		return CURRENT_YEAR - player.years_exp;
+	}
+	return null;
+}
+
+// ============================================================================
+// Audit result tracking
+// ============================================================================
 
 var results = {
 	mismatches: [],      // ID points to different name
@@ -169,17 +192,17 @@ function checkPlayer(sleeperId, ourName, ourPosition, source, contextYear) {
 		// Timeline check for ambiguous names
 		// Only flag if context year is BEFORE the player's approximate rookie year
 		// (meaning they couldn't have been in the NFL at that time)
-		if (contextYear && sleeperPlayer.years_exp !== undefined) {
-			var approxRookieYear = CURRENT_YEAR - sleeperPlayer.years_exp;
-			
+		var approxRookieYear = getEstimatedRookieYear(sleeperPlayer);
+		if (contextYear && approxRookieYear) {
 			// Context year is before the player could have been active
 			if (contextYear < approxRookieYear - TIMELINE_TOLERANCE) {
 				// Check if there's another candidate who could have been active
 				var betterCandidate = ids.find(function(candidateId) {
 					if (candidateId === sleeperId) return false;
 					var candidate = sleeperData[candidateId];
-					if (!candidate || candidate.years_exp === undefined) return false;
-					var candidateRookieYear = CURRENT_YEAR - candidate.years_exp;
+					if (!candidate) return false;
+					var candidateRookieYear = getEstimatedRookieYear(candidate);
+					if (!candidateRookieYear) return false;
 					// This candidate could have been active in the context year
 					return contextYear >= candidateRookieYear - TIMELINE_TOLERANCE;
 				});
@@ -192,7 +215,7 @@ function checkPlayer(sleeperId, ourName, ourPosition, source, contextYear) {
 						contextYear: contextYear,
 						approxRookieYear: approxRookieYear,
 						betterCandidateId: betterCandidate,
-						betterCandidateRookieYear: CURRENT_YEAR - betterPlayer.years_exp,
+						betterCandidateRookieYear: getEstimatedRookieYear(betterPlayer),
 						source: source
 					});
 				}

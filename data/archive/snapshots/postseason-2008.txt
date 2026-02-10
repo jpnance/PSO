@@ -94,7 +94,7 @@ ID,Owner,Name,Position,Start,End,Salary
 188,John,Eli Manning,QB,2008,2010,$22
 404,John,Jon Kitna,QB,FA,2008,$1
 -1,John,Larry Johnson,RB,2008,2008,$125
-11413,John,Ronnie Brown,RB,2008,2008,$87
+258,John,Ronnie Brown,RB,2008,2008,$87
 179,John,Reggie Bush,RB,2008,2010,$22
 78,John,Ahmad Bradshaw,RB,FA,2008,$1
 246,John,Darren Sproles,RB,FA,2008,$1
