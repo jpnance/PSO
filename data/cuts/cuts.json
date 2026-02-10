@@ -482,7 +482,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -494,7 +495,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -506,7 +508,8 @@
 		"salary": 7,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -518,7 +521,8 @@
 		"salary": 20,
 		"cutYear": 2009,
 		"rosterId": 9,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -530,7 +534,8 @@
 		"salary": 130,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -542,7 +547,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -554,7 +560,8 @@
 		"salary": 30,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -566,7 +573,8 @@
 		"salary": 100,
 		"cutYear": 2009,
 		"rosterId": 1,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -578,7 +586,8 @@
 		"salary": 97,
 		"cutYear": 2009,
 		"rosterId": 10,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -590,7 +599,8 @@
 		"salary": 3,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -602,7 +612,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -614,7 +625,8 @@
 		"salary": 43,
 		"cutYear": 2009,
 		"rosterId": 10,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -626,7 +638,8 @@
 		"salary": 60,
 		"cutYear": 2009,
 		"rosterId": 2,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -638,7 +651,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -650,7 +664,8 @@
 		"salary": 9,
 		"cutYear": 2009,
 		"rosterId": 7,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -662,7 +677,8 @@
 		"salary": 22,
 		"cutYear": 2009,
 		"rosterId": 10,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -674,7 +690,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 1,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -686,7 +703,8 @@
 		"salary": 10,
 		"cutYear": 2009,
 		"rosterId": 10,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -698,7 +716,8 @@
 		"salary": 59,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -710,7 +729,8 @@
 		"salary": 12,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -722,7 +742,8 @@
 		"salary": 15,
 		"cutYear": 2009,
 		"rosterId": 7,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -734,7 +755,8 @@
 		"salary": 185,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -746,7 +768,8 @@
 		"salary": 117,
 		"cutYear": 2009,
 		"rosterId": 10,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -758,7 +781,8 @@
 		"salary": 176,
 		"cutYear": 2009,
 		"rosterId": 10,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -770,7 +794,8 @@
 		"salary": 62,
 		"cutYear": 2009,
 		"rosterId": 4,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -782,7 +807,8 @@
 		"salary": 100,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -794,7 +820,8 @@
 		"salary": 47,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -806,7 +833,8 @@
 		"salary": 120,
 		"cutYear": 2009,
 		"rosterId": 6,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -818,7 +846,8 @@
 		"salary": 20,
 		"cutYear": 2009,
 		"rosterId": 4,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -830,7 +859,8 @@
 		"salary": 70,
 		"cutYear": 2009,
 		"rosterId": 2,
-		"note": "inferred from contract change"
+		"note": "inferred from contract change",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -842,7 +872,8 @@
 		"salary": 1,
 		"cutYear": 2009,
 		"rosterId": 8,
-		"note": "inferred from disappearance"
+		"note": "inferred from disappearance",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -2099,7 +2130,8 @@
 		"salary": 187,
 		"cutYear": 2010,
 		"rosterId": 9,
-		"sleeperId": "326"
+		"sleeperId": "326",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -2111,7 +2143,8 @@
 		"salary": 105,
 		"cutYear": 2010,
 		"rosterId": 9,
-		"sleeperId": "416"
+		"sleeperId": "416",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -2123,7 +2156,8 @@
 		"salary": 75,
 		"cutYear": 2010,
 		"rosterId": 4,
-		"sleeperId": "350"
+		"sleeperId": "350",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -2135,7 +2169,8 @@
 		"salary": 51,
 		"cutYear": 2010,
 		"rosterId": 4,
-		"sleeperId": "69"
+		"sleeperId": "69",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -2147,7 +2182,8 @@
 		"salary": 133,
 		"cutYear": 2010,
 		"rosterId": 6,
-		"sleeperId": "169"
+		"sleeperId": "169",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -2158,7 +2194,8 @@
 		"endYear": 2011,
 		"salary": 38,
 		"cutYear": 2010,
-		"rosterId": 6
+		"rosterId": 6,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -2170,7 +2207,8 @@
 		"salary": 3,
 		"cutYear": 2010,
 		"rosterId": 6,
-		"sleeperId": "671"
+		"sleeperId": "671",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -2182,7 +2220,8 @@
 		"salary": 55,
 		"cutYear": 2010,
 		"rosterId": 4,
-		"sleeperId": "411"
+		"sleeperId": "411",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -2193,7 +2232,8 @@
 		"endYear": 2011,
 		"salary": 6,
 		"cutYear": 2010,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -2204,7 +2244,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2010,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -2216,7 +2257,8 @@
 		"salary": 1,
 		"cutYear": 2010,
 		"rosterId": 1,
-		"sleeperId": "187"
+		"sleeperId": "187",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -2228,7 +2270,8 @@
 		"salary": 78,
 		"cutYear": 2010,
 		"rosterId": 2,
-		"sleeperId": "745"
+		"sleeperId": "745",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -2239,7 +2282,8 @@
 		"endYear": 2011,
 		"salary": 17,
 		"cutYear": 2010,
-		"rosterId": 2
+		"rosterId": 2,
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -2251,7 +2295,8 @@
 		"salary": 5,
 		"cutYear": 2010,
 		"rosterId": 2,
-		"sleeperId": "456"
+		"sleeperId": "456",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -2262,7 +2307,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2010,
-		"rosterId": 2
+		"rosterId": 2,
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -2273,7 +2319,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2010,
-		"rosterId": 2
+		"rosterId": 2,
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -2285,7 +2332,8 @@
 		"salary": 44,
 		"cutYear": 2010,
 		"rosterId": 3,
-		"sleeperId": "300"
+		"sleeperId": "300",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -2297,7 +2345,8 @@
 		"salary": 115,
 		"cutYear": 2010,
 		"rosterId": 3,
-		"sleeperId": "651"
+		"sleeperId": "651",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -2309,7 +2358,8 @@
 		"salary": 42,
 		"cutYear": 2010,
 		"rosterId": 3,
-		"sleeperId": "72"
+		"sleeperId": "72",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -2321,7 +2371,8 @@
 		"salary": 22,
 		"cutYear": 2010,
 		"rosterId": 3,
-		"sleeperId": "270"
+		"sleeperId": "270",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -2332,7 +2383,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2010,
-		"rosterId": 3
+		"rosterId": 3,
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -2343,7 +2395,8 @@
 		"endYear": 2010,
 		"salary": 107,
 		"cutYear": 2010,
-		"rosterId": 7
+		"rosterId": 7,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -2355,7 +2408,8 @@
 		"salary": 1,
 		"cutYear": 2010,
 		"rosterId": 6,
-		"sleeperId": "4914"
+		"sleeperId": "4914",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -2366,7 +2420,8 @@
 		"endYear": 2011,
 		"salary": 2,
 		"cutYear": 2010,
-		"rosterId": 6
+		"rosterId": 6,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -2377,7 +2432,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2010,
-		"rosterId": 6
+		"rosterId": 6,
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -2388,7 +2444,8 @@
 		"endYear": 2010,
 		"salary": 4,
 		"cutYear": 2010,
-		"rosterId": 8
+		"rosterId": 8,
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -2400,7 +2457,8 @@
 		"salary": 5,
 		"cutYear": 2010,
 		"rosterId": 8,
-		"sleeperId": "230"
+		"sleeperId": "230",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -2411,7 +2469,8 @@
 		"endYear": 2010,
 		"salary": 16,
 		"cutYear": 2010,
-		"rosterId": 8
+		"rosterId": 8,
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -2422,7 +2481,8 @@
 		"endYear": 2010,
 		"salary": 2,
 		"cutYear": 2010,
-		"rosterId": 8
+		"rosterId": 8,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -2434,7 +2494,8 @@
 		"salary": 9,
 		"cutYear": 2010,
 		"rosterId": 5,
-		"sleeperId": "390"
+		"sleeperId": "390",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -2445,7 +2506,8 @@
 		"endYear": 2010,
 		"salary": 3,
 		"cutYear": 2010,
-		"rosterId": 5
+		"rosterId": 5,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -2457,7 +2519,8 @@
 		"salary": 47,
 		"cutYear": 2010,
 		"rosterId": 5,
-		"sleeperId": "82"
+		"sleeperId": "82",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -2468,7 +2531,8 @@
 		"endYear": 2010,
 		"salary": 12,
 		"cutYear": 2010,
-		"rosterId": 5
+		"rosterId": 5,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -2480,7 +2544,8 @@
 		"salary": 5,
 		"cutYear": 2010,
 		"rosterId": 5,
-		"sleeperId": "461"
+		"sleeperId": "461",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -2491,7 +2556,8 @@
 		"endYear": 2010,
 		"salary": 8,
 		"cutYear": 2010,
-		"rosterId": 10
+		"rosterId": 10,
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -2502,7 +2568,8 @@
 		"endYear": 2011,
 		"salary": 10,
 		"cutYear": 2010,
-		"rosterId": 10
+		"rosterId": 10,
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -2513,7 +2580,8 @@
 		"endYear": 2011,
 		"salary": 9,
 		"cutYear": 2010,
-		"rosterId": 10
+		"rosterId": 10,
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -2525,7 +2593,8 @@
 		"salary": 23,
 		"cutYear": 2010,
 		"rosterId": 10,
-		"sleeperId": "388"
+		"sleeperId": "388",
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -2536,7 +2605,8 @@
 		"endYear": 2011,
 		"salary": 31,
 		"cutYear": 2010,
-		"rosterId": 10
+		"rosterId": 10,
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4109,7 +4179,8 @@
 		"endYear": 2011,
 		"salary": 125,
 		"cutYear": 2011,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -4120,7 +4191,8 @@
 		"endYear": 2011,
 		"salary": 6,
 		"cutYear": 2011,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -4132,7 +4204,8 @@
 		"salary": 7,
 		"cutYear": 2011,
 		"rosterId": 1,
-		"sleeperId": "523"
+		"sleeperId": "523",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -4144,7 +4217,8 @@
 		"salary": 118,
 		"cutYear": 2011,
 		"rosterId": 2,
-		"sleeperId": "246"
+		"sleeperId": "246",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -4156,7 +4230,8 @@
 		"salary": 70,
 		"cutYear": 2011,
 		"rosterId": 3,
-		"sleeperId": "458"
+		"sleeperId": "458",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4168,7 +4243,8 @@
 		"salary": 40,
 		"cutYear": 2011,
 		"rosterId": 4,
-		"sleeperId": "82"
+		"sleeperId": "82",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4180,7 +4256,8 @@
 		"salary": 13,
 		"cutYear": 2011,
 		"rosterId": 4,
-		"sleeperId": "414"
+		"sleeperId": "414",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4192,7 +4269,8 @@
 		"salary": 1,
 		"cutYear": 2011,
 		"rosterId": 4,
-		"sleeperId": "637"
+		"sleeperId": "637",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4204,7 +4282,8 @@
 		"salary": 39,
 		"cutYear": 2011,
 		"rosterId": 4,
-		"sleeperId": "278"
+		"sleeperId": "278",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4216,7 +4295,8 @@
 		"salary": 6,
 		"cutYear": 2011,
 		"rosterId": 4,
-		"sleeperId": "611"
+		"sleeperId": "611",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -4227,7 +4307,8 @@
 		"endYear": 2012,
 		"salary": 4,
 		"cutYear": 2011,
-		"rosterId": 4
+		"rosterId": 4,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -4238,7 +4319,8 @@
 		"endYear": 2012,
 		"salary": 2,
 		"cutYear": 2011,
-		"rosterId": 5
+		"rosterId": 5,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -4250,7 +4332,8 @@
 		"salary": 45,
 		"cutYear": 2011,
 		"rosterId": 5,
-		"sleeperId": "169"
+		"sleeperId": "169",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -4262,7 +4345,8 @@
 		"salary": 15,
 		"cutYear": 2011,
 		"rosterId": 5,
-		"sleeperId": "642"
+		"sleeperId": "642",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -4273,7 +4357,8 @@
 		"endYear": 2011,
 		"salary": 15,
 		"cutYear": 2011,
-		"rosterId": 5
+		"rosterId": 5,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -4284,7 +4369,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2011,
-		"rosterId": 5
+		"rosterId": 5,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4296,7 +4382,8 @@
 		"salary": 52,
 		"cutYear": 2011,
 		"rosterId": 6,
-		"sleeperId": "269"
+		"sleeperId": "269",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4308,7 +4395,8 @@
 		"salary": 1,
 		"cutYear": 2011,
 		"rosterId": 6,
-		"sleeperId": "646"
+		"sleeperId": "646",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4319,7 +4407,8 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2011,
-		"rosterId": 6
+		"rosterId": 6,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4331,7 +4420,8 @@
 		"salary": 1,
 		"cutYear": 2011,
 		"rosterId": 6,
-		"sleeperId": "157"
+		"sleeperId": "157",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4343,7 +4433,8 @@
 		"salary": 145,
 		"cutYear": 2011,
 		"rosterId": 6,
-		"sleeperId": "306"
+		"sleeperId": "306",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4355,7 +4446,8 @@
 		"salary": 9,
 		"cutYear": 2011,
 		"rosterId": 6,
-		"sleeperId": "55"
+		"sleeperId": "55",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -4367,7 +4459,8 @@
 		"salary": 8,
 		"cutYear": 2011,
 		"rosterId": 6,
-		"sleeperId": "560"
+		"sleeperId": "560",
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -4379,7 +4472,8 @@
 		"salary": 79,
 		"cutYear": 2011,
 		"rosterId": 7,
-		"sleeperId": "91"
+		"sleeperId": "91",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -4390,7 +4484,8 @@
 		"endYear": 2011,
 		"salary": 85,
 		"cutYear": 2011,
-		"rosterId": 8
+		"rosterId": 8,
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -4401,7 +4496,8 @@
 		"endYear": 2011,
 		"salary": 28,
 		"cutYear": 2011,
-		"rosterId": 8
+		"rosterId": 8,
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -4413,7 +4509,8 @@
 		"salary": 14,
 		"cutYear": 2011,
 		"rosterId": 9,
-		"sleeperId": "394"
+		"sleeperId": "394",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -4424,7 +4521,8 @@
 		"endYear": 2011,
 		"salary": 30,
 		"cutYear": 2011,
-		"rosterId": 9
+		"rosterId": 9,
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -4435,7 +4533,8 @@
 		"endYear": 2011,
 		"salary": 8,
 		"cutYear": 2011,
-		"rosterId": 9
+		"rosterId": 9,
+		"offseason": true
 	},
 	{
 		"owner": "Schexes",
@@ -6247,7 +6346,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 4,
-		"sleeperId": "622"
+		"sleeperId": "622",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -6258,7 +6358,8 @@
 		"endYear": 2013,
 		"salary": 1,
 		"cutYear": 2012,
-		"rosterId": 4
+		"rosterId": 4,
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -6270,7 +6371,8 @@
 		"salary": 75,
 		"cutYear": 2012,
 		"rosterId": 4,
-		"sleeperId": "5"
+		"sleeperId": "5",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -6282,7 +6384,8 @@
 		"salary": 101,
 		"cutYear": 2012,
 		"rosterId": 4,
-		"sleeperId": "194"
+		"sleeperId": "194",
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -6293,7 +6396,8 @@
 		"endYear": 2012,
 		"salary": 175,
 		"cutYear": 2012,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -6304,7 +6408,8 @@
 		"endYear": 2013,
 		"salary": 70,
 		"cutYear": 2012,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -6316,7 +6421,8 @@
 		"salary": 65,
 		"cutYear": 2012,
 		"rosterId": 1,
-		"sleeperId": "2093"
+		"sleeperId": "2093",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6328,7 +6434,8 @@
 		"salary": 11,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": "449"
+		"sleeperId": "449",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6340,7 +6447,8 @@
 		"salary": 37,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": "15"
+		"sleeperId": "15",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6352,7 +6460,8 @@
 		"salary": 8,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": "31"
+		"sleeperId": "31",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6363,7 +6472,8 @@
 		"endYear": 2012,
 		"salary": 15,
 		"cutYear": 2012,
-		"rosterId": 2
+		"rosterId": 2,
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6375,7 +6485,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": "4901"
+		"sleeperId": "4901",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6387,7 +6498,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": null
+		"sleeperId": null,
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6399,7 +6511,8 @@
 		"salary": 2,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": "10"
+		"sleeperId": "10",
+		"offseason": true
 	},
 	{
 		"owner": "Koci",
@@ -6410,7 +6523,8 @@
 		"endYear": 2013,
 		"salary": 5,
 		"cutYear": 2012,
-		"rosterId": 2
+		"rosterId": 2,
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -6421,7 +6535,8 @@
 		"endYear": 2013,
 		"salary": 1,
 		"cutYear": 2012,
-		"rosterId": 3
+		"rosterId": 3,
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -6432,7 +6547,8 @@
 		"endYear": 2013,
 		"salary": 1,
 		"cutYear": 2012,
-		"rosterId": 4
+		"rosterId": 4,
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -6444,7 +6560,8 @@
 		"salary": 11,
 		"cutYear": 2012,
 		"rosterId": 5,
-		"sleeperId": "11989"
+		"sleeperId": "11989",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -6456,7 +6573,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 5,
-		"sleeperId": "297"
+		"sleeperId": "297",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -6468,7 +6586,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 5,
-		"sleeperId": "346"
+		"sleeperId": "346",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -6480,7 +6599,8 @@
 		"salary": 30,
 		"cutYear": 2012,
 		"rosterId": 6,
-		"sleeperId": "651"
+		"sleeperId": "651",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -6492,7 +6612,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 6,
-		"sleeperId": "961"
+		"sleeperId": "961",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -6504,7 +6625,8 @@
 		"salary": 7,
 		"cutYear": 2012,
 		"rosterId": 6,
-		"sleeperId": "862"
+		"sleeperId": "862",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -6515,7 +6637,8 @@
 		"endYear": 2012,
 		"salary": 13,
 		"cutYear": 2012,
-		"rosterId": 6
+		"rosterId": 6,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -6526,7 +6649,8 @@
 		"endYear": 2013,
 		"salary": 1,
 		"cutYear": 2012,
-		"rosterId": 6
+		"rosterId": 6,
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -6538,7 +6662,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 7,
-		"sleeperId": "786"
+		"sleeperId": "786",
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -6549,7 +6674,8 @@
 		"endYear": 2013,
 		"salary": 2,
 		"cutYear": 2012,
-		"rosterId": 7
+		"rosterId": 7,
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -6561,7 +6687,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 7,
-		"sleeperId": "963"
+		"sleeperId": "963",
+		"offseason": true
 	},
 	{
 		"owner": "Jake/Luke",
@@ -6573,7 +6700,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 7,
-		"sleeperId": "804"
+		"sleeperId": "804",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -6585,7 +6713,8 @@
 		"salary": 15,
 		"cutYear": 2012,
 		"rosterId": 8,
-		"sleeperId": "89"
+		"sleeperId": "89",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -6597,7 +6726,8 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 8,
-		"sleeperId": "565"
+		"sleeperId": "565",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -6609,7 +6739,8 @@
 		"salary": 15,
 		"cutYear": 2012,
 		"rosterId": 8,
-		"sleeperId": "618"
+		"sleeperId": "618",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -6621,7 +6752,8 @@
 		"salary": 12,
 		"cutYear": 2012,
 		"rosterId": 9,
-		"sleeperId": "533"
+		"sleeperId": "533",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -6633,7 +6765,8 @@
 		"salary": 125,
 		"cutYear": 2012,
 		"rosterId": 9,
-		"sleeperId": "122"
+		"sleeperId": "122",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -6645,7 +6778,8 @@
 		"salary": 6,
 		"cutYear": 2012,
 		"rosterId": 10,
-		"sleeperId": "154"
+		"sleeperId": "154",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -6657,7 +6791,8 @@
 		"salary": 10,
 		"cutYear": 2012,
 		"rosterId": 10,
-		"sleeperId": "82"
+		"sleeperId": "82",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -6668,7 +6803,8 @@
 		"endYear": 2012,
 		"salary": 1,
 		"cutYear": 2012,
-		"rosterId": 10
+		"rosterId": 10,
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -8427,7 +8563,8 @@
 		"salary": 42,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "166"
+		"sleeperId": "166",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8439,7 +8576,8 @@
 		"salary": 1,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "415"
+		"sleeperId": "415",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8450,7 +8588,8 @@
 		"endYear": 2014,
 		"salary": 15,
 		"cutYear": 2013,
-		"rosterId": 4
+		"rosterId": 4,
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8462,7 +8601,8 @@
 		"salary": 25,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "806"
+		"sleeperId": "806",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8474,7 +8614,8 @@
 		"salary": 185,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "461"
+		"sleeperId": "461",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8486,7 +8627,8 @@
 		"salary": 60,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "306"
+		"sleeperId": "306",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8498,7 +8640,8 @@
 		"salary": 30,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "218"
+		"sleeperId": "218",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -8510,7 +8653,8 @@
 		"salary": 65,
 		"cutYear": 2013,
 		"rosterId": 12,
-		"sleeperId": "386"
+		"sleeperId": "386",
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -8522,7 +8666,8 @@
 		"salary": 28,
 		"cutYear": 2013,
 		"rosterId": 1,
-		"sleeperId": "697"
+		"sleeperId": "697",
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -8534,7 +8679,8 @@
 		"salary": 5,
 		"cutYear": 2013,
 		"rosterId": 1,
-		"sleeperId": "119"
+		"sleeperId": "119",
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -8545,7 +8691,8 @@
 		"endYear": 2014,
 		"salary": 3,
 		"cutYear": 2013,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -8556,7 +8703,8 @@
 		"endYear": 2014,
 		"salary": 1,
 		"cutYear": 2013,
-		"rosterId": 1
+		"rosterId": 1,
+		"offseason": true
 	},
 	{
 		"owner": "Pat/Quinn",
@@ -8568,7 +8716,8 @@
 		"salary": 42,
 		"cutYear": 2013,
 		"rosterId": 1,
-		"sleeperId": "279"
+		"sleeperId": "279",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -8580,7 +8729,8 @@
 		"salary": 2,
 		"cutYear": 2013,
 		"rosterId": 2,
-		"sleeperId": "36"
+		"sleeperId": "36",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -8592,7 +8742,8 @@
 		"salary": 145,
 		"cutYear": 2013,
 		"rosterId": 2,
-		"sleeperId": "429"
+		"sleeperId": "429",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -8604,7 +8755,8 @@
 		"salary": 53,
 		"cutYear": 2013,
 		"rosterId": 2,
-		"sleeperId": "465"
+		"sleeperId": "465",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -8616,7 +8768,8 @@
 		"salary": 21,
 		"cutYear": 2013,
 		"rosterId": 2,
-		"sleeperId": "333"
+		"sleeperId": "333",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -8627,7 +8780,8 @@
 		"endYear": 2014,
 		"salary": 6,
 		"cutYear": 2013,
-		"rosterId": 2
+		"rosterId": 2,
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -8639,7 +8793,8 @@
 		"salary": 20,
 		"cutYear": 2013,
 		"rosterId": 2,
-		"sleeperId": "221"
+		"sleeperId": "221",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -8651,7 +8806,8 @@
 		"salary": 1,
 		"cutYear": 2013,
 		"rosterId": 4,
-		"sleeperId": "230"
+		"sleeperId": "230",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -8663,7 +8819,8 @@
 		"salary": 5,
 		"cutYear": 2013,
 		"rosterId": 5,
-		"sleeperId": "337"
+		"sleeperId": "337",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -8675,7 +8832,8 @@
 		"salary": 2,
 		"cutYear": 2013,
 		"rosterId": 5,
-		"sleeperId": "1221"
+		"sleeperId": "1221",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -8687,7 +8845,8 @@
 		"salary": 17,
 		"cutYear": 2013,
 		"rosterId": 5,
-		"sleeperId": "11413"
+		"sleeperId": "11413",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -8699,7 +8858,8 @@
 		"salary": 127,
 		"cutYear": 2013,
 		"rosterId": 6,
-		"sleeperId": "264"
+		"sleeperId": "264",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -8711,7 +8871,8 @@
 		"salary": 8,
 		"cutYear": 2013,
 		"rosterId": 6,
-		"sleeperId": "478"
+		"sleeperId": "478",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -8723,7 +8884,8 @@
 		"salary": 1,
 		"cutYear": 2013,
 		"rosterId": 8,
-		"sleeperId": "964"
+		"sleeperId": "964",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -8735,7 +8897,8 @@
 		"salary": 4,
 		"cutYear": 2013,
 		"rosterId": 8,
-		"sleeperId": "978"
+		"sleeperId": "978",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -8747,7 +8910,8 @@
 		"salary": 1,
 		"cutYear": 2013,
 		"rosterId": 8,
-		"sleeperId": "169"
+		"sleeperId": "169",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -8759,7 +8923,8 @@
 		"salary": 13,
 		"cutYear": 2013,
 		"rosterId": 9,
-		"sleeperId": "914"
+		"sleeperId": "914",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -8771,7 +8936,8 @@
 		"salary": 1,
 		"cutYear": 2013,
 		"rosterId": 9,
-		"sleeperId": "1141"
+		"sleeperId": "1141",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -8783,7 +8949,8 @@
 		"salary": 8,
 		"cutYear": 2013,
 		"rosterId": 9,
-		"sleeperId": "1054"
+		"sleeperId": "1054",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -8794,7 +8961,8 @@
 		"endYear": 2013,
 		"salary": 5,
 		"cutYear": 2013,
-		"rosterId": 9
+		"rosterId": 9,
+		"offseason": true
 	},
 	{
 		"owner": "Charles",
@@ -8805,7 +8973,8 @@
 		"endYear": 2013,
 		"salary": 13,
 		"cutYear": 2013,
-		"rosterId": 11
+		"rosterId": 11,
+		"offseason": true
 	},
 	{
 		"owner": "Charles",
@@ -8817,7 +8986,8 @@
 		"salary": 35,
 		"cutYear": 2013,
 		"rosterId": 11,
-		"sleeperId": "377"
+		"sleeperId": "377",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -10768,7 +10938,8 @@
 		"endYear": 2014,
 		"salary": 25,
 		"cutYear": 2014,
-		"rosterId": 4
+		"rosterId": 4,
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -10780,7 +10951,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 6,
-		"sleeperId": "978"
+		"sleeperId": "978",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10792,7 +10964,8 @@
 		"salary": 255,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "167"
+		"sleeperId": "167",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10804,7 +10977,8 @@
 		"salary": 5,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "576"
+		"sleeperId": "576",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10816,7 +10990,8 @@
 		"salary": 28,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "748"
+		"sleeperId": "748",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10828,7 +11003,8 @@
 		"salary": 13,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "1106"
+		"sleeperId": "1106",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10840,7 +11016,8 @@
 		"salary": 10,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "1054"
+		"sleeperId": "1054",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10851,7 +11028,8 @@
 		"endYear": 2015,
 		"salary": 13,
 		"cutYear": 2014,
-		"rosterId": 4
+		"rosterId": 4,
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -10863,7 +11041,8 @@
 		"salary": 7,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "1449"
+		"sleeperId": "1449",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -10875,7 +11054,8 @@
 		"salary": 13,
 		"cutYear": 2014,
 		"rosterId": 12,
-		"sleeperId": "1206"
+		"sleeperId": "1206",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -10887,7 +11067,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 6,
-		"sleeperId": "891"
+		"sleeperId": "891",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -10899,7 +11080,8 @@
 		"salary": 7,
 		"cutYear": 2014,
 		"rosterId": 6,
-		"sleeperId": "1546"
+		"sleeperId": "1546",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -10911,7 +11093,8 @@
 		"salary": 5,
 		"cutYear": 2014,
 		"rosterId": 8,
-		"sleeperId": "298"
+		"sleeperId": "298",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -10923,7 +11106,8 @@
 		"salary": 24,
 		"cutYear": 2014,
 		"rosterId": 8,
-		"sleeperId": "862"
+		"sleeperId": "862",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -10935,7 +11119,8 @@
 		"salary": 150,
 		"cutYear": 2014,
 		"rosterId": 8,
-		"sleeperId": "57"
+		"sleeperId": "57",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -10947,7 +11132,8 @@
 		"salary": 75,
 		"cutYear": 2014,
 		"rosterId": 8,
-		"sleeperId": "201"
+		"sleeperId": "201",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -10959,7 +11145,8 @@
 		"salary": 2,
 		"cutYear": 2014,
 		"rosterId": 8,
-		"sleeperId": "1346"
+		"sleeperId": "1346",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -10971,7 +11158,8 @@
 		"salary": 10,
 		"cutYear": 2014,
 		"rosterId": 9,
-		"sleeperId": "1213"
+		"sleeperId": "1213",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -10983,7 +11171,8 @@
 		"salary": 63,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "826"
+		"sleeperId": "826",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -10995,7 +11184,8 @@
 		"salary": 32,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "491"
+		"sleeperId": "491",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -11007,7 +11197,8 @@
 		"salary": 10,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "632"
+		"sleeperId": "632",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -11019,7 +11210,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "1576"
+		"sleeperId": "1576",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -11031,7 +11223,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "1513"
+		"sleeperId": "1513",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -11043,7 +11236,8 @@
 		"salary": 22,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "806"
+		"sleeperId": "806",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -11055,7 +11249,8 @@
 		"salary": 90,
 		"cutYear": 2014,
 		"rosterId": 2,
-		"sleeperId": "448"
+		"sleeperId": "448",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -11067,7 +11262,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 12,
-		"sleeperId": "1145"
+		"sleeperId": "1145",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -11079,7 +11275,8 @@
 		"salary": 35,
 		"cutYear": 2014,
 		"rosterId": 1,
-		"sleeperId": "366"
+		"sleeperId": "366",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -11091,7 +11288,8 @@
 		"salary": 4,
 		"cutYear": 2014,
 		"rosterId": 1,
-		"sleeperId": "1226"
+		"sleeperId": "1226",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -11103,7 +11301,8 @@
 		"salary": 2,
 		"cutYear": 2014,
 		"rosterId": 1,
-		"sleeperId": "66"
+		"sleeperId": "66",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -11115,7 +11314,8 @@
 		"salary": 5,
 		"cutYear": 2014,
 		"rosterId": 1,
-		"sleeperId": "1077"
+		"sleeperId": "1077",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -11127,7 +11327,8 @@
 		"salary": 55,
 		"cutYear": 2014,
 		"rosterId": 11,
-		"sleeperId": "1265"
+		"sleeperId": "1265",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -11139,7 +11340,8 @@
 		"salary": 160,
 		"cutYear": 2014,
 		"rosterId": 10,
-		"sleeperId": "272"
+		"sleeperId": "272",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -11151,7 +11353,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 3,
-		"sleeperId": "1345"
+		"sleeperId": "1345",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -11163,7 +11366,8 @@
 		"salary": 13,
 		"cutYear": 2014,
 		"rosterId": 3,
-		"sleeperId": "1085"
+		"sleeperId": "1085",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -11175,7 +11379,8 @@
 		"salary": 18,
 		"cutYear": 2014,
 		"rosterId": 3,
-		"sleeperId": "1655"
+		"sleeperId": "1655",
+		"offseason": true
 	},
 	{
 		"owner": "Syed",
@@ -11187,7 +11392,8 @@
 		"salary": 9,
 		"cutYear": 2014,
 		"rosterId": 3,
-		"sleeperId": "1654"
+		"sleeperId": "1654",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -11199,7 +11405,8 @@
 		"salary": 105,
 		"cutYear": 2014,
 		"rosterId": 5,
-		"sleeperId": "92"
+		"sleeperId": "92",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -11211,7 +11418,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 5,
-		"sleeperId": "1147"
+		"sleeperId": "1147",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -11223,7 +11431,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 5,
-		"sleeperId": "1376"
+		"sleeperId": "1376",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -11235,7 +11444,8 @@
 		"salary": 1,
 		"cutYear": 2014,
 		"rosterId": 5,
-		"sleeperId": "1411"
+		"sleeperId": "1411",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13144,7 +13354,8 @@
 		"salary": 23,
 		"cutYear": 2015,
 		"rosterId": 6,
-		"sleeperId": "1244"
+		"sleeperId": "1244",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -13156,7 +13367,8 @@
 		"salary": 5,
 		"cutYear": 2015,
 		"rosterId": 9,
-		"sleeperId": "5820"
+		"sleeperId": "5820",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -13168,7 +13380,8 @@
 		"salary": 45,
 		"cutYear": 2015,
 		"rosterId": 1,
-		"sleeperId": "1004"
+		"sleeperId": "1004",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -13180,7 +13393,8 @@
 		"salary": 13,
 		"cutYear": 2015,
 		"rosterId": 1,
-		"sleeperId": "1596"
+		"sleeperId": "1596",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -13192,7 +13406,8 @@
 		"salary": 10,
 		"cutYear": 2015,
 		"rosterId": 1,
-		"sleeperId": "122"
+		"sleeperId": "122",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -13204,7 +13419,8 @@
 		"salary": 3,
 		"cutYear": 2015,
 		"rosterId": 1,
-		"sleeperId": "155"
+		"sleeperId": "155",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -13216,7 +13432,8 @@
 		"salary": 4,
 		"cutYear": 2015,
 		"rosterId": 2,
-		"sleeperId": "1032"
+		"sleeperId": "1032",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -13228,7 +13445,8 @@
 		"salary": 4,
 		"cutYear": 2015,
 		"rosterId": 2,
-		"sleeperId": "1579"
+		"sleeperId": "1579",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -13240,7 +13458,8 @@
 		"salary": 1,
 		"cutYear": 2015,
 		"rosterId": 2,
-		"sleeperId": "210"
+		"sleeperId": "210",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -13252,7 +13471,8 @@
 		"salary": 3,
 		"cutYear": 2015,
 		"rosterId": 2,
-		"sleeperId": "1957"
+		"sleeperId": "1957",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -13264,7 +13484,8 @@
 		"salary": 1,
 		"cutYear": 2015,
 		"rosterId": 2,
-		"sleeperId": "144"
+		"sleeperId": "144",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -13276,7 +13497,8 @@
 		"salary": 1,
 		"cutYear": 2015,
 		"rosterId": 2,
-		"sleeperId": "949"
+		"sleeperId": "949",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -13288,7 +13510,8 @@
 		"salary": 2,
 		"cutYear": 2015,
 		"rosterId": 4,
-		"sleeperId": "1560"
+		"sleeperId": "1560",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -13300,7 +13523,8 @@
 		"salary": 3,
 		"cutYear": 2015,
 		"rosterId": 4,
-		"sleeperId": "1587"
+		"sleeperId": "1587",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -13312,7 +13536,8 @@
 		"salary": 4,
 		"cutYear": 2015,
 		"rosterId": 4,
-		"sleeperId": "1573"
+		"sleeperId": "1573",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -13324,7 +13549,8 @@
 		"salary": 6,
 		"cutYear": 2015,
 		"rosterId": 4,
-		"sleeperId": "2104"
+		"sleeperId": "2104",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13336,7 +13562,8 @@
 		"salary": 21,
 		"cutYear": 2015,
 		"rosterId": 5,
-		"sleeperId": "201"
+		"sleeperId": "201",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13348,7 +13575,8 @@
 		"salary": 2,
 		"cutYear": 2015,
 		"rosterId": 5,
-		"sleeperId": "1356"
+		"sleeperId": "1356",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13360,7 +13588,8 @@
 		"salary": 10,
 		"cutYear": 2015,
 		"rosterId": 5,
-		"sleeperId": "646"
+		"sleeperId": "646",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13372,7 +13601,8 @@
 		"salary": 12,
 		"cutYear": 2015,
 		"rosterId": 5,
-		"sleeperId": "1914"
+		"sleeperId": "1914",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13384,7 +13614,8 @@
 		"salary": 6,
 		"cutYear": 2015,
 		"rosterId": 5,
-		"sleeperId": "2101"
+		"sleeperId": "2101",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -13396,7 +13627,8 @@
 		"salary": 1,
 		"cutYear": 2015,
 		"rosterId": 5,
-		"sleeperId": "104"
+		"sleeperId": "104",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -13408,7 +13640,8 @@
 		"salary": 55,
 		"cutYear": 2015,
 		"rosterId": 7,
-		"sleeperId": "474"
+		"sleeperId": "474",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -13420,7 +13653,8 @@
 		"salary": 280,
 		"cutYear": 2015,
 		"rosterId": 7,
-		"sleeperId": "507"
+		"sleeperId": "507",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -13432,7 +13666,8 @@
 		"salary": 1,
 		"cutYear": 2015,
 		"rosterId": 10,
-		"sleeperId": "154"
+		"sleeperId": "154",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -13444,7 +13679,8 @@
 		"salary": 42,
 		"cutYear": 2015,
 		"rosterId": 11,
-		"sleeperId": "811"
+		"sleeperId": "811",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -13456,7 +13692,8 @@
 		"salary": 20,
 		"cutYear": 2015,
 		"rosterId": 11,
-		"sleeperId": "527"
+		"sleeperId": "527",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -13468,7 +13705,8 @@
 		"salary": 17,
 		"cutYear": 2015,
 		"rosterId": 12,
-		"sleeperId": "1373"
+		"sleeperId": "1373",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -13480,7 +13718,8 @@
 		"salary": 15,
 		"cutYear": 2015,
 		"rosterId": 12,
-		"sleeperId": "1064"
+		"sleeperId": "1064",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -15339,7 +15578,8 @@
 		"salary": 20,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "613"
+		"sleeperId": "613",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15351,7 +15591,8 @@
 		"salary": 30,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "345"
+		"sleeperId": "345",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15363,7 +15604,8 @@
 		"salary": 7,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "2477"
+		"sleeperId": "2477",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15375,7 +15617,8 @@
 		"salary": 14,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "2441"
+		"sleeperId": "2441",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15387,7 +15630,8 @@
 		"salary": 20,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "1449"
+		"sleeperId": "1449",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15399,7 +15643,8 @@
 		"salary": 15,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "878"
+		"sleeperId": "878",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15411,7 +15656,8 @@
 		"salary": 10,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "1987"
+		"sleeperId": "1987",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -15423,7 +15669,8 @@
 		"salary": 21,
 		"cutYear": 2016,
 		"rosterId": 1,
-		"sleeperId": "1029"
+		"sleeperId": "1029",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -15435,7 +15682,8 @@
 		"salary": 30,
 		"cutYear": 2016,
 		"rosterId": 2,
-		"sleeperId": "1530"
+		"sleeperId": "1530",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -15447,7 +15695,8 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 2,
-		"sleeperId": "1595"
+		"sleeperId": "1595",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -15459,7 +15708,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 2,
-		"sleeperId": "310"
+		"sleeperId": "310",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -15471,7 +15721,8 @@
 		"salary": 4,
 		"cutYear": 2016,
 		"rosterId": 2,
-		"sleeperId": "2786"
+		"sleeperId": "2786",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -15483,7 +15734,8 @@
 		"salary": 15,
 		"cutYear": 2016,
 		"rosterId": 2,
-		"sleeperId": "269"
+		"sleeperId": "269",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15495,7 +15747,8 @@
 		"salary": 12,
 		"cutYear": 2016,
 		"rosterId": 3,
-		"sleeperId": "2088"
+		"sleeperId": "2088",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15507,7 +15760,8 @@
 		"salary": 17,
 		"cutYear": 2016,
 		"rosterId": 3,
-		"sleeperId": "2331"
+		"sleeperId": "2331",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15519,7 +15773,8 @@
 		"salary": 17,
 		"cutYear": 2016,
 		"rosterId": 3,
-		"sleeperId": "1720"
+		"sleeperId": "1720",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15531,7 +15786,8 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 3,
-		"sleeperId": "1916"
+		"sleeperId": "1916",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15543,7 +15799,8 @@
 		"salary": 66,
 		"cutYear": 2016,
 		"rosterId": 3,
-		"sleeperId": "814"
+		"sleeperId": "814",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -15555,7 +15812,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 3,
-		"sleeperId": "868"
+		"sleeperId": "868",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -15567,7 +15825,8 @@
 		"salary": 6,
 		"cutYear": 2016,
 		"rosterId": 4,
-		"sleeperId": "1033"
+		"sleeperId": "1033",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -15579,7 +15838,8 @@
 		"salary": 9,
 		"cutYear": 2016,
 		"rosterId": 4,
-		"sleeperId": "1307"
+		"sleeperId": "1307",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -15591,7 +15851,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 4,
-		"sleeperId": "2074"
+		"sleeperId": "2074",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -15603,7 +15864,8 @@
 		"salary": 19,
 		"cutYear": 2016,
 		"rosterId": 4,
-		"sleeperId": "1907"
+		"sleeperId": "1907",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -15615,7 +15877,8 @@
 		"salary": 5,
 		"cutYear": 2016,
 		"rosterId": 4,
-		"sleeperId": "1759"
+		"sleeperId": "1759",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -15627,7 +15890,8 @@
 		"salary": 11,
 		"cutYear": 2016,
 		"rosterId": 5,
-		"sleeperId": "279"
+		"sleeperId": "279",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -15639,7 +15903,8 @@
 		"salary": 105,
 		"cutYear": 2016,
 		"rosterId": 5,
-		"sleeperId": "344"
+		"sleeperId": "344",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -15651,7 +15916,8 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 5,
-		"sleeperId": "2537"
+		"sleeperId": "2537",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -15663,7 +15929,8 @@
 		"salary": 5,
 		"cutYear": 2016,
 		"rosterId": 5,
-		"sleeperId": "179"
+		"sleeperId": "179",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -15675,7 +15942,8 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 5,
-		"sleeperId": "604"
+		"sleeperId": "604",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -15687,7 +15955,8 @@
 		"salary": 55,
 		"cutYear": 2016,
 		"rosterId": 6,
-		"sleeperId": "416"
+		"sleeperId": "416",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -15699,7 +15968,8 @@
 		"salary": 15,
 		"cutYear": 2016,
 		"rosterId": 6,
-		"sleeperId": "1139"
+		"sleeperId": "1139",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -15711,7 +15981,8 @@
 		"salary": 24,
 		"cutYear": 2016,
 		"rosterId": 7,
-		"sleeperId": "1937"
+		"sleeperId": "1937",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -15723,7 +15994,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 7,
-		"sleeperId": "2330"
+		"sleeperId": "2330",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -15735,7 +16007,8 @@
 		"salary": 3,
 		"cutYear": 2016,
 		"rosterId": 8,
-		"sleeperId": "2023"
+		"sleeperId": "2023",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -15747,7 +16020,8 @@
 		"salary": 12,
 		"cutYear": 2016,
 		"rosterId": 8,
-		"sleeperId": "2231"
+		"sleeperId": "2231",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15759,7 +16033,8 @@
 		"salary": 10,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "2019"
+		"sleeperId": "2019",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15771,7 +16046,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "1905"
+		"sleeperId": "1905",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15783,7 +16059,8 @@
 		"salary": 3,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "137"
+		"sleeperId": "137",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15795,7 +16072,8 @@
 		"salary": 24,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "2168"
+		"sleeperId": "2168",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15807,7 +16085,8 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "2533"
+		"sleeperId": "2533",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15819,7 +16098,8 @@
 		"salary": 6,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "2380"
+		"sleeperId": "2380",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15831,7 +16111,8 @@
 		"salary": 17,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "2312"
+		"sleeperId": "2312",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15843,7 +16124,8 @@
 		"salary": 4,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "370"
+		"sleeperId": "370",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15855,7 +16137,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "16"
+		"sleeperId": "16",
+		"offseason": true
 	},
 	{
 		"owner": "James",
@@ -15867,7 +16150,8 @@
 		"salary": 18,
 		"cutYear": 2016,
 		"rosterId": 9,
-		"sleeperId": "827"
+		"sleeperId": "827",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15879,7 +16163,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "2422"
+		"sleeperId": "2422",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15891,7 +16176,8 @@
 		"salary": 6,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "2408"
+		"sleeperId": "2408",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15903,7 +16189,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "1833"
+		"sleeperId": "1833",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15915,7 +16202,8 @@
 		"salary": 3,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "1914"
+		"sleeperId": "1914",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15927,7 +16215,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "155"
+		"sleeperId": "155",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15939,7 +16228,8 @@
 		"salary": 3,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "1777"
+		"sleeperId": "1777",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15951,7 +16241,8 @@
 		"salary": 2,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "2011"
+		"sleeperId": "2011",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15963,7 +16254,8 @@
 		"salary": 6,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "1097"
+		"sleeperId": "1097",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -15975,7 +16267,8 @@
 		"salary": 1,
 		"cutYear": 2016,
 		"rosterId": 10,
-		"sleeperId": "316"
+		"sleeperId": "316",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -15987,7 +16280,8 @@
 		"salary": 160,
 		"cutYear": 2016,
 		"rosterId": 11,
-		"sleeperId": "980"
+		"sleeperId": "980",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -15999,7 +16293,8 @@
 		"salary": 60,
 		"cutYear": 2016,
 		"rosterId": 11,
-		"sleeperId": "826"
+		"sleeperId": "826",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -16011,7 +16306,8 @@
 		"salary": 30,
 		"cutYear": 2016,
 		"rosterId": 11,
-		"sleeperId": "719"
+		"sleeperId": "719",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -16023,7 +16319,8 @@
 		"salary": 42,
 		"cutYear": 2016,
 		"rosterId": 11,
-		"sleeperId": "128"
+		"sleeperId": "128",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -18159,7 +18456,8 @@
 		"salary": 25,
 		"cutYear": 2017,
 		"rosterId": 6,
-		"sleeperId": "1219"
+		"sleeperId": "1219",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -18171,7 +18469,8 @@
 		"salary": 75,
 		"cutYear": 2017,
 		"rosterId": 6,
-		"sleeperId": "928"
+		"sleeperId": "928",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -18183,7 +18482,8 @@
 		"salary": 9,
 		"cutYear": 2017,
 		"rosterId": 6,
-		"sleeperId": "2345"
+		"sleeperId": "2345",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -18195,7 +18495,8 @@
 		"salary": 5,
 		"cutYear": 2017,
 		"rosterId": 6,
-		"sleeperId": "3297"
+		"sleeperId": "3297",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -18207,7 +18508,8 @@
 		"salary": 18,
 		"cutYear": 2017,
 		"rosterId": 1,
-		"sleeperId": "1339"
+		"sleeperId": "1339",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -18219,7 +18521,8 @@
 		"salary": 2,
 		"cutYear": 2017,
 		"rosterId": 1,
-		"sleeperId": "1097"
+		"sleeperId": "1097",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -18231,7 +18534,8 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 1,
-		"sleeperId": "533"
+		"sleeperId": "533",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18243,7 +18547,8 @@
 		"salary": 45,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "1195"
+		"sleeperId": "1195",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18255,7 +18560,8 @@
 		"salary": 4,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "3532"
+		"sleeperId": "3532",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18267,7 +18573,8 @@
 		"salary": 3,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "646"
+		"sleeperId": "646",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18279,7 +18586,8 @@
 		"salary": 110,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "1049"
+		"sleeperId": "1049",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18291,7 +18599,8 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "2104"
+		"sleeperId": "2104",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18303,7 +18612,8 @@
 		"salary": 18,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "1546"
+		"sleeperId": "1546",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -18315,7 +18625,8 @@
 		"salary": 42,
 		"cutYear": 2017,
 		"rosterId": 2,
-		"sleeperId": "826"
+		"sleeperId": "826",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -18327,7 +18638,8 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 3,
-		"sleeperId": "794"
+		"sleeperId": "794",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -18339,7 +18651,8 @@
 		"salary": 270,
 		"cutYear": 2017,
 		"rosterId": 3,
-		"sleeperId": "1426"
+		"sleeperId": "1426",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -18351,7 +18664,8 @@
 		"salary": 14,
 		"cutYear": 2017,
 		"rosterId": 3,
-		"sleeperId": "2411"
+		"sleeperId": "2411",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -18363,7 +18677,8 @@
 		"salary": 14,
 		"cutYear": 2017,
 		"rosterId": 3,
-		"sleeperId": "12988"
+		"sleeperId": "12988",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -18375,7 +18690,8 @@
 		"salary": 8,
 		"cutYear": 2017,
 		"rosterId": 5,
-		"sleeperId": "2360"
+		"sleeperId": "2360",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -18387,7 +18703,8 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 5,
-		"sleeperId": "2311"
+		"sleeperId": "2311",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -18399,7 +18716,8 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 5,
-		"sleeperId": "2323"
+		"sleeperId": "2323",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -18411,7 +18729,8 @@
 		"salary": 25,
 		"cutYear": 2017,
 		"rosterId": 7,
-		"sleeperId": "176"
+		"sleeperId": "176",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -18423,7 +18742,8 @@
 		"salary": 3,
 		"cutYear": 2017,
 		"rosterId": 8,
-		"sleeperId": "2392"
+		"sleeperId": "2392",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -18435,7 +18755,8 @@
 		"salary": 13,
 		"cutYear": 2017,
 		"rosterId": 8,
-		"sleeperId": "3209"
+		"sleeperId": "3209",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -18447,7 +18768,8 @@
 		"salary": 341,
 		"cutYear": 2017,
 		"rosterId": 9,
-		"sleeperId": "954"
+		"sleeperId": "954",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -18459,7 +18781,8 @@
 		"salary": 150,
 		"cutYear": 2017,
 		"rosterId": 9,
-		"sleeperId": "1527"
+		"sleeperId": "1527",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -18471,7 +18794,8 @@
 		"salary": 22,
 		"cutYear": 2017,
 		"rosterId": 10,
-		"sleeperId": "1244"
+		"sleeperId": "1244",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -18483,7 +18807,8 @@
 		"salary": 20,
 		"cutYear": 2017,
 		"rosterId": 12,
-		"sleeperId": "1071"
+		"sleeperId": "1071",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -18495,7 +18820,8 @@
 		"salary": 17,
 		"cutYear": 2017,
 		"rosterId": 12,
-		"sleeperId": "2334"
+		"sleeperId": "2334",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -18507,7 +18833,8 @@
 		"salary": 1,
 		"cutYear": 2017,
 		"rosterId": 12,
-		"sleeperId": "3201"
+		"sleeperId": "3201",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -18519,7 +18846,8 @@
 		"salary": 2,
 		"cutYear": 2017,
 		"rosterId": 12,
-		"sleeperId": "8548"
+		"sleeperId": "8548",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -18531,7 +18859,8 @@
 		"salary": 25,
 		"cutYear": 2017,
 		"rosterId": 4,
-		"sleeperId": "1413"
+		"sleeperId": "1413",
+		"offseason": true
 	},
 	{
 		"owner": "Schex/Jeff",
@@ -20751,7 +21080,8 @@
 		"salary": 4,
 		"cutYear": 2018,
 		"rosterId": 4,
-		"sleeperId": "23"
+		"sleeperId": "23",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -20763,7 +21093,8 @@
 		"salary": 75,
 		"cutYear": 2018,
 		"rosterId": 4,
-		"sleeperId": "411"
+		"sleeperId": "411",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -20775,7 +21106,8 @@
 		"salary": 70,
 		"cutYear": 2018,
 		"rosterId": 4,
-		"sleeperId": "1353"
+		"sleeperId": "1353",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -20787,7 +21119,8 @@
 		"salary": 8,
 		"cutYear": 2018,
 		"rosterId": 6,
-		"sleeperId": "3214"
+		"sleeperId": "3214",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -20799,7 +21132,8 @@
 		"salary": 1,
 		"cutYear": 2018,
 		"rosterId": 1,
-		"sleeperId": "2463"
+		"sleeperId": "2463",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -20811,7 +21145,8 @@
 		"salary": 6,
 		"cutYear": 2018,
 		"rosterId": 1,
-		"sleeperId": "2312"
+		"sleeperId": "2312",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -20823,7 +21158,8 @@
 		"salary": 3,
 		"cutYear": 2018,
 		"rosterId": 2,
-		"sleeperId": "326"
+		"sleeperId": "326",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -20835,7 +21171,8 @@
 		"salary": 1,
 		"cutYear": 2018,
 		"rosterId": 2,
-		"sleeperId": "4208"
+		"sleeperId": "4208",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Terence",
@@ -20847,7 +21184,8 @@
 		"salary": 99,
 		"cutYear": 2018,
 		"rosterId": 3,
-		"sleeperId": "2399"
+		"sleeperId": "2399",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -20859,7 +21197,8 @@
 		"salary": 10,
 		"cutYear": 2018,
 		"rosterId": 4,
-		"sleeperId": "874"
+		"sleeperId": "874",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -20871,7 +21210,8 @@
 		"salary": 7,
 		"cutYear": 2018,
 		"rosterId": 4,
-		"sleeperId": "3309"
+		"sleeperId": "3309",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -20883,7 +21223,8 @@
 		"salary": 10,
 		"cutYear": 2018,
 		"rosterId": 4,
-		"sleeperId": "1077"
+		"sleeperId": "1077",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -20895,7 +21236,8 @@
 		"salary": 135,
 		"cutYear": 2018,
 		"rosterId": 5,
-		"sleeperId": "574"
+		"sleeperId": "574",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -20907,7 +21249,8 @@
 		"salary": 3,
 		"cutYear": 2018,
 		"rosterId": 5,
-		"sleeperId": "4160"
+		"sleeperId": "4160",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -20919,7 +21262,8 @@
 		"salary": 7,
 		"cutYear": 2018,
 		"rosterId": 5,
-		"sleeperId": "639"
+		"sleeperId": "639",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -20931,7 +21275,8 @@
 		"salary": 1,
 		"cutYear": 2018,
 		"rosterId": 6,
-		"sleeperId": "2549"
+		"sleeperId": "2549",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -20943,7 +21288,8 @@
 		"salary": 4,
 		"cutYear": 2018,
 		"rosterId": 6,
-		"sleeperId": "4179"
+		"sleeperId": "4179",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -20955,7 +21301,8 @@
 		"salary": 1,
 		"cutYear": 2018,
 		"rosterId": 7,
-		"sleeperId": "3492"
+		"sleeperId": "3492",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -20967,7 +21314,8 @@
 		"salary": 15,
 		"cutYear": 2018,
 		"rosterId": 8,
-		"sleeperId": "1971"
+		"sleeperId": "1971",
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -20979,7 +21327,8 @@
 		"salary": 3,
 		"cutYear": 2018,
 		"rosterId": 8,
-		"sleeperId": "4239"
+		"sleeperId": "4239",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -20991,7 +21340,8 @@
 		"salary": 13,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "1046"
+		"sleeperId": "1046",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -21003,7 +21353,8 @@
 		"salary": 25,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "1020"
+		"sleeperId": "1020",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -21015,7 +21366,8 @@
 		"salary": 5,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "704"
+		"sleeperId": "704",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -21027,7 +21379,8 @@
 		"salary": 5,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "2223"
+		"sleeperId": "2223",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -21039,7 +21392,8 @@
 		"salary": 3,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "4178"
+		"sleeperId": "4178",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -21051,7 +21405,8 @@
 		"salary": 16,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "1800"
+		"sleeperId": "1800",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -21063,7 +21418,8 @@
 		"salary": 7,
 		"cutYear": 2018,
 		"rosterId": 9,
-		"sleeperId": "1924"
+		"sleeperId": "1924",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21075,7 +21431,8 @@
 		"salary": 7,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "949"
+		"sleeperId": "949",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21087,7 +21444,8 @@
 		"salary": 12,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "4042"
+		"sleeperId": "4042",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21099,7 +21457,8 @@
 		"salary": 5,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "4119"
+		"sleeperId": "4119",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21111,7 +21470,8 @@
 		"salary": 10,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "678"
+		"sleeperId": "678",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21123,7 +21483,8 @@
 		"salary": 13,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "3211"
+		"sleeperId": "3211",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21135,7 +21496,8 @@
 		"salary": 50,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "1195"
+		"sleeperId": "1195",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -21147,7 +21509,8 @@
 		"salary": 182,
 		"cutYear": 2018,
 		"rosterId": 10,
-		"sleeperId": "956"
+		"sleeperId": "956",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -21159,7 +21522,8 @@
 		"salary": 250,
 		"cutYear": 2018,
 		"rosterId": 11,
-		"sleeperId": "1048"
+		"sleeperId": "1048",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -21171,7 +21535,8 @@
 		"salary": 97,
 		"cutYear": 2018,
 		"rosterId": 11,
-		"sleeperId": "1567"
+		"sleeperId": "1567",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -21183,7 +21548,8 @@
 		"salary": 30,
 		"cutYear": 2018,
 		"rosterId": 11,
-		"sleeperId": "1107"
+		"sleeperId": "1107",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -21195,7 +21561,8 @@
 		"salary": 40,
 		"cutYear": 2018,
 		"rosterId": 11,
-		"sleeperId": "1527"
+		"sleeperId": "1527",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -21207,7 +21574,8 @@
 		"salary": 6,
 		"cutYear": 2018,
 		"rosterId": 11,
-		"sleeperId": "4219"
+		"sleeperId": "4219",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -21219,7 +21587,8 @@
 		"salary": 25,
 		"cutYear": 2018,
 		"rosterId": 12,
-		"sleeperId": "3300"
+		"sleeperId": "3300",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -21231,7 +21600,8 @@
 		"salary": 1,
 		"cutYear": 2018,
 		"rosterId": 12,
-		"sleeperId": "3191"
+		"sleeperId": "3191",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -23307,7 +23677,8 @@
 		"salary": 7,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "2222"
+		"sleeperId": "2222",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -23319,7 +23690,8 @@
 		"salary": 3,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "4177"
+		"sleeperId": "4177",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -23331,7 +23703,8 @@
 		"salary": 3,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "1290"
+		"sleeperId": "1290",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -23343,7 +23716,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "5130"
+		"sleeperId": "5130",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -23355,7 +23729,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "2729"
+		"sleeperId": "2729",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -23367,7 +23742,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "1567"
+		"sleeperId": "1567",
+		"offseason": true
 	},
 	{
 		"owner": "Patrick",
@@ -23379,7 +23755,8 @@
 		"salary": 8,
 		"cutYear": 2019,
 		"rosterId": 1,
-		"sleeperId": "1020"
+		"sleeperId": "1020",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -23391,7 +23768,8 @@
 		"salary": 60,
 		"cutYear": 2019,
 		"rosterId": 2,
-		"sleeperId": "538"
+		"sleeperId": "538",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -23403,7 +23781,8 @@
 		"salary": 32,
 		"cutYear": 2019,
 		"rosterId": 2,
-		"sleeperId": "269"
+		"sleeperId": "269",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -23415,7 +23794,8 @@
 		"salary": 6,
 		"cutYear": 2019,
 		"rosterId": 2,
-		"sleeperId": "862"
+		"sleeperId": "862",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -23427,7 +23807,8 @@
 		"salary": 150,
 		"cutYear": 2019,
 		"rosterId": 2,
-		"sleeperId": "2307"
+		"sleeperId": "2307",
+		"offseason": true
 	},
 	{
 		"owner": "Koci/Mueller",
@@ -23439,7 +23820,8 @@
 		"salary": 38,
 		"cutYear": 2019,
 		"rosterId": 2,
-		"sleeperId": "1387"
+		"sleeperId": "1387",
+		"offseason": true
 	},
 	{
 		"owner": "Syed/Kuan",
@@ -23451,7 +23833,8 @@
 		"salary": 134,
 		"cutYear": 2019,
 		"rosterId": 3,
-		"sleeperId": "676"
+		"sleeperId": "676",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23463,7 +23846,8 @@
 		"salary": 190,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "6876"
+		"sleeperId": "6876",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23475,7 +23859,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5070"
+		"sleeperId": "5070",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23487,7 +23872,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "4144"
+		"sleeperId": "4144",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23499,7 +23885,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "4997"
+		"sleeperId": "4997",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23511,7 +23898,8 @@
 		"salary": 3,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5323"
+		"sleeperId": "5323",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23523,7 +23911,8 @@
 		"salary": 4,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "4972"
+		"sleeperId": "4972",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23535,7 +23924,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5374"
+		"sleeperId": "5374",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23547,7 +23937,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5001"
+		"sleeperId": "5001",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23559,7 +23950,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5136"
+		"sleeperId": "5136",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23571,7 +23963,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "4996"
+		"sleeperId": "4996",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23583,7 +23976,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5102"
+		"sleeperId": "5102",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23595,7 +23989,8 @@
 		"salary": 3,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5101"
+		"sleeperId": "5101",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23607,7 +24002,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "4995"
+		"sleeperId": "4995",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23619,7 +24015,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5067"
+		"sleeperId": "5067",
+		"offseason": true
 	},
 	{
 		"owner": "John/Zach",
@@ -23631,7 +24028,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 4,
-		"sleeperId": "5185"
+		"sleeperId": "5185",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",
@@ -23643,7 +24041,8 @@
 		"salary": 30,
 		"cutYear": 2019,
 		"rosterId": 12,
-		"sleeperId": "4651"
+		"sleeperId": "4651",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -23655,7 +24054,8 @@
 		"salary": 40,
 		"cutYear": 2019,
 		"rosterId": 5,
-		"sleeperId": "1901"
+		"sleeperId": "1901",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -23667,7 +24067,8 @@
 		"salary": 35,
 		"cutYear": 2019,
 		"rosterId": 5,
-		"sleeperId": "455"
+		"sleeperId": "455",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -23679,7 +24080,8 @@
 		"salary": 4,
 		"cutYear": 2019,
 		"rosterId": 5,
-		"sleeperId": "1951"
+		"sleeperId": "1951",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -23691,7 +24093,8 @@
 		"salary": 60,
 		"cutYear": 2019,
 		"rosterId": 5,
-		"sleeperId": "745"
+		"sleeperId": "745",
+		"offseason": true
 	},
 	{
 		"owner": "Trevor",
@@ -23703,7 +24106,8 @@
 		"salary": 26,
 		"cutYear": 2019,
 		"rosterId": 5,
-		"sleeperId": "621"
+		"sleeperId": "621",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -23715,7 +24119,8 @@
 		"salary": 5,
 		"cutYear": 2019,
 		"rosterId": 6,
-		"sleeperId": "4125"
+		"sleeperId": "4125",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -23727,7 +24132,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 6,
-		"sleeperId": "4973"
+		"sleeperId": "4973",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -23739,7 +24145,8 @@
 		"salary": 12,
 		"cutYear": 2019,
 		"rosterId": 6,
-		"sleeperId": "4622"
+		"sleeperId": "4622",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -23751,7 +24158,8 @@
 		"salary": 7,
 		"cutYear": 2019,
 		"rosterId": 6,
-		"sleeperId": "1601"
+		"sleeperId": "1601",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -23763,7 +24171,8 @@
 		"salary": 19,
 		"cutYear": 2019,
 		"rosterId": 6,
-		"sleeperId": "1793"
+		"sleeperId": "1793",
+		"offseason": true
 	},
 	{
 		"owner": "Keyon",
@@ -23775,7 +24184,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 6,
-		"sleeperId": "4127"
+		"sleeperId": "4127",
+		"offseason": true
 	},
 	{
 		"owner": "Brett/Luke",
@@ -23787,7 +24197,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 7,
-		"sleeperId": "5058"
+		"sleeperId": "5058",
+		"offseason": true
 	},
 	{
 		"owner": "Terence",
@@ -23799,7 +24210,8 @@
 		"salary": 59,
 		"cutYear": 2019,
 		"rosterId": 8,
-		"sleeperId": "1244"
+		"sleeperId": "1244",
+		"offseason": true
 	},
 	{
 		"owner": "Terence",
@@ -23811,7 +24223,8 @@
 		"salary": 45,
 		"cutYear": 2019,
 		"rosterId": 8,
-		"sleeperId": "1451"
+		"sleeperId": "1451",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -23823,7 +24236,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 9,
-		"sleeperId": "3868"
+		"sleeperId": "3868",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -23835,7 +24249,8 @@
 		"salary": 75,
 		"cutYear": 2019,
 		"rosterId": 9,
-		"sleeperId": "2257"
+		"sleeperId": "2257",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -23847,7 +24262,8 @@
 		"salary": 85,
 		"cutYear": 2019,
 		"rosterId": 9,
-		"sleeperId": "3327"
+		"sleeperId": "3327",
+		"offseason": true
 	},
 	{
 		"owner": "James/Charles",
@@ -23859,7 +24275,8 @@
 		"salary": 69,
 		"cutYear": 2019,
 		"rosterId": 9,
-		"sleeperId": "268"
+		"sleeperId": "268",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -23871,7 +24288,8 @@
 		"salary": 2,
 		"cutYear": 2019,
 		"rosterId": 10,
-		"sleeperId": "4263"
+		"sleeperId": "4263",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -23883,7 +24301,8 @@
 		"salary": 1,
 		"cutYear": 2019,
 		"rosterId": 10,
-		"sleeperId": "949"
+		"sleeperId": "949",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -23895,7 +24314,8 @@
 		"salary": 70,
 		"cutYear": 2019,
 		"rosterId": 10,
-		"sleeperId": "2452"
+		"sleeperId": "2452",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -23907,7 +24327,8 @@
 		"salary": 47,
 		"cutYear": 2019,
 		"rosterId": 10,
-		"sleeperId": "1346"
+		"sleeperId": "1346",
+		"offseason": true
 	},
 	{
 		"owner": "Schex",
@@ -23919,7 +24340,8 @@
 		"salary": 4,
 		"cutYear": 2019,
 		"rosterId": 10,
-		"sleeperId": "200"
+		"sleeperId": "200",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -23931,7 +24353,8 @@
 		"salary": 25,
 		"cutYear": 2019,
 		"rosterId": 11,
-		"sleeperId": "1517"
+		"sleeperId": "1517",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -23943,7 +24366,8 @@
 		"salary": 12,
 		"cutYear": 2019,
 		"rosterId": 11,
-		"sleeperId": "4147"
+		"sleeperId": "4147",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -23955,7 +24379,8 @@
 		"salary": 5,
 		"cutYear": 2019,
 		"rosterId": 11,
-		"sleeperId": "4162"
+		"sleeperId": "4162",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -23967,7 +24392,8 @@
 		"salary": 15,
 		"cutYear": 2019,
 		"rosterId": 11,
-		"sleeperId": "1984"
+		"sleeperId": "1984",
+		"offseason": true
 	},
 	{
 		"owner": "Quinn",
@@ -23979,7 +24405,8 @@
 		"salary": 40,
 		"cutYear": 2019,
 		"rosterId": 11,
-		"sleeperId": "3209"
+		"sleeperId": "3209",
+		"offseason": true
 	},
 	{
 		"owner": "Mitch",

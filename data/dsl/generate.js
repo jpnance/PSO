@@ -74,7 +74,8 @@ function loadCuts() {
 			sleeperId: cut.sleeperId || null,
 			startYear: cut.startYear,
 			endYear: cut.endYear,
-			salary: cut.salary || 1
+			salary: cut.salary || 1,
+			offseason: cut.offseason || false
 		};
 		
 		if (cut.sleeperId) {
@@ -701,6 +702,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				transactions.push({
 					year: cut.year,
 					type: 'cut',
+					offseason: cut.offseason,
 					line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 				});
 			});
@@ -736,6 +738,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			transactions.push({
 				year: cut.year,
 				type: 'cut',
+				offseason: cut.offseason,
 				line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 			});
 			lastCutYear = cut.year;
@@ -794,6 +797,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 						transactions.push({
 							year: cut.year,
 							type: 'cut',
+							offseason: cut.offseason,
 							line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 						});
 					}
@@ -832,6 +836,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 						transactions.push({
 							year: cut.year,
 							type: 'cut',
+							offseason: cut.offseason,
 							line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 						});
 					}
@@ -985,6 +990,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		transactions.push({
 			year: cut.year,
 			type: 'cut',
+			offseason: cut.offseason,
 			line: '  ' + yy(cut.year) + ' cut # by ' + cut.owner
 		});
 		lastFinalCutYear = cut.year;
@@ -1014,23 +1020,26 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	}
 	
 	// Sort transactions by year, then by type priority, then by date
-	// Priority: draft/auction → contract → trade → fa → cut
+	// Priority: offseason cut → draft/auction → contract → trade → in-season cut → fa (postseason)
 	var typePriority = {
 		'protect': 0,
-		'draft': 1,
-		'auction': 1,
-		'contract': 2,
-		'expansion': 3,
-		'trade': 4,
-		'fa': 5,
+		'cut-offseason': 1,
+		'draft': 2,
+		'auction': 2,
+		'contract': 3,
+		'expansion': 4,
+		'trade': 5,
 		'cut': 6,
-		'unknown': 7
+		'fa': 7,
+		'unknown': 8
 	};
 	transactions.sort(function(a, b) {
 		if (a.year !== b.year) return a.year - b.year;
-		// Sort by type priority first
-		var aPri = typePriority[a.type] !== undefined ? typePriority[a.type] : 10;
-		var bPri = typePriority[b.type] !== undefined ? typePriority[b.type] : 10;
+		// Sort by type priority first (offseason cuts get treated as cut-offseason)
+		var aType = (a.type === 'cut' && a.offseason) ? 'cut-offseason' : a.type;
+		var bType = (b.type === 'cut' && b.offseason) ? 'cut-offseason' : b.type;
+		var aPri = typePriority[aType] !== undefined ? typePriority[aType] : 10;
+		var bPri = typePriority[bType] !== undefined ? typePriority[bType] : 10;
 		if (aPri !== bPri) return aPri - bPri;
 		// Within same type, sort by date if available
 		if (a.date && b.date) return new Date(a.date) - new Date(b.date);
