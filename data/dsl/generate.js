@@ -652,7 +652,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 					transactions.push({
 						year: cut.year,
 						type: 'fa',
-						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut'
 					});
 				} else {
 					// Contract started before cut year - just show the cut (auction was in a prior year)
@@ -660,7 +660,7 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 					transactions.push({
 						year: cut.year,
 						type: 'fa',
-						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + yy(cut.startYear) + '/' + yy(cut.endYear) + ' # inferred from cut'
 					});
 				}
 				transactions.push({
@@ -712,10 +712,13 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			}
 			
 			if (needsFA) {
+				var faContract = cut.startYear === null 
+					? 'FA/' + yy(cut.endYear)
+					: yy(cut.startYear) + '/' + yy(cut.endYear);
 				transactions.push({
 					year: cut.year,
 					type: 'fa',
-					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut'
 				});
 			}
 			transactions.push({
@@ -947,10 +950,13 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		// Always infer FA pickup before a cut (someone had to pick them up to cut them)
 		// Skip only if this is consecutive with the same owner (already on roster)
 		if (lastFinalCutYear === null || cut.year !== lastFinalCutYear || cut.owner !== lastFinalCutOwner) {
+			var faContract = cut.startYear === null 
+				? 'FA/' + yy(cut.endYear)
+				: yy(cut.startYear) + '/' + yy(cut.endYear);
 			transactions.push({
 				year: cut.year,
 				type: 'fa',
-				line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut'
+				line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut'
 			});
 		}
 		transactions.push({
@@ -1249,12 +1255,15 @@ function generateDSL() {
 		var lastCutYear = null;
 		var lastCutOwner = null;
 		cuts.forEach(function(cut) {
+			var faContract = cut.startYear === null 
+				? 'FA/' + yy(cut.endYear)
+				: yy(cut.startYear) + '/' + yy(cut.endYear);
 			// If same year as previous cut, infer FA pickup between cuts
 			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
 			} else if (lastCutYear === null || cut.year > lastCutYear) {
 				// First cut or new year - add FA pickup
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
 			}
 			entryLines.push('  ' + yy(cut.year) + ' cut # by ' + cut.owner);
 			lastCutYear = cut.year;
@@ -1294,10 +1303,13 @@ function generateDSL() {
 		var lastCutYear = null;
 		var lastCutOwner = null;
 		cuts.forEach(function(cut) {
+			var faContract = cut.startYear === null 
+				? 'FA/' + yy(cut.endYear)
+				: yy(cut.startYear) + '/' + yy(cut.endYear);
 			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
 			} else if (lastCutYear === null || cut.year > lastCutYear) {
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' # inferred from cut');
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
 			}
 			entryLines.push('  ' + yy(cut.year) + ' cut # by ' + cut.owner);
 			lastCutYear = cut.year;
