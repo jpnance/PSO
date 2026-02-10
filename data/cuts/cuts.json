@@ -6387,7 +6387,7 @@
 		"salary": 1,
 		"cutYear": 2012,
 		"rosterId": 2,
-		"sleeperId": "4068"
+		"sleeperId": null
 	},
 	{
 		"owner": "Koci",
@@ -10816,7 +10816,7 @@
 		"salary": 28,
 		"cutYear": 2014,
 		"rosterId": 4,
-		"sleeperId": "4068"
+		"sleeperId": "748"
 	},
 	{
 		"owner": "John/Zach",
@@ -12655,7 +12655,7 @@
 		"salary": 6,
 		"cutYear": 2014,
 		"rosterId": 7,
-		"sleeperId": "4068"
+		"sleeperId": "748"
 	},
 	{
 		"owner": "Keyon",

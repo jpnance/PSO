@@ -54,9 +54,9 @@ var AUCTION_DATES = {
 // 0 means all cuts are in-season for that year.
 var IN_SEASON_BOUNDARY = {
 	2009: 0,
-	2010: 41,
-	2011: 31,
-	2012: 39,
+	2010: 40,
+	2011: 30,
+	2012: 38,
 	2013: 35,
 	2014: 42, // Celek/Bray still on Schex's team suggests he held on cut day
 	2015: 30, // Kenbrell Thompkins not in Daniel's contracts email
