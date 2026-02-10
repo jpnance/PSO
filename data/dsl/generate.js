@@ -219,13 +219,15 @@ function loadUnsignedTrades() {
 }
 
 /**
- * Parse all contract snapshots
+ * Parse contract snapshots (pre-season state only, NOT postseason)
  * Snapshots now have Sleeper IDs in the ID column (or -1 for historical)
  * Returns: { sleeperId: { name, positions, appearances: [...] } }
  */
 function parseSnapshots() {
+	// Only parse contracts-*.txt files (pre-season state)
+	// Postseason files are handled separately for final FA pickups
 	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
-		return f.match(/^(contracts|postseason)-\d{4}\.txt$/);
+		return f.match(/^contracts-\d{4}\.txt$/);
 	}).sort();
 	
 	var players = {};
@@ -357,6 +359,47 @@ function parseSnapshots() {
 	});
 	
 	return players;
+}
+
+/**
+ * Parse postseason snapshots for final FA pickups
+ * Returns: { sleeperId: { year: { owner, salary, endYear } } }
+ * These are FA pickups where the player ended the season rostered (wasn't cut)
+ */
+function parsePostseasonFAs() {
+	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
+		return f.match(/^postseason-\d{4}\.txt$/);
+	}).sort();
+	
+	var faPickups = {};
+	
+	files.forEach(function(file) {
+		var year = parseInt(file.match(/-([\d]{4})\.txt/)[1]);
+		var content = fs.readFileSync(path.join(SNAPSHOTS_DIR, file), 'utf8');
+		var lines = content.trim().split('\n');
+		
+		for (var i = 1; i < lines.length; i++) {
+			var parts = lines[i].split(',');
+			if (parts.length < 7) continue;
+			
+			var id = parts[0];
+			var owner = parts[1];
+			var startYear = parts[4] === 'FA' ? null : parseInt(parts[4]);
+			var endYear = parseInt(parts[5]);
+			var salaryStr = parts[6].replace(/[$,]/g, '');
+			var salary = salaryStr ? parseInt(salaryStr) : 1;
+			if (isNaN(salary)) salary = 1;
+			
+			// Only care about FA pickups (startYear === null) with an owner
+			if (startYear !== null || !owner) continue;
+			if (!id || id === '' || id === '-1') continue;  // Skip historical for now
+			
+			if (!faPickups[id]) faPickups[id] = {};
+			faPickups[id][year] = { owner: owner, salary: salary, endYear: endYear };
+		}
+	});
+	
+	return faPickups;
 }
 
 /**
@@ -603,7 +646,7 @@ function findCutsForPlayer(player, fromYear, toYear, cutsMap) {
 /**
  * Generate all transactions for a player by walking their contract history
  */
-function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap) {
+function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap, postseasonFAs) {
 	var transactions = [];
 	var appearances = player.appearances;
 	
@@ -612,7 +655,6 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 	var prevAppearance = null;
 	var prevContractKey = null;  // "startYear|endYear" to detect contract changes
 	var processedCuts = new Set();  // Track cuts we've already processed (year:owner)
-	var lastOwnedApp = null;  // Track the last appearance with an owner (not FA)
 	
 	for (var i = 0; i < appearances.length; i++) {
 		var app = appearances[i];
@@ -635,9 +677,16 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 				var cutKey = cut.year + ':' + cut.owner;
 				processedCuts.add(cutKey);
 				
-				// Generate entry transaction for this cut's owner (their auction/contract before cutting)
-				if (cut.startYear && cut.startYear === cut.year) {
-					// They had a contract starting this year - auction
+				// Generate entry transaction for this cut's owner
+				if (cut.startYear === null) {
+					// FA pickup - infer it
+					transactions.push({
+						year: cut.year,
+						type: 'fa',
+						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut'
+					});
+				} else {
+					// Auction contract - generate auction + contract from cut data
 					transactions.push({
 						year: cut.startYear,
 						type: 'auction',
@@ -647,21 +696,6 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 						year: cut.startYear,
 						type: 'contract',
 						line: '  ' + yy(cut.startYear) + ' contract $' + cut.salary + ' ' + yy(cut.startYear) + '/' + yy(cut.endYear)
-					});
-				} else if (cut.startYear === null) {
-					// They picked up as FA
-					transactions.push({
-						year: cut.year,
-						type: 'fa',
-						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut'
-					});
-				} else {
-					// Contract started before cut year - just show the cut (auction was in a prior year)
-					// For now, infer FA pickup since we don't have the original auction
-					transactions.push({
-						year: cut.year,
-						type: 'fa',
-						line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + yy(cut.startYear) + '/' + yy(cut.endYear) + ' # inferred from cut'
 					});
 				}
 				transactions.push({
@@ -676,7 +710,6 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			entryTxs.forEach(function(tx) { transactions.push(tx); });
 			prevContractKey = contractKey;
 			prevAppearance = app;
-			if (app.owner) lastOwnedApp = app;
 			continue;
 		}
 		
@@ -691,39 +724,13 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 			if (processedCuts.has(cutKey)) return;
 			processedCuts.add(cutKey);
 			
-			// Determine if we need an FA pickup before this cut
-			// - Check against the last OWNED appearance (not just prevAppearance which might be FA)
-			// - If cut is after last owned contract ended, player was FA and needed pickup
-			// - If same year as previous cut but different owner, need FA pickup
-			// - If cut is during contract by same owner, no FA needed (already rostered)
-			var needsFA = false;
-			if (lastCutYear !== null && cut.year === lastCutYear && cut.owner !== lastCutOwner) {
-				// Same year, different owner - someone else picked them up
-				needsFA = true;
-			} else if (lastCutYear === null) {
-				// First cut in gap - check against last owned appearance
-				var refAppearance = lastOwnedApp || prevAppearance;
-				var refContractEnd = refAppearance.endYear || refAppearance.year;
-				if (cut.year > refContractEnd) {
-					// Cut is after contract ended - they were FA, need pickup
-					needsFA = true;
-				} else if (!sameRegime(cut.owner, refAppearance.owner, cut.year)) {
-					// Cut is during contract but by different owner - traded then cut, need FA
-					needsFA = true;
-				}
-			} else if (cut.year > lastCutYear) {
-				// New year after previous cut - need FA pickup
-				needsFA = true;
-			}
-			
-			if (needsFA) {
-				var faContract = cut.startYear === null 
-					? 'FA/' + yy(cut.endYear)
-					: yy(cut.startYear) + '/' + yy(cut.endYear);
+			// Only infer FA pickup if the cut has an FA contract (startYear === null)
+			// If startYear != null, the player was acquired via auction/draft which is already captured
+			if (cut.startYear === null) {
 				transactions.push({
 					year: cut.year,
 					type: 'fa',
-					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut'
+					line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut'
 				});
 			}
 			transactions.push({
@@ -894,7 +901,6 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		
 		prevContractKey = contractKey;
 		prevAppearance = app;
-		if (app.owner) lastOwnedApp = app;
 	}
 	
 	// Add expansion pick if player was selected (unconditionally)
@@ -967,35 +973,13 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		if (processedCuts.has(cutKey)) return;
 		processedCuts.add(cutKey);
 		
-		// Determine if we need an FA pickup before this cut
-		var needsFA = false;
-		if (lastFinalCutYear !== null && cut.year === lastFinalCutYear && cut.owner !== lastFinalCutOwner) {
-			// Same year, different owner - someone picked them up after previous cut
-			needsFA = true;
-		} else if (lastFinalCutYear === null) {
-			// First cut - check against last owned appearance
-			var lastContractEnd = lastOwnedAppearance.endYear || lastOwnedAppearance.year;
-			if (cut.year > lastContractEnd) {
-				// Cut is after contract ended - they were FA, need pickup
-				needsFA = true;
-			} else if (!sameRegime(cut.owner, lastOwnedAppearance.owner, cut.year)) {
-				// Cut is during contract but by different owner - traded then cut
-				needsFA = true;
-			}
-			// If same owner and within contract term, no FA needed (still rostered)
-		} else if (cut.year > lastFinalCutYear) {
-			// New year after previous cut - they were FA, need pickup
-			needsFA = true;
-		}
-		
-		if (needsFA) {
-			var faContract = cut.startYear === null 
-				? 'FA/' + yy(cut.endYear)
-				: yy(cut.startYear) + '/' + yy(cut.endYear);
+		// Only infer FA pickup if the cut has an FA contract (startYear === null)
+		// If startYear != null, the player was acquired via auction/draft which is already captured
+		if (cut.startYear === null) {
 			transactions.push({
 				year: cut.year,
 				type: 'fa',
-				line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut'
+				line: '  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut'
 			});
 		}
 		transactions.push({
@@ -1006,6 +990,28 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		lastFinalCutYear = cut.year;
 		lastFinalCutOwner = cut.owner;
 	});
+	
+	// Add postseason FA pickups (player ended season rostered, wasn't cut)
+	if (player.sleeperId && postseasonFAs[player.sleeperId]) {
+		var playerPostseasonFAs = postseasonFAs[player.sleeperId];
+		Object.keys(playerPostseasonFAs).forEach(function(yearStr) {
+			var year = parseInt(yearStr);
+			var fa = playerPostseasonFAs[year];
+			
+			// Check if we already have an FA transaction for this year/owner
+			var alreadyHasFA = transactions.some(function(t) {
+				return t.year === year && t.type === 'fa' && t.line.includes(' fa ' + fa.owner + ' ');
+			});
+			
+			if (!alreadyHasFA) {
+				transactions.push({
+					year: year,
+					type: 'fa',
+					line: '  ' + yy(year) + ' fa ' + fa.owner + ' $' + fa.salary + ' FA/' + yy(fa.endYear)
+				});
+			}
+		});
+	}
 	
 	// Sort transactions by year, then by date (for trades)
 	transactions.sort(function(a, b) {
@@ -1200,6 +1206,10 @@ function generateDSL() {
 	var cutsMap = loadCuts();
 	console.log('  ' + Object.keys(cutsMap.bySleeperId).length + ' by Sleeper ID, ' + Object.keys(cutsMap.byName).length + ' by name (historical)\n');
 	
+	console.log('Loading postseason FAs...');
+	var postseasonFAs = parsePostseasonFAs();
+	console.log('  ' + Object.keys(postseasonFAs).length + ' players with postseason FA pickups\n');
+	
 	console.log('Parsing snapshots...');
 	var players = parseSnapshots();
 	var playerKeys = Object.keys(players);
@@ -1258,7 +1268,7 @@ function generateDSL() {
 	playerKeys.forEach(function(key) {
 		var player = players[key];
 		var header = formatHeader(player);
-		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap);
+		var transactions = generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades, cutsMap, postseasonFAs);
 		
 		var entryLines = [header];
 		transactions.forEach(function(tx) {
@@ -1290,23 +1300,17 @@ function generateDSL() {
 		// Sort cuts by year
 		cuts.sort(function(a, b) { return a.year - b.year; });
 		
-		// Generate FA pickups and cuts
-		var lastCutYear = null;
-		var lastCutOwner = null;
+		// Generate acquisitions and cuts
 		cuts.forEach(function(cut) {
-			var faContract = cut.startYear === null 
-				? 'FA/' + yy(cut.endYear)
-				: yy(cut.startYear) + '/' + yy(cut.endYear);
-			// If same year as previous cut, infer FA pickup between cuts
-			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
-			} else if (lastCutYear === null || cut.year > lastCutYear) {
-				// First cut or new year - add FA pickup
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
+			if (cut.startYear === null) {
+				// FA pickup - infer it
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut');
+			} else {
+				// Auction contract - generate auction + contract from cut data
+				entryLines.push('  ' + yy(cut.startYear) + ' auction ' + cut.owner + ' $' + cut.salary);
+				entryLines.push('  ' + yy(cut.startYear) + ' contract $' + cut.salary + ' ' + yy(cut.startYear) + '/' + yy(cut.endYear));
 			}
 			entryLines.push('  ' + yy(cut.year) + ' cut # by ' + cut.owner);
-			lastCutYear = cut.year;
-			lastCutOwner = cut.owner;
 		});
 		
 		playerEntries.push({
@@ -1339,20 +1343,17 @@ function generateDSL() {
 		
 		cuts.sort(function(a, b) { return a.year - b.year; });
 		
-		var lastCutYear = null;
-		var lastCutOwner = null;
+		// Generate acquisitions and cuts
 		cuts.forEach(function(cut) {
-			var faContract = cut.startYear === null 
-				? 'FA/' + yy(cut.endYear)
-				: yy(cut.startYear) + '/' + yy(cut.endYear);
-			if (cut.year === lastCutYear && cut.owner !== lastCutOwner) {
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
-			} else if (lastCutYear === null || cut.year > lastCutYear) {
-				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' ' + faContract + ' # inferred from cut');
+			if (cut.startYear === null) {
+				// FA pickup - infer it
+				entryLines.push('  ' + yy(cut.year) + ' fa ' + cut.owner + ' $' + cut.salary + ' FA/' + yy(cut.endYear) + ' # inferred from cut');
+			} else {
+				// Auction contract - generate auction + contract from cut data
+				entryLines.push('  ' + yy(cut.startYear) + ' auction ' + cut.owner + ' $' + cut.salary);
+				entryLines.push('  ' + yy(cut.startYear) + ' contract $' + cut.salary + ' ' + yy(cut.startYear) + '/' + yy(cut.endYear));
 			}
 			entryLines.push('  ' + yy(cut.year) + ' cut # by ' + cut.owner);
-			lastCutYear = cut.year;
-			lastCutOwner = cut.owner;
 		});
 		
 		playerEntries.push({
