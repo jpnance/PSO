@@ -116,8 +116,12 @@ var results = {
 	positionMismatch: [], // Position doesn't match
 	ambiguous: [],       // Name has multiple Sleeper IDs
 	timelineMismatch: [], // Ambiguous name with wrong career timeline
+	ambiguousPositionMismatch: [], // Ambiguous name where position suggests wrong ID
 	checked: 0
 };
+
+// Track ambiguous name usage across files for consistency check
+var ambiguousUsage = {}; // normName -> { ids: { id: [sources] }, positions: { id: pos } }
 
 function checkPlayer(sleeperId, ourName, ourPosition, source, contextYear) {
 	if (!sleeperId || sleeperId === '-1' || sleeperId === 'null' || sleeperId === '') {
@@ -188,6 +192,52 @@ function checkPlayer(sleeperId, ourName, ourPosition, source, contextYear) {
 			resolutionMatches: resolution ? resolution.sleeperId === sleeperId : null,
 			source: source
 		});
+		
+		// Track usage for cross-file consistency
+		if (!ambiguousUsage[ourNormName]) {
+			ambiguousUsage[ourNormName] = { ids: {}, positions: {} };
+		}
+		if (!ambiguousUsage[ourNormName].ids[sleeperId]) {
+			ambiguousUsage[ourNormName].ids[sleeperId] = [];
+		}
+		ambiguousUsage[ourNormName].ids[sleeperId].push(source);
+		if (ourPosition) {
+			ambiguousUsage[ourNormName].positions[sleeperId] = ourPosition;
+		}
+		
+		// Position-based disambiguation for ambiguous names
+		// If we have a position and it doesn't match the Sleeper player, check if another candidate matches
+		if (ourPosition) {
+			var ourPosArr = normalizePosition(ourPosition).split('/');
+			var sleeperPos = sleeperPlayer.fantasy_positions || [];
+			var sleeperPosArr = sleeperPos.map(function(p) { return p.toUpperCase(); });
+			var hasPositionOverlap = ourPosArr.some(function(p) { return sleeperPosArr.includes(p); });
+			
+			if (!hasPositionOverlap && sleeperPosArr.length > 0) {
+				// Our position doesn't match this Sleeper player - check if another candidate matches
+				var positionBetterCandidate = ids.find(function(candidateId) {
+					if (candidateId === sleeperId) return false;
+					var candidate = sleeperData[candidateId];
+					if (!candidate) return false;
+					var candidatePos = candidate.fantasy_positions || [];
+					var candidatePosArr = candidatePos.map(function(p) { return p.toUpperCase(); });
+					return ourPosArr.some(function(p) { return candidatePosArr.includes(p); });
+				});
+				
+				if (positionBetterCandidate) {
+					var posBetterPlayer = sleeperData[positionBetterCandidate];
+					results.ambiguousPositionMismatch.push({
+						sleeperId: sleeperId,
+						ourName: ourName,
+						ourPosition: ourPosition,
+						sleeperPosition: sleeperPosArr.join('/'),
+						betterCandidateId: positionBetterCandidate,
+						betterCandidatePosition: (posBetterPlayer.fantasy_positions || []).join('/'),
+						source: source
+					});
+				}
+			}
+		}
 		
 		// Timeline check for ambiguous names
 		// Only flag if context year is BEFORE the player's approximate rookie year
@@ -389,6 +439,66 @@ if (results.timelineMismatch.length > 0) {
 	console.log('');
 }
 
+// Ambiguous position mismatches (position suggests wrong ID for ambiguous name)
+if (results.ambiguousPositionMismatch.length > 0) {
+	console.log('AMBIGUOUS POSITION MISMATCHES (' + results.ambiguousPositionMismatch.length + '):');
+	console.log('-'.repeat(40));
+	// Dedupe by sleeperId
+	var seenAmbigPos = {};
+	results.ambiguousPositionMismatch.forEach(function(m) {
+		if (seenAmbigPos[m.sleeperId]) return;
+		seenAmbigPos[m.sleeperId] = true;
+		console.log('  "' + m.ourName + '" (ID ' + m.sleeperId + '): ours=' + m.ourPosition + ', Sleeper=' + m.sleeperPosition);
+		console.log('    Better candidate: ID ' + m.betterCandidateId + ' (' + m.betterCandidatePosition + ')');
+		console.log('    Source: ' + m.source);
+	});
+	console.log('');
+}
+
+// Cross-file consistency check (same ambiguous name using different IDs)
+var inconsistentNames = [];
+Object.keys(ambiguousUsage).forEach(function(normName) {
+	var usage = ambiguousUsage[normName];
+	var idsUsed = Object.keys(usage.ids);
+	if (idsUsed.length > 1) {
+		// Multiple IDs used - check if positions differ (legitimate) or same (suspicious)
+		var positions = {};
+		idsUsed.forEach(function(id) {
+			var pos = usage.positions[id];
+			if (pos) {
+				if (!positions[pos]) positions[pos] = [];
+				positions[pos].push(id);
+			}
+		});
+		// If same position used with different IDs, that's suspicious
+		var suspiciousPositions = Object.keys(positions).filter(function(pos) {
+			return positions[pos].length > 1;
+		});
+		if (suspiciousPositions.length > 0) {
+			inconsistentNames.push({
+				name: normName,
+				ids: idsUsed,
+				positions: positions,
+				sources: usage.ids
+			});
+		}
+	}
+});
+
+if (inconsistentNames.length > 0) {
+	console.log('CROSS-FILE INCONSISTENCIES (' + inconsistentNames.length + '):');
+	console.log('-'.repeat(40));
+	inconsistentNames.forEach(function(inc) {
+		console.log('  "' + inc.name + '": uses IDs ' + inc.ids.join(', '));
+		inc.ids.forEach(function(id) {
+			var sources = inc.sources[id].slice(0, 3).join(', ');
+			if (inc.sources[id].length > 3) sources += ' (+' + (inc.sources[id].length - 3) + ' more)';
+			console.log('    ID ' + id + ': ' + sources);
+		});
+	});
+	console.log('');
+}
+
 // Ambiguous names (informational) - only show with --verbose
 var ambiguousByName = {};
 if (results.ambiguous.length > 0) {
@@ -437,13 +547,18 @@ if (results.ambiguous.length > 0) {
 console.log('='.repeat(60));
 console.log('SUMMARY');
 console.log('='.repeat(60));
-console.log('  Name mismatches:      ' + results.mismatches.length + (results.mismatches.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
-console.log('  IDs not found:        ' + results.notFound.length + (results.notFound.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
-console.log('  Timeline mismatches:  ' + results.timelineMismatch.length + (results.timelineMismatch.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
-console.log('  Position mismatches:  ' + results.positionMismatch.length + (results.positionMismatch.length > 0 ? ' [review]' : ' ✓'));
-console.log('  Ambiguous names:      ' + Object.keys(ambiguousByName || {}).length + ' unique');
+console.log('  Name mismatches:          ' + results.mismatches.length + (results.mismatches.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  IDs not found:            ' + results.notFound.length + (results.notFound.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  Timeline mismatches:      ' + results.timelineMismatch.length + (results.timelineMismatch.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  Ambig. position mismatch: ' + results.ambiguousPositionMismatch.length + (results.ambiguousPositionMismatch.length > 0 ? ' [FIX REQUIRED]' : ' ✓'));
+console.log('  Cross-file inconsistent:  ' + inconsistentNames.length + (inconsistentNames.length > 0 ? ' [review]' : ' ✓'));
+console.log('  Position mismatches:      ' + results.positionMismatch.length + (results.positionMismatch.length > 0 ? ' [review]' : ' ✓'));
+console.log('  Ambiguous names:          ' + Object.keys(ambiguousByName || {}).length + ' unique');
 
-var hasCriticalIssues = results.mismatches.length > 0 || results.notFound.length > 0 || results.timelineMismatch.length > 0;
+var hasCriticalIssues = results.mismatches.length > 0 || 
+	results.notFound.length > 0 || 
+	results.timelineMismatch.length > 0 ||
+	results.ambiguousPositionMismatch.length > 0;
 
 if (!hasCriticalIssues) {
 	console.log('\n✓ All Sleeper IDs verified!');
