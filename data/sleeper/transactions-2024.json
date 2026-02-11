@@ -5522,6 +5522,75 @@
 			},
 			{
 				"adds": {
+					"10914": 6
+				},
+				"consenter_ids": [
+					6
+				],
+				"created": 1730999112267,
+				"creator": "560977696954548224",
+				"draft_picks": null,
+				"drops": {
+					"8161": 6
+				},
+				"league_id": "1127724654778601472",
+				"leg": 10,
+				"metadata": {
+					"notes": "Your waiver claim was processed successfully!"
+				},
+				"player_map": {
+					"8161": {
+						"position": "QB",
+						"status": "Active",
+						"number": 2,
+						"first_name": "Malik",
+						"last_name": "Willis",
+						"sport": "nfl",
+						"team": "GB",
+						"player_id": "8161",
+						"fantasy_positions": [
+							"QB"
+						],
+						"team_abbr": null,
+						"team_changed_at": null,
+						"injury_status": null,
+						"years_exp": 2,
+						"news_updated": 1730097924936
+					},
+					"10914": {
+						"position": "LB",
+						"status": "Active",
+						"number": 0,
+						"first_name": "Daiyan",
+						"last_name": "Henley",
+						"sport": "nfl",
+						"team": "LAC",
+						"player_id": "10914",
+						"fantasy_positions": [
+							"LB"
+						],
+						"team_abbr": null,
+						"team_changed_at": null,
+						"injury_status": null,
+						"years_exp": 1,
+						"news_updated": 1730764858915
+					}
+				},
+				"roster_ids": [
+					6
+				],
+				"settings": {
+					"seq": 1,
+					"waiver_bid": 7
+				},
+				"status": "complete",
+				"status_updated": 1730999112267,
+				"transaction_id": "1159503360412979200",
+				"type": "waiver",
+				"waiver_budget": null
+			},
+			{
+				"adds": {
 					"8159": 12
 				},
 				"consenter_ids": [
@@ -12600,6 +12669,75 @@
 				"status": "complete",
 				"status_updated": 1727971528703,
 				"transaction_id": "1147575407504551936",
+				"type": "waiver",
+				"waiver_budget": null
+			},
+			{
+				"adds": {
+					"2307": 4
+				},
+				"consenter_ids": [
+					4
+				],
+				"created": 1727625934410,
+				"creator": "721857038556135424",
+				"draft_picks": null,
+				"drops": {
+					"8206": 4
+				},
+				"league_id": "1127724654778601472",
+				"leg": 4,
+				"metadata": {
+					"notes": "Your waiver claim was processed successfully!"
+				},
+				"player_map": {
+					"2307": {
+						"position": "QB",
+						"status": "Inactive",
+						"number": 18,
+						"first_name": "Marcus",
+						"last_name": "Mariota",
+						"sport": "nfl",
+						"team": "WAS",
+						"player_id": "2307",
+						"fantasy_positions": [
+							"QB"
+						],
+						"team_abbr": null,
+						"team_changed_at": null,
+						"injury_status": "IR",
+						"years_exp": 9,
+						"news_updated": 1725737738439
+					},
+					"8206": {
+						"position": "QB",
+						"status": "Active",
+						"number": 19,
+						"first_name": "Skylar",
+						"last_name": "Thompson",
+						"sport": "nfl",
+						"team": "MIA",
+						"player_id": "8206",
+						"fantasy_positions": [
+							"QB"
+						],
+						"team_abbr": null,
+						"team_changed_at": null,
+						"injury_status": "Questionable",
+						"years_exp": 2,
+						"news_updated": 1727614562427
+					}
+				},
+				"roster_ids": [
+					4
+				],
+				"settings": {
+					"seq": 2,
+					"waiver_bid": 1
+				},
+				"status": "complete",
+				"status_updated": 1727625934410,
+				"transaction_id": "1145807241669414912",
 				"type": "waiver",
 				"waiver_budget": null
 			},
