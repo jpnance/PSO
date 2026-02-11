@@ -556,20 +556,48 @@ function generateDSL() {
 	Object.keys(faByPlayer).forEach(function(key) {
 		if (players[key]) return; // already in snapshots
 
-		// Build a player entry from FA records
-		var records = faByPlayer[key];
-		var firstRecord = records[0];
-		var firstPlayer = firstRecord.adds[0] || firstRecord.drops[0];
-		if (!firstPlayer) return;
+		// For name:-prefixed keys, also check the historical: variant (used by snapshots)
+		if (key.indexOf('name:') === 0) {
+			var historicalKey = 'historical:' + key.substring(5);
+			if (players[historicalKey]) {
+				// Map FA records to the existing snapshot key so they merge
+				if (!faByPlayer[historicalKey]) faByPlayer[historicalKey] = [];
+				faByPlayer[historicalKey] = faByPlayer[historicalKey].concat(faByPlayer[key]);
+				return;
+			}
+		}
 
-		var sleeperId = firstPlayer.sleeperId || null;
+		// Find the actual player matching THIS key from the FA records
+		// (multi-player records may contain other players as drops[0])
+		var records = faByPlayer[key];
+		var matchingPlayer = null;
+		var nameFromKey = key.indexOf('name:') === 0 ? key.substring(5) : null;
+
+		for (var i = 0; i < records.length && !matchingPlayer; i++) {
+			var r = records[i];
+			var allPlayers = r.adds.concat(r.drops);
+			for (var j = 0; j < allPlayers.length; j++) {
+				var p = allPlayers[j];
+				if (nameFromKey && p.name && p.name.toLowerCase() === nameFromKey) {
+					matchingPlayer = p;
+					break;
+				} else if (!nameFromKey && p.sleeperId === key) {
+					matchingPlayer = p;
+					break;
+				}
+			}
+		}
+
+		if (!matchingPlayer) return;
+
+		var sleeperId = matchingPlayer.sleeperId || null;
 		var playerKey = sleeperId || key;
 		if (players[playerKey]) return; // already exists under different key
 
 		players[playerKey] = {
 			sleeperId: sleeperId,
-			name: firstPlayer.name,
-			positions: firstPlayer.position ? [firstPlayer.position] : [],
+			name: matchingPlayer.name,
+			positions: matchingPlayer.position ? [matchingPlayer.position] : [],
 			contracts: []
 		};
 

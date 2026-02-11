@@ -594,6 +594,10 @@ function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups) {
 function generatePrePlatformCuts(cuts) {
 	var records = [];
 
+	// Track per-player cut count per season so repeated cuts get advancing timestamps.
+	// cuts.json is chronologically ordered, so we just increment for each additional cut.
+	var playerCutCount = {};
+
 	cuts.forEach(function(cut) {
 		if (cut.offseason) return;
 		if (cut.cutYear >= 2020) return;
@@ -609,7 +613,13 @@ function generatePrePlatformCuts(cuts) {
 
 		// For pre-2020 cuts, we don't have exact timestamps.
 		// Use a :33 conventional timestamp. Place in the middle of the season.
-		var timestamp = new Date(Date.UTC(cut.cutYear, 9, 15, 12, 0, 33));
+		// When the same player is cut multiple times in a season, advance by 1 day
+		// per additional cut so the timeline chains correctly with inferred adds.
+		var playerKey = (cut.sleeperId || cut.name.toLowerCase()) + '|' + cut.cutYear;
+		var cutIndex = playerCutCount[playerKey] || 0;
+		playerCutCount[playerKey] = cutIndex + 1;
+
+		var timestamp = new Date(Date.UTC(cut.cutYear, 9, 15 + cutIndex, 12, 0, 33));
 
 		records.push({
 			season: cut.cutYear,
@@ -758,6 +768,23 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 			return c.cutYear === season && c.startYear === null && !c.offseason;
 		});
 
+		// Build per-player index for ALL cuts (FA and non-FA) in this season.
+		// This mirrors generatePrePlatformCuts's timestamp logic (Oct 15 + N days)
+		// and lets us use non-FA cuts as lower bounds for inferred adds.
+		var allSeasonCuts = cuts.filter(function(c) {
+			return c.cutYear === season && !c.offseason && c.cutYear < 2020;
+		});
+
+		// Map each cut object to its per-player ordinal position (and thus its timestamp)
+		var cutPositionMap = new Map();
+		var playerCutCount = {};
+		allSeasonCuts.forEach(function(c) {
+			var pk = c.sleeperId || c.name.toLowerCase();
+			var idx = playerCutCount[pk] || 0;
+			playerCutCount[pk] = idx + 1;
+			cutPositionMap.set(c, idx);
+		});
+
 		seasonCuts.forEach(function(cut) {
 			var result = traceOriginalAcquirer(
 				cut.sleeperId, cut.name, cut.owner, season, seasonTrades
@@ -773,7 +800,20 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 			if (emitted.has(emitKey)) return;
 			emitted.add(emitKey);
 
-			var timestamp = inferTimestamp(faabOpen, result.upperBound || seasonEnd);
+			// This FA cut's position among ALL cuts of this player (matches generatePrePlatformCuts)
+			var perPlayerIdx = cutPositionMap.get(cut) || 0;
+			var cutTimestamp = new Date(Date.UTC(season, 9, 15 + perPlayerIdx, 12, 0, 33));
+
+			// Lower bound: if there's a prior cut of this player (any type), the add
+			// must come after it. Otherwise, FAAB open.
+			var lowerBound = faabOpen;
+			if (perPlayerIdx > 0) {
+				var priorCutTimestamp = new Date(Date.UTC(season, 9, 15 + (perPlayerIdx - 1), 12, 0, 33));
+				lowerBound = new Date(priorCutTimestamp.getTime() + 60000);
+			}
+
+			// Upper bound: trade date if available, otherwise the cut's own timestamp
+			var timestamp = inferTimestamp(lowerBound, result.upperBound || cutTimestamp);
 
 			var add = {
 				name: cut.name,
