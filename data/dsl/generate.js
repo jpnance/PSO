@@ -110,15 +110,22 @@ function loadTrades() {
 	var byPlayer = {}; // keyed by sleeperId or lowercase name -> array of trade entries
 
 	trades.forEach(function(trade) {
-		trade.parties.forEach(function(party) {
+		trade.parties.forEach(function(party, partyIndex) {
 			(party.players || []).forEach(function(player) {
 				var entry = {
 					tradeId: trade.tradeId,
 					date: trade.date,
 					toOwner: party.owner,
 					sleeperId: player.sleeperId || null,
-					contractStr: player.contractStr || null
+					contractStr: player.contractStr || null,
+					fromOwner: null
 				};
+
+				// For unsigned players in 2-party trades, track the sender
+				if ((player.contractStr === 'unsigned' || (player.contract && player.contract.start === null)) &&
+					trade.parties.length === 2) {
+					entry.fromOwner = trade.parties[1 - partyIndex].owner;
+				}
 
 				// Index by sleeperId
 				if (player.sleeperId) {
@@ -407,18 +414,8 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 				}
 			}
 
-			if (unsignedTrade) {
-				// Find the sender — the other party's owner
-				// We stored toOwner in the trade entry; the sender is who gave the player away
-				// For unsigned trades, look for a trade entry going TO the other party
-				var allTradesThisId = playerTrades.filter(function(t) { return t.tradeId === unsignedTrade.tradeId; });
-				// The sender is any party in this trade that ISN'T the receiver
-				for (var k = 0; k < allTradesThisId.length; k++) {
-					if (!sameRegime(allTradesThisId[k].toOwner, c.owner, c.startYear)) {
-						auctionOwner = allTradesThisId[k].toOwner;
-						break;
-					}
-				}
+			if (unsignedTrade && unsignedTrade.fromOwner) {
+				auctionOwner = unsignedTrade.fromOwner;
 			}
 
 			events.push({
@@ -426,8 +423,14 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 				type: 'auction',
 				line: '  ' + yy(c.startYear) + ' auction ' + auctionOwner + ' $' + c.salary
 			});
+
+			// Contract timestamp: after the trade if unsigned, otherwise right after auction
+			var contractTimestamp = unsignedTrade
+				? new Date(new Date(unsignedTrade.date).getTime() + 1)
+				: new Date(auctionDate.getTime() + 1);
+
 			events.push({
-				timestamp: new Date(auctionDate.getTime() + 1),
+				timestamp: contractTimestamp,
 				type: 'contract',
 				line: '  ' + yy(c.startYear) + ' contract $' + c.salary + ' ' + yy(c.startYear) + '/' + yy(c.endYear)
 			});
