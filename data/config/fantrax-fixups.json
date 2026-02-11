@@ -1,13 +1,13 @@
 {
-	"fantraxIgnored": [],
-	"fantraxImports": [],
-	"fantraxCutTradeLinks": [],
-	"fantraxAuditIgnored": [
-		{ "season": 2020, "rosterId": 5, "playerName": "Marcus Mariota", "reason": "Rollback (doc/transaction-rollbacks.txt Dec 19 2020)" },
-		{ "season": 2020, "rosterId": 10, "playerName": "Troy Hill", "reason": "Hewitt/Akins situation, restored to Schex (doc/transaction-rollbacks.txt Dec 10 2020)" },
-		{ "season": 2020, "rosterId": 10, "playerName": "Neville Hewitt", "reason": "Hewitt/Akins situation, illegal bid voided (doc/transaction-rollbacks.txt Dec 10 2020)" },
-		{ "season": 2020, "rosterId": 11, "playerName": "Austin Walter", "reason": "Rollback (doc/transaction-rollbacks.txt Nov 16 2020)" },
-		{ "season": 2020, "rosterId": 12, "playerName": "Ben DiNucci", "reason": "Chase Daniel rollback, restored to Mitch (doc/transaction-rollbacks.txt Nov 7 2020)" },
-		{ "season": 2020, "rosterId": 12, "playerName": "Chase Daniel", "reason": "Rollback (doc/transaction-rollbacks.txt Nov 7 2020)" }
+	"fantraxIgnored": [
+		{ "transactionId": "pn9pmlvwkiusigup", "reason": "Dec 19 2020 — Mariota illegal claim by Trevor (had already played)" },
+		{ "transactionId": "qcclur99kiiqy8ls", "reason": "Dec 10 2020 — Hewitt illegal bid by Schex (insufficient FAAB), also drops Troy Hill" },
+		{ "transactionId": "eyg8zt8zkij9d633", "reason": "Dec 10 2020 — Schex self-drops Hewitt after illegal bid voided" },
+		{ "transactionId": "e1wjm9xkkhkoh68k", "reason": "Nov 16 2020 — Austin Walter illegal claim (had already played), rolled back" },
+		{ "transactionId": "d0n1gosgkh49d5gr", "reason": "Nov 7 2020 — Chase Daniel illegal claim by Mitch (FAAB error)" }
+	],
+	"fantraxCommissionerAuditIncluded": [
+		{ "transactionId": "z6k8r568kijb7q9o", "reason": "Dec 10 2020 — Keyon drops Jordan Akins to make room for Hewitt award (in cuts.json)" },
+		{ "transactionId": "beubdzipkijb7c2u", "reason": "Dec 10 2020 — Hewitt awarded to Keyon as second-highest legal bidder ($3)" }
 	]
 }

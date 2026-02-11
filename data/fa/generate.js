@@ -1,0 +1,1076 @@
+#!/usr/bin/env node
+/**
+ * FA Transaction Generator
+ *
+ * Generates fa.json from platform transaction data (2020+), cuts.json, trades.json,
+ * and snapshot inference (pre-2020).
+ *
+ * Usage:
+ *   node data/fa/generate.js
+ */
+
+var fs = require('fs');
+var path = require('path');
+
+var PSO = require('../../config/pso.js');
+
+// Paths
+var FA_FILE = path.join(__dirname, 'fa.json');
+var CUTS_FILE = path.join(__dirname, '../cuts/cuts.json');
+var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
+var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
+var CONFIG_DIR = path.join(__dirname, '../config');
+var SUMMER_MEETINGS_FILE = path.join(__dirname, '../../doc/summer-meetings.txt');
+var TRADE_FACILITATION_FILE = path.join(CONFIG_DIR, 'trade-facilitation-fixups.json');
+
+// Facts layer
+var sleeperFacts = require('../facts/sleeper-facts');
+var fantraxFacts = require('../facts/fantrax-facts');
+
+// =============================================================================
+// Data Loading
+// =============================================================================
+
+/**
+ * Parse summer-meetings.txt to get auction dates.
+ * Returns: { year: Date }
+ */
+function loadAuctionDates() {
+	var content = fs.readFileSync(SUMMER_MEETINGS_FILE, 'utf8');
+	var dates = {};
+	var lines = content.split('\n');
+	var inAuction = false;
+
+	for (var i = 0; i < lines.length; i++) {
+		var line = lines[i].trim();
+		if (line === 'Summer Meeting / Auction Dates') {
+			inAuction = true;
+			continue;
+		}
+		if (line === 'Contract Due Dates') {
+			break;
+		}
+		if (!inAuction) continue;
+		var match = line.match(/^(\d{4}):\s+(.+)$/);
+		if (match) {
+			var year = parseInt(match[1]);
+			var dateStr = match[2].trim();
+			dates[year] = new Date(year + '-' + parseMonthDay(dateStr));
+		}
+	}
+
+	return dates;
+}
+
+/**
+ * Parse "August 24" -> "08-24"
+ */
+function parseMonthDay(str) {
+	var months = {
+		january: '01', february: '02', march: '03', april: '04',
+		may: '05', june: '06', july: '07', august: '08',
+		september: '09', october: '10', november: '11', december: '12'
+	};
+	var parts = str.split(/\s+/);
+	var month = months[parts[0].toLowerCase()];
+	var day = String(parseInt(parts[1])).padStart(2, '0');
+	return month + '-' + day;
+}
+
+/**
+ * Get cut day timestamp for a given year.
+ * Cut day is one week before auction date, deadline 4:00 AM UTC the next day.
+ */
+function getCutDayTimestamp(year, auctionDates) {
+	var auctionDate = auctionDates[year];
+	if (!auctionDate) return null;
+	var cutDay = new Date(auctionDate);
+	cutDay.setDate(cutDay.getDate() - 7);
+	// 4:00 AM UTC the next day (11:59 PM EDT + 1 minute)
+	var timestamp = new Date(Date.UTC(cutDay.getUTCFullYear(), cutDay.getUTCMonth(), cutDay.getUTCDate() + 1, 4, 0, 0));
+	return timestamp;
+}
+
+/**
+ * Load all fixup data.
+ * Returns: { sleeperIgnored: Set, fantraxIgnored: Set, fantraxIncluded: Set,
+ *            sleeperIncluded: Set, tradeFacilitation: {} }
+ */
+function loadFixups() {
+	var result = {
+		sleeperIgnored: new Set(),
+		fantraxIgnored: new Set(),
+		sleeperIncluded: new Set(),
+		fantraxIncluded: new Set(),
+		tradeFacilitation: {}
+	};
+
+	// Sleeper fixups (by year)
+	var sleeperFiles = fs.readdirSync(CONFIG_DIR).filter(function(f) {
+		return f.match(/^sleeper-fixups-\d+\.json$/);
+	});
+
+	sleeperFiles.forEach(function(file) {
+		try {
+			var fixups = JSON.parse(fs.readFileSync(path.join(CONFIG_DIR, file), 'utf8'));
+			(fixups.sleeperIgnored || []).forEach(function(item) {
+				if (item.sleeperTxId) result.sleeperIgnored.add(item.sleeperTxId);
+			});
+			(fixups.sleeperCommissionerAuditIncluded || []).forEach(function(item) {
+				if (item.sleeperTxId) result.sleeperIncluded.add(item.sleeperTxId);
+			});
+		} catch (e) {
+			console.warn('Warning: Could not load ' + file + ':', e.message);
+		}
+	});
+
+	// Fantrax fixups
+	var fantraxFixupsPath = path.join(CONFIG_DIR, 'fantrax-fixups.json');
+	if (fs.existsSync(fantraxFixupsPath)) {
+		try {
+			var fixups = JSON.parse(fs.readFileSync(fantraxFixupsPath, 'utf8'));
+			(fixups.fantraxIgnored || []).forEach(function(item) {
+				if (item.transactionId) result.fantraxIgnored.add(item.transactionId);
+			});
+			(fixups.fantraxCommissionerAuditIncluded || []).forEach(function(item) {
+				if (item.transactionId) result.fantraxIncluded.add(item.transactionId);
+			});
+		} catch (e) {
+			console.warn('Warning: Could not load fantrax-fixups.json:', e.message);
+		}
+	}
+
+	// Trade facilitation fixups
+	if (fs.existsSync(TRADE_FACILITATION_FILE)) {
+		try {
+			result.tradeFacilitation = JSON.parse(fs.readFileSync(TRADE_FACILITATION_FILE, 'utf8'));
+		} catch (e) {
+			console.warn('Warning: Could not load trade-facilitation-fixups.json:', e.message);
+		}
+	}
+
+	return result;
+}
+
+/**
+ * Load cuts.json.
+ */
+function loadCuts() {
+	return JSON.parse(fs.readFileSync(CUTS_FILE, 'utf8'));
+}
+
+/**
+ * Load trades.json.
+ */
+function loadTrades() {
+	return JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
+}
+
+/**
+ * Build a lookup of cuts by sleeperId + cutYear and by name + cutYear for contract data on drops.
+ * Returns: { bySleeperId: { "sleeperId|cutYear": [cut] }, byName: { "name|cutYear|rosterId": [cut] } }
+ */
+function buildCutsLookup(cuts) {
+	var bySleeperId = {};
+	var byName = {};
+
+	cuts.forEach(function(cut) {
+		if (cut.sleeperId) {
+			var key = cut.sleeperId + '|' + cut.cutYear;
+			if (!bySleeperId[key]) bySleeperId[key] = [];
+			bySleeperId[key].push(cut);
+		}
+
+		// Also index by name + year + rosterId for Fantrax lookups
+		if (cut.name) {
+			var nameKey = cut.name.toLowerCase() + '|' + cut.cutYear + '|' + cut.rosterId;
+			if (!byName[nameKey]) byName[nameKey] = [];
+			byName[nameKey].push(cut);
+		}
+	});
+
+	return { bySleeperId: bySleeperId, byName: byName };
+}
+
+/**
+ * Resolve owner name to rosterId using PSO.franchiseNames.
+ * Matches owner names against the year-specific franchise names.
+ */
+function ownerToRosterId(ownerName, season) {
+	if (!ownerName) return null;
+	var lowerOwner = ownerName.toLowerCase();
+
+	var rosterIds = Object.keys(PSO.franchiseNames);
+
+	// Season-specific exact match (authoritative for historical data)
+	for (var i = 0; i < rosterIds.length; i++) {
+		var rid = parseInt(rosterIds[i]);
+		var name = PSO.franchiseNames[rid][season];
+		if (name && name.toLowerCase() === lowerOwner) {
+			return rid;
+		}
+	}
+
+	// Season-specific partial match (e.g., "Schexes" matches "Schex/Jeff", "Koci" matches "Koci/Mueller")
+	for (var i = 0; i < rosterIds.length; i++) {
+		var rid = parseInt(rosterIds[i]);
+		var name = PSO.franchiseNames[rid][season];
+		if (name && (name.toLowerCase().indexOf(lowerOwner) >= 0 || lowerOwner.indexOf(name.toLowerCase()) >= 0)) {
+			return rid;
+		}
+	}
+
+	// Fall back to current franchiseIds (for cases without season context)
+	var keys = Object.keys(PSO.franchiseIds);
+	for (var i = 0; i < keys.length; i++) {
+		if (keys[i].toLowerCase() === lowerOwner) {
+			return PSO.franchiseIds[keys[i]];
+		}
+	}
+
+	return null;
+}
+
+/**
+ * Parse a postseason snapshot file.
+ * Returns: [{ id, owner, name, position, startYear, endYear, salary }]
+ */
+function parsePostseasonSnapshot(year) {
+	var file = path.join(SNAPSHOTS_DIR, 'postseason-' + year + '.txt');
+	if (!fs.existsSync(file)) return [];
+
+	var content = fs.readFileSync(file, 'utf8');
+	var lines = content.trim().split('\n');
+	var players = [];
+
+	for (var i = 1; i < lines.length; i++) {
+		var parts = lines[i].split(',');
+		if (parts.length < 7) continue;
+
+		var id = parts[0];
+		var owner = parts[1];
+		var name = parts[2];
+		var position = parts[3];
+		var startYear = parts[4] === 'FA' ? null : parseInt(parts[4]);
+		var endYear = parseInt(parts[5]);
+		var salaryStr = parts[6].replace(/[$,]/g, '');
+		var salary = salaryStr ? parseInt(salaryStr) : 1;
+		if (isNaN(salary)) salary = 1;
+		if (isNaN(endYear)) endYear = year;
+
+		players.push({
+			id: id,
+			owner: owner ? owner.trim() : null,
+			name: name,
+			position: position,
+			startYear: startYear,
+			endYear: endYear,
+			salary: salary
+		});
+	}
+
+	return players;
+}
+
+// =============================================================================
+// Offseason Cuts (all years)
+// =============================================================================
+
+/**
+ * Generate offseason cut records grouped by franchise.
+ */
+function generateOffseasonCuts(cuts, auctionDates) {
+	var records = [];
+
+	// Group offseason cuts by (cutYear, rosterId)
+	var groups = {};
+	cuts.forEach(function(cut) {
+		if (!cut.offseason) return;
+		var key = cut.cutYear + '|' + cut.rosterId;
+		if (!groups[key]) {
+			groups[key] = {
+				season: cut.cutYear,
+				rosterId: cut.rosterId,
+				cuts: []
+			};
+		}
+		groups[key].cuts.push(cut);
+	});
+
+	Object.keys(groups).forEach(function(key) {
+		var group = groups[key];
+		var timestamp = getCutDayTimestamp(group.season, auctionDates);
+		if (!timestamp) {
+			console.warn('Warning: No auction date for ' + group.season + ', skipping offseason cuts');
+			return;
+		}
+
+		var drops = group.cuts.map(function(cut) {
+			var drop = {
+				name: cut.name,
+				position: cut.position,
+				salary: cut.salary,
+				startYear: cut.startYear,
+				endYear: cut.endYear
+			};
+			if (cut.sleeperId) drop.sleeperId = cut.sleeperId;
+			return drop;
+		});
+
+		records.push({
+			season: group.season,
+			timestamp: timestamp.toISOString(),
+			rosterId: group.rosterId,
+			adds: [],
+			drops: drops,
+			source: 'offseason',
+			sourceId: null,
+			tradeId: null,
+			inferred: false
+		});
+	});
+
+	return records;
+}
+
+// =============================================================================
+// Platform Data (2020+)
+// =============================================================================
+
+/**
+ * Determine if a commissioner transaction should be imported.
+ */
+function shouldImportCommissioner(tx, fixups) {
+	// Force-include if explicitly listed
+	if (tx.factSource === 'sleeper' && fixups.sleeperIncluded.has(tx.transactionId)) {
+		return true;
+	}
+	if (tx.factSource === 'fantrax' && fixups.fantraxIncluded.has(tx.transactionId)) {
+		return true;
+	}
+
+	// Import manual_assist and trade_facilitation
+	if (tx.confidence === 'manual_assist' || tx.confidence === 'trade_facilitation') {
+		return true;
+	}
+
+	// Skip rollback_likely, reversal_pair, unknown
+	return false;
+}
+
+/**
+ * Generate records from Sleeper platform data (2022+).
+ */
+function generateSleeperRecords(fixups, cutsLookup) {
+	var records = [];
+	var years = sleeperFacts.getAvailableYears();
+
+	years.forEach(function(season) {
+		var raw = sleeperFacts.loadSeason(season);
+		raw.forEach(function(tx) { tx.season = season; tx.factSource = 'sleeper'; });
+
+		// Regular FA transactions (in-season)
+		var faTx = sleeperFacts.getFATransactions(raw);
+		var inSeasonFa = sleeperFacts.filterRealFaab(faTx);
+
+		// Also include pre-FAAB drop-only transactions (real cuts that happen before FAAB opens)
+		var preFaabDrops = faTx.filter(function(tx) {
+			return sleeperFacts.isPreFaab(tx) && (!tx.adds || tx.adds.length === 0) && tx.drops && tx.drops.length > 0;
+		});
+
+		var allFaTx = inSeasonFa.concat(preFaabDrops);
+
+		allFaTx.forEach(function(tx) {
+			if (fixups.sleeperIgnored.has(tx.transactionId)) return;
+
+			var rosterId = tx.rosterIds ? tx.rosterIds[0] : null;
+			if (!rosterId && tx.adds && tx.adds.length > 0) rosterId = tx.adds[0].rosterId;
+			if (!rosterId && tx.drops && tx.drops.length > 0) rosterId = tx.drops[0].rosterId;
+
+			var record = buildPlatformRecord(tx, season, rosterId, 'sleeper', cutsLookup, fixups);
+			if (record) records.push(record);
+		});
+
+		// Commissioner actions (from findCommissionerActions, which applies filterRealFaab)
+		var commissionerTx = sleeperFacts.findCommissionerActions(raw);
+		var processedCommissionerIds = new Set();
+
+		commissionerTx.forEach(function(tx) {
+			tx.season = season;
+			tx.factSource = 'sleeper';
+			tx.isCommissionerAction = true;
+			processedCommissionerIds.add(tx.transactionId);
+
+			if (fixups.sleeperIgnored.has(tx.transactionId)) return;
+			if (!shouldImportCommissioner(tx, fixups)) return;
+
+			var rosterId = tx.rosterIds ? tx.rosterIds[0] : null;
+			var record = buildPlatformRecord(tx, season, rosterId, 'sleeper', cutsLookup, fixups);
+			if (record) records.push(record);
+		});
+
+		// Force-included commissioner actions that may have been filtered out by filterRealFaab
+		raw.forEach(function(tx) {
+			if (tx.type !== 'commissioner') return;
+			if (processedCommissionerIds.has(tx.transactionId)) return;
+			if (fixups.sleeperIgnored.has(tx.transactionId)) return;
+			if (!fixups.sleeperIncluded.has(tx.transactionId)) return;
+
+			tx.season = season;
+			tx.factSource = 'sleeper';
+			tx.isCommissionerAction = true;
+
+			var rosterId = tx.rosterIds ? tx.rosterIds[0] : null;
+			var record = buildPlatformRecord(tx, season, rosterId, 'sleeper', cutsLookup, fixups);
+			if (record) records.push(record);
+		});
+	});
+
+	return records;
+}
+
+/**
+ * Generate records from Fantrax platform data (2020-2021).
+ */
+function generateFantraxRecords(fixups, cutsLookup) {
+	var records = [];
+
+	[2020, 2021].forEach(function(season) {
+		var raw = fantraxFacts.loadSeason(season);
+		raw.forEach(function(tx) { tx.season = season; tx.factSource = 'fantrax'; });
+
+		// Regular waiver transactions
+		var waiverTx = fantraxFacts.getWaivers(raw);
+		waiverTx = fantraxFacts.filterRealFaab(waiverTx);
+		waiverTx = waiverTx.filter(function(tx) { return !tx.isCommissioner; });
+
+		// Standalone claims
+		var claimTx = fantraxFacts.getClaims(raw);
+		claimTx = fantraxFacts.filterRealFaab(claimTx);
+		claimTx = claimTx.filter(function(tx) { return !tx.isCommissioner; });
+
+		// Standalone drops
+		var dropTx = fantraxFacts.getDrops(raw);
+		dropTx = fantraxFacts.filterRealFaab(dropTx);
+		dropTx = dropTx.filter(function(tx) { return !tx.isCommissioner; });
+
+		var allTx = waiverTx.concat(claimTx).concat(dropTx);
+
+		allTx.forEach(function(tx) {
+			if (fixups.fantraxIgnored.has(tx.transactionId)) return;
+
+			// Map Fantrax team ID to rosterId
+			var fantraxMapping = PSO.fantraxIds[season];
+			var rosterId = fantraxMapping ? fantraxMapping[tx.franchiseTeamId] : null;
+
+			if (!rosterId && tx.owner) {
+				rosterId = ownerToRosterId(tx.owner, season);
+			}
+
+			var record = buildPlatformRecord(tx, season, rosterId, 'fantrax', cutsLookup, fixups);
+			if (record) records.push(record);
+		});
+
+		// Commissioner actions
+		var commissionerTx = fantraxFacts.findCommissionerActions(raw);
+		commissionerTx.forEach(function(tx) {
+			tx.season = season;
+			tx.factSource = 'fantrax';
+			tx.isCommissionerAction = true;
+
+			if (fixups.fantraxIgnored.has(tx.transactionId)) return;
+			if (!shouldImportCommissioner(tx, fixups)) return;
+
+			var fantraxMapping = PSO.fantraxIds[season];
+			var rosterId = fantraxMapping ? fantraxMapping[tx.franchiseTeamId] : null;
+			if (!rosterId && tx.owner) {
+				rosterId = ownerToRosterId(tx.owner, season);
+			}
+
+			var record = buildPlatformRecord(tx, season, rosterId, 'fantrax', cutsLookup, fixups);
+			if (record) records.push(record);
+		});
+	});
+
+	return records;
+}
+
+/**
+ * Build an fa.json record from a platform transaction.
+ */
+function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups) {
+	if (!rosterId) {
+		console.warn('Warning: No rosterId for ' + source + ' tx ' + tx.transactionId);
+		return null;
+	}
+
+	var adds = (tx.adds || []).map(function(add) {
+		var sleeperId = add.playerId;
+		// For Fantrax, playerId is a Fantrax ID, not a Sleeper ID
+		if (source === 'fantrax') sleeperId = null;
+
+		var entry = {
+			name: add.playerName,
+			position: add.position || add.positions || null,
+			salary: tx.waiverBid || tx.bid || 0,
+			startYear: null,
+			endYear: season
+		};
+		if (sleeperId) entry.sleeperId = sleeperId;
+		return entry;
+	});
+
+	var drops = (tx.drops || []).map(function(drop) {
+		var sleeperId = drop.playerId;
+		if (source === 'fantrax') sleeperId = null;
+
+		var entry = {
+			name: drop.playerName,
+			position: drop.position || drop.positions || null,
+			salary: null,
+			startYear: null,
+			endYear: null
+		};
+		if (sleeperId) entry.sleeperId = sleeperId;
+
+		// Try to get contract data from cuts.json
+		var cutEntries = null;
+		if (sleeperId) {
+			cutEntries = cutsLookup.bySleeperId[sleeperId + '|' + season];
+		}
+		if (!cutEntries && drop.playerName) {
+			// Fallback to name-based lookup (needed for Fantrax)
+			cutEntries = cutsLookup.byName[drop.playerName.toLowerCase() + '|' + season + '|' + rosterId];
+		}
+		if (cutEntries && cutEntries.length > 0) {
+			// Find the cut that matches this drop (by owner/rosterId)
+			var matchingCut = cutEntries.find(function(c) {
+				return c.rosterId === rosterId && !c.offseason;
+			});
+			if (matchingCut) {
+				entry.salary = matchingCut.salary;
+				entry.startYear = matchingCut.startYear;
+				entry.endYear = matchingCut.endYear;
+			} else if (cutEntries.length === 1) {
+				// Only one cut for this player/year, use it
+				entry.salary = cutEntries[0].salary;
+				entry.startYear = cutEntries[0].startYear;
+				entry.endYear = cutEntries[0].endYear;
+			}
+		}
+
+		return entry;
+	});
+
+	if (adds.length === 0 && drops.length === 0) return null;
+
+	// Check for trade facilitation linkage
+	var tradeId = null;
+	if (fixups.tradeFacilitation[tx.transactionId] !== undefined) {
+		tradeId = fixups.tradeFacilitation[tx.transactionId];
+	}
+
+	return {
+		season: season,
+		timestamp: tx.timestamp instanceof Date ? tx.timestamp.toISOString() : tx.timestamp,
+		rosterId: rosterId,
+		adds: adds,
+		drops: drops,
+		source: source,
+		sourceId: tx.transactionId || null,
+		tradeId: tradeId,
+		inferred: false
+	};
+}
+
+// =============================================================================
+// Pre-2020 In-Season Cuts
+// =============================================================================
+
+/**
+ * Generate records for pre-2020 in-season cuts from cuts.json.
+ * Each non-offseason cut becomes a standalone drop record.
+ */
+function generatePrePlatformCuts(cuts) {
+	var records = [];
+
+	cuts.forEach(function(cut) {
+		if (cut.offseason) return;
+		if (cut.cutYear >= 2020) return;
+
+		var drop = {
+			name: cut.name,
+			position: cut.position,
+			salary: cut.salary,
+			startYear: cut.startYear,
+			endYear: cut.endYear
+		};
+		if (cut.sleeperId) drop.sleeperId = cut.sleeperId;
+
+		// For pre-2020 cuts, we don't have exact timestamps.
+		// Use a :33 conventional timestamp. Place in the middle of the season.
+		var timestamp = new Date(Date.UTC(cut.cutYear, 9, 15, 12, 0, 33));
+
+		records.push({
+			season: cut.cutYear,
+			timestamp: timestamp.toISOString(),
+			rosterId: cut.rosterId,
+			adds: [],
+			drops: [drop],
+			source: 'cuts',
+			sourceId: null,
+			tradeId: null,
+			inferred: false
+		});
+	});
+
+	return records;
+}
+
+// =============================================================================
+// Pre-2020 Inferred Adds
+// =============================================================================
+
+/**
+ * Build a map of trades by season for quick lookup.
+ * Returns: { season: [{ tradeId, date, year, parties: [...] }] }
+ * Each party has: { owner, players: [{ name, sleeperId, startYear, endYear }] }
+ */
+function buildTradesBySeason(trades) {
+	var bySeason = {};
+
+	trades.forEach(function(trade) {
+		var year = new Date(trade.date).getFullYear();
+		if (!bySeason[year]) bySeason[year] = [];
+
+		var parsedParties = trade.parties.map(function(party) {
+			var players = (party.players || []).map(function(p) {
+				return {
+					name: p.name,
+					sleeperId: p.sleeperId || null,
+					startYear: p.contract ? p.contract.start : null,
+					endYear: p.contract ? p.contract.end : null,
+					contractStr: p.contractStr || null
+				};
+			});
+			return {
+				owner: party.owner,
+				players: players
+			};
+		});
+
+		bySeason[year].push({
+			tradeId: trade.tradeId,
+			date: trade.date,
+			year: year,
+			parties: parsedParties
+		});
+	});
+
+	// Sort by date within each season
+	Object.keys(bySeason).forEach(function(year) {
+		bySeason[year].sort(function(a, b) {
+			return new Date(a.date) - new Date(b.date);
+		});
+	});
+
+	return bySeason;
+}
+
+/**
+ * Find the original acquirer of a player with an FA contract by tracing trades backward.
+ *
+ * If the player was traded during this season, walk backward through the trade chain
+ * to find who had the player first (that's who picked them up off FA).
+ *
+ * @param {string} sleeperId - Player's Sleeper ID (or null for historical)
+ * @param {string} playerName - Player name
+ * @param {string} knownOwner - The owner we know had the player
+ * @param {number} season - The season year
+ * @param {Array} seasonTrades - Trades for this season, sorted by date
+ * @returns {{ owner: string, upperBound: Date|null }} The original acquirer and the trade date (upper bound for timestamp)
+ */
+function traceOriginalAcquirer(sleeperId, playerName, knownOwner, season, seasonTrades) {
+	var currentOwner = knownOwner;
+	var upperBound = null;
+	var lowerName = playerName ? playerName.toLowerCase() : '';
+
+	// Walk trades in reverse chronological order
+	for (var i = seasonTrades.length - 1; i >= 0; i--) {
+		var trade = seasonTrades[i];
+
+		// Check each party's received players
+		for (var j = 0; j < trade.parties.length; j++) {
+			var party = trade.parties[j];
+
+			var playerInReceived = party.players.some(function(p) {
+				if (sleeperId && p.sleeperId) return p.sleeperId === sleeperId;
+				return p.name && p.name.toLowerCase() === lowerName;
+			});
+
+			if (playerInReceived && party.owner.toLowerCase() === currentOwner.toLowerCase()) {
+				// This trade brought the player to currentOwner.
+				// Find who sent them (the other party).
+				// For 2-party trades, it's the other party.
+				if (trade.parties.length === 2) {
+					var otherParty = trade.parties[1 - j];
+					upperBound = new Date(trade.date);
+					currentOwner = otherParty.owner;
+				}
+				// For 3+ party trades, we can't easily determine sender.
+				// Just use the trade date as the upper bound.
+				break;
+			}
+		}
+	}
+
+	return { owner: currentOwner, upperBound: upperBound };
+}
+
+/**
+ * Generate inferred FA add records for pre-2020 seasons.
+ *
+ * Sources of evidence:
+ * 1. cuts.json: player cut with startYear=null -> was picked up as FA
+ * 2. trades.json: player traded with startYear=null contract -> was picked up as FA
+ * 3. Postseason snapshots: owned player with FA contract -> was picked up as FA
+ */
+function generateInferredAdds(cuts, trades, auctionDates) {
+	var records = [];
+	var tradesBySeason = buildTradesBySeason(trades);
+
+	// Track FA pickups we've already emitted to avoid duplicates.
+	// Key: "sleeperId|season|owner" or "name|season|owner"
+	var emitted = new Set();
+
+	// Process seasons 2008-2019
+	for (var season = 2008; season <= 2019; season++) {
+		var seasonTrades = tradesBySeason[season] || [];
+		var faabOpen = sleeperFacts.faabOpenDates[season] || fantraxFacts.faabOpenDates[season];
+		if (!faabOpen) {
+			// Construct from first Wednesday after Labor Day
+			faabOpen = getFaabOpenDate(season);
+		}
+		var seasonEnd = new Date(Date.UTC(season, 11, 31));
+
+		// 1. Cuts with FA contracts
+		var seasonCuts = cuts.filter(function(c) {
+			return c.cutYear === season && c.startYear === null && !c.offseason;
+		});
+
+		seasonCuts.forEach(function(cut) {
+			var result = traceOriginalAcquirer(
+				cut.sleeperId, cut.name, cut.owner, season, seasonTrades
+			);
+
+			var rosterId = ownerToRosterId(result.owner, season);
+			if (!rosterId) {
+				console.warn('Warning: Cannot resolve owner "' + result.owner + '" for season ' + season);
+				return;
+			}
+
+			var emitKey = (cut.sleeperId || cut.name.toLowerCase()) + '|' + season + '|' + rosterId;
+			if (emitted.has(emitKey)) return;
+			emitted.add(emitKey);
+
+			var timestamp = inferTimestamp(faabOpen, result.upperBound || seasonEnd);
+
+			var add = {
+				name: cut.name,
+				position: cut.position,
+				salary: cut.salary || 1,
+				startYear: null,
+				endYear: cut.endYear
+			};
+			if (cut.sleeperId) add.sleeperId = cut.sleeperId;
+
+			records.push({
+				season: season,
+				timestamp: timestamp.toISOString(),
+				rosterId: rosterId,
+				adds: [add],
+				drops: [],
+				source: 'inferred',
+				sourceId: null,
+				tradeId: null,
+				inferred: true
+			});
+		});
+
+		// 2. Trades with FA-contracted players
+		seasonTrades.forEach(function(trade) {
+			trade.parties.forEach(function(party) {
+				party.players.forEach(function(player) {
+					// Check if player has FA contract (startYear=null or contractStr='unsigned')
+					var isFA = player.startYear === null ||
+						player.contractStr === 'unsigned' ||
+						(player.contractStr && player.contractStr.startsWith('FA/'));
+					if (!isFA) return;
+					if (!player.endYear) return;
+
+					var result = traceOriginalAcquirer(
+						player.sleeperId, player.name, party.owner, season, seasonTrades
+					);
+
+					var rosterId = ownerToRosterId(result.owner, season);
+					if (!rosterId) return;
+
+					var emitKey = (player.sleeperId || player.name.toLowerCase()) + '|' + season + '|' + rosterId;
+					if (emitted.has(emitKey)) return;
+					emitted.add(emitKey);
+
+					var upperBound = result.upperBound || new Date(trade.date);
+					var timestamp = inferTimestamp(faabOpen, upperBound);
+
+					var add = {
+						name: player.name,
+						position: null,
+						salary: 1,
+						startYear: null,
+						endYear: player.endYear
+					};
+					if (player.sleeperId) add.sleeperId = player.sleeperId;
+
+					records.push({
+						season: season,
+						timestamp: timestamp.toISOString(),
+						rosterId: rosterId,
+						adds: [add],
+						drops: [],
+						source: 'inferred',
+						sourceId: null,
+						tradeId: null,
+						inferred: true
+					});
+				});
+			});
+		});
+
+		// 3. Postseason snapshot: owned FA players
+		var postseason = parsePostseasonSnapshot(season);
+		postseason.forEach(function(player) {
+			if (player.startYear !== null) return;  // Not an FA contract
+			if (!player.owner) return;               // Not owned
+
+			var result = traceOriginalAcquirer(
+				player.id !== '-1' ? player.id : null,
+				player.name,
+				player.owner,
+				season,
+				seasonTrades
+			);
+
+			var rosterId = ownerToRosterId(result.owner, season);
+			if (!rosterId) return;
+
+			var playerId = player.id !== '-1' ? player.id : null;
+			var emitKey = (playerId || player.name.toLowerCase()) + '|' + season + '|' + rosterId;
+			if (emitted.has(emitKey)) return;
+			emitted.add(emitKey);
+
+			var timestamp = inferTimestamp(faabOpen, result.upperBound || seasonEnd);
+
+			var add = {
+				name: player.name,
+				position: player.position,
+				salary: player.salary || 1,
+				startYear: null,
+				endYear: player.endYear
+			};
+			if (playerId) add.sleeperId = playerId;
+
+			records.push({
+				season: season,
+				timestamp: timestamp.toISOString(),
+				rosterId: rosterId,
+				adds: [add],
+				drops: [],
+				source: 'inferred',
+				sourceId: null,
+				tradeId: null,
+				inferred: true
+			});
+		});
+	}
+
+	return records;
+}
+
+/**
+ * Infer a :33 timestamp at the midpoint between two bounds.
+ */
+function inferTimestamp(lowerBound, upperBound) {
+	var lower = lowerBound instanceof Date ? lowerBound.getTime() : new Date(lowerBound).getTime();
+	var upper = upperBound instanceof Date ? upperBound.getTime() : new Date(upperBound).getTime();
+
+	if (upper <= lower) {
+		// Bounds don't make sense; use lower + 1 day
+		upper = lower + 86400000;
+	}
+
+	var midpoint = lower + Math.floor((upper - lower) / 2);
+	var date = new Date(midpoint);
+
+	// Set seconds to :33
+	date.setUTCSeconds(33);
+	date.setUTCMilliseconds(0);
+
+	return date;
+}
+
+/**
+ * Get FAAB open date for a season (Wednesday before Thursday NFL kickoff,
+ * which is approximately the Wednesday after Labor Day).
+ */
+function getFaabOpenDate(season) {
+	// Labor Day is first Monday in September
+	var laborDay = new Date(Date.UTC(season, 8, 1));
+	while (laborDay.getUTCDay() !== 1) {
+		laborDay.setUTCDate(laborDay.getUTCDate() + 1);
+	}
+	// Wednesday after Labor Day
+	var wednesday = new Date(laborDay);
+	wednesday.setUTCDate(wednesday.getUTCDate() + 2);
+	return wednesday;
+}
+
+// =============================================================================
+// Main
+// =============================================================================
+
+function run() {
+	console.log('=== FA Transaction Generator ===\n');
+
+	console.log('Loading data...');
+	var auctionDates = loadAuctionDates();
+	console.log('  Auction dates: ' + Object.keys(auctionDates).length + ' years');
+
+	var fixups = loadFixups();
+	console.log('  Sleeper ignored: ' + fixups.sleeperIgnored.size);
+	console.log('  Sleeper included: ' + fixups.sleeperIncluded.size);
+	console.log('  Fantrax ignored: ' + fixups.fantraxIgnored.size);
+	console.log('  Fantrax included: ' + fixups.fantraxIncluded.size);
+	console.log('  Trade facilitation links: ' + Object.keys(fixups.tradeFacilitation).length);
+
+	var cuts = loadCuts();
+	console.log('  Cuts: ' + cuts.length);
+
+	var trades = loadTrades();
+	console.log('  Trades: ' + trades.length);
+
+	var cutsLookup = buildCutsLookup(cuts);
+
+	var allRecords = [];
+
+	// 1. Offseason cuts (all years)
+	console.log('\nGenerating offseason cuts...');
+	var offseasonRecords = generateOffseasonCuts(cuts, auctionDates);
+	console.log('  ' + offseasonRecords.length + ' offseason cut groups');
+	allRecords = allRecords.concat(offseasonRecords);
+
+	// 2. Sleeper platform data (2022+)
+	console.log('\nGenerating Sleeper records...');
+	var sleeperRecords = generateSleeperRecords(fixups, cutsLookup);
+	console.log('  ' + sleeperRecords.length + ' Sleeper records');
+	allRecords = allRecords.concat(sleeperRecords);
+
+	// 3. Fantrax platform data (2020-2021)
+	console.log('\nGenerating Fantrax records...');
+	var fantraxRecords = generateFantraxRecords(fixups, cutsLookup);
+	console.log('  ' + fantraxRecords.length + ' Fantrax records');
+	allRecords = allRecords.concat(fantraxRecords);
+
+	// 4. Pre-2020 in-season cuts
+	console.log('\nGenerating pre-2020 in-season cuts...');
+	var prePlatformCuts = generatePrePlatformCuts(cuts);
+	console.log('  ' + prePlatformCuts.length + ' pre-2020 cut records');
+	allRecords = allRecords.concat(prePlatformCuts);
+
+	// 5. Pre-2020 inferred adds
+	console.log('\nGenerating pre-2020 inferred adds...');
+	var inferredAdds = generateInferredAdds(cuts, trades, auctionDates);
+	console.log('  ' + inferredAdds.length + ' inferred add records');
+	allRecords = allRecords.concat(inferredAdds);
+
+	// Sort all records by timestamp
+	allRecords.sort(function(a, b) {
+		return new Date(a.timestamp) - new Date(b.timestamp);
+	});
+
+	// Summary stats
+	console.log('\n=== Summary ===');
+	var bySource = {};
+	var totalAdds = 0;
+	var totalDrops = 0;
+	allRecords.forEach(function(r) {
+		bySource[r.source] = (bySource[r.source] || 0) + 1;
+		totalAdds += r.adds.length;
+		totalDrops += r.drops.length;
+	});
+	console.log('Total records: ' + allRecords.length);
+	console.log('Total adds: ' + totalAdds);
+	console.log('Total drops: ' + totalDrops);
+	console.log('By source:');
+	Object.keys(bySource).sort().forEach(function(source) {
+		console.log('  ' + source + ': ' + bySource[source]);
+	});
+
+	// Write output
+	fs.writeFileSync(FA_FILE, JSON.stringify(allRecords, null, '\t'));
+	console.log('\nWrote ' + FA_FILE);
+
+	// Audit: every cuts.json record should have a corresponding drop in fa.json
+	console.log('\n=== Cuts Audit ===');
+	var dropIndex = {};
+	allRecords.forEach(function(r) {
+		r.drops.forEach(function(d) {
+			// Index by name|cutYear|rosterId for matching
+			var key = d.name.toLowerCase() + '|' + r.season + '|' + r.rosterId;
+			if (!dropIndex[key]) dropIndex[key] = [];
+			dropIndex[key].push(r);
+
+			// Also index by sleeperId if available
+			if (d.sleeperId) {
+				var sidKey = d.sleeperId + '|' + r.season + '|' + r.rosterId;
+				if (!dropIndex[sidKey]) dropIndex[sidKey] = [];
+				dropIndex[sidKey].push(r);
+			}
+		});
+	});
+
+	var unmatched = [];
+	cuts.forEach(function(cut) {
+		var matched = false;
+
+		// Try sleeperId match first
+		if (cut.sleeperId) {
+			var sidKey = cut.sleeperId + '|' + cut.cutYear + '|' + cut.rosterId;
+			if (dropIndex[sidKey] && dropIndex[sidKey].length > 0) {
+				matched = true;
+			}
+		}
+
+		// Fall back to name match
+		if (!matched) {
+			var nameKey = cut.name.toLowerCase() + '|' + cut.cutYear + '|' + cut.rosterId;
+			if (dropIndex[nameKey] && dropIndex[nameKey].length > 0) {
+				matched = true;
+			}
+		}
+
+		if (!matched) {
+			unmatched.push(cut);
+		}
+	});
+
+	if (unmatched.length === 0) {
+		console.log('All ' + cuts.length + ' cuts.json records matched in fa.json');
+	} else {
+		console.log(unmatched.length + ' of ' + cuts.length + ' cuts.json records NOT found in fa.json:');
+		unmatched.forEach(function(cut) {
+			console.log('  ' + cut.name + ' (' + cut.position + ') ' + cut.cutYear + ' by ' + cut.owner + ' (rosterId:' + cut.rosterId + ')' + (cut.offseason ? ' [offseason]' : ''));
+		});
+	}
+}
+
+run();

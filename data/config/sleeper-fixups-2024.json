@@ -159,6 +159,10 @@
   ],
   "sleeperCommissionerAuditIncluded": [
     {
+      "sleeperTxId": "1134726426344861696",
+      "reason": "Aug 29 2024 pre-FAAB cut — Justin drops A.J. Dillon from roster 4 (in cuts.json as 2024 in-season cut)"
+    },
+    {
       "sleeperTxId": "1150162544972296192",
       "reason": "Oct 10 2024 JuJu/McFadden rollback — Flournoy dropped from roster 2 to make room for JuJu (treat as manual_assist)"
     }
