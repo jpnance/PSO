@@ -135,7 +135,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2023,Daniel,De'Anthony Thomas,RB,2014,2016,$3
 1426,Quinn,DeAndre Hopkins,WR,2013,2015,$18
 419,John/Zach,DeAndre Levy,LB,FA,2014,$1
-265,Brett/Luke,DeAngelo Hall,DB,FA,2014,$1
+265,Brett/Luke,DeAngelo Hall,DB,2014,2014,$1
 306,Keyon,DeAngelo Williams,RB,FA,2014
 284,Brett/Luke,Delanie Walker,TE,2014,2014,$2
 904,John/Zach,DeMarco Murray,RB,2014,2015,$180
@@ -351,7 +351,7 @@ ID,Owner,Name,Position,Start,End,Salary
 103,John/Zach,Matt Forte,RB,2014,2014,$280
 17,Trevor,Matt Prater,K,2014,2014,$5
 24,Daniel,Matt Ryan,QB,2014,2014,$115
-178,Quinn,Matt Schaub,QB,FA,2014,$1
+178,Quinn,Matt Schaub,QB,2014,2014,$7
 421,Quinn,Matthew Stafford,QB,2013,2015,$185
 293,Daniel,Maurice Jones-Drew,RB,2014,2014,$40
 1525,Trevor,Micah Hyde,DB,2013,2015,$1
@@ -471,7 +471,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2245,Daniel,Troy Niklas,TE,2014,2016,$1
 1612,Schex,Tyler Bray,QB,2013,2015,$2
 1388,James,Tyler Eifert,TE,2013,2015,$18
-54,Koci/Mueller,Tyvon Branch,DB,2012,2014,$10
+54,Koci/Mueller,Tyvon Branch,DB,2014,2016,$1
 1587,John/Zach,Vance McDonald,TE,2013,2015,$3
 200,Koci/Mueller,Vernon Davis,TE,2014,2014,$70
 719,Keyon,Victor Cruz,WR,2012,2014,$100

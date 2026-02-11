@@ -149,7 +149,7 @@ ID,Owner,Name,Position,Start,End,Salary
 265,,DeAngelo Hall,DB,FA,2010,
 306,Keyon,DeAngelo Williams,RB,2009,2011,$145
 -1,,Deion Branch,WR,FA,2010,
--1,Koci,Deji Karim,RB,FA,2010,$2
+-1,Koci,Deji Karim,RB,2010,2012,$4
 186,James,DeMarcus Ware,LB,2008,2010,$37
 560,Keyon,Demaryius Thomas,WR,2010,2012,$8
 220,Jake/Luke,DeMeco Ryans,LB,2010,2010,$15
@@ -198,7 +198,7 @@ ID,Owner,Name,Position,Start,End,Salary
 31,Schexes,Elvis Dumervil,DL,2010,2012,$2
 563,Patrick,Eric Berry,DB,2010,2012,$1
 558,James,Eric Decker,WR,2010,2012,$2
-290,Schexes,Eric Weddle,DB,FA,2010,$1
+290,Schexes,Eric Weddle,DB,2010,2010,$1
 130,Keyon,Eric Weems,WR,2010,2010,$3
 -1,,Ernest Wilford,WR,FA,2010,
 -1,,Evan Moore,TE,FA,2010,
@@ -342,7 +342,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,LaRon Landry,DB,FA,2010,
 223,Koci,Larry Fitzgerald,WR,2008,2010,$145
 -1,Patrick,Larry Johnson,RB,2010,2010,$6
--1,Patrick,Laurence Maroney,RB,FA,2010,$1
+-1,Patrick,Laurence Maroney,RB,2010,2010,$8
 -1,,Laurent Robinson,WR,FA,2010,
 -1,,Laveranues Coles,WR,FA,2010,
 298,,Lawrence Timmons,LB,FA,2010,
@@ -476,7 +476,7 @@ ID,Owner,Name,Position,Start,End,Salary
 571,Syed,Ryan Mathews,RB,2010,2012,$28
 -1,,Ryan Moats,RB,FA,2010,
 -1,,Ryan Mouton,DB,FA,2010,
-391,John,Ryan Succop,K,FA,2010,
+391,John,Ryan Succop,K,2009,2011,$3
 -1,,Ryan Torain,RB,FA,2010,
 -1,John,Sage Rosenfels,QB,2010,2012,$1
 -1,,Sam Aiken,WR,FA,2010,

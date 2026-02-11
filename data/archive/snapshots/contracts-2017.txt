@@ -542,7 +542,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1372,,Sheldon Richardson,DL,FA,2017,
 1475,,Sio Moore,LB,FA,2017,
 4058,Quinn,Solomon Thomas,DL,2017,2019,$1
-1601,,Spencer Ware,RB,FA,2017,
+1601,Schex/Jeff,Spencer Ware,RB,2017,2017,$70
 2449,Brett/Luke,Stefon Diggs,WR,2015,2017,$3
 110,Koci/Mueller,Stephen Gostkowski,K,2015,2017,$2
 2336,,Stephone Anthony,LB,FA,2017,

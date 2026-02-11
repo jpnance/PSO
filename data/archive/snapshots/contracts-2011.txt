@@ -2,22 +2,22 @@ ID,Owner,Name,Position,Start,End,Salary
 830,Trevor,A.J. Green,WR,2011,2013,$26
 800,Trevor,Aaron Williams,DB,2011,2013,$1
 961,Keyon,Adrian Clayborn,DL,2011,2013,$1
-844,Syed,Akeem Ayers,LB,2011,2011,$1
+844,Syed,Akeem Ayers,LB,2011,2013,$1
 -1,Jake/Luke,Alex Green,RB,2011,2013,$2
 -1,Koci,Alex Henery,K,2011,2013,$1
 829,Schexes,Andy Dalton,QB,2011,2013,$4
--1,Keyon,Antoine Cason,DB,2011,2011,$1
+-1,Keyon,Antoine Cason,DB,2011,2013,$1
 966,Daniel,Austin Pettis,WR,2011,2011,$1
 862,Keyon,Blaine Gabbert,QB,2011,2013,$7
 901,John,Bruce Carter,LB,2011,2011,$1
 954,Trevor,Cam Newton,QB,2011,2013,$13
-790,Patrick,Casey Matthews,LB,2011,2011,$1
-866,Syed,Cecil Shorts,WR,2011,2011,$1
+790,Patrick,Casey Matthews,LB,2011,2013,$1
+866,Syed,Cecil Shorts,WR,2011,2013,$1
 941,James,Christian Ponder,QB,2011,2013,$4
 804,Jake/Luke,Clyde Gates,WR,2011,2013,$1
 980,Daniel,Colin Kaepernick,QB,2011,2013,$4
--1,James,Colin McCarthy,LB,2011,2011,$1
-959,Schexes,Da'Quan Bowers,DL,2011,2011,$1
+-1,James,Colin McCarthy,LB,2011,2013,$1
+959,Schexes,Da'Quan Bowers,DL,2011,2013,$1
 -1,Jake/Luke,Dane Sanzenbacher,WR,2011,2013,$1
 806,Patrick,Daniel Thomas,RB,2011,2013,$25
 -1,Keyon,Delone Carter,RB,2011,2012,$13
@@ -32,8 +32,8 @@ ID,Owner,Name,Position,Start,End,Salary
 786,Jake/Luke,Jaiquawn Jarrett,DB,2011,2013,$1
 -1,Daniel,Jake Locker,QB,2011,2013,$2
 367,John,Jared Cook,TE,2011,2013,$3
-817,Patrick,Jeremy Kerley,WR,2011,2011,$1
--1,Syed,Jerrel Jernigan,WR,2011,2011,$1
+817,Patrick,Jeremy Kerley,WR,2011,2013,$1
+-1,Syed,Jerrel Jernigan,WR,2011,2013,$1
 825,Keyon,Jimmy Smith,DB,2011,2011,$1
 -1,Daniel,Jonathan Baldwin,WR,2011,2013,$13
 833,Daniel,Jordan Cameron,TE,2011,2013,$1
@@ -46,13 +46,13 @@ ID,Owner,Name,Position,Start,End,Salary
 795,John,Marcell Dareus,DL,2011,2011,$1
 956,Daniel,Mark Ingram,RB,2011,2013,$25
 962,Daniel,Mason Foster,LB,2011,2013,$1
--1,James,Mikel Leshoure,RB,2011,2011,$7
-870,James,Nate Irving,LB,2011,2011,$1
+-1,James,Mikel Leshoure,RB,2011,2013,$7
+870,James,Nate Irving,LB,2011,2013,$1
 972,Schexes,Patrick Peterson,DB,2011,2013,$1
-873,Syed,Rahim Moore,DB,2011,2011,$1
+873,Syed,Rahim Moore,DB,2011,2013,$1
 928,Patrick,Randall Cobb,WR,2011,2013,$13
-971,James,Rob Housler,TE,2011,2011,$1
-967,James,Robert Quinn,DL,2011,2011,$1
+971,James,Rob Housler,TE,2011,2013,$1
+967,James,Robert Quinn,DL,2011,2013,$1
 915,Syed,Roy Helu,RB,2011,2013,$25
 917,Syed,Ryan Kerrigan,LB,2011,2013,$1
 810,Trevor,Ryan Mallett,QB,2011,2013,$1
@@ -62,7 +62,7 @@ ID,Owner,Name,Position,Start,End,Salary
 154,Schexes,Tarvaris Jackson,QB,2011,2013,$6
 1020,Trevor,Terrelle Pryor,QB,2011,2013,$1
 -1,John,Titus Young,WR,2011,2013,$13
-826,Keyon,Torrey Smith,WR,2011,2011,$4
+826,Keyon,Torrey Smith,WR,2011,2013,$4
 891,Syed,Vincent Brown,WR,2011,2013,$1
 871,John,Von Miller,LB,2011,2011,$1
 122,James,Miles Austin,WR,2010,2012,$125
@@ -92,7 +92,7 @@ ID,Owner,Name,Position,Start,End,Salary
 160,Schexes,Paul Posluszny,LB,2010,2012,$1
 278,Trevor,Kevin Kolb,QB,2011,2011,$26
 290,Schexes,Eric Weddle,DB,2011,2011,$2
-171,Syed,Zach Miller,TE,2010,2011,$7
+171,Syed,Zach Miller,TE,2010,2012,$7
 14,Daniel,Sidney Rice,WR,2009,2011,$4
 22,Jake/Luke,LaMarr Woodley,LB,2010,2011,$5
 3,,David Harris,LB,FA,2011,
@@ -101,10 +101,10 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Brandon Jackson,RB,FA,2011,
 203,Trevor,Jacoby Jones,WR,2011,2011,$5
 -1,,Laurent Robinson,WR,FA,2011,
-253,Koci,James Jones,WR,2010,2011,$10
+253,Koci,James Jones,WR,2010,2012,$10
 -1,Koci,Mike Sims-Walker,WR,2011,2013,$5
 37,Koci,Charles Johnson,DL,2011,2013,$1
--1,Patrick,Stewart Bradley,LB,2010,2011,$2
+-1,Patrick,Stewart Bradley,LB,2010,2012,$2
 739,,Trent Edwards,QB,FA,2011,
 -1,,Garrett Wolfe,RB,FA,2011,
 -1,,Johnnie Lee Higgins,WR,FA,2011,
@@ -115,7 +115,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Keyon,Steve Breaston,WR,2011,2013,$1
 -1,,Kevin Boss,TE,FA,2011,
 -1,,David Clowney,WR,FA,2011,
-221,Syed,Brent Celek,TE,2010,2011,$27
+221,Syed,Brent Celek,TE,2010,2012,$27
 -1,,Legedu Naanee,WR,FA,2011,
 -1,,Troy Smith,QB,FA,2011,
 650,,Nick Folk,K,FA,2011,
@@ -144,7 +144,7 @@ ID,Owner,Name,Position,Start,End,Salary
 145,Jake/Luke,Rashard Mendenhall,RB,2011,2011,$170
 272,Trevor,Chris Johnson,RB,2011,2011,$278
 315,Keyon,Dustin Keller,TE,2011,2013,$2
-104,Koci,Donnie Avery,WR,2011,2011,$1
+104,Koci,Donnie Avery,WR,2011,2013,$1
 -1,,Devin Thomas,WR,FA,2011,
 175,Keyon,Jordy Nelson,WR,2011,2013,$5
 137,Schexes,Curtis Lofton,LB,2010,2011,$4
@@ -159,7 +159,7 @@ ID,Owner,Name,Position,Start,End,Salary
 16,John,Ray Rice,RB,2011,2011,$250
 89,Daniel,Chad Henne,QB,2010,2012,$15
 40,James,Martellus Bennett,TE,2009,2011,$7
--1,Trevor,Terrell Thomas,DB,2011,2011,$3
+-1,Trevor,Terrell Thomas,DB,2011,2013,$3
 -1,,Kevin Smith,RB,FA,2011,
 415,,Earl Bennett,WR,FA,2011,
 323,Syed,Jamaal Charles,RB,2011,2011,$275
@@ -173,7 +173,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Thomas DeCoud,DB,FA,2011,
 54,,Tyvon Branch,DB,FA,2011,
 66,James,Tashard Choice,RB,2011,2011,$12
--1,Schexes,Ryan Torain,RB,2011,2011,$5
+-1,Schexes,Ryan Torain,RB,2011,2013,$5
 32,,Jacob Tamme,TE,FA,2011,
 83,Schexes,Tim Hightower,RB,2011,2013,$18
 312,,Matthew Slater,WR,FA,2011,
@@ -240,7 +240,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Ramses Barden,WR,FA,2011,
 366,Patrick,Kenny Britt,WR,2009,2011,$6
 456,,Deon Butler,WR,FA,2011,
--1,Schexes,Austin Collie,WR,2011,2011,$28
+-1,Schexes,Austin Collie,WR,2011,2012,$28
 455,Patrick,Michael Crabtree,WR,2009,2011,$28
 -1,,Jarett Dillard,WR,FA,2011,
 496,,Brandon Gibson,WR,FA,2011,
@@ -270,7 +270,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Ryan Mouton,DB,FA,2011,
 441,,Captain Munnerlyn,DB,FA,2011,
 -1,Patrick,Bernard Scott,RB,2010,2012,$15
--1,Syed,LaRod Stephens-Howling,RB,2011,2011,$1
+-1,Syed,LaRod Stephens-Howling,RB,2011,2013,$1
 391,,Ryan Succop,K,FA,2011,
 478,,Lardarius Webb,DB,FA,2011,
 -1,,Kareem Huggins,RB,FA,2011,
@@ -296,28 +296,28 @@ ID,Owner,Name,Position,Start,End,Salary
 642,,Golden Tate,WR,FA,2011,
 618,Daniel,Arrelious Benn,WR,2010,2012,$15
 541,,Damian Williams,WR,FA,2011,
--1,Jake/Luke,Mardy Gilyard,WR,2010,2011,$2
--1,James,Taylor Price,WR,2010,2011,$1
+-1,Jake/Luke,Mardy Gilyard,WR,2010,2012,$2
+-1,James,Taylor Price,WR,2010,2012,$1
 582,,Riley Cooper,WR,FA,2011,
-627,Koci,Andre Roberts,WR,2011,2011,$1
+627,Koci,Andre Roberts,WR,2011,2013,$1
 530,Keyon,Jermaine Gresham,TE,2010,2012,$4
 515,Trevor,Rob Gronkowski,TE,2010,2012,$1
 516,Keyon,Aaron Hernandez,TE,2010,2012,$1
 527,John,Dennis Pitta,TE,2010,2012,$1
 616,Jake/Luke,Jimmy Graham,TE,2011,2011,$20
-594,Syed,Ndamukong Suh,DL,2011,2011,$1
+594,Syed,Ndamukong Suh,DL,2011,2013,$1
 583,Jake/Luke,Brandon Graham,DL,2010,2012,$1
 619,,Gerald McCoy,DL,FA,2011,
 610,Trevor,Sean Weatherspoon,LB,2010,2012,$1
 550,,Jerry Hughes,DL,FA,2011,
 732,,Derrick Morgan,DL,FA,2011,
 531,Jake/Luke,Joe Haden,DB,2010,2012,$1
-643,Syed,Earl Thomas,DB,2010,2011,$1
-563,Patrick,Eric Berry,DB,2010,2011,$1
+643,Syed,Earl Thomas,DB,2010,2012,$1
+563,Patrick,Eric Berry,DB,2010,2012,$1
 721,,Rolando McClain,LB,FA,2011,
 720,Jake/Luke,Jason Pierre-Paul,DL,2010,2012,$1
 580,,Nate Allen,DB,FA,2011,
-712,Koci,Javier Arenas,DB,2010,2011,$1
+712,Koci,Javier Arenas,DB,2010,2012,$1
 597,,Morgan Burnett,DB,FA,2011,
 558,James,Eric Decker,WR,2010,2012,$2
 701,,Ed Dickson,TE,FA,2011,
@@ -344,7 +344,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Akwasi Owusu-Ansah,DB,FA,2011,
 -1,,David Reed,WR,FA,2011,
 -1,,Charles Scott,RB,FA,2011,
--1,James,John Skelton,QB,2010,2011,$1
+-1,James,John Skelton,QB,2010,2012,$1
 572,,Darrell Stuckey,DB,FA,2011,
 606,,Joe Webb,QB,FA,2011,
 748,Koci,Mike Williams,WR,2010,2012,$8
@@ -368,7 +368,7 @@ ID,Owner,Name,Position,Start,End,Salary
 7,,Kurt Warner,QB,FA,2011,
 -1,,Jake Delhomme,QB,FA,2011,
 -1,Syed,David Akers,K,2011,2011,$1
--1,Patrick,Donovan McNabb,QB,2011,2011,$5
+-1,Patrick,Donovan McNabb,QB,2011,2013,$5
 -1,,Edgerrin James,RB,FA,2011,
 -1,Keyon,Ricky Williams,RB,2011,2011,$1
 -1,,Torry Holt,WR,FA,2011,
@@ -381,7 +381,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,John,Donald Driver,WR,2011,2013,$1
 -1,,Kris Brown,K,FA,2011,
 -1,,Jamal Lewis,RB,FA,2011,
--1,Syed,Thomas Jones,RB,2011,2011,$1
+-1,Syed,Thomas Jones,RB,2011,2013,$1
 -1,Daniel,Plaxico Burress,WR,2010,2012,$1
 -1,Patrick,Brian Urlacher,LB,2011,2013,$3
 -1,Keyon,John Abraham,DL,2009,2011,$2
@@ -406,7 +406,7 @@ ID,Owner,Name,Position,Start,End,Salary
 69,Koci,Santana Moss,WR,2010,2012,$35
 -1,,Nate Clements,DB,FA,2011,
 194,John,Reggie Wayne,WR,2011,2013,$101
--1,Koci,Todd Heap,TE,2011,2011,$1
+-1,Koci,Todd Heap,TE,2011,2013,$1
 289,James,Drew Brees,QB,2011,2011,$145
 -1,,Kyle Vanden Bosch,DL,FA,2011,
 -1,Keyon,Chad Johnson,WR,2011,2011,$30
@@ -454,7 +454,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Marcus Trufant,DB,FA,2011,
 6777,,Troy Polamalu,DB,FA,2011,
 -1,,Bryant Johnson,WR,FA,2011,
-107,Syed,Calvin Pace,DL,2010,2011,$1
+107,Syed,Calvin Pace,DL,2010,2012,$1
 300,John,Willis McGahee,RB,2010,2012,$1
 5,John,Dallas Clark,TE,2011,2013,$75
 -1,,Larry Johnson,RB,FA,2011,
@@ -464,7 +464,7 @@ ID,Owner,Name,Position,Start,End,Salary
 214,Trevor,Osi Umenyiora,DL,2009,2011,$4
 -1,,L.J. Smith,TE,FA,2011,
 -1,,Kelley Washington,WR,FA,2011,
--1,Koci,Lance Briggs,LB,2010,2011,$6
+-1,Koci,Lance Briggs,LB,2010,2012,$6
 23,James,Jason Witten,TE,2011,2011,$80
 -1,James,Nate Burleson,WR,2011,2011,$8
 -1,,Kevin Curtis,WR,FA,2011,
@@ -486,7 +486,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Earnest Graham,RB,FA,2011,
 142,Keyon,Tony Romo,QB,2009,2011,$100
 322,Schexes,Antonio Gates,TE,2010,2011,$89
-146,Schexes,Tramon Williams,DB,2011,2011,$1
+146,Schexes,Tramon Williams,DB,2011,2012,$1
 188,Syed,Eli Manning,QB,2011,2013,$28
 223,Syed,Larry Fitzgerald,WR,2011,2011,$135
 331,Jake/Luke,Philip Rivers,QB,2009,2011,$85
@@ -510,7 +510,7 @@ ID,Owner,Name,Position,Start,End,Salary
 320,,Darnell Dockett,DL,FA,2011,
 -1,John,Nate Kaeding,K,2011,2013,$1
 -1,,Bernard Berrian,WR,FA,2011,
--1,Keyon,Chris Cooley,TE,2011,2011,$1
+-1,Keyon,Chris Cooley,TE,2011,2013,$1
 178,Daniel,Matt Schaub,QB,2011,2013,$85
 -1,,Shaun Phillips,LB,FA,2011,
 155,,Jerricho Cotchery,WR,FA,2011,
@@ -533,7 +533,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Joey Galloway,WR,FA,2011,
 268,John,Alex Smith,QB,2011,2013,$5
 258,Daniel,Ronnie Brown,RB,2010,2011,$65
--1,Schexes,Braylon Edwards,WR,2011,2011,$15
+-1,Schexes,Braylon Edwards,WR,2011,2013,$15
 6738,Patrick,Cedric Benson,RB,2010,2011,$116
 -1,Schexes,Cadillac Williams,RB,2011,2012,$1
 657,,Adam Jones,DB,FA,2011,
@@ -562,7 +562,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Kirk Morrison,LB,FA,2011,
 -1,,Chris Henry (CIN),WR,FA,2011,
 -1,,Ellis Hobbs,DB,FA,2011,
-388,Keyon,Kyle Orton,QB,2011,2011,$13
+388,Keyon,Kyle Orton,QB,2011,2013,$13
 -1,John,Marion Barber,RB,2011,2013,$1
 82,Schexes,Brandon Jacobs,RB,2011,2012,$10
 -1,,Kerry Rhodes,DB,FA,2011,
@@ -600,7 +600,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,,Laurence Maroney,RB,FA,2011,
 651,Keyon,Santonio Holmes,WR,2011,2013,$30
 306,John,DeAngelo Williams,RB,2011,2013,$60
-111,Koci,Marcedes Lewis,TE,2011,2011,$24
+111,Koci,Marcedes Lewis,TE,2011,2013,$24
 -1,Keyon,Joseph Addai,RB,2011,2011,$23
 -1,,Mathias Kiwanuka,DL,FA,2011,
 220,Jake/Luke,DeMeco Ryans,LB,2011,2012,$1
@@ -620,7 +620,7 @@ ID,Owner,Name,Position,Start,End,Salary
 698,,Charlie Whitehurst,QB,FA,2011,
 119,,James Anderson,LB,FA,2011,
 64,Daniel,Owen Daniels,TE,2011,2013,$46
-287,Keyon,Brad Smith,WR,2011,2011,$2
+287,Keyon,Brad Smith,WR,2011,2013,$2
 71,,Jason Avant,WR,FA,2011,
 -1,,Demetrius Williams,WR,FA,2011,
 755,,Will Blackmon,DB,FA,2011,

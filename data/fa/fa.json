@@ -11221,6 +11221,25 @@
 	},
 	{
 		"season": 2011,
+		"timestamp": "2011-08-14T04:00:00.000Z",
+		"rosterId": 10,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Early Doucet",
+				"position": "WR",
+				"salary": 17,
+				"startYear": 2010,
+				"endYear": 2011
+			}
+		],
+		"source": "offseason",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2011,
 		"timestamp": "2011-09-26T06:00:33.000Z",
 		"rosterId": 1,
 		"adds": [
@@ -12378,25 +12397,6 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
-	},
-	{
-		"season": 2011,
-		"timestamp": "2011-10-15T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Early Doucet",
-				"position": "WR",
-				"salary": 17,
-				"startYear": 2010,
-				"endYear": 2011
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
 	},
 	{
 		"season": 2011,
@@ -16011,6 +16011,14 @@
 				"salary": 1,
 				"startYear": 2011,
 				"endYear": 2012
+			},
+			{
+				"name": "DeSean Jackson",
+				"position": "WR",
+				"salary": 134,
+				"startYear": 2011,
+				"endYear": 2012,
+				"sleeperId": "147"
 			}
 		],
 		"source": "offseason",
@@ -16923,26 +16931,6 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
-	},
-	{
-		"season": 2012,
-		"timestamp": "2012-10-15T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "DeSean Jackson",
-				"position": "WR",
-				"salary": 134,
-				"startYear": 2011,
-				"endYear": 2012,
-				"sleeperId": "147"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
 	},
 	{
 		"season": 2012,
@@ -19309,6 +19297,26 @@
 	{
 		"season": 2012,
 		"timestamp": "2012-10-15T12:00:33.000Z",
+		"rosterId": 11,
+		"adds": [],
+		"drops": [
+			{
+				"name": "DeSean Jackson",
+				"position": "WR",
+				"salary": 90,
+				"startYear": 2012,
+				"endYear": 2012,
+				"sleeperId": "147"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2012,
+		"timestamp": "2012-10-15T12:00:33.000Z",
 		"rosterId": 1,
 		"adds": [],
 		"drops": [
@@ -20004,26 +20012,6 @@
 	{
 		"season": 2012,
 		"timestamp": "2012-10-16T12:00:33.000Z",
-		"rosterId": 11,
-		"adds": [],
-		"drops": [
-			{
-				"name": "DeSean Jackson",
-				"position": "WR",
-				"salary": 90,
-				"startYear": 2012,
-				"endYear": 2012,
-				"sleeperId": "147"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2012,
-		"timestamp": "2012-10-16T12:00:33.000Z",
 		"rosterId": 4,
 		"adds": [],
 		"drops": [
@@ -20249,6 +20237,14 @@
 				"startYear": 2011,
 				"endYear": 2013,
 				"sleeperId": "386"
+			},
+			{
+				"name": "Trent Cole",
+				"position": "DL",
+				"salary": 15,
+				"startYear": 2012,
+				"endYear": 2013,
+				"sleeperId": "62"
 			}
 		],
 		"source": "offseason",
@@ -20883,6 +20879,26 @@
 				"startYear": null,
 				"endYear": 2013,
 				"sleeperId": "215"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2013,
+		"timestamp": "2013-09-24T18:00:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Trent Cole",
+				"position": "DL",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2013,
+				"sleeperId": "62"
 			}
 		],
 		"drops": [],
@@ -21726,26 +21742,6 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
-	},
-	{
-		"season": 2013,
-		"timestamp": "2013-10-15T12:00:33.000Z",
-		"rosterId": 12,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Trent Cole",
-				"position": "DL",
-				"salary": 15,
-				"startYear": 2012,
-				"endYear": 2013,
-				"sleeperId": "62"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
 	},
 	{
 		"season": 2013,
@@ -23085,6 +23081,26 @@
 				"startYear": 2013,
 				"endYear": 2013,
 				"sleeperId": "1067"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2013,
+		"timestamp": "2013-10-15T12:00:33.000Z",
+		"rosterId": 10,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Trent Cole",
+				"position": "DL",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2013,
+				"sleeperId": "62"
 			}
 		],
 		"source": "cuts",
@@ -24804,26 +24820,6 @@
 	{
 		"season": 2013,
 		"timestamp": "2013-10-16T00:01:33.000Z",
-		"rosterId": 10,
-		"adds": [
-			{
-				"name": "Trent Cole",
-				"position": "DL",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2013,
-				"sleeperId": "62"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2013,
-		"timestamp": "2013-10-16T00:01:33.000Z",
 		"rosterId": 7,
 		"adds": [
 			{
@@ -24971,26 +24967,6 @@
 				"salary": 1,
 				"startYear": null,
 				"endYear": 2013
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2013,
-		"timestamp": "2013-10-16T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Trent Cole",
-				"position": "DL",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2013,
-				"sleeperId": "62"
 			}
 		],
 		"source": "cuts",

@@ -4546,7 +4546,8 @@
 		"endYear": 2011,
 		"salary": 17,
 		"cutYear": 2011,
-		"rosterId": 10
+		"rosterId": 10,
+		"offseason": true
 	},
 	{
 		"owner": "Daniel",
@@ -6817,7 +6818,8 @@
 		"salary": 134,
 		"cutYear": 2012,
 		"rosterId": 10,
-		"sleeperId": "147"
+		"sleeperId": "147",
+		"offseason": true
 	},
 	{
 		"owner": "John",
@@ -9000,7 +9002,8 @@
 		"salary": 15,
 		"cutYear": 2013,
 		"rosterId": 12,
-		"sleeperId": "62"
+		"sleeperId": "62",
+		"offseason": true
 	},
 	{
 		"owner": "Charles",

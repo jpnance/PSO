@@ -5754,6 +5754,18 @@
   },
   {
     "season": 2010,
+    "sleeperId": null,
+    "name": "Deji Karim",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 2,
+    "salary": 4,
+    "startYear": 2010,
+    "endYear": 2012
+  },
+  {
+    "season": 2010,
     "sleeperId": "560",
     "name": "Demaryius Thomas",
     "positions": [
@@ -5991,6 +6003,18 @@
     "salary": 2,
     "startYear": 2010,
     "endYear": 2012
+  },
+  {
+    "season": 2010,
+    "sleeperId": "290",
+    "name": "Eric Weddle",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 10,
+    "salary": 1,
+    "startYear": 2010,
+    "endYear": 2010
   },
   {
     "season": 2010,
@@ -6607,6 +6631,18 @@
   {
     "season": 2010,
     "sleeperId": null,
+    "name": "Laurence Maroney",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 1,
+    "salary": 8,
+    "startYear": 2010,
+    "endYear": 2010
+  },
+  {
+    "season": 2010,
+    "sleeperId": null,
     "name": "Lee Evans",
     "positions": [
       "WR"
@@ -6894,7 +6930,7 @@
   },
   {
     "season": 2010,
-    "sleeperId": "748",
+    "sleeperId": null,
     "name": "Mike Williams",
     "positions": [
       "WR"
@@ -7742,7 +7778,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -7802,7 +7838,7 @@
     "rosterId": 2,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -7850,7 +7886,7 @@
     "rosterId": 6,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -7874,7 +7910,7 @@
     "rosterId": 10,
     "salary": 28,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2012
   },
   {
     "season": 2011,
@@ -7946,7 +7982,7 @@
     "rosterId": 6,
     "salary": 2,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8006,7 +8042,7 @@
     "rosterId": 10,
     "salary": 15,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8090,7 +8126,7 @@
     "rosterId": 1,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8102,7 +8138,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8150,7 +8186,7 @@
     "rosterId": 6,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8234,7 +8270,7 @@
     "rosterId": 9,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8246,7 +8282,7 @@
     "rosterId": 10,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8522,7 +8558,7 @@
     "rosterId": 2,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8534,7 +8570,7 @@
     "rosterId": 1,
     "salary": 5,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8846,7 +8882,7 @@
     "rosterId": 1,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -8894,7 +8930,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9074,7 +9110,7 @@
     "rosterId": 6,
     "salary": 13,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9134,7 +9170,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9242,7 +9278,7 @@
     "rosterId": 2,
     "salary": 24,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9422,7 +9458,7 @@
     "rosterId": 9,
     "salary": 7,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9458,7 +9494,7 @@
     "rosterId": 9,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9482,7 +9518,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9602,7 +9638,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9722,7 +9758,7 @@
     "rosterId": 9,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9746,7 +9782,7 @@
     "rosterId": 9,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -9830,7 +9866,7 @@
     "rosterId": 10,
     "salary": 5,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -10022,7 +10058,7 @@
     "rosterId": 5,
     "salary": 3,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -10046,7 +10082,7 @@
     "rosterId": 3,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -10082,7 +10118,7 @@
     "rosterId": 2,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -10106,7 +10142,7 @@
     "rosterId": 6,
     "salary": 4,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2013
   },
   {
     "season": 2011,
@@ -10118,7 +10154,7 @@
     "rosterId": 10,
     "salary": 1,
     "startYear": 2011,
-    "endYear": 2011
+    "endYear": 2012
   },
   {
     "season": 2011,
@@ -13532,6 +13568,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "261",
+    "name": "A.J. Hawk",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 1,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "1365",
     "name": "Aaron Dobson",
     "positions": [
@@ -14062,6 +14110,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "425",
+    "name": "Clay Matthews",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 1,
+    "salary": 7,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "1535",
     "name": "Cordarrelle Patterson",
     "positions": [
@@ -14093,6 +14153,18 @@
     ],
     "rosterId": 11,
     "salary": 6,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
+    "sleeperId": "1429",
+    "name": "D.J. Swearinger",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 4,
+    "salary": 1,
     "startYear": 2013,
     "endYear": 2013
   },
@@ -14131,6 +14203,18 @@
     "salary": 22,
     "startYear": 2013,
     "endYear": 2015
+  },
+  {
+    "season": 2013,
+    "sleeperId": "1518",
+    "name": "Darius Slay",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 4,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
   },
   {
     "season": 2013,
@@ -14242,6 +14326,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "1545",
+    "name": "Desmond Trufant",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 4,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "279",
     "name": "Devin Hester",
     "positions": [
@@ -14321,6 +14417,18 @@
     ],
     "rosterId": 5,
     "salary": 299,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
+    "sleeperId": "863",
+    "name": "DuJuan Harris",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 10,
+    "salary": 14,
     "startYear": 2013,
     "endYear": 2013
   },
@@ -15178,6 +15286,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "1476",
+    "name": "Latavius Murray",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 2,
+    "salary": 2,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "1408",
     "name": "Le'Veon Bell",
     "positions": [
@@ -15295,6 +15415,18 @@
     "salary": 7,
     "startYear": 2013,
     "endYear": 2015
+  },
+  {
+    "season": 2013,
+    "sleeperId": "1050",
+    "name": "Marcus Thigpen",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 10,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
   },
   {
     "season": 2013,
@@ -16163,6 +16295,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "296",
+    "name": "Terrell Suggs",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 1,
+    "salary": 4,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "683",
     "name": "Tim Jennings",
     "positions": [
@@ -16265,7 +16409,7 @@
       "QB"
     ],
     "rosterId": 1,
-    "salary": 1,
+    "salary": 5,
     "startYear": 2013,
     "endYear": 2015
   },
@@ -17156,6 +17300,18 @@
     "salary": 3,
     "startYear": 2014,
     "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "265",
+    "name": "DeAngelo Hall",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 7,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
   },
   {
     "season": 2014,
@@ -18349,6 +18505,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "178",
+    "name": "Matt Schaub",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 11,
+    "salary": 7,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
     "sleeperId": "293",
     "name": "Maurice Jones-Drew",
     "positions": [
@@ -19015,6 +19183,18 @@
       "TE"
     ],
     "rosterId": 8,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "54",
+    "name": "Tyvon Branch",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 2,
     "salary": 1,
     "startYear": 2014,
     "endYear": 2016
@@ -27350,6 +27530,18 @@
     "salary": 1,
     "startYear": 2017,
     "endYear": 2019
+  },
+  {
+    "season": 2017,
+    "sleeperId": "1601",
+    "name": "Spencer Ware",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 10,
+    "salary": 70,
+    "startYear": 2017,
+    "endYear": 2017
   },
   {
     "season": 2017,

@@ -1,6 +1,6 @@
 ID,Owner,Name,Position,Start,End,Salary
 830,Trevor,A.J. Green,WR,2011,2013,$26
-261,Pat/Quinn,A.J. Hawk,LB,FA,2013,
+261,Pat/Quinn,A.J. Hawk,LB,2013,2013,$1
 1226,Pat/Quinn,AJ Jenkins,WR,2012,2014,$4
 1365,John,Aaron Dobson,WR,2013,2015,$9
 96,Koci/Mueller,Aaron Rodgers,QB,2012,2014,$263
@@ -79,7 +79,7 @@ ID,Owner,Name,Position,Start,End,Salary
 941,James,Christian Ponder,QB,2011,2013,$4
 1596,Pat/Quinn,Christine Michael,RB,2013,2015,$13
 1682,Daniel,Cierre Wood,RB,2013,2015,$1
-425,Pat/Quinn,Clay Matthews,LB,FA,2013,$1
+425,Pat/Quinn,Clay Matthews,LB,2013,2013,$7
 1107,Keyon,Coby Fleener,TE,2012,2014,$7
 980,Daniel,Colin Kaepernick,QB,2011,2013,$4
 371,Mitch,Connor Barwin,DL,2012,2013,$1
@@ -88,7 +88,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1063,Keyon,Courtney Upshaw,LB,2012,2014,$1
 137,Charles,Curtis Lofton,LB,2013,2013,$6
 1130,Jake/Luke,Cyrus Gray,RB,2012,2014,$1
-1429,John,D.J. Swearinger,DB,FA,2013,
+1429,John,D.J. Swearinger,DB,2013,2013,$1
 93,Keyon,D'Qwell Jackson,LB,2013,2013,$10
 -1,,Da'Rel Scott,RB,FA,2013,$2
 5,,Dallas Clark,TE,FA,2013,$2
@@ -98,7 +98,7 @@ ID,Owner,Name,Position,Start,End,Salary
 491,Koci/Mueller,Danny Amendola,WR,2012,2014,$32
 735,Syed,Danny Woodhead,RB,2011,2013,$1
 -1,Pat/Quinn,Darius Reynaud,RB,2012,2014,$1
-1518,John,Darius Slay,DB,FA,2013,
+1518,John,Darius Slay,DB,2013,2013,$1
 326,John,Darren McFadden,RB,2013,2013,$95
 246,Koci/Mueller,Darren Sproles,RB,2011,2013,$6
 394,Pat/Quinn,Darrius Heyward-Bey,WR,2011,2013,$1
@@ -120,7 +120,7 @@ ID,Owner,Name,Position,Start,End,Salary
 329,Koci/Mueller,Derrick Johnson,LB,2011,2013,$2
 732,,Derrick Morgan,DL,FA,2013,$1
 147,Mitch,DeSean Jackson,WR,2013,2014,$62
-1545,John,Desmond Trufant,DB,FA,2013,
+1545,John,Desmond Trufant,DB,2013,2013,$1
 279,Trevor,Devin Hester,WR,2013,2013,$7
 518,Koci/Mueller,Devin McCourty,DB,2012,2014,$3
 564,Mitch,Dexter McCluster,WR,2013,2013,$3
@@ -135,7 +135,7 @@ ID,Owner,Name,Position,Start,End,Salary
 988,Jake/Luke,Doug Baldwin,WR,2012,2014,$11
 1195,Syed,Doug Martin,RB,2012,2014,$25
 289,Trevor,Drew Brees,QB,2013,2013,$299
-863,Schex,DuJuan Harris,RB,FA,2013,
+863,Schex,DuJuan Harris,RB,2013,2013,$14
 1278,,Duke Ihenacho,DB,FA,2013,$1
 315,Keyon,Dustin Keller,TE,2011,2013,$2
 1105,Jake/Luke,Dwayne Allen,TE,2012,2014,$1
@@ -265,7 +265,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Syed,LaRod Stephens-Howling,RB,2013,2015,$1
 -1,,LaRon Landry,DB,FA,2013,$1
 223,Pat/Quinn,Larry Fitzgerald,WR,2012,2014,$130
-1476,Koci/Mueller,Latavius Murray,RB,FA,2013,
+1476,Koci/Mueller,Latavius Murray,RB,2013,2013,$2
 1192,Keyon,Lavonte David,LB,2012,2014,$1
 298,Daniel,Lawrence Timmons,LB,2012,2014,$5
 1408,Charles,Le'Veon Bell,RB,2013,2015,$26
@@ -281,7 +281,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1482,Schex,Manti Te'o,LB,2013,2015,$1
 126,Syed,Marcel Reece,RB,2013,2015,$1
 -1,James,Marcus Lattimore,RB,2013,2015,$7
-1050,Schex,Marcus Thigpen,RB,FA,2013,
+1050,Schex,Marcus Thigpen,RB,2013,2013,$1
 219,Trevor,Mario Williams,DL,2012,2013,$17
 1255,Charles,Mark Barron,DB,2012,2014,$1
 956,James,Mark Ingram,RB,2011,2013,$25
@@ -405,7 +405,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1567,John,Tavon Austin,WR,2013,2015,$18
 695,,Ted Ginn,WR,FA,2013,$10
 1490,Mitch,Terrance Williams,WR,2013,2014,$5
-296,Pat/Quinn,Terrell Suggs,LB,FA,2013,
+296,Pat/Quinn,Terrell Suggs,LB,2013,2013,$4
 1020,Trevor,Terrelle Pryor,QB,2011,2013,$1
 683,Syed,Tim Jennings,DB,2013,2015,$1
 604,Charles,Toby Gerhart,RB,2013,2014,$5
@@ -419,7 +419,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1082,Koci/Mueller,Trent Richardson,RB,2012,2014,$25
 1612,Schex,Tyler Bray,QB,2013,2015,$2
 1388,James,Tyler Eifert,TE,2013,2015,$18
--1,Pat/Quinn,Tyler Wilson,QB,2013,2015,$1
+-1,Pat/Quinn,Tyler Wilson,QB,2013,2015,$5
 1576,Koci/Mueller,Tyrann Mathieu,DB,2013,2015,$1
 54,Syed,Tyvon Branch,DB,2012,2014,$10
 1587,John,Vance McDonald,TE,2013,2015,$3
