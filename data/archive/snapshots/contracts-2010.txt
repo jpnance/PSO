@@ -406,7 +406,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3652,Syed,Mike Thomas,WR,2010,2011,$14
 182,,Mike Tolbert,RB,FA,2010,
 365,Jake/Luke,Mike Wallace,WR,2010,2011,$40
-748,Koci,Mike Williams,WR,2010,2012,$1
+-1,Koci,Mike Williams,WR,2010,2012,$1
 748,Koci,Mike Williams,WR,2010,2012,$8
 122,James,Miles Austin,WR,2010,2012,$125
 -1,John,Mohamed Massaquoi,WR,2009,2011,$14

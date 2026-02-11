@@ -552,19 +552,39 @@ function generateDSL() {
 		});
 	});
 
+	// Build a reverse index: lowercase name -> [playerKey, ...] for existing snapshot players
+	var nameToPlayerKeys = {};
+	playerKeys.forEach(function(pk) {
+		var lname = players[pk].name.toLowerCase();
+		if (!nameToPlayerKeys[lname]) nameToPlayerKeys[lname] = [];
+		nameToPlayerKeys[lname].push(pk);
+	});
+
 	// Ensure we also have entries for players that only appear in fa.json (never in snapshots)
 	Object.keys(faByPlayer).forEach(function(key) {
 		if (players[key]) return; // already in snapshots
 
-		// For name:-prefixed keys, also check the historical: variant (used by snapshots)
+		// For name:-prefixed keys, try to merge into an existing snapshot player
 		if (key.indexOf('name:') === 0) {
-			var historicalKey = 'historical:' + key.substring(5);
+			var nameFromKey = key.substring(5);
+
+			// Check historical: variant first (for sleeperId=-1 players)
+			var historicalKey = 'historical:' + nameFromKey;
 			if (players[historicalKey]) {
-				// Map FA records to the existing snapshot key so they merge
 				if (!faByPlayer[historicalKey]) faByPlayer[historicalKey] = [];
 				faByPlayer[historicalKey] = faByPlayer[historicalKey].concat(faByPlayer[key]);
 				return;
 			}
+
+			// Check if exactly one snapshot player has this name (safe to merge)
+			var candidates = nameToPlayerKeys[nameFromKey];
+			if (candidates && candidates.length === 1) {
+				var existingKey = candidates[0];
+				if (!faByPlayer[existingKey]) faByPlayer[existingKey] = [];
+				faByPlayer[existingKey] = faByPlayer[existingKey].concat(faByPlayer[key]);
+				return;
+			}
+			// If multiple candidates (name collision), fall through to create a separate entry
 		}
 
 		// Find the actual player matching THIS key from the FA records
