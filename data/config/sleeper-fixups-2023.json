@@ -1,0 +1,10 @@
+{
+	"sleeperIgnored": [
+		{
+			"sleeperTxId": "1026523779956150272",
+			"timestamp": "2023-11-04T16:05:47.181Z",
+			"type": "waiver",
+			"reason": "Reversal pair with Jason Sanders (illegal bid); Renfrow drop was rolled back"
+		}
+	]
+}

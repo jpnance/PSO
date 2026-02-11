@@ -1,0 +1,10 @@
+{
+	"sleeperIgnored": [
+		{
+			"sleeperTxId": "896489279076048896",
+			"timestamp": "2022-11-11T17:04:52.890Z",
+			"type": "waiver",
+			"reason": "Reversal pair with Graham Gano (Quinn illegal bid); Zuerlein drop was rolled back"
+		}
+	]
+}
