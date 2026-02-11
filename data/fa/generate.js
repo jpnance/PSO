@@ -785,6 +785,14 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 			cutPositionMap.set(c, idx);
 		});
 
+		// Build per-player last cut timestamp so sections 2 and 3 can use it as a lower bound.
+		// Any inferred add must come after the player's last known cut in this season.
+		var playerLastCutTimestamp = {};
+		Object.keys(playerCutCount).forEach(function(pk) {
+			var lastIdx = playerCutCount[pk] - 1;
+			playerLastCutTimestamp[pk] = new Date(Date.UTC(season, 9, 15 + lastIdx, 12, 0, 33));
+		});
+
 		seasonCuts.forEach(function(cut) {
 			var result = traceOriginalAcquirer(
 				cut.sleeperId, cut.name, cut.owner, season, seasonTrades
@@ -859,8 +867,16 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 					if (emitted.has(emitKey)) return;
 					emitted.add(emitKey);
 
+					var playerKey = player.sleeperId || player.name.toLowerCase();
+					var lowerBound = faabOpen;
+					var lastCut = playerLastCutTimestamp[playerKey];
+					if (lastCut) {
+						var afterLastCut = new Date(lastCut.getTime() + 60000);
+						if (afterLastCut > lowerBound) lowerBound = afterLastCut;
+					}
+
 					var upperBound = result.upperBound || new Date(trade.date);
-					var timestamp = inferTimestamp(faabOpen, upperBound);
+					var timestamp = inferTimestamp(lowerBound, upperBound);
 
 					var add = {
 						name: player.name,
@@ -908,7 +924,15 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 			if (emitted.has(emitKey)) return;
 			emitted.add(emitKey);
 
-			var timestamp = inferTimestamp(faabOpen, result.upperBound || seasonEnd);
+			var playerKey = playerId || player.name.toLowerCase();
+			var lowerBound = faabOpen;
+			var lastCut = playerLastCutTimestamp[playerKey];
+			if (lastCut) {
+				var afterLastCut = new Date(lastCut.getTime() + 60000);
+				if (afterLastCut > lowerBound) lowerBound = afterLastCut;
+			}
+
+			var timestamp = inferTimestamp(lowerBound, result.upperBound || seasonEnd);
 
 			var add = {
 				name: player.name,
