@@ -41222,8 +41222,7 @@
 		"salary": 1,
 		"cutYear": 2025,
 		"rosterId": 5,
-		"sleeperId": "11636",
-		"offseason": true
+		"sleeperId": "11636"
 	},
 	{
 		"owner": "Mike",
@@ -41235,8 +41234,7 @@
 		"salary": 2,
 		"cutYear": 2025,
 		"rosterId": 5,
-		"sleeperId": "11582",
-		"offseason": true
+		"sleeperId": "11582"
 	},
 	{
 		"owner": "Jason",
