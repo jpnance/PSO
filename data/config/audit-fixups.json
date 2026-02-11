@@ -1,0 +1,16 @@
+{
+	"cutsAuditIgnored": [
+		{
+			"cutYear": 2022,
+			"rosterId": 3,
+			"sleeperId": "5030",
+			"reason": "Pre-FAAB drop; one-year-and-cut edge case (Harold Landry, Luke)"
+		},
+		{
+			"cutYear": 2022,
+			"rosterId": 9,
+			"sleeperId": "3291",
+			"reason": "Pre-FAAB drop; one-year-and-cut edge case (Blake Martinez, James/Charles)"
+		}
+	]
+}

@@ -1,5 +1,13 @@
 {
 	"fantraxIgnored": [],
 	"fantraxImports": [],
-	"fantraxCutTradeLinks": []
+	"fantraxCutTradeLinks": [],
+	"fantraxAuditIgnored": [
+		{ "season": 2020, "rosterId": 5, "playerName": "Marcus Mariota", "reason": "Rollback (doc/transaction-rollbacks.txt Dec 19 2020)" },
+		{ "season": 2020, "rosterId": 10, "playerName": "Troy Hill", "reason": "Hewitt/Akins situation, restored to Schex (doc/transaction-rollbacks.txt Dec 10 2020)" },
+		{ "season": 2020, "rosterId": 10, "playerName": "Neville Hewitt", "reason": "Hewitt/Akins situation, illegal bid voided (doc/transaction-rollbacks.txt Dec 10 2020)" },
+		{ "season": 2020, "rosterId": 11, "playerName": "Austin Walter", "reason": "Rollback (doc/transaction-rollbacks.txt Nov 16 2020)" },
+		{ "season": 2020, "rosterId": 12, "playerName": "Ben DiNucci", "reason": "Chase Daniel rollback, restored to Mitch (doc/transaction-rollbacks.txt Nov 7 2020)" },
+		{ "season": 2020, "rosterId": 12, "playerName": "Chase Daniel", "reason": "Rollback (doc/transaction-rollbacks.txt Nov 7 2020)" }
+	]
 }
