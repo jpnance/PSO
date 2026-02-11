@@ -235,9 +235,9 @@ ID,Owner,Name,Position,Start,End,Salary
 1479,Mitch,Keenan Allen,WR,2013,2015,$9
 1158,Brett/Luke,Kellen Moore,QB,2015,2015,$1
 2182,Mitch,Kelvin Benjamin,WR,2014,2016,$19
-1655,,Kenbrell Thompkins,WR,FA,2015
+1655,Daniel,Kenbrell Thompkins,WR,2014,2016,$2
 1097,Schex/Jeff,Kendall Wright,WR,2015,2017,$6
-2465,,Kenny Bell,WR,FA,2015
+2465,Syed/Terence,Kenny Bell,WR,2015,2015,$1
 366,Patrick,Kenny Britt,WR,2014,2016,$1
 2534,Schex/Jeff,Kenny Hilliard,RB,2015,2017,$2
 1555,Daniel,Kenny Stills,WR,2013,2015,$9
@@ -265,7 +265,7 @@ ID,Owner,Name,Position,Start,End,Salary
 196,Keyon,Leodis McKelvin,DB,2013,2015,$3
 2311,Mitch,Leonard Williams,DL,2015,2015,$1
 676,John/Zach,LeSean McCoy,RB,2015,2016,$200
-2251,,Logan Thomas,QB,FA,2015
+2251,Syed/Terence,Logan Thomas,QB,2014,2016,$10
 1880,John/Zach,Lorenzo Taliaferro,RB,2014,2016,$2
 1181,Koci/Mueller,Luke Kuechly,LB,2015,2015,$26
 2588,Daniel,Malcolm Brown,RB,2015,2017,$1
@@ -339,14 +339,14 @@ ID,Owner,Name,Position,Start,End,Salary
 380,Koci/Mueller,Rashad Jennings,RB,2015,2015,$78
 16,James,Ray Rice,RB,2015,2017,$1
 179,Trevor,Reggie Bush,RB,2015,2017,$5
-194,,Reggie Wayne,WR,FA,2015
+194,Syed/Terence,Reggie Wayne,WR,2014,2015,$30
 714,Daniel,Reshad Jones,DB,2015,2017,$10
 2146,Quinn,Richard Rodgers,TE,2014,2016,$7
 996,Trevor,Richard Sherman,DB,2013,2015,$3
 582,Schex/Jeff,Riley Cooper,WR,2014,2016,$10
 515,Schex/Jeff,Rob Gronkowski,TE,2013,2015,$150
 1169,Syed/Terence,Robert Griffin,QB,2015,2017,$28
-2217,,Robert Herron,WR,FA,2015
+2217,Syed/Terence,Robert Herron,WR,2014,2016,$2
 967,John/Zach,Robert Quinn,DL,2015,2017,$5
 1352,Quinn,Robert Woods,WR,2013,2015,$9
 4,Daniel,Roddy White,WR,2015,2015,$25
@@ -398,6 +398,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1466,Mitch,Travis Kelce,TE,2013,2015,$5
 2231,Daniel,Tre Mason,RB,2014,2016,$12
 2544,Daniel,Tre McBride,WR,2015,2017,$2
+2633,Syed/Terence,Trey Williams,RB,2015,2015,$1
 2245,Syed/Terence,Troy Niklas,TE,2014,2016,$1
 2399,Syed/Terence,Ty Montgomery,WR,2015,2017,$9
 1388,James,Tyler Eifert,TE,2013,2015,$18
