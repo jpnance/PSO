@@ -1,16 +1,10 @@
 {
 	"cutsAuditIgnored": [
-		{
-			"cutYear": 2022,
-			"rosterId": 3,
-			"sleeperId": "5030",
-			"reason": "Pre-FAAB drop; one-year-and-cut edge case (Harold Landry, Luke)"
-		},
-		{
-			"cutYear": 2022,
-			"rosterId": 9,
-			"sleeperId": "3291",
-			"reason": "Pre-FAAB drop; one-year-and-cut edge case (Blake Martinez, James/Charles)"
-		}
+		{ "cutYear": 2022, "rosterId": 3, "sleeperId": "5030", "reason": "Pre-FAAB drop; one-year-and-cut edge case (Harold Landry, Luke)" },
+		{ "cutYear": 2022, "rosterId": 9, "sleeperId": "3291", "reason": "Pre-FAAB drop; one-year-and-cut edge case (Blake Martinez, James/Charles)" },
+		{ "cutYear": 2024, "rosterId": 4, "sleeperId": "6828", "reason": "Trade facilitation (Trade #670); ignore for audit (Dillon, Justin)" },
+		{ "cutYear": 2024, "rosterId": 12, "sleeperId": "5046", "reason": "Pre-FAAB drop; legitimate (Royce Freeman, Mitch)" },
+		{ "cutYear": 2024, "rosterId": 12, "sleeperId": "7561", "reason": "Pre-FAAB drop; legitimate (Elijah Mitchell, Mitch)" },
+		{ "cutYear": 2024, "rosterId": 12, "sleeperId": "7606", "reason": "Pre-FAAB drop; legitimate (Kadarius Toney, Mitch)" }
 	]
 }

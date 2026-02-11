@@ -156,5 +156,11 @@
       "type": "commissioner",
       "reason": "Trade transfer (trade processing)"
     }
+  ],
+  "sleeperCommissionerAuditIncluded": [
+    {
+      "sleeperTxId": "1150162544972296192",
+      "reason": "Oct 10 2024 JuJu/McFadden rollback — Flournoy dropped from roster 2 to make room for JuJu (treat as manual_assist)"
+    }
   ]
 }
