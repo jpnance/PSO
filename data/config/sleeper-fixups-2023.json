@@ -1,10 +1,202 @@
 {
-	"sleeperIgnored": [
-		{
-			"sleeperTxId": "1026523779956150272",
-			"timestamp": "2023-11-04T16:05:47.181Z",
-			"type": "waiver",
-			"reason": "Reversal pair with Jason Sanders (illegal bid); Renfrow drop was rolled back"
-		}
-	]
+  "sleeperIgnored": [
+    {
+      "sleeperTxId": "1002026539405410304",
+      "timestamp": "2023-08-28T23:10:53.048Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1004071179830824960",
+      "timestamp": "2023-09-03T14:35:33.313Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1004520612271841280",
+      "timestamp": "2023-09-04T20:21:26.357Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1009126951820337152",
+      "timestamp": "2023-09-17T13:25:23.287Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1010720721196654592",
+      "timestamp": "2023-09-21T22:58:27.517Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1012796019974823936",
+      "timestamp": "2023-09-27T16:24:57.303Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1013982527574388736",
+      "timestamp": "2023-09-30T22:59:42.759Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1014910050802016256",
+      "timestamp": "2023-10-03T12:25:21.529Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1015874036594929664",
+      "timestamp": "2023-10-06T04:15:53.652Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1018324742220693504",
+      "timestamp": "2023-10-12T22:34:07.405Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1019990939248496640",
+      "timestamp": "2023-10-17T12:54:59.733Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1019991042122194944",
+      "timestamp": "2023-10-17T12:55:24.260Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1024028845462171648",
+      "timestamp": "2023-10-28T16:20:11.595Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1024115646457651200",
+      "timestamp": "2023-10-28T22:05:06.565Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1024391698648506368",
+      "timestamp": "2023-10-29T16:22:02.536Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1025104263720062976",
+      "timestamp": "2023-10-31T15:33:31.288Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1025106214604144640",
+      "timestamp": "2023-10-31T15:41:16.415Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1026267920290152448",
+      "timestamp": "2023-11-03T20:37:28.634Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1026269115851345920",
+      "timestamp": "2023-11-03T20:42:13.678Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1026523779956150272",
+      "timestamp": "2023-11-04T16:05:47.181Z",
+      "type": "waiver",
+      "reason": "Reversal pair with Jason Sanders (illegal bid); Renfrow drop was rolled back"
+    },
+    {
+      "sleeperTxId": "1026907046945583104",
+      "timestamp": "2023-11-05T14:57:08.303Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1027643666992615424",
+      "timestamp": "2023-11-07T15:44:12.208Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1027644625726599168",
+      "timestamp": "2023-11-07T15:48:00.788Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1027645332487827456",
+      "timestamp": "2023-11-07T15:50:49.293Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1027646254907555840",
+      "timestamp": "2023-11-07T15:54:29.215Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1027695251517063168",
+      "timestamp": "2023-11-07T19:09:10.917Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1027711465454780416",
+      "timestamp": "2023-11-07T20:13:36.621Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1028056358072975360",
+      "timestamp": "2023-11-08T19:04:05.429Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1028058774281535488",
+      "timestamp": "2023-11-08T19:13:41.498Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1028073967141187584",
+      "timestamp": "2023-11-08T20:14:03.758Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1028127334831869952",
+      "timestamp": "2023-11-08T23:46:07.607Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1028131067863126016",
+      "timestamp": "2023-11-09T00:00:57.631Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1028145193393950720",
+      "timestamp": "2023-11-09T00:57:05.420Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    }
+  ]
 }

@@ -1,10 +1,322 @@
 {
-	"sleeperIgnored": [
-		{
-			"sleeperTxId": "896489279076048896",
-			"timestamp": "2022-11-11T17:04:52.890Z",
-			"type": "waiver",
-			"reason": "Reversal pair with Graham Gano (Quinn illegal bid); Zuerlein drop was rolled back"
-		}
-	]
+  "sleeperIgnored": [
+    {
+      "sleeperTxId": "818932617457070080",
+      "timestamp": "2022-04-10T17:21:00.335Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "823616696286810112",
+      "timestamp": "2022-04-23T15:33:51.754Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "823616869322854400",
+      "timestamp": "2022-04-23T15:34:33.009Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "823637864444198912",
+      "timestamp": "2022-04-23T16:57:58.636Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "825788719779938304",
+      "timestamp": "2022-04-29T15:24:42.509Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "829921053294850048",
+      "timestamp": "2022-05-11T01:05:07.594Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "856580360543256576",
+      "timestamp": "2022-07-23T14:39:41.748Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "860576816002338816",
+      "timestamp": "2022-08-03T15:20:10.980Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "860577362830561280",
+      "timestamp": "2022-08-03T15:22:21.354Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "860578127125024768",
+      "timestamp": "2022-08-03T15:25:23.576Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "860764501002301440",
+      "timestamp": "2022-08-04T03:45:58.571Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "863688127129202688",
+      "timestamp": "2022-08-12T05:23:25.358Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "863840906967633920",
+      "timestamp": "2022-08-12T15:30:30.910Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "864182750582845440",
+      "timestamp": "2022-08-13T14:08:52.779Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "864183135959646208",
+      "timestamp": "2022-08-13T14:10:24.660Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "864191043564855296",
+      "timestamp": "2022-08-13T14:41:49.980Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "864191517982625792",
+      "timestamp": "2022-08-13T14:43:43.090Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "866129678782582784",
+      "timestamp": "2022-08-18T23:05:16.634Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "866129717030449152",
+      "timestamp": "2022-08-18T23:05:25.753Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "869996924126793728",
+      "timestamp": "2022-08-29T15:12:19.774Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "877978378530381824",
+      "timestamp": "2022-09-20T15:47:46.792Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "885646659328163840",
+      "timestamp": "2022-10-11T19:38:47.404Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "885650206832832512",
+      "timestamp": "2022-10-11T19:52:53.195Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "888294206110855168",
+      "timestamp": "2022-10-19T02:59:11.746Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "888916297260433408",
+      "timestamp": "2022-10-20T20:11:09.834Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "889010830178521088",
+      "timestamp": "2022-10-21T02:26:48.238Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "889043630332043264",
+      "timestamp": "2022-10-21T04:37:08.404Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "890998447531208704",
+      "timestamp": "2022-10-26T14:04:53.143Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "890999287817932800",
+      "timestamp": "2022-10-26T14:08:13.483Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "891739000220598272",
+      "timestamp": "2022-10-28T15:07:34.664Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "892482423546904576",
+      "timestamp": "2022-10-30T16:21:40.596Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893164453951176704",
+      "timestamp": "2022-11-01T13:31:49.316Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893357309424816128",
+      "timestamp": "2022-11-02T02:18:09.644Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893638242405249024",
+      "timestamp": "2022-11-02T20:54:29.286Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893640519069327360",
+      "timestamp": "2022-11-02T21:03:32.085Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893744857817161728",
+      "timestamp": "2022-11-03T03:58:08.381Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893745561126432768",
+      "timestamp": "2022-11-03T04:00:56.063Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893747861823664128",
+      "timestamp": "2022-11-03T04:10:04.592Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893883872700542976",
+      "timestamp": "2022-11-03T13:10:32.112Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893943285046112256",
+      "timestamp": "2022-11-03T17:06:37.119Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "893955834516987904",
+      "timestamp": "2022-11-03T17:56:29.146Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "894014497327685632",
+      "timestamp": "2022-11-03T21:49:35.450Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "894015926557741056",
+      "timestamp": "2022-11-03T21:55:16.205Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "894987437879820288",
+      "timestamp": "2022-11-06T14:15:42.554Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "895776621569961984",
+      "timestamp": "2022-11-08T18:31:38.608Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896094045267468288",
+      "timestamp": "2022-11-09T15:32:58.315Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896166809362108416",
+      "timestamp": "2022-11-09T20:22:06.627Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896200928175300608",
+      "timestamp": "2022-11-09T22:37:41.186Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896243598406979584",
+      "timestamp": "2022-11-10T01:27:14.562Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896244572794269696",
+      "timestamp": "2022-11-10T01:31:06.874Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896269188795244544",
+      "timestamp": "2022-11-10T03:08:55.786Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896269947150487552",
+      "timestamp": "2022-11-10T03:11:56.592Z",
+      "type": "commissioner",
+      "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "896489279076048896",
+      "timestamp": "2022-11-11T17:04:52.890Z",
+      "type": "waiver",
+      "reason": "Reversal pair with Graham Gano (Quinn illegal bid); Zuerlein drop was rolled back"
+    }
+  ]
 }
