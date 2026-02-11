@@ -1019,33 +1019,6 @@ function generatePlayerTransactions(player, draftsMap, tradesMap, unsignedTrades
 		});
 	}
 	
-	// Sort transactions by year, then by type priority, then by date
-	// Priority: offseason cut → draft/auction → contract → trade → in-season cut → fa (postseason)
-	var typePriority = {
-		'protect': 0,
-		'cut-offseason': 1,
-		'draft': 2,
-		'auction': 2,
-		'contract': 3,
-		'expansion': 4,
-		'trade': 5,
-		'cut': 6,
-		'fa': 7,
-		'unknown': 8
-	};
-	transactions.sort(function(a, b) {
-		if (a.year !== b.year) return a.year - b.year;
-		// Sort by type priority first (offseason cuts get treated as cut-offseason)
-		var aType = (a.type === 'cut' && a.offseason) ? 'cut-offseason' : a.type;
-		var bType = (b.type === 'cut' && b.offseason) ? 'cut-offseason' : b.type;
-		var aPri = typePriority[aType] !== undefined ? typePriority[aType] : 10;
-		var bPri = typePriority[bType] !== undefined ? typePriority[bType] : 10;
-		if (aPri !== bPri) return aPri - bPri;
-		// Within same type, sort by date if available
-		if (a.date && b.date) return new Date(a.date) - new Date(b.date);
-		return 0;
-	});
-	
 	return transactions;
 }
 
