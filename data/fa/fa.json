@@ -72057,33 +72057,6 @@
 		"rosterId": 9,
 		"adds": [
 			{
-				"name": "Mo Alie-Cox",
-				"position": "TE",
-				"salary": 5,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"drops": [
-			{
-				"name": "Jalen Richard",
-				"position": "RB",
-				"salary": 10,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"source": "fantrax",
-		"sourceId": "bmx9x28ykfmfoips",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2020,
-		"timestamp": "2020-09-28T17:00:00.000Z",
-		"rosterId": 9,
-		"adds": [
-			{
 				"name": "Carl Lawson",
 				"position": "DL",
 				"salary": 3,

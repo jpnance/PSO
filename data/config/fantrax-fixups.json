@@ -4,7 +4,8 @@
 		{ "transactionId": "qcclur99kiiqy8ls", "reason": "Dec 10 2020 — Hewitt illegal bid by Schex (insufficient FAAB), also drops Troy Hill" },
 		{ "transactionId": "eyg8zt8zkij9d633", "reason": "Dec 10 2020 — Schex self-drops Hewitt after illegal bid voided" },
 		{ "transactionId": "e1wjm9xkkhkoh68k", "reason": "Nov 16 2020 — Austin Walter illegal claim (had already played), rolled back" },
-		{ "transactionId": "d0n1gosgkh49d5gr", "reason": "Nov 7 2020 — Chase Daniel illegal claim by Mitch (FAAB error)" }
+		{ "transactionId": "d0n1gosgkh49d5gr", "reason": "Nov 7 2020 — Chase Daniel illegal claim by Mitch (FAAB error)" },
+		{ "transactionId": "bmx9x28ykfmfoips", "reason": "Sep 28 2020 — Mo Alie-Cox claim by James/Charles at $5, reversed and re-done Oct 1 at $8" }
 	],
 	"fantraxCommissionerAuditIncluded": [
 		{ "transactionId": "z6k8r568kijb7q9o", "reason": "Dec 10 2020 — Keyon drops Jordan Akins to make room for Hewitt award (in cuts.json)" },
