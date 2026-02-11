@@ -20714,6 +20714,18 @@
   },
   {
     "season": 2015,
+    "sleeperId": "2465",
+    "name": "Kenny Bell",
+    "positions": [
+      "WR"
+    ],
+    "rosterId": 3,
+    "salary": 1,
+    "startYear": 2015,
+    "endYear": 2015
+  },
+  {
+    "season": 2015,
     "sleeperId": "2534",
     "name": "Kenny Hilliard",
     "positions": [
@@ -21852,6 +21864,18 @@
     "salary": 2,
     "startYear": 2015,
     "endYear": 2017
+  },
+  {
+    "season": 2015,
+    "sleeperId": "2633",
+    "name": "Trey Williams",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 3,
+    "salary": 1,
+    "startYear": 2015,
+    "endYear": 2015
   },
   {
     "season": 2015,
@@ -44648,6 +44672,18 @@
     "salary": 169,
     "startYear": 2024,
     "endYear": 2026
+  },
+  {
+    "season": 2024,
+    "sleeperId": "6828",
+    "name": "A.J. Dillon",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 4,
+    "salary": 3,
+    "startYear": 2024,
+    "endYear": 2024
   },
   {
     "season": 2024,
