@@ -1,5 +1,6 @@
 ID,Owner,Player,Position,Start,End,Salary
 5859,Justin,A.J. Brown,WR,2024,2026,$169
+6828,Justin,A.J. Dillon,RB,2024,2024,$3
 4199,Keyon,Aaron Jones,RB,2024,2024,$72
 96,Brett,Aaron Rodgers,QB,2023,2024,$135
 1689,Patrick,Adam Thielen,WR,2023,2025,$7
