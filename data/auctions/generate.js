@@ -18,6 +18,7 @@ var PSO = require('../../config/pso.js');
 var CONTRACTS_FILE = path.join(__dirname, '../contracts/contracts.json');
 var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
+var RFA_FILE = path.join(__dirname, '../rfa/rfa.json');
 var OUTPUT_FILE = path.join(__dirname, 'auctions.json');
 
 // Build owner name -> rosterId for each year from PSO.franchiseNames
@@ -158,6 +159,22 @@ function main() {
 	var contracts = JSON.parse(fs.readFileSync(CONTRACTS_FILE, 'utf8'));
 	var drafts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
+	var rfaRecords = JSON.parse(fs.readFileSync(RFA_FILE, 'utf8'));
+
+	// Build RFA rights lookup: { "playerKey|season": rosterId }
+	// An rfa-rights-conversion in season S means the owner held RFA rights
+	// going into the S+1 auction.
+	var rfaRights = {};
+	rfaRecords.forEach(function(r) {
+		if (r.type !== 'rfa-rights-conversion') return;
+		var key;
+		if (r.sleeperId && r.sleeperId !== '-1') {
+			key = r.sleeperId + '|' + r.season;
+		} else {
+			key = normalizePlayerName(r.playerName) + '|' + r.season;
+		}
+		rfaRights[key] = r.rosterId;
+	});
 
 	// Build draft lookup by season: { season: [{ sleeperId, name }] }
 	var draftsBySeason = {};
@@ -251,8 +268,26 @@ function main() {
 
 			stats.auctions++;
 
+			// Classify auction type based on RFA rights from prior season
+			var rfaKey;
+			if (contract.sleeperId && contract.sleeperId !== '-1') {
+				rfaKey = contract.sleeperId + '|' + (season - 1);
+			} else {
+				rfaKey = normalizePlayerName(contract.name) + '|' + (season - 1);
+			}
+			var rfaHolderRosterId = rfaRights[rfaKey];
+			var auctionType;
+			if (rfaHolderRosterId !== undefined) {
+				auctionType = (rfaHolderRosterId === originalRosterId)
+					? 'auction-rfa-matched'
+					: 'auction-rfa-unmatched';
+			} else {
+				auctionType = 'auction-ufa';
+			}
+
 			auctions.push({
 				season: season,
+				type: auctionType,
 				sleeperId: contract.sleeperId,
 				name: contract.name,
 				positions: contract.positions,
@@ -289,10 +324,19 @@ function main() {
 		return;
 	}
 
+	// Count by type
+	var byType = {};
+	auctions.forEach(function(a) {
+		byType[a.type] = (byType[a.type] || 0) + 1;
+	});
+
 	fs.writeFileSync(OUTPUT_FILE, JSON.stringify(auctions, null, 2), 'utf8');
 	console.log('Wrote ' + auctions.length + ' entries to ' + OUTPUT_FILE);
 	console.log('  Drafted (skipped): ' + stats.drafted);
 	console.log('  Unrolled from trades: ' + stats.unrolled);
+	Object.keys(byType).sort().forEach(function(t) {
+		console.log('  ' + t + ': ' + byType[t]);
+	});
 }
 
 main();

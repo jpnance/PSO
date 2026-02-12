@@ -275,32 +275,9 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 	}
 
 	// --- Auction events ---
-	// Build a lookup of RFA rights by season: { season: rosterId }
-	// An rfa-rights-conversion in season S means the owner held RFA rights
-	// going into the S+1 auction.
-	var rfaRightsBySeason = {};
-	rfaRecords.forEach(function(r) {
-		if (r.type === 'rfa-rights-conversion') {
-			rfaRightsBySeason[r.season] = r.rosterId;
-		}
-	});
-
 	auctionRecords.forEach(function(a) {
 		var aDate = auctionDates[a.season] || new Date(Date.UTC(a.season, 7, 20, 16, 0, 0));
-
-		// Determine auction subtype based on RFA status
-		var rfaHolderRosterId = rfaRightsBySeason[a.season - 1];
-		var auctionType;
-		if (rfaHolderRosterId !== undefined) {
-			// Player had RFA rights going into this auction
-			if (rfaHolderRosterId === a.rosterId) {
-				auctionType = 'auction-rfa-matched';
-			} else {
-				auctionType = 'auction-rfa-unmatched';
-			}
-		} else {
-			auctionType = 'auction-ufa';
-		}
+		var auctionType = a.type || 'auction-ufa';
 
 		events.push({
 			timestamp: aDate,
