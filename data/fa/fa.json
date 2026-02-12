@@ -3111,13 +3111,6 @@
 				"endYear": 2010
 			},
 			{
-				"name": "Roy Williams",
-				"position": "WR",
-				"salary": 100,
-				"startYear": 2008,
-				"endYear": 2009
-			},
-			{
 				"name": "Santonio Holmes",
 				"position": "WR",
 				"salary": 47,
@@ -3368,26 +3361,6 @@
 				"salary": 20,
 				"startYear": 2008,
 				"endYear": 2010
-			}
-		],
-		"source": "offseason",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2009,
-		"timestamp": "2009-08-10T04:00:00.000Z",
-		"rosterId": 6,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Steve Smith",
-				"position": "WR",
-				"salary": 120,
-				"startYear": 2008,
-				"endYear": 2010,
-				"sleeperId": "169"
 			}
 		],
 		"source": "offseason",
@@ -15327,6 +15300,26 @@
 		"rosterId": 2,
 		"adds": [
 			{
+				"name": "Robbie Gould",
+				"position": "K",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011,
+				"sleeperId": "49"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-10-16T00:01:33.000Z",
+		"rosterId": 2,
+		"adds": [
+			{
 				"name": "Brad Smith",
 				"position": "WR",
 				"salary": 2,
@@ -19605,6 +19598,26 @@
 				"startYear": null,
 				"endYear": 2012,
 				"sleeperId": "170"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2012,
+		"timestamp": "2012-10-16T00:01:33.000Z",
+		"rosterId": 2,
+		"adds": [
+			{
+				"name": "Henry Melton",
+				"position": "DL",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2012,
+				"sleeperId": "588"
 			}
 		],
 		"drops": [],
@@ -24124,26 +24137,6 @@
 	{
 		"season": 2013,
 		"timestamp": "2013-10-15T12:00:33.000Z",
-		"rosterId": 3,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Josh Boyce",
-				"position": "WR",
-				"salary": 1,
-				"startYear": 2013,
-				"endYear": 2015,
-				"sleeperId": "1362"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2013,
-		"timestamp": "2013-10-15T12:00:33.000Z",
 		"rosterId": 1,
 		"adds": [],
 		"drops": [
@@ -24314,26 +24307,6 @@
 				"startYear": 2013,
 				"endYear": 2015,
 				"sleeperId": "191"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2013,
-		"timestamp": "2013-10-15T12:00:33.000Z",
-		"rosterId": 4,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Marcel Reece",
-				"position": "RB",
-				"salary": 1,
-				"startYear": 2013,
-				"endYear": 2015,
-				"sleeperId": "126"
 			}
 		],
 		"source": "cuts",
@@ -25146,6 +25119,46 @@
 				"startYear": null,
 				"endYear": 2013,
 				"sleeperId": "120"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2013,
+		"timestamp": "2013-11-08T15:07:33.000Z",
+		"rosterId": 3,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Josh Boyce",
+				"position": "WR",
+				"salary": 1,
+				"startYear": 2013,
+				"endYear": 2015,
+				"sleeperId": "1362"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2013,
+		"timestamp": "2013-11-08T15:07:33.000Z",
+		"rosterId": 4,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Marcel Reece",
+				"position": "RB",
+				"salary": 1,
+				"startYear": 2013,
+				"endYear": 2015,
+				"sleeperId": "126"
 			}
 		],
 		"source": "cuts",
@@ -30090,26 +30103,6 @@
 	{
 		"season": 2014,
 		"timestamp": "2014-10-15T12:00:33.000Z",
-		"rosterId": 2,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Colt McCoy",
-				"position": "QB",
-				"salary": 10,
-				"startYear": null,
-				"endYear": 2014,
-				"sleeperId": "533"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2014,
-		"timestamp": "2014-10-15T12:00:33.000Z",
 		"rosterId": 1,
 		"adds": [],
 		"drops": [
@@ -30460,6 +30453,26 @@
 				"startYear": null,
 				"endYear": 2014,
 				"sleeperId": "306"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2014,
+		"timestamp": "2014-10-23T19:30:33.000Z",
+		"rosterId": 2,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Colt McCoy",
+				"position": "QB",
+				"salary": 10,
+				"startYear": null,
+				"endYear": 2014,
+				"sleeperId": "533"
 			}
 		],
 		"source": "cuts",
@@ -36490,26 +36503,6 @@
 	{
 		"season": 2015,
 		"timestamp": "2015-10-15T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Joseph Randle",
-				"position": "RB",
-				"salary": 13,
-				"startYear": 2013,
-				"endYear": 2015,
-				"sleeperId": "1487"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2015,
-		"timestamp": "2015-10-15T12:00:33.000Z",
 		"rosterId": 11,
 		"adds": [],
 		"drops": [
@@ -38426,6 +38419,26 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
+	},
+	{
+		"season": 2015,
+		"timestamp": "2015-11-19T17:22:33.000Z",
+		"rosterId": 10,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Joseph Randle",
+				"position": "RB",
+				"salary": 13,
+				"startYear": 2013,
+				"endYear": 2015,
+				"sleeperId": "1487"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
 	},
 	{
 		"season": 2015,
@@ -51994,26 +52007,6 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-10-15T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Drew Stanton",
-				"position": "QB",
-				"salary": 2,
-				"startYear": null,
-				"endYear": 2017,
-				"sleeperId": "181"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2017,
-		"timestamp": "2017-10-15T12:00:33.000Z",
 		"rosterId": 1,
 		"adds": [],
 		"drops": [
@@ -52594,6 +52587,26 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-10-16T00:01:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Seth Roberts",
+				"position": "WR",
+				"salary": 3,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "2039"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-10-16T00:01:33.000Z",
 		"rosterId": 3,
 		"adds": [
 			{
@@ -53014,26 +53027,6 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-10-16T12:00:33.000Z",
-		"rosterId": 11,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Ryan Fitzpatrick",
-				"position": "QB",
-				"salary": 3,
-				"startYear": null,
-				"endYear": 2017,
-				"sleeperId": "333"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2017,
-		"timestamp": "2017-10-16T12:00:33.000Z",
 		"rosterId": 6,
 		"adds": [],
 		"drops": [
@@ -53204,6 +53197,26 @@
 				"startYear": null,
 				"endYear": 2017,
 				"sleeperId": "1957"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-10-26T19:43:33.000Z",
+		"rosterId": 10,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Drew Stanton",
+				"position": "QB",
+				"salary": 2,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "181"
 			}
 		],
 		"source": "cuts",
@@ -54670,6 +54683,26 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-07T19:14:33.000Z",
+		"rosterId": 11,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Ryan Fitzpatrick",
+				"position": "QB",
+				"salary": 3,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "333"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
 	},
 	{
 		"season": 2017,
@@ -59926,26 +59959,6 @@
 	{
 		"season": 2018,
 		"timestamp": "2018-10-15T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Trenton Cannon",
-				"position": "RB",
-				"salary": 2,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "5123"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2018,
-		"timestamp": "2018-10-15T12:00:33.000Z",
 		"rosterId": 6,
 		"adds": [],
 		"drops": [
@@ -60246,26 +60259,6 @@
 	{
 		"season": 2018,
 		"timestamp": "2018-10-15T12:00:33.000Z",
-		"rosterId": 7,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Malcolm Brown",
-				"position": "RB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "2588"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2018,
-		"timestamp": "2018-10-15T12:00:33.000Z",
 		"rosterId": 3,
 		"adds": [],
 		"drops": [
@@ -60395,6 +60388,26 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "2227"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-10-16T00:01:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Cody Parkey",
+				"position": "K",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "1974"
 			}
 		],
 		"drops": [],
@@ -60595,6 +60608,26 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "3331"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-10-16T00:01:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Willie Snead",
+				"position": "WR",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "1911"
 			}
 		],
 		"drops": [],
@@ -60876,26 +60909,6 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "3331"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2018,
-		"timestamp": "2018-10-16T12:00:33.000Z",
-		"rosterId": 1,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Raheem Mostert",
-				"position": "RB",
-				"salary": 2,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "2749"
 			}
 		],
 		"source": "cuts",
@@ -62242,6 +62255,66 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-11-08T04:34:33.000Z",
+		"rosterId": 1,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Raheem Mostert",
+				"position": "RB",
+				"salary": 2,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "2749"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-11-13T16:17:33.000Z",
+		"rosterId": 7,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Malcolm Brown",
+				"position": "RB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "2588"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-11-15T14:54:33.000Z",
+		"rosterId": 10,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Trenton Cannon",
+				"position": "RB",
+				"salary": 2,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "5123"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
 	},
 	{
 		"season": 2018,
@@ -67746,26 +67819,6 @@
 	{
 		"season": 2019,
 		"timestamp": "2019-10-15T12:00:33.000Z",
-		"rosterId": 10,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Zach Pascal",
-				"position": "WR",
-				"salary": 5,
-				"startYear": null,
-				"endYear": 2019,
-				"sleeperId": "4319"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2019,
-		"timestamp": "2019-10-15T12:00:33.000Z",
 		"rosterId": 9,
 		"adds": [],
 		"drops": [
@@ -68189,6 +68242,26 @@
 		"rosterId": 9,
 		"adds": [
 			{
+				"name": "Jon Bostic",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "1507"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-10-16T00:01:33.000Z",
+		"rosterId": 9,
+		"adds": [
+			{
 				"name": "Kalen Ballage",
 				"position": "RB",
 				"salary": 5,
@@ -68255,6 +68328,26 @@
 				"startYear": null,
 				"endYear": 2019,
 				"sleeperId": "2308"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-10-16T00:01:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Darrel Williams",
+				"position": "RB",
+				"salary": 9,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "5549"
 			}
 		],
 		"drops": [],
@@ -68576,6 +68669,26 @@
 				"startYear": null,
 				"endYear": 2019,
 				"sleeperId": "2822"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-11-01T21:03:33.000Z",
+		"rosterId": 10,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Zach Pascal",
+				"position": "WR",
+				"salary": 5,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "4319"
 			}
 		],
 		"source": "cuts",
@@ -71660,87 +71773,6 @@
 	},
 	{
 		"season": 2020,
-		"timestamp": "2020-09-20T17:00:00.000Z",
-		"rosterId": 8,
-		"adds": [
-			{
-				"name": "David Njoku",
-				"position": "TE",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"drops": [
-			{
-				"name": "Kenny Stills",
-				"position": "WR",
-				"salary": 13,
-				"startYear": 2019,
-				"endYear": 2020
-			}
-		],
-		"source": "fantrax",
-		"sourceId": "yj2lf7blkfanj0ek",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2020,
-		"timestamp": "2020-09-21T17:00:00.000Z",
-		"rosterId": 6,
-		"adds": [
-			{
-				"name": "Keelan Cole",
-				"position": "WR",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"drops": [
-			{
-				"name": "Greg Olsen",
-				"position": "TE",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"source": "fantrax",
-		"sourceId": "3r6yk2b7kfcmtgyx",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2020,
-		"timestamp": "2020-09-21T17:00:00.000Z",
-		"rosterId": 12,
-		"adds": [
-			{
-				"name": "Myles Gaskin",
-				"position": "RB",
-				"salary": 5,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"drops": [
-			{
-				"name": "Jordan Howard",
-				"position": "RB",
-				"salary": 37,
-				"startYear": 2020,
-				"endYear": 2020
-			}
-		],
-		"source": "fantrax",
-		"sourceId": "qkubu3udkfcliydu",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2020,
 		"timestamp": "2020-09-24T17:00:00.000Z",
 		"rosterId": 2,
 		"adds": [
@@ -72025,33 +72057,6 @@
 		],
 		"source": "fantrax",
 		"sourceId": "13avetvekfk746cy",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2020,
-		"timestamp": "2020-09-28T17:00:00.000Z",
-		"rosterId": 9,
-		"adds": [
-			{
-				"name": "Carl Lawson",
-				"position": "DL",
-				"salary": 3,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"drops": [
-			{
-				"name": "Trey Flowers",
-				"position": "DL",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2020
-			}
-		],
-		"source": "fantrax",
-		"sourceId": "mpzq597fkfmflxbc",
 		"tradeId": null,
 		"inferred": false
 	},
@@ -77339,25 +77344,6 @@
 		],
 		"source": "offseason",
 		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2021,
-		"timestamp": "2021-09-08T15:11:00.000Z",
-		"rosterId": 1,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Malcolm Butler",
-				"position": "DB",
-				"salary": 1,
-				"startYear": 2021,
-				"endYear": 2021
-			}
-		],
-		"source": "fantrax",
-		"sourceId": "71602ffhktbkyu19",
 		"tradeId": null,
 		"inferred": false
 	},
@@ -97802,35 +97788,6 @@
 	{
 		"season": 2024,
 		"timestamp": "2024-10-10T16:05:03.710Z",
-		"rosterId": 4,
-		"adds": [
-			{
-				"name": "JuJu Smith-Schuster",
-				"position": "WR",
-				"salary": 5,
-				"startYear": null,
-				"endYear": 2024,
-				"sleeperId": "4040"
-			}
-		],
-		"drops": [
-			{
-				"name": "Micah McFadden",
-				"position": "LB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2024,
-				"sleeperId": "8396"
-			}
-		],
-		"source": "sleeper",
-		"sourceId": "1149345352534003712",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2024,
-		"timestamp": "2024-10-10T16:05:03.710Z",
 		"rosterId": 12,
 		"adds": [
 			{
@@ -97941,6 +97898,26 @@
 		],
 		"source": "sleeper",
 		"sourceId": "1150127662271328256",
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2024,
+		"timestamp": "2024-10-10T17:50:18.899Z",
+		"rosterId": 2,
+		"adds": [
+			{
+				"name": "JuJu Smith-Schuster",
+				"position": "WR",
+				"salary": 0,
+				"startYear": null,
+				"endYear": 2024,
+				"sleeperId": "4040"
+			}
+		],
+		"drops": [],
+		"source": "sleeper",
+		"sourceId": "1150162502567915520",
 		"tradeId": null,
 		"inferred": false
 	},

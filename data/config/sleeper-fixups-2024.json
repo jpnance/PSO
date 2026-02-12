@@ -155,6 +155,12 @@
       "timestamp": "2024-11-07T05:01:37.540Z",
       "type": "commissioner",
       "reason": "Trade transfer (trade processing)"
+    },
+    {
+      "sleeperTxId": "1149345352534003712",
+      "timestamp": "2024-10-10T16:05:03.710Z",
+      "type": "free_agent",
+      "reason": "Oct 10 2024 — Micah McFadden phantom drop by Justin (rollback, real drop Oct 11)"
     }
   ],
   "sleeperCommissionerAuditIncluded": [
@@ -168,6 +174,7 @@
     },
     { "sleeperTxId": "1136781533311787008", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Royce Freeman (in cuts.json)" },
     { "sleeperTxId": "1136781565956055040", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Elijah Mitchell (in cuts.json)" },
-    { "sleeperTxId": "1136781603121782784", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Kadarius Toney (in cuts.json)" }
+    { "sleeperTxId": "1136781603121782784", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Kadarius Toney (in cuts.json)" },
+    { "sleeperTxId": "1150162502567915520", "reason": "Oct 10 2024 — Commissioner awards JuJu Smith-Schuster to Koci/Mueller (corrected FAAB, classified reversal_pair but is real FA add)" }
   ]
 }

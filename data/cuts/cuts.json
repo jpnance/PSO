@@ -799,19 +799,6 @@
 	},
 	{
 		"owner": "Trevor",
-		"name": "Roy Williams",
-		"hint": null,
-		"position": "WR",
-		"startYear": 2008,
-		"endYear": 2009,
-		"salary": 100,
-		"cutYear": 2009,
-		"rosterId": 5,
-		"note": "inferred from disappearance",
-		"offseason": true
-	},
-	{
-		"owner": "Trevor",
 		"name": "Santonio Holmes",
 		"hint": null,
 		"position": "WR",
@@ -820,20 +807,6 @@
 		"salary": 47,
 		"cutYear": 2009,
 		"rosterId": 5,
-		"note": "inferred from contract change",
-		"offseason": true
-	},
-	{
-		"owner": "Keyon",
-		"name": "Steve Smith",
-		"hint": null,
-		"position": "WR",
-		"startYear": 2008,
-		"endYear": 2010,
-		"salary": 120,
-		"cutYear": 2009,
-		"rosterId": 6,
-		"sleeperId": "169",
 		"note": "inferred from contract change",
 		"offseason": true
 	},

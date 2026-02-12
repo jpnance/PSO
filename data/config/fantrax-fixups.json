@@ -5,7 +5,12 @@
 		{ "transactionId": "eyg8zt8zkij9d633", "reason": "Dec 10 2020 — Schex self-drops Hewitt after illegal bid voided" },
 		{ "transactionId": "e1wjm9xkkhkoh68k", "reason": "Nov 16 2020 — Austin Walter illegal claim (had already played), rolled back" },
 		{ "transactionId": "d0n1gosgkh49d5gr", "reason": "Nov 7 2020 — Chase Daniel illegal claim by Mitch (FAAB error)" },
-		{ "transactionId": "bmx9x28ykfmfoips", "reason": "Sep 28 2020 — Mo Alie-Cox claim by James/Charles at $5, reversed and re-done Oct 1 at $8" }
+		{ "transactionId": "bmx9x28ykfmfoips", "reason": "Sep 28 2020 — Mo Alie-Cox claim by James/Charles at $5, reversed and re-done Oct 1 at $8" },
+		{ "transactionId": "yj2lf7blkfanj0ek", "reason": "Sep 20 2020 — Kenny Stills phantom drop by Terence (real drop Sep 27)" },
+		{ "transactionId": "3r6yk2b7kfcmtgyx", "reason": "Sep 21 2020 — Greg Olsen phantom drop by Keyon (real drop Sep 24)" },
+		{ "transactionId": "qkubu3udkfcliydu", "reason": "Sep 21 2020 — Jordan Howard phantom drop by Mitch (real drop Sep 24)" },
+		{ "transactionId": "mpzq597fkfmflxbc", "reason": "Sep 28 2020 — Trey Flowers phantom drop by James (real drop Oct 1)" },
+		{ "transactionId": "71602ffhktbkyu19", "reason": "Sep 8 2021 — Malcolm Butler accidental drop by Patrick, commissioner re-added 4 min later" }
 	],
 	"fantraxCommissionerAuditIncluded": [
 		{ "transactionId": "z6k8r568kijb7q9o", "reason": "Dec 10 2020 — Keyon drops Jordan Akins to make room for Hewitt award (in cuts.json)" },

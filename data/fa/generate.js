@@ -586,8 +586,25 @@ function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups) {
  * Generate records for pre-2020 in-season cuts from cuts.json.
  * Each non-offseason cut becomes a standalone drop record.
  */
-function generatePrePlatformCuts(cuts) {
+function generatePrePlatformCuts(cuts, trades) {
 	var records = [];
+
+	// Build a trade index: for each player+season+owner, find the latest trade
+	// that brought the player to that owner. Cut timestamps must be after such trades.
+	var tradeReceiptMap = {};  // "playerKey|season|owner" -> latest trade date
+	(trades || []).forEach(function(trade) {
+		var year = new Date(trade.date).getFullYear();
+		trade.parties.forEach(function(party) {
+			party.players.forEach(function(p) {
+				var playerKey = p.sleeperId || p.name.toLowerCase();
+				var key = playerKey + '|' + year + '|' + party.owner.toLowerCase();
+				var tradeDate = new Date(trade.date);
+				if (!tradeReceiptMap[key] || tradeDate > tradeReceiptMap[key]) {
+					tradeReceiptMap[key] = tradeDate;
+				}
+			});
+		});
+	});
 
 	// Track per-player cut count per season so repeated cuts get advancing timestamps.
 	// cuts.json is chronologically ordered, so we just increment for each additional cut.
@@ -614,7 +631,20 @@ function generatePrePlatformCuts(cuts) {
 		var cutIndex = playerCutCount[playerKey] || 0;
 		playerCutCount[playerKey] = cutIndex + 1;
 
-		var timestamp = new Date(Date.UTC(cut.cutYear, 9, 15 + cutIndex, 12, 0, 33));
+		var conventionalTimestamp = new Date(Date.UTC(cut.cutYear, 9, 15 + cutIndex, 12, 0, 33));
+
+		// If this player was traded to this owner in this season, the cut must
+		// come after the trade (e.g., Mostert traded to Patrick Nov 8, cut later)
+		var tradeKey = (cut.sleeperId || cut.name.toLowerCase()) + '|' + cut.cutYear + '|' + cut.owner.toLowerCase();
+		var tradeDate = tradeReceiptMap[tradeKey];
+		var timestamp = conventionalTimestamp;
+		if (tradeDate && tradeDate >= conventionalTimestamp) {
+			// Place cut 1 minute after the trade, preserving :33 convention
+			timestamp = new Date(tradeDate.getTime());
+			timestamp.setUTCSeconds(33);
+			timestamp.setUTCMilliseconds(0);
+			timestamp = new Date(timestamp.getTime() + 60000);
+		}
 
 		records.push({
 			season: cut.cutYear,
@@ -799,12 +829,17 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 				return;
 			}
 
-			var emitKey = (cut.sleeperId || cut.name.toLowerCase()) + '|' + season + '|' + rosterId;
-			if (emitted.has(emitKey)) return;
-			emitted.add(emitKey);
-
 			// This FA cut's position among ALL cuts of this player (matches generatePrePlatformCuts)
 			var perPlayerIdx = cutPositionMap.get(cut) || 0;
+
+			// Include perPlayerIdx in emit key so the same owner can pick up and cut
+			// the same player multiple times in one season (e.g. Cody Parkey 2018)
+			var baseKey = (cut.sleeperId || cut.name.toLowerCase()) + '|' + season + '|' + rosterId;
+			var emitKey = baseKey + '|' + perPlayerIdx;
+			if (emitted.has(emitKey)) return;
+			emitted.add(emitKey);
+			// Also add base key so sections 2 and 3 know this player+season+owner was handled
+			emitted.add(baseKey);
 			var cutTimestamp = new Date(Date.UTC(season, 9, 15 + perPlayerIdx, 12, 0, 33));
 
 			// Lower bound: if there's a prior cut of this player (any type), the add
@@ -1041,7 +1076,7 @@ function run() {
 
 	// 4. Pre-2020 in-season cuts
 	console.log('\nGenerating pre-2020 in-season cuts...');
-	var prePlatformCuts = generatePrePlatformCuts(cuts);
+	var prePlatformCuts = generatePrePlatformCuts(cuts, trades);
 	console.log('  ' + prePlatformCuts.length + ' pre-2020 cut records');
 	allRecords = allRecords.concat(prePlatformCuts);
 

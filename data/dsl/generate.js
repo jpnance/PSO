@@ -530,12 +530,12 @@ function generateDSL() {
 
 	faData.forEach(function(r) {
 		r.adds.forEach(function(add) {
-			var key = add.sleeperId || ('name:' + add.name.toLowerCase());
+			var key = (add.sleeperId && add.sleeperId !== '-1') ? add.sleeperId : ('name:' + add.name.toLowerCase());
 			if (!faByPlayer[key]) faByPlayer[key] = [];
 			faByPlayer[key].push(r);
 		});
 		r.drops.forEach(function(drop) {
-			var key = drop.sleeperId || ('name:' + drop.name.toLowerCase());
+			var key = (drop.sleeperId && drop.sleeperId !== '-1') ? drop.sleeperId : ('name:' + drop.name.toLowerCase());
 			if (!faByPlayer[key]) faByPlayer[key] = [];
 			faByPlayer[key].push(r);
 		});
@@ -663,11 +663,11 @@ function generateDSL() {
 		var filteredFA = [];
 		playerFA.forEach(function(r) {
 			var relevantAdds = r.adds.filter(function(a) {
-				if (player.sleeperId && a.sleeperId) return a.sleeperId === player.sleeperId;
+				if (player.sleeperId && player.sleeperId !== '-1' && a.sleeperId && a.sleeperId !== '-1') return a.sleeperId === player.sleeperId;
 				return a.name.toLowerCase() === player.name.toLowerCase();
 			});
 			var relevantDrops = r.drops.filter(function(d) {
-				if (player.sleeperId && d.sleeperId) return d.sleeperId === player.sleeperId;
+				if (player.sleeperId && player.sleeperId !== '-1' && d.sleeperId && d.sleeperId !== '-1') return d.sleeperId === player.sleeperId;
 				return d.name.toLowerCase() === player.name.toLowerCase();
 			});
 
