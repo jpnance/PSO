@@ -1,18 +1,1 @@
-# Trades Data Cache
-
-This directory contains cached trade data fetched from WordPress.
-
-## Files
-
-- `trades.json` - All trades from the WordPress API
-
-## Refreshing the Cache
-
-Run the pipeline without `--local`:
-
-```bash
-node data/inference/pipeline.js
-```
-
-The pipeline will automatically cache trades for future local runs.
-No API key is required for WordPress.
+This file is the real canon now. It has fixes that don't appear anywhere else. It should not be overwritten with WordPress stuff anymore.

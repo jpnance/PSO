@@ -345,7 +345,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1759,John/Zach,Larry Donnell,TE,FA,2014,$5
 223,Daniel,Larry Fitzgerald,WR,2012,2014,$130
 1476,Keyon,Latavius Murray,RB,2014,2016,$1
-1192,Schex,Lavonte David,LB,2012,2014,$1
+1192,Schex,Lavonte David,LB,2014,2016,$1
 298,Schex,Lawrence Timmons,LB,2014,2016,$1
 1408,Koci/Mueller,Le'Veon Bell,RB,2013,2015,$26
 730,Koci/Mueller,LeGarrette Blount,RB,2014,2016,$12
