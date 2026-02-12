@@ -22,7 +22,7 @@ ID,Owner,Name,Position,Start,End,Salary
 268,Koci,Alex Smith,QB,2010,2010,$33
 -1,,Allen Rossum,DB,FA,2010,
 148,Syed,Andre Caldwell,WR,2010,2010,$2
-12221,Trevor,Andre Carter,DL,2010,2011,$16
+-1,Trevor,Andre Carter,DL,2010,2011,$16
 92,Koci,Andre Johnson,WR,2008,2010,$156
 627,Daniel,Andre Roberts,WR,2010,2010,$1
 655,Schexes,Anquan Boldin,WR,2008,2010,$11

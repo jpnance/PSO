@@ -258,7 +258,7 @@ ID,Owner,Name,Position,Start,End,Salary
 169,Keyon,Steve Smith,WR,2008,2010,$120
 264,Keyon,Greg Jennings,WR,2008,2010,$32
 155,Keyon,Jerricho Cotchery,WR,2008,2010,$32
-11628,Keyon,Marvin Harrison,WR,FA,2008,$8
+-1,Keyon,Marvin Harrison,WR,FA,2008,$8
 128,Keyon,Vincent Jackson,WR,2008,2010,$2
 104,Keyon,Donnie Avery,WR,2008,2010,$1
 700,Schexes,Josh Wilson,DB,FA,2008,$1

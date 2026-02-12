@@ -109,7 +109,7 @@
   },
   {
     "season": 2008,
-    "sleeperId": "12221",
+    "sleeperId": null,
     "name": "Andre Carter",
     "positions": [
       "DL"
@@ -1670,7 +1670,7 @@
   },
   {
     "season": 2008,
-    "sleeperId": "11628",
+    "sleeperId": null,
     "name": "Marvin Harrison",
     "positions": [
       "WR"
@@ -5118,7 +5118,7 @@
   },
   {
     "season": 2010,
-    "sleeperId": "12221",
+    "sleeperId": null,
     "name": "Andre Carter",
     "positions": [
       "DL"

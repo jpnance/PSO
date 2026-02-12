@@ -3,12 +3,16 @@
  * DSL Generator
  * 
  * Generates player-history.dsl from pre-computed event sources:
- *   - fa.json (FA adds and drops — explicit and inferred)
- *   - rfa.json (RFA rights conversions and contract expiries)
+ *   - auctions.json (summer auction wins)
+ *   - contracts.json (contract signings)
  *   - drafts.json (rookie draft selections)
  *   - trades.json (trades)
- *   - contracts-YYYY.txt snapshots (auction/contract events)
+ *   - fa.json (FA adds and drops — explicit and inferred)
+ *   - rfa.json (RFA rights conversions and contract expiries)
  *   - expansion-draft-2012.txt (one-time expansion draft)
+ * 
+ * This script does NO inference — it translates pre-computed JSON
+ * records into DSL event lines and sorts them chronologically.
  * 
  * Usage:
  *   node data/dsl/generate.js
@@ -18,7 +22,8 @@ var fs = require('fs');
 var path = require('path');
 
 var DSL_FILE = path.join(__dirname, 'player-history.dsl');
-var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
+var AUCTIONS_FILE = path.join(__dirname, '../auctions/auctions.json');
+var CONTRACTS_FILE = path.join(__dirname, '../contracts/contracts.json');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
 var FA_FILE = path.join(__dirname, '../fa/fa.json');
@@ -49,21 +54,26 @@ function rosterIdToOwner(rosterId, season) {
 	return 'Unknown(' + rosterId + ')';
 }
 
-function loadAuctionDates() {
-	return leagueDates.getAllAuctionDates();
-}
-
-function loadDraftDates() {
-	return leagueDates.getAllDraftDates();
+function playerKey(sleeperId, name) {
+	if (sleeperId && sleeperId !== '-1') return sleeperId;
+	return 'name:' + name.toLowerCase();
 }
 
 // =============================================================================
 // Data loaders
 // =============================================================================
 
+function loadAuctions() {
+	return JSON.parse(fs.readFileSync(AUCTIONS_FILE, 'utf8'));
+}
+
+function loadContracts() {
+	return JSON.parse(fs.readFileSync(CONTRACTS_FILE, 'utf8'));
+}
+
 function loadDrafts() {
 	var drafts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
-	var byPlayer = {}; // keyed by sleeperId or lowercase name
+	var byPlayer = {};
 
 	drafts.forEach(function(d) {
 		if (!d.playerName) return; // skip passed picks
@@ -89,33 +99,24 @@ function loadDrafts() {
 
 function loadTrades() {
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
-	var byPlayer = {}; // keyed by sleeperId or lowercase name -> array of trade entries
+	var byPlayer = {};
 
 	trades.forEach(function(trade) {
-		trade.parties.forEach(function(party, partyIndex) {
+		trade.parties.forEach(function(party) {
 			(party.players || []).forEach(function(player) {
 				var entry = {
 					tradeId: trade.tradeId,
 					date: trade.date,
 					toOwner: party.owner,
 					sleeperId: player.sleeperId || null,
-					contractStr: player.contractStr || null,
-					fromOwner: null
+					contractStr: player.contractStr || null
 				};
 
-				// For unsigned players in 2-party trades, track the sender
-				if ((player.contractStr === 'unsigned' || (player.contract && player.contract.start === null)) &&
-					trade.parties.length === 2) {
-					entry.fromOwner = trade.parties[1 - partyIndex].owner;
-				}
-
-				// Index by sleeperId
 				if (player.sleeperId) {
 					if (!byPlayer[player.sleeperId]) byPlayer[player.sleeperId] = [];
 					byPlayer[player.sleeperId].push(entry);
 				}
 
-				// Also index by name
 				if (player.name) {
 					var nameKey = 'name:' + player.name.toLowerCase();
 					if (!byPlayer[nameKey]) byPlayer[nameKey] = [];
@@ -125,7 +126,6 @@ function loadTrades() {
 		});
 	});
 
-	// Sort each array by date
 	Object.keys(byPlayer).forEach(function(k) {
 		byPlayer[k].sort(function(a, b) {
 			return new Date(a.date) - new Date(b.date);
@@ -188,78 +188,65 @@ function loadExpansionProtections() {
 	return protections;
 }
 
-/**
- * Parse contract snapshots to build a player registry and detect auction/contract events.
- * Returns: { playerKey: { sleeperId, name, positions, contracts: [{year, owner, salary, startYear, endYear}] } }
- */
-function parseSnapshots() {
-	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
-		return f.match(/^contracts-\d{4}\.txt$/);
-	}).sort();
+// =============================================================================
+// Player registry
+// =============================================================================
 
+/**
+ * Build a unified player registry from all data sources.
+ * Each player has: { sleeperId, name, positions }
+ */
+function buildPlayerRegistry(auctions, contracts, draftsMap, faData, rfaData) {
 	var players = {};
 
-	files.forEach(function(file) {
-		var year = parseInt(file.match(/-(\d{4})\.txt/)[1]);
-		var content = fs.readFileSync(path.join(SNAPSHOTS_DIR, file), 'utf8');
-		var lines = content.trim().split('\n');
-
-		for (var i = 1; i < lines.length; i++) {
-			var parts = lines[i].split(',');
-			if (parts.length < 7) continue;
-
-			var id = parts[0];
-			var owner = parts[1];
-			var name = parts[2];
-			var position = parts[3];
-			var startYear = parts[4] === 'FA' ? null : parseInt(parts[4]);
-			var endYear = parseInt(parts[5]);
-			var salaryStr = parts[6].replace(/[$,]/g, '');
-			var salary = salaryStr ? parseInt(salaryStr) : 1;
-			if (isNaN(salary)) salary = 1;
-
-			if (!id || id === '') continue;
-
-			var baseName = name.replace(/\s*\([^)]+\)\s*$/, '').trim();
-			var playerKey, sleeperId = null;
-			if (id !== '-1') {
-				playerKey = id;
-				sleeperId = id;
-			} else {
-				playerKey = 'historical:' + baseName.toLowerCase();
-			}
-
-			var positionList = position ? position.split('/') : [];
-
-			var contract = {
-				year: year,
-				owner: owner,
-				salary: salary,
-				startYear: startYear,
-				endYear: endYear
+	function ensurePlayer(key, sleeperId, name, positions) {
+		if (!players[key]) {
+			players[key] = {
+				sleeperId: sleeperId,
+				name: name,
+				positions: positions ? positions.slice() : []
 			};
-
-			if (!players[playerKey]) {
-				players[playerKey] = {
-					sleeperId: sleeperId,
-					name: baseName,
-					positions: positionList.slice(),
-					contracts: [contract]
-				};
-			} else {
-				players[playerKey].contracts.push(contract);
-				positionList.forEach(function(pos) {
-					if (pos && players[playerKey].positions.indexOf(pos) < 0) {
-						players[playerKey].positions.push(pos);
-					}
-				});
-			}
+		} else {
+			(positions || []).forEach(function(pos) {
+				if (pos && players[key].positions.indexOf(pos) < 0) {
+					players[key].positions.push(pos);
+				}
+			});
 		}
+	}
+
+	// From auctions
+	auctions.forEach(function(a) {
+		var key = playerKey(a.sleeperId, a.name);
+		ensurePlayer(key, a.sleeperId || null, a.name, a.positions);
 	});
 
-	// Sort contracts by year
-	Object.keys(players).forEach(function(key) {
-		players[key].contracts.sort(function(a, b) { return a.year - b.year; });
+	// From contracts
+	contracts.forEach(function(c) {
+		var key = playerKey(c.sleeperId, c.name);
+		ensurePlayer(key, c.sleeperId || null, c.name, c.positions);
+	});
+
+	// From drafts
+	Object.keys(draftsMap).forEach(function(k) {
+		var d = draftsMap[k];
+		var key = playerKey(d.sleeperId, d.name);
+		ensurePlayer(key, d.sleeperId || null, d.name, []);
+	});
+
+	// From FA records (adds only — players that only appear in FA)
+	faData.forEach(function(r) {
+		r.adds.forEach(function(add) {
+			var key = playerKey(add.sleeperId, add.name);
+			ensurePlayer(key, add.sleeperId || null, add.name, add.position ? [add.position] : []);
+		});
+	});
+
+	// From RFA records
+	rfaData.forEach(function(r) {
+		if (r.type === 'rfa-unknown') return;
+		var key = playerKey(r.sleeperId, r.playerName);
+		ensurePlayer(key, r.sleeperId || null, r.playerName, r.position ? [r.position] : []);
 	});
 
 	return players;
@@ -269,54 +256,15 @@ function parseSnapshots() {
 // Event generation
 // =============================================================================
 
-/**
- * Check if two owner names refer to the same franchise in a given year.
- */
-function sameRegime(owner1, owner2, year) {
-	if (!owner1 || !owner2) return false;
-	if (owner1.toLowerCase() === owner2.toLowerCase()) return true;
-
-	// Partial match (Koci vs Koci/Mueller)
-	if (owner1.toLowerCase().indexOf(owner2.toLowerCase()) >= 0 ||
-		owner2.toLowerCase().indexOf(owner1.toLowerCase()) >= 0) {
-		return true;
-	}
-
-	// Check franchise IDs — if both resolve to the same franchise ID, same regime
-	var id1 = null, id2 = null;
-	var rosterIds = Object.keys(PSO.franchiseNames);
-	for (var i = 0; i < rosterIds.length; i++) {
-		var rid = parseInt(rosterIds[i]);
-		var name = PSO.franchiseNames[rid][year];
-		if (!name) continue;
-		if (name.toLowerCase() === owner1.toLowerCase() ||
-			owner1.toLowerCase().indexOf(name.toLowerCase()) >= 0 ||
-			name.toLowerCase().indexOf(owner1.toLowerCase()) >= 0) {
-			id1 = rid;
-		}
-		if (name.toLowerCase() === owner2.toLowerCase() ||
-			owner2.toLowerCase().indexOf(name.toLowerCase()) >= 0 ||
-			name.toLowerCase().indexOf(owner2.toLowerCase()) >= 0) {
-			id2 = rid;
-		}
-	}
-	return id1 !== null && id2 !== null && id1 === id2;
-}
-
-/**
- * Generate events for a single player.
- * Merges data from all sources into a single timestamped event list.
- */
-function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords, rfaRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
+function generatePlayerEvents(key, player, auctionRecords, contractRecords, draftsMap, tradesMap, faRecords, rfaRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
 	var events = [];
 
 	// --- Draft events ---
-	var draft = draftsMap[playerKey];
+	var draft = draftsMap[key];
 	if (!draft && player.sleeperId) draft = draftsMap[player.sleeperId];
 	if (!draft) draft = draftsMap['name:' + player.name.toLowerCase()];
 
 	if (draft) {
-		// Use actual draft date if available, otherwise fall back to 3 hours before auction
 		var auctionDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 16, 0, 0));
 		var draftDate = draftDates[draft.season] || new Date(auctionDate.getTime() - 3 * 60 * 60 * 1000);
 		events.push({
@@ -324,19 +272,41 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 			type: 'draft',
 			line: '  ' + yy(draft.season) + ' draft ' + draft.owner + ' ' + draft.round + '.' + String(draft.pickInRound).padStart(2, '0')
 		});
-
-		// Add contract line for drafted player (from snapshot data)
-		var draftContract = (player.contracts || []).find(function(c) {
-			return c.startYear === draft.season;
-		});
-		if (draftContract) {
-			events.push({
-				timestamp: new Date(draftDate.getTime() + 1),
-				type: 'contract',
-				line: '  ' + yy(draft.season) + ' contract $' + draftContract.salary + ' ' + yy(draftContract.startYear) + '/' + yy(draftContract.endYear)
-			});
-		}
 	}
+
+	// --- Auction events ---
+	auctionRecords.forEach(function(a) {
+		var aDate = auctionDates[a.season] || new Date(Date.UTC(a.season, 7, 20, 16, 0, 0));
+		events.push({
+			timestamp: aDate,
+			type: 'auction',
+			line: '  ' + yy(a.season) + ' auction ' + a.originalOwner + ' $' + a.salary
+		});
+	});
+
+	// --- Contract events ---
+	contractRecords.forEach(function(c) {
+		var owner = rosterIdToOwner(c.rosterId, c.season);
+
+		// Timestamp: contracts are signed after the auction/draft.
+		// For draft contracts, place just after draft. For auction contracts, just after auction.
+		var isDraftContract = draft && draft.season === c.season && c.startYear === draft.season;
+		var ts;
+		if (isDraftContract) {
+			var aDate = auctionDates[c.season] || new Date(Date.UTC(c.season, 7, 20, 16, 0, 0));
+			var dDate = draftDates[c.season] || new Date(aDate.getTime() - 3 * 60 * 60 * 1000);
+			ts = new Date(dDate.getTime() + 1);
+		} else {
+			var aDate = auctionDates[c.season] || new Date(Date.UTC(c.season, 7, 20, 16, 0, 0));
+			ts = new Date(aDate.getTime() + 1);
+		}
+
+		events.push({
+			timestamp: ts,
+			type: 'contract',
+			line: '  ' + yy(c.season) + ' contract $' + c.salary + ' ' + yy(c.startYear) + '/' + yy(c.endYear)
+		});
+	});
 
 	// --- Trade events ---
 	var playerTrades = [];
@@ -345,9 +315,8 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	}
 	if (playerTrades.length === 0) {
 		var nameTrades = tradesMap['name:' + player.name.toLowerCase()] || [];
-		// For name-based matching, only use trades without a sleeperId (historical players)
 		if (player.sleeperId) {
-			// Player has sleeperId but no trades found by ID — skip name fallback to avoid false matches
+			// Player has sleeperId but no trades found by ID — skip name fallback
 		} else {
 			playerTrades = nameTrades.filter(function(t) { return t.sleeperId === null; });
 		}
@@ -356,8 +325,7 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	playerTrades.forEach(function(trade) {
 		var tradeTimestamp = new Date(trade.date);
 
-		// For unsigned trades of drafted players, the trade was agreed to
-		// before the draft but logically executes after it. Force ordering.
+		// For unsigned trades of drafted players, force ordering after draft
 		if (trade.contractStr === 'unsigned' && draft && new Date(trade.date).getUTCFullYear() === draft.season) {
 			var aDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 16, 0, 0));
 			var dDate = draftDates[draft.season] || new Date(aDate.getTime() - 3 * 60 * 60 * 1000);
@@ -371,73 +339,7 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		});
 	});
 
-	// --- Auction/contract events from snapshots ---
-	var contracts = player.contracts || [];
-	var prevContract = null;
-
-	for (var i = 0; i < contracts.length; i++) {
-		var c = contracts[i];
-
-		if (c.startYear === null) {
-			// FA contract — the add is handled by fa.json events below
-			prevContract = c;
-			continue;
-		}
-
-		var isNewContract = !prevContract ||
-			c.startYear !== prevContract.startYear ||
-			c.endYear !== prevContract.endYear;
-
-		// Skip auction if player was drafted this year (draft IS the acquisition)
-		var wasDraftedThisYear = draft && draft.season === c.startYear;
-
-		if (isNewContract && c.startYear !== null && !wasDraftedThisYear) {
-			var auctionDate = auctionDates[c.startYear] || new Date(Date.UTC(c.startYear, 7, 20, 16, 0, 0));
-
-			// Check if player was traded unsigned in this year
-			// (auction won by sender, then traded before signing)
-			var auctionOwner = c.owner;
-			var unsignedTrade = null;
-
-			for (var j = 0; j < playerTrades.length; j++) {
-				var t = playerTrades[j];
-				var tradeDate = new Date(t.date);
-				var tradeYear = tradeDate.getUTCFullYear();
-
-				if (tradeYear === c.startYear &&
-					t.contractStr === 'unsigned' &&
-					sameRegime(t.toOwner, c.owner, c.startYear)) {
-					unsignedTrade = t;
-					break;
-				}
-			}
-
-			if (unsignedTrade && unsignedTrade.fromOwner) {
-				auctionOwner = unsignedTrade.fromOwner;
-			}
-
-			events.push({
-				timestamp: auctionDate,
-				type: 'auction',
-				line: '  ' + yy(c.startYear) + ' auction ' + auctionOwner + ' $' + c.salary
-			});
-
-			// Contract timestamp: after the trade if unsigned, otherwise right after auction
-			var contractTimestamp = unsignedTrade
-				? new Date(new Date(unsignedTrade.date).getTime() + 1)
-				: new Date(auctionDate.getTime() + 1);
-
-			events.push({
-				timestamp: contractTimestamp,
-				type: 'contract',
-				line: '  ' + yy(c.startYear) + ' contract $' + c.salary + ' ' + yy(c.startYear) + '/' + yy(c.endYear)
-			});
-		}
-
-		prevContract = c;
-	}
-
-	// --- FA events from fa.json ---
+	// --- FA events ---
 	faRecords.forEach(function(r) {
 		var owner = rosterIdToOwner(r.rosterId, r.season);
 		var ts = new Date(r.timestamp);
@@ -484,7 +386,7 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	var expansionPick = expansionSelections[player.name.toLowerCase()];
 	if (expansionPick) {
 		events.push({
-			timestamp: new Date(Date.UTC(2012, 7, 25, 11, 0, 0)), // just before auction
+			timestamp: new Date(Date.UTC(2012, 7, 25, 11, 0, 0)),
 			type: 'expansion',
 			line: '  12 expansion ' + expansionPick.toOwner + ' from ' + expansionPick.fromOwner
 		});
@@ -494,7 +396,7 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	var protection = expansionProtections[player.name.toLowerCase()];
 	if (protection) {
 		events.push({
-			timestamp: new Date(Date.UTC(2012, 7, 25, 10, 0, 0)), // before expansion picks
+			timestamp: new Date(Date.UTC(2012, 7, 25, 10, 0, 0)),
 			type: 'protect',
 			line: '  12 protect ' + protection.owner + (protection.isRfa ? ' (RFA)' : '')
 		});
@@ -520,12 +422,17 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 function generateDSL() {
 	console.log('Loading data...');
 
+	var auctions = loadAuctions();
+	console.log('  Auctions: ' + auctions.length);
+
+	var contracts = loadContracts();
+	console.log('  Contracts: ' + contracts.length);
+
 	var draftsMap = loadDrafts();
 	console.log('  Drafts: ' + Object.keys(draftsMap).length + ' picks');
 
 	var tradesMap = loadTrades();
-	var tradePlayerCount = Object.keys(tradesMap).length;
-	console.log('  Trades: ' + tradePlayerCount + ' player entries');
+	console.log('  Trades: ' + Object.keys(tradesMap).length + ' player entries');
 
 	var faData = loadFA();
 	console.log('  FA records: ' + faData.length);
@@ -533,10 +440,10 @@ function generateDSL() {
 	var rfaData = loadRFA();
 	console.log('  RFA records: ' + rfaData.length);
 
-	var auctionDates = loadAuctionDates();
+	var auctionDates = leagueDates.getAllAuctionDates();
 	console.log('  Auction dates: ' + Object.keys(auctionDates).length + ' years');
 
-	var draftDates = loadDraftDates();
+	var draftDates = leagueDates.getAllDraftDates();
 	console.log('  Draft dates: ' + Object.keys(draftDates).length + ' years');
 
 	var expansionSelections = loadExpansionSelections();
@@ -545,37 +452,43 @@ function generateDSL() {
 	var expansionProtections = loadExpansionProtections();
 	console.log('  Expansion protections: ' + Object.keys(expansionProtections).length);
 
-	console.log('\nParsing snapshots...');
-	var players = parseSnapshots();
+	console.log('\nBuilding player registry...');
+	var players = buildPlayerRegistry(auctions, contracts, draftsMap, faData, rfaData);
 	var playerKeys = Object.keys(players);
-	console.log('  ' + playerKeys.length + ' players from snapshots');
+	console.log('  ' + playerKeys.length + ' players');
 
-	// Index FA records by player (sleeperId or name)
+	// --- Index auctions by player ---
+	var auctionsByPlayer = {};
+	auctions.forEach(function(a) {
+		var key = playerKey(a.sleeperId, a.name);
+		if (!auctionsByPlayer[key]) auctionsByPlayer[key] = [];
+		auctionsByPlayer[key].push(a);
+	});
+
+	// --- Index contracts by player ---
+	var contractsByPlayer = {};
+	contracts.forEach(function(c) {
+		var key = playerKey(c.sleeperId, c.name);
+		if (!contractsByPlayer[key]) contractsByPlayer[key] = [];
+		contractsByPlayer[key].push(c);
+	});
+
+	// --- Index FA records by player ---
 	var faByPlayer = {};
-
 	faData.forEach(function(r) {
 		r.adds.forEach(function(add) {
-			var key = (add.sleeperId && add.sleeperId !== '-1') ? add.sleeperId : ('name:' + add.name.toLowerCase());
+			var key = playerKey(add.sleeperId, add.name);
 			if (!faByPlayer[key]) faByPlayer[key] = [];
 			faByPlayer[key].push(r);
 		});
 		r.drops.forEach(function(drop) {
-			var key = (drop.sleeperId && drop.sleeperId !== '-1') ? drop.sleeperId : ('name:' + drop.name.toLowerCase());
+			var key = playerKey(drop.sleeperId, drop.name);
 			if (!faByPlayer[key]) faByPlayer[key] = [];
 			faByPlayer[key].push(r);
 		});
 	});
 
-	// Index RFA records by player
-	var rfaByPlayer = {};
-	rfaData.forEach(function(r) {
-		if (r.type === 'rfa-unknown') return; // skip unknowns
-		var key = (r.sleeperId && r.sleeperId !== '-1') ? r.sleeperId : ('name:' + r.playerName.toLowerCase());
-		if (!rfaByPlayer[key]) rfaByPlayer[key] = [];
-		rfaByPlayer[key].push(r);
-	});
-
-	// Deduplicate FA records per player (same record can appear from both add and drop indexing)
+	// Deduplicate FA records per player
 	Object.keys(faByPlayer).forEach(function(key) {
 		var seen = new Set();
 		faByPlayer[key] = faByPlayer[key].filter(function(r) {
@@ -586,90 +499,17 @@ function generateDSL() {
 		});
 	});
 
-	// Build a reverse index: lowercase name -> [playerKey, ...] for existing snapshot players
-	var nameToPlayerKeys = {};
-	playerKeys.forEach(function(pk) {
-		var lname = players[pk].name.toLowerCase();
-		if (!nameToPlayerKeys[lname]) nameToPlayerKeys[lname] = [];
-		nameToPlayerKeys[lname].push(pk);
+	// --- Index RFA records by player ---
+	var rfaByPlayer = {};
+	rfaData.forEach(function(r) {
+		if (r.type === 'rfa-unknown') return;
+		var key = playerKey(r.sleeperId, r.playerName);
+		if (!rfaByPlayer[key]) rfaByPlayer[key] = [];
+		rfaByPlayer[key].push(r);
 	});
 
-	// Ensure we also have entries for players that only appear in fa.json (never in snapshots)
-	Object.keys(faByPlayer).forEach(function(key) {
-		if (players[key]) return; // already in snapshots
+	console.log('\nGenerating events...');
 
-		// For name:-prefixed keys, try to merge into an existing snapshot player
-		if (key.indexOf('name:') === 0) {
-			var nameFromKey = key.substring(5);
-
-			// Check historical: variant first (for sleeperId=-1 players)
-			var historicalKey = 'historical:' + nameFromKey;
-			if (players[historicalKey]) {
-				if (!faByPlayer[historicalKey]) faByPlayer[historicalKey] = [];
-				faByPlayer[historicalKey] = faByPlayer[historicalKey].concat(faByPlayer[key]);
-				return;
-			}
-
-			// Check if exactly one snapshot player has this name (safe to merge)
-			var candidates = nameToPlayerKeys[nameFromKey];
-			if (candidates && candidates.length === 1) {
-				var existingKey = candidates[0];
-				if (!faByPlayer[existingKey]) faByPlayer[existingKey] = [];
-				faByPlayer[existingKey] = faByPlayer[existingKey].concat(faByPlayer[key]);
-				return;
-			}
-			// If multiple candidates (name collision), fall through to create a separate entry
-		}
-
-		// Find the actual player matching THIS key from the FA records
-		// (multi-player records may contain other players as drops[0])
-		var records = faByPlayer[key];
-		var matchingPlayer = null;
-		var nameFromKey = key.indexOf('name:') === 0 ? key.substring(5) : null;
-
-		for (var i = 0; i < records.length && !matchingPlayer; i++) {
-			var r = records[i];
-			var allPlayers = r.adds.concat(r.drops);
-			for (var j = 0; j < allPlayers.length; j++) {
-				var p = allPlayers[j];
-				if (nameFromKey && p.name && p.name.toLowerCase() === nameFromKey) {
-					matchingPlayer = p;
-					break;
-				} else if (!nameFromKey && p.sleeperId === key) {
-					matchingPlayer = p;
-					break;
-				}
-			}
-		}
-
-		if (!matchingPlayer) return;
-
-		var sleeperId = matchingPlayer.sleeperId || null;
-		var playerKey = sleeperId || key;
-		if (players[playerKey]) return; // already exists under different key
-
-		players[playerKey] = {
-			sleeperId: sleeperId,
-			name: matchingPlayer.name,
-			positions: matchingPlayer.position ? [matchingPlayer.position] : [],
-			contracts: []
-		};
-
-		// Re-map FA records to the canonical key
-		if (playerKey !== key) {
-			if (!faByPlayer[playerKey]) faByPlayer[playerKey] = [];
-			faByPlayer[playerKey] = faByPlayer[playerKey].concat(records);
-		}
-	});
-
-	// Regenerate keys after adding FA-only players
-	playerKeys = Object.keys(players);
-
-	console.log('  ' + playerKeys.length + ' total players (including FA-only)\n');
-
-	console.log('Generating events...');
-
-	// Generate DSL lines
 	var playerEntries = [];
 
 	playerKeys.forEach(function(key) {
@@ -677,22 +517,18 @@ function generateDSL() {
 
 		// Build header
 		var headerParts = [player.name, player.positions.join('/') || '??'];
-		if (player.sleeperId) {
+		if (player.sleeperId && player.sleeperId !== '-1') {
 			headerParts.push('sleeper:' + player.sleeperId);
 		} else {
 			headerParts.push('historical');
 		}
 		var header = headerParts.join(' | ');
 
-		// Get FA records for this player (try multiple key formats)
-		var playerFA = faByPlayer[key] || [];
-		if (!playerFA.length && player.sleeperId) {
-			playerFA = faByPlayer[player.sleeperId] || [];
-		}
-		if (!playerFA.length) {
-			playerFA = faByPlayer['name:' + player.name.toLowerCase()] || [];
-		}
+		// Look up per-player data
+		var playerAuctions = auctionsByPlayer[key] || [];
+		var playerContracts = contractsByPlayer[key] || [];
 
+		var playerFA = faByPlayer[key] || [];
 		// Filter FA records to only include adds/drops for THIS player
 		var filteredFA = [];
 		playerFA.forEach(function(r) {
@@ -718,21 +554,17 @@ function generateDSL() {
 			}
 		});
 
-		// Get RFA records for this player
 		var playerRFA = rfaByPlayer[key] || [];
 		if (!playerRFA.length && player.sleeperId) {
 			playerRFA = rfaByPlayer[player.sleeperId] || [];
 		}
 		if (!playerRFA.length && !player.sleeperId) {
-			// Only fall back to name matching for historical players (no sleeperId).
-			// Players with a sleeperId should not match name-keyed RFA records
-			// from a different (historical) player with the same name.
 			playerRFA = rfaByPlayer['name:' + player.name.toLowerCase()] || [];
 		}
 
-		var events = generatePlayerEvents(player, key, draftsMap, tradesMap, filteredFA, playerRFA, expansionSelections, expansionProtections, auctionDates, draftDates);
+		var events = generatePlayerEvents(key, player, playerAuctions, playerContracts, draftsMap, tradesMap, filteredFA, playerRFA, expansionSelections, expansionProtections, auctionDates, draftDates);
 
-		if (events.length === 0) return; // skip players with no events
+		if (events.length === 0) return;
 
 		var entryLines = [header];
 		events.forEach(function(e) {

@@ -52,7 +52,8 @@
 		"endYear": 2010,
 		"salary": 3,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "243"
 	},
 	{
 		"owner": "Koci",
@@ -74,7 +75,8 @@
 		"endYear": 2010,
 		"salary": 1,
 		"cutYear": 2008,
-		"rosterId": 8
+		"rosterId": 8,
+		"sleeperId": "287"
 	},
 	{
 		"owner": "Schexes",
@@ -96,7 +98,8 @@
 		"endYear": 2010,
 		"salary": 5,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "89"
 	},
 	{
 		"owner": "Jeff",
@@ -140,7 +143,8 @@
 		"endYear": 2010,
 		"salary": 4,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "318"
 	},
 	{
 		"owner": "Daniel",
@@ -162,7 +166,8 @@
 		"endYear": 2010,
 		"salary": 2,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "254"
 	},
 	{
 		"owner": "Koci",
@@ -173,7 +178,8 @@
 		"endYear": 2008,
 		"salary": 13,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "3"
 	},
 	{
 		"owner": "Keyon",
@@ -184,7 +190,8 @@
 		"endYear": 2008,
 		"salary": 30,
 		"cutYear": 2008,
-		"rosterId": 6
+		"rosterId": 6,
+		"sleeperId": "220"
 	},
 	{
 		"owner": "Schexes",
@@ -195,7 +202,8 @@
 		"endYear": 2008,
 		"salary": 71,
 		"cutYear": 2008,
-		"rosterId": 10
+		"rosterId": 10,
+		"sleeperId": "691"
 	},
 	{
 		"owner": "Schexes",
@@ -228,7 +236,8 @@
 		"endYear": 2010,
 		"salary": 5,
 		"cutYear": 2008,
-		"rosterId": 10
+		"rosterId": 10,
+		"sleeperId": "166"
 	},
 	{
 		"owner": "Koci",
@@ -294,7 +303,8 @@
 		"endYear": 2008,
 		"salary": 7,
 		"cutYear": 2008,
-		"rosterId": 6
+		"rosterId": 6,
+		"sleeperId": "650"
 	},
 	{
 		"owner": "Koci",
@@ -316,7 +326,8 @@
 		"endYear": 2008,
 		"salary": 8,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "214"
 	},
 	{
 		"owner": "Schexes",
@@ -327,7 +338,8 @@
 		"endYear": 2008,
 		"salary": 1,
 		"cutYear": 2008,
-		"rosterId": 10
+		"rosterId": 10,
+		"sleeperId": "229"
 	},
 	{
 		"owner": "Schexes",
@@ -382,7 +394,8 @@
 		"endYear": 2010,
 		"salary": 1,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "758"
 	},
 	{
 		"owner": "Schexes",
@@ -426,7 +439,8 @@
 		"endYear": 2008,
 		"salary": 10,
 		"cutYear": 2008,
-		"rosterId": 6
+		"rosterId": 6,
+		"sleeperId": "62"
 	},
 	{
 		"owner": "Koci",
@@ -437,7 +451,8 @@
 		"endYear": 2010,
 		"salary": 5,
 		"cutYear": 2008,
-		"rosterId": 2
+		"rosterId": 2,
+		"sleeperId": "200"
 	},
 	{
 		"owner": "Schexes",
@@ -448,7 +463,8 @@
 		"endYear": 2010,
 		"salary": 10,
 		"cutYear": 2008,
-		"rosterId": 10
+		"rosterId": 10,
+		"sleeperId": "157"
 	},
 	{
 		"owner": "Patrick",
@@ -535,7 +551,8 @@
 		"cutYear": 2009,
 		"rosterId": 8,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "322"
 	},
 	{
 		"owner": "Daniel",
@@ -561,7 +578,8 @@
 		"cutYear": 2009,
 		"rosterId": 8,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "462"
 	},
 	{
 		"owner": "Patrick",
@@ -574,7 +592,8 @@
 		"cutYear": 2009,
 		"rosterId": 1,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "91"
 	},
 	{
 		"owner": "Schexes",
@@ -626,7 +645,8 @@
 		"cutYear": 2009,
 		"rosterId": 10,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "5"
 	},
 	{
 		"owner": "Koci",
@@ -639,7 +659,8 @@
 		"cutYear": 2009,
 		"rosterId": 2,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "279"
 	},
 	{
 		"owner": "Daniel",
@@ -769,7 +790,8 @@
 		"cutYear": 2009,
 		"rosterId": 10,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "201"
 	},
 	{
 		"owner": "Schexes",
@@ -782,7 +804,8 @@
 		"cutYear": 2009,
 		"rosterId": 10,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "745"
 	},
 	{
 		"owner": "John",
@@ -808,12 +831,13 @@
 		"cutYear": 2009,
 		"rosterId": 5,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "651"
 	},
 	{
 		"owner": "John",
 		"name": "Steve Smith",
-		"hint": null,
+		"hint": "NYG",
 		"position": "WR",
 		"startYear": 2008,
 		"endYear": 2010,
@@ -834,7 +858,8 @@
 		"cutYear": 2009,
 		"rosterId": 2,
 		"note": "inferred from contract change",
-		"offseason": true
+		"offseason": true,
+		"sleeperId": "695"
 	},
 	{
 		"owner": "Daniel",
@@ -2068,8 +2093,7 @@
 		"endYear": 2009,
 		"salary": 1,
 		"cutYear": 2009,
-		"rosterId": 2,
-		"sleeperId": "12221"
+		"rosterId": 2
 	},
 	{
 		"owner": "Koci",
@@ -5901,8 +5925,7 @@
 		"endYear": 2011,
 		"salary": 1,
 		"cutYear": 2011,
-		"rosterId": 6,
-		"sleeperId": "6888"
+		"rosterId": 6
 	},
 	{
 		"owner": "Keyon",

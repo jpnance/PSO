@@ -124,7 +124,8 @@
 				"position": "WR",
 				"salary": 3,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "243"
 			}
 		],
 		"source": "cuts",
@@ -162,7 +163,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "287"
 			}
 		],
 		"source": "cuts",
@@ -200,7 +202,8 @@
 				"position": "QB",
 				"salary": 5,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "89"
 			}
 		],
 		"source": "cuts",
@@ -276,7 +279,8 @@
 				"position": "DL",
 				"salary": 4,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "318"
 			}
 		],
 		"source": "cuts",
@@ -314,7 +318,8 @@
 				"position": "DB",
 				"salary": 2,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "254"
 			}
 		],
 		"source": "cuts",
@@ -333,7 +338,8 @@
 				"position": "LB",
 				"salary": 13,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "3"
 			}
 		],
 		"source": "cuts",
@@ -352,7 +358,8 @@
 				"position": "LB",
 				"salary": 30,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "220"
 			}
 		],
 		"source": "cuts",
@@ -371,7 +378,8 @@
 				"position": "QB",
 				"salary": 71,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "691"
 			}
 		],
 		"source": "cuts",
@@ -428,7 +436,8 @@
 				"position": "WR",
 				"salary": 5,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "166"
 			}
 		],
 		"source": "cuts",
@@ -542,7 +551,8 @@
 				"position": "K",
 				"salary": 7,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "650"
 			}
 		],
 		"source": "cuts",
@@ -580,7 +590,8 @@
 				"position": "DL",
 				"salary": 8,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "214"
 			}
 		],
 		"source": "cuts",
@@ -599,7 +610,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "229"
 			}
 		],
 		"source": "cuts",
@@ -694,7 +706,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "758"
 			}
 		],
 		"source": "cuts",
@@ -770,7 +783,8 @@
 				"position": "DL/LB",
 				"salary": 10,
 				"startYear": 2008,
-				"endYear": 2008
+				"endYear": 2008,
+				"sleeperId": "62"
 			}
 		],
 		"source": "cuts",
@@ -789,7 +803,8 @@
 				"position": "TE",
 				"salary": 5,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "200"
 			}
 		],
 		"source": "cuts",
@@ -808,7 +823,8 @@
 				"position": "QB",
 				"salary": 10,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "157"
 			}
 		],
 		"source": "cuts",
@@ -1695,26 +1711,6 @@
 		"rosterId": 2,
 		"adds": [
 			{
-				"name": "Vince Young",
-				"position": "QB",
-				"salary": 10,
-				"startYear": null,
-				"endYear": 2008,
-				"sleeperId": "157"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2008,
-		"timestamp": "2008-11-01T12:00:33.000Z",
-		"rosterId": 2,
-		"adds": [
-			{
 				"name": "Clifton Smith",
 				"position": "RB",
 				"salary": 1,
@@ -2237,26 +2233,6 @@
 		"rosterId": 9,
 		"adds": [
 			{
-				"name": "Trent Cole",
-				"position": "DL/LB",
-				"salary": 10,
-				"startYear": null,
-				"endYear": 2008,
-				"sleeperId": "62"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2008,
-		"timestamp": "2008-11-01T12:00:33.000Z",
-		"rosterId": 9,
-		"adds": [
-			{
 				"name": "Jason Elam",
 				"position": "K",
 				"salary": 1,
@@ -2720,26 +2696,6 @@
 	{
 		"season": 2008,
 		"timestamp": "2008-11-01T12:00:33.000Z",
-		"rosterId": 6,
-		"adds": [
-			{
-				"name": "Marvin Harrison",
-				"position": "WR",
-				"salary": 8,
-				"startYear": null,
-				"endYear": 2008,
-				"sleeperId": "11628"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2008,
-		"timestamp": "2008-11-01T12:00:33.000Z",
 		"rosterId": 10,
 		"adds": [
 			{
@@ -3056,9 +3012,68 @@
 		"rosterId": 2,
 		"adds": [
 			{
+				"name": "Vince Young",
+				"position": "QB",
+				"salary": 10,
+				"startYear": null,
+				"endYear": 2008,
+				"sleeperId": "157"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2008,
+		"timestamp": "2008-11-22T18:00:33.000Z",
+		"rosterId": 2,
+		"adds": [
+			{
 				"name": "Selvin Young",
 				"position": "RB",
 				"salary": 7,
+				"startYear": null,
+				"endYear": 2008
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2008,
+		"timestamp": "2008-11-22T18:00:33.000Z",
+		"rosterId": 9,
+		"adds": [
+			{
+				"name": "Trent Cole",
+				"position": "DL/LB",
+				"salary": 10,
+				"startYear": null,
+				"endYear": 2008,
+				"sleeperId": "62"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2008,
+		"timestamp": "2008-11-22T18:00:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Marvin Harrison",
+				"position": "WR",
+				"salary": 8,
 				"startYear": null,
 				"endYear": 2008
 			}
@@ -3115,7 +3130,8 @@
 				"position": "WR",
 				"salary": 47,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "651"
 			}
 		],
 		"source": "offseason",
@@ -3141,7 +3157,8 @@
 				"position": "TE",
 				"salary": 130,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "322"
 			},
 			{
 				"name": "Brandon Jackson",
@@ -3155,7 +3172,8 @@
 				"position": "QB",
 				"salary": 30,
 				"startYear": 2008,
-				"endYear": 2009
+				"endYear": 2009,
+				"sleeperId": "462"
 			},
 			{
 				"name": "Chris Taylor",
@@ -3221,7 +3239,8 @@
 				"position": "QB",
 				"salary": 100,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "91"
 			},
 			{
 				"name": "Kenny Watson",
@@ -3254,7 +3273,8 @@
 				"position": "TE",
 				"salary": 43,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "5"
 			},
 			{
 				"name": "Julius Jones",
@@ -3275,14 +3295,16 @@
 				"position": "WR",
 				"salary": 117,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "201"
 			},
 			{
 				"name": "Marshawn Lynch",
 				"position": "RB",
 				"salary": 176,
 				"startYear": 2008,
-				"endYear": 2009
+				"endYear": 2009,
+				"sleeperId": "745"
 			}
 		],
 		"source": "offseason",
@@ -3301,14 +3323,16 @@
 				"position": "WR",
 				"salary": 60,
 				"startYear": 2008,
-				"endYear": 2009
+				"endYear": 2009,
+				"sleeperId": "279"
 			},
 			{
 				"name": "Ted Ginn",
 				"position": "WR",
 				"salary": 70,
 				"startYear": 2008,
-				"endYear": 2009
+				"endYear": 2009,
+				"sleeperId": "695"
 			}
 		],
 		"source": "offseason",
@@ -4329,8 +4353,7 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2009,
-				"sleeperId": "12221"
+				"endYear": 2009
 			}
 		],
 		"drops": [],
@@ -6342,8 +6365,7 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2009,
-				"sleeperId": "12221"
+				"endYear": 2009
 			}
 		],
 		"source": "cuts",
@@ -14637,8 +14659,7 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2009,
-				"endYear": 2011,
-				"sleeperId": "6888"
+				"endYear": 2011
 			}
 		],
 		"source": "cuts",

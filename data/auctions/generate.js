@@ -159,16 +159,15 @@ function main() {
 	var drafts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
 
-	// Build set of drafted players by season
-	var draftedPlayers = new Set();
+	// Build draft lookup by season: { season: [{ sleeperId, name }] }
+	var draftsBySeason = {};
 	drafts.forEach(function(d) {
 		if (d.passed) return;
-		if (d.sleeperId) {
-			draftedPlayers.add(d.sleeperId + '|' + d.season);
-		}
-		if (d.playerName) {
-			draftedPlayers.add(normalizePlayerName(d.playerName) + '|' + d.season);
-		}
+		if (!draftsBySeason[d.season]) draftsBySeason[d.season] = [];
+		draftsBySeason[d.season].push({
+			sleeperId: d.sleeperId || null,
+			name: normalizePlayerName(d.playerName)
+		});
 	});
 
 	// Group contracts by season for efficient processing
@@ -192,18 +191,26 @@ function main() {
 		var season = parseInt(seasonStr, 10);
 		var seasonContracts = contractsBySeason[season];
 		var unsignedTradesMap = buildUnsignedTradesMap(trades, season);
+		var seasonDrafts = draftsBySeason[season] || [];
 
 		seasonContracts.forEach(function(contract) {
 			stats.total++;
 
-			// Check if player was drafted this season
-			var isDrafted = false;
-			if (contract.sleeperId) {
-				isDrafted = draftedPlayers.has(contract.sleeperId + '|' + season);
-			}
-			if (!isDrafted && contract.name) {
-				isDrafted = draftedPlayers.has(normalizePlayerName(contract.name) + '|' + season);
-			}
+			// Check if this contract matches a draft pick.
+			// Match on sleeperId if both have one; fall back to name only
+			// if NEITHER has a sleeperId. This prevents a historical player
+			// (no ID) from matching a drafted player (with ID) by name alone.
+			var contractHasId = contract.sleeperId && contract.sleeperId !== '-1';
+			var isDrafted = seasonDrafts.some(function(d) {
+				var draftHasId = !!d.sleeperId;
+				if (contractHasId && draftHasId) {
+					return contract.sleeperId === d.sleeperId;
+				}
+				if (!contractHasId && !draftHasId) {
+					return normalizePlayerName(contract.name) === d.name;
+				}
+				return false;
+			});
 
 			if (isDrafted) {
 				stats.drafted++;

@@ -402,7 +402,7 @@ ID,Owner,Name,Position,Start,End,Salary
 305,,Justin Smith,DL,FA,2011,
 654,James,LaDainian Tomlinson,RB,2011,2011,$22
 -1,,Richard Seymour,DL,FA,2011,
-12221,Trevor,Andre Carter,DL,2010,2011,$16
+-1,Trevor,Andre Carter,DL,2010,2011,$16
 69,Koci,Santana Moss,WR,2010,2012,$35
 -1,,Nate Clements,DB,FA,2011,
 194,John,Reggie Wayne,WR,2011,2013,$101
