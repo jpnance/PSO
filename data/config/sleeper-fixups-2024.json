@@ -165,6 +165,9 @@
     {
       "sleeperTxId": "1150162544972296192",
       "reason": "Oct 10 2024 JuJu/McFadden rollback — Flournoy dropped from roster 2 to make room for JuJu (treat as manual_assist)"
-    }
+    },
+    { "sleeperTxId": "1136781533311787008", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Royce Freeman (in cuts.json)" },
+    { "sleeperTxId": "1136781565956055040", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Elijah Mitchell (in cuts.json)" },
+    { "sleeperTxId": "1136781603121782784", "reason": "Aug 2024 pre-FAAB drop — Mitch drops Kadarius Toney (in cuts.json)" }
   ]
 }

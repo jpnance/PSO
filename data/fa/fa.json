@@ -82967,26 +82967,6 @@
 	},
 	{
 		"season": 2022,
-		"timestamp": "2022-08-16T22:56:01.569Z",
-		"rosterId": 2,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Henry Ruggs",
-				"position": "WR",
-				"salary": 8,
-				"startYear": 2020,
-				"endYear": 2022,
-				"sleeperId": "6789"
-			}
-		],
-		"source": "sleeper",
-		"sourceId": "865402574940028928",
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2022,
 		"timestamp": "2022-08-21T04:00:00.000Z",
 		"rosterId": 1,
 		"adds": [],

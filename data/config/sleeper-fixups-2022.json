@@ -318,5 +318,9 @@
       "type": "waiver",
       "reason": "Reversal pair with Graham Gano (Quinn illegal bid); Zuerlein drop was rolled back"
     }
+  ],
+  "sleeperCommissionerAuditIncluded": [
+    { "sleeperTxId": "871147945230307328", "reason": "Aug 2022 pre-FAAB drop — Luke drops Harold Landry (in cuts.json)" },
+    { "sleeperTxId": "872536578902380544", "reason": "Aug 2022 pre-FAAB drop — James/Charles drops Blake Martinez (in cuts.json)" }
   ]
 }

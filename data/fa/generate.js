@@ -371,17 +371,12 @@ function generateSleeperRecords(fixups, cutsLookup) {
 
 		// Regular FA transactions (in-season)
 		var faTx = sleeperFacts.getFATransactions(raw);
-		var inSeasonFa = sleeperFacts.filterRealFaab(faTx);
-
-		// Also include pre-FAAB drop-only transactions (real cuts that happen before FAAB opens)
-		var preFaabDrops = faTx.filter(function(tx) {
-			return sleeperFacts.isPreFaab(tx) && (!tx.adds || tx.adds.length === 0) && tx.drops && tx.drops.length > 0;
-		});
-
-		var allFaTx = inSeasonFa.concat(preFaabDrops);
+		var allFaTx = sleeperFacts.filterRealFaab(faTx);
+		var processedTxIds = new Set();
 
 		allFaTx.forEach(function(tx) {
 			if (fixups.sleeperIgnored.has(tx.transactionId)) return;
+			processedTxIds.add(tx.transactionId);
 
 			var rosterId = tx.rosterIds ? tx.rosterIds[0] : null;
 			if (!rosterId && tx.adds && tx.adds.length > 0) rosterId = tx.adds[0].rosterId;
@@ -409,9 +404,9 @@ function generateSleeperRecords(fixups, cutsLookup) {
 			if (record) records.push(record);
 		});
 
-		// Force-included commissioner actions that may have been filtered out by filterRealFaab
+		// Force-included transactions that may have been filtered out by filterRealFaab
 		raw.forEach(function(tx) {
-			if (tx.type !== 'commissioner') return;
+			if (processedTxIds.has(tx.transactionId)) return;
 			if (processedCommissionerIds.has(tx.transactionId)) return;
 			if (fixups.sleeperIgnored.has(tx.transactionId)) return;
 			if (!fixups.sleeperIncluded.has(tx.transactionId)) return;
