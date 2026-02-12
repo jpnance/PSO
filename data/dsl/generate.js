@@ -68,7 +68,8 @@ function loadAuctionDates() {
 			var monthNum = ['January','February','March','April','May','June',
 				'July','August','September','October','November','December'].indexOf(month);
 			if (monthNum >= 0) {
-				dates[year] = new Date(Date.UTC(year, monthNum, day, 12, 0, 0));
+				// Noon ET (EDT in August = UTC-4, so 16:00 UTC)
+			dates[year] = new Date(Date.UTC(year, monthNum, day, 16, 0, 0));
 			}
 		}
 	}
@@ -330,7 +331,9 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	if (!draft) draft = draftsMap['name:' + player.name.toLowerCase()];
 
 	if (draft) {
-		var draftDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 12, 0, 0));
+		var auctionDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 16, 0, 0));
+		// Rookie draft is 3 hours before auction (9am ET vs noon ET)
+		var draftDate = new Date(auctionDate.getTime() - 3 * 60 * 60 * 1000);
 		events.push({
 			timestamp: draftDate,
 			type: 'draft',
@@ -366,8 +369,18 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	}
 
 	playerTrades.forEach(function(trade) {
+		var tradeTimestamp = new Date(trade.date);
+
+		// For unsigned trades of drafted players, the trade was agreed to
+		// before the draft but logically executes after it. Force ordering.
+		if (trade.contractStr === 'unsigned' && draft && new Date(trade.date).getUTCFullYear() === draft.season) {
+			var aDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 16, 0, 0));
+			var dDate = new Date(aDate.getTime() - 3 * 60 * 60 * 1000);
+			tradeTimestamp = new Date(dDate.getTime() + 2);
+		}
+
 		events.push({
-			timestamp: new Date(trade.date),
+			timestamp: tradeTimestamp,
 			type: 'trade',
 			line: '  ' + yy(new Date(trade.date).getUTCFullYear()) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
 		});
@@ -394,7 +407,7 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		var wasDraftedThisYear = draft && draft.season === c.startYear;
 
 		if (isNewContract && c.startYear !== null && !wasDraftedThisYear) {
-			var auctionDate = auctionDates[c.startYear] || new Date(Date.UTC(c.startYear, 7, 20, 12, 0, 0));
+			var auctionDate = auctionDates[c.startYear] || new Date(Date.UTC(c.startYear, 7, 20, 16, 0, 0));
 
 			// Check if player was traded unsigned in this year
 			// (auction won by sender, then traded before signing)

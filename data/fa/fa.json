@@ -61018,6 +61018,46 @@
 	},
 	{
 		"season": 2018,
+		"timestamp": "2018-10-27T01:43:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Marcus Murphy",
+				"position": null,
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "2529"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-10-27T01:43:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Desmond King",
+				"position": null,
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "4216"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
 		"timestamp": "2018-10-27T01:56:33.000Z",
 		"rosterId": 3,
 		"adds": [
@@ -68158,6 +68198,26 @@
 	},
 	{
 		"season": 2019,
+		"timestamp": "2019-10-15T13:25:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Nick Vigil",
+				"position": null,
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "3254"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
 		"timestamp": "2019-10-16T00:01:33.000Z",
 		"rosterId": 11,
 		"adds": [
@@ -70906,7 +70966,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4319"
 			}
 		],
 		"drops": [
@@ -70915,7 +70976,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4179"
 			}
 		],
 		"source": "fantrax",
@@ -70933,7 +70995,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3451"
 			}
 		],
 		"drops": [
@@ -70942,7 +71005,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6083"
 			}
 		],
 		"source": "fantrax",
@@ -70960,7 +71024,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3868"
 			}
 		],
 		"drops": [
@@ -70969,7 +71034,8 @@
 				"position": "RB",
 				"salary": 25,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5131"
 			}
 		],
 		"source": "fantrax",
@@ -70987,7 +71053,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2431"
 			}
 		],
 		"drops": [
@@ -70996,7 +71063,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5162"
 			}
 		],
 		"source": "fantrax",
@@ -71014,7 +71082,8 @@
 				"position": "RB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6955"
 			}
 		],
 		"drops": [
@@ -71023,7 +71092,8 @@
 				"position": "RB",
 				"salary": 4,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6153"
 			}
 		],
 		"source": "fantrax",
@@ -71041,7 +71111,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3166"
 			}
 		],
 		"drops": [],
@@ -71060,7 +71131,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2308"
 			}
 		],
 		"drops": [],
@@ -71079,7 +71151,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6125"
 			}
 		],
 		"drops": [],
@@ -71098,7 +71171,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2592"
 			}
 		],
 		"drops": [],
@@ -71117,7 +71191,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3230"
 			}
 		],
 		"drops": [],
@@ -71136,7 +71211,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "770"
 			}
 		],
 		"drops": [],
@@ -71155,7 +71231,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1043"
 			}
 		],
 		"drops": [],
@@ -71174,7 +71251,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1160"
 			}
 		],
 		"drops": [],
@@ -71193,7 +71271,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2689"
 			}
 		],
 		"drops": [],
@@ -71212,7 +71291,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3594"
 			}
 		],
 		"drops": [],
@@ -71231,7 +71311,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1999"
 			}
 		],
 		"drops": [],
@@ -71250,7 +71331,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7095"
 			}
 		],
 		"drops": [],
@@ -71269,7 +71351,8 @@
 				"position": "K",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "59"
 			}
 		],
 		"drops": [],
@@ -71288,7 +71371,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1038"
 			}
 		],
 		"drops": [],
@@ -71307,7 +71391,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6219"
 			}
 		],
 		"drops": [],
@@ -71322,11 +71407,12 @@
 		"rosterId": 6,
 		"adds": [
 			{
-				"name": "Nyheim Hines",
+				"name": "Nyheim Miller-Hines",
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5347"
 			}
 		],
 		"drops": [],
@@ -71345,7 +71431,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3274"
 			}
 		],
 		"drops": [],
@@ -71364,7 +71451,8 @@
 				"position": "DL",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3238"
 			}
 		],
 		"drops": [],
@@ -71383,7 +71471,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4666"
 			}
 		],
 		"drops": [],
@@ -71402,7 +71491,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "843"
 			}
 		],
 		"drops": [],
@@ -71421,7 +71511,8 @@
 				"position": "RB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2168"
 			}
 		],
 		"drops": [],
@@ -71459,7 +71550,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "58"
 			}
 		],
 		"drops": [],
@@ -71478,7 +71570,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "998"
 			}
 		],
 		"drops": [],
@@ -71497,7 +71590,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1945"
 			}
 		],
 		"drops": [
@@ -71506,7 +71600,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7095"
 			}
 		],
 		"source": "fantrax",
@@ -71524,7 +71619,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5131"
 			}
 		],
 		"drops": [],
@@ -71543,7 +71639,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4651"
 			}
 		],
 		"drops": [],
@@ -71563,7 +71660,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2689"
 			}
 		],
 		"source": "fantrax",
@@ -71581,7 +71679,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1911"
 			}
 		],
 		"drops": [
@@ -71590,7 +71689,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7107"
 			}
 		],
 		"source": "fantrax",
@@ -71608,7 +71708,8 @@
 				"position": "DB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4093"
 			}
 		],
 		"drops": [
@@ -71617,7 +71718,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3274"
 			}
 		],
 		"source": "fantrax",
@@ -71635,7 +71737,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "821"
 			}
 		],
 		"drops": [
@@ -71644,7 +71747,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5131"
 			}
 		],
 		"source": "fantrax",
@@ -71662,7 +71766,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2251"
 			}
 		],
 		"drops": [
@@ -71671,7 +71776,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2135"
 			}
 		],
 		"source": "fantrax",
@@ -71689,7 +71795,8 @@
 				"position": "DL,LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "986"
 			}
 		],
 		"drops": [],
@@ -71708,7 +71815,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2406"
 			}
 		],
 		"drops": [
@@ -71717,7 +71825,8 @@
 				"position": "DL",
 				"salary": 5,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2064"
 			}
 		],
 		"source": "fantrax",
@@ -71735,7 +71844,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4213"
 			}
 		],
 		"drops": [
@@ -71744,7 +71854,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5882"
 			}
 		],
 		"source": "fantrax",
@@ -71762,7 +71873,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6911"
 			}
 		],
 		"drops": [],
@@ -71781,7 +71893,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1507"
 			}
 		],
 		"drops": [
@@ -71790,7 +71903,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4067"
 			}
 		],
 		"source": "fantrax",
@@ -71808,7 +71922,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4413"
 			}
 		],
 		"drops": [
@@ -71817,7 +71932,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6867"
 			}
 		],
 		"source": "fantrax",
@@ -71835,7 +71951,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6178"
 			}
 		],
 		"drops": [
@@ -71844,7 +71961,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "490"
 			}
 		],
 		"source": "fantrax",
@@ -71862,7 +71980,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5980"
 			}
 		],
 		"drops": [
@@ -71871,7 +71990,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "58"
 			}
 		],
 		"source": "fantrax",
@@ -71885,11 +72005,12 @@
 		"rosterId": 12,
 		"adds": [
 			{
-				"name": "Jeffery Wilson",
+				"name": "Jeff Wilson",
 				"position": "RB",
 				"salary": 16,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5284"
 			}
 		],
 		"drops": [
@@ -71898,7 +72019,8 @@
 				"position": "RB",
 				"salary": 37,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3306"
 			}
 		],
 		"source": "fantrax",
@@ -71916,7 +72038,8 @@
 				"position": "WR",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4622"
 			}
 		],
 		"drops": [
@@ -71925,7 +72048,8 @@
 				"position": "RB",
 				"salary": 9,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5209"
 			}
 		],
 		"source": "fantrax",
@@ -71943,7 +72067,8 @@
 				"position": "QB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3362"
 			}
 		],
 		"drops": [
@@ -71952,7 +72077,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6898"
 			}
 		],
 		"source": "fantrax",
@@ -71970,7 +72096,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3276"
 			}
 		],
 		"drops": [],
@@ -71989,7 +72116,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1387"
 			}
 		],
 		"drops": [
@@ -71998,7 +72126,8 @@
 				"position": "RB",
 				"salary": 24,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5004"
 			}
 		],
 		"source": "fantrax",
@@ -72016,7 +72145,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1556"
 			}
 		],
 		"drops": [
@@ -72025,7 +72155,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6210"
 			}
 		],
 		"source": "fantrax",
@@ -72043,7 +72174,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1500"
 			}
 		],
 		"drops": [
@@ -72052,7 +72184,8 @@
 				"position": "WR",
 				"salary": 13,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1555"
 			}
 		],
 		"source": "fantrax",
@@ -72071,7 +72204,8 @@
 				"position": "WR",
 				"salary": 9,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5045"
 			}
 		],
 		"source": "fantrax",
@@ -72090,7 +72224,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6219"
 			}
 		],
 		"source": "fantrax",
@@ -72108,7 +72243,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7062"
 			}
 		],
 		"drops": [
@@ -72117,7 +72253,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4666"
 			}
 		],
 		"source": "fantrax",
@@ -72135,7 +72272,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "878"
 			}
 		],
 		"drops": [
@@ -72144,7 +72282,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6144"
 			}
 		],
 		"source": "fantrax",
@@ -72162,7 +72301,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3306"
 			}
 		],
 		"drops": [
@@ -72171,7 +72311,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4186"
 			}
 		],
 		"source": "fantrax",
@@ -72189,7 +72330,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1144"
 			}
 		],
 		"drops": [
@@ -72198,7 +72340,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1911"
 			}
 		],
 		"source": "fantrax",
@@ -72216,7 +72359,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5001"
 			}
 		],
 		"drops": [
@@ -72225,7 +72369,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "5323"
 			}
 		],
 		"source": "fantrax",
@@ -72243,7 +72388,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4191"
 			}
 		],
 		"drops": [
@@ -72252,7 +72398,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6179"
 			}
 		],
 		"source": "fantrax",
@@ -72270,7 +72417,8 @@
 				"position": "TE",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4054"
 			}
 		],
 		"drops": [
@@ -72279,7 +72427,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3868"
 			}
 		],
 		"source": "fantrax",
@@ -72297,7 +72446,8 @@
 				"position": "DL",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1186"
 			}
 		],
 		"drops": [
@@ -72306,7 +72456,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2406"
 			}
 		],
 		"source": "fantrax",
@@ -72324,7 +72475,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1576"
 			}
 		],
 		"drops": [
@@ -72333,7 +72485,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6911"
 			}
 		],
 		"source": "fantrax",
@@ -72351,7 +72504,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4224"
 			}
 		],
 		"drops": [
@@ -72360,7 +72514,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1500"
 			}
 		],
 		"source": "fantrax",
@@ -72378,7 +72533,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1857"
 			}
 		],
 		"drops": [
@@ -72387,7 +72543,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6178"
 			}
 		],
 		"source": "fantrax",
@@ -72405,7 +72562,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6528"
 			}
 		],
 		"drops": [],
@@ -72424,7 +72582,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5095"
 			}
 		],
 		"drops": [],
@@ -72444,7 +72603,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4967"
 			}
 		],
 		"source": "fantrax",
@@ -72463,7 +72623,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7049"
 			}
 		],
 		"source": "fantrax",
@@ -72481,7 +72642,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3270"
 			}
 		],
 		"drops": [],
@@ -72500,7 +72662,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5127"
 			}
 		],
 		"drops": [
@@ -72509,7 +72672,8 @@
 				"position": "WR",
 				"salary": 8,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5863"
 			}
 		],
 		"source": "fantrax",
@@ -72527,7 +72691,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5036"
 			}
 		],
 		"drops": [
@@ -72536,7 +72701,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5101"
 			}
 		],
 		"source": "fantrax",
@@ -72554,7 +72720,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6744"
 			}
 		],
 		"drops": [
@@ -72563,7 +72730,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4741"
 			}
 		],
 		"source": "fantrax",
@@ -72581,7 +72749,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "345"
 			}
 		],
 		"drops": [
@@ -72590,7 +72759,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5839"
 			}
 		],
 		"source": "fantrax",
@@ -72608,7 +72778,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "58"
 			}
 		],
 		"drops": [
@@ -72617,7 +72788,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1387"
 			}
 		],
 		"source": "fantrax",
@@ -72635,7 +72807,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4127"
 			}
 		],
 		"drops": [
@@ -72644,7 +72817,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2346"
 			}
 		],
 		"source": "fantrax",
@@ -72662,7 +72836,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6785"
 			}
 		],
 		"drops": [
@@ -72671,7 +72846,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4971"
 			}
 		],
 		"source": "fantrax",
@@ -72689,7 +72865,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4602"
 			}
 		],
 		"drops": [
@@ -72698,7 +72875,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5230"
 			}
 		],
 		"source": "fantrax",
@@ -72716,7 +72894,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5015"
 			}
 		],
 		"drops": [],
@@ -72736,7 +72915,8 @@
 				"position": "TE",
 				"salary": 3,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "1706"
 			}
 		],
 		"source": "fantrax",
@@ -72755,7 +72935,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6125"
 			}
 		],
 		"source": "fantrax",
@@ -72774,7 +72955,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1043"
 			}
 		],
 		"source": "fantrax",
@@ -72792,7 +72974,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "19"
 			}
 		],
 		"drops": [
@@ -72801,7 +72984,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "533"
 			}
 		],
 		"source": "fantrax",
@@ -72819,7 +73003,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6001"
 			}
 		],
 		"drops": [
@@ -72828,7 +73013,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5894"
 			}
 		],
 		"source": "fantrax",
@@ -72846,7 +73032,8 @@
 				"position": "WR",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6290"
 			}
 		],
 		"drops": [
@@ -72855,7 +73042,8 @@
 				"position": "WR",
 				"salary": 9,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5024"
 			}
 		],
 		"source": "fantrax",
@@ -72873,7 +73061,8 @@
 				"position": "RB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5131"
 			}
 		],
 		"drops": [
@@ -72882,7 +73071,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5100"
 			}
 		],
 		"source": "fantrax",
@@ -72900,7 +73090,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "391"
 			}
 		],
 		"drops": [
@@ -72909,7 +73100,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1556"
 			}
 		],
 		"source": "fantrax",
@@ -72927,7 +73119,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5348"
 			}
 		],
 		"drops": [
@@ -72936,7 +73129,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "3181"
 			}
 		],
 		"source": "fantrax",
@@ -72954,7 +73148,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1388"
 			}
 		],
 		"drops": [],
@@ -72974,7 +73169,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1127"
 			}
 		],
 		"source": "fantrax",
@@ -72992,7 +73188,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4351"
 			}
 		],
 		"drops": [
@@ -73001,7 +73198,8 @@
 				"position": "RB",
 				"salary": 6,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1502"
 			}
 		],
 		"source": "fantrax",
@@ -73019,7 +73217,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4666"
 			}
 		],
 		"drops": [
@@ -73028,7 +73227,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5840"
 			}
 		],
 		"source": "fantrax",
@@ -73046,7 +73246,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6694"
 			}
 		],
 		"drops": [
@@ -73055,7 +73256,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "223"
 			}
 		],
 		"source": "fantrax",
@@ -73073,7 +73275,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6421"
 			}
 		],
 		"drops": [
@@ -73082,7 +73285,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4571"
 			}
 		],
 		"source": "fantrax",
@@ -73100,7 +73304,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2147"
 			}
 		],
 		"drops": [
@@ -73109,7 +73314,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4651"
 			}
 		],
 		"source": "fantrax",
@@ -73127,7 +73333,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3546"
 			}
 		],
 		"drops": [
@@ -73136,7 +73343,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6957"
 			}
 		],
 		"source": "fantrax",
@@ -73154,7 +73362,8 @@
 				"position": "QB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "268"
 			}
 		],
 		"drops": [
@@ -73163,7 +73372,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3270"
 			}
 		],
 		"source": "fantrax",
@@ -73181,7 +73391,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4150"
 			}
 		],
 		"drops": [
@@ -73190,7 +73401,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "345"
 			}
 		],
 		"source": "fantrax",
@@ -73208,7 +73420,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7152"
 			}
 		],
 		"drops": [],
@@ -73227,7 +73440,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3669"
 			}
 		],
 		"drops": [],
@@ -73246,7 +73460,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4140"
 			}
 		],
 		"drops": [
@@ -73255,7 +73470,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "770"
 			}
 		],
 		"source": "fantrax",
@@ -73273,7 +73489,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2033"
 			}
 		],
 		"drops": [
@@ -73282,7 +73499,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4963"
 			}
 		],
 		"source": "fantrax",
@@ -73300,7 +73518,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5332"
 			}
 		],
 		"drops": [
@@ -73309,7 +73528,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1160"
 			}
 		],
 		"source": "fantrax",
@@ -73327,7 +73547,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3270"
 			}
 		],
 		"drops": [
@@ -73336,7 +73557,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3680"
 			}
 		],
 		"source": "fantrax",
@@ -73354,7 +73576,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "110"
 			}
 		],
 		"drops": [
@@ -73363,7 +73586,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3747"
 			}
 		],
 		"source": "fantrax",
@@ -73381,7 +73605,8 @@
 				"position": "WR",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6059"
 			}
 		],
 		"drops": [
@@ -73390,7 +73615,8 @@
 				"position": "WR",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6290"
 			}
 		],
 		"source": "fantrax",
@@ -73408,7 +73634,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1793"
 			}
 		],
 		"drops": [
@@ -73417,7 +73644,8 @@
 				"position": "TE",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4054"
 			}
 		],
 		"source": "fantrax",
@@ -73435,7 +73663,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1364"
 			}
 		],
 		"drops": [
@@ -73444,7 +73673,8 @@
 				"position": "LB",
 				"salary": 6,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2429"
 			}
 		],
 		"source": "fantrax",
@@ -73462,7 +73692,8 @@
 				"position": "LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2613"
 			}
 		],
 		"drops": [
@@ -73471,7 +73702,8 @@
 				"position": "WR",
 				"salary": 27,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6402"
 			}
 		],
 		"source": "fantrax",
@@ -73489,7 +73721,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6133"
 			}
 		],
 		"drops": [
@@ -73498,7 +73731,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1038"
 			}
 		],
 		"source": "fantrax",
@@ -73516,7 +73750,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6294"
 			}
 		],
 		"drops": [
@@ -73525,7 +73760,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2348"
 			}
 		],
 		"source": "fantrax",
@@ -73543,7 +73779,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1433"
 			}
 		],
 		"drops": [
@@ -73552,7 +73789,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2747"
 			}
 		],
 		"source": "fantrax",
@@ -73571,7 +73809,8 @@
 				"position": "RB",
 				"salary": 25,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5068"
 			}
 		],
 		"source": "fantrax",
@@ -73589,7 +73828,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2036"
 			}
 		],
 		"drops": [
@@ -73598,7 +73838,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1947"
 			}
 		],
 		"source": "fantrax",
@@ -73616,7 +73857,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5209"
 			}
 		],
 		"drops": [
@@ -73625,7 +73867,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3594"
 			}
 		],
 		"source": "fantrax",
@@ -73643,7 +73886,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4109"
 			}
 		],
 		"drops": [
@@ -73652,7 +73896,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5015"
 			}
 		],
 		"source": "fantrax",
@@ -73670,7 +73915,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1974"
 			}
 		],
 		"drops": [
@@ -73679,7 +73925,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6744"
 			}
 		],
 		"source": "fantrax",
@@ -73697,7 +73944,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2214"
 			}
 		],
 		"drops": [],
@@ -73716,7 +73964,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3558"
 			}
 		],
 		"drops": [
@@ -73725,7 +73974,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6913"
 			}
 		],
 		"source": "fantrax",
@@ -73743,7 +73993,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6056"
 			}
 		],
 		"drops": [
@@ -73752,7 +74003,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1364"
 			}
 		],
 		"source": "fantrax",
@@ -73770,7 +74022,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3209"
 			}
 		],
 		"drops": [
@@ -73779,7 +74032,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "110"
 			}
 		],
 		"source": "fantrax",
@@ -73797,7 +74051,8 @@
 				"position": "WR",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "574"
 			}
 		],
 		"drops": [
@@ -73806,7 +74061,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6001"
 			}
 		],
 		"source": "fantrax",
@@ -73824,7 +74080,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1556"
 			}
 		],
 		"drops": [
@@ -73833,7 +74090,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "17"
 			}
 		],
 		"source": "fantrax",
@@ -73851,7 +74109,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1925"
 			}
 		],
 		"drops": [
@@ -73860,7 +74119,8 @@
 				"position": "DL",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1186"
 			}
 		],
 		"source": "fantrax",
@@ -73878,7 +74138,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1940"
 			}
 		],
 		"drops": [
@@ -73887,7 +74148,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2147"
 			}
 		],
 		"source": "fantrax",
@@ -73905,7 +74167,8 @@
 				"position": "WR",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "536"
 			}
 		],
 		"drops": [
@@ -73914,7 +74177,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "19"
 			}
 		],
 		"source": "fantrax",
@@ -73932,7 +74196,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2146"
 			}
 		],
 		"drops": [
@@ -73941,7 +74206,8 @@
 				"position": "QB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3362"
 			}
 		],
 		"source": "fantrax",
@@ -73959,7 +74225,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2747"
 			}
 		],
 		"drops": [
@@ -73968,7 +74235,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3306"
 			}
 		],
 		"source": "fantrax",
@@ -73986,7 +74254,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "583"
 			}
 		],
 		"drops": [
@@ -73995,7 +74264,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "605"
 			}
 		],
 		"source": "fantrax",
@@ -74013,7 +74283,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1367"
 			}
 		],
 		"drops": [
@@ -74022,7 +74293,8 @@
 				"position": "DB",
 				"salary": 3,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1213"
 			}
 		],
 		"source": "fantrax",
@@ -74040,7 +74312,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4219"
 			}
 		],
 		"drops": [],
@@ -74059,7 +74332,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3197"
 			}
 		],
 		"drops": [
@@ -74068,7 +74342,8 @@
 				"position": "DL",
 				"salary": 42,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2393"
 			}
 		],
 		"source": "fantrax",
@@ -74086,7 +74361,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5726"
 			}
 		],
 		"drops": [
@@ -74095,7 +74371,8 @@
 				"position": "RB",
 				"salary": 9,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5209"
 			}
 		],
 		"source": "fantrax",
@@ -74113,7 +74390,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5334"
 			}
 		],
 		"drops": [
@@ -74122,7 +74400,8 @@
 				"position": "QB",
 				"salary": 5,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4464"
 			}
 		],
 		"source": "fantrax",
@@ -74140,7 +74419,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1592"
 			}
 		],
 		"drops": [
@@ -74149,7 +74429,8 @@
 				"position": "DB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4093"
 			}
 		],
 		"source": "fantrax",
@@ -74167,7 +74448,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1559"
 			}
 		],
 		"drops": [
@@ -74176,7 +74458,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7082"
 			}
 		],
 		"source": "fantrax",
@@ -74194,7 +74477,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6068"
 			}
 		],
 		"drops": [
@@ -74203,7 +74487,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1857"
 			}
 		],
 		"source": "fantrax",
@@ -74222,7 +74507,8 @@
 				"position": "WR",
 				"salary": 275,
 				"startYear": 2019,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2078"
 			}
 		],
 		"source": "fantrax",
@@ -74240,7 +74526,8 @@
 				"position": "WR",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2325"
 			}
 		],
 		"drops": [
@@ -74249,7 +74536,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3276"
 			}
 		],
 		"source": "fantrax",
@@ -74267,7 +74555,8 @@
 				"position": "DB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1834"
 			}
 		],
 		"drops": [
@@ -74276,7 +74565,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2308"
 			}
 		],
 		"source": "fantrax",
@@ -74294,7 +74584,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "444"
 			}
 		],
 		"drops": [
@@ -74303,7 +74594,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5036"
 			}
 		],
 		"source": "fantrax",
@@ -74321,7 +74613,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5944"
 			}
 		],
 		"drops": [
@@ -74330,7 +74623,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5726"
 			}
 		],
 		"source": "fantrax",
@@ -74348,7 +74642,8 @@
 				"position": "WR",
 				"salary": 15,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6824"
 			}
 		],
 		"drops": [
@@ -74357,7 +74652,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3166"
 			}
 		],
 		"source": "fantrax",
@@ -74375,7 +74671,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1205"
 			}
 		],
 		"drops": [
@@ -74384,7 +74681,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1556"
 			}
 		],
 		"source": "fantrax",
@@ -74402,7 +74700,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "720"
 			}
 		],
 		"drops": [
@@ -74411,7 +74710,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4191"
 			}
 		],
 		"source": "fantrax",
@@ -74429,7 +74729,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6850"
 			}
 		],
 		"drops": [
@@ -74438,7 +74739,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "821"
 			}
 		],
 		"source": "fantrax",
@@ -74456,7 +74758,8 @@
 				"position": "LB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1415"
 			}
 		],
 		"drops": [
@@ -74465,7 +74768,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1925"
 			}
 		],
 		"source": "fantrax",
@@ -74483,7 +74787,8 @@
 				"position": "DL,LB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6124"
 			}
 		],
 		"drops": [
@@ -74492,7 +74797,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2033"
 			}
 		],
 		"source": "fantrax",
@@ -74510,7 +74816,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3181"
 			}
 		],
 		"drops": [
@@ -74519,7 +74826,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3558"
 			}
 		],
 		"source": "fantrax",
@@ -74537,7 +74845,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2677"
 			}
 		],
 		"drops": [
@@ -74546,7 +74855,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5843"
 			}
 		],
 		"source": "fantrax",
@@ -74564,7 +74874,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1141"
 			}
 		],
 		"drops": [
@@ -74573,7 +74884,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "878"
 			}
 		],
 		"source": "fantrax",
@@ -74591,7 +74903,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6290"
 			}
 		],
 		"drops": [
@@ -74600,7 +74913,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6133"
 			}
 		],
 		"source": "fantrax",
@@ -74618,7 +74932,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3328"
 			}
 		],
 		"drops": [],
@@ -74638,7 +74953,8 @@
 				"position": "DB",
 				"salary": 9,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2338"
 			}
 		],
 		"source": "fantrax",
@@ -74657,7 +74973,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6068"
 			}
 		],
 		"source": "fantrax",
@@ -74675,7 +74992,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5119"
 			}
 		],
 		"drops": [
@@ -74684,7 +75002,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3451"
 			}
 		],
 		"source": "fantrax",
@@ -74702,7 +75021,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "110"
 			}
 		],
 		"drops": [
@@ -74711,7 +75031,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7152"
 			}
 		],
 		"source": "fantrax",
@@ -74729,7 +75050,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1387"
 			}
 		],
 		"drops": [
@@ -74738,7 +75060,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6139"
 			}
 		],
 		"source": "fantrax",
@@ -74756,7 +75079,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4089"
 			}
 		],
 		"drops": [
@@ -74765,7 +75089,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1592"
 			}
 		],
 		"source": "fantrax",
@@ -74783,7 +75108,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4180"
 			}
 		],
 		"drops": [
@@ -74792,7 +75118,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6694"
 			}
 		],
 		"source": "fantrax",
@@ -74810,7 +75137,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6744"
 			}
 		],
 		"drops": [],
@@ -74829,7 +75157,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7143"
 			}
 		],
 		"drops": [],
@@ -74848,7 +75177,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "17"
 			}
 		],
 		"drops": [
@@ -74857,7 +75187,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4233"
 			}
 		],
 		"source": "fantrax",
@@ -74875,7 +75206,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6912"
 			}
 		],
 		"drops": [
@@ -74884,7 +75216,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4213"
 			}
 		],
 		"source": "fantrax",
@@ -74903,7 +75236,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4140"
 			}
 		],
 		"source": "fantrax",
@@ -74922,7 +75256,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4964"
 			}
 		],
 		"source": "fantrax",
@@ -74941,7 +75276,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6294"
 			}
 		],
 		"source": "fantrax",
@@ -74959,7 +75295,8 @@
 				"position": "RB",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3306"
 			}
 		],
 		"drops": [
@@ -74968,7 +75305,8 @@
 				"position": "WR",
 				"salary": 31,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "344"
 			}
 		],
 		"source": "fantrax",
@@ -74986,7 +75324,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2064"
 			}
 		],
 		"drops": [
@@ -74995,7 +75334,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4413"
 			}
 		],
 		"source": "fantrax",
@@ -75013,7 +75353,8 @@
 				"position": "QB",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4464"
 			}
 		],
 		"drops": [
@@ -75022,7 +75363,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1388"
 			}
 		],
 		"source": "fantrax",
@@ -75040,7 +75382,8 @@
 				"position": "K",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5230"
 			}
 		],
 		"drops": [
@@ -75049,7 +75392,8 @@
 				"position": "K",
 				"salary": 3,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "49"
 			}
 		],
 		"source": "fantrax",
@@ -75067,7 +75411,8 @@
 				"position": "WR",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5947"
 			}
 		],
 		"drops": [
@@ -75076,7 +75421,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2747"
 			}
 		],
 		"source": "fantrax",
@@ -75094,7 +75440,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1500"
 			}
 		],
 		"drops": [
@@ -75103,7 +75450,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6912"
 			}
 		],
 		"source": "fantrax",
@@ -75121,7 +75469,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5285"
 			}
 		],
 		"drops": [
@@ -75130,7 +75479,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1205"
 			}
 		],
 		"source": "fantrax",
@@ -75148,7 +75498,8 @@
 				"position": "DL",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1925"
 			}
 		],
 		"drops": [
@@ -75157,7 +75508,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1367"
 			}
 		],
 		"source": "fantrax",
@@ -75175,7 +75527,8 @@
 				"position": "WR",
 				"salary": 15,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6234"
 			}
 		],
 		"drops": [
@@ -75184,7 +75537,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6290"
 			}
 		],
 		"source": "fantrax",
@@ -75202,7 +75556,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1364"
 			}
 		],
 		"drops": [],
@@ -75221,7 +75576,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7113"
 			}
 		],
 		"drops": [
@@ -75230,7 +75586,8 @@
 				"position": "DL,LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "986"
 			}
 		],
 		"source": "fantrax",
@@ -75248,7 +75605,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3502"
 			}
 		],
 		"drops": [
@@ -75257,7 +75615,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1940"
 			}
 		],
 		"source": "fantrax",
@@ -75275,7 +75634,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5100"
 			}
 		],
 		"drops": [
@@ -75284,7 +75644,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6880"
 			}
 		],
 		"source": "fantrax",
@@ -75302,7 +75663,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "19"
 			}
 		],
 		"drops": [
@@ -75311,7 +75673,8 @@
 				"position": "RB",
 				"salary": 8,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "5549"
 			}
 		],
 		"source": "fantrax",
@@ -75329,7 +75692,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2229"
 			}
 		],
 		"drops": [],
@@ -75349,7 +75713,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "58"
 			}
 		],
 		"source": "fantrax",
@@ -75367,7 +75732,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3166"
 			}
 		],
 		"drops": [
@@ -75376,7 +75742,8 @@
 				"position": "TE",
 				"salary": 3,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5009"
 			}
 		],
 		"source": "fantrax",
@@ -75394,7 +75761,8 @@
 				"position": "LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1940"
 			}
 		],
 		"drops": [
@@ -75403,7 +75771,8 @@
 				"position": "LB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1415"
 			}
 		],
 		"source": "fantrax",
@@ -75421,7 +75790,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4972"
 			}
 		],
 		"drops": [
@@ -75430,7 +75800,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5127"
 			}
 		],
 		"source": "fantrax",
@@ -75448,7 +75819,8 @@
 				"position": "DB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2022"
 			}
 		],
 		"drops": [
@@ -75457,7 +75829,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4089"
 			}
 		],
 		"source": "fantrax",
@@ -75476,7 +75849,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1974"
 			}
 		],
 		"source": "fantrax",
@@ -75494,7 +75868,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4089"
 			}
 		],
 		"drops": [
@@ -75503,7 +75878,8 @@
 				"position": "TE",
 				"salary": 105,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1339"
 			}
 		],
 		"source": "fantrax",
@@ -75521,7 +75897,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3276"
 			}
 		],
 		"drops": [
@@ -75530,7 +75907,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2677"
 			}
 		],
 		"source": "fantrax",
@@ -75548,7 +75926,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4994"
 			}
 		],
 		"drops": [],
@@ -75567,7 +75946,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5310"
 			}
 		],
 		"drops": [
@@ -75576,7 +75956,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4972"
 			}
 		],
 		"source": "fantrax",
@@ -75594,7 +75975,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5271"
 			}
 		],
 		"drops": [
@@ -75603,7 +75985,8 @@
 				"position": "RB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5131"
 			}
 		],
 		"source": "fantrax",
@@ -75621,7 +76004,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1127"
 			}
 		],
 		"drops": [
@@ -75630,7 +76014,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7113"
 			}
 		],
 		"source": "fantrax",
@@ -75648,7 +76033,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4233"
 			}
 		],
 		"drops": [],
@@ -75667,7 +76053,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2020"
 			}
 		],
 		"drops": [],
@@ -75687,7 +76074,8 @@
 				"position": "RB",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3306"
 			}
 		],
 		"source": "fantrax",
@@ -75705,7 +76093,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3274"
 			}
 		],
 		"drops": [
@@ -75714,7 +76103,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3276"
 			}
 		],
 		"source": "fantrax",
@@ -75732,7 +76122,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "986"
 			}
 		],
 		"drops": [
@@ -75741,7 +76132,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1127"
 			}
 		],
 		"source": "fantrax",
@@ -75759,7 +76151,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1547"
 			}
 		],
 		"drops": [
@@ -75768,7 +76161,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5348"
 			}
 		],
 		"source": "fantrax",
@@ -75786,7 +76180,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1339"
 			}
 		],
 		"drops": [
@@ -75795,7 +76190,8 @@
 				"position": "WR",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "574"
 			}
 		],
 		"source": "fantrax",
@@ -75813,7 +76209,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "58"
 			}
 		],
 		"drops": [
@@ -75822,7 +76219,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5285"
 			}
 		],
 		"source": "fantrax",
@@ -75840,7 +76238,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5068"
 			}
 		],
 		"drops": [
@@ -75849,7 +76248,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6988"
 			}
 		],
 		"source": "fantrax",
@@ -75867,7 +76267,8 @@
 				"position": "RB",
 				"salary": 42,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6918"
 			}
 		],
 		"drops": [
@@ -75876,7 +76277,8 @@
 				"position": "RB",
 				"salary": 93,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "956"
 			}
 		],
 		"source": "fantrax",
@@ -75894,7 +76296,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6553"
 			}
 		],
 		"drops": [
@@ -75903,7 +76306,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7085"
 			}
 		],
 		"source": "fantrax",
@@ -75921,7 +76325,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5960"
 			}
 		],
 		"drops": [
@@ -75930,7 +76335,8 @@
 				"position": "LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1940"
 			}
 		],
 		"source": "fantrax",
@@ -75948,7 +76354,8 @@
 				"position": "WR",
 				"salary": 20,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3342"
 			}
 		],
 		"drops": [
@@ -75957,7 +76364,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3328"
 			}
 		],
 		"source": "fantrax",
@@ -75971,11 +76379,12 @@
 		"rosterId": 6,
 		"adds": [
 			{
-				"name": "Phillip Walker",
+				"name": "P.J. Walker",
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4335"
 			}
 		],
 		"drops": [],
@@ -75994,7 +76403,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3328"
 			}
 		],
 		"drops": [
@@ -76003,7 +76413,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5310"
 			}
 		],
 		"source": "fantrax",
@@ -76021,7 +76432,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "490"
 			}
 		],
 		"drops": [
@@ -76030,7 +76442,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4109"
 			}
 		],
 		"source": "fantrax",
@@ -76048,7 +76461,8 @@
 				"position": "DB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1213"
 			}
 		],
 		"drops": [
@@ -76057,7 +76471,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4127"
 			}
 		],
 		"source": "fantrax",
@@ -76075,7 +76490,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "956"
 			}
 		],
 		"drops": [
@@ -76084,7 +76500,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5271"
 			}
 		],
 		"source": "fantrax",
@@ -76102,7 +76519,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4413"
 			}
 		],
 		"drops": [
@@ -76111,7 +76529,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5841"
 			}
 		],
 		"source": "fantrax",
@@ -76129,7 +76548,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4426"
 			}
 		],
 		"drops": [
@@ -76138,7 +76558,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5100"
 			}
 		],
 		"source": "fantrax",
@@ -76156,7 +76577,8 @@
 				"position": "QB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3357"
 			}
 		],
 		"drops": [
@@ -76165,7 +76587,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1141"
 			}
 		],
 		"source": "fantrax",
@@ -76183,7 +76606,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2617"
 			}
 		],
 		"drops": [
@@ -76192,7 +76616,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5960"
 			}
 		],
 		"source": "fantrax",
@@ -76210,7 +76635,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5960"
 			}
 		],
 		"drops": [
@@ -76219,7 +76645,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3669"
 			}
 		],
 		"source": "fantrax",
@@ -76237,7 +76664,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1259"
 			}
 		],
 		"drops": [
@@ -76246,7 +76674,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3166"
 			}
 		],
 		"source": "fantrax",
@@ -76264,7 +76693,8 @@
 				"position": "QB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1169"
 			}
 		],
 		"drops": [
@@ -76273,7 +76703,8 @@
 				"position": "RB",
 				"salary": 42,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6918"
 			}
 		],
 		"source": "fantrax",
@@ -76291,7 +76722,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6855"
 			}
 		],
 		"drops": [
@@ -76300,7 +76732,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1387"
 			}
 		],
 		"source": "fantrax",
@@ -76318,7 +76751,8 @@
 				"position": "WR",
 				"salary": 50,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7210"
 			}
 		],
 		"drops": [
@@ -76327,7 +76761,8 @@
 				"position": "WR",
 				"salary": 15,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6824"
 			}
 		],
 		"source": "fantrax",
@@ -76345,7 +76780,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5100"
 			}
 		],
 		"drops": [
@@ -76354,7 +76790,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4219"
 			}
 		],
 		"source": "fantrax",
@@ -76372,7 +76809,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1388"
 			}
 		],
 		"drops": [
@@ -76381,7 +76819,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "58"
 			}
 		],
 		"source": "fantrax",
@@ -76399,7 +76838,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5032"
 			}
 		],
 		"drops": [
@@ -76408,7 +76848,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1259"
 			}
 		],
 		"source": "fantrax",
@@ -76426,7 +76867,8 @@
 				"position": "DL",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6118"
 			}
 		],
 		"drops": [
@@ -76435,7 +76877,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1999"
 			}
 		],
 		"source": "fantrax",
@@ -76453,7 +76896,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2826"
 			}
 		],
 		"drops": [
@@ -76462,7 +76906,8 @@
 				"position": "QB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1169"
 			}
 		],
 		"source": "fantrax",
@@ -76480,7 +76925,8 @@
 				"position": "WR",
 				"salary": 25,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5007"
 			}
 		],
 		"drops": [],
@@ -76499,7 +76945,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "3166"
 			}
 		],
 		"drops": [
@@ -76508,7 +76955,8 @@
 				"position": "WR",
 				"salary": 5,
 				"startYear": 2018,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4992"
 			}
 		],
 		"source": "fantrax",
@@ -76526,7 +76974,8 @@
 				"position": "QB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "533"
 			}
 		],
 		"drops": [
@@ -76535,7 +76984,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "490"
 			}
 		],
 		"source": "fantrax",
@@ -76553,7 +77003,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "7042"
 			}
 		],
 		"drops": [
@@ -76562,7 +77013,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4195"
 			}
 		],
 		"source": "fantrax",
@@ -76580,7 +77032,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6353"
 			}
 		],
 		"drops": [
@@ -76589,7 +77042,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4426"
 			}
 		],
 		"source": "fantrax",
@@ -76607,7 +77061,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2747"
 			}
 		],
 		"drops": [
@@ -76616,7 +77071,8 @@
 				"position": "WR",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6059"
 			}
 		],
 		"source": "fantrax",
@@ -76634,7 +77090,8 @@
 				"position": "LB",
 				"salary": 0,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2677"
 			}
 		],
 		"drops": [],
@@ -76654,7 +77111,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "5032"
 			}
 		],
 		"source": "fantrax",
@@ -76672,7 +77130,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "4426"
 			}
 		],
 		"drops": [
@@ -76681,7 +77140,8 @@
 				"position": "RB",
 				"salary": 22,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2378"
 			}
 		],
 		"source": "fantrax",
@@ -76699,7 +77159,8 @@
 				"position": "LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1940"
 			}
 		],
 		"drops": [
@@ -76708,7 +77169,8 @@
 				"position": "RB",
 				"salary": 8,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "676"
 			}
 		],
 		"source": "fantrax",
@@ -76727,7 +77189,8 @@
 				"position": "TE",
 				"salary": 40,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4066"
 			}
 		],
 		"source": "fantrax",
@@ -76745,7 +77208,8 @@
 				"position": "QB",
 				"salary": 40,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "490"
 			}
 		],
 		"drops": [
@@ -76754,7 +77218,8 @@
 				"position": "RB",
 				"salary": 77,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "2749"
 			}
 		],
 		"source": "fantrax",
@@ -76772,7 +77237,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1259"
 			}
 		],
 		"drops": [
@@ -76781,7 +77247,8 @@
 				"position": "WR",
 				"salary": 8,
 				"startYear": 2020,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "147"
 			}
 		],
 		"source": "fantrax",
@@ -76799,7 +77266,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6083"
 			}
 		],
 		"drops": [
@@ -76808,7 +77276,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "1433"
 			}
 		],
 		"source": "fantrax",
@@ -76826,7 +77295,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2020
+				"endYear": 2020,
+				"sleeperId": "6918"
 			}
 		],
 		"drops": [],
@@ -77357,7 +77827,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7136"
 			}
 		],
 		"drops": [
@@ -77366,7 +77837,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7583"
 			}
 		],
 		"source": "fantrax",
@@ -77384,7 +77856,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1038"
 			}
 		],
 		"drops": [
@@ -77393,7 +77866,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4157"
 			}
 		],
 		"source": "fantrax",
@@ -77411,7 +77885,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6083"
 			}
 		],
 		"drops": [
@@ -77420,7 +77895,8 @@
 				"position": "WR",
 				"salary": 7,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "2331"
 			}
 		],
 		"source": "fantrax",
@@ -77438,7 +77914,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4147"
 			}
 		],
 		"drops": [
@@ -77447,7 +77924,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5965"
 			}
 		],
 		"source": "fantrax",
@@ -77465,7 +77943,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4152"
 			}
 		],
 		"drops": [
@@ -77474,7 +77953,8 @@
 				"position": "RB",
 				"salary": 4,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6908"
 			}
 		],
 		"source": "fantrax",
@@ -77492,7 +77972,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4150"
 			}
 		],
 		"drops": [
@@ -77501,7 +77982,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "5130"
 			}
 		],
 		"source": "fantrax",
@@ -77519,7 +78001,8 @@
 				"position": "DL",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6124"
 			}
 		],
 		"drops": [
@@ -77528,7 +78011,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7762"
 			}
 		],
 		"source": "fantrax",
@@ -77546,7 +78030,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5822"
 			}
 		],
 		"drops": [
@@ -77555,7 +78040,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7541"
 			}
 		],
 		"source": "fantrax",
@@ -77573,7 +78059,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5131"
 			}
 		],
 		"drops": [
@@ -77582,7 +78069,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6002"
 			}
 		],
 		"source": "fantrax",
@@ -77600,7 +78088,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5026"
 			}
 		],
 		"drops": [
@@ -77609,7 +78098,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7678"
 			}
 		],
 		"source": "fantrax",
@@ -77627,7 +78117,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4950"
 			}
 		],
 		"drops": [
@@ -77636,7 +78127,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7081"
 			}
 		],
 		"source": "fantrax",
@@ -77654,7 +78146,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1408"
 			}
 		],
 		"drops": [
@@ -77663,7 +78156,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6906"
 			}
 		],
 		"source": "fantrax",
@@ -77681,7 +78175,8 @@
 				"position": "RB",
 				"salary": 11,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7098"
 			}
 		],
 		"drops": [
@@ -77690,7 +78185,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6960"
 			}
 		],
 		"source": "fantrax",
@@ -77708,7 +78204,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4741"
 			}
 		],
 		"drops": [
@@ -77717,7 +78214,8 @@
 				"position": "RB",
 				"salary": 4,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7045"
 			}
 		],
 		"source": "fantrax",
@@ -77735,7 +78233,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4574"
 			}
 		],
 		"drops": [
@@ -77744,7 +78243,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5162"
 			}
 		],
 		"source": "fantrax",
@@ -77762,7 +78262,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1367"
 			}
 		],
 		"drops": [],
@@ -77781,7 +78282,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5920"
 			}
 		],
 		"drops": [],
@@ -77800,7 +78302,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "843"
 			}
 		],
 		"drops": [],
@@ -77819,7 +78322,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6949"
 			}
 		],
 		"drops": [],
@@ -77838,7 +78342,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3197"
 			}
 		],
 		"drops": [],
@@ -77857,7 +78362,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6353"
 			}
 		],
 		"drops": [],
@@ -77876,7 +78382,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2617"
 			}
 		],
 		"drops": [],
@@ -77895,7 +78402,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5334"
 			}
 		],
 		"drops": [],
@@ -77914,7 +78422,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3274"
 			}
 		],
 		"drops": [],
@@ -77933,7 +78442,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6880"
 			}
 		],
 		"drops": [
@@ -77942,7 +78452,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2348"
 			}
 		],
 		"source": "fantrax",
@@ -77960,7 +78471,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5099"
 			}
 		],
 		"drops": [
@@ -77969,7 +78481,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1834"
 			}
 		],
 		"source": "fantrax",
@@ -77987,7 +78500,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4455"
 			}
 		],
 		"drops": [],
@@ -78006,7 +78520,8 @@
 				"position": "RB,WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1535"
 			}
 		],
 		"drops": [
@@ -78015,7 +78530,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7625"
 			}
 		],
 		"source": "fantrax",
@@ -78033,7 +78549,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2460"
 			}
 		],
 		"drops": [
@@ -78042,7 +78559,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7681"
 			}
 		],
 		"source": "fantrax",
@@ -78060,7 +78578,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5300"
 			}
 		],
 		"drops": [
@@ -78069,7 +78588,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7023"
 			}
 		],
 		"source": "fantrax",
@@ -78087,7 +78607,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4351"
 			}
 		],
 		"drops": [
@@ -78096,7 +78617,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7827"
 			}
 		],
 		"source": "fantrax",
@@ -78114,7 +78636,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4443"
 			}
 		],
 		"drops": [
@@ -78123,7 +78646,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4741"
 			}
 		],
 		"source": "fantrax",
@@ -78141,7 +78665,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6968"
 			}
 		],
 		"drops": [
@@ -78150,7 +78675,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7136"
 			}
 		],
 		"source": "fantrax",
@@ -78168,7 +78694,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6220"
 			}
 		],
 		"drops": [],
@@ -78187,7 +78714,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5113"
 			}
 		],
 		"drops": [
@@ -78196,7 +78724,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5865"
 			}
 		],
 		"source": "fantrax",
@@ -78214,7 +78743,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3254"
 			}
 		],
 		"drops": [
@@ -78223,7 +78753,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7050"
 			}
 		],
 		"source": "fantrax",
@@ -78241,7 +78772,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4972"
 			}
 		],
 		"drops": [
@@ -78250,7 +78782,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5822"
 			}
 		],
 		"source": "fantrax",
@@ -78268,7 +78801,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5095"
 			}
 		],
 		"drops": [
@@ -78277,7 +78811,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4455"
 			}
 		],
 		"source": "fantrax",
@@ -78295,7 +78830,8 @@
 				"position": "DB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2445"
 			}
 		],
 		"drops": [
@@ -78304,7 +78840,8 @@
 				"position": "RB",
 				"salary": 5,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "2161"
 			}
 		],
 		"source": "fantrax",
@@ -78322,7 +78859,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3276"
 			}
 		],
 		"drops": [],
@@ -78341,7 +78879,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "997"
 			}
 		],
 		"drops": [
@@ -78350,7 +78889,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1507"
 			}
 		],
 		"source": "fantrax",
@@ -78368,7 +78908,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "957"
 			}
 		],
 		"drops": [
@@ -78377,7 +78918,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "7554"
 			}
 		],
 		"source": "fantrax",
@@ -78395,7 +78937,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2406"
 			}
 		],
 		"drops": [
@@ -78404,7 +78947,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "5995"
 			}
 		],
 		"source": "fantrax",
@@ -78422,7 +78966,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4319"
 			}
 		],
 		"drops": [
@@ -78431,7 +78976,8 @@
 				"position": "LB,DB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3181"
 			}
 		],
 		"source": "fantrax",
@@ -78449,7 +78995,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5001"
 			}
 		],
 		"drops": [
@@ -78458,7 +79005,8 @@
 				"position": "TE",
 				"salary": 6,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4066"
 			}
 		],
 		"source": "fantrax",
@@ -78476,7 +79024,8 @@
 				"position": "RB",
 				"salary": 9,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3594"
 			}
 		],
 		"drops": [
@@ -78485,7 +79034,8 @@
 				"position": "LB",
 				"salary": 25,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3291"
 			}
 		],
 		"source": "fantrax",
@@ -78503,7 +79053,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3256"
 			}
 		],
 		"drops": [
@@ -78512,7 +79063,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3167"
 			}
 		],
 		"source": "fantrax",
@@ -78530,7 +79082,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5882"
 			}
 		],
 		"drops": [
@@ -78539,7 +79092,8 @@
 				"position": "DB",
 				"salary": 15,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4133"
 			}
 		],
 		"source": "fantrax",
@@ -78557,7 +79111,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1213"
 			}
 		],
 		"drops": [
@@ -78566,7 +79121,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5131"
 			}
 		],
 		"source": "fantrax",
@@ -78584,7 +79140,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3582"
 			}
 		],
 		"drops": [
@@ -78593,7 +79150,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6951"
 			}
 		],
 		"source": "fantrax",
@@ -78611,7 +79169,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5010"
 			}
 		],
 		"drops": [
@@ -78620,7 +79179,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4443"
 			}
 		],
 		"source": "fantrax",
@@ -78638,7 +79198,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2353"
 			}
 		],
 		"drops": [
@@ -78647,7 +79208,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6968"
 			}
 		],
 		"source": "fantrax",
@@ -78665,7 +79227,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5133"
 			}
 		],
 		"drops": [
@@ -78674,7 +79237,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2747"
 			}
 		],
 		"source": "fantrax",
@@ -78692,7 +79256,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5185"
 			}
 		],
 		"drops": [
@@ -78701,7 +79266,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3209"
 			}
 		],
 		"source": "fantrax",
@@ -78719,7 +79285,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4118"
 			}
 		],
 		"drops": [
@@ -78728,7 +79295,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5099"
 			}
 		],
 		"source": "fantrax",
@@ -78746,7 +79314,8 @@
 				"position": "WR",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1244"
 			}
 		],
 		"drops": [
@@ -78755,7 +79324,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5010"
 			}
 		],
 		"source": "fantrax",
@@ -78773,7 +79343,8 @@
 				"position": "RB",
 				"salary": 21,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3327"
 			}
 		],
 		"drops": [
@@ -78782,7 +79353,8 @@
 				"position": "WR",
 				"salary": 41,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1825"
 			}
 		],
 		"source": "fantrax",
@@ -78800,7 +79372,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7083"
 			}
 		],
 		"drops": [
@@ -78809,7 +79382,8 @@
 				"position": "RB",
 				"salary": 6,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "956"
 			}
 		],
 		"source": "fantrax",
@@ -78827,7 +79401,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2360"
 			}
 		],
 		"drops": [
@@ -78836,7 +79411,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6148"
 			}
 		],
 		"source": "fantrax",
@@ -78854,7 +79430,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3634"
 			}
 		],
 		"drops": [
@@ -78863,7 +79440,8 @@
 				"position": "RB",
 				"salary": 15,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "5122"
 			}
 		],
 		"source": "fantrax",
@@ -78881,7 +79459,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4219"
 			}
 		],
 		"drops": [
@@ -78890,7 +79469,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "2118"
 			}
 		],
 		"source": "fantrax",
@@ -78909,7 +79489,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2360"
 			}
 		],
 		"source": "fantrax",
@@ -78927,7 +79508,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5341"
 			}
 		],
 		"drops": [
@@ -78936,7 +79518,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "997"
 			}
 		],
 		"source": "fantrax",
@@ -78954,7 +79537,8 @@
 				"position": "RB",
 				"salary": 15,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3209"
 			}
 		],
 		"drops": [
@@ -78963,7 +79547,8 @@
 				"position": "RB",
 				"salary": 25,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3242"
 			}
 		],
 		"source": "fantrax",
@@ -78981,7 +79566,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5073"
 			}
 		],
 		"drops": [
@@ -78990,7 +79576,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "720"
 			}
 		],
 		"source": "fantrax",
@@ -79008,7 +79595,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "956"
 			}
 		],
 		"drops": [
@@ -79017,7 +79605,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3582"
 			}
 		],
 		"source": "fantrax",
@@ -79035,7 +79624,8 @@
 				"position": "QB",
 				"salary": 0,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1373"
 			}
 		],
 		"drops": [
@@ -79044,7 +79634,8 @@
 				"position": "RB",
 				"salary": 53,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1848"
 			}
 		],
 		"source": "fantrax",
@@ -79062,7 +79653,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3345"
 			}
 		],
 		"drops": [
@@ -79071,7 +79663,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2406"
 			}
 		],
 		"source": "fantrax",
@@ -79089,7 +79682,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1825"
 			}
 		],
 		"drops": [
@@ -79098,7 +79692,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5113"
 			}
 		],
 		"source": "fantrax",
@@ -79116,7 +79711,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5230"
 			}
 		],
 		"drops": [
@@ -79125,7 +79721,8 @@
 				"position": "K",
 				"salary": 2,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4666"
 			}
 		],
 		"source": "fantrax",
@@ -79143,7 +79740,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2406"
 			}
 		],
 		"drops": [
@@ -79152,7 +79750,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4220"
 			}
 		],
 		"source": "fantrax",
@@ -79171,7 +79770,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2229"
 			}
 		],
 		"source": "fantrax",
@@ -79190,7 +79790,8 @@
 				"position": "WR",
 				"salary": 48,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "4040"
 			}
 		],
 		"source": "fantrax",
@@ -79208,7 +79809,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1099"
 			}
 		],
 		"drops": [],
@@ -79227,7 +79829,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7496"
 			}
 		],
 		"drops": [],
@@ -79246,7 +79849,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "650"
 			}
 		],
 		"drops": [
@@ -79255,7 +79859,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3345"
 			}
 		],
 		"source": "fantrax",
@@ -79273,7 +79878,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7155"
 			}
 		],
 		"drops": [
@@ -79282,7 +79888,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5882"
 			}
 		],
 		"source": "fantrax",
@@ -79300,7 +79907,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2168"
 			}
 		],
 		"drops": [
@@ -79309,7 +79917,8 @@
 				"position": "RB",
 				"salary": 25,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "4962"
 			}
 		],
 		"source": "fantrax",
@@ -79327,7 +79936,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1999"
 			}
 		],
 		"drops": [
@@ -79336,7 +79946,8 @@
 				"position": "RB,WR",
 				"salary": 7,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6909"
 			}
 		],
 		"source": "fantrax",
@@ -79354,7 +79965,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4531"
 			}
 		],
 		"drops": [
@@ -79363,7 +79975,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4150"
 			}
 		],
 		"source": "fantrax",
@@ -79381,7 +79994,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6694"
 			}
 		],
 		"drops": [
@@ -79390,7 +80004,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7602"
 			}
 		],
 		"source": "fantrax",
@@ -79408,7 +80023,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6809"
 			}
 		],
 		"drops": [
@@ -79417,7 +80033,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7496"
 			}
 		],
 		"source": "fantrax",
@@ -79435,7 +80052,8 @@
 				"position": "WR",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6927"
 			}
 		],
 		"drops": [
@@ -79444,7 +80062,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2583"
 			}
 		],
 		"source": "fantrax",
@@ -79462,7 +80081,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4198"
 			}
 		],
 		"drops": [
@@ -79471,7 +80091,8 @@
 				"position": "RB",
 				"salary": 11,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7098"
 			}
 		],
 		"source": "fantrax",
@@ -79489,7 +80110,8 @@
 				"position": "QB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "19"
 			}
 		],
 		"drops": [
@@ -79498,7 +80120,8 @@
 				"position": "LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3254"
 			}
 		],
 		"source": "fantrax",
@@ -79516,7 +80139,8 @@
 				"position": "QB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5089"
 			}
 		],
 		"drops": [
@@ -79525,7 +80149,8 @@
 				"position": "WR",
 				"salary": 20,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3157"
 			}
 		],
 		"source": "fantrax",
@@ -79543,7 +80168,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5928"
 			}
 		],
 		"drops": [
@@ -79552,7 +80178,8 @@
 				"position": "LB",
 				"salary": 4,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4110"
 			}
 		],
 		"source": "fantrax",
@@ -79570,7 +80197,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5272"
 			}
 		],
 		"drops": [
@@ -79579,7 +80207,8 @@
 				"position": "WR",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1244"
 			}
 		],
 		"source": "fantrax",
@@ -79597,7 +80226,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6900"
 			}
 		],
 		"drops": [
@@ -79606,7 +80236,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2406"
 			}
 		],
 		"source": "fantrax",
@@ -79624,7 +80255,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1433"
 			}
 		],
 		"drops": [],
@@ -79643,7 +80275,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2311"
 			}
 		],
 		"drops": [
@@ -79652,7 +80285,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "650"
 			}
 		],
 		"source": "fantrax",
@@ -79670,7 +80304,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3242"
 			}
 		],
 		"drops": [
@@ -79679,7 +80314,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4171"
 			}
 		],
 		"source": "fantrax",
@@ -79697,7 +80333,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3747"
 			}
 		],
 		"drops": [
@@ -79706,7 +80343,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2588"
 			}
 		],
 		"source": "fantrax",
@@ -79724,7 +80362,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4666"
 			}
 		],
 		"drops": [],
@@ -79744,7 +80383,8 @@
 				"position": "RB,WR",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7109"
 			}
 		],
 		"source": "fantrax",
@@ -79762,7 +80402,8 @@
 				"position": "RB",
 				"salary": 0,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5122"
 			}
 		],
 		"drops": [],
@@ -79782,7 +80423,8 @@
 				"position": "RB",
 				"salary": 13,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6878"
 			}
 		],
 		"source": "fantrax",
@@ -79800,7 +80442,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4135"
 			}
 		],
 		"drops": [
@@ -79809,7 +80452,8 @@
 				"position": "TE",
 				"salary": 2,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6126"
 			}
 		],
 		"source": "fantrax",
@@ -79827,7 +80471,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5944"
 			}
 		],
 		"drops": [
@@ -79836,7 +80481,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7155"
 			}
 		],
 		"source": "fantrax",
@@ -79854,7 +80500,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5960"
 			}
 		],
 		"drops": [
@@ -79863,7 +80510,8 @@
 				"position": "RB",
 				"salary": 7,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "7064"
 			}
 		],
 		"source": "fantrax",
@@ -79877,11 +80525,12 @@
 		"rosterId": 1,
 		"adds": [
 			{
-				"name": "Matt Judon",
+				"name": "Matthew Judon",
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3303"
 			}
 		],
 		"drops": [
@@ -79890,7 +80539,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4118"
 			}
 		],
 		"source": "fantrax",
@@ -79908,7 +80558,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3306"
 			}
 		],
 		"drops": [
@@ -79917,7 +80568,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4972"
 			}
 		],
 		"source": "fantrax",
@@ -79935,7 +80587,8 @@
 				"position": "RB",
 				"salary": 14,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "184"
 			}
 		],
 		"drops": [
@@ -79944,7 +80597,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6694"
 			}
 		],
 		"source": "fantrax",
@@ -79962,7 +80616,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4741"
 			}
 		],
 		"drops": [
@@ -79971,7 +80626,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4413"
 			}
 		],
 		"source": "fantrax",
@@ -79989,7 +80645,8 @@
 				"position": "QB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2549"
 			}
 		],
 		"drops": [
@@ -79998,7 +80655,8 @@
 				"position": "QB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "19"
 			}
 		],
 		"source": "fantrax",
@@ -80016,7 +80674,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6872"
 			}
 		],
 		"drops": [
@@ -80025,7 +80684,8 @@
 				"position": "DB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2445"
 			}
 		],
 		"source": "fantrax",
@@ -80044,7 +80704,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4666"
 			}
 		],
 		"source": "fantrax",
@@ -80062,7 +80723,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4110"
 			}
 		],
 		"drops": [
@@ -80071,7 +80733,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7599"
 			}
 		],
 		"source": "fantrax",
@@ -80089,7 +80752,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4066"
 			}
 		],
 		"drops": [
@@ -80098,7 +80762,8 @@
 				"position": "TE",
 				"salary": 4,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4571"
 			}
 		],
 		"source": "fantrax",
@@ -80112,11 +80777,12 @@
 		"rosterId": 6,
 		"adds": [
 			{
-				"name": "Jeffery Wilson",
+				"name": "Jeff Wilson",
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5284"
 			}
 		],
 		"drops": [
@@ -80125,7 +80791,8 @@
 				"position": "TE",
 				"salary": 3,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "4089"
 			}
 		],
 		"source": "fantrax",
@@ -80143,7 +80810,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "821"
 			}
 		],
 		"drops": [
@@ -80152,7 +80820,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5073"
 			}
 		],
 		"source": "fantrax",
@@ -80171,7 +80840,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5300"
 			}
 		],
 		"source": "fantrax",
@@ -80189,7 +80859,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3341"
 			}
 		],
 		"drops": [],
@@ -80209,7 +80880,8 @@
 				"position": "DL",
 				"salary": 3,
 				"startYear": 2021,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "856"
 			}
 		],
 		"source": "fantrax",
@@ -80228,7 +80900,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "7703"
 			}
 		],
 		"source": "fantrax",
@@ -80247,7 +80920,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "6152"
 			}
 		],
 		"source": "fantrax",
@@ -80266,7 +80940,8 @@
 				"position": "QB",
 				"salary": 3,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5854"
 			}
 		],
 		"source": "fantrax",
@@ -80285,7 +80960,8 @@
 				"position": "DL",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6124"
 			}
 		],
 		"source": "fantrax",
@@ -80304,7 +80980,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "7062"
 			}
 		],
 		"source": "fantrax",
@@ -80323,7 +81000,8 @@
 				"position": "QB",
 				"salary": 82,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4943"
 			}
 		],
 		"source": "fantrax",
@@ -80341,7 +81019,8 @@
 				"position": "RB",
 				"salary": 9,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6694"
 			}
 		],
 		"drops": [
@@ -80350,7 +81029,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4147"
 			}
 		],
 		"source": "fantrax",
@@ -80368,7 +81048,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1348"
 			}
 		],
 		"drops": [
@@ -80377,7 +81058,8 @@
 				"position": "DB",
 				"salary": 5,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "4056"
 			}
 		],
 		"source": "fantrax",
@@ -80395,7 +81077,8 @@
 				"position": "QB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4335"
 			}
 		],
 		"drops": [
@@ -80404,7 +81087,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3274"
 			}
 		],
 		"source": "fantrax",
@@ -80422,7 +81106,8 @@
 				"position": "DB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4427"
 			}
 		],
 		"drops": [
@@ -80431,7 +81116,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6872"
 			}
 		],
 		"source": "fantrax",
@@ -80449,7 +81135,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6234"
 			}
 		],
 		"drops": [],
@@ -80468,7 +81155,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7765"
 			}
 		],
 		"drops": [
@@ -80477,7 +81165,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "7647"
 			}
 		],
 		"source": "fantrax",
@@ -80495,7 +81184,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2389"
 			}
 		],
 		"drops": [
@@ -80504,7 +81194,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5272"
 			}
 		],
 		"source": "fantrax",
@@ -80522,7 +81213,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6855"
 			}
 		],
 		"drops": [
@@ -80531,7 +81223,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3341"
 			}
 		],
 		"source": "fantrax",
@@ -80549,7 +81242,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4972"
 			}
 		],
 		"drops": [
@@ -80558,7 +81252,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1433"
 			}
 		],
 		"source": "fantrax",
@@ -80576,7 +81271,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6951"
 			}
 		],
 		"drops": [],
@@ -80595,7 +81291,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3238"
 			}
 		],
 		"drops": [
@@ -80604,7 +81301,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6782"
 			}
 		],
 		"source": "fantrax",
@@ -80622,7 +81320,8 @@
 				"position": "RB",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4111"
 			}
 		],
 		"drops": [
@@ -80631,7 +81330,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1038"
 			}
 		],
 		"source": "fantrax",
@@ -80649,7 +81349,8 @@
 				"position": "WR",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2750"
 			}
 		],
 		"drops": [
@@ -80658,7 +81359,8 @@
 				"position": "RB",
 				"salary": 15,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3209"
 			}
 		],
 		"source": "fantrax",
@@ -80676,7 +81378,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5348"
 			}
 		],
 		"drops": [],
@@ -80695,7 +81398,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7155"
 			}
 		],
 		"drops": [],
@@ -80714,7 +81418,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "650"
 			}
 		],
 		"drops": [],
@@ -80733,7 +81438,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "967"
 			}
 		],
 		"drops": [
@@ -80742,7 +81448,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6145"
 			}
 		],
 		"source": "fantrax",
@@ -80760,7 +81467,8 @@
 				"position": "LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4220"
 			}
 		],
 		"drops": [
@@ -80769,7 +81477,8 @@
 				"position": "RB",
 				"salary": 9,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3594"
 			}
 		],
 		"source": "fantrax",
@@ -80787,7 +81496,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5257"
 			}
 		],
 		"drops": [
@@ -80796,7 +81506,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5185"
 			}
 		],
 		"source": "fantrax",
@@ -80815,7 +81526,8 @@
 				"position": "QB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4335"
 			}
 		],
 		"source": "fantrax",
@@ -80833,7 +81545,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6528"
 			}
 		],
 		"drops": [
@@ -80842,7 +81555,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6823"
 			}
 		],
 		"source": "fantrax",
@@ -80860,7 +81574,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1387"
 			}
 		],
 		"drops": [
@@ -80869,7 +81584,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1408"
 			}
 		],
 		"source": "fantrax",
@@ -80887,7 +81603,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4962"
 			}
 		],
 		"drops": [
@@ -80896,7 +81613,8 @@
 				"position": "WR",
 				"salary": 95,
 				"startYear": 2020,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1352"
 			}
 		],
 		"source": "fantrax",
@@ -80914,7 +81632,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5272"
 			}
 		],
 		"drops": [
@@ -80923,7 +81642,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5095"
 			}
 		],
 		"source": "fantrax",
@@ -80941,7 +81661,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5536"
 			}
 		],
 		"drops": [],
@@ -80960,7 +81681,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "49"
 			}
 		],
 		"drops": [
@@ -80969,7 +81691,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4972"
 			}
 		],
 		"source": "fantrax",
@@ -80987,7 +81710,8 @@
 				"position": "K",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5095"
 			}
 		],
 		"drops": [
@@ -80996,7 +81720,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5230"
 			}
 		],
 		"source": "fantrax",
@@ -81014,7 +81739,8 @@
 				"position": "LB",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4063"
 			}
 		],
 		"drops": [
@@ -81023,7 +81749,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "6869"
 			}
 		],
 		"source": "fantrax",
@@ -81041,7 +81768,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6485"
 			}
 		],
 		"drops": [
@@ -81050,7 +81778,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6855"
 			}
 		],
 		"source": "fantrax",
@@ -81068,7 +81797,8 @@
 				"position": "LB",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4118"
 			}
 		],
 		"drops": [
@@ -81077,7 +81807,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2036"
 			}
 		],
 		"source": "fantrax",
@@ -81095,7 +81826,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1559"
 			}
 		],
 		"drops": [
@@ -81104,7 +81836,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7083"
 			}
 		],
 		"source": "fantrax",
@@ -81122,7 +81855,8 @@
 				"position": "DB",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3399"
 			}
 		],
 		"drops": [
@@ -81131,7 +81865,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4962"
 			}
 		],
 		"source": "fantrax",
@@ -81149,7 +81884,8 @@
 				"position": "DL,LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1038"
 			}
 		],
 		"drops": [
@@ -81158,7 +81894,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "7587"
 			}
 		],
 		"source": "fantrax",
@@ -81176,7 +81913,8 @@
 				"position": "WR",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4171"
 			}
 		],
 		"drops": [
@@ -81185,7 +81923,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7633"
 			}
 		],
 		"source": "fantrax",
@@ -81203,7 +81942,8 @@
 				"position": "TE",
 				"salary": 14,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5985"
 			}
 		],
 		"drops": [
@@ -81212,7 +81952,8 @@
 				"position": "WR",
 				"salary": 135,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "1992"
 			}
 		],
 		"source": "fantrax",
@@ -81230,7 +81971,8 @@
 				"position": "RB",
 				"salary": 12,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4455"
 			}
 		],
 		"drops": [
@@ -81239,7 +81981,8 @@
 				"position": "RB",
 				"salary": 349,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4034"
 			}
 		],
 		"source": "fantrax",
@@ -81257,7 +82000,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "871"
 			}
 		],
 		"drops": [
@@ -81266,7 +82010,8 @@
 				"position": "DL,LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7765"
 			}
 		],
 		"source": "fantrax",
@@ -81285,7 +82030,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6809"
 			}
 		],
 		"source": "fantrax",
@@ -81303,7 +82049,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "19"
 			}
 		],
 		"drops": [
@@ -81312,7 +82059,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4198"
 			}
 		],
 		"source": "fantrax",
@@ -81330,7 +82078,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2747"
 			}
 		],
 		"drops": [],
@@ -81349,7 +82098,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4089"
 			}
 		],
 		"drops": [],
@@ -81368,7 +82118,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1992"
 			}
 		],
 		"drops": [
@@ -81377,7 +82128,8 @@
 				"position": "WR",
 				"salary": 16,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2319"
 			}
 		],
 		"source": "fantrax",
@@ -81395,7 +82147,8 @@
 				"position": "TE",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1706"
 			}
 		],
 		"drops": [
@@ -81404,7 +82157,8 @@
 				"position": "TE",
 				"salary": 5,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4435"
 			}
 		],
 		"source": "fantrax",
@@ -81422,7 +82176,8 @@
 				"position": "RB",
 				"salary": 38,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4962"
 			}
 		],
 		"drops": [
@@ -81431,7 +82186,8 @@
 				"position": "RB",
 				"salary": 9,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6694"
 			}
 		],
 		"source": "fantrax",
@@ -81449,7 +82205,8 @@
 				"position": "WR",
 				"salary": 11,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2319"
 			}
 		],
 		"drops": [
@@ -81458,7 +82215,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2019,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5041"
 			}
 		],
 		"source": "fantrax",
@@ -81476,7 +82234,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5025"
 			}
 		],
 		"drops": [
@@ -81485,7 +82244,8 @@
 				"position": "QB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1559"
 			}
 		],
 		"source": "fantrax",
@@ -81503,7 +82263,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6996"
 			}
 		],
 		"drops": [
@@ -81512,7 +82273,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5944"
 			}
 		],
 		"source": "fantrax",
@@ -81530,7 +82292,8 @@
 				"position": "LB",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5041"
 			}
 		],
 		"drops": [
@@ -81539,7 +82302,8 @@
 				"position": "RB",
 				"salary": 21,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3327"
 			}
 		],
 		"source": "fantrax",
@@ -81557,7 +82321,8 @@
 				"position": "DL",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6118"
 			}
 		],
 		"drops": [
@@ -81566,7 +82331,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "3172"
 			}
 		],
 		"source": "fantrax",
@@ -81584,7 +82350,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7066"
 			}
 		],
 		"drops": [
@@ -81593,7 +82360,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6234"
 			}
 		],
 		"source": "fantrax",
@@ -81611,7 +82379,8 @@
 				"position": "K",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1945"
 			}
 		],
 		"drops": [
@@ -81620,7 +82389,8 @@
 				"position": "K",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5095"
 			}
 		],
 		"source": "fantrax",
@@ -81638,7 +82408,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2359"
 			}
 		],
 		"drops": [
@@ -81647,7 +82418,8 @@
 				"position": "RB",
 				"salary": 12,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4455"
 			}
 		],
 		"source": "fantrax",
@@ -81665,7 +82437,8 @@
 				"position": "LB",
 				"salary": 11,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3363"
 			}
 		],
 		"drops": [
@@ -81674,7 +82447,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6485"
 			}
 		],
 		"source": "fantrax",
@@ -81692,7 +82466,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3155"
 			}
 		],
 		"drops": [
@@ -81701,7 +82476,8 @@
 				"position": "TE",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1706"
 			}
 		],
 		"source": "fantrax",
@@ -81719,7 +82495,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1433"
 			}
 		],
 		"drops": [
@@ -81728,7 +82505,8 @@
 				"position": "K",
 				"salary": 3,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5119"
 			}
 		],
 		"source": "fantrax",
@@ -81746,7 +82524,8 @@
 				"position": "RB",
 				"salary": 17,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4147"
 			}
 		],
 		"drops": [
@@ -81755,7 +82534,8 @@
 				"position": "DL,LB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1038"
 			}
 		],
 		"source": "fantrax",
@@ -81773,7 +82553,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6968"
 			}
 		],
 		"drops": [],
@@ -81793,7 +82574,8 @@
 				"position": "TE",
 				"salary": 30,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "4602"
 			}
 		],
 		"source": "fantrax",
@@ -81811,7 +82593,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3209"
 			}
 		],
 		"drops": [
@@ -81820,7 +82603,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4110"
 			}
 		],
 		"source": "fantrax",
@@ -81838,7 +82622,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7496"
 			}
 		],
 		"drops": [],
@@ -81857,7 +82642,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7681"
 			}
 		],
 		"drops": [],
@@ -81876,7 +82662,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6125"
 			}
 		],
 		"drops": [],
@@ -81895,7 +82682,8 @@
 				"position": "QB",
 				"salary": 9,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1559"
 			}
 		],
 		"drops": [
@@ -81904,7 +82692,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2747"
 			}
 		],
 		"source": "fantrax",
@@ -81922,7 +82711,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5095"
 			}
 		],
 		"drops": [
@@ -81931,7 +82721,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5122"
 			}
 		],
 		"source": "fantrax",
@@ -81949,7 +82740,8 @@
 				"position": "LB,DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7677"
 			}
 		],
 		"drops": [
@@ -81958,7 +82750,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4089"
 			}
 		],
 		"source": "fantrax",
@@ -81976,7 +82769,8 @@
 				"position": "RB",
 				"salary": 0,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3327"
 			}
 		],
 		"drops": [
@@ -81985,7 +82779,8 @@
 				"position": "QB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5089"
 			}
 		],
 		"source": "fantrax",
@@ -82003,7 +82798,8 @@
 				"position": "WR",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5121"
 			}
 		],
 		"drops": [
@@ -82012,7 +82808,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5928"
 			}
 		],
 		"source": "fantrax",
@@ -82030,7 +82827,8 @@
 				"position": "K",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5119"
 			}
 		],
 		"drops": [
@@ -82039,7 +82837,8 @@
 				"position": "K",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1945"
 			}
 		],
 		"source": "fantrax",
@@ -82057,7 +82856,8 @@
 				"position": "QB",
 				"salary": 37,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7083"
 			}
 		],
 		"drops": [
@@ -82066,7 +82866,8 @@
 				"position": "WR",
 				"salary": 175,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "1426"
 			}
 		],
 		"source": "fantrax",
@@ -82084,7 +82885,8 @@
 				"position": "RB",
 				"salary": 15,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4455"
 			}
 		],
 		"drops": [
@@ -82093,7 +82895,8 @@
 				"position": "RB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3209"
 			}
 		],
 		"source": "fantrax",
@@ -82111,7 +82914,8 @@
 				"position": "RB",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4651"
 			}
 		],
 		"drops": [
@@ -82120,7 +82924,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6996"
 			}
 		],
 		"source": "fantrax",
@@ -82138,7 +82943,8 @@
 				"position": "LB",
 				"salary": 8,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6214"
 			}
 		],
 		"drops": [
@@ -82147,7 +82953,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5095"
 			}
 		],
 		"source": "fantrax",
@@ -82166,7 +82973,8 @@
 				"position": "TE",
 				"salary": 38,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2251"
 			}
 		],
 		"source": "fantrax",
@@ -82184,7 +82992,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3342"
 			}
 		],
 		"drops": [
@@ -82193,7 +83002,8 @@
 				"position": "RB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3242"
 			}
 		],
 		"source": "fantrax",
@@ -82211,7 +83021,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2382"
 			}
 		],
 		"drops": [
@@ -82220,7 +83031,8 @@
 				"position": "RB",
 				"salary": 4,
 				"startYear": 2020,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "1386"
 			}
 		],
 		"source": "fantrax",
@@ -82238,7 +83050,8 @@
 				"position": "DL,LB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1038"
 			}
 		],
 		"drops": [
@@ -82247,7 +83060,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2311"
 			}
 		],
 		"source": "fantrax",
@@ -82265,7 +83079,8 @@
 				"position": "RB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6694"
 			}
 		],
 		"drops": [
@@ -82274,7 +83089,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5025"
 			}
 		],
 		"source": "fantrax",
@@ -82292,7 +83108,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6485"
 			}
 		],
 		"drops": [],
@@ -82311,7 +83128,8 @@
 				"position": "QB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4464"
 			}
 		],
 		"drops": [
@@ -82320,7 +83138,8 @@
 				"position": "RB",
 				"salary": 4,
 				"startYear": 2021,
-				"endYear": 2023
+				"endYear": 2023,
+				"sleeperId": "7563"
 			}
 		],
 		"source": "fantrax",
@@ -82338,7 +83157,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4089"
 			}
 		],
 		"drops": [
@@ -82347,7 +83167,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6968"
 			}
 		],
 		"source": "fantrax",
@@ -82365,7 +83186,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1079"
 			}
 		],
 		"drops": [
@@ -82374,7 +83196,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "3747"
 			}
 		],
 		"source": "fantrax",
@@ -82392,7 +83215,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6120"
 			}
 		],
 		"drops": [
@@ -82401,7 +83225,8 @@
 				"position": "LB,DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7677"
 			}
 		],
 		"source": "fantrax",
@@ -82419,7 +83244,8 @@
 				"position": "DL,LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4075"
 			}
 		],
 		"drops": [
@@ -82428,7 +83254,8 @@
 				"position": "WR",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2750"
 			}
 		],
 		"source": "fantrax",
@@ -82446,7 +83273,8 @@
 				"position": "K",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6208"
 			}
 		],
 		"drops": [
@@ -82455,7 +83283,8 @@
 				"position": "RB",
 				"salary": 7,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4651"
 			}
 		],
 		"source": "fantrax",
@@ -82473,7 +83302,8 @@
 				"position": "RB",
 				"salary": 88,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5131"
 			}
 		],
 		"drops": [
@@ -82482,7 +83312,8 @@
 				"position": "WR",
 				"salary": 26,
 				"startYear": 2021,
-				"endYear": 2022
+				"endYear": 2022,
+				"sleeperId": "1110"
 			}
 		],
 		"source": "fantrax",
@@ -82500,7 +83331,8 @@
 				"position": "LB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5894"
 			}
 		],
 		"drops": [
@@ -82509,7 +83341,8 @@
 				"position": "TE",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5133"
 			}
 		],
 		"source": "fantrax",
@@ -82527,7 +83360,8 @@
 				"position": "K",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4666"
 			}
 		],
 		"drops": [
@@ -82536,7 +83370,8 @@
 				"position": "LB",
 				"salary": 1,
 				"startYear": 2021,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4203"
 			}
 		],
 		"source": "fantrax",
@@ -82554,7 +83389,8 @@
 				"position": "RB",
 				"salary": 20,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1034"
 			}
 		],
 		"drops": [
@@ -82563,7 +83399,8 @@
 				"position": "WR",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7066"
 			}
 		],
 		"source": "fantrax",
@@ -82581,7 +83418,8 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6234"
 			}
 		],
 		"drops": [
@@ -82590,7 +83428,8 @@
 				"position": "RB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4152"
 			}
 		],
 		"source": "fantrax",
@@ -82608,7 +83447,8 @@
 				"position": "QB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "260"
 			}
 		],
 		"drops": [
@@ -82617,7 +83457,8 @@
 				"position": "RB",
 				"salary": 10,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2359"
 			}
 		],
 		"source": "fantrax",
@@ -82636,7 +83477,8 @@
 				"position": "K",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6208"
 			}
 		],
 		"source": "fantrax",
@@ -82654,7 +83496,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6968"
 			}
 		],
 		"drops": [
@@ -82663,7 +83506,8 @@
 				"position": "RB",
 				"salary": 5,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6694"
 			}
 		],
 		"source": "fantrax",
@@ -82681,7 +83525,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4195"
 			}
 		],
 		"drops": [
@@ -82690,7 +83535,8 @@
 				"position": "K",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4666"
 			}
 		],
 		"source": "fantrax",
@@ -82708,7 +83554,8 @@
 				"position": "RB",
 				"salary": 30,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4718"
 			}
 		],
 		"drops": [
@@ -82717,7 +83564,8 @@
 				"position": "QB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "260"
 			}
 		],
 		"source": "fantrax",
@@ -82735,7 +83583,8 @@
 				"position": "RB",
 				"salary": 30,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5122"
 			}
 		],
 		"drops": [
@@ -82744,7 +83593,8 @@
 				"position": "RB",
 				"salary": 20,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "1034"
 			}
 		],
 		"source": "fantrax",
@@ -82762,7 +83612,8 @@
 				"position": "WR",
 				"salary": 25,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7066"
 			}
 		],
 		"drops": [
@@ -82771,7 +83622,8 @@
 				"position": "RB",
 				"salary": 88,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5131"
 			}
 		],
 		"source": "fantrax",
@@ -82789,7 +83641,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5185"
 			}
 		],
 		"drops": [
@@ -82798,7 +83651,8 @@
 				"position": "WR",
 				"salary": 25,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "7066"
 			}
 		],
 		"source": "fantrax",
@@ -82816,7 +83670,8 @@
 				"position": "DB",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6152"
 			}
 		],
 		"drops": [],
@@ -82835,7 +83690,8 @@
 				"position": "DL",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4965"
 			}
 		],
 		"drops": [
@@ -82844,7 +83700,8 @@
 				"position": "DL,LB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4075"
 			}
 		],
 		"source": "fantrax",
@@ -82862,7 +83719,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2331"
 			}
 		],
 		"drops": [
@@ -82871,7 +83729,8 @@
 				"position": "LB",
 				"salary": 6,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5894"
 			}
 		],
 		"source": "fantrax",
@@ -82889,7 +83748,8 @@
 				"position": "DB",
 				"salary": 2,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4136"
 			}
 		],
 		"drops": [
@@ -82898,7 +83758,8 @@
 				"position": "WR",
 				"salary": 11,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "2319"
 			}
 		],
 		"source": "fantrax",
@@ -82916,7 +83777,8 @@
 				"position": "WR",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "5024"
 			}
 		],
 		"drops": [
@@ -82925,7 +83787,8 @@
 				"position": "DB",
 				"salary": 3,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "4427"
 			}
 		],
 		"source": "fantrax",
@@ -82944,7 +83807,8 @@
 				"position": "DL",
 				"salary": 1,
 				"startYear": null,
-				"endYear": 2021
+				"endYear": 2021,
+				"sleeperId": "6120"
 			}
 		],
 		"source": "fantrax",

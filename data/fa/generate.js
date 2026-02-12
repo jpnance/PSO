@@ -26,10 +26,51 @@ var TRADE_FACILITATION_FILE = path.join(CONFIG_DIR, 'trade-facilitation-fixups.j
 // Facts layer
 var sleeperFacts = require('../facts/sleeper-facts');
 var fantraxFacts = require('../facts/fantrax-facts');
+var resolver = require('../utils/player-resolver');
 
 // =============================================================================
 // Data Loading
 // =============================================================================
+
+/**
+ * Build a name -> sleeperId lookup from snapshot files.
+ * Used to resolve Fantrax player names to Sleeper IDs.
+ */
+function buildSleeperIdLookup() {
+	var lookup = {};  // normalized name -> sleeperId (only stored when unambiguous)
+	var ambiguous = new Set();
+
+	var files = fs.readdirSync(SNAPSHOTS_DIR).filter(function(f) {
+		return f.match(/^(contracts|postseason)-\d{4}\.txt$/);
+	});
+
+	files.forEach(function(f) {
+		var lines = fs.readFileSync(path.join(SNAPSHOTS_DIR, f), 'utf8').split('\n');
+		lines.forEach(function(line) {
+			if (!line.trim() || line.startsWith('ID,')) return;
+			var parts = line.split(',');
+			var id = parts[0];
+			var name = parts[2];
+			if (!id || !name || id === '-1') return;
+
+			var normalized = resolver.normalizePlayerName(name);
+			if (!normalized) return;
+
+			if (ambiguous.has(normalized)) return;
+
+			if (lookup[normalized] && lookup[normalized] !== id) {
+				// Two different IDs for the same name — ambiguous, remove
+				delete lookup[normalized];
+				ambiguous.add(normalized);
+				return;
+			}
+
+			lookup[normalized] = id;
+		});
+	});
+
+	return lookup;
+}
 
 /**
  * Parse summer-meetings.txt to get auction dates.
@@ -427,7 +468,7 @@ function generateSleeperRecords(fixups, cutsLookup) {
 /**
  * Generate records from Fantrax platform data (2020-2021).
  */
-function generateFantraxRecords(fixups, cutsLookup) {
+function generateFantraxRecords(fixups, cutsLookup, sleeperIdLookup) {
 	var records = [];
 
 	[2020, 2021].forEach(function(season) {
@@ -462,7 +503,7 @@ function generateFantraxRecords(fixups, cutsLookup) {
 				rosterId = ownerToRosterId(tx.owner, season);
 			}
 
-			var record = buildPlatformRecord(tx, season, rosterId, 'fantrax', cutsLookup, fixups);
+			var record = buildPlatformRecord(tx, season, rosterId, 'fantrax', cutsLookup, fixups, sleeperIdLookup);
 			if (record) records.push(record);
 		});
 
@@ -482,7 +523,7 @@ function generateFantraxRecords(fixups, cutsLookup) {
 				rosterId = ownerToRosterId(tx.owner, season);
 			}
 
-			var record = buildPlatformRecord(tx, season, rosterId, 'fantrax', cutsLookup, fixups);
+			var record = buildPlatformRecord(tx, season, rosterId, 'fantrax', cutsLookup, fixups, sleeperIdLookup);
 			if (record) records.push(record);
 		});
 	});
@@ -493,7 +534,7 @@ function generateFantraxRecords(fixups, cutsLookup) {
 /**
  * Build an fa.json record from a platform transaction.
  */
-function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups) {
+function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups, sleeperIdLookup) {
 	if (!rosterId) {
 		console.warn('Warning: No rosterId for ' + source + ' tx ' + tx.transactionId);
 		return null;
@@ -501,8 +542,14 @@ function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups) {
 
 	var adds = (tx.adds || []).map(function(add) {
 		var sleeperId = add.playerId;
-		// For Fantrax, playerId is a Fantrax ID, not a Sleeper ID
-		if (source === 'fantrax') sleeperId = null;
+		// For Fantrax, playerId is a Fantrax ID, not a Sleeper ID — resolve via name
+		if (source === 'fantrax') {
+			sleeperId = null;
+			if (sleeperIdLookup && add.playerName) {
+				var resolved = sleeperIdLookup[resolver.normalizePlayerName(add.playerName)];
+				if (resolved) sleeperId = resolved;
+			}
+		}
 
 		var entry = {
 			name: add.playerName,
@@ -517,7 +564,14 @@ function buildPlatformRecord(tx, season, rosterId, source, cutsLookup, fixups) {
 
 	var drops = (tx.drops || []).map(function(drop) {
 		var sleeperId = drop.playerId;
-		if (source === 'fantrax') sleeperId = null;
+		// For Fantrax, resolve via name
+		if (source === 'fantrax') {
+			sleeperId = null;
+			if (sleeperIdLookup && drop.playerName) {
+				var resolved = sleeperIdLookup[resolver.normalizePlayerName(drop.playerName)];
+				if (resolved) sleeperId = resolved;
+			}
+		}
 
 		var entry = {
 			name: drop.playerName,
@@ -778,6 +832,23 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 	// Key: "sleeperId|season|owner" or "name|season|owner"
 	var emitted = new Set();
 
+	// Build a trade receipt index for trade-aware cut timestamps
+	// (mirrors generatePrePlatformCuts's tradeReceiptMap)
+	var tradeReceiptMap = {};
+	(trades || []).forEach(function(trade) {
+		var year = new Date(trade.date).getFullYear();
+		trade.parties.forEach(function(party) {
+			party.players.forEach(function(p) {
+				var playerKey = p.sleeperId || p.name.toLowerCase();
+				var key = playerKey + '|' + year + '|' + party.owner.toLowerCase();
+				var tradeDate = new Date(trade.date);
+				if (!tradeReceiptMap[key] || tradeDate > tradeReceiptMap[key]) {
+					tradeReceiptMap[key] = tradeDate;
+				}
+			});
+		});
+	});
+
 	// Process seasons 2008-2019
 	for (var season = 2008; season <= 2019; season++) {
 		var seasonTrades = tradesBySeason[season] || [];
@@ -811,11 +882,28 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 		});
 
 		// Build per-player last cut timestamp so sections 2 and 3 can use it as a lower bound.
-		// Any inferred add must come after the player's last known cut in this season.
+		// Uses trade-adjusted timestamps (matching generatePrePlatformCuts) so that cuts
+		// placed after trades aren't underestimated by the conventional Oct 15 + N formula.
 		var playerLastCutTimestamp = {};
-		Object.keys(playerCutCount).forEach(function(pk) {
-			var lastIdx = playerCutCount[pk] - 1;
-			playerLastCutTimestamp[pk] = new Date(Date.UTC(season, 9, 15 + lastIdx, 12, 0, 33));
+		allSeasonCuts.forEach(function(c) {
+			var pk = c.sleeperId || c.name.toLowerCase();
+			var idx = cutPositionMap.get(c);
+			var conventionalTs = new Date(Date.UTC(season, 9, 15 + idx, 12, 0, 33));
+
+			// Check for trade-adjusted timestamp
+			var tradeKey = pk + '|' + season + '|' + c.owner.toLowerCase();
+			var tradeDate = tradeReceiptMap[tradeKey];
+			var ts = conventionalTs;
+			if (tradeDate && tradeDate >= conventionalTs) {
+				ts = new Date(tradeDate.getTime());
+				ts.setUTCSeconds(33);
+				ts.setUTCMilliseconds(0);
+				ts = new Date(ts.getTime() + 60000);
+			}
+
+			if (!playerLastCutTimestamp[pk] || ts > playerLastCutTimestamp[pk]) {
+				playerLastCutTimestamp[pk] = ts;
+			}
 		});
 
 		seasonCuts.forEach(function(cut) {
@@ -893,19 +981,26 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 					var rosterId = ownerToRosterId(result.owner, season);
 					if (!rosterId) return;
 
-					var emitKey = (player.sleeperId || player.name.toLowerCase()) + '|' + season + '|' + rosterId;
-					if (emitted.has(emitKey)) return;
+					var playerKey = player.sleeperId || player.name.toLowerCase();
+					var emitKey = playerKey + '|' + season + '|' + rosterId;
+
+					// If the trade happened after the player's last cut this season,
+					// this is a re-acquisition (e.g. Schex cuts King, re-picks up, trades).
+					// Don't let Section 1's base key block it.
+					var tradeDate = new Date(trade.date);
+					var lastCut = playerLastCutTimestamp[playerKey];
+					var isReacquisition = lastCut && tradeDate > lastCut;
+
+					if (!isReacquisition && emitted.has(emitKey)) return;
 					emitted.add(emitKey);
 
-					var playerKey = player.sleeperId || player.name.toLowerCase();
 					var lowerBound = faabOpen;
-					var lastCut = playerLastCutTimestamp[playerKey];
 					if (lastCut) {
 						var afterLastCut = new Date(lastCut.getTime() + 60000);
 						if (afterLastCut > lowerBound) lowerBound = afterLastCut;
 					}
 
-					var upperBound = result.upperBound || new Date(trade.date);
+					var upperBound = result.upperBound || tradeDate;
 					var timestamp = inferTimestamp(lowerBound, upperBound);
 
 					var add = {
@@ -1070,7 +1165,8 @@ function run() {
 
 	// 3. Fantrax platform data (2020-2021)
 	console.log('\nGenerating Fantrax records...');
-	var fantraxRecords = generateFantraxRecords(fixups, cutsLookup);
+	var sleeperIdLookup = buildSleeperIdLookup();
+	var fantraxRecords = generateFantraxRecords(fixups, cutsLookup, sleeperIdLookup);
 	console.log('  ' + fantraxRecords.length + ' Fantrax records');
 	allRecords = allRecords.concat(fantraxRecords);
 
