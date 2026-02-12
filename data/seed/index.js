@@ -2,7 +2,7 @@
  * Omnibus Seeder - Main entry point for database seeding.
  * 
  * This script orchestrates the full seeding process, building the database
- * from the player-history DSL file.
+ * from JSON data files: drafts.json, auctions.json, trades.json, fa.json.
  * 
  * Usage:
  *   docker compose run --rm -it web node data/seed
@@ -26,6 +26,7 @@ var path = require('path');
 var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
 var Contract = require('../../models/Contract');
+var Pick = require('../../models/Pick');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -44,6 +45,11 @@ async function clearAllTransactions() {
 	console.log('Clearing all transactions...');
 	var result = await Transaction.deleteMany({});
 	console.log('  Deleted', result.deletedCount, 'transactions');
+	
+	// Clear picks
+	console.log('Clearing picks...');
+	var pickResult = await Pick.deleteMany({});
+	console.log('  Deleted', pickResult.deletedCount, 'picks');
 	
 	// Clear contracts (will be rebuilt from current state after seeding)
 	console.log('Clearing contracts...');
@@ -95,20 +101,40 @@ async function seedFoundation() {
 	runScript('Entities', 'data/seed/entities.js', ['--clear']);
 }
 
-async function seedFromDSL() {
+async function seedDrafts() {
 	console.log('========================================');
-	console.log('       Seeding from DSL');
+	console.log('       Seeding Drafts');
 	console.log('========================================\n');
 	
-	runScript('DSL Transactions', 'data/seed/from-dsl.js');
+	// Creates Pick records + draft-select/draft-pass transactions
+	runScript('Drafts', 'data/seed/drafts-from-json.js');
 }
 
-async function seedPicks() {
+async function seedAuctions() {
 	console.log('========================================');
-	console.log('       Seeding Picks');
+	console.log('       Seeding Auctions');
 	console.log('========================================\n');
 	
-	runScript('Draft Picks', 'data/seed/picks-local.js', ['--clear']);
+	// Creates auction-ufa + contract transactions
+	runScript('Auctions', 'data/seed/auctions-from-json.js');
+}
+
+async function seedTrades() {
+	console.log('========================================');
+	console.log('       Seeding Trades');
+	console.log('========================================\n');
+	
+	// Creates trade transactions with full party details
+	runScript('Trades', 'data/seed/trades.js');
+}
+
+async function seedFA() {
+	console.log('========================================');
+	console.log('       Seeding FA Transactions');
+	console.log('========================================\n');
+	
+	// Creates fa transactions (pickups and drops)
+	runScript('FA', 'data/seed/fa-from-json.js');
 }
 
 async function run() {
@@ -134,7 +160,7 @@ async function run() {
 	}
 	
 	// Full seeding
-	console.log('[Full seeding from DSL]\n');
+	console.log('[Full seeding from JSON files]\n');
 	
 	// Clear everything first (unless skipped)
 	if (!args.skipClear) {
@@ -151,11 +177,18 @@ async function run() {
 		console.log('[Skipping foundation - using existing entities]\n');
 	}
 	
-	// Seed draft picks first (DSL needs them for linking)
-	await seedPicks();
+	// Seed from JSON files in dependency order:
+	// 1. Drafts (creates Pick records + draft transactions)
+	await seedDrafts();
 	
-	// Seed transactions from DSL
-	await seedFromDSL();
+	// 2. Auctions (creates auction + contract transactions)
+	await seedAuctions();
+	
+	// 3. Trades (creates trade transactions with full party details)
+	await seedTrades();
+	
+	// 4. FA transactions (pickups and drops)
+	await seedFA();
 	
 	// Final validation
 	var valid = runValidator();
