@@ -11014,8 +11014,7 @@
 				"position": "WR",
 				"salary": 45,
 				"startYear": 2010,
-				"endYear": 2011,
-				"sleeperId": "169"
+				"endYear": 2011
 			},
 			{
 				"name": "Golden Tate",
@@ -20466,8 +20465,7 @@
 				"position": "WR",
 				"salary": 1,
 				"startYear": 2012,
-				"endYear": 2014,
-				"sleeperId": "169"
+				"endYear": 2014
 			}
 		],
 		"source": "offseason",
