@@ -216,33 +216,49 @@ function decodeHtmlEntities(str) {
 		.replace(/&gt;/g, '>');
 }
 
-// Static alias map for owner names
-var ownerAliases = {
-	'Koci': 2,
-	'John': 4,
-	'James': 9,
-	'Schex': 10,
-	'Daniel': 8,
-	'Syed': 3,
-	'Trevor': 5,
-	'Terence': 8,
-	'Charles': 11,
-	'Jeff': 7,
-	'Syed/Terence': 3,
-	'Syed/Kuan': 3,
-	'Brett/Luke': 7,
-	'John/Zach': 4,
-	'Mitch/Mike': 12,
-	'James/Charles': 9,
-	'Schex/Jeff': 10,
-	'Jake/Luke': 7,
-	'Pat/Quinn': 1
-};
+/**
+ * Get franchise rosterId for an owner name in a specific season.
+ * Uses PSO.franchiseNames which maps rosterId -> { year: ownerName }.
+ * This handles ownership changes over time (e.g., "Schexes" was franchise 10 in 2008-2011,
+ * but franchise 9 in 2024+).
+ */
+function getRosterIdForSeason(ownerName, season) {
+	if (!ownerName) return null;
+	var name = ownerName.trim();
+	
+	// Build a reverse lookup: for this season, which rosterId has this owner name?
+	var rosterIds = Object.keys(PSO.franchiseNames);
+	for (var i = 0; i < rosterIds.length; i++) {
+		var rid = parseInt(rosterIds[i], 10);
+		var yearMap = PSO.franchiseNames[rid];
+		var ownerForYear = yearMap[season];
+		if (ownerForYear && ownerForYear.toLowerCase() === name.toLowerCase()) {
+			return rid;
+		}
+	}
+	
+	// Partial/fuzzy match (e.g., "Koci" matches "Koci/Mueller")
+	for (var i = 0; i < rosterIds.length; i++) {
+		var rid = parseInt(rosterIds[i], 10);
+		var yearMap = PSO.franchiseNames[rid];
+		var ownerForYear = yearMap[season];
+		if (ownerForYear) {
+			var lower = ownerForYear.toLowerCase();
+			var nameLower = name.toLowerCase();
+			if (lower.indexOf(nameLower) >= 0 || nameLower.indexOf(lower) >= 0) {
+				return rid;
+			}
+		}
+	}
+	
+	return null;
+}
 
+// Keep legacy function for cases where season isn't available (shouldn't happen for trades)
 function getSleeperRosterId(ownerName) {
 	if (!ownerName) return null;
 	var name = ownerName.trim();
-	return PSO.franchiseIds[name] || ownerAliases[name] || null;
+	return PSO.franchiseIds[name] || null;
 }
 
 // Common nickname mappings
@@ -472,9 +488,9 @@ async function seed() {
 		for (var j = 0; j < trade.parties.length; j++) {
 			var p = trade.parties[j];
 
-			var rosterId = getSleeperRosterId(p.owner);
+			var rosterId = getRosterIdForSeason(p.owner, tradeYear);
 			if (!rosterId) {
-				errors.push({ trade: trade.tradeNumber, reason: 'Unknown owner: ' + p.owner });
+				errors.push({ trade: trade.tradeNumber, reason: 'Unknown owner: ' + p.owner + ' in ' + tradeYear });
 				hasError = true;
 				break;
 			}
@@ -558,7 +574,7 @@ async function seed() {
 
 			for (var k = 0; k < p.receives.picks.length; k++) {
 				var pick = p.receives.picks[k];
-				var fromRosterId = getSleeperRosterId(pick.fromOwner);
+				var fromRosterId = getRosterIdForSeason(pick.fromOwner, tradeYear);
 				if (fromRosterId && franchiseByRosterId[fromRosterId]) {
 					party.receives.picks.push({
 						round: pick.round,
@@ -570,7 +586,7 @@ async function seed() {
 
 			for (var k = 0; k < p.receives.cash.length; k++) {
 				var cash = p.receives.cash[k];
-				var fromRosterId = getSleeperRosterId(cash.fromOwner);
+				var fromRosterId = getRosterIdForSeason(cash.fromOwner, tradeYear);
 				if (fromRosterId && franchiseByRosterId[fromRosterId]) {
 					party.receives.cash.push({
 						amount: cash.amount,
