@@ -440,7 +440,7 @@ ID,Owner,Name,Position,Start,End,Salary
 811,Quinn,Stevan Ridley,RB,2014,2016,$42
 108,Trevor,Steve Johnson,WR,2014,2015,$1
 169,Daniel,Steve Smith,WR,2014,2015,$12
--1,Schex,Steven Hauschka,K,FA,2014
+-1,Schex,Stephen Hauschka,K,FA,2014
 57,Syed,Steven Jackson,RB,2014,2014,$27
 1986,James,Storm Johnson,RB,2014,2016,$3
 2029,Koci/Mueller,T.J. Carrie,DB,2014,2016,$1
