@@ -62,9 +62,12 @@ function getDraftTimestamp(season) {
 
 /**
  * Find or create a player by sleeperId or name.
+ * 
+ * Historical players (no sleeperId) are kept separate from modern players
+ * with the same name - we use a composite cache key for historical players.
  */
 async function findOrCreatePlayer(entry) {
-	// Try sleeperId first
+	// Try sleeperId first (modern players)
 	if (entry.sleeperId) {
 		if (playersBySleeperId[entry.sleeperId]) {
 			return playersBySleeperId[entry.sleeperId];
@@ -78,17 +81,26 @@ async function findOrCreatePlayer(entry) {
 		}
 	}
 	
-	// Try by name (for historical players)
+	// Historical player (no sleeperId) - use name + "historical" as cache key
+	// to keep them separate from modern players with same name
 	if (entry.playerName) {
+		var isHistorical = !entry.sleeperId;
 		var nameKey = entry.playerName.toLowerCase();
-		if (playersByName[nameKey]) {
-			return playersByName[nameKey];
+		var cacheKey = isHistorical ? nameKey + '|historical' : nameKey;
+		
+		if (playersByName[cacheKey]) {
+			return playersByName[cacheKey];
 		}
 		
-		// Look up by name
-		var player = await Player.findOne({ name: entry.playerName });
+		// Look up by name, but for historical players only match those without sleeperId
+		var query = { name: entry.playerName };
+		if (isHistorical) {
+			query.sleeperId = null;
+		}
+		
+		var player = await Player.findOne(query);
 		if (player) {
-			playersByName[nameKey] = player;
+			playersByName[cacheKey] = player;
 			return player;
 		}
 		
@@ -99,7 +111,7 @@ async function findOrCreatePlayer(entry) {
 				sleeperId: entry.sleeperId || null,
 				positions: [] // Unknown positions for historical draft picks
 			});
-			playersByName[nameKey] = player;
+			playersByName[cacheKey] = player;
 			if (entry.sleeperId) {
 				playersBySleeperId[entry.sleeperId] = player;
 			}

@@ -30,6 +30,8 @@ When working on data transformations, seeding scripts, or inference logic (espec
 
 - **The user knows the league history.** This is a 15+ year fantasy league with complex ownership transitions, defunct franchises, and historical edge cases. The user can explain what *should* happen faster than the code can discover it.
 
+- **Sleeper ID is the only reliable player identifier.** Do NOT use ESPN IDs for any serious logic or matching. ESPN IDs exist in some historical data as a supplement but are not authoritative. Use `sleeperId` (or its absence for pre-Sleeper historical players) as the sole basis for player identity decisions.
+
 ## Development Workflow
 
 The app runs in Docker. Changes to Pug templates (`views/`) and static files (`public/`) are picked up automatically — no container restart needed. Only restart (`docker compose restart web`) when changing JavaScript files (routes, services, helpers, models).
