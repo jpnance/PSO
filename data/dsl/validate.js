@@ -121,8 +121,11 @@ function parseDSL(filePath) {
 // Checks
 // =============================================================================
 
-// Events that set ownership
-var ACQUIRE_EVENTS = { draft: true, auction: true, fa: true, trade: true, expansion: true };
+// Events that set ownership (from unowned state)
+var ACQUIRE_EVENTS = { draft: true, auction: true, fa: true };
+
+// Events that transfer ownership (from owned state) — handled separately
+// trade, expansion
 
 // Events that clear ownership
 var RELEASE_EVENTS = { drop: true, cut: true };
@@ -138,7 +141,7 @@ function checkOwnerConsistency(player) {
 	for (var i = 0; i < player.events.length; i++) {
 		var e = player.events[i];
 
-		if (ACQUIRE_EVENTS[e.type]) {
+		if (ACQUIRE_EVENTS[e.type] || e.type === 'trade' || e.type === 'expansion') {
 			owner = e.owner;
 		} else if (RELEASE_EVENTS[e.type]) {
 			if (owner && !sameOwner(e.owner, owner)) {
@@ -158,12 +161,112 @@ function checkOwnerConsistency(player) {
 	return issues;
 }
 
+/**
+ * Parse the end year from a contract detail string.
+ * Examples: "08/10" -> 2010, "FA/09" -> 2009, "unsigned" -> null
+ */
+function parseContractEnd(detail) {
+	if (!detail) return null;
+	var m = detail.match(/(\d+)$/);
+	if (m) return 2000 + parseInt(m[1]);
+	return null;
+}
+
+/**
+ * Check 2: Acquire/release state machine.
+ * - Acquire events (draft, auction, fa, expansion) require unowned state.
+ * - Trade requires owned state (transfers ownership).
+ * - Release events (drop, cut) require owned state.
+ * - Contract expiration is an implicit release (new season > contract end year).
+ * - No double-acquires or double-releases.
+ */
+function checkAcquireRelease(player) {
+	var issues = [];
+	var owned = false;
+	var owner = null;
+	var contractEnd = null;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		// Contract expiration: implicit release when the contract has ended.
+		// Only triggers before acquire/transfer events — if the next event is
+		// a cut/drop, that IS the explicit release and we shouldn't preempt it.
+		//
+		// Offseason events (auction, draft, expansion, cut) happen before the
+		// season starts, so a contract ending in season N is expired by season N.
+		// In-season events (fa, trade, drop) need the season to be strictly past.
+		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type]) {
+			// Auction and draft replace the contract, so >= is correct.
+			// Expansion happens before the auction — players are still rostered.
+			var isOffseasonEvent = (e.type === 'auction' || e.type === 'draft');
+			var expired = isOffseasonEvent
+				? e.season >= contractEnd
+				: e.season > contractEnd;
+			if (expired) {
+				owned = false;
+				owner = null;
+				contractEnd = null;
+			}
+		}
+
+		if (e.type === 'contract') {
+			contractEnd = parseContractEnd(e.detail);
+		} else if (e.type === 'trade' || e.type === 'expansion') {
+			// Trades and expansion selections transfer ownership — player must be owned
+			if (!owned) {
+				issues.push({
+					check: e.type + '-unowned',
+					player: player.header,
+					message: (e.type === 'trade' ? 'Traded to ' : 'Expansion selected by ') + e.owner + ' but player is not owned',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			owned = true;
+			owner = e.owner;
+		} else if (ACQUIRE_EVENTS[e.type]) {
+			if (owned) {
+				issues.push({
+					check: 'double-acquire',
+					player: player.header,
+					message: 'Acquired by ' + e.owner + ' via ' + e.type + ' but already owned by ' + owner,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			owned = true;
+			owner = e.owner;
+			// FA events embed contract info (e.g. "$15 FA/18") — extract end year
+			// For other acquire events, contractEnd will be set by a following contract event
+			contractEnd = (e.type === 'fa') ? parseContractEnd(e.detail) : null;
+		} else if (RELEASE_EVENTS[e.type]) {
+			if (!owned) {
+				issues.push({
+					check: 'release-unowned',
+					player: player.header,
+					message: 'Released by ' + e.owner + ' but player is not owned',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			owned = false;
+			owner = null;
+			contractEnd = null;
+		}
+		// protect doesn't change state
+	}
+
+	return issues;
+}
+
 // =============================================================================
 // Main
 // =============================================================================
 
 var checks = [
-	{ name: 'Owner consistency on cuts/drops', fn: checkOwnerConsistency }
+	{ name: 'Owner consistency on cuts/drops', fn: checkOwnerConsistency },
+	{ name: 'Acquire/release state machine', fn: checkAcquireRelease }
 ];
 
 function main() {
