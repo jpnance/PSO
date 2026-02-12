@@ -4949,14 +4949,15 @@
 	},
 	{
 		"owner": "Syed",
-		"name": "Jamaal Quinn",
+		"name": "Jamaal Charles",
 		"hint": null,
 		"position": "RB",
 		"startYear": 2011,
 		"endYear": 2011,
 		"salary": 275,
 		"cutYear": 2011,
-		"rosterId": 3
+		"rosterId": 3,
+		"sleeperId": "323"
 	},
 	{
 		"owner": "Patrick",

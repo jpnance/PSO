@@ -937,3 +937,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2560,,Zach Zenner,RB,FA,2018
 -1,,Zachary Orr,LB,FA,2018
 4080,Schex,Zay Jones,WR,2017,2019,$18
+1111,Mitch,Andrew Luck,QB,2019,2019,$170
+1944,Keyon,Alfred Blue,RB,2019,2019,$1
+2161,Quinn,Jerick McKinnon,RB,2019,2019,$10
+1048,Patrick,Lamar Miller,RB,2019,2019,$140

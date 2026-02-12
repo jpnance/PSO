@@ -441,3 +441,15 @@ ID,Owner,Name,Position,Start,End,Salary
 1339,James,Zach Ertz,TE,2013,2015,$9
 171,Koci/Mueller,Zach Miller,TE,2013,2015,$5
 1654,John,Zach Sudfeld,TE,2013,2015,$9
+278,Charles,Kevin Kolb,QB,2013,2013,$6
+559,Schex,Tim Tebow,QB,2013,2013,$1
+157,Koci/Mueller,Vince Young,QB,2013,2015,$7
+-1,Jake/Luke,Quinn Woodson,DB,2013,2013,$1
+-1,Daniel,Lance Ball,RB,2013,2013,$1
+170,Jake/Luke,Cliff Avril,DL,2013,2013,$1
+673,Jake/Luke,Jason Campbell,QB,2013,2013,$1
+111,Charles,Marcedes Lewis,TE,2013,2013,$2
+-1,Keyon,Jonathan Dwyer,RB,2013,2013,$11
+150,Schex,Danieal Manning,DB,2013,2015,$1
+684,Schex,Julius Peppers,DL,2013,2013,$3
+-1,Koci/Mueller,Quinn Tillman,DB,2013,2013,$13

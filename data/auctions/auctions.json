@@ -7099,6 +7099,18 @@
   {
     "season": 2010,
     "sleeperId": null,
+    "name": "Quinn Scott",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 8,
+    "salary": 1,
+    "startYear": 2010,
+    "endYear": 2010
+  },
+  {
+    "season": 2010,
+    "sleeperId": null,
     "name": "Randy Moss",
     "positions": [
       "WR"
@@ -14122,6 +14134,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "170",
+    "name": "Cliff Avril",
+    "positions": [
+      "DL"
+    ],
+    "rosterId": 7,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "1535",
     "name": "Cordarrelle Patterson",
     "positions": [
@@ -14191,6 +14215,18 @@
     "salary": 1,
     "startYear": 2013,
     "endYear": 2013
+  },
+  {
+    "season": 2013,
+    "sleeperId": "150",
+    "name": "Danieal Manning",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 10,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2015
   },
   {
     "season": 2013,
@@ -14770,6 +14806,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "673",
+    "name": "Jason Campbell",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 7,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "368",
     "name": "Jason McCourty",
     "positions": [
@@ -14950,6 +14998,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": null,
+    "name": "Jonathan Dwyer",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 6,
+    "salary": 11,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "218",
     "name": "Jonathan Stewart",
     "positions": [
@@ -15043,6 +15103,18 @@
     "salary": 15,
     "startYear": 2013,
     "endYear": 2014
+  },
+  {
+    "season": 2013,
+    "sleeperId": "684",
+    "name": "Julius Peppers",
+    "positions": [
+      "DL"
+    ],
+    "rosterId": 10,
+    "salary": 3,
+    "startYear": 2013,
+    "endYear": 2013
   },
   {
     "season": 2013,
@@ -15154,6 +15226,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "278",
+    "name": "Kevin Kolb",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 11,
+    "salary": 6,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "1577",
     "name": "Kevin Minter",
     "positions": [
@@ -15223,6 +15307,18 @@
     "salary": 7,
     "startYear": 2013,
     "endYear": 2015
+  },
+  {
+    "season": 2013,
+    "sleeperId": null,
+    "name": "Lance Ball",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 8,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
   },
   {
     "season": 2013,
@@ -15391,6 +15487,18 @@
     "salary": 1,
     "startYear": 2013,
     "endYear": 2015
+  },
+  {
+    "season": 2013,
+    "sleeperId": "111",
+    "name": "Marcedes Lewis",
+    "positions": [
+      "TE"
+    ],
+    "rosterId": 11,
+    "salary": 2,
+    "startYear": 2013,
+    "endYear": 2013
   },
   {
     "season": 2013,
@@ -15874,6 +15982,30 @@
   },
   {
     "season": 2013,
+    "sleeperId": null,
+    "name": "Quinn Tillman",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 2,
+    "salary": 13,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
+    "sleeperId": null,
+    "name": "Quinn Woodson",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 7,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "1589",
     "name": "Quinton Patton",
     "positions": [
@@ -16319,6 +16451,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "559",
+    "name": "Tim Tebow",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 10,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "604",
     "name": "Toby Gerhart",
     "positions": [
@@ -16434,6 +16578,18 @@
     ],
     "rosterId": 4,
     "salary": 3,
+    "startYear": 2013,
+    "endYear": 2015
+  },
+  {
+    "season": 2013,
+    "sleeperId": "157",
+    "name": "Vince Young",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 2,
+    "salary": 7,
     "startYear": 2013,
     "endYear": 2015
   },
@@ -16763,6 +16919,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "2062",
+    "name": "Anthony Hitchens",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 1,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
     "sleeperId": "536",
     "name": "Antonio Brown",
     "positions": [
@@ -16859,6 +17027,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": null,
+    "name": "Bernard Pollard",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 5,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
     "sleeperId": "818",
     "name": "Bilal Powell",
     "positions": [
@@ -16916,6 +17096,30 @@
     "salary": 19,
     "startYear": 2014,
     "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "2196",
+    "name": "Brandon Coleman",
+    "positions": [
+      "WR"
+    ],
+    "rosterId": 9,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "465",
+    "name": "Brandon Pettigrew",
+    "positions": [
+      "TE"
+    ],
+    "rosterId": 11,
+    "salary": 2,
+    "startYear": 2014,
+    "endYear": 2014
   },
   {
     "season": 2014,
@@ -17027,6 +17231,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "1859",
+    "name": "Calvin Pryor",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 2,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
     "sleeperId": "954",
     "name": "Cam Newton",
     "positions": [
@@ -17075,6 +17291,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "1737",
+    "name": "Case Keenum",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 8,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
     "sleeperId": "801",
     "name": "Charles Clay",
     "positions": [
@@ -17096,6 +17324,18 @@
     "salary": 12,
     "startYear": 2014,
     "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "185",
+    "name": "Charles Tillman",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 7,
+    "salary": 4,
+    "startYear": 2014,
+    "endYear": 2014
   },
   {
     "season": 2014,
@@ -17291,6 +17531,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "2106",
+    "name": "David Fales",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 1,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
     "sleeperId": "2023",
     "name": "De'Anthony Thomas",
     "positions": [
@@ -17310,6 +17562,18 @@
     ],
     "rosterId": 7,
     "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": "306",
+    "name": "DeAngelo Williams",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 6,
+    "salary": 30,
     "startYear": 2014,
     "endYear": 2014
   },
@@ -17375,6 +17639,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "887",
+    "name": "Denarius Moore",
+    "positions": [
+      "WR"
+    ],
+    "rosterId": 2,
+    "salary": 2,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
     "sleeperId": "527",
     "name": "Dennis Pitta",
     "positions": [
@@ -17382,6 +17658,18 @@
     ],
     "rosterId": 6,
     "salary": 20,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "2240",
+    "name": "Deone Bucannon",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 3,
+    "salary": 1,
     "startYear": 2014,
     "endYear": 2016
   },
@@ -17396,6 +17684,18 @@
     "salary": 5,
     "startYear": 2014,
     "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "329",
+    "name": "Derrick Johnson",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 6,
+    "salary": 9,
+    "startYear": 2014,
+    "endYear": 2014
   },
   {
     "season": 2014,
@@ -17433,6 +17733,18 @@
     "salary": 8,
     "startYear": 2014,
     "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": "377",
+    "name": "Donald Brown",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 3,
+    "salary": 8,
+    "startYear": 2014,
+    "endYear": 2016
   },
   {
     "season": 2014,
@@ -17491,6 +17803,18 @@
     ],
     "rosterId": 2,
     "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "643",
+    "name": "Earl Thomas",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 10,
+    "salary": 3,
     "startYear": 2014,
     "endYear": 2016
   },
@@ -17587,6 +17911,18 @@
     ],
     "rosterId": 11,
     "salary": 50,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": "2229",
+    "name": "Garrett Gilbert",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 8,
+    "salary": 1,
     "startYear": 2014,
     "endYear": 2014
   },
@@ -17712,6 +18048,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "203",
+    "name": "Jacoby Jones",
+    "positions": [
+      "WR"
+    ],
+    "rosterId": 1,
+    "salary": 5,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
     "sleeperId": "949",
     "name": "Jacquizz Rodgers",
     "positions": [
@@ -17734,6 +18082,18 @@
     "salary": 2,
     "startYear": 2014,
     "endYear": 2016
+  },
+  {
+    "season": 2014,
+    "sleeperId": "332",
+    "name": "Jairus Byrd",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 8,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
   },
   {
     "season": 2014,
@@ -18265,6 +18625,30 @@
   },
   {
     "season": 2014,
+    "sleeperId": "568",
+    "name": "Lamarr Houston",
+    "positions": [
+      "DL"
+    ],
+    "rosterId": 8,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": null,
+    "name": "LaRon Landry",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 1,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
+  },
+  {
+    "season": 2014,
     "sleeperId": "1476",
     "name": "Latavius Murray",
     "positions": [
@@ -18464,6 +18848,18 @@
     ],
     "rosterId": 12,
     "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": "389",
+    "name": "Matt Cassel",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 11,
+    "salary": 10,
     "startYear": 2014,
     "endYear": 2014
   },
@@ -18769,6 +19165,18 @@
   },
   {
     "season": 2014,
+    "sleeperId": "16",
+    "name": "Ray Rice",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 10,
+    "salary": 75,
+    "startYear": 2014,
+    "endYear": 2015
+  },
+  {
+    "season": 2014,
     "sleeperId": "179",
     "name": "Reggie Bush",
     "positions": [
@@ -18848,6 +19256,18 @@
     ],
     "rosterId": 8,
     "salary": 80,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": null,
+    "name": "Roy Finch",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 2,
+    "salary": 1,
     "startYear": 2014,
     "endYear": 2014
   },
@@ -18970,6 +19390,30 @@
     "salary": 3,
     "startYear": 2014,
     "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": "775",
+    "name": "Stephen Hauschka",
+    "positions": [
+      "K"
+    ],
+    "rosterId": 10,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2014
+  },
+  {
+    "season": 2014,
+    "sleeperId": "10",
+    "name": "Stephen Tulloch",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 2,
+    "salary": 1,
+    "startYear": 2014,
+    "endYear": 2016
   },
   {
     "season": 2014,
@@ -19582,6 +20026,18 @@
     "salary": 1,
     "startYear": 2015,
     "endYear": 2017
+  },
+  {
+    "season": 2015,
+    "sleeperId": "3027",
+    "name": "Boobie Dixon",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 11,
+    "salary": 1,
+    "startYear": 2015,
+    "endYear": 2015
   },
   {
     "season": 2015,
@@ -30943,6 +31399,18 @@
   },
   {
     "season": 2019,
+    "sleeperId": "1944",
+    "name": "Alfred Blue",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 6,
+    "salary": 1,
+    "startYear": 2019,
+    "endYear": 2019
+  },
+  {
+    "season": 2019,
     "sleeperId": "2359",
     "name": "Ameer Abdullah",
     "positions": [
@@ -30952,6 +31420,18 @@
     "salary": 1,
     "startYear": 2019,
     "endYear": 2021
+  },
+  {
+    "season": 2019,
+    "sleeperId": "1111",
+    "name": "Andrew Luck",
+    "positions": [
+      "QB"
+    ],
+    "rosterId": 12,
+    "salary": 170,
+    "startYear": 2019,
+    "endYear": 2019
   },
   {
     "season": 2019,
@@ -32215,6 +32695,18 @@
   },
   {
     "season": 2019,
+    "sleeperId": "2161",
+    "name": "Jerick McKinnon",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 11,
+    "salary": 10,
+    "startYear": 2019,
+    "endYear": 2019
+  },
+  {
+    "season": 2019,
     "sleeperId": "616",
     "name": "Jimmy Graham",
     "positions": [
@@ -32596,6 +33088,18 @@
     "salary": 38,
     "startYear": 2019,
     "endYear": 2021
+  },
+  {
+    "season": 2019,
+    "sleeperId": "1048",
+    "name": "Lamar Miller",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 1,
+    "salary": 140,
+    "startYear": 2019,
+    "endYear": 2019
   },
   {
     "season": 2019,
@@ -39137,6 +39641,18 @@
   },
   {
     "season": 2022,
+    "sleeperId": "3291",
+    "name": "Blake Martinez",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 9,
+    "salary": 5,
+    "startYear": 2022,
+    "endYear": 2022
+  },
+  {
+    "season": 2022,
     "sleeperId": "5944",
     "name": "Bobby Okereke",
     "positions": [
@@ -40069,6 +40585,18 @@
     ],
     "rosterId": 11,
     "salary": 3,
+    "startYear": 2022,
+    "endYear": 2022
+  },
+  {
+    "season": 2022,
+    "sleeperId": "5030",
+    "name": "Harold Landry",
+    "positions": [
+      "LB"
+    ],
+    "rosterId": 3,
+    "salary": 10,
     "startYear": 2022,
     "endYear": 2022
   },
@@ -45602,6 +46130,18 @@
   },
   {
     "season": 2024,
+    "sleeperId": "7561",
+    "name": "Elijah Mitchell",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 12,
+    "salary": 12,
+    "startYear": 2024,
+    "endYear": 2024
+  },
+  {
+    "season": 2024,
     "sleeperId": "7596",
     "name": "Elijah Moore",
     "positions": [
@@ -46433,6 +46973,18 @@
   },
   {
     "season": 2024,
+    "sleeperId": "7606",
+    "name": "Kadarius Toney",
+    "positions": [
+      "WR"
+    ],
+    "rosterId": 12,
+    "salary": 1,
+    "startYear": 2024,
+    "endYear": 2024
+  },
+  {
+    "season": 2024,
     "sleeperId": "7136",
     "name": "Kam Curl",
     "positions": [
@@ -47152,6 +47704,18 @@
     "salary": 19,
     "startYear": 2024,
     "endYear": 2026
+  },
+  {
+    "season": 2024,
+    "sleeperId": "5046",
+    "name": "Royce Freeman",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 12,
+    "salary": 2,
+    "startYear": 2024,
+    "endYear": 2024
   },
   {
     "season": 2024,

@@ -413,3 +413,6 @@ ID,Owner,Player,Position,Start,End,Salary
 8139,Patrick,Zamir White,RB,2022,2024,$13
 7637,Luke,Zaven Collins,DL/LB,2023,2024,$1
 9997,Koci/Mueller,Zay Flowers,WR,2023,2025,$16
+5046,Mitch,Royce Freeman,RB,2024,2024,$2
+7561,Mitch,Elijah Mitchell,RB,2024,2024,$12
+7606,Mitch,Kadarius Toney,WR,2024,2024,$1

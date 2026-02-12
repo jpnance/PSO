@@ -12380,26 +12380,6 @@
 	},
 	{
 		"season": 2011,
-		"timestamp": "2011-10-04T08:38:33.000Z",
-		"rosterId": 1,
-		"adds": [
-			{
-				"name": "Jamaal Charles",
-				"position": null,
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2011,
-				"sleeperId": "323"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2011,
 		"timestamp": "2011-10-15T12:00:33.000Z",
 		"rosterId": 8,
 		"adds": [],
@@ -13075,11 +13055,12 @@
 		"adds": [],
 		"drops": [
 			{
-				"name": "Jamaal Quinn",
+				"name": "Jamaal Charles",
 				"position": "RB",
 				"salary": 275,
 				"startYear": 2011,
-				"endYear": 2011
+				"endYear": 2011,
+				"sleeperId": "323"
 			}
 		],
 		"source": "cuts",
@@ -15613,6 +15594,26 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": false
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-10-23T14:38:33.000Z",
+		"rosterId": 1,
+		"adds": [
+			{
+				"name": "Jamaal Charles",
+				"position": null,
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011,
+				"sleeperId": "323"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
 	},
 	{
 		"season": 2012,
