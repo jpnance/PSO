@@ -13,6 +13,7 @@ var fs = require('fs');
 var path = require('path');
 
 var PSO = require('../../config/pso.js');
+var leagueDates = require('../../config/dates.js');
 
 // Paths
 var FA_FILE = path.join(__dirname, 'fa.json');
@@ -20,7 +21,6 @@ var CUTS_FILE = path.join(__dirname, '../cuts/cuts.json');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var CONFIG_DIR = path.join(__dirname, '../config');
-var SUMMER_MEETINGS_FILE = path.join(__dirname, '../../doc/summer-meetings.txt');
 var TRADE_FACILITATION_FILE = path.join(CONFIG_DIR, 'trade-facilitation-fixups.json');
 
 // Facts layer
@@ -73,63 +73,18 @@ function buildSleeperIdLookup() {
 }
 
 /**
- * Parse summer-meetings.txt to get auction dates.
+ * Load auction dates from config.
  * Returns: { year: Date }
  */
 function loadAuctionDates() {
-	var content = fs.readFileSync(SUMMER_MEETINGS_FILE, 'utf8');
-	var dates = {};
-	var lines = content.split('\n');
-	var inAuction = false;
-
-	for (var i = 0; i < lines.length; i++) {
-		var line = lines[i].trim();
-		if (line === 'Summer Meeting / Auction Dates') {
-			inAuction = true;
-			continue;
-		}
-		if (line === 'Contract Due Dates') {
-			break;
-		}
-		if (!inAuction) continue;
-		var match = line.match(/^(\d{4}):\s+(.+)$/);
-		if (match) {
-			var year = parseInt(match[1]);
-			var dateStr = match[2].trim();
-			dates[year] = new Date(year + '-' + parseMonthDay(dateStr));
-		}
-	}
-
-	return dates;
+	return leagueDates.getAllAuctionDates();
 }
 
 /**
- * Parse "August 24" -> "08-24"
+ * Get cut day timestamp for a given year from config.
  */
-function parseMonthDay(str) {
-	var months = {
-		january: '01', february: '02', march: '03', april: '04',
-		may: '05', june: '06', july: '07', august: '08',
-		september: '09', october: '10', november: '11', december: '12'
-	};
-	var parts = str.split(/\s+/);
-	var month = months[parts[0].toLowerCase()];
-	var day = String(parseInt(parts[1])).padStart(2, '0');
-	return month + '-' + day;
-}
-
-/**
- * Get cut day timestamp for a given year.
- * Cut day is one week before auction date, deadline 4:00 AM UTC the next day.
- */
-function getCutDayTimestamp(year, auctionDates) {
-	var auctionDate = auctionDates[year];
-	if (!auctionDate) return null;
-	var cutDay = new Date(auctionDate);
-	cutDay.setDate(cutDay.getDate() - 7);
-	// 4:00 AM UTC the next day (11:59 PM EDT + 1 minute)
-	var timestamp = new Date(Date.UTC(cutDay.getUTCFullYear(), cutDay.getUTCMonth(), cutDay.getUTCDate() + 1, 4, 0, 0));
-	return timestamp;
+function getCutDayTimestamp(year) {
+	return leagueDates.getCutDueDate(year);
 }
 
 /**
@@ -340,9 +295,9 @@ function generateOffseasonCuts(cuts, auctionDates) {
 
 	Object.keys(groups).forEach(function(key) {
 		var group = groups[key];
-		var timestamp = getCutDayTimestamp(group.season, auctionDates);
+		var timestamp = getCutDayTimestamp(group.season);
 		if (!timestamp) {
-			console.warn('Warning: No auction date for ' + group.season + ', skipping offseason cuts');
+			console.warn('Warning: No cut due date for ' + group.season + ', skipping offseason cuts');
 			return;
 		}
 

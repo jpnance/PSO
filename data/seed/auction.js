@@ -26,6 +26,7 @@ var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
 var PSO = require('../../config/pso.js');
+var leagueDates = require('../../config/dates.js');
 var resolver = require('../utils/player-resolver');
 var snapshotFacts = require('../facts/snapshot-facts');
 
@@ -102,22 +103,15 @@ function normalizeForMatch(name) {
 	return resolver.normalizePlayerName(name);
 }
 
-// Key dates by year (from doc/summer-meetings.txt)
-var auctionDates = {
-	2008: '2008-08-18', 2009: '2009-08-16', 2010: '2010-08-22', 2011: '2011-08-20',
-	2012: '2012-08-25', 2013: '2013-08-24', 2014: '2014-08-23', 2015: '2015-08-29',
-	2016: '2016-08-20', 2017: '2017-08-19', 2018: '2018-08-25', 2019: '2019-08-24',
-	2020: '2020-08-29', 2021: '2021-08-28', 2022: '2022-08-27', 2023: '2023-08-26',
-	2024: '2024-08-24', 2025: '2025-08-23'
-};
-
-var contractDueDates = {
-	2008: '2008-08-24', 2009: '2009-09-02', 2010: '2010-08-31', 2011: '2011-08-26',
-	2012: '2012-09-01', 2013: '2013-08-31', 2014: '2014-08-31', 2015: '2015-09-05',
-	2016: '2016-08-28', 2017: '2017-08-27', 2018: '2018-09-01', 2019: '2019-09-01',
-	2020: '2020-09-07', 2021: '2021-09-06', 2022: '2022-09-05', 2023: '2023-09-04',
-	2024: '2024-09-02', 2025: '2025-09-01'
-};
+// Key dates by year (from config/dates.js)
+var auctionDates = {};
+var contractDueDates = {};
+Object.keys(leagueDates.auctionDates).forEach(function(y) {
+	auctionDates[parseInt(y)] = leagueDates.getAuctionDateISO(parseInt(y));
+});
+Object.keys(leagueDates.contractDueDates).forEach(function(y) {
+	contractDueDates[parseInt(y)] = leagueDates.getContractDueDateISO(parseInt(y));
+});
 
 // Convert ET to UTC (handles DST)
 function etToUtc(year, month, day, hours, mins, secs) {

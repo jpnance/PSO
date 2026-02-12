@@ -1,44 +1,58 @@
-Summer Meeting / Auction Dates
-===============================
+Summer Meetings
+===============
 
-2008: August 18
-2009: August 16
-2010: August 22
-2011: August 20
-2012: August 25
-2013: August 24
-2014: August 23
-2015: August 29
-2016: August 20
-2017: August 19
-2018: August 25
-2019: August 24
-2020: August 29
-2021: August 28
-2022: August 27
-2023: August 26
-2024: August 24
-2025: August 23
+Canonical dates live in config/dates.js. This file is for human reference only.
+
+2008 was auction-only (inaugural season, no rookie draft).
+2012 had an expansion draft on August 21 at 8pm ET, separate from the rookie draft.
+2020 and 2021 rookie drafts were conducted via email over multiple days.
+
+Cut deadlines are 11:59pm ET unless otherwise noted.
 
 
-Contract Due Dates
-==================
+Venues
+------
 
-2008: August 24
-2009: September 2
-2010: August 31
-2011: August 26
-2012: September 1
-2013: August 31
-2014: August 31
-2015: September 5
-2016: August 28
-2017: August 27
-2018: September 1
-2019: September 1
-2020: September 7
-2021: September 6
-2022: September 5
-2023: September 4
-2024: September 2
-2025: September 1
+2008: N/A
+2009: Austin, TX
+2010: Austin, TX
+2011: New Orleans, LA
+2012: Chicago, IL
+2013: Denver, CO
+2014: Toronto, ON
+2015: Louisville, KY
+2016: San Diego, CA
+2017: Las Vegas, NV
+2018: Vancouver, BC
+2019: Austin, TX
+2020: Canceled due to COVID (was supposed to be Philadelphia, PA)
+2021: Canceled due to COVID (was supposed to be Lake Tahoe, NV)
+2022: Asheville, NC
+2023: Minneapolis, MN
+2024: Detroit, MI
+2025: Milwaukee, WI
+
+
+Schedule
+--------
+
+Season  Cut Day               Rookie Draft          Auction     Contracts Due
+------  --------------------  --------------------  ----------  -------------
+2008    (none)                (none)                August 18   August 24
+2009    July 29 at 5pm ET     August 15 at 8pm ET   August 16   September 2
+2010    August 14             August 21 at 8pm ET   August 22   August 31
+2011    August 12             August 20 at noon ET  August 20   August 26
+2012    August 17             August 23 at 8pm ET   August 25   September 1
+2013    August 17             August 24 at 11am ET  August 24   August 31
+2014    August 16             August 23 at noon ET  August 23   August 31
+2015    August 22             August 28 at 1pm ET   August 28   September 5
+2016    August 13             August 20 at 1pm ET   August 20   August 28
+2017    August 12             August 19 at 1pm ET   August 19   August 27
+2018    August 18             August 25 at 1pm ET   August 25   September 1
+2019    August 17             August 24 at noon ET  August 24   September 1
+2020    August 22             August 24 at noon ET  August 29   September 7
+2021    August 7              August 14 at noon ET  August 28   September 6
+2022    August 14             August 27 at 1pm ET   August 27   September 5
+2023    August 20             August 26 at 11am ET  August 26   September 4
+2024    August 18             August 24 at 11am ET  August 24   September 2
+2025    August 17             August 23 at 11am ET  August 23   September 1

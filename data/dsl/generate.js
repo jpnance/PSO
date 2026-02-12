@@ -21,11 +21,11 @@ var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
 var FA_FILE = path.join(__dirname, '../fa/fa.json');
-var SUMMER_MEETINGS_FILE = path.join(__dirname, '../../doc/summer-meetings.txt');
 var EXPANSION_DRAFT_FILE = path.join(__dirname, '../archive/sources/txt/expansion-draft-2012.txt');
 var EXPANSION_PROTECTIONS_FILE = path.join(__dirname, '../archive/sources/txt/expansion-draft-protections-2012.txt');
 
 var PSO = require('../../config/pso.js');
+var leagueDates = require('../../config/dates.js');
 
 // =============================================================================
 // Helpers
@@ -48,32 +48,11 @@ function rosterIdToOwner(rosterId, season) {
 }
 
 function loadAuctionDates() {
-	var content = fs.readFileSync(SUMMER_MEETINGS_FILE, 'utf8');
-	var dates = {};
-	var lines = content.split('\n');
-	var inAuctionSection = false;
-	for (var i = 0; i < lines.length; i++) {
-		// Start parsing after the header
-		if (lines[i].match(/Summer Meeting/i)) { inAuctionSection = true; continue; }
-		// Stop at the next section
-		if (inAuctionSection && lines[i].match(/^[A-Z]/) && !lines[i].match(/^=/) && !lines[i].match(/^\d/)) break;
+	return leagueDates.getAllAuctionDates();
+}
 
-		if (!inAuctionSection) continue;
-
-		var match = lines[i].match(/^(\d{4}):\s+(\w+)\s+(\d+)/);
-		if (match) {
-			var year = parseInt(match[1]);
-			var month = match[2];
-			var day = parseInt(match[3]);
-			var monthNum = ['January','February','March','April','May','June',
-				'July','August','September','October','November','December'].indexOf(month);
-			if (monthNum >= 0) {
-				// Noon ET (EDT in August = UTC-4, so 16:00 UTC)
-			dates[year] = new Date(Date.UTC(year, monthNum, day, 16, 0, 0));
-			}
-		}
-	}
-	return dates;
+function loadDraftDates() {
+	return leagueDates.getAllDraftDates();
 }
 
 // =============================================================================
@@ -322,7 +301,7 @@ function sameRegime(owner1, owner2, year) {
  * Generate events for a single player.
  * Merges data from all sources into a single timestamped event list.
  */
-function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords, expansionSelections, expansionProtections, auctionDates) {
+function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
 	var events = [];
 
 	// --- Draft events ---
@@ -331,9 +310,9 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 	if (!draft) draft = draftsMap['name:' + player.name.toLowerCase()];
 
 	if (draft) {
+		// Use actual draft date if available, otherwise fall back to 3 hours before auction
 		var auctionDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 16, 0, 0));
-		// Rookie draft is 3 hours before auction (9am ET vs noon ET)
-		var draftDate = new Date(auctionDate.getTime() - 3 * 60 * 60 * 1000);
+		var draftDate = draftDates[draft.season] || new Date(auctionDate.getTime() - 3 * 60 * 60 * 1000);
 		events.push({
 			timestamp: draftDate,
 			type: 'draft',
@@ -375,7 +354,7 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		// before the draft but logically executes after it. Force ordering.
 		if (trade.contractStr === 'unsigned' && draft && new Date(trade.date).getUTCFullYear() === draft.season) {
 			var aDate = auctionDates[draft.season] || new Date(Date.UTC(draft.season, 7, 20, 16, 0, 0));
-			var dDate = new Date(aDate.getTime() - 3 * 60 * 60 * 1000);
+			var dDate = draftDates[draft.season] || new Date(aDate.getTime() - 3 * 60 * 60 * 1000);
 			tradeTimestamp = new Date(dDate.getTime() + 2);
 		}
 
@@ -526,6 +505,9 @@ function generateDSL() {
 
 	var auctionDates = loadAuctionDates();
 	console.log('  Auction dates: ' + Object.keys(auctionDates).length + ' years');
+
+	var draftDates = loadDraftDates();
+	console.log('  Draft dates: ' + Object.keys(draftDates).length + ' years');
 
 	var expansionSelections = loadExpansionSelections();
 	console.log('  Expansion selections: ' + Object.keys(expansionSelections).length);
@@ -697,7 +679,7 @@ function generateDSL() {
 			}
 		});
 
-		var events = generatePlayerEvents(player, key, draftsMap, tradesMap, filteredFA, expansionSelections, expansionProtections, auctionDates);
+		var events = generatePlayerEvents(player, key, draftsMap, tradesMap, filteredFA, expansionSelections, expansionProtections, auctionDates, draftDates);
 
 		if (events.length === 0) return; // skip players with no events
 
