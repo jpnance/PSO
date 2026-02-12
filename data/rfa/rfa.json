@@ -3006,6 +3006,19 @@
 		"season": 2009,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2010-01-15T00:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Lee Evans",
+		"position": "WR",
+		"startYear": 2009,
+		"endYear": 2009,
+		"salary": 55,
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2010-01-15T00:00:00.000Z",
 		"rosterId": 10,
 		"sleeperId": "697",
 		"playerName": "Leon Washington",
@@ -6295,6 +6308,19 @@
 		"season": 2011,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2012-01-15T00:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "203",
+		"playerName": "Jacoby Jones",
+		"position": "WR",
+		"startYear": 2011,
+		"endYear": 2011,
+		"salary": 5,
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2012-01-15T00:00:00.000Z",
 		"rosterId": 7,
 		"sleeperId": null,
 		"playerName": "Michael Bush",
@@ -6685,19 +6711,6 @@
 		"season": 2011,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2012-01-15T00:00:00.000Z",
-		"rosterId": 3,
-		"sleeperId": null,
-		"playerName": "Jordan Shipley",
-		"position": "WR",
-		"startYear": 2010,
-		"endYear": 2011,
-		"salary": 8,
-		"source": "approximated"
-	},
-	{
-		"season": 2011,
-		"type": "rfa-rights-conversion",
-		"timestamp": "2012-01-15T00:00:00.000Z",
 		"rosterId": 4,
 		"sleeperId": "3652",
 		"playerName": "Mike Thomas",
@@ -6731,19 +6744,6 @@
 		"startYear": 2010,
 		"endYear": 2011,
 		"salary": 7,
-		"source": "approximated"
-	},
-	{
-		"season": 2011,
-		"type": "rfa-rights-conversion",
-		"timestamp": "2012-01-15T00:00:00.000Z",
-		"rosterId": 4,
-		"sleeperId": null,
-		"playerName": "Johnny Knox",
-		"position": "WR",
-		"startYear": 2010,
-		"endYear": 2011,
-		"salary": 35,
 		"source": "approximated"
 	},
 	{
@@ -7251,6 +7251,19 @@
 		"startYear": 2009,
 		"endYear": 2011,
 		"salary": 40,
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2012-01-15T00:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "293",
+		"playerName": "Maurice Jones-Drew",
+		"position": "RB",
+		"startYear": 2011,
+		"endYear": 2011,
+		"salary": 230,
 		"source": "approximated"
 	},
 	{
@@ -8850,6 +8863,19 @@
 		"startYear": 2012,
 		"endYear": 2012,
 		"salary": 43,
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2013-01-15T00:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Jason Hanson",
+		"position": "K",
+		"startYear": 2012,
+		"endYear": 2012,
+		"salary": 1,
 		"source": "approximated"
 	},
 	{
@@ -11313,6 +11339,19 @@
 		"season": 2013,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2014-01-15T00:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "323",
+		"playerName": "Jamaal Charles",
+		"position": "RB",
+		"startYear": 2013,
+		"endYear": 2013,
+		"salary": 265,
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2014-01-15T00:00:00.000Z",
 		"rosterId": 6,
 		"sleeperId": "762",
 		"playerName": "James Starks",
@@ -11463,6 +11502,19 @@
 		"startYear": 2011,
 		"endYear": 2013,
 		"salary": 5,
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2014-01-15T00:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "222",
+		"playerName": "Josh Morgan",
+		"position": "WR",
+		"startYear": 2013,
+		"endYear": 2013,
+		"salary": 3,
 		"source": "approximated"
 	},
 	{

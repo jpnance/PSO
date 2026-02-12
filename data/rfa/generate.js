@@ -24,6 +24,7 @@ var fs = require('fs');
 var path = require('path');
 
 var PSO = require('../../config/pso.js');
+var leagueDates = require('../../config/dates.js');
 var resolver = require('../utils/player-resolver');
 
 // Paths
@@ -164,9 +165,16 @@ function buildApproximatePostseason(season, cuts, trades) {
 		}
 	});
 
-	// 2. Process trades — update ownership and add new players
+	// 2. Process trades — update ownership and add new players.
+	// Only apply trades that happened AFTER the contracts due date, since
+	// contracts-YEAR.txt is a post-contracts-due snapshot and earlier
+	// trades are already reflected in it. Fall back to auction date if
+	// no contracts due date is available.
+	var snapshotCutoff = leagueDates.getContractDueDate(season) || leagueDates.getAuctionDate(season);
 	var seasonTrades = trades.filter(function(t) {
-		return new Date(t.date).getFullYear() === season;
+		if (new Date(t.date).getFullYear() !== season) return false;
+		if (snapshotCutoff && new Date(t.date) <= snapshotCutoff) return false;
+		return true;
 	});
 
 	seasonTrades.forEach(function(trade) {
