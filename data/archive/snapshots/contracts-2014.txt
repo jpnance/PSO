@@ -59,8 +59,7 @@ ID,Owner,Name,Position,Start,End,Salary
 1034,Quinn,Brandon Bolden,RB,FA,2014,$2
 2196,James,Brandon Coleman,WR,FA,2014
 613,Patrick,Brandon LaFell,WR,FA,2014,$5
-648,Mitch,Brandon Marshall,WR,2013,2014,$175
-1118,Mitch,Brandon Marshall,LB,2013,2014,$175
+648,Daniel,Brandon Marshall,WR,2013,2014,$175
 397,,Brandon Myers,TE,FA,2014
 465,Quinn,Brandon Pettigrew,TE,FA,2014
 346,Patrick,Brandon Tate,WR,2012,2014,$3
