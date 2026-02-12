@@ -6526,7 +6526,7 @@
 	{
 		"season": 2009,
 		"timestamp": "2009-10-16T00:01:33.000Z",
-		"rosterId": 2,
+		"rosterId": 6,
 		"adds": [
 			{
 				"name": "Marc Bulger",
@@ -52565,7 +52565,7 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-10-16T00:01:33.000Z",
-		"rosterId": 6,
+		"rosterId": 4,
 		"adds": [
 			{
 				"name": "Pharoh Cooper",
@@ -106606,6 +106606,26 @@
 		],
 		"source": "sleeper",
 		"sourceId": "1287439124453683200",
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2025,
+		"timestamp": "2025-10-24T16:05:19.617Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Quentin Lake",
+				"position": "DB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2025,
+				"sleeperId": "8330"
+			}
+		],
+		"drops": [],
+		"source": "sleeper",
+		"sourceId": "1287459510704676864",
 		"tradeId": null,
 		"inferred": false
 	},

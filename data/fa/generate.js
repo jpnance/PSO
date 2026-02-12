@@ -732,9 +732,10 @@ function buildTradesBySeason(trades) {
  * @param {string} knownOwner - The owner we know had the player
  * @param {number} season - The season year
  * @param {Array} seasonTrades - Trades for this season, sorted by date
+ * @param {Date|null} notBefore - Don't trace through trades before this date (e.g., a prior cut means the trade chain is broken)
  * @returns {{ owner: string, upperBound: Date|null }} The original acquirer and the trade date (upper bound for timestamp)
  */
-function traceOriginalAcquirer(sleeperId, playerName, knownOwner, season, seasonTrades) {
+function traceOriginalAcquirer(sleeperId, playerName, knownOwner, season, seasonTrades, notBefore) {
 	var currentOwner = knownOwner;
 	var upperBound = null;
 	var lowerName = playerName ? playerName.toLowerCase() : '';
@@ -742,6 +743,12 @@ function traceOriginalAcquirer(sleeperId, playerName, knownOwner, season, season
 	// Walk trades in reverse chronological order
 	for (var i = seasonTrades.length - 1; i >= 0; i--) {
 		var trade = seasonTrades[i];
+
+		// Don't trace through trades that happened before the notBefore date.
+		// This prevents tracing through a trade chain that was broken by a cut —
+		// e.g. if an owner received a player via trade, cut them, then re-acquired
+		// from FA, the trade is no longer relevant to the re-acquisition.
+		if (notBefore && new Date(trade.date) < notBefore) continue;
 
 		// Check each party's received players
 		for (var j = 0; j < trade.parties.length; j++) {
@@ -862,8 +869,39 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 		});
 
 		seasonCuts.forEach(function(cut) {
+			// If this is a repeat cut of the same player (perPlayerIdx > 0),
+			// don't trace through trades that happened before the prior cut.
+			// The prior cut breaks the trade chain — the re-acquisition came
+			// from the FA pool, not from the original trade.
+			var perPlayerIdx = cutPositionMap.get(cut) || 0;
+			var notBefore = null;
+			if (perPlayerIdx > 0) {
+				var pk = cut.sleeperId || cut.name.toLowerCase();
+				// Use the prior cut's timestamp (trade-adjusted if applicable)
+				// We find the Nth cut's timestamp by looking at allSeasonCuts
+				var priorConventional = new Date(Date.UTC(season, 9, 15 + (perPlayerIdx - 1), 12, 0, 33));
+				// Check trade-adjusted version
+				var priorCutObj = allSeasonCuts.filter(function(c) {
+					return (c.sleeperId || c.name.toLowerCase()) === pk;
+				})[perPlayerIdx - 1];
+				if (priorCutObj) {
+					var tradeKey = pk + '|' + season + '|' + priorCutObj.owner.toLowerCase();
+					var tradeDate = tradeReceiptMap[tradeKey];
+					if (tradeDate && tradeDate >= priorConventional) {
+						notBefore = new Date(tradeDate.getTime());
+						notBefore.setUTCSeconds(33);
+						notBefore.setUTCMilliseconds(0);
+						notBefore = new Date(notBefore.getTime() + 60000);
+					} else {
+						notBefore = priorConventional;
+					}
+				} else {
+					notBefore = priorConventional;
+				}
+			}
+
 			var result = traceOriginalAcquirer(
-				cut.sleeperId, cut.name, cut.owner, season, seasonTrades
+				cut.sleeperId, cut.name, cut.owner, season, seasonTrades, notBefore
 			);
 
 			var rosterId = ownerToRosterId(result.owner, season);
@@ -871,9 +909,6 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 				console.warn('Warning: Cannot resolve owner "' + result.owner + '" for season ' + season);
 				return;
 			}
-
-			// This FA cut's position among ALL cuts of this player (matches generatePrePlatformCuts)
-			var perPlayerIdx = cutPositionMap.get(cut) || 0;
 
 			// Include perPlayerIdx in emit key so the same owner can pick up and cut
 			// the same player multiple times in one season (e.g. Cody Parkey 2018)
@@ -929,15 +964,7 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 					if (!isFA) return;
 					if (!player.endYear) return;
 
-					var result = traceOriginalAcquirer(
-						player.sleeperId, player.name, party.owner, season, seasonTrades
-					);
-
-					var rosterId = ownerToRosterId(result.owner, season);
-					if (!rosterId) return;
-
 					var playerKey = player.sleeperId || player.name.toLowerCase();
-					var emitKey = playerKey + '|' + season + '|' + rosterId;
 
 					// If the trade happened after the player's last cut this season,
 					// this is a re-acquisition (e.g. Schex cuts King, re-picks up, trades).
@@ -945,6 +972,19 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 					var tradeDate = new Date(trade.date);
 					var lastCut = playerLastCutTimestamp[playerKey];
 					var isReacquisition = lastCut && tradeDate > lastCut;
+
+					// For re-acquisitions, don't trace through trades before the last cut —
+					// the trade chain is broken by the cut + FA re-pickup.
+					var notBefore = isReacquisition ? lastCut : null;
+
+					var result = traceOriginalAcquirer(
+						player.sleeperId, player.name, party.owner, season, seasonTrades, notBefore
+					);
+
+					var rosterId = ownerToRosterId(result.owner, season);
+					if (!rosterId) return;
+
+					var emitKey = playerKey + '|' + season + '|' + rosterId;
 
 					if (!isReacquisition && emitted.has(emitKey)) return;
 					emitted.add(emitKey);
