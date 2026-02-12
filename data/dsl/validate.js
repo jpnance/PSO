@@ -59,10 +59,10 @@ function parseEvent(line) {
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'draft', owner: m[2], detail: m[3] };
 
 	m = line.match(/^\s+(\d+) auction (\S+(?:\/\S+)?) \$(\d+)/);
-	if (m) return { season: 2000 + parseInt(m[1]), type: 'auction', owner: m[2], detail: '$' + m[3] };
+	if (m) return { season: 2000 + parseInt(m[1]), type: 'auction', owner: m[2], salary: parseInt(m[3]), detail: '$' + m[3] };
 
 	m = line.match(/^\s+(\d+) contract \$(\d+) (\S+)/);
-	if (m) return { season: 2000 + parseInt(m[1]), type: 'contract', detail: m[3] };
+	if (m) return { season: 2000 + parseInt(m[1]), type: 'contract', salary: parseInt(m[2]), detail: m[3] };
 
 	m = line.match(/^\s+(\d+) fa (\S+(?:\/\S+)?) \$(\d+) (\S+)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'fa', owner: m[2], detail: '$' + m[3] + ' ' + m[4] };
@@ -299,13 +299,298 @@ function checkAcquireRelease(player) {
 	return issues;
 }
 
+/**
+ * Parse the start and end year from a contract detail string.
+ * "14/16" -> { start: 2014, end: 2016 }
+ * "FA/16" -> { start: null, end: 2016 }
+ */
+function parseContractYears(detail) {
+	if (!detail) return null;
+	var m = detail.match(/^(FA|\d+)\/(\d+)$/);
+	if (!m) return null;
+	return {
+		start: m[1] === 'FA' ? null : 2000 + parseInt(m[1]),
+		end: 2000 + parseInt(m[2])
+	};
+}
+
+/**
+ * Check 3: Contract consistency.
+ * After an auction or draft, the following contract event should have:
+ *   - Matching salary (for auctions)
+ *   - Start year matching the event season
+ */
+function checkContractConsistency(player) {
+	var issues = [];
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+		if (e.type !== 'contract') continue;
+
+		var years = parseContractYears(e.detail);
+		if (!years) continue;
+
+		// Find the preceding acquisition event
+		var prev = null;
+		for (var j = i - 1; j >= 0; j--) {
+			if (player.events[j].type === 'auction' || player.events[j].type === 'draft') {
+				prev = player.events[j];
+				break;
+			}
+			// Stop searching if we hit a non-contract event that isn't the acquisition
+			if (player.events[j].type !== 'contract') break;
+		}
+
+		if (!prev) continue;
+		if (prev.season !== e.season) continue; // contract from a different context
+
+		// Check start year matches season
+		if (years.start !== null && years.start !== prev.season) {
+			issues.push({
+				check: 'contract-start-mismatch',
+				player: player.header,
+				message: 'Contract start ' + years.start + ' does not match ' + prev.type + ' season ' + prev.season,
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+
+		// Check salary matches (auctions only)
+		if (prev.type === 'auction' && prev.salary !== e.salary) {
+			issues.push({
+				check: 'contract-salary-mismatch',
+				player: player.header,
+				message: 'Contract salary $' + e.salary + ' does not match auction salary $' + prev.salary,
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 4: Chronological ordering.
+ * Event seasons should never decrease.
+ */
+function checkChronologicalOrder(player) {
+	var issues = [];
+	var prevSeason = 0;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+		if (e.season < prevSeason) {
+			issues.push({
+				check: 'out-of-order',
+				player: player.header,
+				message: 'Season ' + e.season + ' after season ' + prevSeason,
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+		prevSeason = e.season;
+	}
+
+	return issues;
+}
+
+/**
+ * Check 5: RFA/expiry matches contract end year.
+ * An rfa or expiry event in season N should only appear when the player's
+ * last known contract ended in season N.
+ */
+function checkRfaExpiry(player) {
+	var issues = [];
+	var contractEnd = null;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		if (e.type === 'contract') {
+			contractEnd = parseContractEnd(e.detail);
+		} else if (e.type === 'fa') {
+			contractEnd = parseContractEnd(e.detail);
+		} else if (e.type === 'rfa' || e.type === 'expiry') {
+			if (contractEnd !== null && contractEnd !== e.season) {
+				issues.push({
+					check: e.type + '-season-mismatch',
+					player: player.header,
+					message: e.type.toUpperCase() + ' in season ' + e.season + ' but contract ends in ' + contractEnd,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			contractEnd = null; // reset after rfa/expiry
+		} else if (e.type === 'drop' || e.type === 'cut') {
+			contractEnd = null;
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 6: No duplicate events.
+ * - Same trade ID should not appear twice for the same player.
+ * - No two auctions in the same season for the same player.
+ * - No two drafts in the same season for the same player.
+ */
+function checkDuplicateEvents(player) {
+	var issues = [];
+	var tradeIds = {};
+	var auctionSeasons = {};
+	var draftSeasons = {};
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		if (e.type === 'trade') {
+			if (tradeIds[e.tradeId]) {
+				issues.push({
+					check: 'duplicate-trade',
+					player: player.header,
+					message: 'Trade ' + e.tradeId + ' appears multiple times',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			tradeIds[e.tradeId] = true;
+		} else if (e.type === 'auction') {
+			if (auctionSeasons[e.season]) {
+				issues.push({
+					check: 'duplicate-auction',
+					player: player.header,
+					message: 'Multiple auctions in season ' + e.season,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			auctionSeasons[e.season] = true;
+		} else if (e.type === 'draft') {
+			if (draftSeasons[e.season]) {
+				issues.push({
+					check: 'duplicate-draft',
+					player: player.header,
+					message: 'Multiple drafts in season ' + e.season,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			draftSeasons[e.season] = true;
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 7: Expansion from-owner consistency.
+ * The fromOwner in "expansion OWNER from FROM" should match the current owner
+ * tracked by the state machine.
+ */
+function checkExpansionFromOwner(player) {
+	var issues = [];
+	var owner = null;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		if (ACQUIRE_EVENTS[e.type] || e.type === 'trade') {
+			owner = e.owner;
+		} else if (e.type === 'rfa') {
+			owner = e.owner;
+		} else if (RELEASE_EVENTS[e.type]) {
+			owner = null;
+		} else if (e.type === 'expansion') {
+			if (owner && !sameOwner(e.fromOwner, owner)) {
+				issues.push({
+					check: 'expansion-from-mismatch',
+					player: player.header,
+					message: 'Expansion "from ' + e.fromOwner + '" but owned by ' + owner,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			owner = e.owner;
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 8: Contract end year >= start year.
+ * Basic sanity check — no backwards contracts like 16/14.
+ */
+function checkContractYears(player) {
+	var issues = [];
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+		if (e.type !== 'contract') continue;
+
+		var years = parseContractYears(e.detail);
+		if (!years || years.start === null) continue; // FA contracts are fine
+
+		if (years.end < years.start) {
+			issues.push({
+				check: 'contract-backwards',
+				player: player.header,
+				message: 'Contract end ' + years.end + ' is before start ' + years.start,
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 9: FA contract format.
+ * FA events should always have FA/YY style contracts (null start year).
+ */
+function checkFaContractFormat(player) {
+	var issues = [];
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+		if (e.type !== 'fa') continue;
+
+		// detail is "$SALARY YY/YY" — extract the contract part
+		var parts = e.detail.split(' ');
+		if (parts.length < 2) continue;
+		var contractPart = parts[1];
+
+		if (!contractPart.match(/^FA\/\d+$/)) {
+			issues.push({
+				check: 'fa-contract-format',
+				player: player.header,
+				message: 'FA event has non-FA contract: ' + contractPart,
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+	}
+
+	return issues;
+}
+
 // =============================================================================
 // Main
 // =============================================================================
 
 var checks = [
 	{ name: 'Owner consistency on cuts/drops', fn: checkOwnerConsistency },
-	{ name: 'Acquire/release state machine', fn: checkAcquireRelease }
+	{ name: 'Acquire/release state machine', fn: checkAcquireRelease },
+	{ name: 'Contract consistency', fn: checkContractConsistency },
+	{ name: 'Chronological ordering', fn: checkChronologicalOrder },
+	{ name: 'RFA/expiry matches contract end', fn: checkRfaExpiry },
+	{ name: 'No duplicate events', fn: checkDuplicateEvents },
+	{ name: 'Expansion from-owner consistency', fn: checkExpansionFromOwner },
+	{ name: 'Contract end >= start', fn: checkContractYears },
+	{ name: 'FA contract format', fn: checkFaContractFormat }
 ];
 
 function main() {
