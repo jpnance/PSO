@@ -2,7 +2,7 @@
  * Omnibus Seeder - Main entry point for database seeding.
  * 
  * This script orchestrates the full seeding process, building the database
- * from JSON data files: drafts.json, auctions.json, contracts.json, trades.json, fa.json.
+ * from JSON data files: drafts.json, auctions.json, contracts.json, trades.json, fa.json, rfa.json.
  * 
  * Usage:
  *   docker compose run --rm -it web node data/seed
@@ -22,6 +22,8 @@ require('dotenv').config();
 var mongoose = require('mongoose');
 var { spawnSync } = require('child_process');
 var path = require('path');
+var fs = require('fs');
+var https = require('https');
 
 var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
@@ -29,6 +31,73 @@ var Contract = require('../../models/Contract');
 var Pick = require('../../models/Pick');
 
 mongoose.connect(process.env.MONGODB_URI);
+
+var SLEEPER_DATA_FILE = path.join(__dirname, '../../public/data/sleeper-data.json');
+var SLEEPER_MAX_AGE_DAYS = 7;
+var SLEEPER_API_URL = 'https://api.sleeper.app/v1/players/nfl';
+
+/**
+ * Check if sleeper-data.json exists and is fresh (< 7 days old).
+ * If not, fetch it from the Sleeper API.
+ */
+async function ensureSleeperData() {
+	console.log('Checking Sleeper data...');
+	
+	var needsFetch = false;
+	
+	if (!fs.existsSync(SLEEPER_DATA_FILE)) {
+		console.log('  Sleeper data not found. Fetching...');
+		needsFetch = true;
+	} else {
+		var stats = fs.statSync(SLEEPER_DATA_FILE);
+		var ageMs = Date.now() - stats.mtimeMs;
+		var ageDays = Math.floor(ageMs / (1000 * 60 * 60 * 24));
+		
+		if (ageDays >= SLEEPER_MAX_AGE_DAYS) {
+			console.log('  Sleeper data is ' + ageDays + ' day(s) old. Refreshing...');
+			needsFetch = true;
+		} else {
+			console.log('  Sleeper data is ' + ageDays + ' day(s) old (max: ' + SLEEPER_MAX_AGE_DAYS + '). Using cached.');
+		}
+	}
+	
+	if (needsFetch) {
+		await fetchSleeperData();
+	}
+	
+	console.log('');
+}
+
+/**
+ * Fetch player data from Sleeper API and save to file.
+ */
+function fetchSleeperData() {
+	return new Promise(function(resolve, reject) {
+		console.log('  Fetching from ' + SLEEPER_API_URL + '...');
+		
+		https.get(SLEEPER_API_URL, function(res) {
+			if (res.statusCode !== 200) {
+				reject(new Error('Sleeper API returned status ' + res.statusCode));
+				return;
+			}
+			
+			var data = '';
+			res.on('data', function(chunk) { data += chunk; });
+			res.on('end', function() {
+				// Ensure directory exists
+				var dir = path.dirname(SLEEPER_DATA_FILE);
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+				
+				fs.writeFileSync(SLEEPER_DATA_FILE, data);
+				var sizeMb = (data.length / 1024 / 1024).toFixed(1);
+				console.log('  Saved ' + sizeMb + ' MB to ' + SLEEPER_DATA_FILE);
+				resolve();
+			});
+		}).on('error', reject);
+	});
+}
 
 // Parse command line arguments
 var args = {
@@ -56,10 +125,10 @@ async function clearAllTransactions() {
 	var contractResult = await Contract.deleteMany({});
 	console.log('  Deleted', contractResult.deletedCount, 'contracts');
 	
-	// Also clear historical players (those without sleeperId)
-	console.log('Clearing historical players...');
-	var playerResult = await Player.deleteMany({ sleeperId: null });
-	console.log('  Deleted', playerResult.deletedCount, 'historical players');
+	// Clear ALL players (will be re-synced from Sleeper, historical created by seeders)
+	console.log('Clearing all players...');
+	var playerResult = await Player.deleteMany({});
+	console.log('  Deleted', playerResult.deletedCount, 'players');
 	console.log('');
 }
 
@@ -99,6 +168,16 @@ async function seedFoundation() {
 	// Seed entities (franchises, regimes, persons)
 	// Pass --clear to handle existing data
 	runScript('Entities', 'data/seed/entities.js', ['--clear']);
+}
+
+async function syncPlayers() {
+	console.log('========================================');
+	console.log('       Syncing Players from Sleeper');
+	console.log('========================================\n');
+	
+	// Sync players from sleeper-data.json (must exist in public/data/)
+	// This creates/updates Player documents with sleeperId, name, positions, etc.
+	runScript('Players', 'data/maintenance/sync-players.js');
 }
 
 async function seedDrafts() {
@@ -146,6 +225,15 @@ async function seedFA() {
 	runScript('FA', 'data/seed/fa-from-json.js');
 }
 
+async function seedRFA() {
+	console.log('========================================');
+	console.log('       Seeding RFA Transactions');
+	console.log('========================================\n');
+	
+	// Creates rfa-rights-conversion, contract-expiry, rfa-unknown transactions
+	runScript('RFA', 'data/seed/rfa-from-json.js');
+}
+
 async function run() {
 	console.log('');
 	console.log('╔══════════════════════════════════════╗');
@@ -186,6 +274,10 @@ async function run() {
 		console.log('[Skipping foundation - using existing entities]\n');
 	}
 	
+	// Ensure Sleeper data is available and fresh, then sync players
+	await ensureSleeperData();
+	await syncPlayers();
+	
 	// Seed from JSON files in dependency order:
 	// 1. Drafts (creates Pick records + draft transactions)
 	await seedDrafts();
@@ -201,6 +293,9 @@ async function run() {
 	
 	// 5. FA transactions (pickups and drops)
 	await seedFA();
+	
+	// 6. RFA transactions (contract expiries and RFA rights conversions)
+	await seedRFA();
 	
 	// Final validation
 	var valid = runValidator();
