@@ -1,7 +1,10 @@
 /**
  * Seed auction transactions from auctions.json
  * 
- * Creates auction-ufa transactions (player won at auction).
+ * Creates auction transactions based on the `type` field in each entry:
+ *   - auction-ufa: Player won at UFA auction
+ *   - auction-rfa-matched: RFA bid that was matched by original owner
+ *   - auction-rfa-unmatched: RFA bid that was not matched (player changes teams)
  * 
  * Note: auctions.json is already filtered to exclude drafted players and
  * has unrolled unsigned trades to show the original auction winner.
@@ -37,7 +40,11 @@ var args = {
 
 // Stats
 var stats = {
-	auctionsCreated: 0,
+	byType: {
+		'auction-ufa': 0,
+		'auction-rfa-matched': 0,
+		'auction-rfa-unmatched': 0
+	},
 	playersCreated: 0,
 	skipped: 0,
 	errors: []
@@ -206,12 +213,13 @@ async function seed() {
 			}
 			
 			try {
-				// Create auction-ufa transaction
+				// Create auction transaction using type from entry
 				// Use index offset to maintain some ordering (not critical for auctions)
 				var auctionTs = new Date(auctionTimestamp.getTime() + (ai * 1000));
+				var txnType = entry.type || 'auction-ufa';
 				
 				await Transaction.create({
-					type: 'auction-ufa',
+					type: txnType,
 					timestamp: auctionTs,
 					source: 'snapshot',
 					franchiseId: franchise._id,
@@ -219,7 +227,7 @@ async function seed() {
 					winningBid: entry.salary
 				});
 				seasonAuctionCount++;
-				stats.auctionsCreated++;
+				stats.byType[txnType] = (stats.byType[txnType] || 0) + 1;
 			} catch (err) {
 				if (err.code === 11000) {
 					stats.errors.push(season + ' ' + entry.name + ': Duplicate');
@@ -235,7 +243,9 @@ async function seed() {
 	
 	console.log('');
 	console.log('Done!');
-	console.log('  Auctions created: ' + stats.auctionsCreated);
+	console.log('  auction-ufa: ' + stats.byType['auction-ufa']);
+	console.log('  auction-rfa-matched: ' + stats.byType['auction-rfa-matched']);
+	console.log('  auction-rfa-unmatched: ' + stats.byType['auction-rfa-unmatched']);
 	console.log('  Players created: ' + stats.playersCreated);
 	console.log('  Skipped (errors): ' + stats.skipped);
 	
