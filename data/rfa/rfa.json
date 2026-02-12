@@ -4982,19 +4982,6 @@
 		"season": 2010,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2011-01-15T00:00:00.000Z",
-		"rosterId": 2,
-		"sleeperId": null,
-		"playerName": "Kevin Smith",
-		"position": "RB",
-		"startYear": 2008,
-		"endYear": 2010,
-		"salary": 7,
-		"source": "approximated"
-	},
-	{
-		"season": 2010,
-		"type": "rfa-rights-conversion",
-		"timestamp": "2011-01-15T00:00:00.000Z",
 		"rosterId": 8,
 		"sleeperId": "72",
 		"playerName": "Kevin Walter",
@@ -5327,19 +5314,6 @@
 		"startYear": 2010,
 		"endYear": 2010,
 		"salary": 1,
-		"source": "approximated"
-	},
-	{
-		"season": 2010,
-		"type": "rfa-rights-conversion",
-		"timestamp": "2011-01-15T00:00:00.000Z",
-		"rosterId": 8,
-		"sleeperId": null,
-		"playerName": "Ryan Grant",
-		"position": "RB",
-		"startYear": 2010,
-		"endYear": 2010,
-		"salary": 135,
 		"source": "approximated"
 	},
 	{
@@ -9077,19 +9051,6 @@
 		"season": 2012,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2013-01-15T00:00:00.000Z",
-		"rosterId": 10,
-		"sleeperId": null,
-		"playerName": "Kevin Smith",
-		"position": "RB",
-		"startYear": 2012,
-		"endYear": 2012,
-		"salary": 47,
-		"source": "approximated"
-	},
-	{
-		"season": 2012,
-		"type": "rfa-rights-conversion",
-		"timestamp": "2013-01-15T00:00:00.000Z",
 		"rosterId": 5,
 		"sleeperId": null,
 		"playerName": "Lance Ball",
@@ -9949,7 +9910,7 @@
 		"type": "rfa-unknown",
 		"timestamp": "2013-01-15T00:00:00.000Z",
 		"rosterId": 5,
-		"sleeperId": "-1",
+		"sleeperId": null,
 		"playerName": "DJ Smith",
 		"position": "LB",
 		"startYear": null,
@@ -10124,6 +10085,19 @@
 		"startYear": null,
 		"endYear": 2012,
 		"salary": 1,
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-unknown",
+		"timestamp": "2013-01-15T00:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": null,
+		"playerName": "Ryan Grant",
+		"position": "RB",
+		"startYear": null,
+		"endYear": 2012,
+		"salary": 2,
 		"source": "approximated"
 	},
 	{
@@ -32575,19 +32549,6 @@
 		"startYear": null,
 		"endYear": 2021,
 		"salary": 2,
-		"source": "postseason"
-	},
-	{
-		"season": 2021,
-		"type": "contract-expiry",
-		"timestamp": "2022-01-15T00:00:00.000Z",
-		"rosterId": 10,
-		"sleeperId": "6120",
-		"playerName": "Christian Wilkins",
-		"position": "DL",
-		"startYear": null,
-		"endYear": 2021,
-		"salary": 1,
 		"source": "postseason"
 	},
 	{

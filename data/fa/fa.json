@@ -8484,8 +8484,7 @@
 				"position": "RB",
 				"salary": 135,
 				"startYear": 2010,
-				"endYear": 2010,
-				"sleeperId": "-1"
+				"endYear": 2010
 			}
 		],
 		"source": "cuts",
@@ -9306,6 +9305,25 @@
 				"startYear": 2010,
 				"endYear": 2012,
 				"sleeperId": "698"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2010,
+		"timestamp": "2010-10-15T12:00:33.000Z",
+		"rosterId": 2,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Kevin Smith",
+				"position": "RB",
+				"salary": 7,
+				"startYear": 2008,
+				"endYear": 2010
 			}
 		],
 		"source": "cuts",
@@ -10638,26 +10656,6 @@
 				"startYear": null,
 				"endYear": 2010,
 				"sleeperId": "53"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2010,
-		"timestamp": "2010-10-16T12:00:33.000Z",
-		"rosterId": 2,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Kevin Smith",
-				"position": "RB",
-				"salary": 7,
-				"startYear": 2008,
-				"endYear": 2010,
-				"sleeperId": "-1"
 			}
 		],
 		"source": "cuts",
@@ -15682,8 +15680,7 @@
 				"position": "RB",
 				"salary": 65,
 				"startYear": 2011,
-				"endYear": 2013,
-				"sleeperId": "-1"
+				"endYear": 2013
 			}
 		],
 		"source": "offseason",
@@ -15794,8 +15791,7 @@
 				"position": "LB",
 				"salary": 11,
 				"startYear": 2010,
-				"endYear": 2012,
-				"sleeperId": "-1"
+				"endYear": 2012
 			},
 			{
 				"name": "Eddie Royal",
@@ -16237,6 +16233,25 @@
 	{
 		"season": 2012,
 		"timestamp": "2012-09-25T06:00:33.000Z",
+		"rosterId": 5,
+		"adds": [
+			{
+				"name": "DJ Smith",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2012
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2012,
+		"timestamp": "2012-09-25T06:00:33.000Z",
 		"rosterId": 11,
 		"adds": [
 			{
@@ -16462,6 +16477,25 @@
 				"startYear": null,
 				"endYear": 2012,
 				"sleeperId": "998"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2012,
+		"timestamp": "2012-09-25T06:00:33.000Z",
+		"rosterId": 1,
+		"adds": [
+			{
+				"name": "Ryan Grant",
+				"position": "RB",
+				"salary": 2,
+				"startYear": null,
+				"endYear": 2012
 			}
 		],
 		"drops": [],
@@ -18173,8 +18207,7 @@
 				"position": "RB",
 				"salary": 47,
 				"startYear": 2012,
-				"endYear": 2012,
-				"sleeperId": "-1"
+				"endYear": 2012
 			}
 		],
 		"source": "cuts",
@@ -18333,6 +18366,25 @@
 				"startYear": null,
 				"endYear": 2012,
 				"sleeperId": "758"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2012,
+		"timestamp": "2012-10-15T12:00:33.000Z",
+		"rosterId": 5,
+		"adds": [],
+		"drops": [
+			{
+				"name": "DJ Smith",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2012
 			}
 		],
 		"source": "cuts",
@@ -18726,6 +18778,25 @@
 				"startYear": null,
 				"endYear": 2012,
 				"sleeperId": "998"
+			}
+		],
+		"source": "cuts",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": false
+	},
+	{
+		"season": 2012,
+		"timestamp": "2012-10-15T12:00:33.000Z",
+		"rosterId": 1,
+		"adds": [],
+		"drops": [
+			{
+				"name": "Ryan Grant",
+				"position": "RB",
+				"salary": 2,
+				"startYear": null,
+				"endYear": 2012
 			}
 		],
 		"source": "cuts",
@@ -19549,26 +19620,6 @@
 	{
 		"season": 2012,
 		"timestamp": "2012-10-16T00:01:33.000Z",
-		"rosterId": 5,
-		"adds": [
-			{
-				"name": "DJ Smith",
-				"position": "LB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2012,
-				"sleeperId": "-1"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2012,
-		"timestamp": "2012-10-16T00:01:33.000Z",
 		"rosterId": 3,
 		"adds": [
 			{
@@ -19827,26 +19878,6 @@
 	{
 		"season": 2012,
 		"timestamp": "2012-10-16T12:00:33.000Z",
-		"rosterId": 5,
-		"adds": [],
-		"drops": [
-			{
-				"name": "DJ Smith",
-				"position": "LB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2012,
-				"sleeperId": "-1"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
-	},
-	{
-		"season": 2012,
-		"timestamp": "2012-10-16T12:00:33.000Z",
 		"rosterId": 3,
 		"adds": [],
 		"drops": [
@@ -20085,26 +20116,6 @@
 	{
 		"season": 2012,
 		"timestamp": "2012-10-17T00:01:33.000Z",
-		"rosterId": 1,
-		"adds": [
-			{
-				"name": "Ryan Grant",
-				"position": "RB",
-				"salary": 2,
-				"startYear": null,
-				"endYear": 2012,
-				"sleeperId": "-1"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2012,
-		"timestamp": "2012-10-17T00:01:33.000Z",
 		"rosterId": 2,
 		"adds": [
 			{
@@ -20121,26 +20132,6 @@
 		"sourceId": null,
 		"tradeId": null,
 		"inferred": true
-	},
-	{
-		"season": 2012,
-		"timestamp": "2012-10-17T12:00:33.000Z",
-		"rosterId": 1,
-		"adds": [],
-		"drops": [
-			{
-				"name": "Ryan Grant",
-				"position": "RB",
-				"salary": 2,
-				"startYear": null,
-				"endYear": 2012,
-				"sleeperId": "-1"
-			}
-		],
-		"source": "cuts",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": false
 	},
 	{
 		"season": 2012,
@@ -31980,6 +31971,26 @@
 	{
 		"season": 2014,
 		"timestamp": "2014-11-22T18:00:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Cody Parkey",
+				"position": "K",
+				"salary": 3,
+				"startYear": null,
+				"endYear": 2014,
+				"sleeperId": "1974"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2014,
+		"timestamp": "2014-11-22T18:00:33.000Z",
 		"rosterId": 3,
 		"adds": [
 			{
@@ -32387,6 +32398,26 @@
 				"startYear": null,
 				"endYear": 2014,
 				"sleeperId": "686"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2014,
+		"timestamp": "2014-11-22T18:00:33.000Z",
+		"rosterId": 8,
+		"adds": [
+			{
+				"name": "Thomas Davis",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2014,
+				"sleeperId": "187"
 			}
 		],
 		"drops": [],
@@ -38510,6 +38541,26 @@
 				"startYear": null,
 				"endYear": 2015,
 				"sleeperId": "125"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2015,
+		"timestamp": "2015-11-22T18:00:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Chandler Catanzaro",
+				"position": "K",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2015,
+				"sleeperId": "2242"
 			}
 		],
 		"drops": [],
@@ -46737,6 +46788,26 @@
 	{
 		"season": 2016,
 		"timestamp": "2016-11-22T18:00:33.000Z",
+		"rosterId": 4,
+		"adds": [
+			{
+				"name": "Eli Rogers",
+				"position": "WR",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2016,
+				"sleeperId": "2980"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2016,
+		"timestamp": "2016-11-22T18:00:33.000Z",
 		"rosterId": 9,
 		"adds": [
 			{
@@ -46766,6 +46837,26 @@
 				"startYear": null,
 				"endYear": 2016,
 				"sleeperId": "32"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2016,
+		"timestamp": "2016-11-22T18:00:33.000Z",
+		"rosterId": 8,
+		"adds": [
+			{
+				"name": "Jake Ryan",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2016,
+				"sleeperId": "2434"
 			}
 		],
 		"drops": [],
@@ -46946,6 +47037,26 @@
 				"startYear": null,
 				"endYear": 2016,
 				"sleeperId": "17"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2016,
+		"timestamp": "2016-11-22T18:00:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Olivier Vernon",
+				"position": "DL",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2016,
+				"sleeperId": "1259"
 			}
 		],
 		"drops": [],
@@ -55125,6 +55236,26 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-11-22T18:00:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Matthias Farley",
+				"position": "DB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "3605"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-22T18:00:33.000Z",
 		"rosterId": 3,
 		"adds": [
 			{
@@ -55245,6 +55376,26 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-11-22T18:00:33.000Z",
+		"rosterId": 8,
+		"adds": [
+			{
+				"name": "Tyler Higbee",
+				"position": "TE",
+				"salary": 2,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "3271"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-22T18:00:33.000Z",
 		"rosterId": 7,
 		"adds": [
 			{
@@ -55254,6 +55405,26 @@
 				"startYear": null,
 				"endYear": 2017,
 				"sleeperId": "871"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-22T18:00:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Wil Lutz",
+				"position": "K",
+				"salary": 3,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "3678"
 			}
 		],
 		"drops": [],
@@ -60996,6 +61167,26 @@
 	},
 	{
 		"season": 2018,
+		"timestamp": "2018-10-22T01:01:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Avery Williamson",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "1940"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
 		"timestamp": "2018-10-27T01:43:33.000Z",
 		"rosterId": 3,
 		"adds": [
@@ -61026,6 +61217,46 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "4216"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-10-27T01:43:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Desmond King",
+				"position": "DB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "4216"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-10-27T01:43:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Marcus Murphy",
+				"position": "RB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "2529"
 			}
 		],
 		"drops": [],
@@ -62517,6 +62748,26 @@
 	{
 		"season": 2018,
 		"timestamp": "2018-11-22T18:00:33.000Z",
+		"rosterId": 8,
+		"adds": [
+			{
+				"name": "Josh Bynes",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "821"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-11-22T18:00:33.000Z",
 		"rosterId": 9,
 		"adds": [
 			{
@@ -62566,6 +62817,26 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "3451"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-11-22T18:00:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Kareem Jackson",
+				"position": "DB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "544"
 			}
 		],
 		"drops": [],
@@ -68216,6 +68487,26 @@
 	},
 	{
 		"season": 2019,
+		"timestamp": "2019-10-15T13:25:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Nick Vigil",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "3254"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
 		"timestamp": "2019-10-16T00:01:33.000Z",
 		"rosterId": 11,
 		"adds": [
@@ -70160,6 +70451,26 @@
 		"rosterId": 2,
 		"adds": [
 			{
+				"name": "Austin Seibert",
+				"position": "K",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "6219"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-11-22T18:00:33.000Z",
+		"rosterId": 2,
+		"adds": [
+			{
 				"name": "Darren Sproles",
 				"position": "RB",
 				"salary": 1,
@@ -70377,6 +70688,26 @@
 	{
 		"season": 2019,
 		"timestamp": "2019-11-22T18:00:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Sean Lee",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "576"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-11-22T18:00:33.000Z",
 		"rosterId": 2,
 		"adds": [
 			{
@@ -70466,6 +70797,26 @@
 				"startYear": null,
 				"endYear": 2019,
 				"sleeperId": "4233"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-11-23T06:00:33.000Z",
+		"rosterId": 9,
+		"adds": [
+			{
+				"name": "Jon Bostic",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "1507"
 			}
 		],
 		"drops": [],

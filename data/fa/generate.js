@@ -1046,13 +1046,19 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 			if (!rosterId) return;
 
 			var playerId = player.id !== '-1' ? player.id : null;
-			var emitKey = (playerId || player.name.toLowerCase()) + '|' + season + '|' + rosterId;
+			var playerKey = playerId || player.name.toLowerCase();
+			var lastCut = playerLastCutTimestamp[playerKey];
+
+			// If the same player+season+owner was already emitted (from section 1,
+			// cuts), only skip if there's no intervening cut. A cut after the first
+			// pickup means the postseason snapshot represents a second, distinct
+			// re-acquisition from the FA pool.
+			var baseKey = (playerId || player.name.toLowerCase()) + '|' + season + '|' + rosterId;
+			var emitKey = lastCut ? baseKey + '|postseason' : baseKey;
 			if (emitted.has(emitKey)) return;
 			emitted.add(emitKey);
 
-			var playerKey = playerId || player.name.toLowerCase();
 			var lowerBound = faabOpen;
-			var lastCut = playerLastCutTimestamp[playerKey];
 			if (lastCut) {
 				var afterLastCut = new Date(lastCut.getTime() + 60000);
 				if (afterLastCut > lowerBound) lowerBound = afterLastCut;

@@ -723,7 +723,10 @@ function generateDSL() {
 		if (!playerRFA.length && player.sleeperId) {
 			playerRFA = rfaByPlayer[player.sleeperId] || [];
 		}
-		if (!playerRFA.length) {
+		if (!playerRFA.length && !player.sleeperId) {
+			// Only fall back to name matching for historical players (no sleeperId).
+			// Players with a sleeperId should not match name-keyed RFA records
+			// from a different (historical) player with the same name.
 			playerRFA = rfaByPlayer['name:' + player.name.toLowerCase()] || [];
 		}
 
