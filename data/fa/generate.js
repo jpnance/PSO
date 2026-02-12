@@ -1028,12 +1028,18 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 			if (player.startYear !== null) return;  // Not an FA contract
 			if (!player.owner) return;               // Not owned
 
+			// If this player was cut during the season, don't trace through
+			// trades before the last cut — the cut breaks the trade chain.
+			var playerKey3 = (player.id !== '-1' ? player.id : null) || player.name.toLowerCase();
+			var notBefore3 = playerLastCutTimestamp[playerKey3] || null;
+
 			var result = traceOriginalAcquirer(
 				player.id !== '-1' ? player.id : null,
 				player.name,
 				player.owner,
 				season,
-				seasonTrades
+				seasonTrades,
+				notBefore3
 			);
 
 			var rosterId = ownerToRosterId(result.owner, season);

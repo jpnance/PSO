@@ -60656,26 +60656,6 @@
 	},
 	{
 		"season": 2018,
-		"timestamp": "2018-10-16T00:01:33.000Z",
-		"rosterId": 10,
-		"adds": [
-			{
-				"name": "T.J. Yeldon",
-				"position": "RB",
-				"salary": 21,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "2341"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2018,
 		"timestamp": "2018-10-16T12:00:33.000Z",
 		"rosterId": 6,
 		"adds": [],
@@ -62686,6 +62666,26 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "4070"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-11-22T18:00:33.000Z",
+		"rosterId": 12,
+		"adds": [
+			{
+				"name": "T.J. Yeldon",
+				"position": "RB",
+				"salary": 21,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "2341"
 			}
 		],
 		"drops": [],
@@ -70277,6 +70277,26 @@
 	{
 		"season": 2019,
 		"timestamp": "2019-11-22T18:00:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Matt Moore",
+				"position": "QB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "233"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-11-22T18:00:33.000Z",
 		"rosterId": 12,
 		"adds": [
 			{
@@ -70466,6 +70486,26 @@
 				"startYear": null,
 				"endYear": 2019,
 				"sleeperId": "4994"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2019,
+		"timestamp": "2019-12-01T10:32:33.000Z",
+		"rosterId": 10,
+		"adds": [
+			{
+				"name": "Zach Pascal",
+				"position": "WR",
+				"salary": 11,
+				"startYear": null,
+				"endYear": 2019,
+				"sleeperId": "4319"
 			}
 		],
 		"drops": [],

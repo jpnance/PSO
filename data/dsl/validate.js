@@ -76,6 +76,12 @@ function parseEvent(line) {
 	m = line.match(/^\s+(\d+) expansion (\S+(?:\/\S+)?) from (\S+(?:\/\S+)?)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'expansion', owner: m[2], fromOwner: m[3] };
 
+	m = line.match(/^\s+(\d+) rfa (\S+(?:\/\S+)?)/);
+	if (m) return { season: 2000 + parseInt(m[1]), type: 'rfa', owner: m[2] };
+
+	m = line.match(/^\s+(\d+) expiry # by (\S+(?:\/\S+)?)/);
+	if (m) return { season: 2000 + parseInt(m[1]), type: 'expiry', owner: m[2] };
+
 	m = line.match(/^\s+(\d+) protect (\S+(?:\/\S+)?)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'protect', owner: m[2] };
 
@@ -128,7 +134,7 @@ var ACQUIRE_EVENTS = { draft: true, auction: true, fa: true };
 // trade, expansion
 
 // Events that clear ownership
-var RELEASE_EVENTS = { drop: true, cut: true };
+var RELEASE_EVENTS = { drop: true, cut: true, expiry: true };
 
 /**
  * Check 1: Owner consistency on cuts/drops.
@@ -142,6 +148,18 @@ function checkOwnerConsistency(player) {
 		var e = player.events[i];
 
 		if (ACQUIRE_EVENTS[e.type] || e.type === 'trade' || e.type === 'expansion') {
+			owner = e.owner;
+		} else if (e.type === 'rfa') {
+			// RFA continues ownership — verify consistency
+			if (owner && !sameOwner(e.owner, owner)) {
+				issues.push({
+					check: 'owner-mismatch',
+					player: player.header,
+					message: 'RFA rights to ' + e.owner + ' but owned by ' + owner,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
 			owner = e.owner;
 		} else if (RELEASE_EVENTS[e.type]) {
 			if (owner && !sameOwner(e.owner, owner)) {
@@ -196,7 +214,7 @@ function checkAcquireRelease(player) {
 		// Offseason events (auction, draft, expansion, cut) happen before the
 		// season starts, so a contract ending in season N is expired by season N.
 		// In-season events (fa, trade, drop) need the season to be strictly past.
-		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type]) {
+		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type] && e.type !== 'rfa') {
 			// Auction and draft replace the contract, so >= is correct.
 			// Expansion happens before the auction — players are still rostered.
 			var isOffseasonEvent = (e.type === 'auction' || e.type === 'draft');
@@ -253,6 +271,24 @@ function checkAcquireRelease(player) {
 			owned = false;
 			owner = null;
 			contractEnd = null;
+		}
+		else if (e.type === 'rfa') {
+			// RFA rights conversion — ownership continues through the offseason.
+			// RFA rights expire at the next auction, so set contractEnd to the
+			// current season (the season that just ended). The implicit expiration
+			// check will release ownership before the next season's auction.
+			if (!owned) {
+				issues.push({
+					check: 'rfa-unowned',
+					player: player.header,
+					message: 'RFA rights to ' + e.owner + ' but player is not owned',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			owned = true;
+			owner = e.owner;
+			contractEnd = e.season;
 		}
 		// protect doesn't change state
 	}

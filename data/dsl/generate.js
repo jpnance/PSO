@@ -4,6 +4,7 @@
  * 
  * Generates player-history.dsl from pre-computed event sources:
  *   - fa.json (FA adds and drops — explicit and inferred)
+ *   - rfa.json (RFA rights conversions and contract expiries)
  *   - drafts.json (rookie draft selections)
  *   - trades.json (trades)
  *   - contracts-YYYY.txt snapshots (auction/contract events)
@@ -21,6 +22,7 @@ var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
 var FA_FILE = path.join(__dirname, '../fa/fa.json');
+var RFA_FILE = path.join(__dirname, '../rfa/rfa.json');
 var EXPANSION_DRAFT_FILE = path.join(__dirname, '../archive/sources/txt/expansion-draft-2012.txt');
 var EXPANSION_PROTECTIONS_FILE = path.join(__dirname, '../archive/sources/txt/expansion-draft-protections-2012.txt');
 
@@ -135,6 +137,10 @@ function loadTrades() {
 
 function loadFA() {
 	return JSON.parse(fs.readFileSync(FA_FILE, 'utf8'));
+}
+
+function loadRFA() {
+	return JSON.parse(fs.readFileSync(RFA_FILE, 'utf8'));
 }
 
 function loadExpansionSelections() {
@@ -301,7 +307,7 @@ function sameRegime(owner1, owner2, year) {
  * Generate events for a single player.
  * Merges data from all sources into a single timestamped event list.
  */
-function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
+function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords, rfaRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
 	var events = [];
 
 	// --- Draft events ---
@@ -454,6 +460,26 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		});
 	});
 
+	// --- RFA / contract expiry events ---
+	rfaRecords.forEach(function(r) {
+		var owner = rosterIdToOwner(r.rosterId, r.season);
+		var ts = new Date(r.timestamp);
+
+		if (r.type === 'rfa-rights-conversion') {
+			events.push({
+				timestamp: ts,
+				type: 'rfa',
+				line: '  ' + yy(r.season) + ' rfa ' + owner
+			});
+		} else if (r.type === 'contract-expiry') {
+			events.push({
+				timestamp: ts,
+				type: 'expiry',
+				line: '  ' + yy(r.season) + ' expiry # by ' + owner
+			});
+		}
+	});
+
 	// --- Expansion draft (2012) ---
 	var expansionPick = expansionSelections[player.name.toLowerCase()];
 	if (expansionPick) {
@@ -479,8 +505,8 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		var diff = a.timestamp - b.timestamp;
 		if (diff !== 0) return diff;
 
-		// Tie-breaking: draft < protect < expansion < auction < contract < fa < trade < drop < cut
-		var order = { draft: 0, protect: 1, expansion: 2, auction: 3, contract: 4, fa: 5, trade: 6, drop: 7, cut: 8 };
+		// Tie-breaking: draft < protect < expansion < auction < contract < fa < trade < drop < cut < rfa < expiry
+		var order = { draft: 0, protect: 1, expansion: 2, auction: 3, contract: 4, fa: 5, trade: 6, drop: 7, cut: 8, rfa: 9, expiry: 10 };
 		return (order[a.type] || 99) - (order[b.type] || 99);
 	});
 
@@ -503,6 +529,9 @@ function generateDSL() {
 
 	var faData = loadFA();
 	console.log('  FA records: ' + faData.length);
+
+	var rfaData = loadRFA();
+	console.log('  RFA records: ' + rfaData.length);
 
 	var auctionDates = loadAuctionDates();
 	console.log('  Auction dates: ' + Object.keys(auctionDates).length + ' years');
@@ -535,6 +564,15 @@ function generateDSL() {
 			if (!faByPlayer[key]) faByPlayer[key] = [];
 			faByPlayer[key].push(r);
 		});
+	});
+
+	// Index RFA records by player
+	var rfaByPlayer = {};
+	rfaData.forEach(function(r) {
+		if (r.type === 'rfa-unknown') return; // skip unknowns
+		var key = (r.sleeperId && r.sleeperId !== '-1') ? r.sleeperId : ('name:' + r.playerName.toLowerCase());
+		if (!rfaByPlayer[key]) rfaByPlayer[key] = [];
+		rfaByPlayer[key].push(r);
 	});
 
 	// Deduplicate FA records per player (same record can appear from both add and drop indexing)
@@ -680,7 +718,16 @@ function generateDSL() {
 			}
 		});
 
-		var events = generatePlayerEvents(player, key, draftsMap, tradesMap, filteredFA, expansionSelections, expansionProtections, auctionDates, draftDates);
+		// Get RFA records for this player
+		var playerRFA = rfaByPlayer[key] || [];
+		if (!playerRFA.length && player.sleeperId) {
+			playerRFA = rfaByPlayer[player.sleeperId] || [];
+		}
+		if (!playerRFA.length) {
+			playerRFA = rfaByPlayer['name:' + player.name.toLowerCase()] || [];
+		}
+
+		var events = generatePlayerEvents(player, key, draftsMap, tradesMap, filteredFA, playerRFA, expansionSelections, expansionProtections, auctionDates, draftDates);
 
 		if (events.length === 0) return; // skip players with no events
 
@@ -720,6 +767,8 @@ function generateDSL() {
 	lines.push('#   trade NUMBER -> OWNER             - Trade');
 	lines.push('#   drop                              - Dropped in-season (by OWNER in comment)');
 	lines.push('#   cut                               - Released in offseason (by OWNER in comment)');
+	lines.push('#   rfa OWNER                         - RFA rights conversion (contract expired)');
+	lines.push('#   expiry                            - Contract expired, player becomes UFA (by OWNER in comment)');
 	lines.push('#   expansion OWNER from OWNER        - 2012 expansion draft');
 	lines.push('#   protect OWNER                     - 2012 expansion protection');
 	lines.push('#');

@@ -6712,7 +6712,7 @@
 		"type": "rfa-rights-conversion",
 		"timestamp": "2012-01-15T00:00:00.000Z",
 		"rosterId": 4,
-		"sleeperId": "3652",
+		"sleeperId": null,
 		"playerName": "Mike Thomas",
 		"position": "WR",
 		"startYear": 2010,

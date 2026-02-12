@@ -257,7 +257,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Syed,Jordan Shipley,WR,2010,2011,$8
 -1,,Sammie Stroughter,WR,FA,2011,
 346,Trevor,Brandon Tate,WR,2011,2013,$1
-3652,John,Mike Thomas,WR,2010,2011,$14
+-1,John,Mike Thomas,WR,2010,2011,$14
 -1,,Patrick Turner,WR,FA,2011,
 -1,,Tiquan Underwood,WR,FA,2011,
 365,Jake/Luke,Mike Wallace,WR,2010,2011,$40

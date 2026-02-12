@@ -403,7 +403,7 @@ ID,Owner,Name,Position,Start,End,Salary
 658,,Mike Nugent,K,FA,2010,
 -1,,Mike Peterson,LB,FA,2010,
 -1,John,Mike Sims-Walker,WR,2010,2010,$62
-3652,Syed,Mike Thomas,WR,2010,2011,$14
+-1,Syed,Mike Thomas,WR,2010,2011,$14
 182,,Mike Tolbert,RB,FA,2010,
 365,Jake/Luke,Mike Wallace,WR,2010,2011,$40
 -1,Koci,Mike Williams,WR,2010,2012,$1
