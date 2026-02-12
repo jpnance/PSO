@@ -214,11 +214,14 @@ function checkAcquireRelease(player) {
 		// Offseason events (auction, draft, expansion, cut) happen before the
 		// season starts, so a contract ending in season N is expired by season N.
 		// In-season events (fa, trade, drop) need the season to be strictly past.
-		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type] && e.type !== 'rfa') {
-			// Auction and draft replace the contract, so >= is correct.
-			// Expansion happens before the auction — players are still rostered.
-			var isOffseasonEvent = (e.type === 'auction' || e.type === 'draft');
-			var expired = isOffseasonEvent
+		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type] && e.type !== 'rfa' && e.type !== 'expansion') {
+			// Auction and draft happen after RFA rights expire in the offseason.
+			// A contract/RFA ending in season N is expired by season N+1 auction (>=).
+			// Expansion draft happens before auction — RFA rights are still valid,
+			// so expansion is excluded from the implicit expiration check entirely.
+			// In-season events (fa, trade, drop) use strictly past (>).
+			var isAuctionOrDraft = (e.type === 'auction' || e.type === 'draft');
+			var expired = isAuctionOrDraft
 				? e.season >= contractEnd
 				: e.season > contractEnd;
 			if (expired) {
@@ -274,9 +277,9 @@ function checkAcquireRelease(player) {
 		}
 		else if (e.type === 'rfa') {
 			// RFA rights conversion — ownership continues through the offseason.
-			// RFA rights expire at the next auction, so set contractEnd to the
-			// current season (the season that just ended). The implicit expiration
-			// check will release ownership before the next season's auction.
+			// Set contractEnd to the current season. The implicit expiration
+			// check uses >= for auction/draft (releasing before re-auction) but
+			// > for expansion (RFA rights still valid during expansion draft).
 			if (!owned) {
 				issues.push({
 					check: 'rfa-unowned',
