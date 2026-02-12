@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Generate auctions.json from contracts-YEAR.txt snapshot files.
+ * Generate auctions.json - actual auction events where players were acquired.
  *
- * An auction entry is created for every row where the contract's start year
- * matches the file year (i.e. the player was acquired that season).
+ * This filters out drafted players and "unrolls" unsigned player trades to
+ * determine who actually won the player at auction (before any trades).
  *
  * Usage:
  *   node data/auctions/generate.js
@@ -15,12 +15,13 @@ var path = require('path');
 
 var PSO = require('../../config/pso.js');
 
-var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
+var CONTRACTS_FILE = path.join(__dirname, '../contracts/contracts.json');
+var DRAFTS_FILE = path.join(__dirname, '../drafts/drafts.json');
+var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var OUTPUT_FILE = path.join(__dirname, 'auctions.json');
 
 // Build owner name -> rosterId for each year from PSO.franchiseNames
 var ownerToRosterIdByYear = {};
-
 Object.keys(PSO.franchiseNames).forEach(function(rosterId) {
 	var yearMap = PSO.franchiseNames[rosterId];
 	Object.keys(yearMap).forEach(function(year) {
@@ -40,7 +41,7 @@ function getRosterId(ownerName, season) {
 	var direct = yearMap[ownerName];
 	if (direct !== undefined) return direct;
 
-	// Partial match (e.g. snapshot "John" vs config "John/Zach")
+	// Partial match (e.g. "John" vs "John/Zach")
 	var owners = Object.keys(yearMap);
 	for (var i = 0; i < owners.length; i++) {
 		if (owners[i].indexOf(ownerName) >= 0 || ownerName.indexOf(owners[i]) >= 0) {
@@ -50,87 +51,229 @@ function getRosterId(ownerName, season) {
 	return null;
 }
 
-function parseContractsFile(filePath, year) {
-	var content = fs.readFileSync(filePath, 'utf8');
-	var lines = content.split(/\r?\n/).filter(function(line) { return line.trim(); });
-	if (lines.length === 0) return [];
+function normalizePlayerName(name) {
+	if (!name) return '';
+	return name.toLowerCase()
+		.replace(/\s+(jr\.?|sr\.?|iii|ii|iv|v)$/i, '')
+		.trim();
+}
 
-	var header = lines[0].toLowerCase();
-	var nameCol = header.indexOf('player') >= 0 ? 'Player' : 'Name';
-	var cols = lines[0].split(',');
-	var idx = {};
-	cols.forEach(function(c, i) {
-		idx[c.trim()] = i;
+/**
+ * Build a map of unsigned player trades for a given season.
+ * Returns: { normalizedPlayerName: [{ fromOwner, toOwner, date }] }
+ * We use normalized player name as the key since that's what contracts have.
+ */
+function buildUnsignedTradesMap(trades, season) {
+	var map = {};
+
+	trades.forEach(function(trade) {
+		var tradeDate = new Date(trade.date);
+		var tradeSeason = tradeDate.getFullYear();
+
+		// Only consider trades in the same season
+		if (tradeSeason !== season) return;
+
+		trade.parties.forEach(function(receivingParty) {
+			(receivingParty.players || []).forEach(function(player) {
+				if (player.contractStr !== 'unsigned') return;
+
+				// Find who gave up this player (the other party)
+				var givingParty = trade.parties.find(function(p) {
+					return p !== receivingParty;
+				});
+
+				if (!givingParty) return;
+
+				// Use normalized player name as key (consistent with contracts)
+				var playerKey = normalizePlayerName(player.name);
+				if (!playerKey) return;
+
+				if (!map[playerKey]) {
+					map[playerKey] = [];
+				}
+
+				map[playerKey].push({
+					fromOwner: givingParty.owner,
+					toOwner: receivingParty.owner,
+					date: trade.date,
+					tradeId: trade.tradeId
+				});
+			});
+		});
 	});
 
-	var results = [];
-	for (var i = 1; i < lines.length; i++) {
-		var row = lines[i].split(',');
-		if (row.length < cols.length) continue;
+	// Sort each player's trades by date (earliest first)
+	Object.keys(map).forEach(function(key) {
+		map[key].sort(function(a, b) {
+			return new Date(a.date) - new Date(b.date);
+		});
+	});
 
-		var startStr = row[idx['Start']] ? row[idx['Start']].trim() : '';
-		var startYear = startStr ? parseInt(startStr, 10) : null;
-		if (isNaN(startYear) || startYear !== year) continue;
+	return map;
+}
 
-		var idStr = row[idx['ID']] ? row[idx['ID']].trim() : '';
-		var sleeperId = (idStr === '' || idStr === '-1') ? null : String(parseInt(idStr, 10));
+/**
+ * Trace back through unsigned trades to find the original owner.
+ * Returns the owner name who first held the player (before any unsigned trades).
+ */
+function findOriginalOwner(playerKey, finalOwner, unsignedTradesMap) {
+	var trades = unsignedTradesMap[playerKey];
+	if (!trades || trades.length === 0) {
+		// No unsigned trades - the contract owner IS the auction winner
+		return finalOwner;
+	}
 
-		var name = row[idx[nameCol]] ? row[idx[nameCol]].trim() : '';
-		var position = row[idx['Position']] ? row[idx['Position']].trim() : '';
-		var positions = position ? position.split('/').map(function(p) { return p.trim(); }) : [];
-		var owner = row[idx['Owner']] ? row[idx['Owner']].trim() : '';
-		var endStr = row[idx['End']] ? row[idx['End']].trim() : '';
-		var endYear = endStr && endStr !== 'FA' ? parseInt(endStr, 10) : null;
-		if (endYear !== null && isNaN(endYear)) endYear = null;
+	// Work backwards from the final owner
+	var currentOwner = finalOwner;
+	var visited = new Set();
 
-		var salaryStr = row[idx['Salary']] ? row[idx['Salary']].trim().replace(/^\$/, '') : '0';
-		var salary = parseInt(salaryStr, 10) || 0;
+	while (true) {
+		if (visited.has(currentOwner)) {
+			console.warn('Circular trade detected for ' + playerKey);
+			break;
+		}
+		visited.add(currentOwner);
 
-		var rosterId = getRosterId(owner, year);
-		if (rosterId === null) {
-			console.warn('Unknown owner "' + owner + '" for ' + name + ' in ' + year);
-			continue;
+		// Find a trade where someone gave the player TO currentOwner
+		var incomingTrade = trades.find(function(t) {
+			return t.toOwner === currentOwner;
+		});
+
+		if (!incomingTrade) {
+			// No one gave this player to currentOwner - they're the original owner
+			break;
 		}
 
-		results.push({
-			season: year,
-			sleeperId: sleeperId,
-			name: name,
-			positions: positions,
-			rosterId: rosterId,
-			salary: salary,
-			startYear: startYear,
-			endYear: endYear
-		});
+		// Continue tracing back
+		currentOwner = incomingTrade.fromOwner;
 	}
-	return results;
+
+	return currentOwner;
 }
 
 function main() {
 	var dryRun = process.argv.indexOf('--dry-run') >= 0;
 
-	var all = [];
-	var files = fs.readdirSync(SNAPSHOTS_DIR);
-	files.sort();
+	// Load all data sources
+	var contracts = JSON.parse(fs.readFileSync(CONTRACTS_FILE, 'utf8'));
+	var drafts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
+	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
 
-	files.forEach(function(file) {
-		var match = file.match(/^contracts-(\d{4})\.txt$/);
-		if (!match) return;
-		var year = parseInt(match[1], 10);
-		var filePath = path.join(SNAPSHOTS_DIR, file);
-		var entries = parseContractsFile(filePath, year);
-		all = all.concat(entries);
+	// Build set of drafted players by season
+	var draftedPlayers = new Set();
+	drafts.forEach(function(d) {
+		if (d.passed) return;
+		if (d.sleeperId) {
+			draftedPlayers.add(d.sleeperId + '|' + d.season);
+		}
+		if (d.playerName) {
+			draftedPlayers.add(normalizePlayerName(d.playerName) + '|' + d.season);
+		}
 	});
 
-	all.sort(function(a, b) {
+	// Group contracts by season for efficient processing
+	var contractsBySeason = {};
+	contracts.forEach(function(c) {
+		if (!contractsBySeason[c.season]) {
+			contractsBySeason[c.season] = [];
+		}
+		contractsBySeason[c.season].push(c);
+	});
+
+	var auctions = [];
+	var stats = {
+		total: 0,
+		drafted: 0,
+		unrolled: 0,
+		auctions: 0
+	};
+
+	Object.keys(contractsBySeason).sort().forEach(function(seasonStr) {
+		var season = parseInt(seasonStr, 10);
+		var seasonContracts = contractsBySeason[season];
+		var unsignedTradesMap = buildUnsignedTradesMap(trades, season);
+
+		seasonContracts.forEach(function(contract) {
+			stats.total++;
+
+			// Check if player was drafted this season
+			var isDrafted = false;
+			if (contract.sleeperId) {
+				isDrafted = draftedPlayers.has(contract.sleeperId + '|' + season);
+			}
+			if (!isDrafted && contract.name) {
+				isDrafted = draftedPlayers.has(normalizePlayerName(contract.name) + '|' + season);
+			}
+
+			if (isDrafted) {
+				stats.drafted++;
+				return; // Skip drafted players
+			}
+
+			// Build player key for trade lookup (always use normalized name for consistency)
+			var playerKey = normalizePlayerName(contract.name);
+
+			// Get the owner from the contract (who ended up with the player)
+			var contractOwner = null;
+			var yearMap = ownerToRosterIdByYear[season];
+			if (yearMap) {
+				Object.keys(yearMap).forEach(function(owner) {
+					if (yearMap[owner] === contract.rosterId) {
+						contractOwner = owner;
+					}
+				});
+			}
+
+			if (!contractOwner) {
+				console.warn('Could not find owner for rosterId ' + contract.rosterId + ' in ' + season);
+				return;
+			}
+
+			// Find the original auction winner by unrolling unsigned trades
+			var originalOwner = findOriginalOwner(playerKey, contractOwner, unsignedTradesMap);
+
+			if (originalOwner !== contractOwner) {
+				stats.unrolled++;
+			}
+
+			var originalRosterId = getRosterId(originalOwner, season);
+			if (originalRosterId === null) {
+				console.warn('Could not find rosterId for owner "' + originalOwner + '" in ' + season);
+				return;
+			}
+
+			stats.auctions++;
+
+			auctions.push({
+				season: season,
+				sleeperId: contract.sleeperId,
+				name: contract.name,
+				positions: contract.positions,
+				rosterId: originalRosterId,
+				originalOwner: originalOwner,
+				salary: contract.salary,
+				startYear: contract.startYear,
+				endYear: contract.endYear
+			});
+		});
+	});
+
+	auctions.sort(function(a, b) {
 		if (a.season !== b.season) return a.season - b.season;
 		return (a.name || '').localeCompare(b.name || '');
 	});
 
 	if (dryRun) {
-		console.log('Dry run: would write ' + all.length + ' auction entries to ' + OUTPUT_FILE);
+		console.log('Dry run statistics:');
+		console.log('  Total contracts: ' + stats.total);
+		console.log('  Drafted (skipped): ' + stats.drafted);
+		console.log('  Auctions: ' + stats.auctions);
+		console.log('  Unrolled from trades: ' + stats.unrolled);
+		console.log('');
+		console.log('Would write ' + auctions.length + ' auction entries to ' + OUTPUT_FILE);
+
 		var bySeason = {};
-		all.forEach(function(e) {
+		auctions.forEach(function(e) {
 			bySeason[e.season] = (bySeason[e.season] || 0) + 1;
 		});
 		Object.keys(bySeason).sort().forEach(function(y) {
@@ -139,8 +282,10 @@ function main() {
 		return;
 	}
 
-	fs.writeFileSync(OUTPUT_FILE, JSON.stringify(all, null, 2), 'utf8');
-	console.log('Wrote ' + all.length + ' entries to ' + OUTPUT_FILE);
+	fs.writeFileSync(OUTPUT_FILE, JSON.stringify(auctions, null, 2), 'utf8');
+	console.log('Wrote ' + auctions.length + ' entries to ' + OUTPUT_FILE);
+	console.log('  Drafted (skipped): ' + stats.drafted);
+	console.log('  Unrolled from trades: ' + stats.unrolled);
 }
 
 main();

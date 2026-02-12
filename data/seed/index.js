@@ -2,7 +2,7 @@
  * Omnibus Seeder - Main entry point for database seeding.
  * 
  * This script orchestrates the full seeding process, building the database
- * from JSON data files: drafts.json, auctions.json, trades.json, fa.json.
+ * from JSON data files: drafts.json, auctions.json, contracts.json, trades.json, fa.json.
  * 
  * Usage:
  *   docker compose run --rm -it web node data/seed
@@ -115,8 +115,17 @@ async function seedAuctions() {
 	console.log('       Seeding Auctions');
 	console.log('========================================\n');
 	
-	// Creates auction-ufa + contract transactions
+	// Creates auction-ufa transactions (actual auction wins)
 	runScript('Auctions', 'data/seed/auctions-from-json.js');
+}
+
+async function seedContracts() {
+	console.log('========================================');
+	console.log('       Seeding Contracts');
+	console.log('========================================\n');
+	
+	// Creates contract transactions for all signed contracts
+	runScript('Contracts', 'data/seed/contracts-from-json.js');
 }
 
 async function seedTrades() {
@@ -181,13 +190,16 @@ async function run() {
 	// 1. Drafts (creates Pick records + draft transactions)
 	await seedDrafts();
 	
-	// 2. Auctions (creates auction + contract transactions)
+	// 2. Auctions (creates auction-ufa transactions)
 	await seedAuctions();
 	
-	// 3. Trades (creates trade transactions with full party details)
+	// 3. Contracts (creates contract transactions for all signed contracts)
+	await seedContracts();
+	
+	// 4. Trades (creates trade transactions with full party details)
 	await seedTrades();
 	
-	// 4. FA transactions (pickups and drops)
+	// 5. FA transactions (pickups and drops)
 	await seedFA();
 	
 	// Final validation

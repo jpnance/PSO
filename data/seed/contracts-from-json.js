@@ -1,17 +1,14 @@
 /**
- * Seed auction transactions from auctions.json
+ * Seed contract transactions from contracts.json
  * 
- * Creates auction-ufa transactions (player won at auction).
+ * Creates contract transactions for ALL signed contracts (drafted, auctioned, FA).
  * 
- * Note: auctions.json is already filtered to exclude drafted players and
- * has unrolled unsigned trades to show the original auction winner.
- * 
- * Timestamps: auction day at noon ET
+ * Timestamps: contract due date at noon ET
  * 
  * Usage:
- *   docker compose run --rm -it web node data/seed/auctions-from-json.js
- *   docker compose run --rm -it web node data/seed/auctions-from-json.js --clear
- *   docker compose run --rm -it web node data/seed/auctions-from-json.js --dry-run
+ *   docker compose run --rm -it web node data/seed/contracts-from-json.js
+ *   docker compose run --rm -it web node data/seed/contracts-from-json.js --clear
+ *   docker compose run --rm -it web node data/seed/contracts-from-json.js --dry-run
  */
 
 require('dotenv').config({ path: __dirname + '/../../.env' });
@@ -27,7 +24,7 @@ var leagueDates = require('../../config/dates.js');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-var AUCTIONS_FILE = path.join(__dirname, '../auctions/auctions.json');
+var CONTRACTS_FILE = path.join(__dirname, '../contracts/contracts.json');
 
 // Parse command line arguments
 var args = {
@@ -37,7 +34,7 @@ var args = {
 
 // Stats
 var stats = {
-	auctionsCreated: 0,
+	contractsCreated: 0,
 	playersCreated: 0,
 	skipped: 0,
 	errors: []
@@ -49,14 +46,14 @@ var playersBySleeperId = {};
 var playersByName = {};
 
 /**
- * Get the auction timestamp for a given season.
- * Falls back to August 18 at noon if no date configured.
+ * Get the contract due date timestamp for a given season.
+ * Falls back to August 31 at noon if no date configured.
  */
-function getAuctionTimestamp(season) {
-	var date = leagueDates.getAuctionDate(season);
+function getContractTimestamp(season) {
+	var date = leagueDates.getContractDueDate(season);
 	if (date) return date;
 	// Fallback
-	return new Date(Date.UTC(season, 7, 18, 16, 0, 0));
+	return new Date(Date.UTC(season, 7, 31, 16, 0, 0));
 }
 
 /**
@@ -111,17 +108,15 @@ async function findOrCreatePlayer(entry) {
 }
 
 async function seed() {
-	console.log('Seeding auctions from auctions.json...');
+	console.log('Seeding contracts from contracts.json...');
 	if (args.dryRun) console.log('[DRY RUN]');
 	console.log('');
 	
 	// Clear existing data if requested
 	if (args.clear && !args.dryRun) {
-		console.log('Clearing existing auction transactions...');
-		var auctionResult = await Transaction.deleteMany({ 
-			type: { $in: ['auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'] } 
-		});
-		console.log('  Deleted ' + auctionResult.deletedCount + ' auction transactions');
+		console.log('Clearing existing contract transactions...');
+		var result = await Transaction.deleteMany({ type: 'contract' });
+		console.log('  Deleted ' + result.deletedCount + ' contract transactions');
 		console.log('');
 	}
 	
@@ -142,33 +137,39 @@ async function seed() {
 	});
 	console.log('Loaded ' + allPlayers.length + ' players');
 	
-	// Load auctions.json
-	var auctions = JSON.parse(fs.readFileSync(AUCTIONS_FILE, 'utf8'));
-	console.log('Loaded ' + auctions.length + ' auction entries');
+	// Load contracts.json
+	var contracts = JSON.parse(fs.readFileSync(CONTRACTS_FILE, 'utf8'));
+	console.log('Loaded ' + contracts.length + ' contract entries');
 	console.log('');
 	
 	// Group by season for progress reporting
 	var seasons = {};
-	auctions.forEach(function(a) {
-		if (!seasons[a.season]) seasons[a.season] = [];
-		seasons[a.season].push(a);
+	contracts.forEach(function(c) {
+		if (!seasons[c.season]) seasons[c.season] = [];
+		seasons[c.season].push(c);
 	});
 	
 	var seasonYears = Object.keys(seasons).map(Number).sort(function(a, b) { return a - b; });
 	
 	for (var si = 0; si < seasonYears.length; si++) {
 		var season = seasonYears[si];
-		var seasonAuctions = seasons[season];
-		var auctionTimestamp = getAuctionTimestamp(season);
+		var seasonContracts = seasons[season];
+		var contractTimestamp = getContractTimestamp(season);
 		
-		var seasonAuctionCount = 0;
+		var seasonContractCount = 0;
 		
-		for (var ai = 0; ai < seasonAuctions.length; ai++) {
-			var entry = seasonAuctions[ai];
+		for (var ci = 0; ci < seasonContracts.length; ci++) {
+			var entry = seasonContracts[ci];
 			
 			// Validate required fields
 			if (!entry.rosterId) {
 				stats.errors.push(season + ' ' + entry.name + ': Missing rosterId');
+				stats.skipped++;
+				continue;
+			}
+			
+			// Skip entries without valid contract terms
+			if (!entry.startYear || !entry.endYear) {
 				stats.skipped++;
 				continue;
 			}
@@ -189,25 +190,27 @@ async function seed() {
 			}
 			
 			if (args.dryRun) {
-				seasonAuctionCount++;
+				seasonContractCount++;
 				continue;
 			}
 			
 			try {
-				// Create auction-ufa transaction
-				// Use index offset to maintain some ordering (not critical for auctions)
-				var auctionTs = new Date(auctionTimestamp.getTime() + (ai * 1000));
+				// Create contract transaction
+				// Use index offset to maintain some ordering
+				var contractTs = new Date(contractTimestamp.getTime() + (ci * 1000));
 				
 				await Transaction.create({
-					type: 'auction-ufa',
-					timestamp: auctionTs,
+					type: 'contract',
+					timestamp: contractTs,
 					source: 'snapshot',
 					franchiseId: franchise._id,
 					playerId: player._id,
-					winningBid: entry.salary
+					salary: entry.salary,
+					startYear: entry.startYear,
+					endYear: entry.endYear
 				});
-				seasonAuctionCount++;
-				stats.auctionsCreated++;
+				seasonContractCount++;
+				stats.contractsCreated++;
 			} catch (err) {
 				if (err.code === 11000) {
 					stats.errors.push(season + ' ' + entry.name + ': Duplicate');
@@ -218,14 +221,14 @@ async function seed() {
 			}
 		}
 		
-		console.log(season + ': ' + seasonAuctionCount + ' auctions');
+		console.log(season + ': ' + seasonContractCount + ' contracts');
 	}
 	
 	console.log('');
 	console.log('Done!');
-	console.log('  Auctions created: ' + stats.auctionsCreated);
+	console.log('  Contracts created: ' + stats.contractsCreated);
 	console.log('  Players created: ' + stats.playersCreated);
-	console.log('  Skipped (errors): ' + stats.skipped);
+	console.log('  Skipped: ' + stats.skipped);
 	
 	if (stats.errors.length > 0) {
 		console.log('');
