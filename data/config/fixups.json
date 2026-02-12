@@ -46,6 +46,10 @@
 			"notes": "The origins of all four picks in this trade are self-explanatory: none of them had been traded until this deal was made."
 		},
 		{
+			"tradeId": 137,
+			"notes": "The agreed-to version of this trade also sent an unsigned Vontaze Burfict to Syed/Terence. Due to clerical error elsewhere in the draft/auction, Syed/Terence were granted free relief of a player and they declared that their drop would be Burfict. During the migration of our data into the new system, it was easiest to accommodate this edge case by simply removing Burfict from this trade"
+		},
+		{
 			"tradeId": 300,
 			"notes": "Brett/Luke originally owned both RFA rights; Koci/Mueller originally owned the future 2nd and 3rd; Schex originally owned the 3.04 and 3.11."
 		},

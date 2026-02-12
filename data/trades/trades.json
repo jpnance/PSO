@@ -7995,20 +7995,7 @@
       },
       {
         "owner": "Syed/Terence",
-        "players": [
-          {
-            "name": "Vontaze Burfict",
-            "espnId": "15246",
-            "salary": 1,
-            "contractStr": "unsigned",
-            "contract": {
-              "start": null,
-              "end": null,
-              "source": "certain"
-            },
-            "sleeperId": "1064"
-          }
-        ],
+        "players": [],
         "picks": [
           {
             "round": 2,
