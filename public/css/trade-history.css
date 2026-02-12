@@ -22,6 +22,25 @@
 	font-size: 0.8rem;
 }
 
+/* Single trade view - card header with timestamp and nav */
+.trade-card__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.trade-card__timestamp-stacked {
+	display: flex;
+	flex-direction: column;
+}
+
+.trade-card__timestamp-stacked .trade-card__time {
+	margin-top: 0.15rem;
+}
+
 /* Single trade view - timestamp header */
 .trade-card__timestamp {
 	border-bottom: 1px solid #eee;
