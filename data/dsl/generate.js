@@ -445,10 +445,11 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		});
 
 		r.drops.forEach(function(drop) {
+			var isOffseason = r.source === 'offseason';
 			events.push({
 				timestamp: ts,
-				type: 'cut',
-				line: '  ' + yy(r.season) + ' cut # by ' + owner
+				type: isOffseason ? 'cut' : 'drop',
+				line: '  ' + yy(r.season) + (isOffseason ? ' cut' : ' drop') + ' # by ' + owner
 			});
 		});
 	});
@@ -478,8 +479,8 @@ function generatePlayerEvents(player, playerKey, draftsMap, tradesMap, faRecords
 		var diff = a.timestamp - b.timestamp;
 		if (diff !== 0) return diff;
 
-		// Tie-breaking: draft < protect < expansion < auction < contract < fa < trade < cut
-		var order = { draft: 0, protect: 1, expansion: 2, auction: 3, contract: 4, fa: 5, trade: 6, cut: 7 };
+		// Tie-breaking: draft < protect < expansion < auction < contract < fa < trade < drop < cut
+		var order = { draft: 0, protect: 1, expansion: 2, auction: 3, contract: 4, fa: 5, trade: 6, drop: 7, cut: 8 };
 		return (order[a.type] || 99) - (order[b.type] || 99);
 	});
 
@@ -717,7 +718,8 @@ function generateDSL() {
 	lines.push('#   contract $SALARY YY/YY           - Contract signed');
 	lines.push('#   fa OWNER $SALARY YY/YY           - FA pickup');
 	lines.push('#   trade NUMBER -> OWNER             - Trade');
-	lines.push('#   cut                               - Released (by OWNER in comment)');
+	lines.push('#   drop                              - Dropped in-season (by OWNER in comment)');
+	lines.push('#   cut                               - Released in offseason (by OWNER in comment)');
 	lines.push('#   expansion OWNER from OWNER        - 2012 expansion draft');
 	lines.push('#   protect OWNER                     - 2012 expansion protection');
 	lines.push('#');
