@@ -58,8 +58,8 @@ function parseEvent(line) {
 	m = line.match(/^\s+(\d+) draft (\S+(?:\/\S+)?) (\d+\.\d+)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'draft', owner: m[2], detail: m[3] };
 
-	m = line.match(/^\s+(\d+) auction (\S+(?:\/\S+)?) \$(\d+)/);
-	if (m) return { season: 2000 + parseInt(m[1]), type: 'auction', owner: m[2], salary: parseInt(m[3]), detail: '$' + m[3] };
+	m = line.match(/^\s+(\d+) (auction-ufa|auction-rfa-matched|auction-rfa-unmatched) (\S+(?:\/\S+)?) \$(\d+)/);
+	if (m) return { season: 2000 + parseInt(m[1]), type: m[2], owner: m[3], salary: parseInt(m[4]), detail: '$' + m[4] };
 
 	m = line.match(/^\s+(\d+) contract \$(\d+) (\S+)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'contract', salary: parseInt(m[2]), detail: m[3] };
@@ -128,7 +128,10 @@ function parseDSL(filePath) {
 // =============================================================================
 
 // Events that set ownership (from unowned state)
-var ACQUIRE_EVENTS = { draft: true, auction: true, fa: true };
+var ACQUIRE_EVENTS = { draft: true, 'auction-ufa': true, 'auction-rfa-matched': true, 'auction-rfa-unmatched': true, fa: true };
+
+// Auction-type events (for checks that treat all auction variants the same)
+var AUCTION_EVENTS = { 'auction-ufa': true, 'auction-rfa-matched': true, 'auction-rfa-unmatched': true };
 
 // Events that transfer ownership (from owned state) — handled separately
 // trade, expansion
@@ -220,7 +223,7 @@ function checkAcquireRelease(player) {
 			// Expansion draft happens before auction — RFA rights are still valid,
 			// so expansion is excluded from the implicit expiration check entirely.
 			// In-season events (fa, trade, drop) use strictly past (>).
-			var isAuctionOrDraft = (e.type === 'auction' || e.type === 'draft');
+			var isAuctionOrDraft = (AUCTION_EVENTS[e.type] || e.type === 'draft');
 			var expired = isAuctionOrDraft
 				? e.season >= contractEnd
 				: e.season > contractEnd;
@@ -333,7 +336,7 @@ function checkContractConsistency(player) {
 		// Find the preceding acquisition event
 		var prev = null;
 		for (var j = i - 1; j >= 0; j--) {
-			if (player.events[j].type === 'auction' || player.events[j].type === 'draft') {
+			if (AUCTION_EVENTS[player.events[j].type] || player.events[j].type === 'draft') {
 				prev = player.events[j];
 				break;
 			}
@@ -356,7 +359,7 @@ function checkContractConsistency(player) {
 		}
 
 		// Check salary matches (auctions only)
-		if (prev.type === 'auction' && prev.salary !== e.salary) {
+		if (AUCTION_EVENTS[prev.type] && prev.salary !== e.salary) {
 			issues.push({
 				check: 'contract-salary-mismatch',
 				player: player.header,
@@ -456,7 +459,7 @@ function checkDuplicateEvents(player) {
 				});
 			}
 			tradeIds[e.tradeId] = true;
-		} else if (e.type === 'auction') {
+		} else if (AUCTION_EVENTS[e.type]) {
 			if (auctionSeasons[e.season]) {
 				issues.push({
 					check: 'duplicate-auction',

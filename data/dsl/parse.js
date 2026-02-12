@@ -23,14 +23,17 @@ var PATTERNS = {
 	// Header: Name | Position(s) | [sleeper:ID] [| espn:ID] [| historical]
 	// Parsed manually due to optional fields
 	
-	// YY auction OWNER $SALARY [YY/YY]
+	// YY auction-ufa OWNER $SALARY [YY/YY]
+	auctionUfa: /^(\d{2})\s+auction-ufa\s+(\S+)\s+\$(\d+)(?:\s+(\d{2}|\w+)\/(\d{2}))?$/,
+	
+	// YY auction-rfa-matched OWNER $SALARY [YY/YY]
+	auctionRfaMatched: /^(\d{2})\s+auction-rfa-matched\s+(\S+)\s+\$(\d+)(?:\s+(\d{2}|\w+)\/(\d{2}))?$/,
+	
+	// YY auction-rfa-unmatched OWNER $SALARY [YY/YY]
+	auctionRfaUnmatched: /^(\d{2})\s+auction-rfa-unmatched\s+(\S+)\s+\$(\d+)(?:\s+(\d{2}|\w+)\/(\d{2}))?$/,
+	
+	// YY auction OWNER $SALARY [YY/YY] (legacy, maps to auction-ufa)
 	auction: /^(\d{2})\s+auction\s+(\S+)\s+\$(\d+)(?:\s+(\d{2}|\w+)\/(\d{2}))?$/,
-	
-	// YY auction-rfa-matched OWNER $SALARY YY/YY
-	auctionRfaMatched: /^(\d{2})\s+auction-rfa-matched\s+(\S+)\s+\$(\d+)\s+(\d{2}|\w+)\/(\d{2})$/,
-	
-	// YY auction-rfa-unmatched OWNER $SALARY YY/YY
-	auctionRfaUnmatched: /^(\d{2})\s+auction-rfa-unmatched\s+(\S+)\s+\$(\d+)\s+(\d{2}|\w+)\/(\d{2})$/,
 	
 	// YY draft OWNER RD.PICK (or ?.?? for unknown)
 	draft: /^(\d{2})\s+draft\s+(\S+)\s+(\d+|\?)\.(\d+|\?\?)$/,
@@ -120,10 +123,10 @@ function parseTransaction(line, lineNum) {
 	
 	var match;
 	
-	// auction
-	if ((match = line.match(PATTERNS.auction))) {
+	// auction-ufa
+	if ((match = line.match(PATTERNS.auctionUfa))) {
 		return {
-			type: 'auction',
+			type: 'auction-ufa',
 			season: toFullYear(match[1]),
 			owner: match[2],
 			salary: parseInt(match[3]),
@@ -150,6 +153,19 @@ function parseTransaction(line, lineNum) {
 	if ((match = line.match(PATTERNS.auctionRfaUnmatched))) {
 		return {
 			type: 'auction-rfa-unmatched',
+			season: toFullYear(match[1]),
+			owner: match[2],
+			salary: parseInt(match[3]),
+			startYear: toFullYear(match[4]),
+			endYear: toFullYear(match[5]),
+			line: lineNum
+		};
+	}
+	
+	// legacy auction (maps to auction-ufa)
+	if ((match = line.match(PATTERNS.auction))) {
+		return {
+			type: 'auction-ufa',
 			season: toFullYear(match[1]),
 			owner: match[2],
 			salary: parseInt(match[3]),
