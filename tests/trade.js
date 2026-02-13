@@ -572,7 +572,7 @@ async function test6_BasicCut(world) {
 	// Verify transaction created
 	var txExists = !!result.transaction;
 	console.log('Transaction created:', txExists ? 'PASS ✓' : 'FAIL ✗');
-	console.log('Buy-outs:', JSON.stringify(result.buyOuts));
+	console.log('Buyouts:', JSON.stringify(result.buyOuts));
 	
 	// Verify budget updated
 	var budgetAfter = await Budget.findOne({ franchiseId: world.franchiseA._id, season: TEST_SEASON });
@@ -591,9 +591,9 @@ async function test6_BasicCut(world) {
 	return contractDeleted && txExists && payrollCorrect && availableIncreased;
 }
 
-// ============ TEST 7: Cut Buy-out Calculation ============
+// ============ TEST 7: Cut Buyout Calculation ============
 async function test7_CutBuyOut(world) {
-	console.log('\n=== TEST 7: Cut Buy-out Calculation ===\n');
+	console.log('\n=== TEST 7: Cut Buyout Calculation ===\n');
 	
 	// Player A1 has contract 2099-2101 (3 years), $100 salary
 	var contractA1 = await Contract.findOne({ playerId: world.playerA1._id });
@@ -617,7 +617,7 @@ async function test7_CutBuyOut(world) {
 	// Year 2 (2100): 30% = $30
 	// Year 3 (2101): 15% = $15
 	var bo = result.buyOuts;
-	console.log('Buy-out entries:', JSON.stringify(bo));
+	console.log('Buyout entries:', JSON.stringify(bo));
 	
 	var year1 = bo.find(function(d) { return d.season === TEST_SEASON; });
 	var year2 = bo.find(function(d) { return d.season === TEST_SEASON + 1; });
@@ -657,9 +657,9 @@ async function test8_CutInvalidPlayer(world) {
 }
 
 
-// ============ TEST 9: Cut Buy-out Calculation 2 ============
+// ============ TEST 9: Cut Buyout Calculation 2 ============
 async function test9_CutBuyOut2(world) {
-	console.log('\n=== TEST 9: Cut Buy-out Calculation 2 ===\n');
+	console.log('\n=== TEST 9: Cut Buyout Calculation 2 ===\n');
 	
 	// Player C2 has contract 2099-2101 (3 years), $2 salary
 	var contractC2 = await Contract.findOne({ playerId: world.playerC2._id });
@@ -683,7 +683,7 @@ async function test9_CutBuyOut2(world) {
 	// Year 2 (2100): 30% = $1
 	// Year 3 (2101): 15% = $1
 	var bo = result.buyOuts;
-	console.log('Buy-out entries:', JSON.stringify(bo));
+	console.log('Buyout entries:', JSON.stringify(bo));
 	
 	var year1 = bo.find(function(d) { return d.season === TEST_SEASON; });
 	var year2 = bo.find(function(d) { return d.season === TEST_SEASON + 1; });
@@ -861,9 +861,9 @@ var tests = [
 	{ name: 'Hard Cap Violation', fn: test4_HardCapViolation },
 	{ name: 'Soft Cap Warning', fn: test5_SoftCapWarning },
 	{ name: 'Basic Cut', fn: test6_BasicCut },
-	{ name: 'Cut Buy-out Calculation', fn: test7_CutBuyOut },
+	{ name: 'Cut Buyout Calculation', fn: test7_CutBuyOut },
 	{ name: 'Cut Invalid Player', fn: test8_CutInvalidPlayer },
-	{ name: 'Cut Buy-out Calculation 2', fn: test9_CutBuyOut2 },
+	{ name: 'Cut Buyout Calculation 2', fn: test9_CutBuyOut2 },
 	{ name: 'Roster Limit Violation', fn: test10_RosterLimitViolation },
 	{ name: 'Roster Limit Swap at Limit', fn: test11_RosterLimitSwap },
 ];

@@ -38,7 +38,7 @@ async function getFranchiseDisplayName(franchiseId, season) {
  * @param {number} endYear - Contract end year
  * @param {number} cutYear - Season when the cut occurs
  * @param {number} targetSeason - Season to calculate buy-out for
- * @returns {number} Buy-out amount for targetSeason (0 if not applicable)
+ * @returns {number} Buyout amount for targetSeason (0 if not applicable)
  */
 function computeBuyOutForSeason(salary, startYear, endYear, cutYear, targetSeason) {
 	var percentages = [0.60, 0.30, 0.15];
