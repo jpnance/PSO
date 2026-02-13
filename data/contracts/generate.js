@@ -21,6 +21,40 @@ var PSO = require('../../config/pso.js');
 var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var OUTPUT_FILE = path.join(__dirname, 'contracts.json');
 
+// Early Contract Exceptions
+// =========================
+// Contracts that were signed early (before the due date) to facilitate trades.
+// These get a custom timestamp instead of the standard contract due date.
+var earlyContractExceptions = [
+	{
+		sleeperId: '6828',
+		playerName: 'A.J. Dillon',
+		season: 2024,
+		// One second before Trade #670 (2024-08-29T01:29:00.000Z)
+		// Justin needed to drop Dillon to make room for 2 incoming players
+		timestamp: '2024-08-29T01:28:59.000Z',
+		notes: 'Early contract approved for Trade #670'
+	},
+	{
+		sleeperId: '5030',
+		playerName: 'Harold Landry',
+		season: 2022,
+		// One second before drop (2022-09-01T19:26:04.590Z)
+		// Auction winner cut before contracts due
+		timestamp: '2022-09-01T19:26:03.000Z',
+		notes: 'Early contract for auction cut before due date'
+	},
+	{
+		sleeperId: '4988',
+		playerName: 'Blake Martinez',
+		season: 2022,
+		// One second before drop (2022-09-05T15:24:00.657Z)
+		// Auction winner cut before contracts due
+		timestamp: '2022-09-05T15:23:59.000Z',
+		notes: 'Early contract for auction cut before due date'
+	}
+];
+
 // Build owner name -> rosterId for each year from PSO.franchiseNames
 var ownerToRosterIdByYear = {};
 
@@ -128,6 +162,21 @@ function main() {
 	all.sort(function(a, b) {
 		if (a.season !== b.season) return a.season - b.season;
 		return (a.name || '').localeCompare(b.name || '');
+	});
+
+	// Apply early contract exceptions
+	earlyContractExceptions.forEach(function(ex) {
+		var match = all.find(function(c) {
+			return c.season === ex.season &&
+				(c.sleeperId === ex.sleeperId || c.name === ex.playerName);
+		});
+		if (match) {
+			match.timestamp = ex.timestamp;
+			match.source = 'exception';
+			console.log('Applied early contract exception: ' + ex.playerName + ' (' + ex.season + ') - ' + ex.notes);
+		} else {
+			console.warn('Warning: Early contract exception not found: ' + ex.playerName + ' (' + ex.season + ')');
+		}
 	});
 
 	if (dryRun) {

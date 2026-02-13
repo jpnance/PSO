@@ -3334,6 +3334,19 @@
 		"season": 2009,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2010-01-15T00:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "322",
+		"playerName": "Antonio Gates",
+		"position": "TE",
+		"startYear": 2009,
+		"endYear": 2009,
+		"salary": 97,
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2010-01-15T00:00:00.000Z",
 		"rosterId": 8,
 		"sleeperId": "138",
 		"playerName": "Ben Roethlisberger",
@@ -4239,29 +4252,6 @@
 		"endYear": 2009,
 		"salary": 1,
 		"source": "approximated"
-	},
-	{
-		"season": 2009,
-		"type": "rfa-rights-conversion",
-		"timestamp": "2010-01-15T00:00:00.000Z",
-		"rosterId": 10,
-		"sleeperId": "322",
-		"playerName": "Antonio Gates",
-		"position": null,
-		"startYear": 2009,
-		"endYear": 2009,
-		"salary": 97,
-		"source": "approximated"
-	},
-	{
-		"season": 2009,
-		"type": "rfa-rights-lapsed",
-		"timestamp": "2010-08-21T16:00:00.000Z",
-		"rosterId": 1,
-		"sleeperId": "220",
-		"playerName": "DeMeco Ryans",
-		"position": null,
-		"source": "exception"
 	},
 	{
 		"season": 2009,
@@ -7174,6 +7164,19 @@
 		"type": "rfa-rights-conversion",
 		"timestamp": "2012-01-15T00:00:00.000Z",
 		"rosterId": 3,
+		"sleeperId": "733",
+		"playerName": "Perry Riley",
+		"position": null,
+		"startYear": null,
+		"endYear": 2011,
+		"salary": 1,
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2012-01-15T00:00:00.000Z",
+		"rosterId": 3,
 		"sleeperId": "576",
 		"playerName": "Sean Lee",
 		"position": "LB",
@@ -8464,6 +8467,19 @@
 		"startYear": 2012,
 		"endYear": 2012,
 		"salary": 1,
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2013-01-15T00:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": null,
+		"playerName": "Michael Turner",
+		"position": "RB",
+		"startYear": 2012,
+		"endYear": 2012,
+		"salary": 130,
 		"source": "approximated"
 	},
 	{
@@ -10592,6 +10608,19 @@
 		"startYear": 2013,
 		"endYear": 2013,
 		"salary": 205,
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-conversion",
+		"timestamp": "2014-01-15T00:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "461",
+		"playerName": "Michael Vick",
+		"position": "QB",
+		"startYear": 2013,
+		"endYear": 2013,
+		"salary": 100,
 		"source": "approximated"
 	},
 	{

@@ -176,6 +176,42 @@ function main() {
 		rfaRights[key] = r.rosterId;
 	});
 
+	// Apply RFA rights trades: if rights were traded, update the holder.
+	// The receiving party becomes the new rights holder for that player+season.
+	var leagueDates = require('../../config/dates.js');
+	trades.forEach(function(trade) {
+		trade.parties.forEach(function(receivingParty) {
+			if (!receivingParty.rfaRights || receivingParty.rfaRights.length === 0) return;
+
+			var tradeDate = new Date(trade.date);
+			var tradeYear = tradeDate.getFullYear();
+			var auctionDate = leagueDates.getAuctionDate(tradeYear);
+
+			// Rights traded before the auction apply to the current season's rights
+			// (from prior season). Rights traded after the auction apply to next year.
+			var rightsSeason;
+			if (auctionDate && tradeDate < auctionDate) {
+				rightsSeason = tradeYear - 1;
+			} else {
+				rightsSeason = tradeYear;
+			}
+
+			receivingParty.rfaRights.forEach(function(rfa) {
+				var key;
+				if (rfa.sleeperId) {
+					key = rfa.sleeperId + '|' + rightsSeason;
+				} else {
+					key = normalizePlayerName(rfa.name) + '|' + rightsSeason;
+				}
+
+				// Only update if rights exist (were converted)
+				if (rfaRights[key] !== undefined) {
+					rfaRights[key] = receivingParty.rosterId;
+				}
+			});
+		});
+	});
+
 	// Remove lapsed RFA rights from the lookup - these players go to auction
 	// as UFAs since the rights holder chose not to nominate them.
 	rfaRecords.forEach(function(r) {

@@ -2,12 +2,21 @@
 /**
  * Regenerate all data files in dependency order.
  *
+ * Dependencies are slightly circular:
+ *   - rfa needs auctions (for lapsed detection: did player go to auction?)
+ *   - auctions needs rfa (for classification: is this RFA or UFA?)
+ *
+ * Resolution: run auctions twice. First pass uses existing rfa.json,
+ * then rfa regenerates with fresh auctions, then auctions regenerates
+ * with fresh rfa.json for accurate RFA classification.
+ *
  * Order:
  *   1. contracts.json - base contract data from snapshots
- *   2. auctions.json  - depends on contracts, rfa, drafts, trades
- *   3. rfa.json       - depends on contracts, auctions, cuts, trades
- *   4. fa.json        - depends on cuts, trades
- *   5. player-history.dsl - depends on all of the above
+ *   2. fa.json        - depends on cuts, trades (static files)
+ *   3. auctions.json  - first pass, uses existing rfa.json
+ *   4. rfa.json       - depends on contracts, fa, trades, cuts, auctions
+ *   5. auctions.json  - second pass, uses fresh rfa.json
+ *   6. player-history.dsl - depends on all of the above
  *
  * Usage:
  *   node data/regenerate.js
@@ -18,9 +27,10 @@ var path = require('path');
 
 var generators = [
 	{ name: 'contracts', script: 'data/contracts/generate.js' },
-	{ name: 'auctions', script: 'data/auctions/generate.js' },
-	{ name: 'rfa', script: 'data/rfa/generate.js' },
 	{ name: 'fa', script: 'data/fa/generate.js' },
+	{ name: 'auctions (pass 1)', script: 'data/auctions/generate.js' },
+	{ name: 'rfa', script: 'data/rfa/generate.js' },
+	{ name: 'auctions (pass 2)', script: 'data/auctions/generate.js' },
 	{ name: 'dsl', script: 'data/dsl/generate.js' }
 ];
 

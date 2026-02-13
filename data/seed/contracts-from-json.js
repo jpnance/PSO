@@ -154,13 +154,19 @@ async function seed() {
 			
 			try {
 				// Create contract transaction
-				// Use index offset to maintain some ordering
-				var contractTs = new Date(contractTimestamp.getTime() + (ci * 1000));
+				// Use custom timestamp if present (early contract exceptions),
+				// otherwise use season's contract due date with index offset
+				var contractTs;
+				if (entry.timestamp) {
+					contractTs = new Date(entry.timestamp);
+				} else {
+					contractTs = new Date(contractTimestamp.getTime() + (ci * 1000));
+				}
 				
 				await Transaction.create({
 					type: 'contract',
 					timestamp: contractTs,
-					source: 'snapshot',
+					source: entry.source || 'snapshot',
 					franchiseId: franchise._id,
 					playerId: player._id,
 					salary: entry.salary,

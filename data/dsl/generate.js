@@ -387,10 +387,15 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 		var tradeDate = new Date(trade.date);
 		var tradeSeason = tradeDate.getUTCFullYear();
 
-		// If the trade happens during the season but the rfa event (contract expiry)
-		// is at end-of-season, clamp the timestamp so the rfa-trade sorts after the rfa.
-		// The rights being traded are created by the rfa event, so the trade must follow.
-		var rfaTs = rfaTimestampBySeason[tradeSeason];
+		// Determine which season's RFA rights are being traded.
+		// Trades before the auction are trading rights from the prior season.
+		// Trades after the auction are trading rights from the current season.
+		var auctionDate = auctionDates[tradeSeason];
+		var rightsSeason = (auctionDate && tradeDate < auctionDate) ? tradeSeason - 1 : tradeSeason;
+
+		// If the trade happens before the rfa event that creates the rights
+		// (e.g., expedited conveyance for a trade), clamp so rfa-trade sorts after rfa.
+		var rfaTs = rfaTimestampBySeason[rightsSeason];
 		if (rfaTs && tradeDate <= rfaTs) {
 			tradeDate = new Date(rfaTs.getTime() + 1);
 		}

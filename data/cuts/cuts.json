@@ -41,7 +41,8 @@
 		"endYear": 2009,
 		"salary": 5,
 		"cutYear": 2008,
-		"rosterId": 10
+		"rosterId": 10,
+		"sleeperId": "2601"
 	},
 	{
 		"owner": "Koci",
@@ -350,7 +351,8 @@
 		"endYear": 2010,
 		"salary": 4,
 		"cutYear": 2008,
-		"rosterId": 10
+		"rosterId": 10,
+		"sleeperId": "12169"
 	},
 	{
 		"owner": "Koci",

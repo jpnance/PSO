@@ -162,8 +162,11 @@ function buildApproximatePostseason(season, cuts, trades, faRecords) {
 
 	// 2. Process FA records chronologically
 	// Each FA record can have adds (player joins roster) and drops (player leaves roster)
+	// Exclude offseason records - these are PRE-auction drops from the prior contract,
+	// not post-season activity. Including them would incorrectly remove players who
+	// were re-acquired at auction with new contracts.
 	var seasonFA = faRecords.filter(function(fa) {
-		return fa.season === season;
+		return fa.season === season && fa.source !== 'offseason';
 	}).sort(function(a, b) {
 		return new Date(a.timestamp) - new Date(b.timestamp);
 	});
@@ -349,9 +352,7 @@ function run() {
 			season: 2009,
 			conversionTimestamp: '2009-12-29T12:00:00.000Z',
 			conversionRosterId: 7,
-			lapsedTimestamp: '2010-08-21T16:00:00.000Z',
-			lapsedRosterId: 1,
-			notes: 'Expedited RFA conveyance granted for Trade #16'
+			notes: 'Expedited RFA conveyance granted for Trade #16; rights traded to Patrick in Trade #16, who did not match at 2010 auction'
 		}
 	];
 
@@ -435,16 +436,18 @@ function run() {
 			source: 'exception'
 		});
 
-		allRecords.push({
-			season: ex.season,
-			type: 'rfa-rights-lapsed',
-			timestamp: ex.lapsedTimestamp,
-			rosterId: ex.lapsedRosterId,
-			sleeperId: ex.sleeperId,
-			playerName: ex.playerName,
-			position: null,
-			source: 'exception'
-		});
+		if (ex.lapsedTimestamp && ex.lapsedRosterId) {
+			allRecords.push({
+				season: ex.season,
+				type: 'rfa-rights-lapsed',
+				timestamp: ex.lapsedTimestamp,
+				rosterId: ex.lapsedRosterId,
+				sleeperId: ex.sleeperId,
+				playerName: ex.playerName,
+				position: null,
+				source: 'exception'
+			});
+		}
 	});
 
 	// Generate rfa-rights-lapsed records

@@ -6124,7 +6124,7 @@
   },
   {
     "season": 2010,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "220",
     "name": "DeMeco Ryans",
     "positions": [
@@ -9890,7 +9890,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "669",
     "name": "Arian Foster",
     "positions": [
@@ -10283,7 +10283,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": null,
     "name": "Colin McCarthy",
     "positions": [
@@ -11824,7 +11824,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "421",
     "name": "Matthew Stafford",
     "positions": [
@@ -12006,7 +12006,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "597",
     "name": "Morgan Burnett",
     "positions": [
@@ -12146,7 +12146,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "733",
     "name": "Perry Riley",
     "positions": [
@@ -12398,7 +12398,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "576",
     "name": "Sean Lee",
     "positions": [
@@ -14121,7 +14121,7 @@
   },
   {
     "season": 2013,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "448",
     "name": "Josh Freeman",
     "positions": [
@@ -14639,7 +14639,7 @@
   },
   {
     "season": 2013,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": null,
     "name": "Michael Turner",
     "positions": [
@@ -15312,7 +15312,7 @@
   },
   {
     "season": 2013,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "142",
     "name": "Tony Romo",
     "positions": [
@@ -17217,7 +17217,7 @@
   },
   {
     "season": 2014,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "461",
     "name": "Michael Vick",
     "positions": [
@@ -17483,7 +17483,7 @@
   },
   {
     "season": 2014,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "582",
     "name": "Riley Cooper",
     "positions": [
@@ -17987,7 +17987,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1149",
     "name": "Alshon Jeffery",
     "positions": [
@@ -18758,7 +18758,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "289",
     "name": "Drew Brees",
     "positions": [
@@ -18968,7 +18968,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "323",
     "name": "Jamaal Charles",
     "positions": [
@@ -19780,7 +19780,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "294",
     "name": "Peyton Manning",
     "positions": [
@@ -19808,7 +19808,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "928",
     "name": "Randall Cobb",
     "positions": [
@@ -19906,7 +19906,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-matched",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "4",
     "name": "Roddy White",
     "positions": [
@@ -19920,7 +19920,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1123",
     "name": "Ronnie Hillman",
     "positions": [
@@ -20004,7 +20004,7 @@
   },
   {
     "season": 2015,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1049",
     "name": "Ryan Tannehill",
     "positions": [
@@ -20284,7 +20284,7 @@
   },
   {
     "season": 2016,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "96",
     "name": "Aaron Rodgers",
     "positions": [
@@ -21516,7 +21516,7 @@
   },
   {
     "season": 2016,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "218",
     "name": "Jonathan Stewart",
     "positions": [
@@ -22230,7 +22230,7 @@
   },
   {
     "season": 2016,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "515",
     "name": "Rob Gronkowski",
     "positions": [
@@ -24092,7 +24092,7 @@
   },
   {
     "season": 2017,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "947",
     "name": "Julio Jones",
     "positions": [
@@ -24302,7 +24302,7 @@
   },
   {
     "season": 2017,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "676",
     "name": "LeSean McCoy",
     "positions": [
@@ -24331,7 +24331,7 @@
   },
   {
     "season": 2017,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1181",
     "name": "Luke Kuechly",
     "positions": [
@@ -24429,7 +24429,7 @@
   },
   {
     "season": 2017,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "103",
     "name": "Matt Forte",
     "positions": [
@@ -26194,7 +26194,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3156",
     "name": "Joey Bosa",
     "positions": [
@@ -26461,7 +26461,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1408",
     "name": "Le'Veon Bell",
     "positions": [
@@ -26573,7 +26573,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1346",
     "name": "Marquise Goodwin",
     "positions": [
@@ -26699,7 +26699,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "365",
     "name": "Mike Wallace",
     "positions": [
@@ -26909,7 +26909,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-matched",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "3657",
     "name": "Rob Kelley",
     "positions": [
@@ -26937,7 +26937,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1234",
     "name": "Russell Wilson",
     "positions": [
@@ -27316,7 +27316,7 @@
   },
   {
     "season": 2018,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3321",
     "name": "Tyreek Hill",
     "positions": [
@@ -27862,7 +27862,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3294",
     "name": "Dak Prescott",
     "positions": [
@@ -27890,7 +27890,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1833",
     "name": "Damien Williams",
     "positions": [
@@ -28436,7 +28436,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3163",
     "name": "Jared Goff",
     "positions": [
@@ -28674,7 +28674,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "947",
     "name": "Julio Jones",
     "positions": [
@@ -28856,7 +28856,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1408",
     "name": "Le'Veon Bell",
     "positions": [
@@ -29010,7 +29010,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3199",
     "name": "Michael Thomas",
     "positions": [
@@ -29094,7 +29094,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "2078",
     "name": "Odell Beckham",
     "positions": [
@@ -29346,7 +29346,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1110",
     "name": "T.Y. Hilton",
     "positions": [
@@ -29416,7 +29416,7 @@
   },
   {
     "season": 2019,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "2315",
     "name": "Todd Gurley",
     "positions": [
@@ -29906,7 +29906,7 @@
   },
   {
     "season": 2020,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4081",
     "name": "Budda Baker",
     "positions": [
@@ -30060,7 +30060,7 @@
   },
   {
     "season": 2020,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4082",
     "name": "Curtis Samuel",
     "positions": [
@@ -30172,7 +30172,7 @@
   },
   {
     "season": 2020,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "2133",
     "name": "Davante Adams",
     "positions": [
@@ -30312,7 +30312,7 @@
   },
   {
     "season": 2020,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4017",
     "name": "Deshaun Watson",
     "positions": [
@@ -32034,7 +32034,7 @@
   },
   {
     "season": 2021,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4981",
     "name": "Calvin Ridley",
     "positions": [
@@ -33689,7 +33689,7 @@
   },
   {
     "season": 2021,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1466",
     "name": "Travis Kelce",
     "positions": [
@@ -33773,7 +33773,7 @@
   },
   {
     "season": 2021,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3321",
     "name": "Tyreek Hill",
     "positions": [
@@ -34306,7 +34306,7 @@
   },
   {
     "season": 2022,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "3294",
     "name": "Dak Prescott",
     "positions": [
@@ -35793,7 +35793,7 @@
   },
   {
     "season": 2022,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "1049",
     "name": "Ryan Tannehill",
     "positions": [
@@ -35878,7 +35878,7 @@
   },
   {
     "season": 2022,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "5927",
     "name": "Terry McLaurin",
     "positions": [
@@ -36242,7 +36242,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "6945",
     "name": "Antonio Gibson",
     "positions": [
@@ -36298,7 +36298,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "6803",
     "name": "Brandon Aiyuk",
     "positions": [
@@ -36788,7 +36788,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "2028",
     "name": "Derek Carr",
     "positions": [
@@ -37407,7 +37407,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "6770",
     "name": "Joe Burrow",
     "positions": [
@@ -37421,7 +37421,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4018",
     "name": "Joe Mixon",
     "positions": [
@@ -37590,7 +37590,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "6797",
     "name": "Justin Herbert",
     "positions": [
@@ -37997,7 +37997,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4963",
     "name": "Minkah Fitzpatrick",
     "positions": [
@@ -38277,7 +38277,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "2449",
     "name": "Stefon Diggs",
     "positions": [
@@ -38375,7 +38375,7 @@
   },
   {
     "season": 2023,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "6801",
     "name": "Tee Higgins",
     "positions": [
@@ -38893,7 +38893,7 @@
   },
   {
     "season": 2024,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "7594",
     "name": "Chuba Hubbard",
     "positions": [
@@ -39104,7 +39104,7 @@
   },
   {
     "season": 2024,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "7525",
     "name": "DeVonta Smith",
     "positions": [
@@ -39989,7 +39989,7 @@
   },
   {
     "season": 2024,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "7608",
     "name": "Khalil Herbert",
     "positions": [
@@ -40060,7 +40060,7 @@
   },
   {
     "season": 2024,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "7553",
     "name": "Kyle Pitts",
     "positions": [
@@ -40285,7 +40285,7 @@
   },
   {
     "season": 2024,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "7569",
     "name": "Nico Collins",
     "positions": [
@@ -40481,7 +40481,7 @@
   },
   {
     "season": 2024,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4866",
     "name": "Saquon Barkley",
     "positions": [
@@ -40915,7 +40915,7 @@
   },
   {
     "season": 2025,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4892",
     "name": "Baker Mayfield",
     "positions": [
@@ -41685,7 +41685,7 @@
   },
   {
     "season": 2025,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "4066",
     "name": "Evan Engram",
     "positions": [
@@ -42575,7 +42575,7 @@
   },
   {
     "season": 2025,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-rfa-matched",
     "sleeperId": "2216",
     "name": "Mike Evans",
     "positions": [
@@ -42856,7 +42856,7 @@
   },
   {
     "season": 2025,
-    "type": "auction-rfa-matched",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "8121",
     "name": "Romeo Doubs",
     "positions": [

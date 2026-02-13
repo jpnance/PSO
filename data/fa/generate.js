@@ -1175,8 +1175,10 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 							matchingCuts.push(cut);
 						});
 
-						if (matchingCuts.length === 0) return; // No recent cut — player was continuously owned
+						var matchingCut = null;
+					var noCutInference = false;
 
+					if (matchingCuts.length > 0) {
 						// Check for name collisions: if cuts match different sleeperIds,
 						// we can't reliably determine which player the RFA rights belong to.
 						// (Only relevant when matching by name — sleeperId match is precise.)
@@ -1189,7 +1191,7 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 						}
 
 						// Use the most recent matching cut
-						var matchingCut = matchingCuts.sort(function(a, b) {
+						matchingCut = matchingCuts.sort(function(a, b) {
 							return b.cutYear - a.cutYear;
 						})[0];
 
@@ -1206,9 +1208,51 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 							});
 							if (reacquired) return;
 						}
+					} else {
+						// No recent cut. Usually this means the player was continuously
+						// owned (no FA gap to fill). But if the player has NO prior
+						// ownership at all in our data (no auctions, drafts, trades, or
+						// other FA adds), the RFA trade proves they were picked up from
+						// the unowned pool. Infer the FA add.
+						var sleeperId4 = rfa.sleeperId || null;
+						var playerKey4 = sleeperId4 || rfa.name.toLowerCase();
+						var hasAnyPriorOwnership = emitted.has(playerKey4 + '|' + season) ||
+							emitted.has(playerKey4 + '|' + (season - 1));
+
+						// Also check all prior seasons' snapshots for this player
+						// (both postseason and contracts files)
+						if (!hasAnyPriorOwnership) {
+							for (var checkYear = 2008; checkYear <= season; checkYear++) {
+								var checkSnapshot = parsePostseasonSnapshot(checkYear);
+								var inSnapshot = checkSnapshot.some(function(p) {
+									if (sleeperId4 && p.id) return p.id === sleeperId4;
+									return resolver.normalizePlayerName(p.name) === normalizedRfaName;
+								});
+								if (inSnapshot) { hasAnyPriorOwnership = true; break; }
+
+								// Check contracts snapshot too
+								var contractsFile = path.join(SNAPSHOTS_DIR, 'contracts-' + checkYear + '.txt');
+								if (fs.existsSync(contractsFile)) {
+									var contractsLines = fs.readFileSync(contractsFile, 'utf8').split('\n');
+									var inContracts = contractsLines.some(function(l) {
+										var parts = l.split(',');
+										if (parts.length < 3) return false;
+										var owner = (parts[1] || '').trim();
+										if (!owner) return false; // Unowned
+										if (sleeperId4 && parts[0] === sleeperId4) return true;
+										return resolver.normalizePlayerName(parts[2]) === normalizedRfaName;
+									});
+									if (inContracts) { hasAnyPriorOwnership = true; break; }
+								}
+							}
+						}
+
+						if (hasAnyPriorOwnership) return; // Continuously owned — no FA gap
+						noCutInference = true;
+					}
 
 						var giverOwner = givingParty.owner;
-						var sleeperId = rfa.sleeperId || matchingCut.sleeperId || null;
+						var sleeperId = rfa.sleeperId || (matchingCut ? matchingCut.sleeperId : null) || null;
 						var playerKey = sleeperId || rfa.name.toLowerCase();
 
 						// Trace back through trade chain to find the original FA acquirer
@@ -1236,8 +1280,8 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 
 					var add = {
 						name: rfa.name,
-						position: matchingCut.position || null,
-						salary: matchingCut.salary || 1,
+						position: matchingCut ? matchingCut.position : null,
+						salary: matchingCut ? (matchingCut.salary || 1) : 1,
 						startYear: null,
 						endYear: season
 					};

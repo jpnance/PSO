@@ -39637,7 +39637,9 @@
     "rosterId": 9,
     "salary": 5,
     "startYear": 2022,
-    "endYear": 2022
+    "endYear": 2022,
+    "timestamp": "2022-09-05T15:23:59.000Z",
+    "source": "exception"
   },
   {
     "season": 2022,
@@ -40586,7 +40588,9 @@
     "rosterId": 3,
     "salary": 10,
     "startYear": 2022,
-    "endYear": 2022
+    "endYear": 2022,
+    "timestamp": "2022-09-01T19:26:03.000Z",
+    "source": "exception"
   },
   {
     "season": 2022,
@@ -45403,7 +45407,9 @@
     "rosterId": 4,
     "salary": 3,
     "startYear": 2024,
-    "endYear": 2024
+    "endYear": 2024,
+    "timestamp": "2024-08-29T01:28:59.000Z",
+    "source": "exception"
   },
   {
     "season": 2024,

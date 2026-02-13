@@ -105,7 +105,8 @@
 				"position": "WR",
 				"salary": 5,
 				"startYear": 2008,
-				"endYear": 2009
+				"endYear": 2009,
+				"sleeperId": "2601"
 			}
 		],
 		"source": "cuts",
@@ -630,7 +631,8 @@
 				"position": "WR",
 				"salary": 4,
 				"startYear": 2008,
-				"endYear": 2010
+				"endYear": 2010,
+				"sleeperId": "12169"
 			}
 		],
 		"source": "cuts",
@@ -15668,6 +15670,26 @@
 				"startYear": null,
 				"endYear": 2011,
 				"sleeperId": "597"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-11-03T12:00:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Perry Riley",
+				"position": null,
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011,
+				"sleeperId": "733"
 			}
 		],
 		"drops": [],
