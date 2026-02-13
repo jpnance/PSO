@@ -18,7 +18,7 @@ mixin timelineSalary(entry, opts)
 mixin timelineEntry(entry)
 	- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
 	- var categoryClass = 'player-timeline__entry--' + transactionCategory(entry.type)
-	- var icons = { 'trade': 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'expansion-draft-protect': 'fa-shield', 'expansion-draft-select': 'fa-users', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', 'rfa-rights-conversion': 'fa-refresh', 'contract': 'fa-file-text-o', 'contract-expiry': 'fa-calendar-times-o', 'rfa-unknown': 'fa-question-circle' }
+	- var icons = { 'trade': 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'expansion-draft-protect': 'fa-shield', 'expansion-draft-select': 'fa-users', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', 'rfa-rights-conversion': 'fa-refresh', 'rfa-rights-lapsed': 'fa-hourglass-end', 'contract': 'fa-file-text-o', 'contract-expiry': 'fa-calendar-times-o', 'rfa-unknown': 'fa-question-circle' }
 	- var icon = icons[entry.type] || 'fa-circle'
 	div.player-timeline__entry(class=categoryClass)
 		div.player-timeline__icon
@@ -78,6 +78,10 @@ mixin timelineEntry(entry)
 					+timelineSalary(entry)
 				else if entry.type === 'rfa-rights-conversion'
 					span Became restricted free agent under #{entry.regime}
+				else if entry.type === 'rfa-rights-lapsed'
+					span RFA rights lapsed
+					if entry.regime
+						span.text-muted  (held by #{entry.regime})
 				else if entry.type === 'contract'
 					span Contract set by #{entry.regime}
 					+timelineSalary(entry)

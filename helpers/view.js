@@ -1046,10 +1046,12 @@ function transactionCategory(type) {
 	var acquisitions = ['draft-select', 'fa-pickup', 'trade', 'expansion-draft-select'];
 	var departures = ['fa-cut'];
 	var auctions = ['auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'];
+	var rfa = ['rfa-rights-lapsed', 'rfa-rights-conversion'];
 	
 	if (acquisitions.includes(type)) return 'acquisition';
 	if (departures.includes(type)) return 'departure';
 	if (auctions.includes(type)) return 'auction';
+	if (rfa.includes(type)) return 'rfa';
 	return 'admin';
 }
 

@@ -137,6 +137,9 @@
 .player-timeline__entry--admin .player-timeline__icon { color: #adb5bd; }
 .player-timeline__entry--admin .player-timeline__content { border-left-color: #adb5bd; }
 
+.player-timeline__entry--rfa .player-timeline__icon { color: var(--asset-rfa); }
+.player-timeline__entry--rfa .player-timeline__content { border-left-color: var(--asset-rfa); }
+
 /* Year divider */
 .player-timeline__year {
 	display: flex;
