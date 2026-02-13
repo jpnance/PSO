@@ -241,7 +241,7 @@ BE 	Noah Spence
 BE 	Patrick Peterson
 BE 	Robert Nkemdiche
 BE 	Steve Smith Sr.
-BE 	Steven Hauschka
+BE 	Stephen Hauschka
 BE 	Thomas Rawls
 BE 	Tyrod Taylor
 BE 	Victor Cruz

@@ -1,3 +1,5 @@
+NOTE: This one is missing a good number of players even in its original form. Not sure why.
+
 Patrick
 QB Nick Foles
 RB Ben Tate
@@ -53,6 +55,8 @@ DP Calvin Pryor
 DP Tyvon Branch
 K Mason Crosby
 BE Mike Glennon
+BE T.J. Carrie
+BE Roy Finch
 BE Muhammad Wilkerson
 BE Lawrence Timmons
 BE Stephen Tulloch
@@ -256,12 +260,12 @@ RB/WR Maurice Jones-Drew
 WR Kenny Stills
 WR Justin Hunter
 WR/TE Owen Daniels
+BE Davante Adams
 TE Julius Thomas
 OP Colin Kaepernick
 LB Whitney Mercilus
 DL Lamarr Houston
 DB Jairus Byrd
-DP DeMeco Ryans
 DP Kiko Alonso
 K Adam Vinatieri
 BE Matt Ryan
@@ -299,6 +303,7 @@ OP Matt Barkley
 LB Dont'a Hightower
 DP Bobby Wagner
 DP Jerrell Freeman
+BE Ahmad Dixon
 BE Joseph Randle
 BE Marcus Lattimore
 BE Dwayne Bowe
@@ -328,7 +333,7 @@ DL Cameron Jordan
 DB Morgan Burnett
 DP Barry Church
 DP Earl Thomas
-K Steven Hauschka
+K Stephen Hauschka
 BE Tyler Bray
 BE Tarvaris Jackson
 BE Santonio Holmes

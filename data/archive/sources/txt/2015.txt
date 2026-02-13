@@ -235,7 +235,7 @@ DL Ezekiel Ansah
 DB Johnathan Cyprien
 DP Frank Clark
 DP Landon Collins
-K Steven Hauschka
+K Stephen Hauschka
 BE Jimmy Graham
 BE Ben Roethlisberger
 BE Charles Clay
