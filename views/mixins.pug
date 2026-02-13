@@ -237,7 +237,10 @@ mixin tradeAssetContent(asset)
 		span.asset-details
 			if (asset.type === 'player' || asset.type === 'rfa') && asset.hasOwnProperty('playerName')
 				span.asset-name
-					| #{asset.playerName}
+					if asset.href
+						a(href=asset.href)= asset.playerName
+					else
+						| #{asset.playerName}
 					if asset.positions && asset.positions.length > 0
 						|  
 						+positionBadge(asset.positions)

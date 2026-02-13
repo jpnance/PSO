@@ -856,41 +856,45 @@ async function viewProposal(request, response) {
 				return ((b.contract ? b.contract.salary : 0) || 0) - ((a.contract ? a.contract.salary : 0) || 0);
 			});
 			
-			for (var j = 0; j < playerData.length; j++) {
-				var player = playerData[j].player;
-				var contract = playerData[j].contract;
-				var playerName = player ? player.name : 'Unknown';
-				var positions = player ? player.positions : [];
-				
-				if (contract && contract.salary === null) {
-					// RFA rights
-					assets.push({
-						type: 'rfa',
-						playerName: playerName,
-						contractInfo: 'RFA rights',
-						positions: positions,
-						salary: 0
-					});
-				} else if (contract) {
-					// Regular player
-					assets.push({
-						type: 'player',
-						playerName: playerName,
-						contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
-						positions: positions,
-						salary: contract.salary || 0
-					});
-				} else {
-					// No contract found
-					assets.push({
-						type: 'player',
-						playerName: playerName,
-						contractInfo: '(no contract)',
-						positions: positions,
-						salary: 0
-					});
-				}
+		for (var j = 0; j < playerData.length; j++) {
+			var player = playerData[j].player;
+			var contract = playerData[j].contract;
+			var playerName = player ? player.name : 'Unknown';
+			var positions = player ? player.positions : [];
+			var playerHref = player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null;
+			
+			if (contract && contract.salary === null) {
+				// RFA rights
+				assets.push({
+					type: 'rfa',
+					playerName: playerName,
+					href: playerHref,
+					contractInfo: 'RFA rights',
+					positions: positions,
+					salary: 0
+				});
+			} else if (contract) {
+				// Regular player
+				assets.push({
+					type: 'player',
+					playerName: playerName,
+					href: playerHref,
+					contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
+					positions: positions,
+					salary: contract.salary || 0
+				});
+			} else {
+				// No contract found
+				assets.push({
+					type: 'player',
+					playerName: playerName,
+					href: playerHref,
+					contractInfo: '(no contract)',
+					positions: positions,
+					salary: 0
+				});
 			}
+		}
 			
 			// Picks - sorted by season then round
 			var pickData = [];
@@ -1420,35 +1424,39 @@ async function listProposalsForApproval(request, response) {
 					return ((b.contract ? b.contract.salary : 0) || 0) - ((a.contract ? a.contract.salary : 0) || 0);
 				});
 				
-				for (var k = 0; k < playerData.length; k++) {
-					var player = playerData[k].player;
-					var contract = playerData[k].contract;
-					var playerName = player ? player.name : 'Unknown';
-					var positions = player ? player.positions : [];
-					
-					if (contract && contract.salary === null) {
-						assets.push({
-							type: 'rfa',
-							playerName: playerName,
-							contractInfo: 'RFA rights',
-							positions: positions
-						});
-					} else if (contract) {
-						assets.push({
-							type: 'player',
-							playerName: playerName,
-							contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
-							positions: positions
-						});
-					} else {
-						assets.push({
-							type: 'player',
-							playerName: playerName,
-							contractInfo: '(no contract)',
-							positions: positions
-						});
-					}
+			for (var k = 0; k < playerData.length; k++) {
+				var player = playerData[k].player;
+				var contract = playerData[k].contract;
+				var playerName = player ? player.name : 'Unknown';
+				var positions = player ? player.positions : [];
+				var playerHref = player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null;
+				
+				if (contract && contract.salary === null) {
+					assets.push({
+						type: 'rfa',
+						playerName: playerName,
+						href: playerHref,
+						contractInfo: 'RFA rights',
+						positions: positions
+					});
+				} else if (contract) {
+					assets.push({
+						type: 'player',
+						playerName: playerName,
+						href: playerHref,
+						contractInfo: formatContractDisplay(contract.salary || 0, contract.startYear, contract.endYear),
+						positions: positions
+					});
+				} else {
+					assets.push({
+						type: 'player',
+						playerName: playerName,
+						href: playerHref,
+						contractInfo: '(no contract)',
+						positions: positions
+					});
 				}
+			}
 				
 				// Picks - sorted by season then round
 				var pickData = [];

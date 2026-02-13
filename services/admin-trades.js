@@ -81,15 +81,16 @@ async function editTradeForm(request, response) {
 		for (var k = 0; k < (party.receives.players || []).length; k++) {
 			var p = party.receives.players[k];
 			var player = playerMap[p.playerId.toString()];
-			playersData.push({
-				playerId: p.playerId,
-				playerName: player ? player.name : 'Unknown',
-				positions: player ? player.positions : [],
-				salary: p.salary,
-				startYear: p.startYear,
-				endYear: p.endYear,
-				rfaRights: p.rfaRights
-			});
+		playersData.push({
+			playerId: p.playerId,
+			playerName: player ? player.name : 'Unknown',
+			href: player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null,
+			positions: player ? player.positions : [],
+			salary: p.salary,
+			startYear: p.startYear,
+			endYear: p.endYear,
+			rfaRights: p.rfaRights
+		});
 		}
 		
 		// Enrich picks
@@ -125,11 +126,12 @@ async function editTradeForm(request, response) {
 		for (var k = 0; k < (party.receives.rfaRights || []).length; k++) {
 			var rfa = party.receives.rfaRights[k];
 			var player = playerMap[rfa.playerId.toString()];
-			rfaData.push({
-				playerId: rfa.playerId,
-				playerName: player ? player.name : 'Unknown',
-				positions: player ? player.positions : []
-			});
+		rfaData.push({
+			playerId: rfa.playerId,
+			playerName: player ? player.name : 'Unknown',
+			href: player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null,
+			positions: player ? player.positions : []
+		});
 		}
 		
 		// Build assets array for trade card display (matches +tradeParty mixin format)
@@ -139,28 +141,30 @@ async function editTradeForm(request, response) {
 		var sortedPlayers = playersData.slice().sort(function(a, b) {
 			return (b.salary || 0) - (a.salary || 0);
 		});
-		sortedPlayers.forEach(function(p) {
-			var contractInfo = formatContractDisplay(p.salary || 0, p.startYear, p.endYear);
-			if (p.rfaRights) {
-				contractInfo += ' (RFA)';
-			}
-			assets.push({
-				type: 'player',
-				playerName: p.playerName,
-				positions: p.positions || [],
-				contractInfo: contractInfo
-			});
+	sortedPlayers.forEach(function(p) {
+		var contractInfo = formatContractDisplay(p.salary || 0, p.startYear, p.endYear);
+		if (p.rfaRights) {
+			contractInfo += ' (RFA)';
+		}
+		assets.push({
+			type: 'player',
+			playerName: p.playerName,
+			href: p.href,
+			positions: p.positions || [],
+			contractInfo: contractInfo
 		});
-		
-		// RFA rights
-		rfaData.forEach(function(rfa) {
-			assets.push({
-				type: 'rfa',
-				playerName: rfa.playerName,
-				positions: rfa.positions || [],
-				contractInfo: 'RFA rights'
-			});
+	});
+	
+	// RFA rights
+	rfaData.forEach(function(rfa) {
+		assets.push({
+			type: 'rfa',
+			playerName: rfa.playerName,
+			href: rfa.href,
+			positions: rfa.positions || [],
+			contractInfo: 'RFA rights'
 		});
+	});
 		
 		// Group picks and cash by season for sorted display
 		var seasonAssets = {};
