@@ -103,15 +103,18 @@ var leagueConfigSchema = new Schema({
 });
 
 // Compute current phase based on dates
+// Phase progression through a season:
+//   dead-period → early-offseason → pre-season → regular-season → post-deadline → playoff-fa → dead-period
+// dead-period occurs twice: after playoffs end (before rollover) and after rollover (before trade window)
 leagueConfigSchema.methods.getPhase = function() {
 	var today = new Date();
 	
+	// After playoffs end - dead period until rollover
 	if (this.deadPeriod && today >= this.deadPeriod) {
-		if (!this.tradeWindow || today < this.tradeWindow) {
-			return 'dead-period';
-		}
+		return 'dead-period';
 	}
 	
+	// Before trade window opens (after rollover) - still dead period
 	if (this.tradeWindow && today < this.tradeWindow) {
 		return 'dead-period';
 	}

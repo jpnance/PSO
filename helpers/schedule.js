@@ -9,8 +9,13 @@ async function getScheduleWidget(season, phase, cutDay) {
 	var now = new Date();
 	var currentWeek = PSO.getWeek(now, season);
 	
-	// In offseason, show previous season's playoff bracket until cut day
-	if (phase === 'dead-period' || phase === 'early-offseason' || phase === 'pre-season') {
+	// In dead-period, show current season's playoff bracket (season just ended)
+	if (phase === 'dead-period') {
+		return await getPlayoffBracket(season);
+	}
+	
+	// In offseason (after rollover), show previous season's playoff bracket until cut day
+	if (phase === 'early-offseason' || phase === 'pre-season') {
 		if (cutDay && now >= new Date(cutDay)) {
 			return null;
 		}
