@@ -34,6 +34,7 @@ var args = {
 /**
  * Get the rosterId for an owner name in a specific season.
  * Owner names can change over time due to franchise transfers.
+ * For future seasons not in the map, falls back to the most recent known season.
  */
 function getRosterIdForSeason(ownerName, season) {
 	if (!ownerName) return null;
@@ -41,10 +42,24 @@ function getRosterIdForSeason(ownerName, season) {
 	
 	// Build a reverse lookup: for this season, which rosterId has this owner name?
 	var rosterIds = Object.keys(PSO.franchiseNames);
+	
+	// Find the effective season to use (fall back to latest known if future)
+	function getEffectiveSeason(yearMap, targetSeason) {
+		if (yearMap[targetSeason]) return targetSeason;
+		// Find the most recent year in the map
+		var years = Object.keys(yearMap).map(y => parseInt(y, 10)).sort((a, b) => b - a);
+		for (var i = 0; i < years.length; i++) {
+			if (years[i] <= targetSeason) return years[i];
+		}
+		// If target is before all known years, use the earliest
+		return years[years.length - 1];
+	}
+	
 	for (var i = 0; i < rosterIds.length; i++) {
 		var rid = parseInt(rosterIds[i], 10);
 		var yearMap = PSO.franchiseNames[rid];
-		var ownerForYear = yearMap[season];
+		var effectiveSeason = getEffectiveSeason(yearMap, season);
+		var ownerForYear = yearMap[effectiveSeason];
 		if (ownerForYear && ownerForYear.toLowerCase() === name.toLowerCase()) {
 			return rid;
 		}
@@ -54,7 +69,8 @@ function getRosterIdForSeason(ownerName, season) {
 	for (var i = 0; i < rosterIds.length; i++) {
 		var rid = parseInt(rosterIds[i], 10);
 		var yearMap = PSO.franchiseNames[rid];
-		var ownerForYear = yearMap[season];
+		var effectiveSeason = getEffectiveSeason(yearMap, season);
+		var ownerForYear = yearMap[effectiveSeason];
 		if (ownerForYear) {
 			var parts = ownerForYear.split('/');
 			for (var p = 0; p < parts.length; p++) {
