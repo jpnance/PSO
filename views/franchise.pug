@@ -268,54 +268,54 @@ block content
 				div.card.mb-4
 					div.card-header Budget
 					- var b = franchise.budgets
-					table.table.table-sm.mb-0.budget-table
-						thead.table-secondary
+					table.data-table.budget-table.w-100.mb-0
+						thead
 							tr
 								th
-								th.text-right= currentSeason
-								th.text-right= currentSeason + 1
-								th.text-right= currentSeason + 2
+								th.data-table__num= currentSeason
+								th.data-table__num= currentSeason + 1
+								th.data-table__num= currentSeason + 2
 						tbody
 							tr
 								td Base
-								td.text-right #{formatMoney(b[0].baseAmount)}
-								td.text-right #{formatMoney(b[1].baseAmount)}
-								td.text-right #{formatMoney(b[2].baseAmount)}
+								td.data-table__num #{formatMoney(b[0].baseAmount)}
+								td.data-table__num #{formatMoney(b[1].baseAmount)}
+								td.data-table__num #{formatMoney(b[2].baseAmount)}
 							tr
 								td Payroll
-								td.text-right #{formatMoney(b[0].payroll, { sign: '-' })}
-								td.text-right #{formatMoney(b[1].payroll, { sign: '-' })}
-								td.text-right #{formatMoney(b[2].payroll, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[0].payroll, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[1].payroll, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[2].payroll, { sign: '-' })}
 							tr
 								td Buy-outs
-								td.text-right #{formatMoney(b[0].buyOuts, { sign: '-' })}
-								td.text-right #{formatMoney(b[1].buyOuts, { sign: '-' })}
-								td.text-right #{formatMoney(b[2].buyOuts, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[0].buyOuts, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[1].buyOuts, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[2].buyOuts, { sign: '-' })}
 							tr
 								td Cash In
-								td.text-right #{formatMoney(b[0].cashIn, { sign: '+' })}
-								td.text-right #{formatMoney(b[1].cashIn, { sign: '+' })}
-								td.text-right #{formatMoney(b[2].cashIn, { sign: '+' })}
+								td.data-table__num #{formatMoney(b[0].cashIn, { sign: '+' })}
+								td.data-table__num #{formatMoney(b[1].cashIn, { sign: '+' })}
+								td.data-table__num #{formatMoney(b[2].cashIn, { sign: '+' })}
 							tr
 								td Cash Out
-								td.text-right #{formatMoney(b[0].cashOut, { sign: '-' })}
-								td.text-right #{formatMoney(b[1].cashOut, { sign: '-' })}
-								td.text-right #{formatMoney(b[2].cashOut, { sign: '-' })}
-							tr.available-row
+								td.data-table__num #{formatMoney(b[0].cashOut, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[1].cashOut, { sign: '-' })}
+								td.data-table__num #{formatMoney(b[2].cashOut, { sign: '-' })}
+							tr.budget-table__available
 								td: strong Available
-								td.text-right: strong #{formatMoney(b[0].available)}
-								td.text-right: strong #{formatMoney(b[1].available)}
-								td.text-right: strong #{formatMoney(b[2].available)}
-							tr.recoverable-row
+								td.data-table__num: strong #{formatMoney(b[0].available)}
+								td.data-table__num: strong #{formatMoney(b[1].available)}
+								td.data-table__num: strong #{formatMoney(b[2].available)}
+							tr.budget-table__recoverable
 								td Recoverable
-								td.text-right #{formatMoney(b[0].recoverable, { sign: '+' })}
-								td.text-right #{formatMoney(b[1].recoverable, { sign: '+' })}
-								td.text-right #{formatMoney(b[2].recoverable, { sign: '+' })}
-							tr.effective-cap-row
+								td.data-table__num #{formatMoney(b[0].recoverable, { sign: '+' })}
+								td.data-table__num #{formatMoney(b[1].recoverable, { sign: '+' })}
+								td.data-table__num #{formatMoney(b[2].recoverable, { sign: '+' })}
+							tr.budget-table__effective
 								td Effective Cap
-								td.text-right #{formatMoney(b[0].baseAmount - b[0].buyOuts - b[0].cashOut + b[0].cashIn)}
-								td.text-right #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
-								td.text-right #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
+								td.data-table__num #{formatMoney(b[0].baseAmount - b[0].buyOuts - b[0].cashOut + b[0].cashIn)}
+								td.data-table__num #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
+								td.data-table__num #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
 				
 				//- Draft Picks card
 				- var availablePicks = franchise.picks.filter(p => p.status === 'available')

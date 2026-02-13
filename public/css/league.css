@@ -55,21 +55,20 @@
 	border-bottom: none;
 }
 
-/* Budget sections */
-.available-row td {
+/* Budget table rows */
+.budget-table__available td {
 	background-color: #f8f9fa;
 	border-top: 1px solid #dee2e6;
 }
 
-.recoverable-row td,
-.effective-cap-row td {
+.budget-table__recoverable td,
+.budget-table__effective td {
 	color: #6c757d;
-	font-size: 0.875rem;
 	font-style: italic;
 	background-color: #fafafa;
 }
 
-.recoverable-row td {
+.budget-table__recoverable td {
 	border-top: 1px solid #e9ecef;
 }
 
@@ -78,8 +77,6 @@
 .roster-table td:first-child,
 .picks-table th:first-child,
 .picks-table td:first-child,
-.budget-table th:first-child,
-.budget-table td:first-child,
 .rfa-table td:first-child,
 .history-table td:first-child {
 	padding-left: 0.75rem;
@@ -90,8 +87,6 @@
 .roster-table td:last-child,
 .picks-table th:last-child,
 .picks-table td:last-child,
-.budget-table th:last-child,
-.budget-table td:last-child,
 .rfa-table td:last-child,
 .history-table td:last-child {
 	padding-right: 0.75rem;
@@ -99,7 +94,6 @@
 
 /* Include thead headers too */
 .roster-table thead th:first-child,
-.budget-table thead th:first-child,
 .picks-table thead th:first-child {
 	padding-left: 0.75rem;
 }
