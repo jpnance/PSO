@@ -118,16 +118,22 @@ html
 							i.fa.fa-chevron-down.toggle-icon
 						div(id=section.id + 'Menu' class=(section.expanded ? 'collapse show ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu') : 'collapse ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu')))
 							each item in section.items
-								a.sidebar-link(href=item.href class=(item.active ? 'active' : '') target=(item.external ? '_blank' : null))
-									if item.icon
-										i.fa(class=item.icon)
-									= item.label
-									if item.badge
-										span.nav-notification-badge= item.badge
-									if item.soon
-										span.badge.badge-secondary Soon
-									if item.external
-										i.fa.fa-external-link.external-icon
+								a.sidebar-link(href=item.href class=(item.active ? 'active' : '') + (item.rosterId ? ' sidebar-link--franchise' : '') target=(item.external ? '_blank' : null))
+									if item.rosterId
+										- var word = numberToWord(item.rosterId)
+										- var capitalized = word.charAt(0).toUpperCase() + word.slice(1)
+										span.sidebar-link__franchise-name Franchise #{capitalized}
+										span.sidebar-link__regime= item.label
+									else
+										if item.icon
+											i.fa(class=item.icon)
+										= item.label
+										if item.badge
+											span.nav-notification-badge= item.badge
+										if item.soon
+											span.badge.badge-secondary Soon
+										if item.external
+											i.fa.fa-external-link.external-icon
 
 		//- Main Content
 		main.main-content

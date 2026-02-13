@@ -148,6 +148,7 @@ app.locals.tradeOgTitle = viewHelpers.tradeOgTitle;
 app.locals.tradeOgDescription = viewHelpers.tradeOgDescription;
 app.locals.tradeOgPlainEnglish = viewHelpers.tradeOgPlainEnglish;
 app.locals.transactionCategory = viewHelpers.transactionCategory;
+app.locals.numberToWord = viewHelpers.numberToWord;
 app.locals.POSITION_ORDER = viewHelpers.POSITION_ORDER;
 app.locals.buildNav = navHelpers.buildNav;
 require('./routes')(app);

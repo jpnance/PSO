@@ -84,6 +84,7 @@ function buildNav(options) {
 		expanded: activePage === 'franchise' || activePage === 'franchises' || isActive('timeline'),
 		items: franchises.map(function(f) {
 			return {
+				rosterId: f.rosterId,
 				label: f.displayName,
 				href: '/franchises/' + f.rosterId,
 				active: isFranchiseActive(f.rosterId)

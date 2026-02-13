@@ -197,8 +197,8 @@ function oxfordJoin(items) {
  * @returns {string}
  */
 function numberToWord(n) {
-	var words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-	return n <= 10 ? words[n] : String(n);
+	var words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+	return n <= 12 ? words[n] : String(n);
 }
 
 /**
@@ -1081,5 +1081,6 @@ module.exports = {
 	formatPickNumber: formatPickHelpers.formatPickNumber,
 	playerUrl: playerUrl,
 	transactionCategory: transactionCategory,
+	numberToWord: numberToWord,
 	POSITION_ORDER: POSITION_ORDER
 };
