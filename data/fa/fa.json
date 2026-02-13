@@ -38866,26 +38866,6 @@
 	{
 		"season": 2015,
 		"timestamp": "2015-11-22T18:00:33.000Z",
-		"rosterId": 6,
-		"adds": [
-			{
-				"name": "James White",
-				"position": "RB",
-				"salary": 4,
-				"startYear": null,
-				"endYear": 2015,
-				"sleeperId": "1848"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2015,
-		"timestamp": "2015-11-22T18:00:33.000Z",
 		"rosterId": 3,
 		"adds": [
 			{
@@ -39155,6 +39135,26 @@
 				"startYear": null,
 				"endYear": 2015,
 				"sleeperId": "2585"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2015,
+		"timestamp": "2015-11-23T06:00:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "James White",
+				"position": "RB",
+				"salary": 4,
+				"startYear": null,
+				"endYear": 2015,
+				"sleeperId": "1848"
 			}
 		],
 		"drops": [],
@@ -53529,26 +53529,6 @@
 	},
 	{
 		"season": 2017,
-		"timestamp": "2017-11-02T16:44:33.000Z",
-		"rosterId": 12,
-		"adds": [
-			{
-				"name": "Matt Bryant",
-				"position": "K",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2017,
-				"sleeperId": "127"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2017,
 		"timestamp": "2017-11-03T00:00:33.000Z",
 		"rosterId": 9,
 		"adds": [
@@ -55470,26 +55450,6 @@
 	{
 		"season": 2017,
 		"timestamp": "2017-11-22T18:00:33.000Z",
-		"rosterId": 1,
-		"adds": [
-			{
-				"name": "Sam Bradford",
-				"position": "QB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2017,
-				"sleeperId": "621"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2017,
-		"timestamp": "2017-11-22T18:00:33.000Z",
 		"rosterId": 11,
 		"adds": [
 			{
@@ -55679,6 +55639,26 @@
 				"startYear": null,
 				"endYear": 2017,
 				"sleeperId": "1808"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-23T06:00:33.000Z",
+		"rosterId": 1,
+		"adds": [
+			{
+				"name": "Sam Bradford",
+				"position": "QB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "621"
 			}
 		],
 		"drops": [],
@@ -61381,46 +61361,6 @@
 	},
 	{
 		"season": 2018,
-		"timestamp": "2018-10-27T01:43:33.000Z",
-		"rosterId": 10,
-		"adds": [
-			{
-				"name": "Desmond King",
-				"position": "DB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "4216"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2018,
-		"timestamp": "2018-10-27T01:43:33.000Z",
-		"rosterId": 3,
-		"adds": [
-			{
-				"name": "Marcus Murphy",
-				"position": "RB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "2529"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2018,
 		"timestamp": "2018-10-27T01:56:33.000Z",
 		"rosterId": 3,
 		"adds": [
@@ -61451,26 +61391,6 @@
 				"startYear": null,
 				"endYear": 2018,
 				"sleeperId": "2749"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2018,
-		"timestamp": "2018-10-31T01:27:33.000Z",
-		"rosterId": 12,
-		"adds": [
-			{
-				"name": "Myles Jack",
-				"position": "LB",
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2018,
-				"sleeperId": "3166"
 			}
 		],
 		"drops": [],
@@ -68647,26 +68567,6 @@
 			{
 				"name": "Nick Vigil",
 				"position": null,
-				"salary": 1,
-				"startYear": null,
-				"endYear": 2019,
-				"sleeperId": "3254"
-			}
-		],
-		"drops": [],
-		"source": "inferred",
-		"sourceId": null,
-		"tradeId": null,
-		"inferred": true
-	},
-	{
-		"season": 2019,
-		"timestamp": "2019-10-15T13:25:33.000Z",
-		"rosterId": 6,
-		"adds": [
-			{
-				"name": "Nick Vigil",
-				"position": "LB",
 				"salary": 1,
 				"startYear": null,
 				"endYear": 2019,

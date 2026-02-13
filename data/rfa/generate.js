@@ -3,7 +3,7 @@
  * RFA Rights Generator
  *
  * Generates rfa.json — a record of RFA rights conversions, contract expiries,
- * and unknown statuses for each season.
+ * and lapsed rights for each season.
  *
  * Rules:
  *   2008-2018: ALL expiring contracts convey RFA rights to the owning franchise.
@@ -11,8 +11,9 @@
  *              1-year and FA contracts result in contract-expiry (player becomes UFA).
  *
  * Data sources:
- *   - postseason-YEAR.txt snapshots (available for 2008, 2014-2025): authoritative
- *   - contracts-YEAR.txt + cuts.json + trades.json (2009-2013): approximated
+ *   - postseason-YEAR.txt snapshots (2008, 2014+): authoritative end-of-season rosters
+ *   - contracts-YEAR.txt + fa.json + trades + cuts (2009-2013): approximated
+ *   - auctions.json: to determine if player went to auction (for lapsed detection)
  *
  * Timestamp convention: January 15 at 00:00 UTC of the following year.
  *
@@ -33,6 +34,7 @@ var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var CUTS_FILE = path.join(__dirname, '../cuts/cuts.json');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
 var AUCTIONS_FILE = path.join(__dirname, '../auctions/auctions.json');
+var FA_FILE = path.join(__dirname, '../fa/fa.json');
 
 // =============================================================================
 // Data Loading
@@ -68,6 +70,16 @@ function ownerToRosterId(ownerName, season) {
 	}
 
 	return null;
+}
+
+/**
+ * Build a player key for identification.
+ */
+function playerKey(sleeperId, name) {
+	if (sleeperId && sleeperId !== '-1' && sleeperId !== -1) {
+		return 'id:' + sleeperId;
+	}
+	return 'name:' + resolver.normalizePlayerName(name);
 }
 
 /**
@@ -113,115 +125,133 @@ function parseSnapshot(filePath, season) {
 }
 
 /**
- * Build end-of-season roster from contracts-YEAR.txt + cuts + trades.
+ * Build end-of-season roster from contracts-YEAR.txt + fa.json + trades.
  *
- * Start with the preseason snapshot, then:
- * 1. Remove players who were cut during the season
- * 2. Update ownership for traded players
- * 3. Add players acquired via trade who weren't in the original snapshot
+ * Strategy: process all events chronologically to track final ownership state.
+ * 1. Start with preseason snapshot (contracts-YEAR.txt)
+ * 2. Process FA records chronologically (adds bring players in, drops remove them)
+ * 3. Process trades to update ownership
  *
- * This is approximate — mid-season FA pickups that weren't cut or traded
- * are invisible to us.
+ * Note: FA records include both mid-season pickups AND cuts, so we don't need
+ * to separately consult cuts.json.
  */
-function buildApproximatePostseason(season, cuts, trades) {
+function buildApproximatePostseason(season, cuts, trades, faRecords) {
 	var contractsFile = path.join(SNAPSHOTS_DIR, 'contracts-' + season + '.txt');
-	var players = parseSnapshot(contractsFile, season);
+	var initialPlayers = parseSnapshot(contractsFile, season);
 
-	// Index players by normalized name for updates
-	var byName = {};
-	players.forEach(function(p) {
-		var key = resolver.normalizePlayerName(p.name);
-		if (key) byName[key] = p;
+	// Build roster state: { playerKey: { ...player data... } }
+	// Players in this map are "owned" at end of season
+	var roster = {};
+
+	// 1. Initialize with preseason snapshot (only players with contracts ending this season)
+	initialPlayers.forEach(function(p) {
+		if (p.endYear !== season) return;  // Only care about expiring contracts
+
+		var key = playerKey(p.id, p.name);
+		roster[key] = {
+			id: p.id,
+			owner: p.owner,
+			name: p.name,
+			position: p.position,
+			startYear: p.startYear,
+			endYear: p.endYear,
+			salary: p.salary,
+			rosterId: ownerToRosterId(p.owner, season)
+		};
 	});
 
-	// Also index by sleeper ID
-	var byId = {};
-	players.forEach(function(p) {
-		if (p.id) byId[p.id] = p;
+	// 2. Process FA records chronologically
+	// Each FA record can have adds (player joins roster) and drops (player leaves roster)
+	var seasonFA = faRecords.filter(function(fa) {
+		return fa.season === season;
+	}).sort(function(a, b) {
+		return new Date(a.timestamp) - new Date(b.timestamp);
 	});
 
-	// 1. Remove players who were cut (non-offseason) during this season
-	var seasonCuts = cuts.filter(function(c) {
-		return c.cutYear === season && !c.offseason;
-	});
+	seasonFA.forEach(function(fa) {
+		// Process drops first (player leaves this owner's roster)
+		(fa.drops || []).forEach(function(drop) {
+			var key = playerKey(drop.sleeperId, drop.name);
 
-	seasonCuts.forEach(function(cut) {
-		var key = cut.sleeperId ? null : resolver.normalizePlayerName(cut.name);
-		var player = null;
-
-		if (cut.sleeperId && byId[cut.sleeperId]) {
-			player = byId[cut.sleeperId];
-		} else if (key && byName[key]) {
-			player = byName[key];
-		}
-
-		if (player) {
-			// Verify the cut is from the same owner
-			var cutRosterId = cut.rosterId;
-			var playerRosterId = ownerToRosterId(player.owner, season);
-			if (cutRosterId === playerRosterId) {
-				// Mark as cut — remove from roster
-				player._cut = true;
+			// If this player is in roster and owned by this rosterId, remove them
+			if (roster[key] && roster[key].rosterId === fa.rosterId) {
+				delete roster[key];
 			}
-		}
+		});
+
+		// Process adds (player joins this owner's roster)
+		(fa.adds || []).forEach(function(add) {
+			if (add.endYear !== season) return;  // Only care about expiring contracts
+
+			var key = playerKey(add.sleeperId, add.name);
+
+			// Add or update player in roster
+			roster[key] = {
+				id: add.sleeperId || null,
+				owner: null,
+				name: add.name,
+				position: add.position,
+				startYear: null,  // FA contract
+				endYear: season,
+				salary: add.salary || 1,
+				rosterId: fa.rosterId
+			};
+		});
 	});
 
-	// 2. Process trades — update ownership and add new players.
-	// Only apply trades that happened AFTER the contracts due date, since
-	// contracts-YEAR.txt is a post-contracts-due snapshot and earlier
-	// trades are already reflected in it. Fall back to auction date if
-	// no contracts due date is available.
+	// 3. Process trades to update ownership for players still in roster
 	var snapshotCutoff = leagueDates.getContractDueDate(season) || leagueDates.getAuctionDate(season);
 	var seasonTrades = trades.filter(function(t) {
 		if (new Date(t.date).getFullYear() !== season) return false;
 		if (snapshotCutoff && new Date(t.date) <= snapshotCutoff) return false;
 		return true;
+	}).sort(function(a, b) {
+		return new Date(a.date) - new Date(b.date);
 	});
 
 	seasonTrades.forEach(function(trade) {
 		trade.parties.forEach(function(party) {
 			(party.players || []).forEach(function(tp) {
-				var key = resolver.normalizePlayerName(tp.name);
-				var player = null;
+				var key = playerKey(tp.sleeperId, tp.name);
 
-				if (tp.sleeperId && byId[tp.sleeperId]) {
-					player = byId[tp.sleeperId];
-				} else if (key && byName[key]) {
-					player = byName[key];
-				}
+				// If player is in roster, update ownership
+				if (roster[key]) {
+					var newRosterId = party.rosterId || ownerToRosterId(party.owner, season);
+					if (newRosterId) {
+						roster[key].rosterId = newRosterId;
+						roster[key].owner = party.owner;
+					}
 
-				if (player) {
-					// Transfer ownership — this party RECEIVES the player
-					player.owner = party.owner;
-					player._cut = false; // un-cut if previously cut and re-acquired
-
-					// Update contract if trade specifies it
+					// Update contract if specified
 					if (tp.contract) {
-						if (tp.contract.start !== undefined) player.startYear = tp.contract.start;
-						if (tp.contract.end !== undefined) player.endYear = tp.contract.end;
+						if (tp.contract.start !== undefined) roster[key].startYear = tp.contract.start;
+						if (tp.contract.end !== undefined) roster[key].endYear = tp.contract.end;
 					}
 				} else {
-					// Player not in preseason snapshot — must have been picked up
-					// mid-season (FA) and then traded. Add them.
-					var newPlayer = {
-						id: tp.sleeperId || null,
-						owner: party.owner,
-						name: tp.name,
-						position: null,
-						startYear: tp.contract ? tp.contract.start : null,
-						endYear: tp.contract ? tp.contract.end : season,
-						salary: tp.salary || 1
-					};
-					players.push(newPlayer);
-					if (key) byName[key] = newPlayer;
-					if (newPlayer.id) byId[newPlayer.id] = newPlayer;
+					// Player not in roster — might be acquired via trade with expiring contract
+					var endYear = tp.contract ? tp.contract.end : null;
+					if (endYear === season) {
+						var newRosterId = party.rosterId || ownerToRosterId(party.owner, season);
+						roster[key] = {
+							id: tp.sleeperId || null,
+							owner: party.owner,
+							name: tp.name,
+							position: null,
+							startYear: tp.contract ? tp.contract.start : null,
+							endYear: season,
+							salary: tp.salary || 1,
+							rosterId: newRosterId
+						};
+					}
 				}
 			});
 		});
 	});
 
-	// Filter out cut players
-	return players.filter(function(p) { return !p._cut; });
+	// Convert roster map back to array
+	return Object.keys(roster).map(function(key) {
+		return roster[key];
+	});
 }
 
 // =============================================================================
@@ -230,10 +260,6 @@ function buildApproximatePostseason(season, cuts, trades) {
 
 /**
  * Determine the RFA outcome for a player with an expiring contract.
- *
- * @param {object} player - Player record from snapshot
- * @param {number} season - The season that just ended
- * @returns {string} 'rfa-rights-conversion', 'contract-expiry', or null (not expiring)
  */
 function classifyExpiry(player, season) {
 	if (player.endYear !== season) return null;
@@ -244,7 +270,6 @@ function classifyExpiry(player, season) {
 	}
 
 	// 2019+: only 2+ year contracts convey RFA rights
-	// FA contracts (startYear === null) are end-of-season contracts — no RFA
 	if (player.startYear === null) {
 		return 'contract-expiry';
 	}
@@ -258,59 +283,48 @@ function classifyExpiry(player, season) {
 }
 
 // =============================================================================
-// Main
+// Auction Lookup
 // =============================================================================
 
-/**
- * Build a set of players who went through auction each year.
- * Returns: { year: { sleeperIds: Set, names: Set } }
- * 
- * Players are identified by sleeperId when available, or by normalized name
- * when sleeperId is null/-1 (historical players not in Sleeper).
- */
 function buildAuctionedPlayersByYear(auctions) {
 	var byYear = {};
-	
+
 	auctions.forEach(function(auction) {
 		var year = auction.season;
 		if (!byYear[year]) {
 			byYear[year] = { sleeperIds: new Set(), names: new Set() };
 		}
-		
+
 		if (auction.sleeperId && auction.sleeperId !== '-1') {
 			byYear[year].sleeperIds.add(auction.sleeperId);
 		} else if (auction.name) {
 			byYear[year].names.add(resolver.normalizePlayerName(auction.name));
 		}
 	});
-	
+
 	return byYear;
 }
 
-/**
- * Check if a player was auctioned in a given year.
- * Uses sleeperId if available, otherwise falls back to name matching.
- */
 function wasAuctioned(auctionedByYear, year, sleeperId, playerName) {
 	var yearData = auctionedByYear[year];
 	if (!yearData) return false;
-	
+
 	if (sleeperId && sleeperId !== '-1') {
 		return yearData.sleeperIds.has(sleeperId);
 	} else if (playerName) {
 		return yearData.names.has(resolver.normalizePlayerName(playerName));
 	}
-	
+
 	return false;
 }
 
-/**
- * Get RFA lapsed timestamp for a given year.
- * Convention: September 1 at 12:00:00 PM ET (after auction, before regular season)
- */
 function getRfaLapsedTimestamp(year) {
 	return new Date(Date.UTC(year, 8, 1, 16, 0, 0)).toISOString();
 }
+
+// =============================================================================
+// Main
+// =============================================================================
 
 function run() {
 	console.log('=== RFA Rights Generator ===\n');
@@ -318,10 +332,34 @@ function run() {
 	var cuts = JSON.parse(fs.readFileSync(CUTS_FILE, 'utf8'));
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
 	var auctions = JSON.parse(fs.readFileSync(AUCTIONS_FILE, 'utf8'));
-	
-	// Build lookup of auctioned players by year
+	var faRecords = JSON.parse(fs.readFileSync(FA_FILE, 'utf8'));
+
+	console.log('Loaded: ' + cuts.length + ' cuts, ' + trades.length + ' trades, ' +
+		auctions.length + ' auctions, ' + faRecords.length + ' FA records\n');
+
 	var auctionedByYear = buildAuctionedPlayersByYear(auctions);
-	console.log('Loaded auctions for years:', Object.keys(auctionedByYear).sort().join(', '));
+
+	// ==========================================================================
+	// Early RFA Exceptions - define first so we can skip them during processing
+	// ==========================================================================
+	var earlyRfaExceptions = [
+		{
+			playerName: 'DeMeco Ryans',
+			sleeperId: '220',
+			season: 2009,
+			conversionTimestamp: '2009-12-29T12:00:00.000Z',
+			conversionRosterId: 7,
+			lapsedTimestamp: '2010-08-21T16:00:00.000Z',
+			lapsedRosterId: 1,
+			notes: 'Expedited RFA conveyance granted for Trade #16'
+		}
+	];
+
+	// Build a set of exception player keys to skip
+	var exceptionKeys = new Set();
+	earlyRfaExceptions.forEach(function(ex) {
+		exceptionKeys.add(playerKey(ex.sleeperId, ex.playerName) + '|' + ex.season);
+	});
 
 	var allRecords = [];
 
@@ -333,19 +371,23 @@ function run() {
 		if (hasPostseason) {
 			roster = parseSnapshot(postseasonFile, season);
 		} else {
-			roster = buildApproximatePostseason(season, cuts, trades);
+			roster = buildApproximatePostseason(season, cuts, trades, faRecords);
 		}
 
 		var seasonRecords = [];
-		var timestamp = new Date(Date.UTC(season + 1, 0, 15)).toISOString(); // Jan 15 of season+1
+		var timestamp = new Date(Date.UTC(season + 1, 0, 15)).toISOString();
 
 		roster.forEach(function(player) {
 			var type = classifyExpiry(player, season);
 			if (!type) return;
 
-			var rosterId = ownerToRosterId(player.owner, season);
+			// Skip players handled by early RFA exceptions
+			var pKey = playerKey(player.id, player.name) + '|' + season;
+			if (exceptionKeys.has(pKey)) return;
+
+			var rosterId = player.rosterId || ownerToRosterId(player.owner, season);
 			if (!rosterId) {
-				console.warn('  Warning: Cannot resolve owner "' + player.owner + '" for ' + player.name + ' in ' + season);
+				console.warn('  Warning: Cannot resolve owner for ' + player.name + ' in ' + season);
 				return;
 			}
 
@@ -364,77 +406,21 @@ function run() {
 			});
 		});
 
-		// For approximated seasons, flag players who were cut mid-season and
-		// thus we can't confirm their end-of-season status
-		if (!hasPostseason) {
-			var seasonFACuts = cuts.filter(function(c) {
-				return c.cutYear === season && !c.offseason && c.startYear === null;
-			});
-
-			seasonFACuts.forEach(function(cut) {
-				// Only flag if the player isn't already accounted for
-				// (e.g., they might have been re-acquired and appear in trades)
-				var alreadyHandled = seasonRecords.some(function(r) {
-					if (cut.sleeperId && r.sleeperId === cut.sleeperId) return true;
-					return resolver.normalizePlayerName(r.playerName) === resolver.normalizePlayerName(cut.name);
-				});
-
-				if (!alreadyHandled) {
-					seasonRecords.push({
-						season: season,
-						type: 'rfa-unknown',
-						timestamp: timestamp,
-						rosterId: cut.rosterId,
-						sleeperId: cut.sleeperId || null,
-						playerName: cut.name,
-						position: cut.position,
-						startYear: null,
-						endYear: season,
-						salary: cut.salary || 1,
-						source: 'approximated'
-					});
-				}
-			});
-		}
-
 		var conversions = seasonRecords.filter(function(r) { return r.type === 'rfa-rights-conversion'; }).length;
 		var expiries = seasonRecords.filter(function(r) { return r.type === 'contract-expiry'; }).length;
-		var unknowns = seasonRecords.filter(function(r) { return r.type === 'rfa-unknown'; }).length;
 
 		console.log(season + ': ' + seasonRecords.length + ' records'
-			+ ' (' + conversions + ' rfa, ' + expiries + ' expiry, ' + unknowns + ' unknown)'
+			+ ' (' + conversions + ' rfa, ' + expiries + ' expiry)'
 			+ (hasPostseason ? '' : ' [approximated]'));
 
 		allRecords = allRecords.concat(seasonRecords);
 	}
 
-	// ==========================================================================
-	// Early RFA Exceptions
-	// ==========================================================================
-	// Before the dead period rules existed, some RFA rights were traded before
-	// the standard January 15 conveyance date. These players need backdated
-	// rfa-rights-conversion records so the trade can happen in the correct state.
-	
-	var earlyRfaExceptions = [
-		{
-			// Trade #16 on Dec 30, 2009: Luke traded DeMeco Ryans's RFA rights to Patrick
-			// The league granted expedited RFA conveyance after Luke's Week 17 elimination
-			playerName: 'DeMeco Ryans',
-			sleeperId: '220',
-			season: 2009,
-			conversionTimestamp: '2009-12-29T12:00:00.000Z',
-			conversionRosterId: 7,  // Jake/Luke
-			lapsedTimestamp: '2010-08-21T16:00:00.000Z',
-			lapsedRosterId: 1,  // Patrick (who held rights via Trade #16)
-			notes: 'Expedited RFA conveyance granted for Trade #16'
-		}
-	];
-	
+	// Add early RFA exception records
 	console.log('\nAdding early RFA exceptions...');
 	earlyRfaExceptions.forEach(function(ex) {
 		console.log('  ' + ex.playerName + ' (' + ex.season + '): ' + ex.notes);
-		
-		// Add rfa-rights-conversion
+
 		allRecords.push({
 			season: ex.season,
 			type: 'rfa-rights-conversion',
@@ -448,8 +434,7 @@ function run() {
 			salary: null,
 			source: 'exception'
 		});
-		
-		// Add rfa-rights-lapsed (Patrick chose not to exercise rights at 2010 auction)
+
 		allRecords.push({
 			season: ex.season,
 			type: 'rfa-rights-lapsed',
@@ -462,21 +447,19 @@ function run() {
 		});
 	});
 
-	// Generate rfa-rights-lapsed records for RFA conversions that didn't go to auction
+	// Generate rfa-rights-lapsed records
 	console.log('\nGenerating RFA lapsed records...');
 	var lapsedRecords = [];
 	var lapsedByYear = {};
-	
+
 	allRecords.forEach(function(record) {
 		if (record.type !== 'rfa-rights-conversion') return;
-		
-		// RFA conversion on Jan 15 of season+1 means auction is in season+1
+
 		var auctionYear = record.season + 1;
-		
+
 		if (!wasAuctioned(auctionedByYear, auctionYear, record.sleeperId, record.playerName)) {
-			// Player didn't go through auction - rights lapsed
 			lapsedRecords.push({
-				season: record.season,  // Same season as conversion (contract expiry year)
+				season: record.season,
 				type: 'rfa-rights-lapsed',
 				timestamp: getRfaLapsedTimestamp(auctionYear),
 				rosterId: record.rosterId,
@@ -485,19 +468,18 @@ function run() {
 				position: record.position,
 				source: record.source
 			});
-			
+
 			lapsedByYear[auctionYear] = (lapsedByYear[auctionYear] || 0) + 1;
 		}
 	});
-	
+
 	Object.keys(lapsedByYear).sort().forEach(function(year) {
 		console.log('  ' + year + ': ' + lapsedByYear[year] + ' lapsed');
 	});
 	console.log('  Total: ' + lapsedRecords.length + ' lapsed');
-	
+
 	allRecords = allRecords.concat(lapsedRecords);
 
-	// Sort by timestamp, then season
 	allRecords.sort(function(a, b) {
 		return new Date(a.timestamp) - new Date(b.timestamp);
 	});

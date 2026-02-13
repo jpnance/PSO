@@ -10283,7 +10283,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": null,
     "name": "Colin McCarthy",
     "positions": [
@@ -11068,7 +11068,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "668",
     "name": "Jason Babin",
     "positions": [
@@ -12006,7 +12006,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "597",
     "name": "Morgan Burnett",
     "positions": [
@@ -12398,7 +12398,7 @@
   },
   {
     "season": 2012,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "576",
     "name": "Sean Lee",
     "positions": [
@@ -14639,7 +14639,7 @@
   },
   {
     "season": 2013,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-ufa",
     "sleeperId": null,
     "name": "Michael Turner",
     "positions": [
@@ -17217,7 +17217,7 @@
   },
   {
     "season": 2014,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-ufa",
     "sleeperId": "461",
     "name": "Michael Vick",
     "positions": [
@@ -17483,7 +17483,7 @@
   },
   {
     "season": 2014,
-    "type": "auction-ufa",
+    "type": "auction-rfa-unmatched",
     "sleeperId": "582",
     "name": "Riley Cooper",
     "positions": [

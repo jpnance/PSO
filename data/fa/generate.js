@@ -847,9 +847,11 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 		// Build per-player last cut timestamp so sections 2 and 3 can use it as a lower bound.
 		// Uses trade-adjusted timestamps (matching generatePrePlatformCuts) so that cuts
 		// placed after trades aren't underestimated by the conventional Oct 15 + N formula.
-		// Also track cuts by owner (playerKey + rosterId) for re-acquisition detection.
+		// Also track FA cuts by owner (playerKey + rosterId) for re-acquisition detection.
+		// Note: faCutByOwner only includes FA contract cuts (startYear === null), not regular
+		// contract cuts, because re-acquisition logic is only relevant for FA pickups.
 		var playerLastCutTimestamp = {};
-		var playerCutByOwner = {};  // playerKey + '|' + rosterId -> cut timestamp
+		var faCutByOwner = {};  // playerKey + '|' + rosterId -> cut timestamp (FA contracts only)
 		allSeasonCuts.forEach(function(c) {
 			var pk = c.sleeperId || c.name.toLowerCase();
 			var idx = cutPositionMap.get(c);
@@ -870,10 +872,12 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 				playerLastCutTimestamp[pk] = ts;
 			}
 			
-			// Track cuts by owner for re-acquisition detection
-			var ownerCutKey = pk + '|' + c.rosterId;
-			if (!playerCutByOwner[ownerCutKey] || ts > playerCutByOwner[ownerCutKey]) {
-				playerCutByOwner[ownerCutKey] = ts;
+			// Track FA cuts by owner for re-acquisition detection (FA contracts only)
+			if (c.startYear === null) {
+				var ownerCutKey = pk + '|' + c.rosterId;
+				if (!faCutByOwner[ownerCutKey] || ts > faCutByOwner[ownerCutKey]) {
+					faCutByOwner[ownerCutKey] = ts;
+				}
 			}
 		});
 
@@ -993,10 +997,13 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 					var rosterId = ownerToRosterId(result.owner, season);
 					if (!rosterId) return;
 
-					var emitKey = playerKey + '|' + season + '|' + rosterId;
+					var baseKey = playerKey + '|' + season + '|' + rosterId;
+					var emitKey = isReacquisition ? baseKey + '|reacquisition' : baseKey;
 
-					if (!isReacquisition && emitted.has(emitKey)) return;
+					if (emitted.has(emitKey)) return;
 					emitted.add(emitKey);
+					// Also add baseKey so section 3 knows this player+season+owner was handled
+					emitted.add(baseKey);
 
 					var lowerBound = faabOpen;
 					if (lastCut) {
@@ -1060,7 +1067,7 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 
 			// Check if this owner cut this player during the season (re-acquisition case)
 			var ownerCutKey = playerKey + '|' + rosterId;
-			var ownerCutTimestamp = playerCutByOwner[ownerCutKey];
+			var ownerCutTimestamp = faCutByOwner[ownerCutKey];
 
 			// If the same player+season+owner was already emitted (from section 1 or 2),
 			// skip unless this owner cut and re-acquired the player.
