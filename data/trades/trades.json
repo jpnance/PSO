@@ -384,7 +384,8 @@
         "rfaRights": [
           {
             "name": "Josh Wilson",
-            "espnId": "10499"
+            "espnId": "10499",
+            "sleeperId": "700"
           }
         ],
         "rosterId": 1
@@ -967,7 +968,8 @@
         "rfaRights": [
           {
             "name": "DeMeco Ryans",
-            "espnId": "9619"
+            "espnId": "9619",
+            "sleeperId": "220"
           }
         ],
         "rosterId": 1
@@ -1054,7 +1056,8 @@
         "rfaRights": [
           {
             "name": "Brett Favre",
-            "espnId": "112"
+            "espnId": "112",
+            "sleeperId": "462"
           }
         ],
         "rosterId": 4
@@ -1663,7 +1666,8 @@
         "rfaRights": [
           {
             "name": "Andre Johnson",
-            "espnId": "4461"
+            "espnId": "4461",
+            "sleeperId": "92"
           }
         ],
         "rosterId": 1
@@ -2451,7 +2455,8 @@
         "rfaRights": [
           {
             "name": "Matthew Stafford",
-            "espnId": "12483"
+            "espnId": "12483",
+            "sleeperId": "421"
           }
         ],
         "rosterId": 11
@@ -2486,11 +2491,13 @@
         "rfaRights": [
           {
             "name": "Morgan Burnett",
-            "espnId": "13264"
+            "espnId": "13264",
+            "sleeperId": "597"
           },
           {
             "name": "Jason Babin",
-            "espnId": "5552"
+            "espnId": "5552",
+            "sleeperId": "668"
           },
           {
             "name": "Colin McCarthy",
@@ -2498,11 +2505,13 @@
           },
           {
             "name": "Perry Riley",
-            "espnId": "13443"
+            "espnId": "13443",
+            "sleeperId": "733"
           },
           {
             "name": "Sean Lee",
-            "espnId": "13284"
+            "espnId": "13284",
+            "sleeperId": "576"
           }
         ],
         "rosterId": 4
@@ -2604,7 +2613,8 @@
         "rfaRights": [
           {
             "name": "Arian Foster",
-            "espnId": "12497"
+            "espnId": "12497",
+            "sleeperId": "669"
           }
         ],
         "rosterId": 8
@@ -4002,7 +4012,8 @@
         "rfaRights": [
           {
             "name": "Darren McFadden",
-            "espnId": "11238"
+            "espnId": "11238",
+            "sleeperId": "326"
           },
           {
             "name": "Jermichael Finley",
@@ -4019,7 +4030,8 @@
         "rfaRights": [
           {
             "name": "Tony Romo",
-            "espnId": "5209"
+            "espnId": "5209",
+            "sleeperId": "142"
           }
         ],
         "rosterId": 3
@@ -4134,7 +4146,8 @@
         "rfaRights": [
           {
             "name": "Josh Freeman",
-            "espnId": "12473"
+            "espnId": "12473",
+            "sleeperId": "448"
           }
         ],
         "rosterId": 2
@@ -5242,11 +5255,13 @@
         "rfaRights": [
           {
             "name": "Fred Jackson",
-            "espnId": "10195"
+            "espnId": "10195",
+            "sleeperId": "228"
           },
           {
             "name": "Riley Cooper",
-            "espnId": "13225"
+            "espnId": "13225",
+            "sleeperId": "582"
           }
         ],
         "rosterId": 10
@@ -5259,7 +5274,8 @@
         "rfaRights": [
           {
             "name": "Jimmy Graham",
-            "espnId": "13232"
+            "espnId": "13232",
+            "sleeperId": "616"
           }
         ],
         "rosterId": 5
@@ -5439,7 +5455,8 @@
         "rfaRights": [
           {
             "name": "Jamaal Charles",
-            "espnId": "11307"
+            "espnId": "11307",
+            "sleeperId": "323"
           }
         ],
         "rosterId": 11
@@ -5459,7 +5476,8 @@
         "rfaRights": [
           {
             "name": "Julio Jones",
-            "espnId": "13982"
+            "espnId": "13982",
+            "sleeperId": "947"
           }
         ],
         "rosterId": 8
@@ -7566,11 +7584,13 @@
         "rfaRights": [
           {
             "name": "Jonas Gray",
-            "espnId": "15364"
+            "espnId": "15364",
+            "sleeperId": "1698"
           },
           {
             "name": "Justin Hunter",
-            "espnId": "13211"
+            "espnId": "13211",
+            "sleeperId": "604"
           }
         ],
         "rosterId": 3
@@ -7597,7 +7617,8 @@
         "rfaRights": [
           {
             "name": "Randall Cobb",
-            "espnId": "14053"
+            "espnId": "14053",
+            "sleeperId": "928"
           }
         ],
         "rosterId": 6
@@ -7645,7 +7666,8 @@
         "rfaRights": [
           {
             "name": "Drew Brees",
-            "espnId": "2580"
+            "espnId": "2580",
+            "sleeperId": "289"
           }
         ],
         "rosterId": 6
@@ -7680,23 +7702,28 @@
         "rfaRights": [
           {
             "name": "Demaryius Thomas",
-            "espnId": "13216"
+            "espnId": "13216",
+            "sleeperId": "560"
           },
           {
             "name": "Jordy Nelson",
-            "espnId": "11270"
+            "espnId": "11270",
+            "sleeperId": "175"
           },
           {
             "name": "Ryan Tannehill",
-            "espnId": "14876"
+            "espnId": "14876",
+            "sleeperId": "1049"
           },
           {
             "name": "Lamar Miller",
-            "espnId": "14886"
+            "espnId": "14886",
+            "sleeperId": "1048"
           },
           {
             "name": "Jonas Gray",
-            "espnId": "15364"
+            "espnId": "15364",
+            "sleeperId": "1698"
           }
         ],
         "rosterId": 2
@@ -7771,11 +7798,13 @@
         "rfaRights": [
           {
             "name": "Brandon Marshall",
-            "espnId": "9705"
+            "espnId": "9705",
+            "sleeperId": "648"
           },
           {
             "name": "Roddy White",
-            "espnId": "8442"
+            "espnId": "8442",
+            "sleeperId": "4"
           }
         ],
         "rosterId": 11
@@ -7814,11 +7843,13 @@
         "rfaRights": [
           {
             "name": "Peyton Manning",
-            "espnId": "1428"
+            "espnId": "1428",
+            "sleeperId": "294"
           },
           {
             "name": "Ronnie Hillman",
-            "espnId": "14895"
+            "espnId": "14895",
+            "sleeperId": "1123"
           }
         ],
         "rosterId": 8
@@ -7873,7 +7904,8 @@
         "rfaRights": [
           {
             "name": "Alshon Jeffery",
-            "espnId": "14912"
+            "espnId": "14912",
+            "sleeperId": "1149"
           }
         ],
         "rosterId": 2
@@ -7893,7 +7925,8 @@
         "rfaRights": [
           {
             "name": "Marshawn Lynch",
-            "espnId": "10456"
+            "espnId": "10456",
+            "sleeperId": "745"
           }
         ],
         "rosterId": 6
@@ -7927,7 +7960,8 @@
         "rfaRights": [
           {
             "name": "LeSean McCoy",
-            "espnId": "12514"
+            "espnId": "12514",
+            "sleeperId": "676"
           }
         ],
         "rosterId": 4
@@ -7961,7 +7995,8 @@
         "rfaRights": [
           {
             "name": "Aaron Rodgers",
-            "espnId": "8439"
+            "espnId": "8439",
+            "sleeperId": "96"
           }
         ],
         "rosterId": 4
@@ -9080,7 +9115,8 @@
         "rfaRights": [
           {
             "name": "Rob Gronkowski",
-            "espnId": "13229"
+            "espnId": "13229",
+            "sleeperId": "515"
           }
         ],
         "rosterId": 4
@@ -9142,7 +9178,8 @@
         "rfaRights": [
           {
             "name": "Aaron Rodgers",
-            "espnId": "8439"
+            "espnId": "8439",
+            "sleeperId": "96"
           }
         ],
         "rosterId": 3
@@ -9177,7 +9214,8 @@
         "rfaRights": [
           {
             "name": "Thomas Rawls",
-            "espnId": "2576237"
+            "espnId": "2576237",
+            "sleeperId": "2585"
           }
         ],
         "rosterId": 11
@@ -9305,7 +9343,8 @@
         "rfaRights": [
           {
             "name": "Lamar Miller",
-            "espnId": "14886"
+            "espnId": "14886",
+            "sleeperId": "1048"
           }
         ],
         "rosterId": 8
@@ -9325,7 +9364,8 @@
         "rfaRights": [
           {
             "name": "Eddie Lacy",
-            "espnId": "15848"
+            "espnId": "15848",
+            "sleeperId": "1527"
           }
         ],
         "rosterId": 12
@@ -9351,7 +9391,8 @@
         "rfaRights": [
           {
             "name": "DeAndre Hopkins",
-            "espnId": "15795"
+            "espnId": "15795",
+            "sleeperId": "1426"
           }
         ],
         "rosterId": 6
@@ -9407,11 +9448,13 @@
         "rfaRights": [
           {
             "name": "Jonathan Stewart",
-            "espnId": "11247"
+            "espnId": "11247",
+            "sleeperId": "218"
           },
           {
             "name": "Alfred Morris",
-            "espnId": "15009"
+            "espnId": "15009",
+            "sleeperId": "1170"
           }
         ],
         "rosterId": 10
@@ -9736,7 +9779,8 @@
         "rfaRights": [
           {
             "name": "Dion Lewis",
-            "espnId": "14198"
+            "espnId": "14198",
+            "sleeperId": "788"
           }
         ],
         "rosterId": 3
@@ -11163,7 +11207,8 @@
         "rfaRights": [
           {
             "name": "Julio Jones",
-            "espnId": "13982"
+            "espnId": "13982",
+            "sleeperId": "947"
           }
         ],
         "rosterId": 2
@@ -11261,7 +11306,8 @@
         "rfaRights": [
           {
             "name": "Eric Ebron",
-            "espnId": "16732"
+            "espnId": "16732",
+            "sleeperId": "2118"
           }
         ],
         "rosterId": 6
@@ -11302,7 +11348,8 @@
         "rfaRights": [
           {
             "name": "Luke Kuechly",
-            "espnId": "14938"
+            "espnId": "14938",
+            "sleeperId": "1181"
           }
         ],
         "rosterId": 12
@@ -11343,7 +11390,8 @@
         "rfaRights": [
           {
             "name": "Frank Gore",
-            "espnId": "8479"
+            "espnId": "8479",
+            "sleeperId": "232"
           }
         ],
         "rosterId": 11
@@ -11396,11 +11444,13 @@
         "rfaRights": [
           {
             "name": "LeSean McCoy",
-            "espnId": "12514"
+            "espnId": "12514",
+            "sleeperId": "676"
           },
           {
             "name": "A.J. Green",
-            "espnId": "13983"
+            "espnId": "13983",
+            "sleeperId": "830"
           }
         ],
         "rosterId": 1
@@ -11490,7 +11540,8 @@
         "rfaRights": [
           {
             "name": "Matt Forte",
-            "espnId": "11278"
+            "espnId": "11278",
+            "sleeperId": "103"
           }
         ],
         "rosterId": 12
@@ -11662,11 +11713,13 @@
         "rfaRights": [
           {
             "name": "Odell Beckham Jr.",
-            "espnId": "16733"
+            "espnId": "16733",
+            "sleeperId": "2078"
           },
           {
             "name": "Devonta Freeman",
-            "espnId": "16944"
+            "espnId": "16944",
+            "sleeperId": "2168"
           }
         ],
         "rosterId": 4
@@ -13787,7 +13840,8 @@
         "rfaRights": [
           {
             "name": "Russell Wilson",
-            "espnId": "14881"
+            "espnId": "14881",
+            "sleeperId": "1234"
           }
         ],
         "rosterId": 6
@@ -13800,7 +13854,8 @@
         "rfaRights": [
           {
             "name": "Philip Rivers",
-            "espnId": "5529"
+            "espnId": "5529",
+            "sleeperId": "331"
           }
         ],
         "rosterId": 10
@@ -13861,23 +13916,28 @@
         "rfaRights": [
           {
             "name": "Odell Beckham Jr.",
-            "espnId": "16733"
+            "espnId": "16733",
+            "sleeperId": "2078"
           },
           {
             "name": "Josh Gordon",
-            "espnId": "15705"
+            "espnId": "15705",
+            "sleeperId": "1244"
           },
           {
             "name": "Dion Lewis",
-            "espnId": "14198"
+            "espnId": "14198",
+            "sleeperId": "788"
           },
           {
             "name": "Case Keenum",
-            "espnId": "15168"
+            "espnId": "15168",
+            "sleeperId": "1737"
           },
           {
             "name": "Marquise Goodwin",
-            "espnId": "15839"
+            "espnId": "15839",
+            "sleeperId": "1346"
           }
         ],
         "rosterId": 10
@@ -13952,11 +14012,13 @@
         "rfaRights": [
           {
             "name": "Le'Veon Bell",
-            "espnId": "15825"
+            "espnId": "15825",
+            "sleeperId": "1408"
           },
           {
             "name": "T.Y. Hilton",
-            "espnId": "14924"
+            "espnId": "14924",
+            "sleeperId": "1110"
           }
         ],
         "rosterId": 8
@@ -13975,7 +14037,8 @@
         "rfaRights": [
           {
             "name": "Mike Wallace",
-            "espnId": "12601"
+            "espnId": "12601",
+            "sleeperId": "365"
           }
         ],
         "rosterId": 11
@@ -14085,11 +14148,13 @@
         "rfaRights": [
           {
             "name": "Mike Evans",
-            "espnId": "16737"
+            "espnId": "16737",
+            "sleeperId": "2216"
           },
           {
             "name": "Joey Bosa",
-            "espnId": "3051389"
+            "espnId": "3051389",
+            "sleeperId": "3156"
           }
         ],
         "rosterId": 6
@@ -14209,7 +14274,8 @@
         "rfaRights": [
           {
             "name": "Jerick McKinnon",
-            "espnId": "16782"
+            "espnId": "16782",
+            "sleeperId": "2161"
           }
         ],
         "rosterId": 12
@@ -14348,7 +14414,8 @@
         "rfaRights": [
           {
             "name": "Luke Kuechly",
-            "espnId": "14938"
+            "espnId": "14938",
+            "sleeperId": "1181"
           }
         ],
         "rosterId": 7
@@ -14361,7 +14428,8 @@
         "rfaRights": [
           {
             "name": "Rob Kelley",
-            "espnId": "2575408"
+            "espnId": "2575408",
+            "sleeperId": "3657"
           }
         ],
         "rosterId": 11
@@ -14381,7 +14449,8 @@
         "rfaRights": [
           {
             "name": "Tyreek Hill",
-            "espnId": "3116406"
+            "espnId": "3116406",
+            "sleeperId": "3321"
           }
         ],
         "rosterId": 6
@@ -16774,11 +16843,13 @@
         "rfaRights": [
           {
             "name": "Julian Edelman",
-            "espnId": "12649"
+            "espnId": "12649",
+            "sleeperId": "344"
           },
           {
             "name": "Mark Ingram II",
-            "espnId": "13981"
+            "espnId": "13981",
+            "sleeperId": "956"
           }
         ],
         "rosterId": 6
@@ -16798,11 +16869,13 @@
         "rfaRights": [
           {
             "name": "Damien Williams",
-            "espnId": "17359"
+            "espnId": "17359",
+            "sleeperId": "1833"
           },
           {
             "name": "Tevin Coleman",
-            "espnId": "2979477"
+            "espnId": "2979477",
+            "sleeperId": "2378"
           }
         ],
         "rosterId": 6
@@ -16815,7 +16888,8 @@
         "rfaRights": [
           {
             "name": "Odell Beckham Jr.",
-            "espnId": "16733"
+            "espnId": "16733",
+            "sleeperId": "2078"
           }
         ],
         "rosterId": 12
@@ -16850,7 +16924,8 @@
         "rfaRights": [
           {
             "name": "Michael Thomas",
-            "espnId": "2976316"
+            "espnId": "2976316",
+            "sleeperId": "3199"
           }
         ],
         "rosterId": 11
@@ -16870,7 +16945,8 @@
         "rfaRights": [
           {
             "name": "Jared Goff",
-            "espnId": "3046779"
+            "espnId": "3046779",
+            "sleeperId": "3163"
           }
         ],
         "rosterId": 11
@@ -16953,7 +17029,8 @@
         "rfaRights": [
           {
             "name": "Le'Veon Bell",
-            "espnId": "15825"
+            "espnId": "15825",
+            "sleeperId": "1408"
           }
         ],
         "rosterId": 11
@@ -17002,7 +17079,8 @@
         "rfaRights": [
           {
             "name": "T.Y. Hilton",
-            "espnId": "14924"
+            "espnId": "14924",
+            "sleeperId": "1110"
           }
         ],
         "rosterId": 10
@@ -17050,7 +17128,8 @@
         "rfaRights": [
           {
             "name": "Matthew Stafford",
-            "espnId": "12483"
+            "espnId": "12483",
+            "sleeperId": "421"
           }
         ],
         "rosterId": 10
@@ -17070,7 +17149,8 @@
         "rfaRights": [
           {
             "name": "Dak Prescott",
-            "espnId": "2577417"
+            "espnId": "2577417",
+            "sleeperId": "3294"
           }
         ],
         "rosterId": 2
@@ -17083,7 +17163,8 @@
         "rfaRights": [
           {
             "name": "Melvin Gordon",
-            "espnId": "2576434"
+            "espnId": "2576434",
+            "sleeperId": "2320"
           }
         ],
         "rosterId": 3
@@ -17137,7 +17218,8 @@
         "rfaRights": [
           {
             "name": "Julio Jones",
-            "espnId": "13982"
+            "espnId": "13982",
+            "sleeperId": "947"
           }
         ],
         "rosterId": 2
@@ -17150,7 +17232,8 @@
         "rfaRights": [
           {
             "name": "Todd Gurley",
-            "espnId": "2977644"
+            "espnId": "2977644",
+            "sleeperId": "2315"
           }
         ],
         "rosterId": 10
@@ -17565,7 +17648,8 @@
         "rfaRights": [
           {
             "name": "Tyler Boyd",
-            "espnId": "3045144"
+            "espnId": "3045144",
+            "sleeperId": "3225"
           }
         ],
         "rosterId": 6
@@ -17936,7 +18020,8 @@
         "rfaRights": [
           {
             "name": "Kwon Alexander",
-            "espnId": "2976541"
+            "espnId": "2976541",
+            "sleeperId": "2429"
           }
         ],
         "rosterId": 9
@@ -20712,7 +20797,8 @@
         "rfaRights": [
           {
             "name": "Curtis Samuel",
-            "espnId": "3121427"
+            "espnId": "3121427",
+            "sleeperId": "4082"
           }
         ],
         "rosterId": 7
@@ -20725,7 +20811,8 @@
         "rfaRights": [
           {
             "name": "Budda Baker",
-            "espnId": "3127287"
+            "espnId": "3127287",
+            "sleeperId": "4081"
           }
         ],
         "rosterId": 6
@@ -20794,7 +20881,8 @@
         "rfaRights": [
           {
             "name": "Davante Adams",
-            "espnId": "16800"
+            "espnId": "16800",
+            "sleeperId": "2133"
           }
         ],
         "rosterId": 6
@@ -20820,7 +20908,8 @@
         "rfaRights": [
           {
             "name": "Dede Westbrook",
-            "espnId": "3892889"
+            "espnId": "3892889",
+            "sleeperId": "4146"
           }
         ],
         "rosterId": 10
@@ -20967,7 +21056,8 @@
         "rfaRights": [
           {
             "name": "Ronald Jones II",
-            "espnId": "3912550"
+            "espnId": "3912550",
+            "sleeperId": "5052"
           }
         ],
         "rosterId": 6
@@ -21001,7 +21091,8 @@
         "rfaRights": [
           {
             "name": "Deshaun Watson",
-            "espnId": "3122840"
+            "espnId": "3122840",
+            "sleeperId": "4017"
           }
         ],
         "rosterId": 7
@@ -21054,7 +21145,8 @@
         "rfaRights": [
           {
             "name": "Brian Hill",
-            "espnId": "3125403"
+            "espnId": "3125403",
+            "sleeperId": "4187"
           }
         ],
         "rosterId": 10
@@ -21121,7 +21213,8 @@
         "rfaRights": [
           {
             "name": "Zach Ertz",
-            "espnId": "15835"
+            "espnId": "15835",
+            "sleeperId": "1339"
           }
         ],
         "rosterId": 4
@@ -21169,7 +21262,8 @@
         "rfaRights": [
           {
             "name": "Zach Ertz",
-            "espnId": "15835"
+            "espnId": "15835",
+            "sleeperId": "1339"
           }
         ],
         "rosterId": 6
@@ -21189,7 +21283,8 @@
         "rfaRights": [
           {
             "name": "Latavius Murray",
-            "espnId": "15920"
+            "espnId": "15920",
+            "sleeperId": "1476"
           }
         ],
         "rosterId": 10
@@ -21237,7 +21332,8 @@
         "rfaRights": [
           {
             "name": "Jimmy Garoppolo",
-            "espnId": "16760"
+            "espnId": "16760",
+            "sleeperId": "1837"
           }
         ],
         "rosterId": 11
@@ -22849,7 +22945,8 @@
         "rfaRights": [
           {
             "name": "Calvin Ridley",
-            "espnId": "3925357"
+            "espnId": "3925357",
+            "sleeperId": "4981"
           }
         ],
         "rosterId": 3
@@ -23025,7 +23122,8 @@
         "rfaRights": [
           {
             "name": "Travis Kelce",
-            "espnId": "15847"
+            "espnId": "15847",
+            "sleeperId": "1466"
           }
         ],
         "rosterId": 6
@@ -23324,7 +23422,8 @@
         "rfaRights": [
           {
             "name": "Travis Kelce",
-            "espnId": "15847"
+            "espnId": "15847",
+            "sleeperId": "1466"
           }
         ],
         "rosterId": 12
@@ -23344,7 +23443,8 @@
         "rfaRights": [
           {
             "name": "Tyreek Hill",
-            "espnId": "3116406"
+            "espnId": "3116406",
+            "sleeperId": "3321"
           }
         ],
         "rosterId": 8
@@ -25606,7 +25706,8 @@
         "rfaRights": [
           {
             "name": "Devin Singletary",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6130"
           }
         ],
         "rosterId": 6
@@ -25619,7 +25720,8 @@
         "rfaRights": [
           {
             "name": "Dalvin Cook",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4029"
           }
         ],
         "rosterId": 12
@@ -25832,7 +25934,8 @@
         "rfaRights": [
           {
             "name": "Ryan Tannehill",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "1049"
           }
         ],
         "rosterId": 4
@@ -25971,7 +26074,8 @@
         "rfaRights": [
           {
             "name": "Terry McLaurin",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "5927"
           }
         ],
         "rosterId": 7
@@ -26088,7 +26192,8 @@
         "rfaRights": [
           {
             "name": "Jacoby Brissett",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "3257"
           }
         ],
         "rosterId": 3
@@ -26108,7 +26213,8 @@
         "rfaRights": [
           {
             "name": "Dak Prescott",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "3294"
           }
         ],
         "rosterId": 2
@@ -26186,7 +26292,8 @@
         "rfaRights": [
           {
             "name": "Devin White",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6119"
           }
         ],
         "rosterId": 9
@@ -26228,7 +26335,8 @@
         "rfaRights": [
           {
             "name": "David Montgomery",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "5892"
           }
         ],
         "rosterId": 3
@@ -26337,7 +26445,8 @@
         "rfaRights": [
           {
             "name": "Deebo Samuel",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "5872"
           }
         ],
         "rosterId": 7
@@ -26600,7 +26709,8 @@
         "rfaRights": [
           {
             "name": "Dalvin Cook",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4029"
           }
         ],
         "rosterId": 11
@@ -26860,7 +26970,8 @@
         "rfaRights": [
           {
             "name": "Ryan Tannehill",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "1049"
           }
         ],
         "rosterId": 11
@@ -27022,7 +27133,8 @@
         "rfaRights": [
           {
             "name": "DK Metcalf",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "5846"
           }
         ],
         "rosterId": 11
@@ -30429,7 +30541,8 @@
         "rfaRights": [
           {
             "name": "CeeDee Lamb",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6786"
           }
         ],
         "rosterId": 8
@@ -30442,7 +30555,8 @@
         "rfaRights": [
           {
             "name": "Justin Herbert",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6797"
           }
         ],
         "rosterId": 12
@@ -30532,7 +30646,8 @@
         "rfaRights": [
           {
             "name": "Joe Burrow",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6770"
           }
         ],
         "rosterId": 5
@@ -30602,7 +30717,8 @@
         "rfaRights": [
           {
             "name": "Antonio Gibson",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6945"
           }
         ],
         "rosterId": 6
@@ -30677,7 +30793,8 @@
         "rfaRights": [
           {
             "name": "T.J. Watt",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4070"
           }
         ],
         "rosterId": 2
@@ -30703,7 +30820,8 @@
         "rfaRights": [
           {
             "name": "Brandon Aiyuk",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6803"
           }
         ],
         "rosterId": 6
@@ -30884,7 +31002,8 @@
         "rfaRights": [
           {
             "name": "Joe Mixon",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4018"
           }
         ],
         "rosterId": 8
@@ -30897,7 +31016,8 @@
         "rfaRights": [
           {
             "name": "CeeDee Lamb",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6786"
           }
         ],
         "rosterId": 3
@@ -30917,7 +31037,8 @@
         "rfaRights": [
           {
             "name": "Stefon Diggs",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "2449"
           }
         ],
         "rosterId": 6
@@ -30937,7 +31058,8 @@
         "rfaRights": [
           {
             "name": "Brandon Aiyuk",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6803"
           }
         ],
         "rosterId": 5
@@ -31299,7 +31421,8 @@
         "rfaRights": [
           {
             "name": "Mike Williams",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4068"
           }
         ],
         "rosterId": 2
@@ -31340,7 +31463,8 @@
         "rfaRights": [
           {
             "name": "Derek Carr",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "2028"
           }
         ],
         "rosterId": 8
@@ -31536,7 +31660,8 @@
         "rfaRights": [
           {
             "name": "Stefon Diggs",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "2449"
           }
         ],
         "rosterId": 11
@@ -31562,7 +31687,8 @@
         "rfaRights": [
           {
             "name": "Minkah Fitzpatrick",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4963"
           }
         ],
         "rosterId": 8
@@ -31575,7 +31701,8 @@
         "rfaRights": [
           {
             "name": "Tee Higgins",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6801"
           }
         ],
         "rosterId": 11
@@ -34266,7 +34393,8 @@
         "rfaRights": [
           {
             "name": "Travis Etienne",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7543"
           }
         ],
         "rosterId": 6
@@ -34569,7 +34697,8 @@
         "rfaRights": [
           {
             "name": "DeVonta Smith",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7525"
           }
         ],
         "rosterId": 5
@@ -34891,7 +35020,8 @@
         "rfaRights": [
           {
             "name": "Christian Kirk",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4950"
           }
         ],
         "rosterId": 6
@@ -35020,7 +35150,8 @@
         "rfaRights": [
           {
             "name": "Chuba Hubbard",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7594"
           }
         ],
         "rosterId": 6
@@ -35430,7 +35561,8 @@
         "rfaRights": [
           {
             "name": "Nico Collins",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7569"
           }
         ],
         "rosterId": 6
@@ -35450,7 +35582,8 @@
         "rfaRights": [
           {
             "name": "Kyle Pitts",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7553"
           }
         ],
         "rosterId": 2
@@ -35673,7 +35806,8 @@
         "rfaRights": [
           {
             "name": "Josh Allen",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4984"
           }
         ],
         "rosterId": 11
@@ -35757,7 +35891,8 @@
         "rfaRights": [
           {
             "name": "Javonte Williams",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7588"
           }
         ],
         "rosterId": 6
@@ -35847,7 +35982,8 @@
         "rfaRights": [
           {
             "name": "Justin Fields",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7591"
           }
         ],
         "rosterId": 8
@@ -35990,7 +36126,8 @@
         "rfaRights": [
           {
             "name": "Ja'Marr Chase",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7564"
           }
         ],
         "rosterId": 6
@@ -36073,7 +36210,8 @@
         "rfaRights": [
           {
             "name": "Khalil Herbert",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7608"
           }
         ],
         "rosterId": 12
@@ -36093,7 +36231,8 @@
         "rfaRights": [
           {
             "name": "Rhamondre Stevenson",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7611"
           }
         ],
         "rosterId": 5
@@ -36132,7 +36271,8 @@
         "rfaRights": [
           {
             "name": "Saquon Barkley",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4866"
           }
         ],
         "rosterId": 6
@@ -36757,7 +36897,8 @@
         "rfaRights": [
           {
             "name": "Justin Tucker",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "1264"
           }
         ],
         "rosterId": 11
@@ -36791,7 +36932,8 @@
         "rfaRights": [
           {
             "name": "Christian Watson",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "8167"
           }
         ],
         "rosterId": 4
@@ -36867,7 +37009,8 @@
         "rfaRights": [
           {
             "name": "Mark Andrews",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "5012"
           }
         ],
         "rosterId": 1
@@ -36901,7 +37044,8 @@
         "rfaRights": [
           {
             "name": "Amon-Ra St. Brown",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "7547"
           }
         ],
         "rosterId": 9
@@ -39343,7 +39487,8 @@
         "rfaRights": [
           {
             "name": "Jameson Williams",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "8148"
           }
         ],
         "rosterId": 10
@@ -39356,7 +39501,8 @@
         "rfaRights": [
           {
             "name": "Alvin Kamara",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4035"
           }
         ],
         "rosterId": 6
@@ -39561,7 +39707,8 @@
         "rfaRights": [
           {
             "name": "Baker Mayfield",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4892"
           }
         ],
         "rosterId": 10
@@ -39878,7 +40025,8 @@
         "rfaRights": [
           {
             "name": "Evan Engram",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "4066"
           }
         ],
         "rosterId": 6
@@ -39974,7 +40122,8 @@
         "rfaRights": [
           {
             "name": "Romeo Doubs",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "8121"
           }
         ],
         "rosterId": 2
@@ -40249,7 +40398,8 @@
         "rfaRights": [
           {
             "name": "Mike Evans",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "2216"
           }
         ],
         "rosterId": 6
@@ -40475,7 +40625,8 @@
         "rfaRights": [
           {
             "name": "Tyler Allgeier",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "8132"
           }
         ],
         "rosterId": 12
@@ -40558,7 +40709,8 @@
         "rfaRights": [
           {
             "name": "Tyler Allgeier",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "8132"
           }
         ],
         "rosterId": 6
@@ -40799,7 +40951,8 @@
         "rfaRights": [
           {
             "name": "Kenneth Walker",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "8151"
           }
         ],
         "rosterId": 3
@@ -40929,7 +41082,8 @@
         "rfaRights": [
           {
             "name": "Sam LaPorta",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "10859"
           }
         ],
         "rosterId": 6
@@ -41156,7 +41310,8 @@
         "rfaRights": [
           {
             "name": "Zaire Franklin",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "5346"
           }
         ],
         "rosterId": 8
@@ -41176,7 +41331,8 @@
         "rfaRights": [
           {
             "name": "Jordan Love",
-            "espnId": null
+            "espnId": null,
+            "sleeperId": "6804"
           }
         ],
         "rosterId": 12

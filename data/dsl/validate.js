@@ -105,6 +105,9 @@ function parseEvent(line) {
 	m = line.match(/^\s+(\d+) rfa-lapsed # by (\S+(?:\/\S+)?)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'rfa-lapsed', owner: m[2] };
 
+	m = line.match(/^\s+(\d+) rfa-trade (\d+) -> (\S+(?:\/\S+)?)/);
+	if (m) return { season: 2000 + parseInt(m[1]), type: 'rfa-trade', tradeId: parseInt(m[2]), owner: m[3] };
+
 	m = line.match(/^\s+(\d+) expiry # by (\S+(?:\/\S+)?)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'expiry', owner: m[2] };
 
@@ -243,7 +246,7 @@ function checkAcquireRelease(player) {
 		// Offseason events (auction, draft, expansion, cut) happen before the
 		// season starts, so a contract ending in season N is expired by season N.
 		// In-season events (fa, trade, drop) need the season to be strictly past.
-		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type] && e.type !== 'rfa' && e.type !== 'expansion') {
+		if (owned && contractEnd !== null && !RELEASE_EVENTS[e.type] && e.type !== 'rfa' && e.type !== 'expansion' && e.type !== 'rfa-trade') {
 			// Auction and draft happen after RFA rights expire in the offseason.
 			// A contract/RFA ending in season N is expired by season N+1 auction (>=).
 			// Expansion draft happens before auction — RFA rights are still valid,
@@ -262,6 +265,19 @@ function checkAcquireRelease(player) {
 
 		if (e.type === 'contract') {
 			contractEnd = parseContractEnd(e.detail);
+		} else if (e.type === 'rfa-trade') {
+			// RFA rights trades transfer rights, NOT the player. The player stays
+			// with their current owner. Only check that the player is owned (i.e.,
+			// there are rights to trade). Don't update owned/owner state.
+			if (!owned) {
+				issues.push({
+					check: 'rfa-trade-unowned',
+					player: player.header,
+					message: 'RFA rights traded to ' + e.owner + ' but player is not owned',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
 		} else if (e.type === 'trade' || e.type === 'expansion') {
 			// Trades and expansion selections transfer ownership — player must be owned
 			if (!owned) {
@@ -468,6 +484,7 @@ function checkRfaExpiry(player) {
 function checkDuplicateEvents(player) {
 	var issues = [];
 	var tradeIds = {};
+	var rfaTradeIds = {};
 	var auctionSeasons = {};
 	var draftSeasons = {};
 
@@ -485,6 +502,17 @@ function checkDuplicateEvents(player) {
 				});
 			}
 			tradeIds[e.tradeId] = true;
+		} else if (e.type === 'rfa-trade') {
+			if (rfaTradeIds[e.tradeId]) {
+				issues.push({
+					check: 'duplicate-rfa-trade',
+					player: player.header,
+					message: 'RFA trade ' + e.tradeId + ' appears multiple times',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			rfaTradeIds[e.tradeId] = true;
 		} else if (AUCTION_EVENTS[e.type]) {
 			if (auctionSeasons[e.season]) {
 				issues.push({
@@ -616,6 +644,7 @@ function checkAuctionRfaConsistency(player) {
 	var issues = [];
 	var lastRfaOwner = null;
 	var lastRfaSeason = null;
+	var rfaFromTrade = false;
 
 	for (var i = 0; i < player.events.length; i++) {
 		var e = player.events[i];
@@ -623,9 +652,19 @@ function checkAuctionRfaConsistency(player) {
 		if (e.type === 'rfa') {
 			lastRfaOwner = e.owner;
 			lastRfaSeason = e.season;
+			rfaFromTrade = false;
+		} else if (e.type === 'rfa-trade') {
+			// RFA rights traded to a new franchise
+			if (lastRfaOwner) {
+				lastRfaOwner = e.owner;
+				lastRfaSeason = e.season;
+				rfaFromTrade = true;
+			}
+			// If no lastRfaOwner, checkAcquireRelease will catch the state issue
 		} else if (e.type === 'expiry' || RELEASE_EVENTS[e.type]) {
 			lastRfaOwner = null;
 			lastRfaSeason = null;
+			rfaFromTrade = false;
 		} else if (e.type === 'auction-rfa-matched') {
 			if (!lastRfaOwner) {
 				issues.push({
@@ -635,7 +674,10 @@ function checkAuctionRfaConsistency(player) {
 					line: e.raw.trim(),
 					lineNumber: e.lineNumber
 				});
-			} else if (!sameFranchise(lastRfaOwner, lastRfaSeason, e.owner, e.season)) {
+			} else if (!rfaFromTrade && !sameFranchise(lastRfaOwner, lastRfaSeason, e.owner, e.season)) {
+				// Only check owner match when rights came from original rfa (not trade).
+				// When rights are traded, the auction type classification may not reflect
+				// the new rights holder.
 				issues.push({
 					check: 'rfa-matched-wrong-owner',
 					player: player.header,
@@ -646,6 +688,7 @@ function checkAuctionRfaConsistency(player) {
 			}
 			lastRfaOwner = null;
 			lastRfaSeason = null;
+			rfaFromTrade = false;
 		} else if (e.type === 'auction-rfa-unmatched') {
 			if (!lastRfaOwner) {
 				issues.push({
@@ -655,7 +698,10 @@ function checkAuctionRfaConsistency(player) {
 					line: e.raw.trim(),
 					lineNumber: e.lineNumber
 				});
-			} else if (sameFranchise(lastRfaOwner, lastRfaSeason, e.owner, e.season)) {
+			} else if (!rfaFromTrade && sameFranchise(lastRfaOwner, lastRfaSeason, e.owner, e.season)) {
+				// Only check when rights came from original rfa (not trade).
+				// When rights are traded, the new holder can win the auction outright
+				// as "unmatched" (they didn't need to exercise matching rights).
 				issues.push({
 					check: 'rfa-unmatched-same-owner',
 					player: player.header,
@@ -666,6 +712,7 @@ function checkAuctionRfaConsistency(player) {
 			}
 			lastRfaOwner = null;
 			lastRfaSeason = null;
+			rfaFromTrade = false;
 		} else if (e.type === 'auction-ufa') {
 			if (lastRfaOwner) {
 				issues.push({
@@ -678,6 +725,7 @@ function checkAuctionRfaConsistency(player) {
 			}
 			lastRfaOwner = null;
 			lastRfaSeason = null;
+			rfaFromTrade = false;
 		}
 	}
 
@@ -794,6 +842,8 @@ function checkTradeContinuity(player) {
 					lineNumber: e.lineNumber
 				});
 			}
+		} else if (e.type === 'rfa-trade') {
+			// RFA rights trades inherently involve expired contracts — skip the check
 		}
 	}
 

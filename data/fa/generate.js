@@ -1087,6 +1087,143 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 				inferred: true
 			});
 		});
+
+		// 4. Traded RFA rights (pre-2019): if RFA rights for a player appear in
+		// a trade, the giver must have owned the player when their contract expired.
+		// Pre-2019, all expiring contracts (including FA) conveyed RFA rights.
+		// If the player was previously cut, this proves an FA pickup happened.
+		if (season < 2019) {
+			trades.forEach(function(trade) {
+				if (trade.parties.length !== 2) return;
+
+				var tradeDate = new Date(trade.date);
+				var tradeYear = tradeDate.getUTCFullYear();
+
+				// Determine if this trade's RFA rights are for this season.
+				// Trades before the auction → rights from end of previous season.
+				// Trades during/after the season → rights from end of this season.
+				var auctionDate = auctionDates[tradeYear];
+				var rightsSeason;
+				if (auctionDate && tradeDate < auctionDate) {
+					rightsSeason = tradeYear - 1;
+				} else {
+					rightsSeason = tradeYear;
+				}
+				if (rightsSeason !== season) return;
+
+				trade.parties.forEach(function(receivingParty, partyIdx) {
+					if (!receivingParty.rfaRights || receivingParty.rfaRights.length === 0) return;
+
+					var givingParty = trade.parties[1 - partyIdx];
+
+					receivingParty.rfaRights.forEach(function(rfa) {
+						var normalizedRfaName = resolver.normalizePlayerName(rfa.name);
+						if (!normalizedRfaName) return;
+
+						// Find the player's most recent cut at or before this season.
+						// Only look at cuts in this season or the immediately preceding
+						// season — older cuts are too likely to have been followed by
+						// a re-acquisition via auction/draft/trade.
+						var matchingCuts = [];
+						cuts.forEach(function(cut) {
+							if (cut.offseason) return;
+							if (cut.cutYear > season) return;
+							if (cut.cutYear < season - 1) return;
+
+							// If the rfa entry has a sleeperId, match precisely on it
+							if (rfa.sleeperId) {
+								if (cut.sleeperId !== rfa.sleeperId) return;
+							} else {
+								var normalizedCutName = resolver.normalizePlayerName(cut.name);
+								if (normalizedCutName !== normalizedRfaName) return;
+							}
+
+							matchingCuts.push(cut);
+						});
+
+						if (matchingCuts.length === 0) return; // No recent cut — player was continuously owned
+
+						// Check for name collisions: if cuts match different sleeperIds,
+						// we can't reliably determine which player the RFA rights belong to.
+						// (Only relevant when matching by name — sleeperId match is precise.)
+						if (!rfa.sleeperId) {
+							var sleeperIds = {};
+							matchingCuts.forEach(function(c) {
+								if (c.sleeperId) sleeperIds[c.sleeperId] = true;
+							});
+							if (Object.keys(sleeperIds).length > 1) return; // Ambiguous — skip
+						}
+
+						// Use the most recent matching cut
+						var matchingCut = matchingCuts.sort(function(a, b) {
+							return b.cutYear - a.cutYear;
+						})[0];
+
+						// If the cut is from the previous season (gap of 1), verify the
+						// player wasn't re-acquired by checking the postseason snapshot.
+						// If the player appears in the cutYear snapshot, they were picked
+						// up that same season and their ownership continued via auction —
+						// no FA gap to fill.
+						if (matchingCut.cutYear === season - 1) {
+							var cutYearSnapshot = parsePostseasonSnapshot(matchingCut.cutYear);
+							var reacquired = cutYearSnapshot.some(function(p) {
+								if (rfa.sleeperId && p.id) return p.id === rfa.sleeperId;
+								return resolver.normalizePlayerName(p.name) === normalizedRfaName;
+							});
+							if (reacquired) return;
+						}
+
+						var giverOwner = givingParty.owner;
+						var sleeperId = rfa.sleeperId || matchingCut.sleeperId || null;
+						var playerKey = sleeperId || rfa.name.toLowerCase();
+
+						// Trace back through trade chain to find the original FA acquirer
+						var lastCut = playerLastCutTimestamp[playerKey] || null;
+						var result = traceOriginalAcquirer(
+							sleeperId, rfa.name, giverOwner,
+							season, seasonTrades, lastCut
+						);
+
+						var rosterId = ownerToRosterId(result.owner, season);
+						if (!rosterId) return;
+
+						var emitKey = playerKey + '|' + season + '|' + rosterId;
+						if (emitted.has(emitKey)) return;
+						emitted.add(emitKey);
+
+						var lowerBound = faabOpen;
+						if (lastCut) {
+							var afterLastCut = new Date(lastCut.getTime() + 60000);
+							if (afterLastCut > lowerBound) lowerBound = afterLastCut;
+						}
+
+						var upperBound = result.upperBound || seasonEnd;
+						var timestamp = inferTimestamp(lowerBound, upperBound);
+
+						var add = {
+							name: rfa.name,
+							position: matchingCut.position || null,
+							salary: 1,
+							startYear: null,
+							endYear: season
+						};
+						if (sleeperId) add.sleeperId = sleeperId;
+
+						records.push({
+							season: season,
+							timestamp: timestamp.toISOString(),
+							rosterId: rosterId,
+							adds: [add],
+							drops: [],
+							source: 'inferred',
+							sourceId: null,
+							tradeId: null,
+							inferred: true
+						});
+					});
+				});
+			});
+		}
 	}
 
 	return records;

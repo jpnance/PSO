@@ -6755,6 +6755,26 @@
 		"inferred": false
 	},
 	{
+		"season": 2009,
+		"timestamp": "2009-11-04T12:00:33.000Z",
+		"rosterId": 7,
+		"adds": [
+			{
+				"name": "DeMeco Ryans",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2009,
+				"sleeperId": "220"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
 		"season": 2010,
 		"timestamp": "2010-08-15T04:00:00.000Z",
 		"rosterId": 9,
@@ -15620,6 +15640,85 @@
 				"startYear": null,
 				"endYear": 2011,
 				"sleeperId": "323"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-11-03T12:00:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Morgan Burnett",
+				"position": "DB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011,
+				"sleeperId": "597"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-11-03T12:00:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Sean Lee",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011,
+				"sleeperId": "576"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-11-22T18:00:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Jason Babin",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011,
+				"sleeperId": "668"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2011,
+		"timestamp": "2011-11-22T18:00:33.000Z",
+		"rosterId": 3,
+		"adds": [
+			{
+				"name": "Colin McCarthy",
+				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2011
 			}
 		],
 		"drops": [],
@@ -25183,6 +25282,26 @@
 		"inferred": false
 	},
 	{
+		"season": 2013,
+		"timestamp": "2013-11-22T18:00:33.000Z",
+		"rosterId": 5,
+		"adds": [
+			{
+				"name": "Riley Cooper",
+				"position": "WR",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2013,
+				"sleeperId": "582"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
 		"season": 2014,
 		"timestamp": "2014-08-17T04:00:00.000Z",
 		"rosterId": 4,
@@ -32455,6 +32574,26 @@
 	},
 	{
 		"season": 2014,
+		"timestamp": "2014-11-22T18:00:33.000Z",
+		"rosterId": 12,
+		"adds": [
+			{
+				"name": "Ronnie Hillman",
+				"position": "RB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2014,
+				"sleeperId": "1123"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2014,
 		"timestamp": "2014-11-23T06:00:33.000Z",
 		"rosterId": 1,
 		"adds": [
@@ -39008,6 +39147,46 @@
 				"startYear": null,
 				"endYear": 2015,
 				"sleeperId": "2585"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2015,
+		"timestamp": "2015-11-22T18:00:33.000Z",
+		"rosterId": 6,
+		"adds": [
+			{
+				"name": "Thomas Rawls",
+				"position": "RB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2015,
+				"sleeperId": "2585"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2015,
+		"timestamp": "2015-11-22T18:00:33.000Z",
+		"rosterId": 11,
+		"adds": [
+			{
+				"name": "Alfred Morris",
+				"position": "RB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2015,
+				"sleeperId": "1170"
 			}
 		],
 		"drops": [],
@@ -55472,6 +55651,26 @@
 				"startYear": null,
 				"endYear": 2017,
 				"sleeperId": "1911"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-22T18:00:33.000Z",
+		"rosterId": 4,
+		"adds": [
+			{
+				"name": "Dion Lewis",
+				"position": "RB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "788"
 			}
 		],
 		"drops": [],

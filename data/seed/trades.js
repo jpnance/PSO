@@ -22,8 +22,6 @@ var facts = require('../facts');
 var tradeFacts = require('../facts/trade-facts');
 var contractTermInference = require('../inference/contract-term');
 
-var sleeperData = Object.values(require('../../public/data/sleeper-data.json'));
-
 // Inference context (loaded once at startup)
 var inferenceContext = null;
 
@@ -50,14 +48,6 @@ function loadInferenceContext() {
 	console.log('  Loaded ' + snapshots.length + ' snapshots, ' + cuts.length + ' cuts');
 	return inferenceContext;
 }
-
-// Build ESPN ID → Sleeper ID lookup
-var espnToSleeperId = {};
-sleeperData.forEach(function(p) {
-	if (p.espn_id) {
-		espnToSleeperId[String(p.espn_id)] = p.player_id;
-	}
-});
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -298,14 +288,13 @@ var nicknames = {
 	'ike': 'isaac', 'isaac': 'ike'
 };
 
-async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, espnId) {
+async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, sleeperId) {
 	if (!rawName) return null;
 	
 	var name = decodeHtmlEntities(rawName);
 	
-	// Try ESPN ID first - this is unambiguous
-	if (espnId && espnToSleeperId[espnId]) {
-		var sleeperId = espnToSleeperId[espnId];
+	// Try direct Sleeper ID — unambiguous for any modern player
+	if (sleeperId) {
 		var player = playersBySleeperId[sleeperId];
 		if (player) {
 			resolver.addResolution(name, sleeperId, null, contextInfo);
@@ -349,8 +338,7 @@ async function findOrCreatePlayer(rawName, tradeContext, contextInfo, tradeUrl, 
 
 async function seed() {
 	console.log('Importing trade history from trades.json...\n');
-	console.log('Loaded', resolver.count(), 'cached player resolutions');
-	console.log('Loaded', Object.keys(espnToSleeperId).length, 'ESPN ID mappings from Sleeper data\n');
+	console.log('Loaded', resolver.count(), 'cached player resolutions\n');
 
 	// Create readline interface
 	rl = readline.createInterface({
@@ -399,7 +387,7 @@ async function seed() {
 				var contract = player.contract || parseContract(player.contractStr, player.name, player.salary, tradeDate);
 				return {
 					name: player.name,
-					espnId: player.espnId,
+					sleeperId: player.sleeperId || null,
 					salary: player.salary,
 					startYear: contract.start !== undefined ? contract.start : contract.startYear,
 					endYear: contract.end !== undefined ? contract.end : contract.endYear,
@@ -411,7 +399,7 @@ async function seed() {
 			var convertedRfaRights = (party.rfaRights || []).map(function(rfa) {
 				return {
 					name: rfa.name,
-					espnId: rfa.espnId,
+					sleeperId: rfa.sleeperId || null,
 					rfaRights: true,
 					salary: null,
 					startYear: null,
@@ -518,7 +506,7 @@ async function seed() {
 				var tradeUrl = trade.url;
 				var contextInfo = { year: tradeYear, type: 'trade', franchise: p.owner };
 				
-				var playerId = await findOrCreatePlayer(player.name, tradeContext, contextInfo, tradeUrl, player.espnId);
+				var playerId = await findOrCreatePlayer(player.name, tradeContext, contextInfo, tradeUrl, player.sleeperId);
 
 				if (!playerId) {
 					unmatchedPlayers.add(player.name);

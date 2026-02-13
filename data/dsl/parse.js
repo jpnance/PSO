@@ -62,6 +62,9 @@ var PATTERNS = {
 	// YY rfa-lapsed
 	rfaLapsed: /^(\d{2})\s+rfa-lapsed$/,
 	
+	// YY rfa-trade NUMBER -> OWNER
+	rfaTrade: /^(\d{2})\s+rfa-trade\s+(\d+)\s+->\s+(\S+(?:\/\S+)?)$/,
+	
 	// YY unknown OWNER
 	unknown: /^(\d{2})\s+unknown\s+(\S+)$/
 };
@@ -267,6 +270,17 @@ function parseTransaction(line, lineNum) {
 		return {
 			type: 'rfa-lapsed',
 			season: toFullYear(match[1]),
+			line: lineNum
+		};
+	}
+	
+	// rfa-trade
+	if ((match = line.match(PATTERNS.rfaTrade))) {
+		return {
+			type: 'rfa-trade',
+			season: toFullYear(match[1]),
+			tradeId: parseInt(match[2]),
+			owner: match[3],
 			line: lineNum
 		};
 	}

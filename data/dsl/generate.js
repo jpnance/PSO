@@ -143,6 +143,35 @@ function loadRFA() {
 	return JSON.parse(fs.readFileSync(RFA_FILE, 'utf8'));
 }
 
+function loadRfaTrades() {
+	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
+	var byPlayer = {};
+
+	trades.forEach(function(trade) {
+		trade.parties.forEach(function(party) {
+			(party.rfaRights || []).forEach(function(rfa) {
+				var entry = {
+					tradeId: trade.tradeId,
+					date: trade.date,
+					toOwner: party.owner
+				};
+
+				var key = playerKey(rfa.sleeperId, rfa.name);
+				if (!byPlayer[key]) byPlayer[key] = [];
+				byPlayer[key].push(entry);
+			});
+		});
+	});
+
+	Object.keys(byPlayer).forEach(function(k) {
+		byPlayer[k].sort(function(a, b) {
+			return new Date(a.date) - new Date(b.date);
+		});
+	});
+
+	return byPlayer;
+}
+
 function loadExpansionSelections() {
 	var content = fs.readFileSync(EXPANSION_DRAFT_FILE, 'utf8');
 	var lines = content.trim().split('\n');
@@ -258,7 +287,7 @@ function buildPlayerRegistry(auctions, contracts, draftsMap, faData, rfaData) {
 // Event generation
 // =============================================================================
 
-function generatePlayerEvents(key, player, auctionRecords, contractRecords, draftsMap, tradesMap, faRecords, rfaRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
+function generatePlayerEvents(key, player, auctionRecords, contractRecords, draftsMap, tradesMap, rfaTradesMap, faRecords, rfaRecords, expansionSelections, expansionProtections, auctionDates, draftDates) {
 	var events = [];
 
 	// --- Draft events ---
@@ -340,6 +369,36 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 			timestamp: tradeTimestamp,
 			type: 'trade',
 			line: '  ' + yy(new Date(trade.date).getUTCFullYear()) + ' trade ' + trade.tradeId + ' -> ' + trade.toOwner
+		});
+	});
+
+	// --- RFA rights trade events ---
+	// Build a map of season -> rfa timestamp so we can ensure rfa-trade events
+	// sort after the rfa event that creates the rights being traded.
+	var rfaTimestampBySeason = {};
+	rfaRecords.forEach(function(r) {
+		if (r.type === 'rfa-rights-conversion') {
+			rfaTimestampBySeason[r.season] = new Date(r.timestamp);
+		}
+	});
+
+	var rfaTrades = rfaTradesMap[playerKey(player.sleeperId, player.name)] || [];
+	rfaTrades.forEach(function(trade) {
+		var tradeDate = new Date(trade.date);
+		var tradeSeason = tradeDate.getUTCFullYear();
+
+		// If the trade happens during the season but the rfa event (contract expiry)
+		// is at end-of-season, clamp the timestamp so the rfa-trade sorts after the rfa.
+		// The rights being traded are created by the rfa event, so the trade must follow.
+		var rfaTs = rfaTimestampBySeason[tradeSeason];
+		if (rfaTs && tradeDate <= rfaTs) {
+			tradeDate = new Date(rfaTs.getTime() + 1);
+		}
+
+		events.push({
+			timestamp: tradeDate,
+			type: 'rfa-trade',
+			line: '  ' + yy(new Date(trade.date).getUTCFullYear()) + ' rfa-trade ' + trade.tradeId + ' -> ' + trade.toOwner
 		});
 	});
 
@@ -429,11 +488,11 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 		var diff = a.timestamp - b.timestamp;
 		if (diff !== 0) return diff;
 
-		// Tie-breaking: draft < protect < expansion < auction types < contract < rfa-lapsed < fa < trade < drop < cut < rfa < expiry
+		// Tie-breaking: draft < protect < expansion < auction types < contract < rfa-lapsed < fa < trade < drop < cut < rfa < rfa-trade < expiry
 		var order = {
 			draft: 0, protect: 1, expansion: 2,
 			'auction-ufa': 3, 'auction-rfa-matched': 3, 'auction-rfa-unmatched': 3,
-			contract: 4, 'rfa-lapsed': 5, fa: 6, trade: 7, drop: 8, cut: 9, rfa: 10, expiry: 11
+			contract: 4, 'rfa-lapsed': 5, fa: 6, trade: 7, drop: 8, cut: 9, rfa: 10, 'rfa-trade': 11, expiry: 12
 		};
 		return (order[a.type] || 99) - (order[b.type] || 99);
 	});
@@ -459,6 +518,9 @@ function generateDSL() {
 
 	var tradesMap = loadTrades();
 	console.log('  Trades: ' + Object.keys(tradesMap).length + ' player entries');
+
+	var rfaTradesMap = loadRfaTrades();
+	console.log('  RFA trades: ' + Object.keys(rfaTradesMap).length + ' player entries');
 
 	var faData = loadFA();
 	console.log('  FA records: ' + faData.length);
@@ -588,7 +650,7 @@ function generateDSL() {
 			playerRFA = rfaByPlayer['name:' + player.name.toLowerCase()] || [];
 		}
 
-		var events = generatePlayerEvents(key, player, playerAuctions, playerContracts, draftsMap, tradesMap, filteredFA, playerRFA, expansionSelections, expansionProtections, auctionDates, draftDates);
+		var events = generatePlayerEvents(key, player, playerAuctions, playerContracts, draftsMap, tradesMap, rfaTradesMap, filteredFA, playerRFA, expansionSelections, expansionProtections, auctionDates, draftDates);
 
 		if (events.length === 0) return;
 
@@ -628,6 +690,7 @@ function generateDSL() {
 	lines.push('#   contract $SALARY YY/YY           - Contract signed');
 	lines.push('#   fa OWNER $SALARY YY/YY           - FA pickup');
 	lines.push('#   trade NUMBER -> OWNER             - Trade');
+	lines.push('#   rfa-trade NUMBER -> OWNER         - RFA rights traded');
 	lines.push('#   drop                              - Dropped in-season (by OWNER in comment)');
 	lines.push('#   cut                               - Released in offseason (by OWNER in comment)');
 	lines.push('#   rfa OWNER                         - RFA rights conversion (contract expired)');
