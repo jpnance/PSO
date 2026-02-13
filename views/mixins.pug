@@ -75,13 +75,13 @@ mixin timelineEntry(entry)
 					span RFA not matched, signed by #{entry.regime}
 					+timelineSalary(entry)
 				else if entry.type === 'rfa-rights-conversion'
-					span RFA rights retained by #{entry.regime}
+					span Entered restricted free agency under #{entry.regime}
 					+timelineSalary(entry, { prefix: 'Expired:', expired: true })
 				else if entry.type === 'contract'
 					span Contract set by #{entry.regime}
 					+timelineSalary(entry)
 				else if entry.type === 'contract-expiry'
-					span Contract expired
+					span Entered unrestricted free agency
 					+timelineSalary(entry, { prefix: 'Expired:', expired: true })
 				else if entry.type === 'rfa-unknown'
 					span RFA outcome unknown
