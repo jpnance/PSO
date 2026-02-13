@@ -47,20 +47,6 @@ function buildNav(options) {
 			active: isActive('league')
 		},
 		{
-			id: 'schedule',
-			label: 'Schedule',
-			icon: 'fa-calendar',
-			href: '/schedule',
-			active: isActive('schedule')
-		},
-		{
-			id: 'faab',
-			label: 'FAAB',
-			icon: 'fa-gavel',
-			href: '#',
-			soon: true
-		},
-		{
 			id: 'standings',
 			label: 'Standings',
 			icon: 'fa-trophy',
@@ -68,11 +54,11 @@ function buildNav(options) {
 			active: isActive('standings')
 		},
 		{
-			id: 'trade-machine',
-			label: 'Trade Machine',
-			icon: 'fa-exchange',
-			href: '/trade-machine',
-			active: isActive('trade-machine')
+			id: 'schedule',
+			label: 'Schedule',
+			icon: 'fa-calendar',
+			href: '/schedule',
+			active: isActive('schedule')
 		}
 	];
 
@@ -90,70 +76,73 @@ function buildNav(options) {
 	// Build sections (collapsible)
 	var sections = [];
 
-	// All Franchises
+	// Franchises
 	sections.push({
 		id: 'franchises',
-		label: 'All Franchises',
+		label: 'Franchises',
 		icon: 'fa-shield',
-		expanded: activePage === 'franchise' || activePage === 'franchises',
+		expanded: activePage === 'franchise' || activePage === 'franchises' || isActive('timeline'),
 		items: franchises.map(function(f) {
 			return {
 				label: f.displayName,
 				href: '/franchises/' + f.rosterId,
 				active: isFranchiseActive(f.rosterId)
 			};
-		}),
+		}).concat([
+			{ label: 'Franchise Timeline', icon: 'fa-align-left', href: '/timeline', active: isActive('timeline') }
+		]),
 		isFranchiseList: true
 	});
 
-	// History & Results
+	// Transactions
 	sections.push({
-		id: 'history',
-		label: 'History & Results',
-		icon: 'fa-history',
-		expanded: isActive('trades') || isActive('timeline'),
+		id: 'transactions',
+		label: 'Transactions',
+		icon: 'fa-exchange',
+		expanded: isActive('trade-machine') || isActive('trades'),
 		items: [
-			{ label: 'History', icon: 'fa-calendar-check-o', href: '#', soon: true },
-			{ label: 'Trade History', icon: 'fa-exchange', href: '/trades', active: isActive('trades') },
-			{ label: 'Franchise Timeline', icon: 'fa-align-left', href: '/timeline', active: isActive('timeline') },
+			{ label: 'Trade Machine', icon: 'fa-exchange', href: '/trade-machine', active: isActive('trade-machine') },
+			{ label: 'Trade History', icon: 'fa-history', href: '/trades', active: isActive('trades') },
+			{ label: 'FAAB', icon: 'fa-gavel', href: '#', soon: true }
+		]
+	});
+
+	// Matchups & Results
+	sections.push({
+		id: 'matchups',
+		label: 'Matchups & Results',
+		icon: 'fa-trophy',
+		expanded: isActive('jaguar'),
+		items: [
+			{ label: 'Past Seasons', icon: 'fa-calendar-check-o', href: '#', soon: true },
 			{ label: 'Head-to-Head', icon: 'fa-users', href: '#', soon: true },
 			{ label: 'Jaguar Chart', icon: 'fa-paw', href: '/jaguar', active: isActive('jaguar') }
 		]
 	});
 
-	// Draft & Auction
+	// Offseason
 	sections.push({
-		id: 'draft',
-		label: 'Draft & Auction',
+		id: 'offseason',
+		label: 'Offseason',
 		icon: 'fa-list-ol',
 		expanded: isActive('rookies') || isActive('draft') || isActive('rfa'),
 		items: [
-			{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
 			{ label: 'Rookie Draft', icon: 'fa-list-ol', href: '/draft', active: isActive('draft') },
+			{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
 			{ label: 'Restricted Free Agents', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
-			{ label: 'Free Agent Auction', icon: 'fa-money', href: '#', soon: true }
+			{ label: 'Free Agent Auction', icon: 'fa-gavel', href: '#', soon: true }
 		]
 	});
 
-	// Tools
+	// Tools & Reference
 	sections.push({
-		id: 'tools',
-		label: 'Tools',
+		id: 'tools-reference',
+		label: 'Tools & Reference',
 		icon: 'fa-wrench',
-		expanded: isActive('simulator') || isActive('sunk'),
+		expanded: isActive('simulator') || isActive('sunk') || isActive('calendar') || isActive('rules'),
 		items: [
 			{ label: 'Simulator', icon: 'fa-random', href: '#', soon: true },
-			{ label: 'Sunk Cost Calculator', icon: 'fa-calculator', href: '/sunk', active: isActive('sunk') }
-		]
-	});
-
-	// Resources
-	sections.push({
-		id: 'resources',
-		label: 'Resources',
-		icon: 'fa-bookmark',
-		expanded: isActive('calendar') || isActive('rules'),
-		items: [
+			{ label: 'Sunk Cost Calculator', icon: 'fa-calculator', href: '/sunk', active: isActive('sunk') },
 			{ label: 'Calendar', icon: 'fa-calendar-o', href: '/calendar', active: isActive('calendar') },
 			{ label: 'Rules', icon: 'fa-book', href: '/rules', active: isActive('rules') },
 			{ label: 'Blog', icon: 'fa-rss', href: 'https://thedynastyleague.wordpress.com/', external: true }
