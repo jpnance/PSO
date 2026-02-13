@@ -1105,6 +1105,192 @@ async function cutPlayer(request, response) {
 	}
 }
 
+// GET /admin/transactions - recent transaction log
+async function transactionsPage(request, response) {
+	var typeFilter = request.query.type || '';
+	var sourceFilter = request.query.source || '';
+	var page = Math.max(1, parseInt(request.query.page, 10) || 1);
+	var perPage = 50;
+
+	var query = {};
+	if (typeFilter) {
+		query.type = typeFilter;
+	}
+	if (sourceFilter) {
+		query.source = sourceFilter;
+	}
+
+	var totalCount = await Transaction.countDocuments(query);
+	var transactions = await Transaction.find(query)
+		.sort({ timestamp: -1 })
+		.skip((page - 1) * perPage)
+		.limit(perPage)
+		.populate('playerId')
+		.populate('franchiseId')
+		.populate('adds.playerId')
+		.populate('drops.playerId')
+		.populate('parties.franchiseId')
+		.lean();
+
+	// Collect all franchise IDs to resolve regime names
+	var franchiseIds = new Set();
+	transactions.forEach(function(t) {
+		if (t.franchiseId) franchiseIds.add(t.franchiseId._id ? t.franchiseId._id.toString() : t.franchiseId.toString());
+		if (t.parties) {
+			t.parties.forEach(function(p) {
+				if (p.franchiseId) franchiseIds.add(p.franchiseId._id ? p.franchiseId._id.toString() : p.franchiseId.toString());
+			});
+		}
+	});
+
+	// Build franchise display name map
+	var regimes = await Regime.find({}).lean();
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+
+	var franchiseNameMap = {};
+	franchiseIds.forEach(function(fIdStr) {
+		var regime = regimes.find(function(r) {
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season);
+			});
+		});
+		franchiseNameMap[fIdStr] = regime ? regime.displayName : 'Unknown';
+	});
+
+	// Build display data for each transaction
+	var displayTransactions = transactions.map(function(t) {
+		var franchiseName = null;
+		if (t.franchiseId && t.franchiseId._id) {
+			franchiseName = franchiseNameMap[t.franchiseId._id.toString()];
+		}
+
+		var playerName = null;
+		if (t.playerId && t.playerId.name) {
+			playerName = t.playerId.name;
+		}
+
+		// Build a summary string
+		var summary = buildTransactionSummary(t, franchiseNameMap);
+
+		return {
+			_id: t._id.toString(),
+			type: t.type,
+			timestamp: t.timestamp,
+			source: t.source,
+			notes: t.notes,
+			franchiseName: franchiseName,
+			playerName: playerName,
+			tradeId: t.tradeId,
+			summary: summary
+		};
+	});
+
+	// Get distinct types and sources for filter dropdowns
+	var allTypes = [
+		'trade', 'fa', 'draft-select', 'draft-pass',
+		'expansion-draft-protect', 'expansion-draft-select',
+		'auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched',
+		'rfa-rights-conversion', 'rfa-rights-lapsed', 'rfa-unknown',
+		'unknown', 'contract-expiry', 'contract'
+	];
+	var allSources = ['wordpress', 'sleeper', 'fantrax', 'manual', 'snapshot', 'cuts', 'exception'];
+
+	var totalPages = Math.ceil(totalCount / perPage);
+
+	response.render('admin-transactions', {
+		transactions: displayTransactions,
+		typeFilter: typeFilter,
+		sourceFilter: sourceFilter,
+		allTypes: allTypes,
+		allSources: allSources,
+		page: page,
+		totalPages: totalPages,
+		totalCount: totalCount,
+		perPage: perPage,
+		activePage: 'admin'
+	});
+}
+
+function buildTransactionSummary(t, franchiseNameMap) {
+	switch (t.type) {
+		case 'trade':
+			if (t.parties && t.parties.length >= 2) {
+				var names = t.parties.map(function(p) {
+					var fId = p.franchiseId && p.franchiseId._id ? p.franchiseId._id.toString() : (p.franchiseId ? p.franchiseId.toString() : null);
+					return p.regimeName || (fId ? franchiseNameMap[fId] : null) || 'Unknown';
+				});
+				return 'Trade #' + (t.tradeId || '?') + ': ' + names.join(' ↔ ');
+			}
+			return 'Trade #' + (t.tradeId || '?');
+
+		case 'fa':
+			var parts = [];
+			if (t.adds && t.adds.length > 0) {
+				var addNames = t.adds.map(function(a) {
+					return a.playerId && a.playerId.name ? a.playerId.name : '?';
+				});
+				parts.push('Add ' + addNames.join(', '));
+			}
+			if (t.drops && t.drops.length > 0) {
+				var dropNames = t.drops.map(function(d) {
+					return d.playerId && d.playerId.name ? d.playerId.name : '?';
+				});
+				parts.push('Drop ' + dropNames.join(', '));
+			}
+			var faFranchise = t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : null;
+			if (faFranchise) {
+				parts.push('(' + faFranchise + ')');
+			}
+			return parts.join(' · ') || 'FA transaction';
+
+		case 'draft-select':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' drafted by ' +
+				(t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : '?');
+
+		case 'draft-pass':
+			return (t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : '?') + ' passed';
+
+		case 'auction-ufa':
+		case 'auction-rfa-matched':
+		case 'auction-rfa-unmatched':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') +
+				(t.winningBid ? ' for $' + t.winningBid : '') +
+				' to ' + (t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : '?');
+
+		case 'rfa-rights-conversion':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' → RFA rights' +
+				(t.franchiseId && t.franchiseId._id ? ' (' + franchiseNameMap[t.franchiseId._id.toString()] + ')' : '');
+
+		case 'rfa-rights-lapsed':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' RFA rights lapsed';
+
+		case 'contract-expiry':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' contract expired → UFA';
+
+		case 'contract':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') +
+				(t.salary ? ' $' + t.salary : '') +
+				(t.franchiseId && t.franchiseId._id ? ' (' + franchiseNameMap[t.franchiseId._id.toString()] + ')' : '');
+
+		case 'expansion-draft-select':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' selected' +
+				(t.franchiseId && t.franchiseId._id ? ' by ' + franchiseNameMap[t.franchiseId._id.toString()] : '');
+
+		case 'expansion-draft-protect':
+			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' protected' +
+				(t.franchiseId && t.franchiseId._id ? ' by ' + franchiseNameMap[t.franchiseId._id.toString()] : '');
+
+		default:
+			if (t.playerId && t.playerId.name) {
+				return t.playerId.name;
+			}
+			return '';
+	}
+}
+
 module.exports = {
 	configPage: configPage,
 	updateConfig: updateConfig,
@@ -1114,5 +1300,6 @@ module.exports = {
 	transferFranchise: transferFranchise,
 	rostersPage: rostersPage,
 	cutPlayer: cutPlayer,
-	sanityPage: sanityPage
+	sanityPage: sanityPage,
+	transactionsPage: transactionsPage
 };

@@ -1,0 +1,109 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Transaction Log', 'Admin')
+
+block styles
+	style.
+		.txn-log__type {
+			font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+			font-size: 0.8rem;
+		}
+		.txn-log__source {
+			font-size: 0.75rem;
+		}
+		.txn-log__time {
+			white-space: nowrap;
+			font-size: 0.85rem;
+		}
+		.txn-log__summary {
+			font-size: 0.9rem;
+		}
+		.txn-log__notes {
+			font-size: 0.8rem;
+			color: var(--text-muted);
+			font-style: italic;
+		}
+		.txn-log__id {
+			font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+			font-size: 0.7rem;
+			color: var(--text-tertiary);
+		}
+		.txn-log__pagination {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+block content
+	div.container-fluid.py-4
+		div.page-header
+			h1 Transaction Log
+
+		//- Filters
+		form.mb-4(method='GET')
+			div.form-row.align-items-end
+				div.col-auto
+					label.small.text-muted Type
+					select.form-control.form-control-sm(name='type')
+						option(value='') All types
+						each t in allTypes
+							option(value=t selected=(typeFilter === t))= t
+				div.col-auto
+					label.small.text-muted Source
+					select.form-control.form-control-sm(name='source')
+						option(value='') All sources
+						each s in allSources
+							option(value=s selected=(sourceFilter === s))= s
+				div.col-auto
+					label.small.text-muted &nbsp;
+					button.btn.btn-sm.btn-primary(type='submit') Filter
+				if typeFilter || sourceFilter
+					div.col-auto
+						label.small.text-muted &nbsp;
+						a.btn.btn-sm.btn-outline-secondary(href='/admin/transactions') Clear
+
+		//- Stats
+		div.mb-3
+			span.badge.badge-secondary #{totalCount} transaction#{totalCount === 1 ? '' : 's'}
+			if totalPages > 1
+				span.text-muted.ml-2 Page #{page} of #{totalPages}
+
+		//- Results
+		if transactions.length === 0
+			div.alert.alert-info No transactions found.
+		else
+			table.table.table-sm
+				thead.thead-light
+					tr
+						th Timestamp
+						th Type
+						th Source
+						th Summary
+						th ID
+				tbody
+					each t in transactions
+						tr
+							td.txn-log__time= t.timestamp.toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC')
+							td: span.txn-log__type.badge.badge-light= t.type
+							td: span.txn-log__source.badge.badge-secondary= t.source
+							td
+								span.txn-log__summary= t.summary
+								if t.notes
+									br
+									span.txn-log__notes= t.notes
+							td: span.txn-log__id= t._id.slice(-8)
+
+		//- Pagination
+		if totalPages > 1
+			nav.mt-3
+				ul.pagination.pagination-sm
+					- var baseQuery = (typeFilter ? 'type=' + typeFilter + '&' : '') + (sourceFilter ? 'source=' + sourceFilter + '&' : '')
+					li.page-item(class=(page <= 1 ? 'disabled' : ''))
+						a.page-link(href='/admin/transactions?' + baseQuery + 'page=' + (page - 1)) ← Prev
+					each p in Array.from({length: Math.min(totalPages, 10)}, (_, i) => i + Math.max(1, Math.min(page - 5, totalPages - 9)))
+						li.page-item(class=(p === page ? 'active' : ''))
+							a.page-link(href='/admin/transactions?' + baseQuery + 'page=' + p)= p
+					li.page-item(class=(page >= totalPages ? 'disabled' : ''))
+						a.page-link(href='/admin/transactions?' + baseQuery + 'page=' + (page + 1)) Next →
