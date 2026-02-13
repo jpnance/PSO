@@ -53,11 +53,7 @@ block content
 						//- Status banners (inside card for alignment)
 						if proposal.status === 'hypothetical'
 							+alertBanner('secondary', 'fa-file-text-o').mb-3
-								| This hypothetical trade hasn't been officially proposed.
-								if tradesEnabled
-									|  Anyone involved can propose it.
-								else
-									|  #{tradesDisabledReason}
+								| This is just a hypothetical trade.
 						if proposal.status === 'pending' && !proposal.acceptanceWindowStart
 							+alertBanner('warning', 'fa-refresh', 'The acceptance window expired. Accept again to restart the clock.').mb-3
 						if proposal.status === 'accepted' || forceShowShareScreen
