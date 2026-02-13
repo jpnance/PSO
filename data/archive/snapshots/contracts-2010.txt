@@ -32,7 +32,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,John,Anthony Gonzalez,WR,2010,2010,$26
 152,John,Anthony Spencer,LB,2010,2012,$1
 88,,Antoine Bethea,DB,FA,2010,
-6888,Keyon,Antoine Winfield,DB,2009,2011,$1
+-1,Keyon,Antoine Winfield,DB,2009,2011,$1
 -1,,Antonio Bryant,WR,FA,2010,
 322,Schexes,Antonio Gates,TE,2010,2011,$89
 376,,Antonio Smith,DL,FA,2010,

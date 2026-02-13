@@ -115,7 +115,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Jeff,Brian Westbrook,RB,2008,2008,$320
 -1,Jeff,Keith Bulluck,LB,2008,2008,$2
 -1,Jeff,Adewale Ogunleye,DL,2008,2008,$3
-6888,Jeff,Antoine Winfield,DB,2008,2008,$3
+-1,Jeff,Antoine Winfield,DB,2008,2008,$3
 -1,Jeff,Jake Delhomme,QB,2008,2008,$7
 -1,Jeff,Donte' Stallworth,WR,2008,2008,$6
 58,Jeff,Greg Olsen,TE,2008,2008,$4

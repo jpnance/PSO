@@ -212,7 +212,7 @@
   {
     "season": 2008,
     "type": "auction-ufa",
-    "sleeperId": "6888",
+    "sleeperId": null,
     "name": "Antoine Winfield",
     "positions": [
       "DB"
@@ -3197,7 +3197,7 @@
   {
     "season": 2009,
     "type": "auction-rfa-unmatched",
-    "sleeperId": "6888",
+    "sleeperId": null,
     "name": "Antoine Winfield",
     "positions": [
       "DB"

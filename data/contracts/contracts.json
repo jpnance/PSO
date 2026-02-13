@@ -181,7 +181,7 @@
   },
   {
     "season": 2008,
-    "sleeperId": "6888",
+    "sleeperId": null,
     "name": "Antoine Winfield",
     "positions": [
       "DB"
@@ -2764,7 +2764,7 @@
   },
   {
     "season": 2009,
-    "sleeperId": "6888",
+    "sleeperId": null,
     "name": "Antoine Winfield",
     "positions": [
       "DB"

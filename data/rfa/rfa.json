@@ -1317,7 +1317,7 @@
 		"type": "rfa-rights-conversion",
 		"timestamp": "2009-01-15T00:00:00.000Z",
 		"rosterId": 7,
-		"sleeperId": "6888",
+		"sleeperId": null,
 		"playerName": "Antoine Winfield",
 		"position": "DB",
 		"startYear": 2008,

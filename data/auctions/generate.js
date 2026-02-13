@@ -163,7 +163,7 @@ function main() {
 
 	// Build RFA rights lookup: { "playerKey|season": rosterId }
 	// An rfa-rights-conversion in season S means the owner held RFA rights
-	// going into the S+1 auction.
+	// going into the S+1 auction -- UNLESS those rights subsequently lapsed.
 	var rfaRights = {};
 	rfaRecords.forEach(function(r) {
 		if (r.type !== 'rfa-rights-conversion') return;
@@ -174,6 +174,19 @@ function main() {
 			key = normalizePlayerName(r.playerName) + '|' + r.season;
 		}
 		rfaRights[key] = r.rosterId;
+	});
+
+	// Remove lapsed RFA rights from the lookup - these players go to auction
+	// as UFAs since the rights holder chose not to nominate them.
+	rfaRecords.forEach(function(r) {
+		if (r.type !== 'rfa-rights-lapsed') return;
+		var key;
+		if (r.sleeperId && r.sleeperId !== '-1') {
+			key = r.sleeperId + '|' + r.season;
+		} else {
+			key = normalizePlayerName(r.playerName) + '|' + r.season;
+		}
+		delete rfaRights[key];
 	});
 
 	// Build draft lookup by season: { season: [{ sleeperId, name }] }

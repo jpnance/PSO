@@ -373,7 +373,7 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Keyon,Ricky Williams,RB,2011,2011,$1
 -1,,Torry Holt,WR,FA,2011,
 -1,,Daunte Culpepper,QB,FA,2011,
-6888,Keyon,Antoine Winfield,DB,2009,2011,$1
+-1,Keyon,Antoine Winfield,DB,2009,2011,$1
 -1,,Patrick Kerney,DL,FA,2011,
 -1,,Mike Peterson,LB,FA,2011,
 -1,,Kevin Faulk,RB,FA,2011,

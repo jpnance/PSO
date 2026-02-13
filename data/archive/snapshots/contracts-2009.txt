@@ -17,7 +17,7 @@ ID,Owner,Name,Position,Start,End,Salary
 655,Schexes,Anquan Boldin,WR,2008,2010,$11
 51,Patrick,Anthony Fasano,TE,2009,2011,$4
 -1,Daniel,Anthony Gonzalez,WR,2009,2009,$92
-6888,Keyon,Antoine Winfield,DB,2009,2011,$1
+-1,Keyon,Antoine Winfield,DB,2009,2011,$1
 -1,Keyon,Antonio Bryant,WR,2009,2011,$38
 322,Daniel,Antonio Gates,TE,2009,2009,$97
 376,,Antonio Smith,DL,FA,2009,$1
