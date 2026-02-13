@@ -3268,6 +3268,19 @@
 	{
 		"season": 2009,
 		"type": "rfa-rights-conversion",
+		"timestamp": "2009-12-29T12:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "220",
+		"playerName": "DeMeco Ryans",
+		"position": null,
+		"startYear": null,
+		"endYear": null,
+		"salary": null,
+		"source": "exception"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-conversion",
 		"timestamp": "2010-01-15T00:00:00.000Z",
 		"rosterId": 5,
 		"sleeperId": "184",
@@ -4980,6 +4993,16 @@
 		"endYear": 2009,
 		"salary": 1,
 		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-08-21T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "220",
+		"playerName": "DeMeco Ryans",
+		"position": null,
+		"source": "exception"
 	},
 	{
 		"season": 2009,

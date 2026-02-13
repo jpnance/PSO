@@ -492,6 +492,71 @@ async function run() {
 	}
 
 	// =========================================================================
+	// Transaction Insertions
+	// =========================================================================
+	if (fixups.transactionInsertions && fixups.transactionInsertions.length > 0) {
+		console.log('=== Transaction Insertions ===');
+		
+		for (var i = 0; i < fixups.transactionInsertions.length; i++) {
+			var ti = fixups.transactionInsertions[i];
+			
+			// Find the player
+			var player = await Player.findOne({ name: ti.player });
+			if (!player) {
+				// Try case-insensitive
+				player = await Player.findOne({
+					name: new RegExp('^' + ti.player.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i')
+				});
+			}
+			
+			if (!player) {
+				console.log('  ✗ Player "' + ti.player + '" not found');
+				errors.push('Player "' + ti.player + '" not found');
+				continue;
+			}
+			
+			// Find the franchise
+			var franchise = await Franchise.findOne({ rosterId: ti.rosterId });
+			if (!franchise) {
+				console.log('  ✗ Franchise with rosterId ' + ti.rosterId + ' not found');
+				errors.push('Franchise with rosterId ' + ti.rosterId + ' not found');
+				continue;
+			}
+			
+			// Check if transaction already exists
+			var timestamp = new Date(ti.timestamp);
+			var existing = await Transaction.findOne({
+				type: ti.type,
+				playerId: player._id,
+				timestamp: timestamp
+			});
+			
+			if (existing) {
+				console.log('  ' + ti.player + ' ' + ti.type + ': already exists');
+				continue;
+			}
+			
+			console.log('  ' + ti.player + ' ' + ti.type + ':');
+			console.log('    timestamp: ' + ti.timestamp);
+			console.log('    franchise: rosterId ' + ti.rosterId);
+			if (ti.notes) console.log('    notes: ' + ti.notes);
+			
+			if (!dryRun) {
+				await Transaction.create({
+					type: ti.type,
+					timestamp: timestamp,
+					playerId: player._id,
+					franchiseId: franchise._id,
+					source: 'manual',
+					notes: ti.notes || null
+				});
+				console.log('    ✓ Done');
+			}
+		}
+		console.log('');
+	}
+
+	// =========================================================================
 	// Save modified fixup files
 	// =========================================================================
 	if (!dryRun) {

@@ -408,6 +408,60 @@ function run() {
 		allRecords = allRecords.concat(seasonRecords);
 	}
 
+	// ==========================================================================
+	// Early RFA Exceptions
+	// ==========================================================================
+	// Before the dead period rules existed, some RFA rights were traded before
+	// the standard January 15 conveyance date. These players need backdated
+	// rfa-rights-conversion records so the trade can happen in the correct state.
+	
+	var earlyRfaExceptions = [
+		{
+			// Trade #16 on Dec 30, 2009: Luke traded DeMeco Ryans's RFA rights to Patrick
+			// The league granted expedited RFA conveyance after Luke's Week 17 elimination
+			playerName: 'DeMeco Ryans',
+			sleeperId: '220',
+			season: 2009,
+			conversionTimestamp: '2009-12-29T12:00:00.000Z',
+			conversionRosterId: 7,  // Jake/Luke
+			lapsedTimestamp: '2010-08-21T16:00:00.000Z',
+			lapsedRosterId: 1,  // Patrick (who held rights via Trade #16)
+			notes: 'Expedited RFA conveyance granted for Trade #16'
+		}
+	];
+	
+	console.log('\nAdding early RFA exceptions...');
+	earlyRfaExceptions.forEach(function(ex) {
+		console.log('  ' + ex.playerName + ' (' + ex.season + '): ' + ex.notes);
+		
+		// Add rfa-rights-conversion
+		allRecords.push({
+			season: ex.season,
+			type: 'rfa-rights-conversion',
+			timestamp: ex.conversionTimestamp,
+			rosterId: ex.conversionRosterId,
+			sleeperId: ex.sleeperId,
+			playerName: ex.playerName,
+			position: null,
+			startYear: null,
+			endYear: null,
+			salary: null,
+			source: 'exception'
+		});
+		
+		// Add rfa-rights-lapsed (Patrick chose not to exercise rights at 2010 auction)
+		allRecords.push({
+			season: ex.season,
+			type: 'rfa-rights-lapsed',
+			timestamp: ex.lapsedTimestamp,
+			rosterId: ex.lapsedRosterId,
+			sleeperId: ex.sleeperId,
+			playerName: ex.playerName,
+			position: null,
+			source: 'exception'
+		});
+	});
+
 	// Generate rfa-rights-lapsed records for RFA conversions that didn't go to auction
 	console.log('\nGenerating RFA lapsed records...');
 	var lapsedRecords = [];
