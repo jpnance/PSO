@@ -3221,6 +3221,14 @@
 				"salary": 20,
 				"startYear": 2008,
 				"endYear": 2009
+			},
+			{
+				"name": "Antrel Rolle",
+				"position": "DB",
+				"salary": 2,
+				"startYear": 2008,
+				"endYear": 2009,
+				"sleeperId": "675"
 			}
 		],
 		"source": "offseason",

@@ -555,6 +555,20 @@
 		"sleeperId": "322"
 	},
 	{
+		"owner": "James",
+		"name": "Antrel Rolle",
+		"hint": null,
+		"position": "DB",
+		"startYear": 2008,
+		"endYear": 2009,
+		"salary": 2,
+		"cutYear": 2009,
+		"rosterId": 9,
+		"note": "inferred from contract change",
+		"offseason": true,
+		"sleeperId": "675"
+	},
+	{
 		"owner": "Daniel",
 		"name": "Brandon Jackson",
 		"hint": null,
