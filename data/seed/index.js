@@ -9,14 +9,14 @@
  *   docker compose run --rm web node data/seed --foundation-only
  *   docker compose run --rm web node data/seed --validate-only
  *   docker compose run --rm web node data/seed --skip-clear
- *   docker compose run --rm web node data/seed --with-fixups
+ *   docker compose run --rm web node data/seed --skip-fixups
  * 
  * Options:
  *   --foundation-only   Only seed entities (franchises, regimes, persons)
  *   --skip-foundation   Skip foundation seeding (use existing entities)
  *   --skip-clear        Don't clear existing transactions before seeding
  *   --validate-only     Just run validation without seeding
- *   --with-fixups       Apply data corrections (includes season rollover)
+ *   --skip-fixups       Skip applying data corrections
  */
 
 require('dotenv').config();
@@ -108,7 +108,7 @@ var args = {
 	validateOnly: process.argv.includes('--validate-only'),
 	skipClear: process.argv.includes('--skip-clear'),
 	skipFoundation: process.argv.includes('--skip-foundation'),
-	withFixups: process.argv.includes('--with-fixups')
+	skipFixups: process.argv.includes('--skip-fixups')
 };
 
 /**
@@ -243,6 +243,15 @@ async function seedRFA() {
 	runScript('RFA', 'data/seed/rfa-from-json.js');
 }
 
+async function seedRFALapsed() {
+	console.log('========================================');
+	console.log('       Seeding RFA Lapsed Transactions');
+	console.log('========================================\n');
+	
+	// Creates rfa-rights-lapsed transactions for RFA rights not exercised
+	runScript('RFA Lapsed', 'data/seed/rfa-lapsed.js', ['--clear']);
+}
+
 async function computeContracts() {
 	console.log('========================================');
 	console.log('       Computing Current Contracts');
@@ -342,31 +351,32 @@ async function run() {
 	// 6. RFA transactions (contract expiries and RFA rights conversions)
 	await seedRFA();
 	
+	// 7. RFA lapsed transactions (RFA rights not exercised at auction)
+	await seedRFALapsed();
+	
 	// =====================================================
 	// Compute Current State
 	// =====================================================
 	// These scripts use the seeded transactions to compute
 	// the current state of contracts, picks, and budgets.
 	
-	// 7. Compute current contract ownership (replay trades + drops)
+	// 8. Compute current contract ownership (replay trades + drops)
 	await computeContracts();
 	
-	// 8. Compute future pick ownership (replay trades)
+	// 9. Compute future pick ownership (replay trades)
 	await computePicks();
 	
-	// 9. Compute budgets (from contracts + transactions)
+	// 10. Compute budgets (from contracts + transactions)
 	await computeBudgets();
 	
-	// 10. Apply manual data fixups (opt-in with --with-fixups)
-	// Fixups include season rollover which advances the league to the next season,
-	// so they should only be run when explicitly requested.
-	if (args.withFixups) {
-		await applyFixups();
-	} else {
+	// 11. Apply manual data fixups (default, skip with --skip-fixups)
+	if (args.skipFixups) {
 		console.log('========================================');
 		console.log('       Skipping Fixups');
 		console.log('========================================\n');
-		console.log('(Use --with-fixups to apply data corrections)\n');
+		console.log('(Fixups skipped via --skip-fixups)\n');
+	} else {
+		await applyFixups();
 	}
 	
 	// Final validation

@@ -52,7 +52,7 @@ async function run() {
 	if (args.year) {
 		console.log('Year:', args.year);
 	} else {
-		console.log('Years: 2009 - 2024');
+		console.log('Years: 2009 - 2025');
 	}
 	if (args.dryRun) console.log('[DRY RUN]');
 	console.log('');
@@ -81,7 +81,7 @@ async function run() {
 	}
 	
 	var startYear = args.year || 2009;
-	var endYear = args.year || 2024;
+	var endYear = args.year || 2025;
 	
 	var stats = {
 		created: 0,
