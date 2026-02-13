@@ -33,7 +33,7 @@
 
 ### Information Pages
 - [x] Full standings page ⚡ *quick win*
-- [ ] Schedule/results page (maybe special case of `/history`?) ⚡ *quick win*
+- [x] Schedule/results page ⚡ *quick win*
 
 ### Migrations (existing features → new setup)
 - [ ] Integrate `/history` into the new setup *(navbar is easy; polish is not)*
