@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Franchise = require('../../models/Franchise');
 var Person = require('../../models/Person');
 var Regime = require('../../models/Regime');
+var LeagueConfig = require('../../models/LeagueConfig');
 var PSO = require('../../config/pso');
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -130,6 +131,7 @@ async function seed() {
 		await Franchise.deleteMany({});
 		await Person.deleteMany({});
 		await Regime.deleteMany({});
+		await LeagueConfig.deleteMany({});
 	}
 
 	// Seed franchises
@@ -180,11 +182,23 @@ async function seed() {
 		console.log('  Created regime:', doc.displayName, '-', tenureSummary);
 	}
 
+	// Seed LeagueConfig
+	console.log('\nSeeding league config...');
+	var currentSeason = PSO.season;
+	var defaultDates = LeagueConfig.computeDefaultDates(currentSeason);
+	var config = await LeagueConfig.create({
+		_id: 'pso',
+		season: currentSeason,
+		...defaultDates
+	});
+	console.log('  Created LeagueConfig for season', config.season);
+
 	console.log('\nDone!');
 	console.log('\nSummary:');
 	console.log('  Franchises:', Object.keys(franchiseDocs).length);
 	console.log('  People:', people.length);
 	console.log('  Regimes:', regimes.length, '(with', tenures.length, 'total tenures)');
+	console.log('  LeagueConfig: season', currentSeason);
 
 	process.exit(0);
 }

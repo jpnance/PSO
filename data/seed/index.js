@@ -5,16 +5,18 @@
  * from JSON data files: drafts.json, auctions.json, contracts.json, trades.json, fa.json, rfa.json.
  * 
  * Usage:
- *   docker compose run --rm -it web node data/seed
- *   docker compose run --rm -it web node data/seed --foundation-only
- *   docker compose run --rm -it web node data/seed --validate-only
- *   docker compose run --rm -it web node data/seed --skip-clear
+ *   docker compose run --rm web node data/seed
+ *   docker compose run --rm web node data/seed --foundation-only
+ *   docker compose run --rm web node data/seed --validate-only
+ *   docker compose run --rm web node data/seed --skip-clear
+ *   docker compose run --rm web node data/seed --with-fixups
  * 
  * Options:
  *   --foundation-only   Only seed entities (franchises, regimes, persons)
  *   --skip-foundation   Skip foundation seeding (use existing entities)
  *   --skip-clear        Don't clear existing transactions before seeding
  *   --validate-only     Just run validation without seeding
+ *   --with-fixups       Apply data corrections (includes season rollover)
  */
 
 require('dotenv').config();
@@ -29,6 +31,7 @@ var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
 var Contract = require('../../models/Contract');
 var Pick = require('../../models/Pick');
+var Budget = require('../../models/Budget');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -104,7 +107,8 @@ var args = {
 	foundationOnly: process.argv.includes('--foundation-only'),
 	validateOnly: process.argv.includes('--validate-only'),
 	skipClear: process.argv.includes('--skip-clear'),
-	skipFoundation: process.argv.includes('--skip-foundation')
+	skipFoundation: process.argv.includes('--skip-foundation'),
+	withFixups: process.argv.includes('--with-fixups')
 };
 
 /**
@@ -124,6 +128,11 @@ async function clearAllTransactions() {
 	console.log('Clearing contracts...');
 	var contractResult = await Contract.deleteMany({});
 	console.log('  Deleted', contractResult.deletedCount, 'contracts');
+	
+	// Clear budgets (will be rebuilt after contracts are computed)
+	console.log('Clearing budgets...');
+	var budgetResult = await Budget.deleteMany({});
+	console.log('  Deleted', budgetResult.deletedCount, 'budgets');
 	
 	// Clear ALL players (will be re-synced from Sleeper, historical created by seeders)
 	console.log('Clearing all players...');
@@ -234,6 +243,42 @@ async function seedRFA() {
 	runScript('RFA', 'data/seed/rfa-from-json.js');
 }
 
+async function computeContracts() {
+	console.log('========================================');
+	console.log('       Computing Current Contracts');
+	console.log('========================================\n');
+	
+	// Replay trades/drops to compute current contract ownership
+	runScript('Contracts', 'data/seed/compute-contracts.js');
+}
+
+async function computePicks() {
+	console.log('========================================');
+	console.log('       Computing Current Picks');
+	console.log('========================================\n');
+	
+	// Replay trades to compute current pick ownership
+	runScript('Picks', 'data/seed/compute-picks.js');
+}
+
+async function computeBudgets() {
+	console.log('========================================');
+	console.log('       Computing Budgets');
+	console.log('========================================\n');
+	
+	// Calculate budgets from contracts and transactions
+	runScript('Budgets', 'data/seed/budgets.js');
+}
+
+async function applyFixups() {
+	console.log('========================================');
+	console.log('       Applying Data Fixups');
+	console.log('========================================\n');
+	
+	// Apply manual data corrections
+	runScript('Fixups', 'data/maintenance/apply-fixups.js');
+}
+
 async function run() {
 	console.log('');
 	console.log('╔══════════════════════════════════════╗');
@@ -296,6 +341,33 @@ async function run() {
 	
 	// 6. RFA transactions (contract expiries and RFA rights conversions)
 	await seedRFA();
+	
+	// =====================================================
+	// Compute Current State
+	// =====================================================
+	// These scripts use the seeded transactions to compute
+	// the current state of contracts, picks, and budgets.
+	
+	// 7. Compute current contract ownership (replay trades + drops)
+	await computeContracts();
+	
+	// 8. Compute future pick ownership (replay trades)
+	await computePicks();
+	
+	// 9. Compute budgets (from contracts + transactions)
+	await computeBudgets();
+	
+	// 10. Apply manual data fixups (opt-in with --with-fixups)
+	// Fixups include season rollover which advances the league to the next season,
+	// so they should only be run when explicitly requested.
+	if (args.withFixups) {
+		await applyFixups();
+	} else {
+		console.log('========================================');
+		console.log('       Skipping Fixups');
+		console.log('========================================\n');
+		console.log('(Use --with-fixups to apply data corrections)\n');
+	}
 	
 	// Final validation
 	var valid = runValidator();

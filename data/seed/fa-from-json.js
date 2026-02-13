@@ -20,6 +20,7 @@ var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
 var playerUpsert = require('../utils/player-upsert');
+var budgetHelper = require('../../helpers/budget');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -166,11 +167,31 @@ async function seed() {
 					continue;
 				}
 				if (player) {
+					// Compute buyouts for each remaining year of the contract
+					var buyOuts = [];
+					var salary = dropEntry.salary || 0;
+					var startYear = dropEntry.startYear;
+					var endYear = dropEntry.endYear;
+					
+					if (salary > 0 && endYear) {
+						// Buyouts apply for remaining years of the contract
+						for (var buyoutYear = season; buyoutYear <= endYear; buyoutYear++) {
+							var buyoutAmount = budgetHelper.computeBuyOutIfCut(salary, startYear, endYear, buyoutYear);
+							if (buyoutAmount > 0) {
+								buyOuts.push({
+									season: buyoutYear,
+									amount: buyoutAmount
+								});
+							}
+						}
+					}
+					
 					drops.push({
 						playerId: player._id,
 						salary: dropEntry.salary || null,
 						startYear: dropEntry.startYear || null,
-						endYear: dropEntry.endYear || null
+						endYear: dropEntry.endYear || null,
+						buyOuts: buyOuts
 					});
 				}
 			}
