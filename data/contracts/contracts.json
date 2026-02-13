@@ -859,7 +859,7 @@
     "positions": [
       "QB"
     ],
-    "rosterId": 7,
+    "rosterId": 4,
     "salary": 100,
     "startYear": 2008,
     "endYear": 2008
@@ -1951,7 +1951,7 @@
     "positions": [
       "QB"
     ],
-    "rosterId": 4,
+    "rosterId": 7,
     "salary": 38,
     "startYear": 2008,
     "endYear": 2008
@@ -2131,7 +2131,7 @@
     "positions": [
       "RB"
     ],
-    "rosterId": 4,
+    "rosterId": 7,
     "salary": 87,
     "startYear": 2008,
     "endYear": 2008

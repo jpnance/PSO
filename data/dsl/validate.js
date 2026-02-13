@@ -879,6 +879,45 @@ function checkFirstEventIsAcquisition(player) {
 	return issues;
 }
 
+/**
+ * Check 15: Trade to same owner.
+ * A trade should never send a player to the franchise that already owns them.
+ */
+function checkTradeToSameOwner(player) {
+	var issues = [];
+	var owner = null;
+	var ownerSeason = null;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		if (ACQUIRE_EVENTS[e.type] || e.type === 'expansion') {
+			owner = e.owner;
+			ownerSeason = e.season;
+		} else if (e.type === 'trade') {
+			if (owner && sameFranchise(owner, ownerSeason, e.owner, e.season)) {
+				issues.push({
+					check: 'trade-to-same-owner',
+					player: player.header,
+					message: 'Trade ' + e.tradeId + ' sends player to ' + e.owner + ' but already owned by ' + owner,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			owner = e.owner;
+			ownerSeason = e.season;
+		} else if (e.type === 'rfa') {
+			owner = e.owner;
+			ownerSeason = e.season;
+		} else if (RELEASE_EVENTS[e.type]) {
+			owner = null;
+			ownerSeason = null;
+		}
+	}
+
+	return issues;
+}
+
 // =============================================================================
 // Main
 // =============================================================================
@@ -897,7 +936,8 @@ var checks = [
 	{ name: 'Contract follows acquisition', fn: checkContractFollowsAcquisition },
 	{ name: 'No orphan contracts', fn: checkNoOrphanContracts },
 	{ name: 'Trade continuity', fn: checkTradeContinuity },
-	{ name: 'First event is acquisition', fn: checkFirstEventIsAcquisition }
+	{ name: 'First event is acquisition', fn: checkFirstEventIsAcquisition },
+	{ name: 'Trade to same owner', fn: checkTradeToSameOwner }
 ];
 
 function main() {

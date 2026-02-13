@@ -55,8 +55,8 @@ ID,Owner,Name,Position,Start,End,Salary
 41,Syed,David Garrard,QB,2008,2010,$15
 300,Syed,Willis McGahee,RB,2008,2010,$41
 392,Syed,Mike Vrabel,LB,2008,2008,$2
-331,John,Philip Rivers,QB,2008,2008,$38
-258,John,Ronnie Brown,RB,2008,2008,$87
+331,Jeff,Philip Rivers,QB,2008,2008,$38
+258,Jeff,Ronnie Brown,RB,2008,2008,$87
 167,John,Tom Brady,QB,2008,2008,$255
 -1,John,Larry Johnson,RB,2008,2008,$125
 -1,John,Plaxico Burress,WR,2008,2010,$62
@@ -106,7 +106,7 @@ ID,Owner,Name,Position,Start,End,Salary
 272,Keyon,Chris Johnson,RB,2008,2010,$5
 155,Keyon,Jerricho Cotchery,WR,2008,2010,$32
 -1,Keyon,Earnest Graham,RB,2008,2008,$25
-289,Jeff,Drew Brees,QB,2008,2008,$100
+289,John,Drew Brees,QB,2008,2008,$100
 -1,Jeff,Willie Parker,RB,2008,2008,$120
 -1,Jeff,T.J. Houshmandzadeh,WR,2008,2008,$99
 -1,Jeff,Randy Moss,WR,2008,2008,$211
