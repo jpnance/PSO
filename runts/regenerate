@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+/**
+ * Regenerate all data files in dependency order.
+ *
+ * Order:
+ *   1. contracts.json - base contract data from snapshots
+ *   2. auctions.json  - depends on contracts, rfa, drafts, trades
+ *   3. rfa.json       - depends on contracts, auctions, cuts, trades
+ *   4. fa.json        - depends on cuts, trades
+ *   5. player-history.dsl - depends on all of the above
+ *
+ * Usage:
+ *   node data/regenerate.js
+ */
+
+var execSync = require('child_process').execSync;
+var path = require('path');
+
+var generators = [
+	{ name: 'contracts', script: 'data/contracts/generate.js' },
+	{ name: 'auctions', script: 'data/auctions/generate.js' },
+	{ name: 'rfa', script: 'data/rfa/generate.js' },
+	{ name: 'fa', script: 'data/fa/generate.js' },
+	{ name: 'dsl', script: 'data/dsl/generate.js' }
+];
+
+console.log('=== Regenerating All Data Files ===\n');
+
+var failed = false;
+
+generators.forEach(function(gen, idx) {
+	var label = '[' + (idx + 1) + '/' + generators.length + '] ' + gen.name;
+	console.log(label);
+	console.log('─'.repeat(40));
+
+	try {
+		var output = execSync('node ' + gen.script, {
+			cwd: path.join(__dirname, '..'),
+			encoding: 'utf8',
+			stdio: ['pipe', 'pipe', 'pipe']
+		});
+
+		// Print summary lines (last few lines of output)
+		var lines = output.trim().split('\n');
+		var summaryStart = lines.findIndex(function(l) { return l.includes('Summary') || l.includes('Wrote'); });
+		if (summaryStart >= 0) {
+			lines.slice(summaryStart).forEach(function(l) { console.log('  ' + l); });
+		} else {
+			// Just show last 3 lines
+			lines.slice(-3).forEach(function(l) { console.log('  ' + l); });
+		}
+		console.log('');
+	} catch (err) {
+		console.error('  ERROR: ' + (err.message || err));
+		if (err.stderr) console.error('  ' + err.stderr);
+		failed = true;
+		console.log('');
+	}
+});
+
+if (failed) {
+	console.log('=== Completed with errors ===');
+	process.exit(1);
+} else {
+	console.log('=== All generators completed successfully ===');
+}
