@@ -919,7 +919,7 @@
             "salary": 110,
             "contractStr": "2009",
             "contract": {
-              "start": 2008,
+              "start": 2009,
               "end": 2009,
               "source": "certain"
             }
@@ -4640,7 +4640,7 @@
             "salary": 80,
             "contractStr": "2013",
             "contract": {
-              "start": 2011,
+              "start": 2013,
               "end": 2013,
               "source": "certain"
             },
@@ -6025,7 +6025,7 @@
             "salary": 2,
             "contractStr": "2014",
             "contract": {
-              "start": 2012,
+              "start": null,
               "end": 2014,
               "source": "certain"
             },
@@ -6160,7 +6160,7 @@
             "salary": 87,
             "contractStr": "2014",
             "contract": {
-              "start": 2013,
+              "start": 2014,
               "end": 2014,
               "source": "certain"
             },
@@ -7108,7 +7108,7 @@
             "salary": 167,
             "contractStr": "2014",
             "contract": {
-              "start": 2012,
+              "start": 2014,
               "end": 2014,
               "source": "certain"
             },
@@ -7120,7 +7120,7 @@
             "salary": 1,
             "contractStr": "2014",
             "contract": {
-              "start": 2012,
+              "start": null,
               "end": 2014,
               "source": "certain"
             },
@@ -8602,7 +8602,7 @@
             "salary": 90,
             "contractStr": "2015",
             "contract": {
-              "start": 2013,
+              "start": 2015,
               "end": 2015,
               "source": "certain"
             },
@@ -8783,7 +8783,7 @@
             "salary": 1,
             "contractStr": "2015",
             "contract": {
-              "start": 2013,
+              "start": null,
               "end": 2015,
               "source": "certain"
             },
@@ -10225,7 +10225,7 @@
             "salary": 241,
             "contractStr": "2016",
             "contract": {
-              "start": 2014,
+              "start": 2016,
               "end": 2016,
               "source": "certain"
             },
@@ -13497,7 +13497,7 @@
             "salary": 1,
             "contractStr": "2017",
             "contract": {
-              "start": 2017,
+              "start": null,
               "end": 2017,
               "source": "certain"
             },
@@ -15863,7 +15863,7 @@
             "salary": 1,
             "contractStr": "2018",
             "contract": {
-              "start": 2016,
+              "start": null,
               "end": 2018,
               "source": "certain"
             },
@@ -16272,7 +16272,7 @@
             "salary": 1,
             "contractStr": "2018",
             "contract": {
-              "start": 2016,
+              "start": null,
               "end": 2018,
               "source": "certain"
             },
@@ -19200,7 +19200,7 @@
             "salary": 4,
             "contractStr": "2019",
             "contract": {
-              "start": 2017,
+              "start": null,
               "end": 2019,
               "source": "certain"
             },

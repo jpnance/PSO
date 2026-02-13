@@ -694,7 +694,8 @@ function buildTradesBySeason(trades) {
 					sleeperId: p.sleeperId || null,
 					startYear: p.contract ? p.contract.start : null,
 					endYear: p.contract ? p.contract.end : null,
-					contractStr: p.contractStr || null
+					contractStr: p.contractStr || null,
+					salary: p.salary || null
 				};
 			});
 			return {
@@ -1006,14 +1007,14 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 					var upperBound = result.upperBound || tradeDate;
 					var timestamp = inferTimestamp(lowerBound, upperBound);
 
-					var add = {
-						name: player.name,
-						position: null,
-						salary: 1,
-						startYear: null,
-						endYear: player.endYear
-					};
-					if (player.sleeperId) add.sleeperId = player.sleeperId;
+				var add = {
+					name: player.name,
+					position: null,
+					salary: player.salary || 1,
+					startYear: null,
+					endYear: player.endYear
+				};
+				if (player.sleeperId) add.sleeperId = player.sleeperId;
 
 					records.push({
 						season: season,
@@ -1226,13 +1227,13 @@ function generateInferredAdds(cuts, trades, auctionDates) {
 						var upperBound = result.upperBound || seasonEnd;
 						var timestamp = inferTimestamp(lowerBound, upperBound);
 
-						var add = {
-							name: rfa.name,
-							position: matchingCut.position || null,
-							salary: 1,
-							startYear: null,
-							endYear: season
-						};
+					var add = {
+						name: rfa.name,
+						position: matchingCut.position || null,
+						salary: matchingCut.salary || 1,
+						startYear: null,
+						endYear: season
+					};
 						if (sleeperId) add.sleeperId = sleeperId;
 
 						records.push({

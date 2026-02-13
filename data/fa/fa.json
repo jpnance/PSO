@@ -6770,7 +6770,7 @@
 			{
 				"name": "DeMeco Ryans",
 				"position": "LB",
-				"salary": 1,
+				"salary": 30,
 				"startYear": null,
 				"endYear": 2009,
 				"sleeperId": "220"
@@ -8002,7 +8002,7 @@
 			{
 				"name": "Peyton Hillis",
 				"position": null,
-				"salary": 1,
+				"salary": 8,
 				"startYear": null,
 				"endYear": 2010,
 				"sleeperId": "660"
@@ -10859,7 +10859,7 @@
 			{
 				"name": "Brandon Lloyd",
 				"position": null,
-				"salary": 1,
+				"salary": 29,
 				"startYear": null,
 				"endYear": 2010,
 				"sleeperId": "386"
@@ -10879,7 +10879,7 @@
 			{
 				"name": "Mike Tolbert",
 				"position": null,
-				"salary": 1,
+				"salary": 3,
 				"startYear": null,
 				"endYear": 2010,
 				"sleeperId": "182"
@@ -15644,7 +15644,7 @@
 			{
 				"name": "Jamaal Charles",
 				"position": null,
-				"salary": 1,
+				"salary": 25,
 				"startYear": null,
 				"endYear": 2011,
 				"sleeperId": "323"
@@ -25297,7 +25297,7 @@
 			{
 				"name": "Riley Cooper",
 				"position": "WR",
-				"salary": 1,
+				"salary": 5,
 				"startYear": null,
 				"endYear": 2013,
 				"sleeperId": "582"
@@ -25766,7 +25766,7 @@
 		"adds": [
 			{
 				"name": "Robert Turbin",
-				"position": "RB",
+				"position": null,
 				"salary": 2,
 				"startYear": null,
 				"endYear": 2014,
@@ -25807,7 +25807,7 @@
 			{
 				"name": "Matt Asiata",
 				"position": null,
-				"salary": 1,
+				"salary": 15,
 				"startYear": null,
 				"endYear": 2014,
 				"sleeperId": "936"
@@ -27242,7 +27242,7 @@
 			{
 				"name": "Denard Robinson",
 				"position": null,
-				"salary": 1,
+				"salary": 6,
 				"startYear": null,
 				"endYear": 2014,
 				"sleeperId": "1449"
@@ -27261,7 +27261,7 @@
 		"adds": [
 			{
 				"name": "Navorro Bowman",
-				"position": "LB",
+				"position": null,
 				"salary": 1,
 				"startYear": null,
 				"endYear": 2014,
@@ -27282,7 +27282,7 @@
 			{
 				"name": "Mark Sanchez",
 				"position": null,
-				"salary": 1,
+				"salary": 24,
 				"startYear": null,
 				"endYear": 2014,
 				"sleeperId": "350"
@@ -34071,7 +34071,7 @@
 		"adds": [
 			{
 				"name": "Travis Benjamin",
-				"position": "WR",
+				"position": null,
 				"salary": 1,
 				"startYear": null,
 				"endYear": 2015,
@@ -34112,7 +34112,7 @@
 			{
 				"name": "Daryl Smith",
 				"position": null,
-				"salary": 1,
+				"salary": 2,
 				"startYear": null,
 				"endYear": 2015,
 				"sleeperId": "211"
@@ -46746,7 +46746,7 @@
 		"adds": [
 			{
 				"name": "Adrian Peterson",
-				"position": "RB",
+				"position": null,
 				"salary": 5,
 				"startYear": null,
 				"endYear": 2016,
@@ -49335,7 +49335,7 @@
 			{
 				"name": "Brett Hundley",
 				"position": null,
-				"salary": 1,
+				"salary": 62,
 				"startYear": null,
 				"endYear": 2017,
 				"sleeperId": "2450"
@@ -53499,6 +53499,26 @@
 				"startYear": null,
 				"endYear": 2017,
 				"sleeperId": "333"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2017,
+		"timestamp": "2017-11-02T16:44:33.000Z",
+		"rosterId": 12,
+		"adds": [
+			{
+				"name": "Matt Bryant",
+				"position": null,
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2017,
+				"sleeperId": "127"
 			}
 		],
 		"drops": [],
@@ -61406,7 +61426,7 @@
 		"adds": [
 			{
 				"name": "Danny Amendola",
-				"position": "WR",
+				"position": null,
 				"salary": 1,
 				"startYear": null,
 				"endYear": 2018,
@@ -61447,6 +61467,26 @@
 			{
 				"name": "Myles Jack",
 				"position": "LB",
+				"salary": 1,
+				"startYear": null,
+				"endYear": 2018,
+				"sleeperId": "3166"
+			}
+		],
+		"drops": [],
+		"source": "inferred",
+		"sourceId": null,
+		"tradeId": null,
+		"inferred": true
+	},
+	{
+		"season": 2018,
+		"timestamp": "2018-10-31T13:27:33.000Z",
+		"rosterId": 12,
+		"adds": [
+			{
+				"name": "Myles Jack",
+				"position": null,
 				"salary": 1,
 				"startYear": null,
 				"endYear": 2018,
@@ -65346,7 +65386,7 @@
 		"adds": [
 			{
 				"name": "Ty Montgomery",
-				"position": "RB",
+				"position": null,
 				"salary": 4,
 				"startYear": null,
 				"endYear": 2019,
@@ -65387,7 +65427,7 @@
 			{
 				"name": "Kyle Allen",
 				"position": null,
-				"salary": 1,
+				"salary": 2,
 				"startYear": null,
 				"endYear": 2019,
 				"sleeperId": "5127"

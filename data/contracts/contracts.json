@@ -11893,7 +11893,7 @@
     "positions": [
       "WR"
     ],
-    "rosterId": 4,
+    "rosterId": 6,
     "salary": 42,
     "startYear": 2012,
     "endYear": 2013
@@ -25952,7 +25952,7 @@
     "positions": [
       "RB"
     ],
-    "rosterId": 10,
+    "rosterId": 11,
     "salary": 75,
     "startYear": 2017,
     "endYear": 2019
@@ -26984,7 +26984,7 @@
     "positions": [
       "RB"
     ],
-    "rosterId": 10,
+    "rosterId": 6,
     "salary": 12,
     "startYear": 2017,
     "endYear": 2019

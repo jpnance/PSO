@@ -325,7 +325,7 @@ ID,Owner,Name,Position,Start,End,Salary
 2379,Brett/Luke,Owamagbe Odighizuwa,DL,2015,2016,$1
 64,Trevor,Owen Daniels,TE,2015,2015,$30
 2404,Keyon,Paul Dawson,LB,2015,2015,$1
-160,Quinn,Paul Posluszny,LB,2014,2015,$20
+160,Schex/Jeff,Paul Posluszny,LB,2014,2015,$20
 2279,Brett/Luke,Paul Richardson,WR,2014,2016,$2
 1539,Patrick,Paul Worrilow,LB,2014,2016,$5
 429,Brett/Luke,Percy Harvin,WR,2013,2015,$60

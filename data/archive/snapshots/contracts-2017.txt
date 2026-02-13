@@ -99,7 +99,7 @@ ID,Owner,Name,Position,Start,End,Salary
 3210,,Cardale Jones,QB,FA,2017,
 529,Daniel,Carlos Dunlap,DL,2017,2017,$11
 4108,Keyon,Carlos Henderson,WR,2017,2019,$3
-2257,Schex/Jeff,Carlos Hyde,RB,2017,2019,$75
+2257,Quinn,Carlos Hyde,RB,2017,2019,$75
 91,Quinn,Carson Palmer,QB,2017,2017,$70
 3161,Quinn,Carson Wentz,QB,2016,2018,$8
 1737,,Case Keenum,QB,FA,2017,
@@ -308,7 +308,7 @@ ID,Owner,Name,Position,Start,End,Salary
 616,Syed/Terence,Jimmy Graham,TE,2016,2018,$26
 19,Brett/Luke,Joe Flacco,QB,2017,2017,$38
 4018,Daniel,Joe Mixon,RB,2017,2019,$24
-4042,Schex/Jeff,Joe Williams,RB,2017,2019,$12
+4042,Keyon,Joe Williams,RB,2017,2019,$12
 3156,Quinn,Joey Bosa,DL,2017,2017,$28
 2238,James/Charles,John Brown,WR,2017,2019,$5
 4038,Syed/Terence,John Ross,WR,2017,2019,$18
