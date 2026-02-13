@@ -53,21 +53,22 @@ var TRANSITIONS = {
 		result: 'dynamic'
 	},
 	'expansion-draft-select': {
-		valid: [STATES.AVAILABLE, STATES.ROSTERED], // Can select rostered players
+		valid: [STATES.AVAILABLE, STATES.ROSTERED, STATES.RFA_HELD], // Can select rostered/RFA players
 		result: STATES.ROSTERED
 	},
 	'expansion-draft-protect': {
-		valid: [STATES.ROSTERED], // Can only protect rostered players
+		valid: [STATES.ROSTERED, STATES.RFA_HELD], // Can protect rostered/RFA players
 		result: STATES.ROSTERED // Stays rostered
 	},
 	
 	// RFA acquisitions: rfa-held → rostered
+	// Also accepts rostered (from expansion-draft-protect, which preserves RFA rights)
 	'auction-rfa-matched': {
-		valid: [STATES.RFA_HELD],
+		valid: [STATES.RFA_HELD, STATES.ROSTERED],
 		result: STATES.ROSTERED
 	},
 	'auction-rfa-unmatched': {
-		valid: [STATES.RFA_HELD],
+		valid: [STATES.RFA_HELD, STATES.ROSTERED],
 		result: STATES.ROSTERED
 	},
 	

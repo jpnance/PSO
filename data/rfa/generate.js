@@ -460,6 +460,10 @@ function run() {
 
 		var auctionYear = record.season + 1;
 
+		// Skip lapsed detection for years without auction data
+		// (can't know if rights lapsed if auction hasn't happened yet)
+		if (!auctionedByYear[auctionYear]) return;
+
 		if (!wasAuctioned(auctionedByYear, auctionYear, record.sleeperId, record.playerName)) {
 			lapsedRecords.push({
 				season: record.season,
