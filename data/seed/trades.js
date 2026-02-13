@@ -409,6 +409,7 @@ async function seed() {
 			
 			return {
 				owner: party.owner,
+				rosterId: party.rosterId,
 				receives: {
 					players: convertedPlayers.concat(convertedRfaRights),
 					picks: party.picks || [],
@@ -476,22 +477,16 @@ async function seed() {
 		for (var j = 0; j < trade.parties.length; j++) {
 			var p = trade.parties[j];
 
-			var rosterId = getRosterIdForSeason(p.owner, tradeYear);
-			if (!rosterId) {
-				errors.push({ trade: trade.tradeNumber, reason: 'Unknown owner: ' + p.owner + ' in ' + tradeYear });
-				hasError = true;
-				break;
-			}
-
-			var franchiseId = franchiseByRosterId[rosterId];
+			var franchiseId = franchiseByRosterId[p.rosterId];
 			if (!franchiseId) {
-				errors.push({ trade: trade.tradeNumber, reason: 'No franchise for rosterId: ' + rosterId });
+				errors.push({ trade: trade.tradeNumber, reason: 'No franchise for rosterId: ' + p.rosterId });
 				hasError = true;
 				break;
 			}
 
 			var party = {
 				franchiseId: franchiseId,
+				regimeName: p.owner || null,
 				receives: {
 					players: [],
 					picks: [],

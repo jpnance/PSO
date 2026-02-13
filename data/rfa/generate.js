@@ -32,6 +32,7 @@ var RFA_FILE = path.join(__dirname, 'rfa.json');
 var SNAPSHOTS_DIR = path.join(__dirname, '../archive/snapshots');
 var CUTS_FILE = path.join(__dirname, '../cuts/cuts.json');
 var TRADES_FILE = path.join(__dirname, '../trades/trades.json');
+var AUCTIONS_FILE = path.join(__dirname, '../auctions/auctions.json');
 
 // =============================================================================
 // Data Loading
@@ -260,11 +261,67 @@ function classifyExpiry(player, season) {
 // Main
 // =============================================================================
 
+/**
+ * Build a set of players who went through auction each year.
+ * Returns: { year: { sleeperIds: Set, names: Set } }
+ * 
+ * Players are identified by sleeperId when available, or by normalized name
+ * when sleeperId is null/-1 (historical players not in Sleeper).
+ */
+function buildAuctionedPlayersByYear(auctions) {
+	var byYear = {};
+	
+	auctions.forEach(function(auction) {
+		var year = auction.season;
+		if (!byYear[year]) {
+			byYear[year] = { sleeperIds: new Set(), names: new Set() };
+		}
+		
+		if (auction.sleeperId && auction.sleeperId !== '-1') {
+			byYear[year].sleeperIds.add(auction.sleeperId);
+		} else if (auction.name) {
+			byYear[year].names.add(resolver.normalizePlayerName(auction.name));
+		}
+	});
+	
+	return byYear;
+}
+
+/**
+ * Check if a player was auctioned in a given year.
+ * Uses sleeperId if available, otherwise falls back to name matching.
+ */
+function wasAuctioned(auctionedByYear, year, sleeperId, playerName) {
+	var yearData = auctionedByYear[year];
+	if (!yearData) return false;
+	
+	if (sleeperId && sleeperId !== '-1') {
+		return yearData.sleeperIds.has(sleeperId);
+	} else if (playerName) {
+		return yearData.names.has(resolver.normalizePlayerName(playerName));
+	}
+	
+	return false;
+}
+
+/**
+ * Get RFA lapsed timestamp for a given year.
+ * Convention: September 1 at 12:00:00 PM ET (after auction, before regular season)
+ */
+function getRfaLapsedTimestamp(year) {
+	return new Date(Date.UTC(year, 8, 1, 16, 0, 0)).toISOString();
+}
+
 function run() {
 	console.log('=== RFA Rights Generator ===\n');
 
 	var cuts = JSON.parse(fs.readFileSync(CUTS_FILE, 'utf8'));
 	var trades = JSON.parse(fs.readFileSync(TRADES_FILE, 'utf8'));
+	var auctions = JSON.parse(fs.readFileSync(AUCTIONS_FILE, 'utf8'));
+	
+	// Build lookup of auctioned players by year
+	var auctionedByYear = buildAuctionedPlayersByYear(auctions);
+	console.log('Loaded auctions for years:', Object.keys(auctionedByYear).sort().join(', '));
 
 	var allRecords = [];
 
@@ -350,6 +407,41 @@ function run() {
 
 		allRecords = allRecords.concat(seasonRecords);
 	}
+
+	// Generate rfa-rights-lapsed records for RFA conversions that didn't go to auction
+	console.log('\nGenerating RFA lapsed records...');
+	var lapsedRecords = [];
+	var lapsedByYear = {};
+	
+	allRecords.forEach(function(record) {
+		if (record.type !== 'rfa-rights-conversion') return;
+		
+		// RFA conversion on Jan 15 of season+1 means auction is in season+1
+		var auctionYear = record.season + 1;
+		
+		if (!wasAuctioned(auctionedByYear, auctionYear, record.sleeperId, record.playerName)) {
+			// Player didn't go through auction - rights lapsed
+			lapsedRecords.push({
+				season: record.season,  // Same season as conversion (contract expiry year)
+				type: 'rfa-rights-lapsed',
+				timestamp: getRfaLapsedTimestamp(auctionYear),
+				rosterId: record.rosterId,
+				sleeperId: record.sleeperId,
+				playerName: record.playerName,
+				position: record.position,
+				source: record.source
+			});
+			
+			lapsedByYear[auctionYear] = (lapsedByYear[auctionYear] || 0) + 1;
+		}
+	});
+	
+	Object.keys(lapsedByYear).sort().forEach(function(year) {
+		console.log('  ' + year + ': ' + lapsedByYear[year] + ' lapsed');
+	});
+	console.log('  Total: ' + lapsedRecords.length + ' lapsed');
+	
+	allRecords = allRecords.concat(lapsedRecords);
 
 	// Sort by timestamp, then season
 	allRecords.sort(function(a, b) {

@@ -50,6 +50,7 @@ var tradeRfaRightsSchema = new Schema({
 
 var tradePartySchema = new Schema({
 	franchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise', required: true },
+	regimeName: { type: String, default: null },
 	receives: {
 		players: [tradePlayerSchema],
 		picks: [tradePickSchema],

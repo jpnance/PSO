@@ -541,8 +541,11 @@ async function processTrade(tradeDetails) {
 			}
 		}
 		
+		var regimeName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
+		
 		var txParty = {
 			franchiseId: party.franchiseId,
+			regimeName: regimeName || null,
 			receives: {
 				players: (receives.players || []).map(function(p) {
 					return {

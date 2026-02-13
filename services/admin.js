@@ -232,17 +232,25 @@ async function advanceSeason(request, response) {
 			: 1;
 		
 		if (contractLength >= 2 && contractLength <= 3) {
-			// Convert to RFA rights - create transaction record
-			await Transaction.create({
+			// Convert to RFA rights - create transaction record if one doesn't already exist
+			var existingConversion = await Transaction.findOne({
 				type: 'rfa-rights-conversion',
-				timestamp: expiryTimestamp,
-				source: 'manual',
-				franchiseId: contract.franchiseId,
 				playerId: contract.playerId,
-				salary: contract.salary,
-				startYear: contract.startYear,
-				endYear: contract.endYear
+				timestamp: { $gte: new Date(newSeason, 0, 1), $lt: new Date(newSeason, 1, 1) }
 			});
+			
+			if (!existingConversion) {
+				await Transaction.create({
+					type: 'rfa-rights-conversion',
+					timestamp: expiryTimestamp,
+					source: 'manual',
+					franchiseId: contract.franchiseId,
+					playerId: contract.playerId,
+					salary: contract.salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear
+				});
+			}
 			
 			// Update contract to RFA-only state
 			contract.salary = null;
@@ -251,17 +259,25 @@ async function advanceSeason(request, response) {
 			await contract.save();
 			rfaConverted++;
 		} else {
-			// Contract expires without RFA - create transaction record
-			await Transaction.create({
+			// Contract expires without RFA - create transaction record if one doesn't already exist
+			var existingExpiry = await Transaction.findOne({
 				type: 'contract-expiry',
-				timestamp: new Date(expiryTimestamp.getTime() + 1000), // 1 second later for ordering
-				source: 'manual',
-				franchiseId: contract.franchiseId,
 				playerId: contract.playerId,
-				salary: contract.salary,
-				startYear: contract.startYear,
-				endYear: contract.endYear
+				timestamp: { $gte: new Date(newSeason, 0, 1), $lt: new Date(newSeason, 1, 1) }
 			});
+			
+			if (!existingExpiry) {
+				await Transaction.create({
+					type: 'contract-expiry',
+					timestamp: new Date(expiryTimestamp.getTime() + 1000), // 1 second later for ordering
+					source: 'manual',
+					franchiseId: contract.franchiseId,
+					playerId: contract.playerId,
+					salary: contract.salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear
+				});
+			}
 			
 			// Delete contract (player becomes UFA)
 			await Contract.deleteOne({ _id: contract._id });

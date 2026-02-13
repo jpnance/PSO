@@ -239,17 +239,8 @@ async function seedRFA() {
 	console.log('       Seeding RFA Transactions');
 	console.log('========================================\n');
 	
-	// Creates rfa-rights-conversion, contract-expiry, rfa-unknown transactions
+	// Creates rfa-rights-conversion, contract-expiry, rfa-rights-lapsed, rfa-unknown transactions
 	runScript('RFA', 'data/seed/rfa-from-json.js');
-}
-
-async function seedRFALapsed() {
-	console.log('========================================');
-	console.log('       Seeding RFA Lapsed Transactions');
-	console.log('========================================\n');
-	
-	// Creates rfa-rights-lapsed transactions for RFA rights not exercised
-	runScript('RFA Lapsed', 'data/seed/rfa-lapsed.js', ['--clear']);
 }
 
 async function computeContracts() {
@@ -348,11 +339,8 @@ async function run() {
 	// 5. FA transactions (pickups and drops)
 	await seedFA();
 	
-	// 6. RFA transactions (contract expiries and RFA rights conversions)
+	// 6. RFA transactions (contract expiries, RFA rights conversions, and lapsed)
 	await seedRFA();
-	
-	// 7. RFA lapsed transactions (RFA rights not exercised at auction)
-	await seedRFALapsed();
 	
 	// =====================================================
 	// Compute Current State
@@ -360,16 +348,16 @@ async function run() {
 	// These scripts use the seeded transactions to compute
 	// the current state of contracts, picks, and budgets.
 	
-	// 8. Compute current contract ownership (replay trades + drops)
+	// 7. Compute current contract ownership (replay trades + drops)
 	await computeContracts();
 	
-	// 9. Compute future pick ownership (replay trades)
+	// 8. Compute future pick ownership (replay trades)
 	await computePicks();
 	
-	// 10. Compute budgets (from contracts + transactions)
+	// 9. Compute budgets (from contracts + transactions)
 	await computeBudgets();
 	
-	// 11. Apply manual data fixups (default, skip with --skip-fixups)
+	// 10. Apply manual data fixups (default, skip with --skip-fixups)
 	if (args.skipFixups) {
 		console.log('========================================');
 		console.log('       Skipping Fixups');

@@ -2496,6 +2496,776 @@
 		"source": "postseason"
 	},
 	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "649",
+		"playerName": "Antonio Cromartie",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "49",
+		"playerName": "Robbie Gould",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "249",
+		"playerName": "Chad Greenway",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": null,
+		"playerName": "Kirk Morrison",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": null,
+		"playerName": "Rudi Johnson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": null,
+		"playerName": "Steve Heiden",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": null,
+		"playerName": "Reggie Williams",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "100",
+		"playerName": "Charles Woodson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Jermaine Phillips",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Bryan Thomas",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "31",
+		"playerName": "Elvis Dumervil",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Neil Rackers",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "392",
+		"playerName": "Mike Vrabel",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Ernie Sims",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Jeff Garcia",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "DeShaun Foster",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "121",
+		"playerName": "LeRon McClain",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Leonard Pope",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "171",
+		"playerName": "Zach Miller",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "6777",
+		"playerName": "Troy Polamalu",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "159",
+		"playerName": "Dwight Freeney",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "102",
+		"playerName": "Josh Brown",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Gary Brackett",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Deuce McAllister",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Todd Heap",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "253",
+		"playerName": "James Jones",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Jabar Gaffney",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Dewayne White",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "256",
+		"playerName": "Rian Lindell",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "404",
+		"playerName": "Jon Kitna",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Billy Miller",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "David Patten",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Isaac Bruce",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Matt Jones",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Muhsin Muhammad",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": null,
+		"playerName": "Selvin Young",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": null,
+		"playerName": "Clifton Smith",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": null,
+		"playerName": "Warrick Dunn",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "111",
+		"playerName": "Marcedes Lewis",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "247",
+		"playerName": "Harry Douglas",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "316",
+		"playerName": "Malcom Floyd",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": null,
+		"playerName": "Mark Bradley",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "265",
+		"playerName": "DeAngelo Hall",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Jeff Reed",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Julian Peterson",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Kevin Jones",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Donald Lee",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Donte' Stallworth",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Amani Toomer",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "226",
+		"playerName": "Antwaan Randle El",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Anthony Henry",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "290",
+		"playerName": "Eric Weddle",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Jason Elam",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "John Carney",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "D.J. Williams",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "333",
+		"playerName": "Ryan Fitzpatrick",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "D.J. Hackett",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Devery Henderson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Hank Baskett",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Chris Gamble",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Travis LaBoy",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Lance Briggs",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Gus Frerotte",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Laurence Maroney",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "Adrian Wilson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "61",
+		"playerName": "Cortland Finnegan",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "Yeremiah Bell",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "275",
+		"playerName": "Josh Scobee",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "Rob Bironas",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "J.T. O'Sullivan",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "Marvin Harrison",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "107",
+		"playerName": "Calvin Pace",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": null,
+		"playerName": "Kris Brown",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "127",
+		"playerName": "Matt Bryant",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "492",
+		"playerName": "Tyler Thigpen",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": null,
+		"playerName": "Dominic Rhodes",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2008,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2009-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "660",
+		"playerName": "Peyton Hillis",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
 		"season": 2009,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2010-01-15T00:00:00.000Z",
@@ -4209,6 +4979,176 @@
 		"startYear": null,
 		"endYear": 2009,
 		"salary": 1,
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Albert Haynesworth",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Bobby Engram",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Chad Pennington",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Chris Henry (CIN)",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Correll Buckhalter",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "415",
+		"playerName": "Earl Bennett",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Edgerrin James",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Gaines Adams",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Jamal Lewis",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Johnnie Lee Higgins",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Kerry Collins",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Kevin Curtis",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "7",
+		"playerName": "Kurt Warner",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "444",
+		"playerName": "Malcolm Jenkins",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "17",
+		"playerName": "Matt Prater",
+		"position": "K",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Patrick Kerney",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2009,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2010-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Torry Holt",
+		"position": "WR",
 		"source": "approximated"
 	},
 	{
@@ -6133,6 +7073,246 @@
 		"startYear": null,
 		"endYear": 2010,
 		"salary": 5,
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "675",
+		"playerName": "Antrel Rolle",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Bo Scaife",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "462",
+		"playerName": "Brett Favre",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Brian Westbrook",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "441",
+		"playerName": "Captain Munnerlyn",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Chester Taylor",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Clinton Portis",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "3",
+		"playerName": "David Harris",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "691",
+		"playerName": "Derek Anderson",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "701",
+		"playerName": "Ed Dickson",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Fred Taylor",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "215",
+		"playerName": "Jason Snelling",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "155",
+		"playerName": "Jerricho Cotchery",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "693",
+		"playerName": "Joey Porter",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Keiland Williams",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "72",
+		"playerName": "Kevin Walter",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Marcus Trufant",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Nate Clements",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Scotty McGee",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": null,
+		"playerName": "Stefan Logan",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Steve Slaton",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Terrell Owens",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "688",
+		"playerName": "Tony Scheffler",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2010,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2011-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "503",
+		"playerName": "Graham Gano",
+		"position": null,
 		"source": "approximated"
 	},
 	{
@@ -8122,6 +9302,146 @@
 		"startYear": null,
 		"endYear": 2011,
 		"salary": 4,
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "966",
+		"playerName": "Austin Pettis",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "35",
+		"playerName": "Desmond Bishop",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "22",
+		"playerName": "LaMarr Woodley",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "James Farrior",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Mike Thomas",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "100",
+		"playerName": "Charles Woodson",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "John Abraham",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "654",
+		"playerName": "LaDainian Tomlinson",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Andre Carter",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "48",
+		"playerName": "James Harrison",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "263",
+		"playerName": "Robert Mathis",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "663",
+		"playerName": "Benjamin Watson",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": null,
+		"playerName": "Joseph Addai",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2011,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2012-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Bernard Pollard",
+		"position": "DB",
 		"source": "approximated"
 	},
 	{
@@ -10449,6 +11769,366 @@
 		"startYear": null,
 		"endYear": 2012,
 		"salary": 3,
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "516",
+		"playerName": "Aaron Hernandez",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "51",
+		"playerName": "Anthony Fasano",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "88",
+		"playerName": "Antoine Bethea",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "860",
+		"playerName": "Armon Binns",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "82",
+		"playerName": "Brandon Jacobs",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "519",
+		"playerName": "Brandon Spikes",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "740",
+		"playerName": "Brandon Stokley",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "6738",
+		"playerName": "Cedric Benson",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "D.J. Ware",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "5",
+		"playerName": "Dallas Clark",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "3",
+		"playerName": "David Harris",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "220",
+		"playerName": "DeMeco Ryans",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "527",
+		"playerName": "Dennis Pitta",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": null,
+		"playerName": "Devery Henderson",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "643",
+		"playerName": "Earl Thomas",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "297",
+		"playerName": "Eddie Royal",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "George Wilson",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "314",
+		"playerName": "Haloti Ngata",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Jason Hanson",
+		"position": "K",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "531",
+		"playerName": "Joe Haden",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "458",
+		"playerName": "Justin Forsett",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "85",
+		"playerName": "Justin Tuck",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Laurent Robinson",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Matt Leinart",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "233",
+		"playerName": "Matt Moore",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "658",
+		"playerName": "Mike Nugent",
+		"position": "K",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Mohamed Massaquoi",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1189",
+		"playerName": "Nick Toon",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "660",
+		"playerName": "Peyton Hillis",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Plaxico Burress",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "721",
+		"playerName": "Rolando McClain",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "535",
+		"playerName": "T.J. Ward",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "857",
+		"playerName": "T.J. Yates",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "90",
+		"playerName": "Tamba Hali",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "300",
+		"playerName": "Willis McGahee",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2012,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2013-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "John Abraham",
+		"position": null,
 		"source": "approximated"
 	},
 	{
@@ -13023,6 +14703,346 @@
 		"startYear": null,
 		"endYear": 2013,
 		"salary": 3,
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "986",
+		"playerName": "Aldon Smith",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Andre Brown",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1214",
+		"playerName": "Blair Walsh",
+		"position": "K",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "613",
+		"playerName": "Brandon LaFell",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "397",
+		"playerName": "Brandon Myers",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "37",
+		"playerName": "Charles Johnson",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "318",
+		"playerName": "Chris Long",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "941",
+		"playerName": "Christian Ponder",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "371",
+		"playerName": "Connor Barwin",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "394",
+		"playerName": "Darrius Heyward-Bey",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "628",
+		"playerName": "Daryl Washington",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": null,
+		"playerName": "Davone Bess",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "279",
+		"playerName": "Devin Hester",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "701",
+		"playerName": "Ed Dickson",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "31",
+		"playerName": "Elvis Dumervil",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "291",
+		"playerName": "Felix Jones",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "835",
+		"playerName": "Greg Little",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "567",
+		"playerName": "Jacoby Ford",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "367",
+		"playerName": "Jared Cook",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "368",
+		"playerName": "Jason McCourty",
+		"position": "DB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Jonathan Baldwin",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "222",
+		"playerName": "Josh Morgan",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": null,
+		"playerName": "Lance Briggs",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "London Fletcher",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "962",
+		"playerName": "Mason Foster",
+		"position": "LB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "182",
+		"playerName": "Mike Tolbert",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": null,
+		"playerName": "Nate Burleson",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "214",
+		"playerName": "Osi Umenyiora",
+		"position": "DL",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "145",
+		"playerName": "Rashard Mendenhall",
+		"position": "RB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "69",
+		"playerName": "Santana Moss",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "14",
+		"playerName": "Sidney Rice",
+		"position": "WR",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1020",
+		"playerName": "Terrelle Pryor",
+		"position": "QB",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": null,
+		"playerName": "Tony Gonzalez",
+		"position": "TE",
+		"source": "approximated"
+	},
+	{
+		"season": 2013,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2014-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "220",
+		"playerName": "DeMeco Ryans",
+		"position": null,
 		"source": "approximated"
 	},
 	{
@@ -15847,6 +17867,836 @@
 		"source": "postseason"
 	},
 	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "78",
+		"playerName": "Ahmad Bradshaw",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "940",
+		"playerName": "Andre Holmes",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "831",
+		"playerName": "Andrew Hawkins",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "51",
+		"playerName": "Anthony Fasano",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "609",
+		"playerName": "Antone Smith",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "180",
+		"playerName": "Aqib Talib",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1200",
+		"playerName": "Austin Davis",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1263",
+		"playerName": "Bernard Pierce",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1034",
+		"playerName": "Brandon Bolden",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "242",
+		"playerName": "Brent Grimes",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "373",
+		"playerName": "Brian Cushing",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1026",
+		"playerName": "Bryce Brown",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "249",
+		"playerName": "Chad Greenway",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "2242",
+		"playerName": "Chandler Catanzaro",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": null,
+		"playerName": "Chris Borland",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "696",
+		"playerName": "Chris Clemons",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1329",
+		"playerName": "Chris Hogan",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "454",
+		"playerName": "Chris Ogbonnaya",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "425",
+		"playerName": "Clay Matthews",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "374",
+		"playerName": "Dan Orlovsky",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "806",
+		"playerName": "Daniel Thomas",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "211",
+		"playerName": "Daryl Smith",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "3",
+		"playerName": "David Harris",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": null,
+		"playerName": "Dawan Landry",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "186",
+		"playerName": "DeMarcus Ware",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1052",
+		"playerName": "Demario Davis",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "691",
+		"playerName": "Derek Anderson",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1008",
+		"playerName": "Donald Butler",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1037",
+		"playerName": "Dont'a Hightower",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "181",
+		"playerName": "Drew Stanton",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "31",
+		"playerName": "Elvis Dumervil",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "619",
+		"playerName": "Gerald McCoy",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "264",
+		"playerName": "Greg Jennings",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "247",
+		"playerName": "Harry Douglas",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "925",
+		"playerName": "J.T. Thomas",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "32",
+		"playerName": "Jacob Tamme",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": null,
+		"playerName": "Jake Locker",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "253",
+		"playerName": "James Jones",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1354",
+		"playerName": "Jelani Jenkins",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1306",
+		"playerName": "Jeremy Ross",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "531",
+		"playerName": "Joe Haden",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "143",
+		"playerName": "John Carlson",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "684",
+		"playerName": "Julius Peppers",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "718",
+		"playerName": "Junior Galette",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "1114",
+		"playerName": "Justin Blackmon",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1904",
+		"playerName": "Justin Gilbert",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "713",
+		"playerName": "Kendrick Lewis",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1441",
+		"playerName": "Kerwynn Williams",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "387",
+		"playerName": "Knowshon Moreno",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "388",
+		"playerName": "Kyle Orton",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "697",
+		"playerName": "Leon Washington",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "795",
+		"playerName": "Marcell Dareus",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1255",
+		"playerName": "Mark Barron",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1512",
+		"playerName": "Marquess Wilson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "17",
+		"playerName": "Matt Prater",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "178",
+		"playerName": "Matt Schaub",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "168",
+		"playerName": "Nick Novak",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "918",
+		"playerName": "Niles Paul",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "972",
+		"playerName": "Patrick Peterson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "15",
+		"playerName": "Patrick Willis",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "229",
+		"playerName": "Phil Dawson",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "34",
+		"playerName": "Pierre Thomas",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1808",
+		"playerName": "Preston Brown",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "620",
+		"playerName": "Preston Parker",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1099",
+		"playerName": "Randy Bullock",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "476",
+		"playerName": "Rashad Johnson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "704",
+		"playerName": "Reggie Nelson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "473",
+		"playerName": "Rob Ninkovich",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1232",
+		"playerName": "Robert Turbin",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "917",
+		"playerName": "Ryan Kerrigan",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "686",
+		"playerName": "Shaun Hill",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "758",
+		"playerName": "Shayne Graham",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1568",
+		"playerName": "Stedman Bailey",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1043",
+		"playerName": "Stephon Gilmore",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "57",
+		"playerName": "Steven Jackson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "535",
+		"playerName": "T.J. Ward",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "90",
+		"playerName": "Tamba Hali",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1903",
+		"playerName": "Taylor Gabriel",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "187",
+		"playerName": "Thomas Davis",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1635",
+		"playerName": "Timothy Wright",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "1082",
+		"playerName": "Trent Richardson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "177",
+		"playerName": "Wes Welker",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2014,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2015-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "595",
+		"playerName": "Willie Young",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
 		"season": 2015,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2016-01-15T00:00:00.000Z",
@@ -18483,6 +21333,786 @@
 		"startYear": 2013,
 		"endYear": 2015,
 		"salary": 9,
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "261",
+		"playerName": "A.J. Hawk",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1365",
+		"playerName": "Aaron Dobson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "78",
+		"playerName": "Ahmad Bradshaw",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1575",
+		"playerName": "Andre Ellington",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1928",
+		"playerName": "Antonio Andrews",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "675",
+		"playerName": "Antrel Rolle",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1402",
+		"playerName": "Armonty Bryant",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1200",
+		"playerName": "Austin Davis",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1085",
+		"playerName": "Brandon Weeden",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1208",
+		"playerName": "Brian Quick",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "1026",
+		"playerName": "Bryce Brown",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "125",
+		"playerName": "Calais Campbell",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "240",
+		"playerName": "Calvin Johnson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1859",
+		"playerName": "Calvin Pryor",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2214",
+		"playerName": "Cameron Brate",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "843",
+		"playerName": "Cameron Heyward",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "342",
+		"playerName": "Cameron Wake",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "866",
+		"playerName": "Cecil Shorts",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "89",
+		"playerName": "Chad Henne",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "801",
+		"playerName": "Charles Clay",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "100",
+		"playerName": "Charles Woodson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "371",
+		"playerName": "Connor Barwin",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1535",
+		"playerName": "Cordarrelle Patterson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "394",
+		"playerName": "Darrius Heyward-Bey",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "211",
+		"playerName": "Daryl Smith",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "238",
+		"playerName": "Dashon Goldson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "732",
+		"playerName": "Derrick Morgan",
+		"position": "DL/LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "564",
+		"playerName": "Dexter McCluster",
+		"position": "RB/WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "95",
+		"playerName": "Dominique Rodgers-Cromartie",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "217",
+		"playerName": "Donte Whitner",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "286",
+		"playerName": "Dwayne Bowe",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1709",
+		"playerName": "Fozzy Whittaker",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "228",
+		"playerName": "Fred Jackson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "612",
+		"playerName": "Greg Hardy",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "253",
+		"playerName": "James Jones",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1848",
+		"playerName": "James White",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "2747",
+		"playerName": "Jason Myers",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "530",
+		"playerName": "Jermaine Gresham",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "611",
+		"playerName": "Jimmy Clausen",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "825",
+		"playerName": "Jimmy Smith",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1443",
+		"playerName": "Johnathan Cyprien",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "736",
+		"playerName": "Joique Bell",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "895",
+		"playerName": "Jordan Todman",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "102",
+		"playerName": "Josh Brown",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1549",
+		"playerName": "Kawann Short",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1158",
+		"playerName": "Kellen Moore",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1671",
+		"playerName": "Kendall Gaskins",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1463",
+		"playerName": "Knile Davis",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1411",
+		"playerName": "Landry Jones",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1124",
+		"playerName": "Malik Jackson",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1675",
+		"playerName": "Marlon Brown",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "745",
+		"playerName": "Marshawn Lynch",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1338",
+		"playerName": "Matt Barkley",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "127",
+		"playerName": "Matt Bryant",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "36",
+		"playerName": "Matt Hasselbeck",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "178",
+		"playerName": "Matt Schaub",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1141",
+		"playerName": "Melvin Ingram",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1525",
+		"playerName": "Micah Hyde",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "46",
+		"playerName": "Michael Griffin",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1032",
+		"playerName": "Mychal Kendricks",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1259",
+		"playerName": "Olivier Vernon",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "429",
+		"playerName": "Percy Harvin",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "294",
+		"playerName": "Peyton Manning",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1808",
+		"playerName": "Preston Brown",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "996",
+		"playerName": "Richard Sherman",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1232",
+		"playerName": "Robert Turbin",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "4",
+		"playerName": "Roddy White",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "915",
+		"playerName": "Roy Helu",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "768",
+		"playerName": "Scott Chandler",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "913",
+		"playerName": "Shaun Draughn",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1150",
+		"playerName": "Shea McClellin",
+		"position": "DL/LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "108",
+		"playerName": "Steve Johnson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "535",
+		"playerName": "T.J. Ward",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "886",
+		"playerName": "Taiwan Jones",
+		"position": "RB/DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1686",
+		"playerName": "Tony Jefferson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "2316",
+		"playerName": "Trae Waynes",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "200",
+		"playerName": "Vernon Davis",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2015,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2016-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "774",
+		"playerName": "Vincent Rey",
+		"position": "LB",
 		"source": "postseason"
 	},
 	{
@@ -21528,6 +25158,946 @@
 		"source": "postseason"
 	},
 	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "2822",
+		"playerName": "Adam Humphries",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1186",
+		"playerName": "Akiem Hicks",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3327",
+		"playerName": "Alex Collins",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1944",
+		"playerName": "Alfred Blue",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1575",
+		"playerName": "Andre Ellington",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "627",
+		"playerName": "Andre Roberts",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "831",
+		"playerName": "Andrew Hawkins",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2091",
+		"playerName": "Bashaud Breeland",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "862",
+		"playerName": "Blaine Gabbert",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1617",
+		"playerName": "Bradley McDougald",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "583",
+		"playerName": "Brandon Graham",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "613",
+		"playerName": "Brandon LaFell",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "346",
+		"playerName": "Brandon Tate",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1208",
+		"playerName": "Brian Quick",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "2408",
+		"playerName": "Bryce Petty",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "507",
+		"playerName": "C.J. Spiller",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "342",
+		"playerName": "Cameron Wake",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3210",
+		"playerName": "Cardale Jones",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1737",
+		"playerName": "Case Keenum",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1175",
+		"playerName": "Casey Hayward",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1945",
+		"playerName": "Chris Boswell",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1596",
+		"playerName": "Christine Michael",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "980",
+		"playerName": "Colin Kaepernick",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "371",
+		"playerName": "Connor Barwin",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1535",
+		"playerName": "Cordarrelle Patterson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1272",
+		"playerName": "Craig Robertson",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1868",
+		"playerName": "Crockett Gillmore",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "211",
+		"playerName": "Daryl Smith",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1498",
+		"playerName": "David Amerson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "306",
+		"playerName": "DeAngelo Williams",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1311",
+		"playerName": "DeShawn Shead",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "3722",
+		"playerName": "Don Jackson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "2291",
+		"playerName": "Dontrelle Inman",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "181",
+		"playerName": "Drew Stanton",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "3391",
+		"playerName": "Dwayne Washington",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "297",
+		"playerName": "Eddie Royal",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "2980",
+		"playerName": "Eli Rogers",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1709",
+		"playerName": "Fozzy Whittaker",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2368",
+		"playerName": "Frank Clark",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1213",
+		"playerName": "Harrison Smith",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "2462",
+		"playerName": "J.J. Nelson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1849",
+		"playerName": "Jace Amaro",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "32",
+		"playerName": "Jacob Tamme",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "2434",
+		"playerName": "Jake Ryan",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "762",
+		"playerName": "James Starks",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1203",
+		"playerName": "Janoris Jenkins",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "368",
+		"playerName": "Jason McCourty",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "2161",
+		"playerName": "Jerick McKinnon",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "3453",
+		"playerName": "Josh Ferguson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "684",
+		"playerName": "Julius Peppers",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "458",
+		"playerName": "Justin Forsett",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "998",
+		"playerName": "K.J. Wright",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1171",
+		"playerName": "Keenan Robinson",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3397",
+		"playerName": "Keith Marshall",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1345",
+		"playerName": "Kiko Alonso",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1139",
+		"playerName": "Ladarius Green",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "298",
+		"playerName": "Lawrence Timmons",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "579",
+		"playerName": "Linval Joseph",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1255",
+		"playerName": "Mark Barron",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1512",
+		"playerName": "Marquess Wilson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "962",
+		"playerName": "Mason Foster",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "936",
+		"playerName": "Matt Asiata",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "819",
+		"playerName": "Muhammad Wilkerson",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "594",
+		"playerName": "Ndamukong Suh",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "815",
+		"playerName": "Nick Bellore",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1029",
+		"playerName": "Nick Foles",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2279",
+		"playerName": "Paul Richardson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1808",
+		"playerName": "Preston Brown",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1854",
+		"playerName": "Quincy Enunwa",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "2423",
+		"playerName": "Ramik Wilson",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "380",
+		"playerName": "Rashad Jennings",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "179",
+		"playerName": "Reggie Bush",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3275",
+		"playerName": "Ricardo Louis",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "1169",
+		"playerName": "Robert Griffin",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1205",
+		"playerName": "Rodney McLeod",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "995",
+		"playerName": "Ron Parker",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "333",
+		"playerName": "Ryan Fitzpatrick",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1425",
+		"playerName": "Ryan Griffin",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "571",
+		"playerName": "Ryan Mathews",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "118",
+		"playerName": "Sebastian Janikowski",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "169",
+		"playerName": "Steve Smith",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "775",
+		"playerName": "Stephen Hauschka",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "1160",
+		"playerName": "Tahir Whitehead",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1903",
+		"playerName": "Taylor Gabriel",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2152",
+		"playerName": "Teddy Bridgewater",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1490",
+		"playerName": "Terrance Williams",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "142",
+		"playerName": "Tony Romo",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3319",
+		"playerName": "Trevor Davis",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3934",
+		"playerName": "Troymaine Pope",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "1587",
+		"playerName": "Vance McDonald",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "200",
+		"playerName": "Vernon Davis",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "128",
+		"playerName": "Vincent Jackson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "3678",
+		"playerName": "Wil Lutz",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2016,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2017-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1877",
+		"playerName": "Zach Orr",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
 		"season": 2017,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2018-01-15T00:00:00.000Z",
@@ -24310,6 +28880,836 @@
 		"source": "postseason"
 	},
 	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "2227",
+		"playerName": "Aaron Donald",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "120",
+		"playerName": "Adam Vinatieri",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1170",
+		"playerName": "Alfred Morris",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2359",
+		"playerName": "Ameer Abdullah",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "655",
+		"playerName": "Anquan Boldin",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "2151",
+		"playerName": "Anthony Barr",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1564",
+		"playerName": "Benny Cunningham",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1214",
+		"playerName": "Blair Walsh",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "583",
+		"playerName": "Brandon Graham",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "2450",
+		"playerName": "Brett Hundley",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "345",
+		"playerName": "Brian Hoyer",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1126",
+		"playerName": "Brock Osweiler",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "2408",
+		"playerName": "Bryce Petty",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "843",
+		"playerName": "Cameron Heyward",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "91",
+		"playerName": "Carson Palmer",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "2024",
+		"playerName": "Charcandrick West",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "3582",
+		"playerName": "Chester Rogers",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "2110",
+		"playerName": "Christian Jones",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "980",
+		"playerName": "Colin Kaepernick",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1833",
+		"playerName": "Damien Williams",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "735",
+		"playerName": "Danny Woodhead",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "3040",
+		"playerName": "David Irving",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "904",
+		"playerName": "DeMarco Murray",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "4216",
+		"playerName": "Desmond King",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "2291",
+		"playerName": "Dontrelle Inman",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "643",
+		"playerName": "Earl Thomas",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "558",
+		"playerName": "Eric Decker",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1513",
+		"playerName": "Ezekiel Ansah",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1750",
+		"playerName": "Giorgio Tavecchio",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "3664",
+		"playerName": "J.D. McKissic",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1620",
+		"playerName": "Jahleel Addae",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "323",
+		"playerName": "Jamaal Charles",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "416",
+		"playerName": "Jay Cutler",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2397",
+		"playerName": "Jeff Heuerman",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "1507",
+		"playerName": "Jon Bostic",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "218",
+		"playerName": "Jonathan Stewart",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "260",
+		"playerName": "Josh Johnson",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "2412",
+		"playerName": "Justin Hardy",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "878",
+		"playerName": "Justin Houston",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "998",
+		"playerName": "K.J. Wright",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1097",
+		"playerName": "Kendall Wright",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1441",
+		"playerName": "Kerwynn Williams",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "3318",
+		"playerName": "Kevin Hogan",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "581",
+		"playerName": "Kurt Coleman",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "2130",
+		"playerName": "Kyle Van Noy",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "298",
+		"playerName": "Lawrence Timmons",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "2588",
+		"playerName": "Malcolm Brown",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "444",
+		"playerName": "Malcolm Jenkins",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "103",
+		"playerName": "Matt Forte",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "233",
+		"playerName": "Matt Moore",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "17",
+		"playerName": "Matt Prater",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "3605",
+		"playerName": "Matthias Farley",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1525",
+		"playerName": "Micah Hyde",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "495",
+		"playerName": "Michael Bennett",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "2431",
+		"playerName": "Mike Davis",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "1559",
+		"playerName": "Mike Glennon",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1032",
+		"playerName": "Mychal Kendricks",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "632",
+		"playerName": "Navorro Bowman",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "2495",
+		"playerName": "Nick O'Leary",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "3254",
+		"playerName": "Nick Vigil",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1819",
+		"playerName": "Orleans Darkwa",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "972",
+		"playerName": "Patrick Peterson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1808",
+		"playerName": "Preston Brown",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "772",
+		"playerName": "Ramon Humber",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "3275",
+		"playerName": "Ricardo Louis",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "2892",
+		"playerName": "Rodney Smith",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "2093",
+		"playerName": "Ryan Grant",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "917",
+		"playerName": "Ryan Kerrigan",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "3496",
+		"playerName": "Stephen Anderson",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "775",
+		"playerName": "Stephen Hauschka",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1039",
+		"playerName": "Tavon Wilson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1490",
+		"playerName": "Terrance Williams",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "2621",
+		"playerName": "Terron Ward",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2585",
+		"playerName": "Thomas Rawls",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "4596",
+		"playerName": "Tion Green",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "826",
+		"playerName": "Torrey Smith",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "4644",
+		"playerName": "Travis Rudolph",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "3271",
+		"playerName": "Tyler Higbee",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "2390",
+		"playerName": "Tyler Kroft",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "54",
+		"playerName": "Tyvon Branch",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "871",
+		"playerName": "Von Miller",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1911",
+		"playerName": "Willie Snead",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2017,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2018-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "3238",
+		"playerName": "Yannick Ngakoue",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
 		"season": 2018,
 		"type": "rfa-rights-conversion",
 		"timestamp": "2019-01-15T00:00:00.000Z",
@@ -26907,6 +32307,856 @@
 		"startYear": 2017,
 		"endYear": 2018,
 		"salary": 10,
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1186",
+		"playerName": "Akiem Hicks",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "3827",
+		"playerName": "Aldrick Rosas",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "88",
+		"playerName": "Antoine Bethea",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "322",
+		"playerName": "Antonio Gates",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1940",
+		"playerName": "Avery Williamson",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "575",
+		"playerName": "Barry Church",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2348",
+		"playerName": "Benardrick McKinney",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "663",
+		"playerName": "Benjamin Watson",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1617",
+		"playerName": "Bradley McDougald",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1433",
+		"playerName": "Brandon McManus",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1126",
+		"playerName": "Brock Osweiler",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "2460",
+		"playerName": "C.J. Uzomah",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2214",
+		"playerName": "Cameron Brate",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "529",
+		"playerName": "Carlos Dunlap",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "89",
+		"playerName": "Chad Henne",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1038",
+		"playerName": "Chandler Jones",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "2381",
+		"playerName": "Chris Conley",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "5587",
+		"playerName": "Chris Warren",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3205",
+		"playerName": "Cody Kessler",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "491",
+		"playerName": "Danny Amendola",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2308",
+		"playerName": "Dante Fowler",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "5549",
+		"playerName": "Darrel Williams",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3190",
+		"playerName": "Darron Lee",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "2015",
+		"playerName": "Dee Ford",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "560",
+		"playerName": "Demaryius Thomas",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "691",
+		"playerName": "Derek Anderson",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "574",
+		"playerName": "Dez Bryant",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "5051",
+		"playerName": "Donte Jackson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "988",
+		"playerName": "Doug Baldwin",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1348",
+		"playerName": "Dustin Hopkins",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "902",
+		"playerName": "Dwayne Harris",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "4158",
+		"playerName": "Eddie Jackson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "5030",
+		"playerName": "Harold Landry",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "4197",
+		"playerName": "Isaiah McKenzie",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "2821",
+		"playerName": "Jake Kumerow",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3342",
+		"playerName": "Jakeem Grant",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1364",
+		"playerName": "Jamie Collins",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2747",
+		"playerName": "Jason Myers",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "720",
+		"playerName": "Jason Pierre-Paul",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "3331",
+		"playerName": "Jatavis Brown",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "2430",
+		"playerName": "Javorius Allen",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3362",
+		"playerName": "Jeff Driskel",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "5284",
+		"playerName": "Jeff Wilson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "5017",
+		"playerName": "Jessie Bates",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "5117",
+		"playerName": "Jordan Thomas",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "175",
+		"playerName": "Jordy Nelson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "821",
+		"playerName": "Josh Bynes",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "846",
+		"playerName": "Jurrell Casey",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "4635",
+		"playerName": "Justin Davis",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "878",
+		"playerName": "Justin Houston",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "544",
+		"playerName": "Kareem Jackson",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "2182",
+		"playerName": "Kelvin Benjamin",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "1345",
+		"playerName": "Kiko Alonso",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "730",
+		"playerName": "LeGarrette Blount",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1367",
+		"playerName": "Logan Ryan",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "444",
+		"playerName": "Malcolm Jenkins",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "4965",
+		"playerName": "Marcus Davenport",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "2529",
+		"playerName": "Marcus Murphy",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "350",
+		"playerName": "Mark Sanchez",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "1916",
+		"playerName": "Martavis Bryant",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "962",
+		"playerName": "Mason Foster",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "4191",
+		"playerName": "Matt Milano",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3258",
+		"playerName": "Nick Vannett",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "714",
+		"playerName": "Reshad Jones",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "4531",
+		"playerName": "Ricky Seals-Jones",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "5250",
+		"playerName": "Robert Foster",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3180",
+		"playerName": "Robert Nkemdiche",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2093",
+		"playerName": "Ryan Grant",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "391",
+		"playerName": "Ryan Succop",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "576",
+		"playerName": "Sean Lee",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "118",
+		"playerName": "Sebastian Janikowski",
+		"position": "K",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "811",
+		"playerName": "Stevan Ridley",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1160",
+		"playerName": "Tahir Whitehead",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "4069",
+		"playerName": "Takk McKinley",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1995",
+		"playerName": "Telvin Smith",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "4351",
+		"playerName": "Tim Patrick",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "2689",
+		"playerName": "Todd Davis",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "2184",
+		"playerName": "Tre Boston",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "2399",
+		"playerName": "Ty Montgomery",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "827",
+		"playerName": "Tyrod Taylor",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "1415",
+		"playerName": "Vince Williams",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "871",
+		"playerName": "Von Miller",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "3309",
+		"playerName": "Wendell Smallwood",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "210",
+		"playerName": "Wesley Woodyard",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2018,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2019-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1093",
+		"playerName": "Zach Brown",
+		"position": "LB",
 		"source": "postseason"
 	},
 	{
@@ -29588,6 +35838,46 @@
 		"source": "postseason"
 	},
 	{
+		"season": 2019,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2020-09-01T16:00:00.000Z",
+		"rosterId": 6,
+		"sleeperId": "4033",
+		"playerName": "David Njoku",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2019,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2020-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "5015",
+		"playerName": "Sam Hubbard",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2019,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2020-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "2406",
+		"playerName": "Trey Flowers",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2019,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2020-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "4150",
+		"playerName": "Wayne Gallman",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
 		"season": 2020,
 		"type": "contract-expiry",
 		"timestamp": "2021-01-15T00:00:00.000Z",
@@ -32042,6 +38332,106 @@
 		"startYear": null,
 		"endYear": 2020,
 		"salary": 1,
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "5013",
+		"playerName": "Anthony Miller",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "125",
+		"playerName": "Calais Campbell",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "4950",
+		"playerName": "Christian Kirk",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1535",
+		"playerName": "Cordarrelle Patterson",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "2382",
+		"playerName": "Duke Johnson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "4980",
+		"playerName": "Leighton Vander Esch",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "4455",
+		"playerName": "Matt Breida",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "5046",
+		"playerName": "Royce Freeman",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "5026",
+		"playerName": "Tre'Quan Smith",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2020,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2021-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "3678",
+		"playerName": "Wil Lutz",
+		"position": "K",
 		"source": "postseason"
 	},
 	{
@@ -34629,6 +41019,126 @@
 		"startYear": null,
 		"endYear": 2021,
 		"salary": 1,
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "6156",
+		"playerName": "Benny Snell",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "954",
+		"playerName": "Cam Newton",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "529",
+		"playerName": "Carlos Dunlap",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "4273",
+		"playerName": "Chris Carson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "5842",
+		"playerName": "Clelin Ferrell",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "538",
+		"playerName": "Emmanuel Sanders",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "2410",
+		"playerName": "Jamison Crowder",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "943",
+		"playerName": "Kyle Rudolph",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "6895",
+		"playerName": "Quintez Cephus",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "515",
+		"playerName": "Rob Gronkowski",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "333",
+		"playerName": "Ryan Fitzpatrick",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2021,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2022-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "4381",
+		"playerName": "Taysom Hill",
+		"position": "QB",
 		"source": "postseason"
 	},
 	{
@@ -37401,6 +43911,166 @@
 		"source": "postseason"
 	},
 	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "1905",
+		"playerName": "Christian Kirksey",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "4036",
+		"playerName": "Corey Davis",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1052",
+		"playerName": "Demario Davis",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "7651",
+		"playerName": "Jeremiah Owusu-Koramoah",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "5860",
+		"playerName": "Johnathan Abram",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "3262",
+		"playerName": "Justin Simmons",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "6805",
+		"playerName": "KJ Hamler",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "6811",
+		"playerName": "Kenneth Murray",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "3233",
+		"playerName": "Kevin Byard",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "1192",
+		"playerName": "Lavonte David",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "4071",
+		"playerName": "Marlon Humphrey",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "24",
+		"playerName": "Matt Ryan",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "3166",
+		"playerName": "Myles Jack",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "1029",
+		"playerName": "Nick Foles",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "1817",
+		"playerName": "Sammy Watkins",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2022,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2023-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "5064",
+		"playerName": "Tracy Walker",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
 		"season": 2023,
 		"type": "contract-expiry",
 		"timestamp": "2024-01-15T00:00:00.000Z",
@@ -39855,6 +46525,76 @@
 		"startYear": 2023,
 		"endYear": 2023,
 		"salary": 4,
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "6824",
+		"playerName": "Donovan Peoples-Jones",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "8269",
+		"playerName": "Jordan Davis",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "2307",
+		"playerName": "Marcus Mariota",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "7601",
+		"playerName": "Rondale Moore",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "8290",
+		"playerName": "Sauce Gardner",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "2711",
+		"playerName": "Taylor Heinicke",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2023,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2024-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "8188",
+		"playerName": "Tyquan Thornton",
+		"position": "WR",
 		"source": "postseason"
 	},
 	{
@@ -42559,6 +49299,136 @@
 		"startYear": 2022,
 		"endYear": 2024,
 		"salary": 13,
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "6782",
+		"playerName": "Chase Young",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "3558",
+		"playerName": "Chris Jones",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "3276",
+		"playerName": "De'Vondre Campbell",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "2028",
+		"playerName": "Derek Carr",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "8329",
+		"playerName": "Devin Lloyd",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "6011",
+		"playerName": "Gardner Minshew",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "5248",
+		"playerName": "Gus Edwards",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "3257",
+		"playerName": "Jacoby Brissett",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "2306",
+		"playerName": "Jameis Winston",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "10913",
+		"playerName": "Joey Porter",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "5917",
+		"playerName": "Mecole Hardman",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "4381",
+		"playerName": "Taysom Hill",
+		"position": "QB/TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2024,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2025-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "8139",
+		"playerName": "Zamir White",
+		"position": "RB",
 		"source": "postseason"
 	},
 	{
@@ -45419,6 +52289,556 @@
 		"startYear": null,
 		"endYear": 2025,
 		"salary": 4,
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "7547",
+		"playerName": "Amon-Ra St. Brown",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "6945",
+		"playerName": "Antonio Gibson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "9509",
+		"playerName": "Bijan Robinson",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "6803",
+		"playerName": "Brandon Aiyuk",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "9758",
+		"playerName": "C.J. Stroud",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "6786",
+		"playerName": "CeeDee Lamb",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "9224",
+		"playerName": "Chase Brown",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "11663",
+		"playerName": "Chop Robinson",
+		"position": "DL/LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "11678",
+		"playerName": "Cooper DeJean",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "5045",
+		"playerName": "Courtland Sutton",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "10236",
+		"playerName": "Dalton Kincaid",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "6149",
+		"playerName": "Darius Slayton",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "7090",
+		"playerName": "Darnell Mooney",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "4033",
+		"playerName": "David Njoku",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "9226",
+		"playerName": "De'Von Achane",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "5580",
+		"playerName": "Frankie Luvu",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "1373",
+		"playerName": "Geno Smith",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "10880",
+		"playerName": "Jack Campbell",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "9221",
+		"playerName": "Jahmyr Gibbs",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "8110",
+		"playerName": "Jake Ferguson",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "11633",
+		"playerName": "Jamari Thrash",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "9488",
+		"playerName": "Jaxon Smith-Njigba",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "10222",
+		"playerName": "Jayden Reed",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "8143",
+		"playerName": "Jerome Ford",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "5017",
+		"playerName": "Jessie Bates",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "9756",
+		"playerName": "Jordan Addison",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "8408",
+		"playerName": "Jordan Mason",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 3,
+		"sleeperId": "9500",
+		"playerName": "Josh Downs",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "5850",
+		"playerName": "Josh Jacobs",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "11675",
+		"playerName": "Kool-Aid McKinstry",
+		"position": "DB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "5849",
+		"playerName": "Kyler Murray",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "8150",
+		"playerName": "Kyren Williams",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "4881",
+		"playerName": "Lamar Jackson",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "5991",
+		"playerName": "Maxx Crosby",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "6819",
+		"playerName": "Michael Pittman",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "3976",
+		"playerName": "Mitchell Trubisky",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "3973",
+		"playerName": "Myles Garrett",
+		"position": "DL",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "9493",
+		"playerName": "Puka Nacua",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "9754",
+		"playerName": "Quentin Johnston",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "8676",
+		"playerName": "Rashid Shaheed",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "11575",
+		"playerName": "Ray Davis",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 11,
+		"sleeperId": "4943",
+		"playerName": "Sam Darnold",
+		"position": "QB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 5,
+		"sleeperId": "5960",
+		"playerName": "T.J. Edwards",
+		"position": "LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "5844",
+		"playerName": "T.J. Hockenson",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 10,
+		"sleeperId": "4070",
+		"playerName": "T.J. Watt",
+		"position": "DL/LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "9225",
+		"playerName": "Tank Bigsby",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 8,
+		"sleeperId": "6801",
+		"playerName": "Tee Higgins",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "11597",
+		"playerName": "Theo Johnson",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 7,
+		"sleeperId": "1466",
+		"playerName": "Travis Kelce",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 1,
+		"sleeperId": "10213",
+		"playerName": "Tre Tucker",
+		"position": "WR",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 9,
+		"sleeperId": "9484",
+		"playerName": "Tucker Kraft",
+		"position": "TE",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "9508",
+		"playerName": "Tyjae Spears",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 12,
+		"sleeperId": "10892",
+		"playerName": "Will Anderson",
+		"position": "DL/LB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 4,
+		"sleeperId": "9753",
+		"playerName": "Zach Charbonnet",
+		"position": "RB",
+		"source": "postseason"
+	},
+	{
+		"season": 2025,
+		"type": "rfa-rights-lapsed",
+		"timestamp": "2026-09-01T16:00:00.000Z",
+		"rosterId": 2,
+		"sleeperId": "9997",
+		"playerName": "Zay Flowers",
+		"position": "WR",
 		"source": "postseason"
 	}
 ]

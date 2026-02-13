@@ -198,9 +198,16 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 		
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
-			var regime = getRegimeAtTime(party.franchiseId, tradeYear);
-			var franchiseName = regime ? regime.displayName : 'Unknown';
-			var usePlural = isPlural(regime);
+			var franchiseName;
+			var usePlural;
+			if (party.regimeName) {
+				franchiseName = party.regimeName;
+				usePlural = franchiseName === 'Schexes' || franchiseName.includes('/');
+			} else {
+				var regime = getRegimeAtTime(party.franchiseId, tradeYear);
+				franchiseName = regime ? regime.displayName : 'Unknown';
+				usePlural = isPlural(regime);
+			}
 			
 			// Collect all assets with their display info
 			var playerAssets = [];

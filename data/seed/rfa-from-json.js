@@ -4,6 +4,7 @@
  * Creates transactions for:
  *   - rfa-rights-conversion: contract expired, RFA rights conveyed to franchise
  *   - contract-expiry: contract expired, player becomes UFA
+ *   - rfa-rights-lapsed: RFA rights not exercised (player not auctioned)
  *   - rfa-unknown: player was cut mid-season, end-of-season status unknown
  * 
  * Timestamps: January 15 of the following year (postseason)
@@ -39,6 +40,7 @@ var args = {
 var stats = {
 	rfaConversions: 0,
 	contractExpiries: 0,
+	rfaLapsed: 0,
 	rfaUnknown: 0,
 	skipped: 0,
 	errors: []
@@ -68,7 +70,7 @@ async function seed() {
 	if (!args.dryRun) {
 		console.log('Clearing existing RFA transactions...');
 		var result = await Transaction.deleteMany({ 
-			type: { $in: ['rfa-rights-conversion', 'contract-expiry', 'rfa-unknown'] } 
+			type: { $in: ['rfa-rights-conversion', 'contract-expiry', 'rfa-rights-lapsed', 'rfa-unknown'] } 
 		});
 		console.log('  Deleted ' + result.deletedCount + ' RFA transactions');
 		console.log('');
@@ -121,6 +123,7 @@ async function seed() {
 		
 		var seasonConversions = 0;
 		var seasonExpiries = 0;
+		var seasonLapsed = 0;
 		var seasonUnknown = 0;
 		
 		for (var ri = 0; ri < seasonRecords.length; ri++) {
@@ -148,12 +151,13 @@ async function seed() {
 				continue;
 			}
 			
-			if (args.dryRun) {
-				if (entry.type === 'rfa-rights-conversion') seasonConversions++;
-				else if (entry.type === 'contract-expiry') seasonExpiries++;
-				else if (entry.type === 'rfa-unknown') seasonUnknown++;
-				continue;
-			}
+		if (args.dryRun) {
+			if (entry.type === 'rfa-rights-conversion') seasonConversions++;
+			else if (entry.type === 'contract-expiry') seasonExpiries++;
+			else if (entry.type === 'rfa-rights-lapsed') seasonLapsed++;
+			else if (entry.type === 'rfa-unknown') seasonUnknown++;
+			continue;
+		}
 			
 			try {
 				// Use index offset to maintain ordering within the same timestamp
@@ -171,16 +175,19 @@ async function seed() {
 					endYear: entry.endYear
 				});
 				
-				if (entry.type === 'rfa-rights-conversion') {
-					seasonConversions++;
-					stats.rfaConversions++;
-				} else if (entry.type === 'contract-expiry') {
-					seasonExpiries++;
-					stats.contractExpiries++;
-				} else if (entry.type === 'rfa-unknown') {
-					seasonUnknown++;
-					stats.rfaUnknown++;
-				}
+			if (entry.type === 'rfa-rights-conversion') {
+				seasonConversions++;
+				stats.rfaConversions++;
+			} else if (entry.type === 'contract-expiry') {
+				seasonExpiries++;
+				stats.contractExpiries++;
+			} else if (entry.type === 'rfa-rights-lapsed') {
+				seasonLapsed++;
+				stats.rfaLapsed++;
+			} else if (entry.type === 'rfa-unknown') {
+				seasonUnknown++;
+				stats.rfaUnknown++;
+			}
 			} catch (err) {
 				if (err.code === 11000) {
 					stats.errors.push(season + ' ' + entry.playerName + ': Duplicate');
@@ -191,13 +198,14 @@ async function seed() {
 			}
 		}
 		
-		console.log(season + ': ' + seasonConversions + ' conversions, ' + seasonExpiries + ' expiries, ' + seasonUnknown + ' unknown');
+		console.log(season + ': ' + seasonConversions + ' conversions, ' + seasonExpiries + ' expiries, ' + seasonLapsed + ' lapsed, ' + seasonUnknown + ' unknown');
 	}
 	
 	console.log('');
 	console.log('Done!');
 	console.log('  RFA conversions: ' + stats.rfaConversions);
 	console.log('  Contract expiries: ' + stats.contractExpiries);
+	console.log('  RFA lapsed: ' + stats.rfaLapsed);
 	console.log('  RFA unknown: ' + stats.rfaUnknown);
 	console.log('  Players created: ' + upsert.stats.created);
 	console.log('  Positions updated: ' + upsert.stats.positionsUpdated);
