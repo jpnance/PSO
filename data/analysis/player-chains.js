@@ -112,19 +112,55 @@ var TRANSITIONS = {
 // =============================================================================
 
 /**
- * Get all transactions involving a player.
+ * Build a map of playerId → transactions for all players.
+ * Loads all transactions once and indexes them by player involvement.
  */
-async function getPlayerTransactions(playerId) {
-	var txns = await Transaction.find({
-		$or: [
-			{ playerId: playerId },
-			{ 'adds.playerId': playerId },
-			{ 'drops.playerId': playerId },
-			{ 'parties.receives.players.playerId': playerId }
-		]
-	}).sort({ timestamp: 1 }).lean();
+async function buildPlayerTransactionMap() {
+	var allTxns = await Transaction.find({}).sort({ timestamp: 1 }).lean();
+	var map = {};
 	
-	return txns;
+	for (var i = 0; i < allTxns.length; i++) {
+		var tx = allTxns[i];
+		var involvedPlayers = new Set();
+		
+		// Direct playerId
+		if (tx.playerId) {
+			involvedPlayers.add(tx.playerId.toString());
+		}
+		
+		// Adds array
+		if (tx.adds) {
+			tx.adds.forEach(function(a) {
+				if (a.playerId) involvedPlayers.add(a.playerId.toString());
+			});
+		}
+		
+		// Drops array
+		if (tx.drops) {
+			tx.drops.forEach(function(d) {
+				if (d.playerId) involvedPlayers.add(d.playerId.toString());
+			});
+		}
+		
+		// Trade parties
+		if (tx.parties) {
+			tx.parties.forEach(function(party) {
+				if (party.receives && party.receives.players) {
+					party.receives.players.forEach(function(p) {
+						if (p.playerId) involvedPlayers.add(p.playerId.toString());
+					});
+				}
+			});
+		}
+		
+		// Add this transaction to each involved player's list
+		involvedPlayers.forEach(function(pid) {
+			if (!map[pid]) map[pid] = [];
+			map[pid].push(tx);
+		});
+	}
+	
+	return map;
 }
 
 /**
@@ -418,17 +454,9 @@ async function run() {
 	var playerArg = args.find(function(a) { return a.startsWith('--player='); });
 	var targetPlayer = playerArg ? playerArg.split('=')[1] : null;
 	
-	// Get all players with transactions
-	var playerIdsFromPlayerId = await Transaction.distinct('playerId', { playerId: { $ne: null } });
-	var playerIdsFromAdds = await Transaction.distinct('adds.playerId');
-	var playerIdsFromDrops = await Transaction.distinct('drops.playerId');
-	
-	var allIds = new Set();
-	playerIdsFromPlayerId.forEach(function(id) { if (id) allIds.add(id.toString()); });
-	playerIdsFromAdds.forEach(function(id) { if (id) allIds.add(id.toString()); });
-	playerIdsFromDrops.forEach(function(id) { if (id) allIds.add(id.toString()); });
-	
-	var playerIds = Array.from(allIds);
+	// Load all transactions and build player → transactions map (single query)
+	var txnMap = await buildPlayerTransactionMap();
+	var playerIds = Object.keys(txnMap);
 	console.log('Players with transactions:', playerIds.length);
 	
 	// Load player names
@@ -451,7 +479,7 @@ async function run() {
 		
 		if (targetPlayer && player.name !== targetPlayer) continue;
 		
-		var transactions = await getPlayerTransactions(playerId);
+		var transactions = txnMap[playerId] || [];
 		var result = walkPlayerChain(player, transactions);
 		
 		if (result.valid) {
