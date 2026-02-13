@@ -80,6 +80,14 @@ mixin timelineEntry(entry)
 				else if entry.type === 'contract'
 					span Contract set by #{entry.regime}
 					+timelineSalary(entry)
+				else if entry.type === 'contract-expiry'
+					span Contract expired
+					+timelineSalary(entry, { prefix: 'Expired:', expired: true })
+				else if entry.type === 'rfa-unknown'
+					span RFA outcome unknown
+					if entry.regime
+						|  (#{entry.regime})
+					+timelineSalary(entry, { prefix: 'Expired:', expired: true })
 				else
 					span= entry.type
 			if !isInferred

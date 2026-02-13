@@ -19,7 +19,6 @@ var rookies = require('./services/rookies');
 var freeAgents = require('./services/free-agents');
 var players = require('./services/players');
 var auth = require('./services/auth');
-var debug = require('./services/debug');
 var { requireLogin, requireAdmin } = require('./middleware/auth');
 
 // Middleware to prevent caching of dynamic partials
@@ -103,9 +102,6 @@ module.exports = function(app) {
 	});
 	app.get('/scuttlebot', scuttlebot.prompt);
 	app.post('/scuttlebot/message', scuttlebot.postMessage);
-	
-	// Debug routes (require admin)
-	app.get('/debug/rosters', requireLogin, requireAdmin, debug.rostersPage);
 	
 	// Admin routes (require login + admin)
 	app.get('/admin', requireLogin, requireAdmin, admin.configPage);

@@ -1054,7 +1054,9 @@ function transactionIcon(type) {
 		'auction-rfa-matched': 'fa-gavel',
 		'auction-rfa-unmatched': 'fa-gavel',
 		'rfa-rights-conversion': 'fa-refresh',
-		'contract': 'fa-file-text-o'
+		'contract': 'fa-file-text-o',
+		'contract-expiry': 'fa-calendar-times-o',
+		'rfa-unknown': 'fa-question-circle'
 	};
 	return icons[type] || 'fa-circle';
 }
