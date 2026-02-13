@@ -10893,7 +10893,7 @@
             "salary": 5,
             "contractStr": "2016",
             "contract": {
-              "start": 2016,
+              "start": null,
               "end": 2016,
               "source": "certain"
             },
