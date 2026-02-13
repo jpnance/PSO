@@ -88,8 +88,11 @@ async function run() {
 	console.log('Computing current Pick state...');
 	if (args.dryRun) console.log('[DRY RUN]\n');
 	
+	// The draft for currentSeason has already happened, so we only create
+	// picks for future seasons (currentSeason+1 and currentSeason+2).
+	// The current season's picks come from drafts-from-json.js.
 	var currentSeason = PSO.season;
-	var futureSeasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+	var futureSeasons = [currentSeason + 1, currentSeason + 2];
 	console.log('Future seasons:', futureSeasons.join(', '));
 	console.log('Rounds per draft:', ROUNDS_PER_DRAFT);
 	console.log('');
