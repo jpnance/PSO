@@ -101,9 +101,9 @@ exports.playerDetail = async function(request, response) {
 				}
 			}
 			
-			// Determine if trades are allowed
+			// Determine if trades are allowed (contracts and RFA rights)
 			var tradePhases = ['early-offseason', 'pre-season', 'regular-season'];
-			canTrade = tradePhases.includes(phase) && contract.salary !== null;
+			canTrade = tradePhases.includes(phase);
 		}
 		
 		// Get transaction history for this player
