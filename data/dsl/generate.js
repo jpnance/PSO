@@ -238,7 +238,8 @@ function buildPlayerRegistry(auctions, contracts, draftsMap, faData, rfaData) {
 	faData.forEach(function(r) {
 		r.adds.forEach(function(add) {
 			var key = playerKey(add.sleeperId, add.name);
-			ensurePlayer(key, add.sleeperId || null, add.name, add.position ? [add.position] : []);
+			var positions = add.position ? add.position.split('/') : [];
+			ensurePlayer(key, add.sleeperId || null, add.name, positions);
 		});
 	});
 
@@ -246,7 +247,8 @@ function buildPlayerRegistry(auctions, contracts, draftsMap, faData, rfaData) {
 	rfaData.forEach(function(r) {
 		if (r.type === 'rfa-unknown') return;
 		var key = playerKey(r.sleeperId, r.playerName);
-		ensurePlayer(key, r.sleeperId || null, r.playerName, r.position ? [r.position] : []);
+		var positions = r.position ? r.position.split('/') : [];
+		ensurePlayer(key, r.sleeperId || null, r.playerName, positions);
 	});
 
 	return players;
@@ -365,6 +367,12 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 	});
 
 	// --- RFA / contract expiry events ---
+	// Build set of auction seasons for lapsed detection
+	var auctionSeasons = {};
+	auctionRecords.forEach(function(a) {
+		auctionSeasons[a.season] = true;
+	});
+
 	rfaRecords.forEach(function(r) {
 		var owner = rosterIdToOwner(r.rosterId, r.season);
 		var ts = new Date(r.timestamp);
@@ -375,6 +383,18 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 				type: 'rfa',
 				line: '  ' + yy(r.season) + ' rfa ' + owner
 			});
+
+			// If no auction in the following season, rights lapsed
+			var nextSeason = r.season + 1;
+			if (!auctionSeasons[nextSeason]) {
+				// Convention: Sept 1 at noon ET (after auction, before regular season)
+				var lapsedTs = new Date(Date.UTC(nextSeason, 8, 1, 16, 0, 0));
+				events.push({
+					timestamp: lapsedTs,
+					type: 'rfa-lapsed',
+					line: '  ' + yy(nextSeason) + ' rfa-lapsed # by ' + owner
+				});
+			}
 		} else if (r.type === 'contract-expiry') {
 			events.push({
 				timestamp: ts,
@@ -409,11 +429,11 @@ function generatePlayerEvents(key, player, auctionRecords, contractRecords, draf
 		var diff = a.timestamp - b.timestamp;
 		if (diff !== 0) return diff;
 
-		// Tie-breaking: draft < protect < expansion < auction types < contract < fa < trade < drop < cut < rfa < expiry
+		// Tie-breaking: draft < protect < expansion < auction types < contract < rfa-lapsed < fa < trade < drop < cut < rfa < expiry
 		var order = {
 			draft: 0, protect: 1, expansion: 2,
 			'auction-ufa': 3, 'auction-rfa-matched': 3, 'auction-rfa-unmatched': 3,
-			contract: 4, fa: 5, trade: 6, drop: 7, cut: 8, rfa: 9, expiry: 10
+			contract: 4, 'rfa-lapsed': 5, fa: 6, trade: 7, drop: 8, cut: 9, rfa: 10, expiry: 11
 		};
 		return (order[a.type] || 99) - (order[b.type] || 99);
 	});
@@ -611,6 +631,7 @@ function generateDSL() {
 	lines.push('#   drop                              - Dropped in-season (by OWNER in comment)');
 	lines.push('#   cut                               - Released in offseason (by OWNER in comment)');
 	lines.push('#   rfa OWNER                         - RFA rights conversion (contract expired)');
+	lines.push('#   rfa-lapsed                        - RFA rights lapsed (not brought to auction, by OWNER in comment)');
 	lines.push('#   expiry                            - Contract expired, player becomes UFA (by OWNER in comment)');
 	lines.push('#   expansion OWNER from OWNER        - 2012 expansion draft');
 	lines.push('#   protect OWNER                     - 2012 expansion protection');

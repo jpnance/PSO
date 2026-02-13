@@ -5514,6 +5514,18 @@
   },
   {
     "season": 2010,
+    "sleeperId": null,
+    "name": "Charles Scott",
+    "positions": [
+      "RB"
+    ],
+    "rosterId": 8,
+    "salary": 1,
+    "startYear": 2010,
+    "endYear": 2010
+  },
+  {
+    "season": 2010,
     "sleeperId": "100",
     "name": "Charles Woodson",
     "positions": [
@@ -7099,18 +7111,6 @@
   {
     "season": 2010,
     "sleeperId": null,
-    "name": "Quinn Scott",
-    "positions": [
-      "RB"
-    ],
-    "rosterId": 8,
-    "salary": 1,
-    "startYear": 2010,
-    "endYear": 2010
-  },
-  {
-    "season": 2010,
-    "sleeperId": null,
     "name": "Randy Moss",
     "positions": [
       "WR"
@@ -7430,7 +7430,7 @@
     "rosterId": 5,
     "salary": 105,
     "startYear": 2010,
-    "endYear": 2011
+    "endYear": 2010
   },
   {
     "season": 2010,
@@ -7442,7 +7442,7 @@
     "rosterId": 5,
     "salary": 45,
     "startYear": 2010,
-    "endYear": 2010
+    "endYear": 2011
   },
   {
     "season": 2010,
@@ -14062,6 +14062,18 @@
   },
   {
     "season": 2013,
+    "sleeperId": "100",
+    "name": "Charles Woodson",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 7,
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
     "sleeperId": "717",
     "name": "Chris Ivory",
     "positions": [
@@ -15977,30 +15989,6 @@
     ],
     "rosterId": 9,
     "salary": 15,
-    "startYear": 2013,
-    "endYear": 2013
-  },
-  {
-    "season": 2013,
-    "sleeperId": null,
-    "name": "Quinn Tillman",
-    "positions": [
-      "DB"
-    ],
-    "rosterId": 2,
-    "salary": 13,
-    "startYear": 2013,
-    "endYear": 2013
-  },
-  {
-    "season": 2013,
-    "sleeperId": null,
-    "name": "Quinn Woodson",
-    "positions": [
-      "DB"
-    ],
-    "rosterId": 7,
-    "salary": 1,
     "startYear": 2013,
     "endYear": 2013
   },

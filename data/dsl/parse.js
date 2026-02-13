@@ -59,8 +59,8 @@ var PATTERNS = {
 	// YY rfa
 	rfa: /^(\d{2})\s+rfa$/,
 	
-	// YY lapsed
-	lapsed: /^(\d{2})\s+lapsed$/,
+	// YY rfa-lapsed
+	rfaLapsed: /^(\d{2})\s+rfa-lapsed$/,
 	
 	// YY unknown OWNER
 	unknown: /^(\d{2})\s+unknown\s+(\S+)$/
@@ -262,10 +262,10 @@ function parseTransaction(line, lineNum) {
 		};
 	}
 	
-	// lapsed
-	if ((match = line.match(PATTERNS.lapsed))) {
+	// rfa-lapsed
+	if ((match = line.match(PATTERNS.rfaLapsed))) {
 		return {
-			type: 'lapsed',
+			type: 'rfa-lapsed',
 			season: toFullYear(match[1]),
 			line: lineNum
 		};

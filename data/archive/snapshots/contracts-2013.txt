@@ -68,7 +68,6 @@ ID,Owner,Name,Position,Start,End,Salary
 801,,Charles Clay,TE,FA,2013,$6
 37,Daniel,Charles Johnson,DL,2011,2013,$1
 185,Koci/Mueller,Charles Tillman,DB,2013,2013,$13
-100,Jake/Luke,Charles Woodson,DB,FA,2013,
 490,,Chase Daniel,QB,FA,2013,$1
 1201,John,Chris Givens,WR,2012,2014,$2
 717,Keyon,Chris Ivory,RB,2013,2013,$85
@@ -444,7 +443,7 @@ ID,Owner,Name,Position,Start,End,Salary
 278,Charles,Kevin Kolb,QB,2013,2013,$6
 559,Schex,Tim Tebow,QB,2013,2013,$1
 157,Koci/Mueller,Vince Young,QB,2013,2015,$7
--1,Jake/Luke,Quinn Woodson,DB,2013,2013,$1
+100,Jake/Luke,Charles Woodson,DB,2013,2013,$1
 -1,Daniel,Lance Ball,RB,2013,2013,$1
 170,Jake/Luke,Cliff Avril,DL,2013,2013,$1
 673,Jake/Luke,Jason Campbell,QB,2013,2013,$1
@@ -452,4 +451,3 @@ ID,Owner,Name,Position,Start,End,Salary
 -1,Keyon,Jonathan Dwyer,RB,2013,2013,$11
 150,Schex,Danieal Manning,DB,2013,2015,$1
 684,Schex,Julius Peppers,DL,2013,2013,$3
--1,Koci/Mueller,Quinn Tillman,DB,2013,2013,$13

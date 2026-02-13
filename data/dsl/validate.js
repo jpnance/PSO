@@ -44,6 +44,29 @@ function sameOwner(a, b) {
 	return false;
 }
 
+// Resolve an owner name in a specific season to a rosterId.
+// RFA rights belong to the franchise (slot), not the person,
+// so comparisons must use the rosterId at the relevant season.
+function ownerToRosterIdInSeason(name, season) {
+	var names = PSO.franchiseNames;
+	var rosterIds = Object.keys(names);
+	for (var i = 0; i < rosterIds.length; i++) {
+		var rid = parseInt(rosterIds[i]);
+		if (names[rid] && names[rid][season] === name) return rid;
+	}
+	// Fallback: use the static franchiseIds map (no season awareness)
+	if (PSO.franchiseIds[name] !== undefined) return PSO.franchiseIds[name];
+	return null;
+}
+
+// Check if two owner names at given seasons refer to the same franchise slot.
+function sameFranchise(ownerA, seasonA, ownerB, seasonB) {
+	var ridA = ownerToRosterIdInSeason(ownerA, seasonA);
+	var ridB = ownerToRosterIdInSeason(ownerB, seasonB);
+	if (ridA === null || ridB === null) return sameOwner(ownerA, ownerB);
+	return ridA === ridB;
+}
+
 // =============================================================================
 // Parsing
 // =============================================================================
@@ -78,6 +101,9 @@ function parseEvent(line) {
 
 	m = line.match(/^\s+(\d+) rfa (\S+(?:\/\S+)?)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'rfa', owner: m[2] };
+
+	m = line.match(/^\s+(\d+) rfa-lapsed # by (\S+(?:\/\S+)?)/);
+	if (m) return { season: 2000 + parseInt(m[1]), type: 'rfa-lapsed', owner: m[2] };
 
 	m = line.match(/^\s+(\d+) expiry # by (\S+(?:\/\S+)?)/);
 	if (m) return { season: 2000 + parseInt(m[1]), type: 'expiry', owner: m[2] };
@@ -137,7 +163,7 @@ var AUCTION_EVENTS = { 'auction-ufa': true, 'auction-rfa-matched': true, 'auctio
 // trade, expansion
 
 // Events that clear ownership
-var RELEASE_EVENTS = { drop: true, cut: true, expiry: true };
+var RELEASE_EVENTS = { drop: true, cut: true, expiry: true, 'rfa-lapsed': true };
 
 /**
  * Check 1: Owner consistency on cuts/drops.
@@ -580,6 +606,229 @@ function checkFaContractFormat(player) {
 	return issues;
 }
 
+/**
+ * Check 10: Auction-RFA consistency.
+ * auction-rfa-matched should be preceded by an rfa event for the same owner.
+ * auction-rfa-unmatched should be preceded by an rfa event for a different owner.
+ * auction-ufa should NOT be preceded by an rfa event (without an intervening release/acquire).
+ */
+function checkAuctionRfaConsistency(player) {
+	var issues = [];
+	var lastRfaOwner = null;
+	var lastRfaSeason = null;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		if (e.type === 'rfa') {
+			lastRfaOwner = e.owner;
+			lastRfaSeason = e.season;
+		} else if (e.type === 'expiry' || RELEASE_EVENTS[e.type]) {
+			lastRfaOwner = null;
+			lastRfaSeason = null;
+		} else if (e.type === 'auction-rfa-matched') {
+			if (!lastRfaOwner) {
+				issues.push({
+					check: 'rfa-matched-no-rfa',
+					player: player.header,
+					message: 'auction-rfa-matched by ' + e.owner + ' but no preceding RFA rights',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			} else if (!sameFranchise(lastRfaOwner, lastRfaSeason, e.owner, e.season)) {
+				issues.push({
+					check: 'rfa-matched-wrong-owner',
+					player: player.header,
+					message: 'auction-rfa-matched by ' + e.owner + ' but RFA rights held by ' + lastRfaOwner,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			lastRfaOwner = null;
+			lastRfaSeason = null;
+		} else if (e.type === 'auction-rfa-unmatched') {
+			if (!lastRfaOwner) {
+				issues.push({
+					check: 'rfa-unmatched-no-rfa',
+					player: player.header,
+					message: 'auction-rfa-unmatched by ' + e.owner + ' but no preceding RFA rights',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			} else if (sameFranchise(lastRfaOwner, lastRfaSeason, e.owner, e.season)) {
+				issues.push({
+					check: 'rfa-unmatched-same-owner',
+					player: player.header,
+					message: 'auction-rfa-unmatched by ' + e.owner + ' but they held the RFA rights',
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			lastRfaOwner = null;
+			lastRfaSeason = null;
+		} else if (e.type === 'auction-ufa') {
+			if (lastRfaOwner) {
+				issues.push({
+					check: 'ufa-after-rfa',
+					player: player.header,
+					message: 'auction-ufa by ' + e.owner + ' but RFA rights held by ' + lastRfaOwner,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+			lastRfaOwner = null;
+			lastRfaSeason = null;
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 11: Contract follows every acquisition.
+ * Every auction-* or draft event should be followed by a contract event
+ * in the same season before any other non-contract event.
+ */
+function checkContractFollowsAcquisition(player) {
+	var issues = [];
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+		if (!AUCTION_EVENTS[e.type] && e.type !== 'draft') continue;
+
+		// Look for a contract in the same season
+		var foundContract = false;
+		for (var j = i + 1; j < player.events.length; j++) {
+			var next = player.events[j];
+			if (next.type === 'contract' && next.season === e.season) {
+				foundContract = true;
+				break;
+			}
+			// Stop if we hit a non-contract event in the same or later season
+			if (next.type !== 'contract') break;
+		}
+
+		if (!foundContract) {
+			issues.push({
+				check: 'missing-contract',
+				player: player.header,
+				message: e.type + ' in ' + e.season + ' not followed by a contract',
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 12: No orphan contracts.
+ * A contract event should be preceded by an acquisition (auction-*, draft)
+ * in the same season. Contracts from FA events are excluded (FA embeds its own contract).
+ */
+function checkNoOrphanContracts(player) {
+	var issues = [];
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+		if (e.type !== 'contract') continue;
+
+		// Look back for a preceding acquisition in the same season
+		var foundAcquisition = false;
+		for (var j = i - 1; j >= 0; j--) {
+			var prev = player.events[j];
+			if (prev.season !== e.season) break;
+			if (AUCTION_EVENTS[prev.type] || prev.type === 'draft') {
+				foundAcquisition = true;
+				break;
+			}
+			// Another contract in the same season is fine (chained after auction)
+			if (prev.type === 'contract') continue;
+			// Any other event type means this contract is orphaned
+			break;
+		}
+
+		if (!foundAcquisition) {
+			issues.push({
+				check: 'orphan-contract',
+				player: player.header,
+				message: 'Contract in ' + e.season + ' not preceded by auction or draft',
+				line: e.raw.trim(),
+				lineNumber: e.lineNumber
+			});
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 13: Trade continuity.
+ * After a trade, the player should remain owned — no implicit contract
+ * expiration in the same season as a trade. This catches trades of players
+ * whose contracts have already expired.
+ */
+function checkTradeContinuity(player) {
+	var issues = [];
+	var contractEnd = null;
+
+	for (var i = 0; i < player.events.length; i++) {
+		var e = player.events[i];
+
+		if (e.type === 'contract') {
+			contractEnd = parseContractEnd(e.detail);
+		} else if (e.type === 'fa') {
+			contractEnd = parseContractEnd(e.detail);
+		} else if (e.type === 'rfa') {
+			contractEnd = e.season;
+		} else if (RELEASE_EVENTS[e.type]) {
+			contractEnd = null;
+		} else if (e.type === 'trade') {
+			if (contractEnd !== null && e.season > contractEnd) {
+				issues.push({
+					check: 'trade-expired-contract',
+					player: player.header,
+					message: 'Trade in ' + e.season + ' but contract ended in ' + contractEnd,
+					line: e.raw.trim(),
+					lineNumber: e.lineNumber
+				});
+			}
+		}
+	}
+
+	return issues;
+}
+
+/**
+ * Check 14: First event is an acquisition.
+ * Every player's history should start with an acquire event (draft, auction-*,
+ * fa, or expansion), not a release, contract, or trade.
+ */
+function checkFirstEventIsAcquisition(player) {
+	var issues = [];
+
+	if (player.events.length === 0) return issues;
+
+	var first = player.events[0];
+	var validFirstTypes = {
+		draft: true, fa: true, expansion: true,
+		'auction-ufa': true, 'auction-rfa-matched': true, 'auction-rfa-unmatched': true
+	};
+
+	if (!validFirstTypes[first.type]) {
+		issues.push({
+			check: 'bad-first-event',
+			player: player.header,
+			message: 'First event is ' + first.type + ', expected an acquisition',
+			line: first.raw.trim(),
+			lineNumber: first.lineNumber
+		});
+	}
+
+	return issues;
+}
+
 // =============================================================================
 // Main
 // =============================================================================
@@ -593,7 +842,12 @@ var checks = [
 	{ name: 'No duplicate events', fn: checkDuplicateEvents },
 	{ name: 'Expansion from-owner consistency', fn: checkExpansionFromOwner },
 	{ name: 'Contract end >= start', fn: checkContractYears },
-	{ name: 'FA contract format', fn: checkFaContractFormat }
+	{ name: 'FA contract format', fn: checkFaContractFormat },
+	{ name: 'Auction-RFA consistency', fn: checkAuctionRfaConsistency },
+	{ name: 'Contract follows acquisition', fn: checkContractFollowsAcquisition },
+	{ name: 'No orphan contracts', fn: checkNoOrphanContracts },
+	{ name: 'Trade continuity', fn: checkTradeContinuity },
+	{ name: 'First event is acquisition', fn: checkFirstEventIsAcquisition }
 ];
 
 function main() {

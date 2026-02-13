@@ -32,7 +32,6 @@ ID,Owner,Name,Position,Start,End,Salary
 655,Quinn,Anquan Boldin,WR,2014,2014,$20
 2151,Quinn,Anthony Barr,LB,2014,2014,$1
 727,Quinn,Anthony Dixon,RB,FA,2014,$10
-2062,Patrick,Anthony Hitchens,LB,FA,2014
 -1,Keyon,Antoine Cason,DB,FA,2014,$1
 609,Keyon,Antone Smith,RB,FA,2014,$2
 536,Mitch,Antonio Brown,WR,2014,2015,$165
@@ -57,11 +56,9 @@ ID,Owner,Name,Position,Start,End,Salary
 2050,Syed,Branden Oliver,RB,FA,2014,$3
 2197,Syed,Brandin Cooks,WR,2014,2016,$19
 1034,Quinn,Brandon Bolden,RB,FA,2014,$2
-2196,James,Brandon Coleman,WR,FA,2014
 613,Patrick,Brandon LaFell,WR,FA,2014,$5
 648,Daniel,Brandon Marshall,WR,2013,2014,$175
 397,,Brandon Myers,TE,FA,2014
-465,Quinn,Brandon Pettigrew,TE,FA,2014
 346,Patrick,Brandon Tate,WR,2012,2014,$3
 221,Schex,Brent Celek,TE,2013,2015,$2
 373,Brett/Luke,Brian Cushing,LB,2014,2014,$3
@@ -79,14 +76,12 @@ ID,Owner,Name,Position,Start,End,Salary
 507,Brett/Luke,C.J. Spiller,RB,2013,2015,$280
 125,Syed,Calais Campbell,DL,2014,2016,$3
 240,Schex,Calvin Johnson,WR,2014,2014,$225
-1859,Koci/Mueller,Calvin Pryor,DB,FA,2014
 954,Patrick,Cam Newton,QB,2014,2014,$245
 957,Schex,Cameron Jordan,DL,2013,2015,$2
 342,Quinn,Cameron Wake,DL,2013,2014,$11
 529,Mitch,Carlos Dunlap,DL,2014,2014,$1
 2257,Keyon,Carlos Hyde,RB,2014,2016,$24
 91,Keyon,Carson Palmer,QB,2014,2016,$42
-1737,Daniel,Case Keenum,QB,FA,2014
 866,John/Zach,Cecil Shorts,WR,2013,2015,$39
 249,Schex,Chad Greenway,LB,2013,2015,$6
 89,John/Zach,Chad Henne,QB,2013,2015,$10
@@ -94,7 +89,6 @@ ID,Owner,Name,Position,Start,End,Salary
 1038,Patrick,Chandler Jones,DL,2012,2014,$1
 801,Schex,Charles Clay,TE,2014,2014,$15
 2223,Schex,Charles Sims,RB,2014,2016,$12
-185,Brett/Luke,Charles Tillman,DB,FA,2014
 100,James,Charles Woodson,DB,FA,2014,$1
 698,Patrick,Charlie Whitehurst,QB,FA,2014,$7
 490,,Chase Daniel,QB,FA,2014
@@ -127,14 +121,12 @@ ID,Owner,Name,Position,Start,End,Salary
 2193,Patrick,Darrin Reaves,RB,FA,2014,$2
 211,Quinn,Daryl Smith,LB,2014,2014,$3
 2133,Daniel,Davante Adams,WR,2014,2016,$5
-2106,Patrick,David Fales,QB,FA,2014
 3,Koci/Mueller,David Harris,LB,FA,2014,$1
 -1,Patrick,Dawan Landry,DB,FA,2014,$1
 2023,Daniel,De'Anthony Thomas,RB,2014,2016,$3
 1426,Quinn,DeAndre Hopkins,WR,2013,2015,$18
 419,John/Zach,DeAndre Levy,LB,FA,2014,$1
 265,Brett/Luke,DeAngelo Hall,DB,2014,2014,$1
-306,Keyon,DeAngelo Williams,RB,FA,2014
 284,Brett/Luke,Delanie Walker,TE,2014,2014,$2
 904,John/Zach,DeMarco Murray,RB,2014,2015,$180
 2064,Keyon,DeMarcus Lawrence,DL,2014,2016,$1
@@ -142,11 +134,8 @@ ID,Owner,Name,Position,Start,End,Salary
 1052,Syed,Demario Davis,LB,FA,2014,$2
 560,Trevor,Demaryius Thomas,WR,2014,2014,$190
 220,Daniel,DeMeco Ryans,LB,FA,2014,$1
-887,Koci/Mueller,Denarius Moore,WR,FA,2014
 527,Quinn,Dennis Pitta,TE,2014,2016,$20
-2240,Syed,Deone Bucannon,DB,FA,2014
 2028,Daniel,Derek Carr,QB,2014,2016,$5
-329,Keyon,Derrick Johnson,LB,FA,2014
 147,Mitch,DeSean Jackson,WR,2013,2014,$62
 279,Quinn,Devin Hester,WR,FA,2014,$1
 518,Koci/Mueller,Devin McCourty,DB,2012,2014,$3
@@ -155,7 +144,6 @@ ID,Owner,Name,Position,Start,End,Salary
 564,Mitch,Dexter McCluster,RB/WR,2014,2014,$8
 574,James,Dez Bryant,WR,2013,2015,$185
 1356,Trevor,Dion Jordan,DL,2013,2015,$2
-377,Syed,Donald Brown,RB,FA,2014
 1008,Quinn,Donald Butler,LB,FA,2014,$1
 104,Trevor,Donnie Avery,WR,2014,2015,$1
 1037,James,Dont'a Hightower,LB,2012,2014,$1
@@ -167,7 +155,6 @@ ID,Owner,Name,Position,Start,End,Salary
 1914,Trevor,Dri Archer,RB,2014,2016,$12
 1105,Koci/Mueller,Dwayne Allen,TE,2014,2016,$1
 286,James,Dwayne Bowe,WR,2013,2015,$85
-643,Schex,Earl Thomas,DB,FA,2014
 1527,Mitch,Eddie Lacy,RB,2013,2015,$26
 297,Koci/Mueller,Eddie Royal,WR,FA,2014,$1
 1349,James,E.J. Manuel,QB,2013,2015,$17
@@ -185,7 +172,6 @@ ID,Owner,Name,Position,Start,End,Salary
 232,James,Frank Gore,RB,2014,2014,$100
 1614,,Frankie Hammond,WR,FA,2014
 228,Keyon,Fred Jackson,RB,2014,2014,$50
-2229,Daniel,Garrett Gilbert,QB,FA,2014
 543,Brett/Luke,Garrett Graham,TE,2014,2015,$1
 1485,Syed,Gavin Escobar,TE,2013,2015,$1
 528,Keyon,Geno Atkins,DL,2013,2015,$5
@@ -207,10 +193,8 @@ ID,Owner,Name,Position,Start,End,Salary
 1901,Trevor,Isaiah Crowell,RB,2014,2016,$2
 856,Koci/Mueller,J.J. Watt,DL,2014,2016,$41
 1849,Brett/Luke,Jace Amaro,TE,2014,2016,$7
-203,Patrick,Jacoby Jones,WR,FA,2014
 949,Koci/Mueller,Jacquizz Rodgers,RB,2014,2016,$1
 1947,Mitch,Jadeveon Clowney,DL/LB,2014,2016,$2
-332,Daniel,Jairus Byrd,DB,FA,2014
 -1,Patrick,Jake Locker,QB,2014,2016,$38
 323,Keyon,Jamaal Charles,RB,2014,2014,$285
 253,Koci/Mueller,James Jones,WR,2012,2014,$1
@@ -306,7 +290,6 @@ ID,Owner,Name,Position,Start,End,Salary
 2101,Trevor,Lache Seastrunk,RB,2014,2016,$6
 1139,Keyon,Ladarius Green,TE,2014,2016,$15
 1048,Syed,Lamar Miller,RB,2012,2014,$13
-568,Daniel,Lamarr Houston,DL,FA,2014
 1225,Syed,LaMichael James,RB,2013,2015,$7
 1284,Keyon,Lance Dunbar,RB,2013,2015,$8
 -1,Patrick,LaRon Landry,DB,FA,2014
@@ -344,7 +327,6 @@ ID,Owner,Name,Position,Start,End,Salary
 936,Quinn,Matt Asiata,RB,FA,2014,$30
 1338,James,Matt Barkley,QB,2013,2015,$17
 127,Mitch,Matt Bryant,K,2014,2014,$1
-389,Quinn,Matt Cassel,QB,FA,2014
 144,Koci/Mueller,Matt Flynn,QB,2014,2016,$1
 103,John/Zach,Matt Forte,RB,2014,2014,$280
 17,Trevor,Matt Prater,K,2014,2014,$5
@@ -392,7 +374,6 @@ ID,Owner,Name,Position,Start,End,Salary
 908,Daniel,Prince Amukamara,DB,FA,2014,$1
 928,John/Zach,Randall Cobb,WR,2014,2014,$125
 380,Syed,Rashad Jennings,RB,2014,2014,$135
-16,Schex,Ray Rice,RB,FA,2014
 179,Trevor,Reggie Bush,RB,2014,2014,$75
 704,John/Zach,Reggie Nelson,DB,FA,2014,$1
 194,Syed,Reggie Wayne,WR,2014,2015,$30
@@ -434,7 +415,6 @@ ID,Owner,Name,Position,Start,End,Salary
 1568,Mitch,Stedman Bailey,WR,2013,2014,$2
 1579,Koci/Mueller,Stepfan Taylor,RB,2013,2015,$4
 110,Quinn,Stephen Gostkowski,K,2014,2014,$3
-10,Koci/Mueller,Stephen Tulloch,LB,FA,2014
 1043,Mitch,Stephon Gilmore,DB,2012,2014,$1
 811,Quinn,Stevan Ridley,RB,2014,2016,$42
 108,Trevor,Steve Johnson,WR,2014,2015,$1

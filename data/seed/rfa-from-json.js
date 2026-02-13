@@ -24,6 +24,7 @@ var path = require('path');
 var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
+var playerUpsert = require('../utils/player-upsert');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -39,7 +40,6 @@ var stats = {
 	rfaConversions: 0,
 	contractExpiries: 0,
 	rfaUnknown: 0,
-	playersCreated: 0,
 	skipped: 0,
 	errors: []
 };
@@ -48,74 +48,7 @@ var stats = {
 var franchiseByRosterId = {};
 var playersBySleeperId = {};
 var playersByName = {};
-
-/**
- * Find or create a player by sleeperId or name.
- * 
- * Historical players (no sleeperId) are kept separate from modern players
- * with the same name - we use a composite cache key for historical players.
- */
-async function findOrCreatePlayer(entry) {
-	// Try sleeperId first (modern players)
-	if (entry.sleeperId) {
-		if (playersBySleeperId[entry.sleeperId]) {
-			return playersBySleeperId[entry.sleeperId];
-		}
-		
-		// Player with sleeperId not in cache - look up in DB
-		var player = await Player.findOne({ sleeperId: entry.sleeperId });
-		if (player) {
-			playersBySleeperId[entry.sleeperId] = player;
-			return player;
-		}
-	}
-	
-	// Historical player (no sleeperId) - use name + "historical" as cache key
-	// to keep them separate from modern players with same name
-	if (entry.playerName) {
-		var isHistorical = !entry.sleeperId;
-		var nameKey = entry.playerName.toLowerCase();
-		var cacheKey = isHistorical ? nameKey + '|historical' : nameKey;
-		
-		if (playersByName[cacheKey]) {
-			return playersByName[cacheKey];
-		}
-		
-		// Look up by name, but for historical players only match those without sleeperId
-		var query = { name: entry.playerName };
-		if (isHistorical) {
-			query.sleeperId = null;
-		}
-		
-		var player = await Player.findOne(query);
-		if (player) {
-			playersByName[cacheKey] = player;
-			return player;
-		}
-		
-		// Create player (historical or with sleeperId)
-		if (!args.dryRun) {
-			var positions = [];
-			if (entry.position) {
-				positions = [entry.position];
-			}
-			
-			player = await Player.create({
-				name: entry.playerName,
-				sleeperId: entry.sleeperId || null,
-				positions: positions
-			});
-			playersByName[cacheKey] = player;
-			if (entry.sleeperId) {
-				playersBySleeperId[entry.sleeperId] = player;
-			}
-			stats.playersCreated++;
-		}
-		return player;
-	}
-	
-	return null;
-}
+var upsert = null; // Initialized in seed()
 
 /**
  * Map source string to Transaction.source enum value
@@ -160,6 +93,14 @@ async function seed() {
 	});
 	console.log('Loaded ' + allPlayers.length + ' players');
 	
+	// Initialize player upsert helper (handles position backfilling)
+	upsert = playerUpsert.create({
+		Player: Player,
+		playersBySleeperId: playersBySleeperId,
+		playersByName: playersByName,
+		dryRun: args.dryRun
+	});
+	
 	// Load rfa.json
 	var rfaRecords = JSON.parse(fs.readFileSync(RFA_FILE, 'utf8'));
 	console.log('Loaded ' + rfaRecords.length + ' RFA entries');
@@ -200,7 +141,7 @@ async function seed() {
 			}
 			
 			// Find or create player
-			var player = await findOrCreatePlayer(entry);
+			var player = await upsert.findOrCreate(entry);
 			if (!player && !args.dryRun) {
 				stats.errors.push(season + ' ' + entry.playerName + ': Could not resolve player');
 				stats.skipped++;
@@ -258,7 +199,8 @@ async function seed() {
 	console.log('  RFA conversions: ' + stats.rfaConversions);
 	console.log('  Contract expiries: ' + stats.contractExpiries);
 	console.log('  RFA unknown: ' + stats.rfaUnknown);
-	console.log('  Players created: ' + stats.playersCreated);
+	console.log('  Players created: ' + upsert.stats.created);
+	console.log('  Positions updated: ' + upsert.stats.positionsUpdated);
 	console.log('  Skipped: ' + stats.skipped);
 	
 	if (stats.errors.length > 0) {

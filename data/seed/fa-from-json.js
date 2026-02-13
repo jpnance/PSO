@@ -19,6 +19,7 @@ var path = require('path');
 var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
+var playerUpsert = require('../utils/player-upsert');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -33,7 +34,6 @@ var args = {
 // Stats
 var stats = {
 	transactionsCreated: 0,
-	playersCreated: 0,
 	skipped: 0,
 	errors: []
 };
@@ -42,74 +42,7 @@ var stats = {
 var franchiseByRosterId = {};
 var playersBySleeperId = {};
 var playersByName = {};
-
-/**
- * Find or create a player by sleeperId or name.
- * 
- * Historical players (no sleeperId) are kept separate from modern players
- * with the same name - we use a composite cache key for historical players.
- */
-async function findOrCreatePlayer(entry) {
-	// Try sleeperId first (modern players)
-	if (entry.sleeperId) {
-		if (playersBySleeperId[entry.sleeperId]) {
-			return playersBySleeperId[entry.sleeperId];
-		}
-		
-		// Player with sleeperId not in cache - look up in DB
-		var player = await Player.findOne({ sleeperId: entry.sleeperId });
-		if (player) {
-			playersBySleeperId[entry.sleeperId] = player;
-			return player;
-		}
-	}
-	
-	// Historical player (no sleeperId) - use name + "historical" as cache key
-	// to keep them separate from modern players with same name
-	if (entry.name) {
-		var isHistorical = !entry.sleeperId;
-		var nameKey = entry.name.toLowerCase();
-		var cacheKey = isHistorical ? nameKey + '|historical' : nameKey;
-		
-		if (playersByName[cacheKey]) {
-			return playersByName[cacheKey];
-		}
-		
-		// Look up by name, but for historical players only match those without sleeperId
-		var query = { name: entry.name };
-		if (isHistorical) {
-			query.sleeperId = null;
-		}
-		
-		var player = await Player.findOne(query);
-		if (player) {
-			playersByName[cacheKey] = player;
-			return player;
-		}
-		
-		// Create player (historical or with sleeperId)
-		if (!args.dryRun) {
-			var positions = [];
-			if (entry.position) {
-				positions = [entry.position];
-			}
-			
-			player = await Player.create({
-				name: entry.name,
-				sleeperId: entry.sleeperId || null,
-				positions: positions
-			});
-			playersByName[cacheKey] = player;
-			if (entry.sleeperId) {
-				playersBySleeperId[entry.sleeperId] = player;
-			}
-			stats.playersCreated++;
-		}
-		return player;
-	}
-	
-	return null;
-}
+var upsert = null; // Initialized in seed()
 
 /**
  * Map source field to Transaction source enum.
@@ -158,6 +91,14 @@ async function seed() {
 	});
 	console.log('Loaded ' + allPlayers.length + ' players');
 	
+	// Initialize player upsert helper (handles position backfilling)
+	upsert = playerUpsert.create({
+		Player: Player,
+		playersBySleeperId: playersBySleeperId,
+		playersByName: playersByName,
+		dryRun: args.dryRun
+	});
+	
 	// Load fa.json
 	var faTransactions = JSON.parse(fs.readFileSync(FA_FILE, 'utf8'));
 	console.log('Loaded ' + faTransactions.length + ' FA transaction entries');
@@ -199,7 +140,7 @@ async function seed() {
 			var addErrors = [];
 			for (var ai = 0; ai < (entry.adds || []).length; ai++) {
 				var addEntry = entry.adds[ai];
-				var player = await findOrCreatePlayer(addEntry);
+				var player = await upsert.findOrCreate(addEntry);
 				if (!player && !args.dryRun) {
 					addErrors.push('Could not resolve add: ' + addEntry.name);
 					continue;
@@ -219,7 +160,7 @@ async function seed() {
 			var dropErrors = [];
 			for (var di = 0; di < (entry.drops || []).length; di++) {
 				var dropEntry = entry.drops[di];
-				var player = await findOrCreatePlayer(dropEntry);
+				var player = await upsert.findOrCreate(dropEntry);
 				if (!player && !args.dryRun) {
 					dropErrors.push('Could not resolve drop: ' + dropEntry.name);
 					continue;
@@ -282,7 +223,8 @@ async function seed() {
 	console.log('');
 	console.log('Done!');
 	console.log('  Transactions created: ' + stats.transactionsCreated);
-	console.log('  Players created: ' + stats.playersCreated);
+	console.log('  Players created: ' + upsert.stats.created);
+	console.log('  Positions updated: ' + upsert.stats.positionsUpdated);
 	console.log('  Skipped: ' + stats.skipped);
 	
 	if (stats.errors.length > 0) {

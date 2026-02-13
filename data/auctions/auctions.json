@@ -7174,20 +7174,6 @@
   },
   {
     "season": 2010,
-    "type": "auction-ufa",
-    "sleeperId": null,
-    "name": "Quinn Scott",
-    "positions": [
-      "RB"
-    ],
-    "rosterId": 8,
-    "originalOwner": "Daniel",
-    "salary": 1,
-    "startYear": 2010,
-    "endYear": 2010
-  },
-  {
-    "season": 2010,
     "type": "auction-rfa-unmatched",
     "sleeperId": null,
     "name": "Randy Moss",
@@ -7450,7 +7436,7 @@
     "originalOwner": "Trevor",
     "salary": 105,
     "startYear": 2010,
-    "endYear": 2011
+    "endYear": 2010
   },
   {
     "season": 2010,
@@ -7464,7 +7450,7 @@
     "originalOwner": "Trevor",
     "salary": 45,
     "startYear": 2010,
-    "endYear": 2010
+    "endYear": 2011
   },
   {
     "season": 2010,
@@ -9568,7 +9554,7 @@
   },
   {
     "season": 2011,
-    "type": "auction-ufa",
+    "type": "auction-rfa-matched",
     "sleeperId": "169",
     "name": "Steve Smith",
     "positions": [
@@ -13296,6 +13282,20 @@
   {
     "season": 2013,
     "type": "auction-ufa",
+    "sleeperId": "100",
+    "name": "Charles Woodson",
+    "positions": [
+      "DB"
+    ],
+    "rosterId": 7,
+    "originalOwner": "Jake/Luke",
+    "salary": 1,
+    "startYear": 2013,
+    "endYear": 2013
+  },
+  {
+    "season": 2013,
+    "type": "auction-ufa",
     "sleeperId": "717",
     "name": "Chris Ivory",
     "positions": [
@@ -14864,34 +14864,6 @@
   {
     "season": 2013,
     "type": "auction-ufa",
-    "sleeperId": null,
-    "name": "Quinn Tillman",
-    "positions": [
-      "DB"
-    ],
-    "rosterId": 2,
-    "originalOwner": "Koci/Mueller",
-    "salary": 13,
-    "startYear": 2013,
-    "endYear": 2013
-  },
-  {
-    "season": 2013,
-    "type": "auction-ufa",
-    "sleeperId": null,
-    "name": "Quinn Woodson",
-    "positions": [
-      "DB"
-    ],
-    "rosterId": 7,
-    "originalOwner": "Jake/Luke",
-    "salary": 1,
-    "startYear": 2013,
-    "endYear": 2013
-  },
-  {
-    "season": 2013,
-    "type": "auction-ufa",
     "sleeperId": "1099",
     "name": "Randy Bullock",
     "positions": [
@@ -15914,7 +15886,7 @@
   },
   {
     "season": 2014,
-    "type": "auction-rfa-unmatched",
+    "type": "auction-ufa",
     "sleeperId": "185",
     "name": "Charles Tillman",
     "positions": [

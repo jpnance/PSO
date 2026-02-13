@@ -27,6 +27,7 @@ var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var Transaction = require('../../models/Transaction');
 var leagueDates = require('../../config/dates.js');
+var playerUpsert = require('../utils/player-upsert');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -45,7 +46,6 @@ var stats = {
 		'auction-rfa-matched': 0,
 		'auction-rfa-unmatched': 0
 	},
-	playersCreated: 0,
 	skipped: 0,
 	errors: []
 };
@@ -54,6 +54,7 @@ var stats = {
 var franchiseByRosterId = {};
 var playersBySleeperId = {};
 var playersByName = {};
+var upsert = null; // Initialized in seed()
 
 /**
  * Get the auction timestamp for a given season.
@@ -64,69 +65,6 @@ function getAuctionTimestamp(season) {
 	if (date) return date;
 	// Fallback
 	return new Date(Date.UTC(season, 7, 18, 16, 0, 0));
-}
-
-/**
- * Find or create a player by sleeperId or name.
- * 
- * Historical players (no sleeperId) are kept separate from modern players
- * with the same name - we use a composite cache key for historical players.
- */
-async function findOrCreatePlayer(entry) {
-	// Try sleeperId first (modern players)
-	if (entry.sleeperId) {
-		if (playersBySleeperId[entry.sleeperId]) {
-			return playersBySleeperId[entry.sleeperId];
-		}
-		
-		// Player with sleeperId not in cache - look up in DB
-		var player = await Player.findOne({ sleeperId: entry.sleeperId });
-		if (player) {
-			playersBySleeperId[entry.sleeperId] = player;
-			return player;
-		}
-	}
-	
-	// Historical player (no sleeperId) - use name + "historical" as cache key
-	// to keep them separate from modern players with same name
-	if (entry.name) {
-		var isHistorical = !entry.sleeperId;
-		var nameKey = entry.name.toLowerCase();
-		var cacheKey = isHistorical ? nameKey + '|historical' : nameKey;
-		
-		if (playersByName[cacheKey]) {
-			return playersByName[cacheKey];
-		}
-		
-		// Look up by name, but for historical players only match those without sleeperId
-		var query = { name: entry.name };
-		if (isHistorical) {
-			query.sleeperId = null;
-		}
-		
-		var player = await Player.findOne(query);
-		if (player) {
-			playersByName[cacheKey] = player;
-			return player;
-		}
-		
-		// Create player (historical or with sleeperId)
-		if (!args.dryRun) {
-			player = await Player.create({
-				name: entry.name,
-				sleeperId: entry.sleeperId || null,
-				positions: entry.positions || []
-			});
-			playersByName[cacheKey] = player;
-			if (entry.sleeperId) {
-				playersBySleeperId[entry.sleeperId] = player;
-			}
-			stats.playersCreated++;
-		}
-		return player;
-	}
-	
-	return null;
 }
 
 async function seed() {
@@ -160,6 +98,14 @@ async function seed() {
 		playersByName[p.name.toLowerCase()] = p;
 	});
 	console.log('Loaded ' + allPlayers.length + ' players');
+	
+	// Initialize player upsert helper (handles position backfilling)
+	upsert = playerUpsert.create({
+		Player: Player,
+		playersBySleeperId: playersBySleeperId,
+		playersByName: playersByName,
+		dryRun: args.dryRun
+	});
 	
 	// Load auctions.json
 	var auctions = JSON.parse(fs.readFileSync(AUCTIONS_FILE, 'utf8'));
@@ -199,8 +145,8 @@ async function seed() {
 				continue;
 			}
 			
-			// Find or create player
-			var player = await findOrCreatePlayer(entry);
+			// Find or create player (with position upsert)
+			var player = await upsert.findOrCreate(entry);
 			if (!player && !args.dryRun) {
 				stats.errors.push(season + ' ' + entry.name + ': Could not resolve player');
 				stats.skipped++;
@@ -246,7 +192,8 @@ async function seed() {
 	console.log('  auction-ufa: ' + stats.byType['auction-ufa']);
 	console.log('  auction-rfa-matched: ' + stats.byType['auction-rfa-matched']);
 	console.log('  auction-rfa-unmatched: ' + stats.byType['auction-rfa-unmatched']);
-	console.log('  Players created: ' + stats.playersCreated);
+	console.log('  Players created: ' + upsert.stats.created);
+	console.log('  Positions updated: ' + upsert.stats.positionsUpdated);
 	console.log('  Skipped (errors): ' + stats.skipped);
 	
 	if (stats.errors.length > 0) {
