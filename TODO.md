@@ -20,7 +20,7 @@
 *Before August (rookie draft / cut day / auction / season start)*
 
 ### Owner-Facing Features
-- [ ] RFA screen - show all restricted free agents ⚡ *quick win*
+- [x] RFA screen - show all restricted free agents ⚡ *quick win*
 - [ ] UFA screen - show all unrestricted free agents ⚡ *quick win*
 - [ ] Cuts screen - ask owners for their cuts ahead of cut day
 - [ ] Contract setting screen - ask owners to set contracts ahead of contract day
