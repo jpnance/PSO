@@ -1038,30 +1038,6 @@ function playerUrl(player) {
 }
 
 /**
- * Get Font Awesome icon class for a transaction type
- * @param {string} type - transaction type
- * @returns {string} Font Awesome class name
- */
-function transactionIcon(type) {
-	var icons = {
-		'trade': 'fa-exchange',
-		'fa-pickup': 'fa-plus',
-		'fa-cut': 'fa-scissors',
-		'draft-select': 'fa-graduation-cap',
-		'expansion-draft-protect': 'fa-shield',
-		'expansion-draft-select': 'fa-users',
-		'auction-ufa': 'fa-gavel',
-		'auction-rfa-matched': 'fa-gavel',
-		'auction-rfa-unmatched': 'fa-gavel',
-		'rfa-rights-conversion': 'fa-refresh',
-		'contract': 'fa-file-text-o',
-		'contract-expiry': 'fa-calendar-times-o',
-		'rfa-unknown': 'fa-question-circle'
-	};
-	return icons[type] || 'fa-circle';
-}
-
-/**
  * Get CSS modifier class for transaction category (for icon coloring)
  * @param {string} type - transaction type
  * @returns {string} CSS modifier class
@@ -1071,10 +1047,10 @@ function transactionCategory(type) {
 	var departures = ['fa-cut'];
 	var auctions = ['auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'];
 	
-	if (acquisitions.includes(type)) return 'player-timeline__entry--acquisition';
-	if (departures.includes(type)) return 'player-timeline__entry--departure';
-	if (auctions.includes(type)) return 'player-timeline__entry--auction';
-	return 'player-timeline__entry--admin';
+	if (acquisitions.includes(type)) return 'acquisition';
+	if (departures.includes(type)) return 'departure';
+	if (auctions.includes(type)) return 'auction';
+	return 'admin';
 }
 
 module.exports = {
@@ -1104,7 +1080,6 @@ module.exports = {
 	tradeOgPlainEnglish: tradeOgPlainEnglish,
 	formatPickNumber: formatPickHelpers.formatPickNumber,
 	playerUrl: playerUrl,
-	transactionIcon: transactionIcon,
 	transactionCategory: transactionCategory,
 	POSITION_ORDER: POSITION_ORDER
 };
