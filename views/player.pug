@@ -52,16 +52,16 @@ block content
 								span= formatContractYears(contract.startYear, contract.endYear)
 					else
 						span.player-hero__ufa Free Agent
-					if (isOwner && canCut) || canTrade
+					if showDropButton || canTrade
 						div.player-hero__actions
 							if canTrade
 								a.btn.btn-sm.btn-outline-primary(href='/trade-machine?player=' + player._id)
 									i.fa.fa-exchange.mr-1
 									| Trade
-							if isOwner && canCut && !contract.isRfa
-								button.btn.btn-sm.btn-outline-danger(type='button' data-toggle='modal' data-target='#cutModal')
+							if showDropButton && !contract.isRfa
+								button.btn.btn-sm.btn-outline-danger(type='button' data-toggle='modal' data-target='#dropModal')
 									i.fa.fa-scissors.mr-1
-									| Cut
+									| Drop
 	
 	div.container.py-4
 		div.row
@@ -77,13 +77,13 @@ block content
 				else
 					p.text-muted No transaction history found.
 		
-		//- Cut confirmation modal
-		if isOwner && canCut && contract
-			div.modal.fade#cutModal(tabindex='-1' role='dialog')
+		//- Drop confirmation modal
+		if showDropButton && contract
+			div.modal.fade#dropModal(tabindex='-1' role='dialog')
 				div.modal-dialog(role='document')
 					form.modal-content(method='POST' action='/franchises/' + contract.franchiseRosterId + '/cut')
 						div.modal-header
-							h5.modal-title Cut Player
+							h5.modal-title Drop Player
 							button.close(type='button' data-dismiss='modal')
 								span &times;
 						div.modal-body
@@ -104,4 +104,4 @@ block content
 											td.text-right= formatMoney(contract.recoverable)
 						div.modal-footer
 							button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
-							button.btn.btn-danger(type='submit') Cut Player
+							button.btn.btn-danger(type='submit') Drop Player

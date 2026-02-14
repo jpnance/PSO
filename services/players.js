@@ -106,6 +106,9 @@ exports.playerDetail = async function(request, response) {
 			canTrade = tradePhases.includes(phase);
 		}
 		
+		// Show drop button only during in-season phases (offseason uses franchise marking system)
+		var showDropButton = canCut && phase !== 'early-offseason';
+		
 		// Get transaction history for this player
 		// Players can appear in: playerId field, parties.receives.players, parties.receives.rfaRights, adds, drops
 		var transactions = await Transaction.find({
@@ -327,8 +330,8 @@ exports.playerDetail = async function(request, response) {
 			contract: contractInfo,
 			timeline: timeline,
 			isOwner: isOwner,
-			canCut: canCut,
-			canTrade: canTrade
+			canTrade: canTrade,
+			showDropButton: showDropButton
 		});
 	} catch (err) {
 		console.error('Error loading player detail:', err);
