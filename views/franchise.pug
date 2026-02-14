@@ -212,7 +212,7 @@ block content
 								button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 1)= currentSeason + 1
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 2)= currentSeason + 2
-							if isOwner && canCut
+							if canMarkForCut
 								button.btn.btn-sm.btn-outline-secondary#manageToggle
 									i.fa.fa-scissors.mr-1
 									span.manage-label Manage
@@ -223,8 +223,20 @@ block content
 										- var isExpiring = Number(player.endYear) === Number(currentSeason)
 										- var buyout = player.salary - player.recoverable
 										- var detailText = formatMoney(player.salary) + ' · ' + formatContractYears(player.startYear, player.endYear)
-										div.player-chip-wrapper(data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false' data-recoverable=player.recoverable data-buyout=buyout)
-											+playerChip({ name: player.name, positions: player.positions, detail: detailText, href: '/players/' + player.slug })
+										- var cutClass = (isOwner && player.markedForCut) ? 'player-chip-wrapper--marked-for-cut' : ''
+										- var posClass = player.positions && player.positions.length ? 'pos-' + sortedPositions(player.positions)[0] : ''
+										div.player-chip-wrapper(class=cutClass data-player-id=player._id data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false' data-recoverable=player.recoverable data-buyout=buyout data-marked-for-cut=player.markedForCut ? 'true' : 'false')
+											a.player-chip(href='/players/' + player.slug class=posClass)
+												div.player-chip__content
+													div.player-chip__name= player.name
+													div.player-chip__detail
+														span= detailText
+														if isOwner && player.markedForCut
+															span.player-chip__recoverable= '+' + formatMoney(player.recoverable)
+												+positionBadge(player.positions)
+												if canMarkForCut
+													button.player-chip__cut-toggle(type='button' title=player.markedForCut ? 'Unmark for cut' : 'Mark for cut' class=player.markedForCut ? 'player-chip__cut-toggle--active' : '')
+														i.fa.fa-scissors
 						
 						//- OLD ROSTER CARDS (commented out for reference)
 						//- each posKey in positionKeys

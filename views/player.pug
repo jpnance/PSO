@@ -32,7 +32,7 @@ block content
 	//- Hero with position accent
 	div.player-hero(class='player-hero--' + primaryPos)
 		div.container
-			div.player-hero__info
+			div.player-hero__identity
 				div.player-hero__name-row
 					h1.player-hero__name
 						a(href='/players/' + player._id)= player.name
@@ -52,16 +52,16 @@ block content
 								span= formatContractYears(contract.startYear, contract.endYear)
 					else
 						span.player-hero__ufa Free Agent
-				if (isOwner && canCut) || canTrade
-					div.player-hero__actions
-						if canTrade
-							a.btn.btn-sm.btn-outline-primary(href='/trade-machine?player=' + player._id)
-								i.fa.fa-exchange.mr-1
-								| Trade
-						if isOwner && canCut && !contract.isRfa
-							button.btn.btn-sm.btn-outline-danger(type='button' data-toggle='modal' data-target='#cutModal')
-								i.fa.fa-scissors.mr-1
-								| Cut
+					if (isOwner && canCut) || canTrade
+						div.player-hero__actions
+							if canTrade
+								a.btn.btn-sm.btn-outline-primary(href='/trade-machine?player=' + player._id)
+									i.fa.fa-exchange.mr-1
+									| Trade
+							if isOwner && canCut && !contract.isRfa
+								button.btn.btn-sm.btn-outline-danger(type='button' data-toggle='modal' data-target='#cutModal')
+									i.fa.fa-scissors.mr-1
+									| Cut
 	
 	div.container.py-4
 		div.row

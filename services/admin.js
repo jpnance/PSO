@@ -319,6 +319,12 @@ async function advanceSeason(request, response) {
 	
 	await config.save();
 	
+	// 6. Reset cut marks for new offseason (everyone starts fresh)
+	await Contract.updateMany(
+		{},
+		{ $set: { markedForCut: false, markedForCutAt: null } }
+	);
+	
 	response.redirect('/admin');
 }
 

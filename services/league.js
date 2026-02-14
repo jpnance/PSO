@@ -345,7 +345,8 @@ async function getFranchise(franchiseId, currentSeason) {
 			yearsLeft: yearsLeft,
 			recoverable: getRecoverable(currentSeason),
 			recoverable1: getRecoverable(currentSeason + 1),
-			recoverable2: getRecoverable(currentSeason + 2)
+			recoverable2: getRecoverable(currentSeason + 2),
+			markedForCut: c.markedForCut || false
 		};
 		})
 		.sort(function(a, b) {
@@ -597,6 +598,9 @@ async function franchiseDetail(request, response) {
 		// Get season-by-season results from Season model
 		var seasonHistory = await getFranchiseSeasonHistory(franchiseDoc.rosterId);
 		
+		// Can mark for cut during early-offseason only
+		var canMarkForCut = isOwner && phase === 'early-offseason';
+		
 		response.render('franchise', { 
 			franchise: data, 
 			currentSeason: currentSeason, 
@@ -606,6 +610,7 @@ async function franchiseDetail(request, response) {
 			currentRosterId: data.rosterId,
 			isOwner: isOwner,
 			canCut: canCut,
+			canMarkForCut: canMarkForCut,
 			seasonHistory: seasonHistory
 		});
 	} catch (err) {
@@ -1627,6 +1632,92 @@ async function franchiseSchedule(request, response) {
 	}
 }
 
+// POST /franchises/:id/mark-for-cut - toggle cut mark on a player
+async function markForCut(request, response) {
+	var rosterId = parseInt(request.params.id, 10);
+	var playerId = request.body.playerId;
+	
+	try {
+		if (!playerId) {
+			return response.status(400).json({ error: 'Missing player ID' });
+		}
+		
+		// Get franchise
+		var franchiseDoc = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchiseDoc) {
+			return response.status(404).json({ error: 'Franchise not found' });
+		}
+		
+		// Check config - only allowed during early-offseason
+		var config = await LeagueConfig.findById('pso');
+		if (config) {
+			var phase = config.getPhase();
+			if (phase !== 'early-offseason') {
+				return response.status(400).json({ error: 'Cut marking is only allowed during the offseason (before cut day)' });
+			}
+		}
+		
+		// Check ownership
+		var regime = await Regime.findOne({
+			ownerIds: request.user._id,
+			'tenures': {
+				$elemMatch: {
+					franchiseId: franchiseDoc._id,
+					endSeason: null
+				}
+			}
+		});
+		
+		if (!regime) {
+			return response.status(403).json({ error: 'You do not own this franchise' });
+		}
+		
+		// Find the contract (must be a real contract, not RFA rights)
+		var contract = await Contract.findOne({
+			franchiseId: franchiseDoc._id,
+			playerId: playerId,
+			salary: { $ne: null }
+		});
+		
+		if (!contract) {
+			return response.status(404).json({ error: 'Player is not on this roster' });
+		}
+		
+		// Toggle the mark
+		var newMarked = !contract.markedForCut;
+		contract.markedForCut = newMarked;
+		contract.markedForCutAt = newMarked ? new Date() : null;
+		await contract.save();
+		
+		// Compute recoverable for display
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		var recoverable = transactionService.computeRecoverableForContract(
+			contract.salary,
+			contract.startYear,
+			contract.endYear,
+			currentSeason
+		);
+		
+		// Get player info for rendering
+		var player = await Player.findById(playerId).lean();
+		
+		// Render player chip partial
+		response.render('partials/player-chip-cut', {
+			player: player,
+			contract: {
+				salary: contract.salary,
+				startYear: contract.startYear,
+				endYear: contract.endYear,
+				markedForCut: contract.markedForCut,
+				recoverable: recoverable
+			}
+		});
+	} catch (err) {
+		console.error('Mark for cut error:', err);
+		response.status(500).json({ error: 'Server error' });
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
@@ -1636,5 +1727,6 @@ module.exports = {
 	franchiseSchedule: franchiseSchedule,
 	search: search,
 	timeline: timeline,
-	cutPlayer: cutPlayer
+	cutPlayer: cutPlayer,
+	markForCut: markForCut
 };

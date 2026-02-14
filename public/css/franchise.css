@@ -343,3 +343,77 @@ a.franchise-roster-cards__name:hover {
     color: #888;
     font-size: 0.9em;
 }
+
+/* Cut marking styles */
+
+/* Override display: contents from components.css when we need positioning */
+#rosterCardBody .player-chip-wrapper {
+    display: block;
+    position: relative;
+}
+
+/* Recoverable pill - shown inline in detail text when marked for cut */
+.player-chip__recoverable {
+    display: inline-block;
+    background: rgba(220, 53, 69, 0.15);
+    color: #333;
+    padding: 0 0.35rem;
+    border-radius: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.35rem;
+}
+
+/* Marked for cut state - pink background + dashed border */
+.player-chip-wrapper--marked-for-cut .player-chip {
+    background: #ffe8ec;
+    border: 1px dashed var(--color-danger, #dc3545);
+}
+
+/* Cut toggle button inside player chip (hidden by default, replaces position badge in manage mode) */
+.player-chip__cut-toggle {
+    display: none;
+    min-width: 28px;
+    height: 24px;
+    padding: 0 0.4rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-light, #dee2e6);
+    background: #f8f9fa;
+    color: #666;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+    font-size: 0.75rem;
+}
+
+.player-chip__cut-toggle:hover {
+    background: #fff0f0;
+    border-color: var(--color-danger, #dc3545);
+    color: var(--color-danger, #dc3545);
+}
+
+/* Active state: solid background, no hover change */
+.player-chip__cut-toggle--active,
+.player-chip__cut-toggle--active:hover {
+    background: var(--color-danger, #dc3545);
+    border-color: var(--color-danger, #dc3545);
+    color: white;
+}
+
+/* In manage mode, hide position badge and show cut toggle */
+.manage-mode .player-chip .position-badge {
+    display: none;
+}
+
+.manage-mode .player-chip__cut-toggle {
+    display: flex;
+}
+
+/* Toolbar in manage mode */
+.manage-mode #manageToggle {
+    background-color: var(--color-danger, #dc3545);
+    border-color: var(--color-danger, #dc3545);
+    color: white;
+}

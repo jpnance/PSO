@@ -7,7 +7,10 @@ var contractSchema = new Schema({
 	// salary is null for RFA rights (player not under contract, just rights held)
 	salary: { type: Number, default: null },
 	startYear: { type: Number },
-	endYear: { type: Number }
+	endYear: { type: Number },
+	// Offseason cut marking (owner intent, not yet executed)
+	markedForCut: { type: Boolean, default: false },
+	markedForCutAt: { type: Date, default: null }
 });
 
 contractSchema.index({ franchiseId: 1 });

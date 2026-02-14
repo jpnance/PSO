@@ -19,7 +19,9 @@ var faDropSchema = new Schema({
 	salary: { type: Number },
 	startYear: { type: Number },
 	endYear: { type: Number },
-	buyOuts: [buyOutSchema]
+	buyOuts: [buyOutSchema],
+	// true = offseason cut, false/undefined = in-season release
+	isOffseason: { type: Boolean }
 }, { _id: false });
 
 var tradePlayerSchema = new Schema({

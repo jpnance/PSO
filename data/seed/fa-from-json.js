@@ -186,12 +186,16 @@ async function seed() {
 						}
 					}
 					
+					// Offseason source means this was a cut (vs in-season release)
+					var isOffseason = entry.source === 'offseason';
+					
 					drops.push({
 						playerId: player._id,
 						salary: dropEntry.salary || null,
 						startYear: dropEntry.startYear || null,
 						endYear: dropEntry.endYear || null,
-						buyOuts: buyOuts
+						buyOuts: buyOuts,
+						isOffseason: isOffseason || undefined
 					});
 				}
 			}

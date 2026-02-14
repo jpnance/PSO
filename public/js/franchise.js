@@ -67,16 +67,83 @@
 			isManageMode = !isManageMode;
 			
 			if (isManageMode) {
-				rosterCardBody.classList.add('franchise-roster-cards--manage');
+				rosterCardBody.classList.add('manage-mode');
 				if (manageLabel) manageLabel.textContent = 'Done';
-				manageToggle.classList.remove('btn-outline-secondary');
-				manageToggle.classList.add('btn-primary');
 			} else {
-				rosterCardBody.classList.remove('franchise-roster-cards--manage');
+				rosterCardBody.classList.remove('manage-mode');
 				if (manageLabel) manageLabel.textContent = 'Manage';
-				manageToggle.classList.remove('btn-primary');
-				manageToggle.classList.add('btn-outline-secondary');
 			}
+		});
+	}
+	
+	// Mark for cut toggle buttons
+	var rosterId = window.location.pathname.match(/\/franchises\/(\d+)/);
+	rosterId = rosterId ? rosterId[1] : null;
+	
+	if (rosterId) {
+		document.querySelectorAll('.player-chip__cut-toggle').forEach(function(btn) {
+			btn.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				var wrapper = this.closest('.player-chip-wrapper');
+				var playerId = wrapper.dataset.playerId;
+				
+				fetch('/franchises/' + rosterId + '/mark-for-cut', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: 'playerId=' + encodeURIComponent(playerId)
+				})
+				.then(function(response) {
+					if (!response.ok) throw new Error('Request failed');
+					return response.text();
+				})
+				.then(function(html) {
+					// Parse the new marked state from the response
+					var temp = document.createElement('div');
+					temp.innerHTML = html;
+					var newWrapper = temp.querySelector('.player-chip-wrapper');
+					
+					if (newWrapper) {
+						var isNowMarked = newWrapper.dataset.markedForCut === 'true';
+						
+						// Update the current wrapper's state
+						wrapper.dataset.markedForCut = isNowMarked ? 'true' : 'false';
+						
+						// Toggle the visual classes
+						if (isNowMarked) {
+							wrapper.classList.add('player-chip-wrapper--marked-for-cut');
+							btn.classList.add('player-chip__cut-toggle--active');
+							btn.title = 'Unmark for cut';
+						} else {
+							wrapper.classList.remove('player-chip-wrapper--marked-for-cut');
+							btn.classList.remove('player-chip__cut-toggle--active');
+							btn.title = 'Mark for cut';
+						}
+						
+						// Update or add/remove the recoverable pill
+						var detailEl = wrapper.querySelector('.player-chip__detail');
+						var existingPill = detailEl ? detailEl.querySelector('.player-chip__recoverable') : null;
+						var newPill = newWrapper.querySelector('.player-chip__recoverable');
+						
+						if (isNowMarked && newPill && detailEl) {
+							if (existingPill) {
+								existingPill.outerHTML = newPill.outerHTML;
+							} else {
+								detailEl.appendChild(newPill.cloneNode(true));
+							}
+						} else if (!isNowMarked && existingPill) {
+							existingPill.remove();
+						}
+					}
+				})
+				.catch(function(err) {
+					console.error('Mark for cut error:', err);
+					alert('Failed to update cut status');
+				});
+			});
 		});
 	}
 	

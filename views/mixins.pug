@@ -47,7 +47,10 @@ mixin timelineEntry(entry)
 						span.player-timeline__pick  · Pick #{formatPickNumber(entry.pickNumber, entry.teamsPerRound)}
 					+timelineSalary(entry)
 				else if entry.type === 'fa-cut'
-					span Cut by #{entry.regime}
+					if entry.isOffseason
+						span Cut by #{entry.regime}
+					else
+						span Released by #{entry.regime}
 					if entry.facilitatedTradeId
 						|  for 
 						a(href='/trades/' + entry.facilitatedTradeId) Trade ##{entry.facilitatedTradeId}

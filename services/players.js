@@ -228,6 +228,8 @@ exports.playerDetail = async function(request, response) {
 						if (dropEntry.buyOuts && dropEntry.buyOuts.length > 0) {
 							entry.buyOuts = dropEntry.buyOuts;
 						}
+						// Preserve offseason flag for cut vs released distinction
+						entry.isOffseason = dropEntry.isOffseason || false;
 					} else if (playerInAdds) {
 						// This player was signed/picked up
 						var addEntry = t.adds.find(function(a) {

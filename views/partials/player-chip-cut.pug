@@ -1,0 +1,28 @@
+//- Player chip with cut marking state
+//- 
+//- Expected data:
+//- player: { name, positions, slug }
+//- contract: { salary, startYear, endYear, markedForCut, recoverable }
+
+include ../mixins
+
+- var posClass = player.positions && player.positions.length ? 'pos-' + sortedPositions(player.positions)[0] : ''
+- var cutClass = contract.markedForCut ? 'player-chip-wrapper--marked-for-cut' : ''
+- var detailText = formatMoney(contract.salary) + ' · ' + formatContractYears(contract.startYear, contract.endYear)
+- var href = '/players/' + (player.slug || player._id)
+
+div.player-chip-wrapper(class=cutClass data-player-id=player._id data-marked-for-cut=contract.markedForCut ? 'true' : 'false')
+	a.player-chip(href=href class=posClass)
+		div.player-chip__content
+			div.player-chip__name= player.name
+			div.player-chip__detail
+				span= detailText
+				if contract.markedForCut
+					span.player-chip__recoverable= '+' + formatMoney(contract.recoverable)
+		+positionBadge(player.positions)
+		if contract.markedForCut
+			button.player-chip__cut-toggle.player-chip__cut-toggle--active(type='button' title='Unmark for cut')
+				i.fa.fa-scissors
+		else
+			button.player-chip__cut-toggle(type='button' title='Mark for cut')
+				i.fa.fa-scissors

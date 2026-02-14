@@ -634,10 +634,10 @@ async function processTrade(tradeDetails) {
 		for (var j = 0; j < players.length; j++) {
 			var playerInfo = players[j];
 			
-			// Update Contract.franchiseId
+			// Update Contract.franchiseId and reset cut mark (new owner decides)
 			await Contract.updateOne(
 				{ playerId: playerInfo.playerId },
-				{ franchiseId: party.franchiseId }
+				{ franchiseId: party.franchiseId, markedForCut: false, markedForCutAt: null }
 			);
 		}
 	}
@@ -877,6 +877,11 @@ async function processCut(cutDetails) {
 	// Delete the Contract
 	await Contract.deleteOne({ _id: contract._id });
 	
+	// Determine if this is an offseason cut (vs in-season release)
+	var phase = config ? config.getPhase() : null;
+	var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
+	var isOffseason = phase && offseasonPhases.includes(phase);
+	
 	// Create the Transaction
 	var transaction = await Transaction.create({
 		type: 'fa',
@@ -890,7 +895,8 @@ async function processCut(cutDetails) {
 			salary: salary,
 			startYear: startYear,
 			endYear: endYear,
-			buyOuts: buyOutEntries
+			buyOuts: buyOutEntries,
+			isOffseason: isOffseason || undefined
 		}],
 		facilitatedTradeId: cutDetails.facilitatedTradeId
 	});
@@ -908,5 +914,6 @@ module.exports = {
 	processCut: processCut,
 	validateBudgetImpact: validateBudgetImpact,
 	computeBuyOutForSeason: computeBuyOutForSeason,
-	computeRecoverable: computeRecoverable
+	computeRecoverable: computeRecoverable,
+	computeRecoverableForContract: computeRecoverableForContract
 };
