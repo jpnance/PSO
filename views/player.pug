@@ -18,9 +18,11 @@ block og_meta
 			contractText = 'UFA';
 		}
 		var description = posDisplay ? posDisplay + ' · ' + contractText : contractText;
+	- var ogImage = player.sleeperId ? 'https://sleepercdn.com/content/nfl/players/' + player.sleeperId + '.jpg' : 'https://thedynastyleague.com/images/og/the-gang-slop-og.jpg'
 	meta(property='og:title' content=player.name)
 	meta(property='og:description' content=description)
-	meta(property='og:image' content='https://thedynastyleague.com/images/og/the-gang-slop-og.jpg')
+	meta(property='og:image' content=ogImage)
+	meta(property='og:url' content='https://thedynastyleague.com/players/' + player.slugs[0])
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
