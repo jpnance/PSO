@@ -22,7 +22,7 @@
 ### Owner-Facing Features
 - [x] RFA screen - show all restricted free agents ⚡ *quick win*
 - [ ] UFA screen - show all unrestricted free agents ⚡ *quick win*
-- [ ] Cuts screen - ask owners for their cuts ahead of cut day
+- [x] Cuts screen - ask owners for their cuts ahead of cut day
 - [ ] Contract setting screen - ask owners to set contracts ahead of contract day
 - [ ] Rookie draft client - allow owners to make their own picks
 - [ ] FAAB implementation (free agent auction bidding)
@@ -98,7 +98,7 @@
   - Trade history parsed from WordPress via `trade-facts.js`
 
 ### Information & Content
-- [ ] Bring the rules document over to the website
+- [x] Bring the rules document over to the website
 - [ ] General transaction log
 - [ ] Season overview page
 - [x] Player cards - click into to see player details and transaction history
@@ -106,8 +106,8 @@
 - [ ] League Hall of Fame
 
 ### UI/UX Polish
-- [ ] Make the site more uniform looking
-- [ ] Improve icons in the navbar for small breakpoints
+- [x] Make the site more uniform looking
+- [x] Improve icons in the navbar for small breakpoints
 - [ ] Admin players page - more mobile-friendly (smaller text, college truncation)
 - [x] Admin players page - make college editable for historical players
 - [ ] Search results - show NFL team or college when displaying multiple players with same name
