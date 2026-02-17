@@ -67,7 +67,14 @@
 	font-weight: 500;
 }
 
-.draft-board__pick-player-name {
+a.draft-board__pick-player-name {
+	color: inherit;
+	text-decoration: none;
+}
+
+a.draft-board__pick-player-name:hover {
+	color: var(--color-link);
+	text-decoration: none;
 }
 
 .draft-board__pick-position {

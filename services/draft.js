@@ -123,12 +123,15 @@ async function draftBoard(request, response) {
 		};
 	});
 	
-	// Get player names
+	// Get player names and slugs
 	var playerIds = selections.map(function(s) { return s.playerId; });
 	var players = await Player.find({ _id: { $in: playerIds } }).lean();
-	var playerNameMap = {};
+	var playerDataMap = {};
 	players.forEach(function(p) {
-		playerNameMap[p._id.toString()] = p.name;
+		playerDataMap[p._id.toString()] = {
+			name: p.name,
+			slug: p.slugs && p.slugs[0] ? p.slugs[0] : null
+		};
 	});
 	
 	// Organize by round
@@ -137,7 +140,9 @@ async function draftBoard(request, response) {
 		if (!rounds[pick.round]) rounds[pick.round] = [];
 		
 		var selection = selectionMap[pick._id.toString()];
-		var playerName = selection ? playerNameMap[selection.playerId.toString()] : null;
+		var playerData = selection ? playerDataMap[selection.playerId.toString()] : null;
+		var playerName = playerData ? playerData.name : null;
+		var playerSlug = playerData ? playerData.slug : null;
 		var positions = selection ? selection.positions : [];
 		var sorted = sortedPositions(positions);
 		
@@ -156,6 +161,7 @@ async function draftBoard(request, response) {
 			fromOwner: fromOwner,
 			status: pick.status,
 			playerName: playerName,
+			playerSlug: playerSlug,
 			positionDisplay: sorted.length > 0 ? sorted.join('/') : null,
 			positionGroup: getPositionGroup(positions),
 			salary: selection ? selection.salary : null

@@ -44,7 +44,10 @@ block content
 									if pick.playerName || pick.status === 'passed' || pick.status === 'used'
 										div.draft-board__pick-player
 											if pick.playerName
-												span.draft-board__pick-player-name #{pick.playerName}
+												if pick.playerSlug
+													a.draft-board__pick-player-name(href='/players/' + pick.playerSlug) #{pick.playerName}
+												else
+													span.draft-board__pick-player-name #{pick.playerName}
 												if pick.positionDisplay
 													span.draft-board__pick-position  #{pick.positionDisplay}
 												if pick.salary
