@@ -110,6 +110,7 @@ var transactionSchema = new Schema({
 
 	// Draft fields
 	pickId: { type: Schema.Types.ObjectId, ref: 'Pick' },
+	draftedPositions: [{ type: String }],  // player positions at time of draft selection
 
 	// Expansion draft fields
 	fromFranchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise' },  // original owner in expansion draft

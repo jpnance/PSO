@@ -13,6 +13,52 @@ var budgetHelper = require('../helpers/budget');
 
 var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
 
+// First-round rookie salaries by year and position
+var rookieSalaries = {
+	'2026': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 40, 'RB': 20, 'TE': 11, 'WR': 17 },
+	'2025': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 44, 'RB': 21, 'TE': 9, 'WR': 16 },
+	'2024': { 'DB': 2, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 40, 'RB': 23, 'TE': 9, 'WR': 16 },
+	'2023': { 'DB': 2, 'DL': 2, 'K': 2, 'LB': 1, 'QB': 30, 'RB': 25, 'TE': 14, 'WR': 16 },
+	'2022': { 'DB': 1, 'DL': 2, 'K': 2, 'LB': 1, 'QB': 37, 'RB': 25, 'TE': 8, 'WR': 16 },
+	'2021': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 29, 'RB': 25, 'TE': 5, 'WR': 16 },
+	'2020': { 'DB': 2, 'DL': 1, 'K': 1, 'LB': 1, 'QB': 32, 'RB': 25, 'TE': 7, 'WR': 16 },
+	'2019': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 1, 'QB': 38, 'RB': 25, 'TE': 10, 'WR': 16 },
+	'2018': { 'DB': 2, 'DL': 3, 'K': 2, 'LB': 2, 'QB': 28, 'RB': 25, 'TE': 14, 'WR': 18 },
+	'2017': { 'DB': 2, 'DL': 2, 'K': 2, 'LB': 1, 'QB': 31, 'RB': 24, 'TE': 17, 'WR': 18 },
+	'2016': { 'DB': 2, 'DL': 3, 'K': 1, 'LB': 2, 'QB': 32, 'RB': 25, 'TE': 15, 'WR': 17 },
+	'2015': { 'DB': 2, 'DL': 3, 'K': 1, 'LB': 1, 'QB': 24, 'RB': 27, 'TE': 15, 'WR': 17 },
+	'2014': { 'DB': 2, 'DL': 2, 'K': 2, 'LB': 1, 'QB': 19, 'RB': 24, 'TE': 28, 'WR': 19 },
+	'2013': { 'DB': 2, 'DL': 3, 'K': 1, 'LB': 2, 'QB': 17, 'RB': 26, 'TE': 18, 'WR': 18 },
+	'2012': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 1, 'QB': 25, 'RB': 25, 'TE': 7, 'WR': 16 },
+	'2011': { 'DB': 1, 'DL': 1, 'K': 1, 'LB': 2, 'QB': 25, 'RB': 25, 'TE': 3, 'WR': 26 },
+	'2010': { 'DB': 1, 'DL': 2, 'K': 1, 'LB': 2, 'QB': 24, 'RB': 28, 'TE': 4, 'WR': 15 },
+	'2009': { 'DB': 12.4, 'DL': 13.4, 'K': 2.2, 'LB': 14, 'QB': 124.5, 'RB': 270.2, 'TE': 53, 'WR': 137.3 }
+};
+
+// Calculate rookie salary for a given season, round, and positions
+// Takes the max salary across all eligible positions
+function getRookieSalary(season, round, positions) {
+	var yearSalaries = rookieSalaries[String(season)];
+	if (!yearSalaries || !positions || positions.length === 0) return null;
+	
+	var maxBase = 0;
+	for (var i = 0; i < positions.length; i++) {
+		var pos = positions[i];
+		var base = yearSalaries[pos] || 0;
+		if (base > maxBase) maxBase = base;
+	}
+	
+	if (maxBase === 0) return null;
+	
+	// 2009 uses linear decay: 100% in round 1 down to 10% in round 10
+	// 2010+ uses exponential halving: value / 2^(round-1)
+	if (season <= 2009) {
+		return Math.ceil(maxBase * (11 - round) / 10);
+	} else {
+		return Math.ceil(maxBase / Math.pow(2, round - 1));
+	}
+}
+
 // Format a dollar amount with sign before $ (e.g., -$163, +$50)
 function formatDollars(amount, showPlus) {
 	if (amount < 0) {
@@ -908,12 +954,93 @@ async function processCut(cutDetails) {
 	};
 }
 
+/**
+ * Process a rookie draft selection.
+ * Creates a draft-select transaction and updates the Pick record.
+ * 
+ * @param {Object} details - Draft pick details
+ * @param {ObjectId} details.pickId - The Pick being used
+ * @param {ObjectId} details.playerId - The Player being selected
+ * @param {ObjectId} details.franchiseId - The franchise making the selection
+ * @param {Date} [details.timestamp] - When the selection was made (defaults to now)
+ * @param {string} [details.source] - Transaction source (defaults to 'manual')
+ * @returns {Object} { success: boolean, transaction?, errors? }
+ */
+async function processDraftPick(details) {
+	var errors = [];
+	
+	// Validate pick exists
+	var pick = await Pick.findById(details.pickId);
+	if (!pick) {
+		errors.push('Pick not found: ' + details.pickId);
+		return { success: false, errors: errors };
+	}
+	
+	// Validate pick is available
+	if (pick.status === 'used') {
+		errors.push('Pick has already been used');
+		return { success: false, errors: errors };
+	}
+	
+	// Validate pick is owned by the franchise making the selection
+	if (!pick.currentFranchiseId.equals(details.franchiseId)) {
+		errors.push('Pick is not owned by this franchise');
+		return { success: false, errors: errors };
+	}
+	
+	// Validate player exists
+	var player = await Player.findById(details.playerId);
+	if (!player) {
+		errors.push('Player not found: ' + details.playerId);
+		return { success: false, errors: errors };
+	}
+	
+	// Validate franchise exists
+	var franchise = await Franchise.findById(details.franchiseId);
+	if (!franchise) {
+		errors.push('Franchise not found: ' + details.franchiseId);
+		return { success: false, errors: errors };
+	}
+	
+	if (errors.length > 0) {
+		return { success: false, errors: errors };
+	}
+	
+	// Capture player's current positions and calculate salary
+	var draftedPositions = player.positions || [];
+	var salary = getRookieSalary(pick.season, pick.round, draftedPositions);
+	
+	// Create the transaction
+	var transaction = await Transaction.create({
+		type: 'draft-select',
+		timestamp: details.timestamp || new Date(),
+		source: details.source || 'manual',
+		franchiseId: details.franchiseId,
+		playerId: details.playerId,
+		pickId: details.pickId,
+		draftedPositions: draftedPositions,
+		salary: salary
+	});
+	
+	// Update the pick
+	pick.status = 'used';
+	pick.transactionId = transaction._id;
+	await pick.save();
+	
+	return {
+		success: true,
+		transaction: transaction
+	};
+}
+
 module.exports = {
 	processTrade: processTrade,
 	validateTrade: validateTrade,
 	processCut: processCut,
+	processDraftPick: processDraftPick,
 	validateBudgetImpact: validateBudgetImpact,
 	computeBuyOutForSeason: computeBuyOutForSeason,
 	computeRecoverable: computeRecoverable,
-	computeRecoverableForContract: computeRecoverableForContract
+	computeRecoverableForContract: computeRecoverableForContract,
+	getRookieSalary: getRookieSalary
 };

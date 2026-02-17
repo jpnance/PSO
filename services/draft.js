@@ -113,24 +113,22 @@ async function draftBoard(request, response) {
 		pickId: { $in: picks.map(function(p) { return p._id; }) }
 	}).lean();
 	
+	// Build selection map with draftedPositions and salary from transaction
 	var selectionMap = {};
 	selections.forEach(function(s) {
-		selectionMap[s.pickId.toString()] = s.playerId;
+		selectionMap[s.pickId.toString()] = {
+			playerId: s.playerId,
+			positions: s.draftedPositions || [],
+			salary: s.salary
+		};
 	});
 	
-	// Get player info (name and positions)
+	// Get player names
 	var playerIds = selections.map(function(s) { return s.playerId; });
 	var players = await Player.find({ _id: { $in: playerIds } }).lean();
-	var playerMap = {};
+	var playerNameMap = {};
 	players.forEach(function(p) {
-		var positions = p.positions || [];
-		var sorted = sortedPositions(positions);
-		playerMap[p._id.toString()] = {
-			name: p.name,
-			positions: positions,
-			positionDisplay: sorted.join('/'),
-			positionGroup: getPositionGroup(positions)
-		};
+		playerNameMap[p._id.toString()] = p.name;
 	});
 	
 	// Organize by round
@@ -138,19 +136,15 @@ async function draftBoard(request, response) {
 	picks.forEach(function(pick) {
 		if (!rounds[pick.round]) rounds[pick.round] = [];
 		
-		var playerId = selectionMap[pick._id.toString()];
-		var playerInfo = playerId ? playerMap[playerId.toString()] : null;
+		var selection = selectionMap[pick._id.toString()];
+		var playerName = selection ? playerNameMap[selection.playerId.toString()] : null;
+		var positions = selection ? selection.positions : [];
+		var sorted = sortedPositions(positions);
 		
 		var originalOwner = getDisplayName(pick.originalFranchiseId);
 		var fromOwner = null;
 		if (!pick.originalFranchiseId.equals(pick.currentFranchiseId)) {
 			fromOwner = originalOwner;
-		}
-		
-		// Calculate salary based on player positions and round
-		var salary = null;
-		if (playerInfo && playerInfo.positions) {
-			salary = getRookieSalary(season, pick.round, playerInfo.positions);
 		}
 		
 		rounds[pick.round].push({
@@ -161,10 +155,10 @@ async function draftBoard(request, response) {
 			currentOwner: getDisplayName(pick.currentFranchiseId),
 			fromOwner: fromOwner,
 			status: pick.status,
-			playerName: playerInfo ? playerInfo.name : null,
-			positionDisplay: playerInfo ? playerInfo.positionDisplay : null,
-			positionGroup: playerInfo ? playerInfo.positionGroup : null,
-			salary: salary
+			playerName: playerName,
+			positionDisplay: sorted.length > 0 ? sorted.join('/') : null,
+			positionGroup: getPositionGroup(positions),
+			salary: selection ? selection.salary : null
 		});
 	});
 	
