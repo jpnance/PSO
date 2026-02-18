@@ -5,6 +5,10 @@ var path = require('path');
 var pug = require('pug');
 var compiledPug = pug.compileFile(path.join(__dirname, '../views/simulator.pug'));
 
+var mongoose = require('mongoose');
+mongoose.promise = global.Promise;
+
+var Game = require('../models/Game');
 var PSO = require('../config/pso');
 
 var season = PSO.season;
@@ -225,13 +229,10 @@ Object.keys(PSO.franchiseNames).forEach(franchiseId => {
 var schedule = {};
 var results = {};
 
-var mongo = require('mongodb').MongoClient;
-
-mongo.connect(process.env.MONGODB_URI, function(err, client) {
-	var games = client.db('pso').collection('games');
+mongoose.connect(process.env.MONGODB_URI).then(function() {
 	var startWithWeek = 0;
 
-	games.find({ season: season }).toArray(function(err, docs) {
+	Game.find({ season: season }).lean().then(function(docs) {
 		for (var i in docs) {
 			var doc = docs[i];
 
@@ -407,7 +408,7 @@ mongo.connect(process.env.MONGODB_URI, function(err, client) {
 			console.log();
 		}
 
-		client.close();
+		mongoose.disconnect();
 	});
 });
 
