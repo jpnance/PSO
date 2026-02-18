@@ -77,27 +77,14 @@ a.draft-board__pick-player-name:hover {
 	text-decoration: none;
 }
 
-.draft-board__pick-position {
-	font-size: 0.65rem;
-	font-weight: 600;
-	margin-left: 0.25rem;
+/* Position badge on right side of pick */
+.draft-board__pick .position-badge {
+	margin-left: auto;
+	margin-right: 0;
 }
 
-/* Position text colors */
-.pos-QB .draft-board__pick-position { color: var(--pos-qb-text); }
-.pos-RB .draft-board__pick-position { color: var(--pos-rb-text); }
-.pos-WR .draft-board__pick-position { color: var(--pos-wr-text); }
-.pos-TE .draft-board__pick-position { color: var(--pos-te-text); }
-.pos-DL .draft-board__pick-position,
-.pos-LB .draft-board__pick-position,
-.pos-DB .draft-board__pick-position,
-.pos-IDP .draft-board__pick-position { color: var(--pos-idp-text); }
-.pos-K .draft-board__pick-position { color: var(--pos-k-text); }
-
 .draft-board__pick-salary {
-	font-size: 0.7rem;
 	color: #555;
-	margin-left: 0.25rem;
 }
 
 .draft-board__pick-owner {

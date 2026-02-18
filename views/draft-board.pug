@@ -48,15 +48,13 @@ block content
 													a.draft-board__pick-player-name(href='/players/' + pick.playerSlug) #{pick.playerName}
 												else
 													span.draft-board__pick-player-name #{pick.playerName}
-												if pick.positionDisplay
-													span.draft-board__pick-position  #{pick.positionDisplay}
-												if pick.salary
-													span.draft-board__pick-salary  #{formatMoney(pick.salary)}
 											else if pick.status === 'passed'
 												span.draft-board__pick-player-name Passed
 											else if pick.status === 'used'
 												span.draft-board__pick-player-name.text-muted (unknown player)
 										div.draft-board__pick-owner
+											if pick.salary
+												span.draft-board__pick-salary #{formatMoney(pick.salary)} · 
 											span #{pick.currentOwner}
 											if pick.fromOwner
 												span.draft-board__pick-from  (from #{pick.fromOwner})
@@ -65,6 +63,9 @@ block content
 											span #{pick.currentOwner}
 											if pick.fromOwner
 												span.draft-board__pick-from  (from #{pick.fromOwner})
+								if pick.positionDisplay
+									- var positions = pick.positionDisplay.split('/')
+									+positionBadge(positions)
 		
 		hr.mt-4
 		div.draft-board__legend.mt-3
