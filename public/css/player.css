@@ -198,15 +198,8 @@ a.player-hero__franchise:hover {
 	font-size: 0.9rem;
 }
 
-.player-timeline__buyout {
-	color: #888;
-	font-size: 0.85rem;
+.player-timeline__recovered {
 	font-variant-numeric: tabular-nums;
-}
-
-.player-timeline__buyout-year {
-	color: #aaa;
-	font-size: 0.8rem;
 }
 
 .player-timeline__date {
