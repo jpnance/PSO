@@ -211,6 +211,14 @@ async function seed() {
 				
 				if (player) {
 					txData.playerId = player._id;
+					
+					// Use positions and salary from enriched JSON if available
+					if (entry.positions && entry.positions.length > 0) {
+						txData.draftedPositions = entry.positions;
+					}
+					if (entry.salary) {
+						txData.salary = entry.salary;
+					}
 				}
 				
 				var transaction = await Transaction.create(txData);

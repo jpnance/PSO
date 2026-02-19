@@ -189,6 +189,20 @@ async function seed() {
 					// Offseason source means this was a cut (vs in-season release)
 					var isOffseason = entry.source === 'offseason';
 					
+					// Historical buyout rule overrides (2008-2009)
+					if (season === 2008) {
+						// 2008: All cuts were in-season. 50% for current year only.
+						// 10th percentile exception: $1 salary = 0% buyout
+						if (salary <= 1) {
+							buyOuts = [];
+						} else {
+							buyOuts = [{ season: 2008, amount: Math.ceil(salary * 0.50) }];
+						}
+					} else if (season === 2009 && isOffseason) {
+						// 2009 offseason cuts: full relief (0% buyout)
+						buyOuts = [];
+					}
+					
 					drops.push({
 						playerId: player._id,
 						salary: dropEntry.salary || null,
