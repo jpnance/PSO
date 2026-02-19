@@ -35,6 +35,7 @@ var args = {
 // Stats
 var stats = {
 	transactionsCreated: 0,
+	tradeFacilitationLinks: 0,
 	skipped: 0,
 	errors: []
 };
@@ -43,6 +44,7 @@ var stats = {
 var franchiseByRosterId = {};
 var playersBySleeperId = {};
 var playersByName = {};
+var tradeByNumber = {};
 var upsert = null; // Initialized in seed()
 
 /**
@@ -81,6 +83,13 @@ async function seed() {
 		franchiseByRosterId[f.rosterId] = f;
 	});
 	console.log('Loaded ' + franchises.length + ' franchises');
+	
+	// Load trades for facilitation lookup
+	var trades = await Transaction.find({ type: 'trade' }).select('_id tradeId').lean();
+	trades.forEach(function(t) {
+		if (t.tradeId) tradeByNumber[t.tradeId] = t._id;
+	});
+	console.log('Loaded ' + trades.length + ' trades for facilitation lookup');
 	
 	// Load existing players into cache
 	var allPlayers = await Player.find({});
@@ -231,14 +240,21 @@ async function seed() {
 			try {
 				var timestamp = entry.timestamp ? new Date(entry.timestamp) : new Date(Date.UTC(season, 9, 1, 12, 0, 0));
 				
-				await Transaction.create({
+				var txData = {
 					type: 'fa',
 					timestamp: timestamp,
 					source: mapSource(entry.source),
 					franchiseId: franchise._id,
 					adds: adds,
 					drops: drops
-				});
+				};
+				
+				if (entry.tradeId && tradeByNumber[entry.tradeId]) {
+					txData.facilitatedTradeId = tradeByNumber[entry.tradeId];
+					stats.tradeFacilitationLinks++;
+				}
+				
+				await Transaction.create(txData);
 				seasonCreated++;
 				stats.transactionsCreated++;
 				
@@ -262,6 +278,7 @@ async function seed() {
 	console.log('');
 	console.log('Done!');
 	console.log('  Transactions created: ' + stats.transactionsCreated);
+	console.log('  Trade facilitation links: ' + stats.tradeFacilitationLinks);
 	console.log('  Players created: ' + upsert.stats.created);
 	console.log('  Positions updated: ' + upsert.stats.positionsUpdated);
 	console.log('  Skipped: ' + stats.skipped);
