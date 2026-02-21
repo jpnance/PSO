@@ -616,6 +616,11 @@
     padding: 0.1rem 0.3rem;
 }
 
+/* Year context in search results */
+.search-result-years {
+    color: var(--text-tertiary, #adb5bd);
+}
+
 /* Mobile search dropdown */
 .mobile-search-wrapper {
     position: relative;
@@ -629,8 +634,6 @@
     margin-top: 0.25rem;
 }
 
-
-/* Unrestricted free agent search results (not clickable) */
 
 /* Trade search results */
 .search-result-trade-header {

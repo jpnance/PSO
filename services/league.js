@@ -862,6 +862,76 @@ async function findTradesForPlayers(players, limit) {
 	return results;
 }
 
+// Get first/last PSO transaction years for a list of player IDs
+async function getPlayerYearRanges(playerIds) {
+	if (!playerIds || playerIds.length === 0) {
+		return {};
+	}
+	
+	var yearsByPlayer = {};
+	
+	function updateYears(playerId, year) {
+		var id = playerId.toString();
+		if (!yearsByPlayer[id]) {
+			yearsByPlayer[id] = { firstYear: year, lastYear: year };
+		} else {
+			if (year < yearsByPlayer[id].firstYear) yearsByPlayer[id].firstYear = year;
+			if (year > yearsByPlayer[id].lastYear) yearsByPlayer[id].lastYear = year;
+		}
+	}
+	
+	// Query transactions with direct playerId (draft, auction, contract, etc.)
+	var directTx = await Transaction.find({
+		playerId: { $in: playerIds }
+	}).select('playerId timestamp').lean();
+	
+	directTx.forEach(function(tx) {
+		updateYears(tx.playerId, tx.timestamp.getFullYear());
+	});
+	
+	// Query FA transactions for adds/drops
+	var faTx = await Transaction.find({
+		type: 'fa',
+		$or: [
+			{ 'adds.playerId': { $in: playerIds } },
+			{ 'drops.playerId': { $in: playerIds } }
+		]
+	}).select('timestamp adds drops').lean();
+	
+	faTx.forEach(function(tx) {
+		var year = tx.timestamp.getFullYear();
+		(tx.adds || []).forEach(function(a) {
+			if (playerIds.some(function(id) { return id.toString() === a.playerId.toString(); })) {
+				updateYears(a.playerId, year);
+			}
+		});
+		(tx.drops || []).forEach(function(d) {
+			if (playerIds.some(function(id) { return id.toString() === d.playerId.toString(); })) {
+				updateYears(d.playerId, year);
+			}
+		});
+	});
+	
+	// Query trade transactions for players received
+	var tradeTx = await Transaction.find({
+		type: 'trade',
+		'parties.receives.players.playerId': { $in: playerIds }
+	}).select('timestamp parties').lean();
+	
+	tradeTx.forEach(function(tx) {
+		var year = tx.timestamp.getFullYear();
+		(tx.parties || []).forEach(function(party) {
+			((party.receives || {}).players || []).forEach(function(p) {
+				if (playerIds.some(function(id) { return id.toString() === p.playerId.toString(); })) {
+					updateYears(p.playerId, year);
+				}
+			});
+		});
+	});
+	
+	return yearsByPlayer;
+}
+
 // Player search for navbar typeahead
 async function search(request, response) {
 	try {
@@ -940,6 +1010,9 @@ async function search(request, response) {
 			contractByPlayer[c.playerId.toString()] = c;
 		});
 		
+		// Get first/last PSO transaction years for year context display
+		var yearsByPlayer = await getPlayerYearRanges(playerIds);
+		
 		// Get current regimes for franchise display names
 		var regimes = await Regime.find({ 'tenures.endSeason': null }).lean();
 		
@@ -962,8 +1035,26 @@ async function search(request, response) {
 		// Build player results
 		var { formatContractDisplay } = require('../helpers/view');
 		
+		// Format year context for a player
+		function formatYearContext(player, years, hasContract) {
+			if (years) {
+				// Player has PSO transaction history
+				var isPresent = hasContract || (player.active && years.lastYear >= currentSeason - 1);
+				if (isPresent) {
+					return years.firstYear + '–present';
+				} else {
+					return years.firstYear + '–' + years.lastYear;
+				}
+			} else {
+				// No PSO history - show NFL active status
+				return player.active ? 'active' : 'inactive';
+			}
+		}
+		
 		var playerResults = players.map(function(player) {
 			var contract = contractByPlayer[player._id.toString()];
+			var years = yearsByPlayer[player._id.toString()];
+			var yearContext = formatYearContext(player, years, !!contract);
 			
 			if (contract && contract.salary !== null) {
 				// Player is rostered (has contract with salary)
@@ -979,7 +1070,8 @@ async function search(request, response) {
 				franchiseId: franchise ? franchise.rosterId : null,
 				franchiseName: regime ? regime.displayName : 'Unknown',
 				contractDisplay: formatContractDisplay(contract.salary, contract.startYear, contract.endYear),
-				status: 'rostered'
+				status: 'rostered',
+				yearContext: yearContext
 			};
 			} else if (contract && contract.salary === null) {
 				// Player is an RFA (contract exists but salary is null)
@@ -995,7 +1087,8 @@ async function search(request, response) {
 				franchiseId: franchise ? franchise.rosterId : null,
 				franchiseName: regime ? regime.displayName : 'Unknown',
 				contractDisplay: null,
-				status: 'rfa'
+				status: 'rfa',
+				yearContext: yearContext
 			};
 			} else {
 				// Player is an unrestricted free agent (no contract)
@@ -1008,7 +1101,8 @@ async function search(request, response) {
 				franchiseId: null,
 				franchiseName: null,
 				contractDisplay: null,
-				status: 'ufa'
+				status: 'ufa',
+				yearContext: yearContext
 			};
 			}
 		});
@@ -1017,6 +1111,19 @@ async function search(request, response) {
 		var statusOrder = { rostered: 0, rfa: 1, ufa: 2 };
 		playerResults.sort(function(a, b) {
 			return statusOrder[a.status] - statusOrder[b.status];
+		});
+		
+		// Only show yearContext for UFAs with duplicate names (disambiguation needed)
+		var ufaNameCounts = {};
+		playerResults.forEach(function(r) {
+			if (r.status === 'ufa') {
+				ufaNameCounts[r.name] = (ufaNameCounts[r.name] || 0) + 1;
+			}
+		});
+		playerResults.forEach(function(r) {
+			if (r.status !== 'ufa' || ufaNameCounts[r.name] < 2) {
+				delete r.yearContext;
+			}
 		});
 		
 		// Show 5 players, track extras

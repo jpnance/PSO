@@ -16,6 +16,8 @@ else
 						span.search-result-franchise= result.franchiseName
 						if result.contractDisplay
 							span.search-result-contract  · #{result.contractDisplay}
+						if result.yearContext
+							span.search-result-years  · #{result.yearContext}
 			else if result.status === 'rfa'
 				//- RFA - link to player page
 				a.search-result.search-result-rfa(href='/players/' + result.slug)
@@ -25,6 +27,8 @@ else
 					div.search-result-meta
 						span.search-result-franchise= result.franchiseName
 						span.search-result-contract  · RFA
+						if result.yearContext
+							span.search-result-years  · #{result.yearContext}
 			else
 				//- Unrestricted free agent - link to player page
 				a.search-result.search-result-ufa(href='/players/' + result.slug)
@@ -33,6 +37,8 @@ else
 						+positionBadge(result.positions)
 					div.search-result-meta
 						span.search-result-contract UFA
+						if result.yearContext
+							span.search-result-years  · #{result.yearContext}
 		//- Truncation row for extra players
 		if extraPlayersCount > 0
 			div.search-result-more #{extraPlayersCount} more
