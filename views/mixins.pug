@@ -55,20 +55,18 @@ mixin timelineEntry(entry)
 						if entry.facilitatedTradeId
 							|  for 
 							a(href='/trades/' + entry.facilitatedTradeId) Trade ##{entry.facilitatedTradeId}
-					if entry.salary
+					if entry.salary && entry.buyOuts && entry.buyOuts.length > 0
 						br
 						span.player-timeline__salary
-							= formatMoney(entry.salary)
-							if entry.buyOuts && entry.buyOuts.length > 0
-								span.player-timeline__recovered  (
-									each bo, idx in entry.buyOuts
-										if idx > 0
-											| /
-										- var recovered = entry.salary - bo.amount
-										| +#{formatMoney(recovered)}
-									| )
+							each bo, idx in entry.buyOuts
+								if idx > 0
+									| /
+								- var recovered = entry.salary - bo.amount
+								| +#{formatMoney(recovered)}
 							if entry.endYear
 								|  · #{formatContractYears(entry.startYear, entry.endYear)}
+					else if entry.salary
+						+timelineSalary(entry)
 				else if entry.type === 'fa-pickup'
 					span Signed by #{entry.regime}
 					+timelineSalary(entry)
