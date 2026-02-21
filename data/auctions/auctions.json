@@ -18197,20 +18197,6 @@
   },
   {
     "season": 2015,
-    "type": "auction-ufa",
-    "sleeperId": "3027",
-    "name": "Boobie Dixon",
-    "positions": [
-      "RB"
-    ],
-    "rosterId": 11,
-    "originalOwner": "Quinn",
-    "salary": 1,
-    "startYear": 2015,
-    "endYear": 2015
-  },
-  {
-    "season": 2015,
     "type": "auction-rfa-unmatched",
     "sleeperId": "2050",
     "name": "Branden Oliver",

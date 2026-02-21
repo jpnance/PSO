@@ -413,4 +413,3 @@ ID,Owner,Name,Position,Start,End,Salary
 1339,James,Zach Ertz,TE,2013,2015,$9
 1935,Daniel,Zach Mettenberger,QB,2014,2016,$2
 2560,Syed/Terence,Zach Zenner,RB,2015,2017,$4
-3027,Quinn,Boobie Dixon,RB,2015,2015,$1
