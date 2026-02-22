@@ -116,7 +116,7 @@ html
 							if section.hasNotification
 								span.nav-notification-dot
 							i.fa.fa-chevron-down.toggle-icon
-						div(id=section.id + 'Menu' class=(section.expanded ? 'collapse show ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu') : 'collapse ' + (section.isFranchiseList ? 'franchise-list' : 'sidebar-submenu')))
+						div(id=section.id + 'Menu' class=['collapse', section.expanded ? 'show' : '', 'sidebar-submenu', section.isFranchiseList ? 'franchise-list' : ''])
 							each item in section.items
 								a.sidebar-link(href=item.href class=(item.active ? 'active' : '') + (item.rosterId ? ' sidebar-link--franchise' : '') target=(item.external ? '_blank' : null))
 									if item.rosterId
