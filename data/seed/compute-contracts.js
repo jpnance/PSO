@@ -27,6 +27,7 @@ var Franchise = require('../../models/Franchise');
 var Player = require('../../models/Player');
 var LeagueConfig = require('../../models/LeagueConfig');
 var PSO = require('../../config/pso');
+var leagueDates = require('../../config/dates');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -38,6 +39,10 @@ var RFA_FILE = path.join(__dirname, '../rfa/rfa.json');
 var args = {
 	dryRun: process.argv.includes('--dry-run')
 };
+
+function getContractSignedDate(season) {
+	return leagueDates.getContractDueDate(season) || new Date(Date.UTC(season, 7, 31, 16, 0, 0));
+}
 
 async function run() {
 	console.log('Computing current Contract state...');
@@ -207,7 +212,7 @@ async function run() {
 					if (playerId && contractState[playerId]) {
 						// Only apply trade if it happened AFTER the contract was signed
 						var contractSeason = contractState[playerId].season;
-						var contractSignedDate = new Date(contractSeason + '-08-01');
+						var contractSignedDate = getContractSignedDate(contractSeason);
 						
 						if (tradeDate >= contractSignedDate) {
 							// Update ownership
@@ -239,7 +244,7 @@ async function run() {
 				if (playerId && contractState[playerId]) {
 					// Only apply drop if it happened AFTER the contract was signed
 					var contractSeason = contractState[playerId].season;
-					var contractSignedDate = new Date(contractSeason + '-08-01');
+					var contractSignedDate = getContractSignedDate(contractSeason);
 					
 					if (faTimestamp >= contractSignedDate) {
 						delete contractState[playerId];
