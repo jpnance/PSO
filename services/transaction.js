@@ -956,7 +956,7 @@ async function processCut(cutDetails) {
 
 /**
  * Process a rookie draft selection.
- * Creates a draft-select transaction and updates the Pick record.
+ * Creates a draft-select transaction, Contract record, updates Budget, and marks the Pick as used.
  * 
  * @param {Object} details - Draft pick details
  * @param {ObjectId} details.pickId - The Pick being used
@@ -964,7 +964,8 @@ async function processCut(cutDetails) {
  * @param {ObjectId} details.franchiseId - The franchise making the selection
  * @param {Date} [details.timestamp] - When the selection was made (defaults to now)
  * @param {string} [details.source] - Transaction source (defaults to 'manual')
- * @returns {Object} { success: boolean, transaction?, errors? }
+ * @param {number} [details.endYear] - Contract end year (defaults to pick.season + 2 for 3-year contract)
+ * @returns {Object} { success: boolean, transaction?, contract?, errors? }
  */
 async function processDraftPick(details) {
 	var errors = [];
@@ -1002,6 +1003,13 @@ async function processDraftPick(details) {
 		return { success: false, errors: errors };
 	}
 	
+	// Check if player already has a contract
+	var existingContract = await Contract.findOne({ playerId: details.playerId });
+	if (existingContract) {
+		errors.push('Player already has a contract');
+		return { success: false, errors: errors };
+	}
+	
 	if (errors.length > 0) {
 		return { success: false, errors: errors };
 	}
@@ -1009,6 +1017,10 @@ async function processDraftPick(details) {
 	// Capture player's current positions and calculate salary
 	var draftedPositions = player.positions || [];
 	var salary = getRookieSalary(pick.season, pick.round, draftedPositions);
+	
+	// Determine contract years (default to 3-year contract for rookie draft picks)
+	var startYear = pick.season;
+	var endYear = details.endYear !== undefined ? details.endYear : (pick.season + 2);
 	
 	// Create the transaction
 	var transaction = await Transaction.create({
@@ -1022,6 +1034,31 @@ async function processDraftPick(details) {
 		salary: salary
 	});
 	
+	// Create the Contract record
+	var contract = await Contract.create({
+		playerId: details.playerId,
+		franchiseId: details.franchiseId,
+		salary: salary,
+		startYear: startYear,
+		endYear: endYear
+	});
+	
+	// Update Budget for each season covered by the contract
+	for (var season = startYear; season <= endYear; season++) {
+		var recoverableAmount = computeRecoverableForContract(salary, startYear, endYear, season);
+		
+		await Budget.updateOne(
+			{ franchiseId: details.franchiseId, season: season },
+			{
+				$inc: {
+					payroll: salary,
+					recoverable: recoverableAmount,
+					available: -salary
+				}
+			}
+		);
+	}
+	
 	// Update the pick
 	pick.status = 'used';
 	pick.transactionId = transaction._id;
@@ -1029,7 +1066,8 @@ async function processDraftPick(details) {
 	
 	return {
 		success: true,
-		transaction: transaction
+		transaction: transaction,
+		contract: contract
 	};
 }
 
