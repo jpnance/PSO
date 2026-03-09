@@ -1004,6 +1004,8 @@ async function processDraftPick(details) {
 	}
 	
 	// Check if player already has a contract
+	// Note: The Contract collection has a unique index on playerId, so there can only be
+	// one contract per player. Expired contracts are deleted during season rollover.
 	var existingContract = await Contract.findOne({ playerId: details.playerId });
 	if (existingContract) {
 		errors.push('Player already has a contract');
