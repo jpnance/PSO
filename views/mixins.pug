@@ -152,6 +152,29 @@ mixin playerChip(opts)
 					div.player-chip__detail= opts.detail
 			+positionBadge(opts.positions)
 
+//- Player table - position-grouped player list in colored containers
+//- Usage: +playerTable(playersByPosition, positionKeys, options?)
+//- Options: { columns: ['salary', 'contract'] } — fields to show as aligned columns
+mixin playerTable(playersByPosition, positionKeys, opts)
+	- opts = opts || {}
+	- var cols = opts.columns || []
+	div.player-table
+		each posKey in positionKeys
+			- var groupPosClass = 'pos-' + posKey
+			div.player-table__group(class=groupPosClass)
+				table.player-table__body
+					tr.player-table__group-header
+						th(colspan=1 + cols.length)= posKey
+					each player in playersByPosition[posKey]
+						tr.player-table__row
+							td.player-table__name
+								if player.slug
+									a(href='/players/' + player.slug)= player.name
+								else
+									= player.name
+							each col in cols
+								td.player-table__detail(class='player-table__detail--' + col)= player[col]
+
 //- Alert banner with icon as bullet point
 //- Usage: +alertBanner('warning', 'fa-refresh', 'Simple message')
 //- Or with block: +alertBanner('success', 'fa-check') followed by indented content
