@@ -178,6 +178,8 @@ block content
 					var rosterByPosition = {};
 					var positionKeys = [];
 					var rosterOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
+					var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
+					var showRfa = offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0;
 					franchise.roster.forEach(function(player) {
 						var positions = player.positions && player.positions.length ? player.positions : ['Unknown'];
 						player.expiring = (Number(player.endYear) === Number(currentSeason)) ? 'true' : 'false';
@@ -221,6 +223,21 @@ block content
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
 									i.fa.fa-dollar
 						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring'] })
+						if showRfa
+							div.player-table.player-table--rfa.mt-3
+								div.player-table__group
+									table.player-table__body
+										tr.player-table__group-header
+											th RFA
+										each player in franchise.rfaRights
+											tr.player-table__row
+												td.player-table__name
+													if player.slug
+														a(href='/players/' + player.slug)= player.name
+													else
+														= player.name
+													| 
+													+positionBadge(player.positions)
 			
 			div.col-lg-6
 				div.card.mb-4

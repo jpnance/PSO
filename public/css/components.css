@@ -930,6 +930,17 @@ a.player-chip:hover {
 .player-table__detail--contract { width: 5ch; }
 .player-table__detail--franchise { width: 12ch; }
 
+/* RFA variant — purple-tinted groups */
+.player-table--rfa .player-table__group {
+	background-color: color-mix(in srgb, var(--asset-rfa) 15%, white);
+	border-style: dashed;
+	border-color: var(--asset-rfa);
+}
+
+.player-table--rfa .player-table__group-header th {
+	color: var(--asset-rfa);
+}
+
 /* ========================================
    Season Tile Component
    ======================================== */

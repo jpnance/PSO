@@ -34,34 +34,22 @@ th.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
 
 /* Position badge - inline badge for player positions */
 .position-badge {
+	display: inline-flex;
 	font-size: 0.7rem;
-	padding: 0.15rem 0.35rem;
+	line-height: 1;
+	padding: 0;
 	border-radius: 0.25rem;
-	border: 1px solid;
+	border: none;
+	background: none;
 	margin-left: 0.35rem;
 	vertical-align: middle;
 	white-space: nowrap;
 	flex-shrink: 0;
-}
-.position-badge.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); border-color: var(--pos-qb-text); }
-.position-badge.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); border-color: var(--pos-rb-text); }
-.position-badge.pos-WR { background-color: var(--pos-wr-bg); color: var(--pos-wr-text); border-color: var(--pos-wr-text); }
-.position-badge.pos-TE { background-color: var(--pos-te-bg); color: var(--pos-te-text); border-color: var(--pos-te-text); }
-.position-badge.pos-DL,
-.position-badge.pos-LB,
-.position-badge.pos-DB { background-color: var(--pos-idp-bg); color: var(--pos-idp-text); border-color: var(--pos-idp-text); }
-.position-badge.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); border-color: var(--pos-k-text); }
-
-/* Multi-position badges — two colored segments, no separator */
-.position-badge--multi {
-	display: inline-flex;
-	padding: 0;
-	background: none;
-	border: none;
 	overflow: hidden;
 }
 .position-badge__segment {
 	padding: 0.15rem 0.3rem;
+	line-height: 1;
 	border-top: 1px solid;
 	border-bottom: 1px solid;
 }
@@ -75,6 +63,9 @@ th.pos-K { background-color: var(--pos-k-bg); color: var(--pos-k-text); }
 	border-right: 1px solid;
 	border-top-right-radius: 0.25rem;
 	border-bottom-right-radius: 0.25rem;
+}
+.position-badge__segment:only-child {
+	border-radius: 0.25rem;
 }
 .position-badge__segment.pos-QB { background-color: var(--pos-qb-bg); color: var(--pos-qb-text); border-color: var(--pos-qb-text); }
 .position-badge__segment.pos-RB { background-color: var(--pos-rb-bg); color: var(--pos-rb-text); border-color: var(--pos-rb-text); }
