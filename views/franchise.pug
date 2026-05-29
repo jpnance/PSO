@@ -183,6 +183,7 @@ block content
 					franchise.roster.forEach(function(player) {
 						var positions = player.positions && player.positions.length ? player.positions : ['Unknown'];
 						player.expiring = (Number(player.endYear) === Number(currentSeason)) ? 'true' : 'false';
+						if (!isOwner) player.markedForCut = false;
 						player.salary = formatMoney(player.salary);
 						player.contract = formatContractYears(player.startYear, player.endYear);
 						positions.forEach(function(pos) {
