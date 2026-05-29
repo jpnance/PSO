@@ -221,7 +221,7 @@ block content
 					div.card-header.d-flex.justify-content-between.align-items-center
 						span Roster
 						span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
-					div.card-body#rosterCardBody
+					div.card-body#rosterCardBody(data-roster-id=franchise.rosterId)
 						div.franchise-roster__toolbar.mb-3
 							div.franchise-roster__filters
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
@@ -233,7 +233,7 @@ block content
 									i.fa.fa-sort-alpha-asc
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
 									i.fa.fa-dollar
-						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring'] })
+						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring', 'markedForCut'], showCutToggle: canMarkForCut })
 			
 			div.col-lg-6
 				div.card.mb-4

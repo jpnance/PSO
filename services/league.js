@@ -1805,19 +1805,10 @@ async function markForCut(request, response) {
 			currentSeason
 		);
 		
-		// Get player info for rendering
-		var player = await Player.findById(playerId).lean();
-		
-		// Render player chip partial
-		response.render('partials/player-chip-cut', {
-			player: player,
-			contract: {
-				salary: contract.salary,
-				startYear: contract.startYear,
-				endYear: contract.endYear,
-				markedForCut: contract.markedForCut,
-				recoverable: recoverable
-			}
+		response.json({
+			playerId: playerId,
+			markedForCut: newMarked,
+			recoverable: recoverable
 		});
 	} catch (err) {
 		console.error('Mark for cut error:', err);

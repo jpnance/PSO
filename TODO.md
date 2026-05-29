@@ -21,7 +21,7 @@
 
 ### Owner-Facing Features
 - [x] RFA screen - show all restricted free agents ⚡ *quick win*
-- [ ] UFA screen - show all unrestricted free agents ⚡ *quick win*
+- [x] UFA screen - show all unrestricted free agents ⚡ *quick win*
 - [x] Cuts screen - ask owners for their cuts ahead of cut day
 - [ ] Contract setting screen - ask owners to set contracts ahead of contract day
 - [ ] Rookie draft client - allow owners to make their own picks

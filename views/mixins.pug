@@ -157,8 +157,9 @@ mixin playerChip(opts)
 //- Player table - position-grouped player list in colored containers
 //- Usage: +playerTable(playersByPosition, positionKeys, options?)
 //- Options: { columns: ['salary', 'contract'] } — fields to show as aligned columns
-mixin playerTableGroup(posKey, players, cols, dataAttrs)
+mixin playerTableGroup(posKey, players, cols, dataAttrs, opts)
 	- var isRfa = posKey === 'RFA'
+	- var showCutToggle = opts && opts.showCutToggle && !isRfa
 	- var groupPosClass = isRfa ? 'player-table__group--rfa' : 'pos-' + posKey.split('/')[0]
 	div.player-table__group(class=groupPosClass)
 		table.player-table__body
@@ -169,17 +170,25 @@ mixin playerTableGroup(posKey, players, cols, dataAttrs)
 				if dataAttrs
 					each attr in dataAttrs
 						- attrs['data-' + attr] = player[attr]
-				tr.player-table__row&attributes(attrs)
+				- var rowClass = player.markedForCut ? 'player-table__row player-table__row--marked-for-cut' : 'player-table__row'
+				tr(class=rowClass)&attributes(attrs)
 					td.player-table__name
-						if player.slug
-							a(href='/players/' + player.slug)= player.name
-						else
-							= player.name
+						if showCutToggle
+							button.player-table__cut-toggle(type='button' data-player-id=player._id class=player.markedForCut ? 'player-table__cut-toggle--active' : '' title=player.markedForCut ? 'Unmark for cut' : 'Mark for cut')
+								i.fa.fa-scissors
+						span.player-table__name-text
+							if player.slug
+								a(href='/players/' + player.slug)= player.name
+							else
+								= player.name
 						if isRfa || (player.positions && player.positions.length > 1)
 							| 
 							+positionBadge(player.positions)
+						if showCutToggle
+							span.player-table__recoverable= '+' + formatMoney(player.recoverable)
 					each col in cols
-						td.player-table__detail(class='player-table__detail--' + col)= player[col]
+						td.player-table__detail(class='player-table__detail--' + col)
+							span.player-table__detail-text= player[col]
 
 mixin playerTable(playersByPosition, positionKeys, opts)
 	- opts = opts || {}
@@ -192,16 +201,16 @@ mixin playerTable(playersByPosition, positionKeys, opts)
 				div.player-table
 					each posKey, i in positionKeys
 						if i % 2 === 0
-							+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs)
+							+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs, opts)
 			div.col-md-6
 				div.player-table
 					each posKey, i in positionKeys
 						if i % 2 === 1
-							+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs)
+							+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs, opts)
 	else
 		div.player-table(class=variantClass)
 			each posKey in positionKeys
-				+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs)
+				+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs, opts)
 
 //- Alert banner with icon as bullet point
 //- Usage: +alertBanner('warning', 'fa-refresh', 'Simple message')

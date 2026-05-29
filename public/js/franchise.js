@@ -102,4 +102,51 @@
 			}
 		});
 	});
+
+	var rosterCard = document.getElementById('rosterCardBody');
+	var rosterId = rosterCard ? rosterCard.dataset.rosterId : null;
+
+	if (rosterId) {
+		rosterCard.addEventListener('click', function(e) {
+			var btn = e.target.closest('.player-table__cut-toggle');
+			if (!btn) return;
+
+			var playerId = btn.dataset.playerId;
+			if (!playerId) return;
+
+			btn.disabled = true;
+
+			fetch('/franchises/' + rosterId + '/mark-for-cut', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ playerId: playerId })
+			})
+			.then(function(res) { return res.json(); })
+			.then(function(data) {
+				if (data.error) {
+					alert(data.error);
+					return;
+				}
+
+				var row = btn.closest('.player-table__row');
+				var recoverableEl = row.querySelector('.player-table__recoverable');
+				if (data.markedForCut) {
+					row.classList.add('player-table__row--marked-for-cut');
+					btn.classList.add('player-table__cut-toggle--active');
+					btn.title = 'Unmark for cut';
+					if (recoverableEl) recoverableEl.textContent = '+$' + data.recoverable;
+				} else {
+					row.classList.remove('player-table__row--marked-for-cut');
+					btn.classList.remove('player-table__cut-toggle--active');
+					btn.title = 'Mark for cut';
+				}
+			})
+			.catch(function() {
+				alert('Something went wrong. Please try again.');
+			})
+			.finally(function() {
+				btn.disabled = false;
+			});
+		});
+	}
 })();
