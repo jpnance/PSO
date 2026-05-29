@@ -80,6 +80,7 @@ module.exports = function(app) {
 	app.get('/rookies/:season', rookies.rookieSalaries);
 	
 	app.get('/rfa', freeAgents.rfa);
+	app.get('/ufa', freeAgents.ufa);
 	
 	app.get('/players/:slug', players.playerDetail);
 
