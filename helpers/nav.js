@@ -130,8 +130,8 @@ function buildNav(options) {
 		items: [
 			{ label: 'Rookie Draft', icon: 'fa-list-ol', href: '/draft', active: isActive('draft') },
 			{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
-			{ label: 'Restricted Free Agents', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
-			{ label: 'Unrestricted Free Agents', icon: 'fa-user-o', href: '/ufa', active: isActive('ufa') },
+			{ label: 'RFAs', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
+			{ label: 'UFAs', icon: 'fa-user-o', href: '/ufa', active: isActive('ufa') },
 			{ label: 'Free Agent Auction', icon: 'fa-gavel', href: '#', soon: true }
 		]
 	});
