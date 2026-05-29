@@ -124,7 +124,12 @@ mixin record(record)
 mixin positionBadge(positions)
 	if positions && positions.length
 		- var sorted = sortedPositions(positions)
-		span.position-badge(class='pos-' + sorted[0])= sorted.join('/')
+		if sorted.length > 1
+			span.position-badge.position-badge--multi
+				each pos in sorted
+					span.position-badge__segment(class='pos-' + pos)= pos
+		else
+			span.position-badge(class='pos-' + sorted[0])= sorted.join('/')
 
 //- Status badge for trade proposals and other statuses
 //- Usage: +statusBadge('pending') or +statusBadge(proposal.status)
@@ -160,7 +165,7 @@ mixin playerTable(playersByPosition, positionKeys, opts)
 	- var cols = opts.columns || []
 	div.player-table
 		each posKey in positionKeys
-			- var groupPosClass = 'pos-' + posKey
+			- var groupPosClass = 'pos-' + posKey.split('/')[0]
 			div.player-table__group(class=groupPosClass)
 				table.player-table__body
 					tr.player-table__group-header
