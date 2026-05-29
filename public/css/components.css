@@ -906,9 +906,8 @@ a.player-chip:hover {
 }
 
 .player-table__name {
-	flex: 1;
-	min-width: 0;
 	font-weight: 500;
+	vertical-align: middle;
 }
 
 .player-table__name a {
