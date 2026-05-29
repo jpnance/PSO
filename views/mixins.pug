@@ -158,7 +158,8 @@ mixin playerChip(opts)
 //- Usage: +playerTable(playersByPosition, positionKeys, options?)
 //- Options: { columns: ['salary', 'contract'] } — fields to show as aligned columns
 mixin playerTableGroup(posKey, players, cols, dataAttrs)
-	- var groupPosClass = 'pos-' + posKey.split('/')[0]
+	- var isRfa = posKey === 'RFA'
+	- var groupPosClass = isRfa ? 'player-table__group--rfa' : 'pos-' + posKey.split('/')[0]
 	div.player-table__group(class=groupPosClass)
 		table.player-table__body
 			tr.player-table__group-header
@@ -174,7 +175,7 @@ mixin playerTableGroup(posKey, players, cols, dataAttrs)
 							a(href='/players/' + player.slug)= player.name
 						else
 							= player.name
-						if player.positions && player.positions.length > 1
+						if isRfa || (player.positions && player.positions.length > 1)
 							| 
 							+positionBadge(player.positions)
 					each col in cols

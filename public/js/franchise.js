@@ -8,6 +8,10 @@
 	var currentSeasonBtn = document.querySelector('.franchise-roster__filters button.btn-primary');
 	var currentSeason = currentSeasonBtn ? currentSeasonBtn.dataset.filter : null;
 
+	function isRfaRow(row) {
+		return row.closest('.player-table__group--rfa') !== null;
+	}
+
 	function applyFilter(filter) {
 		if (filter === currentSeason) {
 			rows.forEach(function(row) { row.classList.remove('is-dimmed'); });
@@ -15,6 +19,8 @@
 		}
 
 		rows.forEach(function(row) {
+			if (isRfaRow(row)) return;
+
 			var endYear = parseInt(row.dataset.endyear, 10);
 			var isExpiring = row.dataset.expiring === 'true';
 
@@ -48,7 +54,7 @@
 
 	function applySalarySort() {
 		document.querySelectorAll('.player-table__body').forEach(function(tbody) {
-			var headerRow = tbody.querySelector('.player-table__group-header');
+			if (tbody.closest('.player-table__group--rfa')) return;
 			var dataRows = Array.from(tbody.querySelectorAll('.player-table__row'));
 			if (dataRows.length === 0) return;
 
@@ -66,6 +72,7 @@
 
 	function applyNameSort() {
 		document.querySelectorAll('.player-table__body').forEach(function(tbody) {
+			if (tbody.closest('.player-table__group--rfa')) return;
 			var dataRows = Array.from(tbody.querySelectorAll('.player-table__row'));
 			if (dataRows.length === 0) return;
 

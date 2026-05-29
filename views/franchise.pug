@@ -205,6 +205,17 @@ block content
 							return a.name.localeCompare(b.name);
 						});
 					});
+					if (showRfa) {
+						rosterByPosition['RFA'] = franchise.rfaRights.slice().sort(function(a, b) {
+							var posA = a.positions && a.positions[0] ? rosterOrder.indexOf(a.positions[0]) : 99;
+							var posB = b.positions && b.positions[0] ? rosterOrder.indexOf(b.positions[0]) : 99;
+							if (posA === -1) posA = 99;
+							if (posB === -1) posB = 99;
+							if (posA !== posB) return posA - posB;
+							return a.name.localeCompare(b.name);
+						});
+						positionKeys.push('RFA');
+					}
 
 				div.card.mb-4#rosterCard
 					div.card-header.d-flex.justify-content-between.align-items-center
@@ -223,21 +234,6 @@ block content
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
 									i.fa.fa-dollar
 						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring'] })
-						if showRfa
-							div.player-table.player-table--rfa.mt-3
-								div.player-table__group
-									table.player-table__body
-										tr.player-table__group-header
-											th RFA
-										each player in franchise.rfaRights
-											tr.player-table__row
-												td.player-table__name
-													if player.slug
-														a(href='/players/' + player.slug)= player.name
-													else
-														= player.name
-													| 
-													+positionBadge(player.positions)
 			
 			div.col-lg-6
 				div.card.mb-4
