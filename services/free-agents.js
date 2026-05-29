@@ -14,13 +14,36 @@ function getPositionIndex(positions) {
 	return 99;
 }
 
-// Get position key for grouping (e.g., "RB", "WR", "RB/WR")
-function getPositionKey(positions) {
-	if (!positions || positions.length === 0) return 'Unknown';
-	var sorted = positions.slice().sort(function(a, b) {
-		return positionOrder.indexOf(a) - positionOrder.indexOf(b);
+function groupByPosition(players) {
+	var playersByPosition = {};
+	var positionKeys = [];
+
+	players.forEach(function(player) {
+		var positions = player.positions && player.positions.length ? player.positions : ['Unknown'];
+		positions.forEach(function(pos) {
+			if (!playersByPosition[pos]) {
+				playersByPosition[pos] = [];
+				positionKeys.push(pos);
+			}
+			playersByPosition[pos].push(player);
+		});
 	});
-	return sorted.join('/');
+
+	positionKeys.sort(function(a, b) {
+		var idxA = positionOrder.indexOf(a);
+		var idxB = positionOrder.indexOf(b);
+		if (idxA === -1) idxA = 99;
+		if (idxB === -1) idxB = 99;
+		return idxA - idxB;
+	});
+
+	positionKeys.forEach(function(key) {
+		playersByPosition[key].sort(function(a, b) {
+			return a.name.localeCompare(b.name);
+		});
+	});
+
+	return { playersByPosition: playersByPosition, positionKeys: positionKeys };
 }
 
 exports.rfa = async function(request, response) {
@@ -67,35 +90,12 @@ exports.rfa = async function(request, response) {
 				return a.name.localeCompare(b.name);
 			});
 		
-		// Group by position
-		var playersByPosition = {};
-		var positionKeys = [];
-		rfaPlayers.forEach(function(player) {
-			var key = getPositionKey(player.positions);
-			if (!playersByPosition[key]) {
-				playersByPosition[key] = [];
-				positionKeys.push(key);
-			}
-			playersByPosition[key].push(player);
-		});
-		
-		// Sort position keys by standard order
-		positionKeys.sort(function(a, b) {
-			var primaryA = a.split('/')[0];
-			var primaryB = b.split('/')[0];
-			var idxA = positionOrder.indexOf(primaryA);
-			var idxB = positionOrder.indexOf(primaryB);
-			if (idxA === -1) idxA = 99;
-			if (idxB === -1) idxB = 99;
-			if (idxA !== idxB) return idxA - idxB;
-			// Single positions before dual
-			return a.length - b.length;
-		});
+		var grouped = groupByPosition(rfaPlayers);
 		
 		response.render('rfa', {
 			activePage: 'rfa',
-			playersByPosition: playersByPosition,
-			positionKeys: positionKeys
+			playersByPosition: grouped.playersByPosition,
+			positionKeys: grouped.positionKeys
 		});
 	} catch (err) {
 		console.error('Error loading RFA list:', err);
@@ -215,33 +215,12 @@ exports.ufa = async function(request, response) {
 				return a.name.localeCompare(b.name);
 			});
 
-		// Group by position
-		var playersByPosition = {};
-		var positionKeys = [];
-		ufaPlayers.forEach(function(player) {
-			var key = getPositionKey(player.positions);
-			if (!playersByPosition[key]) {
-				playersByPosition[key] = [];
-				positionKeys.push(key);
-			}
-			playersByPosition[key].push(player);
-		});
-
-		positionKeys.sort(function(a, b) {
-			var primaryA = a.split('/')[0];
-			var primaryB = b.split('/')[0];
-			var idxA = positionOrder.indexOf(primaryA);
-			var idxB = positionOrder.indexOf(primaryB);
-			if (idxA === -1) idxA = 99;
-			if (idxB === -1) idxB = 99;
-			if (idxA !== idxB) return idxA - idxB;
-			return a.length - b.length;
-		});
+		var grouped = groupByPosition(ufaPlayers);
 
 		response.render('ufa', {
 			activePage: 'ufa',
-			playersByPosition: playersByPosition,
-			positionKeys: positionKeys,
+			playersByPosition: grouped.playersByPosition,
+			positionKeys: grouped.positionKeys,
 			ufaSeason: ufaSeason
 		});
 	} catch (err) {

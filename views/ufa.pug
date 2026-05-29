@@ -20,7 +20,6 @@ block content
 		if positionKeys.length === 0
 			p.text-muted No unrestricted free agents at this time.
 		else
-			each posKey in positionKeys
-				div.player-chip-grid.player-chip-grid--constrained.mb-3
-					each player in playersByPosition[posKey]
-						+playerChip({ name: player.name, positions: player.positions, href: '/players/' + player.slug })
+			div.row
+				div.col-md-8.col-lg-6.col-xl-4
+					+playerTable(playersByPosition, positionKeys)
