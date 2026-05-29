@@ -1,5 +1,24 @@
 /* Franchise Page Styles */
 
+.franchise-roster__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.franchise-roster__filters,
+.franchise-roster__sorts {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.player-table__row.is-dimmed {
+    opacity: 0.2;
+}
+
 .franchise-roster-cards__filters {
     display: flex;
     gap: 0.25rem;

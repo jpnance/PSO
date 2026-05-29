@@ -160,28 +160,49 @@ mixin playerChip(opts)
 //- Player table - position-grouped player list in colored containers
 //- Usage: +playerTable(playersByPosition, positionKeys, options?)
 //- Options: { columns: ['salary', 'contract'] } — fields to show as aligned columns
+mixin playerTableGroup(posKey, players, cols, dataAttrs)
+	- var groupPosClass = 'pos-' + posKey.split('/')[0]
+	div.player-table__group(class=groupPosClass)
+		table.player-table__body
+			tr.player-table__group-header
+				th(colspan=1 + cols.length)= posKey
+			each player in players
+				- var attrs = {}
+				if dataAttrs
+					each attr in dataAttrs
+						- attrs['data-' + attr] = player[attr]
+				tr.player-table__row&attributes(attrs)
+					td.player-table__name
+						if player.slug
+							a(href='/players/' + player.slug)= player.name
+						else
+							= player.name
+						if player.positions && player.positions.length > 1
+							| 
+							+positionBadge(player.positions)
+					each col in cols
+						td.player-table__detail(class='player-table__detail--' + col)= player[col]
+
 mixin playerTable(playersByPosition, positionKeys, opts)
 	- opts = opts || {}
 	- var cols = opts.columns || []
-	div.player-table
-		each posKey in positionKeys
-			- var groupPosClass = 'pos-' + posKey.split('/')[0]
-			div.player-table__group(class=groupPosClass)
-				table.player-table__body
-					tr.player-table__group-header
-						th(colspan=1 + cols.length)= posKey
-					each player in playersByPosition[posKey]
-						tr.player-table__row
-							td.player-table__name
-								if player.slug
-									a(href='/players/' + player.slug)= player.name
-								else
-									= player.name
-								if player.positions && player.positions.length > 1
-									| 
-									+positionBadge(player.positions)
-							each col in cols
-								td.player-table__detail(class='player-table__detail--' + col)= player[col]
+	- var dataAttrs = opts.dataAttrs || null
+	if opts.twoCol
+		div.row
+			div.col-md-6
+				div.player-table
+					each posKey, i in positionKeys
+						if i % 2 === 0
+							+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs)
+			div.col-md-6
+				div.player-table
+					each posKey, i in positionKeys
+						if i % 2 === 1
+							+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs)
+	else
+		div.player-table
+			each posKey in positionKeys
+				+playerTableGroup(posKey, playersByPosition[posKey], cols, dataAttrs)
 
 //- Alert banner with icon as bullet point
 //- Usage: +alertBanner('warning', 'fa-refresh', 'Simple message')

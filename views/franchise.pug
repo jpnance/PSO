@@ -173,110 +173,56 @@ block content
 	div.container.py-4
 		
 		div.row
-			div.col-lg-8
+			div.col-lg-6
 				-
-					// Pre-group roster by position
 					var rosterByPosition = {};
 					var positionKeys = [];
+					var rosterOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 					franchise.roster.forEach(function(player) {
-						var key = getPositionKey(player);
-						if (!rosterByPosition[key]) {
-							rosterByPosition[key] = [];
-							positionKeys.push(key);
-						}
-						rosterByPosition[key].push(player);
+						var positions = player.positions && player.positions.length ? player.positions : ['Unknown'];
+						player.expiring = (Number(player.endYear) === Number(currentSeason)) ? 'true' : 'false';
+						player.salary = formatMoney(player.salary);
+						player.contract = formatContractYears(player.startYear, player.endYear);
+						positions.forEach(function(pos) {
+							if (!rosterByPosition[pos]) {
+								rosterByPosition[pos] = [];
+								positionKeys.push(pos);
+							}
+							rosterByPosition[pos].push(player);
+						});
 					});
-					// Sort position keys: primary position first, then single before dual
 					positionKeys.sort(function(a, b) {
-						var partsA = a.split('/');
-						var partsB = b.split('/');
-						var primaryIdxA = POSITION_ORDER.indexOf(partsA[0]);
-						var primaryIdxB = POSITION_ORDER.indexOf(partsB[0]);
-						if (primaryIdxA === -1) primaryIdxA = 999;
-						if (primaryIdxB === -1) primaryIdxB = 999;
-						if (primaryIdxA !== primaryIdxB) return primaryIdxA - primaryIdxB;
-						// Same primary - single position comes before dual
-						var secondaryIdxA = partsA[1] ? POSITION_ORDER.indexOf(partsA[1]) : -1;
-						var secondaryIdxB = partsB[1] ? POSITION_ORDER.indexOf(partsB[1]) : -1;
-						return secondaryIdxA - secondaryIdxB;
+						var idxA = rosterOrder.indexOf(a);
+						var idxB = rosterOrder.indexOf(b);
+						if (idxA === -1) idxA = 99;
+						if (idxB === -1) idxB = 99;
+						return idxA - idxB;
 					});
-				
+					positionKeys.forEach(function(key) {
+						rosterByPosition[key].sort(function(a, b) {
+							return a.name.localeCompare(b.name);
+						});
+					});
+
 				div.card.mb-4#rosterCard
 					div.card-header.d-flex.justify-content-between.align-items-center
 						span Roster
 						span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
 					div.card-body#rosterCardBody
-						div.franchise-roster-cards__toolbar.mb-3
-							div.franchise-roster-cards__filters
+						div.franchise-roster__toolbar.mb-3
+							div.franchise-roster__filters
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
 								button.btn.btn-sm.btn-primary(type='button' data-filter=currentSeason)= currentSeason
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 1)= currentSeason + 1
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter=currentSeason + 2)= currentSeason + 2
-							if canMarkForCut
-								button.btn.btn-sm.btn-outline-secondary#manageToggle
-									i.fa.fa-scissors.mr-1
-									span.manage-label Manage
-						each posKey in positionKeys
-							div.franchise-roster-cards__position-group(data-position=posKey)
-								div.player-chip-grid
-									each player in rosterByPosition[posKey]
-										- var isExpiring = Number(player.endYear) === Number(currentSeason)
-										- var buyout = player.salary - player.recoverable
-										- var detailText = formatMoney(player.salary) + ' · ' + formatContractYears(player.startYear, player.endYear)
-										- var cutClass = (isOwner && player.markedForCut) ? 'player-chip-wrapper--marked-for-cut' : ''
-										- var posClass = player.positions && player.positions.length ? 'pos-' + sortedPositions(player.positions)[0] : ''
-										div.player-chip-wrapper(class=cutClass data-player-id=player._id data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false' data-recoverable=player.recoverable data-buyout=buyout data-marked-for-cut=player.markedForCut ? 'true' : 'false')
-											a.player-chip(href='/players/' + player.slug class=posClass)
-												div.player-chip__content
-													div.player-chip__name= player.name
-													div.player-chip__detail
-														span= detailText
-														if isOwner && player.markedForCut
-															span.player-chip__recoverable= '+' + formatMoney(player.recoverable)
-												+positionBadge(player.positions)
-												if canMarkForCut
-													button.player-chip__cut-toggle(type='button' title=player.markedForCut ? 'Unmark for cut' : 'Mark for cut' class=player.markedForCut ? 'player-chip__cut-toggle--active' : '')
-														i.fa.fa-scissors
-						
-						//- OLD ROSTER CARDS (commented out for reference)
-						//- each posKey in positionKeys
-						//-   div.franchise-roster-cards__position-group(data-position=posKey)
-						//-     div.franchise-roster-cards__grid
-						//-       each player in rosterByPosition[posKey]
-						//-         - var posClass = 'pos-' + posKey.split('/')[0]
-						//-         - var isExpiring = Number(player.endYear) === Number(currentSeason)
-						//-         - var buyout = player.salary - player.recoverable
-						//-         div.franchise-roster-cards__card(class=posClass data-start-year=player.startYear data-end-year=player.endYear data-expiring=isExpiring ? 'true' : 'false' data-recoverable=player.recoverable data-buyout=buyout)
-						//-           div.franchise-roster-cards__content
-						//-             a.franchise-roster-cards__name(href='/players/' + player._id)= player.name
-						//-             div.franchise-roster-cards__details
-						//-               span.franchise-roster-cards__salary= formatMoney(player.salary)
-						//-               span.franchise-roster-cards__separator ·
-						//-               span.franchise-roster-cards__contract= formatContractYears(player.startYear, player.endYear)
-						//-           div.franchise-roster-cards__manage-details.text-muted
-						//-             if isOwner && canCut
-						//-               - var buyout1 = player.recoverable1 !== null ? player.salary - player.recoverable1 : null
-						//-               - var buyout2 = player.recoverable2 !== null ? player.salary - player.recoverable2 : null
-						//-               button.franchise-roster-cards__action(type='button' title='Cut player' data-player-id=player._id data-player-name=player.name data-salary=player.salary data-buyout0=buyout data-buyout1=buyout1 data-buyout2=buyout2 data-recoverable0=player.recoverable data-recoverable1=player.recoverable1 data-recoverable2=player.recoverable2 data-end-year=player.endYear)
-						//-                 i.fa.fa-scissors
-						//-             span= '+' + formatMoney(player.recoverable)
-						//-               if player.recoverable1 !== null
-						//-                 span  / 
-						//-                 span= '+' + formatMoney(player.recoverable1)
-						//-               if player.recoverable2 !== null
-						//-                 span  / 
-						//-                 span= '+' + formatMoney(player.recoverable2)
-						//-           div.franchise-roster-cards__badge
-						//-             +positionBadge(player.positions)
-						
-						- var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season']
-						if offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0
-							div.franchise-roster-cards__rfa-section
-								div.player-chip-grid
-									each player in franchise.rfaRights
-										+playerChip({ name: player.name, positions: player.positions, detail: 'RFA Rights', variant: 'rfa', href: '/players/' + player.slug })
+							div.franchise-roster__sorts
+								button.btn.btn-sm.btn-primary(type='button' data-sort='name')
+									i.fa.fa-sort-alpha-asc
+								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
+									i.fa.fa-dollar
+						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring'] })
 			
-			div.col-lg-4
+			div.col-lg-6
 				div.card.mb-4
 					div.card-header Budget
 					- var b = franchise.budgets
