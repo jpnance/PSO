@@ -15,7 +15,7 @@
     flex-wrap: wrap;
 }
 
-.player-table__row.is-dimmed {
+.player-table__row.is-dimmed > td > * {
     opacity: 0.2;
 }
 
