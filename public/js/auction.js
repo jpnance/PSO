@@ -287,7 +287,7 @@ function connectToWebSocket() {
 }
 
 function reconnectIfNeeded() {
-	if (isReconnecting) {
+	if (!socket || isReconnecting) {
 		return;
 	}
 
