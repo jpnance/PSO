@@ -185,10 +185,23 @@ else {
 }
 
 var ws = require('ws');
-var wss = new ws.WebSocketServer({ server: server });
-
 var auction = require('./services/auction');
-wss.on('connection', auction.handleConnection);
+
+var auctionWss = new ws.WebSocketServer({ noServer: true });
+auctionWss.on('connection', auction.handleConnection);
+
+server.on('upgrade', function(request, socket, head) {
+	var pathname = new URL(request.url, 'https://localhost').pathname;
+
+	if (pathname === '/ws/auction') {
+		auctionWss.handleUpgrade(request, socket, head, function(ws) {
+			auctionWss.emit('connection', ws, request);
+		});
+	}
+	else {
+		socket.destroy();
+	}
+});
 
 // Graceful shutdown
 process.on('SIGTERM', () => {

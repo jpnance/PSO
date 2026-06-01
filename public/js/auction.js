@@ -258,7 +258,7 @@ var redrawAuctionClient = function(auctionData, lag) {
 function connectToWebSocket() {
 	var dialog = $('dialog')[0];
 
-	socket = new WebSocket(webSocketUrl);
+	socket = new WebSocket(webSocketUrl + '/ws/auction');
 	socket.onmessage = handleMessage;
 
 	socket.onopen = function() {
