@@ -25,7 +25,14 @@
 - [x] Cuts screen - ask owners for their cuts ahead of cut day
 - [ ] Cut day processing - admin button to execute all marked cuts at once
 - [ ] Contract setting screen - ask owners to set contracts ahead of contract day
-- [ ] Rookie draft client - allow owners to make their own picks
+- [ ] Rookie draft entry tool — commish tool to record draft picks as they happen
+  - Mockup exists at `/draft/live` (simulated in-progress state with real 2026 data)
+  - Step through picks in order, search/filter rookies, click to assign
+  - Salary auto-calculated from position + round (logic already in `services/draft.js`)
+  - Creates `draft-select` transactions and marks `Pick` as `used`
+  - "Pass" button for skipped picks, undo for mistakes
+  - Mobile drawer exists in mockup but not critical for commish tool (laptop use)
+  - Stretch goal: promote to owner-facing live draft client later (would need auth, WebSocket/polling, mobile-first UX)
 - [ ] FAAB implementation (free agent auction bidding)
 
 ### Integrations
