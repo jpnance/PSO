@@ -86,9 +86,9 @@ block content
 						if proposal.status === 'executed'
 							+alertBanner('success', 'fa-check').mb-3
 								| This trade has been executed.
-								if proposal.executedTransactionId
+								if executedTradeId
 									|  
-									a(href='/trades/' + proposal.executedTransactionId) View in trade history →
+									a(href='/trades/' + executedTradeId) View in trade history →
 						
 						each party in parties
 							+tradeParty(party)

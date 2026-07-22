@@ -1012,8 +1012,18 @@ async function viewProposal(request, response) {
 		// Dev mode: allow forcing the share screen via query param
 		var forceShowShareScreen = process.env.NODE_ENV !== 'production' && request.query['test-share'] === '1';
 		
+		// For executed proposals, look up the trade ID for the history link
+		var executedTradeId = null;
+		if (proposal.status === 'executed' && proposal.executedTransactionId) {
+			var transaction = await Transaction.findById(proposal.executedTransactionId, 'tradeId');
+			if (transaction) {
+				executedTradeId = transaction.tradeId;
+			}
+		}
+		
 		response.render('proposal', {
 			proposal: proposal,
+			executedTradeId: executedTradeId,
 			parties: partiesDisplay,
 			isCreator: isCreator,
 			isParty: isParty || forceShowShareScreen,
