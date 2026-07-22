@@ -293,9 +293,8 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 				var pickKey = originalFranchiseId ? getPickKey(season, round, originalFranchiseId) : null;
 				var pickDoc = pickKey ? pickLookup[pickKey] : null;
 				
-				// Get pick number if it exists (works for both 'used' and 'passed' picks)
-				var pickHasNumber = pickDoc && pickDoc.pickNumber && (pickDoc.status === 'used' || pickDoc.status === 'passed');
-				var pickNumber = pickHasNumber ? pickDoc.pickNumber : null;
+				// Get pick number if it exists (draft order is known)
+				var pickNumber = pickDoc && pickDoc.pickNumber ? pickDoc.pickNumber : null;
 				
 				// Determine if pick number was known at trade time
 				// (trade happened in same year as the draft AND pick number is set)
