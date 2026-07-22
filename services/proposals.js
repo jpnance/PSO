@@ -12,6 +12,7 @@ var transactionService = require('./transaction');
 var budgetHelper = require('../helpers/budget');
 var notifications = require('../helpers/notifications');
 var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
+var { formatPickMain } = require('../helpers/formatPick');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -913,12 +914,10 @@ async function viewProposal(request, response) {
 			for (var j = 0; j < pickData.length; j++) {
 				var pick = pickData[j].pick;
 				var origin = pickData[j].origin;
-				var pickMain = ordinal(pick.round) + ' round pick';
-				var pickContext = 'in ' + pick.season + ' (' + origin + ')';
 				assets.push({
 					type: 'pick',
-					pickMain: pickMain,
-					pickContext: pickContext,
+					pickMain: formatPickMain(pick),
+					pickContext: 'in ' + pick.season + ' (' + origin + ')',
 					round: pick.round,
 					season: pick.season,
 					pickNumber: pick.pickNumber || null
@@ -1486,7 +1485,7 @@ async function listProposalsForApproval(request, response) {
 					var origin = pickData[k].origin;
 					assets.push({
 						type: 'pick',
-						pickMain: ordinal(pick.round) + ' round pick',
+						pickMain: formatPickMain(pick),
 						pickContext: 'in ' + pick.season + ' (' + origin + ')'
 					});
 				}

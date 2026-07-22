@@ -16,6 +16,19 @@ function formatPickNumber(pickNumber, teamsPerRound) {
 }
 
 /**
+ * Format just the main pick text (without season/origin context)
+ * @param {Object} pick - Pick object with round, pickNumber, season
+ * @returns {string} "Pick 3.11" if pickNumber known, otherwise "3rd round pick"
+ */
+function formatPickMain(pick) {
+	if (pick.pickNumber) {
+		var teamsPerRound = pick.season <= 2011 ? 10 : 12;
+		return 'Pick ' + formatPickNumber(pick.pickNumber, teamsPerRound);
+	}
+	return formatRound(pick.round) + ' round pick';
+}
+
+/**
  * Format a pick for display
  * @param {Object} pick - Pick object with round, pickNumber, season, origin/fromName
  * @param {Object} options - Optional settings
@@ -46,5 +59,6 @@ function formatPickDisplay(pick, options) {
 module.exports = {
 	formatRound: formatRound,
 	formatPickNumber: formatPickNumber,
+	formatPickMain: formatPickMain,
 	formatPickDisplay: formatPickDisplay
 };
