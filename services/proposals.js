@@ -1303,7 +1303,7 @@ async function acceptProposal(request, response) {
 		// If trade is now fully accepted, alert the commissioner
 		if (proposal.status === 'accepted') {
 			notifications.alertCommissioner(
-				'Trade accepted! https://thedynastyleague.com/proposals/' + proposal.slug
+				'Trade accepted! https://thedynastyleague.com/proposals/' + proposal.publicId
 			);
 		}
 		
