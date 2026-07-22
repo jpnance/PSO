@@ -1396,8 +1396,7 @@ async function listProposalsForApproval(request, response) {
 		var hardCapActive = config ? config.isHardCapActive() : false;
 		
 		var proposals = await Proposal.find({ status: 'accepted' })
-			.populate('createdByPersonId', 'name')
-			.sort({ createdAt: -1 });
+			.populate('createdByPersonId', 'name');
 		
 		// Build display data for each proposal (same format as viewProposal)
 		var proposalsDisplay = [];
@@ -1553,6 +1552,13 @@ async function listProposalsForApproval(request, response) {
 				budgetImpact: budgetImpactData
 			});
 		}
+		
+		// Sort by acceptance time (chronological - oldest first)
+		proposalsDisplay.sort(function(a, b) {
+			if (!a.finalAcceptedAt) return 1;
+			if (!b.finalAcceptedAt) return -1;
+			return a.finalAcceptedAt - b.finalAcceptedAt;
+		});
 		
 		response.render('admin-proposals', {
 			proposals: proposalsDisplay,
