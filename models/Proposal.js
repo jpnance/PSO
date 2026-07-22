@@ -119,4 +119,16 @@ proposalSchema.methods.isExpired = function() {
 	return new Date() > this.expiresAt;
 };
 
+// Get when the final party accepted (latest acceptedAt across all parties)
+proposalSchema.methods.getFinalAcceptedAt = function() {
+	var finalAcceptedAt = null;
+	for (var i = 0; i < this.parties.length; i++) {
+		var partyAcceptedAt = this.parties[i].acceptedAt;
+		if (partyAcceptedAt && (!finalAcceptedAt || partyAcceptedAt > finalAcceptedAt)) {
+			finalAcceptedAt = partyAcceptedAt;
+		}
+	}
+	return finalAcceptedAt;
+};
+
 module.exports = mongoose.model('Proposal', proposalSchema);

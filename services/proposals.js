@@ -1512,14 +1512,7 @@ async function listProposalsForApproval(request, response) {
 				});
 			}
 			
-			// Find when the final party accepted (latest acceptedAt)
-			var finalAcceptedAt = null;
-			for (var j = 0; j < proposal.parties.length; j++) {
-				var partyAcceptedAt = proposal.parties[j].acceptedAt;
-				if (partyAcceptedAt && (!finalAcceptedAt || partyAcceptedAt > finalAcceptedAt)) {
-					finalAcceptedAt = partyAcceptedAt;
-				}
-			}
+			var finalAcceptedAt = proposal.getFinalAcceptedAt();
 			
 			// Calculate budget impact
 			var deal = {};
@@ -1642,7 +1635,7 @@ async function approveProposal(request, response) {
 		
 		// Execute the trade
 		var result = await transactionService.processTrade({
-			timestamp: new Date(),
+			timestamp: proposal.getFinalAcceptedAt() || new Date(),
 			source: 'manual',
 			notes: request.body.notes || proposal.notes || null,
 			parties: parties
