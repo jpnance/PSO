@@ -1,3 +1,4 @@
 #!/bin/bash
 
 docker run --rm -v "$PWD":/app node:22-alpine sh -c "wget -O /app/public/data/sleeper-data.json https://api.sleeper.app/v1/players/nfl"
+docker compose run --rm web node data/maintenance/sync-players.js
