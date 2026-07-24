@@ -1027,10 +1027,48 @@ async function processDraftPick(details) {
 	pick.transactionId = transaction._id;
 	await pick.save();
 	
+	// Create a contract (term set later on Contract Day)
+	await Contract.create({
+		playerId: details.playerId,
+		franchiseId: details.franchiseId,
+		salary: salary,
+		startYear: pick.season,
+		endYear: null
+	});
+	
 	return {
 		success: true,
 		transaction: transaction
 	};
+}
+
+/**
+ * Process a draft pass (owner declines to pick).
+ * Creates a draft-pass transaction and marks the Pick as passed.
+ */
+async function processDraftPass(details) {
+	var pick = await Pick.findById(details.pickId);
+	if (!pick) {
+		return { success: false, errors: ['Pick not found: ' + details.pickId] };
+	}
+	
+	if (pick.status !== 'available') {
+		return { success: false, errors: ['Pick is not available (status: ' + pick.status + ')'] };
+	}
+	
+	var transaction = await Transaction.create({
+		type: 'draft-pass',
+		timestamp: details.timestamp || new Date(),
+		source: details.source || 'manual',
+		franchiseId: pick.currentFranchiseId,
+		pickId: pick._id
+	});
+	
+	pick.status = 'passed';
+	pick.transactionId = transaction._id;
+	await pick.save();
+	
+	return { success: true, transaction: transaction };
 }
 
 module.exports = {
@@ -1038,6 +1076,7 @@ module.exports = {
 	validateTrade: validateTrade,
 	processCut: processCut,
 	processDraftPick: processDraftPick,
+	processDraftPass: processDraftPass,
 	validateBudgetImpact: validateBudgetImpact,
 	computeBuyOutForSeason: computeBuyOutForSeason,
 	computeRecoverable: computeRecoverable,

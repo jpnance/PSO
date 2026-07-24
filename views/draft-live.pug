@@ -1,0 +1,107 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Live Draft', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/rookies.css')
+	link(rel='stylesheet' href='/css/draft-live.css')
+
+block content
+	div.container.py-4
+		div.page-header
+			h1 #{season} Rookie Draft
+
+		- var currentRound = currentPick ? currentPick.round : null
+		- var currentRoundRow = salaryTable.find(function(r) { return r.round === currentRound; })
+
+		if !currentPick
+			+alertBanner('success', 'fa-check-circle', 'All picks have been made. The draft is complete.')
+
+		else
+			if currentRoundRow
+				div.row
+					div.col-lg-7
+						div.draft-live__salary-reference
+							table.table.table-bordered.rookies-table
+								tbody
+									tr
+										td.rookies-table__round #{currentRoundRow.round}
+										each pos in positionOrder
+											td(class='pos-' + pos) #{formatMoney(currentRoundRow[pos])}
+
+			div.row
+				div.col-lg-7
+					div.draft-live__on-the-clock
+						div.draft-live__clock-header
+							span.draft-live__clock-owner #{currentPick.currentOwner}
+							span.draft-live__clock-header-right
+								span.draft-live__pick-display #{currentPick.pickDisplay}
+								span.draft-live__pick-number ##{currentPick.pickNumber}
+						div.draft-live__clock-body#draft-live-search-mode
+							div.draft-live__search-container
+								input#draft-live-search.draft-live__search-input(
+									type='text'
+									placeholder='Search for a rookie...'
+									autocomplete='off'
+								)
+								div#draft-live-results.draft-live__search-results
+							span.draft-live__or or
+							div.draft-live__pass-container
+								button#draft-live-pass.btn.btn-warning.btn-sm
+									i.fa.fa-forward
+									|  Pass
+						div#draft-live-confirm.d-none
+
+			input#draft-live-pick-id(type='hidden' value=currentPick._id)
+
+		div.row
+			div.col-lg-7
+				if completedPicks.length > 0
+					div.draft-live__log
+						table.data-table
+							thead
+								tr
+									th Pick
+									th Player
+									th.text-center Pos
+									th Franchise
+									th.data-table__num Salary
+							tbody
+								- var reversed = completedPicks.slice().reverse()
+								- var lastRound = null
+								each pick in reversed
+									if lastRound !== null && pick.round !== lastRound
+										tr.draft-live__round-separator
+											td(colspan='5') Round #{pick.round}
+									- lastRound = pick.round
+									tr(class=(pick.status === 'passed' ? 'draft-live__row--passed' : ''))
+										td ##{pick.pickNumber}
+										td
+											if pick.status === 'passed'
+												em.text-muted Passed
+											else
+												| #{pick.playerName}
+										td.text-center
+											if pick.positions
+												+positionBadge(pick.positions)
+										td
+											if pick.franchiseRosterId
+												a(href='/franchises/' + pick.franchiseRosterId) #{pick.currentOwner}
+											else
+												| #{pick.currentOwner}
+											if pick.fromOwner
+												span.text-muted  (from #{pick.fromOwner})
+										td.data-table__num
+											if pick.salary
+												| #{formatMoney(pick.salary)}
+
+block scripts
+	script.
+		var DRAFT_SEARCH_URL = '/admin/draft/live/search';
+		var DRAFT_SELECT_URL = '/admin/draft/live/select';
+		var DRAFT_PASS_URL = '/admin/draft/live/pass';
+		var DRAFT_SALARY_URL = '/admin/draft/live/salary';
+	script(src='/js/draft-live.js')

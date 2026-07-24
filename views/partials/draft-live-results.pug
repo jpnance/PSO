@@ -1,0 +1,14 @@
+include ../mixins
+
+each player in results
+	div.draft-live__result(data-player-id=player._id data-player-name=player.name data-player-positions=JSON.stringify(player.positions) data-player-team=(player.team || '') data-player-taken=(player.psoTeam ? '1' : '') class=(player.psoTeam ? 'draft-live__result--taken' : ''))
+		span.draft-live__result-name #{player.name}
+		if player.positions && player.positions.length > 0
+			+positionBadge(player.positions)
+		if player.team
+			span.draft-live__result-nfl-team #{player.team}
+		if player.psoTeam
+			span.draft-live__result-pso #{player.psoTeam}
+
+if results.length === 0
+	div.draft-live__no-results No rookies found

@@ -12,6 +12,7 @@ var adminCuts = require('./services/admin-cuts');
 var adminPeople = require('./services/admin-people');
 var sleeperImport = require('./services/sleeper-import');
 var draft = require('./services/draft');
+var draftLive = require('./services/draft-live');
 var trades = require('./services/trades');
 var proposals = require('./services/proposals');
 var calendar = require('./services/calendar');
@@ -157,5 +158,12 @@ module.exports = function(app) {
 	app.get('/admin/proposals', requireLogin, requireAdmin, proposals.listProposalsForApproval);
 	app.post('/admin/proposals/:id/approve', requireLogin, requireAdmin, proposals.approveProposal);
 	app.post('/admin/proposals/:id/reject', requireLogin, requireAdmin, proposals.adminRejectProposal);
+	
+	// Live draft (require login + admin)
+	app.get('/admin/draft/live', requireLogin, requireAdmin, draftLive.livePage);
+	app.get('/admin/draft/live/search', requireLogin, requireAdmin, noCache, draftLive.searchRookies);
+	app.get('/admin/draft/live/salary', requireLogin, requireAdmin, noCache, draftLive.previewSalary);
+	app.post('/admin/draft/live/select', requireLogin, requireAdmin, draftLive.selectPlayer);
+	app.post('/admin/draft/live/pass', requireLogin, requireAdmin, draftLive.passOnPick);
 	
 };

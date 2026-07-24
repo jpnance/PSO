@@ -1,0 +1,18 @@
+include ../mixins
+
+- var primaryPos = (player.positions && player.positions.length > 0) ? player.positions[0] : null
+div.draft-live__confirm-panel(class=primaryPos ? 'pos-' + primaryPos : '')
+	div.draft-live__selected-info
+		span.draft-live__selected-name #{player.name}
+		if player.positions && player.positions.length > 0
+			+positionBadge(player.positions)
+		if player.team
+			span.draft-live__selected-nfl-team #{player.team}
+		span.draft-live__selected-salary $#{salary}
+	div.draft-live__confirm-actions
+		button#draft-live-draft.btn.btn-success.btn-sm
+			i.fa.fa-check
+			|  Draft
+		button#draft-live-cancel.btn.btn-secondary.btn-sm
+			i.fa.fa-times
+			|  Cancel
