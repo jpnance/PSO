@@ -1,0 +1,692 @@
+/* Bottom Tab Bar Navigation */
+
+:root {
+    --topbar-height: 56px;
+    --bottombar-height: 60px;
+    
+    /* Charcoal Brown color scheme (same as old sidebar) */
+    --nav-bg: #3a3532;
+    --nav-hover: #4a4542;
+    --nav-active: #5a5552;
+    --nav-text: #c8c4c0;
+    --nav-text-hover: #fff;
+    --nav-heading: #8a8682;
+    --primary-accent: #dda060;
+}
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--topbar-height);
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-hover);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 1030;
+}
+
+.topbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.topbar__brand h1 {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.topbar__brand a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.topbar__brand a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.topbar__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.topbar__user {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--nav-text);
+    text-decoration: none;
+}
+
+.topbar__user:hover {
+    color: var(--nav-text-hover);
+    text-decoration: none;
+}
+
+.topbar__user-dropdown {
+    position: relative;
+}
+
+.topbar__user-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background-color: var(--nav-bg);
+    border: 1px solid var(--nav-active);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    min-width: 220px;
+    white-space: nowrap;
+    z-index: 1050;
+    overflow: hidden;
+}
+
+.topbar__user-menu.show {
+    display: block;
+}
+
+.topbar__user-menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: background-color 0.1s;
+}
+
+.topbar__user-menu a:hover {
+    background-color: var(--nav-hover);
+    color: var(--nav-text-hover);
+}
+
+.topbar__user-menu a i {
+    margin-right: 0.5rem;
+    width: 1rem;
+    text-align: center;
+}
+
+/* Search Bar */
+.topbar__search {
+    width: 100%;
+    position: relative;
+}
+
+.topbar__search input {
+    width: 100%;
+    padding: 0.4rem 0.75rem 0.4rem 2.25rem;
+    border: 1px solid var(--nav-active);
+    border-radius: 6px;
+    background-color: var(--nav-hover);
+    color: var(--nav-text-hover);
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+}
+
+.topbar__search input::placeholder {
+    color: var(--nav-text);
+}
+
+.topbar__search input:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    background-color: var(--nav-active);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+}
+
+.topbar__search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--nav-text);
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.topbar__search kbd {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--nav-active);
+    border: 1px solid var(--nav-heading);
+    border-radius: 3px;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.65rem;
+    color: var(--nav-text);
+    font-family: inherit;
+}
+
+.topbar__mobile-search-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    font-size: 1.1rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+.topbar__mobile-search-btn:hover {
+    color: var(--nav-text-hover);
+}
+
+/* Mobile Search Overlay */
+.topbar__mobile-search {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--topbar-height);
+    background-color: var(--nav-bg);
+    z-index: 1035;
+    padding: 0 0.75rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.topbar__mobile-search.show {
+    display: flex;
+}
+
+.topbar__mobile-search input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--nav-active);
+    border-radius: 6px;
+    background-color: var(--nav-hover);
+    color: var(--nav-text-hover);
+    font-size: 1rem;
+}
+
+.topbar__mobile-search input::placeholder {
+    color: var(--nav-text);
+}
+
+.topbar__mobile-search input:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+}
+
+.topbar__mobile-search-cancel {
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.topbar__mobile-search-cancel:hover {
+    color: var(--nav-text-hover);
+}
+
+.topbar__mobile-search .search-dropdown {
+    position: fixed;
+    top: var(--topbar-height);
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    border-radius: 0;
+    max-height: calc(100vh - var(--topbar-height) - var(--bottombar-height));
+}
+
+/* ============================================
+   BOTTOM TAB BAR
+   ============================================ */
+
+.bottombar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--bottombar-height);
+    background: #fff;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1030;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.bottombar__tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-size: 0.65rem;
+    gap: 0.25rem;
+    cursor: pointer;
+    transition: color 0.15s;
+    position: relative;
+    padding: 0;
+}
+
+.bottombar__tab:hover {
+    color: #495057;
+}
+
+.bottombar__tab--active {
+    color: var(--primary-accent);
+}
+
+.bottombar__tab--open {
+    color: var(--primary-accent);
+}
+
+.bottombar__tab i {
+    font-size: 1.25rem;
+}
+
+.bottombar__tab span {
+    font-weight: 500;
+}
+
+.bottombar__badge {
+    position: absolute;
+    top: 6px;
+    right: calc(50% - 18px);
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   BOTTOM SHEETS
+   ============================================ */
+
+.bottom-sheet__overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: var(--bottombar-height);
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1025;
+}
+
+.bottom-sheet__overlay.show {
+    display: block;
+}
+
+.bottom-sheet {
+    display: none;
+    position: fixed;
+    bottom: var(--bottombar-height);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1026;
+    max-height: 70vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    opacity: 0;
+    padding: 0.75rem 0;
+}
+
+.bottom-sheet.show {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Desktop: narrower sheets positioned above tabs */
+@media (min-width: 768px) {
+    .bottom-sheet {
+        left: auto;
+        right: auto;
+        width: 280px;
+        border-radius: 12px;
+        bottom: calc(var(--bottombar-height) + 8px);
+        max-height: 60vh;
+    }
+    
+    #franchisesSheet {
+        width: 360px;
+    }
+    
+    .bottom-sheet__overlay {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.bottom-sheet__link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #495057;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.1s;
+}
+
+.bottom-sheet__link:hover {
+    background: #f8f9fa;
+    text-decoration: none;
+    color: #212529;
+}
+
+.bottom-sheet__link i {
+    width: 1.5rem;
+    margin-right: 0.75rem;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.bottom-sheet__link .badge {
+    margin-left: auto;
+}
+
+.bottom-sheet__link .external-icon {
+    margin-left: auto;
+    font-size: 0.7rem;
+    opacity: 0.4;
+}
+
+.bottom-sheet__divider {
+    border-top: 1px solid var(--border-light);
+    margin: 0.5rem 0;
+}
+
+.bottom-sheet__section-label {
+    padding: 0.75rem 1rem 0.25rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* ============================================
+   FRANCHISE CHIPS (in bottom sheet)
+   ============================================ */
+
+.franchise-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    padding: 0 1rem;
+}
+
+.franchise-chip {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.65rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    color: #495057;
+    text-decoration: none;
+    transition: background-color 0.1s;
+}
+
+.franchise-chip:hover {
+    background: #e9ecef;
+    text-decoration: none;
+    color: #212529;
+}
+
+.franchise-chip--mine {
+    background: rgba(221, 160, 96, 0.15);
+    border: 1px solid rgba(221, 160, 96, 0.3);
+}
+
+.franchise-chip--mine:hover {
+    background: rgba(221, 160, 96, 0.25);
+}
+
+.franchise-chip__label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    line-height: 1.1;
+}
+
+.franchise-chip__name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #212529;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+    margin-top: var(--topbar-height);
+    margin-bottom: var(--bottombar-height);
+    min-height: calc(100vh - var(--topbar-height) - var(--bottombar-height));
+}
+
+/* ============================================
+   SEARCH DROPDOWN (in topbar)
+   ============================================ */
+
+.search-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.25rem;
+    background-color: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1050;
+}
+
+.search-dropdown.show {
+    display: block;
+}
+
+.search-result {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    color: #212529;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color 0.1s;
+    cursor: pointer;
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.search-result:hover,
+.search-result.focused {
+    background-color: #f8f9fa;
+    color: #212529;
+    text-decoration: none;
+}
+
+.search-result-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-result-name {
+    font-weight: 500;
+    color: #212529;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.search-result-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+.search-result-franchise {
+    color: #495057;
+    font-weight: 500;
+}
+
+.search-result-contract {
+    color: var(--text-muted);
+}
+
+.search-no-results {
+    padding: 0.75rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.search-result .position-badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+}
+
+.search-result-years {
+    color: var(--text-tertiary, #adb5bd);
+}
+
+.search-result-trade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-result-trade .search-result-name {
+    color: var(--asset-pick);
+    font-weight: 500;
+}
+
+.search-result-trade .search-result-date {
+    color: #adb5bd;
+    font-size: 0.75rem;
+}
+
+.search-result-assets {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-assets-full {
+    display: block;
+}
+
+.search-assets-short {
+    display: none;
+}
+
+.search-section-divider {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    background-color: #f8f9fa;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.search-result-more {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.search-result-more:last-child {
+    border-bottom: none;
+}
+
+.search-more-link {
+    color: var(--asset-pick);
+    text-decoration: none;
+}
+
+.search-more-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   MOBILE STYLES
+   ============================================ */
+
+@media (max-width: 767.98px) {
+    .topbar {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .topbar__search {
+        display: none;
+    }
+    
+    .topbar__mobile-search-btn {
+        display: flex;
+    }
+    
+    .search-assets-full {
+        display: none;
+    }
+    
+    .search-assets-short {
+        display: block;
+    }
+}
+
+@media (max-width: 400px) {
+    .bottombar__tab span {
+        font-size: 0.6rem;
+    }
+    
+    .bottombar__tab i {
+        font-size: 1.1rem;
+    }
+}

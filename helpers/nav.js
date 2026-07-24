@@ -1,10 +1,10 @@
 /**
  * Navigation structure helper
- * Builds the sidebar navigation as data, computing active/expanded states
+ * Builds the bottom tab bar navigation as data, computing active states
  */
 
 /**
- * Build the complete navigation structure
+ * Build the complete navigation structure for bottom tab bar
  * @param {Object} options
  * @param {string} options.activePage - Current page identifier
  * @param {number} options.currentRosterId - Roster ID of franchise being viewed (if any)
@@ -12,7 +12,7 @@
  * @param {Array} options.franchises - All franchises [{ rosterId, displayName }]
  * @param {boolean} options.isAdmin - Whether user is admin
  * @param {number} options.pendingApprovalCount - Number of proposals awaiting admin approval
- * @returns {Object} Navigation structure
+ * @returns {Object} Navigation structure with tabs array
  */
 function buildNav(options) {
 	var activePage = options.activePage || '';
@@ -27,138 +27,113 @@ function buildNav(options) {
 		return activePage === page;
 	}
 
-	// Helper to check if we're in an admin section
-	function isAdminPage() {
-		return activePage && activePage.startsWith('admin');
+	// Determine which tab should be highlighted based on current page
+	function getActiveTab() {
+		if (activePage === 'franchise' || activePage === 'franchises' || activePage === 'timeline') {
+			return 'franchises';
+		}
+		if (activePage === 'standings' || activePage === 'schedule' || activePage === 'jaguar' || activePage === 'h2h') {
+			return 'season';
+		}
+		if (activePage === 'trade-machine' || activePage === 'trades' || activePage === 'proposal') {
+			return 'transactions';
+		}
+		// Admin pages
+		if (activePage.startsWith('admin')) {
+			return 'admin';
+		}
+		// Everything else falls under "more" or no tab highlighted
+		if (activePage === 'draft' || activePage === 'rookies' || activePage === 'rfa' || activePage === 'ufa' ||
+			activePage === 'sunk' || activePage === 'calendar' || activePage === 'rules') {
+			return 'more';
+		}
+		return null;
 	}
 
-	// Helper to check if current franchise matches
-	function isFranchiseActive(rosterId) {
-		return currentRosterId && currentRosterId === rosterId;
-	}
+	var activeTab = getActiveTab();
 
-	// Build primary navigation (always visible)
-	var primary = [
+	// Build franchise list with user's franchise marked
+	var franchiseItems = franchises.map(function(f) {
+		return {
+			rosterId: f.rosterId,
+			displayName: f.displayName,
+			href: '/franchises/' + f.rosterId,
+			isUserFranchise: userFranchise && userFranchise.rosterId === f.rosterId
+		};
+	});
+
+	// Build the 4 tabs
+	var tabs = [
 		{
-			id: 'league',
-			label: 'League Overview',
-			icon: 'fa-home',
-			href: '/league',
-			active: isActive('league')
+			id: 'franchises',
+			label: 'Franchises',
+			icon: 'fa-shield',
+			active: activeTab === 'franchises',
+			items: franchiseItems,
+			extraLinks: [
+				{ label: 'Franchise Timeline', icon: 'fa-align-left', href: '/timeline' }
+			]
 		},
 		{
-			id: 'standings',
-			label: 'Standings',
+			id: 'season',
+			label: 'Season',
 			icon: 'fa-trophy',
-			href: '/standings',
-			active: isActive('standings')
+			active: activeTab === 'season',
+			items: [
+				{ label: 'Standings', icon: 'fa-list-ol', href: '/standings', active: isActive('standings') },
+				{ label: 'Schedule', icon: 'fa-calendar', href: '/schedule', active: isActive('schedule') },
+				{ label: 'Jaguar Chart', icon: 'fa-paw', href: '/jaguar', active: isActive('jaguar') },
+				{ label: 'Head-to-Head', icon: 'fa-users', href: '#', soon: true }
+			]
 		},
 		{
-			id: 'schedule',
-			label: 'Schedule',
-			icon: 'fa-calendar',
-			href: '/schedule',
-			active: isActive('schedule')
+			id: 'transactions',
+			label: 'Transactions',
+			icon: 'fa-exchange',
+			active: activeTab === 'transactions',
+			items: [
+				{ label: 'Trade Machine', icon: 'fa-exchange', href: '/trade-machine', active: isActive('trade-machine') },
+				{ label: 'Trade History', icon: 'fa-history', href: '/trades', active: isActive('trades') },
+				{ label: 'FAAB', icon: 'fa-gavel', href: '#', soon: true }
+			]
+		},
+		{
+			id: 'more',
+			label: 'More',
+			icon: 'fa-ellipsis-h',
+			active: activeTab === 'more',
+			hasNotification: isAdmin && pendingApprovalCount > 0,
+			sections: [
+				{
+					label: 'Offseason',
+					items: [
+						{ label: 'Rookie Draft', icon: 'fa-list-ol', href: '/draft', active: isActive('draft') },
+						{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
+						{ label: 'RFAs', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
+						{ label: 'UFAs', icon: 'fa-user-o', href: '/ufa', active: isActive('ufa') },
+						{ label: 'Free Agent Auction', icon: 'fa-gavel', href: '#', soon: true }
+					]
+				},
+				{
+					label: 'Tools & Reference',
+					items: [
+						{ label: 'Sunk Cost Calculator', icon: 'fa-calculator', href: '/sunk', active: isActive('sunk') },
+						{ label: 'Calendar', icon: 'fa-calendar-o', href: '/calendar', active: isActive('calendar') },
+						{ label: 'Rules', icon: 'fa-book', href: '/rules', active: isActive('rules') },
+						{ label: 'Blog', icon: 'fa-rss', href: 'https://thedynastyleague.wordpress.com/', external: true }
+					]
+				}
+			]
 		}
 	];
 
-	// Add "My Franchise" if user has one
-	if (userFranchise) {
-		primary.splice(1, 0, {
-			id: 'my-franchise',
-			label: 'My Franchise',
-			icon: 'fa-star',
-			href: '/franchises/' + userFranchise.rosterId,
-			active: isFranchiseActive(userFranchise.rosterId)
-		});
-	}
-
-	// Build sections (collapsible)
-	var sections = [];
-
-	// Franchises
-	sections.push({
-		id: 'franchises',
-		label: 'Franchises',
-		icon: 'fa-shield',
-		expanded: activePage === 'franchise' || activePage === 'franchises' || isActive('timeline'),
-		items: franchises.map(function(f) {
-			return {
-				rosterId: f.rosterId,
-				label: f.displayName,
-				href: '/franchises/' + f.rosterId,
-				active: isFranchiseActive(f.rosterId)
-			};
-		}).concat([
-			{ label: 'Franchise Timeline', icon: 'fa-align-left', href: '/timeline', active: isActive('timeline') }
-		]),
-		isFranchiseList: true
-	});
-
-	// Transactions
-	sections.push({
-		id: 'transactions',
-		label: 'Transactions',
-		icon: 'fa-exchange',
-		expanded: isActive('trade-machine') || isActive('trades'),
-		items: [
-			{ label: 'Trade Machine', icon: 'fa-exchange', href: '/trade-machine', active: isActive('trade-machine') },
-			{ label: 'Trade History', icon: 'fa-history', href: '/trades', active: isActive('trades') },
-			{ label: 'FAAB', icon: 'fa-gavel', href: '#', soon: true }
-		]
-	});
-
-	// Matchups & Results
-	sections.push({
-		id: 'matchups',
-		label: 'Matchups & Results',
-		icon: 'fa-trophy',
-		expanded: isActive('jaguar'),
-		items: [
-			{ label: 'Past Seasons', icon: 'fa-calendar-check-o', href: '#', soon: true },
-			{ label: 'Head-to-Head', icon: 'fa-users', href: '#', soon: true },
-			{ label: 'Jaguar Chart', icon: 'fa-paw', href: '/jaguar', active: isActive('jaguar') }
-		]
-	});
-
-	// Offseason
-	sections.push({
-		id: 'offseason',
-		label: 'Offseason',
-		icon: 'fa-list-ol',
-		expanded: isActive('rookies') || isActive('draft') || isActive('rfa') || isActive('ufa'),
-		items: [
-			{ label: 'Rookie Draft', icon: 'fa-list-ol', href: '/draft', active: isActive('draft') },
-			{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
-			{ label: 'RFAs', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
-			{ label: 'UFAs', icon: 'fa-user-o', href: '/ufa', active: isActive('ufa') },
-			{ label: 'Free Agent Auction', icon: 'fa-gavel', href: '#', soon: true }
-		]
-	});
-
-	// Tools & Reference
-	sections.push({
-		id: 'tools-reference',
-		label: 'Tools & Reference',
-		icon: 'fa-wrench',
-		expanded: isActive('simulator') || isActive('sunk') || isActive('calendar') || isActive('rules'),
-		items: [
-			{ label: 'Simulator', icon: 'fa-random', href: '#', soon: true },
-			{ label: 'Sunk Cost Calculator', icon: 'fa-calculator', href: '/sunk', active: isActive('sunk') },
-			{ label: 'Calendar', icon: 'fa-calendar-o', href: '/calendar', active: isActive('calendar') },
-			{ label: 'Rules', icon: 'fa-book', href: '/rules', active: isActive('rules') },
-			{ label: 'Blog', icon: 'fa-rss', href: 'https://thedynastyleague.wordpress.com/', external: true }
-		]
-	});
-
-	// Admin (only for admins)
+	// Add admin tab if user is admin
 	if (isAdmin) {
-		sections.push({
+		tabs.push({
 			id: 'admin',
 			label: 'Admin',
 			icon: 'fa-cog',
-			expanded: isAdminPage(),
-			isAdmin: true,
+			active: activeTab === 'admin',
 			hasNotification: pendingApprovalCount > 0,
 			items: [
 				{ label: 'Dashboard', icon: 'fa-tachometer', href: '/admin', active: isActive('admin') || isActive('admin-dashboard') },
@@ -171,8 +146,10 @@ function buildNav(options) {
 	}
 
 	return {
-		primary: primary,
-		sections: sections
+		tabs: tabs,
+		activeTab: activeTab,
+		userFranchise: userFranchise,
+		pendingApprovalCount: pendingApprovalCount
 	};
 }
 

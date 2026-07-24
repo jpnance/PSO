@@ -11,7 +11,7 @@ html
 		meta(property='og:type' content='website')
 		block og_meta
 			//- Default OG tags if not overridden
-			meta(property='og:title' content='Primetime Soap Operas: Extra Since ’08')
+			meta(property='og:title' content="Primetime Soap Operas: Extra Since '08")
 			meta(property='og:description' content='Everything about the greatest fantasy football league the world has ever known')
 			meta(property='og:image' content='https://thedynastyleague.com/images/og/the-gang-slop-og.jpg')
 		
@@ -27,7 +27,7 @@ html
 		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
 		link(rel='stylesheet' href='/css/design-tokens.css')
 		link(rel='stylesheet' href='/css/components.css')
-		link(rel='stylesheet' href='/css/sidebar.css')
+		link(rel='stylesheet' href='/css/bottombar.css')
 		link(rel='stylesheet' href='/css/positions.css')
 		block styles
 
@@ -44,36 +44,32 @@ html
 
 		//- Top Bar
 		header.topbar
-			div.topbar-brand
-				button.hamburger#sidebarToggle(type='button' aria-label='Toggle navigation' class=(pendingApprovalCount > 0 ? 'has-notification' : ''))
-					i.fa.fa-bars
-					if pendingApprovalCount > 0
-						span.hamburger-notification-dot
-				a(href='/' style='color: inherit; text-decoration: none;')
+			div.topbar__brand
+				a(href='/')
 					h1
 						span.d-none.d-md-inline Primetime Soap Operas
 						span.d-md-none PSO
 
 			//- Search Bar (desktop)
-			div.topbar-search#searchContainer
-				i.fa.fa-search.search-icon
+			div.topbar__search#searchContainer
+				i.fa.fa-search.topbar__search-icon
 				input#searchInput(type='text' placeholder='Search players, franchises, trades...' autocomplete='off')
 				kbd /
 
 			//- Right-side actions (mobile search + user menu)
-			div.topbar-actions
+			div.topbar__actions
 				//- Mobile search button
-				button.mobile-search-btn#mobileSearchBtn(type='button' aria-label='Search')
+				button.topbar__mobile-search-btn#mobileSearchBtn(type='button' aria-label='Search')
 					i.fa.fa-search
 
 				//- User menu
 				if user
-					div.topbar-user-dropdown
-						a.topbar-user(href='#' id='userDropdownToggle')
+					div.topbar__user-dropdown
+						a.topbar__user(href='#' id='userDropdownToggle')
 							i.fa.fa-user-circle
 							span.d-none.d-sm-inline #{user.name}
 							i.fa.fa-chevron-down(style='font-size: 0.7rem;')
-						div.topbar-user-menu#userDropdownMenu
+						div.topbar__user-menu#userDropdownMenu
 							a(href='/logout')
 								i.fa.fa-sign-out
 								| Log Out (This Device)
@@ -81,59 +77,14 @@ html
 								i.fa.fa-sign-out
 								| Log Out (All Devices)
 				else
-					a.topbar-user(href='/login')
+					a.topbar__user(href='/login')
 						i.fa.fa-sign-in.mr-2
 						| Log In
 
-		//- Sidebar Overlay (mobile)
-		div.sidebar-overlay#sidebarOverlay
-
-		//- Sidebar
-		nav.nav-sidebar#sidebar
-			div.sidebar-nav
-				//- Mobile Search (shown in sidebar on mobile)
-				div.sidebar-mobile-search.d-lg-none
-					div.mobile-search-wrapper
-						i.fa.fa-search
-						input#mobileSearchInput(type='text' placeholder='Search...')
-
-				//- Primary Section - Always Visible
-				div.sidebar-primary
-					each item in nav.primary
-						if item.href
-							a.sidebar-link(href=item.href class=(item.active ? 'active' : ''))
-								i.fa(class=item.icon)
-								= item.label
-								if item.soon
-									span.badge.badge-secondary Soon
-
-				//- Collapsible Sections
-				each section in nav.sections
-					div.sidebar-section(class=(section.isAdmin ? 'sidebar-admin' : ''))
-						button.sidebar-toggle(type='button' data-toggle='collapse' data-target='#' + section.id + 'Menu' aria-expanded=(section.expanded ? 'true' : 'false') class=(section.hasNotification ? 'has-notification' : ''))
-							i.fa(class=section.icon)
-							= section.label
-							if section.hasNotification
-								span.nav-notification-dot
-							i.fa.fa-chevron-down.toggle-icon
-						div(id=section.id + 'Menu' class=['collapse', section.expanded ? 'show' : '', 'sidebar-submenu', section.isFranchiseList ? 'franchise-list' : ''])
-							each item in section.items
-								a.sidebar-link(href=item.href class=(item.active ? 'active' : '') + (item.rosterId ? ' sidebar-link--franchise' : '') target=(item.external ? '_blank' : null))
-									if item.rosterId
-										- var word = numberToWord(item.rosterId)
-										- var capitalized = word.charAt(0).toUpperCase() + word.slice(1)
-										span.sidebar-link__franchise-name Franchise #{capitalized}
-										span.sidebar-link__regime= item.label
-									else
-										if item.icon
-											i.fa(class=item.icon)
-										= item.label
-										if item.badge
-											span.nav-notification-badge= item.badge
-										if item.soon
-											span.badge.badge-secondary Soon
-										if item.external
-											i.fa.fa-external-link.external-icon
+		//- Mobile Search Overlay
+		div.topbar__mobile-search#mobileSearchOverlay
+			input#mobileSearchInput(type='text' placeholder='Search...' autocomplete='off')
+			button.topbar__mobile-search-cancel#mobileSearchCancel Cancel
 
 		//- Main Content
 		main.main-content
@@ -144,46 +95,219 @@ html
 
 			block content
 
-		//- Sidebar JavaScript
+		//- Bottom Sheet Overlay
+		div.bottom-sheet__overlay#sheetOverlay
+
+		//- Bottom Sheets
+		//- Franchises Sheet
+		div.bottom-sheet#franchisesSheet
+			div.franchise-chip-grid
+				each tab in nav.tabs
+					if tab.id === 'franchises'
+						each franchise in tab.items
+							- var word = numberToWord(franchise.rosterId)
+							- var capitalized = word.charAt(0).toUpperCase() + word.slice(1)
+							a.franchise-chip(href=franchise.href class=(franchise.isUserFranchise ? 'franchise-chip--mine' : ''))
+								span.franchise-chip__label Franchise #{capitalized}
+								span.franchise-chip__name= franchise.displayName
+			div.bottom-sheet__divider
+			each tab in nav.tabs
+				if tab.id === 'franchises' && tab.extraLinks
+					each link in tab.extraLinks
+						a.bottom-sheet__link(href=link.href)
+							i.fa(class=link.icon)
+							= link.label
+
+		//- Season Sheet
+		div.bottom-sheet#seasonSheet
+			each tab in nav.tabs
+				if tab.id === 'season'
+					each item in tab.items
+						a.bottom-sheet__link(href=item.href)
+							i.fa(class=item.icon)
+							= item.label
+							if item.soon
+								span.badge.badge-secondary.ml-auto Soon
+
+		//- Transactions Sheet
+		div.bottom-sheet#transactionsSheet
+			each tab in nav.tabs
+				if tab.id === 'transactions'
+					each item in tab.items
+						a.bottom-sheet__link(href=item.href)
+							i.fa(class=item.icon)
+							= item.label
+							if item.soon
+								span.badge.badge-secondary.ml-auto Soon
+
+		//- More Sheet
+		div.bottom-sheet#moreSheet
+			each tab in nav.tabs
+				if tab.id === 'more'
+					each section in tab.sections
+						div.bottom-sheet__section-label= section.label
+						each item in section.items
+							a.bottom-sheet__link(href=item.href target=(item.external ? '_blank' : null))
+								i.fa(class=item.icon)
+								= item.label
+								if item.badge
+									span.badge.badge-danger.ml-auto= item.badge
+								else if item.soon
+									span.badge.badge-secondary.ml-auto Soon
+								else if item.external
+									i.fa.fa-external-link.external-icon
+						div.bottom-sheet__divider
+
+		//- Admin Sheet (only rendered for admins)
+		if isAdmin
+			div.bottom-sheet#adminSheet
+				each tab in nav.tabs
+					if tab.id === 'admin'
+						each item in tab.items
+							a.bottom-sheet__link(href=item.href)
+								i.fa(class=item.icon)
+								= item.label
+								if item.badge
+									span.badge.badge-danger.ml-auto= item.badge
+
+		//- Bottom Tab Bar
+		nav.bottombar
+			each tab in nav.tabs
+				button.bottombar__tab(type='button' data-sheet=tab.id + 'Sheet' class=(tab.active ? 'bottombar__tab--active' : ''))
+					i.fa(class=tab.icon)
+					if tab.hasNotification
+						span.bottombar__badge= pendingApprovalCount
+					span= tab.label
+
+		//- Bottom Bar JavaScript
 		script.
 			(function() {
-				// Mobile sidebar toggle
-				var hamburger = document.getElementById('sidebarToggle');
-				var sidebar = document.getElementById('sidebar');
-				var overlay = document.getElementById('sidebarOverlay');
+				var overlay = document.getElementById('sheetOverlay');
+				var tabs = document.querySelectorAll('.bottombar__tab');
+				var sheets = document.querySelectorAll('.bottom-sheet');
+				var bottombar = document.querySelector('.bottombar');
+				var currentSheet = null;
+				var hoverTimeout = null;
+				var isDesktop = function() { return window.innerWidth >= 768; };
 
-				hamburger.addEventListener('click', function() {
-					sidebar.classList.toggle('open');
-					overlay.classList.toggle('open');
-				});
+				function positionSheet(sheet, tab) {
+					if (isDesktop() && tab && sheet) {
+						var tabRect = tab.getBoundingClientRect();
+						var sheetWidth = sheet.offsetWidth || 280;
+						var left = tabRect.left + (tabRect.width / 2) - (sheetWidth / 2);
+						left = Math.max(8, Math.min(left, window.innerWidth - sheetWidth - 8));
+						sheet.style.left = left + 'px';
+					} else if (sheet) {
+						sheet.style.left = '';
+					}
+				}
 
-				overlay.addEventListener('click', function() {
-					sidebar.classList.remove('open');
-					overlay.classList.remove('open');
-				});
+				function openSheet(sheetId, tab) {
+					closeSheet();
+					currentSheet = document.getElementById(sheetId);
+					if (currentSheet) {
+						positionSheet(currentSheet, tab);
+						currentSheet.classList.add('show');
+						overlay.classList.add('show');
+						tabs.forEach(function(t) {
+							if (t.dataset.sheet === sheetId) {
+								t.classList.add('bottombar__tab--open');
+							}
+						});
+					}
+				}
 
-				// Close sidebar when clicking a link (mobile)
-				var sidebarLinks = document.querySelectorAll('.sidebar-link');
-				sidebarLinks.forEach(function(link) {
-					link.addEventListener('click', function() {
-						if (window.innerWidth < 992) {
-							sidebar.classList.remove('open');
-							overlay.classList.remove('open');
+				function closeSheet() {
+					if (currentSheet) {
+						currentSheet.classList.remove('show');
+						currentSheet = null;
+					}
+					overlay.classList.remove('show');
+					tabs.forEach(function(t) {
+						t.classList.remove('bottombar__tab--open');
+					});
+				}
+
+				tabs.forEach(function(tab) {
+					tab.addEventListener('click', function() {
+						var sheetId = tab.dataset.sheet;
+						if (currentSheet && currentSheet.id === sheetId) {
+							closeSheet();
+						} else {
+							openSheet(sheetId, tab);
 						}
 					});
 				});
 
-				// Mobile search button - opens sidebar and focuses search
+				tabs.forEach(function(tab) {
+					tab.addEventListener('mouseenter', function() {
+						if (!isDesktop()) return;
+						clearTimeout(hoverTimeout);
+						var sheetId = tab.dataset.sheet;
+						openSheet(sheetId, tab);
+					});
+				});
+
+				sheets.forEach(function(sheet) {
+					sheet.addEventListener('mouseenter', function() {
+						if (!isDesktop()) return;
+						clearTimeout(hoverTimeout);
+					});
+					
+					sheet.addEventListener('mouseleave', function() {
+						if (!isDesktop()) return;
+						hoverTimeout = setTimeout(closeSheet, 150);
+					});
+				});
+
+				bottombar.addEventListener('mouseleave', function() {
+					if (!isDesktop()) return;
+					hoverTimeout = setTimeout(closeSheet, 150);
+				});
+
+				bottombar.addEventListener('mouseenter', function() {
+					clearTimeout(hoverTimeout);
+				});
+
+				overlay.addEventListener('click', closeSheet);
+
+				sheets.forEach(function(sheet) {
+					sheet.querySelectorAll('a').forEach(function(link) {
+						link.addEventListener('click', function() {
+							closeSheet();
+						});
+					});
+				});
+
+				window.addEventListener('resize', function() {
+					if (currentSheet) {
+						var activeTab = document.querySelector('.bottombar__tab--open');
+						positionSheet(currentSheet, activeTab);
+					}
+				});
+
+				// Mobile search
 				var mobileSearchBtn = document.getElementById('mobileSearchBtn');
+				var mobileSearchOverlay = document.getElementById('mobileSearchOverlay');
 				var mobileSearchInput = document.getElementById('mobileSearchInput');
-				
-				if (mobileSearchBtn && mobileSearchInput) {
+				var mobileSearchCancel = document.getElementById('mobileSearchCancel');
+
+				if (mobileSearchBtn && mobileSearchOverlay) {
 					mobileSearchBtn.addEventListener('click', function() {
-						sidebar.classList.add('open');
-						overlay.classList.add('open');
+						closeSheet();
+						mobileSearchOverlay.classList.add('show');
 						setTimeout(function() {
 							mobileSearchInput.focus();
-						}, 300);
+						}, 100);
+					});
+
+					mobileSearchCancel.addEventListener('click', function() {
+						mobileSearchOverlay.classList.remove('show');
+						mobileSearchInput.value = '';
+						var dropdown = mobileSearchOverlay.querySelector('.search-dropdown');
+						if (dropdown) {
+							dropdown.classList.remove('show');
+						}
 					});
 				}
 
@@ -191,12 +315,19 @@ html
 				var searchInput = document.getElementById('searchInput');
 				if (searchInput) {
 					document.addEventListener('keydown', function(e) {
-						if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+						if (e.key === '/' && document.activeElement !== searchInput && document.activeElement !== mobileSearchInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
 							e.preventDefault();
 							searchInput.focus();
 						}
-						if (e.key === 'Escape' && document.activeElement === searchInput) {
-							searchInput.blur();
+						if (e.key === 'Escape') {
+							if (document.activeElement === searchInput) {
+								searchInput.blur();
+							}
+							if (mobileSearchOverlay && mobileSearchOverlay.classList.contains('show')) {
+								mobileSearchOverlay.classList.remove('show');
+								mobileSearchInput.value = '';
+							}
+							closeSheet();
 						}
 					});
 				}
@@ -211,7 +342,6 @@ html
 						userDropdownMenu.classList.toggle('show');
 					});
 
-					// Close dropdown when clicking outside
 					document.addEventListener('click', function(e) {
 						if (!userDropdownToggle.contains(e.target) && !userDropdownMenu.contains(e.target)) {
 							userDropdownMenu.classList.remove('show');
