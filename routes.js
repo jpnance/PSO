@@ -165,5 +165,8 @@ module.exports = function(app) {
 	app.get('/admin/draft/live/salary', requireLogin, requireAdmin, noCache, draftLive.previewSalary);
 	app.post('/admin/draft/live/select', requireLogin, requireAdmin, draftLive.selectPlayer);
 	app.post('/admin/draft/live/pass', requireLogin, requireAdmin, draftLive.passOnPick);
+	app.post('/admin/draft/live/pass-all', requireLogin, requireAdmin, draftLive.passAllForFranchise);
+	app.get('/admin/draft/live/confirm-pass', requireLogin, requireAdmin, noCache, draftLive.confirmPass);
+	app.get('/admin/draft/live/confirm-pass-all', requireLogin, requireAdmin, noCache, draftLive.confirmPassAll);
 	
 };

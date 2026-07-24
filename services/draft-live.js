@@ -108,6 +108,14 @@ async function getDraftState(season) {
 		}
 	});
 
+	// Only show completed picks up to the current pick
+	// (hides pre-passed picks that haven't been "reached" yet)
+	if (currentPick) {
+		completedPicks = completedPicks.filter(function(p) {
+			return p.pickNumber < currentPick.pickNumber;
+		});
+	}
+
 	// Build the current round's picks for the round tracker
 	var currentRoundPicks = [];
 	if (currentPick) {
@@ -335,10 +343,52 @@ async function previewSalary(request, response) {
 	});
 }
 
+async function passAllForFranchise(request, response) {
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var season = config ? config.season : new Date().getFullYear();
+		var franchiseId = request.body.franchiseId;
+
+		var picks = await Pick.find({
+			season: season,
+			currentFranchiseId: franchiseId,
+			status: 'available'
+		}).sort({ pickNumber: 1 }).lean();
+
+		if (picks.length === 0) {
+			return response.status(400).json({ success: false, errors: ['No available picks for this franchise'] });
+		}
+
+		for (var i = 0; i < picks.length; i++) {
+			var result = await processDraftPass({ pickId: picks[i]._id });
+			if (!result.success) {
+				return response.status(400).json({ success: false, errors: ['Failed on pick #' + picks[i].pickNumber + ': ' + result.errors.join(', ')] });
+			}
+		}
+
+		response.json({ success: true, passedCount: picks.length });
+	} catch (err) {
+		console.error('Draft pass-all error:', err);
+		response.status(500).json({ success: false, errors: ['Server error'] });
+	}
+}
+
+function confirmPass(request, response) {
+	response.render('partials/draft-live-pass-confirm');
+}
+
+function confirmPassAll(request, response) {
+	var ownerName = request.query.ownerName || 'this franchise';
+	response.render('partials/draft-live-pass-all-confirm', { ownerName: ownerName });
+}
+
 module.exports = {
 	livePage: livePage,
 	searchRookies: searchRookies,
 	selectPlayer: selectPlayer,
 	passOnPick: passOnPick,
-	previewSalary: previewSalary
+	passAllForFranchise: passAllForFranchise,
+	previewSalary: previewSalary,
+	confirmPass: confirmPass,
+	confirmPassAll: confirmPassAll
 };

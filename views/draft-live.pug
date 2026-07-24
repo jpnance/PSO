@@ -51,11 +51,15 @@ block content
 							span.draft-live__or or
 							div.draft-live__pass-container
 								button#draft-live-pass.btn.btn-warning.btn-sm
-									i.fa.fa-forward
-									|  Pass
+									i.fa.fa-forward.mr-1
+									| Pass
+								button#draft-live-pass-all.btn.btn-danger.btn-sm
+									i.fa.fa-fast-forward.mr-1
+									| Pass All
 						div#draft-live-confirm.d-none
 
 			input#draft-live-pick-id(type='hidden' value=currentPick._id)
+			input#draft-live-franchise-id(type='hidden' value=currentPick.currentFranchiseId)
 
 		div.row
 			div.col-lg-7
@@ -70,9 +74,9 @@ block content
 									th Franchise
 									th.data-table__num Salary
 							tbody
-								- var reversed = completedPicks.slice().reverse()
+								- var displayPicks = currentPick ? completedPicks.slice().reverse() : completedPicks
 								- var lastRound = null
-								each pick in reversed
+								each pick in displayPicks
 									if lastRound !== null && pick.round !== lastRound
 										tr.draft-live__round-separator
 											td(colspan='5') Round #{pick.round}
@@ -103,5 +107,8 @@ block scripts
 		var DRAFT_SEARCH_URL = '/admin/draft/live/search';
 		var DRAFT_SELECT_URL = '/admin/draft/live/select';
 		var DRAFT_PASS_URL = '/admin/draft/live/pass';
+		var DRAFT_PASS_ALL_URL = '/admin/draft/live/pass-all';
 		var DRAFT_SALARY_URL = '/admin/draft/live/salary';
+		var DRAFT_CONFIRM_PASS_URL = '/admin/draft/live/confirm-pass';
+		var DRAFT_CONFIRM_PASS_ALL_URL = '/admin/draft/live/confirm-pass-all';
 	script(src='/js/draft-live.js')

@@ -93,6 +93,11 @@
 	align-items: center;
 }
 
+.draft-live__pass-container {
+	display: flex;
+	gap: 0.5rem;
+}
+
 .draft-live__or {
 	font-size: 0.8rem;
 	opacity: 0.7;
@@ -182,6 +187,18 @@
 .draft-live__confirm-panel.pos-LB,
 .draft-live__confirm-panel.pos-DB { background: var(--pos-idp-bg); color: var(--pos-idp-text); border-color: var(--pos-idp-text); }
 .draft-live__confirm-panel.pos-K { background: var(--pos-k-bg); color: var(--pos-k-text); border-color: var(--pos-k-text); }
+
+.draft-live__confirm-panel--pass {
+	background: #fff3cd;
+	color: #856404;
+	border-color: #856404;
+}
+
+.draft-live__confirm-panel--pass-all {
+	background: #f8d7da;
+	color: #721c24;
+	border-color: #721c24;
+}
 
 .draft-live__selected-info {
 	display: flex;

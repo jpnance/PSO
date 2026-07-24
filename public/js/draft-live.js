@@ -103,28 +103,78 @@ $(document).ready(function() {
 	}
 
 	$('#draft-live-pass').on('click', function() {
-		if (!confirm('Pass on this pick?')) return;
+		$.get(DRAFT_CONFIRM_PASS_URL, function(html) {
+			selectedPanel.html(html).removeClass('d-none');
+			$('#draft-live-search-mode').addClass('d-none');
 
-		var btn = $(this);
-		btn.prop('disabled', true).text('Passing...');
+			$('#draft-live-confirm-pass').on('click', function() {
+				var btn = $(this);
+				btn.prop('disabled', true).text('Passing...');
 
-		$.ajax({
-			url: DRAFT_PASS_URL,
-			method: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify({ pickId: currentPickId }),
-			success: function() {
-				window.location.reload();
-			},
-			error: function(xhr) {
-				var msg = 'Error passing on pick';
-				try {
-					var body = JSON.parse(xhr.responseText);
-					if (body.errors) msg = body.errors.join(', ');
-				} catch (e) {}
-				alert(msg);
-				btn.prop('disabled', false).html('<i class="fa fa-forward"></i> Pass');
-			}
+				$.ajax({
+					url: DRAFT_PASS_URL,
+					method: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({ pickId: currentPickId }),
+					success: function() {
+						window.location.reload();
+					},
+					error: function(xhr) {
+						var msg = 'Error passing on pick';
+						try {
+							var body = JSON.parse(xhr.responseText);
+							if (body.errors) msg = body.errors.join(', ');
+						} catch (e) {}
+						alert(msg);
+						btn.prop('disabled', false).html('<i class="fa fa-forward mr-1"></i>Confirm Pass');
+					}
+				});
+			});
+
+			$('#draft-live-cancel-pass').on('click', function() {
+				selectedPanel.addClass('d-none');
+				$('#draft-live-search-mode').removeClass('d-none');
+				searchInput.focus();
+			});
+		});
+	});
+
+	$('#draft-live-pass-all').on('click', function() {
+		var ownerName = $('.draft-live__clock-owner').text();
+		$.get(DRAFT_CONFIRM_PASS_ALL_URL, { ownerName: ownerName }, function(html) {
+			selectedPanel.html(html).removeClass('d-none');
+			$('#draft-live-search-mode').addClass('d-none');
+
+			$('#draft-live-confirm-pass-all').on('click', function() {
+				var btn = $(this);
+				btn.prop('disabled', true).text('Passing...');
+				var franchiseId = $('#draft-live-franchise-id').val();
+
+				$.ajax({
+					url: DRAFT_PASS_ALL_URL,
+					method: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({ franchiseId: franchiseId }),
+					success: function() {
+						window.location.reload();
+					},
+					error: function(xhr) {
+						var msg = 'Error passing on picks';
+						try {
+							var body = JSON.parse(xhr.responseText);
+							if (body.errors) msg = body.errors.join(', ');
+						} catch (e) {}
+						alert(msg);
+						btn.prop('disabled', false).html('<i class="fa fa-fast-forward mr-1"></i>Confirm Pass All');
+					}
+				});
+			});
+
+			$('#draft-live-cancel-pass-all').on('click', function() {
+				selectedPanel.addClass('d-none');
+				$('#draft-live-search-mode').removeClass('d-none');
+				searchInput.focus();
+			});
 		});
 	});
 

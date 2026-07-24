@@ -1,0 +1,12 @@
+include ../mixins
+
+div.draft-live__confirm-panel.draft-live__confirm-panel--pass-all
+	div.draft-live__selected-info
+		span.draft-live__selected-name Pass ALL remaining picks for #{ownerName}?
+	div.draft-live__confirm-actions
+		button#draft-live-confirm-pass-all.btn.btn-danger.btn-sm
+			i.fa.fa-fast-forward.mr-1
+			| Confirm Pass All
+		button#draft-live-cancel-pass-all.btn.btn-secondary.btn-sm
+			i.fa.fa-times.mr-1
+			| Cancel
