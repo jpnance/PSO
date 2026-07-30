@@ -1,0 +1,103 @@
+extends layout.pug
+include mixins
+
+block title
+	+title(regime.displayName, 'Regimes', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/league.css')
+
+block content
+	div.container.py-4
+		if query.saved
+			div.alert.alert-success.alert-dismissible.fade.show
+				strong Saved!
+				|  Regime updated successfully.
+				button.close(type='button' data-dismiss='alert') &times;
+
+		h1.mb-4= regime.displayName
+
+		div.row
+			div.col-lg-8
+				div.card.mb-4
+					div.card-header
+						strong Display Name
+					div.card-body
+						form(method='POST' action='/admin/regimes/' + regime._id)
+							div.form-group
+								label(for='displayName') Name
+								input#displayName.form-control(
+									type='text'
+									name='displayName'
+									value=regime.displayName
+									required
+								)
+								small.form-text.text-muted How this regime appears throughout the site (e.g., "Mitch/Karsten").
+							button.btn.btn-primary(type='submit') Update Name
+
+				div.card.mb-4
+					div.card-header
+						strong Owners
+						span.badge.badge-secondary.ml-2= regime.ownerIds.length
+					div.card-body
+						if regime.ownerIds.length
+							each owner in regime.ownerIds
+								div.d-flex.justify-content-between.align-items-center.mb-2
+									div
+										a(href='/admin/people/' + owner._id)= owner.name
+									form.d-inline(method='POST' action='/admin/regimes/' + regime._id + '/remove-owner')
+										input(type='hidden' name='personId' value=owner._id)
+										button.btn.btn-sm.btn-outline-danger(type='submit' title='Remove from regime') &times;
+						else
+							p.text-muted.mb-0 No owners assigned to this regime.
+
+						if availablePeople.length
+							hr
+							form(method='POST' action='/admin/regimes/' + regime._id + '/add-owner')
+								div.form-group
+									label(for='personId') Add Owner
+									select#personId.form-control(name='personId' required)
+										option(value='') Select a person...
+										each person in availablePeople
+											option(value=person._id)= person.name
+									small.form-text.text-muted
+										| Select an existing person to add as a co-owner. 
+										a(href='/admin/people/new') Create a new person
+										|  first if they're not in the list.
+								button.btn.btn-success(type='submit')
+									i.fa.fa-plus.mr-1
+									| Add Owner
+
+			div.col-lg-4
+				div.card.mb-4
+					div.card-header
+						strong Regime Info
+					div.card-body
+						dl.mb-0
+							dt ID
+							dd: code= regime._id
+							dt Status
+							dd
+								if isActive
+									span.badge.badge-success Active
+								else
+									span.badge.badge-secondary Inactive
+
+				div.card.mb-4
+					div.card-header
+						strong Tenure History
+					ul.list-group.list-group-flush
+						if tenures.length
+							each tenure in tenures
+								li.list-group-item
+									div
+										if tenure.franchiseRosterId
+											a(href='/franchises/' + tenure.franchiseRosterId) Franchise #{tenure.franchiseRosterId}
+										else
+											| Unknown Franchise
+									div.small.text-muted
+										= tenure.startSeason
+										| –
+										= tenure.endSeason || 'present'
+						else
+							li.list-group-item.text-muted No tenures recorded

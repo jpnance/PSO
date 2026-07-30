@@ -97,6 +97,53 @@ async function editPersonForm(request, response) {
 	});
 }
 
+// GET /admin/people/new - new person form
+async function newPersonForm(request, response) {
+	response.render('admin-person-new', {
+		activePage: 'admin-people'
+	});
+}
+
+// POST /admin/people/new - create person
+async function createPerson(request, response) {
+	var body = request.body;
+	var name = (body.name || '').trim();
+
+	if (!name) {
+		return response.status(400).send('Name is required');
+	}
+
+	var existing = await Person.findOne({ name: name });
+	if (existing) {
+		return response.status(400).send('A person named "' + name + '" already exists');
+	}
+
+	var username = Person.generateUsername(name);
+
+	var personData = {
+		name: name,
+		username: username,
+		email: (body.email || '').trim() || null,
+		sleeperUserId: (body.sleeperUserId || '').trim() || null,
+		birthday: null
+	};
+
+	var birthday = (body.birthday || '').trim();
+	if (birthday) {
+		var match = birthday.match(/^(\d{2})-(\d{2})$/);
+		if (match) {
+			var month = parseInt(match[1], 10);
+			var day = parseInt(match[2], 10);
+			if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+				personData.birthday = birthday;
+			}
+		}
+	}
+
+	var person = await Person.create(personData);
+	response.redirect('/admin/people/' + person._id + '?saved=1');
+}
+
 // POST /admin/people/:id - save changes
 async function editPerson(request, response) {
 	var personId = request.params.id;
@@ -144,6 +191,8 @@ async function editPerson(request, response) {
 
 module.exports = {
 	listPeople: listPeople,
+	newPersonForm: newPersonForm,
+	createPerson: createPerson,
 	editPersonForm: editPersonForm,
 	editPerson: editPerson
 };

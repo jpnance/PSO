@@ -139,6 +139,7 @@ function buildNav(options) {
 				{ label: 'Dashboard', icon: 'fa-tachometer', href: '/admin', active: isActive('admin') || isActive('admin-dashboard') },
 				{ label: 'Players', icon: 'fa-user', href: '/admin/players', active: isActive('admin-players') },
 				{ label: 'People', icon: 'fa-users', href: '/admin/people', active: isActive('admin-people') },
+				{ label: 'Regimes', icon: 'fa-id-card', href: '/admin/regimes', active: isActive('admin-regimes') },
 				{ label: 'Manage Trades', icon: 'fa-exchange', href: '/admin/trades', active: isActive('admin-trades') },
 				{ label: 'Proposals', icon: 'fa-check-circle', href: '/admin/proposals', active: isActive('admin-proposals'), badge: pendingApprovalCount > 0 ? pendingApprovalCount : null }
 			]
