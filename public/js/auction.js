@@ -23,6 +23,7 @@ $(document).ready(function() {
 
 		$('#nomination-form #nominator').val('');
 		$('#nomination-form #player-list').val('');
+		$('#nomination-form #player-search').val('');
 
 		socket.send(JSON.stringify({
 			type: 'activate'
@@ -60,6 +61,7 @@ $(document).ready(function() {
 
 		$('#nomination-form #nominator').val('');
 		$('#nomination-form #player-list').val('');
+		$('#nomination-form #player-search').val('');
 
 		socket.send(JSON.stringify({
 			type: 'pause'
@@ -69,6 +71,7 @@ $(document).ready(function() {
 	$('body.admin .nominating .who').bind('click', function(e) {
 		$('#nominator').val($(this).text());
 		$('#player-list').val('');
+		$('#player-search').val('');
 		$('#owner').val($(this).text());
 	});
 
@@ -81,12 +84,20 @@ $(document).ready(function() {
 			situation: $(this).find('#situation').val()
 		};
 
+		var playerId = $(this).find('#player-id').val();
+		if (playerId) {
+			newPlayer.playerId = playerId;
+		}
+
 		e.preventDefault();
 
 		socket.send(JSON.stringify({
 			type: 'nominate',
 			value: newPlayer
 		}));
+
+		$(this).find('#player-id').val('');
+		$(this).find('#player-search').val('');
 	});
 
 	$('#nomination-form #nominator').bind('change', function(e) {
@@ -169,6 +180,64 @@ $(document).ready(function() {
 			type: 'stopDemo'
 		}));
 	});
+
+	// Player search (dynamic admin page only)
+	var searchInput = $('#player-search');
+	var searchResults = $('#player-search-results');
+	var searchTimeout;
+
+	if (searchInput.length > 0 && typeof AUCTION_SEARCH_URL !== 'undefined') {
+		searchInput.on('input', function() {
+			var query = $(this).val().trim();
+			clearTimeout(searchTimeout);
+
+			if (query.length < 2) {
+				searchResults.removeClass('active').empty();
+				return;
+			}
+
+			searchTimeout = setTimeout(function() {
+				$.get(AUCTION_SEARCH_URL, { q: query }, function(html) {
+					searchResults.html(html);
+					searchResults.addClass('active');
+					bindSearchResultClicks();
+				});
+			}, 200);
+		});
+
+		searchInput.on('keydown', function(e) {
+			if (e.key === 'Escape') {
+				searchResults.removeClass('active').empty();
+				searchInput.blur();
+			}
+		});
+
+		$(document).on('click', function(e) {
+			if (!$(e.target).closest('.auction-search').length) {
+				searchResults.removeClass('active');
+			}
+		});
+	}
+
+	function bindSearchResultClicks() {
+		searchResults.find('.auction-search__result').on('click', function() {
+			var el = $(this);
+
+			$('#player-id').val(el.data('player-id'));
+			$('#name').val(el.data('player-name'));
+
+			var positions = el.data('player-positions');
+			if (positions) {
+				$('#position').val(positions.split('/')[0]);
+			}
+
+			var situation = el.data('player-situation') || 'UFA';
+			$('#situation').val(situation);
+
+			searchResults.removeClass('active').empty();
+			searchInput.val('');
+		});
+	}
 });
 
 var addLoggedInAsClass = function(loggedInAsData) {

@@ -1,0 +1,20 @@
+include ../mixins
+
+each result in results
+	div.auction-search__result(
+		data-player-id=result._id
+		data-player-name=result.name
+		data-player-positions=result.positionKey
+		data-player-situation=(result.situation || '')
+		class=(result.owned ? 'auction-search__result--owned' : '')
+	)
+		span.auction-search__result-name #{result.name}
+		if result.positions && result.positions.length > 0
+			+positionBadge(result.positions)
+		if result.team
+			span.auction-search__result-nfl #{result.team}
+		if result.detail
+			span.auction-search__result-detail #{result.detail}
+
+if results.length === 0
+	div.auction-search__no-results No players found

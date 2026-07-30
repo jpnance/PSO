@@ -206,3 +206,88 @@ ul#bid-history li:first-child {
 #clock {
 	font-family: monospace;
 }
+
+/* Player search */
+
+.auction-search {
+	position: relative;
+}
+
+.auction-search__results {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: #fff;
+	color: #333;
+	border: 1px solid #ccc;
+	border-top: none;
+	border-radius: 0 0 6px 6px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	z-index: 100;
+	display: none;
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.auction-search__results.active {
+	display: block;
+}
+
+.auction-search__result {
+	padding: 0.5rem 0.75rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	border-bottom: 1px solid #eee;
+	text-align: left;
+}
+
+.auction-search__result:last-child {
+	border-bottom: none;
+}
+
+.auction-search__result:hover {
+	background: #f0f4fa;
+}
+
+.auction-search__result--owned {
+	opacity: 0.35;
+}
+
+.auction-search__result--owned:hover {
+	opacity: 0.7;
+}
+
+.auction-search__result-name {
+	font-weight: 600;
+	flex-shrink: 0;
+}
+
+.auction-search__result-pos {
+	font-size: 0.8rem;
+	color: #666;
+	flex-shrink: 0;
+}
+
+.auction-search__result-nfl {
+	font-size: 0.8rem;
+	color: #999;
+	flex-shrink: 0;
+}
+
+.auction-search__result-detail {
+	font-size: 0.75rem;
+	color: #888;
+	margin-left: auto;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.auction-search__no-results {
+	padding: 0.75rem;
+	color: #999;
+	font-style: italic;
+	text-align: left;
+}

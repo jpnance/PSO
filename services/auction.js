@@ -12,7 +12,8 @@ var auction = {
 		name: 'Tim Duncan',
 		position: 'PF/C',
 		team: 'SAS',
-		situation: 'UFA'
+		situation: 'UFA',
+		playerId: null
 	},
 	bids: [],
 	status: 'active',
@@ -133,6 +134,7 @@ function nominatePlayer(nomination) {
 	auction.player.position = nomination.position;
 	auction.player.team = nomination.team;
 	auction.player.situation = nomination.situation;
+	auction.player.playerId = nomination.playerId || null;
 
 	auction.bids = [];
 

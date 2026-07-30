@@ -1,0 +1,204 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+
+		link(rel="stylesheet" href='/css/design-tokens.css')
+		link(rel="stylesheet" href='/css/auction.css')
+		link(rel="stylesheet" href='/css/positions.css')
+
+		script(src='/js/jquery.min.js')
+		script(src='/js/umd/popper.min.js')
+		script(src='/js/bootstrap.min.js')
+		script
+			| $(function() { $('[data-toggle="tooltip"]').tooltip(); });
+
+		script.
+			const referenceSite = !{JSON.stringify(referenceSite)};
+			const owners = !{JSON.stringify(owners)};
+			const webSocketUrl = !{JSON.stringify(webSocketUrl)};
+			const AUCTION_SEARCH_URL = '/auction/admin/search';
+
+		script(src='/js/auction.js')
+
+		title Bid Buddy Admin
+
+	body.admin
+		dialog
+			button#reconnect.btn.btn-info Reconnect
+
+		div.container
+			hr
+
+			div#controls.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					button#pause.btn.btn-warning.m-1
+						i.fa.fa-pause
+						|
+						| Pause
+					button#activate.btn.btn-success.m-1
+						i.fa.fa-play
+						|
+						| Activate
+					button#pop.btn.btn-danger.m-1
+						i.fa.fa-eraser
+						|
+						| Pop Top Bid
+					br
+					button#start-demo.btn.btn-primary.m-1
+						| Start Demo
+					button#stop-demo.btn.btn-primary.m-1
+						| Stop Demo
+
+			hr
+
+			form#set-timer-form
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-6.col-lg-3
+						div.input-group-prepend
+							span.input-group-text Guaranteed
+						input#set-timer-guaranteed.form-control(type='number' value='30')
+
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-6.col-lg-3
+						div.input-group-prepend
+							span.input-group-text Reset To
+						input#set-timer-reset-to.form-control(type='number' value='10')
+
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						button#set-timer.btn.btn-primary
+							i.fa.fa-clock-o
+							|
+							| Set Timer
+
+			hr
+
+			div.row.justify-content-center
+				div.col-12.col-md-6
+					div.row
+						div.nominating.next.col-6.text-center
+							span.when Up Next
+							br
+							span.who --
+
+						div.nominating.later.col-6.text-center
+							span.when After That
+							br
+							span.who --
+
+			hr
+
+			form#nomination-form
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-12.col-lg-6.text-center
+						select#nominator.form-control(required)
+							option(value='') --
+							each owner in owners
+								option(value=owner) #{owner}
+
+				div.form-row.justify-content-center.m-1
+					div.col-12.col-lg-6
+						div.auction-search
+							input#player-search.form-control(type='text' placeholder='Search for a player...' autocomplete='off')
+							div#player-search-results.auction-search__results
+
+				input#player-id(type='hidden' name='playerId' value='')
+
+				br
+
+				div.form-row.justify-content-center.m-1
+					div.col-12.col-lg-6.text-center
+						input#name.form-control(type='text' name='name' placeholder='Name' required)
+
+				div.form-row.justify-content-center.m-1
+					div.col-12.col-lg-6.text-center
+						div.row
+							div.col-6
+								select#position.form-control(name='position' required)
+									option(value='') --
+									each position in positions
+										option(value=position) #{position}
+							div.col-6
+								select#situation.form-control(name='situation' required)
+									option(value='') --
+									each situation in situations
+										option(value=situation) #{situation}
+
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input.btn.btn-primary(type='submit' value='Nominate')
+
+			hr
+
+			form#bid-form
+				input#force-bid(type='hidden' name='force-bid' value='true')
+
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-6.col-lg-3
+						div.input-group-prepend
+							span.input-group-text $
+						input#bid-amount.form-control(type='number')
+					div.col-6.col-lg-3
+						select#owner.form-control(name='owner')
+							each owner in owners
+								option(value=owner) #{owner}
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input.btn.btn-primary(type='submit' value='Force Bid')
+
+			hr
+
+			div.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					div#player
+						h5#nominator
+							span#nominator-name
+							|
+							|
+							span#nominator-text
+						h1#player-name
+							a(target='_blank')
+						h4
+							span#player-position
+							| ,
+							|
+							span#player-situation
+
+			div.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					ul#bid-history
+
+			hr
+
+			form#nomination-order-form
+				div.form-row.justify-content-center.m-1
+					div.input-group.col-12.col-lg-6.text-center
+						select#remove-owner.form-control
+							option(value='') --
+							each owner in owners
+								option(value=owner) #{owner}
+				div.form-row.justify-content-center.m-1
+					div.col-6.text-center
+						input.btn.btn-danger(type='submit' value='Remove Owner')
+
+			hr
+
+			div#more-controls.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					button#call-roll.btn.btn-info.m-1
+						i.fa.fa-refresh
+						|
+						| Call Roll
+
+			hr
+
+			div.row.justify-content-center
+				div.col-12.col-lg-6.text-center
+					ul#attendance
+
+			hr

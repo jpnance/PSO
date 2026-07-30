@@ -1,4 +1,5 @@
 var auction = require('./services/auction');
+var auctionAdmin = require('./services/auction-admin');
 var jaguar = require('./services/jaguar');
 var simulator = require('./services/simulator');
 var scuttlebot = require('./services/scuttlebot');
@@ -94,6 +95,8 @@ module.exports = function(app) {
 
 	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
+	app.get('/auction/admin', requireLogin, requireAdmin, auctionAdmin.adminPage);
+	app.get('/auction/admin/search', requireLogin, requireAdmin, noCache, auctionAdmin.searchPlayers);
 
 	app.post('/simulator', simulator.filterByConditions);
 	app.post('/simulator/:conditions', simulator.filterByConditions);
