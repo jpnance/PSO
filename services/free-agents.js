@@ -139,18 +139,11 @@ exports.ufa = async function(request, response) {
 			endYear: ufaSeason
 		}).populate('playerId', 'name slugs positions team').lean();
 
-		// Source 3: FA drops with UFA-qualifying terms (cut mid-season)
+		// Source 3: FA drops (cut mid-season)
+		// When a player is cut, they become a free agent regardless of contract terms
 		var faDropTransactions = await Transaction.find({
 			type: 'fa',
-			drops: {
-				$elemMatch: {
-					endYear: ufaSeason,
-					$or: [
-						{ startYear: null },
-						{ startYear: ufaSeason }
-					]
-				}
-			}
+			'drops.endYear': ufaSeason
 		}).populate('drops.playerId', 'name slugs positions team').lean();
 
 		// Players from Source 1 are upcoming UFAs still on rosters
@@ -173,8 +166,7 @@ exports.ufa = async function(request, response) {
 		faDropTransactions.forEach(function(t) {
 			if (!t.drops) return;
 			t.drops.forEach(function(drop) {
-				if (drop.playerId && drop.endYear === ufaSeason &&
-					(drop.startYear == null || drop.startYear === ufaSeason)) {
+				if (drop.playerId && drop.endYear === ufaSeason) {
 					expiredUfas[drop.playerId._id.toString()] = drop.playerId;
 				}
 			});
