@@ -79,7 +79,7 @@ function loadPlayersFromSheet() {
 				}
 			});
 
-			return players;
+			return { players: players, owners: PSO.nominationOrder };
 		});
 }
 
@@ -217,8 +217,10 @@ function loadPlayersFromDB() {
 			return playerMap[id];
 		});
 
+		var owners = regimes.map(function(r) { return r.displayName; }).sort();
+
 		await mongoose.disconnect();
-		return players;
+		return { players: players, owners: owners };
 	});
 }
 
@@ -231,7 +233,10 @@ function run() {
 		loadPlayers = loadPlayersFromSheet();
 	}
 
-	loadPlayers.then(function(players) {
+	loadPlayers.then(function(result) {
+		var players = result.players;
+		var owners = result.owners;
+
 		players.sort(function(a, b) {
 			return a.name.localeCompare(b.name);
 		});
@@ -258,7 +263,7 @@ function run() {
 			var pug = require('pug');
 			var compiledPug = pug.compileFile(path.join(__dirname, '../views/auction.pug'));
 			fs.writeFileSync(path.join(__dirname, '../public/auction/index.html'), compiledPug({
-				owners: PSO.nominationOrder,
+				owners: owners,
 				referenceSite: siteData[parameters.site].referenceSite,
 				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
@@ -268,7 +273,7 @@ function run() {
 				players: players,
 				positions: positions,
 				situations: situations,
-				owners: PSO.nominationOrder,
+				owners: owners,
 				referenceSite: siteData[parameters.site].referenceSite,
 				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
