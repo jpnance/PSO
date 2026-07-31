@@ -35,16 +35,18 @@ block content
 				|  Trade updated successfully.
 				button.close(type='button' data-dismiss='alert') &times;
 		
-		h1.mb-4: a.trade-history__title-link(href="/trades/" + trade.tradeId) Trade ##{trade.tradeId || '(no ID)'}
+		div.page-header
+			h1
+				a.trade-history__title-link(href="/trades/" + trade.tradeId) Edit Trade ##{trade.tradeId || '(no ID)'}
 		
 		form(method='POST' action='/admin/trades/' + trade._id)
 			div.row
-				div.col-md-7.col-xl-5.mb-4
-					//- Trade card display (same as trade-history)
+				div.col-md-7.col-xl-5
 					div.trade-card.trade-card--single
-						div.trade-card__timestamp.trade-card__timestamp--inline
-							span.trade-card__date= formatDateLong(trade.timestamp)
-							span.trade-card__time= formatTime(trade.timestamp)
+						div.trade-card__header
+							div.trade-card__timestamp-stacked
+								a.trade-card__date(href="/trades/" + trade.tradeId)= formatDateLong(trade.timestamp)
+								a.trade-card__time(href="/trades/" + trade.tradeId)= formatTime(trade.timestamp)
 						
 						each party in parties
 							+tradeParty(party)
