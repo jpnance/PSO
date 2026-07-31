@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm web node auction/index.js site=colbys season=2024 demo
+docker compose run --rm web node auction/index.js site=colbys season=2024 demo 2>/dev/null
