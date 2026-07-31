@@ -48,7 +48,7 @@ function getSituation(contract, regimeDisplayName) {
 	if (contract.salary === null) {
 		return 'RFA-' + (regimeDisplayName || 'Unknown');
 	}
-	if (contract.startYear && contract.endYear && contract.endYear - contract.startYear >= 1) {
+	if (contract.startYear && contract.endYear && contract.endYear - contract.startYear <= 2) {
 		return 'RFA-' + (regimeDisplayName || 'Unknown');
 	}
 	return 'UFA';
