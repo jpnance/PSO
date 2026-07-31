@@ -291,3 +291,38 @@ ul#bid-history li:first-child {
 	font-style: italic;
 	text-align: left;
 }
+
+/* Record Result dialog */
+
+#record-result-dialog {
+	border: none;
+	border-radius: 8px;
+	padding: 1.5rem;
+	max-width: 400px;
+	width: 90vw;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.record-result__title {
+	margin: 0 0 1rem;
+	font-weight: 700;
+}
+
+.record-result__field {
+	margin-bottom: 0.75rem;
+}
+
+.record-result__label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #666;
+	margin-bottom: 0.25rem;
+	display: block;
+}
+
+.record-result__actions {
+	display: flex;
+	gap: 0.5rem;
+	justify-content: flex-end;
+	margin-top: 1rem;
+}

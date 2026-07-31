@@ -3,6 +3,7 @@ var Franchise = require('../models/Franchise');
 var LeagueConfig = require('../models/LeagueConfig');
 var Player = require('../models/Player');
 var Regime = require('../models/Regime');
+var Transaction = require('../models/Transaction');
 var PSO = require('../config/pso');
 
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -143,7 +144,92 @@ async function searchPlayers(request, response) {
 	response.render('partials/auction-search-results', { results: results });
 }
 
+async function recordResult(request, response) {
+	try {
+		var playerId = request.body.playerId;
+		var playerName = request.body.playerName;
+		var winner = request.body.winner;
+		var amount = parseInt(request.body.amount, 10);
+		var type = request.body.type;
+
+		if (!winner || !amount || !type) {
+			return response.status(400).json({ success: false, error: 'Missing required fields' });
+		}
+
+		if (!['auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'].includes(type)) {
+			return response.status(400).json({ success: false, error: 'Invalid auction type' });
+		}
+
+		var rosterId = PSO.franchiseIds[winner];
+		if (!rosterId) {
+			return response.status(400).json({ success: false, error: 'Unknown franchise: ' + winner });
+		}
+
+		var franchise = await Franchise.findOne({ rosterId: rosterId });
+		if (!franchise) {
+			return response.status(400).json({ success: false, error: 'Franchise not found for rosterId: ' + rosterId });
+		}
+
+		// Resolve player — prefer playerId from nomination, fall back to name search
+		var player = null;
+		if (playerId) {
+			player = await Player.findById(playerId);
+		}
+		if (!player && playerName) {
+			player = await Player.findOne({ name: playerName });
+		}
+		if (!player) {
+			return response.status(400).json({ success: false, error: 'Could not resolve player' });
+		}
+
+		// For RFA types, look up who holds the RFA rights
+		var rfaHolderId = null;
+		var originalBidderId = null;
+
+		if (type === 'auction-rfa-matched' || type === 'auction-rfa-unmatched') {
+			var rfaContract = await Contract.findOne({ playerId: player._id, salary: null });
+			if (rfaContract) {
+				rfaHolderId = rfaContract.franchiseId;
+			}
+
+			if (type === 'auction-rfa-unmatched') {
+				originalBidderId = franchise._id;
+			}
+		}
+
+		var txData = {
+			type: type,
+			timestamp: new Date(),
+			source: 'manual',
+			franchiseId: franchise._id,
+			playerId: player._id,
+			winningBid: amount
+		};
+
+		if (rfaHolderId) {
+			txData.rfaHolderId = rfaHolderId;
+		}
+		if (originalBidderId) {
+			txData.originalBidderId = originalBidderId;
+		}
+
+		await Transaction.create(txData);
+
+		response.json({
+			success: true,
+			playerName: player.name,
+			winner: winner,
+			amount: amount,
+			type: type
+		});
+	} catch (err) {
+		console.error('Record auction result error:', err);
+		response.status(500).json({ success: false, error: 'Server error' });
+	}
+}
+
 module.exports = {
 	adminPage: adminPage,
-	searchPlayers: searchPlayers
+	searchPlayers: searchPlayers,
+	recordResult: recordResult
 };

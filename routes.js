@@ -96,6 +96,7 @@ module.exports = function(app) {
 	app.get('/auction/resetorder', auction.resetNominationOrder);
 	app.get('/auction/admin', requireLogin, requireAdmin, auctionAdmin.adminPage);
 	app.get('/auction/admin/search', requireLogin, requireAdmin, noCache, auctionAdmin.searchPlayers);
+	app.post('/auction/admin/record', requireLogin, requireAdmin, auctionAdmin.recordResult);
 
 	app.post('/simulator', simulator.filterByConditions);
 	app.post('/simulator/:conditions', simulator.filterByConditions);

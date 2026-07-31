@@ -22,14 +22,47 @@ html
 			const owners = !{JSON.stringify(owners)};
 			const webSocketUrl = !{JSON.stringify(webSocketUrl)};
 			const AUCTION_SEARCH_URL = '/auction/admin/search';
+			const AUCTION_RECORD_URL = '/auction/admin/record';
 
 		script(src='/js/auction.js')
 
 		title Bid Buddy Admin
 
 	body.admin
-		dialog
+		dialog#reconnect-dialog
 			button#reconnect.btn.btn-info Reconnect
+
+		dialog#record-result-dialog.record-result
+			h5.record-result__title Record Auction Result
+			div.record-result__form
+				div.record-result__field
+					label.record-result__label Player
+					input#record-player-name.form-control(type='text' readonly)
+					input#record-player-id(type='hidden')
+				div.record-result__field
+					label.record-result__label Winner
+					select#record-winner.form-control
+						each owner in owners
+							option(value=owner) #{owner}
+				div.record-result__field
+					label.record-result__label Winning Bid
+					div.input-group
+						div.input-group-prepend
+							span.input-group-text $
+						input#record-amount.form-control(type='number' min='1')
+				div.record-result__field
+					label.record-result__label Type
+					select#record-type.form-control
+						option(value='auction-ufa') UFA
+						option(value='auction-rfa-matched') RFA Matched
+						option(value='auction-rfa-unmatched') RFA Unmatched
+			div.record-result__actions
+				button#record-cancel.btn.btn-secondary Cancel
+				button#record-confirm.btn.btn-success
+					i.fa.fa-check
+					|
+					| Record
+			div#record-status
 
 		div.container
 			hr
@@ -172,6 +205,13 @@ html
 			div.row.justify-content-center
 				div.col-12.col-lg-6.text-center
 					ul#bid-history
+
+			div#record-result-container.row.justify-content-center.mt-3(style='display: none')
+				div.col-12.col-lg-6.text-center
+					button#record-result-btn.btn.btn-success.btn-lg
+						i.fa.fa-database
+						|
+						| Record Result
 
 			hr
 

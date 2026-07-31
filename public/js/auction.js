@@ -1,5 +1,7 @@
 var state = 'new-player';
 var loggedInAs;
+var lastAuctionData = null;
+var resultRecorded = false;
 
 var pluralFranchises = ['Koci/Mueller', 'Schexes'];
 
@@ -96,6 +98,7 @@ $(document).ready(function() {
 			value: newPlayer
 		}));
 
+		resultRecorded = false;
 		$(this).find('#player-id').val('');
 		$(this).find('#player-search').val('');
 	});
@@ -238,6 +241,78 @@ $(document).ready(function() {
 			searchInput.val('');
 		});
 	}
+
+	// Record Result dialog (dynamic admin page only)
+	if (typeof AUCTION_RECORD_URL !== 'undefined') {
+		var recordDialog = document.getElementById('record-result-dialog');
+
+		$('#record-result-btn').on('click', function() {
+			if (!lastAuctionData || !lastAuctionData.bids || lastAuctionData.bids.length === 0) return;
+
+			var winningBid = lastAuctionData.bids[0];
+			var situation = lastAuctionData.player.situation || 'UFA';
+
+			$('#record-player-name').val(lastAuctionData.player.name);
+			$('#record-player-id').val(lastAuctionData.player.playerId || '');
+			$('#record-winner').val(winningBid.owner);
+			$('#record-amount').val(winningBid.amount);
+
+			var auctionType = 'auction-ufa';
+			if (situation.startsWith('RFA-')) {
+				var rfaHolder = situation.replace('RFA-', '');
+				if (rfaHolder === winningBid.owner) {
+					auctionType = 'auction-rfa-matched';
+				} else {
+					auctionType = 'auction-rfa-unmatched';
+				}
+			}
+			$('#record-type').val(auctionType);
+
+			$('#record-status').empty();
+			$('#record-confirm').prop('disabled', false).html('<i class="fa fa-check"></i> Record');
+			recordDialog.showModal();
+		});
+
+		$('#record-cancel').on('click', function() {
+			recordDialog.close();
+		});
+
+		$('#record-confirm').on('click', function() {
+			var btn = $(this);
+			btn.prop('disabled', true).text('Recording...');
+
+			$.ajax({
+				url: AUCTION_RECORD_URL,
+				method: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					playerId: $('#record-player-id').val() || null,
+					playerName: $('#record-player-name').val(),
+					winner: $('#record-winner').val(),
+					amount: $('#record-amount').val(),
+					type: $('#record-type').val()
+				}),
+				success: function(data) {
+					resultRecorded = true;
+					recordDialog.close();
+
+					$('#record-result-btn')
+						.removeClass('btn-success').addClass('btn-secondary')
+						.prop('disabled', true)
+						.html('<i class="fa fa-check"></i> Recorded: $' + data.amount + ' to ' + data.winner);
+				},
+				error: function(xhr) {
+					var msg = 'Error recording result';
+					try {
+						var body = JSON.parse(xhr.responseText);
+						if (body.error) msg = body.error;
+					} catch (e) {}
+					$('#record-status').html('<div class="text-danger mt-2">' + msg + '</div>');
+					btn.prop('disabled', false).html('<i class="fa fa-check"></i> Record');
+				}
+			});
+		});
+	}
 });
 
 var addLoggedInAsClass = function(loggedInAsData) {
@@ -248,6 +323,8 @@ var addLoggedInAsClass = function(loggedInAsData) {
 };
 
 var redrawAuctionClient = function(auctionData, lag) {
+	lastAuctionData = auctionData;
+
 	if (auctionData.status) {
 		$('body')
 			.removeClass('paused')
@@ -270,6 +347,25 @@ var redrawAuctionClient = function(auctionData, lag) {
 
 		if (auctionData.status == 'roll-call' && auctionData.rollCall.includes(loggedInAs)) {
 			$('body').addClass('checked-in');
+		}
+	}
+
+	// Show Record Result button when paused with a winning bid (dynamic admin only)
+	if (typeof AUCTION_RECORD_URL !== 'undefined') {
+		var hasBids = auctionData.bids && auctionData.bids.length > 0;
+		var isPaused = auctionData.status === 'paused';
+		var hasPlayer = auctionData.player && auctionData.player.name && auctionData.player.name !== 'Tim Duncan';
+
+		if (isPaused && hasBids && hasPlayer && !resultRecorded) {
+			$('#record-result-container').show();
+			$('#record-result-btn')
+				.removeClass('btn-secondary').addClass('btn-success')
+				.prop('disabled', false)
+				.html('<i class="fa fa-database"></i> Record Result');
+		} else if (resultRecorded && isPaused && hasBids && hasPlayer) {
+			$('#record-result-container').show();
+		} else {
+			$('#record-result-container').hide();
 		}
 	}
 
@@ -325,7 +421,7 @@ var redrawAuctionClient = function(auctionData, lag) {
 };
 
 function connectToWebSocket() {
-	var dialog = $('dialog')[0];
+	var reconnectDialog = document.getElementById('reconnect-dialog') || $('dialog')[0];
 
 	socket = new WebSocket(webSocketUrl + '/ws/auction');
 	socket.onmessage = handleMessage;
@@ -339,7 +435,7 @@ function connectToWebSocket() {
 			}));
 		}, 5000);
 
-		dialog.close();
+		reconnectDialog.close();
 	}
 
 	socket.onclose = function() {
@@ -347,7 +443,7 @@ function connectToWebSocket() {
 
 		clearInterval(socketHeartbeatInterval);
 
-		dialog.showModal();
+		reconnectDialog.showModal();
 	}
 
 	socket.onerror = function() {
