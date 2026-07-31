@@ -62,13 +62,14 @@ async function adminPage(request, response) {
 	var situations = ['UFA'];
 
 	var regimes = await Regime.find({ 'tenures.endSeason': null }).lean();
+	var owners = regimes.map(function(r) { return r.displayName; }).sort();
 	regimes.forEach(function(r) {
 		situations.push('RFA-' + r.displayName);
 	});
 	situations.sort();
 
 	response.render('auction-admin-live', {
-		owners: PSO.nominationOrder,
+		owners: owners,
 		positions: positionOrder,
 		situations: situations,
 		referenceSite: 'https://www.pro-football-reference.com/search/search.fcgi?search=',
