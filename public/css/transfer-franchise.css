@@ -6,6 +6,10 @@
 	border: 1px solid #ced4da;
 	border-radius: 0.25rem;
 	display: none;
+	position: absolute;
+	z-index: 10;
+	background: #fff;
+	width: 100%;
 }
 
 .transfer-franchise__people-list--show {
@@ -19,4 +23,23 @@
 
 .transfer-franchise__people-item:hover {
 	background: #f8f9fa;
+}
+
+.transfer-franchise__owner-list {
+	margin-bottom: 0.5rem;
+}
+
+.transfer-franchise__owner-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.4rem 0.75rem;
+	margin-bottom: 0.25rem;
+	background: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+}
+
+.transfer-franchise__owner-row span {
+	font-weight: 500;
 }

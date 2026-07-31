@@ -10,7 +10,6 @@ var admin = require('./services/admin');
 var adminPlayers = require('./services/admin-players');
 var adminTrades = require('./services/admin-trades');
 var adminPeople = require('./services/admin-people');
-var adminRegimes = require('./services/admin-regimes');
 var draft = require('./services/draft');
 var draftLive = require('./services/draft-live');
 var trades = require('./services/trades');
@@ -139,13 +138,6 @@ module.exports = function(app) {
 	app.post('/admin/people/new', requireLogin, requireAdmin, adminPeople.createPerson);
 	app.get('/admin/people/:id', requireLogin, requireAdmin, adminPeople.editPersonForm);
 	app.post('/admin/people/:id', requireLogin, requireAdmin, adminPeople.editPerson);
-
-	// Regime management (require login + admin)
-	app.get('/admin/regimes', requireLogin, requireAdmin, adminRegimes.listRegimes);
-	app.get('/admin/regimes/:id', requireLogin, requireAdmin, adminRegimes.editRegimeForm);
-	app.post('/admin/regimes/:id', requireLogin, requireAdmin, adminRegimes.editRegime);
-	app.post('/admin/regimes/:id/add-owner', requireLogin, requireAdmin, adminRegimes.addOwner);
-	app.post('/admin/regimes/:id/remove-owner', requireLogin, requireAdmin, adminRegimes.removeOwner);
 	
 	// Process new trades (require login + admin)
 	app.get('/admin/process-trade', requireLogin, requireAdmin, proposals.processPage);

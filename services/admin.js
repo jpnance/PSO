@@ -347,12 +347,12 @@ async function transferFranchiseForm(request, response) {
 			});
 		});
 		var ownerNames = regime && regime.ownerIds 
-			? Regime.sortOwnerNames(regime.ownerIds).join(', ')
-			: 'Unknown';
+			? Regime.sortOwnerNames(regime.ownerIds)
+			: [];
 		return {
 			id: f._id.toString(),
 			displayName: regime ? regime.displayName : 'Unknown',
-			owners: ownerNames,
+			ownerList: ownerNames,
 			rosterId: f.rosterId
 		};
 	}).sort(function(a, b) {
@@ -374,16 +374,24 @@ async function transferFranchiseForm(request, response) {
 async function transferFranchise(request, response) {
 	var body = request.body;
 	var franchiseId = body.franchiseId;
-	var newOwnerName = (body.newOwnerName || '').trim();
 	var newDisplayName = (body.newDisplayName || '').trim();
 	var effectiveSeason = parseInt(body.effectiveSeason, 10);
+
+	// Normalize ownerNames to an array
+	var rawOwnerNames = body.ownerNames || [];
+	if (typeof rawOwnerNames === 'string') {
+		rawOwnerNames = [rawOwnerNames];
+	}
+	var ownerNames = rawOwnerNames
+		.map(function(n) { return (n || '').trim(); })
+		.filter(function(n) { return n.length > 0; });
 	
 	// Validation
 	if (!franchiseId) {
 		return response.status(400).json({ error: 'Franchise is required' });
 	}
-	if (!newOwnerName) {
-		return response.status(400).json({ error: 'New owner name is required' });
+	if (ownerNames.length === 0) {
+		return response.status(400).json({ error: 'At least one owner is required' });
 	}
 	if (!newDisplayName) {
 		return response.status(400).json({ error: 'New display name is required' });
@@ -392,11 +400,16 @@ async function transferFranchise(request, response) {
 		return response.status(400).json({ error: 'Effective season is required' });
 	}
 	
-	// Find or create the person
-	var person = await Person.findOne({ name: newOwnerName });
-	if (!person) {
-		var username = Person.generateUsername(newOwnerName);
-		person = await Person.create({ name: newOwnerName, username: username });
+	// Find or create Person records for each owner
+	var ownerIds = [];
+	for (var i = 0; i < ownerNames.length; i++) {
+		var name = ownerNames[i];
+		var person = await Person.findOne({ name: name });
+		if (!person) {
+			var username = Person.generateUsername(name);
+			person = await Person.create({ name: name, username: username });
+		}
+		ownerIds.push(person._id);
 	}
 	
 	// End the current tenure for this franchise
@@ -410,7 +423,6 @@ async function transferFranchise(request, response) {
 	});
 	
 	if (currentRegime) {
-		// Find and update the specific tenure
 		currentRegime.tenures.forEach(function(t) {
 			if (t.franchiseId.toString() === franchiseId && t.endSeason === null) {
 				t.endSeason = effectiveSeason - 1;
@@ -423,22 +435,21 @@ async function transferFranchise(request, response) {
 	var newRegime = await Regime.findOne({ displayName: newDisplayName });
 	
 	if (newRegime) {
-		// Add new tenure to existing regime
 		newRegime.tenures.push({
 			franchiseId: franchiseId,
 			startSeason: effectiveSeason,
 			endSeason: null
 		});
-		// Update ownerIds if needed
-		if (!newRegime.ownerIds.some(function(id) { return id.equals(person._id); })) {
-			newRegime.ownerIds.push(person._id);
-		}
+		ownerIds.forEach(function(ownerId) {
+			if (!newRegime.ownerIds.some(function(id) { return id.equals(ownerId); })) {
+				newRegime.ownerIds.push(ownerId);
+			}
+		});
 		await newRegime.save();
 	} else {
-		// Create new regime
 		await Regime.create({
 			displayName: newDisplayName,
-			ownerIds: [person._id],
+			ownerIds: ownerIds,
 			tenures: [{
 				franchiseId: franchiseId,
 				startSeason: effectiveSeason,

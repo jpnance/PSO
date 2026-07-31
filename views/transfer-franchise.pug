@@ -11,58 +11,78 @@ block styles
 block content
 	div.container.py-4
 		h1.mb-4 Transfer Franchise
-		
+
 		p.lead.text-muted
-			| Transfer ownership of a franchise to a new person. This will end the current regime and create a new one.
-		
-		form(method='POST' action='/admin/transfer-franchise')
+			| Change franchise ownership by ending the current regime and starting a new one. Use this to transfer to a new owner, add a co-owner, or remove one.
+
+		form#transferForm(method='POST' action='/admin/transfer-franchise')
 			div.card.mb-4
 				div.card-header
 					strong Select Franchise
 				div.card-body
 					div.row
 						div.col-md-6
-							div.form-group
+							div.form-group.mb-0
 								label(for='franchiseId') Franchise
 								select#franchiseId.form-control(name='franchiseId' required)
 									option(value='') Select a franchise...
 									each f in franchises
-										option(value=f.id) #{f.displayName} (#{f.owners})
-			
+										option(value=f.id) #{f.displayName} (#{f.ownerList.join(', ')})
+
+					div#currentRegimeInfo.mt-3.d-none
+						div.alert.alert-secondary.mb-0
+							strong Current regime: 
+							span#currentRegimeName
+							br
+							small.text-muted
+								| Owners: 
+								span#currentRegimeOwners
+
 			div.card.mb-4
 				div.card-header
 					strong New Ownership
 				div.card-body
-					div.row
-						div.col-md-6
-							div.form-group
-								label(for='newOwnerName') New Owner Name
-								input#newOwnerName.form-control(
+					div.form-group
+						label Owners for New Regime
+						div#ownerList.transfer-franchise__owner-list
+						div#noOwnersMsg.text-muted.small.mb-2 Select a franchise to pre-populate owners.
+						small.form-text.text-muted These people will be the owners of the new regime.
+
+					div.form-group
+						label(for='addOwnerInput') Add Owner
+						div.d-flex
+							div.position-relative.flex-grow-1.mr-2
+								input#addOwnerInput.form-control(
 									type='text'
-									name='newOwnerName'
-									placeholder='Enter name...'
-									required
+									placeholder='Type a name...'
 									autocomplete='off'
 								)
 								div#peopleList.transfer-franchise__people-list
 									each person in people
 										div.transfer-franchise__people-item(data-name=person.name)= person.name
-								small.form-text.text-muted
-									| Start typing to see existing people, or enter a new name to create a new person.
-						
+							button#addOwnerBtn.btn.btn-outline-success(type='button')
+								i.fa.fa-plus.mr-1
+								| Add
+						small.form-text.text-muted
+							| Select from existing people or type a new name (a person record will be created automatically).
+							|  
+							a(href='/admin/people/new') Create a person
+							|  first if you need to set their details.
+
+					hr
+
+					div.row
 						div.col-md-6
 							div.form-group
 								label(for='newDisplayName') New Display Name
 								input#newDisplayName.form-control(
 									type='text'
 									name='newDisplayName'
-									placeholder='e.g., "The Smiths" or "Smith/Jones"'
+									placeholder='e.g., "Mitch/Karsten"'
 									required
 								)
-								small.form-text.text-muted
-									| How this franchise will be displayed (can include co-owners).
-					
-					div.row
+								small.form-text.text-muted How this regime will be displayed throughout the site.
+
 						div.col-md-4
 							div.form-group
 								label(for='effectiveSeason') Effective Season
@@ -72,61 +92,155 @@ block content
 									value=currentSeason
 									required
 								)
-								small.form-text.text-muted
-									| The season when the new ownership begins.
-			
+								small.form-text.text-muted The season when the new regime begins.
+
 			div.d-flex.justify-content-between
 				a.btn.btn-secondary(href='/admin') Cancel
 				button.btn.btn-primary(type='submit') Transfer Franchise
 
 block scripts
 	script.
-		// Simple autocomplete for owner name
-		var input = document.getElementById('newOwnerName');
-		var list = document.getElementById('peopleList');
-		var items = list.querySelectorAll('.transfer-franchise__people-item');
-		
-		input.addEventListener('focus', function() {
-			filterList();
-			list.classList.add('transfer-franchise__people-list--show');
+		var franchiseData = !{JSON.stringify(franchises)};
+		var franchiseSelect = document.getElementById('franchiseId');
+		var regimeInfo = document.getElementById('currentRegimeInfo');
+		var regimeName = document.getElementById('currentRegimeName');
+		var regimeOwners = document.getElementById('currentRegimeOwners');
+		var ownerList = document.getElementById('ownerList');
+		var noOwnersMsg = document.getElementById('noOwnersMsg');
+		var addOwnerInput = document.getElementById('addOwnerInput');
+		var addOwnerBtn = document.getElementById('addOwnerBtn');
+		var displayNameInput = document.getElementById('newDisplayName');
+		var peopleList = document.getElementById('peopleList');
+		var peopleItems = peopleList.querySelectorAll('.transfer-franchise__people-item');
+
+		function getOwnerNames() {
+			var inputs = ownerList.querySelectorAll('input[name="ownerNames"]');
+			var names = [];
+			inputs.forEach(function(input) { names.push(input.value); });
+			return names;
+		}
+
+		function renderOwnerList(names) {
+			ownerList.innerHTML = '';
+			names.forEach(function(name) {
+				addOwnerRow(name);
+			});
+			noOwnersMsg.classList.toggle('d-none', names.length > 0);
+		}
+
+		function addOwnerRow(name) {
+			var row = document.createElement('div');
+			row.className = 'transfer-franchise__owner-row';
+
+			var nameSpan = document.createElement('span');
+			nameSpan.textContent = name;
+			row.appendChild(nameSpan);
+
+			var hidden = document.createElement('input');
+			hidden.type = 'hidden';
+			hidden.name = 'ownerNames';
+			hidden.value = name;
+			row.appendChild(hidden);
+
+			var removeBtn = document.createElement('button');
+			removeBtn.type = 'button';
+			removeBtn.className = 'btn btn-sm btn-outline-danger';
+			removeBtn.innerHTML = '&times;';
+			removeBtn.addEventListener('click', function() {
+				row.remove();
+				noOwnersMsg.classList.toggle('d-none', ownerList.children.length > 0);
+			});
+			row.appendChild(removeBtn);
+
+			ownerList.appendChild(row);
+			noOwnersMsg.classList.add('d-none');
+		}
+
+		// When franchise is selected, show current regime and pre-populate owners
+		franchiseSelect.addEventListener('change', function() {
+			var franchiseId = franchiseSelect.value;
+			if (!franchiseId) {
+				regimeInfo.classList.add('d-none');
+				renderOwnerList([]);
+				displayNameInput.value = '';
+				return;
+			}
+
+			var franchise = franchiseData.find(function(f) { return f.id === franchiseId; });
+			if (franchise) {
+				regimeName.textContent = franchise.displayName;
+				regimeOwners.textContent = franchise.ownerList.join(', ') || 'None';
+				regimeInfo.classList.remove('d-none');
+				renderOwnerList(franchise.ownerList);
+				displayNameInput.value = franchise.displayName;
+			}
 		});
-		
-		input.addEventListener('blur', function() {
-			// Delay to allow click on list item
+
+		// Autocomplete for add owner input
+		addOwnerInput.addEventListener('focus', function() {
+			filterPeopleList();
+			peopleList.classList.add('transfer-franchise__people-list--show');
+		});
+
+		addOwnerInput.addEventListener('blur', function() {
 			setTimeout(function() {
-				list.classList.remove('transfer-franchise__people-list--show');
+				peopleList.classList.remove('transfer-franchise__people-list--show');
 			}, 200);
 		});
-		
-		input.addEventListener('input', function() {
-			filterList();
+
+		addOwnerInput.addEventListener('input', function() {
+			filterPeopleList();
 		});
-		
-		function filterList() {
-			var val = input.value.toLowerCase();
+
+		function filterPeopleList() {
+			var val = addOwnerInput.value.toLowerCase();
+			var currentNames = getOwnerNames().map(function(n) { return n.toLowerCase(); });
 			var hasVisible = false;
-			items.forEach(function(item) {
-				var name = item.getAttribute('data-name').toLowerCase();
-				if (name.includes(val)) {
+
+			peopleItems.forEach(function(item) {
+				var name = item.getAttribute('data-name');
+				var matchesFilter = name.toLowerCase().includes(val);
+				var alreadyAdded = currentNames.includes(name.toLowerCase());
+
+				if (matchesFilter && !alreadyAdded && val.length > 0) {
 					item.style.display = '';
 					hasVisible = true;
 				} else {
 					item.style.display = 'none';
 				}
 			});
-			if (hasVisible && val.length > 0) {
-				list.classList.add('transfer-franchise__people-list--show');
+
+			if (hasVisible) {
+				peopleList.classList.add('transfer-franchise__people-list--show');
 			}
 		}
-		
-		items.forEach(function(item) {
+
+		peopleItems.forEach(function(item) {
 			item.addEventListener('click', function() {
-				input.value = item.getAttribute('data-name');
-				list.classList.remove('transfer-franchise__people-list--show');
-				// Auto-fill display name if empty
-				var displayInput = document.getElementById('newDisplayName');
-				if (!displayInput.value) {
-					displayInput.value = item.getAttribute('data-name');
-				}
+				addOwnerInput.value = item.getAttribute('data-name');
+				peopleList.classList.remove('transfer-franchise__people-list--show');
 			});
+		});
+
+		// Add owner button
+		addOwnerBtn.addEventListener('click', function() {
+			var name = addOwnerInput.value.trim();
+			if (!name) return;
+
+			var currentNames = getOwnerNames().map(function(n) { return n.toLowerCase(); });
+			if (currentNames.includes(name.toLowerCase())) {
+				addOwnerInput.value = '';
+				return;
+			}
+
+			addOwnerRow(name);
+			addOwnerInput.value = '';
+		});
+
+		// Allow Enter in the add owner input to trigger add
+		addOwnerInput.addEventListener('keydown', function(e) {
+			if (e.key === 'Enter') {
+				e.preventDefault();
+				addOwnerBtn.click();
+			}
 		});
