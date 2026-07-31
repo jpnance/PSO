@@ -301,11 +301,102 @@ ul#bid-history li:first-child {
 	max-width: 400px;
 	width: 90vw;
 	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+	font-size: 0.95rem;
+	color: #333;
 }
 
-.record-result__title {
-	margin: 0 0 1rem;
+.record-result__screen {
+	display: none;
+}
+
+/* Shared hero block — player name + subtitle */
+
+.record-result__hero {
+	text-align: center;
+	padding-bottom: 0.75rem;
+	margin-bottom: 0.75rem;
+	border-bottom: 1px solid #eee;
+}
+
+.record-result__hero-name {
+	font-size: 1.5rem;
 	font-weight: 700;
+	color: #222;
+}
+
+.record-result__hero-sub {
+	font-size: 0.85rem;
+	color: #999;
+	margin-top: 0.1rem;
+}
+
+.record-result__hero-sub span {
+	color: #666;
+	font-weight: 600;
+}
+
+/* Final Bid screen — bid input row */
+
+.record-result__bid-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+
+.record-result__bid-field {
+	flex: 0 0 auto;
+}
+
+.record-result__bid-field .input-group {
+	width: auto;
+}
+
+.record-result__bid-field .form-control {
+	width: 5.5rem;
+	font-weight: 600;
+}
+
+.record-result__bid-from {
+	color: #666;
+}
+
+/* RFA Decision screen */
+
+.record-result__question {
+	font-size: 1.15rem;
+	text-align: center;
+	margin: 0;
+}
+
+/* Review screen */
+
+.record-result__review {
+	text-align: center;
+	padding: 0.75rem 0;
+}
+
+.record-result__review-context {
+	color: #888;
+	margin-bottom: 0.4rem;
+}
+
+.record-result__review-main {
+	font-size: 1.15rem;
+}
+
+.record-result__review-main strong {
+	color: #222;
+}
+
+/* Shared */
+
+.record-result__error {
+	color: #dc3545;
+	font-size: 0.85rem;
+	margin-top: 0.25rem;
+	display: none;
 }
 
 .record-result__field {
@@ -323,6 +414,9 @@ ul#bid-history li:first-child {
 .record-result__actions {
 	display: flex;
 	gap: 0.5rem;
-	justify-content: flex-end;
+	justify-content: center;
 	margin-top: 1rem;
+	padding-top: 0.75rem;
+	border-top: 1px solid #eee;
 }
+

@@ -33,15 +33,73 @@ html
 			button#reconnect.btn.btn-info Reconnect
 
 		dialog#record-result-dialog.record-result
-			h5.record-result__title Record Auction Result
-			div.record-result__form
+			input#record-player-id(type='hidden')
+			input#record-player-name-hidden(type='hidden')
+			input#record-type(type='hidden')
+			input#record-rfa-holder(type='hidden')
+			input#record-high-bidder(type='hidden')
+			input#record-initial-amount(type='hidden')
+
+			div#record-screen-final-bid.record-result__screen
+				div.record-result__hero
+					div.record-result__hero-name#final-bid-player
+					div.record-result__hero-sub
+						span#final-bid-situation-label
+				div.record-result__bid-row
+					div.record-result__bid-field
+						div.input-group
+							div.input-group-prepend
+								span.input-group-text $
+							input#final-bid-raise-amount.form-control(type='number' min='1')
+					div.record-result__bid-from
+						| from
+						|
+						strong
+							span#final-bid-owner
+				div#final-bid-error.record-result__error
+				input#final-bid-amount(type='hidden')
+				div.record-result__actions
+					button#final-bid-back.btn.btn-secondary Back
+					button#final-bid-continue.btn.btn-primary Continue
+
+			div#record-screen-rfa-decision.record-result__screen
+				div.record-result__hero
+					div.record-result__hero-name#rfa-decision-player
+					div.record-result__hero-sub
+						| $
+						span#rfa-decision-amount
+						|  from
+						|
+						span#rfa-decision-bidder
+				p.record-result__question
+					| Does
+					|
+					strong#rfa-decision-holder
+					|
+					| match?
+				div.record-result__actions
+					button#rfa-decision-back.btn.btn-secondary Back
+					button#rfa-pass.btn.btn-danger Pass
+					button#rfa-match.btn.btn-success Match
+
+			div#record-screen-review.record-result__screen
+				div#review-body.record-result__review
+				div.record-result__actions
+					button#review-back.btn.btn-secondary Back
+					button#review-cancel.btn.btn-secondary Cancel
+					button#review-record.btn.btn-success Record
+				div#record-status
+
+			div#record-screen-edit.record-result__screen
 				div.record-result__field
-					label.record-result__label Player
-					input#record-player-name.form-control(type='text' readonly)
-					input#record-player-id(type='hidden')
+					label.record-result__label Situation
+					select#edit-situation.form-control
+						option(value='UFA') UFA
+						each owner in owners
+							option(value='RFA-' + owner) RFA (#{owner})
 				div.record-result__field
-					label.record-result__label Winner
-					select#record-winner.form-control
+					label.record-result__label High Bidder
+					select#edit-winner.form-control
 						each owner in owners
 							option(value=owner) #{owner}
 				div.record-result__field
@@ -49,20 +107,10 @@ html
 					div.input-group
 						div.input-group-prepend
 							span.input-group-text $
-						input#record-amount.form-control(type='number' min='1')
-				div.record-result__field
-					label.record-result__label Type
-					select#record-type.form-control
-						option(value='auction-ufa') UFA
-						option(value='auction-rfa-matched') RFA Matched
-						option(value='auction-rfa-unmatched') RFA Unmatched
-			div.record-result__actions
-				button#record-cancel.btn.btn-secondary Cancel
-				button#record-confirm.btn.btn-success
-					i.fa.fa-check
-					|
-					| Record
-			div#record-status
+						input#edit-amount.form-control(type='number' min='1')
+				div.record-result__actions
+					button#edit-cancel.btn.btn-secondary Cancel
+					button#edit-continue.btn.btn-primary Continue
 
 		div.container
 			hr

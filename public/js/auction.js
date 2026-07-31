@@ -253,39 +253,195 @@ $(document).ready(function() {
 	// Record Result dialog (dynamic admin page only)
 	if (typeof AUCTION_RECORD_URL !== 'undefined') {
 		var recordDialog = document.getElementById('record-result-dialog');
+		var recordRfaHolder = null;
+		var recordHighBidder = null;
+		var recordInitialAmount = 0;
+		var recordWinner = null;
+		var recordAmount = null;
+		var recordAuctionType = null;
 
+		function showRecordScreen(screen) {
+			$('.record-result__screen').hide();
+			$('#record-screen-' + screen).show();
+		}
+
+		function deriveType(winner) {
+			if (!recordRfaHolder) return 'auction-ufa';
+			return winner === recordRfaHolder ? 'auction-rfa-matched' : 'auction-rfa-unmatched';
+		}
+
+		function buildReviewHtml(winner, amount, type) {
+			var player = $('#record-player-name-hidden').val();
+
+			if (type === 'auction-rfa-matched') {
+				return '<div class="record-result__review-main"><strong>' + winner + '</strong> keeps <strong>' + player + '</strong> for <strong>$' + amount + '</strong></div>';
+			} else if (type === 'auction-rfa-unmatched') {
+				return '<div class="record-result__review-context">' + recordRfaHolder + ' declines to match</div>'
+					+ '<div class="record-result__review-main"><strong>' + winner + '</strong> wins <strong>' + player + '</strong> for <strong>$' + amount + '</strong></div>';
+			} else {
+				return '<div class="record-result__review-main"><strong>' + winner + '</strong> wins <strong>' + player + '</strong> for <strong>$' + amount + '</strong></div>';
+			}
+		}
+
+		function showReviewScreen(winner, amount) {
+			recordWinner = winner;
+			recordAmount = amount;
+			recordAuctionType = deriveType(winner);
+			$('#record-type').val(recordAuctionType);
+
+			$('#review-body').html(buildReviewHtml(winner, amount, recordAuctionType));
+
+			$('#record-status').empty();
+			$('#review-record').prop('disabled', false).text('Record');
+
+			showRecordScreen('review');
+		}
+
+		function populateFinalBid(playerName, rfaHolder, owner, amount) {
+			$('#final-bid-player').text(playerName);
+			$('#final-bid-situation-label').text('RFA (' + rfaHolder + ')');
+			$('#final-bid-owner').text(owner);
+			$('#final-bid-raise-amount').val(amount);
+			$('#final-bid-error').hide();
+			$('#record-initial-amount').val(amount);
+		}
+
+		function populateEditScreen() {
+			$('#edit-situation').val(recordRfaHolder ? 'RFA-' + recordRfaHolder : 'UFA');
+			$('#edit-winner').val(recordHighBidder);
+			$('#edit-amount').val(recordInitialAmount);
+		}
+
+		// Open dialog
 		$('#record-result-btn').on('click', function() {
 			if (!lastAuctionData || !lastAuctionData.bids || lastAuctionData.bids.length === 0) return;
 
 			var winningBid = lastAuctionData.bids[0];
 			var situation = lastAuctionData.player.situation || 'UFA';
+			var playerName = lastAuctionData.player.name;
 
-			$('#record-player-name').val(lastAuctionData.player.name);
 			$('#record-player-id').val(lastAuctionData.player.playerId || '');
-			$('#record-winner').val(winningBid.owner);
-			$('#record-amount').val(winningBid.amount);
+			$('#record-player-name-hidden').val(playerName);
+			recordHighBidder = winningBid.owner;
+			recordInitialAmount = winningBid.amount;
 
-			var auctionType = 'auction-ufa';
 			if (situation.startsWith('RFA-')) {
-				var rfaHolder = situation.replace('RFA-', '');
-				if (rfaHolder === winningBid.owner) {
-					auctionType = 'auction-rfa-matched';
-				} else {
-					auctionType = 'auction-rfa-unmatched';
-				}
+				recordRfaHolder = situation.replace('RFA-', '');
+				$('#record-rfa-holder').val(recordRfaHolder);
+				populateFinalBid(playerName, recordRfaHolder, winningBid.owner, winningBid.amount);
+				showRecordScreen('final-bid');
+			} else {
+				recordRfaHolder = null;
+				$('#record-rfa-holder').val('');
+				showReviewScreen(winningBid.owner, winningBid.amount);
 			}
-			$('#record-type').val(auctionType);
 
-			$('#record-status').empty();
-			$('#record-confirm').prop('disabled', false).html('<i class="fa fa-check"></i> Record');
 			recordDialog.showModal();
 		});
 
-		$('#record-cancel').on('click', function() {
+		$('#final-bid-raise-amount').on('click', function() {
+			$(this).select();
+		});
+
+		// Final Bid: Back to Edit (raw override)
+		$('#final-bid-back').on('click', function() {
+			populateEditScreen();
+			showRecordScreen('edit');
+		});
+
+		// Final Bid: Continue
+		$('#final-bid-continue').on('click', function() {
+			var enteredAmount = parseInt($('#final-bid-raise-amount').val(), 10);
+			var initialAmount = parseInt($('#record-initial-amount').val(), 10);
+
+			if (!enteredAmount || enteredAmount < initialAmount) {
+				$('#final-bid-error').text('Amount must be at least $' + initialAmount).show();
+				return;
+			}
+
+			$('#final-bid-error').hide();
+
+			if (enteredAmount > initialAmount) {
+				socket.send(JSON.stringify({
+					type: 'makeBid',
+					value: { amount: enteredAmount, force: true, owner: recordHighBidder }
+				}));
+			}
+
+			var currentAmount = enteredAmount;
+
+			$('#rfa-decision-player').text($('#record-player-name-hidden').val());
+			$('#rfa-decision-holder').text(recordRfaHolder);
+			$('#rfa-decision-amount').text(currentAmount);
+			$('#rfa-decision-bidder').text(recordHighBidder);
+
+			showRecordScreen('rfa-decision');
+		});
+
+		// RFA Decision: Match
+		$('#rfa-match').on('click', function() {
+			var amount = parseInt($('#rfa-decision-amount').text(), 10);
+			showReviewScreen(recordRfaHolder, amount);
+		});
+
+		// RFA Decision: Pass
+		$('#rfa-pass').on('click', function() {
+			var amount = parseInt($('#rfa-decision-amount').text(), 10);
+			showReviewScreen(recordHighBidder, amount);
+		});
+
+		// RFA Decision: Back to Final Bid (pop the force bid if one was added)
+		$('#rfa-decision-back').on('click', function() {
+			var currentAmount = parseInt($('#rfa-decision-amount').text(), 10);
+			var originalAmount = parseInt($('#record-initial-amount').val(), 10);
+
+			if (currentAmount > originalAmount) {
+				socket.send(JSON.stringify({ type: 'pop' }));
+			}
+
+			$('#final-bid-raise-amount').val(originalAmount);
+			$('#final-bid-error').hide();
+			showRecordScreen('final-bid');
+		});
+
+		// Review: Back (RFA goes to RFA Decision, UFA goes to Edit)
+		$('#review-back').on('click', function() {
+			if (recordRfaHolder) {
+				showRecordScreen('rfa-decision');
+			} else {
+				populateEditScreen();
+				showRecordScreen('edit');
+			}
+		});
+
+		// Edit: Continue — routes based on situation pick
+		$('#edit-continue').on('click', function() {
+			var situation = $('#edit-situation').val();
+			var winner = $('#edit-winner').val();
+			var amount = parseInt($('#edit-amount').val(), 10);
+
+			recordHighBidder = winner;
+			recordInitialAmount = amount;
+
+			if (situation === 'UFA') {
+				recordRfaHolder = null;
+				$('#record-rfa-holder').val('');
+				showReviewScreen(winner, amount);
+			} else {
+				recordRfaHolder = situation.replace('RFA-', '');
+				$('#record-rfa-holder').val(recordRfaHolder);
+				populateFinalBid($('#record-player-name-hidden').val(), recordRfaHolder, winner, amount);
+				showRecordScreen('final-bid');
+			}
+		});
+
+		// Cancel from any screen
+		$('#review-cancel, #edit-cancel').on('click', function() {
 			recordDialog.close();
 		});
 
-		$('#record-confirm').on('click', function() {
+		// Review: Record
+		$('#review-record').on('click', function() {
 			var btn = $(this);
 			btn.prop('disabled', true).text('Recording...');
 
@@ -295,10 +451,10 @@ $(document).ready(function() {
 				contentType: 'application/json',
 				data: JSON.stringify({
 					playerId: $('#record-player-id').val() || null,
-					playerName: $('#record-player-name').val(),
-					winner: $('#record-winner').val(),
-					amount: $('#record-amount').val(),
-					type: $('#record-type').val()
+					playerName: $('#record-player-name-hidden').val(),
+					winner: recordWinner,
+					amount: recordAmount,
+					type: recordAuctionType
 				}),
 				success: function(data) {
 					resultRecorded = true;
@@ -316,7 +472,7 @@ $(document).ready(function() {
 						if (body.error) msg = body.error;
 					} catch (e) {}
 					$('#record-status').html('<div class="text-danger mt-2">' + msg + '</div>');
-					btn.prop('disabled', false).html('<i class="fa fa-check"></i> Record');
+					btn.prop('disabled', false).text('Record');
 				}
 			});
 		});
