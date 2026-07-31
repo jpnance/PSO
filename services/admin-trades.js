@@ -74,7 +74,7 @@ async function editTradeForm(request, response) {
 	var parties = [];
 	for (var j = 0; j < (trade.parties || []).length; j++) {
 		var party = trade.parties[j];
-		var franchiseName = await getDisplayName(party.franchiseId, tradeYear);
+		var franchiseName = party.regimeName || await getDisplayName(party.franchiseId, tradeYear);
 		
 		// Enrich players
 		var playersData = [];
@@ -213,6 +213,7 @@ async function editTradeForm(request, response) {
 		parties.push({
 			franchiseId: party.franchiseId,
 			franchiseName: franchiseName,
+			regimeName: party.regimeName || '',
 			usePlural: isPlural(franchiseName),
 			assets: assets,
 			players: playersData,
@@ -223,6 +224,10 @@ async function editTradeForm(request, response) {
 		});
 	}
 	
+	parties.sort(function(a, b) {
+		return a.franchiseName.localeCompare(b.franchiseName);
+	});
+
 	response.render('admin-trade-edit', {
 		trade: trade,
 		parties: parties,
@@ -255,6 +260,15 @@ async function editTrade(request, response) {
 		});
 	});
 	
+	// Update regime names
+	for (var i = 0; i < trade.parties.length; i++) {
+		var key = 'regimeName_' + i;
+		if (body[key] !== undefined) {
+			var newName = (body[key] || '').trim();
+			trade.parties[i].regimeName = newName || null;
+		}
+	}
+
 	// Update notes
 	var newNotes = (body.notes || '').trim();
 	trade.notes = newNotes || null;
