@@ -28,5 +28,8 @@ block content
 			div.alert.alert-warning
 				| Trade ##{query} not found.
 		else
-			p.text-muted Enter a trade number to view and edit.
+			p.text-muted
+				| Enter a trade number, or find it on the 
+				a(href='/trades') trade history page
+				|  and use the pencil icon to edit.
 		

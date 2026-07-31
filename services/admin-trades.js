@@ -273,28 +273,16 @@ async function editTrade(request, response) {
 	var newNotes = (body.notes || '').trim();
 	trade.notes = newNotes || null;
 	
-	// Update timestamp if provided (datetime-local is in ET)
+	// Update timestamp if provided (input is in ET, stored as UTC)
 	if (body.timestamp) {
-		// The datetime-local input gives us a string like "2024-08-15T14:30" in ET
-		// We need to parse this as ET and convert to UTC for storage
-		// Using a simple approach: parse it, then adjust for ET offset
 		var parts = body.timestamp.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);
 		if (parts) {
-			var year = parseInt(parts[1], 10);
-			var month = parseInt(parts[2], 10) - 1;
-			var day = parseInt(parts[3], 10);
-			var hours = parseInt(parts[4], 10);
-			var mins = parseInt(parts[5], 10);
-			
-			// Create a Date object treating the input as ET
-			// We'll use a timezone-aware approach
-			var etDateStr = parts[1] + '-' + parts[2] + '-' + parts[3] + 'T' + parts[4] + ':' + parts[5] + ':00';
-			
-			// Parse as if local, then we rely on the fact that the server should handle this
-			// For simplicity, create the date and let JS handle it
-			// This works if server is in US timezone; for robustness, we'd use a library
-			var localDate = new Date(year, month, day, hours, mins, 0);
-			trade.timestamp = localDate;
+			// Determine ET offset (EDT = -4, EST = -5) by asking Intl for this date
+			var naive = new Date(parseInt(parts[1], 10), parseInt(parts[2], 10) - 1, parseInt(parts[3], 10));
+			var etStr = naive.toLocaleString('en-US', { timeZone: 'America/New_York', timeZoneName: 'short' });
+			var offsetHours = etStr.includes('EDT') ? 4 : 5;
+
+			trade.timestamp = new Date(parts[1] + '-' + parts[2] + '-' + parts[3] + 'T' + parts[4] + ':' + parts[5] + ':00-0' + offsetHours + ':00');
 		}
 	}
 	

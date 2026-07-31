@@ -467,6 +467,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 		var auctionSeason = tradeDate.getMonth() >= 8 ? tradeYear + 1 : tradeYear;
 		
 		tradeData.push({
+			_id: trade._id,
 			number: tradeNumber,
 			timestamp: tradeDate,
 			tradeYear: tradeYear,

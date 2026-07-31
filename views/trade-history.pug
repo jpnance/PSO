@@ -39,6 +39,10 @@ block content
 									a.trade-card__date(href="/trades/" + trade.number)= formatDateLong(trade.timestamp)
 									a.trade-card__time(href="/trades/" + trade.number)= formatTime(trade.timestamp)
 								div.seq-nav
+									if isAdmin
+										a.seq-nav__arrow(href='/admin/trades/' + trade._id title='Edit trade')
+											span
+												i.fa.fa-pencil
 									a.seq-nav__arrow(href=prevTradeId ? '/trades/' + prevTradeId : null class=(!prevTradeId ? 'seq-nav__arrow--disabled' : ''))
 										span ‹
 									a.seq-nav__arrow(href=nextTradeId ? '/trades/' + nextTradeId : null class=(!nextTradeId ? 'seq-nav__arrow--disabled' : ''))
