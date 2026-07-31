@@ -34,6 +34,7 @@ var sockets = [];
 var auctionOverTimeout;
 
 var demoMode = false;
+var simulateMode = false;
 var demoBidInterval;
 
 function activateAuction() {
@@ -144,6 +145,11 @@ function nominatePlayer(nomination) {
 function pauseAuction() {
 	auction.status = 'paused';
 
+	if (simulateMode) {
+		clearInterval(demoBidInterval);
+		simulateMode = false;
+	}
+
 	broadcastAuctionData();
 
 	if (demoMode) {
@@ -238,6 +244,45 @@ function startDemo() {
 	}, Math.floor(Math.random() * 2000) + 500);
 }
 
+function simulateBids() {
+	if (auction.status === 'active' || !auction.player || auction.player.name === 'Tim Duncan') {
+		return;
+	}
+
+	simulateMode = true;
+
+	if (auction.bids.length === 0) {
+		var nominator = auction.nominator.now !== '--' ? auction.nominator.now : nominationOrder[0];
+		makeBid({
+			owner: nominator,
+			force: true,
+			amount: 1
+		});
+	}
+
+	activateAuction();
+
+	clearInterval(demoBidInterval);
+
+	demoBidInterval = setInterval(function() {
+		var highBid = auction.bids[0];
+		var targetBid = Math.floor(Math.random() * 200) + 20;
+
+		var bidProbability = Math.max(1 - highBid.amount / targetBid, 0);
+
+		if (Math.random() < bidProbability) {
+			var newBidder = nominationOrder[Math.floor(Math.random() * nominationOrder.length)];
+
+			if (newBidder != highBid.owner) {
+				makeBid({
+					owner: newBidder,
+					amount: highBid.amount + Math.floor(Math.random() * 10)
+				});
+			}
+		}
+	}, Math.floor(Math.random() * 2000) + 500);
+}
+
 function stopDemo() {
 	demoMode = false;
 
@@ -306,6 +351,9 @@ function handleMessage(socket, rawMessage) {
 	}
 	else if (type == 'setTimer') {
 		setTimer(value);
+	}
+	else if (type == 'simulateBids') {
+		simulateBids();
 	}
 	else if (type == 'startDemo') {
 		startDemo();

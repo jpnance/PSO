@@ -168,6 +168,14 @@ $(document).ready(function() {
 		}));
 	});
 
+	$('#simulate-bids').bind('click', function(e) {
+		e.preventDefault();
+
+		socket.send(JSON.stringify({
+			type: 'simulateBids'
+		}));
+	});
+
 	$('#start-demo').bind('click', function(e) {
 		e.preventDefault();
 

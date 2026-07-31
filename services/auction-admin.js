@@ -4,6 +4,7 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Player = require('../models/Player');
 var Regime = require('../models/Regime');
 var Transaction = require('../models/Transaction');
+var { createUnsignedContract } = require('./transaction');
 var PSO = require('../config/pso');
 
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -212,6 +213,19 @@ async function recordResult(request, response) {
 		}
 
 		await Transaction.create(txData);
+
+		var config = await LeagueConfig.findById('pso');
+		var season = config ? config.season : new Date().getFullYear();
+
+		// Remove any existing RFA-rights contract before creating the new one
+		await Contract.deleteMany({ playerId: player._id, salary: null });
+
+		await createUnsignedContract({
+			playerId: player._id,
+			franchiseId: franchise._id,
+			salary: amount,
+			season: season
+		});
 
 		response.json({
 			success: true,

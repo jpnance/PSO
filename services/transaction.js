@@ -1027,13 +1027,11 @@ async function processDraftPick(details) {
 	pick.transactionId = transaction._id;
 	await pick.save();
 	
-	// Create a contract (term set later on Contract Day)
-	await Contract.create({
+	await createUnsignedContract({
 		playerId: details.playerId,
 		franchiseId: details.franchiseId,
 		salary: salary,
-		startYear: pick.season,
-		endYear: null
+		season: pick.season
 	});
 	
 	return {
@@ -1071,12 +1069,33 @@ async function processDraftPass(details) {
 	return { success: true, transaction: transaction };
 }
 
+async function createUnsignedContract(details) {
+	await Contract.create({
+		playerId: details.playerId,
+		franchiseId: details.franchiseId,
+		salary: details.salary,
+		startYear: details.season,
+		endYear: null
+	});
+
+	await Budget.updateOne(
+		{ franchiseId: details.franchiseId, season: details.season },
+		{
+			$inc: {
+				payroll: details.salary,
+				available: -details.salary
+			}
+		}
+	);
+}
+
 module.exports = {
 	processTrade: processTrade,
 	validateTrade: validateTrade,
 	processCut: processCut,
 	processDraftPick: processDraftPick,
 	processDraftPass: processDraftPass,
+	createUnsignedContract: createUnsignedContract,
 	validateBudgetImpact: validateBudgetImpact,
 	computeBuyOutForSeason: computeBuyOutForSeason,
 	computeRecoverable: computeRecoverable,
