@@ -1,6 +1,7 @@
 var state = 'new-player';
 var loggedInAs;
 var lastAuctionData = null;
+var lastAuctionStatus = null;
 var resultRecorded = false;
 
 var pluralFranchises = ['Koci/Mueller', 'Schexes'];
@@ -307,13 +308,14 @@ $(document).ready(function() {
 		}
 
 		function populateEditScreen() {
+			$('#edit-player-name').text($('#record-player-name-hidden').val());
 			$('#edit-situation').val(recordRfaHolder ? 'RFA-' + recordRfaHolder : 'UFA');
 			$('#edit-winner').val(recordHighBidder);
 			$('#edit-amount').val(recordInitialAmount);
 		}
 
 		// Open dialog
-		$('#record-result-btn').on('click', function() {
+		$(document).on('click', '#record-result-btn', function() {
 			if (!lastAuctionData || !lastAuctionData.bids || lastAuctionData.bids.length === 0) return;
 
 			var winningBid = lastAuctionData.bids[0];
@@ -435,8 +437,8 @@ $(document).ready(function() {
 			}
 		});
 
-		// Cancel from any screen
-		$('#review-cancel, #edit-cancel').on('click', function() {
+		// Close dialog
+		$('#record-close, #edit-cancel').on('click', function() {
 			recordDialog.close();
 		});
 
@@ -514,24 +516,20 @@ var redrawAuctionClient = function(auctionData, lag) {
 		}
 	}
 
-	// Show Record Result button when paused with a winning bid (dynamic admin only)
+	// Determine whether to show Record button in the top bid row
+	var showRecordButton = false;
+	var justSettled = false;
+
 	if (typeof AUCTION_RECORD_URL !== 'undefined') {
 		var hasBids = auctionData.bids && auctionData.bids.length > 0;
 		var isPaused = auctionData.status === 'paused';
 		var hasPlayer = auctionData.player && auctionData.player.name && auctionData.player.name !== 'Tim Duncan';
+		justSettled = isPaused && lastAuctionStatus === 'active';
 
-		if (isPaused && hasBids && hasPlayer && !resultRecorded) {
-			$('#record-result-container').show();
-			$('#record-result-btn')
-				.removeClass('btn-secondary').addClass('btn-success')
-				.prop('disabled', false)
-				.html('<i class="fa fa-database"></i> Record Result');
-		} else if (resultRecorded && isPaused && hasBids && hasPlayer) {
-			$('#record-result-container').show();
-		} else {
-			$('#record-result-container').hide();
-		}
+		showRecordButton = isPaused && hasBids && hasPlayer && !resultRecorded;
 	}
+
+	lastAuctionStatus = auctionData.status;
 
 	var urlName = auctionData.player.name.toLowerCase().replace(' ', '+');
 
@@ -559,12 +557,26 @@ var redrawAuctionClient = function(auctionData, lag) {
 			$('body').addClass(ownerClass);
 		}
 
-		var bid = $('<li class="list-group-item ' + ownerBidClass + '"><strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong></li>');
+		var bidText = '<strong>$' + bid.amount + '</strong> to <strong>' + bid.owner + '</strong>';
+		var li = $('<li class="list-group-item ' + ownerBidClass + '"><span>' + bidText + '</span></li>');
 
-		bidHistory.append(bid);
+		if (i === 0 && typeof AUCTION_RECORD_URL !== 'undefined') {
+			li.addClass('bid-history__top');
+			if (showRecordButton) {
+				li.append('<button id="record-result-btn" class="btn btn-primary btn-sm">Record</button>');
+			} else if (resultRecorded) {
+				li.append('<span class="badge badge-secondary"><i class="fa fa-check"></i> Recorded</span>');
+			}
+		}
+
+		bidHistory.append(li);
 	});
 
 	$('#bid-history').replaceWith(bidHistory);
+
+	if (justSettled && showRecordButton) {
+		$('#record-result-btn').trigger('click');
+	}
 
 	$('#set-timer-guaranteed').val(auctionData.timer.guaranteed / 1000);
 	$('#set-timer-reset-to').val(auctionData.timer.resetTo / 1000);

@@ -303,6 +303,24 @@ ul#bid-history li:first-child {
 	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 	font-size: 0.95rem;
 	color: #333;
+	margin: auto;
+}
+
+.record-result__close {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.75rem;
+	background: none;
+	border: none;
+	font-size: 1.4rem;
+	line-height: 1;
+	color: #999;
+	cursor: pointer;
+	padding: 0.25rem;
+}
+
+.record-result__close:hover {
+	color: #333;
 }
 
 .record-result__screen {
@@ -414,9 +432,32 @@ ul#bid-history li:first-child {
 .record-result__actions {
 	display: flex;
 	gap: 0.5rem;
-	justify-content: center;
+	justify-content: space-between;
 	margin-top: 1rem;
 	padding-top: 0.75rem;
 	border-top: 1px solid #eee;
+}
+
+.record-result__actions-right {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.bid-history__top .btn,
+.bid-history__top .badge {
+	margin-left: 0.5rem;
+}
+
+/* Admin controls */
+
+.auction-admin__debug-toggle {
+	font-size: 0.8rem;
+	color: #999;
+	text-decoration: none;
+}
+
+.auction-admin__debug-toggle:hover {
+	color: #666;
+	text-decoration: none;
 }
 

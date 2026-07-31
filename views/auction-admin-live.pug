@@ -33,6 +33,7 @@ html
 			button#reconnect.btn.btn-info Reconnect
 
 		dialog#record-result-dialog.record-result
+			button#record-close.record-result__close(type='button' aria-label='Close') &times;
 			input#record-player-id(type='hidden')
 			input#record-player-name-hidden(type='hidden')
 			input#record-type(type='hidden')
@@ -79,18 +80,20 @@ html
 					| match?
 				div.record-result__actions
 					button#rfa-decision-back.btn.btn-secondary Back
-					button#rfa-pass.btn.btn-danger Pass
-					button#rfa-match.btn.btn-success Match
+					div.record-result__actions-right
+						button#rfa-pass.btn.btn-danger Pass
+						button#rfa-match.btn.btn-success Match
 
 			div#record-screen-review.record-result__screen
 				div#review-body.record-result__review
 				div.record-result__actions
 					button#review-back.btn.btn-secondary Back
-					button#review-cancel.btn.btn-secondary Cancel
 					button#review-record.btn.btn-success Record
 				div#record-status
 
 			div#record-screen-edit.record-result__screen
+				div.record-result__hero
+					div.record-result__hero-name#edit-player-name
 				div.record-result__field
 					label.record-result__label Situation
 					select#edit-situation.form-control
@@ -129,15 +132,19 @@ html
 						i.fa.fa-eraser
 						|
 						| Pop Top Bid
-					br
-					button#simulate-bids.btn.btn-info.m-1
-						i.fa.fa-random
-						|
-						| Simulate Bids
-					button#start-demo.btn.btn-primary.m-1
-						| Start Demo
-					button#stop-demo.btn.btn-primary.m-1
-						| Stop Demo
+					div.mt-2
+						a.auction-admin__debug-toggle(href='#' data-toggle='collapse' data-target='#debug-controls')
+							i.fa.fa-wrench
+							|
+							|  Debug
+						div#debug-controls.collapse
+							div.mt-1
+								button#simulate-bids.btn.btn-outline-info.btn-sm.m-1
+									i.fa.fa-random
+									|
+									| Simulate Bids
+								button#start-demo.btn.btn-outline-primary.btn-sm.m-1 Start Demo
+								button#stop-demo.btn.btn-outline-primary.btn-sm.m-1 Stop Demo
 
 			hr
 
@@ -257,13 +264,6 @@ html
 			div.row.justify-content-center
 				div.col-12.col-lg-6.text-center
 					ul#bid-history
-
-			div#record-result-container.row.justify-content-center.mt-3(style='display: none')
-				div.col-12.col-lg-6.text-center
-					button#record-result-btn.btn.btn-success.btn-lg
-						i.fa.fa-database
-						|
-						| Record Result
 
 			hr
 
