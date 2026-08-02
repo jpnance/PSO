@@ -19,9 +19,7 @@ block content
 			div.col-md-6.col-lg-4.mb-4
 				div.card.calendar-widget
 					div.card-header
-						span
-							i.fa.fa-calendar.mr-2
-							| Calendar
+						span Calendar
 						span.calendar-widget__phase= phaseName
 					div.card-body
 						if upcomingEvents && upcomingEvents.length > 0
@@ -48,7 +46,6 @@ block content
 				if standings && standings.standings && standings.standings.length > 0
 					div.card.standings-widget
 						div.card-header
-							i.fa.fa-list-ol.mr-2
 							if standings.isPreviousSeason
 								| #{standings.season} Final Standings
 							else if standings.isFinal
@@ -65,9 +62,7 @@ block content
 			if schedule && schedule.sections && schedule.sections.length > 0
 				div.col-md-6.col-lg-4.mb-4
 					div.card.schedule-widget
-						div.card-header
-							i.fa.fa-football-o.mr-2
-							= schedule.title
+						div.card-header= schedule.title
 						div.card-body
 							-
 								// Sort games to put user's game first (for regular season / semifinals only)

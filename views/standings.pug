@@ -49,9 +49,7 @@ block content
 					//- Playoff games (if playoffs have started)
 					if standings.playoffGames && standings.playoffGames.length > 0
 						div.card.mt-4
-							div.card-header
-								i.fa.fa-trophy.mr-2
-								| Playoff Results
+							div.card-header Playoff Results
 							div.card-body
 								div.row
 									each game, idx in standings.playoffGames
@@ -69,9 +67,7 @@ block content
 					//- Division standings (for division era)
 					if standings.hasDivisions && standings.divisions
 						div.card.mt-4
-							div.card-header
-								i.fa.fa-columns.mr-2
-								| Division Standings
+							div.card-header Division Standings
 							div.card-body
 								div.row
 									each div in standings.divisions

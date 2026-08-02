@@ -114,10 +114,6 @@
 	opacity: 0.8;
 }
 
-.calendar-widget .card-body {
-	padding: 1rem;
-}
-
 .calendar-widget__timeline {
 	position: relative;
 	padding-left: 1.25rem;
@@ -214,8 +210,8 @@
 	font-size: 0.7rem;
 	padding: 0.15rem 0.4rem;
 	border-radius: 3px;
-	background-color: rgba(255, 255, 255, 0.2);
-	color: rgba(255, 255, 255, 0.9);
+	background-color: rgba(0, 0, 0, 0.06);
+	color: inherit;
 }
 
 .franchise-card__record-season {
@@ -289,10 +285,6 @@
 .standings-widget {
 	max-width: 100%;
 	overflow: hidden;
-}
-
-.standings-widget .card-body {
-	padding: 0;
 }
 
 /* Schedule Widget */
