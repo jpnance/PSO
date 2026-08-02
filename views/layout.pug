@@ -144,7 +144,7 @@ html
 		div.bottom-sheet#moreSheet
 			each tab in nav.tabs
 				if tab.id === 'more'
-					each section in tab.sections
+					each section, idx in tab.sections
 						div.bottom-sheet__section-label= section.label
 						each item in section.items
 							a.bottom-sheet__link(href=item.href target=(item.external ? '_blank' : null))
@@ -156,7 +156,8 @@ html
 									span.badge.badge-secondary.ml-auto Soon
 								else if item.external
 									i.fa.fa-external-link.external-icon
-						div.bottom-sheet__divider
+						if idx < tab.sections.length - 1
+							div.bottom-sheet__divider
 
 		//- Admin Sheet (only rendered for admins)
 		if isAdmin
