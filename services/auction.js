@@ -1,4 +1,7 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
+var superagent = require('superagent');
+var Person = require('../models/Person');
+var Regime = require('../models/Regime');
 var PSO = require('../config/pso');
 
 var auction = {
@@ -293,18 +296,18 @@ function stopDemo() {
 	pauseAuction();
 }
 
-module.exports.handleConnection = function(socket, request) {
-	var authKey = extractAuthKeyFromCookie(request.headers.cookie);
-
+module.exports.handleConnection = async function(socket, request) {
 	socket.heartbeat = true;
 
-	if (owners[authKey]) {
-		socket.owner = owners[authKey];
+	var ownerName = await resolveOwnerFromCookie(request.headers.cookie);
+
+	if (ownerName) {
+		socket.owner = ownerName;
 
 		socket.send(JSON.stringify({
 			type: 'auth',
 			value: {
-				loggedInAs: owners[authKey]
+				loggedInAs: ownerName
 			}
 		}));
 	}
@@ -381,21 +384,49 @@ setInterval(function() {
 	});
 }, 10000);
 
-function extractAuthKeyFromCookie(rawCookie = '') {
-	var pairs = rawCookie.split(';');
-	var authKey;
+function extractCookie(rawCookie, name) {
+	if (!rawCookie) return null;
+	var match = rawCookie.split(';').map(function(s) { return s.trim(); }).find(function(s) {
+		return s.startsWith(name + '=');
+	});
+	return match ? match.split('=')[1] : null;
+}
 
-	pairs
-		.map(function(pair) {
-			return pair.split('=');
-		})
-		.forEach(function(pairArray) {
-			if (pairArray[0] == 'auctionAuthKey') {
-				authKey = pairArray[1];
+async function resolveOwnerFromCookie(rawCookie) {
+	var sessionKey = extractCookie(rawCookie, 'sessionKey');
+
+	if (sessionKey) {
+		try {
+			var request = superagent
+				.post(process.env.LOGIN_SERVICE_PUBLIC + '/sessions/retrieve')
+				.send({ key: sessionKey });
+
+			if (process.env.NODE_ENV === 'dev') {
+				request.disableTLSCerts();
 			}
-		});
 
-	return authKey;
+			var response = await request;
+
+			if (response.body?.user) {
+				var person = await Person.findOne({ username: response.body.user.username });
+
+				if (person) {
+					var regime = await Regime.findOne({ ownerIds: person._id, 'tenures.endSeason': null });
+					if (regime) return regime.displayName;
+				}
+			}
+		} catch (err) {
+			console.error('Auction WS auth error:', err.message);
+		}
+	}
+
+	// Fall back to legacy auction auth cookie
+	var authKey = extractCookie(rawCookie, 'auctionAuthKey');
+	if (authKey && owners[authKey]) {
+		return owners[authKey];
+	}
+
+	return null;
 }
 
 function broadcastAuctionData() {
