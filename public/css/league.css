@@ -101,19 +101,6 @@
 /* ===== League Overview Widgets ===== */
 
 /* Calendar Widget */
-.calendar-widget .card-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.calendar-widget__phase {
-	font-size: 0.7rem;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	opacity: 0.8;
-}
-
 .calendar-widget__timeline {
 	position: relative;
 	padding-left: 1.25rem;
