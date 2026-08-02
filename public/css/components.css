@@ -458,17 +458,17 @@ a.player-chip:hover {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0.65rem 0.75rem;
+	padding: 0.65rem 1.25rem;
 	color: var(--color-link);
 	text-decoration: none;
 	font-weight: 500;
 	font-size: 0.875rem;
-	background: #f8f9fa;
-	border-top: 1px solid var(--border-light);
+	background: var(--card-header-bg);
+	border-top: 1px solid var(--card-header-border);
 }
 
 .card-footer-link:hover {
-	background: #e9ecef;
+	background: var(--card-header-border);
 	text-decoration: none;
 	color: var(--color-link-hover);
 }

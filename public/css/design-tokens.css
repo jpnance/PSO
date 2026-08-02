@@ -91,20 +91,22 @@
 	/* Page background */
 	--page-bg: #f8f9fa;
 	
-	/* Card header - Charcoal Brown scheme */
-	--card-header-bg: #5a5552;
-	--card-header-text: #fff;
+	/* Card header - Sage tint scheme */
+	--card-header-bg: #f0f4f0;
+	--card-header-text: #3d5240;
+	--card-header-border: #dde5dd;
 }
 
 body {
 	background-color: var(--page-bg);
 }
 
-/* Global card header styling - matches nav scheme */
+/* Global card header styling */
 .card-header {
 	background-color: var(--card-header-bg);
 	color: var(--card-header-text);
-	border-bottom-color: var(--card-header-bg);
+	border-bottom: 1px solid var(--card-header-border);
+	font-weight: 600;
 }
 
 /* ========================================
