@@ -102,7 +102,6 @@ function buildNav(options) {
 			label: 'More',
 			icon: 'fa-ellipsis-h',
 			active: activeTab === 'more',
-			hasNotification: isAdmin && pendingApprovalCount > 0,
 			sections: [
 				{
 					label: 'Offseason',
