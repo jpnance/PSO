@@ -658,17 +658,16 @@ var tradeMachine = {
 		return $el;
 	},
 
-	// Build position badge by cloning template
+	// Build position badge by creating proper segment structure
 	buildPositionBadge: (positions) => {
-		var template = document.getElementById('position-badge-template');
-		if (!template || !positions || positions.length === 0) return $('');
+		if (!positions || positions.length === 0) return $('');
 		
-		var $badge = $(template.content.cloneNode(true)).children();
-		
-		// Sort positions and update badge
 		var sorted = tradeMachine.sortPositions(positions);
-		$badge.text(sorted.join('/'));
-		$badge.removeClass('pos-POS').addClass('pos-' + sorted[0]);
+		var $badge = $('<span class="position-badge"></span>');
+		
+		sorted.forEach(function(pos) {
+			$badge.append($('<span class="position-badge__segment pos-' + pos + '">' + pos + '</span>'));
+		});
 		
 		return $badge;
 	},
