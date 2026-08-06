@@ -589,11 +589,18 @@ async function processTrade(tradeDetails) {
 		
 		var regimeName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
 		
+		var rfaPlayers = (receives.players || []).filter(function(p) {
+			return p.salary === null;
+		});
+		var salariedPlayers = (receives.players || []).filter(function(p) {
+			return p.salary !== null;
+		});
+		
 		var txParty = {
 			franchiseId: party.franchiseId,
 			regimeName: regimeName || null,
 			receives: {
-				players: (receives.players || []).map(function(p) {
+				players: salariedPlayers.map(function(p) {
 					return {
 						playerId: p.playerId,
 						salary: p.salary,
@@ -609,7 +616,9 @@ async function processTrade(tradeDetails) {
 						fromFranchiseId: c.fromFranchiseId
 					};
 				}),
-				rfaRights: []
+				rfaRights: rfaPlayers.map(function(p) {
+					return { playerId: p.playerId };
+				})
 			}
 		};
 		
