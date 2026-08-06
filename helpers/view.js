@@ -409,42 +409,57 @@ function getLastName(name) {
  * @returns {Array} array of formatted strings
  */
 /**
- * Calculate net cash per party for current season
- * For two-party trades: net = received - given (what the other party receives)
+ * Calculate meaningful net cash per party, per season.
+ * Filters to cash in seasons >= auctionSeason (hides current-season salary-matching
+ * cash in post-auction trades). Returns per-season entries rather than a flat sum.
+ * For two-party trades: nets out cash flowing in both directions per season.
  * @param {Array} parties - array of party objects
  * @param {number} auctionSeason - current/upcoming auction season
- * @returns {Map} partyIndex -> net cash amount (positive = receives, negative = gives)
+ * @returns {Map} partyIndex -> Array<{amount, season}> (positive amounts only)
  */
 function calculateNetCash(parties, auctionSeason) {
-	if (!parties || parties.length !== 2) {
-		// For multi-party trades, just sum each party's received cash
-		var result = new Map();
-		for (var i = 0; i < (parties || []).length; i++) {
-			var total = 0;
+	var result = new Map();
+	
+	if (!parties || parties.length < 2) {
+		return result;
+	}
+	
+	if (parties.length !== 2) {
+		// For multi-party trades, just sum each party's received cash per season
+		for (var i = 0; i < parties.length; i++) {
+			var seasonTotals = {};
 			var party = parties[i];
 			for (var j = 0; j < (party.assets || []).length; j++) {
 				var asset = party.assets[j];
 				if (asset.type === 'cash') {
 					var season = asset.season || auctionSeason;
 					if (season >= auctionSeason) {
-						total += asset.amount || 0;
+						seasonTotals[season] = (seasonTotals[season] || 0) + (asset.amount || 0);
 					}
 				}
 			}
-			result.set(i, total);
+			var entries = [];
+			var seasons = Object.keys(seasonTotals).map(Number).sort(function(a, b) { return a - b; });
+			for (var s = 0; s < seasons.length; s++) {
+				if (seasonTotals[seasons[s]] > 0) {
+					entries.push({ amount: seasonTotals[seasons[s]], season: seasons[s] });
+				}
+			}
+			result.set(i, entries);
 		}
 		return result;
 	}
 	
-	// Two-party trade: calculate net (received - given)
-	var received0 = 0, received1 = 0;
+	// Two-party trade: calculate net cash per season
+	var cashBySeason0 = {}; // cash party 0 receives, keyed by season
+	var cashBySeason1 = {}; // cash party 1 receives, keyed by season
 	
 	for (var j = 0; j < (parties[0].assets || []).length; j++) {
 		var asset = parties[0].assets[j];
 		if (asset.type === 'cash') {
 			var season = asset.season || auctionSeason;
 			if (season >= auctionSeason) {
-				received0 += asset.amount || 0;
+				cashBySeason0[season] = (cashBySeason0[season] || 0) + (asset.amount || 0);
 			}
 		}
 	}
@@ -454,18 +469,36 @@ function calculateNetCash(parties, auctionSeason) {
 		if (asset.type === 'cash') {
 			var season = asset.season || auctionSeason;
 			if (season >= auctionSeason) {
-				received1 += asset.amount || 0;
+				cashBySeason1[season] = (cashBySeason1[season] || 0) + (asset.amount || 0);
 			}
 		}
 	}
 	
-	// Net for party 0 = what they receive - what they give (which equals what party 1 receives)
-	var net0 = received0 - received1;
-	var net1 = received1 - received0;
+	// Collect all seasons with cash
+	var allSeasons = new Set();
+	Object.keys(cashBySeason0).forEach(function(s) { allSeasons.add(Number(s)); });
+	Object.keys(cashBySeason1).forEach(function(s) { allSeasons.add(Number(s)); });
 	
-	var result = new Map();
-	result.set(0, net0);
-	result.set(1, net1);
+	// For each season, compute net for each party
+	var entries0 = [];
+	var entries1 = [];
+	
+	var sortedSeasons = Array.from(allSeasons).sort(function(a, b) { return a - b; });
+	for (var s = 0; s < sortedSeasons.length; s++) {
+		var season = sortedSeasons[s];
+		var net0 = (cashBySeason0[season] || 0) - (cashBySeason1[season] || 0);
+		var net1 = -net0;
+		
+		if (net0 > 0) {
+			entries0.push({ amount: net0, season: season });
+		}
+		if (net1 > 0) {
+			entries1.push({ amount: net1, season: season });
+		}
+	}
+	
+	result.set(0, entries0);
+	result.set(1, entries1);
 	return result;
 }
 
@@ -556,10 +589,16 @@ function collectTitleAssets(party, auctionSeason, tradeYear, options) {
 		formatAndAddPicks([promoted]);
 	}
 	
-	// Net cash (only show if positive - this party gains money)
-	var netCash = options.netCash;
-	if (netCash !== undefined && netCash > 0) {
-		items.push('$' + netCash);
+	// Net cash (only show if this party has meaningful cash)
+	var netCashEntries = options.netCash || [];
+	if (netCashEntries.length > 0) {
+		var totalCash = 0;
+		for (var c = 0; c < netCashEntries.length; c++) {
+			totalCash += netCashEntries[c].amount;
+		}
+		if (totalCash > 0) {
+			items.push('$' + totalCash);
+		}
 	}
 	
 	// Add "more" indicator only if there are remaining excluded picks
@@ -802,10 +841,13 @@ function collectDescriptionAssets(party, auctionSeason, tradeYear, options) {
 		formatAndAddPicks([promoted]);
 	}
 	
-	// Net cash (only show if positive - this party gains money)
-	var netCash = options.netCash;
-	if (netCash !== undefined && netCash > 0) {
-		items.push('$' + netCash + ' in ' + auctionSeason);
+	// Net cash (only show if this party has meaningful cash)
+	var netCashEntries = options.netCash || [];
+	for (var c = 0; c < netCashEntries.length; c++) {
+		var entry = netCashEntries[c];
+		if (entry.amount > 0) {
+			items.push('$' + entry.amount + ' in ' + entry.season);
+		}
 	}
 	
 	// Add "more" indicator only if there are remaining excluded picks
