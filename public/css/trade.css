@@ -14,12 +14,6 @@
 	opacity: 1;
 }
 
-/* Card header badge override */
-.trade-machine .card-header .badge-light {
-	background-color: rgba(0, 0, 0, 0.08);
-	color: var(--card-header-text);
-}
-
 /* Franchise checkbox styling */
 .trade-machine .form-check-label {
 	cursor: pointer;
