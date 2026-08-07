@@ -1,3 +1,55 @@
+/* League Grid */
+.league-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.league-grid__main {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.league-grid__row {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.league-grid__sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+	.league-grid__row {
+		flex-direction: row;
+	}
+
+	.league-grid__row > * {
+		flex: 1;
+		min-width: 0;
+	}
+}
+
+@media (min-width: 992px) {
+	.league-grid {
+		flex-direction: row;
+	}
+
+	.league-grid__main {
+		flex: 2;
+		min-width: 0;
+	}
+
+	.league-grid__sidebar {
+		flex: 1;
+		min-width: 0;
+	}
+}
+
 /* Lighter placeholder text */
 ::placeholder {
 	color: #c0c0c0 !important;

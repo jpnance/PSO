@@ -14,83 +14,104 @@ block content
 		div.page-header.page-header--centered
 			h1 League Overview
 		
-		div.row
-			//- Calendar widget
-			div.col-md-6.col-lg-4.mb-4
-				div.card.calendar-widget
-					div.card-header Calendar
-					div.card-body
-						if upcomingEvents && upcomingEvents.length > 0
-							div.calendar-widget__timeline
-								each event, idx in upcomingEvents
-									if idx < 4
-										div.calendar-widget__event(class=(idx === 0 ? 'calendar-widget__event--next' : ''))
-											div.calendar-widget__event-inner
-												span.calendar-widget__event-name= event.name
-												span.calendar-widget__event-when
-													span.calendar-widget__event-relative= event.relativeDate
-													span.calendar-widget__event-date
-														= event.shortDate
-														if event.tentative
-															| *
-						else
-							p.text-muted.mb-0 No upcoming events
-					a.card-footer-link(href='/calendar')
-						span View Full Calendar
-						i.fa.fa-chevron-right
-			
-			//- Standings widget
-			div.col-md-6.col-lg-4.mb-4
-				if standings && standings.standings && standings.standings.length > 0
-					div.card.standings-widget
-						div.card-header
-							if standings.isPreviousSeason
-								| #{standings.season} Final Standings
-							else if standings.isFinal
-								| #{standings.season} Final Standings
-							else
-								| #{standings.season} Standings
-						div.card-body.p-0
-							+standingsTable(standings.standings, { variant: 'widget', isFinal: standings.isFinal || standings.isPreviousSeason, showPlayoffStats: true, userTeamName: userFranchiseName, linkSeason: standings.season })
-						a.card-footer-link(href='/standings?season=' + standings.season)
-							span View Full Standings
-							i.fa.fa-chevron-right
-			
-			//- Schedule widget
-			if schedule && schedule.sections && schedule.sections.length > 0
-				div.col-md-6.col-lg-4.mb-4
-					div.card.schedule-widget
-						div.card-header= schedule.title
+		div.league-grid
+			div.league-grid__main
+				//- Row 1: Calendar + Available Cash
+				div.league-grid__row
+					div.card.calendar-widget
+						div.card-header Calendar
 						div.card-body
-							-
-								// Sort games to put user's game first (for regular season / semifinals only)
-								function sortGamesForUser(games, userName) {
-									if (!userName || !games) return games;
-									// Don't sort championship round games (they have type property)
-									if (games.some(function(g) { return g.type === 'championship' || g.type === 'thirdPlace'; })) {
-										return games;
+							if upcomingEvents && upcomingEvents.length > 0
+								div.calendar-widget__timeline
+									each event, idx in upcomingEvents
+										if idx < 6
+											div.calendar-widget__event(class=(idx === 0 ? 'calendar-widget__event--next' : ''))
+												div.calendar-widget__event-inner
+													span.calendar-widget__event-name= event.name
+													span.calendar-widget__event-when
+														span.calendar-widget__event-relative= event.relativeDate
+														span.calendar-widget__event-date
+															= event.shortDate
+															if event.tentative
+																| *
+							else
+								p.text-muted.mb-0 No upcoming events
+						a.card-footer-link(href='/calendar')
+							span View Full Calendar
+							i.fa.fa-chevron-right
+
+					div.card.budget-overview-widget
+						div.card-header Available Cash
+						div.card-body.p-0
+							if budgetOverview && budgetOverview.rows.length > 0
+								table.data-table.data-table--compact.budget-overview__table
+									thead
+										tr
+											th Owner
+											each s in budgetOverview.seasons
+												th.data-table__num= s
+									tbody
+										each row, idx in budgetOverview.rows
+											tr
+												td
+													if row.href
+														a(href=row.href)= row.displayName
+													else
+														= row.displayName
+												each val in row.seasons
+													td.data-table__num(class=val !== null && val < 0 ? 'text-danger' : '')
+														if val !== null
+															= formatMoney(val)
+														else
+															span.text-muted —
+
+				//- Row 2: Standings + Schedule
+				div.league-grid__row
+					if standings && standings.standings && standings.standings.length > 0
+						div.card.standings-widget
+							div.card-header
+								if standings.isPreviousSeason
+									| #{standings.season} Final Standings
+								else if standings.isFinal
+									| #{standings.season} Final Standings
+								else
+									| #{standings.season} Standings
+							div.card-body.p-0
+								+standingsTable(standings.standings, { variant: 'widget', isFinal: standings.isFinal || standings.isPreviousSeason, showPlayoffStats: true, userTeamName: userFranchiseName, linkSeason: standings.season })
+							a.card-footer-link(href='/standings?season=' + standings.season)
+								span View Full Standings
+								i.fa.fa-chevron-right
+
+					if schedule && schedule.sections && schedule.sections.length > 0
+						div.card.schedule-widget
+							div.card-header= schedule.title
+							div.card-body
+								-
+									function sortGamesForUser(games, userName) {
+										if (!userName || !games) return games;
+										if (games.some(function(g) { return g.type === 'championship' || g.type === 'thirdPlace'; })) {
+											return games;
+										}
+										return games.slice().sort(function(a, b) {
+											var aHasUser = a.away.name === userName || a.home.name === userName;
+											var bHasUser = b.away.name === userName || b.home.name === userName;
+											if (aHasUser && !bHasUser) return -1;
+											if (!aHasUser && bHasUser) return 1;
+											return 0;
+										});
 									}
-									return games.slice().sort(function(a, b) {
-										var aHasUser = a.away.name === userName || a.home.name === userName;
-										var bHasUser = b.away.name === userName || b.home.name === userName;
-										if (aHasUser && !bHasUser) return -1;
-										if (!aHasUser && bHasUser) return 1;
-										return 0;
-									});
-								}
-							each section, sectionIdx in schedule.sections
-								if section.label
-									div.section-label(class=(sectionIdx > 0 ? 'mt-3' : ''))= section.label
-								if section.tbd
-									div.tbd-text TBD
-								else if section.games
-									- var sortedGames = sortGamesForUser(section.games, userFranchiseName)
-									each game in sortedGames
-										+matchup(game)
-		
-		div.row
-			//- Transaction log
-			div.col-md-6.col-lg-4.mb-4
+								each section, sectionIdx in schedule.sections
+									if section.label
+										div.section-label(class=(sectionIdx > 0 ? 'mt-3' : ''))= section.label
+									if section.tbd
+										div.tbd-text TBD
+									else if section.games
+										- var sortedGames = sortGamesForUser(section.games, userFranchiseName)
+										each game in sortedGames
+											+matchup(game)
+
+			//- Sidebar: Recent Transactions
+			div.league-grid__sidebar
 				div.card.activity-widget
 					div.card-header Recent Transactions
 					div.card-body
@@ -117,30 +138,3 @@ block content
 					a.card-footer-link(href='/trades')
 						span View Trade History
 						i.fa.fa-chevron-right
-
-			//- Budget overview
-			div.col-md-6.col-lg-4.mb-4
-				div.card.budget-overview-widget
-					div.card-header Available Cash
-					div.card-body.p-0
-						if budgetOverview && budgetOverview.rows.length > 0
-							table.data-table.data-table--compact.budget-overview__table
-								thead
-									tr
-										th Owner
-										each s in budgetOverview.seasons
-											th.data-table__num= s
-								tbody
-									each row, idx in budgetOverview.rows
-										tr
-											td
-												if row.href
-													a(href=row.href)= row.displayName
-												else
-													= row.displayName
-											each val in row.seasons
-												td.data-table__num(class=val !== null && val < 0 ? 'text-danger' : '')
-													if val !== null
-														= formatMoney(val)
-													else
-														span.text-muted —
