@@ -160,6 +160,7 @@ mixin playerChip(opts)
 mixin playerTableGroup(posKey, players, cols, dataAttrs, opts)
 	- var isRfa = posKey === 'RFA'
 	- var showCutToggle = opts && opts.showCutToggle && !isRfa
+	- var showCutMarks = opts && opts.showCutMarks && !isRfa
 	- var groupPosClass = isRfa ? 'player-table__group--rfa' : 'pos-' + posKey.split('/')[0]
 	div.player-table__group(class=groupPosClass)
 		table.player-table__body
@@ -184,7 +185,7 @@ mixin playerTableGroup(posKey, players, cols, dataAttrs, opts)
 						if isRfa || (player.positions && player.positions.length > 1)
 							| 
 							+positionBadge(player.positions)
-						if showCutToggle
+						if showCutToggle || (showCutMarks && player.markedForCut)
 							span.player-table__recoverable= '+' + formatMoney(player.recoverable)
 					each col in cols
 						td.player-table__detail(class='player-table__detail--' + col)

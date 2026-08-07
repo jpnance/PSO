@@ -1126,7 +1126,7 @@ async function processCutDay(request, response) {
 		var result = await transactionService.processCut({
 			franchiseId: contract.franchiseId,
 			playerId: contract.playerId._id,
-			source: 'manual',
+			source: 'cuts',
 			notes: 'Cut day batch processing'
 		});
 		

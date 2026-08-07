@@ -45,6 +45,7 @@ var LeagueConfig = require('./models/LeagueConfig');
 var Regime = require('./models/Regime');
 var Franchise = require('./models/Franchise');
 var Proposal = require('./models/Proposal');
+var Contract = require('./models/Contract');
 app.use(async function(req, res, next) {
 	try {
 		var config = await LeagueConfig.findById('pso').lean();
@@ -108,10 +109,20 @@ app.use(async function(req, res, next) {
 		// Check if user is admin
 		res.locals.isAdmin = req.session && req.session.user && req.session.user.admin;
 		
-		// For admins, count proposals awaiting approval
+		// For admins, count proposals awaiting approval and pending cuts
 		if (res.locals.isAdmin) {
 			var pendingApprovalCount = await Proposal.countDocuments({ status: 'accepted' });
 			res.locals.pendingApprovalCount = pendingApprovalCount;
+			
+			var configObj = await LeagueConfig.findById('pso');
+			if (configObj && configObj.getPhase() === 'pre-season') {
+				var pendingCutCount = await Contract.countDocuments({
+					markedForCut: true,
+					salary: { $ne: null },
+					endYear: { $gte: currentSeason }
+				});
+				res.locals.pendingCutCount = pendingCutCount;
+			}
 		}
 		
 	} catch (err) {

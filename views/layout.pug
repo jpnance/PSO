@@ -40,7 +40,7 @@ html
 
 	body
 		//- Build navigation structure
-		- var nav = buildNav({ activePage: activePage, currentRosterId: currentRosterId, userFranchise: userFranchise, franchises: navFranchises, isAdmin: isAdmin, pendingApprovalCount: pendingApprovalCount })
+		- var nav = buildNav({ activePage: activePage, currentRosterId: currentRosterId, userFranchise: userFranchise, franchises: navFranchises, isAdmin: isAdmin, pendingApprovalCount: pendingApprovalCount, pendingCutCount: pendingCutCount })
 
 		//- Top Bar
 		header.topbar
@@ -177,7 +177,7 @@ html
 				button.bottombar__tab(type='button' data-sheet=tab.id + 'Sheet' class=(tab.active ? 'bottombar__tab--active' : ''))
 					i.fa(class=tab.icon)
 					if tab.hasNotification
-						span.bottombar__badge= pendingApprovalCount
+						span.bottombar__badge= (pendingApprovalCount || 0) + (pendingCutCount || 0)
 					span= tab.label
 
 		//- Bottom Bar JavaScript

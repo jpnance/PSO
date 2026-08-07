@@ -60,9 +60,8 @@ block content
 		div.row
 			each franchise in franchises
 				div.col-lg-6.col-xl-4
-					div.card.admin-rosters__card
-						div.card-header
-							strong= franchise.displayName
+					div.card.mb-4
+						div.card-header= franchise.displayName
 						div.card-body
 							if franchise.roster.length === 0
 								p.text-muted.mb-0 No players on roster

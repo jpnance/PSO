@@ -234,7 +234,7 @@ block content
 									i.fa.fa-sort-alpha-asc
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
 									i.fa.fa-dollar
-						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring', 'markedForCut'], showCutToggle: canMarkForCut })
+						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring', 'markedForCut'], showCutToggle: canMarkForCut, showCutMarks: isOwner && phase === 'pre-season' })
 			
 			div.col-lg-6
 				div.card.mb-4

@@ -1,9 +1,5 @@
 /* Admin rosters page styles (BEM) */
 
-.admin-rosters__card {
-	margin-bottom: 1.5rem;
-}
-
 .admin-rosters__player {
 	display: flex;
 	justify-content: space-between;
