@@ -582,3 +582,135 @@ block content
 				code formatMoney(-500, { sign: 'auto' })
 				|  → 
 				strong.text-danger #{formatMoney(-500, { sign: 'auto' })}
+
+		//- =============================================
+		//- Activity Widget Explorations
+		//- =============================================
+		h2.mt-5.mb-3 Activity Widget Explorations
+
+
+		//- Shared styles for B explorations
+		style.
+			.activity-explore .ab__item {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.5rem;
+				padding: 0.4rem 0;
+			}
+			.activity-explore .ab__icon {
+				flex-shrink: 0;
+				width: 1.25rem;
+				text-align: center;
+				font-size: 0.8rem;
+				padding-top: 0.1rem;
+			}
+			.activity-explore .ab__content {
+				flex: 1;
+				min-width: 0;
+				padding-left: 0.5rem;
+				border-left: 1px solid #dee2e6;
+				font-size: 0.85rem;
+			}
+			.activity-explore .ab__date {
+				font-size: 0.75rem;
+				color: var(--text-muted);
+				margin-top: 0.1rem;
+			}
+			.activity-explore .ab--trade .ab__icon { color: var(--asset-player); }
+			.activity-explore .ab--trade .ab__content { border-left-color: var(--asset-player); }
+			.activity-explore .ab--fa .ab__icon { color: var(--color-link); }
+			.activity-explore .ab--fa .ab__content { border-left-color: var(--color-link); }
+
+			.activity-explore .ab__trade-label {
+				font-weight: 600;
+			}
+			.activity-explore .ab__trade-detail {
+				font-size: 0.8rem;
+				color: var(--text-secondary);
+				margin-top: 0.15rem;
+			}
+
+		style.
+			.sep-mockup--labeled .ab__side-label {
+				font-size: 0.75rem;
+				color: var(--text-muted);
+				display: block;
+			}
+			.sep-mockup--labeled .ab__side {
+				display: block;
+			}
+			.sep-mockup--labeled .ab__side-assets {
+				padding-left: 0.5rem;
+			}
+			.sep-mockup--labeled .ab__side + .ab__side {
+				margin-top: 0.35rem;
+			}
+			.sep-mockup--labeled .ab__trade-label {
+				margin-bottom: 0.35rem;
+			}
+			.sep-mockup--labeled .ab__date {
+				margin-top: 0.35rem;
+			}
+
+		div.row
+			//- --- Labeled sides ---
+			div.col-lg-6.mb-4
+				div.component-section
+					h2 E. Labeled Sides
+					p.usage "Gets" / "For" labels make each side explicit
+					div.card(style='max-width: 420px')
+						div.card-header Recent Transactions
+						div.card-body
+							div.activity-explore.sep-mockup.sep-mockup--labeled
+								div.ab__item.ab--trade
+									div.ab__icon
+										i.fa.fa-exchange
+									div.ab__content
+										div.ab__trade-label
+											a(href='#') Trade #783
+										div
+											div.ab__side
+												div.ab__side-label Schex receives
+												div.ab__side-assets
+													a(href='#') Rome Odunze
+											div.ab__side
+												div.ab__side-label Mitch receives
+												div.ab__side-assets
+													a(href='#') Justin Jefferson
+													|  and $40
+										div.ab__date July 22, 2026
+								div.ab__item.ab--trade
+									div.ab__icon
+										i.fa.fa-exchange
+									div.ab__content
+										div.ab__trade-label
+											a(href='#') Trade #760
+										div
+											div.ab__side
+												div.ab__side-label Koci receives
+												div.ab__side-assets
+													a(href='#') Breece Hall
+													| , 
+													a(href='#') George Pickens
+													| , and 2027 2nd
+											div.ab__side
+												div.ab__side-label Tyler receives
+												div.ab__side-assets
+													a(href='#') Bijan Robinson
+													|  and $200
+										div.ab__date March 15, 2026
+								div.ab__item.ab--fa
+									div.ab__icon
+										i.fa.fa-user-plus
+									div.ab__content
+										div
+											strong
+												a(href='#') Jason
+											|  added 
+											a(href='#') Jake Tonges
+											| , dropped 
+											a(href='#') Daniel Jones
+										div.ab__date December 28, 2025
+						a.card-footer-link(href='#')
+							span View Trade History
+							i.fa.fa-chevron-right

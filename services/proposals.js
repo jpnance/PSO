@@ -11,7 +11,7 @@ var Proposal = require('../models/Proposal');
 var transactionService = require('./transaction');
 var budgetHelper = require('../helpers/budget');
 var notifications = require('../helpers/notifications');
-var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex } = require('../helpers/view');
+var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex, isPluralName } = require('../helpers/view');
 var { formatPickMain } = require('../helpers/formatPick');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
@@ -244,10 +244,6 @@ async function getTradeData(currentSeason) {
 	};
 }
 
-// Determine if a franchise name is plural (for grammar)
-function isPlural(name) {
-	return name === 'Schexes' || name.includes('/');
-}
 
 // Route handler for the trade machine page (owner mode)
 async function tradeMachinePage(request, response) {
@@ -342,7 +338,7 @@ async function tradeMachinePage(request, response) {
 			teams: data.teams,
 			picks: data.picks,
 			season: currentSeason,
-			isPlural: isPlural,
+			isPlural: isPluralName,
 			isBeforeCutDay: isBeforeCutDay,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			isLoggedIn: !!user,
@@ -381,7 +377,7 @@ async function processPage(request, response) {
 			teams: data.teams,
 			picks: data.picks,
 			season: currentSeason,
-			isPlural: isPlural,
+			isPlural: isPluralName,
 			isBeforeCutDay: isBeforeCutDay,
 			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			isProcessingMode: true,
@@ -841,7 +837,7 @@ async function viewProposal(request, response) {
 		for (var i = 0; i < proposal.parties.length; i++) {
 			var party = proposal.parties[i];
 			var displayName = await getFranchiseDisplayName(party.franchiseId);
-			var usePlural = displayName === 'Schexes' || displayName.includes('/');
+			var usePlural = isPluralName(displayName);
 			
 			// Build unified assets array (same format as trade history)
 			var assets = [];
@@ -1416,7 +1412,7 @@ async function listProposalsForApproval(request, response) {
 			for (var j = 0; j < proposal.parties.length; j++) {
 				var party = proposal.parties[j];
 				var displayName = await getFranchiseDisplayName(party.franchiseId);
-				var usePlural = displayName === 'Schexes' || displayName.includes('/');
+				var usePlural = isPluralName(displayName);
 				
 				// Build full asset list (same as viewProposal)
 				var assets = [];

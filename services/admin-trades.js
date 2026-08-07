@@ -4,12 +4,7 @@ var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var budgetHelper = require('../helpers/budget');
 var formatPick = require('../helpers/formatPick');
-var { formatMoney, formatContractDisplay } = require('../helpers/view');
-
-// Determine if a franchise name is plural (for grammar)
-function isPlural(name) {
-	return name === 'Schexes' || name.includes('/');
-}
+var { formatMoney, formatContractDisplay, isPluralName } = require('../helpers/view');
 
 // Get display name for a franchise at a given season
 async function getDisplayName(franchiseId, season) {
@@ -214,7 +209,7 @@ async function editTradeForm(request, response) {
 			franchiseId: party.franchiseId,
 			franchiseName: franchiseName,
 			regimeName: party.regimeName || '',
-			usePlural: isPlural(franchiseName),
+			usePlural: isPluralName(franchiseName),
 			assets: assets,
 			players: playersData,
 			picks: picksData,

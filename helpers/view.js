@@ -1097,7 +1097,12 @@ function transactionCategory(type) {
 	return 'admin';
 }
 
+function isPluralName(name) {
+	return name === 'Schexes' || name.includes('/');
+}
+
 module.exports = {
+	isPluralName: isPluralName,
 	formatMoney: formatMoney,
 	formatRecord: formatRecord,
 	formatPoints: formatPoints,

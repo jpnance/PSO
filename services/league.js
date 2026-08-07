@@ -12,7 +12,7 @@ var Season = require('../models/Season');
 var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
 var transactionService = require('./transaction');
-var { getPositionIndex, shortenPlayerName } = require('../helpers/view');
+var { getPositionIndex, shortenPlayerName, formatMoney, ordinal, isPluralName } = require('../helpers/view');
 
 // Calendar helpers
 function formatShortDate(date) {
@@ -434,42 +434,187 @@ async function getFranchise(franchiseId, currentSeason) {
 }
 
 // Route handlers
+async function getRecentActivity(currentSeason) {
+	var transactions = await Transaction.find({
+		type: { $in: ['trade', 'fa'] }
+	}).sort({ timestamp: -1 }).limit(5).lean();
+
+	var playerIds = new Set();
+	transactions.forEach(function(tx) {
+		if (tx.playerId) playerIds.add(tx.playerId.toString());
+		(tx.adds || []).forEach(function(a) { playerIds.add(a.playerId.toString()); });
+		(tx.drops || []).forEach(function(d) { playerIds.add(d.playerId.toString()); });
+		(tx.parties || []).forEach(function(p) {
+			(p.receives.players || []).forEach(function(pl) { playerIds.add(pl.playerId.toString()); });
+			(p.receives.rfaRights || []).forEach(function(r) { playerIds.add(r.playerId.toString()); });
+		});
+	});
+
+	var players = await Player.find({ _id: { $in: Array.from(playerIds) } }).select('name slugs').lean();
+	var playerMap = {};
+	players.forEach(function(p) {
+		playerMap[p._id.toString()] = { name: p.name, slug: p.slugs && p.slugs[0] };
+	});
+
+	var allFranchises = await Franchise.find({}).lean();
+	var franchiseRosterIds = {};
+	allFranchises.forEach(function(f) { franchiseRosterIds[f._id.toString()] = f.rosterId; });
+
+	var regimes = await Regime.find({}).lean();
+
+	function getRegimeName(franchiseId, season) {
+		var fid = franchiseId ? franchiseId.toString() : '';
+		for (var i = 0; i < regimes.length; i++) {
+			var r = regimes[i];
+			if (!r.tenures) continue;
+			for (var j = 0; j < r.tenures.length; j++) {
+				var t = r.tenures[j];
+				if (t.franchiseId.toString() === fid &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season)) {
+					return r.displayName;
+				}
+			}
+		}
+		return 'Unknown';
+	}
+
+	function playerLink(id) {
+		var p = playerMap[id.toString()] || {};
+		var name = p.name || 'Unknown';
+		return p.slug ? '<a href="/players/' + p.slug + '">' + name + '</a>' : name;
+	}
+
+	function franchiseLinkForSeason(id, season) {
+		var fid = id ? id.toString() : '';
+		var name = getRegimeName(id, season);
+		var rid = franchiseRosterIds[fid];
+		return rid ? '<a href="/franchises/' + rid + '">' + name + '</a>' : name;
+	}
+
+	function formatFullDate(d) {
+		return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+	}
+
+	function oxfordJoin(arr) {
+		if (arr.length <= 2) return arr.join(' and ');
+		return arr.slice(0, -1).join(', ') + ', and ' + arr[arr.length - 1];
+	}
+
+	function txSeason(tx) {
+		var month = tx.timestamp.getMonth();
+		var year = tx.timestamp.getFullYear();
+		return month >= 2 ? year : year - 1;
+	}
+
+	return transactions.map(function(tx) {
+		var season = txSeason(tx);
+
+		if (tx.type === 'trade') {
+			var parties = tx.parties || [];
+
+			function assetList(receives) {
+				var list = [];
+				(receives.players || []).forEach(function(pl) { list.push(playerLink(pl.playerId)); });
+				(receives.rfaRights || []).forEach(function(r) { list.push(playerLink(r.playerId) + ' (RFA)'); });
+				(receives.picks || []).forEach(function(pk) { list.push(pk.season + ' ' + ordinal(pk.round)); });
+				(receives.cash || []).forEach(function(c) { list.push(formatMoney(c.amount)); });
+				return list.length > 0 ? list : ['nothing'];
+			}
+
+			var sides = parties.map(function(p) {
+				var name = getRegimeName(p.franchiseId, season);
+				var plural = isPluralName(name);
+				return {
+					franchiseName: name,
+					franchise: franchiseLinkForSeason(p.franchiseId, season),
+					verb: plural ? 'receive' : 'receives',
+					assets: oxfordJoin(assetList(p.receives))
+				};
+			}).sort(function(a, b) {
+				return a.franchiseName.localeCompare(b.franchiseName);
+			});
+
+			return {
+				category: 'trade',
+				icon: 'fa-exchange',
+				label: 'Trade #' + tx.tradeId,
+				labelHref: tx.tradeId ? '/trades/' + tx.tradeId : null,
+				sides: sides,
+				date: formatFullDate(tx.timestamp)
+			};
+		} else {
+			var fname = '<strong>' + franchiseLinkForSeason(tx.franchiseId, season) + '</strong>';
+			var addNames = (tx.adds || []).map(function(a) { return playerLink(a.playerId); });
+			var dropNames = (tx.drops || []).map(function(d) { return playerLink(d.playerId); });
+			var parts = [];
+			if (addNames.length) parts.push('added ' + addNames.join(', '));
+			if (dropNames.length) parts.push('dropped ' + dropNames.join(', '));
+
+			return {
+				category: 'fa',
+				icon: 'fa-user-plus',
+				summary: fname + ' ' + parts.join(', '),
+				date: formatFullDate(tx.timestamp)
+			};
+		}
+	});
+}
+
+async function getBudgetOverview(currentSeason) {
+	var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+	var budgets = await Budget.find({ season: { $in: seasons } }).lean();
+	var allFranchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({}).lean();
+
+	var franchiseNames = {};
+	regimes.forEach(function(r) {
+		r.tenures.forEach(function(t) {
+			if (t.endSeason === null || t.endSeason >= currentSeason) {
+				franchiseNames[t.franchiseId.toString()] = r.displayName;
+			}
+		});
+	});
+
+	var rosterIds = {};
+	allFranchises.forEach(function(f) { rosterIds[f._id.toString()] = f.rosterId; });
+
+	var byFranchise = {};
+	budgets.forEach(function(b) {
+		var fid = b.franchiseId.toString();
+		if (!byFranchise[fid]) {
+			byFranchise[fid] = {};
+		}
+		byFranchise[fid][b.season] = b.available || 0;
+	});
+
+	var rows = Object.keys(byFranchise).map(function(fid) {
+		return {
+			displayName: franchiseNames[fid] || 'Unknown',
+			href: rosterIds[fid] ? '/franchises/' + rosterIds[fid] : null,
+			seasons: seasons.map(function(s) {
+				return byFranchise[fid][s] != null ? byFranchise[fid][s] : null;
+			})
+		};
+	}).sort(function(a, b) {
+		return a.displayName.localeCompare(b.displayName);
+	});
+
+	return { seasons: seasons, rows: rows };
+}
+
 async function overview(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
 		
-		var franchises = await getLeagueOverview(currentSeason);
-		
 		// Get standings - try current season first, fall back to previous season
 		var standingsData = await standingsHelper.getStandingsForSeason(currentSeason);
 		if (!standingsData || standingsData.gamesPlayed === 0) {
-			// No games this season yet, show last season's final standings
 			standingsData = await standingsHelper.getStandingsForSeason(currentSeason - 1);
 			if (standingsData) {
 				standingsData.isPreviousSeason = true;
 			}
-		}
-		
-		// Attach standings info to each franchise for card display
-		// Match on franchiseId (rosterId) instead of name, since names change with regimes
-		if (standingsData && standingsData.standings) {
-			var standingsById = {};
-			standingsData.standings.forEach(function(team) {
-				standingsById[team.franchiseId] = team;
-			});
-			
-			franchises.forEach(function(f) {
-				var standing = standingsById[f.rosterId];
-				if (standing) {
-					f.record = {
-						wins: standing.wins,
-						losses: standing.losses,
-						ties: standing.ties,
-						rank: standing.rank
-					};
-				}
-			});
 		}
 		
 		// Get calendar data
@@ -480,6 +625,10 @@ async function overview(request, response) {
 		// Get schedule widget data
 		var cutDay = config ? config.cutDay : null;
 		var scheduleData = await scheduleHelper.getScheduleWidget(currentSeason, phase, cutDay);
+		
+		// Get recent activity and budget overview
+		var recentActivity = await getRecentActivity(currentSeason);
+		var budgetOverview = await getBudgetOverview(currentSeason);
 		
 		// Find current user's franchise name (if logged in)
 		var userFranchiseName = null;
@@ -494,15 +643,15 @@ async function overview(request, response) {
 		}
 		
 		response.render('league', { 
-			franchises: franchises, 
 			currentSeason: currentSeason,
 			standings: standingsData,
 			schedule: scheduleData,
+			recentActivity: recentActivity,
+			budgetOverview: budgetOverview,
 			userFranchiseName: userFranchiseName,
 			phase: phase,
 			phaseName: phaseName,
 			upcomingEvents: upcomingEvents,
-			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			activePage: 'league'
 		});
 	} catch (err) {

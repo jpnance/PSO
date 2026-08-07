@@ -5,17 +5,7 @@ var Regime = require('../models/Regime');
 var Person = require('../models/Person');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
-var { formatMoney, formatContractYears, formatContractDisplay } = require('../helpers/view');
-
-
-function isPlural(regime) {
-	if (!regime) return false;
-	// Multiple owners or special names like "Schexes"
-	if (regime.ownerIds && regime.ownerIds.length > 1) return true;
-	if (regime.displayName === 'Schexes') return true;
-	if (regime.displayName && regime.displayName.includes('/')) return true;
-	return false;
-}
+var { formatMoney, formatContractYears, formatContractDisplay, isPluralName } = require('../helpers/view');
 
 
 function formatPickNumber(pickNumber, teamsPerRound) {
@@ -202,12 +192,11 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 			var usePlural;
 			if (party.regimeName) {
 				franchiseName = party.regimeName;
-				usePlural = franchiseName === 'Schexes' || franchiseName.includes('/');
 			} else {
 				var regime = getRegimeAtTime(party.franchiseId, tradeYear);
 				franchiseName = regime ? regime.displayName : 'Unknown';
-				usePlural = isPlural(regime);
 			}
+			usePlural = isPluralName(franchiseName);
 			
 			// Collect all assets with their display info
 			var playerAssets = [];

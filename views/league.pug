@@ -88,12 +88,59 @@ block content
 									each game in sortedGames
 										+matchup(game)
 		
-		-
-			var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
-			var isOffseason = offseasonPhases.includes(phase);
-			var standingsSeason = standings ? standings.season : null;
-			var cardOpts = { rosterLimit: rosterLimit, isOffseason: isOffseason, standingsSeason: standingsSeason };
 		div.row
-			each franchise in franchises
-				div.col-md-6.col-lg-4.col-xl-3.mb-4
-					+franchiseCard(franchise, cardOpts)
+			//- Transaction log
+			div.col-md-6.col-lg-4.mb-4
+				div.card.activity-widget
+					div.card-header Recent Transactions
+					div.card-body
+						if recentActivity && recentActivity.length > 0
+							div.activity-widget__list
+								each item in recentActivity
+									div.activity-widget__item(class='activity-widget__item--' + item.category)
+										div.activity-widget__icon
+											i.fa(class=item.icon)
+										div.activity-widget__content
+											if item.label
+												div.activity-widget__label
+													a(href=item.labelHref)= item.label
+											if item.sides
+												each side in item.sides
+													div.activity-widget__side
+														div.activity-widget__side-label !{side.franchise} #{side.verb}
+														div.activity-widget__side-assets !{side.assets}
+											else
+												div!= item.summary
+											div.activity-widget__date= item.date
+						else
+							p.text-muted.mb-0 No recent activity
+					a.card-footer-link(href='/trades')
+						span View Trade History
+						i.fa.fa-chevron-right
+
+			//- Budget overview
+			div.col-md-6.col-lg-4.mb-4
+				div.card.budget-overview-widget
+					div.card-header Available Cash
+					div.card-body.p-0
+						if budgetOverview && budgetOverview.rows.length > 0
+							table.data-table.data-table--compact.budget-overview__table
+								thead
+									tr
+										th Owner
+										each s in budgetOverview.seasons
+											th.data-table__num= s
+								tbody
+									each row, idx in budgetOverview.rows
+										tr
+											td
+												if row.href
+													a(href=row.href)= row.displayName
+												else
+													= row.displayName
+											each val in row.seasons
+												td.data-table__num(class=val !== null && val < 0 ? 'text-danger' : '')
+													if val !== null
+														= formatMoney(val)
+													else
+														span.text-muted —
