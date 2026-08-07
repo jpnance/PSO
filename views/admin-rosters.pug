@@ -14,7 +14,22 @@ block content
 		h1.mb-4 Roster Management
 		
 		if cutResult
-			if cutResult.success
+			if cutResult.batch
+				if cutResult.failCount === 0
+					div.alert.alert-success.alert-dismissible
+						button.close(type='button' data-dismiss='alert') &times;
+						strong Cut day complete!
+						|  #{cutResult.successCount} player#{cutResult.successCount !== 1 ? 's' : ''} released.
+				else
+					div.alert.alert-warning.alert-dismissible
+						button.close(type='button' data-dismiss='alert') &times;
+						strong Cut day processed with errors.
+						|  #{cutResult.successCount} succeeded, #{cutResult.failCount} failed.
+						ul.mb-0.mt-2
+							each r in cutResult.results
+								if !r.success
+									li #{r.name}: #{r.error}
+			else if cutResult.success
 				div.alert.alert-success.alert-dismissible
 					button.close(type='button' data-dismiss='alert') &times;
 					strong Cut successful!
@@ -31,6 +46,17 @@ block content
 					strong Error:
 					|  #{cutResult.error}
 		
+		if markedCount > 0
+			div.card.mb-4.border-danger
+				div.card-body.d-flex.align-items-center.justify-content-between
+					div
+						strong #{markedCount} player#{markedCount !== 1 ? 's' : ''} marked for cut
+						div.small.text-muted Owners have flagged these players for release on cut day
+					form(method='POST' action='/admin/rosters/process-cut-day' onsubmit='return confirmCutDay()')
+						button.btn.btn-danger(type='submit')
+							i.fa.fa-scissors.mr-2
+							| Process Cut Day
+		
 		div.row
 			each franchise in franchises
 				div.col-lg-6.col-xl-4
@@ -42,12 +68,14 @@ block content
 								p.text-muted.mb-0 No players on roster
 							else
 								each player in franchise.roster
-									div.admin-rosters__player
+									div.admin-rosters__player(class=player.markedForCut ? 'admin-rosters__player--marked' : '')
 										div.admin-rosters__player-info
 											div.admin-rosters__player-name-row
 												span.admin-rosters__player-name= player.name
 												if player.positions && player.positions.length
 													+positionBadge(player.positions)
+												if player.markedForCut
+													span.badge.badge-danger.ml-1 CUT
 											div.admin-rosters__player-meta
 												if player.salary !== null
 													| #{formatMoney(player.salary)}
@@ -98,6 +126,10 @@ block scripts
 			document.getElementById('cutModalMessage').textContent = 'Are you sure you want to cut ' + playerName + '?';
 			$('#cutModal').modal('show');
 			return false;
+		}
+		
+		function confirmCutDay() {
+			return confirm('Process cut day? This will execute all ' + #{markedCount} + ' marked cuts immediately. This cannot be undone.');
 		}
 		
 		document.getElementById('cutModalConfirm').addEventListener('click', function() {

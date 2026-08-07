@@ -476,6 +476,12 @@ async function rostersPage(request, response) {
 		endYear: { $gte: season }
 	}).populate('playerId').lean();
 	
+	// Count marked-for-cut contracts (salaried players only)
+	var markedContracts = contracts.filter(function(c) {
+		return c.markedForCut && c.salary !== null;
+	});
+	var markedCount = markedContracts.length;
+	
 	// Build franchise list with rosters
 	var franchiseList = franchises.map(function(f) {
 		var fIdStr = f._id.toString();
@@ -501,7 +507,8 @@ async function rostersPage(request, response) {
 					name: c.playerId ? c.playerId.name : 'Unknown',
 					positions: c.playerId ? c.playerId.positions : [],
 					salary: c.salary,
-					contract: contract
+					contract: contract,
+					markedForCut: c.markedForCut || false
 				};
 			})
 			.sort(function(a, b) {
@@ -525,6 +532,7 @@ async function rostersPage(request, response) {
 		currentSeason: season,
 		phase: phase,
 		cutResult: cutResult,
+		markedCount: markedCount,
 		activePage: 'admin'
 	});
 }
@@ -1088,6 +1096,59 @@ async function sanityPage(request, response) {
 	});
 }
 
+// POST /admin/rosters/process-cut-day - execute all marked cuts at once
+async function processCutDay(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+	
+	var markedContracts = await Contract.find({
+		markedForCut: true,
+		salary: { $ne: null },
+		endYear: { $gte: season }
+	}).populate('playerId').lean();
+	
+	if (markedContracts.length === 0) {
+		var emptyResult = encodeURIComponent(JSON.stringify({
+			success: false,
+			error: 'No players are marked for cut'
+		}));
+		return response.redirect('/admin/rosters?cutResult=' + emptyResult);
+	}
+	
+	var results = [];
+	var successCount = 0;
+	var failCount = 0;
+	
+	for (var i = 0; i < markedContracts.length; i++) {
+		var contract = markedContracts[i];
+		var playerName = contract.playerId ? contract.playerId.name : 'Unknown';
+		
+		var result = await transactionService.processCut({
+			franchiseId: contract.franchiseId,
+			playerId: contract.playerId._id,
+			source: 'manual',
+			notes: 'Cut day batch processing'
+		});
+		
+		if (result.success) {
+			successCount++;
+			results.push({ name: playerName, success: true });
+		} else {
+			failCount++;
+			results.push({ name: playerName, success: false, error: result.errors ? result.errors.join(', ') : 'Unknown error' });
+		}
+	}
+	
+	var batchResult = encodeURIComponent(JSON.stringify({
+		success: failCount === 0,
+		batch: true,
+		successCount: successCount,
+		failCount: failCount,
+		results: results
+	}));
+	response.redirect('/admin/rosters?cutResult=' + batchResult);
+}
+
 // POST /admin/rosters/cut - cut a player
 async function cutPlayer(request, response) {
 	var franchiseId = request.body.franchiseId;
@@ -1317,6 +1378,7 @@ module.exports = {
 	transferFranchise: transferFranchise,
 	rostersPage: rostersPage,
 	cutPlayer: cutPlayer,
+	processCutDay: processCutDay,
 	sanityPage: sanityPage,
 	transactionsPage: transactionsPage
 };

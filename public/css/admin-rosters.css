@@ -38,3 +38,11 @@
 .admin-rosters__cut-btn {
 	margin-left: 1rem;
 }
+
+.admin-rosters__player--marked {
+	background-color: #fff5f5;
+	margin: 0 -0.75rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	border-radius: 4px;
+}

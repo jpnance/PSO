@@ -23,21 +23,14 @@
 - [x] RFA screen - show all restricted free agents ⚡ *quick win*
 - [x] UFA screen - show all unrestricted free agents ⚡ *quick win*
 - [x] Cuts screen - ask owners for their cuts ahead of cut day
-- [ ] Cut day processing - admin button to execute all marked cuts at once
+- [x] Cut day processing - admin button to execute all marked cuts at once
 - [ ] Contract setting screen - ask owners to set contracts ahead of contract day
-- [ ] Rookie draft entry tool — commish tool to record draft picks as they happen
-  - Mockup exists at `/draft/live` (simulated in-progress state with real 2026 data)
-  - Step through picks in order, search/filter rookies, click to assign
-  - Salary auto-calculated from position + round (logic already in `services/draft.js`)
-  - Creates `draft-select` transactions and marks `Pick` as `used`
-  - "Pass" button for skipped picks, undo for mistakes
-  - Mobile drawer exists in mockup but not critical for commish tool (laptop use)
-  - Stretch goal: promote to owner-facing live draft client later (would need auth, WebSocket/polling, mobile-first UX)
+- [x] Rookie draft entry tool — commish tool to record draft picks as they happen
 - [ ] FAAB implementation (free agent auction bidding)
 
 ### Integrations
 - [ ] Hook up adds/drops/trades to Sleeper *(reduces your manual work)*
-- [ ] Get the auction app integrated with Coinflipper Login service
+- [ ] Get the auction app integrated with Coinflipper Login service *(functional as-is; Login integration + less commish babysitting are "next year" improvements)*
 
 ### Information Pages
 - [x] Full standings page ⚡ *quick win*
@@ -151,6 +144,7 @@
 - [x] Unify homepage standings widget with full standings page patterns
 
 ### Misc Ideas
+- [ ] **Live cut day reveal** — Step-through mode where commish reveals cuts one at a time while owners watch (polling/WebSocket). Turn cut day into an event like the old spreadsheet days.
 - [ ] **Retroactive trade-facilitation linking UI** — Open a historical drop and link it to a trade after the fact (e.g., found in email that this cut was for Trade #X)
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
 - [ ] Consider having roles specific to PSO ("commish", "podcast host")
