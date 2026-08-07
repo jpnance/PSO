@@ -459,7 +459,7 @@ a.player-chip:hover {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.65rem 1.25rem;
-	color: var(--color-link);
+	color: var(--card-footer-link, var(--color-link));
 	text-decoration: none;
 	font-weight: 500;
 	font-size: 0.875rem;
@@ -470,7 +470,7 @@ a.player-chip:hover {
 .card-footer-link:hover {
 	background: var(--card-header-border);
 	text-decoration: none;
-	color: var(--color-link-hover);
+	color: var(--card-footer-link-hover, var(--color-link-hover));
 }
 
 /* Budget impact summary - combined view at bottom of trade details */

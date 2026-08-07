@@ -91,10 +91,12 @@
 	/* Page background */
 	--page-bg: #f8f9fa;
 	
-	/* Card header - Sage tint scheme */
-	--card-header-bg: #f0f4f0;
-	--card-header-text: #3d5240;
-	--card-header-border: #dde5dd;
+	/* Card header - Amber scheme */
+	--card-header-bg: #f5ecd5;
+	--card-header-text: #5c4a1e;
+	--card-header-border: #e8d8b0;
+	--card-footer-link: #756030;
+	--card-footer-link-hover: #5c4a1e;
 }
 
 body {

@@ -68,10 +68,174 @@ block styles
 			border-radius: 50%;
 		}
 
+block scripts
+	script.
+		(function() {
+			var schemes = [
+				{ name: 'Sage', bg: '#f0f4f0', text: '#3d5240', border: '#dde5dd', link: '#4a7050', linkHover: '#3d5240' },
+				{ name: 'White', bg: '#ffffff', text: '#495057', border: '#dee2e6', link: null, linkHover: null },
+				{ name: 'Near White', bg: '#fafbfc', text: '#495057', border: '#e9ecef', link: null, linkHover: null },
+				{ name: 'Cool Gray', bg: '#f3f4f6', text: '#4b5563', border: '#e5e7eb', link: '#5a6272', linkHover: '#4b5563' },
+				{ name: 'Warm Gray', bg: '#f5f5f4', text: '#57534e', border: '#e7e5e4', link: '#6b6660', linkHover: '#57534e' },
+				{ name: 'Slate', bg: '#e8eaed', text: '#3d4450', border: '#d0d4da', link: '#4d5565', linkHover: '#3d4450' },
+				{ name: 'Mist', bg: '#f2f5f7', text: '#465660', border: '#dfe4e8', link: '#566672', linkHover: '#465660' },
+				{ name: 'Steel Blue', bg: '#e4ecf5', text: '#2c4a6e', border: '#c8d6e8', link: '#3a5a80', linkHover: '#2c4a6e' },
+				{ name: 'Deep Navy', bg: '#d9e2ef', text: '#1e3252', border: '#bcc9dc', link: '#2e4265', linkHover: '#1e3252' },
+				{ name: 'Midnight', bg: '#2c3e50', text: '#ecf0f1', border: '#1a252f', link: '#b0c4d8', linkHover: '#ecf0f1' },
+				{ name: 'Ice', bg: '#edf4f7', text: '#2e5465', border: '#d4e4eb', link: '#3e6878', linkHover: '#2e5465' },
+				{ name: 'Teal', bg: '#e0f0ef', text: '#1a5c56', border: '#b8d8d5', link: '#2a7068', linkHover: '#1a5c56' },
+				{ name: 'Forest', bg: '#dce8dc', text: '#2d5030', border: '#bad0ba', link: '#3d6340', linkHover: '#2d5030' },
+				{ name: 'Sand (active)', bg: '#f7f3eb', text: '#5c5040', border: '#e8e0d0', link: '#7a6e55', linkHover: '#5c5040' },
+				{ name: 'Parchment', bg: '#f0e8d8', text: '#5a4e35', border: '#ddd0b8', link: '#756545', linkHover: '#5a4e35' },
+				{ name: 'Khaki', bg: '#e8e0c8', text: '#4a4530', border: '#d0c8a8', link: '#605840', linkHover: '#4a4530' },
+				{ name: 'Lavender', bg: '#ece4f5', text: '#3e2d5c', border: '#d5c8e8', link: '#5a4578', linkHover: '#3e2d5c' },
+				{ name: 'Plum', bg: '#e0d0e8', text: '#42284f', border: '#c8b0d5', link: '#583868', linkHover: '#42284f' },
+				{ name: 'Rose', bg: '#f5e8ec', text: '#5c2d3d', border: '#e8ced6', link: '#784050', linkHover: '#5c2d3d' },
+				{ name: 'Coral', bg: '#f5e0da', text: '#6b3028', border: '#e8c4bb', link: '#884038', linkHover: '#6b3028' },
+				{ name: 'Amber', bg: '#f5ecd5', text: '#5c4a1e', border: '#e8d8b0', link: '#756030', linkHover: '#5c4a1e' },
+			];
+			var idx = 0;
+			function apply(i) {
+				idx = i;
+				var s = schemes[i];
+				document.documentElement.style.setProperty('--card-header-bg', s.bg);
+				document.documentElement.style.setProperty('--card-header-text', s.text);
+				document.documentElement.style.setProperty('--card-header-border', s.border);
+				if (s.link) {
+					document.documentElement.style.setProperty('--card-footer-link', s.link);
+					document.documentElement.style.setProperty('--card-footer-link-hover', s.linkHover);
+				} else {
+					document.documentElement.style.removeProperty('--card-footer-link');
+					document.documentElement.style.removeProperty('--card-footer-link-hover');
+				}
+				document.getElementById('scheme-name').textContent = s.name;
+				document.getElementById('scheme-counter').textContent = (i + 1) + ' / ' + schemes.length;
+				document.getElementById('scheme-values').textContent = 'bg: ' + s.bg + ' \u00b7 text: ' + s.text + ' \u00b7 border: ' + s.border;
+				var btns = document.querySelectorAll('.scheme-dot');
+				btns.forEach(function(b, j) {
+					b.classList.toggle('scheme-dot--active', j === i);
+				});
+			}
+			document.addEventListener('DOMContentLoaded', function() {
+				var dots = document.getElementById('scheme-dots');
+				schemes.forEach(function(s, i) {
+					var btn = document.createElement('button');
+					btn.className = 'scheme-dot' + (i === 0 ? ' scheme-dot--active' : '');
+					btn.style.background = s.bg;
+					btn.style.borderColor = s.border;
+					btn.title = s.name;
+					btn.onclick = function() { apply(i); };
+					dots.appendChild(btn);
+				});
+				document.getElementById('scheme-prev').onclick = function() {
+					apply((idx - 1 + schemes.length) % schemes.length);
+				};
+				document.getElementById('scheme-next').onclick = function() {
+					apply((idx + 1) % schemes.length);
+				};
+			});
+		})();
+
 block content
 	div.container.py-4
 		h1 Component Library
 		p.text-muted.mb-4 A visual reference for shared Pug mixins and design tokens
+
+		//- Card Header Color Picker
+		div.component-section
+			h2 Card Header Color Scheme
+			p.usage Click dots or arrows to cycle through header color options. Changes apply to all cards on this page.
+			style.
+				.scheme-picker {
+					display: flex;
+					align-items: center;
+					gap: 0.75rem;
+					margin-bottom: 1rem;
+				}
+				.scheme-picker__arrows {
+					display: flex;
+					gap: 0.25rem;
+				}
+				.scheme-picker__btn {
+					background: none;
+					border: 1px solid #dee2e6;
+					border-radius: 4px;
+					padding: 0.25rem 0.6rem;
+					cursor: pointer;
+					font-size: 1rem;
+					width: 2.2rem;
+					text-align: center;
+				}
+				.scheme-picker__btn:hover {
+					background: #f0f0f0;
+				}
+				.scheme-picker__name {
+					font-weight: 600;
+					font-size: 1rem;
+				}
+				.scheme-picker__counter {
+					font-size: 0.75rem;
+					color: var(--text-muted);
+					margin-left: 0.5rem;
+				}
+				.scheme-dots {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 0.4rem;
+					margin-bottom: 0.75rem;
+				}
+				.scheme-dot {
+					width: 28px;
+					height: 28px;
+					border-radius: 50%;
+					border: 2px solid #ccc;
+					cursor: pointer;
+					padding: 0;
+					transition: transform 0.1s;
+				}
+				.scheme-dot:hover {
+					transform: scale(1.15);
+				}
+				.scheme-dot--active {
+					border-color: #333;
+					box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
+				}
+				.scheme-values {
+					font-family: monospace;
+					font-size: 0.75rem;
+					color: var(--text-muted);
+					margin-bottom: 1rem;
+				}
+			div.scheme-picker
+				div.scheme-picker__arrows
+					button.scheme-picker__btn#scheme-prev ←
+					button.scheme-picker__btn#scheme-next →
+				span.scheme-picker__name#scheme-name Sage (current)
+				span.scheme-picker__counter#scheme-counter 1 / 21
+			div.scheme-dots#scheme-dots
+			div.scheme-values#scheme-values bg: #f0f4f0 · text: #3d5240 · border: #dde5dd
+			div.row
+				div.col-md-4
+					div.card
+						div.card-header Calendar
+						div.card-body
+							p.text-muted.mb-0 Sample card content
+						a.card-footer-link(href='#')
+							span View Full Calendar
+							i.fa.fa-chevron-right
+				div.col-md-4
+					div.card
+						div.card-header Recent Transactions
+						div.card-body
+							p.text-muted.mb-0 Sample card content
+						a.card-footer-link(href='#')
+							span View Trade History
+							i.fa.fa-chevron-right
+				div.col-md-4
+					div.card
+						div.card-header Available Cash
+						div.card-body
+							p.text-muted.mb-0 Sample card content
 
 		//- Position Badge
 		div.component-section
