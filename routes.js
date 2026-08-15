@@ -10,6 +10,7 @@ var admin = require('./services/admin');
 var adminPlayers = require('./services/admin-players');
 var adminTrades = require('./services/admin-trades');
 var adminPeople = require('./services/admin-people');
+var adminPrep = require('./services/admin-prep');
 var draft = require('./services/draft');
 var draftLive = require('./services/draft-live');
 var trades = require('./services/trades');
@@ -149,6 +150,10 @@ module.exports = function(app) {
 	app.get('/admin/proposals', requireLogin, requireAdmin, proposals.listProposalsForApproval);
 	app.post('/admin/proposals/:id/approve', requireLogin, requireAdmin, proposals.approveProposal);
 	app.post('/admin/proposals/:id/reject', requireLogin, requireAdmin, proposals.adminRejectProposal);
+	
+	// Prep tool (require login + admin)
+	app.get('/admin/prep', requireLogin, requireAdmin, adminPrep.prepPage);
+	app.get('/admin/prep/data', requireLogin, requireAdmin, noCache, adminPrep.prepData);
 	
 	// Live draft (require login + admin)
 	app.get('/admin/draft/live', requireLogin, requireAdmin, draftLive.livePage);

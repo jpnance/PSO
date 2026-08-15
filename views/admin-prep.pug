@@ -1,0 +1,104 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		title Prep Tool - Primetime Soap Operas
+		link(rel='icon' href='/favicon.svg' type='image/svg+xml')
+		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+		link(rel='stylesheet' href='/css/design-tokens.css')
+		link(rel='stylesheet' href='/css/admin-prep.css')
+	body
+		//- Top bar
+		div.topbar
+			div.window-tabs#windowTabs
+			span.topbar__spacer
+			button.topbar__btn#franchisesBtn
+				i.fa.fa-users
+				|  Franchises
+			button.topbar__btn#addPaneBtn
+				i.fa.fa-plus
+				|  Add Pane
+			div.dropdown-container
+				button.topbar__btn#settingsBtn
+					i.fa.fa-cog
+					|  Settings
+				div.settings-dropdown#settingsDropdown
+					div.settings-dropdown__item#clearWatchlist
+						i.fa.fa-eye-slash
+						|  Clear Watchlist
+					div.settings-dropdown__item.settings-dropdown__item--danger#resetAll
+						i.fa.fa-trash
+						|  Reset Everything
+
+		//- Franchise modal overlay
+		div.franchise-modal-overlay#franchiseModalOverlay
+
+		//- Franchise modal
+		div.franchise-modal#franchiseModal
+			div.franchise-modal__header
+				span.franchise-modal__title Franchise Overview
+				button.franchise-modal__close#franchiseModalClose &times;
+			div.franchise-modal__body
+				div.franchise-grid#franchiseGrid
+
+		//- Expanded pane modal overlay
+		div.expanded-pane-overlay#expandedPaneOverlay
+
+		//- Expanded pane modal
+		div.expanded-pane-modal#expandedPaneModal
+			div.expanded-pane-modal__header#expandedPaneHeader
+				span.expanded-pane-modal__title#expandedPaneTitle
+				button.expanded-pane-modal__close#expandedPaneClose &times;
+			div.expanded-pane-modal__body#expandedPaneBody
+
+		//- Position tooltip
+		div.pos-tooltip#posTooltip
+
+		//- Add pane modal overlay
+		div.add-pane-modal-overlay#addPaneModalOverlay
+
+		//- Add pane modal
+		div.add-pane-modal#addPaneModal
+			div.add-pane-modal__header
+				span.add-pane-modal__title Add Pane
+				button.add-pane-modal__close#addPaneModalClose &times;
+			div.add-pane-modal__body
+				div.add-pane-modal__section
+					div.add-pane-modal__section-title Positions
+					div.add-pane-modal__grid
+						div.add-pane-modal__item.add-pane-modal__item--pos(data-view='pos-any') Any
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--qb(data-view='pos-qb') QB
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--rb(data-view='pos-rb') RB
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--wr(data-view='pos-wr') WR
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--rbwr(data-view='pos-rbwr') RB/WR
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--te(data-view='pos-te') TE
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--idp(data-view='pos-dl') DL
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--idp(data-view='pos-lb') LB
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--idp(data-view='pos-db') DB
+						div.add-pane-modal__item.add-pane-modal__item--pos.add-pane-modal__item--k(data-view='pos-k') K
+				div.add-pane-modal__section
+					div.add-pane-modal__section-title Contract Status
+					div.add-pane-modal__grid.add-pane-modal__grid--wide
+						div.add-pane-modal__item(data-view='ufa') UFA
+						div.add-pane-modal__item(data-view='rfa') RFA
+				div.add-pane-modal__section
+					div.add-pane-modal__section-title Special
+					div.add-pane-modal__grid.add-pane-modal__grid--wide
+						div.add-pane-modal__item(data-view='rookies') Rookies
+						div.add-pane-modal__item(data-view='watchlist') Watchlist
+				div.add-pane-modal__section
+					div.add-pane-modal__section-title Bye Week
+					div.add-pane-modal__grid.add-pane-modal__grid--bye#addPaneByeGrid
+				div.add-pane-modal__section
+					div.add-pane-modal__section-title Franchises
+					div.add-pane-modal__grid#addPaneFranchiseGrid
+
+		//- Mobile pane switcher
+		div.pane-switcher#paneSwitcher
+
+		//- Main pane area
+		div.pane-area#paneArea
+			div.loading-message Loading player data...
+
+		script(src='/js/admin-prep.js')

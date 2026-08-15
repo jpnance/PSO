@@ -138,6 +138,7 @@ function buildNav(options) {
 			hasNotification: pendingApprovalCount > 0 || pendingCutCount > 0,
 			items: [
 				{ label: 'Dashboard', icon: 'fa-tachometer', href: '/admin', active: isActive('admin') || isActive('admin-dashboard') },
+				{ label: 'Prep Tool', icon: 'fa-list-alt', href: '/admin/prep', active: isActive('admin-prep') },
 				{ label: 'Rosters', icon: 'fa-scissors', href: '/admin/rosters', active: isActive('admin-rosters'), badge: pendingCutCount > 0 ? pendingCutCount : null },
 				{ label: 'Players', icon: 'fa-user', href: '/admin/players', active: isActive('admin-players') },
 				{ label: 'People', icon: 'fa-users', href: '/admin/people', active: isActive('admin-people') },
