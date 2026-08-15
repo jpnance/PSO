@@ -1135,12 +1135,6 @@ body {
         padding: 6px 8px;
     }
 
-    /* Hide less important columns on mobile: bye, fpts */
-    .player-table td:nth-child(3),
-    .player-table td:nth-child(8) {
-        display: none;
-    }
-
     /* Abbreviated names on mobile */
     .name-full {
         display: none;
