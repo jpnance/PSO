@@ -236,7 +236,7 @@ exports.prepData = async function(request, response) {
 			var positions = proj.positions.length > 0 ? proj.positions : player.positions;
 			positions = positions.filter(function(p) { return POSITIONS.includes(p); });
 			
-			var isRookie = player.rookieYear === season || player.estimatedRookieYear === season;
+			var isRookie = player.rookieYear === season;
 			
 			playerData.push({
 				id: player._id.toString(),

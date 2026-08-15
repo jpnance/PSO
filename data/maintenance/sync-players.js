@@ -75,11 +75,16 @@ function getRookieYear(player) {
 }
 
 /**
- * Estimate rookie year from birth_date (preferred) or years_exp (fallback).
- * 98% accurate within 2 years when using birth_date + 23.
+ * Estimate rookie year from known rookieYear (preferred), birth_date, or years_exp (fallback).
+ * If rookieYear is known, just use that - no need to estimate.
  */
 function getEstimatedRookieYear(player) {
-	// Prefer birth_date + 23 (35% exact, 98% within 2 years)
+	// If we know the actual rookie year, use it
+	var knownRookieYear = getRookieYear(player);
+	if (knownRookieYear) {
+		return knownRookieYear;
+	}
+	// Fall back to birth_date + 23 (35% exact, 98% within 2 years)
 	if (player.birth_date) {
 		var birthYear = parseInt(player.birth_date.split('-')[0], 10);
 		if (birthYear > 1950) {
