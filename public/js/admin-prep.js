@@ -126,7 +126,7 @@ function getPaneDefaults(viewId) {
     if (viewId.startsWith('pos-')) return { contractView: 'unsigned', sortBy: 'ppg', showCount: false };
     if (viewId.startsWith('franchise-')) return { contractView: 'signed', sortBy: 'ppg', showCount: true, groupByPosition: true };
     if (viewId === 'ufa' || viewId === 'rfa') return { contractView: 'all', sortBy: 'ppg', showCount: false };
-    if (viewId === 'rookies') return { contractView: 'all', sortBy: 'ppg', showCount: false };
+    if (viewId === 'rookies') return { contractView: 'unsigned', sortBy: 'ppg', showCount: false };
     if (viewId === 'watchlist') return { contractView: 'all', sortBy: 'ppg', showCount: false };
     if (viewId.startsWith('bye-')) return { contractView: 'unsigned', sortBy: 'ppg', showCount: false };
     return { contractView: 'all', sortBy: 'ppg', showCount: false };
@@ -413,7 +413,7 @@ function renderPanes() {
         
         var tableClasses = ['player-table'];
         if (isFranchisePane) tableClasses.push('player-table--no-owner');
-        if (isUnsignedOnly) tableClasses.push('player-table--no-salary');
+        if (isUnsignedOnly) tableClasses.push('player-table--no-salary', 'player-table--no-owner');
         if (isUfaPane) tableClasses.push('player-table--no-owner', 'player-table--no-contract', 'player-table--no-salary');
         if (isRfaPane) tableClasses.push('player-table--no-contract', 'player-table--no-salary');
         if (isSinglePosPane) tableClasses.push('player-table--no-pos');
@@ -670,6 +670,17 @@ function openExpandedPane(paneIndex) {
     players = sortPlayers(players, paneData.sortBy, paneData.groupByPosition);
     
     var isFranchisePane = paneData.view.startsWith('franchise-');
+    var isUnsignedOnly = paneData.contractView === 'unsigned';
+    var isUfaPane = paneData.view === 'ufa';
+    var isRfaPane = paneData.view === 'rfa';
+    var isSinglePosPane = paneData.view.match(/^pos-(qb|rb|wr|te|dl|lb|db|k)$/);
+    
+    var tableClasses = ['player-table'];
+    if (isFranchisePane) tableClasses.push('player-table--no-owner');
+    if (isUnsignedOnly) tableClasses.push('player-table--no-salary', 'player-table--no-owner');
+    if (isUfaPane) tableClasses.push('player-table--no-owner', 'player-table--no-contract', 'player-table--no-salary');
+    if (isRfaPane) tableClasses.push('player-table--no-contract', 'player-table--no-salary');
+    if (isSinglePosPane) tableClasses.push('player-table--no-pos');
     
     // Set header styling
     var header = document.getElementById('expandedPaneHeader');
@@ -685,7 +696,7 @@ function openExpandedPane(paneIndex) {
     
     document.getElementById('expandedPaneTitle').textContent = config.title + ' (' + players.length + ')';
     
-    var tableHtml = '<table class="player-table"><tbody>';
+    var tableHtml = '<table class="' + tableClasses.join(' ') + '"><tbody>';
     players.forEach(function(p) {
         var isWatched = state.watchlist.has(p.id);
         var owner = p.franchise ? FRANCHISES.find(function(f) { return f.id === p.franchise; }) : null;
