@@ -12,7 +12,7 @@ var transactionService = require('./transaction');
 var budgetHelper = require('../helpers/budget');
 var notifications = require('../helpers/notifications');
 var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex, isPluralName } = require('../helpers/view');
-var { formatPickMain } = require('../helpers/formatPick');
+var { formatPickMain, formatPickDisplay } = require('../helpers/formatPick');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
@@ -530,6 +530,50 @@ async function submitTrade(request, response) {
 		console.error('submitTrade error:', err);
 		response.status(500).json({ success: false, errors: ['Server error: ' + err.message] });
 	}
+}
+
+// Build a text summary of a proposal for GroupMe notifications
+async function buildProposalSummary(proposal) {
+	var lines = [];
+
+	for (var i = 0; i < proposal.parties.length; i++) {
+		var party = proposal.parties[i];
+		var name = await getFranchiseDisplayName(party.franchiseId);
+		var items = [];
+
+		for (var j = 0; j < party.receives.players.length; j++) {
+			var player = await Player.findById(party.receives.players[j].playerId);
+			var contract = await Contract.findOne({ playerId: party.receives.players[j].playerId });
+			var label = player ? player.name : 'Unknown';
+			if (contract && contract.salary !== null) {
+				label += ' (' + formatContractDisplay(contract.salary, contract.startYear, contract.endYear) + ')';
+			} else if (contract && contract.salary === null) {
+				label += ' (RFA rights)';
+			}
+			items.push(label);
+		}
+
+		for (var j = 0; j < party.receives.picks.length; j++) {
+			var pick = await Pick.findById(party.receives.picks[j].pickId);
+			if (pick) {
+				var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+				items.push(formatPickDisplay({ round: pick.round, pickNumber: pick.pickNumber, season: pick.season, origin: origin }));
+			}
+		}
+
+		for (var j = 0; j < party.receives.cash.length; j++) {
+			var c = party.receives.cash[j];
+			items.push(formatMoney(c.amount) + ' in ' + c.season);
+		}
+
+		if (items.length === 0) {
+			items.push('Nothing');
+		}
+
+		lines.push(name + ' receives: ' + items.join(', '));
+	}
+
+	return lines.join('\n');
 }
 
 // ========== Trade Proposal Functions ==========
@@ -1305,10 +1349,11 @@ async function acceptProposal(request, response) {
 		
 		await proposal.save();
 		
-		// If trade is now fully accepted, alert the commissioner
+		// If trade is now fully accepted, alert the commissioner with details
 		if (proposal.status === 'accepted') {
+			var summary = await buildProposalSummary(proposal);
 			notifications.alertCommissioner(
-				'Trade accepted! https://thedynastyleague.com/admin/proposals'
+				'Trade accepted!\n\n' + summary + '\n\nhttps://thedynastyleague.com/admin/proposals'
 			);
 		}
 		
