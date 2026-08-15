@@ -145,8 +145,8 @@ function getViewConfig(viewId) {
         'pos-lb': { title: 'LB', filter: function(p) { return p.pos === 'LB'; }, posColor: 'idp' },
         'pos-db': { title: 'DB', filter: function(p) { return p.pos === 'DB'; }, posColor: 'idp' },
         'pos-k': { title: 'K', filter: function(p) { return p.pos === 'K'; }, posColor: 'k' },
-        'ufa': { title: 'UFA', filter: function(p) { return p.contractType === 'ufa'; } },
-        'rfa': { title: 'RFA', filter: function(p) { return p.contractType === 'rfa'; } },
+        'ufa': { title: 'UFA', filter: function(p) { return p.contractType === 'ufa'; }, contractColor: 'ufa' },
+        'rfa': { title: 'RFA', filter: function(p) { return p.contractType === 'rfa'; }, contractColor: 'rfa' },
         'rookies': { title: 'Rookies', filter: function(p) { return p.rookie; } },
         'watchlist': { title: 'Watchlist', filter: function(p) { return state.watchlist.has(p.id); } }
     };
@@ -358,6 +358,8 @@ function renderPanes() {
         var headerClass = 'pane__header';
         if (config.posColor) {
             headerClass += ' pane__header--' + config.posColor;
+        } else if (config.contractColor) {
+            headerClass += ' pane__header--' + config.contractColor;
         } else if (config.franchiseColor) {
             headerStyle = 'background: ' + config.franchiseColor + '15; border-bottom-color: ' + config.franchiseColor + ';';
         }
@@ -404,24 +406,35 @@ function renderPanes() {
         '</div>';
 
         var isFranchisePane = paneData.view.startsWith('franchise-');
+        var isUnsignedOnly = paneData.contractView === 'unsigned';
+        var isUfaPane = paneData.view === 'ufa';
+        var isRfaPane = paneData.view === 'rfa';
+        var isSinglePosPane = paneData.view.match(/^pos-(qb|rb|wr|te|dl|lb|db|k)$/);
         
-        var tableHtml = '<div class="pane__body"><table class="player-table"><tbody>';
+        var tableClasses = ['player-table'];
+        if (isFranchisePane) tableClasses.push('player-table--no-owner');
+        if (isUnsignedOnly) tableClasses.push('player-table--no-salary');
+        if (isUfaPane) tableClasses.push('player-table--no-owner', 'player-table--no-contract', 'player-table--no-salary');
+        if (isRfaPane) tableClasses.push('player-table--no-contract', 'player-table--no-salary');
+        if (isSinglePosPane) tableClasses.push('player-table--no-pos');
+        
+        var tableHtml = '<div class="pane__body"><table class="' + tableClasses.join(' ') + '"><tbody>';
         players.forEach(function(p) {
             var isWatched = state.watchlist.has(p.id);
             var owner = p.franchise ? FRANCHISES.find(function(f) { return f.id === p.franchise; }) : null;
             var contractClass = p.contractType === 'ufa' ? 'contract-ufa' : (p.contractType === 'rfa' ? 'contract-rfa' : 'contract-signed');
 
             tableHtml += '<tr class="' + (isWatched ? 'watched' : '') + '" data-player-id="' + p.id + '">' +
-                '<td><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
-                '<td class="muted">' + p.team + '</td>' +
-                '<td class="num muted">' + (p.bye || '—') + '</td>' +
-                '<td>' + positionBadge(p.positions) + '</td>' +
-                (isFranchisePane ? '' : '<td class="muted owner" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>') +
-                '<td><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
-                '<td class="num">' + (p.salary > 0 ? formatMoney(p.salary) : '—') + '</td>' +
-                '<td class="num"><strong>' + p.fpts.toFixed(1) + '</strong></td>' +
-                '<td class="num">' + p.fptsG.toFixed(2) + '</td>' +
-                '<td class="num"><span class="rating rating--' + p.rating + '">' + p.rating + '</span></td>' +
+                '<td class="col-name"><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
+                '<td class="col-team muted">' + p.team + '</td>' +
+                '<td class="col-bye num muted">' + (p.bye || '—') + '</td>' +
+                '<td class="col-pos">' + positionBadge(p.positions) + '</td>' +
+                '<td class="col-owner muted" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>' +
+                '<td class="col-contract"><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
+                '<td class="col-salary num">' + (p.salary > 0 ? formatMoney(p.salary) : '—') + '</td>' +
+                '<td class="col-fpts num"><strong>' + p.fpts.toFixed(1) + '</strong></td>' +
+                '<td class="col-ppg num">' + p.fptsG.toFixed(2) + '</td>' +
+                '<td class="col-rating num"><span class="rating rating--' + p.rating + '">' + p.rating + '</span></td>' +
             '</tr>';
         });
         tableHtml += '</tbody></table></div>';
@@ -679,16 +692,16 @@ function openExpandedPane(paneIndex) {
         var contractClass = p.contractType === 'ufa' ? 'contract-ufa' : (p.contractType === 'rfa' ? 'contract-rfa' : 'contract-signed');
 
         tableHtml += '<tr class="' + (isWatched ? 'watched' : '') + '">' +
-            '<td><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
-            '<td class="muted">' + p.team + '</td>' +
-            '<td class="num muted">' + (p.bye || '—') + '</td>' +
-            '<td>' + positionBadge(p.positions) + '</td>' +
-            (isFranchisePane ? '' : '<td class="muted owner" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>') +
-            '<td><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
-            '<td class="num">' + (p.salary > 0 ? formatMoney(p.salary) : '—') + '</td>' +
-            '<td class="num"><strong>' + p.fpts.toFixed(1) + '</strong></td>' +
-            '<td class="num">' + p.fptsG.toFixed(2) + '</td>' +
-            '<td class="num"><span class="rating rating--' + p.rating + '">' + p.rating + '</span></td>' +
+            '<td class="col-name"><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
+            '<td class="col-team muted">' + p.team + '</td>' +
+            '<td class="col-bye num muted">' + (p.bye || '—') + '</td>' +
+            '<td class="col-pos">' + positionBadge(p.positions) + '</td>' +
+            '<td class="col-owner muted" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>' +
+            '<td class="col-contract"><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
+            '<td class="col-salary num">' + (p.salary > 0 ? formatMoney(p.salary) : '—') + '</td>' +
+            '<td class="col-fpts num"><strong>' + p.fpts.toFixed(1) + '</strong></td>' +
+            '<td class="col-ppg num">' + p.fptsG.toFixed(2) + '</td>' +
+            '<td class="col-rating num"><span class="rating rating--' + p.rating + '">' + p.rating + '</span></td>' +
         '</tr>';
     });
     tableHtml += '</tbody></table>';
