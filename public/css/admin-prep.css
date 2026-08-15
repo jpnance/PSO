@@ -1110,11 +1110,6 @@ body {
         display: none;
     }
 
-    /* Hide owner column */
-    .player-table td.owner {
-        display: none;
-    }
-
     /* Abbreviated names on mobile */
     .name-full {
         display: none;
@@ -1124,17 +1119,19 @@ body {
         display: inline;
     }
 
-    /* Fixed column widths on mobile */
+    /* Mobile table: fixed layout, name/owner truncate, others fit content */
     .player-table {
         table-layout: fixed;
     }
 
-    .player-table td:nth-child(1) { width: 28%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .player-table td:nth-child(2) { width: 12%; }
-    .player-table td:nth-child(4) { width: 12%; }
-    .player-table td:nth-child(6) { width: 18%; }
-    .player-table td:nth-child(7) { width: 12%; }
-    .player-table td:nth-child(9) { width: 10%; }
+    .player-table td { white-space: nowrap; }
+    .player-table td:nth-child(1) { width: 20%; overflow: hidden; text-overflow: ellipsis; }
+    .player-table td:nth-child(2) { width: 8%; }
+    .player-table td:nth-child(4) { width: 13%; }
+    .player-table td:nth-child(5) { width: 15%; overflow: hidden; text-overflow: ellipsis; }
+    .player-table td:nth-child(6) { width: 13%; }
+    .player-table td:nth-child(7) { width: 11%; text-align: right; }
+    .player-table td:nth-child(9) { width: 12%; text-align: right; }
     .player-table td:nth-child(10) { width: 8%; }
 
     .franchise-modal,
