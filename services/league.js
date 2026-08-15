@@ -13,6 +13,7 @@ var standingsHelper = require('../helpers/standings');
 var scheduleHelper = require('../helpers/schedule');
 var transactionService = require('./transaction');
 var { getPositionIndex, shortenPlayerName, formatMoney, ordinal, isPluralName } = require('../helpers/view');
+var { formatPickMain } = require('../helpers/formatPick');
 
 // Calendar helpers
 function formatShortDate(date) {
@@ -450,11 +451,32 @@ async function getRecentActivity(currentSeason) {
 		});
 	});
 
+	var pickLookups = [];
+	transactions.forEach(function(tx) {
+		(tx.parties || []).forEach(function(p) {
+			(p.receives.picks || []).forEach(function(pk) {
+				pickLookups.push({ season: pk.season, round: pk.round, originalFranchiseId: pk.fromFranchiseId });
+			});
+		});
+	});
+
 	var players = await Player.find({ _id: { $in: Array.from(playerIds) } }).select('name slugs').lean();
 	var playerMap = {};
 	players.forEach(function(p) {
 		playerMap[p._id.toString()] = { name: p.name, slug: p.slugs && p.slugs[0] };
 	});
+
+	var pickMap = {};
+	if (pickLookups.length > 0) {
+		var pickQuery = pickLookups.map(function(pl) {
+			return { season: pl.season, round: pl.round, originalFranchiseId: pl.originalFranchiseId };
+		});
+		var picks = await Pick.find({ $or: pickQuery }).select('season round originalFranchiseId pickNumber').lean();
+		picks.forEach(function(pk) {
+			var key = pk.season + '-' + pk.round + '-' + pk.originalFranchiseId.toString();
+			pickMap[key] = pk.pickNumber;
+		});
+	}
 
 	var allFranchises = await Franchise.find({}).lean();
 	var franchiseRosterIds = {};
@@ -517,7 +539,10 @@ async function getRecentActivity(currentSeason) {
 				var list = [];
 				(receives.players || []).forEach(function(pl) { list.push(playerLink(pl.playerId)); });
 				(receives.rfaRights || []).forEach(function(r) { list.push(playerLink(r.playerId) + ' (RFA)'); });
-				(receives.picks || []).forEach(function(pk) { list.push(pk.season + ' ' + ordinal(pk.round)); });
+				(receives.picks || []).forEach(function(pk) {
+					var key = pk.season + '-' + pk.round + '-' + (pk.fromFranchiseId ? pk.fromFranchiseId.toString() : '');
+					list.push(formatPickMain({ season: pk.season, round: pk.round, pickNumber: pickMap[key] }));
+				});
 				(receives.cash || []).forEach(function(c) { list.push(formatMoney(c.amount)); });
 				return list.length > 0 ? list : ['nothing'];
 			}
