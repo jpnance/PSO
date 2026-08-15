@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run --rm -v "$PWD":/app node:22-alpine sh -c "wget -O /app/public/data/sleeper-projections.json 'https://api.sleeper.com/projections/nfl/2026/?season_type=regular&position[]=DB&position[]=DL&position[]=K&position[]=LB&position[]=QB&position[]=RB&position[]=TE&position[]=WR&order_by=pts_dynasty_2qb'"
