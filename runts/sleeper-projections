@@ -1,3 +1,12 @@
 #!/bin/bash
 
-docker run --rm -v "$PWD":/app node:22-alpine sh -c "wget -O /app/public/data/sleeper-projections.json 'https://api.sleeper.com/projections/nfl/2026/?season_type=regular&position[]=DB&position[]=DL&position[]=K&position[]=LB&position[]=QB&position[]=RB&position[]=TE&position[]=WR&order_by=pts_dynasty_2qb'"
+SEASON=${1:-2026}
+
+echo "Fetching projections for $SEASON..."
+docker run --rm -v "$PWD":/app node:22-alpine sh -c "wget -O /app/public/data/sleeper-projections.json 'https://api.sleeper.com/projections/nfl/$SEASON/?season_type=regular&position[]=DB&position[]=DL&position[]=K&position[]=LB&position[]=QB&position[]=RB&position[]=TE&position[]=WR&order_by=pts_dynasty_2qb'"
+
+echo "Fetching NFL schedule for $SEASON..."
+docker run --rm -v "$PWD":/app node:22-alpine sh -c "wget -O /app/public/data/nfl-schedule.json 'https://api.sleeper.com/schedule/nfl/regular/$SEASON'"
+
+echo "Deriving bye weeks..."
+docker run --rm -v "$PWD":/app node:22-alpine node /app/tools/derive-bye-weeks.js

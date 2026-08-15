@@ -108,6 +108,18 @@ function loadProjections() {
 	}
 }
 
+function loadByeWeeks() {
+	try {
+		var byeWeeksPath = path.join(__dirname, '../public/data/nfl-bye-weeks.json');
+		var data = fs.readFileSync(byeWeeksPath, 'utf8');
+		var parsed = JSON.parse(data);
+		return parsed.teams || {};
+	} catch (e) {
+		console.warn('Could not load bye weeks:', e.message);
+		return {};
+	}
+}
+
 function buildProjectionsMap(projections) {
 	var map = {};
 	projections.forEach(function(p) {
@@ -132,7 +144,6 @@ function buildProjectionsMap(projections) {
 			fptsPerGame: perGame,
 			rating: rating,
 			team: p.player ? p.player.team : null,
-			bye: p.player ? p.player.bye_week : null,
 			positions: positions
 		};
 	});
@@ -162,6 +173,7 @@ exports.prepData = async function(request, response) {
 		
 		var projections = loadProjections();
 		var projectionsMap = buildProjectionsMap(projections);
+		var byeWeeks = loadByeWeeks();
 		
 		var [players, contracts, franchises, regimes, budgets] = await Promise.all([
 			Player.find({ active: true }).lean(),
@@ -238,12 +250,13 @@ exports.prepData = async function(request, response) {
 			
 			var isRookie = player.rookieYear === season;
 			
+			var playerTeam = proj.team || player.team;
 			playerData.push({
 				id: player._id.toString(),
 				sleeperId: player.sleeperId,
 				name: player.name,
-				team: proj.team || player.team,
-				bye: proj.bye,
+				team: playerTeam,
+				bye: byeWeeks[playerTeam] || null,
 				positions: positions,
 				franchise: franchise ? franchise.id : null,
 				franchiseName: franchise ? franchise.name : null,

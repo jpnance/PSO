@@ -139,7 +139,7 @@ function getViewConfig(viewId) {
         'pos-qb': { title: 'QB', filter: function(p) { return p.pos === 'QB'; }, posColor: 'qb' },
         'pos-rb': { title: 'RB', filter: function(p) { return p.pos === 'RB'; }, posColor: 'rb' },
         'pos-wr': { title: 'WR', filter: function(p) { return p.pos === 'WR'; }, posColor: 'wr' },
-        'pos-rbwr': { title: 'RB/WR', filter: function(p) { return p.pos === 'RB' || p.pos === 'WR'; } },
+        'pos-rbwr': { title: 'RB/WR', filter: function(p) { return p.pos === 'RB' || p.pos === 'WR'; }, posColor: 'rbwr' },
         'pos-te': { title: 'TE', filter: function(p) { return p.pos === 'TE'; }, posColor: 'te' },
         'pos-dl': { title: 'DL', filter: function(p) { return p.pos === 'DL'; }, posColor: 'idp' },
         'pos-lb': { title: 'LB', filter: function(p) { return p.pos === 'LB'; }, posColor: 'idp' },
@@ -424,10 +424,10 @@ function renderPanes() {
             var owner = p.franchise ? FRANCHISES.find(function(f) { return f.id === p.franchise; }) : null;
             var contractClass = p.contractType === 'ufa' ? 'contract-ufa' : (p.contractType === 'rfa' ? 'contract-rfa' : 'contract-signed');
 
+            var teamBye = p.team + (p.bye ? ' (' + p.bye + ')' : '');
             tableHtml += '<tr class="' + (isWatched ? 'watched' : '') + '" data-player-id="' + p.id + '">' +
                 '<td class="col-name"><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
-                '<td class="col-team muted">' + p.team + '</td>' +
-                '<td class="col-bye num muted">' + (p.bye || '—') + '</td>' +
+                '<td class="col-team muted">' + teamBye + '</td>' +
                 '<td class="col-pos">' + positionBadge(p.positions) + '</td>' +
                 '<td class="col-owner muted" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>' +
                 '<td class="col-contract"><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
@@ -691,10 +691,10 @@ function openExpandedPane(paneIndex) {
         var owner = p.franchise ? FRANCHISES.find(function(f) { return f.id === p.franchise; }) : null;
         var contractClass = p.contractType === 'ufa' ? 'contract-ufa' : (p.contractType === 'rfa' ? 'contract-rfa' : 'contract-signed');
 
+        var teamBye = p.team + (p.bye ? ' (' + p.bye + ')' : '');
         tableHtml += '<tr class="' + (isWatched ? 'watched' : '') + '">' +
             '<td class="col-name"><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
-            '<td class="col-team muted">' + p.team + '</td>' +
-            '<td class="col-bye num muted">' + (p.bye || '—') + '</td>' +
+            '<td class="col-team muted">' + teamBye + '</td>' +
             '<td class="col-pos">' + positionBadge(p.positions) + '</td>' +
             '<td class="col-owner muted" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>' +
             '<td class="col-contract"><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
@@ -738,10 +738,13 @@ function updateAddPaneModalState() {
         item.classList.toggle('add-pane-modal__item--disabled', exists);
     });
     
-    // Populate franchise grid
+    // Populate franchise grid (alphabetized)
     var franchiseGrid = document.getElementById('addPaneFranchiseGrid');
     franchiseGrid.innerHTML = '';
-    FRANCHISES.forEach(function(f) {
+    var sortedFranchises = FRANCHISES.slice().sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
+    sortedFranchises.forEach(function(f) {
         var viewId = 'franchise-' + f.id;
         var exists = win.panes.some(function(p) { return normalizePane(p).view === viewId; });
         var item = document.createElement('div');
@@ -752,10 +755,18 @@ function updateAddPaneModalState() {
         franchiseGrid.appendChild(item);
     });
 
-    // Populate bye week grid
+    // Populate bye week grid (only weeks that have byes)
     var byeGrid = document.getElementById('addPaneByeGrid');
     byeGrid.innerHTML = '';
-    for (var week = 1; week <= 14; week++) {
+    var activeByeWeeks = [];
+    PLAYERS.forEach(function(p) {
+        if (p.bye && !activeByeWeeks.includes(p.bye)) {
+            activeByeWeeks.push(p.bye);
+        }
+    });
+    activeByeWeeks.sort(function(a, b) { return a - b; });
+    
+    activeByeWeeks.forEach(function(week) {
         var viewId = 'bye-' + week;
         var exists = win.panes.some(function(p) { return normalizePane(p).view === viewId; });
         var item = document.createElement('div');
@@ -763,7 +774,7 @@ function updateAddPaneModalState() {
         item.dataset.view = viewId;
         item.textContent = week;
         byeGrid.appendChild(item);
-    }
+    });
 }
 
 function addPane(viewId) {

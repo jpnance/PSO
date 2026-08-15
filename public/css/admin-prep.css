@@ -482,6 +482,7 @@ body {
 .pane__header--te { background: var(--pos-te-bg); border-bottom-color: var(--pos-te-mid); }
 .pane__header--idp { background: var(--pos-idp-bg); border-bottom-color: var(--pos-idp-mid); }
 .pane__header--k { background: var(--pos-k-bg); border-bottom-color: var(--pos-k-mid); }
+.pane__header--rbwr { background: linear-gradient(135deg, var(--pos-rb-bg), var(--pos-wr-bg)); border-bottom-color: var(--pos-rb-mid); }
 .pane__header--ufa { background: #d4edda; border-bottom-color: #155724; }
 .pane__header--rfa { background: #fff3cd; border-bottom-color: #856404; }
 
@@ -491,6 +492,7 @@ body {
 .pane__header--te .pane__title { color: var(--pos-te-text); }
 .pane__header--idp .pane__title { color: var(--pos-idp-text); }
 .pane__header--k .pane__title { color: var(--pos-k-text); }
+.pane__header--rbwr .pane__title { color: var(--pos-rb-text); }
 .pane__header--ufa .pane__title { color: #155724; }
 .pane__header--rfa .pane__title { color: #856404; }
 .pane__header--ufa .pane__filter,
@@ -558,6 +560,7 @@ body {
 .pane__header--qb .pane__filter,
 .pane__header--rb .pane__filter,
 .pane__header--wr .pane__filter,
+.pane__header--rbwr .pane__filter,
 .pane__header--te .pane__filter,
 .pane__header--idp .pane__filter,
 .pane__header--k .pane__filter,
@@ -569,6 +572,7 @@ body {
 .pane__header--qb .pane__filter-btn,
 .pane__header--rb .pane__filter-btn,
 .pane__header--wr .pane__filter-btn,
+.pane__header--rbwr .pane__filter-btn,
 .pane__header--te .pane__filter-btn,
 .pane__header--idp .pane__filter-btn,
 .pane__header--k .pane__filter-btn,
@@ -580,6 +584,7 @@ body {
 .pane__header--qb .pane__filter-btn:hover,
 .pane__header--rb .pane__filter-btn:hover,
 .pane__header--wr .pane__filter-btn:hover,
+.pane__header--rbwr .pane__filter-btn:hover,
 .pane__header--te .pane__filter-btn:hover,
 .pane__header--idp .pane__filter-btn:hover,
 .pane__header--k .pane__filter-btn:hover,
@@ -591,6 +596,7 @@ body {
 .pane__header--qb .pane__filter-btn--active,
 .pane__header--rb .pane__filter-btn--active,
 .pane__header--wr .pane__filter-btn--active,
+.pane__header--rbwr .pane__filter-btn--active,
 .pane__header--te .pane__filter-btn--active,
 .pane__header--idp .pane__filter-btn--active,
 .pane__header--k .pane__filter-btn--active,
@@ -642,6 +648,7 @@ body {
 .pane__header--qb .pane__close,
 .pane__header--rb .pane__close,
 .pane__header--wr .pane__close,
+.pane__header--rbwr .pane__close,
 .pane__header--te .pane__close,
 .pane__header--idp .pane__close,
 .pane__header--k .pane__close,
@@ -653,6 +660,7 @@ body {
 .pane__header--qb .pane__close:hover,
 .pane__header--rb .pane__close:hover,
 .pane__header--wr .pane__close:hover,
+.pane__header--rbwr .pane__close:hover,
 .pane__header--te .pane__close:hover,
 .pane__header--idp .pane__close:hover,
 .pane__header--k .pane__close:hover,
@@ -1150,7 +1158,6 @@ body {
     .player-table .col-ppg { text-align: right; }
 
     /* Hide less useful columns on mobile */
-    .player-table .col-bye,
     .player-table .col-fpts { display: none; }
 
     /* Context-aware column hiding on mobile */
