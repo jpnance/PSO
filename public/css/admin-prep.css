@@ -696,20 +696,10 @@ body {
     background: rgba(74, 144, 217, 0.12);
 }
 
-/* Position badges */
-.pos { 
-    display: inline-block;
-    padding: 1px 4px;
-    border-radius: 2px;
-    font-weight: 600;
-    font-size: 9px;
+/* Position badges - using shared positions.css */
+.player-table .position-badge {
+    font-size: 0.6rem;
 }
-.pos-qb { background: var(--pos-qb-bg); color: var(--pos-qb-text); }
-.pos-rb { background: var(--pos-rb-bg); color: var(--pos-rb-text); }
-.pos-wr { background: var(--pos-wr-bg); color: var(--pos-wr-text); }
-.pos-te { background: var(--pos-te-bg); color: var(--pos-te-text); }
-.pos-dl, .pos-lb, .pos-db { background: var(--pos-idp-bg); color: var(--pos-idp-text); }
-.pos-k { background: var(--pos-k-bg); color: var(--pos-k-text); }
 
 /* Contract badge */
 .contract {
@@ -1114,8 +1104,7 @@ body {
         padding: 6px 8px;
     }
 
-    /* Hide less important columns on mobile: team, bye, fpts */
-    .player-table td:nth-child(2),
+    /* Hide less important columns on mobile: bye, fpts */
     .player-table td:nth-child(3),
     .player-table td:nth-child(8) {
         display: none;
@@ -1134,6 +1123,19 @@ body {
     .name-short {
         display: inline;
     }
+
+    /* Fixed column widths on mobile */
+    .player-table {
+        table-layout: fixed;
+    }
+
+    .player-table td:nth-child(1) { width: 28%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .player-table td:nth-child(2) { width: 12%; }
+    .player-table td:nth-child(4) { width: 12%; }
+    .player-table td:nth-child(6) { width: 18%; }
+    .player-table td:nth-child(7) { width: 12%; }
+    .player-table td:nth-child(9) { width: 10%; }
+    .player-table td:nth-child(10) { width: 8%; }
 
     .franchise-modal,
     .add-pane-modal,

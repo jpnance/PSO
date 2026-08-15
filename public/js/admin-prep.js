@@ -15,6 +15,23 @@ function abbreviateName(name) {
     return parts[0].charAt(0) + '. ' + parts.slice(1).join(' ');
 }
 
+function sortedPositions(positions) {
+    return positions.slice().sort(function(a, b) {
+        var idxA = POSITIONS.indexOf(a);
+        var idxB = POSITIONS.indexOf(b);
+        return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+    });
+}
+
+function positionBadge(positions) {
+    if (!positions || positions.length === 0) return '';
+    var sorted = sortedPositions(positions);
+    var segments = sorted.map(function(pos) {
+        return '<span class="position-badge__segment pos-' + pos + '">' + pos + '</span>';
+    }).join('');
+    return '<span class="position-badge">' + segments + '</span>';
+}
+
 var state = {
     watchlist: new Set(),
     windows: [],
@@ -398,7 +415,7 @@ function renderPanes() {
                 '<td><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
                 '<td class="muted">' + p.team + '</td>' +
                 '<td class="num muted">' + (p.bye || '—') + '</td>' +
-                '<td><span class="pos pos-' + p.pos.toLowerCase() + '">' + p.pos + '</span></td>' +
+                '<td>' + positionBadge(p.positions) + '</td>' +
                 (isFranchisePane ? '' : '<td class="muted owner" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>') +
                 '<td><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
                 '<td class="num">' + (p.salary > 0 ? formatMoney(p.salary) : '—') + '</td>' +
@@ -665,7 +682,7 @@ function openExpandedPane(paneIndex) {
             '<td><span class="name-full">' + p.name + '</span><span class="name-short">' + abbreviateName(p.name) + '</span>' + (isWatched ? '<i class="fa fa-star watched-indicator"></i>' : '') + '</td>' +
             '<td class="muted">' + p.team + '</td>' +
             '<td class="num muted">' + (p.bye || '—') + '</td>' +
-            '<td><span class="pos pos-' + p.pos.toLowerCase() + '">' + p.pos + '</span></td>' +
+            '<td>' + positionBadge(p.positions) + '</td>' +
             (isFranchisePane ? '' : '<td class="muted owner" title="' + (owner ? owner.name : '') + '">' + (owner ? owner.name : '—') + '</td>') +
             '<td><span class="contract ' + contractClass + '">' + p.contract + '</span></td>' +
             '<td class="num">' + (p.salary > 0 ? formatMoney(p.salary) : '—') + '</td>' +
