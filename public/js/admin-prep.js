@@ -899,6 +899,27 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// ========== REFRESH ==========
+function refreshData() {
+    var btn = document.getElementById('refreshBtn');
+    var icon = btn.querySelector('.fa');
+    icon.classList.add('fa-spin');
+    
+    return loadData()
+        .then(function() {
+            renderPanes();
+            icon.classList.remove('fa-spin');
+        })
+        .catch(function(error) {
+            console.error('Failed to refresh data:', error);
+            icon.classList.remove('fa-spin');
+        });
+}
+
+document.getElementById('refreshBtn').addEventListener('click', refreshData);
+
+setInterval(refreshData, 60000);
+
 // ========== INIT ==========
 loadData()
     .then(function() {
