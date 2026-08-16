@@ -5,7 +5,9 @@ each result in results
 		data-player-id=result._id
 		data-player-name=result.name
 		data-player-positions=result.positionKey
+		data-player-team=(result.team || '')
 		data-player-situation=(result.situation || '')
+		data-player-pfr-id=(result.pfrId || '')
 		class=(result.owned ? 'auction-search__result--owned' : '')
 	)
 		span.auction-search__result-name #{result.name}

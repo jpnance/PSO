@@ -92,6 +92,11 @@ $(document).ready(function() {
 			newPlayer.playerId = playerId;
 		}
 
+		var pfrId = $(this).find('#pfr-id').val();
+		if (pfrId) {
+			newPlayer.pfrId = pfrId;
+		}
+
 		e.preventDefault();
 
 		socket.send(JSON.stringify({
@@ -101,6 +106,7 @@ $(document).ready(function() {
 
 		resultRecorded = false;
 		$(this).find('#player-id').val('');
+		$(this).find('#pfr-id').val('');
 		$(this).find('#player-search').val('');
 	});
 
@@ -237,6 +243,8 @@ $(document).ready(function() {
 
 			$('#player-id').val(el.data('player-id'));
 			$('#name').val(el.data('player-name'));
+			$('#team').val(el.data('player-team') || '');
+			$('#pfr-id').val(el.data('player-pfr-id') || '');
 
 			var positions = el.data('player-positions');
 			if (positions) {
@@ -531,7 +539,13 @@ var redrawAuctionClient = function(auctionData, lag) {
 
 	lastAuctionStatus = auctionData.status;
 
-	var urlName = auctionData.player.name.toLowerCase().replace(' ', '+');
+	var pfrUrl;
+	if (auctionData.player.pfrId) {
+		pfrUrl = 'https://www.pro-football-reference.com/players/' + auctionData.player.pfrId.charAt(0) + '/' + auctionData.player.pfrId + '.htm';
+	} else {
+		var urlName = auctionData.player.name.toLowerCase().replace(' ', '+');
+		pfrUrl = referenceSite + urlName;
+	}
 
 	if (auctionData.nominator.now != '--') {
 		$('.nominating.next .who').text(auctionData.nominator.next);
@@ -541,7 +555,7 @@ var redrawAuctionClient = function(auctionData, lag) {
 		$('#nominator-text').text(pluralFranchises.includes(auctionData.nominator.now) ? 'nominate' : 'nominates');
 	}
 
-	$('#player-name a').attr('href', referenceSite + urlName).text(auctionData.player.name);
+	$('#player-name a').attr('href', pfrUrl).text(auctionData.player.name);
 	$('#player-position').text(auctionData.player.position);
 	$('#player-team').text(auctionData.player.team);
 	$('#player-situation').text(auctionData.player.situation);

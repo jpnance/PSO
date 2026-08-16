@@ -134,6 +134,7 @@ async function searchPlayers(request, response) {
 			positions: p.positions || [],
 			positionKey: getPositionKey(p.positions || []),
 			team: p.team || null,
+			pfrId: p.pfrId || null,
 			franchise: franchise,
 			situation: situation,
 			detail: detail,

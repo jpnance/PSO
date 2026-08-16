@@ -1,8 +1,9 @@
 /**
- * Sync players from Sleeper data.
+ * Sync players from Sleeper data and DynastyProcess external IDs.
  * 
  * This script can be run repeatedly to keep Player documents in sync with Sleeper:
  * - Updates name, positions, college, rookieYear, estimatedRookieYear, birthday, active, team, searchRank for existing players (by sleeperId)
+ * - Updates espnId and pfrId from DynastyProcess data (fetched if stale)
  * - Creates new players that don't exist yet
  * - Does NOT touch historical players (those without sleeperId)
  * - Does NOT overwrite the `notes` field (manual data)
@@ -14,6 +15,9 @@
 
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
+var https = require('https');
+var fs = require('fs');
+var path = require('path');
 
 var Player = require('../../models/Player');
 var sleeperData = require('../../public/data/sleeper-data.json');
@@ -113,8 +117,176 @@ function getBirthday(player) {
 	return null;
 }
 
+// DynastyProcess external IDs configuration
+var DP_DATA_FILE = path.join(__dirname, '../../public/data/dynastyprocess-ids.json');
+var DP_CSV_URL = 'https://github.com/DynastyProcess/data/raw/master/files/db_playerids.csv';
+var DP_MAX_AGE_DAYS = 7;
+var DP_MIN_ROWS = 10000;
+
+/**
+ * Parse CSV string into array of objects.
+ */
+function parseCSV(csvText) {
+	var lines = csvText.trim().split('\n');
+	var headers = lines[0].split(',');
+	var rows = [];
+	
+	for (var i = 1; i < lines.length; i++) {
+		var values = lines[i].split(',');
+		var row = {};
+		for (var j = 0; j < headers.length; j++) {
+			row[headers[j]] = values[j] || null;
+		}
+		rows.push(row);
+	}
+	
+	return rows;
+}
+
+/**
+ * Fetch DynastyProcess player IDs CSV and convert to JSON.
+ * Returns promise that resolves when complete.
+ */
+function fetchDynastyProcessData() {
+	return new Promise(function(resolve, reject) {
+		console.log('  Fetching from ' + DP_CSV_URL + '...');
+		
+		https.get(DP_CSV_URL, function(res) {
+			// Handle redirects (GitHub raw URLs redirect)
+			if (res.statusCode === 301 || res.statusCode === 302) {
+				https.get(res.headers.location, function(res2) {
+					handleResponse(res2);
+				}).on('error', reject);
+				return;
+			}
+			handleResponse(res);
+			
+			function handleResponse(response) {
+				if (response.statusCode !== 200) {
+					reject(new Error('DynastyProcess returned status ' + response.statusCode));
+					return;
+				}
+				
+				var data = '';
+				response.on('data', function(chunk) { data += chunk; });
+				response.on('end', function() {
+					try {
+						var rows = parseCSV(data);
+						
+						// Health check: minimum row count
+						if (rows.length < DP_MIN_ROWS) {
+							reject(new Error('DynastyProcess data has only ' + rows.length + ' rows (expected >=' + DP_MIN_ROWS + ')'));
+							return;
+						}
+						
+						// Health check: required columns
+						var requiredCols = ['sleeper_id', 'espn_id', 'pfr_id'];
+						var firstRow = rows[0];
+						for (var i = 0; i < requiredCols.length; i++) {
+							if (!(requiredCols[i] in firstRow)) {
+								reject(new Error('DynastyProcess data missing required column: ' + requiredCols[i]));
+								return;
+							}
+						}
+						
+						// Convert to JSON keyed by sleeper_id
+						var bySleeperID = {};
+						var withEspn = 0;
+						var withPfr = 0;
+						
+						for (var j = 0; j < rows.length; j++) {
+							var row = rows[j];
+							if (row.sleeper_id) {
+								bySleeperID[row.sleeper_id] = {
+									espn_id: row.espn_id || null,
+									pfr_id: row.pfr_id || null
+								};
+								if (row.espn_id) withEspn++;
+								if (row.pfr_id) withPfr++;
+							}
+						}
+						
+						var sleeperCount = Object.keys(bySleeperID).length;
+						console.log('  Parsed ' + rows.length + ' rows, ' + sleeperCount + ' with Sleeper IDs');
+						console.log('  ESPN coverage: ' + withEspn + '/' + sleeperCount + ' (' + (100 * withEspn / sleeperCount).toFixed(1) + '%)');
+						console.log('  PFR coverage: ' + withPfr + '/' + sleeperCount + ' (' + (100 * withPfr / sleeperCount).toFixed(1) + '%)');
+						
+						// Health check: coverage should be high
+						if (withEspn / sleeperCount < 0.9) {
+							console.log('  WARNING: ESPN coverage below 90% - data quality may have degraded');
+						}
+						
+						// Save to file
+						fs.writeFileSync(DP_DATA_FILE, JSON.stringify(bySleeperID, null, 2));
+						console.log('  Saved to ' + DP_DATA_FILE);
+						
+						resolve(bySleeperID);
+					} catch (err) {
+						reject(new Error('Failed to parse DynastyProcess CSV: ' + err.message));
+					}
+				});
+			}
+		}).on('error', reject);
+	});
+}
+
+/**
+ * Ensure DynastyProcess data is available and fresh.
+ * Fetches if missing or older than DP_MAX_AGE_DAYS.
+ * Returns the data object (or empty object if unavailable).
+ */
+async function ensureDynastyProcessData() {
+	console.log('Checking DynastyProcess data...');
+	
+	var needsFetch = false;
+	
+	if (!fs.existsSync(DP_DATA_FILE)) {
+		console.log('  DynastyProcess data not found. Fetching...');
+		needsFetch = true;
+	} else {
+		var stats = fs.statSync(DP_DATA_FILE);
+		var ageMs = Date.now() - stats.mtimeMs;
+		var ageDays = Math.floor(ageMs / (1000 * 60 * 60 * 24));
+		
+		if (ageDays >= DP_MAX_AGE_DAYS) {
+			console.log('  DynastyProcess data is ' + ageDays + ' day(s) old. Refreshing...');
+			needsFetch = true;
+		} else {
+			console.log('  DynastyProcess data is ' + ageDays + ' day(s) old (max: ' + DP_MAX_AGE_DAYS + '). Using cached.');
+		}
+	}
+	
+	if (needsFetch) {
+		try {
+			return await fetchDynastyProcessData();
+		} catch (err) {
+			console.log('  WARNING: Failed to fetch DynastyProcess data: ' + err.message);
+			console.log('  Continuing without external IDs...');
+			// Try to load existing file as fallback
+			if (fs.existsSync(DP_DATA_FILE)) {
+				console.log('  Using stale cached data as fallback.');
+				return JSON.parse(fs.readFileSync(DP_DATA_FILE, 'utf8'));
+			}
+			return {};
+		}
+	}
+	
+	// Load existing file
+	try {
+		return JSON.parse(fs.readFileSync(DP_DATA_FILE, 'utf8'));
+	} catch (err) {
+		console.log('  WARNING: Failed to read DynastyProcess data: ' + err.message);
+		return {};
+	}
+}
+
 async function sync() {
 	console.log('Syncing players from Sleeper data...\n');
+
+	// Ensure DynastyProcess data is available
+	var dpData = await ensureDynastyProcessData();
+	var dpCount = Object.keys(dpData).length;
+	console.log('  DynastyProcess IDs loaded: ' + dpCount + '\n');
 
 	var clearExisting = process.argv.includes('--clear');
 	if (clearExisting) {
@@ -144,6 +316,9 @@ async function sync() {
 
 		var uniqueSlug = generateUniqueSlug(p.full_name, p.player_id);
 		
+		// Look up external IDs from DynastyProcess
+		var dpPlayer = dpData[p.player_id] || {};
+		
 		// Use aggregation pipeline update to prepend new slug if not already present
 		// This keeps old slugs for backwards compatibility while making current name primary
 		operations.push({
@@ -162,6 +337,8 @@ async function sync() {
 							active: p.active || false,
 							team: p.team || null,
 							searchRank: p.search_rank || null,
+							espnId: dpPlayer.espn_id || null,
+							pfrId: dpPlayer.pfr_id || null,
 							// Prepend new slug if not already in array, otherwise keep array as-is
 							slugs: {
 								$cond: {

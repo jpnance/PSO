@@ -15,6 +15,9 @@ var playerSchema = new Schema({
 	active: { type: Boolean, default: false },
 	team: { type: String, default: null },
 	searchRank: { type: Number, default: null },
+	// Synced from DynastyProcess (external player IDs)
+	espnId: { type: String, default: null },
+	pfrId: { type: String, default: null },
 	// Manual field (never overwritten by sync)
 	notes: { type: String, default: null }
 });

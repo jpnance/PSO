@@ -89,6 +89,27 @@ a.player-hero__franchise:hover {
 	margin-top: 0.5rem;
 }
 
+/* External links (ESPN, PFR) */
+.player-hero__external-links {
+	display: flex;
+	gap: 1rem;
+	margin-top: 0.75rem;
+	font-size: 0.85rem;
+}
+
+.player-hero__external-links a {
+	color: var(--text-muted);
+	text-decoration: none;
+}
+
+.player-hero__external-links a:hover {
+	color: var(--color-link);
+}
+
+.player-hero__external-links .fa {
+	font-size: 0.75rem;
+}
+
 
 /* Timeline */
 .player-timeline {

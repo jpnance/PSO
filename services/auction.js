@@ -16,7 +16,8 @@ var auction = {
 		position: 'PF/C',
 		team: 'SAS',
 		situation: 'UFA',
-		playerId: null
+		playerId: null,
+		pfrId: null
 	},
 	bids: [],
 	status: 'active',
@@ -139,6 +140,7 @@ function nominatePlayer(nomination) {
 	auction.player.team = nomination.team;
 	auction.player.situation = nomination.situation;
 	auction.player.playerId = nomination.playerId || null;
+	auction.player.pfrId = nomination.pfrId || null;
 
 	auction.bids = [];
 
