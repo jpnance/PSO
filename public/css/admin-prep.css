@@ -1073,15 +1073,16 @@ body {
     }
 
     .topbar__btn {
-        padding: 8px;
-        font-size: 0;
+        padding: 0;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .topbar__btn .fa {
-        font-size: 14px;
+    .topbar__btn-text {
+        display: none;
     }
 
     .window-tabs {
