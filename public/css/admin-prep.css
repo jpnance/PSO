@@ -1166,6 +1166,10 @@ body {
         max-height: 95vh;
     }
 
+    .franchise-modal__body {
+        padding: 12px;
+    }
+
     .franchise-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
