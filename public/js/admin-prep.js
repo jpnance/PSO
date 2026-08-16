@@ -208,6 +208,11 @@ function compareByField(a, b, field) {
         case 'ppg': return b.fptsG - a.fptsG;
         case 'salary': return b.salary - a.salary;
         case 'rating': return b.rating - a.rating;
+        case 'bye':
+            if (a.bye === null && b.bye === null) return 0;
+            if (a.bye === null) return 1;
+            if (b.bye === null) return -1;
+            return a.bye - b.bye;
         case 'name': return a.name.localeCompare(b.name);
         default: return b.fpts - a.fpts;
     }
@@ -388,6 +393,7 @@ function renderPanes() {
                         '<option value="ppg"' + (paneData.sortBy === 'ppg' ? ' selected' : '') + '>PPG</option>' +
                         '<option value="salary"' + (paneData.sortBy === 'salary' ? ' selected' : '') + '>Salary</option>' +
                         '<option value="rating"' + (paneData.sortBy === 'rating' ? ' selected' : '') + '>Rating</option>' +
+                        '<option value="bye"' + (paneData.sortBy === 'bye' ? ' selected' : '') + '>Bye</option>' +
                         '<option value="name"' + (paneData.sortBy === 'name' ? ' selected' : '') + '>Name</option>' +
                     '</select>' +
                 '</div>' +
