@@ -83,7 +83,13 @@
 	color: inherit;
 }
 
-/* Share modal */
+/* Share modal — use dvh so centering accounts for mobile browser chrome */
+@supports (height: 100dvh) {
+	#share-modal {
+		height: 100dvh;
+	}
+}
+
 #share-modal .modal-dialog {
 	max-width: 360px;
 }
