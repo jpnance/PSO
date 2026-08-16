@@ -568,17 +568,9 @@ function renderPanes() {
                 state.watchlist.add(playerId);
             }
             saveState();
-            // Preserve scroll positions
-            var scrollPositions = [];
-            document.querySelectorAll('.pane__body').forEach(function(body) {
-                scrollPositions.push(body.scrollTop);
-            });
+            var scrollPositions = saveScrollPositions();
             renderPanes();
-            document.querySelectorAll('.pane__body').forEach(function(body, i) {
-                if (scrollPositions[i] !== undefined) {
-                    body.scrollTop = scrollPositions[i];
-                }
-            });
+            restoreScrollPositions(scrollPositions);
         });
     });
 }
@@ -906,14 +898,33 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ========== REFRESH ==========
+function saveScrollPositions() {
+    var positions = [];
+    document.querySelectorAll('.pane__body').forEach(function(body) {
+        positions.push(body.scrollTop);
+    });
+    return positions;
+}
+
+function restoreScrollPositions(positions) {
+    document.querySelectorAll('.pane__body').forEach(function(body, i) {
+        if (positions[i] !== undefined) {
+            body.scrollTop = positions[i];
+        }
+    });
+}
+
 function refreshData() {
     var btn = document.getElementById('refreshBtn');
     var icon = btn.querySelector('.fa');
     icon.classList.add('fa-spin');
     
+    var scrollPositions = saveScrollPositions();
+    
     return loadData()
         .then(function() {
             renderPanes();
+            restoreScrollPositions(scrollPositions);
             icon.classList.remove('fa-spin');
         })
         .catch(function(error) {
