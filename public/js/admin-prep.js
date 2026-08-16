@@ -249,6 +249,11 @@ function renderWindowTabs() {
     addBtn.innerHTML = '<i class="fa fa-plus"></i>';
     addBtn.addEventListener('click', createNewWindow);
     container.appendChild(addBtn);
+
+    var activeTab = container.querySelector('.window-tab--active');
+    if (activeTab) {
+        activeTab.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    }
 }
 
 function switchToWindow(windowId) {
