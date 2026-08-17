@@ -420,6 +420,9 @@
 .activity-widget__item--fa .activity-widget__icon { color: var(--color-link); }
 .activity-widget__item--fa .activity-widget__content { border-left-color: var(--color-link); }
 
+.activity-widget__item--cuts .activity-widget__icon { color: var(--color-danger); }
+.activity-widget__item--cuts .activity-widget__content { border-left-color: var(--color-danger); }
+
 /* Budget Overview Widget */
 .budget-overview__table {
 	width: 100%;

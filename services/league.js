@@ -441,9 +441,58 @@ async function getFranchise(franchiseId, currentSeason) {
 
 // Route handlers
 async function getRecentActivity(currentSeason) {
+	// Query recent transactions, excluding offseason cuts at the database level
+	// Offseason cuts are FA transactions with drops (all isOffseason:true) and no adds
 	var transactions = await Transaction.find({
-		type: { $in: ['trade', 'fa'] }
+		type: { $in: ['trade', 'fa'] },
+		$or: [
+			{ type: 'trade' },
+			{ 'adds.0': { $exists: true } },
+			{ 'drops.isOffseason': { $ne: true } }
+		]
 	}).sort({ timestamp: -1 }).limit(5).lean();
+
+	// Check for current season cuts separately
+	var seasonStart = new Date(currentSeason, 2, 1); // March 1
+	var seasonEnd = new Date(currentSeason + 1, 2, 1); // March 1 next year
+
+	var cutTransactions = await Transaction.find({
+		type: 'fa',
+		timestamp: { $gte: seasonStart, $lt: seasonEnd },
+		'drops.isOffseason': true,
+		$or: [{ adds: { $exists: false } }, { adds: { $size: 0 } }]
+	}).lean();
+
+	var cutsItem = null;
+	if (cutTransactions.length > 0) {
+		var totalCuts = 0;
+		var totalRecovered = 0;
+		var cutTimestamp = cutTransactions[0].timestamp;
+
+		cutTransactions.forEach(function(tx) {
+			if (tx.timestamp > cutTimestamp) cutTimestamp = tx.timestamp;
+			(tx.drops || []).forEach(function(drop) {
+				if (drop.isOffseason) {
+					totalCuts++;
+					var salary = drop.salary || 0;
+					var buyout = 0;
+					if (drop.buyOuts && drop.buyOuts.length > 0) {
+						var entry = drop.buyOuts.find(function(bo) { return bo.season === currentSeason; });
+						if (entry) buyout = entry.amount;
+					}
+					totalRecovered += salary - buyout;
+				}
+			});
+		});
+
+		cutsItem = {
+			_isCutsItem: true,
+			timestamp: cutTimestamp,
+			season: currentSeason,
+			totalCuts: totalCuts,
+			totalRecovered: totalRecovered
+		};
+	}
 
 	var playerIds = new Set();
 	transactions.forEach(function(tx) {
@@ -534,7 +583,8 @@ async function getRecentActivity(currentSeason) {
 		return month >= 2 ? year : year - 1;
 	}
 
-	return transactions.map(function(tx) {
+	// Build display items from transactions
+	var displayItems = transactions.map(function(tx) {
 		var season = txSeason(tx);
 
 		if (tx.type === 'trade') {
@@ -571,7 +621,8 @@ async function getRecentActivity(currentSeason) {
 				label: 'Trade #' + tx.tradeId,
 				labelHref: tx.tradeId ? '/trades/' + tx.tradeId : null,
 				sides: sides,
-				date: formatFullDate(tx.timestamp)
+				date: formatFullDate(tx.timestamp),
+				_timestamp: tx.timestamp
 			};
 		} else {
 			var fname = '<strong>' + franchiseLinkForSeason(tx.franchiseId, season) + '</strong>';
@@ -585,9 +636,33 @@ async function getRecentActivity(currentSeason) {
 				category: 'fa',
 				icon: 'fa-user-plus',
 				summary: fname + ' ' + parts.join(', '),
-				date: formatFullDate(tx.timestamp)
+				date: formatFullDate(tx.timestamp),
+				_timestamp: tx.timestamp
 			};
 		}
+	});
+
+	// Add grouped cuts item if cuts exist for current season
+	if (cutsItem) {
+		displayItems.push({
+			category: 'cuts',
+			icon: 'fa-scissors',
+			label: cutsItem.season + ' Offseason Cuts',
+			labelHref: '/cuts/' + cutsItem.season,
+			summary: cutsItem.totalCuts + ' players cut · ' + formatMoney(cutsItem.totalRecovered) + ' recovered',
+			date: formatFullDate(cutsItem.timestamp),
+			_timestamp: cutsItem.timestamp
+		});
+	}
+
+	// Sort by timestamp descending and take first 5
+	displayItems.sort(function(a, b) {
+		return b._timestamp - a._timestamp;
+	});
+
+	return displayItems.slice(0, 5).map(function(item) {
+		delete item._timestamp;
+		return item;
 	});
 }
 
