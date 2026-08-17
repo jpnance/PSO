@@ -530,9 +530,9 @@ async function submitTrade(request, response) {
 	}
 }
 
-// Build a text summary of a proposal for GroupMe notifications
+// Build a text summary of a proposal for notifications
 async function buildProposalSummary(proposal) {
-	var lines = [];
+	var partyBlocks = [];
 
 	for (var i = 0; i < proposal.parties.length; i++) {
 		var party = proposal.parties[i];
@@ -568,10 +568,13 @@ async function buildProposalSummary(proposal) {
 			items.push('Nothing');
 		}
 
-		lines.push(name + ' receives: ' + items.join(', '));
+		var block = name + ' receives:\n' + items.map(function(item) {
+			return '• ' + item;
+		}).join('\n');
+		partyBlocks.push(block);
 	}
 
-	return lines.join('\n');
+	return partyBlocks.join('\n\n');
 }
 
 // ========== Trade Proposal Functions ==========
@@ -1802,5 +1805,7 @@ module.exports = {
 	approveProposal: approveProposal,
 	adminRejectProposal: adminRejectProposal,
 	// Helper (exported for potential reuse)
-	getUserFranchises: getUserFranchises
+	getUserFranchises: getUserFranchises,
+	// Notification formatting (exported for testing)
+	buildProposalSummary: buildProposalSummary
 };

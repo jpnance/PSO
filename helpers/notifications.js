@@ -1,40 +1,34 @@
 var superagent = require('superagent');
 
 /**
- * Post a message to the commish-only GroupMe channel.
- * Used for alerting the commissioner when trades are accepted.
+ * Send a push notification to the commissioner via ntfy.
+ * Used for alerting when trades are accepted and need approval.
  * 
- * @param {string} message - The message text to post
+ * @param {string} message - The message text to send
  * @param {Object} [options] - Optional settings
- * @param {string} [options.pictureUrl] - URL of an image to attach
+ * @param {string} [options.priority] - ntfy priority: min, low, default, high, urgent
  * @returns {Promise}
  */
 async function alertCommissioner(message, options) {
 	options = options || {};
 	
-	var token = process.env.GROUPME_COMMISH_BOT;
-	if (!token) {
-		console.log('[NOTIFICATIONS] No GROUPME_COMMISH_BOT token configured, skipping alert:', message);
+	var topic = process.env.NTFY_COMMISH_TOPIC;
+	if (!topic) {
+		console.log('[NOTIFICATIONS] No NTFY_COMMISH_TOPIC configured, skipping alert:', message);
 		return Promise.resolve();
 	}
 	
-	var payload = {
-		bot_id: token,
-		text: message
-	};
-	
-	if (options.pictureUrl) {
-		payload.picture_url = options.pictureUrl;
-	}
+	var priority = options.priority || 'high';
 	
 	return superagent
-		.post('https://api.groupme.com/v3/bots/post')
-		.send(payload)
+		.post('https://ntfy.sh/' + topic)
+		.set('Priority', priority)
+		.send(message)
 		.then(function(response) {
-			console.log('[NOTIFICATIONS] Posted to commish channel:', message);
+			console.log('[NOTIFICATIONS] Sent ntfy alert:', message.split('\n')[0] + '...');
 		})
 		.catch(function(error) {
-			console.error('[NOTIFICATIONS] Failed to post to commish channel:', error.message);
+			console.error('[NOTIFICATIONS] Failed to send ntfy alert:', error.message);
 		});
 }
 
