@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var tz = require('../helpers/timezone');
 
 // ========== Date Computation Helpers ==========
 
@@ -44,21 +45,25 @@ function getLastDayOfMonth(year, month, targetDay) {
 }
 
 // Compute all default dates for a given season based on Labor Day
+// Dates are stored as actual deadline timestamps with conventional times:
+//   - cutDay: 11:59pm ET (end of day)
+//   - tradeDeadline: 9pm ET
+//   - Other dates: midnight ET (start of day)
 function computeDefaultDates(season) {
 	var laborDay = getLaborDay(season);
 	var prevLaborDay = getLaborDay(season - 1);
 	
 	return {
-		tradeWindow: getDayAfter(prevLaborDay, 6, 22),          // 23rd Saturday after prev Labor Day
-		nflDraft: getLastDayOfMonth(season, 3, 4),              // Last Thursday of April
-		cutDay: getDayBefore(laborDay, 0, 2),                   // 3rd Sunday before Labor Day
-		draftDay: getDayBefore(laborDay, 6, 1),                 // 2nd Saturday before Labor Day
-		contractsDue: laborDay,                                  // Labor Day
-		faab: getDayAfter(laborDay, 3, 0),                      // 1st Wed after Labor Day
-		nflSeason: getDayAfter(laborDay, 4, 0),                 // Thursday after Labor Day
-		tradeDeadline: getDayAfter(laborDay, 3, 9),             // 10th Wed after Labor Day
-		playoffs: getDayAfter(laborDay, 3, 15),                 // 16th Wed after Labor Day
-		deadPeriod: getDayAfter(laborDay, 3, 17)                // 18th Wed after Labor Day
+		tradeWindow: tz.toMidnightET(getDayAfter(prevLaborDay, 6, 22)),    // 23rd Saturday after prev Labor Day
+		nflDraft: tz.toMidnightET(getLastDayOfMonth(season, 3, 4)),        // Last Thursday of April
+		cutDay: tz.toEndOfDayET(getDayBefore(laborDay, 0, 2)),             // 3rd Sunday before Labor Day @ 11:59pm
+		draftDay: tz.toMidnightET(getDayBefore(laborDay, 6, 1)),           // 2nd Saturday before Labor Day
+		contractsDue: tz.toMidnightET(laborDay),                            // Labor Day
+		faab: tz.toMidnightET(getDayAfter(laborDay, 3, 0)),                // 1st Wed after Labor Day
+		nflSeason: tz.toMidnightET(getDayAfter(laborDay, 4, 0)),           // Thursday after Labor Day
+		tradeDeadline: tz.to9pmET(getDayAfter(laborDay, 3, 9)),            // 10th Wed after Labor Day @ 9pm
+		playoffs: tz.toMidnightET(getDayAfter(laborDay, 3, 15)),           // 16th Wed after Labor Day
+		deadPeriod: tz.toMidnightET(getDayAfter(laborDay, 3, 17))          // 18th Wed after Labor Day
 	};
 }
 
@@ -106,46 +111,50 @@ var leagueConfigSchema = new Schema({
 // Phase progression through a season:
 //   dead-period → early-offseason → pre-season → regular-season → post-deadline → playoff-fa → dead-period
 // dead-period occurs twice: after playoffs end (before rollover) and after rollover (before trade window)
+//
+// Dates are stored as actual deadline timestamps, so simple comparisons work.
 leagueConfigSchema.methods.getPhase = function() {
-	var today = new Date();
+	var now = new Date();
 	
 	// After playoffs end - dead period until rollover
-	if (this.deadPeriod && today >= this.deadPeriod) {
+	if (this.deadPeriod && now >= this.deadPeriod) {
 		return 'dead-period';
 	}
 	
 	// Before trade window opens (after rollover) - still dead period
-	if (this.tradeWindow && today < this.tradeWindow) {
+	if (this.tradeWindow && now < this.tradeWindow) {
 		return 'dead-period';
 	}
 	
-	if (!this.cutDay || today < this.cutDay) {
+	// Cut day stores 11:59pm ET deadline
+	if (!this.cutDay || now <= this.cutDay) {
 		return 'early-offseason';
 	}
 	
-	if (!this.faab || today < this.faab) {
+	if (!this.faab || now < this.faab) {
 		return 'pre-season';
 	}
 	
-	if (!this.tradeDeadline || today < this.tradeDeadline) {
+	// Trade deadline stores 9pm ET deadline
+	if (!this.tradeDeadline || now < this.tradeDeadline) {
 		return 'regular-season';
 	}
 	
-	if (!this.playoffs || today < this.playoffs) {
+	if (!this.playoffs || now < this.playoffs) {
 		return 'post-deadline';
 	}
 	
-	if (!this.deadPeriod || today < this.deadPeriod) {
+	if (!this.deadPeriod || now < this.deadPeriod) {
 		return 'playoff-fa';
 	}
 	
 	return 'dead-period';
 };
 
-// Is hard cap active? (after cut day for current season)
+// Is hard cap active? (after cut day deadline passes)
 leagueConfigSchema.methods.isHardCapActive = function() {
 	if (!this.cutDay) return false;
-	return new Date() >= this.cutDay;
+	return new Date() > this.cutDay;
 };
 
 // Are trades currently allowed?

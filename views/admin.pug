@@ -138,20 +138,21 @@ block content
 							div.row
 								div.col-sm-6
 									div.form-group
-										label(for='tradeWindow') Trade Window
+										label.mb-0(for='tradeWindow') Trade Window
+										small.form-text.text-muted.mt-0.mb-1 Opens midnight ET
 										input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDateISO(config.tradeWindow))
-										small.form-text.text-muted Saturday before Super Bowl
 								div.col-sm-6
 									div.form-group
-										label(for='nflDraft') NFL Draft
+										label.mb-0(for='nflDraft') NFL Draft
+										small.form-text.text-muted.mt-0.mb-1 Last Thursday of April
 										input#nflDraft.form-control(type='date' name='nflDraft' value=formatDateISO(config.nflDraft))
-										small.form-text.text-muted Last Thursday of April
 							
 							h5.mt-4 Pre-Season
 							div.row
 								div.col-sm-4
 									div.form-group
-										label(for='cutDay') Cut Day
+										label.mb-0(for='cutDay') Cut Day
+										small.form-text.text-muted.mt-0.mb-1 Deadline: 11:59pm ET
 										input#cutDay.form-control(type='date' name='cutDay' value=formatDateISO(config.cutDay))
 										div.form-check.mt-1
 											input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
@@ -176,32 +177,32 @@ block content
 							div.row
 								div.col-sm-6.col-md-3.col-xl-6
 									div.form-group
-										label(for='faab') FAAB
+										label.mb-0(for='faab') FAAB
+										small.form-text.text-muted.mt-0.mb-1 Wednesday before NFL Week 1
 										input#faab.form-control(type='date' name='faab' value=formatDateISO(config.faab))
-										small.form-text.text-muted Wednesday before NFL Week 1
 								div.col-sm-6.col-md-3.col-xl-6
 									div.form-group
-										label(for='nflSeason') NFL Season
+										label.mb-0(for='nflSeason') NFL Season
+										small.form-text.text-muted.mt-0.mb-1 Thursday after Labor Day
 										input#nflSeason.form-control(type='date' name='nflSeason' value=formatDateISO(config.nflSeason))
-										small.form-text.text-muted Thursday after Labor Day
 								div.col-sm-6.col-md-3.col-xl-6
 									div.form-group
-										label(for='tradeDeadline') Trade Deadline
+										label.mb-0(for='tradeDeadline') Trade Deadline
+										small.form-text.text-muted.mt-0.mb-1 Deadline: 9pm ET
 										input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDateISO(config.tradeDeadline))
-										small.form-text.text-muted Wednesday after NFL Week 9
 								div.col-sm-6.col-md-3.col-xl-6
 									div.form-group
-										label(for='playoffs') Playoffs
+										label.mb-0(for='playoffs') Playoffs
+										small.form-text.text-muted.mt-0.mb-1 After NFL Week 15
 										input#playoffs.form-control(type='date' name='playoffs' value=formatDateISO(config.playoffs))
-										small.form-text.text-muted After NFL Week 15
 							
 							h5.mt-4 End of Season
 							div.row
 								div.col-sm-6
 									div.form-group
-										label(for='deadPeriod') Dead Period
+										label.mb-0(for='deadPeriod') Dead Period
+										small.form-text.text-muted.mt-0.mb-1 Tuesday after NFL Week 17
 										input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDateISO(config.deadPeriod))
-										small.form-text.text-muted Tuesday after NFL Week 17
 					
 					hr.my-4
 					button.btn.btn-primary(type='submit') Save Configuration

@@ -254,9 +254,8 @@ async function tradeMachinePage(request, response) {
 		var data = await getTradeData(currentSeason);
 		
 		// Determine if we're before cut day
-		var today = new Date();
 		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
-		var isBeforeCutDay = !cutDay || today < cutDay;
+		var isBeforeCutDay = !cutDay || new Date() < cutDay;
 		
 		// Check if user is logged in and owns any franchise
 		var user = request.user;
@@ -362,9 +361,8 @@ async function processPage(request, response) {
 		var data = await getTradeData(currentSeason);
 		
 		// Determine if we're before cut day
-		var today = new Date();
 		var cutDay = config && config.cutDay ? new Date(config.cutDay) : null;
-		var isBeforeCutDay = !cutDay || today < cutDay;
+		var isBeforeCutDay = !cutDay || new Date() < cutDay;
 		
 		// Get a random player not on an NFL team for the confirmation prompt
 		var teamlessPlayers = await Player.find({ team: null }).select('name').lean();

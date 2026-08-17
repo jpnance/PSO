@@ -9,6 +9,7 @@ var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var transactionService = require('./transaction');
+var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
 
 var currentSeason = PSO.season;
@@ -41,7 +42,17 @@ async function updateConfig(request, response) {
 	
 	var body = request.body;
 	
-	// Update dates (convert empty strings to null)
+	// Update dates - store as actual deadline timestamps in UTC
+	// Different dates have different conventional times:
+	//   - cutDay: 11:59pm ET (cuts due by end of day)
+	//   - tradeDeadline: 9pm ET
+	//   - Other dates: midnight ET (phase changes at start of day)
+	var dateConverters = {
+		cutDay: tz.toEndOfDayET,
+		tradeDeadline: tz.to9pmET
+	};
+	var defaultConverter = tz.toMidnightET;
+	
 	var dateFields = [
 		'tradeWindow', 'nflDraft', 'cutDay', 'draftDay', 'contractsDue',
 		'nflSeason', 'faab', 'tradeDeadline', 'playoffs', 'deadPeriod'
@@ -49,7 +60,8 @@ async function updateConfig(request, response) {
 	
 	dateFields.forEach(function(field) {
 		if (body[field] !== undefined) {
-			config[field] = body[field] ? new Date(body[field]) : null;
+			var converter = dateConverters[field] || defaultConverter;
+			config[field] = body[field] ? converter(body[field]) : null;
 		}
 	});
 	
@@ -300,22 +312,23 @@ async function advanceSeason(request, response) {
 	}
 	
 	// 5. Update LeagueConfig
+	// Defaults already have correct timestamps; form inputs need conversion
 	var defaults = LeagueConfig.computeDefaultDates(newSeason);
 	
 	config.season = newSeason;
-	config.tradeWindow = body.tradeWindow ? new Date(body.tradeWindow) : defaults.tradeWindow;
-	config.nflDraft = body.nflDraft ? new Date(body.nflDraft) : defaults.nflDraft;
-	config.cutDay = body.cutDay ? new Date(body.cutDay) : defaults.cutDay;
+	config.tradeWindow = body.tradeWindow ? tz.toMidnightET(body.tradeWindow) : defaults.tradeWindow;
+	config.nflDraft = body.nflDraft ? tz.toMidnightET(body.nflDraft) : defaults.nflDraft;
+	config.cutDay = body.cutDay ? tz.toEndOfDayET(body.cutDay) : defaults.cutDay;
 	config.cutDayTentative = true;
-	config.draftDay = body.draftDay ? new Date(body.draftDay) : defaults.draftDay;
+	config.draftDay = body.draftDay ? tz.toMidnightET(body.draftDay) : defaults.draftDay;
 	config.draftDayTentative = true;
-	config.contractsDue = body.contractsDue ? new Date(body.contractsDue) : defaults.contractsDue;
+	config.contractsDue = body.contractsDue ? tz.toMidnightET(body.contractsDue) : defaults.contractsDue;
 	config.contractsDueTentative = true;
-	config.nflSeason = body.nflSeason ? new Date(body.nflSeason) : defaults.nflSeason;
-	config.faab = body.faab ? new Date(body.faab) : defaults.faab;
-	config.tradeDeadline = body.tradeDeadline ? new Date(body.tradeDeadline) : defaults.tradeDeadline;
-	config.playoffs = body.playoffs ? new Date(body.playoffs) : defaults.playoffs;
-	config.deadPeriod = body.deadPeriod ? new Date(body.deadPeriod) : defaults.deadPeriod;
+	config.nflSeason = body.nflSeason ? tz.toMidnightET(body.nflSeason) : defaults.nflSeason;
+	config.faab = body.faab ? tz.toMidnightET(body.faab) : defaults.faab;
+	config.tradeDeadline = body.tradeDeadline ? tz.to9pmET(body.tradeDeadline) : defaults.tradeDeadline;
+	config.playoffs = body.playoffs ? tz.toMidnightET(body.playoffs) : defaults.playoffs;
+	config.deadPeriod = body.deadPeriod ? tz.toMidnightET(body.deadPeriod) : defaults.deadPeriod;
 	
 	await config.save();
 	

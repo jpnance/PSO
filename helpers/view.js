@@ -104,13 +104,14 @@ function formatContractDisplay(salary, start, end) {
 
 /**
  * Format a date as YYYY-MM-DD (for form inputs)
+ * Dates are stored as actual deadline timestamps, so convert to ET date for display.
  * @param {Date|string} d
  * @returns {string}
  */
 function formatDateISO(d) {
 	if (!d) return '';
-	var date = new Date(d);
-	return date.toISOString().split('T')[0];
+	// en-CA locale gives YYYY-MM-DD format; use ET since that's where deadlines apply
+	return new Date(d).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 }
 
 /**

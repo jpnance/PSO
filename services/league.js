@@ -18,24 +18,29 @@ var { formatPickMain } = require('../helpers/formatPick');
 // Calendar helpers
 function formatShortDate(date) {
 	if (!date) return null;
-	var options = { month: 'short', day: 'numeric' };
+	// Dates stored as actual timestamps, format in ET to show correct date
+	var options = { month: 'short', day: 'numeric', timeZone: 'America/New_York' };
 	return new Date(date).toLocaleDateString('en-US', options);
 }
 
 function isPast(date) {
 	if (!date) return false;
-	var today = new Date();
-	today.setHours(0, 0, 0, 0);
-	return new Date(date) < today;
+	// Dates are stored as actual deadline timestamps, simple comparison works
+	return new Date() >= new Date(date);
 }
 
 function formatRelativeDate(date) {
 	if (!date) return null;
 	
-	var today = new Date();
-	today.setHours(0, 0, 0, 0);
-	var target = new Date(date);
-	target.setHours(0, 0, 0, 0);
+	// Get today's date and target date in ET
+	var todayET = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+	var targetET = new Date(date).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+	
+	// Parse as Date objects for diff calculation
+	var todayParts = todayET.split('-');
+	var targetParts = targetET.split('-');
+	var today = new Date(todayParts[0], todayParts[1] - 1, todayParts[2]);
+	var target = new Date(targetParts[0], targetParts[1] - 1, targetParts[2]);
 	
 	var diffMs = target - today;
 	var diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
