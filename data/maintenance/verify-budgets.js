@@ -1,5 +1,4 @@
 var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
-var request = require('superagent');
 var mongoose = require('mongoose');
 
 var Budget = require('../../models/Budget');
@@ -8,25 +7,13 @@ var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
 var LeagueConfig = require('../../models/LeagueConfig');
 var budgetHelper = require('../../helpers/budget');
+var notifications = require('../../helpers/notifications');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 
 mongoose.connect(process.env.MONGODB_URI);
 
 var BASE_AMOUNT = 1000;
-
-async function coinflipperAlert(message) {
-	if (process.env.NODE_ENV != 'production') {
-		console.log('[DEV] Would alert:', message);
-		return Promise.resolve();
-	}
-
-	return request
-		.post('https://ntfy.sh/coinflipper')
-		.set('Content-Type', 'application/x-www-form-urlencoded')
-		.send(`${(new Date()).toISOString()} [PSO] ${message}`)
-		.then(response => {});
-}
 
 async function verify() {
 	console.log('Verifying budgets against contracts and transactions...\n');
@@ -141,7 +128,7 @@ async function verify() {
 		});
 		console.log('\n' + drifts.length + ' discrepancies found.');
 
-		await coinflipperAlert('Budget drift detected! ' + drifts.length + ' discrepancies. Run seedBudgets.js to repair.');
+		await notifications.alertCommissioner('Budget drift detected! ' + drifts.length + ' discrepancies.');
 
 		process.exit(1);
 	} else {
@@ -152,7 +139,7 @@ async function verify() {
 
 verify().catch(function(err) {
 	console.error('Error:', err);
-	coinflipperAlert('Budget verification script crashed: ' + err.message).then(function() {
+	notifications.alertCommissioner('Budget verification script crashed: ' + err.message).then(function() {
 		process.exit(1);
 	});
 });
