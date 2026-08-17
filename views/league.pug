@@ -65,9 +65,13 @@ block content
 														else
 															span.text-muted —
 
-				//- Row 2: Standings + Schedule
+			//- Row 2: Standings + Schedule (only render if there's content)
+			-
+				var hasStandings = standings && standings.standings && standings.standings.length > 0 && !standings.isPreviousSeason;
+				var hasSchedule = schedule && schedule.sections && schedule.sections.length > 0;
+			if hasStandings || hasSchedule
 				div.league-grid__row
-					if standings && standings.standings && standings.standings.length > 0
+					if hasStandings
 						div.card.standings-widget
 							div.card-header
 								if standings.isPreviousSeason
@@ -82,7 +86,7 @@ block content
 								span View Full Standings
 								i.fa.fa-chevron-right
 
-					if schedule && schedule.sections && schedule.sections.length > 0
+					if hasSchedule
 						div.card.schedule-widget
 							div.card-header= schedule.title
 							div.card-body
