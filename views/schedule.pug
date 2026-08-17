@@ -18,7 +18,7 @@ block styles
 	link(rel='stylesheet' href='/css/schedule.css')
 
 block content
-	div.container-fluid.py-4
+	div.container.py-4
 		div.page-header
 			h1 #{season} Schedule
 		
@@ -40,7 +40,7 @@ block content
 			div.alert.alert-info No games found for this week.
 		else
 			div.row
-				div.col-lg-5.col-xl-4
+				div.col-lg-3.mb-4.mb-lg-0
 					//- Games list
 					div.schedule__games
 						-
@@ -58,34 +58,9 @@ block content
 						each game in sortedGames
 							+matchup(game, { label: game.label })
 				
-				//- Stats and Standings
+				//- Standings
 				if standingsData && standingsData.standings && standingsData.standings.length > 0
-					div.col-lg-7.col-xl-8
-						//- Weekly stats summary
-						if schedule.stats
-							div.card.mb-3
-								div.card-header #{schedule.weekLabel} Summary
-								div.card-body
-									div.row
-										div.col-6.col-md-3.mb-2.mb-md-0
-											div.schedule__stat
-												div.schedule__stat-label High
-												div.schedule__stat-value= formatPoints(schedule.stats.highScore.score)
-												div.schedule__stat-team= schedule.stats.highScore.name
-										div.col-6.col-md-3.mb-2.mb-md-0
-											div.schedule__stat
-												div.schedule__stat-label Low
-												div.schedule__stat-value= formatPoints(schedule.stats.lowScore.score)
-												div.schedule__stat-team= schedule.stats.lowScore.name
-										div.col-6.col-md-3
-											div.schedule__stat
-												div.schedule__stat-label Average
-												div.schedule__stat-value= formatPoints(schedule.stats.average)
-										div.col-6.col-md-3
-											div.schedule__stat
-												div.schedule__stat-label Std Dev
-												div.schedule__stat-value= formatPoints(schedule.stats.stdDev)
-						
+					div.col-lg-6.mb-4.mb-lg-0
 						div.card
 							div.card-header
 								| Standings 
@@ -106,10 +81,32 @@ block content
 											div.col-md-6.mb-3.mb-md-0
 												h6.standings__division-title= div.name
 												+standingsTable(div.teams, { variant: 'mini', showCutoff: false, linkSeason: season })
+					
+					//- Stats (vertical on desktop, 2x2 on smaller)
+					div.col-lg-3
+						if schedule.stats
+							div.card
+								div.card-header #{schedule.weekLabel} Summary
+								div.card-body
+									div.schedule__stats-grid
+										div.schedule__stat
+											div.schedule__stat-label High
+											div.schedule__stat-value= formatPoints(schedule.stats.highScore.score)
+											div.schedule__stat-team= schedule.stats.highScore.name
+										div.schedule__stat
+											div.schedule__stat-label Low
+											div.schedule__stat-value= formatPoints(schedule.stats.lowScore.score)
+											div.schedule__stat-team= schedule.stats.lowScore.name
+										div.schedule__stat
+											div.schedule__stat-label Average
+											div.schedule__stat-value= formatPoints(schedule.stats.average)
+										div.schedule__stat
+											div.schedule__stat-label Std Dev
+											div.schedule__stat-value= formatPoints(schedule.stats.stdDev)
 				
 				//- Final standings for playoffs view
 				else if finalStandingsData && finalStandingsData.standings && finalStandingsData.standings.length > 0
-					div.col-lg-7.col-xl-8
+					div.col-lg-6.mb-4.mb-lg-0
 						div.card
 							div.card-header
 								| Final Standings
@@ -126,3 +123,5 @@ block content
 											div.col-md-6.mb-3.mb-md-0
 												h6.standings__division-title= div.name
 												+standingsTable(div.teams, { variant: 'mini', showCutoff: false, linkSeason: season })
+					
+					div.col-lg-3

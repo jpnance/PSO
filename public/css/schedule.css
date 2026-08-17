@@ -1,6 +1,19 @@
 /* Schedule Page Styles */
 
-/* Weekly stats */
+/* Weekly stats grid */
+.schedule__stats-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.25rem;
+}
+
+@media (min-width: 992px) {
+	.schedule__stats-grid {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+}
+
 .schedule__stat {
 	text-align: center;
 }
