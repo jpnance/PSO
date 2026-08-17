@@ -37,7 +37,7 @@ function buildNav(options) {
 		if (activePage === 'standings' || activePage === 'schedule' || activePage === 'jaguar' || activePage === 'h2h') {
 			return 'season';
 		}
-		if (activePage === 'trade-machine' || activePage === 'trades' || activePage === 'proposal') {
+		if (activePage === 'trade-machine' || activePage === 'trades' || activePage === 'cuts' || activePage === 'proposal') {
 			return 'transactions';
 		}
 		// Admin pages
@@ -96,6 +96,7 @@ function buildNav(options) {
 			items: [
 				{ label: 'Trade Machine', icon: 'fa-exchange', href: '/trade-machine', active: isActive('trade-machine') },
 				{ label: 'Trade History', icon: 'fa-history', href: '/trades', active: isActive('trades') },
+				{ label: 'Offseason Cuts', icon: 'fa-scissors', href: '/cuts', active: isActive('cuts') },
 				{ label: 'FAAB', icon: 'fa-gavel', href: '#', soon: true }
 			]
 		},

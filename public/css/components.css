@@ -235,6 +235,24 @@ a.player-chip:hover {
 	border-style: dashed;
 }
 
+/* Cut variant - salary struck through, recovered amount highlighted */
+.player-chip--cut .player-chip__detail {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+}
+
+.player-chip__salary-cut {
+	color: var(--color-danger, #dc3545);
+	text-decoration: line-through;
+	text-decoration-thickness: 1px;
+}
+
+.player-chip__recovered {
+	font-weight: 600;
+	color: var(--color-success, #28a745);
+}
+
 /* Grid container for player chips */
 .player-chip-grid {
 	display: grid;

@@ -1,0 +1,401 @@
+extends layout.pug
+include mixins
+
+block title
+	+title(season + ' Offseason Cuts', 'Transactions')
+
+block og_meta
+	meta(property='og:title' content=season + ' Offseason Cuts')
+	meta(property='og:description' content=cuts.totalCuts + ' players cut during the ' + season + ' offseason')
+	meta(property='og:image' content='https://thedynastyleague.com/images/og/handshake.jpg')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	if shouldAnimate
+		style.
+			@keyframes slideInFromTop {
+				from {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			@keyframes chipPop {
+				from {
+					opacity: 0;
+					transform: scale(0.9);
+				}
+				to {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+			.cuts-animated .cuts-card {
+				display: none;
+			}
+			.cuts-animated .cuts-card.visible {
+				display: block;
+				animation: slideInFromTop 0.5s ease forwards;
+			}
+			.cuts-animated .cuts-card .card-body {
+				display: none;
+			}
+			.cuts-animated .cuts-card .card-body.visible {
+				display: block;
+			}
+			.cuts-animated .cuts-card__stats {
+				opacity: 0;
+			}
+			.cuts-animated .cuts-card__stats.visible {
+				animation: fadeIn 0.3s ease forwards;
+			}
+			.cuts-animated .cuts-card__no-cuts {
+				opacity: 0;
+			}
+			.cuts-animated .cuts-card__no-cuts.visible {
+				animation: fadeIn 0.3s ease forwards;
+			}
+			.cuts-animated .player-chip-wrapper {
+				display: none;
+			}
+			.cuts-animated .player-chip-wrapper.visible {
+				display: block;
+			}
+			.cuts-animated .player-chip-wrapper.visible .player-chip {
+				animation: chipPop 0.35s ease forwards;
+			}
+			.cuts-animated .cuts-summary {
+				opacity: 0;
+			}
+			.cuts-animated .cuts-summary.visible {
+				animation: fadeIn 0.5s ease forwards;
+			}
+			.cuts-skip-btn {
+				position: fixed;
+				bottom: 80px;
+				right: 20px;
+				z-index: 100;
+				padding: 0.5rem 1rem;
+				background: rgba(0, 0, 0, 0.7);
+				color: white;
+				border: none;
+				border-radius: 20px;
+				font-size: 0.875rem;
+				cursor: pointer;
+				transition: opacity 0.3s ease;
+			}
+			.cuts-skip-btn:hover {
+				background: rgba(0, 0, 0, 0.85);
+			}
+			.cuts-skip-btn.hidden {
+				opacity: 0;
+				pointer-events: none;
+			}
+
+block content
+	div.container.py-4
+		div.page-header
+			h1 #{season} Offseason Cuts
+		div.page-nav.mb-4
+			+sequentialNav({ items: seasons, current: season, urlPattern: '/cuts/' })
+		
+		if !cuts || !cuts.franchises || cuts.franchises.length === 0
+			div.alert.alert-info No cuts recorded for the #{season} offseason
+		else
+			div.row
+				div.col-lg-10.col-xl-8(class=shouldAnimate ? 'cuts-animated' : '')
+					//- Summary
+					p.cuts-summary.text-muted.mb-4(class=shouldAnimate ? '' : 'visible')
+						if shouldAnimate
+							span#summaryText
+						else
+							strong #{cuts.totalCuts}
+							|  players cut, recovering 
+							strong #{formatMoney(cuts.totalRecovered)}
+							|  in cap space
+					
+					//- Container for animated cards (will be prepended to)
+					div#cutsContainer
+						//- Cuts by franchise
+						each franchise, idx in cuts.franchises
+							- var hasCuts = franchise.cuts.length > 0
+							div.card.mb-3.cuts-card(
+								class=shouldAnimate ? '' : 'visible'
+								data-cuts=franchise.cuts.length
+								data-recovered=franchise.totalRecovered
+								data-index=idx
+								data-regime=franchise.regimeName
+							)
+								div.card-header.d-flex.justify-content-between.align-items-center
+									span= franchise.regimeName
+									if shouldAnimate && hasCuts
+										span.text-muted.font-weight-normal.cuts-card__stats
+									else if shouldAnimate && !hasCuts
+										span.text-muted.font-weight-normal.cuts-card__no-cuts No cuts
+									else if hasCuts
+										span.text-muted.font-weight-normal
+											| #{franchise.cuts.length} cut#{franchise.cuts.length !== 1 ? 's' : ''} · #{formatMoney(franchise.totalRecovered)} recovered
+									else
+										span.text-muted.font-weight-normal No cuts
+								if hasCuts
+									div.card-body
+										div.player-chip-grid
+											each cut in franchise.cuts
+												if shouldAnimate
+													div.player-chip-wrapper(data-recovered=cut.recovered)
+														+playerChip({ name: cut.player.name, positions: cut.player.positions, variant: 'cut', salary: cut.salary, recovered: cut.recovered, href: cut.player.slug ? '/players/' + cut.player.slug : null })
+												else
+													+playerChip({ name: cut.player.name, positions: cut.player.positions, variant: 'cut', salary: cut.salary, recovered: cut.recovered, href: cut.player.slug ? '/players/' + cut.player.slug : null })
+
+		if shouldAnimate
+			button.cuts-skip-btn(type='button' id='skipBtn') Skip Animation
+
+block scripts
+	if shouldAnimate
+		script.
+			(function() {
+				var CHIP_DELAY = 2500;
+				var CARD_TO_CHIP_DELAY = 3000;
+				var FRANCHISE_DELAY = 4000;
+				var NO_CUTS_DELAY = CARD_TO_CHIP_DELAY;
+				var STAT_TICK_DELAY = 50;
+				var TOTAL_CUTS = #{cuts.totalCuts};
+				var TOTAL_RECOVERED = #{cuts.totalRecovered};
+				
+				var skipBtn = document.getElementById('skipBtn');
+				var container = document.querySelector('.cuts-animated');
+				var cutsContainer = document.getElementById('cutsContainer');
+				var summary = container.querySelector('.cuts-summary');
+				var summaryText = document.getElementById('summaryText');
+				var cards = Array.from(container.querySelectorAll('.cuts-card'));
+				var animationStopped = false;
+				var timeouts = [];
+				var tickerRunning = false;
+				
+				var displayCuts = 0;
+				var displayRecovered = 0;
+				var targetCuts = 0;
+				var targetRecovered = 0;
+				
+				var cardDisplayCuts = {};
+				var cardDisplayRecovered = {};
+				var cardTargetCuts = {};
+				var cardTargetRecovered = {};
+				
+				function formatMoney(n) {
+					return '$' + n.toLocaleString();
+				}
+				
+				function renderSummary() {
+					summaryText.innerHTML = '<strong>' + displayCuts + '</strong> player' + (displayCuts !== 1 ? 's' : '') + ' cut, recovering <strong>' + formatMoney(displayRecovered) + '</strong> in cap space';
+				}
+				
+				function renderCardStats(card) {
+					var idx = card.dataset.index;
+					var statsEl = card.querySelector('.cuts-card__stats');
+					if (statsEl) {
+						var cuts = cardDisplayCuts[idx] || 0;
+						var recovered = cardDisplayRecovered[idx] || 0;
+						if (cuts > 0) {
+							statsEl.textContent = cuts + ' cut' + (cuts !== 1 ? 's' : '') + ' · ' + formatMoney(recovered) + ' recovered';
+						}
+					}
+				}
+				
+				function showCardStats(card) {
+					var statsEl = card.querySelector('.cuts-card__stats');
+					if (statsEl) {
+						statsEl.classList.add('visible');
+					}
+				}
+				
+				function tickStats() {
+					if (animationStopped) {
+						tickerRunning = false;
+						return;
+					}
+					
+					var changed = false;
+					
+					if (displayCuts < targetCuts) {
+						displayCuts++;
+						changed = true;
+					}
+					if (displayRecovered < targetRecovered) {
+						displayRecovered = Math.min(displayRecovered + 1, targetRecovered);
+						changed = true;
+					}
+					
+					cards.forEach(function(card) {
+						var idx = card.dataset.index;
+						if ((cardDisplayCuts[idx] || 0) < (cardTargetCuts[idx] || 0)) {
+							cardDisplayCuts[idx] = (cardDisplayCuts[idx] || 0) + 1;
+							changed = true;
+						}
+						if ((cardDisplayRecovered[idx] || 0) < (cardTargetRecovered[idx] || 0)) {
+							cardDisplayRecovered[idx] = Math.min((cardDisplayRecovered[idx] || 0) + 1, cardTargetRecovered[idx] || 0);
+							changed = true;
+						}
+						renderCardStats(card);
+					});
+					
+					if (changed) {
+						renderSummary();
+					}
+					
+					// Keep ticker running if we haven't caught up yet
+					if (displayCuts < targetCuts || displayRecovered < targetRecovered) {
+						setTimeout(tickStats, STAT_TICK_DELAY);
+					} else {
+						tickerRunning = false;
+					}
+				}
+				
+				function startTicker() {
+					if (!tickerRunning && !animationStopped) {
+						tickerRunning = true;
+						tickStats();
+					}
+				}
+				
+				function incrementStats(card, chipRecovered) {
+					var idx = card.dataset.index;
+					targetCuts++;
+					targetRecovered += chipRecovered;
+					cardTargetCuts[idx] = (cardTargetCuts[idx] || 0) + 1;
+					cardTargetRecovered[idx] = (cardTargetRecovered[idx] || 0) + chipRecovered;
+					startTicker();
+				}
+				
+				function clearTimeouts() {
+					timeouts.forEach(function(t) { clearTimeout(t); });
+					timeouts = [];
+				}
+				
+				function showAll() {
+					animationStopped = true;
+					clearTimeouts();
+					displayCuts = TOTAL_CUTS;
+					displayRecovered = TOTAL_RECOVERED;
+					renderSummary();
+					summary.classList.add('visible');
+					
+					// Sort cards alphabetically by regime name
+					var sortedCards = cards.slice().sort(function(a, b) {
+						return a.dataset.regime.localeCompare(b.dataset.regime);
+					});
+					
+					// Re-append in sorted order
+					sortedCards.forEach(function(card) {
+						cutsContainer.appendChild(card);
+						card.style.animation = 'none';
+						card.style.display = 'block';
+						card.style.opacity = '1';
+						var totalCuts = parseInt(card.dataset.cuts, 10);
+						var totalRecovered = parseInt(card.dataset.recovered, 10);
+						cardDisplayCuts[card.dataset.index] = totalCuts;
+						cardDisplayRecovered[card.dataset.index] = totalRecovered;
+						renderCardStats(card);
+						var statsEl = card.querySelector('.cuts-card__stats');
+						if (statsEl) {
+							statsEl.style.opacity = '1';
+						}
+						var noCutsEl = card.querySelector('.cuts-card__no-cuts');
+						if (noCutsEl) {
+							noCutsEl.style.opacity = '1';
+						}
+						var cardBody = card.querySelector('.card-body');
+						if (cardBody) {
+							cardBody.style.display = 'block';
+						}
+						card.querySelectorAll('.player-chip-wrapper').forEach(function(wrapper) {
+							wrapper.style.display = 'block';
+						});
+						card.querySelectorAll('.player-chip').forEach(function(chip) {
+							chip.style.opacity = '1';
+							chip.style.transform = 'scale(1)';
+						});
+					});
+					skipBtn.classList.add('hidden');
+				}
+				
+				function animate() {
+					var delay = 500;
+					
+					// Show summary first
+					timeouts.push(setTimeout(function() {
+						if (animationStopped) return;
+						renderSummary();
+						summary.classList.add('visible');
+					}, delay));
+					delay += 1000;
+					
+					// Animate cards in reverse order (prepend effect - newest at top)
+					var reversedCards = cards.slice().reverse();
+					
+					reversedCards.forEach(function(card, cardIndex) {
+						var hasCuts = parseInt(card.dataset.cuts, 10) > 0;
+						
+						// Show the card
+						timeouts.push(setTimeout(function() {
+							if (animationStopped) return;
+							cutsContainer.insertBefore(card, cutsContainer.firstChild);
+							card.classList.add('visible');
+						}, delay));
+						
+						if (hasCuts) {
+							delay += CARD_TO_CHIP_DELAY;
+							
+							var wrappers = card.querySelectorAll('.player-chip-wrapper');
+							var cardBody = card.querySelector('.card-body');
+							var isFirstChip = true;
+							
+							wrappers.forEach(function(wrapper) {
+								var chipRecovered = parseInt(wrapper.dataset.recovered, 10) || 0;
+								
+								timeouts.push(setTimeout(function() {
+									if (animationStopped) return;
+									if (isFirstChip && cardBody) {
+										cardBody.classList.add('visible');
+									}
+									wrapper.classList.add('visible');
+									if (isFirstChip) {
+										showCardStats(card);
+										isFirstChip = false;
+									}
+									incrementStats(card, chipRecovered);
+								}, delay));
+								delay += CHIP_DELAY;
+							});
+						} else {
+							// No cuts - show "No cuts" after a delay
+							timeouts.push(setTimeout(function() {
+								if (animationStopped) return;
+								var noCutsEl = card.querySelector('.cuts-card__no-cuts');
+								if (noCutsEl) {
+									noCutsEl.classList.add('visible');
+								}
+							}, delay + NO_CUTS_DELAY));
+							delay += NO_CUTS_DELAY + 500;
+						}
+						
+						if (cardIndex < reversedCards.length - 1) {
+							delay += FRANCHISE_DELAY;
+						}
+					});
+					
+					timeouts.push(setTimeout(function() {
+						skipBtn.classList.add('hidden');
+					}, delay));
+				}
+				
+				skipBtn.addEventListener('click', showAll);
+				animate();
+			})();

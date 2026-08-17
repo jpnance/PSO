@@ -132,6 +132,9 @@ Types: danger, warning, success, info, secondary
 //- RFA variant (dashed purple border)
 +playerChip({ name: 'Cooper Kupp', positions: ['WR'], detail: 'Schex', variant: 'rfa' })
 
+//- Cut variant (salary struck through in red, recovered in bold green)
++playerChip({ name: 'Davante Adams', positions: ['WR'], variant: 'cut', salary: 60, recovered: 42 })
+
 //- With link
 +playerChip({ name: 'Lamar Jackson', positions: ['QB'], detail: '$40 · 23/26', href: '/players/123' })
 ```
@@ -140,7 +143,9 @@ Options:
 - `positions` — array of positions for coloring and badge
 - `detail` — secondary text (salary, contract, franchise name, etc.)
 - `href` — makes the chip a clickable link
-- `variant` — `'rfa'` for dashed purple styling
+- `variant` — `'rfa'` for dashed purple styling, `'cut'` for cut display (requires `salary` and `recovered`)
+- `salary` — original salary (required for `variant: 'cut'`)
+- `recovered` — cap space recovered (required for `variant: 'cut'`)
 
 Use `.player-chip-grid` container class for responsive grid layout.
 

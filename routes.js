@@ -14,6 +14,7 @@ var adminPrep = require('./services/admin-prep');
 var draft = require('./services/draft');
 var draftLive = require('./services/draft-live');
 var trades = require('./services/trades');
+var cuts = require('./services/cuts');
 var proposals = require('./services/proposals');
 var calendar = require('./services/calendar');
 var rookies = require('./services/rookies');
@@ -50,6 +51,9 @@ module.exports = function(app) {
 	
 	app.get('/trades', trades.tradeHistory);
 	app.get('/trades/:id', trades.singleTrade);
+	
+	app.get('/cuts', cuts.cutsPage);
+	app.get('/cuts/:season', cuts.cutsPage);
 	
 	app.get('/standings', standings.standingsPage);
 	app.get('/standings/:season', standings.standingsPage);

@@ -443,21 +443,81 @@ async function getFranchise(franchiseId, currentSeason) {
 async function getRecentActivity(currentSeason) {
 	var transactions = await Transaction.find({
 		type: { $in: ['trade', 'fa'] }
-	}).sort({ timestamp: -1 }).limit(5).lean();
+	}).sort({ timestamp: -1 }).limit(20).lean();
+
+	// Check if an FA transaction is an offseason cut (drops only, all isOffseason)
+	function isOffseasonCut(tx) {
+		if (tx.type !== 'fa') return false;
+		if (!tx.drops || tx.drops.length === 0) return false;
+		if (tx.adds && tx.adds.length > 0) return false;
+		return tx.drops.every(function(d) { return d.isOffseason === true; });
+	}
+
+	// Calculate recovered cap for a drop (salary - buyout for the cut season)
+	function getRecoveredForDrop(drop, cutSeason) {
+		var salary = drop.salary || 0;
+		var buyout = 0;
+		if (drop.buyOuts && drop.buyOuts.length > 0) {
+			var entry = drop.buyOuts.find(function(bo) { return bo.season === cutSeason; });
+			if (entry) buyout = entry.amount;
+		}
+		return salary - buyout;
+	}
+
+	// Group consecutive offseason cuts by timestamp (within 1 hour)
+	function groupOffseasonCuts(txList) {
+		var result = [];
+		var i = 0;
+		while (i < txList.length) {
+			var tx = txList[i];
+			if (isOffseasonCut(tx)) {
+				var cutGroup = [tx];
+				var baseTime = tx.timestamp.getTime();
+				var j = i + 1;
+				while (j < txList.length && isOffseasonCut(txList[j])) {
+					var timeDiff = Math.abs(txList[j].timestamp.getTime() - baseTime);
+					if (timeDiff < 3600000) {
+						cutGroup.push(txList[j]);
+						j++;
+					} else {
+						break;
+					}
+				}
+				result.push({ type: 'cut-group', transactions: cutGroup, timestamp: tx.timestamp });
+				i = j;
+			} else {
+				result.push(tx);
+				i++;
+			}
+		}
+		return result;
+	}
+
+	var grouped = groupOffseasonCuts(transactions);
+	var displayItems = grouped.slice(0, 5);
 
 	var playerIds = new Set();
-	transactions.forEach(function(tx) {
-		if (tx.playerId) playerIds.add(tx.playerId.toString());
-		(tx.adds || []).forEach(function(a) { playerIds.add(a.playerId.toString()); });
-		(tx.drops || []).forEach(function(d) { playerIds.add(d.playerId.toString()); });
-		(tx.parties || []).forEach(function(p) {
-			(p.receives.players || []).forEach(function(pl) { playerIds.add(pl.playerId.toString()); });
-			(p.receives.rfaRights || []).forEach(function(r) { playerIds.add(r.playerId.toString()); });
-		});
+	displayItems.forEach(function(item) {
+		if (item.type === 'cut-group') {
+			item.transactions.forEach(function(tx) {
+				(tx.drops || []).forEach(function(d) { playerIds.add(d.playerId.toString()); });
+			});
+		} else {
+			var tx = item;
+			if (tx.playerId) playerIds.add(tx.playerId.toString());
+			(tx.adds || []).forEach(function(a) { playerIds.add(a.playerId.toString()); });
+			(tx.drops || []).forEach(function(d) { playerIds.add(d.playerId.toString()); });
+			(tx.parties || []).forEach(function(p) {
+				(p.receives.players || []).forEach(function(pl) { playerIds.add(pl.playerId.toString()); });
+				(p.receives.rfaRights || []).forEach(function(r) { playerIds.add(r.playerId.toString()); });
+			});
+		}
 	});
 
 	var pickLookups = [];
-	transactions.forEach(function(tx) {
+	displayItems.forEach(function(item) {
+		if (item.type === 'cut-group') return;
+		var tx = item;
 		(tx.parties || []).forEach(function(p) {
 			(p.receives.picks || []).forEach(function(pk) {
 				pickLookups.push({ season: pk.season, round: pk.round, originalFranchiseId: pk.fromFranchiseId });
@@ -534,7 +594,29 @@ async function getRecentActivity(currentSeason) {
 		return month >= 2 ? year : year - 1;
 	}
 
-	return transactions.map(function(tx) {
+	return displayItems.map(function(item) {
+		// Handle grouped offseason cuts
+		if (item.type === 'cut-group') {
+			var totalCuts = 0;
+			var totalRecovered = 0;
+			var cutSeason = txSeason(item.transactions[0]);
+			item.transactions.forEach(function(tx) {
+				(tx.drops || []).forEach(function(drop) {
+					totalCuts++;
+					totalRecovered += getRecoveredForDrop(drop, cutSeason);
+				});
+			});
+			return {
+				category: 'cuts',
+				icon: 'fa-scissors',
+				label: cutSeason + ' Offseason Cuts',
+				labelHref: '/cuts/' + cutSeason,
+				summary: totalCuts + ' players cut · ' + formatMoney(totalRecovered) + ' recovered',
+				date: formatFullDate(item.timestamp)
+			};
+		}
+
+		var tx = item;
 		var season = txSeason(tx);
 
 		if (tx.type === 'trade') {
