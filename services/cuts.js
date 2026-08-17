@@ -176,9 +176,10 @@ async function getCutsForSeason(season, options) {
 }
 
 /**
- * Get list of seasons that have cuts
+ * Get list of seasons that have cuts, always including the current season
+ * @param {number} currentSeason - The current league season (always included even if no cuts)
  */
-async function getSeasonsWithCuts() {
+async function getSeasonsWithCuts(currentSeason) {
 	var result = await Transaction.aggregate([
 		{ $match: { type: 'fa', 'drops.isOffseason': true } },
 		{ $project: {
@@ -198,7 +199,17 @@ async function getSeasonsWithCuts() {
 		{ $sort: { _id: -1 } }
 	]);
 
-	return result.map(function(r) { return r._id; }).reverse();
+	var seasons = result.map(function(r) { return r._id; });
+	
+	// Always include current season
+	if (currentSeason && seasons.indexOf(currentSeason) === -1) {
+		seasons.push(currentSeason);
+	}
+	
+	// Sort ascending (oldest first) for timeline nav
+	seasons.sort(function(a, b) { return a - b; });
+	
+	return seasons;
 }
 
 /**
@@ -236,7 +247,7 @@ async function cutsPage(request, response) {
 		shouldAnimate = true;
 	}
 
-	var seasonsWithCuts = await getSeasonsWithCuts();
+	var seasonsWithCuts = await getSeasonsWithCuts(currentSeason);
 	var cutsData = await getCutsForSeason(season, { shouldAnimate: shouldAnimate });
 
 	response.render('cuts', {

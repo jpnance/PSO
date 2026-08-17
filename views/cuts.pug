@@ -107,7 +107,15 @@ block content
 			+sequentialNav({ items: seasons, current: season, urlPattern: '/cuts/' })
 		
 		if !cuts || !cuts.franchises || cuts.franchises.length === 0
-			div.alert.alert-info No cuts recorded for the #{season} offseason
+			div.alert.alert-info No cuts recorded for the #{season} offseason.
+		else if cuts.totalCuts === 0
+			div.row
+				div.col-lg-10.col-xl-8
+					div.card
+						div.card-body.text-center.py-5
+							i.fa.fa-scissors.fa-3x.text-muted.mb-3
+							h5.text-muted #{season} cuts have not been processed yet.
+							p.text-muted.mb-0.small Check back after cut day.
 		else
 			div.row
 				div.col-lg-10.col-xl-8(class=shouldAnimate ? 'cuts-animated' : '')
@@ -154,11 +162,11 @@ block content
 												else
 													+playerChip({ name: cut.player.name, positions: cut.player.positions, variant: 'cut', salary: cut.salary, recovered: cut.recovered, href: cut.player.slug ? '/players/' + cut.player.slug : null })
 
-		if shouldAnimate
+		if shouldAnimate && cuts.totalCuts > 0
 			button.cuts-skip-btn(type='button' id='skipBtn') Skip Animation
 
 block scripts
-	if shouldAnimate
+	if shouldAnimate && cuts.totalCuts > 0
 		script.
 			(function() {
 				var CHIP_DELAY = 2500;
