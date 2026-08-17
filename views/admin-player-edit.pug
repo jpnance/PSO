@@ -33,8 +33,7 @@ block content
 		div.row
 			div.col-lg-8
 				div.card.mb-4
-					div.card-header
-						strong Edit Player
+					div.card-header Edit Player
 					div.card-body
 						form(method='POST' action='/admin/players/' + player._id)
 							div.form-group
@@ -93,7 +92,7 @@ block content
 				if contracts && contracts.length
 					div.card.mb-4
 						div.card-header
-							strong Contracts
+							| Contracts
 							span.badge.badge-secondary.ml-2= contracts.length
 						table.table.table-sm.mb-0
 							thead.thead-light
@@ -150,8 +149,7 @@ block content
 								| This player is not linked to Sleeper. Edits are safe and will not be overwritten.
 				
 				div.card.mb-4
-					div.card-header
-						strong Player Info
+					div.card-header Player Info
 					div.card-body
 						dl.mb-0
 							dt ID
@@ -166,7 +164,7 @@ block content
 				if potentialDuplicates && potentialDuplicates.length
 					div.card.mb-4.admin-player-edit__duplicate-card
 						div.card-header
-							strong Potential Duplicates
+							| Potential Duplicates
 							span.badge.badge-warning.ml-2= potentialDuplicates.length
 						div.card-body
 							p.small.text-muted These players have the same name. You can merge them into this player.

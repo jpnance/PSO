@@ -20,8 +20,7 @@ block content
 		div.row
 			div.col-lg-8
 				div.card.mb-4
-					div.card-header
-						strong Edit Person
+					div.card-header Edit Person
 					div.card-body
 						form(method='POST' action='/admin/people/' + person._id)
 							div.form-group
@@ -68,8 +67,7 @@ block content
 			
 			div.col-lg-4
 				div.card.mb-4
-					div.card-header
-						strong Person Info
+					div.card-header Person Info
 					div.card-body
 						dl.mb-0
 							dt ID
@@ -84,7 +82,7 @@ block content
 				if regimes && regimes.length
 					div.card.mb-4
 						div.card-header
-							strong Regimes
+							| Regimes
 							span.badge.badge-secondary.ml-2= regimes.length
 						ul.list-group.list-group-flush
 							each regime in regimes
