@@ -6,7 +6,8 @@ block title
 
 block og_meta
 	meta(property='og:title' content=season + ' Offseason Cuts')
-	meta(property='og:description' content=cuts.totalCuts + ' players cut during the ' + season + ' offseason')
+	- var ogDesc = cuts.totalCuts > 0 ? cuts.totalCuts + ' players cut during the ' + season + ' offseason' : season + ' offseason cuts have not been processed yet'
+	meta(property='og:description' content=ogDesc)
 	meta(property='og:image' content='https://thedynastyleague.com/images/og/handshake.jpg')
 
 block styles
