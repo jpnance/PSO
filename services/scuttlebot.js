@@ -30,7 +30,7 @@ module.exports.prompt = function(request, response) {
 };
 
 module.exports.postMessage = function(request, response) {
-	const token = JSON.parse(process.env.SCUTTLEBOT).groupmeToken;
+	const token = process.env.GROUPME_LEAGUE_BOT;
 	const message = request.body.message;
 
 	superagent
