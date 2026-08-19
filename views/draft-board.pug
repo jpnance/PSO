@@ -28,8 +28,8 @@ block content
 		else
 			div.draft-board__rounds
 				each pickList, round in rounds
-					div.draft-board__round
-						div.draft-board__round-header Round #{round}
+					div.card.draft-board__round
+						div.card-header Round #{round}
 						each pick in pickList
 							- var rowClass = pick.positionGroup ? ('pos-' + pick.positionGroup) : (pick.status === 'passed' ? 'draft-board__pick--passed' : 'draft-board__pick--available')
 							- var isMyPick = userFranchiseName && pick.currentOwner === userFranchiseName

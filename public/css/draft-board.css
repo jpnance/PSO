@@ -9,17 +9,6 @@
 .draft-board__round {
 	flex: 0 0 auto;
 	width: 320px;
-	border: 1px solid #dee2e6;
-	border-radius: 4px;
-	overflow: hidden;
-}
-
-.draft-board__round-header {
-	background: #343a40;
-	color: white;
-	padding: 0.5rem 0.75rem;
-	font-weight: 600;
-	font-size: 1rem;
 }
 
 .draft-board__pick {
