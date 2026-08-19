@@ -620,6 +620,9 @@ async function tradeHistory(request, response) {
 	var filterFranchises = request.query.franchises ? request.query.franchises.split(',').filter(Boolean) : [];
 	var filterPeople = request.query.people ? request.query.people.split(',').filter(Boolean) : [];
 	var filterRegimes = request.query.regimes ? request.query.regimes.split(',').filter(Boolean) : [];
+	var filterAssetTypes = request.query.assets ? request.query.assets.split(',').filter(Boolean) : [];
+	var filterPickRounds = request.query.rounds ? request.query.rounds.split(',').map(Number).filter(Boolean) : [];
+	var filterPositions = request.query.positions ? request.query.positions.split(',').filter(Boolean) : [];
 	var showPastPeople = request.query.showPastPeople === '1';
 	var showPastRegimes = request.query.showPastRegimes === '1';
 	
@@ -678,6 +681,74 @@ async function tradeHistory(request, response) {
 		});
 	}
 	
+	// Filter by asset types (if any selected) - trade must contain ALL selected types
+	if (filterAssetTypes.length > 0) {
+		filteredTrades = filteredTrades.filter(function(trade) {
+			return filterAssetTypes.every(function(assetType) {
+				return (trade.parties || []).some(function(party) {
+					var receives = party.receives || {};
+					if (assetType === 'player') {
+						return (receives.players || []).length > 0;
+					} else if (assetType === 'rfa') {
+						return (receives.rfaRights || []).length > 0;
+					} else if (assetType === 'pick') {
+						return (receives.picks || []).length > 0;
+					} else if (assetType === 'cash') {
+						return (receives.cash || []).length > 0;
+					}
+					return false;
+				});
+			});
+		});
+	}
+	
+	// Filter by pick rounds (if any selected) - trade must contain ANY of the selected rounds
+	if (filterPickRounds.length > 0) {
+		filteredTrades = filteredTrades.filter(function(trade) {
+			return (trade.parties || []).some(function(party) {
+				return ((party.receives || {}).picks || []).some(function(pick) {
+					return filterPickRounds.includes(pick.round);
+				});
+			});
+		});
+	}
+	
+	// Filter by positions (if any selected) - trade must involve a player with ANY of the selected positions
+	if (filterPositions.length > 0) {
+		// Collect all player IDs from remaining trades
+		var allPlayerIds = new Set();
+		filteredTrades.forEach(function(trade) {
+			(trade.parties || []).forEach(function(party) {
+				((party.receives || {}).players || []).forEach(function(p) {
+					allPlayerIds.add(p.playerId.toString());
+				});
+				((party.receives || {}).rfaRights || []).forEach(function(r) {
+					allPlayerIds.add(r.playerId.toString());
+				});
+			});
+		});
+		
+		// Load players and build position lookup
+		var positionPlayers = await Player.find({ _id: { $in: Array.from(allPlayerIds) } }).select('_id positions').lean();
+		var playerPositions = {};
+		positionPlayers.forEach(function(p) {
+			playerPositions[p._id.toString()] = p.positions || [];
+		});
+		
+		// Filter trades by position
+		filteredTrades = filteredTrades.filter(function(trade) {
+			return (trade.parties || []).some(function(party) {
+				var players = ((party.receives || {}).players || []).concat((party.receives || {}).rfaRights || []);
+				return players.some(function(p) {
+					var positions = playerPositions[p.playerId.toString()] || [];
+					return positions.some(function(pos) {
+						return filterPositions.includes(pos);
+					});
+				});
+			});
+		});
+	}
+	
 	var totalFiltered = filteredTrades.length;
 	
 	// Stable pagination: page 1 = oldest trades
@@ -729,6 +800,9 @@ async function tradeHistory(request, response) {
 		filterFranchises: filterFranchises,
 		filterPeople: filterPeople,
 		filterRegimes: filterRegimes,
+		filterAssetTypes: filterAssetTypes,
+		filterPickRounds: filterPickRounds,
+		filterPositions: filterPositions,
 		currentPeople: peopleData.current,
 		pastPeople: peopleData.past,
 		showPastPeople: showPastPeople,

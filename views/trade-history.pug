@@ -56,10 +56,11 @@ block content
 		else
 			//- Trade list view with pill filters
 			- function toggle(id, ids) { return ids.includes(id) ? ids.filter(x => x !== id) : ids.concat(id); }
+			- function toggleNum(n, arr) { return arr.includes(n) ? arr.filter(x => x !== n) : arr.concat(n); }
 			//- Build query string preserving all selections
-			- function buildQuery(people, regimes, franchises, showPastPeople, showPastRegimes) { var parts = []; if (people.length) parts.push('people=' + people.join(',')); if (regimes.length) parts.push('regimes=' + regimes.join(',')); if (franchises.length) parts.push('franchises=' + franchises.join(',')); if (showPastPeople) parts.push('showPastPeople=1'); if (showPastRegimes) parts.push('showPastRegimes=1'); return parts.length ? '?' + parts.join('&') : ''; }
-			- var hasAnyFilter = filterPeople.length > 0 || filterRegimes.length > 0 || filterFranchises.length > 0
-			- var baseQuery = buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes)
+			- function buildQuery(people, regimes, franchises, assets, rounds, positions, showPastPeople, showPastRegimes) { var parts = []; if (people.length) parts.push('people=' + people.join(',')); if (regimes.length) parts.push('regimes=' + regimes.join(',')); if (franchises.length) parts.push('franchises=' + franchises.join(',')); if (assets.length) parts.push('assets=' + assets.join(',')); if (rounds.length) parts.push('rounds=' + rounds.join(',')); if (positions.length) parts.push('positions=' + positions.join(',')); if (showPastPeople) parts.push('showPastPeople=1'); if (showPastRegimes) parts.push('showPastRegimes=1'); return parts.length ? '?' + parts.join('&') : ''; }
+			- var hasAnyFilter = filterPeople.length > 0 || filterRegimes.length > 0 || filterFranchises.length > 0 || filterAssetTypes.length > 0 || filterPickRounds.length > 0 || filterPositions.length > 0
+			- var baseQuery = buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, showPastRegimes)
 				
 			div.page-header
 				h1 Trade History
@@ -68,11 +69,12 @@ block content
 					//- SIDEBAR (appears second in DOM, but first visually on lg+)
 					div#filter-sidebar.col-lg-4.order-lg-2.mb-lg-0
 						//- Mobile: collapsible toggle
+						- var activeFilterCount = filterPeople.length + filterRegimes.length + filterFranchises.length + filterAssetTypes.length + filterPickRounds.length + filterPositions.length
 						div.d-lg-none.mb-3
 							button.btn.btn-outline-secondary.btn-sm.w-100(type="button" data-toggle="collapse" data-target="#pills-filters")
 								i.fa.fa-filter.mr-1
 								if hasAnyFilter
-									| Filters (#{filterPeople.length + filterRegimes.length + filterFranchises.length} active)
+									| Filters (#{activeFilterCount} active)
 								else
 									| Filters
 						
@@ -89,7 +91,7 @@ block content
 											- var newFranchises = toggle(fId, filterFranchises)
 											- var franchiseLabel = franchise.rosterId + ' · ' + franchise.displayName
 											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
-											a(class=pillClass href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, showPastPeople, showPastRegimes))= franchiseLabel
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, filterRegimes, newFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, showPastRegimes))= franchiseLabel
 								
 								//- REGIMES
 								div.trade-filter__section
@@ -100,9 +102,9 @@ block content
 											- var isActive = filterRegimes.includes(rId)
 											- var newRegimes = toggle(rId, filterRegimes)
 											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
-											a(class=pillClass href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, showPastRegimes))= regime.displayName
 										if pastRegimes.length > 0 && !showPastRegimes
-											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, true)) More…
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, true)) More…
 									if pastRegimes.length > 0 && showPastRegimes
 										hr.trade-list__divider
 										div.trade-list__pills
@@ -111,8 +113,8 @@ block content
 												- var isActive = filterRegimes.includes(rId)
 												- var newRegimes = toggle(rId, filterRegimes)
 												- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
-												a(class=pillClass href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, showPastPeople, showPastRegimes))= regime.displayName
-											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, showPastPeople, false)) Less
+												a(class=pillClass href="/trades" + buildQuery(filterPeople, newRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, showPastRegimes))= regime.displayName
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, false)) Less
 								
 								//- PEOPLE
 								div.trade-filter__section
@@ -123,9 +125,9 @@ block content
 											- var isActive = filterPeople.includes(pId)
 											- var newPeople = toggle(pId, filterPeople)
 											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
-											a(class=pillClass href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
+											a(class=pillClass href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, showPastRegimes))= person.name
 										if pastPeople.length > 0 && !showPastPeople
-											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, true, showPastRegimes)) More…
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, true, showPastRegimes)) More…
 									if pastPeople.length > 0 && showPastPeople
 										hr.trade-list__divider
 										div.trade-list__pills
@@ -134,8 +136,41 @@ block content
 												- var isActive = filterPeople.includes(pId)
 												- var newPeople = toggle(pId, filterPeople)
 												- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
-												a(class=pillClass href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, showPastPeople, showPastRegimes))= person.name
-											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, false, showPastRegimes)) Less
+												a(class=pillClass href="/trades" + buildQuery(newPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, showPastPeople, showPastRegimes))= person.name
+											a.trade-pill.trade-pill--toggle(href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, filterPositions, false, showPastRegimes)) Less
+								
+								//- ASSET TYPES (only specialized types - players/cash are too common to filter)
+								- var assetTypes = [{id: 'rfa', label: 'RFA Rights'}, {id: 'pick', label: 'Picks'}]
+								div.trade-filter__section
+									div.trade-filter__title Asset Types
+									div.trade-list__pills
+										each asset in assetTypes
+											- var isActive = filterAssetTypes.includes(asset.id)
+											- var newAssets = toggle(asset.id, filterAssetTypes)
+											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, newAssets, filterPickRounds, filterPositions, showPastPeople, showPastRegimes))= asset.label
+								
+								//- PICK ROUNDS
+								- var pickRounds = [{round: 1, label: '1st'}, {round: 2, label: '2nd'}, {round: 3, label: '3rd'}, {round: 4, label: '4th'}, {round: 5, label: '5th'}, {round: 6, label: '6th'}, {round: 7, label: '7th'}, {round: 8, label: '8th'}, {round: 9, label: '9th'}, {round: 10, label: '10th'}]
+								div.trade-filter__section
+									div.trade-filter__title Pick Rounds
+									div.trade-list__pills
+										each pr in pickRounds
+											- var isActive = filterPickRounds.includes(pr.round)
+											- var newRounds = toggleNum(pr.round, filterPickRounds)
+											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, newRounds, filterPositions, showPastPeople, showPastRegimes))= pr.label
+								
+								//- POSITIONS
+								- var positions = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K']
+								div.trade-filter__section
+									div.trade-filter__title Positions
+									div.trade-list__pills
+										each pos in positions
+											- var isActive = filterPositions.includes(pos)
+											- var newPositions = toggle(pos, filterPositions)
+											- var pillClass = isActive ? 'trade-pill trade-pill--active' : 'trade-pill'
+											a(class=pillClass href="/trades" + buildQuery(filterPeople, filterRegimes, filterFranchises, filterAssetTypes, filterPickRounds, newPositions, showPastPeople, showPastRegimes))= pos
 								
 								//- SUMMARY & CLEAR
 								div.trade-filter__section
