@@ -265,10 +265,11 @@ mixin sequentialNav(opts)
 		var simpleMode = items.length === 0 && (opts.prev !== undefined || opts.next !== undefined)
 	div.seq-nav
 		if simpleMode
-			//- Mode: simple prev/next with current label (prev/next are full URLs)
+			//- Mode: simple prev/next with optional current label (prev/next are full URLs)
 			a.seq-nav__arrow(href=prevItem ? prevItem : null class=(!prevItem ? 'seq-nav__arrow--disabled' : ''))
 				span ‹
-			span.seq-nav__current= labelFn(current)
+			if current
+				span.seq-nav__current= labelFn(current)
 			a.seq-nav__arrow(href=nextItem ? nextItem : null class=(!nextItem ? 'seq-nav__arrow--disabled' : ''))
 				span ›
 		else if quickItems

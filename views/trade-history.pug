@@ -203,13 +203,10 @@ block content
 						
 						//- Bottom pagination
 						- var pageSep = baseQuery ? '&' : '?'
-						- var firstNum = trades.length > 0 ? trades[0].number : null
-						- var lastNum = trades.length > 0 ? trades[trades.length - 1].number : null
-						- var rangeLabel = firstNum === lastNum ? 'Trade #' + firstNum : 'Trades #' + lastNum + '–' + firstNum
 						- var olderUrl = olderPage ? '/trades' + baseQuery + (olderPage > 1 ? pageSep + 'page=' + olderPage : '') : null
 						- var newerUrl = newerPage ? '/trades' + baseQuery + pageSep + 'page=' + newerPage : (!isDefaultView ? '/trades' + baseQuery : null)
 						div#pagination.mt-4
-							+sequentialNav({ prev: olderUrl, next: newerUrl, current: rangeLabel, urlPattern: '' })
+							+sequentialNav({ prev: olderUrl, next: newerUrl, urlPattern: '' })
 
 block scripts
 	script(src='/js/trade-history.js')
