@@ -257,20 +257,22 @@ function run() {
 		positions.sort();
 		situations.sort();
 
+		var fs = require('fs');
+		var path = require('path');
+		var auctionDir = path.join(__dirname, '../public/auction');
+
 		if (parameters.render) {
-			var fs = require('fs');
-			var path = require('path');
 			var pug = require('pug');
-			fs.mkdirSync(path.join(__dirname, '../public/auction'), { recursive: true });
+			fs.mkdirSync(auctionDir, { recursive: true });
 			var compiledPug = pug.compileFile(path.join(__dirname, '../views/auction.pug'));
-			fs.writeFileSync(path.join(__dirname, '../public/auction/index.html'), compiledPug({
+			fs.writeFileSync(path.join(auctionDir, 'index.html'), compiledPug({
 				owners: owners,
 				referenceSite: siteData[parameters.site].referenceSite,
 				webSocketUrl: process.env.WEB_SOCKET_URL
 			}));
 
 			var compiledPugAdmin = pug.compileFile(path.join(__dirname, '../views/auction-admin.pug'));
-			fs.writeFileSync(path.join(__dirname, '../public/auction/admin.html'), compiledPugAdmin({
+			fs.writeFileSync(path.join(auctionDir, 'admin.html'), compiledPugAdmin({
 				players: players,
 				positions: positions,
 				situations: situations,
@@ -281,7 +283,8 @@ function run() {
 		}
 
 		if (parameters.demo) {
-			console.log(JSON.stringify(players));
+			fs.mkdirSync(auctionDir, { recursive: true });
+			fs.writeFileSync(path.join(auctionDir, 'demo-data.json'), JSON.stringify(players));
 		}
 
 		process.exit();
