@@ -261,6 +261,7 @@ function run() {
 			var fs = require('fs');
 			var path = require('path');
 			var pug = require('pug');
+			fs.mkdirSync(path.join(__dirname, '../public/auction'), { recursive: true });
 			var compiledPug = pug.compileFile(path.join(__dirname, '../views/auction.pug'));
 			fs.writeFileSync(path.join(__dirname, '../public/auction/index.html'), compiledPug({
 				owners: owners,
