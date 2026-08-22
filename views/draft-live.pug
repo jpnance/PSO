@@ -71,6 +71,7 @@ block content
 									th Pick
 									th Player
 									th.text-center Pos
+									th NFL
 									th Franchise
 									th.data-table__num Salary
 							tbody
@@ -79,7 +80,7 @@ block content
 								each pick in displayPicks
 									if lastRound !== null && pick.round !== lastRound
 										tr.draft-live__round-separator
-											td(colspan='5') Round #{pick.round}
+											td(colspan='6') Round #{pick.round}
 									- lastRound = pick.round
 									tr(class=(pick.status === 'passed' ? 'draft-live__row--passed' : ''))
 										td ##{pick.pickNumber}
@@ -91,6 +92,9 @@ block content
 										td.text-center
 											if pick.positions
 												+positionBadge(pick.positions)
+										td
+											if pick.team
+												| #{pick.team}
 										td
 											if pick.franchiseRosterId
 												a(href='/franchises/' + pick.franchiseRosterId) #{pick.currentOwner}

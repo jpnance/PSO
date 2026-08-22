@@ -96,6 +96,7 @@ async function getDraftState(season) {
 			fromOwner: fromOwner,
 			playerName: player ? player.name : null,
 			positions: player ? sortedPositions(player.positions) : null,
+			team: player ? player.team : null,
 			salary: selection ? selection.salary : null
 		};
 
