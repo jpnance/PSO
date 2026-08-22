@@ -188,18 +188,20 @@ async function removeFromNominationOrder(removeOwnerData) {
 	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
 	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
 
-	try {
-		var regime = await Regime.findOne({ displayName: removeOwnerData.owner, 'tenures.endSeason': null }).lean();
-		if (regime) {
-			var franchiseIds = regime.tenures
-				.filter(function(t) { return t.endSeason === null; })
-				.map(function(t) { return t.franchiseId; });
+	if (!demoMode) {
+		try {
+			var regime = await Regime.findOne({ displayName: removeOwnerData.owner, 'tenures.endSeason': null }).lean();
+			if (regime) {
+				var franchiseIds = regime.tenures
+					.filter(function(t) { return t.endSeason === null; })
+					.map(function(t) { return t.franchiseId; });
 
-			var result = await Contract.deleteMany({ franchiseId: { $in: franchiseIds }, salary: null });
-			console.log('Forfeited ' + result.deletedCount + ' RFA rights for ' + removeOwnerData.owner);
+				var result = await Contract.deleteMany({ franchiseId: { $in: franchiseIds }, salary: null });
+				console.log('Forfeited ' + result.deletedCount + ' RFA rights for ' + removeOwnerData.owner);
+			}
+		} catch (err) {
+			console.error('Error forfeiting RFA rights:', err);
 		}
-	} catch (err) {
-		console.error('Error forfeiting RFA rights:', err);
 	}
 
 	broadcastAuctionData();
@@ -451,7 +453,8 @@ function broadcastAuctionData() {
 		socket.send(JSON.stringify({
 			type: 'auctionData',
 			value: auction,
-			sentAt: Date.now()
+			sentAt: Date.now(),
+			demoMode: demoMode
 		}));
 	});
 }

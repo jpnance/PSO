@@ -535,7 +535,7 @@ var addLoggedInAsClass = function(loggedInAsData) {
 	}
 };
 
-var redrawAuctionClient = function(auctionData, lag) {
+var redrawAuctionClient = function(auctionData, lag, isDemoMode) {
 	lastAuctionData = auctionData;
 
 	if (auctionData.status) {
@@ -573,7 +573,7 @@ var redrawAuctionClient = function(auctionData, lag) {
 		var hasPlayer = auctionData.player && auctionData.player.name && auctionData.player.name !== 'Tim Duncan';
 		justSettled = isPaused && lastAuctionStatus === 'active';
 
-		showRecordButton = isPaused && hasBids && hasPlayer && !resultRecorded;
+		showRecordButton = isPaused && hasBids && hasPlayer && !resultRecorded && !isDemoMode;
 	}
 
 	lastAuctionStatus = auctionData.status;
@@ -704,13 +704,16 @@ function handleMessageLaggy(rawMessage) {
 }
 
 function handleMessage(rawMessage) {
-	var { type, value, sentAt } = JSON.parse(rawMessage.data);
+	var parsed = JSON.parse(rawMessage.data);
+	var type = parsed.type;
+	var value = parsed.value;
+	var sentAt = parsed.sentAt;
 
 	if (type == 'auth') {
 		addLoggedInAsClass(value);
 	}
 	else if (type == 'auctionData') {
-		redrawAuctionClient(value, Date.now() - sentAt);
+		redrawAuctionClient(value, Date.now() - sentAt, parsed.demoMode);
 	}
 }
 
