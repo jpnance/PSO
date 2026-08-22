@@ -243,8 +243,11 @@ async function validateTradeCash(tradeDetails, config) {
 			var salary = playerInfo.salary || 0;
 			var endYear = playerInfo.endYear;
 			
+			// Unsigned players (no endYear) only affect current season
+			var effectiveEndYear = endYear || currentSeason;
+			
 			// This player's salary affects all seasons through endYear
-			for (var season = currentSeason; season <= endYear && season <= currentSeason + 2; season++) {
+			for (var season = currentSeason; season <= effectiveEndYear && season <= currentSeason + 2; season++) {
 				if (!cashBySeason[franchiseId]) cashBySeason[franchiseId] = {};
 				if (!cashBySeason[franchiseId][season]) cashBySeason[franchiseId][season] = 0;
 				cashBySeason[franchiseId][season] -= salary; // Adding a player = less available
@@ -268,8 +271,11 @@ async function validateTradeCash(tradeDetails, config) {
 			var salary = contract.salary || 0;
 			var endYear = contract.endYear;
 			
+			// Unsigned players (no endYear) only affect current season
+			var effectiveEndYear = endYear || currentSeason;
+			
 			// Sending away a player = salary freed up
-			for (var season = currentSeason; season <= endYear && season <= currentSeason + 2; season++) {
+			for (var season = currentSeason; season <= effectiveEndYear && season <= currentSeason + 2; season++) {
 				if (!cashBySeason[senderId]) cashBySeason[senderId] = {};
 				if (!cashBySeason[senderId][season]) cashBySeason[senderId][season] = 0;
 				cashBySeason[senderId][season] += salary; // Losing a player = more available
