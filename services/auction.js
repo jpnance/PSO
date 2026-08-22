@@ -211,7 +211,7 @@ function setTimer(timer) {
 function startDemo() {
 	demoMode = true;
 
-	var players = require('./demo-data.json');
+	var players = require('../public/auction/demo-data.json');
 	var player = players[Math.floor(Math.random() * players.length)];
 	var nominator = nominationOrder[Math.floor(Math.random() * nominationOrder.length)];
 
