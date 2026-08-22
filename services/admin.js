@@ -786,6 +786,7 @@ async function sanityPage(request, response) {
 			if (c.franchiseId.toString() !== fIdStr) return;
 			if (c.salary === null) return; // RFA rights
 			if (c.endYear && c.endYear < season) return; // Contract ended
+			if (!c.endYear && season !== currentSeason) return; // Unsigned players only count in current season
 			if (c.startYear && c.startYear > season) return; // Contract hasn't started
 			calculatedPayroll += c.salary;
 		});

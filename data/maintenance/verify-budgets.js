@@ -50,7 +50,8 @@ async function verify() {
 			contracts.forEach(function(c) {
 				if (!c.franchiseId.equals(franchiseId)) return;
 				if (c.salary === null) return;
-				if (!c.endYear || c.endYear < season) return;
+				if (c.endYear && c.endYear < season) return; // Contract ended before this season
+				if (!c.endYear && season !== currentSeason) return; // Unsigned players only count in current season
 				if (c.startYear && c.startYear > season) return;
 				payroll += c.salary;
 				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);
