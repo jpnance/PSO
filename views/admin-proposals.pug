@@ -21,8 +21,8 @@ block content
 		else
 			div.row
 				div.col-lg-7.col-xl-5
-					each proposal in proposals
-						div.card.admin-proposals__card.mb-4
+					each proposal, index in proposals
+						div.card.admin-proposals__card.mb-4(class=index > 0 ? 'admin-proposals__card--queued' : '')
 							//- Trade card display (same as trade-history)
 							div.trade-card.trade-card--single
 								div.trade-card__timestamp.trade-card__timestamp--inline
@@ -38,10 +38,10 @@ block content
 							
 							div.card-footer
 								div.d-flex
-									button.btn.btn-outline-danger.btn-sm.admin-proposals__reject-btn.mr-2(data-proposal-id=proposal._id)
+									button.btn.btn-outline-danger.btn-sm.admin-proposals__reject-btn.mr-2(data-proposal-id=proposal._id disabled=index > 0)
 										i.fa.fa-times.mr-1
 										| Reject
-									button.btn.btn-success.btn-sm.admin-proposals__approve-btn(data-proposal-id=proposal._id)
+									button.btn.btn-success.btn-sm.admin-proposals__approve-btn(data-proposal-id=proposal._id disabled=index > 0)
 										i.fa.fa-check.mr-1
 										| Approve
 								
@@ -63,8 +63,7 @@ block scripts
 				contentType: 'application/json',
 				data: JSON.stringify({}),
 				success: function(response) {
-					// Redirect to the trade
-					window.location.href = '/trades/' + response.tradeId;
+					location.reload();
 				},
 				error: function(xhr) {
 					$btn.prop('disabled', false).html('<i class="fa fa-check mr-1"></i> Approve');

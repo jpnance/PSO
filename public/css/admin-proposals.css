@@ -4,6 +4,16 @@
 	border-left: 4px solid var(--color-success);
 }
 
+/* Queued trades - visible but disabled */
+.admin-proposals__card--queued {
+	border-left-color: var(--border-muted);
+	opacity: 0.5;
+}
+
+.admin-proposals__card--queued .card-footer {
+	background: var(--bg-muted, #f8f9fa);
+}
+
 /* Embed trade card seamlessly in the card */
 .admin-proposals__card .trade-card {
 	border: none;
