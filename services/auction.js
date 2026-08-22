@@ -41,6 +41,7 @@ var auctionOverTimeout;
 var demoMode = false;
 var simulateMode = false;
 var demoBidInterval;
+var demoAdvanceTimeout;
 
 function activateAuction() {
 	auction.status = 'active';
@@ -159,7 +160,7 @@ function pauseAuction() {
 	broadcastAuctionData();
 
 	if (demoMode) {
-		setTimeout(startDemo, 5000);
+		demoAdvanceTimeout = setTimeout(startDemo, 5000);
 	}
 };
 
@@ -311,6 +312,7 @@ function stopDemo() {
 	demoMode = false;
 
 	clearInterval(demoBidInterval);
+	clearTimeout(demoAdvanceTimeout);
 
 	pauseAuction();
 }

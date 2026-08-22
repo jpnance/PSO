@@ -126,6 +126,7 @@ module.exports = function(app) {
 	app.post('/admin/rosters/process-cut-day', requireLogin, requireAdmin, admin.processCutDay);
 	app.get('/admin/sanity', requireLogin, requireAdmin, admin.sanityPage);
 	app.get('/admin/transactions', requireLogin, requireAdmin, admin.transactionsPage);
+	app.post('/admin/transactions/:id/rollback', requireLogin, requireAdmin, admin.rollbackTransaction);
 	
 	// Player management (require login + admin)
 	app.get('/admin/players', requireLogin, requireAdmin, adminPlayers.listPlayers);

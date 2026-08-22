@@ -9,6 +9,7 @@ var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var transactionService = require('./transaction');
+var rollbackService = require('./rollback');
 var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
 
@@ -1275,7 +1276,8 @@ async function transactionsPage(request, response) {
 			franchiseName: franchiseName,
 			playerName: playerName,
 			tradeId: t.tradeId,
-			summary: summary
+			summary: summary,
+			canRollback: rollbackService.ROLLBACK_ELIGIBLE_TYPES.includes(t.type)
 		};
 	});
 
@@ -1301,7 +1303,9 @@ async function transactionsPage(request, response) {
 		totalPages: totalPages,
 		totalCount: totalCount,
 		perPage: perPage,
-		activePage: 'admin'
+		activePage: 'admin',
+		rollbackResult: request.query.rollback || null,
+		rollbackMessage: request.query.message || null
 	});
 }
 
@@ -1382,6 +1386,18 @@ function buildTransactionSummary(t, franchiseNameMap) {
 	}
 }
 
+async function rollbackTransaction(request, response) {
+	var transactionId = request.params.id;
+	
+	var result = await rollbackService.rollbackTransaction(transactionId);
+	
+	if (result.success) {
+		response.redirect('/admin/transactions?rollback=success');
+	} else {
+		response.redirect('/admin/transactions?rollback=error&message=' + encodeURIComponent(result.error));
+	}
+}
+
 module.exports = {
 	configPage: configPage,
 	updateConfig: updateConfig,
@@ -1393,5 +1409,6 @@ module.exports = {
 	cutPlayer: cutPlayer,
 	processCutDay: processCutDay,
 	sanityPage: sanityPage,
-	transactionsPage: transactionsPage
+	transactionsPage: transactionsPage,
+	rollbackTransaction: rollbackTransaction
 };
