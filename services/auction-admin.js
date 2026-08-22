@@ -118,10 +118,13 @@ async function searchPlayers(request, response) {
 			if (contract.salary === null) {
 				situation = 'RFA-' + (franchise || 'Unknown');
 				detail = 'RFA rights: ' + (franchise || 'Unknown');
-			} else if (contract.endYear && contract.endYear < season) {
+			} else if (!contract.endYear) {
+				owned = true;
+				detail = franchise + ' · $' + contract.salary + ' · unsigned';
+			} else if (contract.endYear < season) {
 				situation = 'UFA';
 				detail = 'Contract expired';
-			} else if (contract.endYear && contract.endYear >= season) {
+			} else if (contract.endYear >= season) {
 				owned = true;
 				situation = getSituation(contract, franchise);
 				detail = franchise + ' · $' + contract.salary + ' · ' + (contract.startYear % 100) + '/' + (contract.endYear % 100);
