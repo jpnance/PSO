@@ -137,12 +137,51 @@ $(document).ready(function() {
 	$('#nomination-order-form').bind('submit', function(e) {
 		e.preventDefault();
 
+		var owner = $(this).find('#remove-owner').val();
+		if (!owner) return;
+
+		if (typeof AUCTION_PREVIEW_REMOVE_URL !== 'undefined') {
+			var removeDialog = document.getElementById('remove-owner-dialog');
+			$('#remove-owner-name').text(owner);
+			$('#remove-owner-confirm').data('owner', owner).prop('disabled', false).text('Remove');
+
+			$.getJSON(AUCTION_PREVIEW_REMOVE_URL, { owner: owner }, function(data) {
+				var list = $('#remove-owner-players');
+				list.empty();
+
+				if (data.players && data.players.length > 0) {
+					$('#remove-owner-no-rfa').hide();
+					list.show();
+					data.players.forEach(function(p) {
+						list.append('<li>' + p.name + '</li>');
+					});
+				} else {
+					list.hide();
+					$('#remove-owner-no-rfa').show();
+				}
+
+				removeDialog.showModal();
+			});
+		} else {
+			socket.send(JSON.stringify({
+				type: 'removeOwner',
+				value: { owner: owner }
+			}));
+		}
+	});
+
+	$('#remove-owner-confirm').on('click', function() {
+		var owner = $(this).data('owner');
 		socket.send(JSON.stringify({
 			type: 'removeOwner',
-			value: {
-				owner: $(this).find('#remove-owner').val()
-			}
+			value: { owner: owner }
 		}));
+		document.getElementById('remove-owner-dialog').close();
+		$('#remove-owner').val('');
+	});
+
+	$('#remove-owner-close, #remove-owner-cancel').on('click', function() {
+		document.getElementById('remove-owner-dialog').close();
 	});
 
 	$('#pop').bind('click', function(e) {

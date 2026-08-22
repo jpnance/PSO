@@ -25,8 +25,10 @@ html
 		title Bid Buddy Admin
 
 	body.admin
-		dialog
-			button#reconnect.btn.btn-info Reconnect
+		dialog.auction-dialog
+			p.reconnect-dialog__message Connection lost.
+			div.reconnect-dialog__actions
+				button#reconnect.btn.btn-primary Reconnect
 
 		div.container
 			hr

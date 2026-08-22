@@ -242,8 +242,47 @@ async function recordResult(request, response) {
 	}
 }
 
+async function previewRemoveOwner(request, response) {
+	var ownerName = request.query.owner;
+	if (!ownerName) {
+		return response.json({ players: [] });
+	}
+
+	try {
+		var regime = await Regime.findOne({ displayName: ownerName, 'tenures.endSeason': null }).lean();
+		if (!regime) {
+			return response.json({ players: [] });
+		}
+
+		var franchiseIds = regime.tenures
+			.filter(function(t) { return t.endSeason === null; })
+			.map(function(t) { return t.franchiseId; });
+
+		var rfaContracts = await Contract.find({
+			franchiseId: { $in: franchiseIds },
+			salary: null
+		}).populate('playerId', 'name positions');
+
+		var players = rfaContracts
+			.filter(function(c) { return c.playerId; })
+			.map(function(c) {
+				return {
+					name: c.playerId.name,
+					positions: c.playerId.positions
+				};
+			})
+			.sort(function(a, b) { return a.name.localeCompare(b.name); });
+
+		response.json({ players: players });
+	} catch (err) {
+		console.error('Preview remove owner error:', err);
+		response.status(500).json({ players: [] });
+	}
+}
+
 module.exports = {
 	adminPage: adminPage,
 	searchPlayers: searchPlayers,
-	recordResult: recordResult
+	recordResult: recordResult,
+	previewRemoveOwner: previewRemoveOwner
 };

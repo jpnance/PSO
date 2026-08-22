@@ -102,6 +102,7 @@ module.exports = function(app) {
 	app.get('/auction/admin', requireLogin, requireAdmin, auctionAdmin.adminPage);
 	app.get('/auction/admin/search', requireLogin, requireAdmin, noCache, auctionAdmin.searchPlayers);
 	app.post('/auction/admin/record', requireLogin, requireAdmin, auctionAdmin.recordResult);
+	app.get('/auction/admin/preview-remove', requireLogin, requireAdmin, noCache, auctionAdmin.previewRemoveOwner);
 
 	app.post('/simulator', simulator.filterByConditions);
 	app.post('/simulator/:conditions', simulator.filterByConditions);

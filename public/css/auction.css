@@ -292,9 +292,9 @@ ul#bid-history li:first-child {
 	text-align: left;
 }
 
-/* Record Result dialog */
+/* Shared dialog styles */
 
-#record-result-dialog {
+.auction-dialog {
 	border: none;
 	border-radius: 8px;
 	padding: 1.5rem;
@@ -304,9 +304,14 @@ ul#bid-history li:first-child {
 	font-size: 0.95rem;
 	color: #333;
 	margin: auto;
+	position: relative;
 }
 
-.record-result__close {
+.auction-dialog::backdrop {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.auction-dialog__close {
 	position: absolute;
 	top: 0.5rem;
 	right: 0.75rem;
@@ -319,9 +324,11 @@ ul#bid-history li:first-child {
 	padding: 0.25rem;
 }
 
-.record-result__close:hover {
+.auction-dialog__close:hover {
 	color: #333;
 }
+
+/* Record Result dialog */
 
 .record-result__screen {
 	display: none;
@@ -459,5 +466,41 @@ ul#bid-history li:first-child {
 .auction-admin__debug-toggle:hover {
 	color: #666;
 	text-decoration: none;
+}
+
+/* Reconnect dialog */
+
+.reconnect-dialog__message {
+	text-align: center;
+	margin-bottom: 1rem;
+	color: #666;
+}
+
+.reconnect-dialog__actions {
+	text-align: center;
+}
+
+/* Remove Owner dialog */
+
+.remove-owner__prompt {
+	color: #666;
+	margin-bottom: 0.75rem;
+}
+
+.remove-owner__player-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 0.5rem;
+}
+
+.remove-owner__player-list li {
+	padding: 0.3rem 0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.remove-owner__no-rfa {
+	color: #999;
+	font-style: italic;
+	margin-bottom: 0.5rem;
 }
 

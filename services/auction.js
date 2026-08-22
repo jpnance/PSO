@@ -1,5 +1,6 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 var superagent = require('superagent');
+var Contract = require('../models/Contract');
 var Person = require('../models/Person');
 var Regime = require('../models/Regime');
 var PSO = require('../config/pso');
@@ -173,7 +174,7 @@ module.exports.resetNominationOrder = function(request, response) {
 	response.send(auction);
 };
 
-function removeFromNominationOrder(removeOwnerData) {
+async function removeFromNominationOrder(removeOwnerData) {
 	var ownerIndex = nominationOrder.indexOf(removeOwnerData.owner);
 
 	if (ownerIndex != -1) {
@@ -187,8 +188,22 @@ function removeFromNominationOrder(removeOwnerData) {
 	auction.nominator.next = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 1) % nominationOrder.length];
 	auction.nominator.later = nominationOrder[(nominationOrder.indexOf(auction.nominator.now) + 2) % nominationOrder.length];
 
+	try {
+		var regime = await Regime.findOne({ displayName: removeOwnerData.owner, 'tenures.endSeason': null }).lean();
+		if (regime) {
+			var franchiseIds = regime.tenures
+				.filter(function(t) { return t.endSeason === null; })
+				.map(function(t) { return t.franchiseId; });
+
+			var result = await Contract.deleteMany({ franchiseId: { $in: franchiseIds }, salary: null });
+			console.log('Forfeited ' + result.deletedCount + ' RFA rights for ' + removeOwnerData.owner);
+		}
+	} catch (err) {
+		console.error('Error forfeiting RFA rights:', err);
+	}
+
 	broadcastAuctionData();
-};
+}
 
 function rollCall(rollCallData) {
 	if (rollCallData.owner) {
