@@ -745,8 +745,12 @@ async function processTrade(tradeDetails) {
 			var startYear = original.startYear;
 			var endYear = original.endYear;
 			
+			// Unsigned players (salary set but no endYear) only affect current season
+			var effectiveStartYear = startYear || currentSeason;
+			var effectiveEndYear = endYear || currentSeason;
+			
 			// Update payroll and recoverable for seasons this contract covers
-			for (var season = Math.max(startYear, currentSeason); season <= endYear && season <= currentSeason + 2; season++) {
+			for (var season = Math.max(effectiveStartYear, currentSeason); season <= effectiveEndYear && season <= currentSeason + 2; season++) {
 				var recoverableAmount = computeRecoverableForContract(salary, startYear, endYear, season);
 				
 				// Receiving franchise gains payroll and recoverable

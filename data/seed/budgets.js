@@ -64,7 +64,8 @@ async function seed() {
 			contracts.forEach(function(c) {
 				if (!c.franchiseId.equals(franchiseId)) return;
 				if (c.salary === null) return; // RFA rights don't count
-				if (!c.endYear || c.endYear < season) return; // Contract ended before this season
+				if (c.endYear && c.endYear < season) return; // Contract ended before this season
+				if (!c.endYear && season !== currentSeason) return; // Unsigned players only count in current season
 				if (c.startYear && c.startYear > season) return; // Contract hasn't started yet
 				payroll += c.salary;
 				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);

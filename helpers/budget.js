@@ -92,7 +92,9 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 			var sendingId = contract.franchiseId.toString();
 			
 			seasons.forEach(function(season) {
-				if (endYear && season <= endYear) {
+				// Unsigned players (no endYear) only affect current season
+				var affectsSeason = endYear ? (season <= endYear) : (season === currentSeason);
+				if (affectsSeason) {
 					// Receiver takes on salary (negative = cap burden)
 					impact[receivingId][season] -= salary;
 					// Sender loses salary obligation (positive = cap relief)
