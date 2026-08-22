@@ -1,5 +1,5 @@
 // TODO: This should come from LeagueConfig in the database
-module.exports.season = 2025;
+module.exports.season = 2026;
 
 module.exports.auctionUsers = {
 	anthony: 'Anthony',
@@ -7,10 +7,10 @@ module.exports.auctionUsers = {
 	jason: 'Jason',
 	justin: 'Justin',
 	keyon: 'Keyon',
-	kociMueller: 'Koci/Mueller',
 	luke: 'Luke',
 	mike: 'Mike',
-	mitch: 'Mitch',
+	mitchKarsten: 'Mitch/Karsten',
+	nam: 'Nam',
 	patrick: 'Patrick',
 	quinn: 'Quinn',
 	schexes: 'Schexes'
@@ -22,10 +22,10 @@ module.exports.nominationOrder = [
 	'Jason',
 	'Justin',
 	'Keyon',
-	'Koci/Mueller',
 	'Luke',
 	'Mike',
-	'Mitch',
+	'Mitch/Karsten',
+	'Nam',
 	'Patrick',
 	'Quinn',
 	'Schexes'
@@ -33,7 +33,7 @@ module.exports.nominationOrder = [
 
 module.exports.franchises = {
 	1: 'Patrick',
-	2: 'Koci/Mueller',
+	2: 'Nam',
 	3: 'Luke',
 	4: 'Justin',
 	5: 'Mike',
@@ -43,12 +43,12 @@ module.exports.franchises = {
 	9: 'Schexes',
 	10: 'Anthony',
 	11: 'Quinn',
-	12: 'Mitch'
+	12: 'Mitch/Karsten'
 };
 
 module.exports.franchiseIds = {
 	'Patrick': 1,
-	'Koci/Mueller': 2,
+	'Nam': 2,
 	'Luke': 3,
 	'Justin': 4,
 	'Mike': 5,
@@ -58,13 +58,13 @@ module.exports.franchiseIds = {
 	'Schexes': 9,
 	'Anthony': 10,
 	'Quinn': 11,
-	'Mitch': 12
+	'Mitch/Karsten': 12
 };
 
 module.exports.regimes = {
 	// current franchises and which regimes they map to
 	'Patrick': 'Patrick',
-	'Koci/Mueller': 'Koci/Mueller',
+	'Nam': 'Nam',
 	'Luke': 'Luke',
 	'Justin': 'Justin',
 	'Mike': 'Mike',
@@ -74,7 +74,7 @@ module.exports.regimes = {
 	'Schexes': 'Schexes',
 	'Anthony': 'Anthony',
 	'Quinn': 'Quinn',
-	'Mitch': 'Mitch',
+	'Mitch/Karsten': 'Mitch/Karsten',
 
 	// defunct franchise names that map to their own regimes
 	'Charles': 'Charles',
@@ -82,6 +82,8 @@ module.exports.regimes = {
 	'James': 'James',
 	'Jeff': 'Jeff',
 	'John': 'John',
+	'Koci/Mueller': 'Koci/Mueller',
+	'Mitch': 'Mitch',
 	'Schex': 'Schex',
 	'Syed': 'Syed',
 	'Terence': 'Terence',
@@ -173,6 +175,7 @@ module.exports.sheetsBudgetCells = {
 
 module.exports.franchiseNames = {
 	1: {
+		2026: 'Patrick',
 		2025: 'Patrick',
 		2024: 'Patrick',
 		2023: 'Patrick',
@@ -193,6 +196,7 @@ module.exports.franchiseNames = {
 		2008: 'Patrick'
 	},
 	2: {
+		2026: 'Nam',
 		2025: 'Koci/Mueller',
 		2024: 'Koci/Mueller',
 		2023: 'Koci/Mueller',
@@ -213,6 +217,7 @@ module.exports.franchiseNames = {
 		2008: 'Koci'
 	},
 	3: {
+		2026: 'Luke',
 		2025: 'Luke',
 		2024: 'Luke',
 		2023: 'Luke',
@@ -233,6 +238,7 @@ module.exports.franchiseNames = {
 		2008: 'Syed'
 	},
 	4: {
+		2026: 'Justin',
 		2025: 'Justin',
 		2024: 'Justin',
 		2023: 'Justin',
@@ -253,6 +259,7 @@ module.exports.franchiseNames = {
 		2008: 'John'
 	},
 	5: {
+		2026: 'Mike',
 		2025: 'Mike',
 		2024: 'Mike',
 		2023: 'Mike',
@@ -273,6 +280,7 @@ module.exports.franchiseNames = {
 		2008: 'Trevor'
 	},
 	6: {
+		2026: 'Keyon',
 		2025: 'Keyon',
 		2024: 'Keyon',
 		2023: 'Keyon',
@@ -293,6 +301,7 @@ module.exports.franchiseNames = {
 		2008: 'Keyon'
 	},
 	7: {
+		2026: 'Brett',
 		2025: 'Brett',
 		2024: 'Brett',
 		2023: 'Brett',
@@ -313,6 +322,7 @@ module.exports.franchiseNames = {
 		2008: 'Jeff'
 	},
 	8: {
+		2026: 'Jason',
 		2025: 'Jason',
 		2024: 'Jason',
 		2023: 'Jason',
@@ -333,6 +343,7 @@ module.exports.franchiseNames = {
 		2008: 'Daniel'
 	},
 	9: {
+		2026: 'Schexes',
 		2025: 'Schexes',
 		2024: 'Schexes',
 		2023: 'James/Charles',
@@ -353,6 +364,7 @@ module.exports.franchiseNames = {
 		2008: 'James'
 	},
 	10: {
+		2026: 'Anthony',
 		2025: 'Anthony',
 		2024: 'Anthony',
 		2023: 'Schex',
@@ -373,6 +385,7 @@ module.exports.franchiseNames = {
 		2008: 'Schexes',
 	},
 	11: {
+		2026: 'Quinn',
 		2025: 'Quinn',
 		2024: 'Quinn',
 		2023: 'Quinn',
@@ -389,6 +402,7 @@ module.exports.franchiseNames = {
 		2012: 'Charles'
 	},
 	12: {
+		2026: 'Mitch/Karsten',
 		2025: 'Mitch',
 		2024: 'Mitch',
 		2023: 'Mitch',
