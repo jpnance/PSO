@@ -56,14 +56,6 @@ function activateAuction() {
 	broadcastAuctionData();
 };
 
-module.exports.authenticateOwner = function(request, response) {
-	if (owners[request.params.key]) {
-		response.cookie('auctionAuthKey', request.params.key, { expires: new Date('2026-01-01') });
-	}
-
-	response.redirect('/auction');
-};
-
 function callRoll() {
 	auction.status = 'roll-call';
 	auction.rollCall = [];
@@ -437,12 +429,6 @@ async function resolveOwnerFromCookie(rawCookie) {
 		} catch (err) {
 			console.error('Auction WS auth error:', err.message);
 		}
-	}
-
-	// Fall back to legacy auction auth cookie
-	var authKey = extractCookie(rawCookie, 'auctionAuthKey');
-	if (authKey && owners[authKey]) {
-		return owners[authKey];
 	}
 
 	return null;

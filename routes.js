@@ -1,5 +1,6 @@
 var auction = require('./services/auction');
 var auctionAdmin = require('./services/auction-admin');
+var auctionResults = require('./services/auction-results');
 var jaguar = require('./services/jaguar');
 var simulator = require('./services/simulator');
 var scuttlebot = require('./services/scuttlebot');
@@ -97,7 +98,7 @@ module.exports = function(app) {
 	app.get('/jaguar', jaguar.jaguarPage);
 	app.get('/jaguar/:season', jaguar.jaguarPage);
 
-	app.get('/auction/login/:key', auction.authenticateOwner);
+	app.get('/auction/results', auctionResults.resultsPage);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
 	app.get('/auction/admin', requireLogin, requireAdmin, auctionAdmin.adminPage);
 	app.get('/auction/admin/search', requireLogin, requireAdmin, noCache, auctionAdmin.searchPlayers);
