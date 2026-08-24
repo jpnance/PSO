@@ -52,34 +52,43 @@
 		});
 	});
 
-	function applySalarySort() {
-		document.querySelectorAll('.player-table__body').forEach(function(tbody) {
-			if (tbody.closest('.player-table__group--rfa')) return;
-			var dataRows = Array.from(tbody.querySelectorAll('.player-table__row'));
-			if (dataRows.length === 0) return;
+	// Track current sort state
+	var currentSort = 'name';
+	var ascending = true;
 
-			dataRows.sort(function(a, b) {
-				var salaryA = a.querySelector('.player-table__detail--salary');
-				var salaryB = b.querySelector('.player-table__detail--salary');
-				var valA = salaryA ? parseInt(salaryA.textContent.replace(/\D/g, ''), 10) || 0 : 0;
-				var valB = salaryB ? parseInt(salaryB.textContent.replace(/\D/g, ''), 10) || 0 : 0;
-				return valB - valA;
-			});
+	// Icon classes for each sort type and direction
+	var icons = {
+		name: { asc: 'fa-sort-alpha-asc', desc: 'fa-sort-alpha-desc' }
+	};
 
-			dataRows.forEach(function(row) { tbody.appendChild(row); });
-		});
+	function updateButtonIcon(btn, sortKey, isAsc) {
+		var icon = btn.querySelector('i');
+		if (!icon || !icons[sortKey]) return;
+		icon.className = 'fa ' + icons[sortKey][isAsc ? 'asc' : 'desc'];
 	}
 
-	function applyNameSort() {
+	function applySort(sortBy, asc) {
+		var dir = asc ? 1 : -1;
+
 		document.querySelectorAll('.player-table__body').forEach(function(tbody) {
 			if (tbody.closest('.player-table__group--rfa')) return;
 			var dataRows = Array.from(tbody.querySelectorAll('.player-table__row'));
 			if (dataRows.length === 0) return;
 
 			dataRows.sort(function(a, b) {
-				var nameA = a.querySelector('.player-table__name').textContent.trim();
-				var nameB = b.querySelector('.player-table__name').textContent.trim();
-				return nameA.localeCompare(nameB);
+				var result = 0;
+				if (sortBy === 'salary') {
+					var salaryA = a.querySelector('.player-table__detail--salary');
+					var salaryB = b.querySelector('.player-table__detail--salary');
+					var valA = salaryA ? parseInt(salaryA.textContent.replace(/\D/g, ''), 10) || 0 : 0;
+					var valB = salaryB ? parseInt(salaryB.textContent.replace(/\D/g, ''), 10) || 0 : 0;
+					result = valA - valB;
+				} else {
+					var nameA = a.querySelector('.player-table__name').textContent.trim();
+					var nameB = b.querySelector('.player-table__name').textContent.trim();
+					result = nameA.localeCompare(nameB);
+				}
+				return result * dir;
 			});
 
 			dataRows.forEach(function(row) { tbody.appendChild(row); });
@@ -88,18 +97,32 @@
 
 	sortButtons.forEach(function(btn) {
 		btn.addEventListener('click', function() {
+			var sortKey = this.dataset.sort;
+
+			if (currentSort === sortKey) {
+				// Toggle direction
+				ascending = !ascending;
+			} else {
+				// New sort key - use default direction
+				currentSort = sortKey;
+				ascending = sortKey !== 'salary'; // Salary defaults to descending
+			}
+
+			// Update button styles
 			sortButtons.forEach(function(b) {
 				b.classList.remove('btn-primary');
 				b.classList.add('btn-outline-secondary');
+				// Reset icons to default
+				var key = b.dataset.sort;
+				if (icons[key]) {
+					updateButtonIcon(b, key, key !== 'salary');
+				}
 			});
 			this.classList.remove('btn-outline-secondary');
 			this.classList.add('btn-primary');
+			updateButtonIcon(this, sortKey, ascending);
 
-			if (this.dataset.sort === 'salary') {
-				applySalarySort();
-			} else {
-				applyNameSort();
-			}
+			applySort(sortKey, ascending);
 		});
 	});
 

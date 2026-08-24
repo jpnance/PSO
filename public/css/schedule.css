@@ -35,19 +35,6 @@
 	color: var(--text-secondary);
 }
 
-/* Score progression chart (inside matchup) */
-.matchup__chart {
-	margin-top: 0.5rem;
-	background: #f8f9fa;
-	border: 1px solid #e9ecef;
-	border-radius: 4px;
-	overflow: hidden;
-}
-
-.matchup__chart-canvas {
-	height: 70px;
-}
-
 /* Games Container */
 .schedule__games {
 	display: grid;
