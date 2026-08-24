@@ -10,8 +10,10 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
 var Game = require('../models/Game');
 var budgetHelper = require('../helpers/budget');
+var contractHelper = require('../helpers/contract');
 
 var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
+var getEffectiveYears = contractHelper.getEffectiveYears;
 
 // First-round rookie salaries by year and position
 var rookieSalaries = {
@@ -241,13 +243,10 @@ async function validateTradeCash(tradeDetails, config) {
 		for (var j = 0; j < (receives.players || []).length; j++) {
 			var playerInfo = receives.players[j];
 			var salary = playerInfo.salary || 0;
-			var endYear = playerInfo.endYear;
-			
-			// Unsigned players (no endYear) only affect current season
-			var effectiveEndYear = endYear || currentSeason;
+			var effectiveYears = getEffectiveYears(playerInfo, currentSeason);
 			
 			// This player's salary affects all seasons through endYear
-			for (var season = currentSeason; season <= effectiveEndYear && season <= currentSeason + 2; season++) {
+			for (var season = currentSeason; season <= effectiveYears.endYear && season <= currentSeason + 2; season++) {
 				if (!cashBySeason[franchiseId]) cashBySeason[franchiseId] = {};
 				if (!cashBySeason[franchiseId][season]) cashBySeason[franchiseId][season] = 0;
 				cashBySeason[franchiseId][season] -= salary; // Adding a player = less available
@@ -269,13 +268,10 @@ async function validateTradeCash(tradeDetails, config) {
 			
 			var senderId = contract.franchiseId.toString();
 			var salary = contract.salary || 0;
-			var endYear = contract.endYear;
-			
-			// Unsigned players (no endYear) only affect current season
-			var effectiveEndYear = endYear || currentSeason;
+			var effectiveYears = getEffectiveYears(contract, currentSeason);
 			
 			// Sending away a player = salary freed up
-			for (var season = currentSeason; season <= effectiveEndYear && season <= currentSeason + 2; season++) {
+			for (var season = currentSeason; season <= effectiveYears.endYear && season <= currentSeason + 2; season++) {
 				if (!cashBySeason[senderId]) cashBySeason[senderId] = {};
 				if (!cashBySeason[senderId][season]) cashBySeason[senderId][season] = 0;
 				cashBySeason[senderId][season] += salary; // Losing a player = more available
@@ -748,16 +744,11 @@ async function processTrade(tradeDetails) {
 			if (!original) continue; // Shouldn't happen if validation passed
 			
 			var salary = original.salary || 0;
-			var startYear = original.startYear;
-			var endYear = original.endYear;
-			
-			// Unsigned players (salary set but no endYear) only affect current season
-			var effectiveStartYear = startYear || currentSeason;
-			var effectiveEndYear = endYear || currentSeason;
+			var effectiveYears = getEffectiveYears(original, currentSeason);
 			
 			// Update payroll and recoverable for seasons this contract covers
-			for (var season = Math.max(effectiveStartYear, currentSeason); season <= effectiveEndYear && season <= currentSeason + 2; season++) {
-				var recoverableAmount = computeRecoverableForContract(salary, startYear, endYear, season);
+			for (var season = Math.max(effectiveYears.startYear, currentSeason); season <= effectiveYears.endYear && season <= currentSeason + 2; season++) {
+				var recoverableAmount = computeRecoverableForContract(salary, original.startYear, original.endYear, season);
 				
 				// Receiving franchise gains payroll and recoverable
 				ensureBudgetUpdate(party.franchiseId, season).payrollDelta += salary;

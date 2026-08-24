@@ -7,8 +7,10 @@ var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
 var LeagueConfig = require('../../models/LeagueConfig');
 var budgetHelper = require('../../helpers/budget');
+var contractHelper = require('../../helpers/contract');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
+var contractAffectsSeason = contractHelper.contractAffectsSeason;
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -63,10 +65,7 @@ async function seed() {
 			var recoverable = 0;
 			contracts.forEach(function(c) {
 				if (!c.franchiseId.equals(franchiseId)) return;
-				if (c.salary === null) return; // RFA rights don't count
-				if (c.endYear && c.endYear < season) return; // Contract ended before this season
-				if (!c.endYear && season !== currentSeason) return; // Unsigned players only count in current season
-				if (c.startYear && c.startYear > season) return; // Contract hasn't started yet
+				if (!contractAffectsSeason(c, season, currentSeason)) return;
 				payroll += c.salary;
 				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);
 				recoverable += (c.salary - buyOut);

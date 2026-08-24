@@ -1,6 +1,7 @@
 // Budget calculation utilities
 
 var BUYOUT_PERCENTAGES = [0.60, 0.30, 0.15];
+var contractHelper = require('./contract');
 
 /**
  * Calculate budget impact for a proposed trade.
@@ -88,13 +89,10 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 			if (!contract || contract.salary === null) return; // Skip RFA rights
 			
 			var salary = contract.salary || 0;
-			var endYear = contract.endYear;
 			var sendingId = contract.franchiseId.toString();
 			
 			seasons.forEach(function(season) {
-				// Unsigned players (no endYear) only affect current season
-				var affectsSeason = endYear ? (season <= endYear) : (season === currentSeason);
-				if (affectsSeason) {
+				if (contractHelper.contractAffectsSeason(contract, season, currentSeason)) {
 					// Receiver takes on salary (negative = cap burden)
 					impact[receivingId][season] -= salary;
 					// Sender loses salary obligation (positive = cap relief)

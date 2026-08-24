@@ -12,6 +12,7 @@ var transactionService = require('./transaction');
 var rollbackService = require('./rollback');
 var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
+var { contractAffectsSeason } = require('../helpers/contract');
 
 var currentSeason = PSO.season;
 
@@ -784,10 +785,7 @@ async function sanityPage(request, response) {
 		var calculatedPayroll = 0;
 		allContracts.forEach(function(c) {
 			if (c.franchiseId.toString() !== fIdStr) return;
-			if (c.salary === null) return; // RFA rights
-			if (c.endYear && c.endYear < season) return; // Contract ended
-			if (!c.endYear && season !== currentSeason) return; // Unsigned players only count in current season
-			if (c.startYear && c.startYear > season) return; // Contract hasn't started
+			if (!contractAffectsSeason(c, season, currentSeason)) return;
 			calculatedPayroll += c.salary;
 		});
 		
