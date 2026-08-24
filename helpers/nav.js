@@ -46,7 +46,7 @@ function buildNav(options) {
 		}
 		// Everything else falls under "more" or no tab highlighted
 		if (activePage === 'draft' || activePage === 'rookies' || activePage === 'rfa' || activePage === 'ufa' ||
-			activePage === 'sunk' || activePage === 'calendar' || activePage === 'rules') {
+			activePage === 'auction' || activePage === 'sunk' || activePage === 'calendar' || activePage === 'rules') {
 			return 'more';
 		}
 		return null;
@@ -111,9 +111,9 @@ function buildNav(options) {
 					items: [
 						{ label: 'Rookie Draft', icon: 'fa-list-ol', href: '/draft', active: isActive('draft') },
 						{ label: 'Rookie Salaries', icon: 'fa-graduation-cap', href: '/rookies', active: isActive('rookies') },
+						{ label: 'Free Agent Auction', icon: 'fa-gavel', href: '/auction/results', active: isActive('auction') },
 						{ label: 'RFAs', icon: 'fa-user-plus', href: '/rfa', active: isActive('rfa') },
-						{ label: 'UFAs', icon: 'fa-user-o', href: '/ufa', active: isActive('ufa') },
-						{ label: 'Free Agent Auction', icon: 'fa-gavel', href: '#', soon: true }
+						{ label: 'UFAs', icon: 'fa-user-o', href: '/ufa', active: isActive('ufa') }
 					]
 				},
 				{
