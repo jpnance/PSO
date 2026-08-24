@@ -11,14 +11,14 @@ When referencing patterns from other Coinflipper apps, agents may look at these 
 
 ## Project Maturity
 
-This codebase is deployed but not yet battle-tested through a real fantasy season. Most features haven't been used by real users yet. This means:
+This codebase is in production with real users and live data. The 2026 season is underway. This means:
 
-- **Refactoring is cheap** — No established user habits to break
-- **Experimentation is encouraged** — Try the cleaner approach, iterate freely
-- **Debt avoidance matters** — Better to get paradigms right now than accumulate workarounds
-- **New patterns welcome** — Don't shy away from rethinking UI/UX or data models
+- **Migrations carry risk** — Schema changes require careful planning and data migration
+- **Refactoring requires caution** — Test thoroughly, consider rollback strategies
+- **Stability over experimentation** — Prefer incremental improvements to wholesale rewrites
+- **Existing patterns matter** — Consistency with established code is valuable
 
-Treat this as shaping-phase code, not legacy code.
+Treat this as production code, not shaping-phase code.
 
 ## Data & Domain Modeling
 
