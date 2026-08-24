@@ -372,8 +372,8 @@ a.franchise-roster-cards__name:hover {
 }
 
 .contract-picker__btn {
-    width: 22px;
-    height: 24px;
+	width: 20px;
+	height: 20px;
     padding: 0;
     border: 1px solid #ccc;
     background: #fff;

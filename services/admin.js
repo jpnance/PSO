@@ -1397,6 +1397,180 @@ async function rollbackTransaction(request, response) {
 	}
 }
 
+// GET /admin/contracts - show unsigned players with pending contract choices for all franchises
+async function contractsPage(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+
+	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({}).lean();
+
+	var unsignedContracts = await Contract.find({
+		salary: { $ne: null },
+		endYear: null
+	}).populate('playerId').lean();
+
+	var franchiseList = franchises.map(function(f) {
+		var fIdStr = f._id.toString();
+		var regime = regimes.find(function(r) {
+			return r.tenures.some(function(t) {
+				return t.franchiseId.toString() === fIdStr &&
+					t.startSeason <= season &&
+					(t.endSeason === null || t.endSeason >= season);
+			});
+		});
+
+		var players = unsignedContracts
+			.filter(function(c) { return c.franchiseId.toString() === fIdStr; })
+			.map(function(c) {
+				return {
+					playerId: c.playerId ? c.playerId._id.toString() : null,
+					name: c.playerId ? c.playerId.name : 'Unknown',
+					positions: c.playerId ? c.playerId.positions : [],
+					salary: c.salary,
+					pendingEndYear: c.pendingEndYear || null,
+					pendingYears: c.pendingEndYear ? (c.pendingEndYear - season + 1) : null
+				};
+			})
+			.sort(function(a, b) { return a.name.localeCompare(b.name); });
+
+		return {
+			_id: fIdStr,
+			displayName: regime ? regime.displayName : 'Unknown',
+			players: players
+		};
+	})
+	.filter(function(f) { return f.players.length > 0; })
+	.sort(function(a, b) { return a.displayName.localeCompare(b.displayName); });
+
+	var totalUnsigned = unsignedContracts.length;
+	var totalAssigned = unsignedContracts.filter(function(c) { return c.pendingEndYear; }).length;
+
+	var processResult = request.query.processResult
+		? JSON.parse(decodeURIComponent(request.query.processResult))
+		: null;
+
+	response.render('admin-contracts', {
+		franchises: franchiseList,
+		currentSeason: season,
+		totalUnsigned: totalUnsigned,
+		totalAssigned: totalAssigned,
+		processResult: processResult,
+		activePage: 'admin'
+	});
+}
+
+// POST /admin/contracts/override - admin override of a player's pending contract
+async function overrideContract(request, response) {
+	var playerId = request.body.playerId;
+	var years = parseInt(request.body.years, 10);
+
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var season = config ? config.season : new Date().getFullYear();
+
+		var contract = await Contract.findOne({
+			playerId: playerId,
+			salary: { $ne: null },
+			endYear: null
+		});
+
+		if (!contract) {
+			return response.status(404).json({ error: 'Unsigned contract not found' });
+		}
+
+		if (years !== 0 && ![1, 2, 3].includes(years)) {
+			return response.status(400).json({ error: 'Contract must be 1, 2, or 3 years (or 0 to clear)' });
+		}
+
+		contract.pendingEndYear = years > 0 ? season + years - 1 : null;
+		await contract.save();
+
+		response.json({ success: true, pendingEndYear: contract.pendingEndYear });
+	} catch (err) {
+		console.error('Override contract error:', err);
+		response.status(500).json({ error: 'Server error' });
+	}
+}
+
+// POST /admin/contracts/process - finalize all pending contracts
+async function processContracts(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var season = config ? config.season : new Date().getFullYear();
+	var budgetHelper = require('../helpers/budget');
+
+	var unsignedContracts = await Contract.find({
+		salary: { $ne: null },
+		endYear: null
+	}).populate('playerId').lean();
+
+	var unassigned = unsignedContracts.filter(function(c) { return !c.pendingEndYear; });
+	if (unassigned.length > 0) {
+		var names = unassigned.map(function(c) {
+			return c.playerId ? c.playerId.name : 'Unknown';
+		});
+		var errorResult = encodeURIComponent(JSON.stringify({
+			success: false,
+			error: unassigned.length + ' unsigned player' + (unassigned.length !== 1 ? 's have' : ' has') +
+				' no contract assigned: ' + names.join(', ')
+		}));
+		return response.redirect('/admin/contracts?processResult=' + errorResult);
+	}
+
+	var successCount = 0;
+	var results = [];
+
+	for (var i = 0; i < unsignedContracts.length; i++) {
+		var c = unsignedContracts[i];
+		var playerName = c.playerId ? c.playerId.name : 'Unknown';
+		var newEndYear = c.pendingEndYear;
+
+		var oldRecoverable = {};
+		var newRecoverable = {};
+		for (var s = season; s <= season + 2; s++) {
+			oldRecoverable[s] = budgetHelper.computeRecoverableForContract(c.salary, c.startYear || season, null, s);
+			if (newEndYear >= s) {
+				newRecoverable[s] = budgetHelper.computeRecoverableForContract(c.salary, season, newEndYear, s);
+			} else {
+				newRecoverable[s] = 0;
+			}
+		}
+
+		await Contract.updateOne(
+			{ _id: c._id },
+			{ startYear: season, endYear: newEndYear, pendingEndYear: null }
+		);
+
+		for (var s = season; s <= season + 2; s++) {
+			var recoverableDelta = newRecoverable[s] - oldRecoverable[s];
+			var payrollDelta = 0;
+			var availableDelta = 0;
+
+			if (newEndYear < s) {
+				payrollDelta = -c.salary;
+				availableDelta = c.salary;
+			}
+
+			if (recoverableDelta !== 0 || payrollDelta !== 0) {
+				await Budget.updateOne(
+					{ franchiseId: c.franchiseId, season: s },
+					{ $inc: { recoverable: recoverableDelta, payroll: payrollDelta, available: availableDelta } }
+				);
+			}
+		}
+
+		successCount++;
+		results.push({ name: playerName, years: newEndYear - season + 1, success: true });
+	}
+
+	var processResult = encodeURIComponent(JSON.stringify({
+		success: true,
+		successCount: successCount,
+		results: results
+	}));
+	response.redirect('/admin/contracts?processResult=' + processResult);
+}
+
 module.exports = {
 	configPage: configPage,
 	updateConfig: updateConfig,
@@ -1407,6 +1581,9 @@ module.exports = {
 	rostersPage: rostersPage,
 	cutPlayer: cutPlayer,
 	processCutDay: processCutDay,
+	contractsPage: contractsPage,
+	overrideContract: overrideContract,
+	processContracts: processContracts,
 	sanityPage: sanityPage,
 	transactionsPage: transactionsPage,
 	rollbackTransaction: rollbackTransaction

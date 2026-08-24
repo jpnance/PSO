@@ -1,0 +1,184 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Contract Processing', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/admin-contracts.css')
+
+block content
+	div.container.py-4
+		div.page-header
+			h1 Contract Processing
+
+		if processResult
+			if processResult.success
+				div.alert.alert-success.alert-dismissible
+					button.close(type='button' data-dismiss='alert') &times;
+					strong Contracts processed!
+					|  #{processResult.successCount} contract#{processResult.successCount !== 1 ? 's' : ''} finalized.
+					ul.mb-0.mt-2
+						each r in processResult.results
+							li #{r.name}: #{r.years}-year contract
+			else
+				div.alert.alert-danger.alert-dismissible
+					button.close(type='button' data-dismiss='alert') &times;
+					strong Cannot process:
+					|  #{processResult.error}
+
+		div.admin-contracts__summary.mb-4
+			div.d-flex.align-items-center.justify-content-between
+				div
+					strong #{totalAssigned}/#{totalUnsigned}
+					|  unsigned player#{totalUnsigned !== 1 ? 's' : ''} assigned
+					if totalAssigned < totalUnsigned
+						span.text-danger.ml-2
+							i.fa.fa-exclamation-triangle.mr-1
+							| #{totalUnsigned - totalAssigned} still need contracts
+				form(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
+					button.btn.btn-primary(type='submit' disabled=totalAssigned < totalUnsigned)
+						i.fa.fa-check-circle.mr-2
+						| Process Contracts
+
+		div.row
+			each franchise in franchises
+				- var assignedCount = franchise.players.filter(p => p.pendingYears).length
+				div.col-md-6.col-lg-4
+					div.card.mb-4.admin-contracts__card(data-assigned=assignedCount data-total=franchise.players.length)
+						div.card-header.d-flex.justify-content-between.align-items-center
+							span= franchise.displayName
+							div.d-flex.align-items-center
+								span.admin-contracts__badge.mr-2(class=assignedCount === franchise.players.length ? 'badge badge-success' : 'badge badge-warning') #{assignedCount}/#{franchise.players.length}
+								button.btn.btn-sm.btn-outline-secondary.admin-contracts__reveal(type='button' title='Reveal contracts')
+									i.fa.fa-eye
+						div.admin-contracts__list
+							each player in franchise.players
+								- var posGroup = player.positions && player.positions.length > 0 ? (player.positions.some(p => ['DL','LB','DB'].includes(p)) ? 'IDP' : player.positions[0]) : null
+								div.admin-contracts__row(class=[(posGroup ? 'pos-' + posGroup : ''), player.pendingYears ? '' : 'admin-contracts__row--unassigned'].join(' '))
+									div.admin-contracts__details
+										div.admin-contracts__player
+											span.admin-contracts__player-name= player.name
+										div.admin-contracts__meta
+											span= formatMoney(player.salary)
+									div.admin-contracts__actions
+										if player.positions && player.positions.length
+											+positionBadge(player.positions)
+										div.admin-contracts__picker(data-player-id=player.playerId)
+											each years in [1, 2, 3]
+												button.admin-contracts__btn(type='button' data-years=years class=player.pendingYears === years ? 'admin-contracts__btn--active' : '' title=years + '-year contract (' + currentSeason + '–' + (currentSeason + years - 1) + ')')= years
+
+block scripts
+	script.
+		var totalUnsigned = #{totalUnsigned};
+		var totalAssigned = #{totalAssigned};
+
+		function confirmProcess() {
+			return confirm('Process all contracts? This will finalize ' + totalAssigned + ' contract assignment' + (totalAssigned !== 1 ? 's' : '') + '. This cannot be undone.');
+		}
+
+		document.querySelectorAll('.admin-contracts__card').forEach(function(card) {
+			var revealBtn = card.querySelector('.admin-contracts__reveal');
+			revealBtn.addEventListener('click', function() {
+				card.classList.toggle('admin-contracts__card--revealed');
+				var icon = revealBtn.querySelector('i');
+				if (card.classList.contains('admin-contracts__card--revealed')) {
+					icon.className = 'fa fa-eye-slash';
+				} else {
+					icon.className = 'fa fa-eye';
+				}
+			});
+		});
+
+		document.querySelectorAll('.admin-contracts__picker').forEach(function(picker) {
+			var playerId = picker.dataset.playerId;
+
+			picker.querySelectorAll('.admin-contracts__btn').forEach(function(btn) {
+				btn.addEventListener('click', function() {
+					var card = picker.closest('.admin-contracts__card');
+					if (!card.classList.contains('admin-contracts__card--revealed')) return;
+
+					var isActive = btn.classList.contains('admin-contracts__btn--active');
+					var years = isActive ? 0 : parseInt(btn.dataset.years, 10);
+
+					picker.querySelectorAll('.admin-contracts__btn').forEach(function(b) {
+						b.disabled = true;
+					});
+
+					fetch('/admin/contracts/override', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ playerId: playerId, years: years })
+					})
+					.then(function(res) { return res.json(); })
+					.then(function(data) {
+						if (data.error) {
+							alert(data.error);
+							return;
+						}
+
+						picker.querySelectorAll('.admin-contracts__btn').forEach(function(b) {
+							b.classList.remove('admin-contracts__btn--active');
+						});
+
+						var row = picker.closest('.admin-contracts__row');
+						var delta = 0;
+						if (data.pendingEndYear) {
+							btn.classList.add('admin-contracts__btn--active');
+							if (row.classList.contains('admin-contracts__row--unassigned')) {
+								row.classList.remove('admin-contracts__row--unassigned');
+								delta = 1;
+							}
+						} else {
+							row.classList.add('admin-contracts__row--unassigned');
+							delta = -1;
+						}
+
+						if (delta !== 0) {
+							updateSummary(delta);
+							updateCardBadge(card, delta);
+						}
+					})
+					.catch(function() {
+						alert('Something went wrong. Please try again.');
+					})
+					.finally(function() {
+						picker.querySelectorAll('.admin-contracts__btn').forEach(function(b) {
+							b.disabled = false;
+						});
+					});
+				});
+			});
+		});
+
+		function updateCardBadge(card, delta) {
+			var assigned = parseInt(card.dataset.assigned, 10) + delta;
+			card.dataset.assigned = assigned;
+			var total = parseInt(card.dataset.total, 10);
+			var badge = card.querySelector('.admin-contracts__badge');
+			badge.textContent = assigned + '/' + total;
+			badge.className = 'admin-contracts__badge mr-2 badge ' + (assigned === total ? 'badge-success' : 'badge-warning');
+		}
+
+		function updateSummary(delta) {
+			totalAssigned += delta;
+			var summary = document.querySelector('.admin-contracts__summary strong');
+			if (summary) {
+				summary.textContent = totalAssigned + '/' + totalUnsigned;
+			}
+			var remaining = totalUnsigned - totalAssigned;
+			var warning = document.querySelector('.admin-contracts__summary .text-danger');
+			if (warning) {
+				if (remaining > 0) {
+					warning.innerHTML = '<i class="fa fa-exclamation-triangle mr-1"></i>' + remaining + ' still need contracts';
+					warning.style.display = '';
+				} else {
+					warning.style.display = 'none';
+				}
+			}
+			var processBtn = document.querySelector('.admin-contracts__summary button[type="submit"]');
+			if (processBtn) {
+				processBtn.disabled = (totalAssigned < totalUnsigned);
+			}
+		}
