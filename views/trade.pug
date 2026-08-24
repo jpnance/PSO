@@ -166,13 +166,10 @@ block scripts
 	script.
 		var currentSeason = #{season};
 		var isBeforeCutDay = #{isBeforeCutDay ? 'true' : 'false'};
-		var rosterLimit = #{rosterLimit};
 		var confirmName = !{isProcessingMode ? JSON.stringify(confirmName) : 'null'};
 		var isLoggedIn = !{isLoggedIn ? 'true' : 'false'};
 		var userFranchiseIds = !{JSON.stringify(userFranchiseIds || [])};
 		var initialDeal = !{initialDeal ? JSON.stringify(initialDeal) : 'null'};
-		var franchiseData = {};
-		!{franchises.map(function(f) { return "franchiseData['" + f._id + "'] = { rosterCount: " + f.rosterCount + ", available: " + f.available + ", recoverable: " + f.recoverable + " };"; }).join('\n\t\t')}
 		
 		// JSON data for Trade Machine (replaces hidden DOM selects)
 		var playersByFranchise = !{JSON.stringify(teams)};

@@ -165,10 +165,13 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 			var recoverable = 0;
 			allContracts.forEach(function(c) {
 				if (c.franchiseId.toString() !== fId) return;
-				if (c.endYear < s) return;
+				if (!contractHelper.contractAffectsSeason(c, s, currentSeason)) return;
 				// Skip players being traded away
 				if (playersLeavingFranchise[fId].includes(c.playerId.toString())) return;
-				recoverable += computeRecoverableForContract(c.salary, c.startYear, c.endYear, s);
+				// For unsigned players, treat as first year of contract
+				var effectiveStart = c.startYear || currentSeason;
+				var effectiveEnd = c.endYear || currentSeason;
+				recoverable += computeRecoverableForContract(c.salary, effectiveStart, effectiveEnd, s);
 			});
 			recoverableMap[fId][s] = recoverable;
 		});

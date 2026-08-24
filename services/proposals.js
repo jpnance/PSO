@@ -3,7 +3,6 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var Contract = require('../models/Contract');
-var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
@@ -88,14 +87,7 @@ async function getTradeData(currentSeason) {
 		.sort({ season: 1, round: 1 })
 		.lean();
 	
-	// Get budgets for current season
-	var budgets = await Budget.find({ season: currentSeason }).lean();
-	var budgetByFranchise = {};
-	budgets.forEach(function(b) {
-		budgetByFranchise[b.franchiseId.toString()] = b;
-	});
-	
-	// Build franchise list with display names and budget info
+	// Build franchise list with display names
 	var franchiseList = franchises.map(function(f) {
 		var fIdStr = f._id.toString();
 		var regime = regimes.find(function(r) {
@@ -106,24 +98,9 @@ async function getTradeData(currentSeason) {
 			});
 		});
 		
-		// Get active contracts (with salary, for current season)
-		var activeContracts = contracts.filter(function(c) {
-			return c.franchiseId.equals(f._id) && 
-				c.salary !== null &&
-				c.endYear && c.endYear >= currentSeason;
-		});
-		
-		// Get available and recoverable from Budget document
-		var budget = budgetByFranchise[f._id.toString()];
-		var available = budget ? budget.available : 1000;
-		var recoverable = budget ? budget.recoverable : 0;
-		
 		return {
 			_id: f._id,
-			displayName: regime ? regime.displayName : 'Unknown',
-			rosterCount: activeContracts.length,
-			available: available,
-			recoverable: recoverable
+			displayName: regime ? regime.displayName : 'Unknown'
 		};
 	}).sort(function(a, b) {
 		return a.displayName.localeCompare(b.displayName);
@@ -171,9 +148,12 @@ async function getTradeData(currentSeason) {
 		}
 		
 		// Calculate this player's recoverable (salary - buyout)
+		// Unsigned players use first-year buyout rate (60% buyout, 40% recoverable)
 		var playerRecoverable = 0;
-		if (c.salary !== null && c.endYear && c.endYear >= currentSeason) {
-			var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, currentSeason);
+		if (c.salary !== null && (c.endYear >= currentSeason || !c.endYear)) {
+			var effectiveStart = c.startYear || currentSeason;
+			var effectiveEnd = c.endYear || currentSeason;
+			var buyOut = computeBuyOutIfCut(c.salary, effectiveStart, effectiveEnd, currentSeason);
 			playerRecoverable = c.salary - buyOut;
 		}
 		
@@ -339,7 +319,6 @@ async function tradeMachinePage(request, response) {
 			season: currentSeason,
 			isPlural: isPluralName,
 			isBeforeCutDay: isBeforeCutDay,
-			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			isLoggedIn: !!user,
 			userFranchiseIds: userFranchiseIds,
 			tradesEnabled: tradesEnabled,
@@ -377,7 +356,6 @@ async function processPage(request, response) {
 			season: currentSeason,
 			isPlural: isPluralName,
 			isBeforeCutDay: isBeforeCutDay,
-			rosterLimit: LeagueConfig.ROSTER_LIMIT,
 			isProcessingMode: true,
 			confirmName: randomPlayer.name,
 			activePage: 'admin'
