@@ -1109,6 +1109,38 @@ async function sanityPage(request, response) {
 	});
 }
 
+// POST /admin/rosters/mark-for-cut - admin toggle mark-for-cut on any player
+async function markForCut(request, response) {
+	var playerId = request.body.playerId;
+
+	try {
+		if (!playerId) {
+			return response.status(400).json({ error: 'Missing player ID' });
+		}
+
+		var contract = await Contract.findOne({
+			playerId: playerId,
+			salary: { $ne: null }
+		});
+
+		if (!contract) {
+			return response.status(404).json({ error: 'Contract not found' });
+		}
+
+		contract.markedForCut = !contract.markedForCut;
+		contract.markedForCutAt = contract.markedForCut ? new Date() : null;
+		await contract.save();
+
+		response.json({
+			playerId: playerId,
+			markedForCut: contract.markedForCut
+		});
+	} catch (err) {
+		console.error('Admin mark-for-cut error:', err);
+		response.status(500).json({ error: 'Server error' });
+	}
+}
+
 // POST /admin/rosters/process-cut-day - execute all marked cuts at once
 async function processCutDay(request, response) {
 	var config = await LeagueConfig.findById('pso');
@@ -1580,6 +1612,7 @@ module.exports = {
 	transferFranchise: transferFranchise,
 	rostersPage: rostersPage,
 	cutPlayer: cutPlayer,
+	markForCut: markForCut,
 	processCutDay: processCutDay,
 	contractsPage: contractsPage,
 	overrideContract: overrideContract,

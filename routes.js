@@ -127,6 +127,7 @@ module.exports = function(app) {
 	app.post('/admin/transfer-franchise', requireLogin, requireAdmin, admin.transferFranchise);
 	app.get('/admin/rosters', requireLogin, requireAdmin, admin.rostersPage);
 	app.post('/admin/rosters/cut', requireLogin, requireAdmin, admin.cutPlayer);
+	app.post('/admin/rosters/mark-for-cut', requireLogin, requireAdmin, admin.markForCut);
 	app.post('/admin/rosters/process-cut-day', requireLogin, requireAdmin, admin.processCutDay);
 	app.get('/admin/contracts', requireLogin, requireAdmin, admin.contractsPage);
 	app.post('/admin/contracts/override', requireLogin, requireAdmin, admin.overrideContract);

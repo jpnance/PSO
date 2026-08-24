@@ -1,44 +1,113 @@
-/* Admin rosters page styles (BEM) */
-
-.admin-rosters__player {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.5rem 0;
-	border-bottom: 1px solid #eee;
+.admin-rosters__summary {
+	padding: 1rem;
+	background: #f8f9fa;
+	border: 1px solid var(--border-light, #eee);
+	border-radius: 6px;
 }
 
-.admin-rosters__player:last-child {
+.admin-rosters__list {
+}
+
+.admin-rosters__empty {
+	padding: 0.75rem;
+}
+
+.admin-rosters__row {
+	display: flex;
+	padding: 0.5rem 0.75rem;
+	border-bottom: 1px solid #eee;
+	align-items: center;
+}
+
+.admin-rosters__row:last-child {
 	border-bottom: none;
 }
 
-.admin-rosters__player-info {
+/* Position-colored backgrounds */
+.admin-rosters__row.pos-QB { background-color: var(--pos-qb-bg); }
+.admin-rosters__row.pos-RB { background-color: var(--pos-rb-bg); }
+.admin-rosters__row.pos-WR { background-color: var(--pos-wr-bg); }
+.admin-rosters__row.pos-TE { background-color: var(--pos-te-bg); }
+.admin-rosters__row.pos-IDP { background-color: var(--pos-idp-bg); }
+.admin-rosters__row.pos-K { background-color: var(--pos-k-bg); }
+
+.admin-rosters__row--marked {
+	background-color: #fff0f0 !important;
+}
+
+.admin-rosters__row--marked .admin-rosters__player-name {
+	text-decoration: line-through;
+	color: var(--color-danger, #dc3545);
+}
+
+.admin-rosters__details {
 	flex: 1;
+	min-width: 0;
 }
 
-.admin-rosters__player-name-row {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.admin-rosters__player-name {
+.admin-rosters__player {
 	font-weight: 500;
 }
 
-.admin-rosters__player-meta {
-	font-size: 0.85rem;
+.admin-rosters__meta {
+	font-size: 0.75rem;
 	color: #6c757d;
 }
 
-.admin-rosters__cut-btn {
-	margin-left: 1rem;
+.admin-rosters__actions {
+	margin-left: auto;
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 0.25rem;
 }
 
-.admin-rosters__player--marked {
-	background-color: #fff5f5;
-	margin: 0 -0.75rem;
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
-	border-radius: 4px;
+/* Scissor toggle */
+.admin-rosters__cut-toggle {
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: 1px solid #dcc;
+	border-radius: 3px;
+	background: #fff;
+	color: #baa;
+	font-size: 0.7rem;
+	cursor: pointer;
+	transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.admin-rosters__cut-toggle:hover {
+	border-color: var(--color-danger, #dc3545);
+	color: var(--color-danger, #dc3545);
+}
+
+.admin-rosters__cut-toggle--active {
+	background: var(--color-danger, #dc3545);
+	border-color: var(--color-danger, #dc3545);
+	color: #fff;
+}
+
+.admin-rosters__cut-toggle--active:hover {
+	background: #c82333;
+	border-color: #c82333;
+	color: #fff;
+}
+
+.admin-rosters__cut-toggle--drop {
+	border-color: #ccc;
+	color: #aaa;
+}
+
+.admin-rosters__cut-toggle--drop:hover {
+	border-color: #999;
+	color: #666;
+}
+
+.admin-rosters__cut-toggle:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
 }
