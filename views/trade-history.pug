@@ -203,7 +203,7 @@ block content
 						
 						//- Bottom pagination
 						- var pageSep = baseQuery ? '&' : '?'
-						- var olderUrl = olderPage ? '/trades' + baseQuery + (olderPage > 1 ? pageSep + 'page=' + olderPage : '') : null
+						- var olderUrl = olderPage ? '/trades' + baseQuery + pageSep + 'page=' + olderPage : null
 						- var newerUrl = newerPage ? '/trades' + baseQuery + pageSep + 'page=' + newerPage : (!isDefaultView ? '/trades' + baseQuery : null)
 						div#pagination.mt-4
 							+sequentialNav({ prev: olderUrl, next: newerUrl, urlPattern: '' })
