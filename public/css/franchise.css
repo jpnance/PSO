@@ -363,3 +363,93 @@ a.franchise-roster-cards__name:hover {
     font-size: 0.9em;
 }
 
+/* ========================================
+   Contract Picker (unsigned players)
+   ======================================== */
+
+.contract-picker {
+    display: inline-flex;
+}
+
+.contract-picker__btn {
+    width: 22px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #666;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+    margin-left: -1px;
+}
+
+.contract-picker__btn:first-child {
+    margin-left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.contract-picker__btn:last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+.contract-picker__btn:hover {
+    border-color: #999;
+    color: #333;
+    z-index: 1;
+    position: relative;
+}
+
+.contract-picker__btn--active {
+    color: #fff;
+    z-index: 2;
+    position: relative;
+}
+
+.contract-picker__btn--active[data-years="1"] {
+    background: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.contract-picker__btn--active[data-years="2"] {
+    background: var(--color-link, #4a90d9);
+    border-color: var(--color-link, #4a90d9);
+}
+
+.contract-picker__btn--active[data-years="3"] {
+    background: #e8833a;
+    border-color: #e8833a;
+}
+
+.contract-picker__btn--active:hover {
+    filter: brightness(0.9);
+    color: #fff;
+}
+
+.contract-picker__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Sticky sidebar on desktop during contract-setting phase */
+@media (min-width: 992px) {
+    .franchise-sidebar--sticky {
+        position: sticky;
+        top: calc(var(--topbar-height, 56px) + 1rem);
+        align-self: flex-start;
+    }
+}
+
+/* ========================================
+   Budget Pending Note
+   ======================================== */
+
+.budget-table__pending-note {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-muted, #6c757d);
+    border-top: 1px solid var(--border-light, #eee);
+}
+

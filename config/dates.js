@@ -68,7 +68,8 @@ module.exports.contractDueDates = {
 	2022: 'September 5',
 	2023: 'September 4',
 	2024: 'September 2',
-	2025: 'September 1'
+	2025: 'September 1',
+	2026: 'September 7'
 };
 
 // Cut due dates: deadline to drop players to get under the roster limit.

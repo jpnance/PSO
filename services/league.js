@@ -348,6 +348,7 @@ async function getFranchise(franchiseId, currentSeason) {
 			salary: salary,
 			startYear: startYear,
 			endYear: endYear,
+			pendingEndYear: c.pendingEndYear || null,
 			yearsLeft: yearsLeft,
 			recoverable: getRecoverable(currentSeason),
 			recoverable1: getRecoverable(currentSeason + 1),
@@ -855,6 +856,29 @@ async function franchiseDetail(request, response) {
 		// Can mark for cut during early-offseason only
 		var canMarkForCut = isOwner && phase === 'early-offseason';
 		
+		// Contract setting: allowed for owner during pre-season (between auction and contract deadline)
+		var canSetContracts = isOwner && phase === 'pre-season';
+		var pendingContractCount = 0;
+		
+		if (canSetContracts) {
+			pendingContractCount = data.roster.filter(function(p) {
+				return !p.endYear && p.pendingEndYear;
+			}).length;
+		}
+		
+		// Adjust budget for owner to reflect pending contract choices
+		var budgets = data.budgets;
+		if (isOwner) {
+			var result = adjustBudgetsForPendingContracts(budgets, data.roster, currentSeason);
+			budgets = result.budgets;
+			pendingContractCount = result.pendingCount;
+		}
+		
+		// Hide pendingEndYear from non-owners
+		if (!isOwner) {
+			data.roster.forEach(function(p) { p.pendingEndYear = null; });
+		}
+		
 		response.render('franchise', { 
 			franchise: data, 
 			currentSeason: currentSeason, 
@@ -865,6 +889,10 @@ async function franchiseDetail(request, response) {
 			isOwner: isOwner,
 			canCut: canCut,
 			canMarkForCut: canMarkForCut,
+			canSetContracts: canSetContracts,
+			pendingContractCount: pendingContractCount,
+			budgets: budgets,
+			contractsDue: config ? config.contractsDue : null,
 			seasonHistory: seasonHistory
 		});
 	} catch (err) {
@@ -2070,6 +2098,158 @@ async function markForCut(request, response) {
 	}
 }
 
+// Adjust budget data to include pending contract impact for owner preview
+function adjustBudgetsForPendingContracts(budgets, roster, currentSeason) {
+	var unsignedWithPending = roster.filter(function(p) {
+		return !p.endYear && p.pendingEndYear;
+	});
+	if (unsignedWithPending.length === 0) return { budgets: budgets, pendingCount: 0 };
+
+	var adjusted = budgets.map(function(b, idx) {
+		var season = currentSeason + idx;
+		var extraPayroll = 0;
+		var extraRecoverable = 0;
+		unsignedWithPending.forEach(function(p) {
+			if (p.pendingEndYear >= season) {
+				extraPayroll += p.salary;
+				extraRecoverable += transactionService.computeRecoverableForContract(
+					p.salary, currentSeason, p.pendingEndYear, season
+				);
+			}
+		});
+		if (extraPayroll > 0) {
+			return {
+				season: b.season,
+				baseAmount: b.baseAmount,
+				payroll: b.payroll + extraPayroll,
+				buyOuts: b.buyOuts,
+				cashIn: b.cashIn,
+				cashOut: b.cashOut,
+				available: b.available - extraPayroll,
+				recoverable: b.recoverable + extraRecoverable
+			};
+		}
+		return b;
+	});
+	return { budgets: adjusted, pendingCount: unsignedWithPending.length };
+}
+
+// GET /franchises/:id/budget - return rendered budget partial (owner sees pending contract impact)
+async function budgetPartial(request, response) {
+	var rosterId = parseInt(request.params.id, 10);
+
+	try {
+		var franchiseDoc = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchiseDoc) {
+			return response.status(404).send('Franchise not found');
+		}
+
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+
+		var data = await getFranchise(franchiseDoc._id, currentSeason);
+		if (!data) {
+			return response.status(404).send('Franchise not found');
+		}
+
+		var budgets = data.budgets;
+		var pendingContractCount = 0;
+
+		if (request.user && data.ownerIds) {
+			var isOwner = data.ownerIds.some(function(ownerId) {
+				return ownerId.toString() === request.user._id.toString();
+			});
+			if (isOwner) {
+				var result = adjustBudgetsForPendingContracts(budgets, data.roster, currentSeason);
+				budgets = result.budgets;
+				pendingContractCount = result.pendingCount;
+			}
+		}
+
+		response.render('partials/franchise-budget', {
+			b: budgets,
+			currentSeason: currentSeason,
+			pendingContractCount: pendingContractCount,
+			layout: false
+		});
+	} catch (err) {
+		console.error('Budget partial error:', err);
+		response.status(500).send('Error loading budget');
+	}
+}
+
+// POST /franchises/:id/set-contract - set pending contract term for an unsigned player
+async function setContract(request, response) {
+	var rosterId = parseInt(request.params.id, 10);
+	var playerId = request.body.playerId;
+	var years = request.body.years;
+	
+	try {
+		if (!playerId) {
+			return response.status(400).json({ error: 'Missing player ID' });
+		}
+		
+		if (years !== null && years !== 0 && ![1, 2, 3].includes(years)) {
+			return response.status(400).json({ error: 'Contract must be 1, 2, or 3 years (or null to clear)' });
+		}
+		
+		var franchiseDoc = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchiseDoc) {
+			return response.status(404).json({ error: 'Franchise not found' });
+		}
+		
+		var config = await LeagueConfig.findById('pso');
+		if (config) {
+			var phase = config.getPhase();
+			if (phase !== 'pre-season') {
+				return response.status(400).json({ error: 'Contract setting is only allowed during the pre-season' });
+			}
+		}
+		
+		var regime = await Regime.findOne({
+			ownerIds: request.user._id,
+			'tenures': {
+				$elemMatch: {
+					franchiseId: franchiseDoc._id,
+					endSeason: null
+				}
+			}
+		});
+		
+		if (!regime) {
+			return response.status(403).json({ error: 'You do not own this franchise' });
+		}
+		
+		var contract = await Contract.findOne({
+			franchiseId: franchiseDoc._id,
+			playerId: playerId,
+			salary: { $ne: null }
+		});
+		
+		if (!contract) {
+			return response.status(404).json({ error: 'Player is not on this roster' });
+		}
+		
+		if (contract.endYear) {
+			return response.status(400).json({ error: 'Player already has a signed contract' });
+		}
+		
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		var pendingEndYear = (years && years > 0) ? currentSeason + years - 1 : null;
+		
+		contract.pendingEndYear = pendingEndYear;
+		await contract.save();
+		
+		response.json({
+			playerId: playerId,
+			pendingEndYear: pendingEndYear
+		});
+	} catch (err) {
+		console.error('Set contract error:', err);
+		response.status(500).json({ error: 'Server error' });
+	}
+}
+
 module.exports = {
 	getLeagueOverview: getLeagueOverview,
 	getFranchise: getFranchise,
@@ -2080,5 +2260,7 @@ module.exports = {
 	search: search,
 	timeline: timeline,
 	cutPlayer: cutPlayer,
-	markForCut: markForCut
+	markForCut: markForCut,
+	setContract: setContract,
+	budgetPartial: budgetPartial
 };

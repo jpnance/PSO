@@ -691,10 +691,10 @@ async function processTrade(tradeDetails) {
 		for (var j = 0; j < players.length; j++) {
 			var playerInfo = players[j];
 			
-			// Update Contract.franchiseId and reset cut mark (new owner decides)
+			// Update Contract.franchiseId and reset owner-specific intent fields (new owner decides)
 			await Contract.updateOne(
 				{ playerId: playerInfo.playerId },
-				{ franchiseId: party.franchiseId, markedForCut: false, markedForCutAt: null }
+				{ franchiseId: party.franchiseId, markedForCut: false, markedForCutAt: null, pendingEndYear: null }
 			);
 		}
 	}

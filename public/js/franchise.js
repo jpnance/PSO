@@ -12,6 +12,14 @@
 		return row.closest('.player-table__group--rfa') !== null;
 	}
 
+	function getEffectiveEndYear(row) {
+		var pending = parseInt(row.dataset.pendingendyear, 10);
+		if (pending) return pending;
+		var end = parseInt(row.dataset.endyear, 10);
+		if (!isNaN(end)) return end;
+		return NaN;
+	}
+
 	function applyFilter(filter) {
 		if (filter === currentSeason) {
 			rows.forEach(function(row) { row.classList.remove('is-dimmed'); });
@@ -21,15 +29,19 @@
 		rows.forEach(function(row) {
 			if (isRfaRow(row)) return;
 
-			var endYear = parseInt(row.dataset.endyear, 10);
+			var effectiveEnd = getEffectiveEndYear(row);
 			var isExpiring = row.dataset.expiring === 'true';
+			var pendingEnd = parseInt(row.dataset.pendingendyear, 10);
+			if (pendingEnd && pendingEnd === parseInt(currentSeason, 10)) {
+				isExpiring = true;
+			}
 
 			var matches = false;
 			if (filter === 'expiring') {
 				matches = isExpiring;
 			} else {
 				var year = parseInt(filter, 10);
-				matches = !isNaN(endYear) && endYear >= year;
+				matches = !isNaN(effectiveEnd) && effectiveEnd >= year;
 			}
 
 			if (matches) {
@@ -171,5 +183,114 @@
 				btn.disabled = false;
 			});
 		});
+	}
+
+	// Contract picker for unsigned players
+	var canSetContracts = rosterCard && rosterCard.dataset.canSetContracts === 'true';
+	var season = rosterCard ? parseInt(rosterCard.dataset.currentSeason, 10) : null;
+
+	if (canSetContracts && rosterId && season) {
+		var unsignedRows = [];
+
+		rows.forEach(function(row) {
+			if (isRfaRow(row)) return;
+			var contractCell = row.querySelector('.player-table__detail--contract');
+			if (!contractCell) return;
+			var text = contractCell.querySelector('.player-table__detail-text');
+			if (!text || text.textContent.trim() !== 'unsigned') return;
+			unsignedRows.push(row);
+		});
+
+		function reapplyActiveFilter() {
+			var activeBtn = document.querySelector('.franchise-roster__filters button.btn-primary');
+			if (activeBtn) applyFilter(activeBtn.dataset.filter);
+		}
+
+		unsignedRows.forEach(function(row) {
+			var contractCell = row.querySelector('.player-table__detail--contract');
+			var textEl = contractCell.querySelector('.player-table__detail-text');
+
+			var picker = document.createElement('span');
+			picker.className = 'contract-picker';
+			picker.dataset.playerId = row.dataset.playerid || '';
+
+			var pendingEndYear = parseInt(row.dataset.pendingendyear, 10) || 0;
+
+			[1, 2, 3].forEach(function(years) {
+				var btn = document.createElement('button');
+				btn.type = 'button';
+				btn.className = 'contract-picker__btn';
+				btn.textContent = years;
+				btn.title = years + '-year contract (' + season + '–' + (season + years - 1) + ')';
+				btn.dataset.years = years;
+
+				var endYear = season + years - 1;
+				if (pendingEndYear === endYear) {
+					btn.classList.add('contract-picker__btn--active');
+				}
+
+				btn.addEventListener('click', function() {
+					var isActive = btn.classList.contains('contract-picker__btn--active');
+					var newYears = isActive ? 0 : years;
+					var pId = picker.dataset.playerId;
+
+					picker.querySelectorAll('.contract-picker__btn').forEach(function(b) {
+						b.disabled = true;
+					});
+
+					fetch('/franchises/' + rosterId + '/set-contract', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ playerId: pId, years: newYears })
+					})
+					.then(function(res) { return res.json(); })
+					.then(function(data) {
+						if (data.error) {
+							alert(data.error);
+							return;
+						}
+
+						picker.querySelectorAll('.contract-picker__btn').forEach(function(b) {
+							b.classList.remove('contract-picker__btn--active');
+						});
+
+						if (data.pendingEndYear) {
+							var activeBtn = picker.querySelector('[data-years="' + newYears + '"]');
+							if (activeBtn) activeBtn.classList.add('contract-picker__btn--active');
+							row.dataset.pendingendyear = data.pendingEndYear;
+						} else {
+							row.dataset.pendingendyear = '';
+						}
+
+						reapplyActiveFilter();
+						refreshBudget();
+					})
+					.catch(function() {
+						alert('Something went wrong. Please try again.');
+					})
+					.finally(function() {
+						picker.querySelectorAll('.contract-picker__btn').forEach(function(b) {
+							b.disabled = false;
+						});
+					});
+				});
+
+				picker.appendChild(btn);
+			});
+
+			textEl.textContent = '';
+			textEl.appendChild(picker);
+		});
+
+		function refreshBudget() {
+			var budgetBody = document.getElementById('budgetBody');
+			if (!budgetBody) return;
+
+			fetch('/franchises/' + rosterId + '/budget')
+				.then(function(res) { return res.text(); })
+				.then(function(html) {
+					budgetBody.innerHTML = html;
+				});
+		}
 	}
 })();

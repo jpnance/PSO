@@ -8,6 +8,8 @@ var contractSchema = new Schema({
 	salary: { type: Number, default: null },
 	startYear: { type: Number },
 	endYear: { type: Number },
+	// Owner's pending contract term choice (set between auction and contract deadline)
+	pendingEndYear: { type: Number, default: null },
 	// Offseason cut marking (owner intent, not yet executed)
 	markedForCut: { type: Boolean, default: false },
 	markedForCutAt: { type: Date, default: null }

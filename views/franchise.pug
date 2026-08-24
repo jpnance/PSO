@@ -182,10 +182,11 @@ block content
 					var showRfa = offseasonPhases.includes(phase) && franchise.rfaRights && franchise.rfaRights.length > 0;
 					franchise.roster.forEach(function(player) {
 						var positions = player.positions && player.positions.length ? player.positions : ['Unknown'];
-						player.expiring = (Number(player.endYear) === Number(currentSeason)) ? 'true' : 'false';
-						if (!isOwner) player.markedForCut = false;
-						player.salary = formatMoney(player.salary);
-						player.contract = formatContractYears(player.startYear, player.endYear);
+					player.expiring = (Number(player.endYear) === Number(currentSeason)) ? 'true' : 'false';
+					if (!isOwner) player.markedForCut = false;
+					player.playerId = player._id;
+					player.salary = formatMoney(player.salary);
+					player.contract = formatContractYears(player.startYear, player.endYear);
 						positions.forEach(function(pos) {
 							if (!rosterByPosition[pos]) {
 								rosterByPosition[pos] = [];
@@ -222,7 +223,7 @@ block content
 					div.card-header.d-flex.justify-content-between.align-items-center
 						span Roster
 						span.badge.badge-secondary= franchise.rosterCount + '/' + rosterLimit
-					div.card-body#rosterCardBody(data-roster-id=franchise.rosterId)
+					div.card-body#rosterCardBody(data-roster-id=franchise.rosterId data-can-set-contracts=canSetContracts ? 'true' : '' data-current-season=currentSeason)
 						div.franchise-roster__toolbar.mb-3
 							div.franchise-roster__filters
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-filter='expiring') Expiring
@@ -234,60 +235,14 @@ block content
 									i.fa.fa-sort-alpha-asc
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
 									i.fa.fa-dollar
-						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['startYear', 'endYear', 'expiring', 'markedForCut'], showCutToggle: canMarkForCut, showCutMarks: isOwner && phase === 'pre-season' })
+						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['playerId', 'startYear', 'endYear', 'expiring', 'markedForCut', 'pendingEndYear'], showCutToggle: canMarkForCut, showCutMarks: isOwner && phase === 'pre-season' })
 			
-			div.col-lg-6
-				div.card.mb-4
+			div.col-lg-6(class=canSetContracts ? 'franchise-sidebar--sticky' : '')
+				- var b = budgets || franchise.budgets
+				div.card.mb-4#budgetCard
 					div.card-header Budget
-					- var b = franchise.budgets
-					table.data-table.budget-table.w-100.mb-0
-						thead
-							tr
-								th
-								th.data-table__num= currentSeason
-								th.data-table__num= currentSeason + 1
-								th.data-table__num= currentSeason + 2
-						tbody
-							tr
-								td Base
-								td.data-table__num #{formatMoney(b[0].baseAmount)}
-								td.data-table__num #{formatMoney(b[1].baseAmount)}
-								td.data-table__num #{formatMoney(b[2].baseAmount)}
-							tr
-								td Payroll
-								td.data-table__num #{formatMoney(b[0].payroll, { sign: '-' })}
-								td.data-table__num #{formatMoney(b[1].payroll, { sign: '-' })}
-								td.data-table__num #{formatMoney(b[2].payroll, { sign: '-' })}
-							tr
-								td Buyouts
-								td.data-table__num #{formatMoney(b[0].buyOuts, { sign: '-' })}
-								td.data-table__num #{formatMoney(b[1].buyOuts, { sign: '-' })}
-								td.data-table__num #{formatMoney(b[2].buyOuts, { sign: '-' })}
-							tr
-								td Cash In
-								td.data-table__num #{formatMoney(b[0].cashIn, { sign: '+' })}
-								td.data-table__num #{formatMoney(b[1].cashIn, { sign: '+' })}
-								td.data-table__num #{formatMoney(b[2].cashIn, { sign: '+' })}
-							tr
-								td Cash Out
-								td.data-table__num #{formatMoney(b[0].cashOut, { sign: '-' })}
-								td.data-table__num #{formatMoney(b[1].cashOut, { sign: '-' })}
-								td.data-table__num #{formatMoney(b[2].cashOut, { sign: '-' })}
-							tr.budget-table__available
-								td: strong Available
-								td.data-table__num: strong #{formatMoney(b[0].available)}
-								td.data-table__num: strong #{formatMoney(b[1].available)}
-								td.data-table__num: strong #{formatMoney(b[2].available)}
-							tr.budget-table__recoverable
-								td Recoverable
-								td.data-table__num #{formatMoney(b[0].recoverable, { sign: '+' })}
-								td.data-table__num #{formatMoney(b[1].recoverable, { sign: '+' })}
-								td.data-table__num #{formatMoney(b[2].recoverable, { sign: '+' })}
-							tr.budget-table__effective
-								td Effective Cap
-								td.data-table__num #{formatMoney(b[0].baseAmount - b[0].buyOuts - b[0].cashOut + b[0].cashIn)}
-								td.data-table__num #{formatMoney(b[1].baseAmount - b[1].buyOuts - b[1].cashOut + b[1].cashIn)}
-								td.data-table__num #{formatMoney(b[2].baseAmount - b[2].buyOuts - b[2].cashOut + b[2].cashIn)}
+					div#budgetBody
+						include partials/franchise-budget
 				
 				//- Draft Picks card
 				- var availablePicks = franchise.picks.filter(p => p.status === 'available')

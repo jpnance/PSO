@@ -43,8 +43,20 @@ function getEffectiveYears(contract, currentSeason) {
 	};
 }
 
+/**
+ * Resolve the effective end year for a contract.
+ * Uses pendingEndYear (owner's pre-deadline choice) if set, otherwise endYear.
+ * 
+ * @param {Object} contract - Contract document or plain object
+ * @returns {number|null}
+ */
+function getEffectiveEndYear(contract) {
+	return contract.pendingEndYear || contract.endYear || null;
+}
+
 module.exports = {
 	isUnsigned: isUnsigned,
 	contractAffectsSeason: contractAffectsSeason,
-	getEffectiveYears: getEffectiveYears
+	getEffectiveYears: getEffectiveYears,
+	getEffectiveEndYear: getEffectiveEndYear
 };
