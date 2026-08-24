@@ -623,6 +623,7 @@ async function tradeHistory(request, response) {
 	var filterAssetTypes = request.query.assets ? request.query.assets.split(',').filter(Boolean) : [];
 	var filterPickRounds = request.query.rounds ? request.query.rounds.split(',').map(Number).filter(Boolean) : [];
 	var filterPositions = request.query.positions ? request.query.positions.split(',').filter(Boolean) : [];
+	var filterSeasons = request.query.seasons ? request.query.seasons.split(',').map(Number).filter(Boolean) : [];
 	var showPastPeople = request.query.showPastPeople === '1';
 	var showPastRegimes = request.query.showPastRegimes === '1';
 	
@@ -713,6 +714,13 @@ async function tradeHistory(request, response) {
 		});
 	}
 	
+	// Filter by seasons (if any selected) - trade must be in ANY of the selected seasons
+	if (filterSeasons.length > 0) {
+		filteredTrades = filteredTrades.filter(function(trade) {
+			return filterSeasons.includes(trade.season);
+		});
+	}
+	
 	// Filter by positions (if any selected) - trade must involve a player with ANY of the selected positions
 	if (filterPositions.length > 0) {
 		// Collect all player IDs from remaining trades
@@ -786,6 +794,15 @@ async function tradeHistory(request, response) {
 	var olderPage = isDefaultView ? (totalPages > 2 ? totalPages - 2 : null) : (page > 1 ? page - 1 : null);
 	var newerPage = (!isDefaultView && page < totalPages) ? page + 1 : null;
 	
+	// Calculate available seasons from all trades (not filtered)
+	var seasonSet = new Set();
+	trades.forEach(function(trade) {
+		if (trade.season) {
+			seasonSet.add(trade.season);
+		}
+	});
+	var availableSeasons = Array.from(seasonSet).sort(function(a, b) { return b - a; }); // newest first
+	
 	response.render('trade-history', {
 		trades: displayTrades,
 		totalTrades: trades.length,
@@ -803,6 +820,8 @@ async function tradeHistory(request, response) {
 		filterAssetTypes: filterAssetTypes,
 		filterPickRounds: filterPickRounds,
 		filterPositions: filterPositions,
+		filterSeasons: filterSeasons,
+		availableSeasons: availableSeasons,
 		currentPeople: peopleData.current,
 		pastPeople: peopleData.past,
 		showPastPeople: showPastPeople,

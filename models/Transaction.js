@@ -96,6 +96,7 @@ var transactionSchema = new Schema({
 	// Trade fields
 	tradeId: { type: Number },
 	parties: [tradePartySchema],
+	season: { type: Number },  // Which season this trade belongs to (for filtering)
 
 	// Shared fields (used by FA, draft, auction, contract)
 	franchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise' },
