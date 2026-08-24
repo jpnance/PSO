@@ -1102,7 +1102,8 @@ async function createUnsignedContract(details) {
 		{
 			$inc: {
 				payroll: details.salary,
-				available: -details.salary
+				available: -details.salary,
+				recoverable: computeRecoverableForContract(details.salary, details.season, null, details.season)
 			}
 		}
 	);
