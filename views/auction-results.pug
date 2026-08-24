@@ -6,6 +6,7 @@ block title
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/auction-results.css')
 
 block content
 	div.container.py-4
@@ -21,38 +22,49 @@ block content
 
 		else
 			div.row
-				div.col-lg-10.col-xl-8
-					table.data-table
-						thead
-							tr
-								th Player
-								th.text-center Pos
-								th NFL
-								th Winner
-								th.data-table__num Bid
-								th Type
-						tbody
+				div.col-md-8.col-lg-6
+					div.card
+						div.auction-results__toolbar
+							div.auction-results__sorts
+								if isHistorical
+									button.btn.btn-sm.btn-outline-secondary(type='button' disabled data-toggle='tooltip' title='Chronological order was not recorded for this auction')
+										i.fa.fa-clock-o
+								else
+									button.btn.btn-sm.btn-primary(type='button' data-sort='time')
+										i.fa.fa-clock-o
+								button.btn.btn-sm(type='button' data-sort='name' class=(isHistorical ? 'btn-primary' : 'btn-outline-secondary'))
+									i.fa.fa-sort-alpha-asc
+								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
+									i.fa.fa-dollar
+						div.auction-results__list
 							each result in results
-								tr
-									td
-										if result.playerSlug
-											a(href='/players/' + result.playerSlug)= result.playerName
-										else
-											| #{result.playerName}
-									td.text-center
+								- var posGroup = result.positions && result.positions.length > 0 ? (result.positions.includes('DL') || result.positions.includes('LB') || result.positions.includes('DB') ? 'IDP' : result.positions[0]) : null
+								div.auction-results__row(data-name=result.playerName data-salary=result.winningBid data-time=result.timestamp.getTime() class=(posGroup ? 'pos-' + posGroup : ''))
+									div.auction-results__details
+										div.auction-results__player
+											if result.playerSlug
+												a.auction-results__player-name(href='/players/' + result.playerSlug)= result.playerName
+											else
+												span.auction-results__player-name= result.playerName
+										div.auction-results__meta
+											span.auction-results__bid= formatMoney(result.winningBid)
+											|  · 
+											if result.winnerRosterId
+												a(href='/franchises/' + result.winnerRosterId)= result.winner
+											else
+												| #{result.winner}
+									div.auction-results__badge
 										if result.positions && result.positions.length > 0
 											+positionBadge(result.positions)
-									td
-										if result.team
-											| #{result.team}
-									td
-										if result.winnerRosterId
-											a(href='/franchises/' + result.winnerRosterId)= result.winner
-										else
-											| #{result.winner}
-									td.data-table__num #{formatMoney(result.winningBid)}
-									td
 										if result.type === 'auction-rfa-unmatched' && result.rfaHolder
-											span.text-muted RFA not matched (#{result.rfaHolder})
+											div.auction-results__type RFA not matched (#{result.rfaHolder})
+										else if result.type === 'auction-rfa-matched'
+											div.auction-results__type RFA matched
 										else
-											span.text-muted= result.typeDisplay
+											div.auction-results__type UFA
+
+block scripts
+	script(src='/js/auction-results.js')
+	if isHistorical
+		script.
+			$(function() { $('[data-toggle="tooltip"]').tooltip(); });

@@ -108,10 +108,37 @@ async function resultsPage(request, response) {
 			};
 		});
 
+	// Historical years have synthetic timestamps (alphabetical order disguised as chronological)
+	// Only 2026+ has real chronological data from live auctions
+	var isHistorical = season <= 2025;
+	
+	// For current season, check if auction is still in progress
+	// Auction is considered complete after midnight ET the day after draft day
+	// (draft day is when the auction happens, despite the name)
+	var isAuctionInProgress = false;
+	if (!isHistorical && season === currentSeason && config && config.draftDay) {
+		var auctionEndCutoff = new Date(config.draftDay.getTime() + 24 * 60 * 60 * 1000);
+		isAuctionInProgress = new Date() < auctionEndCutoff;
+	}
+	
+	if (isHistorical) {
+		results.sort(function(a, b) {
+			return a.playerName.localeCompare(b.playerName);
+		});
+	} else if (!isAuctionInProgress) {
+		// Auction complete: show chronological order (earliest first)
+		results.sort(function(a, b) {
+			return a.timestamp.getTime() - b.timestamp.getTime();
+		});
+	}
+	// If auction in progress, results stay in reverse chronological (from query)
+
 	response.render('auction-results', {
 		season: season,
 		allSeasons: allSeasons,
 		results: results,
+		isHistorical: isHistorical,
+		isAuctionInProgress: isAuctionInProgress,
 		activePage: 'auction'
 	});
 }
