@@ -4,6 +4,12 @@ include mixins
 block title
 	+title(season + ' Auction Results')
 
+block og_meta
+	meta(property='og:title' content=season + ' Auction Results')
+	meta(property='og:description' content='Free agent auction results for the ' + season + ' season')
+	meta(property='og:image' content='https://thedynastyleague.com/images/og/auction-results.jpg')
+	meta(property='og:url' content='https://thedynastyleague.com/auction/results/' + season)
+
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
 	link(rel='stylesheet' href='/css/auction-results.css')
