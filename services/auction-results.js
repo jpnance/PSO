@@ -35,13 +35,15 @@ function formatAuctionType(type) {
 		return 'UFA';
 	} else if (type === 'auction-rfa-matched') {
 		return 'RFA matched';
+	} else if (type === 'auction-rfa-unmatched') {
+		return 'RFA not matched';
 	}
 	return type;
 }
 
 async function resultsPage(request, response) {
 	var config = await LeagueConfig.findById('pso');
-	var season = config ? config.season : new Date().getFullYear();
+	var currentSeason = config ? config.season : new Date().getFullYear();
 
 	var regimes = await Regime.find({}).lean();
 	var franchises = await Franchise.find({}).lean();
@@ -55,6 +57,21 @@ async function resultsPage(request, response) {
 		type: { $in: ['auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'] }
 	}).sort({ timestamp: -1 }).lean();
 
+	// Get available seasons from auction data
+	var seasonSet = new Set();
+	auctionTransactions.forEach(function(t) {
+		if (t.timestamp) {
+			seasonSet.add(t.timestamp.getFullYear());
+		}
+	});
+	var allSeasons = Array.from(seasonSet).sort(function(a, b) { return a - b; });
+
+	// Determine which season to display
+	var requestedSeason = parseInt(request.params.season, 10);
+	var season = requestedSeason && allSeasons.includes(requestedSeason)
+		? requestedSeason
+		: (allSeasons.length > 0 ? allSeasons[allSeasons.length - 1] : currentSeason);
+
 	var playerIds = auctionTransactions
 		.filter(function(t) { return t.playerId; })
 		.map(function(t) { return t.playerId; });
@@ -65,38 +82,36 @@ async function resultsPage(request, response) {
 		playerMap[p._id.toString()] = p;
 	});
 
-	var results = auctionTransactions.map(function(t) {
-		var player = t.playerId ? playerMap[t.playerId.toString()] : null;
-		var winner = getDisplayName(regimes, t.franchiseId, season);
-		var rfaHolder = t.rfaHolderId ? getDisplayName(regimes, t.rfaHolderId, season) : null;
-		var originalBidder = t.originalBidderId ? getDisplayName(regimes, t.originalBidderId, season) : null;
-		var franchise = t.franchiseId ? franchiseById[t.franchiseId.toString()] : null;
+	var results = auctionTransactions
+		.filter(function(t) {
+			return t.timestamp && t.timestamp.getFullYear() === season;
+		})
+		.map(function(t) {
+			var player = t.playerId ? playerMap[t.playerId.toString()] : null;
+			var winner = getDisplayName(regimes, t.franchiseId, season);
+			var rfaHolder = t.rfaHolderId ? getDisplayName(regimes, t.rfaHolderId, season) : null;
+			var franchise = t.franchiseId ? franchiseById[t.franchiseId.toString()] : null;
 
-		return {
-			_id: t._id,
-			timestamp: t.timestamp,
-		playerName: player ? player.name : 'Unknown',
-		playerSlug: player && player.slugs && player.slugs.length > 0 ? player.slugs[0] : null,
-			positions: player ? sortPositions(player.positions) : [],
-			team: player ? player.team : null,
-			winner: winner,
-			winnerRosterId: franchise ? franchise.rosterId : null,
-			winningBid: t.winningBid,
-			type: t.type,
-			typeDisplay: formatAuctionType(t.type),
-			rfaHolder: rfaHolder,
-			originalBidder: originalBidder
-		};
-	});
-
-	var currentSeasonResults = results.filter(function(r) {
-		return r.timestamp && r.timestamp.getFullYear() === season;
-	});
+			return {
+				_id: t._id,
+				timestamp: t.timestamp,
+				playerName: player ? player.name : 'Unknown',
+				playerSlug: player && player.slugs && player.slugs.length > 0 ? player.slugs[0] : null,
+				positions: player ? sortPositions(player.positions) : [],
+				team: player ? player.team : null,
+				winner: winner,
+				winnerRosterId: franchise ? franchise.rosterId : null,
+				winningBid: t.winningBid,
+				type: t.type,
+				typeDisplay: formatAuctionType(t.type),
+				rfaHolder: rfaHolder
+			};
+		});
 
 	response.render('auction-results', {
 		season: season,
-		results: currentSeasonResults,
-		allResults: results,
+		allSeasons: allSeasons,
+		results: results,
 		activePage: 'auction'
 	});
 }

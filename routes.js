@@ -99,6 +99,7 @@ module.exports = function(app) {
 	app.get('/jaguar/:season', jaguar.jaguarPage);
 
 	app.get('/auction/results', auctionResults.resultsPage);
+	app.get('/auction/results/:season', auctionResults.resultsPage);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
 	app.get('/auction/admin', requireLogin, requireAdmin, auctionAdmin.adminPage);
 	app.get('/auction/admin/search', requireLogin, requireAdmin, noCache, auctionAdmin.searchPlayers);

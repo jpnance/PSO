@@ -53,6 +53,11 @@ function computeDefaultDates(season) {
 	var laborDay = getLaborDay(season);
 	var prevLaborDay = getLaborDay(season - 1);
 	
+	// NFL expanded from 16 to 17 games in 2021, shifting late-season dates by 1 week
+	var is17GameSeason = season >= 2021;
+	var playoffsWeek = is17GameSeason ? 15 : 14;
+	var deadPeriodWeek = is17GameSeason ? 17 : 16;
+	
 	return {
 		tradeWindow: tz.toMidnightET(getDayAfter(prevLaborDay, 6, 22)),    // 23rd Saturday after prev Labor Day
 		nflDraft: tz.toMidnightET(getLastDayOfMonth(season, 3, 4)),        // Last Thursday of April
@@ -62,8 +67,8 @@ function computeDefaultDates(season) {
 		faab: tz.toMidnightET(getDayAfter(laborDay, 3, 0)),                // 1st Wed after Labor Day
 		nflSeason: tz.toMidnightET(getDayAfter(laborDay, 4, 0)),           // Thursday after Labor Day
 		tradeDeadline: tz.to9pmET(getDayAfter(laborDay, 3, 9)),            // 10th Wed after Labor Day @ 9pm
-		playoffs: tz.toMidnightET(getDayAfter(laborDay, 3, 15)),           // 16th Wed after Labor Day
-		deadPeriod: tz.toMidnightET(getDayAfter(laborDay, 3, 17))          // 18th Wed after Labor Day
+		playoffs: tz.toMidnightET(getDayAfter(laborDay, 3, playoffsWeek)),
+		deadPeriod: tz.toMidnightET(getDayAfter(laborDay, 3, deadPeriodWeek))
 	};
 }
 
