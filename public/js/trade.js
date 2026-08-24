@@ -452,14 +452,25 @@ var tradeMachine = {
 			
 			bucket.players.forEach((player) => {
 				var salary = player.salary || 0;
-				if (player.terms !== 'rfa-rights' && player.terms !== 'unsigned') {
-					var endYear = tradeMachine.parseContractEndYear(player.contract);
-					// Only count if contract covers the target season
-					if (endYear && targetSeason <= endYear) {
+				if (player.terms === 'rfa-rights') return;
+				
+				// Unsigned players only affect current season
+				if (player.terms === 'unsigned') {
+					if (targetSeason === currentSeason) {
 						deltas[receivingId] += salary;
 						if (player.fromFranchiseId && deltas[player.fromFranchiseId] !== undefined) {
 							deltas[player.fromFranchiseId] -= salary;
 						}
+					}
+					return;
+				}
+				
+				var endYear = tradeMachine.parseContractEndYear(player.contract);
+				// Only count if contract covers the target season
+				if (endYear && targetSeason <= endYear) {
+					deltas[receivingId] += salary;
+					if (player.fromFranchiseId && deltas[player.fromFranchiseId] !== undefined) {
+						deltas[player.fromFranchiseId] -= salary;
 					}
 				}
 			});
