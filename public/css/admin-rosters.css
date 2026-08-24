@@ -31,8 +31,8 @@
 .admin-rosters__row.pos-IDP { background-color: var(--pos-idp-bg); }
 .admin-rosters__row.pos-K { background-color: var(--pos-k-bg); }
 
-.admin-rosters__row--marked {
-	background-color: #fff0f0 !important;
+.admin-rosters__row.admin-rosters__row--marked {
+	background-color: #fff0f0;
 }
 
 .admin-rosters__row--marked .admin-rosters__player-name {
@@ -61,6 +61,18 @@
 	flex-direction: column;
 	align-items: flex-end;
 	gap: 0.25rem;
+}
+
+/* Hidden by default — no toggles, no marked state */
+.admin-rosters__card:not(.admin-rosters__card--revealed) .admin-rosters__cut-toggle {
+	display: none;
+}
+
+
+.admin-rosters__reveal {
+	padding: 0.15rem 0.4rem;
+	font-size: 0.7rem;
+	line-height: 1;
 }
 
 /* Scissor toggle */

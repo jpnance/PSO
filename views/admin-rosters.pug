@@ -59,8 +59,11 @@ block content
 		div.row
 			each franchise in franchises
 				div.col-md-6.col-lg-4
-					div.card.mb-4
-						div.card-header= franchise.displayName
+					div.card.mb-4.admin-rosters__card
+						div.card-header.d-flex.justify-content-between.align-items-center
+							span= franchise.displayName
+							button.btn.btn-sm.btn-outline-secondary.admin-rosters__reveal(type='button' title='Reveal cuts')
+								i.fa.fa-eye
 						div.admin-rosters__list
 							if franchise.roster.length === 0
 								div.admin-rosters__empty
@@ -97,8 +100,37 @@ block scripts
 			return confirm('Process cut day? This will execute all ' + markedCount + ' marked cuts immediately. This cannot be undone.');
 		}
 
+		document.querySelectorAll('.admin-rosters__card').forEach(function(card) {
+			var revealBtn = card.querySelector('.admin-rosters__reveal');
+			var markedRows = card.querySelectorAll('.admin-rosters__row--marked');
+			markedRows.forEach(function(row) {
+				row.classList.remove('admin-rosters__row--marked');
+				row.dataset.wasMarked = 'true';
+			});
+
+			revealBtn.addEventListener('click', function() {
+				card.classList.toggle('admin-rosters__card--revealed');
+				var icon = revealBtn.querySelector('i');
+				var revealed = card.classList.contains('admin-rosters__card--revealed');
+				icon.className = revealed ? 'fa fa-eye-slash' : 'fa fa-eye';
+
+				card.querySelectorAll('.admin-rosters__row').forEach(function(row) {
+					if (row.dataset.wasMarked === 'true' || row.classList.contains('admin-rosters__row--marked')) {
+						if (revealed) {
+							row.classList.add('admin-rosters__row--marked');
+						} else {
+							row.classList.remove('admin-rosters__row--marked');
+						}
+					}
+				});
+			});
+		});
+
 		document.querySelectorAll('.admin-rosters__cut-toggle').forEach(function(btn) {
 			btn.addEventListener('click', function() {
+				var card = btn.closest('.admin-rosters__card');
+				if (!card.classList.contains('admin-rosters__card--revealed')) return;
+
 				var playerId = btn.dataset.playerId;
 				btn.disabled = true;
 
@@ -117,11 +149,13 @@ block scripts
 					var row = btn.closest('.admin-rosters__row');
 					if (data.markedForCut) {
 						row.classList.add('admin-rosters__row--marked');
+						row.dataset.wasMarked = 'true';
 						btn.classList.add('admin-rosters__cut-toggle--active');
 						btn.title = 'Unmark for cut';
 						markedCount++;
 					} else {
 						row.classList.remove('admin-rosters__row--marked');
+						delete row.dataset.wasMarked;
 						btn.classList.remove('admin-rosters__cut-toggle--active');
 						btn.title = 'Mark for cut';
 						markedCount--;
