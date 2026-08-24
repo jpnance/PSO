@@ -318,7 +318,11 @@ function stopDemo() {
 }
 
 module.exports.handleConnection = async function(socket, request) {
-	socket.heartbeat = true;
+	socket.isAlive = true;
+
+	socket.on('pong', function() {
+		socket.isAlive = true;
+	});
 
 	var ownerName = await resolveOwnerFromCookie(request.headers.cookie);
 
@@ -348,9 +352,6 @@ function handleMessage(socket, rawMessage) {
 	}
 	else if (type == 'callRoll') {
 		callRoll();
-	}
-	else if (type == 'heartbeat') {
-		heartbeat(socket);
 	}
 	else if (type == 'makeBid') {
 		makeBid({
@@ -390,20 +391,17 @@ function handleMessage(socket, rawMessage) {
 }
 
 setInterval(function() {
-	sockets.forEach(function(socket) {
-		if (!socket.heartbeat) {
-			socket.terminate();
-		}
-	});
-
 	sockets = sockets.filter(function(socket) {
-		return socket.heartbeat;
-	});
+		if (!socket.isAlive) {
+			socket.terminate();
+			return false;
+		}
 
-	sockets.forEach(function(socket) {
-		socket.heartbeat = false;
+		socket.isAlive = false;
+		socket.ping();
+		return true;
 	});
-}, 10000);
+}, 20000);
 
 function extractCookie(rawCookie, name) {
 	if (!rawCookie) return null;
@@ -461,6 +459,3 @@ function broadcastAuctionData() {
 	});
 }
 
-function heartbeat(socket) {
-	socket.heartbeat = true;
-}

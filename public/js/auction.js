@@ -7,7 +7,6 @@ var resultRecorded = false;
 var pluralFranchises = ['Koci/Mueller', 'Schexes'];
 
 var socket;
-var socketHeartbeatInterval;
 var isReconnecting = false;
 var reconnectAttempts = 0;
 var reconnectTimeout = null;
@@ -672,19 +671,11 @@ function connectToWebSocket() {
 			reconnectTimeout = null;
 		}
 
-		socketHeartbeatInterval = setInterval(function() {
-			socket.send(JSON.stringify({
-				type: 'heartbeat'
-			}));
-		}, 5000);
-
 		reconnectDialog.close();
 	}
 
 	socket.onclose = function() {
 		isReconnecting = false;
-
-		clearInterval(socketHeartbeatInterval);
 
 		reconnectDialog.showModal();
 
