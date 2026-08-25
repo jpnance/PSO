@@ -70,7 +70,6 @@ async function adminPage(request, response) {
 
 	response.render('auction-admin-live', {
 		owners: owners,
-		positions: positionOrder,
 		situations: situations,
 		referenceSite: 'https://www.pro-football-reference.com/search/search.fcgi?search=',
 		webSocketUrl: process.env.WEB_SOCKET_URL,

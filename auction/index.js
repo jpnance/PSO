@@ -274,7 +274,6 @@ function run() {
 			var compiledPugAdmin = pug.compileFile(path.join(__dirname, '../views/auction-admin.pug'));
 			fs.writeFileSync(path.join(auctionDir, 'admin.html'), compiledPugAdmin({
 				players: players,
-				positions: positions,
 				situations: situations,
 				owners: owners,
 				referenceSite: siteData[parameters.site].referenceSite,

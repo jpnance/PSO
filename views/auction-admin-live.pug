@@ -229,10 +229,7 @@ html
 					div.col-12.col-lg-6.text-center
 						div.row
 							div.col-6
-								select#position.form-control(name='position' required)
-									option(value='') --
-									each position in positions
-										option(value=position) #{position}
+								input#position.form-control(type='text' name='position' placeholder='Position')
 							div.col-6
 								select#situation.form-control(name='situation' required)
 									option(value='') --

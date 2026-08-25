@@ -292,10 +292,10 @@ $(document).ready(function() {
 			$('#team').val(el.data('player-team') || '');
 			$('#pfr-id').val(el.data('player-pfr-id') || '');
 
-			var positions = el.data('player-positions');
-			if (positions) {
-				$('#position').val(positions.split('/')[0]);
-			}
+		var positions = el.data('player-positions');
+		if (positions) {
+			$('#position').val(positions);
+		}
 
 			var situation = el.data('player-situation') || 'UFA';
 			$('#situation').val(situation);
