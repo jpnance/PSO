@@ -100,6 +100,7 @@ module.exports = function(app) {
 	app.get('/jaguar', jaguar.jaguarPage);
 	app.get('/jaguar/:season', jaguar.jaguarPage);
 
+	app.get('/auction/login/:key', auction.authenticateOwner);
 	app.get('/auction/results', auctionResults.resultsPage);
 	app.get('/auction/results/:season', auctionResults.resultsPage);
 	app.get('/auction/resetorder', auction.resetNominationOrder);
