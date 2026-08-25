@@ -18,6 +18,11 @@ async function alertCommissioner(message, options) {
 		return Promise.resolve();
 	}
 	
+	// Prefix dev alerts so they're distinguishable from production
+	if (process.env.NODE_ENV !== 'production') {
+		message = '[DEV] ' + message;
+	}
+	
 	var priority = options.priority || 'high';
 	
 	return superagent

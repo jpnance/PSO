@@ -128,7 +128,12 @@ async function verify() {
 		});
 		console.log('\n' + drifts.length + ' discrepancies found.');
 
-		await notifications.alertCommissioner('Budget drift detected! ' + drifts.length + ' discrepancies.');
+		var summary = drifts.slice(0, 5).join('\n');
+		var message = 'Budget drift detected! ' + drifts.length + ' discrepancies:\n' + summary;
+		if (drifts.length > 5) {
+			message += '\n... and ' + (drifts.length - 5) + ' more';
+		}
+		await notifications.alertCommissioner(message);
 
 		process.exit(1);
 	} else {
