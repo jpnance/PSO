@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var Budget = require('../../models/Budget');
 var Franchise = require('../../models/Franchise');
+var Regime = require('../../models/Regime');
 var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
 var LeagueConfig = require('../../models/LeagueConfig');
@@ -22,9 +23,20 @@ async function verify() {
 
 	// Load all data
 	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({ 'tenures.endSeason': null }).lean();
 	var contracts = await Contract.find({}).lean();
 	var trades = await Transaction.find({ type: 'trade' }).lean();
 	var cuts = await Transaction.find({ type: 'fa', 'drops.0': { $exists: true } }).lean();
+
+	// Build franchise name lookup from current regimes
+	var franchiseNames = {};
+	regimes.forEach(function(regime) {
+		regime.tenures.forEach(function(tenure) {
+			if (tenure.endSeason === null) {
+				franchiseNames[tenure.franchiseId.toString()] = regime.displayName;
+			}
+		});
+	});
 
 	// Get current season from LeagueConfig
 	var leagueConfig = await LeagueConfig.findOne({});
@@ -42,6 +54,7 @@ async function verify() {
 	for (var i = 0; i < franchises.length; i++) {
 		var franchise = franchises[i];
 		var franchiseId = franchise._id;
+		var franchiseName = franchiseNames[franchiseId.toString()] || ('Franchise ' + franchise.rosterId);
 
 		for (var j = 0; j < seasons.length; j++) {
 			var season = seasons[j];
@@ -95,28 +108,28 @@ async function verify() {
 			var actual = await Budget.findOne({ franchiseId: franchiseId, season: season }).lean();
 
 			if (!actual) {
-				drifts.push(`Missing budget for franchise ${franchise.rosterId} season ${season}`);
+				drifts.push(`${franchiseName} ${season}: missing budget`);
 				continue;
 			}
 
 			// Compare
 			if (actual.payroll !== payroll) {
-				drifts.push(`Franchise ${franchise.rosterId} ${season}: payroll is ${actual.payroll}, expected ${payroll}`);
+				drifts.push(`${franchiseName} ${season}: payroll is ${actual.payroll}, expected ${payroll}`);
 			}
 			if (actual.buyOuts !== buyOuts) {
-				drifts.push(`Franchise ${franchise.rosterId} ${season}: buyOuts is ${actual.buyOuts}, expected ${buyOuts}`);
+				drifts.push(`${franchiseName} ${season}: buyOuts is ${actual.buyOuts}, expected ${buyOuts}`);
 			}
 			if (actual.cashIn !== cashIn) {
-				drifts.push(`Franchise ${franchise.rosterId} ${season}: cashIn is ${actual.cashIn}, expected ${cashIn}`);
+				drifts.push(`${franchiseName} ${season}: cashIn is ${actual.cashIn}, expected ${cashIn}`);
 			}
 			if (actual.cashOut !== cashOut) {
-				drifts.push(`Franchise ${franchise.rosterId} ${season}: cashOut is ${actual.cashOut}, expected ${cashOut}`);
+				drifts.push(`${franchiseName} ${season}: cashOut is ${actual.cashOut}, expected ${cashOut}`);
 			}
 			if (actual.available !== expectedAvailable) {
-				drifts.push(`Franchise ${franchise.rosterId} ${season}: available is ${actual.available}, expected ${expectedAvailable}`);
+				drifts.push(`${franchiseName} ${season}: available is ${actual.available}, expected ${expectedAvailable}`);
 			}
 			if (actual.recoverable !== recoverable) {
-				drifts.push(`Franchise ${franchise.rosterId} ${season}: recoverable is ${actual.recoverable}, expected ${recoverable}`);
+				drifts.push(`${franchiseName} ${season}: recoverable is ${actual.recoverable}, expected ${recoverable}`);
 			}
 		}
 	}
