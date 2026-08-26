@@ -31,11 +31,11 @@ table.data-table.budget-table.w-100.mb-0
 			td.data-table__num #{formatMoney(b[0].cashOut, { sign: '-' })}
 			td.data-table__num #{formatMoney(b[1].cashOut, { sign: '-' })}
 			td.data-table__num #{formatMoney(b[2].cashOut, { sign: '-' })}
-		tr.budget-table__available
-			td: strong Available
-			td.data-table__num: strong #{formatMoney(b[0].available)}
-			td.data-table__num: strong #{formatMoney(b[1].available)}
-			td.data-table__num: strong #{formatMoney(b[2].available)}
+	tr.budget-table__available
+		td: strong Available
+		td.data-table__num: strong(class=b[0].available < 0 ? 'text-danger' : '') #{formatMoney(b[0].available)}
+		td.data-table__num: strong(class=b[1].available < 0 ? 'text-danger' : '') #{formatMoney(b[1].available)}
+		td.data-table__num: strong(class=b[2].available < 0 ? 'text-danger' : '') #{formatMoney(b[2].available)}
 		tr.budget-table__recoverable
 			td Recoverable
 			td.data-table__num #{formatMoney(b[0].recoverable, { sign: '+' })}

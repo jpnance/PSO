@@ -14,7 +14,7 @@ function formatMoney(n, options) {
 	var absValue = Math.abs(n).toLocaleString();
 	
 	if (!options || !options.sign) {
-		return '$' + absValue;
+		return (n < 0 ? '-' : '') + '$' + absValue;
 	}
 	
 	if (options.sign === '+') {
