@@ -250,17 +250,18 @@
 							return;
 						}
 
-						picker.querySelectorAll('.contract-picker__btn').forEach(function(b) {
-							b.classList.remove('contract-picker__btn--active');
+						var allPickers = document.querySelectorAll('.contract-picker[data-player-id="' + pId + '"]');
+						allPickers.forEach(function(p) {
+							p.querySelectorAll('.contract-picker__btn').forEach(function(b) {
+								b.classList.remove('contract-picker__btn--active');
+							});
+							if (data.pendingEndYear) {
+								var match = p.querySelector('[data-years="' + newYears + '"]');
+								if (match) match.classList.add('contract-picker__btn--active');
+							}
+							var r = p.closest('.player-table__row');
+							if (r) r.dataset.pendingendyear = data.pendingEndYear || '';
 						});
-
-						if (data.pendingEndYear) {
-							var activeBtn = picker.querySelector('[data-years="' + newYears + '"]');
-							if (activeBtn) activeBtn.classList.add('contract-picker__btn--active');
-							row.dataset.pendingendyear = data.pendingEndYear;
-						} else {
-							row.dataset.pendingendyear = '';
-						}
 
 						reapplyActiveFilter();
 						refreshBudget();

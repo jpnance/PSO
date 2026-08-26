@@ -730,6 +730,35 @@ function handleMessage(rawMessage) {
 	else if (type == 'auctionData') {
 		redrawAuctionClient(value, Date.now() - sentAt, parsed.demoMode);
 	}
+	else if (type == 'bidRejected') {
+		showBidRejection(value.reason);
+	}
+}
+
+var bidRejectionTimeout;
+
+function showBidRejection(reason) {
+	var el = $('#bid-rejection');
+	if (el.length === 0) {
+		el = $('<div id="bid-rejection" class="bid-rejection"></div>');
+		$('body').append(el);
+	}
+
+	var anchor = $('#bid-amount');
+	if (anchor.length === 0) return;
+
+	clearTimeout(bidRejectionTimeout);
+	el.text(reason).addClass('bid-rejection--visible');
+
+	var rect = anchor[0].getBoundingClientRect();
+	el.css({
+		top: rect.bottom + window.scrollY + 8,
+		left: rect.left + window.scrollX + rect.width / 2 - el.outerWidth() / 2
+	});
+
+	bidRejectionTimeout = setTimeout(function() {
+		el.removeClass('bid-rejection--visible');
+	}, 4000);
 }
 
 function resetTimer(timer, lag) {

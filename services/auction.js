@@ -1,6 +1,8 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 var superagent = require('superagent');
+var Budget = require('../models/Budget');
 var Contract = require('../models/Contract');
+var LeagueConfig = require('../models/LeagueConfig');
 var Person = require('../models/Person');
 var Regime = require('../models/Regime');
 var PSO = require('../config/pso');
@@ -43,7 +45,58 @@ var simulateMode = false;
 var demoBidInterval;
 var demoAdvanceTimeout;
 
-function activateAuction() {
+var franchiseCache = {
+	ownerToFranchiseId: {},
+	budgets: {},
+	rosterCounts: {},
+	loaded: false
+};
+
+async function loadFranchiseCache() {
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var season = config ? config.season : new Date().getFullYear();
+
+		var regimes = await Regime.find({ 'tenures.endSeason': null }).lean();
+		var ownerToFranchiseId = {};
+		var franchiseIds = [];
+
+		regimes.forEach(function(r) {
+			r.tenures.forEach(function(t) {
+				if (t.endSeason === null) {
+					ownerToFranchiseId[r.displayName] = t.franchiseId.toString();
+					franchiseIds.push(t.franchiseId);
+				}
+			});
+		});
+
+		var budgetDocs = await Budget.find({ season: season, franchiseId: { $in: franchiseIds } }).lean();
+		var budgets = {};
+		budgetDocs.forEach(function(b) {
+			budgets[b.franchiseId.toString()] = b.available;
+		});
+
+		var contracts = await Contract.find({ franchiseId: { $in: franchiseIds }, salary: { $ne: null } }).lean();
+		var rosterCounts = {};
+		contracts.forEach(function(c) {
+			var fId = c.franchiseId.toString();
+			rosterCounts[fId] = (rosterCounts[fId] || 0) + 1;
+		});
+
+		franchiseCache.ownerToFranchiseId = ownerToFranchiseId;
+		franchiseCache.budgets = budgets;
+		franchiseCache.rosterCounts = rosterCounts;
+		franchiseCache.loaded = true;
+
+		console.log('Franchise cache loaded: ' + Object.keys(ownerToFranchiseId).length + ' owners, ' + budgetDocs.length + ' budgets');
+	} catch (err) {
+		console.error('Error loading franchise cache:', err);
+	}
+}
+
+async function activateAuction() {
+	await loadFranchiseCache();
+
 	auction.status = 'active';
 
 	clearTimeout(auctionOverTimeout);
@@ -71,7 +124,7 @@ function callRoll() {
 	broadcastAuctionData();
 };
 
-function makeBid(bid) {
+function makeBid(bid, socket) {
 	if (bid.force && bid.owner && bid.amount) {
 		auction.bids.unshift({
 			owner: bid.owner,
@@ -105,28 +158,48 @@ function makeBid(bid) {
 		amount: parseInt(bid.amount)
 	};
 
-	if (newBid.amount > 0) {
-		var highBid = true;
+	if (newBid.amount <= 0) {
+		return;
+	}
 
-		auction.bids.forEach(existingBid => {
-			if (existingBid.amount >= newBid.amount) {
-				highBid = false;
-			}
-		});
+	if (franchiseCache.loaded) {
+		var franchiseId = franchiseCache.ownerToFranchiseId[owner];
 
-		if (highBid) {
-			auction.bids.unshift(newBid);
-
-			if (auction.timer.endingAt - Date.now() < auction.timer.resetTo) {
-				clearTimeout(auctionOverTimeout);
-
-				auction.timer.endingAt = Date.now() + auction.timer.resetTo;
-
-				auctionOverTimeout = setTimeout(pauseAuction, auction.timer.endingAt - Date.now());
+		if (franchiseId) {
+			var available = franchiseCache.budgets[franchiseId];
+			if (available !== undefined && newBid.amount > available) {
+				sendBidRejection(socket, 'You only have $' + available + ' available');
+				return;
 			}
 
-			broadcastAuctionData();
+			var rosterCount = franchiseCache.rosterCounts[franchiseId] || 0;
+			if (rosterCount >= LeagueConfig.ROSTER_LIMIT) {
+				sendBidRejection(socket, 'Your roster is full (' + rosterCount + '/' + LeagueConfig.ROSTER_LIMIT + ')');
+				return;
+			}
 		}
+	}
+
+	var highBid = true;
+
+	auction.bids.forEach(existingBid => {
+		if (existingBid.amount >= newBid.amount) {
+			highBid = false;
+		}
+	});
+
+	if (highBid) {
+		auction.bids.unshift(newBid);
+
+		if (auction.timer.endingAt - Date.now() < auction.timer.resetTo) {
+			clearTimeout(auctionOverTimeout);
+
+			auction.timer.endingAt = Date.now() + auction.timer.resetTo;
+
+			auctionOverTimeout = setTimeout(pauseAuction, auction.timer.endingAt - Date.now());
+		}
+
+		broadcastAuctionData();
 	}
 };
 
@@ -357,7 +430,7 @@ function handleMessage(socket, rawMessage) {
 		makeBid({
 			owner: socket.owner,
 			...value
-		});
+		}, socket);
 	}
 	else if (type == 'nominate') {
 		nominatePlayer(value);
@@ -445,6 +518,23 @@ async function resolveOwnerFromCookie(rawCookie) {
 	}
 
 	return null;
+}
+
+module.exports.updateFranchiseCache = function(franchiseId, salary) {
+	var fId = franchiseId.toString();
+	if (franchiseCache.budgets[fId] !== undefined) {
+		franchiseCache.budgets[fId] -= salary;
+	}
+	franchiseCache.rosterCounts[fId] = (franchiseCache.rosterCounts[fId] || 0) + 1;
+};
+
+function sendBidRejection(socket, reason) {
+	if (socket) {
+		socket.send(JSON.stringify({
+			type: 'bidRejected',
+			value: { reason: reason }
+		}));
+	}
 }
 
 function broadcastAuctionData() {

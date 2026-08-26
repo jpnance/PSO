@@ -5,6 +5,7 @@ var Player = require('../models/Player');
 var Regime = require('../models/Regime');
 var Transaction = require('../models/Transaction');
 var { createUnsignedContract } = require('./transaction');
+var { updateFranchiseCache } = require('./auction');
 var PSO = require('../config/pso');
 
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -230,6 +231,8 @@ async function recordResult(request, response) {
 			salary: amount,
 			season: season
 		});
+
+		updateFranchiseCache(franchise._id, amount);
 
 		response.json({
 			success: true,
