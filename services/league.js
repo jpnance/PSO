@@ -2108,16 +2108,24 @@ function adjustBudgetsForPendingContracts(budgets, roster, currentSeason) {
 	var adjusted = budgets.map(function(b, idx) {
 		var season = currentSeason + idx;
 		var extraPayroll = 0;
-		var extraRecoverable = 0;
+		var recoverableDelta = 0;
 		unsignedWithPending.forEach(function(p) {
 			if (p.pendingEndYear >= season) {
-				extraPayroll += p.salary;
-				extraRecoverable += transactionService.computeRecoverableForContract(
+				var newRecoverable = transactionService.computeRecoverableForContract(
 					p.salary, currentSeason, p.pendingEndYear, season
 				);
+				if (season === currentSeason) {
+					var oldRecoverable = transactionService.computeRecoverableForContract(
+						p.salary, p.startYear || currentSeason, currentSeason, currentSeason
+					);
+					recoverableDelta += newRecoverable - oldRecoverable;
+				} else {
+					extraPayroll += p.salary;
+					recoverableDelta += newRecoverable;
+				}
 			}
 		});
-		if (extraPayroll > 0) {
+		if (extraPayroll > 0 || recoverableDelta !== 0) {
 			return {
 				season: b.season,
 				baseAmount: b.baseAmount,
@@ -2126,7 +2134,7 @@ function adjustBudgetsForPendingContracts(budgets, roster, currentSeason) {
 				cashIn: b.cashIn,
 				cashOut: b.cashOut,
 				available: b.available - extraPayroll,
-				recoverable: b.recoverable + extraRecoverable
+				recoverable: b.recoverable + recoverableDelta
 			};
 		}
 		return b;
