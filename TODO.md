@@ -24,13 +24,14 @@
 - [x] UFA screen - show all unrestricted free agents ⚡ *quick win*
 - [x] Cuts screen - ask owners for their cuts ahead of cut day
 - [x] Cut day processing - admin button to execute all marked cuts at once
-- [ ] Contract setting screen - ask owners to set contracts ahead of contract day
+- [x] Contract setting screen - ask owners to set contracts ahead of contract day
 - [x] Rookie draft entry tool — commish tool to record draft picks as they happen
 - [ ] FAAB implementation (free agent auction bidding)
 
 ### Integrations
 - [ ] Hook up adds/drops/trades to Sleeper *(reduces your manual work)*
-- [ ] Get the auction app integrated with Coinflipper Login service *(functional as-is; Login integration + less commish babysitting are "next year" improvements)*
+- [x] Get the auction app integrated with Coinflipper Login service *(functional as-is; Login integration + less commish babysitting are "next year" improvements)*
+- [ ] **Sync auction/draft results to Sleeper's draft tool in real-time** — Use `draft_force_auction_pick` GraphQL mutation to push picks into Sleeper as they happen on PSO. Needs: network-tab capture of the mutation signature from a test auction, env vars for token + draft_id, ~15 lines added to `recordResult` in `auction-admin.js`. See `doc/sleeper.txt` for auth pattern. Salaries optional (league gets nuked yearly).
 
 ### Information Pages
 - [x] Full standings page ⚡ *quick win*
@@ -51,13 +52,15 @@
 - [ ] Maybe "vetoed" should be a status when the commissioner rejects a trade?
 - [ ] **Trade-required drops** — flow for prompting an owner to drop players to complete a trade (roster space)
 - [ ] **Proposal drops** — allow trade creator to specify their drop upfront as part of the proposal (separate FA transaction with `facilitatedTradeId` when executed)
-- [ ] Improve commissioner trade approval screen (currently bare-bones)
+- [x] Improve commissioner trade approval screen (currently bare-bones)
 - [ ] Figure out how to deal with locked players in trades
 - [x] Figure out a data backfill strategy to get more past transactions into the system
 - [ ] **Auto-execute trades toggle** — `LeagueConfig.autoExecuteTrades` flag to skip commissioner approval
 - [ ] **Transaction rollbacks** — ability to undo executed trades (see details below)
 
 #### Transaction Rollback Implementation
+
+Auction/draft rollbacks are done (`services/rollback.js`, admin UI at `/admin/transactions`). Trade rollbacks remain:
 
 **Schema changes:**
 - [ ] Add `originalFranchiseId` to `tradePlayerSchema` in `models/Transaction.js`
@@ -74,7 +77,7 @@
   - Negate budget deltas (payroll, recoverable, cashIn, cashOut, available)
   - Mark Transaction as reversed/voided
   - Update TradeProposal status if applicable
-- [ ] Add admin UI trigger for rollback
+- [x] Add admin UI trigger for rollback *(done for auction/draft types)*
 
 **Edge cases:**
 - Player cut after being traded (now has buyouts)
@@ -83,7 +86,6 @@
 
 **Out of scope (for now):**
 - FA rollback (complexity of restoring roster state)
-- Auction rollback (RFA state complexity)
 
 ## Lower Priority
 *Nice to have, no hard deadline*
@@ -112,7 +114,7 @@
 - [ ] Admin players page - more mobile-friendly (smaller text, college truncation)
 - [x] Admin players page - make college editable for historical players
 - [ ] Search results - show NFL team or college when displaying multiple players with same name
-- [ ] Admin proposals page - extract inline styles to CSS
+- [x] Admin proposals page - extract inline styles to CSS
 - [x] Improve layout of info banners across the site — created `+alertBanner(type, icon, text)` mixin with template for JS
 - [ ] Improve acceptance window countdown banner style (currently centered, doesn't use alertBanner mixin)
 - [ ] Integrate acceptance countdown banner into acceptance status card?
@@ -144,7 +146,7 @@
 - [x] Unify homepage standings widget with full standings page patterns
 
 ### Misc Ideas
-- [ ] **Live cut day reveal** — Step-through mode where commish reveals cuts one at a time while owners watch (polling/WebSocket). Turn cut day into an event like the old spreadsheet days.
+- [x] **Live cut day reveal** — Step-through mode where commish reveals cuts one at a time while owners watch (polling/WebSocket). Turn cut day into an event like the old spreadsheet days.
 - [ ] **Retroactive trade-facilitation linking UI** — Open a historical drop and link it to a trade after the fact (e.g., found in email that this cut was for Trade #X)
 - [ ] Rename "admin" to "commissioner" or "commish" throughout (for fun)
 - [ ] Consider having roles specific to PSO ("commish", "podcast host")
@@ -156,9 +158,15 @@
 - [ ] Implement a simple blog feature
 - [ ] Figure out how to support Colbys basketball league
 
+### Auction / RFA Improvements
+- [ ] **Additional RFA auction transaction types**
+  - `auction-rfa-default` (or similar) — owner nominates their own RFA, no competing bids, retained at $1
+  - `auction-rfa-forced` (or similar) — owner unable to match due to cap/roster constraints, player goes to bidder involuntarily
+  - Update the bid buddy auction app to handle these cases (offer commish buttons to force-unmatched or auto-retain at default)
+
 ### Dragons (complex rewrites, no timeline)
 - [ ] Tame the simulator (`simulator/` — part CLI, part HTML generator, part JSON generator)
-- [ ] Auction app overhaul (`auction/` — needs Login integration, general cleanup)
+- [x] Auction app overhaul (`auction/` — needs Login integration, general cleanup)
 
 ### Needs Discussion
 - [ ] Trade TTL edge cases: What happens when someone withdraws acceptance but trade is past TTL? Should any action on a trade renew its TTL? Think through pending trade lifecycle more carefully.
