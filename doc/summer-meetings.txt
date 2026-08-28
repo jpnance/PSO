@@ -31,6 +31,7 @@ Venues
 2023: Minneapolis, MN
 2024: Detroit, MI
 2025: Milwaukee, WI
+2026: Boston, MA
 
 
 Schedule
@@ -56,3 +57,4 @@ Season  Cut Day               Rookie Draft          Auction     Contracts Due
 2023    August 20             August 26 at 11am ET  August 26   September 4
 2024    August 18             August 24 at 11am ET  August 24   September 2
 2025    August 17             August 23 at 11am ET  August 23   September 1
+2026    August 16             August 22 at 11am ET  August 22   September 7
