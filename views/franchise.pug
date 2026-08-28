@@ -235,7 +235,7 @@ block content
 									i.fa.fa-sort-alpha-asc
 								button.btn.btn-sm.btn-outline-secondary(type='button' data-sort='salary')
 									i.fa.fa-dollar
-						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['playerId', 'startYear', 'endYear', 'expiring', 'markedForCut', 'pendingEndYear'], showCutToggle: canMarkForCut, showCutMarks: isOwner && phase === 'pre-season' })
+						+playerTable(rosterByPosition, positionKeys, { columns: ['salary', 'contract'], dataAttrs: ['playerId', 'startYear', 'endYear', 'expiring', 'markedForCut', 'pendingEndYear'], showCutToggle: canMarkForCut, showCutMarks: isOwner && phase === 'pre-season', showContractPicker: canSetContracts, currentSeason: currentSeason })
 			
 			div.col-lg-6(class=canSetContracts ? 'franchise-sidebar--sticky' : '')
 				- var b = budgets || franchise.budgets
