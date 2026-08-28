@@ -6,6 +6,7 @@ var Player = require('../models/Player');
 var Contract = require('../models/Contract');
 var Transaction = require('../models/Transaction');
 var { processDraftPick, processDraftPass, getRookieSalary } = require('./transaction');
+var { getRegimeName } = require('../helpers/regime');
 var { sortedPositions } = require('../helpers/view');
 
 function buildFlexibleNamePattern(query) {
@@ -18,19 +19,6 @@ function buildFlexibleNamePattern(query) {
 		return char;
 	}).join('');
 	return pattern;
-}
-
-function getDisplayName(regimes, franchiseId, season) {
-	if (!franchiseId) return 'Unknown';
-	var fIdStr = franchiseId.toString();
-	var regime = regimes.find(function(r) {
-		return r.tenures.some(function(t) {
-			return t.franchiseId.toString() === fIdStr &&
-				t.startSeason <= season &&
-				(t.endSeason === null || t.endSeason >= season);
-		});
-	});
-	return regime ? regime.displayName : 'Unknown';
 }
 
 function formatPickSlot(pickNumber, round, picksPerRound) {
@@ -77,8 +65,8 @@ async function getDraftState(season) {
 		var selection = selectionMap[pick._id.toString()];
 		var player = selection && selection.playerId ? playerMap[selection.playerId.toString()] : null;
 
-		var originalOwner = getDisplayName(regimes, pick.originalFranchiseId, season);
-		var currentOwner = getDisplayName(regimes, pick.currentFranchiseId, season);
+		var originalOwner = getRegimeName(regimes, pick.originalFranchiseId, season);
+		var currentOwner = getRegimeName(regimes, pick.currentFranchiseId, season);
 		var fromOwner = null;
 		if (!pick.originalFranchiseId.equals(pick.currentFranchiseId)) {
 			fromOwner = originalOwner;
@@ -126,7 +114,7 @@ async function getDraftState(season) {
 			var player = selection && selection.playerId ? playerMap[selection.playerId.toString()] : null;
 			currentRoundPicks.push({
 				pickNumber: pick.pickNumber,
-				currentOwner: getDisplayName(regimes, pick.currentFranchiseId, season),
+				currentOwner: getRegimeName(regimes, pick.currentFranchiseId, season),
 				status: pick.status,
 				isCurrent: pick._id.toString() === currentPick._id.toString(),
 				playerName: player ? player.name : null
@@ -143,7 +131,7 @@ async function getDraftState(season) {
 			if (foundCurrent && nextPicks.length < 11 && pick.status === 'available') {
 				nextPicks.push({
 					pickNumber: pick.pickNumber,
-					currentOwner: getDisplayName(regimes, pick.currentFranchiseId, season),
+					currentOwner: getRegimeName(regimes, pick.currentFranchiseId, season),
 					newRound: pick.round !== lastRound
 				});
 				lastRound = pick.round;
@@ -234,7 +222,7 @@ async function searchRookies(request, response) {
 		var contract = contractByPlayer[p._id.toString()];
 		var psoTeam = null;
 		if (contract) {
-			psoTeam = getDisplayName(regimes, contract.franchiseId, season);
+			psoTeam = getRegimeName(regimes, contract.franchiseId, season);
 		}
 
 		return {
@@ -278,7 +266,7 @@ async function selectPlayer(request, response) {
 			success: true,
 			pick: {
 				pickNumber: pick.pickNumber,
-				currentOwner: getDisplayName(regimes, pick.currentFranchiseId, season),
+				currentOwner: getRegimeName(regimes, pick.currentFranchiseId, season),
 				playerName: player ? player.name : null,
 				positions: player ? sortedPositions(player.positions) : null,
 				salary: result.transaction.salary
@@ -309,7 +297,7 @@ async function passOnPick(request, response) {
 			success: true,
 			pick: {
 				pickNumber: pick.pickNumber,
-				currentOwner: getDisplayName(regimes, pick.currentFranchiseId, season)
+				currentOwner: getRegimeName(regimes, pick.currentFranchiseId, season)
 			}
 		});
 	} catch (err) {

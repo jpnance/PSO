@@ -5,6 +5,7 @@ var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
 var { sortedPositions } = require('../helpers/view');
+var { getRegimeName } = require('../helpers/regime');
 
 // First-round rookie salaries by year and position
 // 2009 uses averages of top 10 salaries (from rookies.php)
@@ -94,19 +95,6 @@ async function draftBoard(request, response) {
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({}).lean();
 	
-	function getDisplayName(franchiseId) {
-		if (!franchiseId) return 'Unknown';
-		var fIdStr = franchiseId.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= season &&
-					(t.endSeason === null || t.endSeason >= season);
-			});
-		});
-		return regime ? regime.displayName : 'Unknown';
-	}
-	
 	// Get draft selections to see who was picked
 	var selections = await Transaction.find({
 		type: 'draft-select',
@@ -146,7 +134,7 @@ async function draftBoard(request, response) {
 		var positions = selection ? selection.positions : [];
 		var sorted = sortedPositions(positions);
 		
-		var originalOwner = getDisplayName(pick.originalFranchiseId);
+		var originalOwner = getRegimeName(regimes, pick.originalFranchiseId, season);
 		var fromOwner = null;
 		if (!pick.originalFranchiseId.equals(pick.currentFranchiseId)) {
 			fromOwner = originalOwner;
@@ -157,7 +145,7 @@ async function draftBoard(request, response) {
 			pickDisplay: formatPickNumber(pick.pickNumber, pick.round, picksPerRound),
 			round: pick.round,
 			originalOwner: originalOwner,
-			currentOwner: getDisplayName(pick.currentFranchiseId),
+			currentOwner: getRegimeName(regimes, pick.currentFranchiseId, season),
 			fromOwner: fromOwner,
 			status: pick.status,
 			playerName: playerName,

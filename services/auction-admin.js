@@ -7,6 +7,7 @@ var Transaction = require('../models/Transaction');
 var { createPendingContract } = require('./transaction');
 var { updateFranchiseCache } = require('./auction');
 var { isRfaRights, isPending, isExpired } = require('../helpers/contract');
+var { getRegimeName } = require('../helpers/regime');
 var PSO = require('../config/pso');
 
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -21,17 +22,6 @@ function buildFlexibleNamePattern(query) {
 		return char;
 	}).join('');
 	return pattern;
-}
-
-function getDisplayName(regimes, franchiseId) {
-	if (!franchiseId) return null;
-	var fIdStr = franchiseId.toString();
-	var regime = regimes.find(function(r) {
-		return r.tenures.some(function(t) {
-			return t.franchiseId.toString() === fIdStr && t.endSeason === null;
-		});
-	});
-	return regime ? regime.displayName : null;
 }
 
 function getPositionKey(positions) {
@@ -104,7 +94,7 @@ async function searchPlayers(request, response) {
 		contractByPlayer[c.playerId.toString()] = c;
 	});
 
-	var regimes = await Regime.find({ 'tenures.endSeason': null }).lean();
+	var regimes = await Regime.find({}).lean();
 
 	var results = players.map(function(p) {
 		var contract = contractByPlayer[p._id.toString()];
@@ -114,7 +104,7 @@ async function searchPlayers(request, response) {
 		var owned = false;
 
 		if (contract) {
-			franchise = getDisplayName(regimes, contract.franchiseId);
+			franchise = getRegimeName(regimes, contract.franchiseId, season, null);
 
 			if (isRfaRights(contract)) {
 				situation = 'RFA-' + (franchise || 'Unknown');

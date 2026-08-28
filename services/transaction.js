@@ -11,6 +11,7 @@ var Budget = require('../models/Budget');
 var Game = require('../models/Game');
 var budgetHelper = require('../helpers/budget');
 var { isRfaRights, getEffectiveYears } = require('../helpers/contract');
+var { getRegimeName } = require('../helpers/regime');
 
 var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
 
@@ -71,9 +72,9 @@ function formatDollars(amount, showPlus) {
 	}
 }
 
-// Get display name for a franchise
 async function getFranchiseDisplayName(franchiseId, season) {
-	return await Regime.getDisplayName(franchiseId, season);
+	var regimes = await Regime.find({}).lean();
+	return getRegimeName(regimes, franchiseId, season);
 }
 
 /**

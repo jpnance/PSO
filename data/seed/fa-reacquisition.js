@@ -23,6 +23,7 @@ var snapshotFacts = require('../facts/snapshot-facts');
 var tradeFacts = require('../facts/trade-facts');
 var cutFacts = require('../facts/cut-facts');
 var resolver = require('../utils/player-resolver');
+var { getRegimeName } = require('../../helpers/regime');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -63,20 +64,6 @@ function getFaTimestamp(year) {
  */
 function buildOwnerMap(regimes, franchises) {
 	return cutFacts.buildOwnerMap(regimes, franchises);
-}
-
-/**
- * Get historical regime name for a franchise in a given year
- */
-function getHistoricalRegime(regimes, franchiseId, year) {
-	var regime = regimes.find(function(r) {
-		return r.tenures && r.tenures.some(function(t) {
-			return t.franchiseId.toString() === franchiseId.toString() &&
-				t.startSeason <= year &&
-				(t.endSeason === null || t.endSeason >= year);
-		});
-	});
-	return regime ? regime.displayName : null;
 }
 
 /**
@@ -278,7 +265,7 @@ async function run() {
 				continue;
 			}
 			
-			var historicalName = getHistoricalRegime(regimes, snapshotFranchiseId, year) || contract.owner;
+			var historicalName = getRegimeName(regimes, snapshotFranchiseId, year, null) || contract.owner;
 			var cutterNames = cutByOther.map(function(c) { return c.owner; }).join(', ');
 			
 			if (dryRun) {

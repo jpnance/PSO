@@ -4,6 +4,7 @@ var Franchise = require('../models/Franchise');
 var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var { formatMoney, formatContractYears } = require('../helpers/view');
+var { getRegimeName } = require('../helpers/regime');
 
 // Fisher-Yates shuffle
 function shuffle(array) {
@@ -81,23 +82,6 @@ async function getCutsForSeason(season, options) {
 
 	var regimes = await Regime.find({}).lean();
 
-	function getRegimeName(franchiseId) {
-		var fid = franchiseId.toString();
-		for (var i = 0; i < regimes.length; i++) {
-			var r = regimes[i];
-			if (!r.tenures) continue;
-			for (var j = 0; j < r.tenures.length; j++) {
-				var t = r.tenures[j];
-				if (t.franchiseId.toString() === fid &&
-					t.startSeason <= season &&
-					(t.endSeason === null || t.endSeason >= season)) {
-					return r.displayName;
-				}
-			}
-		}
-		return 'Unknown';
-	}
-
 	// Calculate buyout for this season from buyOuts array
 	function getBuyoutForSeason(buyOuts, targetSeason) {
 		if (!buyOuts || buyOuts.length === 0) return 0;
@@ -113,7 +97,7 @@ async function getCutsForSeason(season, options) {
 	franchises.forEach(function(franchise) {
 		var franchiseId = franchise._id.toString();
 		var cuts = cutsByFranchise[franchiseId] || [];
-		var regimeName = getRegimeName(franchiseId);
+		var regimeName = getRegimeName(regimes, franchiseId, season);
 
 		var franchiseCuts = cuts.map(function(cut) {
 			var player = playerMap[cut.playerId.toString()] || {};

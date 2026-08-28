@@ -3,6 +3,7 @@ var Franchise = require('../models/Franchise');
 var Player = require('../models/Player');
 var Regime = require('../models/Regime');
 var Transaction = require('../models/Transaction');
+var { getRegimeName } = require('../helpers/regime');
 
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 
@@ -15,19 +16,6 @@ function sortPositions(positions) {
 		if (idxB === -1) idxB = 99;
 		return idxA - idxB;
 	});
-}
-
-function getDisplayName(regimes, franchiseId, season) {
-	if (!franchiseId) return null;
-	var fIdStr = franchiseId.toString();
-	var regime = regimes.find(function(r) {
-		return r.tenures.some(function(t) {
-			return t.franchiseId.toString() === fIdStr &&
-				t.startSeason <= season &&
-				(t.endSeason === null || t.endSeason >= season);
-		});
-	});
-	return regime ? regime.displayName : null;
 }
 
 function formatAuctionType(type) {
@@ -88,8 +76,8 @@ async function resultsPage(request, response) {
 		})
 		.map(function(t) {
 			var player = t.playerId ? playerMap[t.playerId.toString()] : null;
-			var winner = getDisplayName(regimes, t.franchiseId, season);
-			var rfaHolder = t.rfaHolderId ? getDisplayName(regimes, t.rfaHolderId, season) : null;
+			var winner = getRegimeName(regimes, t.franchiseId, season, null);
+			var rfaHolder = t.rfaHolderId ? getRegimeName(regimes, t.rfaHolderId, season, null) : null;
 			var franchise = t.franchiseId ? franchiseById[t.franchiseId.toString()] : null;
 
 			return {

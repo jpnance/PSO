@@ -23,6 +23,7 @@ var cutFacts = require('../facts/cut-facts');
 var tradeFacts = require('../facts/trade-facts');
 var snapshotFacts = require('../facts/snapshot-facts');
 var resolver = require('../utils/player-resolver');
+var { getRegimeName } = require('../../helpers/regime');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -125,20 +126,6 @@ function getAuctionTimestamp(year) {
 function buildOwnerMap(regimes, franchises) {
 	var ownerMap = cutFacts.buildOwnerMap(regimes, franchises);
 	return ownerMap;
-}
-
-/**
- * Get historical regime name for a franchise in a given year
- */
-function getHistoricalRegime(regimes, franchiseId, year) {
-	var regime = regimes.find(function(r) {
-		return r.tenures && r.tenures.some(function(t) {
-			return t.franchiseId.toString() === franchiseId.toString() &&
-				t.startSeason <= year &&
-				(t.endSeason === null || t.endSeason >= year);
-		});
-	});
-	return regime ? regime.displayName : null;
 }
 
 /**
@@ -317,7 +304,7 @@ async function run() {
 				continue;
 			}
 			
-			var historicalName = getHistoricalRegime(regimes, franchiseId, year) || cut.owner;
+			var historicalName = getRegimeName(regimes, franchiseId, year, null) || cut.owner;
 			
 			// Determine auction type: check for RFA rights
 			var rfaInfo = await findRfaHolder(player._id, auctionTimestamp);

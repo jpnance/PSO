@@ -2,6 +2,7 @@
 
 var BUYOUT_PERCENTAGES = [0.60, 0.30, 0.15];
 var { isRfaRights, affectsBudget } = require('./contract');
+var { buildRegimeMap } = require('./regime');
 
 /**
  * Calculate budget impact for a proposed trade.
@@ -27,12 +28,8 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 		return { franchises: [], seasons: seasons, isCashNeutral: true };
 	}
 	
-	// Get display names for all franchises
-	var franchiseNames = {};
-	for (var i = 0; i < franchiseIds.length; i++) {
-		var fId = franchiseIds[i];
-		franchiseNames[fId] = await Regime.getDisplayName(fId, currentSeason);
-	}
+	var regimes = await Regime.find({}).lean();
+	var franchiseNames = buildRegimeMap(regimes, currentSeason);
 	
 	// Sort franchise IDs alphabetically by name
 	franchiseIds.sort(function(a, b) {

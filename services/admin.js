@@ -13,6 +13,7 @@ var rollbackService = require('./rollback');
 var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
 var { isRfaRights, isSigned, affectsBudget } = require('../helpers/contract');
+var { getRegime, getRegimeName, buildRegimeMap } = require('../helpers/regime');
 
 var currentSeason = PSO.season;
 
@@ -97,22 +98,15 @@ async function advanceSeasonForm(request, response) {
 	var newSeason = config.season + 1;
 	var defaults = LeagueConfig.computeDefaultDates(newSeason);
 	
-	// Get all franchises with their display names
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({}).lean();
+	var regimeMap = buildRegimeMap(regimes, newSeason);
 	
 	var franchiseList = franchises.map(function(f) {
 		var fIdStr = f._id.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= newSeason &&
-					(t.endSeason === null || t.endSeason >= newSeason);
-			});
-		});
 		return {
-			id: f._id.toString(),
-			name: regime ? regime.displayName : 'Unknown'
+			id: fIdStr,
+			name: regimeMap[fIdStr] || 'Unknown'
 		};
 	}).sort(function(a, b) {
 		return a.name.localeCompare(b.name);
@@ -356,16 +350,12 @@ async function transferFranchiseForm(request, response) {
 	
 	var franchiseList = franchises.map(function(f) {
 		var fIdStr = f._id.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr && t.endSeason === null;
-			});
-		});
+		var regime = getRegime(regimes, fIdStr, currentSeason);
 		var ownerNames = regime && regime.ownerIds 
 			? Regime.sortOwnerNames(regime.ownerIds)
 			: [];
 		return {
-			id: f._id.toString(),
+			id: fIdStr,
 			displayName: regime ? regime.displayName : 'Unknown',
 			ownerList: ownerNames,
 			rosterId: f.rosterId
@@ -482,31 +472,21 @@ async function rostersPage(request, response) {
 	var season = config ? config.season : new Date().getFullYear();
 	var phase = config ? config.getPhase() : 'unknown';
 	
-	// Get all franchises with current regimes
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({}).lean();
+	var regimeMap = buildRegimeMap(regimes, season);
 	
-	// Get all active contracts with player data
 	var contracts = await Contract.find({
 		endYear: { $gte: season }
 	}).populate('playerId').lean();
 	
-	// Count marked-for-cut contracts (salaried players only)
 	var markedContracts = contracts.filter(function(c) {
 		return c.markedForCut && !isRfaRights(c);
 	});
 	var markedCount = markedContracts.length;
 	
-	// Build franchise list with rosters
 	var franchiseList = franchises.map(function(f) {
 		var fIdStr = f._id.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= season &&
-					(t.endSeason === null || t.endSeason >= season);
-			});
-		});
 		
 		// Get this franchise's players
 		var roster = contracts
@@ -531,8 +511,8 @@ async function rostersPage(request, response) {
 			});
 		
 		return {
-			_id: f._id.toString(),
-			displayName: regime ? regime.displayName : 'Unknown',
+			_id: fIdStr,
+			displayName: regimeMap[fIdStr] || 'Unknown',
 			roster: roster
 		};
 	}).sort(function(a, b) {
@@ -557,24 +537,17 @@ async function sanityPage(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
 	
-	// Get all franchises with their display names
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({}).lean();
+	var regimeMap = buildRegimeMap(regimes, currentSeason);
 	var franchiseIds = new Set(franchises.map(function(f) { return f._id.toString(); }));
 	
 	var franchiseMap = {};
 	franchises.forEach(function(f) {
 		var fIdStr = f._id.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= currentSeason &&
-					(t.endSeason === null || t.endSeason >= currentSeason);
-			});
-		});
 		franchiseMap[fIdStr] = {
 			_id: f._id,
-			displayName: regime ? regime.displayName : 'Unknown'
+			displayName: regimeMap[fIdStr] || 'Unknown'
 		};
 	});
 	
@@ -1264,22 +1237,11 @@ async function transactionsPage(request, response) {
 		}
 	});
 
-	// Build franchise display name map
 	var regimes = await Regime.find({}).lean();
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : new Date().getFullYear();
 
-	var franchiseNameMap = {};
-	franchiseIds.forEach(function(fIdStr) {
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= season &&
-					(t.endSeason === null || t.endSeason >= season);
-			});
-		});
-		franchiseNameMap[fIdStr] = regime ? regime.displayName : 'Unknown';
-	});
+	var franchiseNameMap = buildRegimeMap(regimes, season);
 
 	// Build display data for each transaction
 	var displayTransactions = transactions.map(function(t) {
@@ -1440,15 +1402,10 @@ async function contractsPage(request, response) {
 		endYear: null
 	}).populate('playerId').lean();
 
+	var regimeMap = buildRegimeMap(regimes, season);
+
 	var franchiseList = franchises.map(function(f) {
 		var fIdStr = f._id.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= season &&
-					(t.endSeason === null || t.endSeason >= season);
-			});
-		});
 
 		var players = pendingContracts
 			.filter(function(c) { return c.franchiseId.toString() === fIdStr; })
@@ -1466,7 +1423,7 @@ async function contractsPage(request, response) {
 
 		return {
 			_id: fIdStr,
-			displayName: regime ? regime.displayName : 'Unknown',
+			displayName: regimeMap[fIdStr] || 'Unknown',
 			players: players
 		};
 	})

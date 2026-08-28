@@ -2,6 +2,7 @@ var Contract = require('../models/Contract');
 var LeagueConfig = require('../models/LeagueConfig');
 var Regime = require('../models/Regime');
 var Transaction = require('../models/Transaction');
+var { buildRegimeMap } = require('../helpers/regime');
 
 // Position sort order
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -53,18 +54,10 @@ exports.rfa = async function(request, response) {
 			.populate('franchiseId')
 			.lean();
 		
-		// Get all current regimes to look up display names
-		var currentRegimes = await Regime.find({ 'tenures.endSeason': null }).lean();
-		
-		// Build a map of franchiseId -> displayName
-		var franchiseDisplayNames = {};
-		currentRegimes.forEach(function(regime) {
-			regime.tenures.forEach(function(tenure) {
-				if (tenure.endSeason === null) {
-					franchiseDisplayNames[tenure.franchiseId.toString()] = regime.displayName;
-				}
-			});
-		});
+		var regimes = await Regime.find({}).lean();
+		var config = await LeagueConfig.findById('pso');
+		var currentSeason = config ? config.season : new Date().getFullYear();
+		var franchiseDisplayNames = buildRegimeMap(regimes, currentSeason);
 		
 		// Transform into display format
 		var rfaPlayers = rfaContracts

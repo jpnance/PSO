@@ -6,6 +6,7 @@ var Person = require('../models/Person');
 var LeagueConfig = require('../models/LeagueConfig');
 var formatPick = require('../helpers/formatPick');
 var { formatMoney, formatContractYears, formatContractDisplay, isPluralName } = require('../helpers/view');
+var { getRegimeName, buildRegimeMap } = require('../helpers/regime');
 
 
 function formatPickNumber(pickNumber, teamsPerRound) {
@@ -109,24 +110,6 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 		}
 	});
 	
-	// In-memory regime lookup (replaces per-trade DB queries)
-	function getRegimeAtTime(franchiseId, season) {
-		if (!franchiseId) return null;
-		var fIdStr = franchiseId.toString();
-		return allRegimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= season &&
-					(t.endSeason === null || t.endSeason >= season);
-			});
-		});
-	}
-	
-	function getDisplayNameAtTime(franchiseId, season) {
-		var regime = getRegimeAtTime(franchiseId, season);
-		return regime ? regime.displayName : 'Unknown';
-	}
-	
 	// Build pick trade history from ALL trades (for chain links)
 	var pickTradeHistory = {};
 	
@@ -193,8 +176,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 			if (party.regimeName) {
 				franchiseName = party.regimeName;
 			} else {
-				var regime = getRegimeAtTime(party.franchiseId, tradeYear);
-				franchiseName = regime ? regime.displayName : 'Unknown';
+				franchiseName = getRegimeName(allRegimes, party.franchiseId, tradeYear);
 			}
 			usePlural = isPluralName(franchiseName);
 			
@@ -276,7 +258,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 				var season = pickInfo.season || currentSeason;
 				var round = pickInfo.round || 1;
 				var originalFranchiseId = pickInfo.fromFranchiseId;
-				var originalOwner = originalFranchiseId ? getDisplayNameAtTime(originalFranchiseId, tradeYear) : 'Unknown';
+				var originalOwner = getRegimeName(allRegimes, originalFranchiseId, tradeYear);
 				
 				// Look up the actual Pick document for additional info
 				var pickKey = originalFranchiseId ? getPickKey(season, round, originalFranchiseId) : null;
@@ -383,7 +365,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 			// Cash - grouped by season
 			for (var k = 0; k < (party.receives.cash || []).length; k++) {
 				var c = party.receives.cash[k];
-				var fromOwner = c.fromFranchiseId ? getDisplayNameAtTime(c.fromFranchiseId, tradeYear) : 'Unknown';
+				var fromOwner = getRegimeName(allRegimes, c.fromFranchiseId, tradeYear);
 				var display = formatMoney(c.amount) + ' from ' + fromOwner + ' in ' + c.season;
 				var cashMain = formatMoney(c.amount);
 				var cashContext = 'from ' + fromOwner + ' in ' + c.season;
@@ -470,14 +452,6 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 	return tradeData;
 }
 
-// Get all current regimes for filter dropdown
-async function getCurrentRegimes() {
-	var regimes = await Regime.find({ 'tenures.endSeason': null })
-		.sort({ displayName: 1 })
-		.lean();
-	return regimes;
-}
-
 // Get all regimes organized for filtering
 // Returns { current: [...], past: [...], all: [...] }
 async function getRegimesForFilter() {
@@ -504,17 +478,8 @@ async function getRegimesForFilter() {
 async function getFranchisesForFilter() {
 	var Franchise = require('../models/Franchise');
 	var franchises = await Franchise.find({}).sort({ rosterId: 1 }).lean();
-	var currentRegimes = await getCurrentRegimes();
-	
-	// Map franchise ID to current display name (from active tenures)
-	var regimeMap = {};
-	currentRegimes.forEach(function(r) {
-		r.tenures.forEach(function(t) {
-			if (t.endSeason === null) {
-				regimeMap[t.franchiseId.toString()] = r.displayName;
-			}
-		});
-	});
+	var regimes = await Regime.find({}).lean();
+	var regimeMap = buildRegimeMap(regimes, new Date().getFullYear());
 	
 	return franchises.map(function(f) {
 		return {
@@ -867,20 +832,14 @@ async function singleTrade(request, response) {
 	var tradeData = await buildTradeDisplayData([trade], allTrades, { currentSeason: currentSeason });
 	var singleTradeData = tradeData[0];
 	
-	// Get current regimes for the filter dropdown (for consistency with main page)
-	var regimes = await getCurrentRegimes();
+	var regimes = await Regime.find({}).lean();
+	var regimeMap = buildRegimeMap(regimes, currentSeason);
 	
-	// Get franchise IDs involved in this trade for quick filtering links
 	var involvedFranchises = (trade.parties || []).map(function(party) {
 		var partyFId = party.franchiseId.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === partyFId && t.endSeason === null;
-			});
-		});
 		return {
 			franchiseId: partyFId,
-			displayName: regime ? regime.displayName : 'Unknown'
+			displayName: regimeMap[partyFId] || 'Unknown'
 		};
 	});
 	

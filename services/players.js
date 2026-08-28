@@ -6,6 +6,7 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Season = require('../models/Season');
 var transactionService = require('./transaction');
 var { isRfaRights, isSigned } = require('../helpers/contract');
+var { getRegimeName } = require('../helpers/regime');
 
 exports.playerDetail = async function(request, response) {
 	try {
@@ -145,19 +146,7 @@ exports.playerDetail = async function(request, response) {
 		
 		// Build franchise name lookup (franchiseId -> displayName at time)
 		function getRegimeForFranchise(franchiseId, timestamp) {
-			var year = new Date(timestamp).getFullYear();
-			for (var i = 0; i < regimes.length; i++) {
-				var regime = regimes[i];
-				for (var j = 0; j < regime.tenures.length; j++) {
-					var tenure = regime.tenures[j];
-					if (tenure.franchiseId.toString() === franchiseId.toString()) {
-						if (tenure.startSeason <= year && (tenure.endSeason === null || tenure.endSeason >= year)) {
-							return regime.displayName;
-						}
-					}
-				}
-			}
-			return 'Unknown';
+			return getRegimeName(regimes, franchiseId, new Date(timestamp).getFullYear());
 		}
 		
 		// Build structured transaction list (templates handle display)
@@ -354,16 +343,7 @@ async function renderDisambiguation(request, response, slug, players) {
 	// Get regimes for franchise names
 	var regimes = await Regime.find({}).lean();
 	
-	function getCurrentRegimeName(franchiseId) {
-		for (var regime of regimes) {
-			for (var tenure of regime.tenures) {
-				if (tenure.franchiseId.toString() === franchiseId.toString() && tenure.endSeason === null) {
-					return regime.displayName;
-				}
-			}
-		}
-		return 'Unknown';
-	}
+	var currentYear = new Date().getFullYear();
 	
 	// Build contract lookup by playerId
 	var contractByPlayer = {};
@@ -402,9 +382,9 @@ async function renderDisambiguation(request, response, slug, players) {
 		var status = 'Free Agent';
 		if (contract) {
 			if (isRfaRights(contract)) {
-				status = 'RFA rights: ' + getCurrentRegimeName(contract.franchiseId._id);
+				status = 'RFA rights: ' + getRegimeName(regimes, contract.franchiseId._id, currentYear);
 			} else {
-				status = getCurrentRegimeName(contract.franchiseId._id);
+				status = getRegimeName(regimes, contract.franchiseId._id, currentYear);
 			}
 		}
 		

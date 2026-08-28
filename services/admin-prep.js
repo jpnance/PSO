@@ -10,6 +10,7 @@ var Budget = require('../models/Budget');
 
 var PSO = require('../config/pso');
 var { isRfaRights } = require('../helpers/contract');
+var { buildRegimeMap } = require('../helpers/regime');
 
 var POSITIONS = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 
@@ -189,14 +190,7 @@ exports.prepData = async function(request, response) {
 			contractsByPlayerId[c.playerId.toString()] = c;
 		});
 		
-		var regimesByFranchiseId = {};
-		regimes.forEach(function(r) {
-			r.tenures.forEach(function(t) {
-				if (t.endSeason === null) {
-					regimesByFranchiseId[t.franchiseId.toString()] = r;
-				}
-			});
-		});
+		var regimeMap = buildRegimeMap(regimes, season);
 		
 		var budgetsByFranchiseId = {};
 		budgets.forEach(function(b) {
@@ -204,11 +198,11 @@ exports.prepData = async function(request, response) {
 		});
 		
 		var franchiseData = franchises.map(function(f) {
-			var regime = regimesByFranchiseId[f._id.toString()];
-			var budget = budgetsByFranchiseId[f._id.toString()];
+			var fIdStr = f._id.toString();
+			var budget = budgetsByFranchiseId[fIdStr];
 			return {
-				id: f._id.toString(),
-				name: regime ? regime.displayName : 'Unknown',
+				id: fIdStr,
+				name: regimeMap[fIdStr] || 'Unknown',
 				rosterId: f.rosterId,
 				color: FRANCHISE_COLORS[f.rosterId] || '#666',
 				capAvailable: budget ? budget.available : 1000

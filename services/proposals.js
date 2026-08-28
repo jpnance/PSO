@@ -15,6 +15,7 @@ var { formatPickMain, formatPickDisplay } = require('../helpers/formatPick');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
 var { isRfaRights, isPending, isSigned } = require('../helpers/contract');
+var { getRegimeName, buildRegimeMap } = require('../helpers/regime');
 
 // Cached player names for slug generation
 var cachedFirstNames = null;
@@ -88,38 +89,16 @@ async function getTradeData(currentSeason) {
 		.sort({ season: 1, round: 1 })
 		.lean();
 	
-	// Build franchise list with display names
+	var regimeMap = buildRegimeMap(regimes, currentSeason);
+	
 	var franchiseList = franchises.map(function(f) {
-		var fIdStr = f._id.toString();
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === fIdStr &&
-					t.startSeason <= currentSeason &&
-					(t.endSeason === null || t.endSeason >= currentSeason);
-			});
-		});
-		
 		return {
 			_id: f._id,
-			displayName: regime ? regime.displayName : 'Unknown'
+			displayName: regimeMap[f._id.toString()] || 'Unknown'
 		};
 	}).sort(function(a, b) {
 		return a.displayName.localeCompare(b.displayName);
 	});
-	
-	// Helper to get franchise name by ID
-	function getFranchiseName(franchiseId, season) {
-		var targetFId = franchiseId.toString();
-		var targetSeason = season || currentSeason;
-		var regime = regimes.find(function(r) {
-			return r.tenures.some(function(t) {
-				return t.franchiseId.toString() === targetFId &&
-					t.startSeason <= targetSeason &&
-					(t.endSeason === null || t.endSeason >= targetSeason);
-			});
-		});
-		return regime ? regime.displayName : 'Unknown';
-	}
 	
 	// Build teams object: { franchiseId: [players] }
 	var teams = {};
@@ -185,8 +164,8 @@ async function getTradeData(currentSeason) {
 	
 	// Build picks list with origin info
 	var pickList = picks.map(function(p) {
-		var owner = getFranchiseName(p.currentFranchiseId._id || p.currentFranchiseId, p.season);
-		var origin = getFranchiseName(p.originalFranchiseId._id || p.originalFranchiseId, p.season);
+		var owner = getRegimeName(regimes, p.currentFranchiseId._id || p.currentFranchiseId, p.season);
+		var origin = getRegimeName(regimes, p.originalFranchiseId._id || p.originalFranchiseId, p.season);
 		
 		return {
 			id: p._id.toString(),
@@ -594,12 +573,11 @@ async function computeExpiresAt() {
 	return sevenDaysFromNow;
 }
 
-// Get display name for a franchise in current season
 async function getFranchiseDisplayName(franchiseId) {
+	var regimes = await Regime.find({}).lean();
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : new Date().getFullYear();
-	
-	return await Regime.getDisplayName(franchiseId, season);
+	return getRegimeName(regimes, franchiseId, season);
 }
 
 // Get regime with owner first names populated

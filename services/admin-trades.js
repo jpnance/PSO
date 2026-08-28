@@ -5,12 +5,7 @@ var Regime = require('../models/Regime');
 var budgetHelper = require('../helpers/budget');
 var formatPick = require('../helpers/formatPick');
 var { formatMoney, formatContractDisplay, isPluralName } = require('../helpers/view');
-
-// Get display name for a franchise at a given season
-async function getDisplayName(franchiseId, season) {
-	if (!franchiseId) return 'Unknown';
-	return await Regime.getDisplayName(franchiseId, season);
-}
+var { getRegimeName } = require('../helpers/regime');
 
 // GET /admin/trades - search/redirect to trade
 async function listTrades(request, response) {
@@ -62,14 +57,14 @@ async function editTradeForm(request, response) {
 	var playerMap = {};
 	players.forEach(function(p) { playerMap[p._id.toString()] = p; });
 	
-	// Get all franchises
 	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({}).lean();
 	
 	// Build enriched party data
 	var parties = [];
 	for (var j = 0; j < (trade.parties || []).length; j++) {
 		var party = trade.parties[j];
-		var franchiseName = party.regimeName || await getDisplayName(party.franchiseId, tradeYear);
+		var franchiseName = party.regimeName || getRegimeName(regimes, party.franchiseId, tradeYear);
 		
 		// Enrich players
 		var playersData = [];
@@ -92,7 +87,7 @@ async function editTradeForm(request, response) {
 		var picksData = [];
 		for (var k = 0; k < (party.receives.picks || []).length; k++) {
 			var pick = party.receives.picks[k];
-			var fromName = await getDisplayName(pick.fromFranchiseId, pick.season);
+			var fromName = getRegimeName(regimes, pick.fromFranchiseId, pick.season);
 			picksData.push({
 				round: pick.round,
 				season: pick.season,
@@ -106,7 +101,7 @@ async function editTradeForm(request, response) {
 		var cashData = [];
 		for (var k = 0; k < (party.receives.cash || []).length; k++) {
 			var cash = party.receives.cash[k];
-			var fromName = await getDisplayName(cash.fromFranchiseId, cash.season);
+			var fromName = getRegimeName(regimes, cash.fromFranchiseId, cash.season);
 			cashData.push({
 				amount: cash.amount,
 				season: cash.season,

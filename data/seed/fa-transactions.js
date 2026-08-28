@@ -26,6 +26,7 @@ var Regime = require('../../models/Regime');
 var Transaction = require('../../models/Transaction');
 var PSO = require('../../config/pso.js');
 var resolver = require('../utils/player-resolver');
+var { getRegimeName } = require('../../helpers/regime');
 
 // Facts layer
 var sleeperFacts = require('../facts/sleeper-facts');
@@ -120,26 +121,8 @@ var allTradesById = {};  // For quick lookup by _id
 var allRegimes = [];  // For regime name lookup
 var allPlayers = {};  // For player name lookup by _id
 
-/**
- * Get the regime name for a franchise at a given date.
- * Finds the regime whose tenure covers this franchise and season.
- */
-function getRegimeName(franchiseId, date) {
-	if (!franchiseId) return null;
-	var season = date.getFullYear();
-	var franchiseIdStr = franchiseId.toString();
-	
-	var regime = allRegimes.find(function(r) {
-		if (!r.tenures) return false;
-		return r.tenures.some(function(t) {
-			if (!t.franchiseId) return false;
-			if (t.franchiseId.toString() !== franchiseIdStr) return false;
-			if (t.startSeason > season) return false;
-			if (t.endSeason !== null && t.endSeason < season) return false;
-			return true;
-		});
-	});
-	return regime ? regime.displayName : null;
+function getRegimeNameForDate(franchiseId, date) {
+	return getRegimeName(allRegimes, franchiseId, date.getFullYear(), null);
 }
 
 /**
@@ -248,7 +231,7 @@ function promptForTrade(tx, candidates, franchiseId, franchiseName) {
 			
 			// Get trade parties with regime names
 			var partyDescriptions = trade.parties.map(function(p) {
-				var regimeName = getRegimeName(p.franchiseId, trade.timestamp);
+				var regimeName = getRegimeNameForDate(p.franchiseId, trade.timestamp);
 				if (!regimeName) {
 					var f = Object.keys(franchiseByRosterId).find(function(rid) {
 						return franchiseByRosterId[rid].toString() === p.franchiseId.toString();
@@ -696,7 +679,7 @@ async function convertTransaction(tx) {
 	// Look up facilitated trade if this is a trade_facilitation transaction
 	var facilitatedTradeId = null;
 	if (tx.confidence === 'trade_facilitation') {
-		var regimeName = getRegimeName(franchiseId, tx.timestamp) || franchiseContext;
+		var regimeName = getRegimeNameForDate(franchiseId, tx.timestamp) || franchiseContext;
 		var tradeResult = await findFacilitatedTrade(tx, franchiseId, regimeName);
 		if (tradeResult.quit) {
 			throw new Error('User quit');

@@ -526,16 +526,17 @@ Franchises have owners that change over time. The `Regime` model tracks ownershi
 
 **To find who owned a franchise in a given season:**
 ```javascript
-function getHistoricalRegime(regimes, franchiseId, season) {
-  var regime = regimes.find(function(r) {
-    return r.tenures && r.tenures.some(function(t) {
-      return t.franchiseId.toString() === franchiseId.toString() &&
-        t.startSeason <= season &&
-        (t.endSeason === null || t.endSeason >= season);
-    });
-  });
-  return regime ? regime.displayName : null;
-}
+var { getRegime, getRegimeName, buildRegimeMap } = require('../helpers/regime');
+
+// Single lookup
+var name = getRegimeName(regimes, franchiseId, season);
+
+// Full regime object (when you need ownerIds, etc.)
+var regime = getRegime(regimes, franchiseId, season);
+
+// Batch lookup (when mapping many franchises in one season)
+var regimeMap = buildRegimeMap(regimes, season);
+var name = regimeMap[franchiseId.toString()] || 'Unknown';
 ```
 
 **Common pitfalls:**

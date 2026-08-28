@@ -21,6 +21,7 @@ var mongoose = require('mongoose');
 var Transaction = require('../../models/Transaction');
 var Player = require('../../models/Player');
 var Regime = require('../../models/Regime');
+var { getRegimeName } = require('../../helpers/regime');
 var cutFacts = require('../facts/cut-facts');
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -32,21 +33,6 @@ var MINUTE_MS = 60 * 1000;
  */
 function isInferredTimestamp(date) {
 	return date.getUTCSeconds() === 33;
-}
-
-/**
- * Get regime name for a franchise in a given year
- */
-function getRegimeName(regimes, franchiseId, year) {
-	if (!franchiseId) return '?';
-	var regime = regimes.find(function(r) {
-		return r.tenures && r.tenures.some(function(t) {
-			return t.franchiseId.toString() === franchiseId.toString() &&
-				t.startSeason <= year &&
-				(t.endSeason === null || t.endSeason >= year);
-		});
-	});
-	return regime ? regime.displayName : franchiseId.toString().slice(-4);
 }
 
 /**
