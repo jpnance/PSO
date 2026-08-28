@@ -14,6 +14,7 @@ var scheduleHelper = require('../helpers/schedule');
 var transactionService = require('./transaction');
 var { getPositionIndex, shortenPlayerName, formatMoney, ordinal, isPluralName } = require('../helpers/view');
 var { formatPickMain } = require('../helpers/formatPick');
+var { isRfaRights, isPending, isSigned } = require('../helpers/contract');
 
 // Calendar helpers
 function formatShortDate(date) {
@@ -197,8 +198,8 @@ async function getLeagueOverview(currentSeason) {
 			return c.franchiseId.equals(franchise._id); 
 		});
 		
-		var actualContracts = franchiseContracts.filter(function(c) { return c.salary !== null; });
-		var rfaContracts = franchiseContracts.filter(function(c) { return c.salary === null; });
+		var actualContracts = franchiseContracts.filter(function(c) { return !isRfaRights(c); });
+		var rfaContracts = franchiseContracts.filter(function(c) { return isRfaRights(c); });
 		
 		var roster = actualContracts
 			.map(function(c) {
@@ -322,9 +323,8 @@ async function getFranchise(franchiseId, currentSeason) {
 		return regime ? regime.displayName : 'Unknown';
 	}
 	
-	// Separate actual contracts from RFA rights (salary is null for RFA rights)
-	var actualContracts = contracts.filter(function(c) { return c.salary !== null; });
-	var rfaContracts = contracts.filter(function(c) { return c.salary === null; });
+	var actualContracts = contracts.filter(function(c) { return !isRfaRights(c); });
+	var rfaContracts = contracts.filter(function(c) { return isRfaRights(c); });
 	
 	var roster = actualContracts
 		.map(function(c) {
@@ -862,7 +862,7 @@ async function franchiseDetail(request, response) {
 		
 		if (canSetContracts) {
 			pendingContractCount = data.roster.filter(function(p) {
-				return !p.endYear && p.pendingEndYear;
+				return isPending(p) && p.pendingEndYear;
 			}).length;
 		}
 		
@@ -1338,8 +1338,7 @@ async function search(request, response) {
 			var years = yearsByPlayer[player._id.toString()];
 			var yearContext = formatYearContext(player, years, !!contract);
 			
-			if (contract && contract.salary !== null) {
-				// Player is rostered (has contract with salary)
+			if (contract && !isRfaRights(contract)) {
 				var regime = regimeByFranchise[contract.franchiseId.toString()];
 				var franchise = franchiseById[contract.franchiseId.toString()];
 				
@@ -1355,8 +1354,7 @@ async function search(request, response) {
 				status: 'rostered',
 				yearContext: yearContext
 			};
-			} else if (contract && contract.salary === null) {
-				// Player is an RFA (contract exists but salary is null)
+			} else if (contract && isRfaRights(contract)) {
 				var regime = regimeByFranchise[contract.franchiseId.toString()];
 				var franchise = franchiseById[contract.franchiseId.toString()];
 				
@@ -2100,16 +2098,16 @@ async function markForCut(request, response) {
 
 // Adjust budget data to include pending contract impact for owner preview
 function adjustBudgetsForPendingContracts(budgets, roster, currentSeason) {
-	var unsignedWithPending = roster.filter(function(p) {
-		return !p.endYear && p.pendingEndYear;
+	var pendingWithChoice = roster.filter(function(p) {
+		return isPending(p) && p.pendingEndYear;
 	});
-	if (unsignedWithPending.length === 0) return { budgets: budgets, pendingCount: 0 };
+	if (pendingWithChoice.length === 0) return { budgets: budgets, pendingCount: 0 };
 
 	var adjusted = budgets.map(function(b, idx) {
 		var season = currentSeason + idx;
 		var extraPayroll = 0;
 		var recoverableDelta = 0;
-		unsignedWithPending.forEach(function(p) {
+		pendingWithChoice.forEach(function(p) {
 			if (p.pendingEndYear >= season) {
 				var newRecoverable = transactionService.computeRecoverableForContract(
 					p.salary, currentSeason, p.pendingEndYear, season
@@ -2139,7 +2137,7 @@ function adjustBudgetsForPendingContracts(budgets, roster, currentSeason) {
 		}
 		return b;
 	});
-	return { budgets: adjusted, pendingCount: unsignedWithPending.length };
+	return { budgets: adjusted, pendingCount: pendingWithChoice.length };
 }
 
 // GET /franchises/:id/budget - return rendered budget partial (owner sees pending contract impact)
@@ -2186,7 +2184,7 @@ async function budgetPartial(request, response) {
 	}
 }
 
-// POST /franchises/:id/set-contract - set pending contract term for an unsigned player
+// POST /franchises/:id/set-contract - set pending contract term for a pending player
 async function setContract(request, response) {
 	var rosterId = parseInt(request.params.id, 10);
 	var playerId = request.body.playerId;
@@ -2238,7 +2236,7 @@ async function setContract(request, response) {
 			return response.status(404).json({ error: 'Player is not on this roster' });
 		}
 		
-		if (contract.endYear) {
+		if (isSigned(contract)) {
 			return response.status(400).json({ error: 'Player already has a signed contract' });
 		}
 		

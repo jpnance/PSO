@@ -123,7 +123,7 @@ Auction/draft rollbacks are done (`services/rollback.js`, admin UI at `/admin/tr
 ### Infrastructure & Technical
 - [ ] Figure out a better way to structure database reports
 - [x] Clean up directory structure
-- [ ] Refactor formatContractDisplay to handle RFA rights and unsigned cases (remove || 0 coercion and manual checks)
+- [ ] Refactor formatContractDisplay to handle RFA rights and pending cases (remove || 0 coercion and manual checks)
 - [ ] Add generic error pages (404, 500, etc.)
 - [ ] Remove `?test-share=1` dev-only query param from proposal view
 - [ ] Consider E2E testing with Playwright

@@ -14,6 +14,7 @@ var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPosit
 var { formatPickMain, formatPickDisplay } = require('../helpers/formatPick');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
+var { isRfaRights, isPending, isSigned } = require('../helpers/contract');
 
 // Cached player names for slug generation
 var cachedFirstNames = null;
@@ -134,34 +135,30 @@ async function getTradeData(currentSeason) {
 		
 		var terms, contract;
 		
-		if (c.salary === null) {
-			// RFA rights
+		if (isRfaRights(c)) {
 			terms = 'rfa-rights';
 			contract = null;
-		} else if (!c.endYear) {
-			// Unsigned (shouldn't really happen in normal flow)
-			terms = 'unsigned';
+		} else if (isPending(c)) {
+			terms = 'pending';
 			contract = null;
 		} else {
 			terms = 'signed';
 			contract = formatContractYears(c.startYear, c.endYear);
 		}
 		
-		// Calculate this player's recoverable (salary - buyout)
-		// Unsigned players use first-year buyout rate (60% buyout, 40% recoverable)
+		// Pending contracts use first-year buyout rate (60% buyout, 40% recoverable)
 		var playerRecoverable = 0;
-		if (c.salary !== null && (c.endYear >= currentSeason || !c.endYear)) {
+		if (!isRfaRights(c) && (c.endYear >= currentSeason || isPending(c))) {
 			var effectiveStart = c.startYear || currentSeason;
 			var effectiveEnd = c.endYear || currentSeason;
 			var buyOut = computeBuyOutIfCut(c.salary, effectiveStart, effectiveEnd, currentSeason);
 			playerRecoverable = c.salary - buyOut;
 		}
 		
-		// Pre-compute the contract display for client-side use
 		var contractDisplay = null;
-		if (c.salary === null) {
+		if (isRfaRights(c)) {
 			contractDisplay = 'RFA rights';
-		} else if (!c.endYear) {
+		} else if (isPending(c)) {
 			contractDisplay = formatContractDisplay(c.salary, null, null);
 		} else {
 			contractDisplay = formatContractDisplay(c.salary, c.startYear, c.endYear);
@@ -521,9 +518,9 @@ async function buildProposalSummary(proposal) {
 			var player = await Player.findById(party.receives.players[j].playerId);
 			var contract = await Contract.findOne({ playerId: party.receives.players[j].playerId });
 			var label = player ? player.name : 'Unknown';
-			if (contract && contract.salary !== null) {
+			if (contract && !isRfaRights(contract)) {
 				label += ' (' + formatContractDisplay(contract.salary, contract.startYear, contract.endYear) + ')';
-			} else if (contract && contract.salary === null) {
+			} else if (contract && isRfaRights(contract)) {
 				label += ' (RFA rights)';
 			}
 			items.push(label);
@@ -883,8 +880,7 @@ async function viewProposal(request, response) {
 			var positions = player ? player.positions : [];
 			var playerHref = player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null;
 			
-			if (contract && contract.salary === null) {
-				// RFA rights
+			if (contract && isRfaRights(contract)) {
 				assets.push({
 					type: 'rfa',
 					playerName: playerName,
@@ -894,7 +890,6 @@ async function viewProposal(request, response) {
 					salary: 0
 				});
 			} else if (contract) {
-				// Regular player
 				assets.push({
 					type: 'player',
 					playerName: playerName,
@@ -1459,7 +1454,7 @@ async function listProposalsForApproval(request, response) {
 				var positions = player ? player.positions : [];
 				var playerHref = player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null;
 				
-				if (contract && contract.salary === null) {
+				if (contract && isRfaRights(contract)) {
 					assets.push({
 						type: 'rfa',
 						playerName: playerName,

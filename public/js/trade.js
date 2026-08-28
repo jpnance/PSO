@@ -250,8 +250,8 @@ var tradeMachine = {
 						
 						availablePlayers.forEach((player) => {
 							var displayText = player.name + ' ';
-							if (player.terms === 'unsigned') {
-								displayText += '(' + tradeMachine.formatMoney(player.salary) + ', unsigned)';
+							if (player.terms === 'pending') {
+								displayText += '(' + tradeMachine.formatMoney(player.salary) + ', pending)';
 							} else if (player.terms === 'rfa-rights') {
 								displayText += '(RFA rights)';
 							} else {
@@ -454,8 +454,7 @@ var tradeMachine = {
 				var salary = player.salary || 0;
 				if (player.terms === 'rfa-rights') return;
 				
-				// Unsigned players only affect current season
-				if (player.terms === 'unsigned') {
+				if (player.terms === 'pending') {
 					if (targetSeason === currentSeason) {
 						deltas[receivingId] += salary;
 						if (player.fromFranchiseId && deltas[player.fromFranchiseId] !== undefined) {

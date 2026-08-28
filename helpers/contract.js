@@ -1,40 +1,62 @@
-// Contract helper utilities
+// Contract state predicates and utilities
+//
+// A Contract document is always in exactly one of three mutually exclusive states:
+//   - RFA rights:  salary is null (franchise holds rights, no active contract)
+//   - Pending:     salary is set but endYear is not (acquired, term not yet chosen)
+//   - Signed:      salary, startYear, and endYear are all set (fully specified contract)
 
 /**
- * Check if a contract represents an unsigned player.
- * Unsigned = has salary but no endYear (drafted/won at auction, term not yet assigned).
- * 
- * @param {Object} contract - Contract document or plain object
- * @returns {boolean}
+ * Franchise holds rights to the player but there is no active contract.
+ * No cap impact, doesn't count toward roster limit.
  */
-function isUnsigned(contract) {
+function isRfaRights(contract) {
+	return contract.salary === null;
+}
+
+/**
+ * Player was acquired (draft/auction) and has a salary, but the owner
+ * hasn't chosen the contract term (1/2/3 years) yet.
+ */
+function isPending(contract) {
 	return contract.salary !== null && !contract.endYear;
 }
 
 /**
- * Check if a contract affects a given season's budget.
- * Handles RFA rights, expired contracts, not-yet-started contracts, and unsigned players.
- * 
- * @param {Object} contract - Contract document or plain object
- * @param {number} season - Season to check
- * @param {number} currentSeason - Current season (needed for unsigned player logic)
- * @returns {boolean}
+ * Fully specified contract with salary, start year, and end year.
  */
-function contractAffectsSeason(contract, season, currentSeason) {
-	if (contract.salary === null) return false; // RFA rights don't affect budget
-	if (contract.startYear && contract.startYear > season) return false; // Not started yet
-	if (contract.endYear && contract.endYear < season) return false; // Already expired
-	if (!contract.endYear && season !== currentSeason) return false; // Unsigned only affects current season
+function isSigned(contract) {
+	return contract.salary !== null && !!contract.endYear;
+}
+
+/**
+ * Signed contract in its final year — will expire at rollover.
+ */
+function isExpiring(contract, season) {
+	return isSigned(contract) && contract.endYear === season;
+}
+
+/**
+ * Signed contract whose term has already ended. Should have been
+ * cleaned up at rollover; finding one mid-season indicates a problem.
+ */
+function isExpired(contract, season) {
+	return isSigned(contract) && contract.endYear < season;
+}
+
+/**
+ * Check if a contract affects a given season's budget.
+ * RFA rights have no cap impact. Pending contracts only affect the current season.
+ */
+function affectsBudget(contract, season, currentSeason) {
+	if (isRfaRights(contract)) return false;
+	if (isExpired(contract, season)) return false;
+	if (isPending(contract) && season !== currentSeason) return false;
 	return true;
 }
 
 /**
  * Get the effective year range for a contract's budget impact.
- * For unsigned players, returns currentSeason for both start and end.
- * 
- * @param {Object} contract - Contract document or plain object (needs startYear, endYear)
- * @param {number} currentSeason - Current season
- * @returns {{ startYear: number, endYear: number }}
+ * For pending contracts, returns currentSeason for both start and end.
  */
 function getEffectiveYears(contract, currentSeason) {
 	return {
@@ -46,17 +68,18 @@ function getEffectiveYears(contract, currentSeason) {
 /**
  * Resolve the effective end year for a contract.
  * Uses pendingEndYear (owner's pre-deadline choice) if set, otherwise endYear.
- * 
- * @param {Object} contract - Contract document or plain object
- * @returns {number|null}
  */
 function getEffectiveEndYear(contract) {
 	return contract.pendingEndYear || contract.endYear || null;
 }
 
 module.exports = {
-	isUnsigned: isUnsigned,
-	contractAffectsSeason: contractAffectsSeason,
+	isRfaRights: isRfaRights,
+	isPending: isPending,
+	isSigned: isSigned,
+	isExpiring: isExpiring,
+	isExpired: isExpired,
+	affectsBudget: affectsBudget,
 	getEffectiveYears: getEffectiveYears,
 	getEffectiveEndYear: getEffectiveEndYear
 };

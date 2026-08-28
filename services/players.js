@@ -5,6 +5,7 @@ var Regime = require('../models/Regime');
 var LeagueConfig = require('../models/LeagueConfig');
 var Season = require('../models/Season');
 var transactionService = require('./transaction');
+var { isRfaRights, isSigned } = require('../helpers/contract');
 
 exports.playerDetail = async function(request, response) {
 	try {
@@ -64,7 +65,7 @@ exports.playerDetail = async function(request, response) {
 			// Calculate buyout info for cuts
 			var salary = contract.salary || 0;
 			var buyout = null;
-			if (contract.salary !== null && contract.startYear && contract.endYear) {
+			if (isSigned(contract)) {
 				buyout = transactionService.computeBuyOutForSeason(
 					salary, contract.startYear, contract.endYear, currentSeason, currentSeason
 				);
@@ -74,7 +75,7 @@ exports.playerDetail = async function(request, response) {
 				salary: contract.salary,
 				startYear: contract.startYear,
 				endYear: contract.endYear,
-				isRfa: contract.salary === null,
+				isRfa: isRfaRights(contract),
 				franchiseId: contract.franchiseId._id,
 				franchiseRosterId: contract.franchiseId.rosterId,
 				franchiseName: regime ? regime.displayName : 'Unknown',
@@ -83,7 +84,7 @@ exports.playerDetail = async function(request, response) {
 			};
 			
 			// Determine if cuts are allowed
-			if (isOwner && config && config.areCutsEnabled() && contract.salary !== null) {
+			if (isOwner && config && config.areCutsEnabled() && !isRfaRights(contract)) {
 				if (phase === 'playoff-fa') {
 					// Only playoff teams can cut during playoff FA
 					var isPlayoffTeam = await Season.exists({
@@ -400,7 +401,7 @@ async function renderDisambiguation(request, response, slug, players) {
 		// Contract status
 		var status = 'Free Agent';
 		if (contract) {
-			if (contract.salary === null) {
+			if (isRfaRights(contract)) {
 				status = 'RFA rights: ' + getCurrentRegimeName(contract.franchiseId._id);
 			} else {
 				status = getCurrentRegimeName(contract.franchiseId._id);

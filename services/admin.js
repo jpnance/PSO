@@ -12,7 +12,7 @@ var transactionService = require('./transaction');
 var rollbackService = require('./rollback');
 var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
-var { contractAffectsSeason } = require('../helpers/contract');
+var { isRfaRights, isSigned, affectsBudget } = require('../helpers/contract');
 
 var currentSeason = PSO.season;
 
@@ -493,7 +493,7 @@ async function rostersPage(request, response) {
 	
 	// Count marked-for-cut contracts (salaried players only)
 	var markedContracts = contracts.filter(function(c) {
-		return c.markedForCut && c.salary !== null;
+		return c.markedForCut && !isRfaRights(c);
 	});
 	var markedCount = markedContracts.length;
 	
@@ -513,7 +513,7 @@ async function rostersPage(request, response) {
 			.filter(function(c) { return c.franchiseId.equals(f._id); })
 			.map(function(c) {
 				var contract = null;
-				if (c.salary !== null && c.endYear) {
+				if (isSigned(c)) {
 					contract = formatContractYears(c.startYear, c.endYear);
 				}
 				
@@ -581,9 +581,8 @@ async function sanityPage(request, response) {
 	var expectedFranchiseCount = franchises.length;
 	
 	// ========== Roster Check ==========
-	// Count active contracts per franchise (salary !== null means active)
 	var allContracts = await Contract.find({}).lean();
-	var activeContracts = allContracts.filter(function(c) { return c.salary !== null; });
+	var activeContracts = allContracts.filter(function(c) { return !isRfaRights(c); });
 	
 	var rosterCounts = {};
 	activeContracts.forEach(function(c) {
@@ -785,7 +784,7 @@ async function sanityPage(request, response) {
 		var calculatedPayroll = 0;
 		allContracts.forEach(function(c) {
 			if (c.franchiseId.toString() !== fIdStr) return;
-			if (!contractAffectsSeason(c, season, currentSeason)) return;
+			if (!affectsBudget(c, season, currentSeason)) return;
 			calculatedPayroll += c.salary;
 		});
 		
@@ -825,8 +824,7 @@ async function sanityPage(request, response) {
 			problems.push('references non-existent franchise');
 		}
 		
-		// For active contracts (not RFA rights)
-		if (c.salary !== null) {
+		if (!isRfaRights(c)) {
 			// Check year range makes sense
 			if (c.startYear && c.endYear && c.startYear > c.endYear) {
 				problems.push('startYear > endYear');
@@ -857,7 +855,7 @@ async function sanityPage(request, response) {
 	};
 	
 	// ========== RFA Shape Check ==========
-	var rfaContracts = allContracts.filter(function(c) { return c.salary === null; });
+	var rfaContracts = allContracts.filter(function(c) { return isRfaRights(c); });
 	var rfaProblems = [];
 	
 	rfaContracts.forEach(function(c) {
@@ -1429,7 +1427,7 @@ async function rollbackTransaction(request, response) {
 	}
 }
 
-// GET /admin/contracts - show unsigned players with pending contract choices for all franchises
+// GET /admin/contracts - show pending players with contract choices for all franchises
 async function contractsPage(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : new Date().getFullYear();
@@ -1437,7 +1435,7 @@ async function contractsPage(request, response) {
 	var franchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({}).lean();
 
-	var unsignedContracts = await Contract.find({
+	var pendingContracts = await Contract.find({
 		salary: { $ne: null },
 		endYear: null
 	}).populate('playerId').lean();
@@ -1452,7 +1450,7 @@ async function contractsPage(request, response) {
 			});
 		});
 
-		var players = unsignedContracts
+		var players = pendingContracts
 			.filter(function(c) { return c.franchiseId.toString() === fIdStr; })
 			.map(function(c) {
 				return {
@@ -1475,8 +1473,8 @@ async function contractsPage(request, response) {
 	.filter(function(f) { return f.players.length > 0; })
 	.sort(function(a, b) { return a.displayName.localeCompare(b.displayName); });
 
-	var totalUnsigned = unsignedContracts.length;
-	var totalAssigned = unsignedContracts.filter(function(c) { return c.pendingEndYear; }).length;
+	var totalPending = pendingContracts.length;
+	var totalAssigned = pendingContracts.filter(function(c) { return c.pendingEndYear; }).length;
 
 	var processResult = request.query.processResult
 		? JSON.parse(decodeURIComponent(request.query.processResult))
@@ -1485,7 +1483,7 @@ async function contractsPage(request, response) {
 	response.render('admin-contracts', {
 		franchises: franchiseList,
 		currentSeason: season,
-		totalUnsigned: totalUnsigned,
+		totalPending: totalPending,
 		totalAssigned: totalAssigned,
 		processResult: processResult,
 		activePage: 'admin'
@@ -1508,7 +1506,7 @@ async function overrideContract(request, response) {
 		});
 
 		if (!contract) {
-			return response.status(404).json({ error: 'Unsigned contract not found' });
+			return response.status(404).json({ error: 'Pending contract not found' });
 		}
 
 		if (years !== 0 && ![1, 2, 3].includes(years)) {
@@ -1531,19 +1529,19 @@ async function processContracts(request, response) {
 	var season = config ? config.season : new Date().getFullYear();
 	var budgetHelper = require('../helpers/budget');
 
-	var unsignedContracts = await Contract.find({
+	var pendingContracts = await Contract.find({
 		salary: { $ne: null },
 		endYear: null
 	}).populate('playerId').lean();
 
-	var unassigned = unsignedContracts.filter(function(c) { return !c.pendingEndYear; });
+	var unassigned = pendingContracts.filter(function(c) { return !c.pendingEndYear; });
 	if (unassigned.length > 0) {
 		var names = unassigned.map(function(c) {
 			return c.playerId ? c.playerId.name : 'Unknown';
 		});
 		var errorResult = encodeURIComponent(JSON.stringify({
 			success: false,
-			error: unassigned.length + ' unsigned player' + (unassigned.length !== 1 ? 's have' : ' has') +
+			error: unassigned.length + ' pending player' + (unassigned.length !== 1 ? 's have' : ' has') +
 				' no contract assigned: ' + names.join(', ')
 		}));
 		return response.redirect('/admin/contracts?processResult=' + errorResult);
@@ -1552,8 +1550,8 @@ async function processContracts(request, response) {
 	var successCount = 0;
 	var results = [];
 
-	for (var i = 0; i < unsignedContracts.length; i++) {
-		var c = unsignedContracts[i];
+	for (var i = 0; i < pendingContracts.length; i++) {
+		var c = pendingContracts[i];
 		var playerName = c.playerId ? c.playerId.name : 'Unknown';
 		var newEndYear = c.pendingEndYear;
 

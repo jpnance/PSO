@@ -4,8 +4,9 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Player = require('../models/Player');
 var Regime = require('../models/Regime');
 var Transaction = require('../models/Transaction');
-var { createUnsignedContract } = require('./transaction');
+var { createPendingContract } = require('./transaction');
 var { updateFranchiseCache } = require('./auction');
+var { isRfaRights, isPending, isExpired } = require('../helpers/contract');
 var PSO = require('../config/pso');
 
 var positionOrder = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
@@ -47,7 +48,7 @@ function getPositionKey(positions) {
 
 // Determine auction situation for a contract
 function getSituation(contract, regimeDisplayName) {
-	if (contract.salary === null) {
+	if (isRfaRights(contract)) {
 		return 'RFA-' + (regimeDisplayName || 'Unknown');
 	}
 	if (contract.startYear && contract.endYear && contract.endYear - contract.startYear <= 2) {
@@ -115,13 +116,13 @@ async function searchPlayers(request, response) {
 		if (contract) {
 			franchise = getDisplayName(regimes, contract.franchiseId);
 
-			if (contract.salary === null) {
+			if (isRfaRights(contract)) {
 				situation = 'RFA-' + (franchise || 'Unknown');
 				detail = 'RFA rights: ' + (franchise || 'Unknown');
-			} else if (!contract.endYear) {
+			} else if (isPending(contract)) {
 				owned = true;
-				detail = franchise + ' · $' + contract.salary + ' · unsigned';
-			} else if (contract.endYear < season) {
+				detail = franchise + ' · $' + contract.salary + ' · pending';
+			} else if (isExpired(contract, season)) {
 				situation = 'UFA';
 				detail = 'Contract expired';
 			} else if (contract.endYear >= season) {
@@ -225,7 +226,7 @@ async function recordResult(request, response) {
 		// Remove any existing RFA-rights contract before creating the new one
 		await Contract.deleteMany({ playerId: player._id, salary: null });
 
-		await createUnsignedContract({
+		await createPendingContract({
 			playerId: player._id,
 			franchiseId: franchise._id,
 			salary: amount,

@@ -1,7 +1,7 @@
 // Budget calculation utilities
 
 var BUYOUT_PERCENTAGES = [0.60, 0.30, 0.15];
-var contractHelper = require('./contract');
+var { isRfaRights, affectsBudget } = require('./contract');
 
 /**
  * Calculate budget impact for a proposed trade.
@@ -86,13 +86,13 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 		
 		bucket.players.forEach(function(player) {
 			var contract = contractMap[player.id];
-			if (!contract || contract.salary === null) return; // Skip RFA rights
+			if (!contract || isRfaRights(contract)) return;
 			
 			var salary = contract.salary || 0;
 			var sendingId = contract.franchiseId.toString();
 			
 			seasons.forEach(function(season) {
-				if (contractHelper.contractAffectsSeason(contract, season, currentSeason)) {
+				if (affectsBudget(contract, season, currentSeason)) {
 					// Receiver takes on salary (negative = cap burden)
 					impact[receivingId][season] -= salary;
 					// Sender loses salary obligation (positive = cap relief)
@@ -165,10 +165,9 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 			var recoverable = 0;
 			allContracts.forEach(function(c) {
 				if (c.franchiseId.toString() !== fId) return;
-				if (!contractHelper.contractAffectsSeason(c, s, currentSeason)) return;
+				if (!affectsBudget(c, s, currentSeason)) return;
 				// Skip players being traded away
 				if (playersLeavingFranchise[fId].includes(c.playerId.toString())) return;
-				// For unsigned players, treat as first year of contract
 				var effectiveStart = c.startYear || currentSeason;
 				var effectiveEnd = c.endYear || currentSeason;
 				recoverable += computeRecoverableForContract(c.salary, effectiveStart, effectiveEnd, s);

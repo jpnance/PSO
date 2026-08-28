@@ -197,7 +197,7 @@ mixin playerTableGroup(posKey, players, cols, dataAttrs, opts)
 							span.player-table__recoverable= '+' + formatMoney(player.recoverable)
 					each col in cols
 						td.player-table__detail(class='player-table__detail--' + col)
-							if col === 'contract' && opts && opts.showContractPicker && player.contract === 'unsigned'
+							if col === 'contract' && opts && opts.showContractPicker && player.contract === 'pending'
 								span.player-table__detail-text
 									span.contract-picker(data-player-id=player.playerId || player._id)
 										- var pendingEnd = parseInt(player.pendingEndYear, 10) || 0

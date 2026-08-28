@@ -9,6 +9,7 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
 
 var PSO = require('../config/pso');
+var { isRfaRights } = require('../helpers/contract');
 
 var POSITIONS = ['QB', 'RB', 'WR', 'TE', 'DL', 'LB', 'DB', 'K'];
 
@@ -228,7 +229,7 @@ exports.prepData = async function(request, response) {
 				var franchiseId = contract.franchiseId._id ? contract.franchiseId._id.toString() : contract.franchiseId.toString();
 				franchise = franchiseData.find(function(f) { return f.id === franchiseId; });
 				
-				if (contract.salary === null) {
+				if (isRfaRights(contract)) {
 					contractInfo = { type: 'rfa', display: 'RFA' };
 				} else {
 					var startStr = contract.startYear ? String(contract.startYear).slice(-2) : '??';

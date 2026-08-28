@@ -10,10 +10,9 @@ var LeagueConfig = require('../models/LeagueConfig');
 var Budget = require('../models/Budget');
 var Game = require('../models/Game');
 var budgetHelper = require('../helpers/budget');
-var contractHelper = require('../helpers/contract');
+var { isRfaRights, getEffectiveYears } = require('../helpers/contract');
 
 var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
-var getEffectiveYears = contractHelper.getEffectiveYears;
 
 // First-round rookie salaries by year and position
 var rookieSalaries = {
@@ -519,7 +518,6 @@ async function processTrade(tradeDetails) {
 	
 	// Validate roster limits
 	// Each franchise's post-trade roster must not exceed the limit
-	// RFA rights (salary === null) don't count against roster limit
 	for (var i = 0; i < tradeDetails.parties.length; i++) {
 		var party = tradeDetails.parties[i];
 		var receives = party.receives || {};
@@ -531,9 +529,8 @@ async function processTrade(tradeDetails) {
 		});
 		var currentRosterCount = currentContracts.length;
 		
-		// Count players coming in (excluding RFA rights)
 		var playersIn = (receives.players || []).filter(function(p) {
-			return p.salary !== null;
+			return !isRfaRights(p);
 		}).length;
 		
 		// Count players going out (to other parties)
@@ -550,7 +547,7 @@ async function processTrade(tradeDetails) {
 				var contract = currentContracts.find(function(c) {
 					return c.playerId.equals(playerInfo.playerId);
 				});
-				if (contract && contract.salary !== null) {
+				if (contract && !isRfaRights(contract)) {
 					playersOut++;
 				}
 			}
@@ -592,10 +589,10 @@ async function processTrade(tradeDetails) {
 		var regimeName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
 		
 		var rfaPlayers = (receives.players || []).filter(function(p) {
-			return p.salary === null;
+			return isRfaRights(p);
 		});
 		var salariedPlayers = (receives.players || []).filter(function(p) {
-			return p.salary !== null;
+			return !isRfaRights(p);
 		});
 		
 		var txParty = {
@@ -1037,7 +1034,7 @@ async function processDraftPick(details) {
 	pick.transactionId = transaction._id;
 	await pick.save();
 	
-	await createUnsignedContract({
+	await createPendingContract({
 		playerId: details.playerId,
 		franchiseId: details.franchiseId,
 		salary: salary,
@@ -1079,7 +1076,7 @@ async function processDraftPass(details) {
 	return { success: true, transaction: transaction };
 }
 
-async function createUnsignedContract(details) {
+async function createPendingContract(details) {
 	await Contract.create({
 		playerId: details.playerId,
 		franchiseId: details.franchiseId,
@@ -1106,7 +1103,7 @@ module.exports = {
 	processCut: processCut,
 	processDraftPick: processDraftPick,
 	processDraftPass: processDraftPass,
-	createUnsignedContract: createUnsignedContract,
+	createPendingContract: createPendingContract,
 	validateBudgetImpact: validateBudgetImpact,
 	computeBuyOutForSeason: computeBuyOutForSeason,
 	computeRecoverable: computeRecoverable,

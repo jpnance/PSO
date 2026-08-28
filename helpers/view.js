@@ -75,14 +75,14 @@ function ordinal(n) {
  * @param {number} start - start year (e.g. 2023)
  * @param {number} end - end year (e.g. 2026)
  * @param {number|null} salary - optional salary; if null, indicates RFA rights
- * @returns {string} e.g. "23/26", "FA/26", "RFA Rights", or "unsigned" if no end year
+ * @returns {string} e.g. "23/26", "FA/26", "RFA Rights", or "pending" if no end year
  */
 function formatContractYears(start, end, salary) {
 	if (salary === null) {
 		return 'RFA Rights';
 	}
 	if (!end) {
-		return 'unsigned';
+		return 'pending';
 	}
 	if (start) {
 		return String(start % 100).padStart(2, '0') + '/' + String(end % 100).padStart(2, '0');

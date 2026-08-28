@@ -54,7 +54,7 @@ All helpers are available directly in templates (e.g., `formatMoney(1234)`):
   - `formatMoney(-163, { sign: 'auto' })` → `-$163`
 - `formatRecord(w, l, t?)` — Format win-loss record: `10-5` or `10-5-1`
 - `formatPoints(n)` — Format with 2 decimal places and commas
-- `formatContractYears(start, end)` — Format as `23/26`, `FA/26`, or `unsigned`
+- `formatContractYears(start, end)` — Format as `23/26`, `FA/26`, or `pending`
 - `formatDateISO(d)` — Format as `YYYY-MM-DD` in Eastern Time
 - `ordinal(n)` — Returns `1st`, `2nd`, `3rd`, etc.
 - `deltaClass(n)` — Returns `text-success`, `text-danger`, or `text-muted` based on sign

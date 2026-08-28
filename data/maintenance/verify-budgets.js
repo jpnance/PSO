@@ -8,11 +8,10 @@ var Contract = require('../../models/Contract');
 var Transaction = require('../../models/Transaction');
 var LeagueConfig = require('../../models/LeagueConfig');
 var budgetHelper = require('../../helpers/budget');
-var contractHelper = require('../../helpers/contract');
+var { affectsBudget } = require('../../helpers/contract');
 var notifications = require('../../helpers/notifications');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
-var contractAffectsSeason = contractHelper.contractAffectsSeason;
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -64,7 +63,7 @@ async function verify() {
 			var recoverable = 0;
 			contracts.forEach(function(c) {
 				if (!c.franchiseId.equals(franchiseId)) return;
-				if (!contractAffectsSeason(c, season, currentSeason)) return;
+				if (!affectsBudget(c, season, currentSeason)) return;
 				payroll += c.salary;
 				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);
 				recoverable += (c.salary - buyOut);

@@ -31,14 +31,14 @@ block content
 		div.admin-contracts__summary.mb-4
 			div.d-flex.align-items-center.justify-content-between
 				div
-					strong #{totalAssigned}/#{totalUnsigned}
-					|  unsigned player#{totalUnsigned !== 1 ? 's' : ''} assigned
-					if totalAssigned < totalUnsigned
-						span.text-danger.ml-2
-							i.fa.fa-exclamation-triangle.mr-1
-							| #{totalUnsigned - totalAssigned} still need contracts
-				form(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
-					button.btn.btn-primary(type='submit' disabled=totalAssigned < totalUnsigned)
+				strong #{totalAssigned}/#{totalPending}
+				|  pending player#{totalPending !== 1 ? 's' : ''} assigned
+				if totalAssigned < totalPending
+					span.text-danger.ml-2
+						i.fa.fa-exclamation-triangle.mr-1
+						| #{totalPending - totalAssigned} still need contracts
+			form(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
+				button.btn.btn-primary(type='submit' disabled=totalAssigned < totalPending)
 						i.fa.fa-check-circle.mr-2
 						| Process Contracts
 
@@ -71,7 +71,7 @@ block content
 
 block scripts
 	script.
-		var totalUnsigned = #{totalUnsigned};
+		var totalPending = #{totalPending};
 		var totalAssigned = #{totalAssigned};
 
 		function confirmProcess() {
@@ -165,9 +165,9 @@ block scripts
 			totalAssigned += delta;
 			var summary = document.querySelector('.admin-contracts__summary strong');
 			if (summary) {
-				summary.textContent = totalAssigned + '/' + totalUnsigned;
+				summary.textContent = totalAssigned + '/' + totalPending;
 			}
-			var remaining = totalUnsigned - totalAssigned;
+			var remaining = totalPending - totalAssigned;
 			var warning = document.querySelector('.admin-contracts__summary .text-danger');
 			if (warning) {
 				if (remaining > 0) {
@@ -179,6 +179,6 @@ block scripts
 			}
 			var processBtn = document.querySelector('.admin-contracts__summary button[type="submit"]');
 			if (processBtn) {
-				processBtn.disabled = (totalAssigned < totalUnsigned);
+				processBtn.disabled = (totalAssigned < totalPending);
 			}
 		}
