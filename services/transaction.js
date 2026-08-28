@@ -72,7 +72,7 @@ function formatDollars(amount, showPlus) {
 	}
 }
 
-async function getFranchiseDisplayName(franchiseId, season) {
+async function getRegimeDisplayName(franchiseId, season) {
 	var regimes = await Regime.find({}).lean();
 	return getRegimeName(regimes, franchiseId, season);
 }
@@ -178,10 +178,10 @@ async function validateBudgetImpact(franchiseId, season, salaryImpact, config) {
 	var recoverable = await computeRecoverable(franchiseId, season);
 	
 	if (resultingBudget + recoverable >= 0) {
-		var franchiseName = await getFranchiseDisplayName(franchiseId, config.season);
+		var regimeName = await getRegimeDisplayName(franchiseId, config.season);
 		return { 
 			valid: true, 
-			warning: franchiseName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season
+			warning: regimeName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season
 		};
 	}
 	
@@ -302,18 +302,18 @@ async function validateTradeCash(tradeDetails, config) {
 			}
 			
 			// Get franchise display name (use current season for regime lookup)
-			var franchiseName = await getFranchiseDisplayName(franchiseId, currentSeason);
+			var regimeName = await getRegimeDisplayName(franchiseId, currentSeason);
 			
 			// Look up current available budget
 			var budget = await Budget.findOne({ franchiseId: franchiseId, season: season });
 			if (!budget) {
-				errors.push('No budget found for ' + franchiseName + ' in ' + season);
+				errors.push('No budget found for ' + regimeName + ' in ' + season);
 				continue;
 			}
 			var resultingBudget = budget.available + netChange;
 			
 			if (resultingBudget < 0) {
-				var message = franchiseName + ' would have ' + formatDollars(resultingBudget) + ' available in ' + season;
+				var message = regimeName + ' would have ' + formatDollars(resultingBudget) + ' available in ' + season;
 				
 				// Hard cap for current season after cut day - no way out
 				if (season === currentSeason && hardCapActive) {
@@ -324,7 +324,7 @@ async function validateTradeCash(tradeDetails, config) {
 					
 					if (resultingBudget + recoverable >= 0) {
 						// They could cut their way back to $0 or better - soft cap
-						warnings.push(franchiseName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season);
+						warnings.push(regimeName + ' would be ' + formatDollars(-resultingBudget) + ' over the soft cap in ' + season);
 					} else {
 						// Even cutting everyone wouldn't save them
 						var shortfall = -(resultingBudget + recoverable);
@@ -422,8 +422,8 @@ async function processTrade(tradeDetails) {
 		if (receivesNothing) {
 			var isGivingPlayer = franchisesGivingPlayers[party.franchiseId.toString()];
 			if (!isGivingPlayer) {
-				var franchiseName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
-				errors.push(franchiseName + ' must receive something in return (or be trading away a player)');
+				var regimeName = await getRegimeDisplayName(party.franchiseId, currentSeason);
+				errors.push(regimeName + ' must receive something in return (or be trading away a player)');
 			}
 		}
 	}
@@ -557,8 +557,8 @@ async function processTrade(tradeDetails) {
 		var newRosterCount = currentRosterCount + playersIn - playersOut;
 		
 		if (newRosterCount > LeagueConfig.ROSTER_LIMIT) {
-			var franchiseName = await getFranchiseDisplayName(party.franchiseId, config.season);
-			errors.push(franchiseName + ' would have ' + newRosterCount + ' players (limit is ' + LeagueConfig.ROSTER_LIMIT + ')');
+			var regimeName = await getRegimeDisplayName(party.franchiseId, config.season);
+			errors.push(regimeName + ' would have ' + newRosterCount + ' players (limit is ' + LeagueConfig.ROSTER_LIMIT + ')');
 		}
 	}
 	
@@ -587,7 +587,7 @@ async function processTrade(tradeDetails) {
 			}
 		}
 		
-		var regimeName = await getFranchiseDisplayName(party.franchiseId, currentSeason);
+		var regimeName = await getRegimeDisplayName(party.franchiseId, currentSeason);
 		
 		var rfaPlayers = (receives.players || []).filter(function(p) {
 			return isRfaRights(p);

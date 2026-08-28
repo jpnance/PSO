@@ -29,11 +29,11 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 	}
 	
 	var regimes = await Regime.find({}).lean();
-	var franchiseNames = buildRegimeMap(regimes, currentSeason);
+	var regimeNames = buildRegimeMap(regimes, currentSeason);
 	
 	// Sort franchise IDs alphabetically by name
 	franchiseIds.sort(function(a, b) {
-		return franchiseNames[a].localeCompare(franchiseNames[b]);
+		return regimeNames[a].localeCompare(regimeNames[b]);
 	});
 	
 	// Collect all player IDs from the deal
@@ -193,21 +193,21 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 					violation = 'hard';
 					warnings.push({
 						type: 'error',
-						franchise: franchiseNames[fId],
+						franchise: regimeNames[fId],
 						text: 'would violate the hard cap in ' + s
 					});
 				} else if (resulting + recoverable >= 0) {
 					violation = 'soft';
 					warnings.push({
 						type: 'warning',
-						franchise: franchiseNames[fId],
+						franchise: regimeNames[fId],
 						text: 'would be over the soft cap in ' + s + ' (can cut to recover)'
 					});
 				} else {
 					violation = 'unrecoverable';
 					warnings.push({
 						type: 'error',
-						franchise: franchiseNames[fId],
+						franchise: regimeNames[fId],
 						text: 'cannot recover in ' + s + ' (even after cutting all players)'
 					});
 				}
@@ -225,7 +225,7 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 		
 		return {
 			franchiseId: fId,
-			franchiseName: franchiseNames[fId],
+			regimeName: regimeNames[fId],
 			seasons: seasonData
 		};
 	});

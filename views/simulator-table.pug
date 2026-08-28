@@ -15,11 +15,11 @@ table.table.table-hover.table-sm
 
 	each result in results
 		tr
-			td.text-center #{result.owner.currentStanding}
-			td #{result.owner.name}
+			td.text-center #{result.team.currentStanding}
+			td #{result.team.name}
 				|
 				|
-				span.d-none.d-md-inline (#{result.owner.wins}-#{result.owner.losses})
+				span.d-none.d-md-inline (#{result.team.wins}-#{result.team.losses})
 			td.text-right #{result.playoffs.toFixed(3)}
 			td.d-none.d-sm-table-cell.text-right #{result.decision.toFixed(3)}
 			td.d-none.d-sm-table-cell.text-right #{result.fifthPlace.toFixed(3)}
@@ -28,10 +28,10 @@ table.table.table-hover.table-sm
 					var finishTable = '';
 
 					for (var n = 1; n <= 12; n++) {
-						var probability = result.owner.finishes[n] / options.trials;
+						var probability = result.team.finishes[n] / options.trials;
 						var probabilityClass = '';
 
-						if (result.owner.finishes[n] == 0) {
+						if (result.team.finishes[n] == 0) {
 							probabilityClass = 'never';
 						}
 						else if (probability < 0.15) {
@@ -66,7 +66,7 @@ table.table.table-hover.table-sm
 							default: finishTable += n + 'th'; break;
 						}
 
-						if (result.owner.finishes[n] == 0) {
+						if (result.team.finishes[n] == 0) {
 							finishTable += ' --';
 						}
 						else if (Math.round(probability * 100) < 1) {

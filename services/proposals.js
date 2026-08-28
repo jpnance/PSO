@@ -490,7 +490,7 @@ async function buildProposalSummary(proposal) {
 
 	for (var i = 0; i < proposal.parties.length; i++) {
 		var party = proposal.parties[i];
-		var name = await getFranchiseDisplayName(party.franchiseId);
+		var name = await getRegimeDisplayName(party.franchiseId);
 		var items = [];
 
 		for (var j = 0; j < party.receives.players.length; j++) {
@@ -508,7 +508,7 @@ async function buildProposalSummary(proposal) {
 		for (var j = 0; j < party.receives.picks.length; j++) {
 			var pick = await Pick.findById(party.receives.picks[j].pickId);
 			if (pick) {
-				var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+				var origin = await getRegimeDisplayName(pick.originalFranchiseId);
 				items.push(formatPickDisplay({ round: pick.round, pickNumber: pick.pickNumber, season: pick.season, origin: origin }));
 			}
 		}
@@ -573,7 +573,7 @@ async function computeExpiresAt() {
 	return sevenDaysFromNow;
 }
 
-async function getFranchiseDisplayName(franchiseId) {
+async function getRegimeDisplayName(franchiseId) {
 	var regimes = await Regime.find({}).lean();
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : new Date().getFullYear();
@@ -834,7 +834,7 @@ async function viewProposal(request, response) {
 		var partiesDisplay = [];
 		for (var i = 0; i < proposal.parties.length; i++) {
 			var party = proposal.parties[i];
-			var displayName = await getFranchiseDisplayName(party.franchiseId);
+			var displayName = await getRegimeDisplayName(party.franchiseId);
 			var usePlural = isPluralName(displayName);
 			
 			// Build unified assets array (same format as trade history)
@@ -894,7 +894,7 @@ async function viewProposal(request, response) {
 			for (var j = 0; j < party.receives.picks.length; j++) {
 				var pick = await Pick.findById(party.receives.picks[j].pickId);
 				if (pick) {
-					var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+					var origin = await getRegimeDisplayName(pick.originalFranchiseId);
 					pickData.push({ pick: pick, origin: origin });
 				}
 			}
@@ -920,7 +920,7 @@ async function viewProposal(request, response) {
 			var cashData = [];
 			for (var j = 0; j < party.receives.cash.length; j++) {
 				var c = party.receives.cash[j];
-				var fromName = await getFranchiseDisplayName(c.fromFranchiseId);
+				var fromName = await getRegimeDisplayName(c.fromFranchiseId);
 				cashData.push({ cash: c, fromName: fromName });
 			}
 			cashData.sort(function(a, b) { return a.cash.season - b.cash.season; });
@@ -947,7 +947,7 @@ async function viewProposal(request, response) {
 			
 			partiesDisplay.push({
 				franchiseId: party.franchiseId._id || party.franchiseId,
-				franchiseName: displayName,
+				regimeName: displayName,
 				usePlural: usePlural,
 				accepted: party.accepted,
 				acceptedAt: party.acceptedAt,
@@ -1408,7 +1408,7 @@ async function listProposalsForApproval(request, response) {
 			var partiesDisplay = [];
 			for (var j = 0; j < proposal.parties.length; j++) {
 				var party = proposal.parties[j];
-				var displayName = await getFranchiseDisplayName(party.franchiseId);
+				var displayName = await getRegimeDisplayName(party.franchiseId);
 				var usePlural = isPluralName(displayName);
 				
 				// Build full asset list (same as viewProposal)
@@ -1464,7 +1464,7 @@ async function listProposalsForApproval(request, response) {
 				for (var k = 0; k < party.receives.picks.length; k++) {
 					var pick = await Pick.findById(party.receives.picks[k].pickId);
 					if (pick) {
-						var origin = await getFranchiseDisplayName(pick.originalFranchiseId);
+						var origin = await getRegimeDisplayName(pick.originalFranchiseId);
 						pickData.push({ pick: pick, origin: origin });
 					}
 				}
@@ -1487,7 +1487,7 @@ async function listProposalsForApproval(request, response) {
 				var cashData = [];
 				for (var k = 0; k < party.receives.cash.length; k++) {
 					var c = party.receives.cash[k];
-					var fromName = await getFranchiseDisplayName(c.fromFranchiseId);
+					var fromName = await getRegimeDisplayName(c.fromFranchiseId);
 					cashData.push({ cash: c, fromName: fromName });
 				}
 				cashData.sort(function(a, b) { return a.cash.season - b.cash.season; });
@@ -1508,7 +1508,7 @@ async function listProposalsForApproval(request, response) {
 				}
 				
 				partiesDisplay.push({
-					franchiseName: displayName,
+					regimeName: displayName,
 					usePlural: usePlural,
 					assets: assets
 				});

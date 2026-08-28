@@ -630,9 +630,9 @@ block content
 		//- Trade Party
 		div.component-section
 			h2 +tradeParty(party)
-			code.usage +tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
+			code.usage +tradeParty({ regimeName: 'Schex', usePlural: false, assets: [...] })
 			div.trade-card-preview
-				- var sampleParties = [{ franchiseName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { franchiseName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
+				- var sampleParties = [{ regimeName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { regimeName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
 				each party in sampleParties
 					+tradeParty(party)
 
@@ -697,8 +697,8 @@ block content
 		//- Budget Impact Table
 		div.component-section
 			h2 +budgetImpactTable(budgetImpact)
-			code.usage +budgetImpactTable([{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }] }])
-			- var sampleBudgetImpact = [{ franchiseName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { franchiseName: 'Syed/Terence', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
+			code.usage +budgetImpactTable([{ regimeName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }] }])
+			- var sampleBudgetImpact = [{ regimeName: 'Koci/Mueller', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }, { season: 2027, delta: -163 }] }, { regimeName: 'Syed/Terence', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }, { season: 2027, delta: 163 }] }]
 			+budgetImpactTable(sampleBudgetImpact)
 
 		//- Design Tokens

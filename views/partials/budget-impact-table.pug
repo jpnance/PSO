@@ -23,7 +23,7 @@ if budgetImpact && budgetImpact.franchises && budgetImpact.franchises.length > 0
 			tbody
 				each franchise in budgetImpact.franchises
 					tr
-						td= franchise.franchiseName
+						td= franchise.regimeName
 						each s in franchise.seasons
 							- var delta = s.delta
 							- var colorClass = delta > 0 ? 'text-success' : (delta < 0 ? 'text-danger' : 'text-muted')

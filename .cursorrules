@@ -240,7 +240,7 @@ Options:
 +tradeAsset({ type: 'nothing', display: 'Nothing' })
 
 //- Full party with assets
-+tradeParty({ franchiseName: 'Schex', usePlural: false, assets: [...] })
++tradeParty({ regimeName: 'Schex', usePlural: false, assets: [...] })
 ```
 
 ### Data Table
@@ -264,8 +264,8 @@ Variants:
 ### Budget Impact Table
 ```pug
 +budgetImpactTable([
-  { franchiseName: 'Schex', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }] },
-  { franchiseName: 'Koci', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }] }
+  { regimeName: 'Schex', seasons: [{ season: 2025, delta: -500 }, { season: 2026, delta: -163 }] },
+  { regimeName: 'Koci', seasons: [{ season: 2025, delta: 500 }, { season: 2026, delta: 163 }] }
 ])
 ```
 

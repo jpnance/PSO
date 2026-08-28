@@ -57,7 +57,7 @@ exports.rfa = async function(request, response) {
 		var regimes = await Regime.find({}).lean();
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
-		var franchiseDisplayNames = buildRegimeMap(regimes, currentSeason);
+		var regimeNames = buildRegimeMap(regimes, currentSeason);
 		
 		// Transform into display format
 		var rfaPlayers = rfaContracts
@@ -70,7 +70,7 @@ exports.rfa = async function(request, response) {
 				slug: c.playerId.slugs && c.playerId.slugs[0],
 				positions: c.playerId.positions || [],
 				team: c.playerId.team,
-				franchise: franchiseId ? franchiseDisplayNames[franchiseId] || 'Unknown' : 'Unknown',
+				franchise: franchiseId ? regimeNames[franchiseId] || 'Unknown' : 'Unknown',
 				franchiseRosterId: c.franchiseId ? c.franchiseId.rosterId : null
 			};
 			})

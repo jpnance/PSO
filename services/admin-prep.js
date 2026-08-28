@@ -254,7 +254,7 @@ exports.prepData = async function(request, response) {
 				bye: byeWeeks[playerTeam] || null,
 				positions: positions,
 				franchise: franchise ? franchise.id : null,
-				franchiseName: franchise ? franchise.name : null,
+				regimeName: franchise ? franchise.name : null,
 				contract: contractInfo,
 				salary: contractInfo.salary || 0,
 				fpts: Math.round(proj.fpts * 10) / 10,

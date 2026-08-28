@@ -13,7 +13,7 @@ else
 						span.search-result-name= result.name
 						+positionBadge(result.positions)
 					div.search-result-meta
-						span.search-result-franchise= result.franchiseName
+						span.search-result-franchise= result.regimeName
 						if result.contractDisplay
 							span.search-result-contract  · #{result.contractDisplay}
 						if result.yearContext
@@ -25,7 +25,7 @@ else
 						span.search-result-name= result.name
 						+positionBadge(result.positions)
 					div.search-result-meta
-						span.search-result-franchise= result.franchiseName
+						span.search-result-franchise= result.regimeName
 						span.search-result-contract  · RFA
 						if result.yearContext
 							span.search-result-years  · #{result.yearContext}

@@ -382,7 +382,7 @@ mixin tradeAsset(asset)
 //- Usage: +tradeParty(party)
 mixin tradeParty(party)
 	div.party
-		span.party-name #{party.franchiseName}
+		span.party-name #{party.regimeName}
 		if party.usePlural
 			|  receive:
 		else
@@ -400,7 +400,7 @@ mixin tradeParty(party)
 
 //- Budget impact table for trades
 //- Usage: +budgetImpactTable(budgetImpact)
-//- budgetImpact: [{ franchiseName, seasons: [{ season, delta }] }]
+//- budgetImpact: [{ regimeName, seasons: [{ season, delta }] }]
 mixin budgetImpactTable(budgetImpact)
 	table.table.table-sm.table-borderless.mb-0
 		thead
@@ -411,7 +411,7 @@ mixin budgetImpactTable(budgetImpact)
 		tbody
 			each impact in budgetImpact
 				tr
-					td: strong= impact.franchiseName
+					td: strong= impact.regimeName
 					each s in impact.seasons
 						td.text-right(class=deltaClass(s.delta))= formatMoney(s.delta, { sign: 'auto' })
 

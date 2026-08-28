@@ -64,7 +64,7 @@ async function editTradeForm(request, response) {
 	var parties = [];
 	for (var j = 0; j < (trade.parties || []).length; j++) {
 		var party = trade.parties[j];
-		var franchiseName = party.regimeName || getRegimeName(regimes, party.franchiseId, tradeYear);
+		var regimeName = party.regimeName || getRegimeName(regimes, party.franchiseId, tradeYear);
 		
 		// Enrich players
 		var playersData = [];
@@ -202,9 +202,9 @@ async function editTradeForm(request, response) {
 		
 		parties.push({
 			franchiseId: party.franchiseId,
-			franchiseName: franchiseName,
+			regimeName: regimeName,
 			regimeName: party.regimeName || '',
-			usePlural: isPluralName(franchiseName),
+			usePlural: isPluralName(regimeName),
 			assets: assets,
 			players: playersData,
 			picks: picksData,
@@ -215,7 +215,7 @@ async function editTradeForm(request, response) {
 	}
 	
 	parties.sort(function(a, b) {
-		return a.franchiseName.localeCompare(b.franchiseName);
+		return a.regimeName.localeCompare(b.regimeName);
 	});
 
 	response.render('admin-trade-edit', {

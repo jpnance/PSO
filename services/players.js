@@ -79,7 +79,7 @@ exports.playerDetail = async function(request, response) {
 				isRfa: isRfaRights(contract),
 				franchiseId: contract.franchiseId._id,
 				franchiseRosterId: contract.franchiseId.rosterId,
-				franchiseName: regime ? regime.displayName : 'Unknown',
+				regimeName: regime ? regime.displayName : 'Unknown',
 				buyout: buyout,
 				recoverable: buyout !== null ? salary - buyout : null
 			};

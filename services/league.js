@@ -566,13 +566,13 @@ async function getRecentActivity(currentSeason) {
 				var name = getRegimeName(regimes, p.franchiseId, season);
 				var plural = isPluralName(name);
 				return {
-					franchiseName: name,
+					regimeName: name,
 					franchise: franchiseLinkForSeason(p.franchiseId, season),
 					verb: plural ? 'receive' : 'receives',
 					assets: oxfordJoin(assetList(p.receives))
 				};
 			}).sort(function(a, b) {
-				return a.franchiseName.localeCompare(b.franchiseName);
+				return a.regimeName.localeCompare(b.regimeName);
 			});
 
 			return {
@@ -632,11 +632,11 @@ async function getBudgetOverview(currentSeason) {
 	var allFranchises = await Franchise.find({}).lean();
 	var regimes = await Regime.find({}).lean();
 
-	var franchiseNames = {};
+	var regimeNames = {};
 	regimes.forEach(function(r) {
 		r.tenures.forEach(function(t) {
 			if (t.endSeason === null || t.endSeason >= currentSeason) {
-				franchiseNames[t.franchiseId.toString()] = r.displayName;
+				regimeNames[t.franchiseId.toString()] = r.displayName;
 			}
 		});
 	});
@@ -655,7 +655,7 @@ async function getBudgetOverview(currentSeason) {
 
 	var rows = Object.keys(byFranchise).map(function(fid) {
 		return {
-			displayName: franchiseNames[fid] || 'Unknown',
+			displayName: regimeNames[fid] || 'Unknown',
 			href: rosterIds[fid] ? '/franchises/' + rosterIds[fid] : null,
 			seasons: seasons.map(function(s) {
 				return byFranchise[fid][s] != null ? byFranchise[fid][s] : null;
@@ -1298,7 +1298,7 @@ async function search(request, response) {
 				slug: player.slugs ? player.slugs[0] : null,
 				positions: player.positions || [],
 				franchiseId: franchise ? franchise.rosterId : null,
-				franchiseName: regimeMap[contract.franchiseId.toString()] || 'Unknown',
+				regimeName: regimeMap[contract.franchiseId.toString()] || 'Unknown',
 				contractDisplay: formatContractDisplay(contract.salary, contract.startYear, contract.endYear),
 				status: 'rostered',
 				yearContext: yearContext
@@ -1313,7 +1313,7 @@ async function search(request, response) {
 				slug: player.slugs ? player.slugs[0] : null,
 				positions: player.positions || [],
 				franchiseId: franchise ? franchise.rosterId : null,
-				franchiseName: regimeMap[contract.franchiseId.toString()] || 'Unknown',
+				regimeName: regimeMap[contract.franchiseId.toString()] || 'Unknown',
 				contractDisplay: null,
 				status: 'rfa',
 				yearContext: yearContext
@@ -1327,7 +1327,7 @@ async function search(request, response) {
 				slug: player.slugs ? player.slugs[0] : null,
 				positions: player.positions || [],
 				franchiseId: null,
-				franchiseName: null,
+				regimeName: null,
 				contractDisplay: null,
 				status: 'ufa',
 				yearContext: yearContext

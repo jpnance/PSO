@@ -54,7 +54,7 @@ function loadData() {
                     pos: p.positions[0] || 'N/A',
                     positions: p.positions,
                     franchise: p.franchise,
-                    franchiseName: p.franchiseName,
+                    regimeName: p.regimeName,
                     salary: p.salary,
                     contract: p.contract.display,
                     contractType: p.contract.type,

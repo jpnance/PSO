@@ -171,14 +171,14 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 		
 		for (var j = 0; j < (trade.parties || []).length; j++) {
 			var party = trade.parties[j];
-			var franchiseName;
+			var regimeName;
 			var usePlural;
 			if (party.regimeName) {
-				franchiseName = party.regimeName;
+				regimeName = party.regimeName;
 			} else {
-				franchiseName = getRegimeName(allRegimes, party.franchiseId, tradeYear);
+				regimeName = getRegimeName(allRegimes, party.franchiseId, tradeYear);
 			}
-			usePlural = isPluralName(franchiseName);
+			usePlural = isPluralName(regimeName);
 			
 			// Collect all assets with their display info
 			var playerAssets = [];
@@ -414,7 +414,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 				});
 			
 			parties.push({
-				franchiseName: franchiseName,
+				regimeName: regimeName,
 				usePlural: usePlural,
 				assets: allAssets,
 				ambiguousPlayers: ambiguousPlayers
@@ -423,7 +423,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 		
 		// Sort parties alphabetically by franchise name
 		parties.sort(function(a, b) {
-			return a.franchiseName.localeCompare(b.franchiseName);
+			return a.regimeName.localeCompare(b.regimeName);
 		});
 		
 		// Collect all ambiguous player names across parties

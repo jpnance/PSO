@@ -10,9 +10,9 @@ block og_meta
 		var contractText = '';
 		if (contract) {
 			if (contract.isRfa) {
-				contractText = 'RFA rights held by ' + contract.franchiseName;
+				contractText = 'RFA rights held by ' + contract.regimeName;
 			} else {
-				contractText = formatMoney(contract.salary) + ' · ' + formatContractYears(contract.startYear, contract.endYear) + ' · ' + contract.franchiseName;
+				contractText = formatMoney(contract.salary) + ' · ' + formatContractYears(contract.startYear, contract.endYear) + ' · ' + contract.regimeName;
 			}
 		} else {
 			contractText = 'UFA';
@@ -42,7 +42,7 @@ block content
 						+positionBadge(player.positions)
 				div.player-hero__meta
 					if contract
-						a.player-hero__franchise(href='/franchises/' + contract.franchiseRosterId)= contract.franchiseName
+						a.player-hero__franchise(href='/franchises/' + contract.franchiseRosterId)= contract.regimeName
 						if contract.isRfa
 							span.player-hero__sep ·
 							span RFA rights

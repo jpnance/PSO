@@ -280,7 +280,7 @@ function formatPicksGrouped(picks) {
 
 /**
  * Generate OG description for a single party's assets
- * @param {Object} party - party object with assets array and franchiseName
+ * @param {Object} party - party object with assets array and regimeName
  * @param {Object} options - { shorten: boolean } to use shortened player names
  * @returns {string} e.g. "Will Levis, two 1sts, and $15 in 2025"
  */
@@ -343,7 +343,7 @@ function formatPartyAssets(party, options) {
 /**
  * Generate full OG description for a trade
  * Format: "Patrick: Will Levis, two 1sts, and $15 in 2025 • Schexes: Ja'Marr Chase and one 3rd"
- * @param {Array} parties - array of party objects with franchiseName and assets
+ * @param {Array} parties - array of party objects with regimeName and assets
  * @param {Object} options - { maxLength: number } for truncation with fallback
  * @returns {string}
  */
@@ -360,7 +360,7 @@ function tradeOgDescription(parties, options) {
 	for (var i = 0; i < parties.length; i++) {
 		var party = parties[i];
 		var assets = formatPartyAssets(party, { shorten: false });
-		parts.push(party.franchiseName + ': ' + assets);
+		parts.push(party.regimeName + ': ' + assets);
 	}
 	var result = parts.join(' ↔ ');
 	
@@ -370,7 +370,7 @@ function tradeOgDescription(parties, options) {
 		for (var i = 0; i < parties.length; i++) {
 			var party = parties[i];
 			var assets = formatPartyAssets(party, { shorten: true });
-			parts.push(party.franchiseName + ': ' + assets);
+			parts.push(party.regimeName + ': ' + assets);
 		}
 		result = parts.join(' ↔ ');
 	}
@@ -881,7 +881,7 @@ function collectDescriptionAssets(party, auctionSeason, tradeYear, options) {
  * Generate plain English trade description
  * e.g., "Schexes traded Marcus Mariota to Koci for $38 in 2026"
  * For hypothetical trades: "Schexes would trade Marcus Mariota to Koci for $38 in 2026"
- * @param {Array} parties - array of party objects with franchiseName, assets
+ * @param {Array} parties - array of party objects with regimeName, assets
  * @param {Object} options - { auctionSeason, tradeYear, status }
  * @returns {string} plain English description
  */
@@ -904,7 +904,7 @@ function tradeOgPlainEnglish(parties, options) {
 		for (var i = 0; i < parties.length; i++) {
 			var p = parties[i];
 			var collected = collectDescriptionAssets(p, auctionSeason, tradeYear, { netCash: netCashMap.get(i) });
-			parts.push(p.franchiseName + ' receives ' + oxfordJoin(collected.items));
+			parts.push(p.regimeName + ' receives ' + oxfordJoin(collected.items));
 		}
 		return parts.join('. ') + '.';
 	}
@@ -965,14 +965,14 @@ function tradeOgPlainEnglish(parties, options) {
 	if (firstIsParty0Assets) {
 		// Party 0 receives first assets, so Party 1 gave them
 		// Description: Party 1 traded first assets to Party 0 for second assets
-		giverName = parties[1].franchiseName;
-		receiverName = parties[0].franchiseName;
+		giverName = parties[1].regimeName;
+		receiverName = parties[0].regimeName;
 		firstAssets = items0;
 		secondAssets = items1;
 	} else {
 		// Party 1 receives first assets, so Party 0 gave them
-		giverName = parties[0].franchiseName;
-		receiverName = parties[1].franchiseName;
+		giverName = parties[0].regimeName;
+		receiverName = parties[1].regimeName;
 		firstAssets = items1;
 		secondAssets = items0;
 	}

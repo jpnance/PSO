@@ -205,7 +205,7 @@ block content
 							tbody
 								each check in rosterChecks
 									tr(class=check.isOver ? 'table-danger' : '')
-										td= check.franchiseName
+										td= check.regimeName
 										td.text-right
 											| #{check.count}
 											span.text-muted  / #{check.limit}
@@ -276,7 +276,7 @@ block content
 							each problem in contractProblems
 								div.sanity__problem-item
 									strong= problem.playerName
-									span.text-muted  (#{problem.franchiseName})
+									span.text-muted  (#{problem.regimeName})
 									div.sanity__problem
 										each p in problem.problems
 											div
@@ -306,7 +306,7 @@ block content
 							each problem in rfaProblems
 								div.sanity__problem-item
 									strong= problem.playerName
-									span.text-muted  (#{problem.franchiseName})
+									span.text-muted  (#{problem.regimeName})
 									div.sanity__problem
 										each p in problem.problems
 											div
@@ -335,7 +335,7 @@ block content
 						if regimeProblems.length > 0
 							each problem in regimeProblems
 								div.sanity__problem-item
-									strong= problem.franchiseName
+									strong= problem.regimeName
 									div.sanity__problem
 										i.fa.fa-exclamation-circle.mr-2
 										= problem.problem
@@ -426,7 +426,7 @@ block content
 						if payrollProblems.length > 0
 							each problem in payrollProblems
 								div.sanity__problem-item
-									strong= problem.franchiseName
+									strong= problem.regimeName
 									span.text-muted  (#{problem.season})
 									div.sanity__problem
 										i.fa.fa-exclamation-circle.mr-2

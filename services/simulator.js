@@ -243,7 +243,7 @@ module.exports.filterByConditions = function(request, response) {
 		}
 
 		pugResults.push({
-			owner: {
+			team: {
 				name: name,
 				wins: simulationData.owners[franchiseId].wins,
 				losses: simulationData.owners[franchiseId].losses,
@@ -262,7 +262,7 @@ module.exports.filterByConditions = function(request, response) {
 	});
 
 	pugResults.sort(function(a, b) {
-		return a.owner.currentStanding - b.owner.currentStanding;
+		return a.team.currentStanding - b.team.currentStanding;
 	});
 
 	resultsCache[conditionsCacheKey] = compiledPug({ results: pugResults, options: { trials: filteredSimulations.length } });

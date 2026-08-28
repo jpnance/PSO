@@ -572,7 +572,7 @@ async function sanityPage(request, response) {
 		var count = rosterCounts[fIdStr] || 0;
 		var franchise = franchiseMap[fIdStr];
 		var check = {
-			franchiseName: franchise.displayName,
+			regimeName: franchise.displayName,
 			count: count,
 			limit: LeagueConfig.ROSTER_LIMIT,
 			isOver: count > LeagueConfig.ROSTER_LIMIT
@@ -637,7 +637,7 @@ async function sanityPage(request, response) {
 			if (b.available !== expectedAvailable) {
 				var franchise = franchiseMap[b.franchiseId.toString()];
 				check.formulaErrors.push({
-					franchiseName: franchise ? franchise.displayName : 'Unknown',
+					regimeName: franchise ? franchise.displayName : 'Unknown',
 					actual: b.available,
 					expected: expectedAvailable,
 					diff: b.available - expectedAvailable
@@ -763,7 +763,7 @@ async function sanityPage(request, response) {
 		
 		if (b.payroll !== calculatedPayroll) {
 			payrollProblems.push({
-				franchiseName: franchise ? franchise.displayName : 'Unknown',
+				regimeName: franchise ? franchise.displayName : 'Unknown',
 				season: season,
 				stored: b.payroll,
 				calculated: calculatedPayroll,
@@ -815,7 +815,7 @@ async function sanityPage(request, response) {
 			contractProblems.push({
 				playerId: c.playerId.toString(),
 				playerName: player ? player.name : 'Unknown',
-				franchiseName: franchiseMap[c.franchiseId.toString()]?.displayName || 'Unknown',
+				regimeName: franchiseMap[c.franchiseId.toString()]?.displayName || 'Unknown',
 				problems: problems
 			});
 		}
@@ -846,7 +846,7 @@ async function sanityPage(request, response) {
 			var player = players.find(function(p) { return p._id.toString() === c.playerId.toString(); });
 			rfaProblems.push({
 				playerName: player ? player.name : 'Unknown',
-				franchiseName: franchiseMap[c.franchiseId.toString()]?.displayName || 'Unknown',
+				regimeName: franchiseMap[c.franchiseId.toString()]?.displayName || 'Unknown',
 				problems: problems
 			});
 		}
@@ -879,13 +879,13 @@ async function sanityPage(request, response) {
 		if (activeTenures.length === 0) {
 			regimeProblems.push({
 				franchiseId: fIdStr,
-				franchiseName: franchiseMap[fIdStr]?.displayName || 'Unknown (ID: ' + fIdStr + ')',
+				regimeName: franchiseMap[fIdStr]?.displayName || 'Unknown (ID: ' + fIdStr + ')',
 				problem: 'No active regime'
 			});
 		} else if (activeTenures.length > 1) {
 			regimeProblems.push({
 				franchiseId: fIdStr,
-				franchiseName: franchiseMap[fIdStr]?.displayName || 'Unknown',
+				regimeName: franchiseMap[fIdStr]?.displayName || 'Unknown',
 				problem: 'Multiple active regimes: ' + activeTenures.map(function(t) { return t.regimeName; }).join(', ')
 			});
 		}
@@ -1241,13 +1241,13 @@ async function transactionsPage(request, response) {
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : new Date().getFullYear();
 
-	var franchiseNameMap = buildRegimeMap(regimes, season);
+	var regimeNameMap = buildRegimeMap(regimes, season);
 
 	// Build display data for each transaction
 	var displayTransactions = transactions.map(function(t) {
-		var franchiseName = null;
+		var regimeName = null;
 		if (t.franchiseId && t.franchiseId._id) {
-			franchiseName = franchiseNameMap[t.franchiseId._id.toString()];
+			regimeName = regimeNameMap[t.franchiseId._id.toString()];
 		}
 
 		var playerName = null;
@@ -1256,7 +1256,7 @@ async function transactionsPage(request, response) {
 		}
 
 		// Build a summary string
-		var summary = buildTransactionSummary(t, franchiseNameMap);
+		var summary = buildTransactionSummary(t, regimeNameMap);
 
 		return {
 			_id: t._id.toString(),
@@ -1264,7 +1264,7 @@ async function transactionsPage(request, response) {
 			timestamp: t.timestamp,
 			source: t.source,
 			notes: t.notes,
-			franchiseName: franchiseName,
+			regimeName: regimeName,
 			playerName: playerName,
 			tradeId: t.tradeId,
 			summary: summary,
@@ -1300,13 +1300,13 @@ async function transactionsPage(request, response) {
 	});
 }
 
-function buildTransactionSummary(t, franchiseNameMap) {
+function buildTransactionSummary(t, regimeNameMap) {
 	switch (t.type) {
 		case 'trade':
 			if (t.parties && t.parties.length >= 2) {
 				var names = t.parties.map(function(p) {
 					var fId = p.franchiseId && p.franchiseId._id ? p.franchiseId._id.toString() : (p.franchiseId ? p.franchiseId.toString() : null);
-					return p.regimeName || (fId ? franchiseNameMap[fId] : null) || 'Unknown';
+					return p.regimeName || (fId ? regimeNameMap[fId] : null) || 'Unknown';
 				});
 				return 'Trade #' + (t.tradeId || '?') + ': ' + names.join(' ↔ ');
 			}
@@ -1326,7 +1326,7 @@ function buildTransactionSummary(t, franchiseNameMap) {
 				});
 				parts.push('Drop ' + dropNames.join(', '));
 			}
-			var faFranchise = t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : null;
+			var faFranchise = t.franchiseId && t.franchiseId._id ? regimeNameMap[t.franchiseId._id.toString()] : null;
 			if (faFranchise) {
 				parts.push('(' + faFranchise + ')');
 			}
@@ -1334,21 +1334,21 @@ function buildTransactionSummary(t, franchiseNameMap) {
 
 		case 'draft-select':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' drafted by ' +
-				(t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : '?');
+				(t.franchiseId && t.franchiseId._id ? regimeNameMap[t.franchiseId._id.toString()] : '?');
 
 		case 'draft-pass':
-			return (t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : '?') + ' passed';
+			return (t.franchiseId && t.franchiseId._id ? regimeNameMap[t.franchiseId._id.toString()] : '?') + ' passed';
 
 		case 'auction-ufa':
 		case 'auction-rfa-matched':
 		case 'auction-rfa-unmatched':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') +
 				(t.winningBid ? ' for $' + t.winningBid : '') +
-				' to ' + (t.franchiseId && t.franchiseId._id ? franchiseNameMap[t.franchiseId._id.toString()] : '?');
+				' to ' + (t.franchiseId && t.franchiseId._id ? regimeNameMap[t.franchiseId._id.toString()] : '?');
 
 		case 'rfa-rights-conversion':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' → RFA rights' +
-				(t.franchiseId && t.franchiseId._id ? ' (' + franchiseNameMap[t.franchiseId._id.toString()] + ')' : '');
+				(t.franchiseId && t.franchiseId._id ? ' (' + regimeNameMap[t.franchiseId._id.toString()] + ')' : '');
 
 		case 'rfa-rights-lapsed':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' RFA rights lapsed';
@@ -1359,15 +1359,15 @@ function buildTransactionSummary(t, franchiseNameMap) {
 		case 'contract':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') +
 				(t.salary ? ' $' + t.salary : '') +
-				(t.franchiseId && t.franchiseId._id ? ' (' + franchiseNameMap[t.franchiseId._id.toString()] + ')' : '');
+				(t.franchiseId && t.franchiseId._id ? ' (' + regimeNameMap[t.franchiseId._id.toString()] + ')' : '');
 
 		case 'expansion-draft-select':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' selected' +
-				(t.franchiseId && t.franchiseId._id ? ' by ' + franchiseNameMap[t.franchiseId._id.toString()] : '');
+				(t.franchiseId && t.franchiseId._id ? ' by ' + regimeNameMap[t.franchiseId._id.toString()] : '');
 
 		case 'expansion-draft-protect':
 			return (t.playerId && t.playerId.name ? t.playerId.name : '?') + ' protected' +
-				(t.franchiseId && t.franchiseId._id ? ' by ' + franchiseNameMap[t.franchiseId._id.toString()] : '');
+				(t.franchiseId && t.franchiseId._id ? ' by ' + regimeNameMap[t.franchiseId._id.toString()] : '');
 
 		default:
 			if (t.playerId && t.playerId.name) {

@@ -106,7 +106,7 @@ block content
 											i.fa.fa-check.text-success.proposal-response__icon
 										else
 											i.fa.fa-circle-o.proposal-response__icon.proposal-response__icon--waiting
-										span= party.franchiseName
+										span= party.regimeName
 					//- Action buttons
 					if (proposal.status === 'hypothetical' && isParty) || (proposal.status === 'pending' && (isParty || isCreator))
 						div.card-footer.proposal-actions

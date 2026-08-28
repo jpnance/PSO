@@ -132,15 +132,15 @@ var tradeMachine = {
 		return hyphenIndex !== -1 ? elementId.substring(hyphenIndex + 1) : elementId;
 	},
 
-	franchiseName: (franchiseId) => {
+	regimeName: (franchiseId) => {
 		var franchise = franchiseList.find(f => f.id === franchiseId);
 		return franchise ? franchise.name : 'Unknown';
 	},
 
 	franchisesInvolved: () => {
 		var sortedFranchises = Object.keys(tradeMachine.deal).sort((a, b) => {
-			var aName = tradeMachine.franchiseName(a);
-			var bName = tradeMachine.franchiseName(b);
+			var aName = tradeMachine.regimeName(a);
+			var bName = tradeMachine.regimeName(b);
 			return aName.localeCompare(bName);
 		});
 
@@ -209,8 +209,8 @@ var tradeMachine = {
 					);
 					
 					if (franchisePicks.length > 0) {
-						var franchiseName = tradeMachine.franchiseName(franchiseId);
-						var $optgroup = $('<optgroup>').attr('label', franchiseName + "'s Picks");
+						var regimeName = tradeMachine.regimeName(franchiseId);
+						var $optgroup = $('<optgroup>').attr('label', regimeName + "'s Picks");
 						
 						franchisePicks.forEach((pick) => {
 							var displayText = tradeMachine.formatPickDisplay(pick);
@@ -245,8 +245,8 @@ var tradeMachine = {
 					var availablePlayers = players.filter(p => !playersInDeal.includes(p.id));
 					
 					if (availablePlayers.length > 0) {
-						var franchiseName = tradeMachine.franchiseName(franchiseId);
-						var $optgroup = $('<optgroup>').attr('label', 'From ' + franchiseName);
+						var regimeName = tradeMachine.regimeName(franchiseId);
+						var $optgroup = $('<optgroup>').attr('label', 'From ' + regimeName);
 						
 						availablePlayers.forEach((player) => {
 							var displayText = player.name + ' ';
@@ -662,7 +662,7 @@ var tradeMachine = {
 		}
 		else if (asset.type === 'cash') {
 			$el.find('.asset-text strong').text(tradeMachine.formatMoney(asset.amount));
-			$el.find('.asset-text strong').after(' from ' + tradeMachine.franchiseName(asset.from) + ' in ' + asset.season);
+			$el.find('.asset-text strong').after(' from ' + tradeMachine.regimeName(asset.from) + ' in ' + asset.season);
 		}
 		
 		return $el;

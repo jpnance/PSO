@@ -145,15 +145,14 @@ async function computeStandingsFromGames(season) {
 		lastRegularSeasonWeek = 15;
 	}
 	
-	// Build franchise data
-	var owners = {};
+	var teams = {};
 	var gamesWithScores = 0;
 	
 	games.forEach(function(game) {
 		['away', 'home'].forEach(function(side) {
 			var id = game[side].franchiseId;
-			if (!owners[id]) {
-				owners[id] = {
+			if (!teams[id]) {
+				teams[id] = {
 					id: id,
 					name: game[side].name,
 					wins: 0, losses: 0, ties: 0,
@@ -170,20 +169,20 @@ async function computeStandingsFromGames(season) {
 		
 		if (game.type === 'regular' && game.away.score != null && game.home.score != null) {
 			gamesWithScores++;
-			owners[awayId].pointsFor += game.away.score;
-			owners[awayId].pointsAgainst += game.home.score;
-			owners[homeId].pointsFor += game.home.score;
-			owners[homeId].pointsAgainst += game.away.score;
+			teams[awayId].pointsFor += game.away.score;
+			teams[awayId].pointsAgainst += game.home.score;
+			teams[homeId].pointsFor += game.home.score;
+			teams[homeId].pointsAgainst += game.away.score;
 			
 			if (game.away.score > game.home.score) {
-				owners[awayId].wins++;
-				owners[homeId].losses++;
+				teams[awayId].wins++;
+				teams[homeId].losses++;
 			} else if (game.home.score > game.away.score) {
-				owners[homeId].wins++;
-				owners[awayId].losses++;
+				teams[homeId].wins++;
+				teams[awayId].losses++;
 			} else {
-				owners[awayId].ties++;
-				owners[homeId].ties++;
+				teams[awayId].ties++;
+				teams[homeId].ties++;
 			}
 			
 			// Capture all-play/stern from last week
@@ -193,10 +192,10 @@ async function computeStandingsFromGames(season) {
 					var record = game[side].record;
 					if (record) {
 						if (record.allPlay && record.allPlay.cumulative) {
-							owners[fid].allPlay = record.allPlay.cumulative;
+							teams[fid].allPlay = record.allPlay.cumulative;
 						}
 						if (record.stern && record.stern.cumulative) {
-							owners[fid].stern = record.stern.cumulative;
+							teams[fid].stern = record.stern.cumulative;
 						}
 					}
 				});
@@ -206,44 +205,44 @@ async function computeStandingsFromGames(season) {
 		// Playoff games
 		if (['semifinal', 'thirdPlace', 'championship'].includes(game.type) && 
 			game.away.score != null && game.home.score != null) {
-			owners[awayId].playoffPointsFor += game.away.score;
-			owners[awayId].playoffPointsAgainst += game.home.score;
-			owners[homeId].playoffPointsFor += game.home.score;
-			owners[homeId].playoffPointsAgainst += game.away.score;
+			teams[awayId].playoffPointsFor += game.away.score;
+			teams[awayId].playoffPointsAgainst += game.home.score;
+			teams[homeId].playoffPointsFor += game.home.score;
+			teams[homeId].playoffPointsAgainst += game.away.score;
 			
 			if (game.away.score > game.home.score) {
-				owners[awayId].playoffWins++;
-				owners[homeId].playoffLosses++;
+				teams[awayId].playoffWins++;
+				teams[homeId].playoffLosses++;
 			} else {
-				owners[homeId].playoffWins++;
-				owners[awayId].playoffLosses++;
+				teams[homeId].playoffWins++;
+				teams[awayId].playoffLosses++;
 			}
 		}
 		
 		// Track finishes
 		if (game.type === 'semifinal') {
-			if (!owners[awayId].playoffFinish) owners[awayId].playoffFinish = 'fourth-place';
-			if (!owners[homeId].playoffFinish) owners[homeId].playoffFinish = 'fourth-place';
+			if (!teams[awayId].playoffFinish) teams[awayId].playoffFinish = 'fourth-place';
+			if (!teams[homeId].playoffFinish) teams[homeId].playoffFinish = 'fourth-place';
 		}
 		if (game.type === 'thirdPlace' && game.away.score != null) {
 			if (game.away.score > game.home.score) {
-				owners[awayId].playoffFinish = 'third-place';
+				teams[awayId].playoffFinish = 'third-place';
 			} else {
-				owners[homeId].playoffFinish = 'third-place';
+				teams[homeId].playoffFinish = 'third-place';
 			}
 		}
 		if (game.type === 'championship' && game.away.score != null) {
 			if (game.away.score > game.home.score) {
-				owners[awayId].playoffFinish = 'champion';
-				owners[homeId].playoffFinish = 'runner-up';
+				teams[awayId].playoffFinish = 'champion';
+				teams[homeId].playoffFinish = 'runner-up';
 			} else {
-				owners[homeId].playoffFinish = 'champion';
-				owners[awayId].playoffFinish = 'runner-up';
+				teams[homeId].playoffFinish = 'champion';
+				teams[awayId].playoffFinish = 'runner-up';
 			}
 		}
 	});
 	
-	var allTeams = Object.values(owners);
+	var allTeams = Object.values(teams);
 	var playoffTeams = allTeams.filter(function(t) { return t.playoffFinish; });
 	var nonPlayoffTeams = allTeams.filter(function(t) { return !t.playoffFinish; });
 	
