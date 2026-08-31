@@ -48,3 +48,30 @@ December 2025
     })
 * There's also a create_message mutation for posting to league chat. Takes parent_id (league ID), parent_type ("league"), client_id (any UUID), and text.
 * Other mutations exist (propose_trade, accept_trade, reject_trade, process_transaction, league_create_transaction with type "free_agent") but they require the caller to be part of the transaction, so they're not useful for commissioner automation. The type: "commissioner" approach handles everything.
+
+August 2026
+* Required headers for GraphQL requests (discovered via trial and error):
+    Content-Type: application/json
+    Accept: application/json
+    Authorization: <jwt_token>
+    Origin: https://sleeper.com
+    Referer: https://sleeper.com/
+    X-Sleeper-GraphQL-Op: <operation_name>
+    User-Agent: Mozilla/5.0
+* Reading current FAAB state: Use the REST API (no auth needed):
+    GET https://api.sleeper.app/v1/league/<league_id>/rosters
+    Each roster has settings.waiver_budget_used and settings.waiver_position
+* Setting per-team FAAB budgets uses the roster_update_settings mutation with k_settings/v_settings arrays:
+    mutation roster_update_settings($k_settings: [String], $v_settings: [Float]) {
+      roster_update_settings(league_id: "<league_id>", roster_id: <roster_id>, k_settings: $k_settings, v_settings: $v_settings) {
+        roster_id settings
+      }
+    }
+    Variables: { k_settings: ["waiver_budget_used", "waiver_position"], v_settings: [<used>, <position>] }
+* waiver_budget_used = (league_max_faab - desired_available). E.g., if league max is 1000 and you want team to have 750 available, set waiver_budget_used to 250.
+* waiver_budget_used cannot be negative and is capped at the league-wide maximum.
+* waiver_position is the tiebreaker priority (1 = first priority).
+* IMPORTANT: Always send the current waiver_position alongside waiver_budget_used when updating. Sending only waiver_budget_used will null out waiver_position, which crashes the mobile app on the Edit Waiver screen. Read current waiver_position from the REST API first and echo it back.
+* The REST API has eventual consistency - changes may take 1-2 minutes to appear after a GraphQL mutation.
+* League-wide settings use league_update_settings with the same k_settings/v_settings pattern.
+* GraphQL mutation payloads appear in league chat messages via the messages query - useful for debugging.
