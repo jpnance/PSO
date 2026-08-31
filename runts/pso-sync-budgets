@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Sync PSO FAAB budgets to Sleeper
+# 
+# Requires SLEEPER_JWT in .env.
+# League ID comes from config/pso.js.
+#
+# Usage:
+#   runt pso-sync-budgets --dry-run
+#   runt pso-sync-budgets
+
+docker compose run --rm web node data/maintenance/sync-budgets-to-sleeper.js "$@"
