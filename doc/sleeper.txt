@@ -73,5 +73,61 @@ August 2026
 * waiver_position is the tiebreaker priority (1 = first priority).
 * IMPORTANT: Always send the current waiver_position alongside waiver_budget_used when updating. Sending only waiver_budget_used will null out waiver_position, which crashes the mobile app on the Edit Waiver screen. Read current waiver_position from the REST API first and echo it back.
 * The REST API has eventual consistency - changes may take 1-2 minutes to appear after a GraphQL mutation.
+* Known GraphQL mutations (discovered via "Did you mean...?" probing, tools/fish-mutations.js):
+    Roster management:
+      roster_update_settings - update waiver_budget_used, waiver_position, etc.
+      roster_update_starters - set starting lineup
+      roster_update_metadata - update roster metadata
+      roster_update_reserve - manage IR slots
+      roster_update_taxi - manage taxi squad
+      roster_set_keepers - set keeper players
+      roster_change_owner - transfer roster ownership
+    Transactions:
+      process_transaction - process a pending transaction
+      submit_waiver_claim - submit a FAAB bid
+      cancel_waiver_claim - cancel a pending bid
+      league_create_transaction - commissioner roster changes (see December 2025)
+    Trades:
+      propose_trade - initiate a trade
+      accept_trade - accept a trade offer
+      reject_trade - reject a trade offer
+    League settings:
+      league_update_settings - update league-wide settings (k_settings/v_settings pattern)
+      league_update_name - rename league
+      league_update_note - update league description
+      league_update_owners - manage league ownership
+      league_update_metadata - update league metadata
+      league_update_roster_positions - configure roster slots
+      league_update_scoring_settings - change scoring rules
+      league_update_custom_standings - manual standings adjustments
+      league_update_display_order - reorder teams
+      configure_divisions - set up divisions
+    Draft:
+      create_draft - create a new draft
+      create_supplemental_draft - create supplemental draft
+      claim_draft_slot - claim a draft position
+      draft_pick_player - make a draft pick
+      draft_cpu_pick_player - CPU autopick
+      draft_force_auction_pick - force auction pick
+      draft_hover_player - hover on player (auction)
+      update_draft_settings - change draft settings
+      import_draft - import draft results
+    Players:
+      add_player_tag - tag a player
+      watch_player - add to watchlist
+      like_league_player / unlike_league_player - player likes
+      add_league_player_note / remove_league_player_note - player notes
+      add_league_player_trade_block / remove_league_player_trade_block - trade block
+    Messaging:
+      create_message - post to league chat
+      pin_message - pin a message
+      change_message_text - edit message
+      tip_message_author - tip message author
+      typing - typing indicator
+    Other:
+      leave_league - leave a league
+      league_remove_user - kick user from league
+      invite_friends / invite_to_dm - invitations
+      join_public_league / join_matchmaking_league - join leagues
 * League-wide settings use league_update_settings with the same k_settings/v_settings pattern.
 * GraphQL mutation payloads appear in league chat messages via the messages query - useful for debugging.
