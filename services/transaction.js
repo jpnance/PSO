@@ -820,39 +820,43 @@ async function processTrade(tradeDetails) {
 		}
 		
 		// Sync player movements if any
+		var playerSyncFailed = false;
 		if (movements.length > 0) {
 			var movementResult = await sleeperHelper.syncTradeMovements(movements);
 			if (!movementResult.success) {
 				sleeperErrors.push('Player sync failed: ' + movementResult.error);
+				playerSyncFailed = true;
 			}
 		}
 		
-		// Sync budgets for affected franchises
-		var affectedFranchiseIds = Object.keys(budgetUpdates).map(function(key) {
-			return budgetUpdates[key].franchiseId;
-		}).filter(function(fid, index, self) {
-			return self.findIndex(function(f) { return f.toString() === fid.toString(); }) === index;
-		});
-		
-		if (affectedFranchiseIds.length > 0) {
-			var franchisesForSync = [];
-			for (var i = 0; i < affectedFranchiseIds.length; i++) {
-				var fid = affectedFranchiseIds[i];
-				var franchise = await Franchise.findById(fid, 'rosterId').lean();
-				var budget = await Budget.findOne({ franchiseId: fid, season: currentSeason }).lean();
-				
-				if (franchise && franchise.rosterId && budget) {
-					franchisesForSync.push({
-						franchiseId: fid,
-						rosterId: franchise.rosterId,
-						available: budget.available
-					});
-				}
-			}
+		// Only sync budgets if player sync succeeded (or had no players)
+		if (!playerSyncFailed) {
+			var affectedFranchiseIds = Object.keys(budgetUpdates).map(function(key) {
+				return budgetUpdates[key].franchiseId;
+			}).filter(function(fid, index, self) {
+				return self.findIndex(function(f) { return f.toString() === fid.toString(); }) === index;
+			});
 			
-			var budgetResult = await sleeperHelper.syncBudgets(franchisesForSync);
-			if (budgetResult.errors.length > 0) {
-				sleeperErrors = sleeperErrors.concat(budgetResult.errors);
+			if (affectedFranchiseIds.length > 0) {
+				var franchisesForSync = [];
+				for (var i = 0; i < affectedFranchiseIds.length; i++) {
+					var fid = affectedFranchiseIds[i];
+					var franchise = await Franchise.findById(fid, 'rosterId').lean();
+					var budget = await Budget.findOne({ franchiseId: fid, season: currentSeason }).lean();
+					
+					if (franchise && franchise.rosterId && budget) {
+						franchisesForSync.push({
+							franchiseId: fid,
+							rosterId: franchise.rosterId,
+							available: budget.available
+						});
+					}
+				}
+				
+				var budgetResult = await sleeperHelper.syncBudgets(franchisesForSync);
+				if (budgetResult.errors.length > 0) {
+					sleeperErrors = sleeperErrors.concat(budgetResult.errors);
+				}
 			}
 		}
 		

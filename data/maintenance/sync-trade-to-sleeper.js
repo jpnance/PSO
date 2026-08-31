@@ -70,38 +70,80 @@ async function main() {
 	var movements = [];
 	var affectedFranchiseIds = new Set();
 
+	// Build franchiseId -> rosterId lookup
+	var franchises = await Franchise.find({ rosterId: { $ne: null } }).lean();
+	var rosterIdByFranchiseId = {};
+	franchises.forEach(function(f) {
+		rosterIdByFranchiseId[f._id.toString()] = f.rosterId;
+	});
+
 	for (var i = 0; i < allPlayers.length; i++) {
 		var p = allPlayers[i];
 		var player = await Player.findById(p.playerId, 'name sleeperId').lean();
 		var toFranchise = await Franchise.findById(p.toFranchiseId, 'rosterId').lean();
 
-		// Find the "from" franchise
-		var fromFranchiseId = null;
-		for (var j = 0; j < trade.parties.length; j++) {
-			var otherParty = trade.parties[j];
-			if (otherParty.franchiseId.toString() === p.toFranchiseId.toString()) continue;
+		if (!player || !player.sleeperId) {
+			console.log('  ' + (player ? player.name : p.playerId) + ': No sleeperId, skipping');
+			continue;
+		}
 
-			var otherReceives = otherParty.receives || {};
-			var otherPlayers = (otherReceives.players || []).map(function(op) { return op.playerId.toString(); });
-			if (!otherPlayers.includes(p.playerId.toString())) {
-				fromFranchiseId = otherParty.franchiseId;
-				break;
+		// Find pre-trade owner from PSO transaction history
+		// Look for the most recent transaction that assigned this player to a franchise, before this trade
+		var priorTx = await Transaction.findOne({
+			timestamp: { $lt: trade.timestamp },
+			$or: [
+				{ 'parties.receives.players.playerId': p.playerId },  // trades
+				{ 'adds.playerId': p.playerId },                       // FA pickups
+				{ playerId: p.playerId, type: { $in: ['draft-select', 'contract', 'auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'] } }
+			]
+		}).sort({ timestamp: -1 }).lean();
+
+		var fromFranchiseId = null;
+		if (priorTx) {
+			// Check for direct franchiseId (draft, auction, contract transactions)
+			if (priorTx.franchiseId) {
+				fromFranchiseId = priorTx.franchiseId;
+			}
+			// Check trade parties
+			if (!fromFranchiseId && priorTx.parties) {
+				for (var j = 0; j < priorTx.parties.length; j++) {
+					var party = priorTx.parties[j];
+					var receivedPlayers = (party.receives && party.receives.players) || [];
+					var hasPlayer = receivedPlayers.some(function(rp) {
+						return rp.playerId.toString() === p.playerId.toString();
+					});
+					if (hasPlayer) {
+						fromFranchiseId = party.franchiseId;
+						break;
+					}
+				}
+			}
+			// Check FA transaction adds
+			if (!fromFranchiseId && priorTx.adds) {
+				var addEntry = priorTx.adds.find(function(a) {
+					return a.playerId.toString() === p.playerId.toString();
+				});
+				if (addEntry && priorTx.franchiseId) {
+					fromFranchiseId = priorTx.franchiseId;
+				}
 			}
 		}
 
-		var fromFranchise = fromFranchiseId ? await Franchise.findById(fromFranchiseId, 'rosterId').lean() : null;
+		var fromRosterId = fromFranchiseId ? rosterIdByFranchiseId[fromFranchiseId.toString()] : null;
 
 		var toName = PSO.franchiseNames[toFranchise.rosterId] ? PSO.franchiseNames[toFranchise.rosterId][PSO.season] : 'Roster ' + toFranchise.rosterId;
-		var fromName = fromFranchise && PSO.franchiseNames[fromFranchise.rosterId] ? PSO.franchiseNames[fromFranchise.rosterId][PSO.season] : '???';
+		var fromName = fromRosterId && PSO.franchiseNames[fromRosterId] ? PSO.franchiseNames[fromRosterId][PSO.season] : (fromRosterId ? 'Roster ' + fromRosterId : '???');
 
-		console.log('  ' + (player ? player.name : p.playerId) + ': ' + fromName + ' -> ' + toName);
+		console.log('  ' + player.name + ': ' + fromName + ' (roster ' + fromRosterId + ') -> ' + toName + ' (roster ' + toFranchise.rosterId + ')');
 
-		if (player && player.sleeperId && toFranchise && toFranchise.rosterId && fromFranchise && fromFranchise.rosterId) {
+		if (toFranchise && toFranchise.rosterId && fromRosterId) {
 			movements.push({
 				sleeperId: player.sleeperId,
-				fromRosterId: fromFranchise.rosterId,
+				fromRosterId: fromRosterId,
 				toRosterId: toFranchise.rosterId
 			});
+		} else if (!fromRosterId) {
+			console.log('    WARNING: Could not determine pre-trade owner from PSO history');
 		}
 
 		affectedFranchiseIds.add(p.toFranchiseId.toString());
@@ -110,6 +152,7 @@ async function main() {
 
 	// Sync player movements
 	console.log('\n=== Syncing Players to Sleeper ===');
+	var playerSyncFailed = false;
 	if (movements.length > 0) {
 		if (DRY_RUN) {
 			console.log('Would sync ' + movements.length + ' player movement(s)');
@@ -122,10 +165,17 @@ async function main() {
 				console.log('Successfully synced ' + movements.length + ' player movement(s)');
 			} else {
 				console.error('Failed to sync players:', result.error);
+				playerSyncFailed = true;
 			}
 		}
 	} else {
 		console.log('No player movements to sync');
+	}
+
+	if (playerSyncFailed) {
+		console.error('\nAborting - player sync failed, not updating budgets.');
+		await mongoose.disconnect();
+		process.exit(1);
 	}
 
 	// Sync budgets

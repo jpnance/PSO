@@ -86,6 +86,33 @@ async function fetchRosterSettings() {
 }
 
 /**
+ * Fetch full roster data from Sleeper REST API including players.
+ * 
+ * @returns {Promise<Object>} Map of rosterId -> { players: [sleeperId, ...], settings: {...} }
+ */
+async function fetchSleeperRosters() {
+	var leagueId = getLeagueId();
+	if (!leagueId) {
+		throw new Error('No Sleeper league ID configured for season ' + PSO.season);
+	}
+
+	var response = await fetch('https://api.sleeper.app/v1/league/' + leagueId + '/rosters');
+	if (!response.ok) {
+		throw new Error('Failed to fetch Sleeper rosters: ' + response.status);
+	}
+
+	var rosters = await response.json();
+	var result = {};
+	rosters.forEach(function(r) {
+		result[r.roster_id] = {
+			players: r.players || [],
+			settings: r.settings || {}
+		};
+	});
+	return result;
+}
+
+/**
  * Update a roster's FAAB budget on Sleeper.
  * 
  * @param {number} rosterId - The Sleeper roster ID
@@ -235,6 +262,7 @@ async function alertSyncFailure(context, error) {
 module.exports = {
 	getLeagueId: getLeagueId,
 	fetchRosterSettings: fetchRosterSettings,
+	fetchSleeperRosters: fetchSleeperRosters,
 	syncBudgets: syncBudgets,
 	syncTradeMovements: syncTradeMovements,
 	alertSyncFailure: alertSyncFailure,
