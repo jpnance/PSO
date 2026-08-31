@@ -191,6 +191,13 @@ leagueConfigSchema.methods.areCutsEnabled = function() {
 	return ['early-offseason', 'regular-season', 'post-deadline', 'playoff-fa'].includes(phase);
 };
 
+// Should roster/budget changes be synced to Sleeper?
+// Active during pre-season (auction happening, rosters being built) and regular-season.
+leagueConfigSchema.methods.shouldSyncToSleeper = function() {
+	var phase = this.getPhase();
+	return ['pre-season', 'regular-season'].includes(phase);
+};
+
 var LeagueConfig = mongoose.model('LeagueConfig', leagueConfigSchema);
 
 // Expose the date computation helper as a static method

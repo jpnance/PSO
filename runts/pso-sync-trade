@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Sync a specific trade to Sleeper
+# Use this to catch up trades processed before auto-sync was implemented.
+#
+# Usage:
+#   runt pso-sync-trade 831 --dry-run
+#   runt pso-sync-trade 831
+
+if [ -z "$1" ]; then
+    echo "Usage: runt pso-sync-trade <tradeId> [--dry-run]"
+    exit 1
+fi
+
+docker compose run --rm web node data/maintenance/sync-trade-to-sleeper.js "$@"

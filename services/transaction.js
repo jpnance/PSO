@@ -12,6 +12,7 @@ var Game = require('../models/Game');
 var budgetHelper = require('../helpers/budget');
 var { isRfaRights, getEffectiveYears } = require('../helpers/contract');
 var { getRegimeName } = require('../helpers/regime');
+var sleeperHelper = require('../helpers/sleeper');
 
 var computeRecoverableForContract = budgetHelper.computeRecoverableForContract;
 
@@ -783,6 +784,85 @@ async function processTrade(tradeDetails) {
 				}
 			}
 		);
+	}
+	
+	// Sync to Sleeper if in an active phase
+	if (config.shouldSyncToSleeper()) {
+		var sleeperErrors = [];
+		
+		// Build player movements for Sleeper
+		var movements = [];
+		for (var i = 0; i < tradeDetails.parties.length; i++) {
+			var party = tradeDetails.parties[i];
+			var receives = party.receives || {};
+			var players = (receives.players || []).filter(function(p) { return !isRfaRights(p); });
+			
+			for (var j = 0; j < players.length; j++) {
+				var playerInfo = players[j];
+				var playerId = playerInfo.playerId.toString();
+				var original = originalOwners[playerId];
+				
+				if (!original) continue;
+				
+				// Look up sleeperId and rosterIds
+				var player = await Player.findById(playerInfo.playerId, 'sleeperId').lean();
+				var toFranchise = await Franchise.findById(party.franchiseId, 'rosterId').lean();
+				var fromFranchise = await Franchise.findById(original.franchiseId, 'rosterId').lean();
+				
+				if (player && player.sleeperId && toFranchise && toFranchise.rosterId && fromFranchise && fromFranchise.rosterId) {
+					movements.push({
+						sleeperId: player.sleeperId,
+						fromRosterId: fromFranchise.rosterId,
+						toRosterId: toFranchise.rosterId
+					});
+				}
+			}
+		}
+		
+		// Sync player movements if any
+		if (movements.length > 0) {
+			var movementResult = await sleeperHelper.syncTradeMovements(movements);
+			if (!movementResult.success) {
+				sleeperErrors.push('Player sync failed: ' + movementResult.error);
+			}
+		}
+		
+		// Sync budgets for affected franchises
+		var affectedFranchiseIds = Object.keys(budgetUpdates).map(function(key) {
+			return budgetUpdates[key].franchiseId;
+		}).filter(function(fid, index, self) {
+			return self.findIndex(function(f) { return f.toString() === fid.toString(); }) === index;
+		});
+		
+		if (affectedFranchiseIds.length > 0) {
+			var franchisesForSync = [];
+			for (var i = 0; i < affectedFranchiseIds.length; i++) {
+				var fid = affectedFranchiseIds[i];
+				var franchise = await Franchise.findById(fid, 'rosterId').lean();
+				var budget = await Budget.findOne({ franchiseId: fid, season: currentSeason }).lean();
+				
+				if (franchise && franchise.rosterId && budget) {
+					franchisesForSync.push({
+						franchiseId: fid,
+						rosterId: franchise.rosterId,
+						available: budget.available
+					});
+				}
+			}
+			
+			var budgetResult = await sleeperHelper.syncBudgets(franchisesForSync);
+			if (budgetResult.errors.length > 0) {
+				sleeperErrors = sleeperErrors.concat(budgetResult.errors);
+			}
+		}
+		
+		// Alert on any Sleeper sync failures
+		if (sleeperErrors.length > 0) {
+			await sleeperHelper.alertSyncFailure(
+				'Trade #' + tradeId,
+				sleeperErrors.join('; ')
+			);
+		}
 	}
 	
 	return { 

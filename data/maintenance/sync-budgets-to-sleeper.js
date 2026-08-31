@@ -19,18 +19,18 @@ var mongoose = require('mongoose');
 var Franchise = require('../../models/Franchise');
 var Budget = require('../../models/Budget');
 var PSO = require('../../config/pso');
+var sleeperHelper = require('../../helpers/sleeper');
 
 var SLEEPER_JWT = process.env.SLEEPER_JWT;
 var SLEEPER_LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
-var SLEEPER_MAX_BUDGET = 10000;
-var SLEEPER_DISPLAY_OFFSET = 1000; // Sleeper shows 1000 + actual, so you see $1,XXX
+var SLEEPER_MAX_BUDGET = sleeperHelper.SLEEPER_MAX_BUDGET;
+var SLEEPER_DISPLAY_OFFSET = sleeperHelper.SLEEPER_DISPLAY_OFFSET;
 var DRY_RUN = process.argv.includes('--dry-run');
-var FORCE = process.argv.includes('-f') || process.argv.includes('--force');
 var IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-if (!DRY_RUN && !IS_PRODUCTION && !FORCE) {
+if (!DRY_RUN && !IS_PRODUCTION) {
 	console.error('Error: Live runs only allowed in production.');
-	console.error('Use --dry-run to preview changes, or -f to force on non-production.');
+	console.error('Use --dry-run to preview changes.');
 	process.exit(1);
 }
 
