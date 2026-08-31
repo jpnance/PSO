@@ -25,6 +25,14 @@ var SLEEPER_LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
 var SLEEPER_MAX_BUDGET = 10000;
 var SLEEPER_DISPLAY_OFFSET = 1000; // Sleeper shows 1000 + actual, so you see $1,XXX
 var DRY_RUN = process.argv.includes('--dry-run');
+var FORCE = process.argv.includes('-f') || process.argv.includes('--force');
+var IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
+if (!DRY_RUN && !IS_PRODUCTION && !FORCE) {
+	console.error('Error: Live runs only allowed in production.');
+	console.error('Use --dry-run to preview changes, or -f to force on non-production.');
+	process.exit(1);
+}
 
 if (!SLEEPER_JWT) {
 	console.error('Error: SLEEPER_JWT not found in .env');
