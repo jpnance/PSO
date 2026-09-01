@@ -66,8 +66,7 @@ block content
 				//- Only show advance button after championship day (post-season dead period, not pre-season)
 				if phase === 'dead-period' && config.deadPeriod && new Date() >= config.deadPeriod
 					div.card.mb-4.border-warning
-						div.card-header.bg-warning.text-dark
-							strong Season Rollover
+						div.card-header.bg-warning.text-dark Season Rollover
 						div.card-body
 							p.text-muted.small Advance to the next season. This will create picks, process expiring contracts, and let you set draft order.
 							a.btn.btn-warning.btn-block(href='/admin/advance-season') Advance to #{config.season + 1}

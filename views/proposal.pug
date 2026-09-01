@@ -30,7 +30,7 @@ block content
 			div.col-md-7.col-xl-5
 				div.card
 					div.card-header.d-flex.justify-content-between.align-items-center
-						strong Trade Details
+						span Trade Details
 						if proposal.status === 'pending' && acceptanceWindowActive
 							span.proposal-countdown.badge.badge-pill(data-remaining=acceptanceWindowRemaining)
 								i.fa.fa-clock-o.mr-1
