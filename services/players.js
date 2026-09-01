@@ -167,26 +167,40 @@ exports.playerDetail = async function(request, response) {
 			
 			switch (t.type) {
 				case 'trade':
-					// Find which party received this player
+					// Find which party received this player and where they came from
 					var receivingParty = null;
-					var sendingParty = null;
+					var fromFranchiseId = null;
 					if (t.parties) {
 						t.parties.forEach(function(p) {
-							var receivedPlayer = (p.receives.players || []).some(function(pl) {
+							var playerEntry = (p.receives.players || []).find(function(pl) {
 								return pl.playerId.toString() === playerId;
 							});
 							var receivedRfa = (p.receives.rfaRights || []).some(function(r) {
 								return r.playerId.toString() === playerId;
 							});
-							if (receivedPlayer || receivedRfa) {
+							if (playerEntry) {
 								receivingParty = p;
-							} else {
-								sendingParty = p;
+								// Use stored fromFranchiseId if available
+								if (playerEntry.fromFranchiseId) {
+									fromFranchiseId = playerEntry.fromFranchiseId;
+								}
+							} else if (receivedRfa) {
+								receivingParty = p;
 							}
 						});
+						
+						// Fall back to inferring sender for 2-party trades without fromFranchiseId
+						if (!fromFranchiseId && t.parties.length === 2 && receivingParty) {
+							var otherParty = t.parties.find(function(p) {
+								return p.franchiseId.toString() !== receivingParty.franchiseId.toString();
+							});
+							if (otherParty) {
+								fromFranchiseId = otherParty.franchiseId;
+							}
+						}
 					}
-					if (sendingParty && receivingParty) {
-						entry.fromRegime = getRegimeForFranchise(sendingParty.franchiseId, t.timestamp);
+					if (fromFranchiseId && receivingParty) {
+						entry.fromRegime = getRegimeForFranchise(fromFranchiseId, t.timestamp);
 						entry.toRegime = getRegimeForFranchise(receivingParty.franchiseId, t.timestamp);
 					}
 					entry.tradeId = t.tradeId;
