@@ -486,7 +486,7 @@ async function getRecentActivity(currentSeason) {
 	transactions.forEach(function(tx) {
 		(tx.parties || []).forEach(function(p) {
 			(p.receives.picks || []).forEach(function(pk) {
-				pickLookups.push({ season: pk.season, round: pk.round, originalFranchiseId: pk.fromFranchiseId });
+				pickLookups.push({ season: pk.season, round: pk.round, originalFranchiseId: pk.originalFranchiseId });
 			});
 		});
 	});

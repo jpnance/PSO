@@ -87,12 +87,11 @@ async function editTradeForm(request, response) {
 		var picksData = [];
 		for (var k = 0; k < (party.receives.picks || []).length; k++) {
 			var pick = party.receives.picks[k];
-			var originalFranchiseId = pick.originalFranchiseId || pick.fromFranchiseId;  // fallback for old data
-			var fromName = getRegimeName(regimes, originalFranchiseId, pick.season);
+			var fromName = getRegimeName(regimes, pick.originalFranchiseId, pick.season);
 			picksData.push({
 				round: pick.round,
 				season: pick.season,
-				originalFranchiseId: originalFranchiseId,
+				originalFranchiseId: pick.originalFranchiseId,
 				fromName: fromName,
 				pickNumber: pick.pickNumber
 			});

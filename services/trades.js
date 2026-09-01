@@ -40,11 +40,11 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 			});
 			// Collect pick keys for lookup
 			(party.receives.picks || []).forEach(function(pickInfo) {
-				if (pickInfo.season && pickInfo.round && pickInfo.fromFranchiseId) {
+				if (pickInfo.season && pickInfo.round && pickInfo.originalFranchiseId) {
 					pickKeys.push({
 						season: pickInfo.season,
 						round: pickInfo.round,
-						originalFranchiseId: pickInfo.fromFranchiseId
+						originalFranchiseId: pickInfo.originalFranchiseId
 					});
 				}
 			});
@@ -124,9 +124,8 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 			var party = trade.parties[j];
 			for (var k = 0; k < (party.receives.picks || []).length; k++) {
 				var pickInfo = party.receives.picks[k];
-				// fromFranchiseId in the trade schema is the original owner
-				if (pickInfo.season && pickInfo.round && pickInfo.fromFranchiseId) {
-					var key = getPickKey(pickInfo.season, pickInfo.round, pickInfo.fromFranchiseId);
+				if (pickInfo.season && pickInfo.round && pickInfo.originalFranchiseId) {
+					var key = getPickKey(pickInfo.season, pickInfo.round, pickInfo.originalFranchiseId);
 					if (!pickTradeHistory[key]) pickTradeHistory[key] = [];
 					pickTradeHistory[key].push({
 						tradeNumber: tradeNumber,
@@ -257,7 +256,7 @@ async function buildTradeDisplayData(tradesToDisplay, allTrades, options) {
 				
 				var season = pickInfo.season || currentSeason;
 				var round = pickInfo.round || 1;
-				var originalFranchiseId = pickInfo.fromFranchiseId;
+				var originalFranchiseId = pickInfo.originalFranchiseId;
 				var originalOwner = getRegimeName(allRegimes, originalFranchiseId, tradeYear);
 				
 				// Look up the actual Pick document for additional info
