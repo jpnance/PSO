@@ -567,6 +567,32 @@ async function processTrade(tradeDetails) {
 		return { success: false, errors: errors };
 	}
 	
+	// Capture original contract ownership BEFORE building transaction or updating anything
+	// This is essential for correctly recording fromFranchiseId and calculating budget deltas
+	var originalOwners = {}; // { playerId.toString(): { franchiseId, salary, startYear, endYear } }
+	
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var party = tradeDetails.parties[i];
+		var receives = party.receives || {};
+		
+		for (var j = 0; j < (receives.players || []).length; j++) {
+			var playerInfo = receives.players[j];
+			var playerId = playerInfo.playerId.toString();
+			
+			if (!originalOwners[playerId]) {
+				var contract = await Contract.findOne({ playerId: playerInfo.playerId }).lean();
+				if (contract) {
+					originalOwners[playerId] = {
+						franchiseId: contract.franchiseId,
+						salary: contract.salary,
+						startYear: contract.startYear,
+						endYear: contract.endYear
+					};
+				}
+			}
+		}
+	}
+	
 	// Build the transaction document
 	var transactionParties = [];
 	
@@ -602,11 +628,13 @@ async function processTrade(tradeDetails) {
 			regimeName: regimeName || null,
 			receives: {
 				players: salariedPlayers.map(function(p) {
+					var original = originalOwners[p.playerId.toString()];
 					return {
 						playerId: p.playerId,
 						salary: p.salary,
 						startYear: p.startYear,
-						endYear: p.endYear
+						endYear: p.endYear,
+						fromFranchiseId: original ? original.franchiseId : null
 					};
 				}),
 				picks: picksData,
@@ -654,32 +682,6 @@ async function processTrade(tradeDetails) {
 		notes: tradeDetails.notes,
 		parties: transactionParties
 	});
-	
-	// Capture original contract ownership BEFORE updating anything
-	// This is essential for correctly calculating budget deltas in multi-party trades
-	var originalOwners = {}; // { playerId.toString(): { franchiseId, salary, startYear, endYear } }
-	
-	for (var i = 0; i < tradeDetails.parties.length; i++) {
-		var party = tradeDetails.parties[i];
-		var receives = party.receives || {};
-		
-		for (var j = 0; j < (receives.players || []).length; j++) {
-			var playerInfo = receives.players[j];
-			var playerId = playerInfo.playerId.toString();
-			
-			if (!originalOwners[playerId]) {
-				var contract = await Contract.findOne({ playerId: playerInfo.playerId }).lean();
-				if (contract) {
-					originalOwners[playerId] = {
-						franchiseId: contract.franchiseId,
-						salary: contract.salary,
-						startYear: contract.startYear,
-						endYear: contract.endYear
-					};
-				}
-			}
-		}
-	}
 	
 	// Apply the trade: update Contracts and Rosters
 	for (var i = 0; i < tradeDetails.parties.length; i++) {

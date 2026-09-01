@@ -87,44 +87,55 @@ async function main() {
 			continue;
 		}
 
-		// Find pre-trade owner from PSO transaction history
-		// Look for the most recent transaction that assigned this player to a franchise, before this trade
-		var priorTx = await Transaction.findOne({
-			timestamp: { $lt: trade.timestamp },
-			$or: [
-				{ 'parties.receives.players.playerId': p.playerId },  // trades
-				{ 'adds.playerId': p.playerId },                       // FA pickups
-				{ playerId: p.playerId, type: { $in: ['draft-select', 'contract', 'auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'] } }
-			]
-		}).sort({ timestamp: -1 }).lean();
-
+		// First check if fromFranchiseId is stored on the trade itself
 		var fromFranchiseId = null;
-		if (priorTx) {
-			// Check for direct franchiseId (draft, auction, contract transactions)
-			if (priorTx.franchiseId) {
-				fromFranchiseId = priorTx.franchiseId;
+		for (var j = 0; j < trade.parties.length; j++) {
+			var searchParty = trade.parties[j];
+			var searchPlayers = (searchParty.receives && searchParty.receives.players) || [];
+			var matchingPlayer = searchPlayers.find(function(sp) {
+				return sp.playerId.toString() === p.playerId.toString();
+			});
+			if (matchingPlayer && matchingPlayer.fromFranchiseId) {
+				fromFranchiseId = matchingPlayer.fromFranchiseId;
+				break;
 			}
-			// Check trade parties
-			if (!fromFranchiseId && priorTx.parties) {
-				for (var j = 0; j < priorTx.parties.length; j++) {
-					var party = priorTx.parties[j];
-					var receivedPlayers = (party.receives && party.receives.players) || [];
-					var hasPlayer = receivedPlayers.some(function(rp) {
-						return rp.playerId.toString() === p.playerId.toString();
-					});
-					if (hasPlayer) {
-						fromFranchiseId = party.franchiseId;
-						break;
+		}
+
+		// Fall back to looking up from transaction history
+		if (!fromFranchiseId) {
+			var priorTx = await Transaction.findOne({
+				timestamp: { $lt: trade.timestamp },
+				$or: [
+					{ 'parties.receives.players.playerId': p.playerId },
+					{ 'adds.playerId': p.playerId },
+					{ playerId: p.playerId, type: { $in: ['draft-select', 'expansion-draft-select', 'contract', 'auction-ufa', 'auction-rfa-matched', 'auction-rfa-unmatched'] } }
+				]
+			}).sort({ timestamp: -1 }).lean();
+
+			if (priorTx) {
+				if (priorTx.franchiseId) {
+					fromFranchiseId = priorTx.franchiseId;
+				}
+				if (!fromFranchiseId && priorTx.parties) {
+					for (var j = 0; j < priorTx.parties.length; j++) {
+						var party = priorTx.parties[j];
+						var receivedPlayers = (party.receives && party.receives.players) || [];
+						var hasPlayer = receivedPlayers.some(function(rp) {
+							return rp.playerId.toString() === p.playerId.toString();
+						});
+						if (hasPlayer) {
+							fromFranchiseId = party.franchiseId;
+							break;
+						}
 					}
 				}
-			}
-			// Check FA transaction adds
-			if (!fromFranchiseId && priorTx.adds) {
-				var addEntry = priorTx.adds.find(function(a) {
-					return a.playerId.toString() === p.playerId.toString();
-				});
-				if (addEntry && priorTx.franchiseId) {
-					fromFranchiseId = priorTx.franchiseId;
+				if (!fromFranchiseId && priorTx.adds) {
+					var addEntry = priorTx.adds.find(function(a) {
+						return a.playerId.toString() === p.playerId.toString();
+					});
+					if (addEntry && priorTx.franchiseId) {
+						fromFranchiseId = priorTx.franchiseId;
+					}
 				}
 			}
 		}

@@ -31,7 +31,9 @@ var tradePlayerSchema = new Schema({
 	endYear: { type: Number },
 	rfaRights: { type: Boolean, default: false },
 	// True if contract years couldn't be definitively determined from source data
-	ambiguous: { type: Boolean, default: false }
+	ambiguous: { type: Boolean, default: false },
+	// Which franchise gave up this player (for multi-way trade clarity)
+	fromFranchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise' }
 }, { _id: false });
 
 var tradePickSchema = new Schema({

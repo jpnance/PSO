@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Backfill fromFranchiseId for traded players
+#
+# Usage:
+#   runt backfill-trade-from-franchise --dry-run
+#   runt backfill-trade-from-franchise
+
+docker compose run --rm web node data/maintenance/backfill-trade-from-franchise.js "$@"
