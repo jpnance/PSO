@@ -39,7 +39,10 @@ var tradePlayerSchema = new Schema({
 var tradePickSchema = new Schema({
 	round: { type: Number, required: true },
 	season: { type: Number, required: true },
-	fromFranchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise', required: true }
+	// Whose draft slot this originally is (e.g., "2025 1st from Schex")
+	originalFranchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise', required: true },
+	// Who gave up this pick in THIS trade (for rollback support)
+	fromFranchiseId: { type: Schema.Types.ObjectId, ref: 'Franchise' }
 }, { _id: false });
 
 var tradeCashSchema = new Schema({

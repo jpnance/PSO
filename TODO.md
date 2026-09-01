@@ -29,7 +29,7 @@
 - [ ] FAAB implementation (free agent auction bidding)
 
 ### Integrations
-- [ ] Hook up adds/drops/trades to Sleeper *(reduces your manual work)*
+- [ ] Hook up adds/drops/trades to Sleeper *(reduces your manual work)* — trades done via `helpers/sleeper.js`, adds/drops TBD
 - [x] Get the auction app integrated with Coinflipper Login service *(functional as-is; Login integration + less commish babysitting are "next year" improvements)*
 - [ ] **Sync auction/draft results to Sleeper's draft tool in real-time** — Use `draft_force_auction_pick` GraphQL mutation to push picks into Sleeper as they happen on PSO. Needs: network-tab capture of the mutation signature from a test auction, env vars for token + draft_id, ~15 lines added to `recordResult` in `auction-admin.js`. See `doc/sleeper.txt` for auth pattern. Salaries optional (league gets nuked yearly).
 
@@ -63,12 +63,13 @@
 Auction/draft rollbacks are done (`services/rollback.js`, admin UI at `/admin/transactions`). Trade rollbacks remain:
 
 **Schema changes:**
-- [ ] Add `originalFranchiseId` to `tradePlayerSchema` in `models/Transaction.js`
-- [ ] Add `originalFranchiseId` to `tradePickSchema` (for traded picks)
+- [x] Add `fromFranchiseId` to `tradePlayerSchema` — who gave up player in this trade
+- [x] Add `originalFranchiseId` to `tradePickSchema` — whose draft slot it is (renamed from `fromFranchiseId`)
+- [x] Add `fromFranchiseId` to `tradePickSchema` — who gave up pick in this trade
 
 **Backfill:**
-- [ ] 2-party trades: Infer `originalFranchiseId` programmatically (the other party gave it)
-- [ ] 3-party trades (3 total): Manually supply original owner data
+- [x] 2-party trades: Infer `originalFranchiseId` programmatically (the other party gave it)
+- [x] 3-party trades (3 total): Manually supply original owner data *(handled via transaction history lookup)*
 
 **Code changes:**
 - [ ] Update `processTrade` in `services/transaction.js` to persist `originalOwners` (already computed at line 607-629, just not saved)

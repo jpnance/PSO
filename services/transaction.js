@@ -609,7 +609,8 @@ async function processTrade(tradeDetails) {
 				picksData.push({
 					round: pick.round,
 					season: pick.season,
-					fromFranchiseId: pick.originalFranchiseId
+					originalFranchiseId: pick.originalFranchiseId,
+					fromFranchiseId: pick.franchiseId  // current owner = who's giving it up
 				});
 			}
 		}

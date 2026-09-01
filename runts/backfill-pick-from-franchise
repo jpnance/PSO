@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Backfill pick schema: rename fromFranchiseId → originalFranchiseId, add new fromFranchiseId
+#
+# Usage:
+#   runt backfill-pick-from-franchise --dry-run
+#   runt backfill-pick-from-franchise
+
+docker compose run --rm web node data/maintenance/backfill-pick-from-franchise.js "$@"

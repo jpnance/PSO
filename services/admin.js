@@ -951,7 +951,8 @@ async function sanityPage(request, response) {
 				}
 				if (party.receives.picks) {
 					party.receives.picks.forEach(function(p) {
-						picksReceived.push(p.season + '-' + p.round + '-' + p.fromFranchiseId.toString());
+						var origFranchise = p.originalFranchiseId || p.fromFranchiseId;  // fallback for old data
+						picksReceived.push(p.season + '-' + p.round + '-' + origFranchise.toString());
 					});
 				}
 				if (party.receives.cash) {
