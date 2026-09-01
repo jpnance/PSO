@@ -266,10 +266,17 @@ exports.playerDetail = async function(request, response) {
 			
 				case 'expansion-draft-protect':
 					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					entry.rfaRights = t.rfaRights || false;
 					break;
 			
 				case 'expansion-draft-select':
 					entry.regime = getRegimeForFranchise(t.franchiseId._id, t.timestamp);
+					if (t.fromFranchiseId) {
+						entry.fromRegime = getRegimeForFranchise(t.fromFranchiseId._id || t.fromFranchiseId, t.timestamp);
+					}
+					entry.round = t.round;
+					entry.pick = t.pick;
+					entry.rfaRights = t.rfaRights || false;
 					break;
 					
 				case 'auction-ufa':

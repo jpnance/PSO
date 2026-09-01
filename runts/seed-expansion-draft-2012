@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Seed 2012 expansion draft protections and selections
+#
+# Usage:
+#   runt seed-expansion-draft-2012 --dry-run
+#   runt seed-expansion-draft-2012
+
+docker compose run --rm web node data/seed/seed-expansion-draft-2012.js "$@"

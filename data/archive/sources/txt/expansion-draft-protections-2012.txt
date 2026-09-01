@@ -7,7 +7,7 @@ Syed (3): Eli Manning, Joe Flacco, Ryan Mathews, Sam Bradford
 John (4): Darren McFadden, Willis McGahee, Alex Smith, Vincent Jackson
 Trevor (5): Cam Newton, A.J. Green, Rob Gronkowski, Reggie Bush
 Keyon (6): Jordy Nelson, Aaron Hernandez, Greg Jennings, Andy Dalton
-Jake/Luke (7): Philip Rivers, LeSean McCoy, Jimmy Graham, Mark Sanchez
-Daniel (8): Matt Ryan, Josh Freeman, Matt Forte, Roddy White
+Jake/Luke (7): Philip Rivers (RFA), LeSean McCoy (RFA), Jimmy Graham (RFA), Mark Sanchez
+Daniel (8): Matt Ryan, Josh Freeman, Matt Forte (RFA), Roddy White (RFA)
 James (9): Dez Bryant, Julio Jones, DeMarco Murray, Drew Brees (RFA)
-Schex (10): Ben Roethlisberger, Calvin Johnson, Christian Ponder, Adrian Peterson
+Schex (10): Ben Roethlisberger, Calvin Johnson, Christian Ponder, Adrian Peterson (RFA)

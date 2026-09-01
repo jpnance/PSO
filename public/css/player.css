@@ -219,6 +219,11 @@ a.player-hero__franchise:hover {
 	font-size: 0.9rem;
 }
 
+.player-timeline__rfa {
+	color: #8e44ad;
+	font-size: 0.9rem;
+}
+
 .player-timeline__recovered {
 	font-variant-numeric: tabular-nums;
 }

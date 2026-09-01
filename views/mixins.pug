@@ -72,8 +72,17 @@ mixin timelineEntry(entry)
 					+timelineSalary(entry)
 				else if entry.type === 'expansion-draft-protect'
 					span Protected from expansion draft by #{entry.regime}
+					if entry.rfaRights
+						span.player-timeline__rfa  (RFA)
 				else if entry.type === 'expansion-draft-select'
-					span Selected in expansion draft by #{entry.regime}
+					if entry.fromRegime
+						span Selected from #{entry.fromRegime} in expansion draft by #{entry.regime}
+					else
+						span Selected in expansion draft by #{entry.regime}
+					if entry.pick
+						span.player-timeline__pick  · Pick #{entry.pick}
+					if entry.rfaRights
+						span.player-timeline__rfa  (RFA)
 				else if entry.type === 'auction-ufa'
 					span Won at auction by #{entry.regime}
 					+timelineSalary(entry)
