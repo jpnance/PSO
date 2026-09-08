@@ -70,7 +70,11 @@ var newSleeperPlayersPromise = function(byeWeeks) {
 
 var newProjectionsPromise = function(sleeperPlayers) {
 	return new Promise(function(resolve, reject) {
-		fs.readFile('../public/data/sleeper-projections.csv', function(error, data) {
+		var path = require('path');
+		fs.readFile(path.join(__dirname, '../public/data/sleeper-projections.csv'), function(error, data) {
+				if (error) {
+					return reject(error);
+				}
 				var csvLines = data.toString();
 
 				csvLines.split(/\n/).forEach((csvLine, i) => {
@@ -223,7 +227,7 @@ newByeWeeksPromise()
 				});
 		});
 
-		Object.keys(franchiseResults).forEach((name) => {
+		Object.keys(franchiseResults).sort().forEach((name) => {
 			var results = Object.values(franchiseResults[name]);
 
 			console.log([ name, ...results ].join(','));
