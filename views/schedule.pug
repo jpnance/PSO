@@ -27,7 +27,7 @@ block content
 			-
 				var allSeasons = olderSeasons.slice().reverse().concat(quickSeasons)
 				var seasonUrlSuffix = '/' + week
-			+sequentialNav({ items: allSeasons, current: season, urlPattern: '/schedule/', urlSuffix: seasonUrlSuffix })
+			+sequentialNav({ items: allSeasons, current: season, urlPattern: '/schedule/', urlSuffix: seasonUrlSuffix, reverseDropdown: true })
 			if weeks && weeks.length > 0
 				-
 					var weekNumbers = weeks.map(function(w) { return w.week })
