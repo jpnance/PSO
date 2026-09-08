@@ -24,22 +24,22 @@ var template = [
 
 var pods = {
 	red: [
-		PSO.franchiseIds['Schexes'],
-		PSO.franchiseIds['Keyon'],
 		PSO.franchiseIds['Quinn'],
-		PSO.franchiseIds['Patrick']
+		PSO.franchiseIds['Nam'],
+		PSO.franchiseIds['Brett'],
+		PSO.franchiseIds['Mitch/Karsten']
 	],
 	green: [
-		PSO.franchiseIds['Mitch'],
-		PSO.franchiseIds['Koci/Mueller'],
-		PSO.franchiseIds['Anthony'],
-		PSO.franchiseIds['Luke']
+		PSO.franchiseIds['Justin'],
+		PSO.franchiseIds['Luke'],
+		PSO.franchiseIds['Mike'],
+		PSO.franchiseIds['Jason']
 	],
 	blue: [
-		PSO.franchiseIds['Brett'],
-		PSO.franchiseIds['Jason'],
-		PSO.franchiseIds['Mike'],
-		PSO.franchiseIds['Justin']
+		PSO.franchiseIds['Patrick'],
+		PSO.franchiseIds['Keyon'],
+		PSO.franchiseIds['Schexes'],
+		PSO.franchiseIds['Anthony']
 	]
 };
 
