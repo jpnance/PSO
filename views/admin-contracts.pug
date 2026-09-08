@@ -28,14 +28,14 @@ block content
 		div.admin-contracts__summary.mb-4
 			div.d-flex.align-items-center.justify-content-between
 				div
-				strong #{totalAssigned}/#{totalPending}
-				|  pending player#{totalPending !== 1 ? 's' : ''} assigned
-				if totalAssigned < totalPending
-					span.text-danger.ml-2
-						i.fa.fa-exclamation-triangle.mr-1
-						| #{totalPending - totalAssigned} still need contracts
-			form(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
-				button.btn.btn-primary(type='submit' disabled=totalAssigned < totalPending)
+					strong #{totalAssigned}/#{totalPending}
+					|  pending player#{totalPending !== 1 ? 's' : ''} assigned
+					if totalAssigned < totalPending
+						span.text-danger.ml-2
+							i.fa.fa-exclamation-triangle.mr-1
+							| #{totalPending - totalAssigned} still need contracts
+				form.mb-0(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
+					button.btn.btn-primary(type='submit' disabled=totalAssigned < totalPending)
 						i.fa.fa-check-circle.mr-2
 						| Process Contracts
 
@@ -44,12 +44,9 @@ block content
 				- var assignedCount = franchise.players.filter(p => p.pendingYears).length
 				div.col-md-6.col-lg-4
 					div.card.mb-4.admin-contracts__card(data-assigned=assignedCount data-total=franchise.players.length)
-						div.card-header.d-flex.justify-content-between.align-items-center
+						div.card-header.d-flex.justify-content-between.align-items-center.admin-contracts__header(role='button')
 							span= franchise.displayName
-							div.d-flex.align-items-center
-								span.admin-contracts__badge.mr-2(class=assignedCount === franchise.players.length ? 'badge badge-success' : 'badge badge-warning') #{assignedCount}/#{franchise.players.length}
-								button.btn.btn-sm.btn-outline-secondary.admin-contracts__reveal(type='button' title='Reveal contracts')
-									i.fa.fa-eye
+							span.admin-contracts__badge(class=assignedCount === franchise.players.length ? 'badge badge-success' : 'badge badge-warning') #{assignedCount}/#{franchise.players.length}
 						div.admin-contracts__list
 							each player in franchise.players
 								- var posGroup = player.positions && player.positions.length > 0 ? (player.positions.some(p => ['DL','LB','DB'].includes(p)) ? 'IDP' : player.positions[0]) : null
@@ -76,15 +73,9 @@ block scripts
 		}
 
 		document.querySelectorAll('.admin-contracts__card').forEach(function(card) {
-			var revealBtn = card.querySelector('.admin-contracts__reveal');
-			revealBtn.addEventListener('click', function() {
+			var header = card.querySelector('.admin-contracts__header');
+			header.addEventListener('click', function() {
 				card.classList.toggle('admin-contracts__card--revealed');
-				var icon = revealBtn.querySelector('i');
-				if (card.classList.contains('admin-contracts__card--revealed')) {
-					icon.className = 'fa fa-eye-slash';
-				} else {
-					icon.className = 'fa fa-eye';
-				}
 			});
 		});
 

@@ -1,15 +1,16 @@
 .admin-contracts__summary {
-	padding: 1rem;
-	background: #f8f9fa;
+	padding: 1rem 1.25rem;
+	background: #fff;
 	border: 1px solid var(--border-light, #eee);
 	border-radius: 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-.admin-contracts__reveal {
-	padding: 0.15rem 0.4rem;
-	font-size: 0.7rem;
-	line-height: 1;
+.admin-contracts__header {
+	cursor: pointer;
+	user-select: none;
 }
+
 
 /* Row layout — matches auction-results pattern */
 .admin-contracts__list {
@@ -124,7 +125,11 @@
 	cursor: not-allowed;
 }
 
-/* Hidden by default — no pickers, no unassigned distinction */
+/* Collapsed by default — list hidden, pickers hidden */
+.admin-contracts__card:not(.admin-contracts__card--revealed) .admin-contracts__list {
+	display: none;
+}
+
 .admin-contracts__card:not(.admin-contracts__card--revealed) .admin-contracts__picker {
 	display: none;
 }
