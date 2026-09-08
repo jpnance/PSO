@@ -482,12 +482,29 @@ async function schedulePage(request, response) {
 			});
 		}
 		
+		// Compute default season based on contracts due date
+		// Before contracts due: show last completed season
+		// After contracts due: show current season
+		var defaultSeason = allSeasons[0];
+		if (config && config.contractsDue) {
+			var now = new Date();
+			if (now >= config.contractsDue) {
+				defaultSeason = config.season;
+			} else {
+				defaultSeason = config.season - 1;
+			}
+			// Fallback to most recent if computed season doesn't exist
+			if (allSeasons.indexOf(defaultSeason) === -1) {
+				defaultSeason = allSeasons[0];
+			}
+		}
+		
 		// Parse requested season and week
 		var requestedSeason = parseInt(request.params.season, 10);
 		var requestedWeek = parseInt(request.params.week, 10);
 		
-		// Default to current/most recent season
-		var season = requestedSeason || allSeasons[0];
+		// Use requested season or computed default
+		var season = requestedSeason || defaultSeason;
 		
 		// Get weeks for this season
 		var weeks = await getWeeksForSeason(season);
@@ -571,9 +588,9 @@ async function schedulePage(request, response) {
 			}
 		}
 		
-		// Build season navigation - only most recent season as quick pill
-		var quickSeasons = allSeasons.slice(0, 1);
-		var olderSeasons = allSeasons.slice(1);
+		// Build season navigation - default season as quick pill, rest in dropdown
+		var quickSeasons = [defaultSeason];
+		var olderSeasons = allSeasons.filter(function(s) { return s !== defaultSeason; });
 		
 		// Find user's franchise IDs for the viewed season
 		var userFranchiseIds = [];

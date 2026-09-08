@@ -2,7 +2,8 @@
 
 cd /app
 
-SEASON=$(grep SEASON .env | sed -E "s/SEASON=//")
+# Derive season from LeagueConfig phase
+SEASON=$(node tools/get-results-season.js)
 
 cd data/fetch
 node games.js $SEASON

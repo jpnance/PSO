@@ -194,7 +194,7 @@ Promise.all(weekPromises).then((values) => {
 				};
 			}
 
-			if (game.away.score > 0 || game.home.score > 0) {
+			if ((game.away.score > 0 || game.home.score > 0) && weekScores[game.week]) {
 				['away', 'home'].forEach(teamType => {
 					['straight', 'allPlay', 'stern'].forEach(recordType => {
 						['wins', 'losses', 'ties'].forEach(resultType => {
