@@ -136,6 +136,7 @@ module.exports = function(app) {
 	app.get('/admin/sanity', requireLogin, requireAdmin, admin.sanityPage);
 	app.get('/admin/transactions', requireLogin, requireAdmin, admin.transactionsPage);
 	app.post('/admin/transactions/:id/rollback', requireLogin, requireAdmin, admin.rollbackTransaction);
+	app.get('/admin/sleeper-transactions', requireLogin, requireAdmin, admin.sleeperTransactionsPage);
 	
 	// Player management (require login + admin)
 	app.get('/admin/players', requireLogin, requireAdmin, adminPlayers.listPlayers);

@@ -98,6 +98,9 @@ var transactionSchema = new Schema({
 	// Optional notes for special circumstances (conditional picks, corrections, etc.)
 	notes: { type: String },
 
+	// Sleeper transaction ID for tracking which transactions we've processed
+	sleeperTransactionId: { type: String },
+
 	// Trade fields
 	tradeId: { type: Number },
 	parties: [tradePartySchema],
@@ -139,6 +142,7 @@ transactionSchema.index({ timestamp: 1 });
 transactionSchema.index({ franchiseId: 1 });
 transactionSchema.index({ playerId: 1 });
 transactionSchema.index({ tradeId: 1 }, { sparse: true });
+transactionSchema.index({ sleeperTransactionId: 1 }, { sparse: true });
 transactionSchema.index({ 'parties.franchiseId': 1 });
 transactionSchema.index({ 'adds.playerId': 1 });
 transactionSchema.index({ 'drops.playerId': 1 });

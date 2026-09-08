@@ -13,10 +13,11 @@ function canMutate() {
 }
 
 /**
- * Get the Sleeper league ID for the current season.
+ * Get the Sleeper league ID for a season.
+ * @param {number} [season] - The season year (defaults to current season)
  */
-function getLeagueId() {
-	return PSO.sleeperLeagueIds[PSO.season];
+function getLeagueId(season) {
+	return PSO.sleeperLeagueIds[season || PSO.season];
 }
 
 /**
@@ -259,10 +260,32 @@ async function alertSyncFailure(context, error) {
 	return notifications.alertCommissioner(message, { priority: 'urgent' });
 }
 
+/**
+ * Fetch transactions from Sleeper for a given week.
+ * 
+ * @param {number} week - The week number (1-17)
+ * @param {number} [season] - The season year (defaults to current season)
+ * @returns {Promise<Array>} Array of Sleeper transaction objects
+ */
+async function fetchTransactions(week, season) {
+	var leagueId = getLeagueId(season);
+	if (!leagueId) {
+		throw new Error('No Sleeper league ID configured for season ' + (season || PSO.season));
+	}
+
+	var response = await fetch('https://api.sleeper.app/v1/league/' + leagueId + '/transactions/' + week);
+	if (!response.ok) {
+		throw new Error('Failed to fetch Sleeper transactions: ' + response.status);
+	}
+
+	return response.json();
+}
+
 module.exports = {
 	getLeagueId: getLeagueId,
 	fetchRosterSettings: fetchRosterSettings,
 	fetchSleeperRosters: fetchSleeperRosters,
+	fetchTransactions: fetchTransactions,
 	syncBudgets: syncBudgets,
 	syncTradeMovements: syncTradeMovements,
 	alertSyncFailure: alertSyncFailure,

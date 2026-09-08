@@ -14,6 +14,7 @@ var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
 var { isRfaRights, isSigned, affectsBudget } = require('../helpers/contract');
 var { getRegime, getRegimeName, buildRegimeMap } = require('../helpers/regime');
+var sleeper = require('../helpers/sleeper');
 
 var currentSeason = PSO.season;
 
@@ -1389,6 +1390,104 @@ async function rollbackTransaction(request, response) {
 	}
 }
 
+// GET /admin/sleeper-transactions - view Sleeper transactions by week
+async function sleeperTransactionsPage(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : PSO.season;
+	
+	// Get available seasons (those with Sleeper league IDs), ascending for nav
+	var availableSeasons = Object.keys(PSO.sleeperLeagueIds)
+		.map(function(s) { return parseInt(s, 10); })
+		.sort(function(a, b) { return a - b; }); // Ascending (left = past)
+	
+	var season = parseInt(request.query.season, 10) || currentSeason;
+	// Validate season is one we have
+	if (availableSeasons.indexOf(season) === -1) {
+		season = currentSeason;
+	}
+	
+	var currentWeek = PSO.getWeek(new Date(), currentSeason);
+	var week = parseInt(request.query.week, 10) || (season === currentSeason ? currentWeek : 1);
+
+	// Clamp to valid range
+	week = Math.max(1, Math.min(17, week));
+
+	var leagueId = sleeper.getLeagueId(season);
+	var transactions = [];
+	var error = null;
+
+	if (leagueId) {
+		try {
+			transactions = await sleeper.fetchTransactions(week, season);
+			// Sort by created timestamp descending (most recent first)
+			transactions.sort(function(a, b) {
+				return (b.created || 0) - (a.created || 0);
+			});
+		} catch (err) {
+			error = err.message;
+		}
+	} else {
+		error = 'No Sleeper league ID configured for season ' + season;
+	}
+
+	// Build player lookup for displaying names
+	var playerIds = new Set();
+	transactions.forEach(function(t) {
+		if (t.adds) Object.keys(t.adds).forEach(function(id) { playerIds.add(id); });
+		if (t.drops) Object.keys(t.drops).forEach(function(id) { playerIds.add(id); });
+	});
+
+	var players = await Player.find({ sleeperId: { $in: Array.from(playerIds) } }).lean();
+	var playerBySleeperId = {};
+	players.forEach(function(p) {
+		playerBySleeperId[p.sleeperId] = p;
+	});
+
+	// Build franchise lookup by Sleeper roster ID
+	var franchises = await Franchise.find({}).lean();
+	var regimes = await Regime.find({}).lean();
+	var regimeMap = buildRegimeMap(regimes, season);
+
+	var franchiseByRosterId = {};
+	franchises.forEach(function(f) {
+		if (f.rosterId) {
+			franchiseByRosterId[f.rosterId] = {
+				_id: f._id,
+				displayName: regimeMap[f._id.toString()] || 'Franchise ' + f.rosterId
+			};
+		}
+	});
+
+	// Check which transactions we've already processed (by sleeperTransactionId)
+	var sleeperTxnIds = transactions.map(function(t) { return t.transaction_id; }).filter(Boolean);
+	var processedTxns = await Transaction.find({ sleeperTransactionId: { $in: sleeperTxnIds } }).lean();
+	var processedMap = {};
+	processedTxns.forEach(function(t) {
+		processedMap[t.sleeperTransactionId] = t._id;
+	});
+
+	// Build week array 1-17
+	var weeks = [];
+	for (var w = 1; w <= 17; w++) {
+		weeks.push(w);
+	}
+
+	response.render('admin-sleeper-transactions', {
+		week: week,
+		weeks: weeks,
+		currentWeek: currentWeek,
+		season: season,
+		currentSeason: currentSeason,
+		availableSeasons: availableSeasons,
+		transactions: transactions,
+		playerBySleeperId: playerBySleeperId,
+		franchiseByRosterId: franchiseByRosterId,
+		processedMap: processedMap,
+		error: error,
+		activePage: 'admin'
+	});
+}
+
 // GET /admin/contracts - show pending players with contract choices for all franchises
 async function contractsPage(request, response) {
 	var config = await LeagueConfig.findById('pso');
@@ -1563,5 +1662,6 @@ module.exports = {
 	processContracts: processContracts,
 	sanityPage: sanityPage,
 	transactionsPage: transactionsPage,
-	rollbackTransaction: rollbackTransaction
+	rollbackTransaction: rollbackTransaction,
+	sleeperTransactionsPage: sleeperTransactionsPage
 };

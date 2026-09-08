@@ -263,6 +263,7 @@ mixin sequentialNav(opts)
 	- var quickItems = opts.quickItems || null
 	- var jumpLabel = opts.jumpLabel || null
 	- var labelFn = opts.labelFn || function(v) { return v }
+	- var reverseDropdown = opts.reverseDropdown || false
 	-
 		// Support direct prev/next or calculate from items
 		var prevItem, nextItem;
@@ -276,6 +277,8 @@ mixin sequentialNav(opts)
 		}
 		// Items not in quickItems (for jump dropdown)
 		var jumpItems = quickItems ? items.filter(function(i) { return quickItems.indexOf(i) === -1 }) : []
+		// Items for dropdown display (optionally reversed)
+		var dropdownItems = reverseDropdown ? items.slice().reverse() : items
 		// Helper to build URL
 		var buildUrl = function(item) { return urlPattern + item + urlSuffix }
 		// Simple mode: no items, just prev/next
@@ -308,7 +311,7 @@ mixin sequentialNav(opts)
 			a.seq-nav__arrow(href=prevItem != null ? buildUrl(prevItem) : null class=(prevItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ‹
 			select.seq-nav__dropdown(onchange='if(this.value) window.location.href="' + urlPattern + '"+this.value+"' + urlSuffix + '"')
-				each item in items
+				each item in dropdownItems
 					option(value=item selected=(item === current))= labelFn(item)
 			a.seq-nav__arrow(href=nextItem != null ? buildUrl(nextItem) : null class=(nextItem == null ? 'seq-nav__arrow--disabled' : ''))
 				span ›
