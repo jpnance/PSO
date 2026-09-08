@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Process Sleeper FAAB and free agent transactions into PSO
+# 
+# Fetches transactions from Sleeper, validates them, reconciles rosters,
+# and processes valid transactions into PSO's database.
+# Posts drop notifications to GroupMe.
+#
+# Usage:
+#   runt process-sleeper-transactions --dry-run
+#   runt process-sleeper-transactions --dry-run --verbose
+#   runt process-sleeper-transactions
+
+docker compose run --rm web node data/maintenance/process-sleeper-transactions.js "$@"

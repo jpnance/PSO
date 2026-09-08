@@ -109,10 +109,118 @@ function toDateStringET(utcTimestamp) {
 	return new Date(utcTimestamp).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 }
 
+/**
+ * Convert a date input to noon (12pm) ET on that day, as UTC.
+ * Use for FAAB processing time.
+ * 
+ * @param {string|Date} dateInput - Date string (YYYY-MM-DD) or Date object
+ * @returns {Date|null} Noon ET as UTC timestamp
+ */
+function toNoonET(dateInput) {
+	if (!dateInput) return null;
+	
+	var d = new Date(dateInput);
+	if (isNaN(d.getTime())) return null;
+	
+	var year = d.getUTCFullYear();
+	var month = d.getUTCMonth();
+	var day = d.getUTCDate();
+	
+	var noon = new Date(Date.UTC(year, month, day, 12, 0, 0));
+	var offset = getETOffsetHours(noon);
+	
+	// 12:00 ET
+	return new Date(Date.UTC(year, month, day, 12 + offset, 0, 0));
+}
+
+/**
+ * Check if a given date is a FAAB processing day.
+ * FAAB runs at noon ET on Thu, Fri, Sat, Sun, Mon, plus the special
+ * Wednesday before NFL season (stored in config.faab).
+ * 
+ * @param {Date} date - The date to check
+ * @param {Date} [specialWednesday] - The special pre-season Wednesday (config.faab)
+ * @returns {boolean}
+ */
+function isFAABDay(date, specialWednesday) {
+	// Get day of week in ET
+	var etDate = new Date(date.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+	var day = etDate.getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+	
+	// Thu(4), Fri(5), Sat(6), Sun(0), Mon(1)
+	if ([0, 1, 4, 5, 6].includes(day)) return true;
+	
+	// Special Wednesday from config
+	if (day === 3 && specialWednesday) {
+		var dateStr = toDateStringET(date);
+		var specialStr = toDateStringET(specialWednesday);
+		if (dateStr === specialStr) return true;
+	}
+	
+	return false;
+}
+
+/**
+ * Find the next FAAB processing time at or after a given timestamp.
+ * 
+ * @param {Date} after - Find FAAB time at or after this timestamp
+ * @param {Date} [specialWednesday] - The special pre-season Wednesday (config.faab)
+ * @returns {Date} The next FAAB processing time (noon ET)
+ */
+function nextFAABTime(after, specialWednesday) {
+	var candidate = new Date(after);
+	
+	// Start by getting noon ET on the same day
+	var noonToday = toNoonET(candidate);
+	
+	// If we're past noon today, start checking tomorrow
+	if (candidate > noonToday) {
+		candidate = new Date(noonToday.getTime() + 24 * 60 * 60 * 1000);
+	} else {
+		candidate = noonToday;
+	}
+	
+	// Find next FAAB day (max 7 iterations)
+	for (var i = 0; i < 7; i++) {
+		if (isFAABDay(candidate, specialWednesday)) {
+			return candidate;
+		}
+		candidate = new Date(candidate.getTime() + 24 * 60 * 60 * 1000);
+	}
+	
+	// Shouldn't happen, but return candidate anyway
+	return candidate;
+}
+
+/**
+ * Anchor a timestamp to the most recent FAAB processing time.
+ * Used for waiver transactions - Sleeper might report 12:03pm but we
+ * record it as exactly noon.
+ * 
+ * @param {Date} timestamp - The Sleeper transaction timestamp
+ * @param {Date} [specialWednesday] - The special pre-season Wednesday (config.faab)
+ * @returns {Date} The anchored FAAB time (noon ET on that day)
+ */
+function anchorToFAABTime(timestamp, specialWednesday) {
+	var noon = toNoonET(timestamp);
+	
+	// Only anchor if this is actually a FAAB day
+	if (isFAABDay(noon, specialWednesday)) {
+		return noon;
+	}
+	
+	// Not a FAAB day - return original timestamp
+	return timestamp;
+}
+
 module.exports = {
 	getETOffsetHours: getETOffsetHours,
 	toMidnightET: toMidnightET,
 	toEndOfDayET: toEndOfDayET,
 	to9pmET: to9pmET,
-	toDateStringET: toDateStringET
+	toNoonET: toNoonET,
+	toDateStringET: toDateStringET,
+	isFAABDay: isFAABDay,
+	nextFAABTime: nextFAABTime,
+	anchorToFAABTime: anchorToFAABTime
 };

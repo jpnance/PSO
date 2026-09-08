@@ -221,7 +221,7 @@ async function syncBudgets(franchises) {
  * Sync a trade's player movements to Sleeper.
  * 
  * @param {Array<{sleeperId: string, fromRosterId: number, toRosterId: number}>} movements - Player movements
- * @returns {Promise<{success: boolean, error?: string}>}
+ * @returns {Promise<{success: boolean, sleeperTransactionId?: string, error?: string}>}
  */
 async function syncTradeMovements(movements) {
 	if (movements.length === 0) {
@@ -242,8 +242,12 @@ async function syncTradeMovements(movements) {
 	}
 
 	try {
-		await executeRosterTransaction({ k_adds: k_adds, v_adds: v_adds, k_drops: k_drops, v_drops: v_drops });
-		return { success: true };
+		var result = await executeRosterTransaction({ k_adds: k_adds, v_adds: v_adds, k_drops: k_drops, v_drops: v_drops });
+		var transactionId = null;
+		if (result && result.data && result.data.league_create_transaction) {
+			transactionId = result.data.league_create_transaction.transaction_id;
+		}
+		return { success: true, sleeperTransactionId: transactionId };
 	} catch (err) {
 		return { success: false, error: err.message };
 	}

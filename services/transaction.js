@@ -824,11 +824,19 @@ async function processTrade(tradeDetails) {
 		
 		// Sync player movements if any
 		var playerSyncFailed = false;
+		var sleeperTransactionId = null;
 		if (movements.length > 0) {
 			var movementResult = await sleeperHelper.syncTradeMovements(movements);
 			if (!movementResult.success) {
 				sleeperErrors.push('Player sync failed: ' + movementResult.error);
 				playerSyncFailed = true;
+			} else if (movementResult.sleeperTransactionId) {
+				sleeperTransactionId = movementResult.sleeperTransactionId;
+				// Store the Sleeper transaction ID on our transaction record
+				await Transaction.updateOne(
+					{ _id: transaction._id },
+					{ $set: { sleeperTransactionId: sleeperTransactionId } }
+				);
 			}
 		}
 		
@@ -1185,10 +1193,178 @@ async function createPendingContract(details) {
 	);
 }
 
+/**
+ * Process an FA transaction (FAAB pickup, drop, or both).
+ * This is the main entry point for consuming Sleeper waiver/free_agent transactions.
+ * 
+ * @param {Object} details
+ * @param {ObjectId} details.franchiseId - The franchise making the move
+ * @param {Array<{playerId, salary}>} [details.adds] - Players being added
+ * @param {Array<{playerId}>} [details.drops] - Players being dropped
+ * @param {Date} details.timestamp - When the transaction occurred
+ * @param {string} [details.source='sleeper'] - Transaction source
+ * @param {string} [details.sleeperTransactionId] - Sleeper's transaction ID
+ * @param {string} [details.notes] - Optional notes
+ * @returns {Object} { success: boolean, transaction?, errors? }
+ */
+async function processFA(details) {
+	var errors = [];
+	
+	var config = await LeagueConfig.findById('pso');
+	var currentSeason = config ? config.season : new Date().getFullYear();
+	
+	// Determine if this is an offseason transaction
+	var phase = config ? config.getPhase() : null;
+	var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
+	var isOffseason = phase && offseasonPhases.includes(phase);
+	
+	var adds = details.adds || [];
+	var drops = details.drops || [];
+	
+	// Process drops first (frees up cap space)
+	var dropEntries = [];
+	for (var i = 0; i < drops.length; i++) {
+		var drop = drops[i];
+		
+		// Find the player's active contract
+		var contract = await Contract.findOne({
+			playerId: drop.playerId,
+			franchiseId: details.franchiseId,
+			endYear: { $gte: currentSeason }
+		});
+		
+		if (!contract) {
+			var player = await Player.findById(drop.playerId);
+			var playerName = player ? player.name : drop.playerId;
+			errors.push('No active contract found for ' + playerName + ' on this franchise');
+			continue;
+		}
+		
+		var salary = contract.salary || 0;
+		var startYear = contract.startYear;
+		var endYear = contract.endYear;
+		
+		// Compute buy-outs for each remaining season
+		var buyOutEntries = [];
+		for (var season = currentSeason; season <= endYear; season++) {
+			var amount = computeBuyOutForSeason(salary, startYear, endYear, currentSeason, season);
+			if (amount > 0) {
+				buyOutEntries.push({ season: season, amount: amount });
+			}
+		}
+		
+		// Update Budget for each affected season
+		for (var j = 0; j < buyOutEntries.length; j++) {
+			var bo = buyOutEntries[j];
+			var recoverableForSeason = computeRecoverableForContract(salary, startYear, endYear, bo.season);
+			
+			await Budget.updateOne(
+				{ franchiseId: details.franchiseId, season: bo.season },
+				{
+					$inc: {
+						payroll: -salary,
+						buyOuts: bo.amount,
+						recoverable: -recoverableForSeason,
+						available: salary - bo.amount
+					}
+				}
+			);
+		}
+		
+		// Update future seasons where contract would have been active but no buy-out
+		for (var season = currentSeason; season <= endYear; season++) {
+			var hasBO = buyOutEntries.some(function(b) { return b.season === season; });
+			if (!hasBO) {
+				var recoverableForSeason = computeRecoverableForContract(salary, startYear, endYear, season);
+				await Budget.updateOne(
+					{ franchiseId: details.franchiseId, season: season },
+					{
+						$inc: {
+							payroll: -salary,
+							recoverable: -recoverableForSeason,
+							available: salary
+						}
+					}
+				);
+			}
+		}
+		
+		// Delete the Contract
+		await Contract.deleteOne({ _id: contract._id });
+		
+		dropEntries.push({
+			playerId: drop.playerId,
+			salary: salary,
+			startYear: startYear,
+			endYear: endYear,
+			buyOuts: buyOutEntries,
+			isOffseason: isOffseason || undefined
+		});
+	}
+	
+	// Process adds
+	var addEntries = [];
+	for (var i = 0; i < adds.length; i++) {
+		var add = adds[i];
+		var salary = add.salary || 1; // Default to $1 if not specified
+		
+		// Create the contract (FA contract: endYear = null)
+		await Contract.create({
+			playerId: add.playerId,
+			franchiseId: details.franchiseId,
+			salary: salary,
+			startYear: currentSeason,
+			endYear: null // FA contract
+		});
+		
+		// Update Budget for current season
+		await Budget.updateOne(
+			{ franchiseId: details.franchiseId, season: currentSeason },
+			{
+				$inc: {
+					payroll: salary,
+					available: -salary,
+					recoverable: computeRecoverableForContract(salary, currentSeason, null, currentSeason)
+				}
+			}
+		);
+		
+		addEntries.push({
+			playerId: add.playerId,
+			salary: salary,
+			startYear: currentSeason,
+			endYear: null
+		});
+	}
+	
+	if (errors.length > 0 && addEntries.length === 0 && dropEntries.length === 0) {
+		return { success: false, errors: errors };
+	}
+	
+	// Create the Transaction
+	var transaction = await Transaction.create({
+		type: 'fa',
+		timestamp: details.timestamp || new Date(),
+		source: details.source || 'sleeper',
+		sleeperTransactionId: details.sleeperTransactionId,
+		notes: details.notes,
+		franchiseId: details.franchiseId,
+		adds: addEntries,
+		drops: dropEntries
+	});
+	
+	return {
+		success: true,
+		transaction: transaction,
+		errors: errors.length > 0 ? errors : undefined
+	};
+}
+
 module.exports = {
 	processTrade: processTrade,
 	validateTrade: validateTrade,
 	processCut: processCut,
+	processFA: processFA,
 	processDraftPick: processDraftPick,
 	processDraftPass: processDraftPass,
 	createPendingContract: createPendingContract,
