@@ -19,7 +19,6 @@
   "#": "Mongo-specific: collections that should never shrink (for alerting)",
   "monotonic": [
     "budgets",
-    "contracts",
     "franchises",
     "games",
     "people",
