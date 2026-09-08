@@ -18,10 +18,7 @@ block content
 				div.alert.alert-success.alert-dismissible
 					button.close(type='button' data-dismiss='alert') &times;
 					strong Contracts processed!
-					|  #{processResult.successCount} contract#{processResult.successCount !== 1 ? 's' : ''} finalized.
-					ul.mb-0.mt-2
-						each r in processResult.results
-							li #{r.name}: #{r.years}-year contract
+					|  #{processResult.successCount} contract#{processResult.successCount !== 1 ? 's' : ''} finalized. Budgets recalculated.
 			else
 				div.alert.alert-danger.alert-dismissible
 					button.close(type='button' data-dismiss='alert') &times;

@@ -306,10 +306,105 @@ async function recalculateCashForBudgets(franchiseIds, seasons) {
 	}
 }
 
+var BASE_AMOUNT = 1000;
+
+/**
+ * Rebuild all budget documents from scratch using contracts and transactions.
+ * Deletes and recreates all budgets for the 3-season window.
+ */
+async function rebuildAllBudgets() {
+	var Budget = require('../models/Budget');
+	var Franchise = require('../models/Franchise');
+	var Contract = require('../models/Contract');
+	var Transaction = require('../models/Transaction');
+	var LeagueConfig = require('../models/LeagueConfig');
+	var { affectsBudget } = require('./contract');
+
+	var config = await LeagueConfig.findOne({});
+	if (!config || !config.season) {
+		throw new Error('No LeagueConfig found or season not set');
+	}
+	var currentSeason = config.season;
+	var seasons = [currentSeason, currentSeason + 1, currentSeason + 2];
+
+	var franchises = await Franchise.find({}).lean();
+	var contracts = await Contract.find({}).lean();
+	var trades = await Transaction.find({ type: 'trade' }).lean();
+	var cuts = await Transaction.find({ type: 'fa', 'drops.0': { $exists: true } }).lean();
+
+	await Budget.deleteMany({});
+
+	for (var i = 0; i < franchises.length; i++) {
+		var franchise = franchises[i];
+		var franchiseId = franchise._id;
+
+		for (var j = 0; j < seasons.length; j++) {
+			var season = seasons[j];
+
+			var payroll = 0;
+			var recoverable = 0;
+			contracts.forEach(function(c) {
+				if (!c.franchiseId.equals(franchiseId)) return;
+				if (!affectsBudget(c, season, currentSeason)) return;
+				payroll += c.salary;
+				var buyOut = computeBuyOutIfCut(c.salary, c.startYear, c.endYear, season);
+				recoverable += (c.salary - buyOut);
+			});
+
+			var buyOuts = 0;
+			cuts.forEach(function(cut) {
+				if (!cut.franchiseId || !cut.franchiseId.equals(franchiseId)) return;
+				if (!cut.drops) return;
+				cut.drops.forEach(function(drop) {
+					if (!drop.buyOuts) return;
+					drop.buyOuts.forEach(function(bo) {
+						if (bo.season === season) {
+							buyOuts += bo.amount;
+						}
+					});
+				});
+			});
+
+			var cashIn = 0;
+			var cashOut = 0;
+			trades.forEach(function(trade) {
+				if (!trade.parties) return;
+				trade.parties.forEach(function(party) {
+					if (!party.receives || !party.receives.cash) return;
+					party.receives.cash.forEach(function(c) {
+						if (c.season !== season) return;
+						if (party.franchiseId.equals(franchiseId)) {
+							cashIn += c.amount || 0;
+						}
+						if (c.fromFranchiseId && c.fromFranchiseId.equals(franchiseId)) {
+							cashOut += c.amount || 0;
+						}
+					});
+				});
+			});
+
+			var available = BASE_AMOUNT - payroll - buyOuts + cashIn - cashOut;
+
+			await Budget.create({
+				franchiseId: franchiseId,
+				season: season,
+				baseAmount: BASE_AMOUNT,
+				payroll: payroll,
+				buyOuts: buyOuts,
+				cashIn: cashIn,
+				cashOut: cashOut,
+				available: available,
+				recoverable: recoverable
+			});
+		}
+	}
+}
+
 module.exports = {
 	BUYOUT_PERCENTAGES: BUYOUT_PERCENTAGES,
 	computeBuyOutIfCut: computeBuyOutIfCut,
 	computeRecoverableForContract: computeRecoverableForContract,
 	recalculateCashForBudgets: recalculateCashForBudgets,
-	calculateTradeImpact: calculateTradeImpact
+	calculateTradeImpact: calculateTradeImpact,
+	rebuildAllBudgets: rebuildAllBudgets
 };

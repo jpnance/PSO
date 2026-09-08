@@ -815,11 +815,18 @@ async function franchiseDetail(request, response) {
 		// Can mark for cut during early-offseason only
 		var canMarkForCut = isOwner && phase === 'early-offseason';
 		
-		// Contract setting: allowed for owner during pre-season (between auction and contract deadline)
-		var canSetContracts = isOwner && phase === 'pre-season';
+		// Contract setting: allowed for owner during pre-season, before contracts deadline
+		var contractsDeadlinePassed = config && config.contractsDue && new Date() >= config.contractsDue;
+		var canSetContracts = isOwner && phase === 'pre-season' && !contractsDeadlinePassed;
 		var pendingContractCount = 0;
 		
-		if (canSetContracts) {
+		// Show contract picks (read-only) even after deadline, as long as they exist
+		var hasPendingContracts = isOwner && data.roster.some(function(p) {
+			return isPending(p) && p.pendingEndYear;
+		});
+		var showContracts = canSetContracts || hasPendingContracts;
+		
+		if (showContracts) {
 			pendingContractCount = data.roster.filter(function(p) {
 				return isPending(p) && p.pendingEndYear;
 			}).length;
@@ -849,6 +856,7 @@ async function franchiseDetail(request, response) {
 			canCut: canCut,
 			canMarkForCut: canMarkForCut,
 			canSetContracts: canSetContracts,
+			showContracts: showContracts,
 			pendingContractCount: pendingContractCount,
 			budgets: budgets,
 			contractsDue: config ? config.contractsDue : null,
@@ -2156,6 +2164,9 @@ async function setContract(request, response) {
 			var phase = config.getPhase();
 			if (phase !== 'pre-season') {
 				return response.status(400).json({ error: 'Contract setting is only allowed during the pre-season' });
+			}
+			if (config.contractsDue && new Date() >= config.contractsDue) {
+				return response.status(400).json({ error: 'The contract deadline has passed' });
 			}
 		}
 		

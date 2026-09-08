@@ -1482,80 +1482,53 @@ async function overrideContract(request, response) {
 
 // POST /admin/contracts/process - finalize all pending contracts
 async function processContracts(request, response) {
-	var config = await LeagueConfig.findById('pso');
-	var season = config ? config.season : new Date().getFullYear();
-	var budgetHelper = require('../helpers/budget');
+	try {
+		var config = await LeagueConfig.findById('pso');
+		var season = config ? config.season : new Date().getFullYear();
+		var budgetHelper = require('../helpers/budget');
 
-	var pendingContracts = await Contract.find({
-		salary: { $ne: null },
-		endYear: null
-	}).populate('playerId').lean();
+		var pendingContracts = await Contract.find({
+			salary: { $ne: null },
+			endYear: null,
+			pendingEndYear: { $ne: null }
+		}).populate('playerId').lean();
 
-	var unassigned = pendingContracts.filter(function(c) { return !c.pendingEndYear; });
-	if (unassigned.length > 0) {
-		var names = unassigned.map(function(c) {
-			return c.playerId ? c.playerId.name : 'Unknown';
+		var unassignedCount = await Contract.countDocuments({
+			salary: { $ne: null },
+			endYear: null,
+			pendingEndYear: null
 		});
-		var errorResult = encodeURIComponent(JSON.stringify({
-			success: false,
-			error: unassigned.length + ' pending player' + (unassigned.length !== 1 ? 's have' : ' has') +
-				' no contract assigned: ' + names.join(', ')
-		}));
-		return response.redirect('/admin/contracts?processResult=' + errorResult);
-	}
 
-	var successCount = 0;
-	var results = [];
-
-	for (var i = 0; i < pendingContracts.length; i++) {
-		var c = pendingContracts[i];
-		var playerName = c.playerId ? c.playerId.name : 'Unknown';
-		var newEndYear = c.pendingEndYear;
-
-		var oldRecoverable = {};
-		var newRecoverable = {};
-		for (var s = season; s <= season + 2; s++) {
-			oldRecoverable[s] = budgetHelper.computeRecoverableForContract(c.salary, c.startYear || season, null, s);
-			if (newEndYear >= s) {
-				newRecoverable[s] = budgetHelper.computeRecoverableForContract(c.salary, season, newEndYear, s);
-			} else {
-				newRecoverable[s] = 0;
-			}
+		if (unassignedCount > 0) {
+			var errorResult = encodeURIComponent(JSON.stringify({
+				success: false,
+				error: unassignedCount + ' unsigned player' + (unassignedCount !== 1 ? 's' : '') + ' still need contracts'
+			}));
+			return response.redirect('/admin/contracts?processResult=' + errorResult);
 		}
 
-		await Contract.updateOne(
-			{ _id: c._id },
-			{ startYear: season, endYear: newEndYear, pendingEndYear: null }
+		// Move pendingEndYear → endYear for all pending contracts
+		await Contract.updateMany(
+			{ salary: { $ne: null }, endYear: null, pendingEndYear: { $ne: null } },
+			[{ $set: { startYear: season, endYear: '$pendingEndYear', pendingEndYear: null } }]
 		);
 
-		for (var s = season; s <= season + 2; s++) {
-			var recoverableDelta = newRecoverable[s] - oldRecoverable[s];
-			var payrollDelta = 0;
-			var availableDelta = 0;
+		// Rebuild all budgets from scratch
+		await budgetHelper.rebuildAllBudgets();
 
-			if (newEndYear < s) {
-				payrollDelta = -c.salary;
-				availableDelta = c.salary;
-			}
-
-			if (recoverableDelta !== 0 || payrollDelta !== 0) {
-				await Budget.updateOne(
-					{ franchiseId: c.franchiseId, season: s },
-					{ $inc: { recoverable: recoverableDelta, payroll: payrollDelta, available: availableDelta } }
-				);
-			}
-		}
-
-		successCount++;
-		results.push({ name: playerName, years: newEndYear - season + 1, success: true });
+		var processResult = encodeURIComponent(JSON.stringify({
+			success: true,
+			successCount: pendingContracts.length
+		}));
+		response.redirect('/admin/contracts?processResult=' + processResult);
+	} catch (err) {
+		console.error('Process contracts error:', err);
+		var errorResult = encodeURIComponent(JSON.stringify({
+			success: false,
+			error: 'Server error: ' + err.message
+		}));
+		response.redirect('/admin/contracts?processResult=' + errorResult);
 	}
-
-	var processResult = encodeURIComponent(JSON.stringify({
-		success: true,
-		successCount: successCount,
-		results: results
-	}));
-	response.redirect('/admin/contracts?processResult=' + processResult);
 }
 
 module.exports = {

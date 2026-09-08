@@ -208,7 +208,7 @@ mixin playerTableGroup(posKey, players, cols, dataAttrs, opts)
 						td.player-table__detail(class='player-table__detail--' + col)
 							if col === 'contract' && opts && opts.showContractPicker && player.contract === 'pending'
 								span.player-table__detail-text
-									span.contract-picker(data-player-id=player.playerId || player._id)
+									span.contract-picker(data-player-id=player.playerId || player._id class=opts.contractsReadonly ? 'contract-picker--readonly' : '')
 										- var pendingEnd = parseInt(player.pendingEndYear, 10) || 0
 										each years in [1, 2, 3]
 											- var endYear = opts.currentSeason + years - 1

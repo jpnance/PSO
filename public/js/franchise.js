@@ -203,9 +203,11 @@
 				});
 		}
 
+		var canSetContracts = rosterCard.dataset.canSetContracts === 'true';
+
 		rosterCard.addEventListener('click', function(e) {
 			var btn = e.target.closest('.contract-picker__btn');
-			if (!btn) return;
+			if (!btn || !canSetContracts) return;
 
 			var picker = btn.closest('.contract-picker');
 			if (!picker) return;

@@ -433,6 +433,15 @@ a.franchise-roster-cards__name:hover {
     cursor: not-allowed;
 }
 
+.contract-picker--readonly {
+    cursor: not-allowed;
+}
+
+.contract-picker--readonly .contract-picker__btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 /* Sticky sidebar on desktop during contract-setting phase */
 @media (min-width: 992px) {
     .franchise-sidebar--sticky {
