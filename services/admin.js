@@ -1507,6 +1507,22 @@ async function processContracts(request, response) {
 			return response.redirect('/admin/contracts?processResult=' + errorResult);
 		}
 
+		// Create contract transactions
+		var contractTimestamp = config.contractsDue || new Date();
+		for (var i = 0; i < pendingContracts.length; i++) {
+			var c = pendingContracts[i];
+			await Transaction.create({
+				type: 'contract',
+				timestamp: new Date(contractTimestamp.getTime() + (i * 1000)),
+				source: 'manual',
+				franchiseId: c.franchiseId,
+				playerId: c.playerId._id || c.playerId,
+				salary: c.salary,
+				startYear: season,
+				endYear: c.pendingEndYear
+			});
+		}
+
 		// Move pendingEndYear → endYear for all pending contracts
 		await Contract.updateMany(
 			{ salary: { $ne: null }, endYear: null, pendingEndYear: { $ne: null } },
