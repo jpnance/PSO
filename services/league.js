@@ -672,10 +672,15 @@ async function overview(request, response) {
 	try {
 		var config = await LeagueConfig.findById('pso');
 		var currentSeason = config ? config.season : new Date().getFullYear();
+		var phase = config ? config.getPhase() : 'unknown';
 		
-		// Get standings - try current season first, fall back to previous season
+		// Get standings for current season
+		// During regular season, show current standings even if 0-0
+		// Only fall back to previous season in offseason when no current season games exist
 		var standingsData = await standingsHelper.getStandingsForSeason(currentSeason);
-		if (!standingsData || standingsData.gamesPlayed === 0) {
+		var isRegularSeason = phase === 'regular-season' || phase === 'post-deadline' || phase === 'playoff-fa';
+		
+		if (!isRegularSeason && (!standingsData || standingsData.gamesPlayed === 0)) {
 			standingsData = await standingsHelper.getStandingsForSeason(currentSeason - 1);
 			if (standingsData) {
 				standingsData.isPreviousSeason = true;
@@ -683,7 +688,6 @@ async function overview(request, response) {
 		}
 		
 		// Get calendar data
-		var phase = config ? config.getPhase() : 'unknown';
 		var phaseName = getPhaseName(phase);
 		var upcomingEvents = config ? getUpcomingEvents(config) : [];
 		

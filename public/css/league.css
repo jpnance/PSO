@@ -1,52 +1,31 @@
-/* League Grid */
-.league-grid {
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-}
-
-.league-grid__main {
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-}
-
+/* League Grid - 3 column layout */
 .league-grid__row {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 1fr;
 	gap: 1.5rem;
 }
 
-.league-grid__sidebar {
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-}
-
+/* Two columns on tablet */
 @media (min-width: 768px) {
 	.league-grid__row {
-		flex-direction: row;
+		grid-template-columns: repeat(2, 1fr);
 	}
-
-	.league-grid__row > * {
-		flex: 1;
-		min-width: 0;
+	
+	/* Let spacer collapse on 2-col */
+	.league-grid__spacer {
+		display: none;
 	}
 }
 
+/* Three columns on desktop */
 @media (min-width: 992px) {
-	.league-grid {
-		flex-direction: row;
+	.league-grid__row {
+		grid-template-columns: repeat(3, 1fr);
 	}
-
-	.league-grid__main {
-		flex: 2;
-		min-width: 0;
-	}
-
-	.league-grid__sidebar {
-		flex: 1;
-		min-width: 0;
+	
+	/* Show spacer to maintain grid */
+	.league-grid__spacer {
+		display: block;
 	}
 }
 
