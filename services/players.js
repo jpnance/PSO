@@ -108,8 +108,10 @@ exports.playerDetail = async function(request, response) {
 			canTrade = tradePhases.includes(phase);
 		}
 		
-		// Show drop button only during in-season phases (offseason uses franchise marking system)
-		var showDropButton = canCut && phase !== 'early-offseason';
+		// Disabled for now - drops should go through Sleeper, not PSO directly
+		// TODO: Re-enable once we have proper Sleeper sync for drops initiated from PSO
+		var showDropButton = false;
+		// var showDropButton = canCut && phase !== 'early-offseason';
 		
 		// Get transaction history for this player
 		// Players can appear in: playerId field, parties.receives.players, parties.receives.rfaRights, adds, drops
