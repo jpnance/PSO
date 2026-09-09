@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Compare PSO rosters against Sleeper rosters and show differences.
+#
+# Usage:
+#   runt pso-debug-rosters
+
+docker compose run --rm web node data/maintenance/debug-rosters.js "$@"
