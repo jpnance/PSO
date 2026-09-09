@@ -590,8 +590,8 @@ async function main() {
 				processed++;
 				console.log('  -> Created transaction: ' + result.transaction._id);
 				
-				// Queue drops for notification
-				if (txn.drops.length > 0) {
+				// Queue drops for notification (only midweek drops, not FAAB-related drops)
+				if (txn.type === 'free_agent' && txn.drops.length > 0) {
 					dropsToNotify.push(txn);
 				}
 			} else {
