@@ -305,16 +305,13 @@ async function notifyDrop(txn, config, lookups) {
 		
 		var nextFAABFormatted = nextFAAB.toLocaleString('en-US', {
 				timeZone: 'America/New_York',
-				weekday: 'short',
-				month: 'short',
-				day: 'numeric',
-				hour: 'numeric',
-				minute: '2-digit',
-				timeZoneName: 'short'
+				weekday: 'long',
+				month: 'long',
+				day: 'numeric'
 			});
 		
 		var message = drop.name + ' was dropped by ' + txn.franchise.displayName + '. ' +
-			'First eligible FAAB period: ' + nextFAABFormatted + '.';
+			'Eligible for FAAB on ' + nextFAABFormatted + '.';
 		
 		await notifications.postToLeague(message);
 	}
