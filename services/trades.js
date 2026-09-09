@@ -571,6 +571,14 @@ function regimeWasPartyAtTime(regime, tradeYear, partyFranchiseIds) {
 }
 
 async function tradeHistory(request, response) {
+	// Require login for filtered queries (prevents bot abuse)
+	var hasFilters = Object.keys(request.query).some(function(key) {
+		return key !== 'page'; // page param is okay without login
+	});
+	if (!request.user && hasFilters) {
+		return response.redirect('/login');
+	}
+	
 	var config = await LeagueConfig.findById('pso');
 	var currentSeason = config ? config.season : new Date().getFullYear();
 	
