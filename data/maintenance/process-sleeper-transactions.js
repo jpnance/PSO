@@ -367,12 +367,21 @@ async function main() {
 		process.exit(1);
 	}
 	
-	// Filter to waiver and free_agent types only
+	// Filter to waiver and free_agent types that completed successfully
 	var relevantTxns = allSleeperTxns.filter(function(t) {
-		return t.type === 'waiver' || t.type === 'free_agent';
+		return (t.type === 'waiver' || t.type === 'free_agent') && t.status === 'complete';
 	});
 	
-	console.log('Found ' + relevantTxns.length + ' waiver/free_agent transactions\n');
+	// Also count how many failed
+	var failedCount = allSleeperTxns.filter(function(t) {
+		return (t.type === 'waiver' || t.type === 'free_agent') && t.status === 'failed';
+	}).length;
+	
+	console.log('Found ' + relevantTxns.length + ' completed waiver/free_agent transactions');
+	if (failedCount > 0) {
+		console.log('(' + failedCount + ' failed bids excluded)');
+	}
+	console.log('');
 	
 	// Transform and filter already-processed
 	var toProcess = [];
