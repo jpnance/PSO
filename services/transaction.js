@@ -1214,9 +1214,13 @@ async function processFA(details) {
 	var currentSeason = config ? config.season : new Date().getFullYear();
 	
 	// Determine if this is an offseason transaction
-	var phase = config ? config.getPhase() : null;
-	var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
-	var isOffseason = phase && offseasonPhases.includes(phase);
+	// Sleeper-sourced transactions are always in-season (they're real FAAB activity)
+	var isOffseason = false;
+	if (details.source !== 'sleeper') {
+		var phase = config ? config.getPhase() : null;
+		var offseasonPhases = ['dead-period', 'early-offseason', 'pre-season'];
+		isOffseason = phase && offseasonPhases.includes(phase);
+	}
 	
 	var adds = details.adds || [];
 	var drops = details.drops || [];

@@ -174,7 +174,8 @@ async function checkOwnership(franchiseId, playerId, season) {
  */
 async function checkRosterSpace(franchiseId, season, dropCount) {
 	dropCount = dropCount || 0;
-	var ROSTER_LIMIT = 20; // TODO: Get from config if this varies
+	var LeagueConfig = require('../models/LeagueConfig');
+	var ROSTER_LIMIT = LeagueConfig.ROSTER_LIMIT;
 	
 	var currentRosterSize = await Contract.countDocuments({
 		franchiseId: franchiseId,

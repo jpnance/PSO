@@ -303,8 +303,7 @@ async function notifyDrop(txn, config, lookups) {
 			config.faab
 		);
 		
-		var message = drop.name + ' was dropped by ' + txn.franchise.displayName + '. ' +
-			'Available for FAAB bids at ' + nextFAAB.toLocaleString('en-US', {
+		var nextFAABFormatted = nextFAAB.toLocaleString('en-US', {
 				timeZone: 'America/New_York',
 				weekday: 'short',
 				month: 'short',
@@ -312,7 +311,10 @@ async function notifyDrop(txn, config, lookups) {
 				hour: 'numeric',
 				minute: '2-digit',
 				timeZoneName: 'short'
-			}) + '.';
+			});
+		
+		var message = drop.name + ' was dropped by ' + txn.franchise.displayName + '. ' +
+			'First eligible FAAB period: ' + nextFAABFormatted + '.';
 		
 		await notifications.postToLeague(message);
 	}
@@ -544,12 +546,21 @@ async function main() {
 		console.log('Processing: ' + txn.sleeperTransactionId);
 		console.log(formatTransaction(txn, lookups));
 		
+		// Alert if free_agent has adds (shouldn't happen - all pickups go through FAAB)
+		if (txn.type === 'free_agent' && txn.adds.length > 0) {
+			var alertMsg = 'Unexpected: free_agent transaction has adds!\n' +
+				'Transaction: ' + txn.sleeperTransactionId + '\n' +
+				'Adds: ' + txn.adds.map(function(a) { return a.name; }).join(', ');
+			console.error(alertMsg);
+			await notifications.alertCommissioner(alertMsg, { priority: 'high' });
+		}
+		
 		try {
-			// Build adds with salary (bid amount for waiver, $1 for free_agent)
+			// Build adds with salary (bid amount for waiver)
 			var adds = txn.adds.map(function(a) {
 				return {
 					playerId: a.playerId,
-					salary: txn.type === 'waiver' ? txn.bidAmount : 1
+					salary: txn.bidAmount || 1
 				};
 			});
 			
