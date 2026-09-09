@@ -609,12 +609,52 @@ async function main() {
 	console.log('\nProcessed: ' + processed + ', Failed: ' + failed);
 	
 	// === SYNC BUDGETS ===
+	// === SYNC BUDGETS ===
 	if (processed > 0) {
 		console.log('\nSyncing budgets to Sleeper...');
-		// Budget sync is handled by the existing sync-budgets mechanism
-		// We just need to trigger it for affected franchises
-		// For now, log that it should be done
-		console.log('Run `runt pso-sync-budgets` to sync budgets to Sleeper');
+		
+		// Get unique affected franchise IDs
+		var affectedFranchiseIds = [];
+		toProcess.forEach(function(txn) {
+			if (txn.franchise && txn.franchise._id) {
+				var fid = txn.franchise._id.toString();
+				if (affectedFranchiseIds.indexOf(fid) === -1) {
+					affectedFranchiseIds.push(fid);
+				}
+			}
+		});
+		
+		// Build sync data
+		var Budget = require('../../models/Budget');
+		var franchisesForSync = [];
+		
+		for (var i = 0; i < affectedFranchiseIds.length; i++) {
+			var fid = affectedFranchiseIds[i];
+			var franchise = lookups.franchiseById[fid];
+			var budget = await Budget.findOne({ franchiseId: fid, season: season }).lean();
+			
+			if (franchise && franchise.rosterId && budget) {
+				franchisesForSync.push({
+					franchiseId: fid,
+					rosterId: franchise.rosterId,
+					available: budget.available
+				});
+				console.log('  ' + franchise.displayName + ': $' + budget.available + ' available');
+			}
+		}
+		
+		if (franchisesForSync.length > 0) {
+			var budgetResult = await sleeperHelper.syncBudgets(franchisesForSync);
+			if (budgetResult.errors.length > 0) {
+				console.error('Budget sync errors:', budgetResult.errors.join('; '));
+				await notifications.alertCommissioner(
+					'Budget sync errors after processing Sleeper transactions:\n' + budgetResult.errors.join('\n'),
+					{ priority: 'high' }
+				);
+			} else {
+				console.log('Budget sync complete: ' + budgetResult.synced + ' updated, ' + budgetResult.skipped + ' already in sync');
+			}
+		}
 	}
 	
 	// === NOTIFY DROPS ===
