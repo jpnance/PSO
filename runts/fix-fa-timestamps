@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Fix FA transaction timestamps that used Sleeper's `created` instead of `status_updated`.
+#
+# Usage:
+#   runt fix-fa-timestamps --dry-run
+#   runt fix-fa-timestamps
+
+docker compose run --rm web node data/maintenance/fix-fa-timestamps.js "$@"
