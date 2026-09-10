@@ -11,6 +11,9 @@
 # Daily budget verification (4am)
 0 4 * * * /usr/local/bin/node /app/data/maintenance/verify-budgets.js
 
+# Daily sanity check (4:15am)
+15 4 * * * /usr/local/bin/node /app/data/maintenance/sanity-check.js >> /var/log/sanity-check.log 2>&1
+
 # Daily proposal cleanup (4:30am)
 30 4 * * * /usr/local/bin/node /app/data/maintenance/cleanup-proposals.js
 

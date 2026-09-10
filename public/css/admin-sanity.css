@@ -52,6 +52,11 @@
 	border: 1px solid #f5c6cb;
 }
 
+.sanity__summary-card--skipped {
+	background: #e9ecef;
+	border: 1px solid #dee2e6;
+}
+
 .sanity__summary-icon {
 	width: 2rem;
 	height: 2rem;
@@ -70,6 +75,11 @@
 
 .sanity__summary-card--error .sanity__summary-icon {
 	background: #dc3545;
+	color: #fff;
+}
+
+.sanity__summary-card--skipped .sanity__summary-icon {
+	background: #6c757d;
 	color: #fff;
 }
 

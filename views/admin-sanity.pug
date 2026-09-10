@@ -17,7 +17,7 @@ block content
 				i.fa.fa-check-circle.sanity__banner-icon
 				div.sanity__banner-text
 					div.sanity__banner-title All Systems Healthy
-					div.sanity__banner-subtitle All 10 sanity checks passed for season #{currentSeason}
+					div.sanity__banner-subtitle All 11 sanity checks passed for season #{currentSeason}
 		else
 			div.sanity__banner.sanity__banner--warning.mb-4
 				i.fa.fa-exclamation-triangle.sanity__banner-icon
@@ -176,6 +176,29 @@ block content
 								| All OK
 							else
 								| #{futureBudgetChecks.missingSeasons.length} season(s) missing
+			
+			div.col-md-4.col-lg-3.mb-3
+				if sleeperChecks.skipped
+					div.sanity__summary-card.sanity__summary-card--skipped
+						div.sanity__summary-icon
+							i.fa.fa-minus
+						div.sanity__summary-text
+							div.sanity__summary-title Sleeper Sync
+							div.sanity__summary-detail Skipped (off-season)
+				else
+					div.sanity__summary-card(class=sleeperChecks.isHealthy ? 'sanity__summary-card--ok' : 'sanity__summary-card--error')
+						div.sanity__summary-icon
+							if sleeperChecks.isHealthy
+								i.fa.fa-check
+							else
+								i.fa.fa-times
+						div.sanity__summary-text
+							div.sanity__summary-title Sleeper Sync
+							div.sanity__summary-detail
+								if sleeperChecks.isHealthy
+									| All OK
+								else
+									| #{sleeperProblems.length} mismatch(es)
 		
 		//- Detailed Results
 		div.row
@@ -213,9 +236,6 @@ block content
 											if check.isOver
 												span.badge.badge-danger
 													i.fa.fa-times
-											else if check.count === check.limit
-												span.badge.badge-warning
-													i.fa.fa-minus
 											else
 												span.badge.badge-success
 													i.fa.fa-check
@@ -516,3 +536,43 @@ block content
 							div.text-success
 								i.fa.fa-check.mr-2
 								| All required season budgets exist
+				
+				//- Sleeper Sync
+				div.card.mb-4
+					div.card-header.d-flex.justify-content-between.align-items-center
+						span Sleeper Roster Sync
+						if sleeperChecks.skipped
+							span.badge.badge-secondary
+								i.fa.fa-minus.mr-1
+								| Skipped
+						else if sleeperChecks.isHealthy
+							span.badge.badge-success
+								i.fa.fa-check.mr-1
+								| OK
+						else
+							span.badge.badge-danger
+								i.fa.fa-times.mr-1
+								| #{sleeperProblems.length} Mismatch(es)
+					div.card-body
+						if sleeperChecks.skipped
+							p.text-muted.mb-0 Sleeper roster sync only runs during pre-season and regular season.
+						else
+							p.text-muted.mb-3 Compares PSO database rosters against Sleeper API rosters
+							
+							if sleeperChecks.error
+								div.sanity__problem
+									i.fa.fa-exclamation-circle.mr-2
+									| API Error: #{sleeperChecks.error}
+							else if sleeperProblems.length > 0
+								each problem in sleeperProblems
+									div.sanity__problem-item
+										strong= problem.regimeName
+										div.sanity__problem
+											i.fa.fa-exclamation-circle.mr-2
+											| #{problem.problem}
+											if problem.sleeperId
+												span.text-muted  (sleeperId: #{problem.sleeperId})
+							else
+								div.text-success
+									i.fa.fa-check.mr-2
+									| All rosters match Sleeper
