@@ -741,6 +741,7 @@ async function getFranchiseSeasonHistory(franchiseId) {
 	var history = [];
 	
 	seasons.forEach(function(seasonDoc) {
+		if (!seasonDoc.standings) return;
 		var standing = seasonDoc.standings.find(function(s) {
 			return s.franchiseId === franchiseId;
 		});
@@ -816,6 +817,22 @@ async function franchiseDetail(request, response) {
 		// Get season-by-season results from Season model
 		var seasonHistory = await getFranchiseSeasonHistory(franchiseDoc.rosterId);
 		
+		// Get current season schedule for the schedule widget
+		var scheduleData = await getFranchiseScheduleData(rosterId, currentSeason);
+		
+		// Get current standings for opponent records in schedule widget
+		var currentSeasonDoc = await Season.findById(currentSeason).lean();
+		var standingsMap = {};
+		if (currentSeasonDoc && currentSeasonDoc.standings) {
+			currentSeasonDoc.standings.forEach(function(s) {
+				standingsMap[s.franchiseId] = {
+					wins: s.wins,
+					losses: s.losses,
+					allPlay: s.allPlay
+				};
+			});
+		}
+		
 		// Can mark for cut during early-offseason only
 		var canMarkForCut = isOwner && phase === 'early-offseason';
 		
@@ -864,7 +881,9 @@ async function franchiseDetail(request, response) {
 			pendingContractCount: pendingContractCount,
 			budgets: budgets,
 			contractsDue: config ? config.contractsDue : null,
-			seasonHistory: seasonHistory
+			seasonHistory: seasonHistory,
+			scheduleData: scheduleData,
+			standingsMap: standingsMap
 		});
 	} catch (err) {
 		console.error(err);
@@ -1927,7 +1946,7 @@ async function franchiseSchedule(request, response) {
 		// Get season summary from Season model
 		var seasonDoc = await Season.findById(season).lean();
 		var seasonSummary = null;
-		if (seasonDoc) {
+		if (seasonDoc && seasonDoc.standings) {
 			var standing = seasonDoc.standings.find(function(s) {
 				return s.franchiseId === rosterId;
 			});

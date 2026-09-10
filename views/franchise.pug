@@ -244,6 +244,40 @@ block content
 					div#budgetBody
 						include partials/franchise-budget
 				
+				//- Schedule widget (current season)
+				- var hasGames = scheduleData && (scheduleData.regularGames.length > 0 || scheduleData.playoffGames.length > 0)
+				if hasGames
+					div.card.mb-4
+						div.card-header #{currentSeason} Schedule
+						div.card-body.p-0
+							table.table.franchise-schedule-widget.mb-0
+								tbody
+									- var allGames = scheduleData.regularGames.concat(scheduleData.playoffGames)
+									each game in allGames
+										- var rowClass = game.result === 'W' ? 'franchise-schedule-widget__row--win' : (game.result === 'L' ? 'franchise-schedule-widget__row--loss' : '')
+										- var oppStandings = standingsMap[game.opponent.franchiseId] || { wins: 0, losses: 0 }
+										tr(class=rowClass)
+											td.franchise-schedule-widget__week= game.week
+											td.franchise-schedule-widget__opponent
+												a(href='/franchises/' + game.opponent.franchiseId + '/schedule/' + currentSeason)= game.opponent.name
+												span.franchise-schedule-widget__record  (#{oppStandings.wins}-#{oppStandings.losses})
+											td.franchise-schedule-widget__allplay.text-right
+												if oppStandings.allPlay && oppStandings.allPlay.wins != null
+													span.franchise-schedule-widget__allplay-value= oppStandings.allPlay.wins + '-' + oppStandings.allPlay.losses
+											td.franchise-schedule-widget__score.text-right
+												if game.hasScore
+													= formatPoints(game.score)
+													span.franchise-schedule-widget__sep –
+													= formatPoints(game.opponentScore)
+												else
+													span.text-muted —
+											td.franchise-schedule-widget__result.text-center
+												if game.result
+													span.franchise-schedule-widget__result-indicator= game.result
+						a.card-footer-link(href='/franchises/' + franchise.rosterId + '/schedule/' + currentSeason)
+							span View Full Schedule
+							i.fa.fa-chevron-right
+				
 				//- Draft Picks card
 				- var availablePicks = franchise.picks.filter(p => p.status === 'available')
 				- var picksBySeason = {}
