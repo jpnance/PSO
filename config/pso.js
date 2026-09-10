@@ -425,19 +425,22 @@ module.exports.getWeek = function(options = {}) {
 	var now = options.now || new Date();
 	var seasonYear = options.season || module.exports.season;
 
+	var dayNames = { sunday: 0, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6 };
+	var weekStartDay = dayNames[options.weekStartDay] ?? 3; // default: Wednesday
+
 	var laborDay = new Date(seasonYear, 8, 1);
 
 	while (laborDay.getDay() !== 1) {
 		laborDay.setDate(laborDay.getDate() + 1);
 	}
 
-	var firstWednesday = new Date(laborDay);
+	var firstWeekStart = new Date(laborDay);
 
-	while (firstWednesday.getDay() !== 3) {
-		firstWednesday.setDate(firstWednesday.getDate() + 1);
+	while (firstWeekStart.getDay() !== weekStartDay) {
+		firstWeekStart.setDate(firstWeekStart.getDate() + 1);
 	}
 
-	var days = Math.floor((now - firstWednesday) / 86400000);
+	var days = Math.floor((now - firstWeekStart) / 86400000);
 
 	var week;
 
