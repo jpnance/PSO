@@ -12,7 +12,6 @@
  * @param {Array} options.franchises - All franchises [{ rosterId, displayName }]
  * @param {boolean} options.isAdmin - Whether user is admin
  * @param {number} options.pendingApprovalCount - Number of proposals awaiting admin approval
- * @param {number} options.pendingCutCount - Number of players marked for cut (pre-season only)
  * @returns {Object} Navigation structure with tabs array
  */
 function buildNav(options) {
@@ -22,7 +21,6 @@ function buildNav(options) {
 	var franchises = options.franchises || [];
 	var isAdmin = options.isAdmin || false;
 	var pendingApprovalCount = options.pendingApprovalCount || 0;
-	var pendingCutCount = options.pendingCutCount || 0;
 
 	// Helper to check if a link is active
 	function isActive(page) {
@@ -136,15 +134,11 @@ function buildNav(options) {
 			label: 'Admin',
 			icon: 'fa-cog',
 			active: activeTab === 'admin',
-			hasNotification: pendingApprovalCount > 0 || pendingCutCount > 0,
+			hasNotification: pendingApprovalCount > 0,
 			items: [
 				{ label: 'Dashboard', icon: 'fa-tachometer', href: '/admin', active: isActive('admin') || isActive('admin-dashboard') },
-				{ label: 'Prep Tool', icon: 'fa-list-alt', href: '/admin/prep', active: isActive('admin-prep') },
-				{ label: 'Rosters', icon: 'fa-scissors', href: '/admin/rosters', active: isActive('admin-rosters'), badge: pendingCutCount > 0 ? pendingCutCount : null },
-				{ label: 'Players', icon: 'fa-user', href: '/admin/players', active: isActive('admin-players') },
-				{ label: 'People', icon: 'fa-users', href: '/admin/people', active: isActive('admin-people') },
-				{ label: 'Manage Trades', icon: 'fa-exchange', href: '/admin/trades', active: isActive('admin-trades') },
-				{ label: 'Proposals', icon: 'fa-check-circle', href: '/admin/proposals', active: isActive('admin-proposals'), badge: pendingApprovalCount > 0 ? pendingApprovalCount : null }
+				{ label: 'Approve Trades', icon: 'fa-check-circle', href: '/admin/proposals', active: isActive('admin-proposals'), badge: pendingApprovalCount > 0 ? pendingApprovalCount : null },
+				{ label: 'Sleeper Transactions', icon: 'fa-cloud-download', href: '/admin/sleeper-transactions', active: isActive('admin-sleeper-transactions') }
 			]
 		});
 	}

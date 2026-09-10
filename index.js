@@ -114,15 +114,6 @@ app.use(async function(req, res, next) {
 			var pendingApprovalCount = await Proposal.countDocuments({ status: 'accepted' });
 			res.locals.pendingApprovalCount = pendingApprovalCount;
 			
-			var configObj = await LeagueConfig.findById('pso');
-			if (configObj && configObj.getPhase() === 'pre-season') {
-				var pendingCutCount = await Contract.countDocuments({
-					markedForCut: true,
-					salary: { $ne: null },
-					endYear: { $gte: currentSeason }
-				});
-				res.locals.pendingCutCount = pendingCutCount;
-			}
 		}
 		
 	} catch (err) {
