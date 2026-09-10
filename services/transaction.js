@@ -1312,13 +1312,13 @@ async function processFA(details) {
 		var add = adds[i];
 		var salary = add.salary || 1; // Default to $1 if not specified
 		
-		// Create the contract (FA contract: endYear = null)
+		// Create the contract (FA contract: startYear = null, endYear = current season)
 		await Contract.create({
 			playerId: add.playerId,
 			franchiseId: details.franchiseId,
 			salary: salary,
-			startYear: currentSeason,
-			endYear: null // FA contract
+			startYear: null,
+			endYear: currentSeason
 		});
 		
 		// Update Budget for current season

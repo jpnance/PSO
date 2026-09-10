@@ -215,7 +215,10 @@ async function validateTransaction(txn, season) {
 async function getPSORoster(franchiseId, season, lookups) {
 	var contracts = await Contract.find({
 		franchiseId: franchiseId,
-		endYear: { $gte: season }
+		$or: [
+			{ endYear: { $gte: season } },
+			{ endYear: null, salary: { $ne: null } }  // pending contracts
+		]
 	}).lean();
 	
 	var sleeperIds = [];

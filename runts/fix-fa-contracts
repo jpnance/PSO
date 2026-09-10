@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Fix FA contracts that were created with startYear/endYear backwards.
+#
+# Usage:
+#   runt fix-fa-contracts --dry-run
+#   runt fix-fa-contracts
+
+docker compose run --rm web node data/maintenance/fix-fa-contracts.js "$@"

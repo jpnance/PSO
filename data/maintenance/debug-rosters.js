@@ -48,7 +48,10 @@ async function main() {
 		var f = franchises[i];
 		var contracts = await Contract.find({
 			franchiseId: f._id,
-			endYear: { $gte: season }
+			$or: [
+				{ endYear: { $gte: season } },
+				{ endYear: null, salary: { $ne: null } }  // pending contracts
+			]
 		}).lean();
 		
 		psoRosters[f.rosterId] = {

@@ -151,7 +151,10 @@ async function checkOwnership(franchiseId, playerId, season) {
 	var contract = await Contract.findOne({
 		playerId: playerId,
 		franchiseId: franchiseId,
-		endYear: { $gte: season }
+		$or: [
+			{ endYear: { $gte: season } },
+			{ endYear: null, salary: { $ne: null } }  // pending contracts
+		]
 	}).lean();
 	
 	if (!contract) {
@@ -179,7 +182,10 @@ async function checkRosterSpace(franchiseId, season, dropCount) {
 	
 	var currentRosterSize = await Contract.countDocuments({
 		franchiseId: franchiseId,
-		endYear: { $gte: season }
+		$or: [
+			{ endYear: { $gte: season } },
+			{ endYear: null, salary: { $ne: null } }  // pending contracts
+		]
 	});
 	
 	var effectiveSize = currentRosterSize - dropCount;
