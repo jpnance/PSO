@@ -48,6 +48,9 @@ var newWeekPromise = function(week) {
 					sleeperMatchups[team.matchup_id].push(psoTeam);
 				});
 
+				// A week is complete once Tuesday arrives (after Monday Night Football)
+				var isWeekComplete = week < PSO.getWeek({ weekStartDay: 'tuesday' });
+
 				sleeperMatchups.forEach((sleeperMatchup, i) => {
 					var matchup = {};
 
@@ -82,7 +85,8 @@ var newWeekPromise = function(week) {
 						}
 					}
 
-					if (matchup.away.score == 0 && matchup.home.score == 0) {
+					// Only save scores for completed weeks
+					if (!isWeekComplete || (matchup.away.score == 0 && matchup.home.score == 0)) {
 						delete matchup.away.score;
 						delete matchup.home.score;
 					}
