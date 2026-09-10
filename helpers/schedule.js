@@ -7,7 +7,7 @@ var PSO = require('../config/pso');
 // Get schedule data for the widget
 async function getScheduleWidget(season, phase, cutDay) {
 	var now = new Date();
-	var currentWeek = PSO.getWeek(now, season);
+	var currentWeek = PSO.getWeek({ season: season });
 	
 	// In dead-period, show current season's playoff bracket (season just ended)
 	if (phase === 'dead-period') {

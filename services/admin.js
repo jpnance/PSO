@@ -1406,7 +1406,7 @@ async function sleeperTransactionsPage(request, response) {
 		season = currentSeason;
 	}
 	
-	var currentWeek = PSO.getWeek(new Date(), currentSeason);
+	var currentWeek = PSO.getWeek({ season: currentSeason });
 	var week = parseInt(request.query.week, 10) || (season === currentSeason ? currentWeek : 1);
 
 	// Clamp to valid range

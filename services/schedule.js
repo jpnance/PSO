@@ -515,8 +515,7 @@ async function schedulePage(request, response) {
 			week = requestedWeek;
 		} else if (season === currentSeason && config) {
 			// Use PSO.getWeek to get current week during in-season
-			var now = new Date();
-			week = PSO.getWeek(now, season);
+			week = PSO.getWeek({ season: season });
 			// Clamp to available weeks
 			var availableWeekNumbers = weeks.map(function(w) { return w.week; });
 			if (availableWeekNumbers.indexOf(week) === -1) {

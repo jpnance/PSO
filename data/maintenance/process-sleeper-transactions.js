@@ -327,7 +327,7 @@ async function main() {
 	
 	var config = await LeagueConfig.findById('pso');
 	var season = config ? config.season : PSO.season;
-	var currentWeek = PSO.getWeek(new Date(), season);
+	var currentWeek = PSO.getWeek({ season: season });
 	var previousWeek = currentWeek > 1 ? currentWeek - 1 : null;
 	
 	console.log('Season: ' + season + ', Current Week: ' + currentWeek);

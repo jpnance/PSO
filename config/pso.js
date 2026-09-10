@@ -421,7 +421,10 @@ module.exports.franchiseNames = {
 	}
 };
 
-module.exports.getWeek = function(now = new Date(), seasonYear = module.exports.season) {
+module.exports.getWeek = function(options = {}) {
+	var now = options.now || new Date();
+	var seasonYear = options.season || module.exports.season;
+
 	var laborDay = new Date(seasonYear, 8, 1);
 
 	while (laborDay.getDay() !== 1) {
