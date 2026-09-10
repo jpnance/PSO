@@ -37,6 +37,20 @@ async function configPage(request, response) {
 	});
 }
 
+// GET /admin/schedule - show league schedule configuration
+async function schedulePage(request, response) {
+	var config = await LeagueConfig.findById('pso');
+	if (!config) {
+		config = new LeagueConfig({ _id: 'pso', season: currentSeason });
+		await config.save();
+	}
+	
+	response.render('admin-schedule', {
+		config: config,
+		activePage: 'admin'
+	});
+}
+
 // POST /admin/config - update config
 async function updateConfig(request, response) {
 	var config = await LeagueConfig.findById('pso');
@@ -1648,6 +1662,7 @@ async function processContracts(request, response) {
 
 module.exports = {
 	configPage: configPage,
+	schedulePage: schedulePage,
 	updateConfig: updateConfig,
 	advanceSeasonForm: advanceSeasonForm,
 	advanceSeason: advanceSeason,

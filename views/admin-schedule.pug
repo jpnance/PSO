@@ -1,0 +1,99 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('League Schedule', 'Admin')
+
+block content
+	div.container.py-4
+		div.page-header
+			h1 League Schedule
+		
+		p.text-muted.mb-4 Configure key dates for the #{config.season} season. Changes take effect immediately.
+		
+		form(method='POST' action='/admin/config')
+			div.row
+				div.col-lg-6.mb-4
+					div.card
+						div.card-header Offseason
+						div.card-body
+							div.row
+								div.col-sm-6
+									div.form-group
+										label.mb-0(for='tradeWindow') Trade Window Opens
+										small.form-text.text-muted.mt-0.mb-1 Midnight ET
+										input#tradeWindow.form-control(type='date' name='tradeWindow' value=formatDateISO(config.tradeWindow))
+								div.col-sm-6
+									div.form-group
+										label.mb-0(for='nflDraft') NFL Draft
+										small.form-text.text-muted.mt-0.mb-1 Last Thursday of April
+										input#nflDraft.form-control(type='date' name='nflDraft' value=formatDateISO(config.nflDraft))
+					
+					div.card.mt-4
+						div.card-header Pre-Season
+						div.card-body
+							div.row
+								div.col-sm-4
+									div.form-group
+										label.mb-0(for='cutDay') Cut Day
+										small.form-text.text-muted.mt-0.mb-1 Deadline: 11:59pm ET
+										input#cutDay.form-control(type='date' name='cutDay' value=formatDateISO(config.cutDay))
+										div.form-check.mt-1
+											input#cutDayTentative.form-check-input(type='checkbox' name='cutDayTentative' value='true' checked=config.cutDayTentative)
+											label.form-check-label(for='cutDayTentative') Tentative
+								div.col-sm-4
+									div.form-group
+										label.mb-0(for='draftDay') Draft Day
+										input#draftDay.form-control(type='date' name='draftDay' value=formatDateISO(config.draftDay))
+										div.form-check.mt-1
+											input#draftDayTentative.form-check-input(type='checkbox' name='draftDayTentative' value='true' checked=config.draftDayTentative)
+											label.form-check-label(for='draftDayTentative') Tentative
+								div.col-sm-4
+									div.form-group
+										label.mb-0(for='contractsDue') Contracts Due
+										input#contractsDue.form-control(type='date' name='contractsDue' value=formatDateISO(config.contractsDue))
+										div.form-check.mt-1
+											input#contractsDueTentative.form-check-input(type='checkbox' name='contractsDueTentative' value='true' checked=config.contractsDueTentative)
+											label.form-check-label(for='contractsDueTentative') Tentative
+				
+				div.col-lg-6.mb-4
+					div.card
+						div.card-header Regular Season
+						div.card-body
+							div.row
+								div.col-sm-6
+									div.form-group
+										label.mb-0(for='faab') FAAB Opens
+										small.form-text.text-muted.mt-0.mb-1 Wednesday before NFL Week 1
+										input#faab.form-control(type='date' name='faab' value=formatDateISO(config.faab))
+								div.col-sm-6
+									div.form-group
+										label.mb-0(for='nflSeason') NFL Season
+										small.form-text.text-muted.mt-0.mb-1 Thursday after Labor Day
+										input#nflSeason.form-control(type='date' name='nflSeason' value=formatDateISO(config.nflSeason))
+								div.col-sm-6
+									div.form-group
+										label.mb-0(for='tradeDeadline') Trade Deadline
+										small.form-text.text-muted.mt-0.mb-1 Deadline: 9pm ET
+										input#tradeDeadline.form-control(type='date' name='tradeDeadline' value=formatDateISO(config.tradeDeadline))
+								div.col-sm-6
+									div.form-group
+										label.mb-0(for='playoffs') Playoffs
+										small.form-text.text-muted.mt-0.mb-1 After NFL Week 15
+										input#playoffs.form-control(type='date' name='playoffs' value=formatDateISO(config.playoffs))
+					
+					div.card.mt-4
+						div.card-header End of Season
+						div.card-body
+							div.form-group.mb-0
+								label.mb-0(for='deadPeriod') Dead Period
+								small.form-text.text-muted.mt-0.mb-1 Tuesday after NFL Week 17
+								input#deadPeriod.form-control(type='date' name='deadPeriod' value=formatDateISO(config.deadPeriod))
+			
+			div.d-flex.justify-content-between.align-items-center
+				a.btn.btn-outline-secondary(href='/admin')
+					i.fa.fa-arrow-left.mr-1
+					| Back to Admin
+				button.btn.btn-primary(type='submit')
+					i.fa.fa-save.mr-1
+					| Save Schedule

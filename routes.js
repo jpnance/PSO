@@ -121,6 +121,7 @@ module.exports = function(app) {
 	
 	// Admin routes (require login + admin)
 	app.get('/admin', requireLogin, requireAdmin, admin.configPage);
+	app.get('/admin/schedule', requireLogin, requireAdmin, admin.schedulePage);
 	app.post('/admin/config', requireLogin, requireAdmin, admin.updateConfig);
 	app.get('/admin/advance-season', requireLogin, requireAdmin, admin.advanceSeasonForm);
 	app.post('/admin/advance-season', requireLogin, requireAdmin, admin.advanceSeason);
