@@ -2,7 +2,7 @@ extends layout.pug
 include mixins
 
 block title
-	+title('Roster Management', 'Admin')
+	+title('Process Cuts', 'Admin')
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
@@ -11,86 +11,92 @@ block styles
 block content
 	div.container.py-4
 		div.page-header
-			h1 Roster Management
-
-		if cutResult
-			if cutResult.batch
-				if cutResult.failCount === 0
+			h1 Process Cuts
+		
+		//- Show empty state if we're past cut day and nothing is marked
+		if phase !== 'early-offseason' && markedCount === 0
+			div.text-center.py-5
+				i.fa.fa-check-circle.fa-3x.text-muted.mb-3
+				p.text-muted.mb-0 Cuts have been processed for the #{currentSeason} season.
+		else
+			if cutResult
+				if cutResult.batch
+					if cutResult.failCount === 0
+						div.alert.alert-success.alert-dismissible
+							button.close(type='button' data-dismiss='alert') &times;
+							strong Cut day complete!
+							|  #{cutResult.successCount} player#{cutResult.successCount !== 1 ? 's' : ''} released.
+					else
+						div.alert.alert-warning.alert-dismissible
+							button.close(type='button' data-dismiss='alert') &times;
+							strong Cut day processed with errors.
+							|  #{cutResult.successCount} succeeded, #{cutResult.failCount} failed.
+							ul.mb-0.mt-2
+								each r in cutResult.results
+									if !r.success
+										li #{r.name}: #{r.error}
+				else if cutResult.success
 					div.alert.alert-success.alert-dismissible
 						button.close(type='button' data-dismiss='alert') &times;
-						strong Cut day complete!
-						|  #{cutResult.successCount} player#{cutResult.successCount !== 1 ? 's' : ''} released.
+						strong Cut successful!
+						|  #{cutResult.playerName} has been released.
+						if cutResult.buyOuts && cutResult.buyOuts.length
+							|  Buyouts: 
+							each bo, i in cutResult.buyOuts
+								if i > 0
+									| , 
+								| #{bo.season}: #{formatMoney(bo.amount)}
 				else
-					div.alert.alert-warning.alert-dismissible
+					div.alert.alert-danger.alert-dismissible
 						button.close(type='button' data-dismiss='alert') &times;
-						strong Cut day processed with errors.
-						|  #{cutResult.successCount} succeeded, #{cutResult.failCount} failed.
-						ul.mb-0.mt-2
-							each r in cutResult.results
-								if !r.success
-									li #{r.name}: #{r.error}
-			else if cutResult.success
-				div.alert.alert-success.alert-dismissible
-					button.close(type='button' data-dismiss='alert') &times;
-					strong Cut successful!
-					|  #{cutResult.playerName} has been released.
-					if cutResult.buyOuts && cutResult.buyOuts.length
-						|  Buyouts: 
-						each bo, i in cutResult.buyOuts
-							if i > 0
-								| , 
-							| #{bo.season}: #{formatMoney(bo.amount)}
-			else
-				div.alert.alert-danger.alert-dismissible
-					button.close(type='button' data-dismiss='alert') &times;
-					strong Error:
-					|  #{cutResult.error}
+						strong Error:
+						|  #{cutResult.error}
 
-		div.admin-rosters__summary.mb-4
-			div.d-flex.align-items-center.justify-content-between
-				div
-					strong.admin-rosters__marked-count #{markedCount}
-					|  player#{markedCount !== 1 ? 's' : ''} marked for cut
-				form(method='POST' action='/admin/rosters/process-cut-day' onsubmit='return confirmCutDay()')
-					button.btn.btn-danger(type='submit' disabled=markedCount === 0)
-						i.fa.fa-scissors.mr-2
-						| Process Cut Day
+			div.admin-rosters__summary.mb-4
+				div.d-flex.align-items-center.justify-content-between
+					div
+						strong.admin-rosters__marked-count #{markedCount}
+						|  player#{markedCount !== 1 ? 's' : ''} marked for cut
+					form(method='POST' action='/admin/rosters/process-cut-day' onsubmit='return confirmCutDay()')
+						button.btn.btn-danger(type='submit' disabled=markedCount === 0)
+							i.fa.fa-scissors.mr-2
+							| Process Cut Day
 
-		div.row
-			each franchise in franchises
-				div.col-md-6.col-lg-4
-					div.card.mb-4.admin-rosters__card
-						div.card-header.d-flex.justify-content-between.align-items-center
-							span= franchise.displayName
-							button.btn.btn-sm.btn-outline-secondary.admin-rosters__reveal(type='button' title='Reveal cuts')
-								i.fa.fa-eye
-						div.admin-rosters__list
-							if franchise.roster.length === 0
-								div.admin-rosters__empty
-									span.text-muted No players on roster
-							else
-								each player in franchise.roster
-									- var posGroup = player.positions && player.positions.length > 0 ? (player.positions.some(p => ['DL','LB','DB'].includes(p)) ? 'IDP' : player.positions[0]) : null
-									div.admin-rosters__row(class=[(posGroup ? 'pos-' + posGroup : ''), player.markedForCut ? 'admin-rosters__row--marked' : ''].join(' '))
-										div.admin-rosters__details
-											div.admin-rosters__player
-												span.admin-rosters__player-name= player.name
-											div.admin-rosters__meta
+			div.row
+				each franchise in franchises
+					div.col-md-6.col-lg-4
+						div.card.mb-4.admin-rosters__card
+							div.card-header.d-flex.justify-content-between.align-items-center
+								span= franchise.displayName
+								button.btn.btn-sm.btn-outline-secondary.admin-rosters__reveal(type='button' title='Reveal cuts')
+									i.fa.fa-eye
+							div.admin-rosters__list
+								if franchise.roster.length === 0
+									div.admin-rosters__empty
+										span.text-muted No players on roster
+								else
+									each player in franchise.roster
+										- var posGroup = player.positions && player.positions.length > 0 ? (player.positions.some(p => ['DL','LB','DB'].includes(p)) ? 'IDP' : player.positions[0]) : null
+										div.admin-rosters__row(class=[(posGroup ? 'pos-' + posGroup : ''), player.markedForCut ? 'admin-rosters__row--marked' : ''].join(' '))
+											div.admin-rosters__details
+												div.admin-rosters__player
+													span.admin-rosters__player-name= player.name
+												div.admin-rosters__meta
+													if player.salary !== null
+														| #{formatMoney(player.salary)}
+														if player.contract
+															|  · #{player.contract}
+													else
+														| RFA Rights
+											div.admin-rosters__actions
+												if player.positions && player.positions.length
+													+positionBadge(player.positions)
 												if player.salary !== null
-													| #{formatMoney(player.salary)}
-													if player.contract
-														|  · #{player.contract}
+													button.admin-rosters__cut-toggle(type='button' data-player-id=player.playerId class=player.markedForCut ? 'admin-rosters__cut-toggle--active' : '' title=player.markedForCut ? 'Unmark for cut' : 'Mark for cut')
+														i.fa.fa-scissors
 												else
-													| RFA Rights
-										div.admin-rosters__actions
-											if player.positions && player.positions.length
-												+positionBadge(player.positions)
-											if player.salary !== null
-												button.admin-rosters__cut-toggle(type='button' data-player-id=player.playerId class=player.markedForCut ? 'admin-rosters__cut-toggle--active' : '' title=player.markedForCut ? 'Unmark for cut' : 'Mark for cut')
-													i.fa.fa-scissors
-											else
-												button.admin-rosters__cut-toggle.admin-rosters__cut-toggle--drop(type='button' data-player-id=player.playerId title='Drop RFA rights')
-													i.fa.fa-times
+													button.admin-rosters__cut-toggle.admin-rosters__cut-toggle--drop(type='button' data-player-id=player.playerId title='Drop RFA rights')
+														i.fa.fa-times
 
 block scripts
 	script.

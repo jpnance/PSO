@@ -2,7 +2,7 @@ extends layout.pug
 include mixins
 
 block title
-	+title('Contract Processing', 'Admin')
+	+title('Process Contracts', 'Admin')
 
 block styles
 	link(rel='stylesheet' href='/css/positions.css')
@@ -11,57 +11,63 @@ block styles
 block content
 	div.container.py-4
 		div.page-header
-			h1 Contract Processing
+			h1 Process Contracts
+		
+		//- Show empty state if no pending contracts
+		if totalPending === 0
+			div.text-center.py-5
+				i.fa.fa-check-circle.fa-3x.text-muted.mb-3
+				p.text-muted.mb-0 Contracts have been processed for the #{currentSeason} season.
+		else
+			if processResult
+				if processResult.success
+					div.alert.alert-success.alert-dismissible
+						button.close(type='button' data-dismiss='alert') &times;
+						strong Contracts processed!
+						|  #{processResult.successCount} contract#{processResult.successCount !== 1 ? 's' : ''} finalized. Budgets recalculated.
+				else
+					div.alert.alert-danger.alert-dismissible
+						button.close(type='button' data-dismiss='alert') &times;
+						strong Cannot process:
+						|  #{processResult.error}
 
-		if processResult
-			if processResult.success
-				div.alert.alert-success.alert-dismissible
-					button.close(type='button' data-dismiss='alert') &times;
-					strong Contracts processed!
-					|  #{processResult.successCount} contract#{processResult.successCount !== 1 ? 's' : ''} finalized. Budgets recalculated.
-			else
-				div.alert.alert-danger.alert-dismissible
-					button.close(type='button' data-dismiss='alert') &times;
-					strong Cannot process:
-					|  #{processResult.error}
+			div.admin-contracts__summary.mb-4
+				div.d-flex.align-items-center.justify-content-between
+					div
+						strong #{totalAssigned}/#{totalPending}
+						|  pending player#{totalPending !== 1 ? 's' : ''} assigned
+						if totalAssigned < totalPending
+							span.text-danger.ml-2
+								i.fa.fa-exclamation-triangle.mr-1
+								| #{totalPending - totalAssigned} still need contracts
+					form.mb-0(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
+						button.btn.btn-primary(type='submit' disabled=totalAssigned < totalPending)
+							i.fa.fa-check-circle.mr-2
+							| Process Contracts
 
-		div.admin-contracts__summary.mb-4
-			div.d-flex.align-items-center.justify-content-between
-				div
-					strong #{totalAssigned}/#{totalPending}
-					|  pending player#{totalPending !== 1 ? 's' : ''} assigned
-					if totalAssigned < totalPending
-						span.text-danger.ml-2
-							i.fa.fa-exclamation-triangle.mr-1
-							| #{totalPending - totalAssigned} still need contracts
-				form.mb-0(method='POST' action='/admin/contracts/process' onsubmit='return confirmProcess()')
-					button.btn.btn-primary(type='submit' disabled=totalAssigned < totalPending)
-						i.fa.fa-check-circle.mr-2
-						| Process Contracts
-
-		div.row
-			each franchise in franchises
-				- var assignedCount = franchise.players.filter(p => p.pendingYears).length
-				div.col-md-6.col-lg-4
-					div.card.mb-4.admin-contracts__card(data-assigned=assignedCount data-total=franchise.players.length)
-						div.card-header.d-flex.justify-content-between.align-items-center.admin-contracts__header(role='button')
-							span= franchise.displayName
-							span.admin-contracts__badge(class=assignedCount === franchise.players.length ? 'badge badge-success' : 'badge badge-warning') #{assignedCount}/#{franchise.players.length}
-						div.admin-contracts__list
-							each player in franchise.players
-								- var posGroup = player.positions && player.positions.length > 0 ? (player.positions.some(p => ['DL','LB','DB'].includes(p)) ? 'IDP' : player.positions[0]) : null
-								div.admin-contracts__row(class=[(posGroup ? 'pos-' + posGroup : ''), player.pendingYears ? '' : 'admin-contracts__row--unassigned'].join(' '))
-									div.admin-contracts__details
-										div.admin-contracts__player
-											span.admin-contracts__player-name= player.name
-										div.admin-contracts__meta
-											span= formatMoney(player.salary)
-									div.admin-contracts__actions
-										if player.positions && player.positions.length
-											+positionBadge(player.positions)
-										div.admin-contracts__picker(data-player-id=player.playerId)
-											each years in [1, 2, 3]
-												button.admin-contracts__btn(type='button' data-years=years class=player.pendingYears === years ? 'admin-contracts__btn--active' : '' title=years + '-year contract (' + currentSeason + '–' + (currentSeason + years - 1) + ')')= years
+			div.row
+				each franchise in franchises
+					- var assignedCount = franchise.players.filter(p => p.pendingYears).length
+					div.col-md-6.col-lg-4
+						div.card.mb-4.admin-contracts__card(data-assigned=assignedCount data-total=franchise.players.length)
+							div.card-header.d-flex.justify-content-between.align-items-center.admin-contracts__header(role='button')
+								span= franchise.displayName
+								span.admin-contracts__badge(class=assignedCount === franchise.players.length ? 'badge badge-success' : 'badge badge-warning') #{assignedCount}/#{franchise.players.length}
+							div.admin-contracts__list
+								each player in franchise.players
+									- var posGroup = player.positions && player.positions.length > 0 ? (player.positions.some(p => ['DL','LB','DB'].includes(p)) ? 'IDP' : player.positions[0]) : null
+									div.admin-contracts__row(class=[(posGroup ? 'pos-' + posGroup : ''), player.pendingYears ? '' : 'admin-contracts__row--unassigned'].join(' '))
+										div.admin-contracts__details
+											div.admin-contracts__player
+												span.admin-contracts__player-name= player.name
+											div.admin-contracts__meta
+												span= formatMoney(player.salary)
+										div.admin-contracts__actions
+											if player.positions && player.positions.length
+												+positionBadge(player.positions)
+											div.admin-contracts__picker(data-player-id=player.playerId)
+												each years in [1, 2, 3]
+													button.admin-contracts__btn(type='button' data-years=years class=player.pendingYears === years ? 'admin-contracts__btn--active' : '' title=years + '-year contract (' + currentSeason + '–' + (currentSeason + years - 1) + ')')= years
 
 block scripts
 	script.
