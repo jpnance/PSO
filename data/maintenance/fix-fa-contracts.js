@@ -1,13 +1,17 @@
 #!/usr/bin/env node
 
 /**
- * Fix FA contracts that were created with startYear/endYear backwards.
+ * Fix FA contracts and transaction adds that were created with startYear/endYear backwards.
  * 
- * Bad contracts have:
+ * Bad pattern:
  *   startYear: currentSeason, endYear: null
  * 
- * Should be:
+ * Correct pattern:
  *   startYear: null, endYear: currentSeason
+ * 
+ * Fixes both:
+ *   1. Contract documents
+ *   2. Transaction.adds entries (embedded contract data)
  * 
  * Usage:
  *   runt fix-fa-contracts --dry-run
@@ -85,6 +89,52 @@ async function main() {
 	}
 	
 	console.log('\n' + (DRY_RUN ? 'Would fix' : 'Fixed') + ' ' + badContracts.length + ' contracts.');
+	
+	// Now fix the Transaction.adds entries with the same bad pattern
+	console.log('\n--- Transaction adds ---\n');
+	
+	var badTransactions = await Transaction.find({
+		type: 'fa',
+		source: 'sleeper',
+		'adds.startYear': season,
+		'adds.endYear': null
+	}).populate('adds.playerId').lean();
+	
+	console.log('Found ' + badTransactions.length + ' transactions with bad adds\n');
+	
+	var totalAddsFixed = 0;
+	
+	for (var j = 0; j < badTransactions.length; j++) {
+		var tx = badTransactions[j];
+		var addsToFix = tx.adds.filter(function(add) {
+			return add.startYear === season && add.endYear === null;
+		});
+		
+		for (var k = 0; k < addsToFix.length; k++) {
+			var add = addsToFix[k];
+			var playerName = add.playerId ? add.playerId.name : 'Unknown';
+			console.log('Transaction ' + tx._id + ': ' + playerName + ' ' + season + '/null -> null/' + season);
+			totalAddsFixed++;
+		}
+		
+		if (!DRY_RUN) {
+			// Update all adds in this transaction that have the bad pattern
+			await Transaction.updateOne(
+				{ _id: tx._id },
+				{
+					$set: {
+						'adds.$[elem].startYear': null,
+						'adds.$[elem].endYear': season
+					}
+				},
+				{
+					arrayFilters: [{ 'elem.startYear': season, 'elem.endYear': null }]
+				}
+			);
+		}
+	}
+	
+	console.log('\n' + (DRY_RUN ? 'Would fix' : 'Fixed') + ' ' + totalAddsFixed + ' transaction adds.');
 	
 	await mongoose.disconnect();
 }

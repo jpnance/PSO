@@ -1336,8 +1336,8 @@ async function processFA(details) {
 		addEntries.push({
 			playerId: add.playerId,
 			salary: salary,
-			startYear: currentSeason,
-			endYear: null
+			startYear: null,
+			endYear: currentSeason
 		});
 	}
 	
