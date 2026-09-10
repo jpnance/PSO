@@ -142,8 +142,10 @@ function transformTransaction(sleeperTxn, lookups, config) {
 		});
 	}
 	
-	// Determine timestamp - anchor FAAB transactions to noon ET
-	var timestamp = new Date(sleeperTxn.created);
+	// Determine timestamp - use status_updated (when transaction was processed)
+	// For waiver: this is when FAAB ran (not when bid was placed)
+	// For free_agent: same as created (instant)
+	var timestamp = new Date(sleeperTxn.status_updated);
 	if (sleeperTxn.type === 'waiver') {
 		timestamp = tz.anchorToFAABTime(timestamp, config.faab);
 	}
