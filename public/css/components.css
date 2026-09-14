@@ -445,6 +445,7 @@ a.player-chip:hover {
 .asset-list .asset-icon.icon-cash, .asset-list .asset-content.icon-cash { color: var(--asset-cash); }
 .asset-list .asset-icon.icon-rfa, .asset-list .asset-content.icon-rfa { color: var(--asset-rfa); }
 .asset-list .asset-icon.icon-nothing, .asset-list .asset-content.icon-nothing { color: var(--asset-nothing); }
+.asset-list .asset-icon.icon-drop, .asset-list .asset-content.icon-drop { color: var(--asset-drop); }
 
 .asset-list .ambiguous-icon {
 	margin-left: 0.35rem;
@@ -463,6 +464,9 @@ a.player-chip:hover {
 }
 .party .party-name {
 	font-weight: 600;
+}
+.party .party-drops {
+	margin-top: 0.75rem;
 }
 .trade-notes {
 	font-style: italic;

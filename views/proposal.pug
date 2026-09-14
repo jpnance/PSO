@@ -55,7 +55,7 @@ block content
 							+alertBanner('secondary', 'fa-file-text-o').mb-3
 								| This is just a hypothetical trade.
 						if proposal.status === 'pending' && !proposal.acceptanceWindowStart
-							+alertBanner('warning', 'fa-refresh', 'The acceptance window expired. Accept again to restart the clock.').mb-3
+							+alertBanner('warning', 'fa-refresh', 'No acceptance window is active. Accept to start the clock.').mb-3
 						if proposal.status === 'accepted' || forceShowShareScreen
 							if proposal.status === 'accepted'
 								+alertBanner('success', 'fa-check-circle').mb-3
@@ -146,6 +146,25 @@ block content
 									button.btn.btn-outline-danger.cancel-btn
 										i.fa.fa-times.mr-1
 										| Discard
+
+		//- Facilitating Drops Modal
+		div#facilitating-drops-modal.modal.fade(tabindex='-1' role='dialog' data-backdrop='static')
+			div.modal-dialog.modal-dialog-centered(role='document')
+				div.modal-content
+					div.modal-header
+						h5.modal-title Select Facilitating Drops
+						button.close(type='button' data-dismiss='modal' aria-label='Close')
+							i.fa.fa-times
+					div.modal-body
+						p#drop-requirement-text.mb-2
+						div#drop-selection-summary.alert.alert-secondary.py-2
+						ul#drop-candidates.asset-list.proposal-drop-picker
+						div#drop-picker-error.mt-3
+					div.modal-footer
+						button.btn.btn-outline-secondary(type='button' data-dismiss='modal') Cancel
+						button#confirm-drops-btn.btn.btn-success(type='button' disabled)
+							i.fa.fa-check.mr-1
+							| Accept with Drops
 
 		//- Share Trade Modal
 		div#share-modal.modal.fade(tabindex='-1' role='dialog')
@@ -284,24 +303,130 @@ block scripts
 			});
 		});
 		
-		$('.accept-btn').on('click', function() {
-			var restore = startLoading($(this));
-			$.post('/proposals/' + proposalId + '/accept')
+		var pendingDropRequirement = null;
+		var acceptRestore = null;
+
+		// Client-side equivalent of +tradeAsset({ type: 'drop' }); positions arrive pre-sorted
+		function buildDropAsset(candidate) {
+			var $name = $('<span class="asset-name"></span>').append($('<span></span>').text(candidate.name));
+			var positions = candidate.positions || [];
+			if (positions.length) {
+				var $badge = $('<span class="position-badge"></span>');
+				positions.forEach(function(position) {
+					$badge.append($('<span class="position-badge__segment"></span>')
+						.addClass('pos-' + position)
+						.text(position));
+				});
+				$name.append($badge);
+			}
+
+			return [
+				$('<span class="asset-icon icon-drop"><i class="fa fa-scissors"></i></span>'),
+				$('<span class="asset-content icon-drop"></span>').append(
+					$('<span class="asset-details"></span>').append($name)
+				)
+			];
+		}
+
+		function submitAcceptance(dropPlayerIds) {
+			$.ajax({
+				url: '/proposals/' + proposalId + '/accept',
+				method: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({ facilitatingDropPlayerIds: dropPlayerIds || [] })
+			})
 				.done(function(data) {
-					if (data.showShareScreen) {
-						// Show the share modal, reload when closed
-						$('#share-modal').modal('show');
-						$('#share-modal').one('hidden.bs.modal', function() {
+					function finishAcceptance() {
+						if (data.showShareScreen) {
+							// Show the share modal, reload when closed
+							$('#share-modal').modal('show');
+							$('#share-modal').one('hidden.bs.modal', function() {
+								location.reload();
+							});
+						} else {
 							location.reload();
-						});
+						}
+					}
+					if ($('#facilitating-drops-modal').hasClass('show')) {
+						$('#facilitating-drops-modal').one('hidden.bs.modal', finishAcceptance).modal('hide');
 					} else {
-						location.reload();
+						finishAcceptance();
 					}
 				})
 				.fail(function(xhr) {
-					restore();
-					showError((xhr.responseJSON || {}).errors || ['Unknown error']);
+					var data = xhr.responseJSON || {};
+					if (xhr.status === 409 && data.requiresDrops) {
+						openDropPicker(data);
+						return;
+					}
+					if (acceptRestore) acceptRestore();
+					showError(data.errors || ['Unknown error']);
 				});
+		}
+
+		function openDropPicker(requirement) {
+			pendingDropRequirement = requirement;
+			var reasons = [];
+			if (requirement.rosterDropsNeeded > 0) {
+				reasons.push('free ' + requirement.rosterDropsNeeded + ' roster ' + (requirement.rosterDropsNeeded === 1 ? 'spot' : 'spots'));
+			}
+			if (requirement.capShortfall > 0) {
+				reasons.push('recover at least $' + requirement.capShortfall);
+			}
+			$('#drop-requirement-text').text('To accept this trade, you must ' + reasons.join(' and ') + '.');
+			var $candidates = $('#drop-candidates').empty();
+			requirement.candidates.forEach(function(candidate) {
+				var $input = $('<input type="checkbox" class="proposal-drop-picker__input">')
+					.val(candidate.playerId)
+					.attr('data-recoverable', candidate.recoverable);
+				var $label = $('<label class="proposal-drop-picker__option"></label>')
+					.append($input, buildDropAsset(candidate));
+				$candidates.append($('<li></li>').append($label));
+			});
+			updateDropSelection();
+			$('#facilitating-drops-modal').modal('show');
+		}
+
+		function updateDropSelection() {
+			if (!pendingDropRequirement) return;
+			$('.proposal-drop-picker__option').each(function() {
+				$(this).toggleClass(
+					'proposal-drop-picker__option--selected',
+					$(this).find('.proposal-drop-picker__input').prop('checked')
+				);
+			});
+
+			var $selected = $('.proposal-drop-picker__input:checked');
+			var count = $selected.length;
+			var recovery = 0;
+			$selected.each(function() { recovery += Number($(this).data('recoverable')) || 0; });
+			var spotsOkay = count >= pendingDropRequirement.rosterDropsNeeded;
+			var capOkay = recovery >= pendingDropRequirement.capShortfall;
+			var text = count + ' selected · $' + recovery + ' recovered';
+			$('#drop-selection-summary')
+				.toggleClass('alert-secondary', !(spotsOkay && capOkay))
+				.toggleClass('alert-success', spotsOkay && capOkay)
+				.text(text);
+			$('#confirm-drops-btn').prop('disabled', !(spotsOkay && capOkay));
+		}
+
+		$(document).on('change', '.proposal-drop-picker__input', updateDropSelection);
+
+		$('#confirm-drops-btn').on('click', function() {
+			var ids = $('.proposal-drop-picker__input:checked').map(function() { return this.value; }).get();
+			$(this).prop('disabled', true);
+			submitAcceptance(ids);
+		});
+
+		$('#facilitating-drops-modal').on('hidden.bs.modal', function() {
+			if (acceptRestore) acceptRestore();
+			acceptRestore = null;
+			pendingDropRequirement = null;
+		});
+
+		$('.accept-btn').on('click', function() {
+			acceptRestore = startLoading($(this));
+			submitAcceptance([]);
 		});
 		
 		// Open share modal from link

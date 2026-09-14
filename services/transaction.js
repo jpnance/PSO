@@ -118,7 +118,8 @@ function computeBuyOutForSeason(salary, startYear, endYear, cutYear, targetSeaso
  * @param {number} season - Season to calculate for
  * @returns {Promise<number>} Total recoverable amount
  */
-async function computeRecoverable(franchiseId, season) {
+async function computeRecoverable(franchiseId, season, excludedPlayerIds) {
+	excludedPlayerIds = (excludedPlayerIds || []).map(function(id) { return id.toString(); });
 	var contracts = await Contract.find({
 		franchiseId: franchiseId,
 		endYear: { $gte: season },
@@ -129,6 +130,7 @@ async function computeRecoverable(franchiseId, season) {
 	
 	for (var i = 0; i < contracts.length; i++) {
 		var contract = contracts[i];
+		if (excludedPlayerIds.includes(contract.playerId.toString())) continue;
 		var salary = contract.salary || 0;
 		var startYear = contract.startYear;
 		var endYear = contract.endYear;
@@ -142,6 +144,194 @@ async function computeRecoverable(franchiseId, season) {
 	}
 	
 	return totalRecoverable;
+}
+
+// Calculate the change to each franchise's available budget from trade assets only.
+// Positive values add available budget; negative values consume it.
+async function calculateTradeBudgetChanges(tradeDetails, currentSeason) {
+	var changes = {};
+
+	function add(franchiseId, season, amount) {
+		var id = franchiseId.toString();
+		if (!changes[id]) changes[id] = {};
+		if (!changes[id][season]) changes[id][season] = 0;
+		changes[id][season] += amount;
+	}
+
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var party = tradeDetails.parties[i];
+		var receives = party.receives || {};
+
+		(receives.cash || []).forEach(function(c) {
+			add(party.franchiseId, c.season, c.amount);
+			add(c.fromFranchiseId, c.season, -c.amount);
+		});
+
+		for (var j = 0; j < (receives.players || []).length; j++) {
+			var playerInfo = receives.players[j];
+			if (isRfaRights(playerInfo)) continue;
+			var salary = playerInfo.salary || 0;
+			var effectiveYears = getEffectiveYears(playerInfo, currentSeason);
+			for (var season = currentSeason; season <= effectiveYears.endYear && season <= currentSeason + 2; season++) {
+				add(party.franchiseId, season, -salary);
+			}
+
+			var contract = await Contract.findOne({ playerId: playerInfo.playerId }).lean();
+			if (!contract) continue;
+			var originalYears = getEffectiveYears(contract, currentSeason);
+			for (var originalSeason = currentSeason; originalSeason <= originalYears.endYear && originalSeason <= currentSeason + 2; originalSeason++) {
+				add(contract.franchiseId, originalSeason, contract.salary || 0);
+			}
+		}
+	}
+
+	return changes;
+}
+
+/**
+ * Determine whether each party can satisfy roster and current hard-cap constraints
+ * with cuts from its existing roster. Named drops are validated exactly; unnamed
+ * drops may be treated as feasible when allowFacilitatingDrops is true.
+ */
+async function assessFacilitatingDrops(tradeDetails, config) {
+	var currentSeason = config.season;
+	var budgetChanges = await calculateTradeBudgetChanges(tradeDetails, currentSeason);
+	var requirements = {};
+	var errors = [];
+	var cutsEnabled = config.areCutsEnabled();
+
+	// Map every traded player to its current (sending) franchise.
+	var outgoingByFranchise = {};
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var receivedPlayers = (tradeDetails.parties[i].receives || {}).players || [];
+		for (var j = 0; j < receivedPlayers.length; j++) {
+			var outgoingContract = await Contract.findOne({ playerId: receivedPlayers[j].playerId }).lean();
+			if (!outgoingContract || isRfaRights(outgoingContract)) continue;
+			var outgoingId = outgoingContract.franchiseId.toString();
+			if (!outgoingByFranchise[outgoingId]) outgoingByFranchise[outgoingId] = [];
+			outgoingByFranchise[outgoingId].push(outgoingContract.playerId.toString());
+		}
+	}
+
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var party = tradeDetails.parties[i];
+		var franchiseId = party.franchiseId.toString();
+		var receives = party.receives || {};
+		var outgoingIds = outgoingByFranchise[franchiseId] || [];
+		var currentContracts = await Contract.find({
+			franchiseId: party.franchiseId,
+			salary: { $ne: null }
+		}).lean();
+		var activeContracts = currentContracts.filter(function(contract) {
+			return contract.endYear >= currentSeason && !outgoingIds.includes(contract.playerId.toString());
+		});
+
+		var playersIn = (receives.players || []).filter(function(player) {
+			return !isRfaRights(player);
+		}).length;
+		var postTradeRosterCount = currentContracts.length + playersIn - outgoingIds.length;
+		var rosterDropsNeeded = Math.max(0, postTradeRosterCount - LeagueConfig.ROSTER_LIMIT);
+
+		var budget = await Budget.findOne({ franchiseId: party.franchiseId, season: currentSeason }).lean();
+		var postTradeAvailable = budget
+			? budget.available + ((budgetChanges[franchiseId] || {})[currentSeason] || 0)
+			: null;
+		var capShortfall = config.isHardCapActive() && postTradeAvailable !== null
+			? Math.max(0, -postTradeAvailable)
+			: 0;
+
+		var candidates = activeContracts.map(function(contract) {
+			var effectiveStart = contract.startYear === null ? contract.endYear : contract.startYear;
+			var recoverable = computeRecoverableForContract(
+				contract.salary || 0,
+				effectiveStart,
+				contract.endYear,
+				currentSeason
+			);
+			return {
+				playerId: contract.playerId,
+				salary: contract.salary || 0,
+				startYear: contract.startYear,
+				endYear: contract.endYear,
+				recoverable: recoverable
+			};
+		});
+
+		var selected = party.facilitatingDrops || [];
+		var selectedIds = selected.map(function(drop) {
+			return (drop.playerId || drop).toString();
+		});
+		var uniqueSelectedIds = Array.from(new Set(selectedIds));
+		var invalidSelectedIds = uniqueSelectedIds.filter(function(id) {
+			return !candidates.some(function(candidate) { return candidate.playerId.toString() === id; });
+		});
+		var selectedRecovery = candidates.reduce(function(total, candidate) {
+			return uniqueSelectedIds.includes(candidate.playerId.toString()) ? total + candidate.recoverable : total;
+		}, 0);
+		var needsDrops = rosterDropsNeeded > 0 || capShortfall > 0;
+		var selectionSatisfied = uniqueSelectedIds.length >= rosterDropsNeeded && selectedRecovery >= capShortfall;
+		var totalRecovery = candidates.reduce(function(total, candidate) { return total + candidate.recoverable; }, 0);
+		var feasible = cutsEnabled &&
+			candidates.length >= rosterDropsNeeded &&
+			totalRecovery >= capShortfall;
+
+		requirements[franchiseId] = {
+			needsDrops: needsDrops,
+			rosterDropsNeeded: rosterDropsNeeded,
+			capShortfall: capShortfall,
+			postTradeRosterCount: postTradeRosterCount,
+			postTradeAvailable: postTradeAvailable,
+			selectedRecovery: selectedRecovery,
+			selectedCount: uniqueSelectedIds.length,
+			candidates: candidates,
+			feasible: feasible,
+			satisfied: needsDrops ? selectionSatisfied : uniqueSelectedIds.length === 0
+		};
+
+		if (selectedIds.length !== uniqueSelectedIds.length) {
+			errors.push('The same facilitating drop was selected more than once');
+		}
+		if (invalidSelectedIds.length > 0) {
+			errors.push('A facilitating drop is not an eligible player on this roster');
+		}
+		if (!needsDrops && uniqueSelectedIds.length > 0) {
+			errors.push('Facilitating drops may only be selected when required by roster or hard-cap limits');
+		} else if (needsDrops && uniqueSelectedIds.length > 0 && !cutsEnabled) {
+			var regimeName = await getRegimeDisplayName(party.franchiseId, currentSeason);
+			errors.push(regimeName + ' requires facilitating drops, but cuts are not currently allowed');
+		} else if (needsDrops && uniqueSelectedIds.length > 0 && !selectionSatisfied) {
+			var regimeName = await getRegimeDisplayName(party.franchiseId, currentSeason);
+			if (uniqueSelectedIds.length < rosterDropsNeeded) {
+				errors.push(regimeName + ' must drop at least ' + rosterDropsNeeded + ' player' + (rosterDropsNeeded === 1 ? '' : 's'));
+			}
+			if (selectedRecovery < capShortfall) {
+				errors.push(regimeName + ' must recover at least ' + formatDollars(capShortfall) + ' to satisfy the hard cap');
+			}
+		} else if (needsDrops && uniqueSelectedIds.length === 0) {
+			if (!tradeDetails.allowFacilitatingDrops || !feasible) {
+				var regimeName = await getRegimeDisplayName(party.franchiseId, currentSeason);
+				if (!tradeDetails.allowFacilitatingDrops) {
+					if (rosterDropsNeeded > 0) {
+						errors.push(regimeName + ' would have ' + postTradeRosterCount + ' players (limit is ' + LeagueConfig.ROSTER_LIMIT + ')');
+					}
+					if (capShortfall > 0) {
+						errors.push(regimeName + ' would have ' + formatDollars(postTradeAvailable) + ' available (hard cap violation)');
+					}
+				} else if (!cutsEnabled) {
+					errors.push(regimeName + ' requires facilitating drops, but cuts are not currently allowed');
+				} else if (!feasible) {
+					errors.push(regimeName + ' cannot make enough eligible cuts to satisfy the roster and hard-cap limits');
+				}
+			}
+		}
+	}
+
+	return {
+		valid: errors.length === 0,
+		errors: errors,
+		requirements: requirements,
+		budgetChanges: budgetChanges
+	};
 }
 
 /**
@@ -197,85 +387,37 @@ async function validateBudgetImpact(franchiseId, season, salaryImpact, config) {
  * Validate cash in a trade.
  * Returns { valid: boolean, errors: string[], warnings: string[] }
  */
-async function validateTradeCash(tradeDetails, config) {
+async function validateTradeCash(tradeDetails, config, facilitatingAssessment) {
 	var errors = [];
 	var warnings = [];
 	var currentSeason = config.season;
 	var hardCapActive = config.hardCapActive;
 	
-	// Collect all cash movements by franchise and season
-	var cashBySeason = {}; // { franchiseId: { season: netAmount } }
-	
+	var cashBySeason = facilitatingAssessment
+		? facilitatingAssessment.budgetChanges
+		: await calculateTradeBudgetChanges(tradeDetails, currentSeason);
+	var selectedDropIdsByFranchise = {};
+
+	// Named facilitating drops add only their recoverable amount, not full salary.
 	for (var i = 0; i < tradeDetails.parties.length; i++) {
 		var party = tradeDetails.parties[i];
 		var franchiseId = party.franchiseId.toString();
-		var receives = party.receives || {};
-		
-		if (!cashBySeason[franchiseId]) {
-			cashBySeason[franchiseId] = {};
-		}
-		
-		// Cash this party receives (positive for them)
-		(receives.cash || []).forEach(function(c) {
-			if (!cashBySeason[franchiseId][c.season]) {
-				cashBySeason[franchiseId][c.season] = 0;
-			}
-			cashBySeason[franchiseId][c.season] += c.amount;
-			
-			// Track the sender's outgoing cash
-			var fromId = c.fromFranchiseId.toString();
-			if (!cashBySeason[fromId]) {
-				cashBySeason[fromId] = {};
-			}
-			if (!cashBySeason[fromId][c.season]) {
-				cashBySeason[fromId][c.season] = 0;
-			}
-			cashBySeason[fromId][c.season] -= c.amount;
-		});
-	}
-	
-	// Also account for salary changes from players moving
-	for (var i = 0; i < tradeDetails.parties.length; i++) {
-		var party = tradeDetails.parties[i];
-		var franchiseId = party.franchiseId.toString();
-		var receives = party.receives || {};
-		
-		// Players this party receives = salary added
-		for (var j = 0; j < (receives.players || []).length; j++) {
-			var playerInfo = receives.players[j];
-			var salary = playerInfo.salary || 0;
-			var effectiveYears = getEffectiveYears(playerInfo, currentSeason);
-			
-			// This player's salary affects all seasons through endYear
-			for (var season = currentSeason; season <= effectiveYears.endYear && season <= currentSeason + 2; season++) {
+		selectedDropIdsByFranchise[franchiseId] = [];
+		for (var j = 0; j < (party.facilitatingDrops || []).length; j++) {
+			var dropId = party.facilitatingDrops[j].playerId || party.facilitatingDrops[j];
+			var contract = await Contract.findOne({ playerId: dropId, franchiseId: party.franchiseId }).lean();
+			if (!contract) continue;
+			selectedDropIdsByFranchise[franchiseId].push(contract.playerId);
+			for (var season = currentSeason; season <= contract.endYear && season <= currentSeason + 2; season++) {
 				if (!cashBySeason[franchiseId]) cashBySeason[franchiseId] = {};
 				if (!cashBySeason[franchiseId][season]) cashBySeason[franchiseId][season] = 0;
-				cashBySeason[franchiseId][season] -= salary; // Adding a player = less available
-			}
-		}
-	}
-	
-	// Find players being sent away (freeing up salary)
-	for (var i = 0; i < tradeDetails.parties.length; i++) {
-		var party = tradeDetails.parties[i];
-		var receives = party.receives || {};
-		
-		for (var j = 0; j < (receives.players || []).length; j++) {
-			var playerInfo = receives.players[j];
-			
-			// Find which party is losing this player
-			var contract = await Contract.findOne({ playerId: playerInfo.playerId }).lean();
-			if (!contract) continue;
-			
-			var senderId = contract.franchiseId.toString();
-			var salary = contract.salary || 0;
-			var effectiveYears = getEffectiveYears(contract, currentSeason);
-			
-			// Sending away a player = salary freed up
-			for (var season = currentSeason; season <= effectiveYears.endYear && season <= currentSeason + 2; season++) {
-				if (!cashBySeason[senderId]) cashBySeason[senderId] = {};
-				if (!cashBySeason[senderId][season]) cashBySeason[senderId][season] = 0;
-				cashBySeason[senderId][season] += salary; // Losing a player = more available
+				var effectiveStart = contract.startYear === null ? contract.endYear : contract.startYear;
+				cashBySeason[franchiseId][season] += computeRecoverableForContract(
+					contract.salary || 0,
+					effectiveStart,
+					contract.endYear,
+					season
+				);
 			}
 		}
 	}
@@ -318,10 +460,13 @@ async function validateTradeCash(tradeDetails, config) {
 				
 				// Hard cap for current season after cut day - no way out
 				if (season === currentSeason && hardCapActive) {
-					errors.push(message + ' (hard cap violation)');
+					var requirement = facilitatingAssessment && facilitatingAssessment.requirements[franchiseId];
+					if (!(tradeDetails.allowFacilitatingDrops && requirement && requirement.feasible)) {
+						errors.push(message + ' (hard cap violation)');
+					}
 				} else {
 					// Soft cap - check if they could cut their way out
-					var recoverable = await computeRecoverable(franchiseId, season);
+					var recoverable = await computeRecoverable(franchiseId, season, selectedDropIdsByFranchise[franchiseId]);
 					
 					if (resultingBudget + recoverable >= 0) {
 						// They could cut their way back to $0 or better - soft cap
@@ -506,65 +651,25 @@ async function processTrade(tradeDetails) {
 		phaseWarnings.push('This trade is during the ' + config.getPhase().replace(/-/g, ' ') + ' phase');
 	}
 	
+	var facilitatingAssessment = await assessFacilitatingDrops(tradeDetails, config);
+	if (!facilitatingAssessment.valid) {
+		return {
+			success: false,
+			errors: facilitatingAssessment.errors,
+			facilitatingDropRequirements: facilitatingAssessment.requirements
+		};
+	}
+
 	var cashValidation = await validateTradeCash(tradeDetails, {
 		season: config.season,
 		hardCapActive: config.isHardCapActive()
-	});
+	}, facilitatingAssessment);
 	
 	// Combine all warnings
 	var allWarnings = phaseWarnings.concat(cashValidation.warnings || []);
 	
 	if (!cashValidation.valid) {
 		return { success: false, errors: cashValidation.errors, warnings: allWarnings };
-	}
-	
-	// Validate roster limits
-	// Each franchise's post-trade roster must not exceed the limit
-	for (var i = 0; i < tradeDetails.parties.length; i++) {
-		var party = tradeDetails.parties[i];
-		var receives = party.receives || {};
-		
-		// Count current roster (contracts with salary, not RFA rights)
-		var currentContracts = await Contract.find({
-			franchiseId: party.franchiseId,
-			salary: { $ne: null }
-		});
-		var currentRosterCount = currentContracts.length;
-		
-		var playersIn = (receives.players || []).filter(function(p) {
-			return !isRfaRights(p);
-		}).length;
-		
-		// Count players going out (to other parties)
-		var playersOut = 0;
-		for (var j = 0; j < tradeDetails.parties.length; j++) {
-			if (i === j) continue;
-			var otherParty = tradeDetails.parties[j];
-			var otherReceives = otherParty.receives || {};
-			var otherPlayers = otherReceives.players || [];
-			
-			for (var k = 0; k < otherPlayers.length; k++) {
-				var playerInfo = otherPlayers[k];
-				// Check if this player is currently on party[i]'s roster
-				var contract = currentContracts.find(function(c) {
-					return c.playerId.equals(playerInfo.playerId);
-				});
-				if (contract && !isRfaRights(contract)) {
-					playersOut++;
-				}
-			}
-		}
-		
-		var newRosterCount = currentRosterCount + playersIn - playersOut;
-		
-		if (newRosterCount > LeagueConfig.ROSTER_LIMIT) {
-			var regimeName = await getRegimeDisplayName(party.franchiseId, config.season);
-			errors.push(regimeName + ' would have ' + newRosterCount + ' players (limit is ' + LeagueConfig.ROSTER_LIMIT + ')');
-		}
-	}
-	
-	if (errors.length > 0) {
-		return { success: false, errors: errors };
 	}
 	
 	// Capture original contract ownership BEFORE building transaction or updating anything
@@ -660,7 +765,8 @@ async function processTrade(tradeDetails) {
 		return { 
 			success: true, 
 			validated: true,
-			warnings: allWarnings
+			warnings: allWarnings,
+			facilitatingDropRequirements: facilitatingAssessment.requirements
 		};
 	}
 	
@@ -788,9 +894,31 @@ async function processTrade(tradeDetails) {
 			}
 		);
 	}
+
+	// Apply facilitating drops after player movement so the trade remains the primary
+	// transaction, while each cut records its own linked FA transaction.
+	var dropTransactions = [];
+	for (var i = 0; i < tradeDetails.parties.length; i++) {
+		var dropParty = tradeDetails.parties[i];
+		for (var j = 0; j < (dropParty.facilitatingDrops || []).length; j++) {
+			var dropRef = dropParty.facilitatingDrops[j];
+			var dropResult = await processCut({
+				franchiseId: dropParty.franchiseId,
+				playerId: dropRef.playerId || dropRef,
+				timestamp: tradeDetails.timestamp || transaction.timestamp,
+				source: tradeDetails.source || 'manual',
+				notes: 'Facilitating drop for trade #' + tradeId,
+				facilitatedTradeId: transaction._id
+			});
+			if (!dropResult.success) {
+				throw new Error('Trade #' + tradeId + ' executed, but a facilitating drop failed: ' + dropResult.errors.join('; '));
+			}
+			dropTransactions.push(dropResult.transaction);
+		}
+	}
 	
 	// Sync to Sleeper if in an active phase
-	if (config.shouldSyncToSleeper()) {
+	if (config.shouldSyncToSleeper() && !tradeDetails.skipSleeperSync) {
 		var sleeperErrors = [];
 		
 		// Build player movements for Sleeper
@@ -825,8 +953,23 @@ async function processTrade(tradeDetails) {
 		// Sync player movements if any
 		var playerSyncFailed = false;
 		var sleeperTransactionId = null;
-		if (movements.length > 0) {
-			var movementResult = await sleeperHelper.syncTradeMovements(movements);
+		var sleeperDrops = [];
+		for (var i = 0; i < tradeDetails.parties.length; i++) {
+			var sleeperDropParty = tradeDetails.parties[i];
+			var dropFranchise = await Franchise.findById(sleeperDropParty.franchiseId, 'rosterId').lean();
+			for (var j = 0; j < (sleeperDropParty.facilitatingDrops || []).length; j++) {
+				var sleeperDropRef = sleeperDropParty.facilitatingDrops[j];
+				var sleeperDropPlayer = await Player.findById(sleeperDropRef.playerId || sleeperDropRef, 'sleeperId').lean();
+				if (sleeperDropPlayer && sleeperDropPlayer.sleeperId && dropFranchise && dropFranchise.rosterId) {
+					sleeperDrops.push({
+						sleeperId: sleeperDropPlayer.sleeperId,
+						fromRosterId: dropFranchise.rosterId
+					});
+				}
+			}
+		}
+		if (movements.length > 0 || sleeperDrops.length > 0) {
+			var movementResult = await sleeperHelper.syncTradeMovements(movements, sleeperDrops);
 			if (!movementResult.success) {
 				sleeperErrors.push('Player sync failed: ' + movementResult.error);
 				playerSyncFailed = true;
@@ -844,7 +987,11 @@ async function processTrade(tradeDetails) {
 		if (!playerSyncFailed) {
 			var affectedFranchiseIds = Object.keys(budgetUpdates).map(function(key) {
 				return budgetUpdates[key].franchiseId;
-			}).filter(function(fid, index, self) {
+			});
+			tradeDetails.parties.forEach(function(party) {
+				if ((party.facilitatingDrops || []).length > 0) affectedFranchiseIds.push(party.franchiseId);
+			});
+			affectedFranchiseIds = affectedFranchiseIds.filter(function(fid, index, self) {
 				return self.findIndex(function(f) { return f.toString() === fid.toString(); }) === index;
 			});
 			
@@ -883,6 +1030,7 @@ async function processTrade(tradeDetails) {
 	return { 
 		success: true, 
 		transaction: transaction,
+		dropTransactions: dropTransactions,
 		warnings: allWarnings
 	};
 }
@@ -1366,6 +1514,7 @@ async function processFA(details) {
 
 module.exports = {
 	processTrade: processTrade,
+	assessFacilitatingDrops: assessFacilitatingDrops,
 	validateTrade: validateTrade,
 	processCut: processCut,
 	processFA: processFA,

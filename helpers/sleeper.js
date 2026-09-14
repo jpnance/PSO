@@ -221,10 +221,12 @@ async function syncBudgets(franchises) {
  * Sync a trade's player movements to Sleeper.
  * 
  * @param {Array<{sleeperId: string, fromRosterId: number, toRosterId: number}>} movements - Player movements
+ * @param {Array<{sleeperId: string, fromRosterId: number}>} drops - Facilitating drops with no receiving roster
  * @returns {Promise<{success: boolean, sleeperTransactionId?: string, error?: string}>}
  */
-async function syncTradeMovements(movements) {
-	if (movements.length === 0) {
+async function syncTradeMovements(movements, drops) {
+	drops = drops || [];
+	if (movements.length === 0 && drops.length === 0) {
 		return { success: true };
 	}
 
@@ -239,6 +241,11 @@ async function syncTradeMovements(movements) {
 		v_adds.push(m.toRosterId);
 		k_drops.push(m.sleeperId);
 		v_drops.push(m.fromRosterId);
+	}
+
+	for (var i = 0; i < drops.length; i++) {
+		k_drops.push(drops[i].sleeperId);
+		v_drops.push(drops[i].fromRosterId);
 	}
 
 	try {

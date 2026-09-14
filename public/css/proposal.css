@@ -62,6 +62,38 @@
 	margin-right: 0 !important; /* Override Bootstrap mr-2 since we're using gap */
 }
 
+.proposal-drop-picker {
+	max-height: 45vh;
+	overflow-y: auto;
+}
+
+.proposal-drop-picker li {
+	padding: 0;
+}
+
+.proposal-drop-picker__option {
+	display: flex;
+	align-items: flex-start;
+	flex: 1;
+	margin: 0;
+	padding: 0.35rem 0.4rem;
+	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+.proposal-drop-picker__option:hover {
+	background: #f8f9fa;
+}
+
+.proposal-drop-picker__option--selected {
+	background: color-mix(in srgb, var(--color-success) 10%, white);
+}
+
+.proposal-drop-picker__input {
+	flex: 0 0 auto;
+	margin: 0.3rem 0.5rem 0 0;
+}
+
 /* Response icons - fixed width for alignment */
 .proposal-response__icon {
 	width: 1rem;

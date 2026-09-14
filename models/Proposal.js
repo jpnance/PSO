@@ -29,7 +29,9 @@ var proposalPartySchema = new Schema({
 	// Acceptance tracking
 	accepted: { type: Boolean, default: false },
 	acceptedAt: { type: Date, default: null },
-	acceptedBy: { type: Schema.Types.ObjectId, ref: 'Person', default: null }
+	acceptedBy: { type: Schema.Types.ObjectId, ref: 'Person', default: null },
+	// Existing-roster players this owner commits to drop if the trade executes
+	facilitatingDrops: [proposalPlayerSchema]
 }, { _id: false });
 
 var proposalSchema = new Schema({
@@ -110,6 +112,7 @@ proposalSchema.methods.resetAcceptances = function() {
 		party.accepted = false;
 		party.acceptedAt = null;
 		party.acceptedBy = null;
+		party.facilitatingDrops = [];
 	});
 	this.acceptanceWindowStart = null;
 };

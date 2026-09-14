@@ -613,6 +613,7 @@ block content
 				+tradeAssetIcon('pick')
 				+tradeAssetIcon('cash')
 				+tradeAssetIcon('rfa')
+				+tradeAssetIcon('drop')
 				+tradeAssetIcon('nothing')
 
 		//- Trade Asset (Full)
@@ -625,6 +626,7 @@ block content
 				+tradeAsset({ type: 'pick', pickMain: '2025 1st', pickContext: '(from Schex)' })
 				+tradeAsset({ type: 'cash', cashMain: '$500', cashContext: 'in 2025' })
 				+tradeAsset({ type: 'rfa', playerName: 'Cooper Kupp', positions: ['WR'], contractInfo: 'RFA rights' })
+				+tradeAsset({ type: 'drop', playerName: 'Davante Adams', positions: ['WR'] })
 				+tradeAsset({ type: 'nothing', display: 'Nothing' })
 
 		//- Trade Party
@@ -632,7 +634,7 @@ block content
 			h2 +tradeParty(party)
 			code.usage +tradeParty({ regimeName: 'Schex', usePlural: false, assets: [...] })
 			div.trade-card-preview
-				- var sampleParties = [{ regimeName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }] }, { regimeName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
+				- var sampleParties = [{ regimeName: 'Syed/Terence', usePlural: false, assets: [{ type: 'player', playerName: 'Bijan Robinson', positions: ['RB'], contractInfo: '23/27' }, { type: 'pick', pickMain: '2026 2nd', pickContext: '' }], facilitatingDrops: [{ type: 'drop', playerName: 'Davante Adams', positions: ['WR'] }] }, { regimeName: 'Mitch/Karsten', usePlural: false, assets: [{ type: 'player', playerName: 'Travis Etienne', positions: ['RB'], contractInfo: '22/25' }, { type: 'cash', cashMain: '$200', cashContext: 'in 2025' }] }]
 				each party in sampleParties
 					+tradeParty(party)
 

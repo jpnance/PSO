@@ -10,7 +10,7 @@ var Proposal = require('../models/Proposal');
 var transactionService = require('./transaction');
 var budgetHelper = require('../helpers/budget');
 var notifications = require('../helpers/notifications');
-var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex, isPluralName } = require('../helpers/view');
+var { formatMoney, formatContractYears, formatContractDisplay, ordinal, getPositionIndex, isPluralName, sortedPositions } = require('../helpers/view');
 var { formatPickMain, formatPickDisplay } = require('../helpers/formatPick');
 
 var computeBuyOutIfCut = budgetHelper.computeBuyOutIfCut;
@@ -197,6 +197,95 @@ async function getTradeData(currentSeason) {
 		teams: teams,
 		picks: pickList,
 		currentSeason: currentSeason
+	};
+}
+
+// Rehydrate a proposal into the transaction service format using current contracts.
+// dropOverrides maps franchise IDs to the player IDs being selected in this request.
+async function buildValidationParties(proposal, dropOverrides) {
+	dropOverrides = dropOverrides || {};
+	var validationParties = [];
+
+	for (var i = 0; i < proposal.parties.length; i++) {
+		var party = proposal.parties[i];
+		var franchiseId = party.franchiseId.toString();
+		var receives = { players: [], picks: [], cash: [] };
+
+		for (var j = 0; j < (party.receives.players || []).length; j++) {
+			var contract = await Contract.findOne({ playerId: party.receives.players[j].playerId });
+			if (contract) {
+				receives.players.push({
+					playerId: contract.playerId,
+					salary: contract.salary,
+					startYear: contract.startYear,
+					endYear: contract.endYear
+				});
+			}
+		}
+
+		for (var j = 0; j < (party.receives.picks || []).length; j++) {
+			receives.picks.push({ pickId: party.receives.picks[j].pickId });
+		}
+
+		for (var j = 0; j < (party.receives.cash || []).length; j++) {
+			var cash = party.receives.cash[j];
+			receives.cash.push({
+				amount: cash.amount,
+				season: cash.season,
+				fromFranchiseId: cash.fromFranchiseId
+			});
+		}
+
+		var dropIds = Object.prototype.hasOwnProperty.call(dropOverrides, franchiseId)
+			? dropOverrides[franchiseId]
+			: (party.facilitatingDrops || []).map(function(drop) { return drop.playerId; });
+
+		validationParties.push({
+			franchiseId: party.franchiseId,
+			receives: receives,
+			facilitatingDrops: (dropIds || []).map(function(playerId) { return { playerId: playerId }; })
+		});
+	}
+
+	return validationParties;
+}
+
+async function buildFacilitatingDropAsset(playerId) {
+	var player = await Player.findById(playerId);
+	return {
+		type: 'drop',
+		playerName: player ? player.name : 'Unknown player',
+		positions: player ? sortedPositions(player.positions || []) : [],
+		href: player && player.slugs && player.slugs[0] ? '/players/' + player.slugs[0] : null
+	};
+}
+
+async function buildDropRequirementResponse(requirement) {
+	var playerIds = requirement.candidates.map(function(candidate) { return candidate.playerId; });
+	var players = await Player.find({ _id: { $in: playerIds } }).select('name positions slugs').lean();
+	var playerMap = {};
+	players.forEach(function(player) { playerMap[player._id.toString()] = player; });
+
+	return {
+		requiresDrops: true,
+		rosterDropsNeeded: requirement.rosterDropsNeeded,
+		capShortfall: requirement.capShortfall,
+		postTradeRosterCount: requirement.postTradeRosterCount,
+		postTradeAvailable: requirement.postTradeAvailable,
+		candidates: requirement.candidates.map(function(candidate) {
+			var player = playerMap[candidate.playerId.toString()] || {};
+			return {
+				playerId: candidate.playerId.toString(),
+				name: player.name || 'Unknown player',
+				positions: sortedPositions(player.positions || []),
+				salary: candidate.salary,
+				startYear: candidate.startYear,
+				endYear: candidate.endYear,
+				recoverable: candidate.recoverable
+			};
+		}).sort(function(a, b) {
+			return b.recoverable - a.recoverable || a.name.localeCompare(b.name);
+		})
 	};
 }
 
@@ -451,7 +540,7 @@ async function submitTrade(request, response) {
 			parties: parties,
 			validateOnly: validateOnly
 		});
-		
+
 		if (result.success) {
 			if (result.validated) {
 				// Validation only - no transaction created yet
@@ -525,6 +614,14 @@ async function buildProposalSummary(proposal) {
 		var block = name + ' receives:\n' + items.map(function(item) {
 			return '• ' + item;
 		}).join('\n');
+		if (party.facilitatingDrops && party.facilitatingDrops.length > 0) {
+			var dropNames = [];
+			for (var j = 0; j < party.facilitatingDrops.length; j++) {
+				var dropPlayer = await Player.findById(party.facilitatingDrops[j].playerId);
+				dropNames.push(dropPlayer ? dropPlayer.name : 'Unknown');
+			}
+			block += '\nFacilitating ' + (dropNames.length === 1 ? 'drop' : 'drops') + ': ' + dropNames.join(', ');
+		}
 		partyBlocks.push(block);
 	}
 
@@ -626,7 +723,7 @@ async function checkTradesEnabled() {
 		} else {
 			message += ' in February.';
 		}
-		
+
 		return { enabled: false, error: message };
 	}
 	
@@ -739,7 +836,8 @@ async function createProposal(request, response) {
 				receives: receives,
 				accepted: false,
 				acceptedAt: null,
-				acceptedBy: null
+				acceptedBy: null,
+				facilitatingDrops: []
 			});
 			
 			validationParties.push({
@@ -753,9 +851,9 @@ async function createProposal(request, response) {
 			timestamp: new Date(),
 			source: 'manual',
 			parties: validationParties,
-			validateOnly: true
+			validateOnly: true,
+			allowFacilitatingDrops: true
 		});
-		
 		if (!validationResult.success) {
 			return response.status(400).json({
 				success: false,
@@ -766,13 +864,19 @@ async function createProposal(request, response) {
 		var expiresAt = await computeExpiresAt();
 		var now = new Date();
 		
-		// For pending proposals (not hypothetical), mark the proposer's party as accepted
+		// For pending proposals, auto-accept the proposer unless they must first
+		// commit to facilitating drops.
+		var proposerAutoAccepted = false;
 		if (!isHypothetical) {
 			for (var i = 0; i < parties.length; i++) {
 				if (parties[i].franchiseId.equals(userFranchiseInTrade)) {
-					parties[i].accepted = true;
-					parties[i].acceptedAt = now;
-					parties[i].acceptedBy = user._id;
+					var proposerRequirement = validationResult.facilitatingDropRequirements[userFranchiseInTrade.toString()];
+					if (!proposerRequirement || !proposerRequirement.needsDrops) {
+						parties[i].accepted = true;
+						parties[i].acceptedAt = now;
+						parties[i].acceptedBy = user._id;
+						proposerAutoAccepted = true;
+					}
 				}
 			}
 		}
@@ -786,7 +890,7 @@ async function createProposal(request, response) {
 			createdByPersonId: user._id,
 			createdAt: now,
 			expiresAt: expiresAt,
-			acceptanceWindowStart: isHypothetical ? null : now,  // Proposer accepting starts the clock
+			acceptanceWindowStart: isHypothetical || !proposerAutoAccepted ? null : now,
 			parties: parties,
 			notes: request.body.notes || null
 		});
@@ -944,6 +1048,11 @@ async function viewProposal(request, response) {
 					display: 'Nothing'
 				});
 			}
+
+			var facilitatingDrops = [];
+			for (var j = 0; j < (party.facilitatingDrops || []).length; j++) {
+				facilitatingDrops.push(await buildFacilitatingDropAsset(party.facilitatingDrops[j].playerId));
+			}
 			
 			partiesDisplay.push({
 				franchiseId: party.franchiseId._id || party.franchiseId,
@@ -951,7 +1060,8 @@ async function viewProposal(request, response) {
 				usePlural: usePlural,
 				accepted: party.accepted,
 				acceptedAt: party.acceptedAt,
-				assets: assets
+				assets: assets,
+				facilitatingDrops: facilitatingDrops
 			});
 		}
 		
@@ -985,6 +1095,9 @@ async function viewProposal(request, response) {
 					return { id: p.playerId.toString() };
 				}),
 				picks: [],
+				drops: (party.facilitatingDrops || []).map(function(drop) {
+					return { id: drop.playerId.toString() };
+				}),
 				cash: party.receives.cash.map(function(c) {
 					return {
 						from: c.fromFranchiseId.toString(),
@@ -1078,58 +1191,23 @@ async function proposeProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['This proposal has expired'] });
 		}
 		
-		// Validate the trade before formalizing (conditions may have changed since creation)
-		var validationParties = [];
-		for (var i = 0; i < proposal.parties.length; i++) {
-			var party = proposal.parties[i];
-			var validationReceives = {
-				players: [],
-				picks: [],
-				cash: []
-			};
-			
-			// Look up current contract info for each player
-			for (var j = 0; j < (party.receives.players || []).length; j++) {
-				var playerRef = party.receives.players[j];
-				var contract = await Contract.findOne({ playerId: playerRef.playerId });
-				if (contract) {
-					validationReceives.players.push({
-						playerId: contract.playerId,
-						salary: contract.salary,
-						startYear: contract.startYear,
-						endYear: contract.endYear
-					});
-				}
-			}
-			
-			// Picks
-			for (var j = 0; j < (party.receives.picks || []).length; j++) {
-				validationReceives.picks.push({ pickId: party.receives.picks[j].pickId });
-			}
-			
-			// Cash
-			for (var j = 0; j < (party.receives.cash || []).length; j++) {
-				var cash = party.receives.cash[j];
-				validationReceives.cash.push({
-					amount: cash.amount,
-					season: cash.season,
-					fromFranchiseId: cash.fromFranchiseId
-				});
-			}
-			
-			validationParties.push({
-				franchiseId: party.franchiseId,
-				receives: validationReceives
-			});
+		var userParty = proposal.parties.find(function(p) {
+			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
+		});
+		var submittedDropIds = request.body.facilitatingDropPlayerIds || [];
+		if (!Array.isArray(submittedDropIds) || submittedDropIds.some(function(id) { return !mongoose.isValidObjectId(id); })) {
+			return response.status(400).json({ success: false, errors: ['Invalid facilitating drop selection'] });
 		}
-		
+		var dropOverrides = {};
+		dropOverrides[userParty.franchiseId.toString()] = submittedDropIds;
+		var validationParties = await buildValidationParties(proposal, dropOverrides);
 		var validationResult = await transactionService.processTrade({
 			timestamp: new Date(),
 			source: 'manual',
 			parties: validationParties,
-			validateOnly: true
+			validateOnly: true,
+			allowFacilitatingDrops: true
 		});
-		
 		if (!validationResult.success) {
 			return response.status(400).json({
 				success: false,
@@ -1137,10 +1215,10 @@ async function proposeProposal(request, response) {
 			});
 		}
 		
-		// Find which party the user belongs to and auto-accept for them
-		var userParty = proposal.parties.find(function(p) {
-			return userFranchises.some(function(uf) { return uf.equals(p.franchiseId); });
-		});
+		var requirement = validationResult.facilitatingDropRequirements[userParty.franchiseId.toString()];
+		if (requirement && requirement.needsDrops && submittedDropIds.length === 0) {
+			return response.status(409).json(await buildDropRequirementResponse(requirement));
+		}
 		
 		proposal.status = 'pending';
 		proposal.createdByFranchiseId = userParty.franchiseId;
@@ -1148,6 +1226,7 @@ async function proposeProposal(request, response) {
 		userParty.accepted = true;
 		userParty.acceptedAt = new Date();
 		userParty.acceptedBy = user._id;
+		userParty.facilitatingDrops = submittedDropIds.map(function(playerId) { return { playerId: playerId }; });
 		proposal.acceptanceWindowStart = new Date();
 		
 		await proposal.save();
@@ -1216,68 +1295,34 @@ async function acceptProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['You have already accepted'] });
 		}
 		
-		// If hypothetical, validate the trade before converting to pending
-		// (conditions may have changed since creation)
-		if (proposal.status === 'hypothetical') {
-			var validationParties = [];
-			for (var i = 0; i < proposal.parties.length; i++) {
-				var p = proposal.parties[i];
-				var validationReceives = {
-					players: [],
-					picks: [],
-					cash: []
-				};
-				
-				// Look up current contract info for each player
-				for (var j = 0; j < (p.receives.players || []).length; j++) {
-					var playerRef = p.receives.players[j];
-					var contract = await Contract.findOne({ playerId: playerRef.playerId });
-					if (contract) {
-						validationReceives.players.push({
-							playerId: contract.playerId,
-							salary: contract.salary,
-							startYear: contract.startYear,
-							endYear: contract.endYear
-						});
-					}
-				}
-				
-				// Picks
-				for (var j = 0; j < (p.receives.picks || []).length; j++) {
-					validationReceives.picks.push({ pickId: p.receives.picks[j].pickId });
-				}
-				
-				// Cash
-				for (var j = 0; j < (p.receives.cash || []).length; j++) {
-					var cash = p.receives.cash[j];
-					validationReceives.cash.push({
-						amount: cash.amount,
-						season: cash.season,
-						fromFranchiseId: cash.fromFranchiseId
-					});
-				}
-				
-				validationParties.push({
-					franchiseId: p.franchiseId,
-					receives: validationReceives
-				});
-			}
-			
-			var validationResult = await transactionService.processTrade({
-				timestamp: new Date(),
-				source: 'manual',
-				parties: validationParties,
-				validateOnly: true
+		// Revalidate on every acceptance. Other parties may remain merely feasible,
+		// but this party must commit any drops it needs now.
+		var submittedDropIds = request.body.facilitatingDropPlayerIds || [];
+		if (!Array.isArray(submittedDropIds) || submittedDropIds.some(function(id) { return !mongoose.isValidObjectId(id); })) {
+			return response.status(400).json({ success: false, errors: ['Invalid facilitating drop selection'] });
+		}
+		var dropOverrides = {};
+		dropOverrides[party.franchiseId.toString()] = submittedDropIds;
+		var validationParties = await buildValidationParties(proposal, dropOverrides);
+		var validationResult = await transactionService.processTrade({
+			timestamp: new Date(),
+			source: 'manual',
+			parties: validationParties,
+			validateOnly: true,
+			allowFacilitatingDrops: true
+		});
+		if (!validationResult.success) {
+			return response.status(400).json({
+				success: false,
+				errors: validationResult.errors || ['Trade validation failed']
 			});
-			
-			if (!validationResult.success) {
-				return response.status(400).json({
-					success: false,
-					errors: validationResult.errors || ['Trade validation failed']
-				});
-			}
-			
-			// Convert to pending
+		}
+
+		var requirement = validationResult.facilitatingDropRequirements[party.franchiseId.toString()];
+		if (requirement && requirement.needsDrops && submittedDropIds.length === 0) {
+			return response.status(409).json(await buildDropRequirementResponse(requirement));
+		}
+		if (proposal.status === 'hypothetical') {
 			proposal.status = 'pending';
 		}
 		
@@ -1285,6 +1330,7 @@ async function acceptProposal(request, response) {
 		party.accepted = true;
 		party.acceptedAt = new Date();
 		party.acceptedBy = user._id;
+		party.facilitatingDrops = submittedDropIds.map(function(playerId) { return { playerId: playerId }; });
 		
 		// Start acceptance window if this is the first acceptance (or restart after reset)
 		// Also update creator since whoever starts/restarts the clock is the proposer
@@ -1506,11 +1552,17 @@ async function listProposalsForApproval(request, response) {
 				if (assets.length === 0) {
 					assets.push({ type: 'nothing', display: 'Nothing' });
 				}
+
+				var facilitatingDrops = [];
+				for (var k = 0; k < (party.facilitatingDrops || []).length; k++) {
+					facilitatingDrops.push(await buildFacilitatingDropAsset(party.facilitatingDrops[k].playerId));
+				}
 				
 				partiesDisplay.push({
 					regimeName: displayName,
 					usePlural: usePlural,
-					assets: assets
+					assets: assets,
+					facilitatingDrops: facilitatingDrops
 				});
 			}
 			
@@ -1526,6 +1578,9 @@ async function listProposalsForApproval(request, response) {
 						return { id: p.playerId.toString() };
 					}),
 					picks: [],
+					drops: (party.facilitatingDrops || []).map(function(drop) {
+						return { id: drop.playerId.toString() };
+					}),
 					cash: party.receives.cash.map(function(c) {
 						return {
 							from: c.fromFranchiseId.toString(),
@@ -1583,57 +1638,7 @@ async function approveProposal(request, response) {
 			return response.status(400).json({ success: false, errors: ['Only fully-accepted proposals can be approved'] });
 		}
 		
-		// Transform proposal to processTrade format
-		var parties = [];
-		for (var i = 0; i < proposal.parties.length; i++) {
-			var party = proposal.parties[i];
-			
-			var receives = {
-				players: [],
-				picks: [],
-				cash: []
-			};
-			
-			// Look up current contract details for each player
-			for (var j = 0; j < party.receives.players.length; j++) {
-				var playerId = party.receives.players[j].playerId;
-				var contract = await Contract.findOne({ playerId: playerId });
-				if (!contract) {
-					var player = await Player.findById(playerId);
-					return response.status(400).json({ 
-						success: false, 
-						errors: ['Contract not found for player: ' + (player ? player.name : playerId)] 
-					});
-				}
-				
-				receives.players.push({
-					playerId: contract.playerId,
-					salary: contract.salary,
-					startYear: contract.startYear,
-					endYear: contract.endYear
-				});
-			}
-			
-			// Picks
-			for (var j = 0; j < party.receives.picks.length; j++) {
-				receives.picks.push({ pickId: party.receives.picks[j].pickId });
-			}
-			
-			// Cash
-			for (var j = 0; j < party.receives.cash.length; j++) {
-				var c = party.receives.cash[j];
-				receives.cash.push({
-					amount: c.amount,
-					season: c.season,
-					fromFranchiseId: c.fromFranchiseId
-				});
-			}
-			
-			parties.push({
-				franchiseId: party.franchiseId,
-				receives: receives
-			});
-		}
+		var parties = await buildValidationParties(proposal);
 		
 		// Execute the trade
 		var result = await transactionService.processTrade({

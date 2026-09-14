@@ -9,7 +9,8 @@
  */
 function getRegime(regimes, franchiseId, season) {
 	if (!franchiseId) return null;
-	var fIdStr = franchiseId.toString();
+	// Callers sometimes pass a populated Franchise document rather than an id
+	var fIdStr = (franchiseId._id || franchiseId).toString();
 	return regimes.find(function(r) {
 		return r.tenures && r.tenures.some(function(t) {
 			return t.franchiseId.toString() === fIdStr &&

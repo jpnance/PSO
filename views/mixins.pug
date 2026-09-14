@@ -328,6 +328,8 @@ mixin tradeAssetIcon(type)
 			i.fa.fa-dollar
 		else if type === 'rfa'
 			i.fa.fa-file-text-o
+		else if type === 'drop'
+			i.fa.fa-scissors
 		else
 			i.fa.fa-times
 
@@ -336,7 +338,7 @@ mixin tradeAssetIcon(type)
 mixin tradeAssetContent(asset)
 	span.asset-content(class="icon-" + asset.type)
 		span.asset-details
-			if (asset.type === 'player' || asset.type === 'rfa') && asset.hasOwnProperty('playerName')
+			if (asset.type === 'player' || asset.type === 'rfa' || asset.type === 'drop') && asset.hasOwnProperty('playerName')
 				span.asset-name
 					if asset.href
 						a(href=asset.href)= asset.playerName
@@ -345,11 +347,12 @@ mixin tradeAssetContent(asset)
 					if asset.positions && asset.positions.length > 0
 						|  
 						+positionBadge(asset.positions)
-				span.asset-meta
-					| #{asset.contractInfo}
-					if asset.ambiguous
-						span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
-							i.fa.fa-question-circle
+				if asset.type !== 'drop'
+					span.asset-meta
+						| #{asset.contractInfo}
+						if asset.ambiguous
+							span.ambiguous-icon(title="Contract years couldn't be definitively determined" data-toggle="tooltip")
+								i.fa.fa-question-circle
 			else if asset.type === 'pick' && asset.hasOwnProperty('pickMain')
 				span.asset-text
 					strong #{asset.pickMain}
@@ -409,6 +412,16 @@ mixin tradeParty(party)
 						i.fa.fa-times
 					span.asset-content.icon-nothing
 						span.asset-text Nothing
+		if party.facilitatingDrops && party.facilitatingDrops.length > 0
+			div.party-drops
+				span.party-name #{party.regimeName}
+				if party.usePlural
+					|  drop:
+				else
+					|  drops:
+				ul.asset-list
+					each drop in party.facilitatingDrops
+						+tradeAsset(drop)
 
 //- Budget impact table for trades
 //- Usage: +budgetImpactTable(budgetImpact)

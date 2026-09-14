@@ -45,8 +45,13 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 				if (p.id) allPlayerIds.push(p.id);
 			});
 		}
+		if (bucket && bucket.drops) {
+			bucket.drops.forEach(function(p) {
+				if (p.id) allPlayerIds.push(p.id);
+			});
+		}
 	});
-	
+
 	// Look up contracts for all players
 	var contracts = await Contract.find({ playerId: { $in: allPlayerIds } }).lean();
 	var contractMap = {};
@@ -100,6 +105,27 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 			});
 		});
 	});
+
+	// Facilitating drops improve available budget by salary minus buyout.
+	franchiseIds.forEach(function(fId) {
+		var bucket = deal[fId];
+		if (!bucket || !bucket.drops) return;
+		bucket.drops.forEach(function(player) {
+			var contract = contractMap[player.id];
+			if (!contract || isRfaRights(contract)) return;
+			var effectiveStart = contract.startYear === null ? contract.endYear : contract.startYear;
+			seasons.forEach(function(season) {
+				if (affectsBudget(contract, season, currentSeason)) {
+					impact[fId][season] += computeRecoverableForContract(
+						contract.salary || 0,
+						effectiveStart,
+						contract.endYear,
+						season
+					);
+				}
+			});
+		});
+	});
 	
 	// Process cash - only affects the specific season
 	franchiseIds.forEach(function(receivingId) {
@@ -137,8 +163,12 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 	
 	// Build a map of player IDs being traded away from each franchise
 	var playersLeavingFranchise = {};
+	var playersDroppedByFranchise = {};
 	franchiseIds.forEach(function(fId) {
 		playersLeavingFranchise[fId] = [];
+		playersDroppedByFranchise[fId] = ((deal[fId] && deal[fId].drops) || []).map(function(player) {
+			return player.id;
+		});
 	});
 	franchiseIds.forEach(function(receivingId) {
 		var bucket = deal[receivingId];
@@ -165,6 +195,8 @@ async function calculateTradeImpact(deal, currentSeason, options) {
 				if (!affectsBudget(c, s, currentSeason)) return;
 				// Skip players being traded away
 				if (playersLeavingFranchise[fId].includes(c.playerId.toString())) return;
+				// Skip already-committed facilitating drops
+				if (playersDroppedByFranchise[fId].includes(c.playerId.toString())) return;
 				var effectiveStart = c.startYear || currentSeason;
 				var effectiveEnd = c.endYear || currentSeason;
 				recoverable += computeRecoverableForContract(c.salary, effectiveStart, effectiveEnd, s);

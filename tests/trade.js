@@ -19,6 +19,7 @@ var Budget = require('../models/Budget');
 var LeagueConfig = require('../models/LeagueConfig');
 
 var transactionService = require('../services/transaction');
+var budgetHelper = require('../helpers/budget');
 
 // Use a separate test database to avoid polluting dev/prod data
 function getTestDbUri() {
@@ -137,6 +138,40 @@ async function createMockConfig(options) {
 	return config;
 }
 
+async function setRegularSeasonHardCap() {
+	var now = Date.now();
+	await LeagueConfig.updateOne(
+		{ _id: 'pso' },
+		{
+			$set: {
+				tradeWindow: new Date(now - 120 * 24 * 60 * 60 * 1000),
+				cutDay: new Date(now - 30 * 24 * 60 * 60 * 1000),
+				faab: new Date(now - 20 * 24 * 60 * 60 * 1000),
+				tradeDeadline: new Date(now + 30 * 24 * 60 * 60 * 1000),
+				playoffs: new Date(now + 60 * 24 * 60 * 60 * 1000),
+				deadPeriod: new Date(now + 90 * 24 * 60 * 60 * 1000)
+			}
+		}
+	);
+}
+
+async function setPreseasonCutsDisabled() {
+	var now = Date.now();
+	await LeagueConfig.updateOne(
+		{ _id: 'pso' },
+		{
+			$set: {
+				tradeWindow: new Date(now - 120 * 24 * 60 * 60 * 1000),
+				cutDay: new Date(now - 5 * 24 * 60 * 60 * 1000),
+				faab: new Date(now + 5 * 24 * 60 * 60 * 1000),
+				tradeDeadline: new Date(now + 60 * 24 * 60 * 60 * 1000),
+				playoffs: new Date(now + 90 * 24 * 60 * 60 * 1000),
+				deadPeriod: new Date(now + 120 * 24 * 60 * 60 * 1000)
+			}
+		}
+	);
+}
+
 async function setupMockWorld() {
 	console.log('Setting up mock data...');
 	
@@ -218,6 +253,25 @@ async function teardownMockWorld() {
 // Helper to track created transactions/rosters during tests
 function trackTransaction(tx) {
 	mockData.transactions.push(tx);
+}
+
+async function fillFranchiseToRosterLimit(franchiseId, existingCount, prefix) {
+	var count = LeagueConfig.ROSTER_LIMIT - existingCount;
+	for (var i = 0; i < count; i++) {
+		var player = await Player.create({
+			name: TEST_PREFIX + prefix + '_' + i,
+			sleeperId: 'test_' + prefix.toLowerCase() + '_' + i
+		});
+		mockData.players.push(player);
+		var contract = await Contract.create({
+			franchiseId: franchiseId,
+			playerId: player._id,
+			salary: 1,
+			startYear: TEST_SEASON,
+			endYear: TEST_SEASON
+		});
+		mockData.contracts.push(contract);
+	}
 }
 
 
@@ -440,8 +494,7 @@ async function test4_HardCapViolation(world) {
 		{ available: 10, payroll: 990 }
 	);
 	
-	// Override config to have hard cap active
-	mockData.config.isHardCapActive = function() { return true; };
+	await setRegularSeasonHardCap();
 	
 	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
 	
@@ -452,6 +505,7 @@ async function test4_HardCapViolation(world) {
 		timestamp: new Date(),
 		source: 'manual',
 		notes: 'Test 4: Hard cap violation',
+		skipSleeperSync: true,
 		parties: [
 			{
 				franchiseId: world.franchiseA._id,
@@ -853,6 +907,243 @@ async function test11_RosterLimitSwap(world) {
 	return pass;
 }
 
+// ============ TEST 12: Feasible Trade via Unnamed Drops ============
+async function test12_FeasibleWithUnnamedDrops(world) {
+	console.log('\n=== TEST 12: Proposal Feasible via Unnamed Drops ===\n');
+	await setRegularSeasonHardCap();
+	await fillFranchiseToRosterLimit(world.franchiseA._id, 2, 'Feasible_Filler');
+	await Budget.updateOne(
+		{ franchiseId: world.franchiseA._id, season: TEST_SEASON },
+		{ available: 120, payroll: 880 }
+	);
+
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+	var result = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		validateOnly: true,
+		allowFacilitatingDrops: true,
+		parties: [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				}
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: { players: [], picks: [], cash: [] }
+			}
+		]
+	});
+
+	var requirement = result.facilitatingDropRequirements &&
+		result.facilitatingDropRequirements[world.franchiseA._id.toString()];
+	var pass = result.success && requirement && requirement.needsDrops &&
+		requirement.rosterDropsNeeded === 1 && requirement.capShortfall === 30 &&
+		requirement.feasible;
+	console.log('Proposal allowed:', result.success ? 'YES ✓' : 'NO ✗');
+	console.log('Needs one spot and $30:', pass ? 'YES ✓' : 'NO ✗');
+	return pass;
+}
+
+// ============ TEST 13: Execute Trade with Facilitating Drop ============
+async function test13_ExecuteWithFacilitatingDrop(world) {
+	console.log('\n=== TEST 13: Execute Trade with Facilitating Drop ===\n');
+	await setRegularSeasonHardCap();
+	await fillFranchiseToRosterLimit(world.franchiseA._id, 2, 'Execute_Filler');
+	await Budget.updateOne(
+		{ franchiseId: world.franchiseA._id, season: TEST_SEASON },
+		{ available: 120, payroll: 880 }
+	);
+
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+	var deal = {};
+	deal[world.franchiseA._id.toString()] = {
+		players: [{ id: world.playerB1._id.toString() }],
+		drops: [{ id: world.playerA1._id.toString() }],
+		cash: []
+	};
+	deal[world.franchiseB._id.toString()] = { players: [], drops: [], cash: [] };
+	var displayedImpact = await budgetHelper.calculateTradeImpact(deal, TEST_SEASON, { hardCapActive: true });
+	var displayedA = displayedImpact.franchises.find(function(franchise) {
+		return franchise.franchiseId === world.franchiseA._id.toString();
+	});
+	var displayedCurrent = displayedA.seasons.find(function(season) { return season.season === TEST_SEASON; });
+	var result = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		skipSleeperSync: true,
+		parties: [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				},
+				facilitatingDrops: [{ playerId: world.playerA1._id }]
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: { players: [], picks: [], cash: [] },
+				facilitatingDrops: []
+			}
+		]
+	});
+
+	if (!result.success) {
+		console.log('FAIL:', result.errors);
+		return false;
+	}
+	trackTransaction(result.transaction);
+	(result.dropTransactions || []).forEach(trackTransaction);
+
+	var droppedContract = await Contract.findOne({ playerId: world.playerA1._id });
+	var receivedContract = await Contract.findOne({ playerId: world.playerB1._id });
+	var budget = await Budget.findOne({ franchiseId: world.franchiseA._id, season: TEST_SEASON });
+	var dropTx = result.dropTransactions && result.dropTransactions[0];
+	var rosterCount = await Contract.countDocuments({
+		franchiseId: world.franchiseA._id,
+		salary: { $ne: null }
+	});
+	var pass = !droppedContract &&
+		receivedContract && receivedContract.franchiseId.equals(world.franchiseA._id) &&
+		budget.available === 10 &&
+		displayedCurrent.delta === -110 &&
+		displayedCurrent.resulting === 10 &&
+		rosterCount === LeagueConfig.ROSTER_LIMIT &&
+		dropTx && dropTx.facilitatedTradeId.equals(result.transaction._id);
+	console.log('Trade, cut, budget, roster, and link correct:', pass ? 'YES ✓' : 'NO ✗');
+	return pass;
+}
+
+// ============ TEST 14: Incoming Player Cannot Facilitate ============
+async function test14_IncomingPlayerCannotBeDropped(world) {
+	console.log('\n=== TEST 14: Incoming Player Cannot Be Facilitating Drop ===\n');
+	await setRegularSeasonHardCap();
+	await fillFranchiseToRosterLimit(world.franchiseA._id, 2, 'Incoming_Filler');
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+
+	var result = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		validateOnly: true,
+		allowFacilitatingDrops: true,
+		parties: [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				},
+				facilitatingDrops: [{ playerId: world.playerB1._id }]
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: { players: [], picks: [], cash: [] }
+			}
+		]
+	});
+
+	var pass = !result.success && result.errors.some(function(error) {
+		return error.includes('not an eligible player');
+	});
+	console.log('Incoming player rejected as a drop:', pass ? 'YES ✓' : 'NO ✗');
+	return pass;
+}
+
+// ============ TEST 15: Multiple Drops Must Cover Cap ============
+async function test15_MultipleDropsCoverCap(world) {
+	console.log('\n=== TEST 15: Multiple Drops Must Cover Hard-Cap Shortfall ===\n');
+	await setRegularSeasonHardCap();
+	await fillFranchiseToRosterLimit(world.franchiseA._id, 2, 'Multiple_Filler');
+	await Budget.updateOne(
+		{ franchiseId: world.franchiseA._id, season: TEST_SEASON },
+		{ available: 100, payroll: 900 }
+	);
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+
+	function partiesWithDrops(dropIds) {
+		return [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				},
+				facilitatingDrops: dropIds.map(function(playerId) { return { playerId: playerId }; })
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: { players: [], picks: [], cash: [] }
+			}
+		];
+	}
+
+	var oneDrop = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		validateOnly: true,
+		allowFacilitatingDrops: true,
+		parties: partiesWithDrops([world.playerA1._id])
+	});
+	var twoDrops = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		validateOnly: true,
+		allowFacilitatingDrops: true,
+		parties: partiesWithDrops([world.playerA1._id, world.playerA2._id])
+	});
+
+	var pass = !oneDrop.success &&
+		oneDrop.errors.some(function(error) { return error.includes('recover at least $50'); }) &&
+		twoDrops.success;
+	console.log('One insufficient drop rejected:', !oneDrop.success ? 'YES ✓' : 'NO ✗');
+	console.log('Two sufficient drops accepted:', twoDrops.success ? 'YES ✓' : 'NO ✗');
+	return pass;
+}
+
+// ============ TEST 16: Facilitating Drops Respect Cut Window ============
+async function test16_DropsDisabledDuringPreseason(world) {
+	console.log('\n=== TEST 16: Facilitating Drops Disabled During Preseason ===\n');
+	await setPreseasonCutsDisabled();
+	await fillFranchiseToRosterLimit(world.franchiseA._id, 2, 'Preseason_Filler');
+	var contractB = await Contract.findOne({ playerId: world.playerB1._id });
+
+	var result = await transactionService.processTrade({
+		timestamp: new Date(),
+		source: 'manual',
+		validateOnly: true,
+		allowFacilitatingDrops: true,
+		parties: [
+			{
+				franchiseId: world.franchiseA._id,
+				receives: {
+					players: [{ playerId: world.playerB1._id, salary: contractB.salary, startYear: contractB.startYear, endYear: contractB.endYear }],
+					picks: [],
+					cash: []
+				},
+				facilitatingDrops: [{ playerId: world.playerA1._id }]
+			},
+			{
+				franchiseId: world.franchiseB._id,
+				receives: { players: [], picks: [], cash: [] }
+			}
+		]
+	});
+
+	var pass = !result.success && result.errors.some(function(error) {
+		return error.includes('cuts are not currently allowed');
+	});
+	console.log('Facilitating drop rejected:', pass ? 'YES ✓' : 'NO ✗');
+	return pass;
+}
+
 // ============ Test Registry ============
 var tests = [
 	{ name: 'Basic 2-Party Swap', fn: test1_BasicPlayerSwap },
@@ -866,6 +1157,11 @@ var tests = [
 	{ name: 'Cut Buyout Calculation 2', fn: test9_CutBuyOut2 },
 	{ name: 'Roster Limit Violation', fn: test10_RosterLimitViolation },
 	{ name: 'Roster Limit Swap at Limit', fn: test11_RosterLimitSwap },
+	{ name: 'Proposal Feasible with Unnamed Drops', fn: test12_FeasibleWithUnnamedDrops },
+	{ name: 'Execute with Facilitating Drop', fn: test13_ExecuteWithFacilitatingDrop },
+	{ name: 'Incoming Player Cannot Be Dropped', fn: test14_IncomingPlayerCannotBeDropped },
+	{ name: 'Multiple Drops Cover Hard Cap', fn: test15_MultipleDropsCoverCap },
+	{ name: 'Facilitating Drops Respect Cut Window', fn: test16_DropsDisabledDuringPreseason },
 ];
 
 // ============ Main Runner ============
