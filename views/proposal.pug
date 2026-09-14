@@ -158,7 +158,7 @@ block content
 					div.modal-body
 						p#drop-requirement-text.mb-2
 						div#drop-selection-summary.alert.alert-secondary.py-2
-						ul#drop-candidates.asset-list.proposal-drop-picker
+						div#drop-candidates.proposal-drop-picker
 						div#drop-picker-error.mt-3
 					div.modal-footer
 						button.btn.btn-outline-secondary(type='button' data-dismiss='modal') Cancel
@@ -306,10 +306,24 @@ block scripts
 		var pendingDropRequirement = null;
 		var acceptRestore = null;
 
-		// Client-side equivalent of +tradeAsset({ type: 'drop' }); positions arrive pre-sorted
-		function buildDropAsset(candidate) {
-			var $name = $('<span class="asset-name"></span>').append($('<span></span>').text(candidate.name));
+		// Client-side equivalent of +playerChip({ variant: 'cut' }); positions arrive pre-sorted
+		function buildCutChip(candidate) {
 			var positions = candidate.positions || [];
+			var $chip = $('<div class="player-chip player-chip--cut"></div>');
+			if (positions.length) {
+				$chip.addClass('pos-' + positions[0]);
+			}
+
+			var $detail = $('<div class="player-chip__detail"></div>')
+				.append($('<span class="player-chip__salary-cut"></span>').text('$' + candidate.salary))
+				.append($('<span class="player-chip__recovered"></span>').text('+$' + candidate.recoverable));
+
+			$chip.append(
+				$('<div class="player-chip__content"></div>')
+					.append($('<div class="player-chip__name"></div>').text(candidate.name))
+					.append($detail)
+			);
+
 			if (positions.length) {
 				var $badge = $('<span class="position-badge"></span>');
 				positions.forEach(function(position) {
@@ -317,15 +331,10 @@ block scripts
 						.addClass('pos-' + position)
 						.text(position));
 				});
-				$name.append($badge);
+				$chip.append($badge);
 			}
 
-			return [
-				$('<span class="asset-icon icon-drop"><i class="fa fa-scissors"></i></span>'),
-				$('<span class="asset-content icon-drop"></span>').append(
-					$('<span class="asset-details"></span>').append($name)
-				)
-			];
+			return $chip;
 		}
 
 		function submitAcceptance(dropPlayerIds) {
@@ -380,8 +389,8 @@ block scripts
 					.val(candidate.playerId)
 					.attr('data-recoverable', candidate.recoverable);
 				var $label = $('<label class="proposal-drop-picker__option"></label>')
-					.append($input, buildDropAsset(candidate));
-				$candidates.append($('<li></li>').append($label));
+					.append($input, buildCutChip(candidate));
+				$candidates.append($label);
 			});
 			updateDropSelection();
 			$('#facilitating-drops-modal').modal('show');
