@@ -133,16 +133,13 @@ async function computeStandingsFromGames(season) {
 	var hasDivisions = divisionConfig !== null;
 	
 	// Determine era-specific config
-	var totalRegularSeasonGames, lastRegularSeasonWeek;
+	var totalRegularSeasonGames;
 	if (hasDivisions) {
 		totalRegularSeasonGames = 70;
-		lastRegularSeasonWeek = 14;
 	} else if (season < 2021) {
 		totalRegularSeasonGames = 84;
-		lastRegularSeasonWeek = 14;
 	} else {
 		totalRegularSeasonGames = 90;
-		lastRegularSeasonWeek = 15;
 	}
 	
 	var teams = {};
@@ -159,7 +156,8 @@ async function computeStandingsFromGames(season) {
 					pointsFor: 0, pointsAgainst: 0,
 					playoffWins: 0, playoffLosses: 0,
 					playoffPointsFor: 0, playoffPointsAgainst: 0,
-					playoffFinish: null, playoffSeed: null
+					playoffFinish: null, playoffSeed: null,
+					recordWeek: 0
 				};
 			}
 		});
@@ -185,21 +183,24 @@ async function computeStandingsFromGames(season) {
 				teams[homeId].ties++;
 			}
 			
-			// Capture all-play/stern from last week
-			if (game.week === lastRegularSeasonWeek) {
-				['away', 'home'].forEach(function(side) {
-					var fid = game[side].franchiseId;
-					var record = game[side].record;
-					if (record) {
-						if (record.allPlay && record.allPlay.cumulative) {
-							teams[fid].allPlay = record.allPlay.cumulative;
-						}
-						if (record.stern && record.stern.cumulative) {
-							teams[fid].stern = record.stern.cumulative;
-						}
-					}
-				});
-			}
+			// Capture all-play/stern from the latest week that has them
+			['away', 'home'].forEach(function(side) {
+				var fid = game[side].franchiseId;
+				var record = game[side].record;
+				
+				if (!record || game.week < teams[fid].recordWeek) {
+					return;
+				}
+				
+				if (record.allPlay && record.allPlay.cumulative && record.allPlay.cumulative.wins != null) {
+					teams[fid].allPlay = record.allPlay.cumulative;
+					teams[fid].recordWeek = game.week;
+				}
+				if (record.stern && record.stern.cumulative && record.stern.cumulative.wins != null) {
+					teams[fid].stern = record.stern.cumulative;
+					teams[fid].recordWeek = game.week;
+				}
+			});
 		}
 		
 		// Playoff games

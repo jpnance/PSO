@@ -115,7 +115,8 @@ async function processSeason(season) {
 					playoffPointsAgainst: 0,
 					playoffFinish: null,
 					allPlay: null,
-					stern: null
+					stern: null,
+					recordWeek: 0
 				};
 			}
 		});
@@ -145,21 +146,24 @@ async function processSeason(season) {
 				franchises[homeId].ties++;
 			}
 			
-			// Capture all-play and stern from last regular season week
-			if (game.week === regularSeasonWeeks) {
-				if (game.away.record && game.away.record.allPlay && game.away.record.allPlay.cumulative) {
-					franchises[awayId].allPlay = game.away.record.allPlay.cumulative;
+			// Capture all-play and stern from the latest week that has them
+			['away', 'home'].forEach(function(side) {
+				var id = game[side].franchiseId;
+				var record = game[side].record;
+				
+				if (!record || game.week < franchises[id].recordWeek) {
+					return;
 				}
-				if (game.away.record && game.away.record.stern && game.away.record.stern.cumulative) {
-					franchises[awayId].stern = game.away.record.stern.cumulative;
+				
+				if (record.allPlay && record.allPlay.cumulative && record.allPlay.cumulative.wins != null) {
+					franchises[id].allPlay = record.allPlay.cumulative;
+					franchises[id].recordWeek = game.week;
 				}
-				if (game.home.record && game.home.record.allPlay && game.home.record.allPlay.cumulative) {
-					franchises[homeId].allPlay = game.home.record.allPlay.cumulative;
+				if (record.stern && record.stern.cumulative && record.stern.cumulative.wins != null) {
+					franchises[id].stern = record.stern.cumulative;
+					franchises[id].recordWeek = game.week;
 				}
-				if (game.home.record && game.home.record.stern && game.home.record.stern.cumulative) {
-					franchises[homeId].stern = game.home.record.stern.cumulative;
-				}
-			}
+			});
 		}
 		
 		// Playoff games
