@@ -7,7 +7,10 @@ var players = require('../public/data/players.json');
 var PSO = require('../config/pso.js');
 
 var season = PSO.season;
+var targetSeason = season + 1;
 var sleeperLeagueId = PSO.sleeperLeagueIds[season];
+
+var POSITION_ORDER = ['DB', 'DL', 'K', 'LB', 'QB', 'RB', 'TE', 'WR'];
 
 var positionCount = {
 	QB: 0,
@@ -41,7 +44,9 @@ request
 
 		console.log(positionCount);
 
-		Object.keys(positionCount).forEach((position) => {
+		var salaries = {};
+
+		POSITION_ORDER.forEach((position) => {
 			// Only include players with active contracts (not RFA rights)
 			let positionPlayers = players.filter((player) => player.owner && player.salary && player.positions.includes(position));
 
@@ -49,9 +54,20 @@ request
 
 			let replacementLevel = positionPlayers.slice(positionCount[position] - 6 - 1, positionCount[position] + 6);
 
-			console.log(position, positionPlayers.length, positionPlayers[0].name);
-			console.log(Math.ceil(replacementLevel.reduce((previous, current) => {
+			var salary = Math.ceil(replacementLevel.reduce((previous, current) => {
 				return previous + current.salary
-			}, 0) / replacementLevel.length));
+			}, 0) / replacementLevel.length);
+
+			salaries[position] = salary;
+
+			console.log(position, positionPlayers.length, positionPlayers[0].name);
+			console.log(salary);
 		});
+
+		var blob = "'" + targetSeason + "': { " + POSITION_ORDER.map(function(position) {
+			return "'" + position + "': " + salaries[position];
+		}).join(', ') + ' },';
+
+		console.log('');
+		console.log(blob);
 	});
