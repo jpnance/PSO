@@ -1,7 +1,6 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
 var fs = require('fs');
-var request = require('superagent');
 
 var PSO = require('../../config/pso.js');
 var Game = require('../../models/Game');
@@ -11,51 +10,56 @@ var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
-if (process.argv.length < 3) {
+var args = process.argv.slice(2);
+var outputHtml = args.includes('--html');
+
+args = args.filter((arg) => arg != '--html');
+
+if (args.length < 1) {
 	console.log('Invalid week');
-	console.log('Usage: node index.js <week> <co-host name> <last week co-host name> <last week\'s games order> <this week\'s games order> <RPO score overrides>');
+	console.log('Usage: node index.js <week> <co-host name> <last week co-host name> <last week\'s games order> <this week\'s games order> [--html]');
 	process.exit();
 }
 
 var season = PSO.season;
-var sleeperLeagueId = PSO.sleeperLeagueIds[season];
 
-var week = parseInt(process.argv[2]);
-var cohost = process.argv[3];
-var lastWeekCohost = process.argv[4] || cohost;
-var lastWeekGamesOrder = process.argv[5]?.split(',').map((index) => parseInt(index));
-var thisWeekGamesOrder = process.argv[6]?.split(',').map((index) => parseInt(index));
-var rpoPointsOverrides = process.argv[7]?.split(',').map(pair => pair.split('=')).reduce((rpoPointsOverrideMap, pair) => {
-	rpoPointsOverrideMap[pair[0]] = parseFloat(pair[1]);
-	return rpoPointsOverrideMap;
-}, {}) || {};
+var week = parseInt(args[0]);
+var cohost = args[1];
+var lastWeekCohost = args[2] || cohost;
+var lastWeekGamesOrder = args[3]?.split(',').map((index) => parseInt(index));
+var thisWeekGamesOrder = args[4]?.split(',').map((index) => parseInt(index));
 
-function csvToRpoMap(csv) {
-	var lines = csv.split(/\n/)
-	lines.shift();
+var openLists = 0;
 
-	var map = {};
+function escapeHtml(text) {
+	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 
-	lines.forEach(line => {
-		var fields = line.replace(/^"/, '').replace(/"$/, '').split(/","/);
+// Markdown by default; --html produces nested <ul> that pastes into Google Docs as a real list
+function bullet(depth, text) {
+	if (!outputHtml) {
+		console.log('  '.repeat(depth) + '- ' + text);
+		return;
+	}
 
-		if (fields[4] == 'Status') {
-			return;
-		}
+	while (openLists <= depth) {
+		console.log('<ul>');
+		openLists++;
+	}
 
-		var owner = PSO.fantraxAbbreviations[fields[5]];
+	while (openLists > depth + 1) {
+		console.log('</ul>');
+		openLists--;
+	}
 
-		if (!map[owner]) {
-			map[owner] = [];
-		}
+	console.log('<li>' + escapeHtml(text) + '</li>');
+}
 
-		map[owner].push({
-			name: fields[1],
-			points: parseFloat(fields[10])
-		});
-	});
-
-	return map;
+function endBullets() {
+	while (openLists > 0) {
+		console.log('</ul>');
+		openLists--;
+	}
 }
 
 function niceRate(rate) {
@@ -105,68 +109,12 @@ function isJaguarGame(franchiseOne, franchiseTwo) {
 
 var dataPromises = [
 	Game.find({ season: season }).sort({ week: 1 }),
-	Leaders.WeeklyScoringTitles.find().sort({ value: -1 }),
-	require('./rpo-data.json').filter((rpo) => rpo.season == season && rpo.week == week - 1),
-	request.get(`https://api.sleeper.app/v1/league/${sleeperLeagueId}/matchups/${week - 1}`)
+	Leaders.WeeklyScoringTitles.find().sort({ value: -1 })
 ];
 
 Promise.all(dataPromises).then(function(values) {
 	var games = values[0];
 	var scoringTitles = values[1];
-	var weekRpos = values[2];
-	var weekResults = values[3].body;
-
-	var rpoOptions = {};
-	var selectedRpos = {};
-	var offeredRpos = {};
-	var playerPoints = {};
-	var rpoSummary = {};
-
-	rpoSummary['Patrick'] = 0;
-	rpoSummary[lastWeekCohost] = 0;
-
-	weekResults.forEach((weekResult) => {
-		Object.keys(weekResult.players_points).forEach((playerId) => {
-			playerPoints[playerId] = weekResult.players_points[playerId] ?? 0.0;
-		});
-	});
-
-	weekRpos.forEach((rpo) => {
-		if (!rpoOptions[rpo.owner]) {
-			rpoOptions[rpo.owner] = [];
-		}
-
-		rpoOptions[rpo.owner].push(rpo);
-
-		if (rpo.selected) {
-			selectedRpos[rpo.owner] = rpo;
-		}
-
-		if (!rpo.selected) {
-			offeredRpos[rpo.owner] = rpo;
-		}
-
-		rpo.player.points = playerPoints[rpo.player.id] ?? rpoPointsOverrides[rpo.player.id];
-	});
-
-	if (week > 1 && week < 16 && Object.keys(rpoOptions).length != 12) {
-		throw 'We need twelve franchises represented in the RPO data for this week and we only have ' + Object.keys(rpoOptions).length;
-	}
-	else if (week > 1 && week >= 17 && week < 18 && Object.keys(rpoOptions).length != 4) {
-		throw 'We need four franchises represented in the RPO data for this week and we only have ' + Object.keys(rpoOptions).length;
-	}
-
-	Object.keys(rpoOptions).forEach(rpoKey => {
-		if (rpoOptions[rpoKey].length != 2) {
-			throw 'We need two players offered for every franchise and ' + rpoKey + ' only has ' + rpoOptions[rpoKey].length;
-		}
-
-		rpoOptions[rpoKey].forEach(rpo => {
-			if (rpo.player.points === undefined) {
-				throw `We weren't able to get points data for ${rpo.player.name} (${rpo.player.id}). Please use the override parameter like: ${rpo.player.id}=3.45`;
-			}
-		});
-	});
 
 	if (week > 7) {
 		var percentagesData = JSON.parse(fs.readFileSync('../../public/data/percentages.json', 'utf8'));
@@ -237,17 +185,14 @@ Promise.all(dataPromises).then(function(values) {
 		introWeek = 'the offseason';
 	}
 
-	console.log('SOUND EFFECTS');
-	console.log();
-	console.log('DID ANY TEAMS GET ELIMINATED THIS WEEK?');
-	console.log();
-	console.log('Intro');
-	console.log("\t" + 'Welcome to the PSO Show for ' + introWeek + ' of the ' + PSO.season + ' season!');
-	console.log("\t" + 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
-	console.log();
+	bullet(0, 'SOUND EFFECTS');
+	bullet(0, 'DID ANY TEAMS GET ELIMINATED THIS WEEK?');
+	bullet(0, 'Intro');
+	bullet(1, 'Welcome to the PSO Show for ' + introWeek + ' of the ' + PSO.season + ' season!');
+	bullet(1, 'I am Patrick, joined, as always, by ' + (cohost || 'WHO_IS_YOUR_COHOST'));
 
 	if (week > 1) {
-		console.log('Week ' + (week - 1) + ' Recaps');
+		bullet(0, 'Week ' + (week - 1) + ' Recaps');
 
 		var nextWeeksGamesFor = {};
 
@@ -303,87 +248,39 @@ Promise.all(dataPromises).then(function(values) {
 				nextGamesString = 'Next three';
 			}
 
-			console.log("\t" + winner.name + ' ' + (winner.name.indexOf('/') != -1 ? 'defeat' : 'defeats') + ' ' + loser.name + ', ' + winner.score.toFixed(2) + ' to ' + loser.score.toFixed(2));
+			bullet(1, winner.name + ' ' + (winner.name.indexOf('/') != -1 ? 'defeat' : 'defeats') + ' ' + loser.name + ', ' + winner.score.toFixed(2) + ' to ' + loser.score.toFixed(2));
 
 			if (isJaguarGame(winner.name, loser.name)) {
-				console.log("\t\tJAGUAR GAME");
+				bullet(2, 'JAGUAR GAME');
 			}
 
-			console.log("\t\t" + winner.name);
-
-			console.log("\t\t\t" + selectedRpos[winner.name].offerer + ' offered ' + selectedRpos[winner.name].player.name + ' and ' + offeredRpos[winner.name].player.name);
-			console.log("\t\t\t" + selectedRpos[winner.name].selector + ' selected ' + selectedRpos[winner.name].player.name + ' (' + selectedRpos[winner.name].player.points.toFixed(2) + ')');
-			console.log("\t\t\t" + selectedRpos[winner.name].offerer + ' received ' + offeredRpos[winner.name].player.name + ' (' + offeredRpos[winner.name].player.points.toFixed(2) + ')');
-
-			console.log("\t\t\t" + winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].playoffs.tripleSlash + ')' : ''));
+			bullet(2, winner.name);
+			bullet(3, winner.name + ' to ' + winner.record.straight.cumulative.wins + '-' + winner.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[winner.franchiseId].playoffs.tripleSlash + ')' : ''));
 			if (nextWeeksGamesFor[winner.name]) {
-				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
+				bullet(3, nextGamesString + ': ' + nextWeeksGamesFor[winner.name].join(', '));
 			}
 
-			console.log("\t\t" + loser.name);
-
-			console.log("\t\t\t" + selectedRpos[loser.name].offerer + ' offered ' + selectedRpos[loser.name].player.name + ' and ' + offeredRpos[loser.name].player.name);
-			console.log("\t\t\t" + selectedRpos[loser.name].selector + ' selected ' + selectedRpos[loser.name].player.name + ' (' + selectedRpos[loser.name].player.points.toFixed(2) + ')');
-			console.log("\t\t\t" + selectedRpos[loser.name].offerer + ' received ' + offeredRpos[loser.name].player.name + ' (' + offeredRpos[loser.name].player.points.toFixed(2) + ')');
-
-			console.log("\t\t\t" + loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].playoffs.tripleSlash + ')' : ''));
+			bullet(2, loser.name);
+			bullet(3, loser.name + ' to ' + loser.record.straight.cumulative.wins + '-' + loser.record.straight.cumulative.losses + (week > 7 && week < 16 ? ' (' + percentagesData[loser.franchiseId].playoffs.tripleSlash + ')' : ''));
 
 			if (nextWeeksGamesFor[loser.name]) {
-				console.log("\t\t\t" + nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
+				bullet(3, nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
 			}
 
-			[winner.name, loser.name].forEach((owner) => {
-				var optionOne = rpoOptions[owner][0];
-				var optionTwo = rpoOptions[owner][1];
-
-				if (optionOne.player.points > optionTwo.player.points) {
-					if (optionOne.selected) {
-						rpoSummary[optionOne.selector] += 1;
-					}
-					else {
-						rpoSummary[optionOne.offerer] += 1;
-					}
-				}
-				else if (optionTwo.player.points > optionOne.player.points) {
-					if (optionTwo.selected) {
-						rpoSummary[optionTwo.selector] += 1;
-					}
-					else {
-						rpoSummary[optionTwo.offerer] += 1;
-					}
-				}
-			});
-
-			console.log("\t\t" + 'RPO_MATCHUP_SUMMARY: Pat ' + rpoSummary['Patrick'] + ', ' + lastWeekCohost + ' ' + rpoSummary[lastWeekCohost]);
-			console.log("\t\t" + 'Pat projection: WHICH_TEAM (RIGHTWRONG); ' + (lastWeekCohost || 'LAST_WEEK_COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
+			bullet(2, 'Pat projection: WHICH_TEAM (RIGHTWRONG); ' + (lastWeekCohost || 'LAST_WEEK_COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
 		});
 
-		console.log("\t" + 'RPO Stats');
-		console.log("\t\t" + 'OVERALL_SCORE');
-		console.log("\t\t" + 'Selector');
-		console.log("\t\t\t" + 'This week');
-		console.log("\t\t\t\t" + 'Pat: MY_RPO_RECORD_THIS_WEEK');
-		console.log("\t\t\t\t" + (lastWeekCohost || 'LAST_WEEK_COHOST') + ': ' + (lastWeekCohost ? lastWeekCohost.toUpperCase() : 'LAST_WEEK_COHOST') + '_RPO_RECORD_THIS_WEEK');
-		console.log("\t\t\t\t" + 'Total: TOTAL_RPO_RECORD_THIS_WEEK');
-		console.log("\t\t\t" + 'Overall');
-		console.log("\t\t\t\t" + 'Pat: MY_OVERALL_RPO_RECORD');
-		console.log("\t\t\t\t" + 'The World: ' + 'THE_WORLD_OVERALL_RPO_RECORD');
-		console.log("\t\t\t\t" + 'Total: TOTAL_OVERALL_RPO_RECORD');
-		console.log("\t" + 'Prognostication Stats');
-		console.log("\t\t" + 'Pat\'s projections');
-		console.log("\t\t\t" + 'This week: PATS_PROJECTIONS_RECORD_THIS_WEEK');
-		console.log("\t\t\t" + 'Overall: PATS_PROJECTIONS_OVERALL_RECORD');
-		console.log("\t\t" + 'The World\'s predictions');
-		console.log("\t\t\t" + 'This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK');
-		console.log("\t\t\t" + 'Overall: WORLD_PREDICTIONS_OVERALL_RECORD');
-		console.log();
+		bullet(1, 'Prognostication Stats');
+		bullet(2, 'Pat\'s projections');
+		bullet(3, 'This week: PATS_PROJECTIONS_RECORD_THIS_WEEK');
+		bullet(3, 'Overall: PATS_PROJECTIONS_OVERALL_RECORD');
+		bullet(2, 'The World\'s predictions');
+		bullet(3, 'This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK');
+		bullet(3, 'Overall: WORLD_PREDICTIONS_OVERALL_RECORD');
 	}
 
-	console.log('Transactions');
-	console.log();
-
-	console.log('Discussion Topic: IS_THERE_ONE');
-	console.log();
+	bullet(0, 'Transactions');
+	bullet(0, 'Discussion Topic: IS_THERE_ONE');
 
 	var previewWeek = 'Week ' + week;
 
@@ -395,14 +292,14 @@ Promise.all(dataPromises).then(function(values) {
 	}
 
 	if (week < 18) {
-		console.log('Game Previews and Risky Player Options for ' + previewWeek);
+		bullet(0, 'Game Previews for ' + previewWeek);
 
 		thisWeek.forEach(game => {
 			var away = game.away;
 			var home = game.home;
 
 			if (week == 1) {
-				console.log("\t" + away.name + ' vs. ' + home.name);
+				bullet(1, away.name + ' vs. ' + home.name);
 			}
 			else {
 				var lastWeekAway = lastWeek.filter(lastWeekGame => away.franchiseId == lastWeekGame.away.franchiseId || away.franchiseId == lastWeekGame.home.franchiseId)[0];
@@ -444,45 +341,41 @@ Promise.all(dataPromises).then(function(values) {
 				};
 
 				if (week > 7 && week < 16) {
-					console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ', ' + percentagesData[away.franchiseId].playoffs.tripleSlash + ', ' + Math.round(percentagesData[away.franchiseId].results[week].rate * 100) + '%) vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ', ' + percentagesData[home.franchiseId].playoffs.tripleSlash + ', ' + Math.round(percentagesData[home.franchiseId].results[week].rate * 100) + '%)');
+					bullet(1, away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ', ' + percentagesData[away.franchiseId].playoffs.tripleSlash + ', ' + Math.round(percentagesData[away.franchiseId].results[week].rate * 100) + '%) vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ', ' + percentagesData[home.franchiseId].playoffs.tripleSlash + ', ' + Math.round(percentagesData[home.franchiseId].results[week].rate * 100) + '%)');
 				}
 				else {
-					console.log("\t" + away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ')');
+					bullet(1, away.name + ' (' + away.record.straight.cumulative.wins + '-' + away.record.straight.cumulative.losses + ') vs. ' + home.name + ' (' + home.record.straight.cumulative.wins + '-' + home.record.straight.cumulative.losses + ')');
 				}
 			}
 
 			if (isJaguarGame(away.name, home.name)) {
-				console.log("\t\tJAGUAR GAME");
+				bullet(2, 'JAGUAR GAME');
 			}
 
 			if (week > 7 && week < 16) {
-				console.log("\t\t" + 'Playoff interest level: ' + (percentagesData[away.franchiseId].playoffs.interestLevel + percentagesData[home.franchiseId].playoffs.interestLevel).toFixed(3));
-				console.log("\t\t" + 'Decision interest level: ' + (percentagesData[away.franchiseId].decision.interestLevel + percentagesData[home.franchiseId].decision.interestLevel).toFixed(3));
+				bullet(2, 'Playoff interest level: ' + (percentagesData[away.franchiseId].playoffs.interestLevel + percentagesData[home.franchiseId].playoffs.interestLevel).toFixed(3));
+				bullet(2, 'Decision interest level: ' + (percentagesData[away.franchiseId].decision.interestLevel + percentagesData[home.franchiseId].decision.interestLevel).toFixed(3));
 			}
 
-			console.log("\t\t" + 'NOTE_ABOUT_' + away.name.toUpperCase().replace(/\//, ''));
-			console.log("\t\t" + 'NOTE_ABOUT_' + home.name.toUpperCase().replace(/\//, ''));
-			console.log("\t\t" + 'HOST_1 takes ' + away.name);
-			console.log("\t\t" + 'HOST_2 takes ' + home.name);
-			console.log("\t\t" + 'Pat projection: PAT_PROJECTION');
-			console.log("\t\t" + (cohost || 'COHOST') + ' prediction');
+			bullet(2, 'NOTE_ABOUT_' + away.name.toUpperCase().replace(/\//, ''));
+			bullet(2, 'NOTE_ABOUT_' + home.name.toUpperCase().replace(/\//, ''));
+			bullet(2, 'HOST_1 takes ' + away.name);
+			bullet(2, 'HOST_2 takes ' + home.name);
+			bullet(2, 'Pat projection: PAT_PROJECTION');
+			bullet(2, (cohost || 'COHOST') + ' prediction');
 		});
-
-		console.log();
 	}
 
 	if (week > 1) {
-		console.log('High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
-		console.log("\tAPPLAUSE")
-		console.log("\t" + highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
-		console.log("\t" + ordinal(highScorerSeason.length) + ' scoring title this season');
-		console.log("\t" + ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
-		console.log("\t" + 'HIGH_SCORERS_CORNER_DITTY');
-		console.log();
+		bullet(0, 'High Scorer\'s Corner: ' + highScorerLastWeek.winner.name);
+		bullet(1, 'APPLAUSE');
+		bullet(1, highScorerLastWeek.winner.name + ' scored ' + highScorerLastWeek.winner.score.toFixed(2));
+		bullet(1, ordinal(highScorerSeason.length) + ' scoring title this season');
+		bullet(1, ordinal(highScorerAllTime.value) + ' scoring title all-time (WHAT_RANK overall)');
+		bullet(1, 'HIGH_SCORERS_CORNER_DITTY');
 	}
 
-	console.log('Co-Host\'s Final Thoughts');
-	console.log();
+	bullet(0, 'Co-Host\'s Final Thoughts');
 
 	var outroWeek = 'Week ' + week;
 
@@ -498,12 +391,13 @@ Promise.all(dataPromises).then(function(values) {
 
 	var outroNextWeek = (week != 18) ? 'next week' : 'very soon';
 
-	console.log('Plugs');
-	console.log("\t" + 'Thanks for sending in RPOs');
-	console.log("\t" + 'Slash Scuttlebot');
-	console.log("\t" + 'Websites');
-	console.log("\t" + 'And that is it');
-	console.log("\t" + 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + '! We will talk to you ' + outroNextWeek + '!');
+	bullet(0, 'Plugs');
+	bullet(1, 'Slash Scuttlebot');
+	bullet(1, 'Websites');
+	bullet(1, 'And that is it');
+	bullet(1, 'For ' + (cohost || 'COHOST') + ', I am Patrick. Good luck with your fantasy in ' + outroWeek + '! We will talk to you ' + outroNextWeek + '!');
+
+	endBullets();
 
 	mongoose.disconnect();
 }).catch(error => {

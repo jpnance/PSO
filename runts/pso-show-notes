@@ -1,0 +1,128 @@
+#!/bin/bash
+
+# Generate PSO Show notes.
+#
+# Usage:
+#   runt pso-show-notes <week> --cohost Keyon
+#   runt pso-show-notes <week> --cohost Keyon --last-week 1,3,5,2,4,6
+#   runt pso-show-notes <week> --cohost Keyon --last-week 1,3,5,2,4,6 --this-week 2,4,6,1,3,5
+#   runt pso-show-notes <week> --cohost Keyon --last-week-cohost Luke --last-week 1,2,3,4,5,6 --this-week 1,2,3,4,5,6
+#   runt pso-show-notes <week> --cohost Keyon --last-week 1,2,3,4,5,6 --this-week 1,2,3,4,5,6 --copy
+#
+# Omit --last-week / --this-week to print numbered matchups so you can pick an order.
+
+usage() {
+	cat <<'EOF'
+Usage: runt pso-show-notes <week> --cohost <name> [options]
+
+Options:
+  --cohost NAME              This week's co-host
+  --last-week-cohost NAME    Last week's co-host (defaults to --cohost)
+  --last-week ORDER          Last week's recap order, e.g. 1,3,5,2,4,6
+  --this-week ORDER          This week's preview order
+  --copy                     Put the notes on the clipboard as a formatted
+                             nested list, ready to paste into Google Docs
+
+Omit --last-week / --this-week to print numbered games so you can pick an order.
+Week 1 has no recaps; you can skip --last-week.
+EOF
+}
+
+week=""
+cohost=""
+last_week_cohost=""
+last_week_order=""
+this_week_order=""
+copy=""
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		-h|--help)
+			usage
+			exit 0
+			;;
+		--copy)
+			copy="yes"
+			shift
+			;;
+		--cohost)
+			cohost="$2"
+			shift 2
+			;;
+		--last-week-cohost)
+			last_week_cohost="$2"
+			shift 2
+			;;
+		--last-week)
+			last_week_order="$2"
+			shift 2
+			;;
+		--this-week)
+			this_week_order="$2"
+			shift 2
+			;;
+		--*)
+			echo "Unknown option: $1" >&2
+			usage >&2
+			exit 1
+			;;
+		*)
+			if [[ -z "$week" ]]; then
+				week="$1"
+				shift
+			else
+				echo "Unexpected argument: $1" >&2
+				usage >&2
+				exit 1
+			fi
+			;;
+	esac
+done
+
+if [[ -z "$week" || -z "$cohost" ]]; then
+	usage >&2
+	exit 1
+fi
+
+if [[ -n "$this_week_order" && -z "$last_week_order" ]]; then
+	if [[ "$week" == "1" ]]; then
+		last_week_order="1"
+	else
+		echo "Pass --last-week before --this-week." >&2
+		exit 1
+	fi
+fi
+
+args=("$week" "$cohost" "${last_week_cohost:-$cohost}")
+
+if [[ -n "$last_week_order" ]]; then
+	args+=("$last_week_order")
+	if [[ -n "$this_week_order" ]]; then
+		args+=("$this_week_order")
+	fi
+fi
+
+if [[ -z "$copy" ]]; then
+	docker compose run --rm -T --workdir /app/tools/note web node index.js "${args[@]}"
+	exit $?
+fi
+
+notes_html="$(docker compose run --rm -T --workdir /app/tools/note web node index.js "${args[@]}" --html)"
+status=$?
+
+# Non-zero, or the "pick a game order" prompt rather than notes: just show it
+if [[ $status -ne 0 || "$notes_html" != *"<ul>"* ]]; then
+	printf '%s\n' "$notes_html"
+	exit $status
+fi
+
+notes_text="$(docker compose run --rm -T --workdir /app/tools/note web node index.js "${args[@]}")"
+
+# Hex-encoded so quotes, apostrophes and newlines survive the trip through osascript.
+# HTML is the flavor the browser hands to Google Docs; the Markdown is a plain-text fallback.
+html_hex="$(printf '%s' "$notes_html" | xxd -p | tr -d '\n')"
+text_hex="$(printf '%s' "$notes_text" | xxd -p | tr -d '\n')"
+
+osascript -e "set the clipboard to {«class HTML»:«data HTML${html_hex}», «class utf8»:«data utf8${text_hex}»}"
+
+echo "Show notes copied to the clipboard. Paste into Google Docs with Cmd+V."
