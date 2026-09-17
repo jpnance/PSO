@@ -359,8 +359,6 @@ Promise.all(dataPromises).then(function(values) {
 
 			bullet(2, 'NOTE_ABOUT_' + away.name.toUpperCase().replace(/\//, ''));
 			bullet(2, 'NOTE_ABOUT_' + home.name.toUpperCase().replace(/\//, ''));
-			bullet(2, 'HOST_1 takes ' + away.name);
-			bullet(2, 'HOST_2 takes ' + home.name);
 			bullet(2, 'Pat projection: PAT_PROJECTION');
 			bullet(2, (cohost || 'COHOST') + ' prediction');
 		});
