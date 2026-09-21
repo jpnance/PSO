@@ -72,7 +72,6 @@ async function run() {
 	});
 	
 	// Build notification message
-	var baseUrl = process.env.BASE_URL || 'https://pso.coinflipper.io';
 	var summary = results.problems.slice(0, 3).map(function(p) {
 		return '• ' + p.message;
 	}).join('\n');
@@ -81,7 +80,7 @@ async function run() {
 	if (results.problemCount > 3) {
 		message += '\n... and ' + (results.problemCount - 3) + ' more';
 	}
-	message += '\n\n' + baseUrl + '/admin/sanity';
+	message += '\n\nhttps://thedynastyleague.com/admin/sanity';
 	
 	await notifications.alertCommissioner(message, { priority: 'high' });
 	
