@@ -267,16 +267,16 @@ Promise.all(dataPromises).then(function(values) {
 				bullet(3, nextGamesString + ': ' + nextWeeksGamesFor[loser.name].join(', '));
 			}
 
-			bullet(2, 'Pat projection: WHICH_TEAM (RIGHTWRONG); ' + (lastWeekCohost || 'LAST_WEEK_COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
+			bullet(2, 'Computer: WHICH_TEAM (RIGHTWRONG); ' + (lastWeekCohost || 'LAST_WEEK_COHOST') + ' prediction: WHICH_TEAM (RIGHTWRONG)');
 		});
 
 		bullet(1, 'Prognostication Stats');
-		bullet(2, 'Pat\'s projections');
-		bullet(3, 'This week: PATS_PROJECTIONS_RECORD_THIS_WEEK');
-		bullet(3, 'Overall: PATS_PROJECTIONS_OVERALL_RECORD');
-		bullet(2, 'The World\'s predictions');
-		bullet(3, 'This week: WORLD_PREDICTIONS_RECORD_THIS_WEEK');
-		bullet(3, 'Overall: WORLD_PREDICTIONS_OVERALL_RECORD');
+		bullet(2, 'Computers');
+		bullet(3, 'This week: COMPUTERS_RECORD_THIS_WEEK');
+		bullet(3, 'Overall: COMPUTERS_OVERALL_RECORD');
+		bullet(2, 'Humans');
+		bullet(3, 'This week: HUMANS_RECORD_THIS_WEEK');
+		bullet(3, 'Overall: HUMANS_OVERALL_RECORD');
 	}
 
 	bullet(0, 'Transactions');
@@ -359,7 +359,7 @@ Promise.all(dataPromises).then(function(values) {
 
 			bullet(2, 'NOTE_ABOUT_' + away.name.toUpperCase().replace(/\//, ''));
 			bullet(2, 'NOTE_ABOUT_' + home.name.toUpperCase().replace(/\//, ''));
-			bullet(2, 'Pat projection: PAT_PROJECTION');
+			bullet(2, 'Computer projection: PAT_PROJECTION');
 			bullet(2, (cohost || 'COHOST') + ' prediction');
 		});
 	}
