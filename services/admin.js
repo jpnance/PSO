@@ -8,7 +8,9 @@ var Budget = require('../models/Budget');
 var Pick = require('../models/Pick');
 var Player = require('../models/Player');
 var Transaction = require('../models/Transaction');
+var SleeperReview = require('../models/SleeperReview');
 var transactionService = require('./transaction');
+var faValidation = require('../helpers/fa-validation');
 var rollbackService = require('./rollback');
 var tz = require('../helpers/timezone');
 var { formatContractYears, getPositionIndex } = require('../helpers/view');
@@ -942,6 +944,12 @@ async function sleeperTransactionsPage(request, response) {
 		processedMap[t.sleeperTransactionId] = t._id;
 	});
 
+	var reviews = await SleeperReview.find({ sleeperTransactionId: { $in: sleeperTxnIds } }).lean();
+	var reviewMap = {};
+	reviews.forEach(function(r) {
+		reviewMap[r.sleeperTransactionId] = r;
+	});
+
 	// Build week array 1-17
 	var weeks = [];
 	for (var w = 1; w <= 17; w++) {
@@ -959,9 +967,390 @@ async function sleeperTransactionsPage(request, response) {
 		playerBySleeperId: playerBySleeperId,
 		franchiseByRosterId: franchiseByRosterId,
 		processedMap: processedMap,
+		reviewMap: reviewMap,
+		ruleResult: request.query.rule || null,
+		ruleMessage: request.query.message || null,
 		error: error,
 		activePage: 'admin'
 	});
+}
+
+function sleeperTransactionsUrl(season, week, params) {
+	var url = '/admin/sleeper-transactions?season=' + season + '&week=' + week;
+	Object.keys(params || {}).forEach(function(key) {
+		url += '&' + key + '=' + encodeURIComponent(params[key]);
+	});
+	return url;
+}
+
+/**
+ * Find a Sleeper claim and make sure it's one the commissioner can rule on:
+ * a completed waiver/free_agent claim in the current season that hasn't been
+ * imported or ruled on already.
+ */
+async function loadRuleableClaim(sleeperTransactionId, season, week) {
+	var config = await LeagueConfig.findById('pso');
+	var activeSeason = config ? config.season : PSO.season;
+
+	if (season !== activeSeason) {
+		return { error: 'Rulings are only possible for the current season' };
+	}
+
+	var weekTxns = await sleeper.fetchTransactions(week, season);
+	var claim = weekTxns.find(function(t) { return t.transaction_id === sleeperTransactionId; });
+
+	if (!claim) {
+		return { error: 'Sleeper transaction ' + sleeperTransactionId + ' not found in week ' + week };
+	}
+	if ((claim.type !== 'waiver' && claim.type !== 'free_agent') || claim.status !== 'complete') {
+		return { error: 'Only completed waiver/free agent claims can be ruled on' };
+	}
+	if (await Transaction.exists({ sleeperTransactionId: sleeperTransactionId })) {
+		return { error: 'This claim has already been processed' };
+	}
+	var review = await SleeperReview.findOne({ sleeperTransactionId: sleeperTransactionId }).lean();
+	if (review && review.status !== 'blocked') {
+		return { error: 'This claim has already been ruled ' + review.status };
+	}
+
+	return { config: config, claim: claim, weekTxns: weekTxns };
+}
+
+/**
+ * Push PSO's available budget to Sleeper for the given rosters.
+ */
+async function syncRosterBudgets(rosterIds, season) {
+	var franchises = await Franchise.find({ rosterId: { $in: rosterIds } }).lean();
+	var toSync = [];
+	for (var i = 0; i < franchises.length; i++) {
+		var budget = await Budget.findOne({ franchiseId: franchises[i]._id, season: season }).lean();
+		if (budget) {
+			toSync.push({ franchiseId: franchises[i]._id, rosterId: franchises[i].rosterId, available: budget.available });
+		}
+	}
+	return sleeper.syncBudgets(toSync);
+}
+
+function budgetSyncNote(result) {
+	if (result.errors.length > 0) {
+		return ' Budget sync to Sleeper failed: ' + result.errors.join('; ');
+	}
+	return '';
+}
+
+// POST /admin/sleeper-transactions/:id/ignore - treat a Sleeper claim as if it never happened
+async function ignoreSleeperTransaction(request, response) {
+	var sleeperTransactionId = request.params.id;
+	var season = parseInt(request.body.season, 10);
+	var week = parseInt(request.body.week, 10);
+
+	try {
+		var loaded = await loadRuleableClaim(sleeperTransactionId, season, week);
+		if (loaded.error) {
+			return response.redirect(sleeperTransactionsUrl(season, week, { rule: 'error', message: loaded.error }));
+		}
+
+		await SleeperReview.updateOne(
+			{ sleeperTransactionId: sleeperTransactionId },
+			{
+				$set: {
+					season: season,
+					week: week,
+					status: 'ignored',
+					ruledAt: new Date(),
+					notes: request.body.notes || undefined
+				}
+			},
+			{ upsert: true }
+		);
+
+		// Sleeper charged FAAB for the claim; put PSO's number back
+		var syncResult = await syncRosterBudgets(loaded.claim.roster_ids || [], season);
+
+		response.redirect(sleeperTransactionsUrl(season, week, {
+			rule: 'success',
+			message: 'Claim ignored. Remember to undo the roster move in Sleeper.' + budgetSyncNote(syncResult)
+		}) + '#txn-' + sleeperTransactionId);
+	} catch (err) {
+		console.error('Ignore Sleeper transaction error:', err);
+		response.redirect(sleeperTransactionsUrl(season, week, { rule: 'error', message: 'Server error: ' + err.message }));
+	}
+}
+
+/**
+ * Sleeper waiver/free_agent transactions in the same week that added the
+ * claim's player — the claim itself plus any losing bids.
+ */
+function findCompetingBids(claim, weekTxns) {
+	var playerIds = Object.keys(claim.adds || {});
+	return weekTxns.filter(function(t) {
+		if (t.type !== 'waiver' && t.type !== 'free_agent') return false;
+		return Object.keys(t.adds || {}).some(function(id) { return playerIds.includes(id); });
+	});
+}
+
+async function franchiseNamesByRosterId(season) {
+	var franchises = await Franchise.find({ rosterId: { $ne: null } }).lean();
+	var regimeMap = buildRegimeMap(await Regime.find({}).lean(), season);
+	var names = {};
+	franchises.forEach(function(f) {
+		names[f.rosterId] = regimeMap[f._id.toString()] || ('Franchise ' + f.rosterId);
+	});
+	return names;
+}
+
+/**
+ * Roster moves the commissioner has to make in Sleeper so it matches a
+ * replacement. Sleeper already applied the original claim (its add and drops
+ * on the claiming roster); the replacement may differ in owner and drops.
+ */
+function sleeperStepsForReplacement(opts) {
+	var steps = [];
+	var claimOwner = opts.franchiseNames[opts.claimRosterId];
+	var newOwner = opts.franchiseNames[opts.rosterId];
+	var sameOwner = opts.claimRosterId === opts.rosterId;
+	var dropIds = opts.drops.map(function(d) { return d.sleeperId; });
+	var claimDropIds = opts.claimDrops.map(function(d) { return d.sleeperId; });
+
+	if (!sameOwner) {
+		opts.addNames.forEach(function(name) {
+			steps.push('move ' + name + ' from ' + claimOwner + ' to ' + newOwner);
+		});
+	}
+	opts.claimDrops.forEach(function(d) {
+		if (!sameOwner || !dropIds.includes(d.sleeperId)) {
+			steps.push('add ' + d.name + ' back to ' + claimOwner);
+		}
+	});
+	opts.drops.forEach(function(d) {
+		if (!sameOwner || !claimDropIds.includes(d.sleeperId)) {
+			steps.push('drop ' + d.name + ' from ' + newOwner);
+		}
+	});
+
+	return steps;
+}
+
+// GET /admin/sleeper-transactions/:id/replace - form for recording a different outcome
+async function replaceSleeperTransactionForm(request, response) {
+	var sleeperTransactionId = request.params.id;
+	var season = parseInt(request.query.season, 10);
+	var week = parseInt(request.query.week, 10);
+
+	try {
+		var loaded = await loadRuleableClaim(sleeperTransactionId, season, week);
+		if (loaded.error) {
+			return response.redirect(sleeperTransactionsUrl(season, week, { rule: 'error', message: loaded.error }));
+		}
+
+		var claimRosterId = (loaded.claim.roster_ids || [])[0];
+		var rosterId = parseInt(request.query.rosterId, 10) || claimRosterId;
+
+		var bids = findCompetingBids(loaded.claim, loaded.weekTxns);
+
+		var sleeperIds = new Set();
+		bids.forEach(function(t) {
+			Object.keys(t.adds || {}).forEach(function(id) { sleeperIds.add(id); });
+			Object.keys(t.drops || {}).forEach(function(id) { sleeperIds.add(id); });
+		});
+		var players = await Player.find({ sleeperId: { $in: Array.from(sleeperIds) } }).lean();
+		var playerBySleeperId = {};
+		players.forEach(function(p) { playerBySleeperId[p.sleeperId] = p; });
+
+		var franchises = await Franchise.find({ rosterId: { $ne: null } }).lean();
+		var regimes = await Regime.find({}).lean();
+		var regimeMap = buildRegimeMap(regimes, season);
+		var franchiseByRosterId = {};
+		franchises.forEach(function(f) {
+			franchiseByRosterId[f.rosterId] = regimeMap[f._id.toString()] || ('Franchise ' + f.rosterId);
+		});
+		var franchiseOptions = franchises
+			.map(function(f) { return { rosterId: f.rosterId, name: franchiseByRosterId[f.rosterId] }; })
+			.sort(function(a, b) { return a.name.localeCompare(b.name); });
+
+		var franchise = franchises.find(function(f) { return f.rosterId === rosterId; });
+		if (!franchise) {
+			return response.redirect(sleeperTransactionsUrl(season, week, { rule: 'error', message: 'No franchise found for roster ' + rosterId }));
+		}
+
+		var contracts = await Contract.find({
+			franchiseId: franchise._id,
+			$or: [
+				{ endYear: { $gte: season } },
+				{ endYear: null, salary: { $ne: null } }
+			]
+		}).populate('playerId').lean();
+		var roster = contracts
+			.filter(function(c) { return c.playerId; })
+			.map(function(c) {
+				return {
+					playerId: c.playerId._id.toString(),
+					sleeperId: c.playerId.sleeperId,
+					name: c.playerId.name,
+					positions: c.playerId.positions,
+					salary: c.salary,
+					startYear: c.startYear,
+					endYear: c.endYear
+				};
+			})
+			.sort(function(a, b) { return a.name.localeCompare(b.name); });
+
+		// Start with whatever this owner dropped in their own bid on the player, if they bid
+		var ownBid = bids.find(function(t) { return (t.roster_ids || [])[0] === rosterId; });
+		var ownBidDrops = ownBid ? Object.keys(ownBid.drops || {}) : [];
+		var checkedDropIds = request.query.drops
+			? [].concat(request.query.drops)
+			: roster.filter(function(r) { return ownBidDrops.includes(r.sleeperId); }).map(function(r) { return r.playerId; });
+
+		response.render('admin-sleeper-replace', {
+			claim: loaded.claim,
+			bids: bids,
+			season: season,
+			week: week,
+			playerBySleeperId: playerBySleeperId,
+			franchiseByRosterId: franchiseByRosterId,
+			franchiseOptions: franchiseOptions,
+			rosterId: rosterId,
+			roster: roster,
+			checkedDropIds: checkedDropIds,
+			salary: request.query.salary || '',
+			notes: request.query.notes || '',
+			error: request.query.error || null,
+			activePage: 'admin'
+		});
+	} catch (err) {
+		console.error('Replace Sleeper transaction form error:', err);
+		response.redirect(sleeperTransactionsUrl(season, week, { rule: 'error', message: 'Server error: ' + err.message }));
+	}
+}
+
+// POST /admin/sleeper-transactions/:id/replace - record a different FA transaction in place of a Sleeper claim
+async function replaceSleeperTransaction(request, response) {
+	var sleeperTransactionId = request.params.id;
+	var season = parseInt(request.body.season, 10);
+	var week = parseInt(request.body.week, 10);
+	var salary = parseInt(request.body.salary, 10);
+	var rosterId = parseInt(request.body.rosterId, 10);
+	var dropPlayerIds = [].concat(request.body.drops || []);
+
+	function formError(message) {
+		var url = '/admin/sleeper-transactions/' + sleeperTransactionId + '/replace?season=' + season + '&week=' + week +
+			'&rosterId=' + rosterId + '&salary=' + encodeURIComponent(request.body.salary || '') +
+			'&notes=' + encodeURIComponent(request.body.notes || '');
+		dropPlayerIds.forEach(function(id) { url += '&drops=' + encodeURIComponent(id); });
+		return response.redirect(url + '&error=' + encodeURIComponent(message));
+	}
+
+	try {
+		var loaded = await loadRuleableClaim(sleeperTransactionId, season, week);
+		if (loaded.error) {
+			return response.redirect(sleeperTransactionsUrl(season, week, { rule: 'error', message: loaded.error }));
+		}
+
+		if (isNaN(salary) || salary < 1) {
+			return formError('Salary must be at least $1');
+		}
+
+		var franchise = await Franchise.findOne({ rosterId: rosterId }).lean();
+		if (!franchise) {
+			return formError('No franchise found for roster ' + rosterId);
+		}
+
+		var claimRosterId = (loaded.claim.roster_ids || [])[0];
+		var addSleeperIds = Object.keys(loaded.claim.adds || {});
+		var claimDropSleeperIds = Object.keys(loaded.claim.drops || {});
+
+		var claimPlayers = await Player.find({ sleeperId: { $in: addSleeperIds.concat(claimDropSleeperIds) } }).lean();
+		var playerBySleeperId = {};
+		claimPlayers.forEach(function(p) { playerBySleeperId[p.sleeperId] = p; });
+
+		var missing = addSleeperIds.filter(function(id) { return !playerBySleeperId[id]; });
+		if (missing.length > 0) {
+			return formError('Unknown Sleeper player(s): ' + missing.join(', '));
+		}
+
+		var dropPlayers = await Player.find({ _id: { $in: dropPlayerIds } }).lean();
+		if (dropPlayers.length !== dropPlayerIds.length) {
+			return formError('Unknown player(s) selected to drop');
+		}
+
+		var adds = addSleeperIds.map(function(id) { return { playerId: playerBySleeperId[id]._id, salary: salary }; });
+		var drops = dropPlayers.map(function(p) { return { playerId: p._id }; });
+		var timestamp = sleeper.getEffectiveTimestamp(loaded.claim, loaded.config.faab);
+
+		var validation = await faValidation.validateTransaction({
+			franchiseId: franchise._id,
+			season: season,
+			adds: adds,
+			drops: drops,
+			bidAmount: salary,
+			transactionType: 'waiver',
+			timestamp: timestamp
+		});
+		if (!validation.valid) {
+			return formError(validation.errors.join('; '));
+		}
+
+		var notes = 'Replaces Sleeper claim ' + sleeperTransactionId + '.';
+		if (request.body.notes) {
+			notes += ' ' + request.body.notes;
+		}
+
+		var result = await transactionService.processFA({
+			franchiseId: franchise._id,
+			adds: adds,
+			drops: drops,
+			timestamp: timestamp,
+			source: 'manual',
+			notes: notes
+		});
+		if (!result.success) {
+			return formError((result.errors || ['Unknown error']).join('; '));
+		}
+
+		await SleeperReview.updateOne(
+			{ sleeperTransactionId: sleeperTransactionId },
+			{
+				$set: {
+					season: season,
+					week: week,
+					status: 'replaced',
+					ruledAt: new Date(),
+					notes: request.body.notes || undefined,
+					replacementTransactionId: result.transaction._id
+				}
+			},
+			{ upsert: true }
+		);
+
+		var rosterIds = [claimRosterId, rosterId];
+		var syncResult = await syncRosterBudgets(rosterIds, season);
+
+		var franchiseNames = await franchiseNamesByRosterId(season);
+		var sleeperSteps = sleeperStepsForReplacement({
+			claimRosterId: claimRosterId,
+			rosterId: rosterId,
+			addNames: addSleeperIds.map(function(id) { return playerBySleeperId[id].name; }),
+			claimDrops: claimDropSleeperIds.map(function(id) {
+				return { sleeperId: id, name: playerBySleeperId[id] ? playerBySleeperId[id].name : 'Player ' + id };
+			}),
+			drops: dropPlayers.map(function(p) { return { sleeperId: p.sleeperId, name: p.name }; }),
+			franchiseNames: franchiseNames
+		});
+
+		var message = 'Replacement recorded.';
+		if (sleeperSteps.length > 0) {
+			message += ' To match in Sleeper: ' + sleeperSteps.join('; ') + '.';
+		}
+
+		response.redirect(sleeperTransactionsUrl(season, week, {
+			rule: 'success',
+			message: message + budgetSyncNote(syncResult)
+		}) + '#txn-' + sleeperTransactionId);
+	} catch (err) {
+		console.error('Replace Sleeper transaction error:', err);
+		formError('Server error: ' + err.message);
+	}
 }
 
 // GET /admin/contracts - show pending players with contract choices for all franchises
@@ -1140,5 +1529,8 @@ module.exports = {
 	sanityPage: sanityPage,
 	transactionsPage: transactionsPage,
 	rollbackTransaction: rollbackTransaction,
-	sleeperTransactionsPage: sleeperTransactionsPage
+	sleeperTransactionsPage: sleeperTransactionsPage,
+	ignoreSleeperTransaction: ignoreSleeperTransaction,
+	replaceSleeperTransactionForm: replaceSleeperTransactionForm,
+	replaceSleeperTransaction: replaceSleeperTransaction
 };

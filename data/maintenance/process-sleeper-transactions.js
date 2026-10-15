@@ -6,12 +6,14 @@
  * This script:
  * 1. Fetches transactions from Sleeper for current + previous week
  * 2. Filters to waiver (FAAB) and free_agent types
- * 3. Validates each transaction against PSO state
- * 4. Simulates processing to predict final roster state
- * 5. Compares predicted state against actual Sleeper rosters
- * 6. If match: processes transactions for real
- * 7. Syncs budgets back to Sleeper
- * 8. Posts drop notifications to GroupMe
+ * 3. Skips transactions the commissioner has ruled on (ignored/replaced)
+ * 4. Validates each transaction against PSO state; if any fail, nothing is
+ *    processed and the failures are recorded as blocked (alerting once each)
+ * 5. Simulates processing to predict final roster state
+ * 6. Compares predicted state against actual Sleeper rosters
+ * 7. If match: processes transactions for real
+ * 8. Syncs budgets back to Sleeper
+ * 9. Posts drop notifications to GroupMe
  * 
  * Usage:
  *   runt process-sleeper-transactions --dry-run
@@ -22,6 +24,7 @@ var dotenv = require('dotenv').config({ path: __dirname + '/../../.env' });
 var mongoose = require('mongoose');
 
 var Transaction = require('../../models/Transaction');
+var SleeperReview = require('../../models/SleeperReview');
 var Contract = require('../../models/Contract');
 var Player = require('../../models/Player');
 var Franchise = require('../../models/Franchise');
@@ -142,13 +145,7 @@ function transformTransaction(sleeperTxn, lookups, config) {
 		});
 	}
 	
-	// Determine timestamp - use status_updated (when transaction was processed)
-	// For waiver: this is when FAAB ran (not when bid was placed)
-	// For free_agent: same as created (instant)
-	var timestamp = new Date(sleeperTxn.status_updated);
-	if (sleeperTxn.type === 'waiver') {
-		timestamp = tz.anchorToFAABTime(timestamp, config.faab);
-	}
+	var timestamp = sleeperHelper.getEffectiveTimestamp(sleeperTxn, config.faab);
 	
 	// Get bid amount for waiver transactions
 	var bidAmount = 0;
@@ -280,7 +277,7 @@ function compareRosters(expected, actual) {
  */
 function formatTransaction(txn, lookups) {
 	var parts = [];
-	parts.push('[' + txn.type + '] ' + txn.franchise.displayName);
+	parts.push('[' + txn.type + '] ' + (txn.franchise ? txn.franchise.displayName : 'Unknown franchise'));
 	
 	if (txn.adds.length > 0) {
 		parts.push('  + ' + txn.adds.map(function(a) { return a.name; }).join(', '));
@@ -293,6 +290,14 @@ function formatTransaction(txn, lookups) {
 	}
 	
 	return parts.join('\n');
+}
+
+/**
+ * Admin page link for ruling on a blocked transaction
+ */
+function reviewUrl(season, txn) {
+	return 'https://thedynastyleague.com/admin/sleeper-transactions?season=' + season +
+		'&week=' + txn.raw.leg + '#txn-' + txn.sleeperTransactionId;
 }
 
 /**
@@ -385,9 +390,18 @@ async function main() {
 	}
 	console.log('');
 	
+	var reviews = await SleeperReview.find({
+		sleeperTransactionId: { $in: relevantTxns.map(function(t) { return t.transaction_id; }) }
+	}).lean();
+	var reviewBySleeperId = {};
+	reviews.forEach(function(r) {
+		reviewBySleeperId[r.sleeperTransactionId] = r;
+	});
+	
 	// Transform and filter already-processed
 	var toProcess = [];
-	var skipped = { processed: 0, invalid: 0, commissioner: 0 };
+	var blocked = [];
+	var skipped = { processed: 0, ruled: 0, invalid: 0, commissioner: 0 };
 	
 	for (var i = 0; i < relevantTxns.length; i++) {
 		var sleeperTxn = relevantTxns[i];
@@ -405,6 +419,13 @@ async function main() {
 			continue;
 		}
 		
+		var review = reviewBySleeperId[sleeperTxn.transaction_id];
+		if (review && review.status !== 'blocked') {
+			skipped.ruled++;
+			if (VERBOSE) console.log('Ruled ' + review.status + ' by commissioner: ' + sleeperTxn.transaction_id);
+			continue;
+		}
+		
 		// Transform
 		var txn = transformTransaction(sleeperTxn, lookups, config);
 		
@@ -417,13 +438,7 @@ async function main() {
 			console.log('  Errors: ' + validation.errors.join('; '));
 			console.log('');
 			
-			// Alert commissioner about validation failure
-			var alertMsg = 'Sleeper transaction validation failed!\n\n' +
-				'Transaction: ' + txn.sleeperTransactionId + '\n' +
-				'Type: ' + txn.type + '\n' +
-				'Franchise: ' + (txn.franchise ? txn.franchise.displayName : 'Unknown') + '\n' +
-				'Errors: ' + validation.errors.join('; ');
-			await notifications.alertCommissioner(alertMsg, { priority: 'high' });
+			blocked.push({ txn: txn, errors: validation.errors, review: review });
 			continue;
 		}
 		
@@ -432,7 +447,52 @@ async function main() {
 	
 	console.log('Transactions to process: ' + toProcess.length);
 	console.log('Skipped: ' + skipped.processed + ' already processed, ' + 
+		skipped.ruled + ' ruled by commissioner, ' +
 		skipped.invalid + ' invalid, ' + skipped.commissioner + ' commissioner\n');
+	
+	// === ALL-OR-NOTHING ===
+	// Any invalid claim holds up the whole batch until the commissioner rules on it.
+	if (blocked.length > 0) {
+		console.error('BLOCKED: ' + blocked.length + ' invalid transaction(s). Nothing will be processed until each is fixed or ruled on.\n');
+		
+		if (DRY_RUN) {
+			console.log('DRY RUN - not recording blocks or alerting.');
+			await mongoose.disconnect();
+			return;
+		}
+		
+		var newlyBlocked = [];
+		for (var i = 0; i < blocked.length; i++) {
+			var b = blocked[i];
+			await SleeperReview.updateOne(
+				{ sleeperTransactionId: b.txn.sleeperTransactionId },
+				{
+					$set: {
+						season: season,
+						week: b.txn.raw.leg,
+						status: 'blocked',
+						problems: b.errors
+					},
+					$setOnInsert: { alertedAt: new Date() }
+				},
+				{ upsert: true }
+			);
+			if (!b.review) newlyBlocked.push(b);
+		}
+		
+		if (newlyBlocked.length > 0) {
+			var alertMsg = 'Sleeper import blocked! No transactions will be processed until these are fixed or ruled on:\n';
+			newlyBlocked.forEach(function(b) {
+				alertMsg += '\n' + formatTransaction(b.txn, lookups) + '\n' +
+					'  Errors: ' + b.errors.join('; ') + '\n' +
+					'  ' + reviewUrl(season, b.txn) + '\n';
+			});
+			await notifications.alertCommissioner(alertMsg, { priority: 'high' });
+		}
+		
+		await mongoose.disconnect();
+		return;
+	}
 	
 	if (toProcess.length === 0) {
 		console.log('Nothing to process.');
@@ -591,6 +651,9 @@ async function main() {
 			if (result.success) {
 				processed++;
 				console.log('  -> Created transaction: ' + result.transaction._id);
+				
+				// Clear any block left over from an earlier run (e.g. budget fixed since)
+				await SleeperReview.deleteOne({ sleeperTransactionId: txn.sleeperTransactionId, status: 'blocked' });
 				
 				// Queue drops for notification (only midweek drops, not FAAB-related drops)
 				if (txn.type === 'free_agent' && txn.drops.length > 0) {

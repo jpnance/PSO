@@ -1,5 +1,6 @@
 var PSO = require('../config/pso');
 var notifications = require('./notifications');
+var tz = require('./timezone');
 
 var SLEEPER_MAX_BUDGET = 10000;
 var SLEEPER_DISPLAY_OFFSET = 1000;
@@ -292,8 +293,26 @@ async function fetchTransactions(week, season) {
 	return response.json();
 }
 
+/**
+ * When a Sleeper waiver/free_agent transaction takes effect in PSO.
+ * Waivers are anchored to the FAAB run that processed them (not when the bid
+ * was placed); free agent moves are instant.
+ *
+ * @param {Object} sleeperTxn - Sleeper transaction object
+ * @param {*} faabConfig - LeagueConfig.faab
+ * @returns {Date}
+ */
+function getEffectiveTimestamp(sleeperTxn, faabConfig) {
+	var timestamp = new Date(sleeperTxn.status_updated);
+	if (sleeperTxn.type === 'waiver') {
+		timestamp = tz.anchorToFAABTime(timestamp, faabConfig);
+	}
+	return timestamp;
+}
+
 module.exports = {
 	getLeagueId: getLeagueId,
+	getEffectiveTimestamp: getEffectiveTimestamp,
 	fetchRosterSettings: fetchRosterSettings,
 	fetchSleeperRosters: fetchSleeperRosters,
 	fetchTransactions: fetchTransactions,

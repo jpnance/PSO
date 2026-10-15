@@ -1,0 +1,77 @@
+extends layout.pug
+include mixins
+
+block title
+	+title('Replace Claim', 'Sleeper Transactions', 'Admin')
+
+block styles
+	link(rel='stylesheet' href='/css/positions.css')
+	link(rel='stylesheet' href='/css/admin-sleeper-transactions.css')
+
+block content
+	- var claimRosterId = (claim.roster_ids || [])[0]
+	- var addedNames = Object.keys(claim.adds || {}).map(function(id) { return playerBySleeperId[id] ? playerBySleeperId[id].name : 'Player ' + id })
+	div.container.py-4
+		div.page-header
+			h1 Replace Sleeper Claim
+
+		div.row
+			div.col-lg-8
+				p
+					| Sleeper claim 
+					code= claim.transaction_id
+					|  (#{franchiseByRosterId[claimRosterId]} adding #{addedNames.join(', ')}) will be treated as if it never happened, and the pickup below will be recorded in its place.
+
+				if error
+					+alertBanner('danger', 'fa-times-circle', error).mb-4
+
+				h2.h5 Bids on #{addedNames.join(', ')} this week
+				each bid in bids
+					- var bidRosterId = (bid.roster_ids || [])[0]
+					div.sleeper-replace__bid
+						strong= franchiseByRosterId[bidRosterId] || ('Roster ' + bidRosterId)
+						if bid.settings && bid.settings.waiver_bid !== undefined
+							|  bid #{formatMoney(bid.settings.waiver_bid)}
+						if bid.transaction_id === claim.transaction_id
+							|  (this claim)
+						else
+							|  (#{bid.status})
+						if bid.drops
+							div.sleeper-replace__bid-detail
+								| Dropping 
+								= Object.keys(bid.drops).map(function(id) { return playerBySleeperId[id] ? playerBySleeperId[id].name : 'Player ' + id }).join(', ')
+
+				form.mt-4(method='GET' action='/admin/sleeper-transactions/' + claim.transaction_id + '/replace')
+					input(type='hidden' name='season' value=season)
+					input(type='hidden' name='week' value=week)
+					div.form-group
+						label(for='rosterId') Award #{addedNames.join(', ')} to
+						select#rosterId.form-control.sleeper-replace__owner(name='rosterId' onchange='this.form.submit()')
+							each option in franchiseOptions
+								option(value=option.rosterId selected=(option.rosterId === rosterId))= option.name
+
+				form(method='POST' action='/admin/sleeper-transactions/' + claim.transaction_id + '/replace')
+					input(type='hidden' name='season' value=season)
+					input(type='hidden' name='week' value=week)
+					input(type='hidden' name='rosterId' value=rosterId)
+
+					div.form-group
+						label(for='salary') Salary
+						input#salary.form-control.sleeper-replace__salary(type='number' name='salary' min='1' step='1' value=salary required)
+
+					div.form-group
+						label Drop from #{franchiseByRosterId[rosterId]}
+						div.sleeper-replace__roster
+							each player in roster
+								label.sleeper-replace__roster-player
+									input.mr-2(type='checkbox' name='drops' value=player.playerId checked=checkedDropIds.includes(player.playerId))
+									+positionBadge(player.positions)
+									span.ml-1= player.name
+									span.sleeper-replace__bid-detail.ml-2 #{formatMoney(player.salary)} · #{formatContractYears(player.startYear, player.endYear)}
+
+					div.form-group
+						label(for='notes') Notes
+						input#notes.form-control(type='text' name='notes' value=notes placeholder='e.g. Illegal $4 bid; awarded to second bidder')
+
+					button.btn.btn-primary(type='submit') Record Replacement
+					a.btn.btn-link(href='/admin/sleeper-transactions?season=' + season + '&week=' + week + '#txn-' + claim.transaction_id) Cancel

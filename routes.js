@@ -138,6 +138,9 @@ module.exports = function(app) {
 	app.get('/admin/transactions', requireLogin, requireAdmin, admin.transactionsPage);
 	app.post('/admin/transactions/:id/rollback', requireLogin, requireAdmin, admin.rollbackTransaction);
 	app.get('/admin/sleeper-transactions', requireLogin, requireAdmin, admin.sleeperTransactionsPage);
+	app.post('/admin/sleeper-transactions/:id/ignore', requireLogin, requireAdmin, admin.ignoreSleeperTransaction);
+	app.get('/admin/sleeper-transactions/:id/replace', requireLogin, requireAdmin, admin.replaceSleeperTransactionForm);
+	app.post('/admin/sleeper-transactions/:id/replace', requireLogin, requireAdmin, admin.replaceSleeperTransaction);
 	
 	// Player management (require login + admin)
 	app.get('/admin/players', requireLogin, requireAdmin, adminPlayers.listPlayers);
