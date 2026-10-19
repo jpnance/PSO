@@ -697,14 +697,14 @@ var newSheetsPromise = function(fantraxId) {
 						salary: row[5] ? parseInt(row[5].substring(1)) : null
 					};
 
-					if (player.end == '2024') {
+					if (player.end == '2025') {
 						player.salary = 0;
 
-						if (player.start == '2023' || player.start == '2022') {
+						if (player.start == '2024' || player.start == '2023') {
 							player.rfa = true;
 							player.contract = 'RFA';
 						}
-						else if (player.start != '2025') {
+						else if (player.start != '2026') {
 							player.ufa = true;
 							player.contract = 'UFA';
 
