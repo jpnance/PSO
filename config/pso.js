@@ -4,31 +4,31 @@ module.exports.season = 2026;
 module.exports.auctionUsers = {
 	anthony: 'Anthony',
 	brett: 'Brett',
-	jason: 'Jason',
+	jasonChad: 'Jason/Chad',
+	joel: 'Joel',
 	justin: 'Justin',
 	keyon: 'Keyon',
 	luke: 'Luke',
 	mike: 'Mike',
-	mitchKarsten: 'Mitch/Karsten',
-	nam: 'Nam',
+	mitch: 'Mitch',
 	patrick: 'Patrick',
-	quinn: 'Quinn',
-	schexes: 'Schexes'
+	paul: 'Paul',
+	schexKevin: 'Schex/Kevin'
 };
 
 module.exports.nominationOrder = [
 	'Anthony',
 	'Brett',
-	'Jason',
+	'Jason/Chad',
+	'Joel',
 	'Justin',
 	'Keyon',
 	'Luke',
 	'Mike',
-	'Mitch/Karsten',
-	'Nam',
+	'Mitch',
 	'Patrick',
-	'Quinn',
-	'Schexes'
+	'Paul',
+	'Schex/Kevin'
 ];
 
 module.exports.franchises = {
