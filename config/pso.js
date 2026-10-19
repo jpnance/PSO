@@ -2,18 +2,18 @@
 module.exports.season = 2026;
 
 module.exports.auctionUsers = {
-	anthony: 'f57e',
-	brett: '636a',
-	jasonChad: 'b603',
-	joel: 'c316',
-	justin: '1478',
-	keyon: 'd3a8',
-	luke: '4fa3',
-	mike: 'f49a',
-	mitch: '674d',
-	patrick: '165b',
-	paul: '4c03',
-	schexKevin: 'dc89'
+	'f57e': 'Anthony',
+	'636a': 'Brett',
+	'b603': 'Jason/Chad',
+	'c316': 'Joel',
+	'1478': 'Justin',
+	'd3a8': 'Keyon',
+	'4fa3': 'Luke',
+	'f49a': 'Mike',
+	'674d': 'Mitch',
+	'165b': 'Patrick',
+	'4c03': 'Paul',
+	'dc89': 'Schex/Kevin'
 };
 
 module.exports.nominationOrder = [
