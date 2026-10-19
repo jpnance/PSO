@@ -52,6 +52,32 @@ var franchiseCache = {
 	loaded: false
 };
 
+// Set by clients via setLeague (from static HTML auctionLeague); default PSO.
+var auctionLeague = 'pso';
+
+function setAuctionLeague(league) {
+	if (league === 'pso' || league === 'colbys') {
+		auctionLeague = league;
+		if (league === 'colbys') {
+			franchiseCache.loaded = false;
+		}
+	}
+}
+
+function resolveAuctionLeague(socket, leagueHint) {
+	if (leagueHint === 'colbys' || leagueHint === 'pso') {
+		return leagueHint;
+	}
+	if (socket && (socket.auctionLeague === 'colbys' || socket.auctionLeague === 'pso')) {
+		return socket.auctionLeague;
+	}
+	return auctionLeague;
+}
+
+function enforcePsoFranchiseLimits(socket, leagueHint) {
+	return resolveAuctionLeague(socket, leagueHint) === 'pso';
+}
+
 async function loadFranchiseCache() {
 	try {
 		var config = await LeagueConfig.findById('pso');
@@ -76,7 +102,14 @@ async function loadFranchiseCache() {
 			budgets[b.franchiseId.toString()] = b.available;
 		});
 
-		var contracts = await Contract.find({ franchiseId: { $in: franchiseIds }, salary: { $ne: null } }).lean();
+		// Match helpers/fa-validation.checkRosterSpace — ignore expired contracts
+		var contracts = await Contract.find({
+			franchiseId: { $in: franchiseIds },
+			$or: [
+				{ endYear: { $gte: season } },
+				{ endYear: null, salary: { $ne: null } }
+			]
+		}).lean();
 		var rosterCounts = {};
 		contracts.forEach(function(c) {
 			var fId = c.franchiseId.toString();
@@ -94,8 +127,12 @@ async function loadFranchiseCache() {
 	}
 }
 
-async function activateAuction() {
-	await loadFranchiseCache();
+async function activateAuction(leagueHint) {
+	if (enforcePsoFranchiseLimits(null, leagueHint)) {
+		await loadFranchiseCache();
+	} else {
+		franchiseCache.loaded = false;
+	}
 
 	auction.status = 'active';
 
@@ -125,6 +162,9 @@ function callRoll() {
 };
 
 function makeBid(bid, socket) {
+	var leagueHint = bid.league;
+	delete bid.league;
+
 	if (bid.force && bid.owner && bid.amount) {
 		auction.bids.unshift({
 			owner: bid.owner,
@@ -162,7 +202,7 @@ function makeBid(bid, socket) {
 		return;
 	}
 
-	if (franchiseCache.loaded) {
+	if (enforcePsoFranchiseLimits(socket, leagueHint) && franchiseCache.loaded) {
 		var franchiseId = franchiseCache.ownerToFranchiseId[owner];
 
 		if (franchiseId) {
@@ -420,8 +460,15 @@ module.exports.handleConnection = async function(socket, request) {
 function handleMessage(socket, rawMessage) {
 	var { type, value } = JSON.parse(rawMessage.toString());
 
-	if (type == 'activate') {
-		activateAuction();
+	if (type == 'setLeague') {
+		socket.auctionLeague = value;
+		setAuctionLeague(value);
+	}
+	else if (type == 'activate') {
+		if (value === 'colbys' || value === 'pso') {
+			setAuctionLeague(value);
+		}
+		activateAuction(value);
 	}
 	else if (type == 'callRoll') {
 		callRoll();

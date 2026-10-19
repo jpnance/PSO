@@ -36,7 +36,8 @@ $(document).ready(function() {
 		$('#nomination-form #player-search').val('');
 
 		socket.send(JSON.stringify({
-			type: 'activate'
+			type: 'activate',
+			value: typeof auctionLeague !== 'undefined' ? auctionLeague : 'pso'
 		}));
 	});
 
@@ -46,6 +47,10 @@ $(document).ready(function() {
 		if ($(this).find('#force-bid').length > 0) {
 			newBid.force = true;
 			newBid.owner = $(this).find('#owner').val();
+		}
+
+		if (typeof auctionLeague !== 'undefined') {
+			newBid.league = auctionLeague;
 		}
 
 		e.preventDefault();
@@ -669,6 +674,10 @@ function connectToWebSocket() {
 		if (reconnectTimeout) {
 			clearTimeout(reconnectTimeout);
 			reconnectTimeout = null;
+		}
+
+		if (typeof auctionLeague !== 'undefined') {
+			socket.send(JSON.stringify({ type: 'setLeague', value: auctionLeague }));
 		}
 
 		reconnectDialog.close();

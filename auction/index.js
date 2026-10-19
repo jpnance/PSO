@@ -268,7 +268,8 @@ function run() {
 			fs.writeFileSync(path.join(auctionDir, 'index.html'), compiledPug({
 				owners: owners,
 				referenceSite: siteData[parameters.site].referenceSite,
-				webSocketUrl: process.env.WEB_SOCKET_URL
+				webSocketUrl: process.env.WEB_SOCKET_URL,
+				auctionLeague: parameters.site
 			}));
 
 			var compiledPugAdmin = pug.compileFile(path.join(__dirname, '../views/auction-admin.pug'));
@@ -277,7 +278,8 @@ function run() {
 				situations: situations,
 				owners: owners,
 				referenceSite: siteData[parameters.site].referenceSite,
-				webSocketUrl: process.env.WEB_SOCKET_URL
+				webSocketUrl: process.env.WEB_SOCKET_URL,
+				auctionLeague: parameters.site
 			}));
 		}
 

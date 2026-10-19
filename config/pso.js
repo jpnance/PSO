@@ -111,7 +111,7 @@ module.exports.sleeperLeagueIds = {
 	2021: '746826510043856896'
 };
 
-module.exports.fantraxLeagueId = '39re5lj3mfy64oww';
+module.exports.fantraxLeagueId = '94tbizurmuddx0ej';
 
 module.exports.fantraxAbbreviations = {
 	'SCHX': 'Schex',

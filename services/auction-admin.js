@@ -65,6 +65,7 @@ async function adminPage(request, response) {
 		situations: situations,
 		referenceSite: 'https://www.pro-football-reference.com/search/search.fcgi?search=',
 		webSocketUrl: process.env.WEB_SOCKET_URL,
+		auctionLeague: 'pso',
 		season: season
 	});
 }

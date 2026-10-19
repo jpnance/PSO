@@ -3,6 +3,7 @@ html
 	head
 		meta(charset='utf-8')
 		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		| <!-- auction-league: #{auctionLeague} -->
 
 		link(rel='stylesheet' href='/css/bootstrap.min.css')
 
@@ -18,6 +19,7 @@ html
 			const referenceSite = !{JSON.stringify(referenceSite)};
 			const owners = !{JSON.stringify(owners)};
 			const webSocketUrl = !{JSON.stringify(webSocketUrl)};
+			const auctionLeague = !{JSON.stringify(auctionLeague)};
 
 		script(src='/js/auction.js')
 

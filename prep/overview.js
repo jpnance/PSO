@@ -161,6 +161,43 @@ process.argv.forEach(function(value, index, array) {
 	}
 });
 
+if (parameters.site === 'colbys' && parameters.query.gp === 40) {
+	parameters.query.gp = 1;
+}
+
+function colbysTypicalProjectionGames(lines, gpColIndex) {
+	var counts = {};
+
+	lines.slice(1).forEach(function(line) {
+		var fields = line.replace(/^\"/, '').split(/","/);
+		var gp = parseInt(fields[gpColIndex], 10);
+
+		if (gp >= 1 && gp <= 10) {
+			counts[gp] = (counts[gp] || 0) + 1;
+		}
+	});
+
+	var best = 3;
+	var bestCount = 0;
+
+	Object.keys(counts).forEach(function(key) {
+		if (counts[key] > bestCount) {
+			bestCount = counts[key];
+			best = parseInt(key, 10);
+		}
+	});
+
+	return best;
+}
+
+function colbysGamesPlayedForPerGameRates(rawGp, fallback) {
+	if (rawGp >= 1 && rawGp <= 82) {
+		return rawGp;
+	}
+
+	return fallback;
+}
+
 var contractStyler = function(contract) {
 	var colors = {
 		UFA: '\x1b[1m\x1b[38;5;10m',
@@ -261,11 +298,6 @@ var displayPlayers = function(players) {
 				label: '',
 				styler: salaryStyler,
 				padLength: 4
-			},
-			{
-				path: 'fantraxProjections.gamesPlayed',
-				label: 'GP',
-				padLength: 3
 			},
 			{
 				path: 'fantraxProjections.rating.fg%',
@@ -551,40 +583,46 @@ var newCsvPromise = function(players) {
 		}
 		else if (parameters.site == 'colbys') {
 			fs.readFile('./colbys.csv', function(error, data) {
-				var csvLines = data.toString();
+				var lines = data.toString().split(/\n/).filter(function(line) {
+					return line.trim().length > 0;
+				});
 
-				csvLines.split(/\n/).forEach((csvLine, i) => {
-					if (i == 0) {
-						return;
+				if (lines.length === 0) {
+					return resolve(players);
+				}
+
+				var headerFields = lines[0].replace(/^\"/, '').split(/","/).map(function(field) {
+					return field.replace(/\"$/, '');
+				});
+
+				function colbysColumnIndex(headerName) {
+					var index = headerFields.indexOf(headerName);
+
+					if (index === -1) {
+						throw new Error('colbys.csv missing expected column: ' + headerName);
 					}
 
-					// "ID","Player","Team","Position","RkOv","Status","Age","Opponent","Salary","Contract","Score","%D","ADP","GP","FG%","3PTM","FTM","FT%","PTS","REB","AST","ST","BLK","TO"
+					return index;
+				}
 
-					// 0 => "ID"
-					// 1 => "Player"
-					// 2 => "Team"
-					// 3 => "Position"
-					// 4 => "RkOv"
-					// 5 => "Status"
-					// 6 => "Age"
-					// 7 => "Opponent"
-					// 8 => "Salary"
-					// 9 => "Contract"
-					// 10 => "Score"
-					// 11 => "%D"
-					// 12 => "ADP"
-					// 13 => "GP"
-					// 14 => "FG%"
-					// 15 => "3PTM"
-					// 16 => "FTM"
-					// 17 => "FT%"
-					// 18 => "PTS"
-					// 19 => "REB"
-					// 20 => "AST"
-					// 21 => "ST"
-					// 22 => "BLK"
-					// 23 => "TO"
+				var colbysGpFallback = colbysTypicalProjectionGames(lines, colbysColumnIndex('GP'));
 
+				var col = {
+					score: colbysColumnIndex('Score'),
+					gp: colbysColumnIndex('GP'),
+					'fg%': colbysColumnIndex('FG%'),
+					'3pm': colbysColumnIndex('3PTM'),
+					ftm: colbysColumnIndex('FTM'),
+					'ft%': colbysColumnIndex('FT%'),
+					pts: colbysColumnIndex('PTS'),
+					reb: colbysColumnIndex('REB'),
+					ast: colbysColumnIndex('AST'),
+					stl: colbysColumnIndex('ST'),
+					blk: colbysColumnIndex('BLK'),
+					to: colbysColumnIndex('TO')
+				};
+
+				lines.slice(1).forEach(function(csvLine) {
 					var fields = csvLine.replace(/^\"/, '').split(/","/);
 
 					if (fields.length == 1) {
@@ -595,18 +633,19 @@ var newCsvPromise = function(players) {
 						name: fields[1],
 						team: fields[2],
 						positions: fields[3].split(/,/),
-						score: parseFloat(fields[10]),
-						gamesPlayed: parseInt(fields[13]),
-						'fg%': parseFloat(fields[14]),
-						'3pm': parseInt(fields[15]),
-						ftm: parseInt(fields[16]),
-						'ft%': parseFloat(fields[17]),
-						pts: parseInt(fields[18]),
-						reb: parseInt(fields[19]),
-						ast: parseInt(fields[20]),
-						stl: parseInt(fields[21]),
-						blk: parseInt(fields[22]),
-						to: parseInt(fields[23])
+						score: parseFloat(fields[col.score]),
+						gamesPlayed: parseInt(fields[col.gp], 10),
+						gamesPlayedForRates: colbysGamesPlayedForPerGameRates(parseInt(fields[col.gp], 10), colbysGpFallback),
+						'fg%': parseFloat(fields[col['fg%']]),
+						'3pm': parseFloat(fields[col['3pm']]),
+						ftm: parseFloat(fields[col.ftm]),
+						'ft%': parseFloat(fields[col['ft%']]),
+						pts: parseFloat(fields[col.pts]),
+						reb: parseFloat(fields[col.reb]),
+						ast: parseFloat(fields[col.ast]),
+						stl: parseFloat(fields[col.stl]),
+						blk: parseFloat(fields[col.blk]),
+						to: parseFloat(fields[col.to])
 					};
 
 					var id = nameToId(row.name);
@@ -626,6 +665,7 @@ var newCsvPromise = function(players) {
 
 						// colbys
 						player.fantraxProjections.gamesPlayed = row.gamesPlayed;
+						player.fantraxProjections.gamesPlayedForRates = row.gamesPlayedForRates;
 
 						player.fantraxProjections.score = row.score;
 						player.fantraxProjections.ratingSum = 0;
@@ -643,7 +683,7 @@ var newCsvPromise = function(players) {
 
 						Object.keys(player.fantraxProjections.raw).forEach(statKey => {
 							if (!statKey.includes('%')) {
-								player.fantraxProjections.perGame[statKey] = parseFloat((player.fantraxProjections.raw[statKey] / player.fantraxProjections.gamesPlayed).toFixed(3));
+								player.fantraxProjections.perGame[statKey] = parseFloat((player.fantraxProjections.raw[statKey] / player.fantraxProjections.gamesPlayedForRates).toFixed(3));
 							}
 							else {
 								player.fantraxProjections.perGame[statKey] = player.fantraxProjections.raw[statKey];

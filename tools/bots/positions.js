@@ -1,5 +1,7 @@
 var dotenv = require('dotenv').config({ path: '/app/.env' });
 
+var fs = require('fs');
+var path = require('path');
 var request = require('superagent');
 
 var PSO = require('../../config/pso.js');
@@ -13,10 +15,20 @@ const siteData = {
 	colbys: {
 		staticPositions: ['PG', 'SG', 'SF', 'PF', 'C'],
 		sheetLink: 'https://sheets.googleapis.com/v4/spreadsheets/16SHgSkREFEYmPuLg35KDSIdJ72MrEkYb1NKXSaoqSTc/values/Rostered',
-		fantraxLink: `https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=${PSO.fantraxLeagueId}&statusOrTeamFilter=ALL`,
+		fantraxLink: 'https://www.fantrax.com/fxpa/downloadPlayerStats?leagueId=' + PSO.fantraxLeagueId + '&statusOrTeamFilter=ALL',
+		colbysCsvPath: path.join(__dirname, '../../prep/colbys.csv'),
 		dataRetrievalFunction: newFantraxPromise,
 	}
 };
+
+function fantraxGet(url) {
+	return request
+		.get(url)
+		.set('Cookie', process.env.FANTRAX_COOKIES || '')
+		.set('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
+		.set('Accept', 'text/csv,text/plain,*/*')
+		.set('Referer', 'https://www.fantrax.com/fantasy/league/' + PSO.fantraxLeagueId + '/players');
+}
 
 var parameters = {
 	site: 'pso'
@@ -64,42 +76,67 @@ function newSleeperJsonPromise(players) {
 	});
 }
 
-function newFantraxPromise(players) {
-	return new Promise(function(resolve, reject) {
-		request
-			.get(siteData[parameters.site].fantraxLink)
-			.set('Cookie', process.env.FANTRAX_COOKIES)
-			.then(response => {
-				var csvLines = response.body.toString().trim();
-
-				csvLines.split(/\n/).forEach((csvLine, i) => {
-					if (i == 0) {
-						return;
-					}
-
-					var fields = csvLine.replace(/^\"/, '').split(/","/);
-
-					var name = fields[1];
-					var team = fields[2];
-					var positions = fields[3].split(/,/);
-
-					var playersWithName = players.filter(player => nameToId(player.name) == nameToId(name));
-
-					if (playersWithName.length > 1) {
-						return;
-					}
-
-					var player = playersWithName[0];
-
-					if (player) {
-						player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
-					}
-				});
-
-				resolve(players);
-			});
+function applyFantraxCsvToPlayers(players, csvText) {
+	csvText.trim().split(/\n/).forEach((csvLine, i) => {
+		if (i == 0) {
+			return;
 		}
-	)
+
+		var fields = csvLine.replace(/^\"/, '').split(/","/);
+
+		var name = fields[1];
+		var positions = fields[3].split(/,/);
+
+		var playersWithName = players.filter(player => nameToId(player.name) == nameToId(name));
+
+		if (playersWithName.length > 1) {
+			return;
+		}
+
+		var player = playersWithName[0];
+
+		if (player) {
+			player.positions = positions.filter(position => siteData[parameters.site].staticPositions.includes(position));
+		}
+	});
+
+	return players;
+}
+
+function loadColbysCsvFallback(players) {
+	var csvPath = siteData.colbys.colbysCsvPath;
+
+	if (!fs.existsSync(csvPath)) {
+		return Promise.reject(new Error('Fantrax blocked the download and ' + csvPath + ' is missing. Export Players CSV from Fantrax into prep/colbys.csv.'));
+	}
+
+	applyFantraxCsvToPlayers(players, fs.readFileSync(csvPath, 'utf8'));
+	return Promise.resolve(players);
+}
+
+function newFantraxPromise(players) {
+	return fantraxGet(siteData[parameters.site].fantraxLink)
+		.then(response => {
+			var csvLines = (response.text || response.body || '').toString();
+			return applyFantraxCsvToPlayers(players, csvLines);
+		})
+		.catch(function(err) {
+			if (parameters.site !== 'colbys') {
+				throw err;
+			}
+
+			var status = err.status || (err.response && err.response.status);
+			var isCloudflare = status === 403 || (err.response && err.response.text && err.response.text.includes('Just a moment'));
+
+			if (isCloudflare) {
+				console.error('Fantrax returned Cloudflare challenge; falling back to prep/colbys.csv');
+			}
+			else {
+				console.error('Fantrax download failed (' + (status || 'unknown') + '); falling back to prep/colbys.csv');
+			}
+
+			return loadColbysCsvFallback(players);
+		});
 }
 
 function newSheetsPromise(fantraxId) {
@@ -145,14 +182,17 @@ function positionSort(a, b) {
 }
 
 newSheetsPromise().then(players => {
-	siteData[parameters.site].dataRetrievalFunction(players).then(players => {
-		players.forEach(player => {
-			if (player.positions) {
-				console.log(player.positions.sort(positionSort).join('/'));
-			}
-			else {
-				console.log('???');
-			}
-		});
+	return siteData[parameters.site].dataRetrievalFunction(players);
+}).then(players => {
+	players.forEach(player => {
+		if (player.positions) {
+			console.log(player.positions.sort(positionSort).join('/'));
+		}
+		else {
+			console.log('???');
+		}
 	});
+}).catch(function(err) {
+	console.error(err.message || err);
+	process.exit(1);
 });
