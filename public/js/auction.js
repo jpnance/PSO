@@ -41,6 +41,17 @@ $(document).ready(function() {
 		}));
 	});
 
+	$('#bid-plus-one').bind('click', function(e) {
+		e.preventDefault();
+
+		var high = 0;
+		if (lastAuctionData && lastAuctionData.bids && lastAuctionData.bids.length > 0) {
+			high = parseInt(lastAuctionData.bids[0].amount, 10) || 0;
+		}
+
+		$('#bid-amount').val(high + 1).focus();
+	});
+
 	$('#bid-form').bind('submit', function(e) {
 		var newBid = { amount: $(this).find('#bid-amount').val() };
 
