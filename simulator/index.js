@@ -19,6 +19,7 @@ var mongoOwners = {
 
 	'Koci': 'koci',
 	'Koci/Mueller': 'kociMueller',
+	'Nam': 'nam',
 
 	'Syed': 'syed',
 	'Syed/Terence': 'syedTerence',
@@ -56,7 +57,8 @@ var mongoOwners = {
 	'Quinn': 'quinn',
 
 	'Mitch/Mike': 'mitchMike',
-	'Mitch': 'mitch'
+	'Mitch': 'mitch',
+	'Mitch/Karsten': 'mitchKarsten'
 };
 
 var ownerFranchiseIds = {
@@ -65,6 +67,7 @@ var ownerFranchiseIds = {
 
 	'koci': 2,
 	'kociMueller': 2,
+	'nam': 2,
 
 	'syed': 3,
 	'syedTerence': 3,
@@ -102,7 +105,8 @@ var ownerFranchiseIds = {
 	'quinn': 11,
 
 	'mitchMike': 12,
-	'mitch': 12
+	'mitch': 12,
+	'mitchKarsten': 12
 };
 
 var manualWinners = {};
@@ -306,7 +310,7 @@ mongoose.connect(process.env.MONGODB_URI).then(function() {
 		initializeOwners();
 
 		if (viewOnly) {
-			var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
+			var percentagesData = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/percentages.json'), 'utf8'));
 
 			Object.keys(schedule).forEach(weekId => {
 				var week = schedule[weekId];
@@ -387,7 +391,7 @@ mongoose.connect(process.env.MONGODB_URI).then(function() {
 			}
 
 			if (render) {
-				var percentagesData = JSON.parse(fs.readFileSync('../public/data/percentages.json', 'utf8'));
+				var percentagesData = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/percentages.json'), 'utf8'));
 
 				Object.keys(schedule).forEach(weekId => {
 					var week = schedule[weekId];

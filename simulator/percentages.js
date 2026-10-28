@@ -15,13 +15,15 @@ var simulationData = null;
 
 var franchiseData = {};
 
+var simulationsPath = path.join(__dirname, '../public/data/simulations.json');
+
 try {
-	fileData = fs.readFileSync('../public/data/simulations.json', 'utf8');
+	fileData = fs.readFileSync(simulationsPath, 'utf8');
 	simulationData = JSON.parse(fileData);
 }
 catch (error) {
-	response.status(500).send({ error: error, message: 'Unable to read simulations.json' });
-	return;
+	console.error('Unable to read simulations.json at ' + simulationsPath + ': ' + error.message);
+	process.exit(1);
 }
 
 /*
