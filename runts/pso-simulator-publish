@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+REMOTE="coinflipper.org:~/apps/pso"
+TRIALS=100000
+
+WEEK="$(docker compose run --rm web node -p "require('./config/pso').getWeek()")"
+
+docker compose run --rm web node simulator/index.js dataonly n="${TRIALS}"
+docker compose run --rm web node simulator/percentages.js "${WEEK}"
+docker compose run --rm web node simulator/index.js viewonly n="${TRIALS}"
+
+scp public/data/simulations.json "${REMOTE}/public/data/"
+scp public/simulator/index.html "${REMOTE}/public/simulator/"
