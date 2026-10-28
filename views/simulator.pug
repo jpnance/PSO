@@ -6,6 +6,7 @@ html
 		meta(name='google' content='notranslate')
 
 		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet' href='/css/design-tokens.css')
 		link(rel='stylesheet' href='/css/sim.css')
 		script(src='/js/jquery.min.js')
 		script(src='/js/umd/popper.min.js')
@@ -14,8 +15,8 @@ html
 
 		title Simulator Results for Week #{options.startWithWeek}
 
-	body
-		div.container
+	body.simulator-page
+		div.simulator-page__content.container
 			p.my-2
 				h1.text-center.mb-0 The Simulator
 				h6.text-center Week #{options.startWithWeek} and Onward

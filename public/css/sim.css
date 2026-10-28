@@ -2,7 +2,19 @@ table th {
 	white-space: nowrap;
 }
 
-span.finishes {
+/* Link styling scoped to simulator (after bootstrap / design-tokens / layout CSS) */
+.simulator-page a {
+	color: var(--color-link);
+	text-decoration: none;
+}
+
+.simulator-page a:hover,
+.simulator-page a:focus {
+	color: var(--color-link-hover);
+	text-decoration: underline;
+}
+
+.simulator-page span.finishes {
 	color: var(--color-link);
 	cursor: pointer;
 }
