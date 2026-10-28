@@ -2,7 +2,13 @@ table th {
 	white-space: nowrap;
 }
 
-/* Link styling scoped to simulator (after bootstrap / design-tokens / layout CSS) */
+/* Standalone page: bootstrap white body, PSO link colors without design-tokens.css side effects */
+.simulator-page {
+	--color-link: #4a90d9;
+	--color-link-hover: #3a7bc8;
+	background-color: #fff;
+}
+
 .simulator-page a {
 	color: var(--color-link);
 	text-decoration: none;
