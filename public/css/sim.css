@@ -2,6 +2,13 @@ table th {
 	white-space: nowrap;
 }
 
+/* Decimal probabilities and win-% labels */
+.simulator-page .table td.text-right,
+.simulator-page .table th.text-right,
+.simulator-page label.winner {
+	font-variant-numeric: tabular-nums;
+}
+
 /* Standalone page: bootstrap white body, PSO link colors without design-tokens.css side effects */
 .simulator-page {
 	--color-link: #4a90d9;
