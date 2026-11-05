@@ -32,7 +32,7 @@ function buildNav(options) {
 		if (activePage === 'franchise' || activePage === 'franchises' || activePage === 'timeline') {
 			return 'franchises';
 		}
-		if (activePage === 'standings' || activePage === 'schedule' || activePage === 'jaguar' || activePage === 'h2h') {
+		if (activePage === 'standings' || activePage === 'schedule' || activePage === 'simulator' || activePage === 'jaguar' || activePage === 'h2h') {
 			return 'season';
 		}
 		if (activePage === 'trade-machine' || activePage === 'trades' || activePage === 'cuts' || activePage === 'proposal') {
@@ -82,6 +82,7 @@ function buildNav(options) {
 			items: [
 				{ label: 'Standings', icon: 'fa-list-ol', href: '/standings', active: isActive('standings') },
 				{ label: 'Schedule', icon: 'fa-calendar', href: '/schedule', active: isActive('schedule') },
+				{ label: 'Simulator', icon: 'fa-random', href: '/simulator', active: isActive('simulator') },
 				{ label: 'Jaguar Chart', icon: 'fa-paw', href: '/jaguar', active: isActive('jaguar') },
 				{ label: 'Head-to-Head', icon: 'fa-users', href: '#', soon: true }
 			]
