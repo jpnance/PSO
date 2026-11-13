@@ -72,6 +72,9 @@ table.table.table-hover.table-sm
 						else if (Math.round(probability * 100) < 1) {
 							finishTable += ' (<1%)';
 						}
+						else if (probability < 1 && Math.round(probability * 100) === 100) {
+							finishTable += ' (>99%)';
+						}
 						else {
 							finishTable += ' (' + Math.round(probability * 100) + '%)';
 						}
