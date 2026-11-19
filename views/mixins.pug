@@ -16,7 +16,10 @@ mixin timelineSalary(entry, opts)
 //- Player timeline entry - renders a single transaction in the player history
 //- Usage: +timelineEntry(entry)
 mixin timelineEntry(entry)
-	- var isInferred = entry.timestamp && entry.timestamp.getSeconds() === 33
+	- var ts = entry.timestamp ? new Date(entry.timestamp) : null
+	//- Seeded/inferred timestamps use exactly :33.000 UTC; real events can land on :33 with sub-second precision (e.g. trade #842).
+	- var isInferred = ts && ts.getUTCSeconds() === 33 && ts.getUTCMilliseconds() === 0
+	- var showDate = entry.timestamp && !isInferred
 	- var categoryClass = 'player-timeline__entry--' + transactionCategory(entry.type)
 	- var icons = { 'trade': 'fa-exchange', 'fa-pickup': 'fa-plus', 'fa-cut': 'fa-scissors', 'draft-select': 'fa-graduation-cap', 'expansion-draft-protect': 'fa-shield', 'expansion-draft-select': 'fa-users', 'auction-ufa': 'fa-gavel', 'auction-rfa-matched': 'fa-gavel', 'auction-rfa-unmatched': 'fa-gavel', 'rfa-rights-conversion': 'fa-refresh', 'rfa-rights-lapsed': 'fa-hourglass-end', 'contract': 'fa-file-text-o', 'contract-expiry': 'fa-calendar-times-o', 'rfa-unknown': 'fa-question-circle' }
 	- var icon = icons[entry.type] || 'fa-circle'
@@ -109,7 +112,7 @@ mixin timelineEntry(entry)
 						|  (#{entry.regime})
 				else
 					span= entry.type
-			if !isInferred
+			if showDate
 				div.player-timeline__date= formatDateMedium(entry.timestamp)
 
 //- Title breadcrumbs
